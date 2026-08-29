@@ -1,7 +1,12 @@
 # Generated / downloaded media assets
+
+# Current image pipeline: one generated image per beat
+videos/**/assets/raw_beats/*
+!videos/**/assets/raw_beats/.gitkeep
+
+# Legacy storyboard-sheet assets (deprecated, kept ignored if they still exist locally)
 videos/**/assets/raw_storyboards/*
 !videos/**/assets/raw_storyboards/.gitkeep
-
 videos/**/assets/cropped_beats/*
 !videos/**/assets/cropped_beats/.gitkeep
 
@@ -11,8 +16,8 @@ videos/**/assets/audio/*
 videos/**/assets/renders/*
 !videos/**/assets/renders/.gitkeep
 
-# Canonical reference images are intentionally tracked.
-# Do NOT add videos/**/references/ here.
+# Canonical preset/reference images are intentionally tracked.
+# Do NOT ignore visual_presets/** or videos/**/references/**
 
 # Local/system files
 .DS_Store

@@ -4,49 +4,38 @@
 
 Build an automation-first pipeline for producing English faceless YouTube videos from a topic to a finished video.
 
-The long-term system should be able to generate videos quickly and repeatedly using a fixed workflow, with as little manual work as practical.
-
 ## Current MVP
 
-Start with **60-second English videos** so we can discover infrastructure problems, workflow bottlenecks, prompt issues, image consistency problems, timing issues, and editing tricks quickly.
-
-After the workflow becomes reliable, extend it to longer videos, potentially up to ~30 minutes.
+Start with ~60-second English videos, learn the infrastructure and creative failure modes quickly, then extend to longer videos.
 
 ## Current approach
 
-For the MVP:
-
 - English content only.
 - No official LLM/image APIs for now.
-- Use **ordak** to automate the real ChatGPT/Gemini web interfaces through an already signed-in Chrome session.
-- Use ChatGPT for script writing, visual planning, and image-generation prompts.
-- The user currently generates and downloads storyboard images manually; the pipeline then processes those local assets.
-- Build similar browser automation for **ElevenLabs** for voice generation, either integrated with ordak or closely connected to it.
-- Use a structured pipeline so every narration segment maps to a visual beat.
-- Prefer **visual beats** over a strict “one sentence = one image” rule.
-- Generate multiple scenes in one image as a **2x2 storyboard sheet**, then crop the four quadrants automatically.
-- Keep prompts, project decisions, workflow notes, and code in this repository so the project can continue across new ChatGPT conversations and other agents.
+- ordak is intended to automate real signed-in ChatGPT/Gemini browser sessions.
+- ElevenLabs browser automation will be added for narration.
+- Visual planning uses semantic visual beats rather than strict sentence boundaries.
+- **One visual beat generates one full-resolution standalone 16:9 image.**
+- The earlier 2x2 storyboard-sheet approach is deprecated because cropping lowered image quality.
 
 ## Visual consistency strategy
 
-Storyboard generation is **reference-driven**, not prompt-only.
+Every generated beat image uses:
+1. canonical STYLE ANCHOR
+2. canonical CHARACTER ANCHOR
+3. optional video-specific recurring anchors
+4. previous accepted beat image (Beat 02+)
+5. current beat prompt
 
-Canonical visual references:
-- a **style anchor** controls rendering style, palette, lighting language, texture, and detail level
-- a **character anchor** controls protagonist identity: face, hair, outfit, body proportions, and age impression
-- optional dedicated environment/memory anchors control recurring locations and flashbacks
+The previous image is only a continuity reference. Character/style anchors remain canonical to prevent cumulative drift.
 
-For Sheet 02 and later, the previous storyboard sheet is also supplied for short-range continuity.
+## Visual presets
 
-Reference priority is:
+Reusable style+character combinations live in:
 
-1. character anchor
-2. style anchor
-3. dedicated recurring environment/memory anchors
-4. previous storyboard sheet
-5. current scene prompt
+`visual_presets/<preset>/`
 
-The previous sheet must never become the only character reference because cumulative visual drift can occur.
+Each video selects one preset using `VISUAL_PRESET.md`.
 
 ## Target pipeline
 
@@ -54,65 +43,40 @@ Topic
 → Script
 → Retention edit
 → Visual beats
-→ Storyboard prompts
-→ Canonical visual references
-→ Manual/automated storyboard generation
-→ Save raw storyboard sheets locally
-→ Crop/process images
+→ Per-beat image prompts
+→ One image per beat
 → ElevenLabs narration
 → Timing/alignment
 → Timeline
-→ Subtitles / motion / audio
+→ Motion/subtitles/audio
 → Render
 → Human QC
 → Final video
 
 ## Asset policy
 
-Canonical reference images are versioned in Git because they are part of the reproducible visual specification.
+Commit:
+- prompts
+- visual presets and canonical anchors
+- workflow/docs
+- reusable video-specific anchors
+- source code/config
 
-Generated media is not committed:
-- raw storyboard sheets
-- cropped beat images
-- audio
+Do not commit:
+- generated beat images
+- generated audio
 - renders
 
-These are stored under each video's `assets/` directory and ignored by Git.
+Generated beat images are stored under each video's `assets/raw_beats/`.
 
-## MVP expectations
-
-A typical 60-second video will likely contain roughly:
-
-- 130–160 spoken English words
-- ~15–22 visual beats
-- several 2x2 storyboard sheets rather than one generation per scene
-- lightweight motion on still images such as zoom/pan
-- a short human QC pass before final export
-
-These numbers are starting assumptions, not fixed rules. We will revise them based on real test videos.
-
-## Important design principle
-
-Do not overbuild the architecture before making real videos.
-
-We will add files, prompts, code, schemas, and automation gradually as each need becomes concrete. The first priority is to complete real end-to-end test videos and turn what we learn into reusable project rules.
-
-## External project
-
-ordak:
-https://github.com/AliBalash/ordak
-
-ordak provides local browser-backed automation for ChatGPT and Gemini using an existing authenticated Chrome session, including persisted jobs, retries, browser interaction, text extraction, and generated-image extraction.
-
-## Current status
+## Video 001 status
 
 Video 001 has:
 - brief
-- final script
-- visual beats
-- storyboard prompt writer
-- sheet prompts
-- reference-driven storyboard workflow
+- final narration
+- 18 visual beats
+- selected visual preset
+- 18 per-beat image prompts
+- reference-driven per-beat image workflow
 
-Current next step:
-generate and approve the canonical style and character anchors, commit those reference images, then regenerate storyboard sheets using the reference workflow.
+Next major stage after image generation: ElevenLabs narration and beat timing/alignment.

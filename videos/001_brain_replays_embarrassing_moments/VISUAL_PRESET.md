@@ -6,21 +6,25 @@ Selected preset:
 visual_presets/001_cinematic_storybook_green_hoodie/
 ```
 
-This preset defines the canonical style and main-character identity for Video 001.
+This preset defines the canonical style and protagonist identity for Video 001.
 
-## Storyboard reference order
+## Per-beat reference order
 
-For Sheet 01:
-1. `visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png`
-2. `visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png`
-3. optional video-specific references from `references/`
-4. current sheet prompt
+### Beat 01
+1. selected preset's `style_anchor.png`
+2. selected preset's `character_anchor.png`
+3. optional video-specific anchors from `references/`
+4. current beat prompt
 
-For Sheet 02+:
-1. style anchor from selected preset
-2. character anchor from selected preset
-3. optional video-specific references
-4. previous raw storyboard sheet from `assets/raw_storyboards/`
-5. current sheet prompt
+### Beat 02+
+1. selected preset's `style_anchor.png`
+2. selected preset's `character_anchor.png`
+3. optional video-specific anchors from `references/`
+4. immediately previous accepted image from `assets/raw_beats/`
+5. current beat prompt
 
-If the previous sheet drifts from the preset, the preset wins.
+## Priority
+
+If the previous beat drifts from the canonical preset, the canonical preset wins.
+
+The previous beat exists only to preserve short-range continuity; it is not the source of truth for character identity or rendering style.
