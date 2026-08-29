@@ -11,6 +11,9 @@ videos/**/assets/audio/*
 videos/**/assets/renders/*
 !videos/**/assets/renders/.gitkeep
 
+# Canonical reference images are intentionally tracked.
+# Do NOT add videos/**/references/ here.
+
 # Local/system files
 .DS_Store
 Thumbs.db
