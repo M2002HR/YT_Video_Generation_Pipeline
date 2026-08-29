@@ -94,4 +94,10 @@ Video 001 has:
 - 18 per-beat image prompts
 - reference-driven per-beat image workflow
 
-Next major stage after image generation: ElevenLabs narration and beat timing/alignment.
+Current next stage:
+- assume all beat images exist under `assets/raw_beats/`
+- generate one continuous ElevenLabs narration from `voiceover/VOICEOVER_INPUT.txt`
+- save the accepted audio under `assets/audio/`
+- then derive word/phrase timestamps and map them to the 18 visual beats
+
+Voiceover workflow: `videos/001_brain_replays_embarrassing_moments/voiceover/WORKFLOW.md`
