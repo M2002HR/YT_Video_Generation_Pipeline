@@ -2,132 +2,188 @@
 
 ## Goal
 
-Generate crop-ready 2x2 storyboard sheets while keeping character and visual consistency across new chats/sessions.
+Generate crop-ready 2x2 storyboard sheets while keeping character and visual consistency across different chats and browser sessions.
 
-## Inputs
+## 1. Select a reusable visual preset
 
-Canonical references:
-- `references/style_anchor.png`
-- `references/character_anchor.png`
-
-Optional recurring references:
-- `references/bedroom_anchor.png`
-- `references/memory_anchor.png`
-
-Per-sheet inputs:
-- current `SHEET_XX_PROMPT.md`
-- previous raw storyboard sheet for Sheet 02+
-
-## Workflow
-
-### Step 1 — Generate canonical anchors once
-
-Generate:
-- style anchor
-- character anchor
-
-Review them manually.
-
-When approved, save them under `references/` and commit them to Git.
-
-### Step 2 — Generate Sheet 01
-
-Start a new image-generation chat/session if needed.
-
-Upload:
-1. style anchor
-2. character anchor
-3. optional recurring environment anchors
-
-Then send `SHEET_01_PROMPT.md`.
-
-Download the resulting image as:
+Every video selects one preset from:
 
 ```text
-assets/raw_storyboards/sheet_01.png
+visual_presets/
 ```
 
-Do **not** commit this raw generated sheet.
-
-### Step 3 — Generate Sheet 02+
-
-For each next sheet, upload:
-
-1. style anchor
-2. character anchor
-3. optional dedicated recurring anchors
-4. previous raw storyboard sheet
-
-Then send the next sheet prompt.
-
-Example:
+The selected preset for this video is declared in:
 
 ```text
-style_anchor.png
-character_anchor.png
-sheet_02.png
+../VISUAL_PRESET.md
+```
+
+A preset contains:
+- style prompt
+- style anchor image
+- character prompt
+- character anchor image
+
+The preset is reusable across multiple videos.
+
+## 2. Add optional video-specific anchors
+
+Only references unique to this video's world belong in:
+
+```text
+../references/
+```
+
+Examples:
+- `bedroom_anchor.png`
+- `memory_anchor.png`
+
+Do not duplicate the global style or main-character anchors here.
+
+## 3. Generate Sheet 01
+
+Upload, in this order:
+
+1. selected preset's `style_anchor.png`
+2. selected preset's `character_anchor.png`
+3. any video-specific anchors
+4. send `SHEET_01_PROMPT.md`
+
+Download the accepted result to:
+
+```text
+../assets/raw_storyboards/sheet_01.png
+```
+
+Raw storyboard sheets are local assets and are Git-ignored.
+
+## 4. Generate Sheet 02 and later
+
+For every later sheet, upload:
+
+1. selected preset's `style_anchor.png`
+2. selected preset's `character_anchor.png`
+3. any relevant video-specific anchors
+4. the immediately previous raw storyboard sheet
+5. send the current `SHEET_XX_PROMPT.md`
+
+Example for Sheet 03:
+
+```text
+visual_presets/<selected>/style_anchor.png
+visual_presets/<selected>/character_anchor.png
+../assets/raw_storyboards/sheet_02.png
 SHEET_03_PROMPT.md
 ```
 
-Download to:
+### Reference priority
 
-```text
-assets/raw_storyboards/sheet_03.png
-```
+If references disagree:
 
-### Step 4 — Consistency check
+1. character anchor controls protagonist identity
+2. style anchor controls rendering style
+3. dedicated video-specific anchors control recurring locations/flashbacks
+4. previous sheet controls short-range continuity only
+5. current prompt controls the new action/composition
 
-Before accepting a sheet, verify:
+Never rely on the previous sheet as the only identity reference; that creates cumulative visual drift.
 
-- same main character face
-- same hair shape
-- same green hoodie identity
-- same body proportions
-- same rendering style
-- same recurring bedroom when applicable
-- same recurring memory cast when applicable
+## 5. Acceptance check for every raw sheet
+
+Before keeping a generated sheet, verify:
+
+- protagonist identity matches the character anchor
+- style matches the style anchor
+- recurring locations/cast remain recognizable
 - no visible panel numbers
-- no narration captions
-- no visible divider lines
-- no important content crossing the invisible center crop boundaries
+- no narration captions or subtitles
+- no visible divider/grid lines
+- no important content crosses the invisible 50% horizontal or vertical crop lines
+- all four quadrants are usable as standalone images
 
-If consistency fails, regenerate the sheet using the same canonical anchors.
+If a sheet fails, regenerate it using the same canonical anchors.
 
-### Step 5 — Crop
+## 6. Raw storyboard file names
 
-After all raw sheets are approved, crop each image at exactly 50% width and 50% height:
-
-```text
-sheet_01.png
-  top-left     -> beat_01.png
-  top-right    -> beat_02.png
-  bottom-left  -> beat_03.png
-  bottom-right -> beat_04.png
-```
-
-Continue sequentially.
-
-For Sheet 05, only keep the active beat panels.
-
-Cropped outputs go to:
+For Video 001, save the five accepted sheets exactly as:
 
 ```text
-assets/cropped_beats/
+../assets/raw_storyboards/
+  sheet_01.png
+  sheet_02.png
+  sheet_03.png
+  sheet_04.png
+  sheet_05.png
 ```
 
-Raw sheets and cropped beats are local build assets and remain Git-ignored.
+Do not commit these files.
+
+## 7. Crop all sheets into beat images
+
+Install local dependencies once:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+From the repository root run:
+
+```bash
+python scripts/crop_storyboards.py \
+  videos/001_brain_replays_embarrassing_moments
+```
+
+The cropper reads `VISUAL_BEATS.md`, detects that Video 001 has 18 beats, and maps quadrants in this order:
+
+```text
+top-left
+top-right
+bottom-left
+bottom-right
+```
+
+So:
+
+```text
+sheet_01.png -> beat_01.png ... beat_04.png
+sheet_02.png -> beat_05.png ... beat_08.png
+sheet_03.png -> beat_09.png ... beat_12.png
+sheet_04.png -> beat_13.png ... beat_16.png
+sheet_05.png -> beat_17.png, beat_18.png
+```
+
+Unused quadrants in the final sheet are ignored automatically.
+
+Outputs are written to:
+
+```text
+../assets/cropped_beats/
+  beat_01.png
+  ...
+  beat_18.png
+```
+
+These files are also Git-ignored.
+
+If you intentionally want to replace existing crops:
+
+```bash
+python scripts/crop_storyboards.py \
+  videos/001_brain_replays_embarrassing_moments \
+  --overwrite
+```
 
 ## Git policy
 
 Commit:
+- visual presets and their canonical anchor images
 - prompts
-- workflow docs
-- reference notes
-- canonical reference images
-- scripts/code
+- storyboard workflow/docs
+- video-specific reusable anchors
+- source code/scripts
 
 Do not commit:
 - raw generated storyboard sheets
 - cropped beat images
-- audio
-- rendered video files
+- generated audio
+- rendered videos
