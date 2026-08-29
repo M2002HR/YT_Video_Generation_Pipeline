@@ -37,6 +37,21 @@ Reusable style+character combinations live in:
 
 Each video selects one preset using `VISUAL_PRESET.md`.
 
+## Scaling and future ordak automation
+
+For long videos with 100–300+ beats:
+
+- prompt generation should be automated in batches, typically 10–20 beats per text job
+- generated prompt batches should be parsed into individual beat prompt files
+- image generation should remain sequential within each video because Beat N uses Beat N-1 as a continuity reference
+- long image runs should be split across multiple browser conversations rather than relying on one giant conversation
+- pipeline state must be explicit and resumable so a failed beat does not restart the whole video
+- ordak should remain the browser execution layer while this repository owns sequencing, project state, reference selection, retry policy, and output naming
+
+Detailed implementation plan:
+
+`docs/ORDAK_BEAT_AUTOMATION.md`
+
 ## Target pipeline
 
 Topic
