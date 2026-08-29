@@ -2,47 +2,52 @@
 
 Covers: Beats 01–04
 
-> Note: the style block below is provisional for the first visual test. Once we are happy with the visual direction, we will extract the stable parts into a reusable Style Bible.
+> Visual test note: keep the richer recurring character from the first generated sheet for now. We may simplify the channel style later after comparing consistency across multiple videos.
 
 ```text
-Create a clean 2x2 storyboard sheet for a faceless YouTube psychology video.
+Create a seamless 2x2 storyboard sheet for a faceless YouTube psychology video.
 
 GLOBAL STYLE:
-Minimal hand-drawn 2D editorial cartoon illustration with a warm cream paper background, slightly imperfect black ink outlines, very simple rounded human characters, restrained muted colors, subtle paper texture, expressive body language, clean visual metaphors, and uncluttered compositions. The overall look should feel like a modern illustrated psychology explainer rather than polished corporate vector art.
+Use the same recognizable recurring young male character and the same polished illustrated-cartoon treatment established in the previous visual test: expressive face, dark tousled hair, youthful proportions, cinematic but still clearly illustrated lighting, readable emotions, and cohesive storybook/cartoon rendering.
 
-Use the same recurring main character in every panel:
-a simple gender-neutral young adult character with a round pale face, tiny minimal facial features, short dark hair, black T-shirt, and dark pants. Keep the character’s face, hair, clothing, proportions, and drawing style consistent across all four panels.
+Keep the character recognizable across all four scenes: same face shape, hair, age impression, proportions, and general clothing identity. The final channel style may later become more minimal, but for this test preserve the established character rather than redesigning him.
 
-No captions, labels, subtitles, logos, watermarks, or decorative text.
+INVISIBLE CROP LAYOUT:
+Create one exact 2x2 quadrant composition on a 16:9 full canvas.
+The four quadrants must be equal size and aligned exactly to the horizontal and vertical center of the image.
 
-LAYOUT:
-Create one exact 2x2 grid on a 16:9 full canvas.
-All four panels must have equal dimensions and clean straight boundaries.
-TOP LEFT = Beat 01.
-TOP RIGHT = Beat 02.
-BOTTOM LEFT = Beat 03.
-BOTTOM RIGHT = Beat 04.
+IMPORTANT: there must be NO visible grid, NO white separator lines, NO comic panel frames, NO boxes, NO panel numbers, and NO corner labels.
+The divisions between the four scenes are invisible crop boundaries only.
 
-Each panel must be a complete standalone 16:9 composition after cropping.
-Do not let any character, object, glow, speech bubble, thought bubble, projection, or effect cross a panel boundary.
-Keep all important subjects comfortably inside each panel with extra safe space around them for later zoom and pan animation.
+No character, prop, glow, speech bubble, thought bubble, projection, shadow, or important object may cross the horizontal or vertical center crop boundary.
+Each quadrant must remain a complete standalone 16:9 composition after cropping the canvas at exactly 50% width and 50% height.
+Keep key subjects comfortably away from the invisible crop boundaries and leave some breathing room for later zoom/pan animation.
+
+TEXT POLICY:
+Do not add captions, narration text, subtitles, panel labels, scene numbers, explanatory text, logos, or watermarks.
+Do not write the spoken narration underneath any scene.
+
+Small story-native text is allowed only when it naturally belongs inside the world of the scene and materially improves the idea. Keep it rare and very short.
+Examples allowed here: a clock display, or a tiny speech bubble such as “Hey…” from the brain.
+Prefer no text whenever the visual alone can communicate the beat.
 
 TOP LEFT — BEAT 01:
-Late at night in a simple bedroom. The recurring main character lies under a blanket in bed, eyes half closed, peacefully drifting toward sleep. A small bedside table and lamp establish the room, but the composition stays sparse and calm. Dim warm nighttime lighting, quiet mood, no visual clutter.
+Late at night in a simple dark-blue bedroom. The recurring character lies under a blanket in bed, eyes half closed, peacefully drifting toward sleep. A bedside table and digital clock may be visible as natural bedroom props. Quiet, calm, low-stimulation composition. No caption underneath the character.
 
 TOP RIGHT — BEAT 02:
-Same bedroom, same bed, same character and clothing. The character has just been interrupted while almost asleep. Beside their head, a small cartoon-like intrusive thought appears suddenly — represented as a simple floating brain-shaped thought symbol or compact thought bubble — creating a clear visual interruption. The character’s eyes open slightly in annoyed surprise. Keep the idea simple and instantly readable.
+Same bedroom, same bed, same recurring character. He has just been mentally interrupted while almost asleep. A small expressive cartoon brain appears floating beside his head, creating a clear visual interruption. His eyes open in mildly annoyed surprise. If useful, the brain may have one tiny speech bubble containing only “Hey…”. No other written dialogue and no narration text.
 
 BOTTOM LEFT — BEAT 03:
-Same bedroom and same character sitting slightly more awake in bed. Above the bed appears a clearly separate projected memory scene, like a small floating movie frame. Inside the memory, show the same character several years earlier in an awkward social interaction with two or three other simple people, caught mid-sentence while the others react with mild surprise. The present-day character looks embarrassed just seeing it again. Make the flashback obviously a memory without using any text.
+Same bedroom and same recurring character, now more awake and embarrassed. Above the bed appears a distinct memory visualization, like a floating dream/memory scene. Inside it, show the same character several years earlier in an awkward social interaction with two or three peers, caught mid-sentence while the others react with mild surprise or amusement. Make it obvious visually that this is a remembered moment without any explanatory caption.
 
 BOTTOM RIGHT — BEAT 04:
-Bright daytime scene with the exact same recurring main character. The character is upright and busy while surrounded by multiple external distractions: a phone with notification symbols, a laptop or work papers, nearby people talking, and simple environmental activity. The scene should feel active and crowded compared with the quiet bedroom, but still remain visually readable and not overly detailed.
+Switch clearly to daytime. Show the exact same recurring character awake and busy in a bright daytime environment, surrounded by competing external stimuli: phone notifications represented mainly as icons, laptop or work material, nearby people, and environmental activity. This quadrant must communicate a busy daytime attention environment and must NOT repeat the embarrassment flashback. Keep it readable rather than chaotic.
 
 CONSISTENCY:
-Maintain exactly the same main character design across all four panels.
-The bedroom in the first three panels should be recognizably the same room.
-Keep the awkward flashback scene visually reusable because it will return in later storyboard sheets.
-Use a coherent limited palette and identical line quality across every panel.
-Every panel must remain cleanly crop-safe and visually independent.
+Preserve the same recurring character design from the previous generated image, especially face shape, dark tousled hair, expressive eyes, age impression, and overall rendering style.
+The bedroom in the first three quadrants must be recognizably the same room.
+The embarrassing social memory introduced in Beat 03 should be visually reusable in later sheets.
+Maintain coherent lighting and rendering across the sheet while allowing night versus day to be immediately obvious.
+No visible panel separators, no numbers, no narration captions.
+Every quadrant must be cleanly crop-safe at the exact center lines.
 ```
