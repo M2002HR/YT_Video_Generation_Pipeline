@@ -2,20 +2,38 @@
 
 ## Purpose
 
-Convert approved visual beats into image-generation prompts for **2x2 storyboard sheets**.
+Convert approved visual beats into image-generation prompts for **2x2 storyboard sheets** while preserving visual identity through explicit image references.
 
 Each sheet should contain up to four standalone scenes that can later be cropped automatically into individual 16:9 images.
 
 This prompt is designed to be reusable and later callable through ordak.
 
+## Required references
+
+When generating a storyboard sheet, the calling workflow should provide image references in this order whenever available:
+
+1. **STYLE ANCHOR** — canonical rendering style
+2. **CHARACTER ANCHOR** — canonical protagonist identity
+3. optional recurring environment/memory anchors
+4. **PREVIOUS SHEET** — for short-range continuity only
+
+Reference priority:
+- character anchor controls identity
+- style anchor controls visual rendering
+- dedicated location/memory anchors control recurring world elements
+- previous sheet controls local continuity
+- current written prompt controls the new action/composition
+
+Never rely on the previous sheet alone for character identity because this can cause cumulative drift.
+
 ## Input
 
 Provide:
 
-1. The video's visual/style rules, if available
-2. The approved visual beats to include in the sheet
-3. Optional continuity notes from the previous sheet
-4. Optional character/reference-image continuity instructions
+1. visual/style rules
+2. approved visual beats
+3. reference-image descriptions/order
+4. optional continuity notes from the previous sheet
 
 ## Output
 
@@ -27,9 +45,20 @@ Do not include commentary, explanations, or alternative prompts.
 
 You are preparing a single image-generation prompt for a 2x2 storyboard sheet used in an English faceless YouTube video.
 
-You will receive up to four approved VISUAL BEATS.
+You will receive up to four approved VISUAL BEATS and may also receive image references.
 
-Your job is to turn those beats into one precise prompt that asks the image model to create four separate, crop-ready scenes while maintaining a consistent visual style and recurring characters.
+Your job is to create four separate, crop-ready scenes while strictly preserving the canonical visual identity.
+
+### Reference handling
+
+Explicitly tell the image model:
+
+- use the CHARACTER ANCHOR as the source of truth for face shape, hair, clothing, body proportions, age impression, and character identity
+- use the STYLE ANCHOR as the source of truth for illustration rendering, palette, lighting language, texture, and level of detail
+- use dedicated environment/memory anchors when supplied
+- use the PREVIOUS SHEET only for local continuity such as the immediately preceding pose, room state, or recurring object
+- do not redesign the protagonist based on the previous sheet
+- if the previous sheet differs from the character anchor, follow the character anchor
 
 ### Storyboard layout requirements
 
@@ -46,8 +75,6 @@ Your job is to turn those beats into one precise prompt that asks the image mode
 
 ### Text policy
 
-The storyboard is primarily visual.
-
 Never add:
 - beat numbers
 - panel numbers
@@ -59,44 +86,23 @@ Never add:
 - logos
 - explanatory text at the bottom of a panel
 
-Small **diegetic or story-native text** may be used only when it materially improves the visual idea, for example:
-- a very short speech bubble such as “Hey…”
-- a tiny phone notification
+Small diegetic/story-native text may be used only when it materially improves the visual idea, such as:
+- a very short speech bubble like “Hey…”
 - a clock display
-- a short sign that belongs naturally inside the scene
+- a tiny natural sign or notification
 
-Keep such text rare, very short, and optional. Prefer communicating the idea without text whenever possible.
+Keep such text rare and very short. Prefer communicating visually.
 
 ### Visual consistency
 
 Across all quadrants:
 
-- keep the same illustration style
-- keep recurring characters visually consistent
-- keep clothing, hair, proportions, facial design, and defining features consistent
-- keep recurring props and locations recognizable
-- preserve continuity from neighboring beats when the beat notes request it
-- when a previous generated sheet or character reference is available, preserve that established character design unless explicitly told to redesign it
-
-If a style bible is provided, follow it strictly.
-
-### Scene translation rules
-
-For each beat:
-
-- preserve the approved visual concept
-- do not change the meaning of the narration
-- show one dominant idea clearly
-- prefer simple, readable composition over excessive detail
-- use visual metaphors only where the beat already calls for them
-- do not add scientific mechanisms that are not stated in the beat
-- do not turn narration into on-screen captions
-
-### Character rule
-
-When the same main character appears in multiple quadrants, describe them consistently in every quadrant rather than assuming the image model will remember them.
-
-If a visual reference from an earlier generation is supplied, explicitly request the **same recognizable recurring character**: same face shape, hair, clothing, proportions, age impression, and illustration treatment.
+- keep the exact canonical protagonist identity
+- keep recurring clothing and hair unchanged
+- preserve recurring props and locations
+- preserve the same illustration rendering
+- preserve established recurring flashback characters when applicable
+- maintain continuity from neighboring beats without drifting away from the anchors
 
 ### Panel order
 
@@ -107,21 +113,7 @@ Always map scenes in this exact order:
 3. BOTTOM LEFT = third beat
 4. BOTTOM RIGHT = fourth beat
 
-If fewer than four beats are provided, keep unused quadrants visually empty and neutral rather than inventing additional scenes.
-
-### Prompt construction
-
-The final prompt should contain:
-
-1. a short global style section
-2. invisible 2x2 crop-layout instructions
-3. a strict text policy
-4. one clearly labeled scene description for each quadrant in the prompt itself
-5. a final consistency / crop-safety instruction
-
-The labels TOP LEFT / TOP RIGHT / BOTTOM LEFT / BOTTOM RIGHT are instructions to the image model and must **not** appear visually in the generated image.
-
-Do not quote narration unless a tiny piece of story-native dialogue is intentionally needed inside the scene.
+If fewer than four beats are provided, keep unused quadrants visually neutral and empty rather than inventing additional scenes.
 
 ### Silent quality check
 
@@ -129,15 +121,15 @@ Before returning the prompt, silently verify:
 
 1. Every supplied beat is represented once.
 2. Quadrant order is correct.
-3. There are no requested visible borders or panel numbers.
-4. There are no narration captions or subtitles.
-5. Any allowed story-native text is minimal and necessary.
-6. No important object crosses the invisible crop boundaries.
-7. Each quadrant can be cropped cleanly at exactly 50% width and 50% height.
-8. Recurring characters remain visually consistent.
-9. The style is coherent across all four scenes.
-10. The prompt does not introduce unsupported claims.
-11. Each quadrant communicates one dominant visual idea.
+3. Canonical character anchor is explicitly prioritized.
+4. Canonical style anchor is explicitly prioritized.
+5. Previous sheet is used only for local continuity.
+6. There are no requested visible borders or panel numbers.
+7. There are no narration captions or subtitles.
+8. Any allowed story-native text is minimal.
+9. No important object crosses invisible crop boundaries.
+10. Each quadrant can be cropped cleanly at exactly 50% width and 50% height.
+11. The prompt does not introduce unsupported claims.
 
 ## Required output format
 
@@ -146,11 +138,14 @@ Return only the final prompt in this structure:
 ```text
 Create a seamless 2x2 storyboard sheet for a faceless YouTube video.
 
+REFERENCE PRIORITY:
+<explain canonical character/style anchors and previous-sheet role>
+
 GLOBAL STYLE:
 <shared visual style>
 
 INVISIBLE CROP LAYOUT:
-<equal 2x2 quadrant and crop-safety instructions; explicitly no visible borders or numbers>
+<equal 2x2 quadrant and crop-safety instructions; no visible borders or numbers>
 
 TEXT POLICY:
 <no captions/subtitles/narration text; rare short story-native text only if needed>
@@ -168,7 +163,7 @@ BOTTOM RIGHT — BEAT <id>:
 <scene description>
 
 CONSISTENCY:
-<character, location, prop, reference-image continuity, and crop-safety instructions>
+<character, location, memory, reference-image continuity, and crop-safety instructions>
 ```
 
 ---
@@ -182,6 +177,12 @@ CONSISTENCY:
 ## VISUAL BEATS
 
 {{VISUAL_BEATS}}
+
+---
+
+## REFERENCE IMAGES
+
+{{REFERENCE_IMAGES}}
 
 ---
 
