@@ -25,18 +25,6 @@
         "at": 1.96,
         "gain_db": -17,
         "trim_sec": 0.7
-      },
-      {
-        "file": "assets/sfx/replay_rewind.mp3",
-        "at": 28.34,
-        "gain_db": -15,
-        "trim_sec": 0.9
-      },
-      {
-        "file": "assets/sfx/archive_drawer.mp3",
-        "at": 51.58,
-        "gain_db": -18,
-        "trim_sec": 1
       }
     ]
   },
