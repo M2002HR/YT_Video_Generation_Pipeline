@@ -290,3 +290,10 @@ Key changes:
 The supersampled render is intentionally a little more CPU-heavy, but it reduces FFmpeg zoom/crop rounding shimmer and should look materially smoother.
 
 After pulling, rebuild the timeline so the new motion cycle is written into `TIMELINE.json`, then render the preview/final again.
+
+
+## Revised motion preview accepted
+
+The no-pan, center-zoom motion pass has been reviewed and accepted.
+
+Proceed to the final render and automated QC using the current committed timeline/profile.
