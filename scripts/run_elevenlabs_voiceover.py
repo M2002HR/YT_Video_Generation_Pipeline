@@ -26,7 +26,7 @@ from ui_navigation_advisor import NavigationAdvisor
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ELEVENLABS_HOME_URL = "https://elevenlabs.io/app/home"
+ELEVENLABS_HOME_URL = "https://elevenlabs.io/app/speech-synthesis/text-to-speech"
 AUDIO_EXTENSIONS = (".wav", ".flac", ".mp3", ".m4a", ".ogg")
 
 
@@ -56,6 +56,7 @@ class VoiceSettings:
     similarity: float | None
     style: float | None
     speaker_boost: bool | None
+    output_format: str | None
 
     def supplied(self) -> dict[str, Any]:
         return {key: value for key, value in asdict(self).items() if value is not None}
@@ -160,8 +161,31 @@ class ElevenLabsUI:
                             raise RuntimeError("Chrome rejected the ElevenLabs UI click.")
                         break
 
+    def _trusted_key(self, key: str) -> None:
+        """Send a real keyboard event to the focused control through CDP."""
+        if self.tab is None:
+            raise RuntimeError("ElevenLabs browser tab has not been opened.")
+        info = self._get_tab_info(self.tab)
+        websocket_url = getattr(info, "websocket_debugger_url", None)
+        if not websocket_url:
+            raise RuntimeError("Ordak could not attach a DevTools target for ElevenLabs.")
+        from websockets.sync.client import connect
+        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
+            for request_id, params in enumerate((
+                {"type": "keyDown", "key": key, "code": key, "windowsVirtualKeyCode": 36 if key == "Home" else 35 if key == "End" else 39 if key == "ArrowRight" else 37},
+                {"type": "keyUp", "key": key, "code": key, "windowsVirtualKeyCode": 36 if key == "Home" else 35 if key == "End" else 39 if key == "ArrowRight" else 37},
+            ), start=1):
+                websocket.send(json.dumps({"id": request_id, "method": "Input.dispatchKeyEvent", "params": params}))
+                while True:
+                    response = json.loads(websocket.recv())
+                    if response.get("id") == request_id:
+                        if response.get("error"):
+                            raise RuntimeError("Chrome rejected the ElevenLabs keyboard action.")
+                        break
+
     def open_and_verify(self) -> dict[str, Any]:
-        existing = next((tab for tab in self._list_tabs() if "elevenlabs.io" in tab.url), None)
+        expected = os.getenv("YT_ELEVENLABS_HOME_URL", ELEVENLABS_HOME_URL).rstrip("/")
+        existing = next((tab for tab in self._list_tabs() if tab.url.rstrip("/").startswith(expected)), None)
         self.tab = existing.ref if existing is not None else self._open_url(os.getenv("YT_ELEVENLABS_HOME_URL", ELEVENLABS_HOME_URL))
         deadline = time.monotonic() + 45
         last: dict[str, Any] = {}
@@ -180,11 +204,11 @@ class ElevenLabsUI:
           const text = document.body?.innerText || '';
           const controls = [...document.querySelectorAll('button,a,[role=button]')]
             .filter(visible).map(e => ({text:(e.innerText||'').trim(), aria:e.getAttribute('aria-label')||'', title:e.getAttribute('title')||''}));
-          const input = [...document.querySelectorAll('textarea')].find(e => visible(e) && /start typing|paste text/i.test(e.placeholder||''));
+          const input = [...document.querySelectorAll('textarea')].find(e => visible(e) && (/main textarea/i.test(e.getAttribute('aria-label')||'') || /start typing|paste text/i.test(e.placeholder||'')));
           const generate = controls.find(c => /^generate$/i.test(c.text) || /^generate$/i.test(c.aria));
           const download = controls.filter(c => /download|export/i.test(`${c.text} ${c.aria} ${c.title}`));
           return {
-            url: location.href, title: document.title, ready: !!input && !!generate,
+            url: location.href, title: document.title, ready: !!input && /\/app\/speech-synthesis\/text-to-speech/.test(location.pathname),
             login_required: /sign in|log in|create an account/i.test(text) && !input,
             busy: /generating|queued|creating audio|please wait|processing/i.test(text) || !!document.querySelector('[aria-busy=true],[role=progressbar]'),
             downloads: download, summary: text.slice(0, 1600), generate
@@ -195,7 +219,7 @@ class ElevenLabsUI:
         encoded = json.dumps(text)
         result = self._json(f"""(() => {{
           const visible = e => !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length);
-          const e = [...document.querySelectorAll('textarea')].find(x => visible(x) && /start typing|paste text/i.test(x.placeholder||''));
+          const e = [...document.querySelectorAll('textarea')].find(x => visible(x) && (/main textarea/i.test(x.getAttribute('aria-label')||'') || /start typing|paste text/i.test(x.placeholder||'')));
           if (!e) return {{ok:false, reason:'narration textarea not found'}};
           const setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
           setter.call(e, {encoded});
@@ -213,20 +237,24 @@ class ElevenLabsUI:
         Defaults are intentionally left untouched; this is used only for an
         explicit CLI/env parameter and fails loudly rather than guessing.
         """
-        tooltip = "Model" if kind == "model" else "Voice"
         control = self._json(f"""(() => {{
           const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-          const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>(x.getAttribute('data-agent-tooltip')||'')==={json.dumps(tooltip)});
-          if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}};
+          const selector={json.dumps("button[data-testid=tts-model-selector]" if kind == "model" else "button[data-testid=tts-voice-selector]")};
+          const e=[...document.querySelectorAll(selector)].filter(visible)[0];
+          if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,text:(e.innerText||e.getAttribute('aria-label')||'').trim(),open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}};
         }})()""")
         if not control.get("ok"):
             raise RuntimeError(f"Could not find the ElevenLabs {kind} control for explicit value '{requested}'.")
+        if requested.lower() in str(control.get("text", "")).lower():
+            return
         if not control.get("open"):
             self._trusted_click(f"""(() => {{ return {json.dumps(control)}; }})()""")
         if kind == "voice":
             # The compact menu is intentionally only a recent-voices list.
             # Enter the full catalog so a profile is not silently limited to it.
-            self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('[role=menuitem],button,[role=button]')].filter(visible).find(x=>/^all voices$/i.test((x.innerText||'').trim())); if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+            all_voices = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('[role=menuitem],button,[role=button]')].filter(visible).find(x=>/^all voices$/i.test((x.innerText||'').trim())); if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+            if all_voices.get("ok"):
+                self._trusted_click(f"""(() => {{ return {json.dumps(all_voices)}; }})()""")
             deadline = time.monotonic() + 20
             while time.monotonic() < deadline:
                 search = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${x.placeholder||''} ${x.getAttribute('aria-label')||''}`)); if(!e)return {ok:false}; return {ok:true}; })()""")
@@ -257,20 +285,45 @@ class ElevenLabsUI:
         raise RuntimeError(f"ElevenLabs did not show the requested {kind} option '{requested}'.")
 
     def apply_numeric_setting(self, label: str, value: float) -> None:
-        self._json("""(() => { const e=[...document.querySelectorAll('button,[role=button]')].find(x=>/more options|voice settings/i.test(`${x.innerText||''} ${x.getAttribute('aria-label')||''}`)); if(!e)return {ok:false};e.click();return {ok:true}; })()""")
-        result = self._json(f"""(() => {{
-          const wanted={json.dumps(label)}.toLowerCase(); const value={float(value)};
-          const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-          const labelNode=[...document.querySelectorAll('label,span,p,div')].find(x=>visible(x)&&(x.innerText||'').trim().toLowerCase()===wanted);
-          const scope=labelNode?.parentElement?.parentElement || labelNode?.parentElement;
-          const input=scope?.querySelector('input[type=range]') || [...document.querySelectorAll('input[type=range]')].find(visible);
-          if(!input)return {{ok:false}};
-          const min=Number(input.min||0), max=Number(input.max||1); if(value<min||value>max)return {{ok:false,range:[min,max]}};
-          const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set; setter.call(input,String(value));
-          input.dispatchEvent(new Event('input',{{bubbles:true}})); input.dispatchEvent(new Event('change',{{bubbles:true}})); return {{ok:true}};
-        }})()""")
-        if not result.get("ok"):
-            raise RuntimeError(f"Could not set ElevenLabs '{label}' to {value}; verify this account's current UI and allowed range.")
+        """Set the canonical Text-to-Speech Radix slider with real keys.
+
+        The UI exposes sliders as ARIA spans rather than HTML range inputs.
+        Starting from Home then moving in 0.01 increments is deterministic and
+        lets us verify the value after every real browser interaction.
+        """
+        detail = self._json(f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,min:Number(e.getAttribute('aria-valuemin')),max:Number(e.getAttribute('aria-valuemax')),current:Number(e.getAttribute('aria-valuenow'))}}; }})()""")
+        if not detail.get("ok"):
+            raise RuntimeError(f"Could not find ElevenLabs '{label}' slider on the canonical Text to Speech page.")
+        if not float(detail["min"]) <= value <= float(detail["max"]):
+            raise RuntimeError(f"ElevenLabs '{label}' value {value} is outside its current UI range {detail['min']}..{detail['max']}.")
+        self._trusted_click(f"""(() => {{ return {json.dumps(detail)}; }})()""")
+        self._trusted_key("Home")
+        # ElevenLabs' displayed sliders use 0.01 increments.  Fail closed if
+        # the live value does not converge instead of accepting a near value.
+        increments = round((value - float(detail["min"])) * 100)
+        for _ in range(increments):
+            self._trusted_key("ArrowRight")
+        observed = self._json(f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); return e?{{ok:true,value:Number(e.getAttribute('aria-valuenow'))}}:{{ok:false}}; }})()""")
+        if not observed.get("ok") or abs(float(observed.get("value", -999)) - value) > 0.005:
+            raise RuntimeError(f"ElevenLabs '{label}' did not reach requested value {value}; observed {observed.get('value')}.")
+
+    def select_output_format(self, requested: str | None) -> str | None:
+        """Select an explicit format, or keep ElevenLabs' current default."""
+        if requested is None:
+            return None
+        control = self._json("""(() => { const e=document.querySelector('button[aria-label="Output format"]');if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+        if not control.get("ok"):
+            raise RuntimeError("Could not find ElevenLabs Output format control.")
+        if not control.get("open"):
+            self._trusted_click(f"""(() => {{ return {json.dumps(control)}; }})()""")
+        deadline = time.monotonic() + 10
+        while time.monotonic() < deadline:
+            option = self._json(f"""(() => {{ const wanted={json.dumps(requested)}.toLowerCase();const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);const e=[...document.querySelectorAll('[role=option]')].filter(visible).find(x=>(x.innerText||'').trim().toLowerCase()===wanted);if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,text:(e.innerText||'').trim()}}; }})()""")
+            if option.get("ok"):
+                self._trusted_click(f"""(() => {{ return {json.dumps(option)}; }})()""")
+                return str(option["text"])
+            time.sleep(0.25)
+        raise RuntimeError(f"ElevenLabs did not expose requested output format '{requested}'.")
 
     def apply_settings(self, settings: VoiceSettings) -> None:
         if settings.model:
@@ -285,6 +338,11 @@ class ElevenLabsUI:
             result = self._json(f"""(() => {{ const labels=[...document.querySelectorAll('label')]; const l=labels.find(x=>/speaker boost/i.test(x.innerText||'')); const i=l?.querySelector('input')||l?.parentElement?.querySelector('input[type=checkbox]'); if(!i)return {{ok:false}}; if(i.checked!=={str(wanted).lower()}) i.click(); return {{ok:true}}; }})()""")
             if not result.get("ok"):
                 raise RuntimeError("Could not set ElevenLabs Speaker boost in the current UI.")
+        selected_output = self.select_output_format(settings.output_format)
+        if selected_output:
+            settings_result = self._json("""(() => ({format:(document.querySelector('button[aria-label="Output format"]')?.innerText||'').trim()}))()""")
+            if settings_result.get("format") != selected_output:
+                raise RuntimeError("ElevenLabs did not retain the requested output format.")
 
     def submit(self) -> None:
         self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>/^generate$/i.test((x.innerText||'').trim())||/^generate$/i.test(x.getAttribute('aria-label')||'')); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
@@ -352,6 +410,7 @@ def main() -> None:
     parser.add_argument("--similarity", type=float, default=None)
     parser.add_argument("--style", type=float, default=None)
     parser.add_argument("--speaker-boost", choices=("true", "false"), default=None)
+    parser.add_argument("--output-format", default=None, help="Exact visible ElevenLabs output-format label; profile value is used by default.")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="Verify authenticated UI and persisted inputs without generating audio.")
     args = parser.parse_args()
@@ -365,7 +424,7 @@ def main() -> None:
         profile = json.loads(args.profile.read_text(encoding="utf-8"))
     def choose(name: str, cli_value: Any) -> Any:
         return cli_value if cli_value is not None else profile.get(name)
-    settings = VoiceSettings(choose("voice", args.voice), choose("model", args.model), choose("speed", args.speed), choose("stability", args.stability), choose("similarity", args.similarity), choose("style", args.style), choose("speaker_boost", None if args.speaker_boost is None else args.speaker_boost == "true"))
+    settings = VoiceSettings(choose("voice", args.voice), choose("model", args.model), choose("speed", args.speed), choose("stability", args.stability), choose("similarity", args.similarity), choose("style", args.style), choose("speaker_boost", None if args.speaker_boost is None else args.speaker_boost == "true"), choose("output_format", args.output_format))
     voiceover_dir = project / "voiceover"
     state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings)
     output_dir = project / "assets" / "audio"
