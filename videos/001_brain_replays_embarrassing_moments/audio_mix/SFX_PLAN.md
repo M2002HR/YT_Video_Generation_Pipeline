@@ -84,3 +84,16 @@ Suggested mix:
 - trim: 1.0s
 
 Do not add an ending SFX in the first pass. Let the music fade and narration carry the final line.
+
+
+## Final SFX decision for Video 001
+
+After review, keep only the first SFX cue:
+
+- 1.96s — intrusive-thought pop — `assets/sfx/intrusive_pop.mp3`
+- gain: -17 dB
+- trim: 0.7s
+
+Remove the replay/rewind cue at 28.34s and the archive/drawer cue at 51.58s from the active mix.
+
+The final creative intent is deliberately minimal: one subtle interruption cue near the opening, then let narration + music carry the rest of the short.
