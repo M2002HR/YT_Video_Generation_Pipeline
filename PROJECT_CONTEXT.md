@@ -262,3 +262,20 @@ Accepted state:
 - no SFX yet
 
 Next stage: add a very small number of semantic SFX events, compare against the accepted music-only polished mix, then run QC on the chosen polished output.
+
+
+## Audio polish versioning rule
+
+Accepted render variants must never be overwritten by later experiments.
+
+For Video 001:
+
+```text
+final.mp4          = accepted clean baseline
+polished.mp4       = accepted music-only mix
+polished_sfx.mp4   = separate SFX experiment
+```
+
+The SFX experiment uses `audio_mix/AUDIO_MIX_PROFILE_SFX.json`, while the original `AUDIO_MIX_PROFILE.json` remains the music-only configuration.
+
+This A/B/C structure is the default pattern for future creative experiments: preserve the last accepted artifact and write each materially different treatment to a new output.
