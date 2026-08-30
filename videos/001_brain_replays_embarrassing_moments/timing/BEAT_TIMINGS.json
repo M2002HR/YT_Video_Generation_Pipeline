@@ -1,0 +1,195 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 63.373,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:8080"
+  },
+  "transcript": "You're finally drifting off to sleep when your brain suddenly goes, Hey, remember that unbelievably awkward thing you said five years ago? During the day, your attention is busy with messages, work, people, noise, basically anything outside your own head. But at night, most of that disappears. And when the room gets quiet, old memories can feel strangely loud. Then you start replaying the moment. What you said. What they probably thought. What you should have said instead. And because you're tired, it can be harder to pull your attention away once the loop starts. The strange part is that memory usually isn't more important at midnight than it was at noon. It just has less competition. So when your brain opens the midnight embarrassment archive, remember, the memory didn't get bigger. Everything around it just got quieter.",
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "You’re finally drifting off to sleep",
+      "speech_start": 0.02,
+      "speech_end": 1.96,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 1.96,
+      "display_duration": 1.96
+    },
+    {
+      "beat_id": 2,
+      "narration": "when your brain suddenly goes, “Hey…",
+      "speech_start": 1.96,
+      "speech_end": 4.8,
+      "match_confidence": 1.0,
+      "display_start": 1.96,
+      "display_end": 4.8,
+      "display_duration": 2.84
+    },
+    {
+      "beat_id": 3,
+      "narration": "remember that unbelievably awkward thing you said five years ago?”",
+      "speech_start": 4.8,
+      "speech_end": 8.88,
+      "match_confidence": 1.0,
+      "display_start": 4.8,
+      "display_end": 10.06,
+      "display_duration": 5.26
+    },
+    {
+      "beat_id": 4,
+      "narration": "During the day, your attention is busy with messages, work, people, noise—",
+      "speech_start": 10.06,
+      "speech_end": 14.82,
+      "match_confidence": 1.0,
+      "display_start": 10.06,
+      "display_end": 15.7,
+      "display_duration": 5.64
+    },
+    {
+      "beat_id": 5,
+      "narration": "basically anything outside your own head.",
+      "speech_start": 15.7,
+      "speech_end": 18.4,
+      "match_confidence": 1.0,
+      "display_start": 15.7,
+      "display_end": 19.64,
+      "display_duration": 3.94
+    },
+    {
+      "beat_id": 6,
+      "narration": "But at night, most of that disappears.",
+      "speech_start": 19.64,
+      "speech_end": 21.4,
+      "match_confidence": 1.0,
+      "display_start": 19.64,
+      "display_end": 21.08,
+      "display_duration": 1.44
+    },
+    {
+      "beat_id": 7,
+      "narration": "And when the room gets quiet,",
+      "speech_start": 21.08,
+      "speech_end": 23.64,
+      "match_confidence": 1.0,
+      "display_start": 21.08,
+      "display_end": 23.64,
+      "display_duration": 2.56
+    },
+    {
+      "beat_id": 8,
+      "narration": "old memories can feel strangely loud.",
+      "speech_start": 23.64,
+      "speech_end": 26.9,
+      "match_confidence": 1.0,
+      "display_start": 23.64,
+      "display_end": 28.34,
+      "display_duration": 4.7
+    },
+    {
+      "beat_id": 9,
+      "narration": "Then you start replaying the moment.",
+      "speech_start": 28.34,
+      "speech_end": 30.46,
+      "match_confidence": 1.0,
+      "display_start": 28.34,
+      "display_end": 30.46,
+      "display_duration": 2.12
+    },
+    {
+      "beat_id": 10,
+      "narration": "What you said.",
+      "speech_start": 30.46,
+      "speech_end": 31.8,
+      "match_confidence": 1.0,
+      "display_start": 30.46,
+      "display_end": 31.8,
+      "display_duration": 1.34
+    },
+    {
+      "beat_id": 11,
+      "narration": "What they probably thought.",
+      "speech_start": 31.8,
+      "speech_end": 34.62,
+      "match_confidence": 1.0,
+      "display_start": 31.8,
+      "display_end": 34.62,
+      "display_duration": 2.82
+    },
+    {
+      "beat_id": 12,
+      "narration": "What you should have said instead.",
+      "speech_start": 34.62,
+      "speech_end": 37.12,
+      "match_confidence": 1.0,
+      "display_start": 34.62,
+      "display_end": 37.12,
+      "display_duration": 2.5
+    },
+    {
+      "beat_id": 13,
+      "narration": "And because you’re tired, it can be harder to pull your attention away once the loop starts.",
+      "speech_start": 37.12,
+      "speech_end": 43.22,
+      "match_confidence": 1.0,
+      "display_start": 37.12,
+      "display_end": 43.22,
+      "display_duration": 6.1
+    },
+    {
+      "beat_id": 14,
+      "narration": "The strange part is, that memory usually isn’t more important at midnight than it was at noon.",
+      "speech_start": 43.22,
+      "speech_end": 49.12,
+      "match_confidence": 1.0,
+      "display_start": 43.22,
+      "display_end": 49.12,
+      "display_duration": 5.9
+    },
+    {
+      "beat_id": 15,
+      "narration": "It just has less competition.",
+      "speech_start": 49.12,
+      "speech_end": 51.58,
+      "match_confidence": 1.0,
+      "display_start": 49.12,
+      "display_end": 51.58,
+      "display_duration": 2.46
+    },
+    {
+      "beat_id": 16,
+      "narration": "So when your brain opens the midnight embarrassment archive, remember:",
+      "speech_start": 51.58,
+      "speech_end": 58.1,
+      "match_confidence": 1.0,
+      "display_start": 51.58,
+      "display_end": 58.1,
+      "display_duration": 6.52
+    },
+    {
+      "beat_id": 17,
+      "narration": "the memory didn’t get bigger.",
+      "speech_start": 58.1,
+      "speech_end": 60.02,
+      "match_confidence": 1.0,
+      "display_start": 58.1,
+      "display_end": 60.02,
+      "display_duration": 1.92
+    },
+    {
+      "beat_id": 18,
+      "narration": "Everything around it just got quieter.",
+      "speech_start": 60.02,
+      "speech_end": 63.14,
+      "match_confidence": 1.0,
+      "display_start": 60.02,
+      "display_end": 63.373,
+      "display_duration": 3.353
+    }
+  ]
+}
