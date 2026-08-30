@@ -44,6 +44,17 @@ def main() -> None:
 
     load_dotenv(env_file, override=False)
 
+    # Never proxy loopback traffic. Ajil may intentionally expose an outbound
+    # provider proxy via HTTP_PROXY/HTTPS_PROXY/ALL_PROXY inside its own process.
+    existing_no_proxy = os.getenv("NO_PROXY", "")
+    loopback_hosts = ["127.0.0.1", "localhost", "::1"]
+    merged_no_proxy = [item.strip() for item in existing_no_proxy.split(",") if item.strip()]
+    for host_name in loopback_hosts:
+        if host_name not in merged_no_proxy:
+            merged_no_proxy.append(host_name)
+    os.environ["NO_PROXY"] = ",".join(merged_no_proxy)
+    os.environ["no_proxy"] = os.environ["NO_PROXY"]
+
     # Ajil natively supports UAG_ENV_FILE. Force it to the parent root env so
     # the submodule and its nested provider libraries never require local .env files.
     os.environ["UAG_ENV_FILE"] = str(env_file)
