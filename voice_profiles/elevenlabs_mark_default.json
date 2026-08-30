@@ -6,5 +6,7 @@
   "model": "Eleven Multilingual v2",
   "speed": 0.9,
   "stability": 0.45,
-  "notes": "Default narration profile: Mark at a slightly lower-than-standard stability for a natural delivery. Unspecified ElevenLabs controls retain their current UI defaults."
+  "similarity": 0.75,
+  "style": 0.1,
+  "notes": "Default narration profile: Mark at 0.9 speed, slightly lower-than-standard 0.45 stability, and the current ElevenLabs defaults of 0.75 similarity and 0.10 style exaggeration. These four numeric controls are explicitly re-applied and verified on every run. Unspecified controls retain their current UI defaults."
 }

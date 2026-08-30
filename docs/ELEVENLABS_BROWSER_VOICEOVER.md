@@ -24,8 +24,10 @@ explicit setting that cannot be found or applied fails safely rather than
 silently generating with a different setting.
 
 Reusable profile JSON files live in `voice_profiles/`. The included
-`elevenlabs_mark_default.json` selects Mark, Eleven v3, 0.9 speed
-and 0.45 stability; command-line values override a profile. ElevenLabs shows
+`elevenlabs_mark_default.json` selects Mark, Eleven Multilingual v2, 0.9
+speed, 0.45 stability, and explicitly reapplies the current UI-default 0.75
+similarity and 0.10 style exaggeration on every run; command-line values
+override a profile. ElevenLabs shows
 the voices and models available to the logged-in account, so the runner uses
 the visible display name rather than a fragile hard-coded catalog. Voice,
 model, speed, stability, similarity, style and speaker boost are supported;
