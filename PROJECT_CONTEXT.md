@@ -96,16 +96,16 @@ Video 001 has:
 - 18 per-beat image prompts
 - reference-driven per-beat image workflow
 
-Current next stage:
-- alignment is complete and committed
-- timeline metadata is built and committed
-- first 1920x1080 preview has been rendered and watched
-- base preview is accepted to continue
-- rebuild timeline once with subtitle-overlap repair
-- render `assets/renders/final.mp4`
-- run `scripts/qc_render.py --decode`
-- commit `render/QC_REPORT.json`
-- close Video 001 as the first clean end-to-end MVP before adding optional music/SFX
+Completion state:
+- alignment complete
+- timeline/subtitle metadata committed
+- clean baseline final rendered and QC-passed
+- music-only polish reviewed
+- final creative SFX treatment reduced to one opening cue
+- `polished_sfx.mp4` passed full technical QC
+- `render/QC_REPORT_polished_sfx.json` committed
+
+Video 001 is COMPLETE as the first end-to-end pipeline proof.
 
 One STT timestamp overlap exists at the Beat 06 -> 07 boundary (0.320s). The timeline builder resolves it deterministically with a midpoint boundary while preserving raw speech timestamps.
 
@@ -308,3 +308,52 @@ Keep only:
 Remove the replay/rewind and archive/drawer SFX from the active mix.
 
 Final creative direction: one subtle opening SFX cue, then narration + background music only.
+
+
+## Ordak video-pipeline integration
+
+Ordak is now a first-class service submodule at:
+
+`services/ordak`
+
+Repository:
+
+`AliBalash/ordak`
+
+Dedicated integration/stabilization branch:
+
+`yt-video-pipeline`
+
+The parent repository pins an exact Ordak commit and records the intended branch in `.gitmodules`.
+
+Current provider scope is ChatGPT only. Gemini automation is intentionally out of scope for this milestone.
+
+Runtime configuration remains root-owned:
+- root `.env` is authoritative
+- `YT_ORDAK_*` controls browser/profile/ChatGPT/timeouts
+- `scripts/run_ordak.py` maps root settings into Ordak
+- Ordak's pipeline branch accepts `ORDAK_ENV_FILE`
+- `scripts/check_ordak.py` verifies API + Chrome + authenticated ChatGPT readiness
+
+The selected real Chrome user-data directory and profile name are explicit root settings. The automation must not silently fall back to a fresh logged-out profile.
+
+Baseline resilience configuration intentionally supports long ChatGPT image generations:
+- browser timeout: 180s
+- ChatGPT response timeout: 600s
+- response stability: 5s
+- stall refresh window: 90s
+- max stall refreshes: 3
+- parent job wait: 900s
+
+Critical recovery semantics:
+- active generation is not a stall
+- refresh only after genuine no-progress
+- after refresh, reconcile server-side completion before resubmitting
+- only resubmit if the exchange is still incomplete/stuck
+- recovery attempts are bounded and diagnostic evidence must be preserved
+
+Integration details:
+
+`docs/ORDAK_INTEGRATION.md`
+
+Next milestone: write the Codex stabilization goal and let Codex implement/test the full ChatGPT text + sequential multi-reference image workflow on the real configured browser profile until automated and real-browser E2E acceptance criteria pass.
