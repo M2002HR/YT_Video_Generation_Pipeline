@@ -311,7 +311,7 @@ class ElevenLabsUI:
         """Select an explicit format, or keep ElevenLabs' current default."""
         if requested is None:
             return None
-        control = self._json("""(() => { const e=document.querySelector('button[aria-label="Output format"]');if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+        control = self._json("""(() => { const e=document.querySelector(\"button[aria-label=\\\"Output format\\\"]\");if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
         if not control.get("ok"):
             raise RuntimeError("Could not find ElevenLabs Output format control.")
         if not control.get("open"):
@@ -340,7 +340,7 @@ class ElevenLabsUI:
                 raise RuntimeError("Could not set ElevenLabs Speaker boost in the current UI.")
         selected_output = self.select_output_format(settings.output_format)
         if selected_output:
-            settings_result = self._json("""(() => ({format:(document.querySelector('button[aria-label="Output format"]')?.innerText||'').trim()}))()""")
+            settings_result = self._json("""(() => ({format:(document.querySelector(\"button[aria-label=\\\"Output format\\\"]\")?.innerText||'').trim()}))()""")
             if settings_result.get("format") != selected_output:
                 raise RuntimeError("ElevenLabs did not retain the requested output format.")
 
