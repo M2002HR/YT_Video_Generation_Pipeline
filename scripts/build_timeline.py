@@ -25,7 +25,12 @@ def load_json(path: Path) -> dict[str, Any]:
     return data
 
 
-def find_beat_image(video_dir: Path, beat_id: int) -> Path:
+def find_beat_image(
+    video_dir: Path,
+    beat_id: int,
+    *,
+    allow_missing: bool = False,
+) -> Path:
     raw_dir = video_dir / "assets" / "raw_beats"
     stems = (f"beat_{beat_id:02d}", f"beat_{beat_id:03d}")
     extensions = (".png", ".jpg", ".jpeg", ".webp")
@@ -35,6 +40,9 @@ def find_beat_image(video_dir: Path, beat_id: int) -> Path:
             candidate = raw_dir / f"{stem}{ext}"
             if candidate.exists():
                 return candidate
+
+    if allow_missing:
+        return raw_dir / f"beat_{beat_id:02d}.png"
 
     expected = ", ".join(str(raw_dir / f"{stem}.png") for stem in stems)
     raise FileNotFoundError(f"Missing image for Beat {beat_id}: expected {expected}")
@@ -326,12 +334,11 @@ def main() -> None:
 
     for index, beat in enumerate(beats):
         beat_id = int(beat["beat_id"])
-        image_path = find_beat_image(video_dir, beat_id)
-
-        if args.skip_asset_validation and not image_path.exists():
-            image_path = (
-                video_dir / "assets" / "raw_beats" / f"beat_{beat_id:02d}.png"
-            )
+        image_path = find_beat_image(
+            video_dir,
+            beat_id,
+            allow_missing=args.skip_asset_validation,
+        )
 
         start = float(boundaries[index])
         end = float(boundaries[index + 1])
