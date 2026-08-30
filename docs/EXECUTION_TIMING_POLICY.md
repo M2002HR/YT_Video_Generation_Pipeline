@@ -22,3 +22,13 @@ The visual pipeline writes `EXECUTION_TIMINGS.json` on every state save. Its
 event list is append-only for a run and its aggregate totals are recalculated
 from the events. Future pipeline components must follow the same schema or add
 a documented schema version rather than replacing historical measurements.
+
+## Human progress notifications
+
+When `YT_PIPELINE_TELEGRAM_NOTIFICATIONS_ENABLED=true`, pipeline execution
+also sends concise English-only Telegram progress messages through the
+configured Telethon user session. Notify completion of each durable stage,
+every accepted image and all actionable warnings or failures. A completed
+multi-image stage must report both its total elapsed time and average accepted
+image duration. Notifications are best-effort only: a Telegram outage must be
+recorded locally as a warning and must never interrupt artifact production.

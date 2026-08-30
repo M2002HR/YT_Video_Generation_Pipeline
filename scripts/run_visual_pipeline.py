@@ -23,6 +23,8 @@ import httpx
 from dotenv import load_dotenv
 from PIL import Image
 
+from pipeline_notifier import PipelineNotifier, StageTimer
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PROMPTS = ROOT / "prompts"
@@ -189,6 +191,7 @@ class Pipeline:
         self.state_path = self.state_dir / "RUNTIME_STATE.json"
         self.timing_path = self.state_dir / "EXECUTION_TIMINGS.json"
         self.state: dict[str, Any] = {}
+        self.notifier = PipelineNotifier(video_id, topic)
 
     def save(self) -> None:
         self.state["updated_at"] = utcnow()
@@ -258,6 +261,7 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
         self.record_timing("text_stage", started_at, started, stage=name, artifact=output, ordak_job_id=result["job_id"], request_timing=result.get("_client_timing"))
         self.state["stages"][name] = {"status": "DONE", "ordak_job_id": result["job_id"], "completed_at": utcnow()}
         self.save()
+        self.notifier.stage_complete(name, time.perf_counter() - started, artifact=output)
         return content
 
     @staticmethod
@@ -288,35 +292,46 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
         return beats
 
     def run(self) -> Path:
-        self.client.readiness()
-        self.load_or_init()
-        brief = self.brief().read_text(encoding="utf-8")
-        script_draft = self._stage_text("script_draft", replace_tokens(load_template("01_script_writer.md"), VIDEO_BRIEF=brief), "SCRIPT_DRAFT.md", self.validate_script)
-        script = self._stage_text("retention_edit", replace_tokens(load_template("02_retention_editor.md"), VIDEO_BRIEF=brief, CURRENT_SCRIPT=script_draft), "SCRIPT_FINAL.md", self.validate_script)
-        beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md"), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "VISUAL_BEATS.md", self.parse_beats)
-        beats = self.parse_beats(beats_text)
-        self.write_once("VISUAL_PRESET.md", f"# Visual Preset\n\nSelected preset: `{self.preset}`\n")
-        preset_root = self.root / "visual_presets" / self.preset
-        style, character = preset_root / "style_anchor.png", preset_root / "character_anchor.png"
-        if not style.is_file() or not character.is_file():
-            raise RuntimeError("Selected visual preset is missing canonical style or character anchors.")
-        style_rules = (preset_root / "README.md").read_text(encoding="utf-8")
-        for beat in beats:
-            beat_id = beat["id"]
-            prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
-            if not prompt_path.exists() or self.force:
-                started_at, started = utcnow(), time.perf_counter()
-                prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md"), STYLE_RULES=style_rules, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.")
-                prompt_result = self.client.text(prompt_request, stage=f"beat_{beat_id:03d}_prompt")
-                prompt = str(prompt_result["answer"]).strip()
-                if "exactly one" not in prompt.lower() or "16:9" not in prompt:
-                    raise RuntimeError(f"Beat {beat_id:03d} prompt validation failed.")
-                self.write_once(str(prompt_path.relative_to(self.project)), prompt)
-                self.record_timing("beat_prompt", started_at, started, beat_id=beat_id, artifact=str(prompt_path.relative_to(self.project)), ordak_job_id=prompt_result["job_id"], request_timing=prompt_result.get("_client_timing"))
-            self.state["beats"].setdefault(f"{beat_id:03d}", {"status": "PROMPT_READY", "attempts": 0})["prompt_path"] = str(prompt_path.relative_to(self.project))
-            self.save()
-        self.generate_images(beats, style, character)
-        return self.write_report(beats)
+        total_timer = StageTimer()
+        try:
+            self.client.readiness()
+            self.load_or_init()
+            brief = self.brief().read_text(encoding="utf-8")
+            script_draft = self._stage_text("script_draft", replace_tokens(load_template("01_script_writer.md"), VIDEO_BRIEF=brief), "SCRIPT_DRAFT.md", self.validate_script)
+            script = self._stage_text("retention_edit", replace_tokens(load_template("02_retention_editor.md"), VIDEO_BRIEF=brief, CURRENT_SCRIPT=script_draft), "SCRIPT_FINAL.md", self.validate_script)
+            beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md"), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "VISUAL_BEATS.md", self.parse_beats)
+            beats = self.parse_beats(beats_text)
+            self.write_once("VISUAL_PRESET.md", f"# Visual Preset\n\nSelected preset: `{self.preset}`\n")
+            preset_root = self.root / "visual_presets" / self.preset
+            style, character = preset_root / "style_anchor.png", preset_root / "character_anchor.png"
+            if not style.is_file() or not character.is_file():
+                raise RuntimeError("Selected visual preset is missing canonical style or character anchors.")
+            style_rules = (preset_root / "README.md").read_text(encoding="utf-8")
+            for beat in beats:
+                beat_id = beat["id"]
+                prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
+                if not prompt_path.exists() or self.force:
+                    started_at, started = utcnow(), time.perf_counter()
+                    prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md"), STYLE_RULES=style_rules, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.")
+                    prompt_result = self.client.text(prompt_request, stage=f"beat_{beat_id:03d}_prompt")
+                    prompt = str(prompt_result["answer"]).strip()
+                    if "exactly one" not in prompt.lower() or "16:9" not in prompt:
+                        raise RuntimeError(f"Beat {beat_id:03d} prompt validation failed.")
+                    self.write_once(str(prompt_path.relative_to(self.project)), prompt)
+                    self.record_timing("beat_prompt", started_at, started, beat_id=beat_id, artifact=str(prompt_path.relative_to(self.project)), ordak_job_id=prompt_result["job_id"], request_timing=prompt_result.get("_client_timing"))
+                    self.notifier.prompt_complete(beat_id, len(beats), time.perf_counter() - started)
+                self.state["beats"].setdefault(f"{beat_id:03d}", {"status": "PROMPT_READY", "attempts": 0})["prompt_path"] = str(prompt_path.relative_to(self.project))
+                self.save()
+            images_timer = StageTimer()
+            self.generate_images(beats, style, character)
+            completed = sum(1 for value in self.state["beats"].values() if value.get("status") == "DONE")
+            self.notifier.images_complete(len(beats), images_timer.elapsed, completed=completed)
+            report = self.write_report(beats)
+            self.notifier.send("Visual pipeline complete", ["🏁 Quality checks passed", f"📍 Images: {completed}/{len(beats)}", f"⏱ Total runtime: {total_timer.elapsed:.0f} seconds"])
+            return report
+        except Exception as exc:
+            self.notifier.failure("Visual pipeline", total_timer.elapsed, str(exc))
+            raise
 
     def valid_image(self, path: Path, previous_sha: str | None = None) -> dict[str, Any]:
         if not path.is_file() or path.stat().st_size < 10_000:
@@ -372,11 +387,13 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
                 target.unlink(missing_ok=True)
                 record.update({"status": "FAILED", "last_error": str(exc)})
                 self.save()
+                self.notifier.failure(f"Beat {beat_id:03d} image", time.perf_counter() - started, str(exc))
                 raise
             record.update({"status": "DONE", "ordak_job_id": job["job_id"], "output": metadata, "completed_at": utcnow()})
             self.record_timing("beat_image", started_at, started, beat_id=beat_id, ordak_job_id=job["job_id"], references=[str(path.relative_to(self.root)) for path in references], request_timing=job.get("_client_timing"), download_timing=download_timing, output=metadata)
             previous, previous_sha = target, metadata["sha256"]
             self.save()
+            self.notifier.image_complete(beat_id, len(beats), time.perf_counter() - started)
 
     def write_report(self, beats: list[dict[str, str]]) -> Path:
         results = [self.state["beats"].get(f"{int(beat['id']):03d}", {}) for beat in beats]
