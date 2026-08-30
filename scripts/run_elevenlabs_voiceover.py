@@ -370,7 +370,7 @@ class ElevenLabsUI:
                 raise RuntimeError("ElevenLabs did not retain the requested output format.")
 
     def submit(self) -> None:
-        self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>/^generate$/i.test((x.innerText||'').trim())||/^generate$/i.test(x.getAttribute('aria-label')||'')); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+        self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='tts-generate'||/generate( speech)?/i.test(`${x.innerText||''} ${x.getAttribute('aria-label')||''}`)); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
 
     def refresh(self) -> None:
         self._json("""(() => { location.reload(); return {ok:true}; })()""")
