@@ -249,13 +249,17 @@ def transcribe_ajil(
 
     content_type = mimetypes.guess_type(audio.name)[0] or "application/octet-stream"
 
-    with audio.open("rb") as handle:
-        response = httpx.post(
+    # Ajil is a local service. Never let shell/system proxy environment
+    # variables route this localhost request through an outbound proxy.
+    with audio.open("rb") as handle, httpx.Client(
+        trust_env=False,
+        timeout=timeout_sec,
+    ) as client:
+        response = client.post(
             url,
             headers=headers,
             params=params,
             files={"file": (audio.name, handle, content_type)},
-            timeout=timeout_sec,
         )
 
     try:
