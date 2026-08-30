@@ -17,15 +17,22 @@ from __future__ import annotations
 import argparse
 import difflib
 import json
+import mimetypes
+import os
 import re
 import shutil
 import subprocess
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import Any
 
-from faster_whisper import WhisperModel
+import httpx
+from dotenv import load_dotenv
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_ENV_FILE = REPO_ROOT / ".env"
 
 
 BEAT_RE = re.compile(
@@ -132,17 +139,26 @@ def ffprobe_duration(audio: Path) -> float | None:
         return None
 
 
-def transcribe(
+def transcribe_local(
     audio: Path,
     model_name: str,
     device: str,
     compute_type: str,
-) -> tuple[list[WordStamp], str, float]:
+    language: str,
+) -> tuple[list[WordStamp], str, float, dict[str, Any]]:
+    try:
+        from faster_whisper import WhisperModel
+    except ImportError as exc:
+        raise RuntimeError(
+            "Local STT backend requires faster-whisper. Install it with: "
+            "python -m pip install -r requirements-alignment.txt"
+        ) from exc
+
     model = WhisperModel(model_name, device=device, compute_type=compute_type)
 
     segments, info = model.transcribe(
         str(audio),
-        language="en",
+        language=language or "en",
         beam_size=5,
         word_timestamps=True,
         vad_filter=True,
@@ -177,7 +193,16 @@ def transcribe(
 
     duration = ffprobe_duration(audio) or last_end or words[-1].end
     transcript = " ".join(part for part in transcript_parts if part).strip()
-    return words, transcript, duration
+    metadata = {
+        "backend": "local",
+        "provider": "faster-whisper",
+        "model": model_name,
+        "fallback_used": False,
+        "timestamp_source": "word",
+        "device": device,
+        "compute_type": compute_type,
+    }
+    return words, transcript, duration, metadata
 
 
 def build_expected_index(beats: list[dict]) -> tuple[list[str], list[tuple[int, int]]]:
