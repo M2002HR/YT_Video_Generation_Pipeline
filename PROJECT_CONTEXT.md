@@ -97,15 +97,21 @@ Video 001 has:
 - reference-driven per-beat image workflow
 
 Current next stage:
-- all beat images exist under `assets/raw_beats/`
-- one continuous ElevenLabs narration exists under `assets/audio/`
-- run Ajil UAG locally from the git submodule
-- transcribe with Groq `whisper-large-v3-turbo`, with `whisper-large-v3` fallback
-- use word timestamps to map the narration to all 18 visual beats
-- create `timing/BEAT_TIMINGS.json` for timeline construction
+- alignment is complete and committed
+- STT backend: Ajil UAG / Groq
+- actual model used: `whisper-large-v3-turbo`
+- timestamp source: word
+- all 18 beat narration matches: 100%
+- audio duration: 63.373s
+- build `timeline/TIMELINE.json` and `timeline/SUBTITLES.ass`
+- render the first 1920x1080 preview with FFmpeg
+- perform human QC before adding music/SFX
+
+One STT timestamp overlap exists at the Beat 06 -> 07 boundary (0.320s). The timeline builder resolves it deterministically with a midpoint boundary while preserving raw speech timestamps.
 
 Ajil integration: `docs/AJIL_UAG_INTEGRATION.md`
 Voiceover workflow: `videos/001_brain_replays_embarrassing_moments/voiceover/WORKFLOW.md`
+Render workflow: `videos/001_brain_replays_embarrassing_moments/render/README.md`
 
 
 ## Root configuration policy
@@ -116,3 +122,25 @@ The repository root `.env` is the only authoritative runtime env file.
 - `scripts/run_ajil.py` forces `UAG_ENV_FILE` to the root env.
 - Ajil's nested Groq/Gemini/Pollinations modules are imported as libraries and receive settings from Ajil; no nested runtime `.env` files should be maintained.
 - Local faster-whisper remains an optional CPU fallback, not the default alignment backend.
+
+
+## Timeline/render architecture
+
+The render source is built in two explicit stages:
+
+```text
+timing/BEAT_TIMINGS.json
++ render/RENDER_PROFILE.json
++ local beat images/audio
+        ↓
+scripts/build_timeline.py
+        ↓
+timeline/TIMELINE.json
+timeline/SUBTITLES.ass
+        ↓
+scripts/render_video.py
+        ↓
+assets/renders/preview.mp4
+```
+
+The first preview uses deterministic subtle Ken Burns motion, hard semantic cuts, narration audio, and phrase subtitles. Background music/SFX are intentionally deferred until the base timeline passes human QC.
