@@ -17,6 +17,22 @@ if ENV_FILE.exists():
     load_dotenv(ENV_FILE, override=False)
 
 base_url = os.getenv("YT_AJIL_BASE_URL", "http://127.0.0.1:8080").rstrip("/")
-response = httpx.get(base_url + "/health", timeout=10.0)
-response.raise_for_status()
-print(response.json())
+# Local Ajil traffic must never be routed through HTTP_PROXY/HTTPS_PROXY/ALL_PROXY.
+# This is especially important when the root env enables an outbound proxy for
+# Ajil's provider requests.
+with httpx.Client(trust_env=False, timeout=10.0) as client:
+    response = client.get(base_url + "/health")
+
+print(f"GET {base_url}/health -> HTTP {response.status_code}")
+try:
+    payload = response.json()
+except Exception:
+    payload = response.text
+
+print(payload)
+
+if response.status_code >= 400:
+    raise SystemExit(
+        "Ajil health check failed. The response body above is the authoritative "
+        "server-side error. Local proxy environment variables were bypassed."
+    )
