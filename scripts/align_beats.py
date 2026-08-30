@@ -316,6 +316,7 @@ def write_outputs(
     ]
 
     for beat in aligned:
+        narration_for_table = beat["narration"].replace("|", "\\|")
         lines.append(
             "| "
             f"{beat['beat_id']:02d} | "
@@ -323,7 +324,7 @@ def write_outputs(
             f"{beat['display_duration']:.3f}s | "
             f"{fmt_time(beat['speech_start'])} → {fmt_time(beat['speech_end'])} | "
             f"{beat['match_confidence']:.0%} | "
-            f"{beat['narration'].replace('|', '\\|')} |"
+            f"{narration_for_table} |"
         )
 
     low = [b for b in aligned if b["match_confidence"] < 0.75]
