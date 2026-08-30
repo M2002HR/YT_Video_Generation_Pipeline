@@ -294,3 +294,17 @@ Important: QC reports for variants must not overwrite the baseline `render/QC_RE
 `scripts/qc_render.py` now writes variant-specific reports by default, e.g.:
 
 `render/QC_REPORT_polished_sfx.json`
+
+
+## Video 001 final SFX decision
+
+The SFX treatment was simplified after review.
+
+Keep only:
+- 1.96s intrusive-thought pop (`assets/sfx/intrusive_pop.mp3`)
+- gain -17 dB
+- trim 0.7s
+
+Remove the replay/rewind and archive/drawer SFX from the active mix.
+
+Final creative direction: one subtle opening SFX cue, then narration + background music only.
