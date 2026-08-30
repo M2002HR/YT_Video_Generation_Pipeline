@@ -138,6 +138,13 @@ class ElevenLabsUI:
         from websockets.sync.client import connect
 
         with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
+            websocket.send(json.dumps({"id": 0, "method": "Page.bringToFront", "params": {}}))
+            while True:
+                response = json.loads(websocket.recv())
+                if response.get("id") == 0:
+                    if response.get("error"):
+                        raise RuntimeError("Chrome could not focus the ElevenLabs tab.")
+                    break
             for request_id, params in enumerate((
                 {"type": "mouseMoved", "x": point["x"], "y": point["y"]},
                 {"type": "mousePressed", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1},
