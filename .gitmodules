@@ -1,3 +1,7 @@
 [submodule "services/ajil_uag"]
 	path = services/ajil_uag
 	url = https://github.com/M2002HR/Ajil_Unified_AI_Gateway.git
+[submodule "services/ordak"]
+	path = services/ordak
+	url = https://github.com/AliBalash/ordak.git
+	branch = yt-video-pipeline
