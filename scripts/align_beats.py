@@ -331,7 +331,7 @@ def write_outputs(
         "",
         "## QC",
         "",
-        f"- Low-confidence beats (<75% token match): {', '.join(f'{b['beat_id']:02d}' for b in low) if low else 'none'}",
+        "- Low-confidence beats (<75% token match): " + (", ".join(f"{b['beat_id']:02d}" for b in low) if low else "none"),
         "- Review the generated timing table once before using it for the final render.",
         "- `display_start/display_end` are continuous edit timings; `speech_start/speech_end` are the matched spoken phrase timings.",
         "",
