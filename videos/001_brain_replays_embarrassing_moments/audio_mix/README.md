@@ -184,3 +184,23 @@ polished_sfx.mp4   = SFX experiment
 ```
 
 If the SFX version feels busier or cheaper, keep `polished.mp4`.
+
+
+## QC the accepted SFX variant without overwriting baseline QC
+
+Run:
+
+```bash
+python scripts/qc_render.py \
+  videos/001_brain_replays_embarrassing_moments \
+  --input videos/001_brain_replays_embarrassing_moments/assets/renders/polished_sfx.mp4 \
+  --decode
+```
+
+Because this input is not `final.mp4`, the report is written separately as:
+
+```text
+render/QC_REPORT_polished_sfx.json
+```
+
+The original baseline `render/QC_REPORT.json` remains untouched.
