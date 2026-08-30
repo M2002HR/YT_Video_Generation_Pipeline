@@ -220,3 +220,32 @@ The next stage is optional audio polish on top of this accepted baseline:
 - separate polished output for A/B review
 
 Do not overwrite the accepted baseline final during audio-polish experiments.
+
+
+## Audio polish architecture
+
+Audio polish is layered on top of the accepted baseline render and never overwrites it.
+
+```text
+assets/renders/final.mp4
++ assets/music/background.mp3
++ optional assets/sfx/*
+        ↓
+audio_mix/AUDIO_MIX_PROFILE.json
+        ↓
+scripts/polish_audio.py
+        ↓
+assets/renders/polished.mp4
+```
+
+The mixer stream-copies the accepted video and rebuilds only audio.
+
+Current policy:
+- narration stays dominant
+- music starts conservatively around -20 dB
+- sidechain ducking lowers music under speech
+- SFX are sparse, semantic events
+- loudness normalization is applied after mixing
+- polished output is A/B compared against the accepted clean baseline
+
+Music/SFX media remain local and Git-ignored; mix profiles and workflow metadata are committed.
