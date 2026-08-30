@@ -186,4 +186,37 @@ Accepted motion policy:
 - reduced motion strength
 - supersampled zoom rendering for smoother output
 
-Video 001 is ready for final render and automated QC.
+Video 001 final render has passed automated QC and full decode.
+
+
+## Video 001 baseline completion
+
+Video 001 has completed the full base pipeline end to end.
+
+Final QC:
+- passed: true
+- 1920x1080
+- 30 fps
+- duration: 63.373s with effectively zero drift
+- H.264 / yuv420p
+- AAC audio
+- full decode: clean
+
+The local baseline artifact is:
+
+`assets/renders/final.mp4`
+
+This file remains Git-ignored.
+
+The committed proof of completion is:
+
+`render/QC_REPORT.json`
+
+The next stage is optional audio polish on top of this accepted baseline:
+- background music
+- sparse semantic SFX
+- narration-first ducking
+- loudness normalization
+- separate polished output for A/B review
+
+Do not overwrite the accepted baseline final during audio-polish experiments.
