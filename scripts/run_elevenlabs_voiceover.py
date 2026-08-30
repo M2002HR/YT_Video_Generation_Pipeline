@@ -22,6 +22,7 @@ from typing import Any
 from dotenv import load_dotenv
 
 from pipeline_notifier import PipelineNotifier, format_duration
+from ui_navigation_advisor import NavigationAdvisor
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -116,6 +117,7 @@ class ElevenLabsUI:
         self.stall_seconds = stall_seconds
         self.max_refreshes = max_refreshes
         self.tab: Any | None = None
+        self.advisor = NavigationAdvisor()
 
     def _json(self, expression: str) -> dict[str, Any]:
         if self.tab is None:
@@ -244,6 +246,13 @@ class ElevenLabsUI:
             if point.get("ok"):
                 self._trusted_click(f"""(() => {{ return {json.dumps(point)}; }})()""")
                 return
+            labels = self._json("""(() => ({items:[...document.querySelectorAll('[role=menuitem],[role=option],button')].filter(e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)).map(e=>(e.innerText||e.getAttribute('aria-label')||'').trim()).filter(Boolean).slice(0,80)}))()""").get("items", [])
+            decision = self.advisor.decide(goal=f"Select exact {kind} requested: {requested}", choices=[str(x) for x in labels])
+            if decision.action == "choose":
+                point = self._json(f"""(() => {{ const wanted={json.dumps(decision.target)}.trim();const e=[...document.querySelectorAll('[role=menuitem],[role=option],button')].find(x=>!!(x.offsetWidth||x.offsetHeight||x.getClientRects().length)&&(x.innerText||x.getAttribute('aria-label')||'').trim()===wanted);if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}}; }})()""")
+                if point.get("ok"):
+                    self._trusted_click(f"""(() => {{ return {json.dumps(point)}; }})()""")
+                    return
             time.sleep(0.5)
         raise RuntimeError(f"ElevenLabs did not show the requested {kind} option '{requested}'.")
 

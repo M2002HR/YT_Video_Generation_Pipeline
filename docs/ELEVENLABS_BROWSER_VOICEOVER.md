@@ -39,3 +39,11 @@ persisted state, triggers the strongest visible web-UI download option, then
 waits for the browser download before moving the audio into the video project.
 English Telegram progress, timing and failure notifications use the existing
 pipeline notifier when enabled.
+
+## Navigation advisor
+
+For unstable menus the optional advisor calls the local Ajil gateway on port
+8188 with `openai/gpt-oss-120b`. It sees only a capped list of visible labels
+and a narrow goal, returns one schema-validated JSON decision, and has no
+browser, filesystem, credential, or generation authority. Ordak remains the
+deterministic executor and rejects invented labels/actions.
