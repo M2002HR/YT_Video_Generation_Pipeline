@@ -4,96 +4,65 @@
 
 Create one natural full-length narration track, then align the 18 visual beats to the actual spoken timing.
 
-## Important decision
+## Voice generation decision
 
-Do **not** generate one audio file per beat.
+Generate the entire narration as **one continuous ElevenLabs voiceover**, not one file per beat.
 
-Generate the entire narration as **one continuous ElevenLabs voiceover**.
-
-Why:
-- more natural pacing and prosody
-- sentence transitions sound human
-- no audible seams between beats
-- image timing can be derived afterward from the spoken audio
-
-The visual beats are editing units, not voice-generation units.
+This preserves natural pacing, prosody, and sentence transitions.
 
 ## Input
 
-Use the exact narration text in:
+Use the exact narration in:
 
 `VOICEOVER_INPUT.txt`
 
-Do not rewrite the script inside ElevenLabs.
-
-## Current MVP process
-
-Until ElevenLabs browser automation is added:
-
-1. Open ElevenLabs manually.
-2. Select the voice/model to test.
-3. Paste the complete contents of `VOICEOVER_INPUT.txt`.
-4. Generate one continuous narration.
-5. Listen once for pronunciation, pacing, and obvious artifacts.
-6. If acceptable, download it.
-7. Save it exactly as:
+Accepted narration is stored locally as:
 
 ```text
 ../assets/audio/narration.mp3
 ```
 
-If ElevenLabs provides a lossless/WAV download and it is convenient, also acceptable:
-
-```text
-../assets/audio/narration.wav
-```
-
-Use only one accepted narration source for timing.
-
 Generated audio is Git-ignored.
 
-## Voice profile
+## Current stage — alignment
 
-Record the exact selected voice and important ElevenLabs settings in:
-
-`VOICE_PROFILE.md`
-
-This makes later regeneration reproducible.
-
-## Do not manually time images yet
-
-Once `narration.mp3` exists, the next pipeline stage will analyze the audio and produce timestamps for the narration.
-
-Those timestamps will be mapped to the exact Narration text already stored for each beat in `VISUAL_BEATS.md`.
-
-Target output concept:
+Once the accepted narration file exists, run the local timing pipeline documented in:
 
 ```text
-Beat 01  00:00.00 -> 00:02.10
-Beat 02  00:02.10 -> 00:03.40
-...
-Beat 18  00:55.20 -> 00:59.80
+../timing/README.md
 ```
 
-The numbers above are examples only. Real timings must come from the generated audio.
+Command from repository root:
 
-## Alignment strategy
+```bash
+python -m pip install -r requirements-alignment.txt
 
-Preferred workflow:
+python scripts/align_beats.py \
+  videos/001_brain_replays_embarrassing_moments
+```
+
+This produces:
 
 ```text
-full narration audio
-    ↓
-speech transcription / word timestamps
-    ↓
-match exact beat narration strings
-    ↓
-beat start/end timestamps
-    ↓
-timeline data
+../timing/BEAT_TIMINGS.json
+../timing/BEAT_TIMINGS.md
 ```
 
-This preserves natural speech while still giving every image an exact duration.
+The JSON file becomes the machine-readable timing source for timeline construction.
+
+## Alignment logic
+
+```text
+full narration
+    ↓
+local Whisper word timestamps
+    ↓
+match exact narration strings from VISUAL_BEATS.md
+    ↓
+speech timing per beat
+    ↓
+continuous display timing per beat
+```
 
 ## Future ElevenLabs automation
 
@@ -101,13 +70,10 @@ When browser automation is implemented, the runner should:
 
 1. read `VOICEOVER_INPUT.txt`
 2. load the selected voice profile
-3. open/reuse an authenticated ElevenLabs browser session
-4. paste the full narration
-5. generate
-6. wait for completion
-7. download the accepted audio
-8. save it to `assets/audio/narration.*`
-9. persist job/status information
-10. continue to alignment
+3. open/reuse an authenticated ElevenLabs session
+4. generate the full narration
+5. download it into `assets/audio/`
+6. persist status
+7. automatically invoke beat alignment
 
-Do not split narration per beat unless future testing proves a strong reason to do so.
+Do not split narration per beat unless future testing proves a strong reason.
