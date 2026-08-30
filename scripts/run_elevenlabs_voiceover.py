@@ -377,15 +377,18 @@ class ElevenLabsUI:
 
     def download_best_available(self) -> dict[str, Any]:
         """Click the visible UI download option with the strongest advertised format."""
-        return self._json("""(() => {
+        choice = self._json("""(() => {
           const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
           const controls=[...document.querySelectorAll('button,a,[role=button],[role=menuitem]')].filter(visible);
           const candidates=controls.map(e=>({e,t:`${e.innerText||''} ${e.getAttribute('aria-label')||''} ${e.getAttribute('title')||''}`.trim()})).filter(x=>/download|export/i.test(x.t));
           if(!candidates.length)return {ok:false,reason:'no visible download control'};
           const score=t=>{const n=(t.match(/(\\d+)\\s*kbps/i)||[])[1]||0;return (/\\bwav\\b/i.test(t)?1000000:0)+(/\\bflac\\b/i.test(t)?900000:0)+Number(n)*100+(/download/i.test(t)?1:0)};
-          candidates.sort((a,b)=>score(b.t)-score(a.t)); candidates[0].e.click();
-          return {ok:true,choice:candidates[0].t};
+          candidates.sort((a,b)=>score(b.t)-score(a.t)); const r=candidates[0].e.getBoundingClientRect();
+          return {ok:true,choice:candidates[0].t,x:r.left+r.width/2,y:r.top+r.height/2};
         })()""")
+        if choice.get("ok"):
+            self._trusted_click(f"""(() => {{ return {json.dumps(choice)}; }})()""")
+        return choice
 
 
 def narration_input(project: Path) -> tuple[Path, str]:
