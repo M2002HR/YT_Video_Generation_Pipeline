@@ -470,7 +470,9 @@ def main() -> None:
     existing = next((output_dir / f"narration{extension}" for extension in AUDIO_EXTENSIONS if (output_dir / f"narration{extension}").is_file()), None)
     if existing and not args.force:
         state.data.update({"status": "DONE", "output": str(existing.relative_to(project))})
+        state.event("elevenlabs_download_recovered", started if "started" in locals() else time.perf_counter(), bytes=existing.stat().st_size, output=str(existing.relative_to(project)))
         state.save()
+        json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(existing.relative_to(project)), "generated_at": utcnow(), "recovered_from_existing_download": True})
         print(f"ELEVENLABS VOICEOVER: PASS (reused {existing})")
         return
     notifier = PipelineNotifier(args.video_id, project.name)
