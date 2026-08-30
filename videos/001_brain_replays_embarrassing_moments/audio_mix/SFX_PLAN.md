@@ -35,3 +35,52 @@ Example:
   "trim_sec": 0.8
 }
 ```
+
+
+## Recommended source candidates
+
+Use only three SFX for the first pass.
+
+### 1) Intrusive-thought cue — 1.96s
+
+Target filename:
+
+`assets/sfx/intrusive_pop.mp3`
+
+Candidate:
+https://pixabay.com/sound-effects/technology-soft-ui-pop-light-minimal-click-451232/
+
+Suggested mix:
+- at: 1.96
+- gain: -17 dB
+- trim: 0.7s
+
+### 2) Replay cue — 28.34s
+
+Target filename:
+
+`assets/sfx/replay_rewind.mp3`
+
+Candidate:
+https://pixabay.com/sound-effects/film-special-effects-tape-recorder-rewind-fanmade-6914/
+
+Suggested mix:
+- at: 28.34
+- gain: -15 dB
+- trim: 0.9s
+
+### 3) Archive cue — 51.58s
+
+Target filename:
+
+`assets/sfx/archive_drawer.mp3`
+
+Candidate:
+https://pixabay.com/sound-effects/film-special-effects-drawer-opens-and-closes-101328/
+
+Suggested mix:
+- at: 51.58
+- gain: -18 dB
+- trim: 1.0s
+
+Do not add an ending SFX in the first pass. Let the music fade and narration carry the final line.
