@@ -55,7 +55,7 @@ The JSON file becomes the machine-readable timing source for timeline constructi
 ```text
 full narration
     ↓
-local Whisper word timestamps
+Ajil UAG / Groq Whisper word timestamps
     ↓
 match exact narration strings from VISUAL_BEATS.md
     ↓
@@ -77,3 +77,13 @@ When browser automation is implemented, the runner should:
 7. automatically invoke beat alignment
 
 Do not split narration per beat unless future testing proves a strong reason.
+
+## Current STT backend
+
+Timing/alignment now defaults to the Ajil UAG git submodule and its Groq STT path.
+
+See:
+
+`docs/AJIL_UAG_INTEGRATION.md`
+
+The root project `.env` controls Ajil and all embedded-provider runtime settings. No submodule-local `.env` files are used.
