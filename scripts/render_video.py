@@ -3,7 +3,7 @@
 
 The first render intentionally stays simple and deterministic:
 - one image per beat
-- subtle Ken Burns style motion
+- smooth center-only motion with no lateral pan/jitter
 - hard cuts at beat boundaries
 - narration as the master audio
 - readable phrase subtitles
@@ -81,46 +81,65 @@ def motion_filter(
     duration: float,
     motion: str,
     strength: float,
+    supersample: int,
 ) -> str:
+    """Create smooth center-only motion.
+
+    Lateral pan effects were removed because integer crop movement inside
+    FFmpeg's zoompan can look like micro-jitter on illustrated stills.
+
+    Zoom effects are rendered on a supersampled canvas and downscaled afterward,
+    which greatly reduces rounding shimmer while keeping subtle motion.
+    """
+
     frames = max(2, int(math.ceil(duration * fps)))
+    strength = max(0.0, min(float(strength), 0.10))
+    supersample = max(1, min(int(supersample), 4))
+
+    if motion == "still" or strength <= 0:
+        return (
+            f"[{input_index}:v]"
+            f"scale={width}:{height}:force_original_aspect_ratio=increase,"
+            f"crop={width}:{height},"
+            "setsar=1,"
+            f"fps={fps},"
+            f"trim=duration={duration:.6f},"
+            "setpts=PTS-STARTPTS"
+            f"[{label}]"
+        )
+
+    work_width = width * supersample
+    work_height = height * supersample
     progress = f"min(on/{frames - 1},1)"
-    strength = max(0.0, min(float(strength), 0.15))
 
     if motion == "zoom_out":
-        z = f"1+{strength:.6f}*(1-{progress})"
-        x = "iw/2-(iw/zoom/2)"
-        y = "ih/2-(ih/zoom/2)"
-    elif motion == "pan_right":
-        z = f"1+{strength:.6f}"
-        x = f"(iw-iw/zoom)*{progress}"
-        y = "ih/2-(ih/zoom/2)"
-    elif motion == "pan_left":
-        z = f"1+{strength:.6f}"
-        x = f"(iw-iw/zoom)*(1-{progress})"
-        y = "ih/2-(ih/zoom/2)"
-    elif motion == "pan_down":
-        z = f"1+{strength:.6f}"
-        x = "iw/2-(iw/zoom/2)"
-        y = f"(ih-ih/zoom)*{progress}"
-    elif motion == "pan_up":
-        z = f"1+{strength:.6f}"
-        x = "iw/2-(iw/zoom/2)"
-        y = f"(ih-ih/zoom)*(1-{progress})"
+        effective_strength = strength
+        z = f"1+{effective_strength:.6f}*(1-{progress})"
+    elif motion == "slow_zoom_in":
+        effective_strength = strength * 0.60
+        z = f"1+{effective_strength:.6f}*{progress}"
+    elif motion == "slow_zoom_out":
+        effective_strength = strength * 0.60
+        z = f"1+{effective_strength:.6f}*(1-{progress})"
     else:
-        z = f"1+{strength:.6f}*{progress}"
-        x = "iw/2-(iw/zoom/2)"
-        y = "ih/2-(ih/zoom/2)"
+        effective_strength = strength
+        z = f"1+{effective_strength:.6f}*{progress}"
+
+    # Always keep the crop centered. No pan_x/pan_y animation.
+    x = "iw/2-(iw/zoom/2)"
+    y = "ih/2-(ih/zoom/2)"
 
     return (
         f"[{input_index}:v]"
-        f"scale={width}:{height}:force_original_aspect_ratio=increase,"
-        f"crop={width}:{height},"
+        f"scale={work_width}:{work_height}:force_original_aspect_ratio=increase,"
+        f"crop={work_width}:{work_height},"
         "setsar=1,"
         f"zoompan="
         f"z='{z}':"
         f"x='{x}':"
         f"y='{y}':"
-        f"d=1:s={width}x{height}:fps={fps},"
+        f"d=1:s={work_width}x{work_height}:fps={fps},"
+        f"scale={width}:{height}:flags=lanczos,"
         f"trim=duration={duration:.6f},"
         "setpts=PTS-STARTPTS"
         f"[{label}]"
@@ -233,7 +252,8 @@ def main() -> None:
 
     motion_cfg = profile.get("motion") if isinstance(profile.get("motion"), dict) else {}
     motion_enabled = bool(motion_cfg.get("enabled", True))
-    motion_strength = float(motion_cfg.get("strength", 0.045))
+    motion_strength = float(motion_cfg.get("strength", 0.035))
+    motion_supersample = int(motion_cfg.get("supersample", 2))
 
     subtitle_cfg = (
         profile.get("subtitles")
@@ -292,7 +312,7 @@ def main() -> None:
         label = f"v{index}"
         labels.append(f"[{label}]")
 
-        motion = str(beat.get("motion") or "zoom_in") if motion_enabled else "still"
+        motion = str(beat.get("motion") or "still") if motion_enabled else "still"
         strength = motion_strength if motion_enabled else 0.0
 
         filter_parts.append(
@@ -305,6 +325,7 @@ def main() -> None:
                 duration=float(beat["duration"]),
                 motion=motion,
                 strength=strength,
+                supersample=motion_supersample,
             )
         )
 
