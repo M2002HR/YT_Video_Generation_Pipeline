@@ -1,0 +1,14 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Mark",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.45,
+    "similarity": 0.75,
+    "style": 0.1
+  },
+  "input_sha256": "24797a397961b06e22c7163386f80f7fa1885cb1ac9b39ed74e78098e9b5ba20",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-08-30T21:34:50.856817+00:00"
+}

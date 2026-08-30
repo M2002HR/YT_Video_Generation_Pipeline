@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "video_id": "002",
+  "created_at": "2026-08-30T20:41:38.602154+00:00",
+  "input_path": "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "24797a397961b06e22c7163386f80f7fa1885cb1ac9b39ed74e78098e9b5ba20",
+  "settings": {
+    "voice": "Mark",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.45,
+    "similarity": 0.75,
+    "style": 0.1
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T20:41:39.325051+00:00",
+      "elapsed_seconds": 0.718
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T20:53:27.237408+00:00",
+      "elapsed_seconds": 0.686
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T20:56:36.107633+00:00",
+      "elapsed_seconds": 0.851
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T20:58:07.913773+00:00",
+      "elapsed_seconds": 0.59
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T20:59:09.520089+00:00",
+      "elapsed_seconds": 0.46
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T21:28:25.708915+00:00",
+      "elapsed_seconds": 0.478
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T21:29:19.050237+00:00",
+      "elapsed_seconds": 0.402
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-08-30T21:29:52.694209+00:00",
+      "elapsed_seconds": 33.643,
+      "settings": {
+        "voice": "Mark",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.45,
+        "similarity": 0.75,
+        "style": 0.1
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-08-30T21:29:53.048446+00:00",
+      "elapsed_seconds": 33.998,
+      "characters": 816
+    },
+    {
+      "operation": "narration_input_reset",
+      "finished_at": "2026-08-30T21:32:18.150053+00:00",
+      "reason": "explicit --force after narration review"
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T21:32:18.547415+00:00",
+      "elapsed_seconds": 0.395
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-08-30T21:32:31.650551+00:00",
+      "elapsed_seconds": 13.102,
+      "settings": {
+        "voice": "Mark",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.45,
+        "similarity": 0.75,
+        "style": 0.1
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-08-30T21:32:32.622855+00:00",
+      "elapsed_seconds": 14.075,
+      "characters": 810
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-30T21:33:24.238476+00:00",
+      "elapsed_seconds": 0.342
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-08-30T21:33:37.994913+00:00",
+      "elapsed_seconds": 13.756,
+      "settings": {
+        "voice": "Mark",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.45,
+        "similarity": 0.75,
+        "style": 0.1
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-08-30T21:33:38.126238+00:00",
+      "elapsed_seconds": 13.887,
+      "characters": 810
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-08-30T21:33:39.091712+00:00",
+      "elapsed_seconds": 0.965
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-08-30T21:34:50.855119+00:00",
+      "elapsed_seconds": 72.728,
+      "bytes": 879733,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-08-30T21:34:50.855189+00:00",
+  "error": "Required ElevenLabs UI control is not visible.",
+  "failed_at": "2026-08-30T21:32:32.944994+00:00",
+  "submitted_at": "2026-08-30T21:33:39.089428+00:00",
+  "download_choice": "Download Audio",
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-08-30T21:34:50.854802+00:00"
+}
