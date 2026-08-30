@@ -279,3 +279,18 @@ polished_sfx.mp4   = separate SFX experiment
 The SFX experiment uses `audio_mix/AUDIO_MIX_PROFILE_SFX.json`, while the original `AUDIO_MIX_PROFILE.json` remains the music-only configuration.
 
 This A/B/C structure is the default pattern for future creative experiments: preserve the last accepted artifact and write each materially different treatment to a new output.
+
+
+## Video 001 SFX mix acceptance
+
+The separate SFX experiment has been rendered and reviewed positively.
+
+Creative state:
+- `final.mp4` = accepted clean baseline
+- `polished.mp4` = accepted music-only mix
+- `polished_sfx.mp4` = accepted creative SFX mix, pending its own technical QC
+
+Important: QC reports for variants must not overwrite the baseline `render/QC_REPORT.json`.
+`scripts/qc_render.py` now writes variant-specific reports by default, e.g.:
+
+`render/QC_REPORT_polished_sfx.json`
