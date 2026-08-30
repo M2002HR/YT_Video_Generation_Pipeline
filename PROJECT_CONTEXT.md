@@ -98,14 +98,14 @@ Video 001 has:
 
 Current next stage:
 - alignment is complete and committed
-- STT backend: Ajil UAG / Groq
-- actual model used: `whisper-large-v3-turbo`
-- timestamp source: word
-- all 18 beat narration matches: 100%
-- audio duration: 63.373s
-- build `timeline/TIMELINE.json` and `timeline/SUBTITLES.ass`
-- render the first 1920x1080 preview with FFmpeg
-- perform human QC before adding music/SFX
+- timeline metadata is built and committed
+- first 1920x1080 preview has been rendered and watched
+- base preview is accepted to continue
+- rebuild timeline once with subtitle-overlap repair
+- render `assets/renders/final.mp4`
+- run `scripts/qc_render.py --decode`
+- commit `render/QC_REPORT.json`
+- close Video 001 as the first clean end-to-end MVP before adding optional music/SFX
 
 One STT timestamp overlap exists at the Beat 06 -> 07 boundary (0.320s). The timeline builder resolves it deterministically with a midpoint boundary while preserving raw speech timestamps.
 
@@ -144,3 +144,18 @@ assets/renders/preview.mp4
 ```
 
 The first preview uses deterministic subtle Ken Burns motion, hard semantic cuts, narration audio, and phrase subtitles. Background music/SFX are intentionally deferred until the base timeline passes human QC.
+
+
+## Final render QC
+
+`scripts/qc_render.py` validates the rendered file against the committed timeline/render profile.
+
+Checks include stream count, resolution, fps, duration drift, codecs, pixel format, non-empty output, and optional full decode.
+
+The report is written to:
+
+`videos/<video_id>/render/QC_REPORT.json`
+
+Rendered MP4 files remain local/Git-ignored.
+
+For Video 001, background music/SFX are deferred until after the clean deterministic MVP final passes QC. This prevents audio-polish work from obscuring base-pipeline defects.
