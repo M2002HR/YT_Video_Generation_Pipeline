@@ -330,7 +330,7 @@ class ElevenLabsUI:
             self.select_option("model", settings.model)
         if settings.voice:
             self.select_option("voice", settings.voice)
-        for label, value in (("Speed", settings.speed), ("Stability", settings.stability), ("Similarity", settings.similarity), ("Style", settings.style)):
+        for label, value in (("Speed", settings.speed), ("Stability", settings.stability), ("Similarity", settings.similarity), ("Style Exaggeration", settings.style)):
             if value is not None:
                 self.apply_numeric_setting(label, value)
         if settings.speaker_boost is not None:
@@ -427,6 +427,10 @@ def main() -> None:
     settings = VoiceSettings(choose("voice", args.voice), choose("model", args.model), choose("speed", args.speed), choose("stability", args.stability), choose("similarity", args.similarity), choose("style", args.style), choose("speaker_boost", None if args.speaker_boost is None else args.speaker_boost == "true"), choose("output_format", args.output_format))
     voiceover_dir = project / "voiceover"
     state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings)
+    # A failed/restarted run may predate a newer versioned profile.  Persist
+    # exactly what this invocation is about to apply for traceability.
+    state.data["settings"] = settings.supplied()
+    state.save()
     output_dir = project / "assets" / "audio"
     output_dir.mkdir(parents=True, exist_ok=True)
     existing = next((output_dir / f"narration{extension}" for extension in AUDIO_EXTENSIONS if (output_dir / f"narration{extension}").is_file()), None)
