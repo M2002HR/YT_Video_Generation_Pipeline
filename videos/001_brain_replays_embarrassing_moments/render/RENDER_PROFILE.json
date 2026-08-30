@@ -17,12 +17,13 @@
   },
   "motion": {
     "enabled": true,
-    "strength": 0.045,
+    "strength": 0.035,
+    "supersample": 2,
     "cycle": [
       "zoom_in",
-      "pan_right",
+      "still",
       "zoom_out",
-      "pan_left"
+      "slow_zoom_in"
     ]
   },
   "subtitles": {
