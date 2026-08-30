@@ -29,3 +29,9 @@ __pycache__/
 .env
 .env.local
 .env.*.local
+
+# Optional local audio-polish assets
+videos/**/assets/music/*
+!videos/**/assets/music/.gitkeep
+videos/**/assets/sfx/*
+!videos/**/assets/sfx/.gitkeep
