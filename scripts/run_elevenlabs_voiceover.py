@@ -63,12 +63,16 @@ class VoiceSettings:
 
 
 class State:
-    def __init__(self, path: Path, *, video_id: str, input_path: Path, text: str, settings: VoiceSettings) -> None:
+    def __init__(self, path: Path, *, video_id: str, input_path: Path, text: str, settings: VoiceSettings, allow_input_reset: bool = False) -> None:
         self.path = path
         if path.exists():
             self.data = json.loads(path.read_text(encoding="utf-8"))
             if self.data.get("input_sha256") != digest(text):
-                raise RuntimeError("Existing voiceover state belongs to different narration text; use --force only after deliberate review.")
+                if not allow_input_reset:
+                    raise RuntimeError("Existing voiceover state belongs to different narration text; use --force only after deliberate review.")
+                self.data.update({"input_path": str(input_path), "input_sha256": digest(text), "status": "PENDING"})
+                self.data.setdefault("events", []).append({"operation": "narration_input_reset", "finished_at": utcnow(), "reason": "explicit --force after narration review"})
+                self.save()
         else:
             self.data = {
                 "schema_version": 1,
@@ -163,6 +167,12 @@ class ElevenLabsUI:
 
     def _trusted_key(self, key: str) -> None:
         """Send a real keyboard event to the focused control through CDP."""
+        self._trusted_keys(key, 1)
+
+    def _trusted_keys(self, key: str, count: int) -> None:
+        """Send repeated real key presses over one CDP connection."""
+        if count < 1:
+            return
         if self.tab is None:
             raise RuntimeError("ElevenLabs browser tab has not been opened.")
         info = self._get_tab_info(self.tab)
@@ -171,10 +181,14 @@ class ElevenLabsUI:
             raise RuntimeError("Ordak could not attach a DevTools target for ElevenLabs.")
         from websockets.sync.client import connect
         with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
-            for request_id, params in enumerate((
-                {"type": "keyDown", "key": key, "code": key, "windowsVirtualKeyCode": 36 if key == "Home" else 35 if key == "End" else 39 if key == "ArrowRight" else 37},
-                {"type": "keyUp", "key": key, "code": key, "windowsVirtualKeyCode": 36 if key == "Home" else 35 if key == "End" else 39 if key == "ArrowRight" else 37},
-            ), start=1):
+            keycode = 36 if key == "Home" else 35 if key == "End" else 39 if key == "ArrowRight" else 37
+            events = []
+            for _ in range(count):
+                events.extend((
+                    {"type": "keyDown", "key": key, "code": key, "windowsVirtualKeyCode": keycode},
+                    {"type": "keyUp", "key": key, "code": key, "windowsVirtualKeyCode": keycode},
+                ))
+            for request_id, params in enumerate(events, start=1):
                 websocket.send(json.dumps({"id": request_id, "method": "Input.dispatchKeyEvent", "params": params}))
                 while True:
                     response = json.loads(websocket.recv())
@@ -313,8 +327,7 @@ class ElevenLabsUI:
         if step <= 0:
             raise RuntimeError(f"ElevenLabs '{label}' did not respond to a real keyboard increment.")
         increments = round((value - minimum) / step) - 1
-        for _ in range(max(0, increments)):
-            self._trusted_key("ArrowRight")
+        self._trusted_keys("ArrowRight", max(0, increments))
         final_value = observed_value()
         if abs(final_value - value) > (step / 2 + 1e-9):
             raise RuntimeError(f"ElevenLabs '{label}' did not reach requested value {value}; observed {final_value}.")
@@ -380,10 +393,16 @@ def narration_input(project: Path) -> tuple[Path, str]:
     source = canonical if canonical.exists() else project / "SCRIPT_FINAL.md"
     if not source.is_file():
         raise RuntimeError("No voiceover input found: create voiceover/VOICEOVER_INPUT.txt or complete SCRIPT_FINAL.md first.")
-    text = source.read_text(encoding="utf-8").strip()
+    text = source.read_text(encoding="utf-8").replace("\ufeff", "").strip()
+    # The visual-script UI can prepend its own editor affordance as a lone
+    # first line. It is not narration and must never reach ElevenLabs. Keep
+    # this deliberately narrow so valid narration is never rewritten.
+    lines = text.splitlines()
+    if lines and lines[0].strip().casefold() == "edit":
+        text = "\n".join(lines[1:]).lstrip()
     if not text:
         raise RuntimeError("Voiceover input is empty.")
-    if source != canonical:
+    if source != canonical or canonical.read_text(encoding="utf-8") != text + "\n":
         canonical.parent.mkdir(parents=True, exist_ok=True)
         canonical.write_text(text + "\n", encoding="utf-8")
     return canonical, text
@@ -438,7 +457,7 @@ def main() -> None:
         return cli_value if cli_value is not None else profile.get(name)
     settings = VoiceSettings(choose("voice", args.voice), choose("model", args.model), choose("speed", args.speed), choose("stability", args.stability), choose("similarity", args.similarity), choose("style", args.style), choose("speaker_boost", None if args.speaker_boost is None else args.speaker_boost == "true"), choose("output_format", args.output_format))
     voiceover_dir = project / "voiceover"
-    state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings)
+    state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings, allow_input_reset=args.force)
     # A failed/restarted run may predate a newer versioned profile.  Persist
     # exactly what this invocation is about to apply for traceability.
     state.data["settings"] = settings.supplied()
