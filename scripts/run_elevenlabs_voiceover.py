@@ -212,11 +212,15 @@ class ElevenLabsUI:
         explicit CLI/env parameter and fails loudly rather than guessing.
         """
         tooltip = "Model" if kind == "model" else "Voice"
-        self._trusted_click(f"""(() => {{
+        control = self._json(f"""(() => {{
           const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
           const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>(x.getAttribute('data-agent-tooltip')||'')==={json.dumps(tooltip)});
-          if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
+          if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}};
         }})()""")
+        if not control.get("ok"):
+            raise RuntimeError(f"Could not find the ElevenLabs {kind} control for explicit value '{requested}'.")
+        if not control.get("open"):
+            self._trusted_click(f"""(() => {{ return {json.dumps(control)}; }})()""")
         if kind == "voice":
             # The compact menu is intentionally only a recent-voices list.
             # Enter the full catalog so a profile is not silently limited to it.
