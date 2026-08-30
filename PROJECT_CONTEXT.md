@@ -159,3 +159,17 @@ The report is written to:
 Rendered MP4 files remain local/Git-ignored.
 
 For Video 001, background music/SFX are deferred until after the clean deterministic MVP final passes QC. This prevents audio-polish work from obscuring base-pipeline defects.
+
+
+## Motion quality rule
+
+Avoid lateral FFmpeg pan effects on illustrated beat images. The first preview showed visible stepping/jitter.
+
+Current default motion policy:
+- centered smooth zoom in/out only
+- occasional static holds
+- lower motion strength
+- supersampled zoom rendering before final downscale
+- no animated left/right/up/down panning
+
+The render profile controls the deterministic motion cycle.
