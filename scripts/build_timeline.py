@@ -206,6 +206,49 @@ def build_subtitle_cues(
     return cues
 
 
+def normalize_subtitle_cue_boundaries(
+    cues: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Ensure subtitle cues never overlap on screen.
+
+    STT providers can return slightly overlapping word ranges around semantic
+    boundaries. Preserve both cues but split the overlap at its midpoint.
+    """
+
+    if not cues:
+        return cues, []
+
+    normalized = [dict(cue) for cue in cues]
+    adjustments: list[dict[str, Any]] = []
+
+    for index in range(1, len(normalized)):
+        previous = normalized[index - 1]
+        current = normalized[index]
+
+        previous_end = float(previous["end"])
+        current_start = float(current["start"])
+
+        if current_start >= previous_end:
+            continue
+
+        boundary = (previous_end + current_start) / 2.0
+        previous["end"] = round(boundary, 3)
+        current["start"] = round(boundary, 3)
+
+        adjustments.append(
+            {
+                "previous_beat": int(previous["beat_id"]),
+                "current_beat": int(current["beat_id"]),
+                "previous_end": round(previous_end, 3),
+                "current_start": round(current_start, 3),
+                "overlap_seconds": round(previous_end - current_start, 3),
+                "chosen_boundary": round(boundary, 3),
+            }
+        )
+
+    return normalized, adjustments
+
+
 def ass_timestamp(seconds: float) -> str:
     centiseconds = max(0, round(seconds * 100))
     hours, rem = divmod(centiseconds, 360000)
@@ -366,6 +409,7 @@ def main() -> None:
         else {}
     )
     cues = build_subtitle_cues(beats, subtitle_cfg)
+    cues, subtitle_adjustments = normalize_subtitle_cue_boundaries(cues)
 
     resolution = profile.get("resolution") or {}
     width = int(resolution.get("width", 1920))
@@ -396,6 +440,7 @@ def main() -> None:
                 if float(beat.get("match_confidence", 0.0)) < 0.75
             ],
             "timestamp_overlap_adjustments": adjustments,
+            "subtitle_overlap_adjustments": subtitle_adjustments,
         },
     }
 
@@ -419,6 +464,10 @@ def main() -> None:
     print(f"Beats: {len(timeline_beats)}")
     print(f"Duration: {audio_duration:.3f}s")
     print(f"Subtitle cues: {len(cues)}")
+    if subtitle_adjustments:
+        print(f"Subtitle overlap repairs: {len(subtitle_adjustments)}")
+    else:
+        print("Subtitle QC: no overlapping cues.")
 
     if adjustments:
         print("Adjusted overlapping STT boundaries:")
