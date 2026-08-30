@@ -43,11 +43,11 @@ DEFAULT_ENV_FILE = REPO_ROOT / ".env"
 
 
 BEAT_RE = re.compile(
-    r"^### Beat\s+(\d+)\s*$"
+    r"^(?:###\s+)?Beat\s+(\d+)\s*$"
     r".*?^Narration:\s*$\n"
     r"(.*?)"
     r"(?=\n\n^Visual:\s*$)",
-    re.MULTILINE | re.DOTALL,
+    re.IGNORECASE | re.MULTILINE | re.DOTALL,
 )
 
 
