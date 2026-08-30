@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parents[1]
 ORDAK_DIR = ROOT / "services" / "ordak"
+ORDAK_VENV_PYTHON = ORDAK_DIR / ".venv" / "bin" / "python"
 
 
 ENV_MAP = {
@@ -72,6 +73,20 @@ def main() -> None:
             "  git submodule sync --recursive\n"
             "  git submodule update --init --recursive"
         )
+
+    configured_python = os.getenv("YT_ORDAK_PYTHON", "").strip()
+    ordak_python = Path(configured_python).expanduser() if configured_python else ORDAK_VENV_PYTHON
+    if not ordak_python.is_absolute():
+        ordak_python = (ROOT / ordak_python).resolve()
+    if not ordak_python.exists():
+        raise SystemExit(
+            f"Ordak Python runtime not found: {ordak_python}\n"
+            "Run: /home/mhr/.local/bin/python3.11 -m venv services/ordak/.venv && "
+            "services/ordak/.venv/bin/python -m pip install -r services/ordak/requirements.txt"
+        )
+    version = subprocess.check_output([str(ordak_python), "-c", "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"], text=True).strip()
+    if tuple(map(int, version.split("."))) < (3, 11):
+        raise SystemExit(f"Ordak requires Python 3.11+; selected runtime is {version}: {ordak_python}")
 
     load_dotenv(env_file, override=False)
 
@@ -145,6 +160,7 @@ def main() -> None:
     port = child_env.get("APP_PORT", "8000")
 
     print(f"Ordak dir: {ORDAK_DIR}")
+    print(f"Ordak Python: {ordak_python} ({version})")
     print(f"Root env: {env_file}")
     print(f"Provider: {provider}")
     print(
@@ -161,7 +177,7 @@ def main() -> None:
 
     subprocess.run(
         [
-            sys.executable,
+            str(ordak_python),
             "-m",
             "uvicorn",
             "app.main:app",

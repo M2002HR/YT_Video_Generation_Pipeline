@@ -1,0 +1,74 @@
+from __future__ import annotations
+
+import importlib.util
+import os
+import sys
+from pathlib import Path
+
+import pytest
+from PIL import Image
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SPEC = importlib.util.spec_from_file_location("run_visual_pipeline", ROOT / "scripts" / "run_visual_pipeline.py")
+assert SPEC and SPEC.loader
+module = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = module
+SPEC.loader.exec_module(module)
+
+
+class NoopClient:
+    pass
+
+
+def make_pipeline(tmp_path: Path):
+    preset = "001_cinematic_storybook_green_hoodie"
+    return module.Pipeline(tmp_path, "Topic", "002", preset, NoopClient(), False)
+
+
+def save_nontrivial_png(path: Path, width: int, height: int) -> None:
+    Image.frombytes("RGB", (width, height), os.urandom(width * height * 3)).save(path)
+
+
+def test_parse_beats_requires_complete_sequential_range() -> None:
+    blocks = []
+    for index in range(1, 15):
+        blocks.append(
+            f"### Beat {index:02d}\nNarration:\nN{index}\n\nVisual:\nV{index}\n\nPurpose:\nP{index}\n\nType:\nliteral\n\nContinuity:\nnone"
+        )
+    parsed = module.Pipeline.parse_beats("\n\n".join(blocks))
+    assert len(parsed) == 14
+    assert parsed[-1]["id"] == 14
+    with pytest.raises(RuntimeError, match="sequential"):
+        module.Pipeline.parse_beats("\n\n".join(blocks[:-1]))
+
+
+def test_image_validation_rejects_duplicate_and_wrong_aspect(tmp_path: Path) -> None:
+    pipeline = make_pipeline(tmp_path)
+    pipeline.project.mkdir(parents=True)
+    landscape = pipeline.project / "beat.png"
+    save_nontrivial_png(landscape, 1600, 900)
+    metadata = pipeline.valid_image(landscape)
+    assert metadata["width"] == 1600
+    with pytest.raises(RuntimeError, match="duplicates"):
+        pipeline.valid_image(landscape, metadata["sha256"])
+    portrait = pipeline.project / "portrait.png"
+    save_nontrivial_png(portrait, 900, 1600)
+    with pytest.raises(RuntimeError, match="landscape"):
+        pipeline.valid_image(portrait)
+
+
+def test_existing_valid_beat_is_skipped_and_becomes_next_reference(tmp_path: Path) -> None:
+    pipeline = make_pipeline(tmp_path)
+    pipeline.project.mkdir(parents=True)
+    pipeline.state = {"beats": {"001": {"status": "PROMPT_READY", "attempts": 0}}, "stages": {}}
+    output = pipeline.project / "assets" / "raw_beats"
+    output.mkdir(parents=True)
+    save_nontrivial_png(output / "beat_001.png", 1600, 900)
+    style = tmp_path / "style.png"
+    character = tmp_path / "character.png"
+    Image.new("RGB", (1600, 900), "red").save(style)
+    Image.new("RGB", (1600, 900), "green").save(character)
+    pipeline.generate_images([{"id": 1}], style, character)
+    assert pipeline.state["beats"]["001"]["status"] == "DONE"
+    assert pipeline.state["beats"]["001"]["attempts"] == 0

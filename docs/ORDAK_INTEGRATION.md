@@ -75,10 +75,14 @@ YT_ORDAK_BROWSER_REMOTE_DEBUGGING_URL=http://127.0.0.1:9222
 
 Ordak/Codex must never silently switch to a new logged-out profile when the configured profile is unavailable.
 
-For the current upstream runtime, attach-only mode remains the default:
+Ordak can safely self-launch only when Chrome is not already running. It uses
+the exact configured `BROWSER_USER_DATA_DIR` and `BROWSER_PROFILE_NAME`; it
+does not use a temporary `ordak-chrome` profile. If Chrome is already running
+without DevTools, it refuses to start a competing instance because Chrome may
+ignore the automation flags while retaining the profile lock.
 
 ```env
-YT_ORDAK_BROWSER_REMOTE_DEBUGGING_AUTO_LAUNCH=false
+YT_ORDAK_BROWSER_REMOTE_DEBUGGING_AUTO_LAUNCH=true
 ```
 
 The dedicated Codex stabilization goal will implement and validate safe automatic browser startup/recovery using the configured authenticated profile.
@@ -168,6 +172,21 @@ exactly one accepted standalone 16:9 beat image
 ```
 
 A rejected/failed image must never become the previous-beat continuity reference.
+
+## Visual pipeline runner
+
+After Ordak readiness passes, run the parent-owned resumable workflow:
+
+```bash
+python scripts/run_visual_pipeline.py \
+  --topic "Why You Forget Why You Walked Into a Room" \
+  --video-id 002 \
+  --preset 001_cinematic_storybook_green_hoodie
+```
+
+It calls Ordak's local ChatGPT job API only. It persists local state beneath
+`videos/<id>/visual_pipeline/`, skips already valid accepted images on rerun,
+and writes `VISUAL_QC_REPORT.json` after every planned beat is accepted.
 
 ## Next milestone
 
