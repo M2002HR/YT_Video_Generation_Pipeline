@@ -1,0 +1,14 @@
+[Unit]
+Description=Ordak VNC server (loopback only)
+After=ordak-xvfb.service ordak-fluxbox.service
+Requires=ordak-xvfb.service ordak-fluxbox.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/x11vnc -display :99 -forever -shared -rfbauth /etc/ordak-vnc.pass -rfbport 5901 -localhost
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

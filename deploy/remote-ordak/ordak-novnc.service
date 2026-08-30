@@ -1,0 +1,14 @@
+[Unit]
+Description=Ordak noVNC WebSocket bridge (loopback only)
+After=ordak-x11vnc.service
+Requires=ordak-x11vnc.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/websockify --web /usr/share/novnc 127.0.0.1:6080 127.0.0.1:5901
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

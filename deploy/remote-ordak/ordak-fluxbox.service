@@ -1,0 +1,15 @@
+[Unit]
+Description=Ordak virtual desktop
+After=ordak-xvfb.service
+Requires=ordak-xvfb.service
+
+[Service]
+Type=simple
+User=root
+Environment=DISPLAY=:99
+ExecStart=/usr/bin/fluxbox
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
