@@ -298,14 +298,26 @@ class ElevenLabsUI:
             raise RuntimeError(f"ElevenLabs '{label}' value {value} is outside its current UI range {detail['min']}..{detail['max']}.")
         self._trusted_click(f"""(() => {{ return {json.dumps(detail)}; }})()""")
         self._trusted_key("Home")
-        # ElevenLabs' displayed sliders use 0.01 increments.  Fail closed if
-        # the live value does not converge instead of accepting a near value.
-        increments = round((value - float(detail["min"])) * 100)
-        for _ in range(increments):
+        def observed_value() -> float:
+            observed = self._json(f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); return e?{{ok:true,value:Number(e.getAttribute('aria-valuenow'))}}:{{ok:false}}; }})()""")
+            if not observed.get("ok"):
+                raise RuntimeError(f"ElevenLabs '{label}' disappeared while it was being configured.")
+            return float(observed["value"])
+
+        # Step size differs by control (the current UI uses 0.01 for Speed
+        # and 0.005 for Stability). Measure one actual increment instead of
+        # baking either assumption into the workflow.
+        minimum = observed_value()
+        self._trusted_key("ArrowRight")
+        step = observed_value() - minimum
+        if step <= 0:
+            raise RuntimeError(f"ElevenLabs '{label}' did not respond to a real keyboard increment.")
+        increments = round((value - minimum) / step) - 1
+        for _ in range(max(0, increments)):
             self._trusted_key("ArrowRight")
-        observed = self._json(f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); return e?{{ok:true,value:Number(e.getAttribute('aria-valuenow'))}}:{{ok:false}}; }})()""")
-        if not observed.get("ok") or abs(float(observed.get("value", -999)) - value) > 0.005:
-            raise RuntimeError(f"ElevenLabs '{label}' did not reach requested value {value}; observed {observed.get('value')}.")
+        final_value = observed_value()
+        if abs(final_value - value) > (step / 2 + 1e-9):
+            raise RuntimeError(f"ElevenLabs '{label}' did not reach requested value {value}; observed {final_value}.")
 
     def select_output_format(self, requested: str | None) -> str | None:
         """Select an explicit format, or keep ElevenLabs' current default."""
