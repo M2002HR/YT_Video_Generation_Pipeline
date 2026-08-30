@@ -90,6 +90,43 @@ def main() -> None:
             "Set YT_ORDAK_PROVIDER=chatgpt."
         )
 
+    required_root_settings = {
+        "YT_ORDAK_BROWSER_EXECUTABLE_PATH": os.getenv("YT_ORDAK_BROWSER_EXECUTABLE_PATH"),
+        "YT_ORDAK_BROWSER_USER_DATA_DIR": os.getenv("YT_ORDAK_BROWSER_USER_DATA_DIR"),
+        "YT_ORDAK_BROWSER_PROFILE_NAME": os.getenv("YT_ORDAK_BROWSER_PROFILE_NAME"),
+        "YT_ORDAK_BROWSER_REMOTE_DEBUGGING_URL": os.getenv("YT_ORDAK_BROWSER_REMOTE_DEBUGGING_URL"),
+    }
+    missing = [
+        key
+        for key, value in required_root_settings.items()
+        if value is None or not value.strip()
+    ]
+    if missing:
+        raise SystemExit(
+            "Ordak browser profile must be explicit in the ROOT .env. Missing: "
+            + ", ".join(missing)
+            + "\nCopy the YT_ORDAK_* browser block from .env.example and set it "
+              "to the exact authenticated Chrome profile you want Codex/Ordak to use."
+        )
+
+    user_data_dir = Path(
+        required_root_settings["YT_ORDAK_BROWSER_USER_DATA_DIR"]
+    ).expanduser().resolve()
+    if not user_data_dir.exists():
+        raise SystemExit(
+            "Configured YT_ORDAK_BROWSER_USER_DATA_DIR does not exist: "
+            f"{user_data_dir}"
+        )
+
+    browser_executable = Path(
+        required_root_settings["YT_ORDAK_BROWSER_EXECUTABLE_PATH"]
+    ).expanduser().resolve()
+    if not browser_executable.exists():
+        raise SystemExit(
+            "Configured YT_ORDAK_BROWSER_EXECUTABLE_PATH does not exist: "
+            f"{browser_executable}"
+        )
+
     child_env = os.environ.copy()
     child_env["ORDAK_ENV_FILE"] = str(env_file)
 
