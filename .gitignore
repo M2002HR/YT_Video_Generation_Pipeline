@@ -24,3 +24,8 @@ videos/**/assets/renders/*
 Thumbs.db
 __pycache__/
 *.pyc
+
+# Root runtime secrets/config
+.env
+.env.local
+.env.*.local
