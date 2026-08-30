@@ -272,8 +272,23 @@ def find_download(download_dir: Path, started_at: float) -> Path | None:
     return max(candidates, key=lambda path: path.stat().st_mtime) if candidates else None
 
 
+def configure_ordak_browser_environment() -> None:
+    """Apply the same root-env mapping used by the Ordak service launcher."""
+    from run_ordak import ENV_MAP
+
+    env_file = (ROOT / os.getenv("YT_ENV_FILE", ".env")).resolve()
+    os.environ["ORDAK_ENV_FILE"] = str(env_file)
+    for source, target in ENV_MAP.items():
+        value = os.getenv(source, "").strip()
+        if value:
+            os.environ[target] = value
+    os.environ["BROWSER_HEADLESS"] = "false"
+    os.environ["BROWSER_LINUX_X11_FALLBACK_ENABLED"] = "false"
+
+
 def main() -> None:
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
+    configure_ordak_browser_environment()
     parser = argparse.ArgumentParser(description="Generate a full narration through the logged-in ElevenLabs web UI.")
     parser.add_argument("--video-id", required=True)
     parser.add_argument("--project", type=Path, default=None, help="Defaults to the unique videos/<id>_* directory.")
