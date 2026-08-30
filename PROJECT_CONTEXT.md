@@ -173,3 +173,17 @@ Current default motion policy:
 - no animated left/right/up/down panning
 
 The render profile controls the deterministic motion cycle.
+
+
+## Video 001 motion preview acceptance
+
+The revised smooth center-motion preview has been reviewed and accepted.
+
+Accepted motion policy:
+- no lateral/vertical pan animation
+- centered zoom only
+- occasional still frames
+- reduced motion strength
+- supersampled zoom rendering for smoother output
+
+Video 001 is ready for final render and automated QC.
