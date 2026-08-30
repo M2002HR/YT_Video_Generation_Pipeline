@@ -169,11 +169,11 @@ python scripts/polish_audio.py \
   --profile videos/001_brain_replays_embarrassing_moments/audio_mix/AUDIO_MIX_PROFILE_SFX.json
 ```
 
-First-pass SFX events:
+Final SFX events:
 
 - 1.96s — intrusive thought pop — -17 dB — 0.7s
-- 28.34s — replay rewind — -15 dB — 0.9s
-- 51.58s — archive drawer — -18 dB — 1.0s
+
+The rewind and drawer cues were removed after review.
 
 A/B/C review:
 
