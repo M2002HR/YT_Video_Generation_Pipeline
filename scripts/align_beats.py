@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-"""Align a full narration track to visual beats using local Whisper word timestamps.
+"""Align a full narration track to visual beats.
 
-Example:
+Default STT backend: Ajil UAG -> Groq Whisper with word timestamps.
+Optional fallback: local faster-whisper.
+
+Examples:
     python scripts/align_beats.py \
       videos/001_brain_replays_embarrassing_moments
+
+    python scripts/align_beats.py \
+      videos/001_brain_replays_embarrassing_moments \
+      --backend local --model small.en
 
 Outputs:
     <video>/timing/BEAT_TIMINGS.json
