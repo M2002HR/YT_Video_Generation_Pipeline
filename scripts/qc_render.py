@@ -146,6 +146,15 @@ def main() -> None:
         help="Decode the full video/audio streams to catch corrupt frames/packets.",
     )
     parser.add_argument(
+        "--report",
+        type=Path,
+        default=None,
+        help=(
+            "Optional QC report path. By default final.mp4 writes QC_REPORT.json; "
+            "other render variants write QC_REPORT_<stem>.json."
+        ),
+    )
+    parser.add_argument(
         "--duration-tolerance",
         type=float,
         default=0.12,
@@ -310,7 +319,17 @@ def main() -> None:
         "decode": decode_result,
     }
 
-    report_path = video_dir / "render" / "QC_REPORT.json"
+    if args.report:
+        report_path = args.report.expanduser().resolve()
+    else:
+        report_name = (
+            "QC_REPORT.json"
+            if render_path.name == "final.mp4"
+            else f"QC_REPORT_{render_path.stem}.json"
+        )
+        report_path = video_dir / "render" / report_name
+
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
