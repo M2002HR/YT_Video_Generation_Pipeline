@@ -188,7 +188,18 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
 
     @staticmethod
     def parse_beats(text: str) -> list[dict[str, str]]:
-        pattern = re.compile(r"### Beat\s+(\d+)\s*\nNarration:\s*\n(.*?)\n\s*Visual:\s*\n(.*?)\n\s*Purpose:\s*\n(.*?)\n\s*Type:\s*\n(.*?)\n\s*Continuity:\s*\n(.*?)(?=\n### Beat\s+|\Z)", re.S | re.I)
+        # ChatGPT commonly omits Markdown's optional ``###`` while retaining
+        # the requested labelled Beat structure. Both forms are semantically
+        # identical and must be accepted before image generation can begin.
+        pattern = re.compile(
+            r"(?:^|\n)(?:###\s*)?Beat\s+0*(\d+)\s*\n+\s*"
+            r"Narration:\s*\n+(.*?)\n+\s*"
+            r"Visual:\s*\n+(.*?)\n+\s*"
+            r"Purpose:\s*\n+(.*?)\n+\s*"
+            r"Type:\s*\n+(.*?)\n+\s*"
+            r"Continuity:\s*\n+(.*?)(?=\n+(?:###\s*)?Beat\s+\d+\s*\n|\Z)",
+            re.S | re.I | re.M,
+        )
         beats = [{"id": int(match.group(1)), "narration": match.group(2).strip(), "visual": match.group(3).strip(), "purpose": match.group(4).strip(), "type": match.group(5).strip(), "continuity": match.group(6).strip()} for match in pattern.finditer(text)]
         if not 14 <= len(beats) <= 22 or [beat["id"] for beat in beats] != list(range(1, len(beats) + 1)):
             raise RuntimeError("Visual beat validation failed: expected 14–22 sequential complete beats.")
