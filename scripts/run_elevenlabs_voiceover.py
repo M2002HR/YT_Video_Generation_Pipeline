@@ -126,6 +126,31 @@ class ElevenLabsUI:
         except json.JSONDecodeError as exc:
             raise RuntimeError("ElevenLabs page returned an unreadable browser response.") from exc
 
+    def _trusted_click(self, expression: str) -> None:
+        """Click through CDP input events; Radix menus ignore synthetic clicks."""
+        point = self._json(expression)
+        if not point.get("ok"):
+            raise RuntimeError("Required ElevenLabs UI control is not visible.")
+        info = self._get_tab_info(self.tab)
+        websocket_url = getattr(info, "websocket_debugger_url", None)
+        if not websocket_url:
+            raise RuntimeError("Ordak could not attach a DevTools target for ElevenLabs.")
+        from websockets.sync.client import connect
+
+        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
+            for request_id, params in enumerate((
+                {"type": "mouseMoved", "x": point["x"], "y": point["y"]},
+                {"type": "mousePressed", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1},
+                {"type": "mouseReleased", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1},
+            ), start=1):
+                websocket.send(json.dumps({"id": request_id, "method": "Input.dispatchMouseEvent", "params": params}))
+                while True:
+                    response = json.loads(websocket.recv())
+                    if response.get("id") == request_id:
+                        if response.get("error"):
+                            raise RuntimeError("Chrome rejected the ElevenLabs UI click.")
+                        break
+
     def open_and_verify(self) -> dict[str, Any]:
         existing = next((tab for tab in self._list_tabs() if "elevenlabs.io" in tab.url), None)
         self.tab = existing.ref if existing is not None else self._open_url(os.getenv("YT_ELEVENLABS_HOME_URL", ELEVENLABS_HOME_URL))
@@ -179,25 +204,23 @@ class ElevenLabsUI:
         Defaults are intentionally left untouched; this is used only for an
         explicit CLI/env parameter and fails loudly rather than guessing.
         """
-        kind_pattern = "model|eleven" if kind == "model" else "voice|speaker"
-        opened = self._json(f"""(() => {{
+        tooltip = "Model" if kind == "model" else "Voice"
+        self._trusted_click(f"""(() => {{
           const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-          const items=[...document.querySelectorAll('button,[role=button]')].filter(visible);
-          const e=items.find(x=>new RegExp({json.dumps(kind_pattern)}, 'i').test(`${{x.getAttribute('aria-label')||''}} ${{x.innerText||''}}`));
-          if(!e) return {{ok:false}}; e.click(); return {{ok:true}};
+          const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>(x.getAttribute('data-agent-tooltip')||'')==={json.dumps(tooltip)});
+          if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
         }})()""")
-        if not opened.get("ok"):
-            raise RuntimeError(f"Could not find the ElevenLabs {kind} control for explicit value '{requested}'.")
         deadline = time.monotonic() + 15
         while time.monotonic() < deadline:
-            selected = self._json(f"""(() => {{
+            point = self._json(f"""(() => {{
               const wanted={json.dumps(requested)}.trim().toLowerCase();
               const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
               const choices=[...document.querySelectorAll('[role=option],button,[role=button],li')].filter(visible);
               const e=choices.find(x=>{{const t=(x.innerText||x.getAttribute('aria-label')||'').trim().toLowerCase(); return t===wanted||t.startsWith(wanted+' ');}});
-              if(!e) return {{ok:false}}; e.click(); return {{ok:true,text:(e.innerText||'').trim()}};
+              if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
             }})()""")
-            if selected.get("ok"):
+            if point.get("ok"):
+                self._trusted_click(f"""(() => {{ return {json.dumps(point)}; }})()""")
                 return
             time.sleep(0.5)
         raise RuntimeError(f"ElevenLabs did not show the requested {kind} option '{requested}'.")
@@ -233,9 +256,7 @@ class ElevenLabsUI:
                 raise RuntimeError("Could not set ElevenLabs Speaker boost in the current UI.")
 
     def submit(self) -> None:
-        result = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>/^generate$/i.test((x.innerText||'').trim())||/^generate$/i.test(x.getAttribute('aria-label')||'')); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};e.click();return {ok:true}; })()""")
-        if not result.get("ok"):
-            raise RuntimeError("ElevenLabs Generate control is unavailable or disabled.")
+        self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>/^generate$/i.test((x.innerText||'').trim())||/^generate$/i.test(x.getAttribute('aria-label')||'')); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
 
     def refresh(self) -> None:
         self._json("""(() => { location.reload(); return {ok:true}; })()""")
@@ -294,6 +315,7 @@ def main() -> None:
     parser.add_argument("--project", type=Path, default=None, help="Defaults to the unique videos/<id>_* directory.")
     parser.add_argument("--voice", default=os.getenv("YT_ELEVENLABS_DEFAULT_VOICE") or None)
     parser.add_argument("--model", default=os.getenv("YT_ELEVENLABS_DEFAULT_MODEL") or None)
+    parser.add_argument("--profile", type=Path, default=ROOT / "voice_profiles" / "elevenlabs_mark_default.json", help="Versioned JSON voice profile; CLI values override it.")
     parser.add_argument("--speed", type=float, default=None)
     parser.add_argument("--stability", type=float, default=None)
     parser.add_argument("--similarity", type=float, default=None)
@@ -307,7 +329,12 @@ def main() -> None:
         raise RuntimeError(f"Expected exactly one project for video ID {args.video_id}; pass --project explicitly.")
     project = projects[0].resolve()
     input_path, text = narration_input(project)
-    settings = VoiceSettings(args.voice, args.model, args.speed, args.stability, args.similarity, args.style, None if args.speaker_boost is None else args.speaker_boost == "true")
+    profile: dict[str, Any] = {}
+    if args.profile:
+        profile = json.loads(args.profile.read_text(encoding="utf-8"))
+    def choose(name: str, cli_value: Any) -> Any:
+        return cli_value if cli_value is not None else profile.get(name)
+    settings = VoiceSettings(choose("voice", args.voice), choose("model", args.model), choose("speed", args.speed), choose("stability", args.stability), choose("similarity", args.similarity), choose("style", args.style), choose("speaker_boost", None if args.speaker_boost is None else args.speaker_boost == "true"))
     voiceover_dir = project / "voiceover"
     state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings)
     output_dir = project / "assets" / "audio"
