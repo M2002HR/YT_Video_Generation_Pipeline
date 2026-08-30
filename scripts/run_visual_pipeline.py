@@ -23,7 +23,7 @@ import httpx
 from dotenv import load_dotenv
 from PIL import Image
 
-from pipeline_notifier import PipelineNotifier, StageTimer
+from pipeline_notifier import PipelineNotifier, StageTimer, format_duration
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -327,7 +327,7 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
             completed = sum(1 for value in self.state["beats"].values() if value.get("status") == "DONE")
             self.notifier.images_complete(len(beats), images_timer.elapsed, completed=completed)
             report = self.write_report(beats)
-            self.notifier.send("Visual pipeline complete", ["🏁 Quality checks passed", f"📍 Images: {completed}/{len(beats)}", f"⏱ Total runtime: {total_timer.elapsed:.0f} seconds"])
+            self.notifier.send("Visual pipeline complete", ["🏁 Quality checks passed", f"📍 Images: {completed}/{len(beats)}", f"⏱ Total runtime: {format_duration(total_timer.elapsed)}"])
             return report
         except Exception as exc:
             self.notifier.failure("Visual pipeline", total_timer.elapsed, str(exc))
