@@ -139,6 +139,182 @@ def ffprobe_duration(audio: Path) -> float | None:
         return None
 
 
+def load_root_env() -> None:
+    env_file = Path(os.getenv("YT_ENV_FILE", str(DEFAULT_ENV_FILE))).expanduser()
+    if env_file.exists():
+        load_dotenv(env_file, override=False)
+
+
+def env_float(name: str, default: float) -> float:
+    raw = os.getenv(name)
+    if raw is None or not raw.strip():
+        return default
+    return float(raw)
+
+
+def _coerce_float(value: Any) -> float | None:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _word_stamps_from_raw_words(rows: Any) -> list[WordStamp]:
+    if not isinstance(rows, list):
+        return []
+
+    words: list[WordStamp] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+
+        text = str(row.get("word") or row.get("text") or "").strip()
+        token = normalize_token(text)
+        start = _coerce_float(row.get("start"))
+        end = _coerce_float(row.get("end"))
+
+        if not token or start is None or end is None or end < start:
+            continue
+
+        words.append(WordStamp(text=text, token=token, start=start, end=end))
+
+    return words
+
+
+def _word_stamps_from_segments(rows: Any) -> list[WordStamp]:
+    """Fallback for providers that return only segment timestamps."""
+
+    if not isinstance(rows, list):
+        return []
+
+    words: list[WordStamp] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+
+        start = _coerce_float(row.get("start"))
+        end = _coerce_float(row.get("end"))
+        text = str(row.get("text") or "").strip()
+
+        if start is None or end is None or end <= start or not text:
+            continue
+
+        raw_tokens = re.findall(r"[A-Za-z0-9]+(?:['’][A-Za-z0-9]+)?", text)
+        normalized = [(raw, normalize_token(raw)) for raw in raw_tokens]
+        normalized = [(raw, token) for raw, token in normalized if token]
+        if not normalized:
+            continue
+
+        duration = end - start
+        count = len(normalized)
+        for index, (raw, token) in enumerate(normalized):
+            word_start = start + duration * (index / count)
+            word_end = start + duration * ((index + 1) / count)
+            words.append(
+                WordStamp(
+                    text=raw,
+                    token=token,
+                    start=word_start,
+                    end=word_end,
+                )
+            )
+
+    return words
+
+
+def transcribe_ajil(
+    audio: Path,
+    *,
+    base_url: str,
+    auth_token: str,
+    auth_header_name: str,
+    language: str,
+    timeout_sec: float,
+) -> tuple[list[WordStamp], str, float, dict[str, Any]]:
+    url = base_url.rstrip("/") + "/v1/audio/transcriptions"
+    headers: dict[str, str] = {}
+    if auth_token.strip():
+        headers[auth_header_name] = auth_token.strip()
+
+    params: dict[str, str] = {}
+    if language.strip():
+        params["language"] = language.strip()
+
+    content_type = mimetypes.guess_type(audio.name)[0] or "application/octet-stream"
+
+    with audio.open("rb") as handle:
+        response = httpx.post(
+            url,
+            headers=headers,
+            params=params,
+            files={"file": (audio.name, handle, content_type)},
+            timeout=timeout_sec,
+        )
+
+    try:
+        body = response.json()
+    except Exception as exc:
+        raise RuntimeError(
+            f"Ajil returned non-JSON response (HTTP {response.status_code}): "
+            f"{response.text[:500]}"
+        ) from exc
+
+    if response.status_code >= 400:
+        raise RuntimeError(
+            f"Ajil STT failed (HTTP {response.status_code}): "
+            + json.dumps(body, ensure_ascii=False)[:1200]
+        )
+
+    if not isinstance(body, dict) or not body.get("ok", False):
+        raise RuntimeError(
+            "Ajil STT returned an unsuccessful payload: "
+            + json.dumps(body, ensure_ascii=False)[:1200]
+        )
+
+    provider_payload = body.get("payload")
+    if not isinstance(provider_payload, dict):
+        raise RuntimeError("Ajil STT response did not contain a payload object.")
+
+    raw = provider_payload.get("raw")
+    if not isinstance(raw, dict):
+        raw = {}
+
+    transcript = str(provider_payload.get("text") or raw.get("text") or "").strip()
+    if not transcript:
+        raise RuntimeError("Ajil STT response did not contain transcript text.")
+
+    words = _word_stamps_from_raw_words(raw.get("words"))
+    timestamp_source = "word"
+
+    if not words:
+        words = _word_stamps_from_segments(raw.get("segments"))
+        timestamp_source = "segment_interpolated"
+
+    if not words:
+        raise RuntimeError(
+            "Ajil returned no usable timestamps. Set root .env values "
+            "UAG_GROQ_STT_RESPONSE_FORMAT=verbose_json and "
+            "UAG_GROQ_STT_TIMESTAMP_GRANULARITIES=word,segment."
+        )
+
+    duration = (
+        _coerce_float(raw.get("duration"))
+        or ffprobe_duration(audio)
+        or max(word.end for word in words)
+    )
+
+    metadata = {
+        "backend": "ajil",
+        "provider": str(body.get("provider") or "groq"),
+        "model": str(provider_payload.get("model_used") or body.get("model") or ""),
+        "fallback_used": bool(provider_payload.get("fallback_used", False)),
+        "timestamp_source": timestamp_source,
+        "ajil_base_url": base_url.rstrip("/"),
+    }
+
+    return words, transcript, float(duration), metadata
+
+
 def transcribe_local(
     audio: Path,
     model_name: str,
