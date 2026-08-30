@@ -137,3 +137,50 @@ python scripts/qc_render.py \
 This reuses the existing structural render QC.
 
 A future audio-specific QC pass can measure integrated loudness and true peak directly.
+
+
+## Separate SFX experiment profile
+
+The accepted music-only mix is preserved:
+
+```text
+assets/renders/polished.mp4
+```
+
+Do not overwrite it.
+
+SFX testing uses a separate committed profile:
+
+```text
+audio_mix/AUDIO_MIX_PROFILE_SFX.json
+```
+
+and writes a separate output:
+
+```text
+assets/renders/polished_sfx.mp4
+```
+
+Render it with:
+
+```bash
+python scripts/polish_audio.py \
+  videos/001_brain_replays_embarrassing_moments \
+  --profile videos/001_brain_replays_embarrassing_moments/audio_mix/AUDIO_MIX_PROFILE_SFX.json
+```
+
+First-pass SFX events:
+
+- 1.96s — intrusive thought pop — -17 dB — 0.7s
+- 28.34s — replay rewind — -15 dB — 0.9s
+- 51.58s — archive drawer — -18 dB — 1.0s
+
+A/B/C review:
+
+```text
+final.mp4          = clean baseline
+polished.mp4       = accepted music-only mix
+polished_sfx.mp4   = SFX experiment
+```
+
+If the SFX version feels busier or cheaper, keep `polished.mp4`.
