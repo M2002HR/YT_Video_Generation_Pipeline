@@ -56,6 +56,28 @@ def replace_tokens(template: str, **values: str) -> str:
     return template
 
 
+def ordak_timing_events(logs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Extract machine-readable component timings emitted by the Ordak worker."""
+    events: list[dict[str, Any]] = []
+    for entry in logs:
+        message = str(entry.get("message") or "")
+        if not message.startswith("TIMING "):
+            continue
+        fields: dict[str, Any] = {"timestamp": entry.get("timestamp")}
+        for token in message.removeprefix("TIMING ").split():
+            if "=" not in token:
+                continue
+            key, value = token.split("=", 1)
+            fields[key] = value
+        if "elapsed_seconds" in fields:
+            try:
+                fields["elapsed_seconds"] = float(fields["elapsed_seconds"])
+            except (TypeError, ValueError):
+                pass
+        events.append(fields)
+    return events
+
+
 @dataclass
 class Settings:
     base_url: str
@@ -142,6 +164,9 @@ class OrdakClient:
                     "upload_and_enqueue_elapsed_seconds": round(poll_started - upload_started, 3),
                     "polling_elapsed_seconds": round(time.perf_counter() - poll_started, 3),
                     "poll_count": poll_count,
+                    "ordak_component_timings": ordak_timing_events(list(job.get("logs") or [])),
+                    "ordak_job_started_at": job.get("started_at"),
+                    "ordak_job_finished_at": job.get("finished_at"),
                 }
                 return job
             time.sleep(self.settings.poll_seconds)
