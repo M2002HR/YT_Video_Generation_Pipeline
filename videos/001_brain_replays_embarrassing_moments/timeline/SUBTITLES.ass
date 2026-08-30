@@ -1,0 +1,39 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,90,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.02,0:00:01.96,Default,,0,0,0,,You’re finally drifting off to\Nsleep
+Dialogue: 0,0:00:01.96,0:00:04.80,Default,,0,0,0,,when your brain suddenly goes,\N“Hey…
+Dialogue: 0,0:00:04.80,0:00:07.25,Default,,0,0,0,,remember that unbelievably awkward\Nthing you
+Dialogue: 0,0:00:07.25,0:00:08.88,Default,,0,0,0,,said five years ago?”
+Dialogue: 0,0:00:10.06,0:00:12.44,Default,,0,0,0,,During the day, your attention is
+Dialogue: 0,0:00:12.44,0:00:14.82,Default,,0,0,0,,busy with messages, work, people,\Nnoise—
+Dialogue: 0,0:00:15.70,0:00:18.40,Default,,0,0,0,,basically anything outside your\Nown head.
+Dialogue: 0,0:00:19.64,0:00:21.15,Default,,0,0,0,,But at night, most of that
+Dialogue: 0,0:00:21.15,0:00:21.40,Default,,0,0,0,,disappears.
+Dialogue: 0,0:00:21.08,0:00:23.64,Default,,0,0,0,,And when the room gets quiet,
+Dialogue: 0,0:00:23.64,0:00:26.90,Default,,0,0,0,,old memories can feel strangely\Nloud.
+Dialogue: 0,0:00:28.34,0:00:30.46,Default,,0,0,0,,Then you start replaying the\Nmoment.
+Dialogue: 0,0:00:30.46,0:00:31.80,Default,,0,0,0,,What you said.
+Dialogue: 0,0:00:31.80,0:00:34.62,Default,,0,0,0,,What they probably thought.
+Dialogue: 0,0:00:34.62,0:00:37.12,Default,,0,0,0,,What you should have said instead.
+Dialogue: 0,0:00:37.12,0:00:39.27,Default,,0,0,0,,And because you’re tired, it can
+Dialogue: 0,0:00:39.27,0:00:41.43,Default,,0,0,0,,be harder to pull your attention
+Dialogue: 0,0:00:41.43,0:00:43.22,Default,,0,0,0,,away once the loop starts.
+Dialogue: 0,0:00:43.22,0:00:45.30,Default,,0,0,0,,The strange part is, that memory
+Dialogue: 0,0:00:45.30,0:00:47.38,Default,,0,0,0,,usually isn’t more important at\Nmidnight
+Dialogue: 0,0:00:47.38,0:00:49.12,Default,,0,0,0,,than it was at noon.
+Dialogue: 0,0:00:49.12,0:00:51.58,Default,,0,0,0,,It just has less competition.
+Dialogue: 0,0:00:51.58,0:00:55.49,Default,,0,0,0,,So when your brain opens the
+Dialogue: 0,0:00:55.49,0:00:58.10,Default,,0,0,0,,midnight embarrassment archive,\Nremember:
+Dialogue: 0,0:00:58.10,0:01:00.02,Default,,0,0,0,,the memory didn’t get bigger.
+Dialogue: 0,0:01:00.02,0:01:03.14,Default,,0,0,0,,Everything around it just got\Nquieter.
