@@ -485,7 +485,7 @@ def align_beats(
 def write_outputs(
     video_dir: Path,
     audio: Path,
-    model_name: str,
+    stt_metadata: dict[str, Any],
     transcript: str,
     duration: float,
     aligned: list[dict],
@@ -499,7 +499,7 @@ def write_outputs(
     payload = {
         "audio": str(audio.relative_to(video_dir)) if audio.is_relative_to(video_dir) else str(audio),
         "audio_duration_seconds": round(duration, 3),
-        "whisper_model": model_name,
+        "stt": stt_metadata,
         "transcript": transcript,
         "beats": aligned,
     }
@@ -510,7 +510,10 @@ def write_outputs(
         "",
         f"Audio: `{payload['audio']}`",
         f"Duration: **{fmt_time(duration)}**",
-        f"Whisper model: `{model_name}`",
+        f"STT backend: {stt_metadata.get('backend', '')}",
+        f"Provider: {stt_metadata.get('provider', '')}",
+        f"Model: {stt_metadata.get('model', '')}",
+        f"Timestamp source: {stt_metadata.get('timestamp_source', '')}",
         "",
         "| Beat | Display | Duration | Speech | Match | Narration |",
         "|---:|---|---:|---|---:|---|",
@@ -536,6 +539,7 @@ def write_outputs(
         "- Low-confidence beats (<75% token match): " + (", ".join(f"{b['beat_id']:02d}" for b in low) if low else "none"),
         "- Review the generated timing table once before using it for the final render.",
         "- `display_start/display_end` are continuous edit timings; `speech_start/speech_end` are the matched spoken phrase timings.",
+        "- Word timestamps are preferred. Segment-interpolated timestamps require extra QC.",
         "",
     ]
 
@@ -544,12 +548,53 @@ def write_outputs(
 
 
 def main() -> None:
+    load_root_env()
+
     parser = argparse.ArgumentParser(description="Align narration audio to VISUAL_BEATS.md.")
     parser.add_argument("video_dir", type=Path)
     parser.add_argument("--audio", type=Path, default=None)
-    parser.add_argument("--model", default="small.en")
-    parser.add_argument("--device", default="cpu")
-    parser.add_argument("--compute-type", default="int8")
+
+    parser.add_argument(
+        "--backend",
+        choices=("ajil", "local"),
+        default=os.getenv("YT_STT_BACKEND", "ajil"),
+    )
+    parser.add_argument(
+        "--language",
+        default=os.getenv("YT_STT_LANGUAGE", "en"),
+    )
+
+    parser.add_argument(
+        "--ajil-base-url",
+        default=os.getenv("YT_AJIL_BASE_URL", "http://127.0.0.1:8080"),
+    )
+    parser.add_argument(
+        "--ajil-token",
+        default=os.getenv("YT_AJIL_AUTH_TOKEN") or os.getenv("UAG_AUTH_TOKEN", ""),
+    )
+    parser.add_argument(
+        "--ajil-auth-header",
+        default=os.getenv("YT_AJIL_AUTH_HEADER_NAME")
+        or os.getenv("UAG_AUTH_HEADER_NAME", "x-api-token"),
+    )
+    parser.add_argument(
+        "--timeout",
+        type=float,
+        default=env_float("YT_STT_TIMEOUT_SEC", 120.0),
+    )
+
+    parser.add_argument(
+        "--model",
+        default=os.getenv("YT_LOCAL_WHISPER_MODEL", "small.en"),
+    )
+    parser.add_argument(
+        "--device",
+        default=os.getenv("YT_LOCAL_WHISPER_DEVICE", "cpu"),
+    )
+    parser.add_argument(
+        "--compute-type",
+        default=os.getenv("YT_LOCAL_WHISPER_COMPUTE_TYPE", "int8"),
+    )
     args = parser.parse_args()
 
     video_dir = args.video_dir.expanduser().resolve()
@@ -561,20 +606,33 @@ def main() -> None:
     print(f"Video: {video_dir}")
     print(f"Audio: {audio}")
     print(f"Beats: {len(beats)}")
-    print(f"Whisper model: {args.model}")
+    print(f"STT backend: {args.backend}")
 
-    words, transcript, duration = transcribe(
-        audio,
-        model_name=args.model,
-        device=args.device,
-        compute_type=args.compute_type,
-    )
+    if args.backend == "ajil":
+        print(f"Ajil: {args.ajil_base_url}")
+        words, transcript, duration, stt_metadata = transcribe_ajil(
+            audio,
+            base_url=args.ajil_base_url,
+            auth_token=args.ajil_token,
+            auth_header_name=args.ajil_auth_header,
+            language=args.language,
+            timeout_sec=args.timeout,
+        )
+    else:
+        print(f"Local Whisper model: {args.model}")
+        words, transcript, duration, stt_metadata = transcribe_local(
+            audio,
+            model_name=args.model,
+            device=args.device,
+            compute_type=args.compute_type,
+            language=args.language,
+        )
 
     aligned = align_beats(beats, words, duration)
     json_path, md_path = write_outputs(
         video_dir,
         audio,
-        args.model,
+        stt_metadata,
         transcript,
         duration,
         aligned,
@@ -585,11 +643,11 @@ def main() -> None:
     print(f"Created: {json_path}")
     print(f"Created: {md_path}")
     print(f"Audio duration: {duration:.3f}s")
+    print(f"Timestamp source: {stt_metadata.get('timestamp_source')}")
     if low:
         print("WARNING: Low-confidence beats:", ", ".join(str(b["beat_id"]) for b in low))
     else:
         print("Alignment QC: all beats >= 75% token match.")
-
 
 if __name__ == "__main__":
     main()
