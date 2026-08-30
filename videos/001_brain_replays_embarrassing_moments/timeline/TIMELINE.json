@@ -31,7 +31,7 @@
       "speech_start": 1.96,
       "speech_end": 4.8,
       "match_confidence": 1.0,
-      "motion": "pan_right",
+      "motion": "still",
       "narration": "when your brain suddenly goes, “Hey…"
     },
     {
@@ -55,7 +55,7 @@
       "speech_start": 10.06,
       "speech_end": 14.82,
       "match_confidence": 1.0,
-      "motion": "pan_left",
+      "motion": "slow_zoom_in",
       "narration": "During the day, your attention is busy with messages, work, people, noise—"
     },
     {
@@ -79,7 +79,7 @@
       "speech_start": 19.64,
       "speech_end": 21.4,
       "match_confidence": 1.0,
-      "motion": "pan_right",
+      "motion": "still",
       "narration": "But at night, most of that disappears."
     },
     {
@@ -103,7 +103,7 @@
       "speech_start": 23.64,
       "speech_end": 26.9,
       "match_confidence": 1.0,
-      "motion": "pan_left",
+      "motion": "slow_zoom_in",
       "narration": "old memories can feel strangely loud."
     },
     {
@@ -127,7 +127,7 @@
       "speech_start": 30.46,
       "speech_end": 31.8,
       "match_confidence": 1.0,
-      "motion": "pan_right",
+      "motion": "still",
       "narration": "What you said."
     },
     {
@@ -151,7 +151,7 @@
       "speech_start": 34.62,
       "speech_end": 37.12,
       "match_confidence": 1.0,
-      "motion": "pan_left",
+      "motion": "slow_zoom_in",
       "narration": "What you should have said instead."
     },
     {
@@ -175,7 +175,7 @@
       "speech_start": 43.22,
       "speech_end": 49.12,
       "match_confidence": 1.0,
-      "motion": "pan_right",
+      "motion": "still",
       "narration": "The strange part is, that memory usually isn’t more important at midnight than it was at noon."
     },
     {
@@ -199,7 +199,7 @@
       "speech_start": 51.58,
       "speech_end": 58.1,
       "match_confidence": 1.0,
-      "motion": "pan_left",
+      "motion": "slow_zoom_in",
       "narration": "So when your brain opens the midnight embarrassment archive, remember:"
     },
     {
@@ -223,7 +223,7 @@
       "speech_start": 60.02,
       "speech_end": 63.14,
       "match_confidence": 1.0,
-      "motion": "pan_right",
+      "motion": "still",
       "narration": "Everything around it just got quieter."
     }
   ],
@@ -287,13 +287,13 @@
     {
       "beat_id": 6,
       "start": 21.149,
-      "end": 21.4,
+      "end": 21.24,
       "text": "disappears.",
       "ass_text": "disappears."
     },
     {
       "beat_id": 7,
-      "start": 21.08,
+      "start": 21.24,
       "end": 23.64,
       "text": "And when the room gets quiet,",
       "ass_text": "And when the room gets quiet,"
@@ -420,6 +420,16 @@
         "before_beat": 7,
         "current_speech_end": 21.4,
         "next_speech_start": 21.08,
+        "overlap_seconds": 0.32,
+        "chosen_boundary": 21.24
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": 6,
+        "current_beat": 7,
+        "previous_end": 21.4,
+        "current_start": 21.08,
         "overlap_seconds": 0.32,
         "chosen_boundary": 21.24
       }
