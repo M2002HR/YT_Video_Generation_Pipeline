@@ -260,3 +260,33 @@ After the final export passes QC, the next iteration can add optional:
 - final mix targets
 
 without changing the existing script/beat/image/timing architecture.
+
+
+## Motion policy update — no jittery lateral pans
+
+The first preview showed that the lateral pan effects were visually distracting and introduced a small "shaky" / stepping feel on illustrated stills.
+
+They are now removed from the render profile.
+
+The motion cycle is now:
+
+```text
+zoom_in
+still
+zoom_out
+slow_zoom_in
+```
+
+Key changes:
+
+- no `pan_left`
+- no `pan_right`
+- no animated horizontal/vertical crop movement
+- lower motion strength: `0.035`
+- center-only zoom
+- 2x supersampled motion followed by Lanczos downscale
+- periodic static holds to avoid constant movement
+
+The supersampled render is intentionally a little more CPU-heavy, but it reduces FFmpeg zoom/crop rounding shimmer and should look materially smoother.
+
+After pulling, rebuild the timeline so the new motion cycle is written into `TIMELINE.json`, then render the preview/final again.
