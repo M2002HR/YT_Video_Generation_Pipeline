@@ -9,6 +9,12 @@ Type=simple
 User=root
 Environment=DISPLAY=:99
 Environment=HOME=/root
+Environment=http_proxy=http://127.0.0.1:3128
+Environment=https_proxy=http://127.0.0.1:3128
+Environment=HTTP_PROXY=http://127.0.0.1:3128
+Environment=HTTPS_PROXY=http://127.0.0.1:3128
+Environment=NO_PROXY=localhost,127.0.0.1,::1
+Environment=no_proxy=localhost,127.0.0.1,::1
 ExecStart=/usr/bin/google-chrome --no-sandbox --no-first-run --disable-background-networking --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 --user-data-dir=/root/.config/google-chrome-ordak --profile-directory=Default https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project
 Restart=always
 RestartSec=5
