@@ -3,7 +3,7 @@
   "provider": "ElevenLabs web UI",
   "name": "mark_default",
   "voice": "Mark",
-  "model": "Eleven Multilingual v2",
+  "model": "Eleven v3",
   "speed": 0.9,
   "stability": 0.45,
   "notes": "Default narration profile: Mark at a slightly lower-than-standard stability for a natural delivery. Unspecified ElevenLabs controls retain their current UI defaults."

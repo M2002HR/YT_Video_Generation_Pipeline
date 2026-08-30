@@ -210,13 +210,24 @@ class ElevenLabsUI:
           const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>(x.getAttribute('data-agent-tooltip')||'')==={json.dumps(tooltip)});
           if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
         }})()""")
+        if kind == "voice":
+            # The compact menu is intentionally only a recent-voices list.
+            # Enter the full catalog so a profile is not silently limited to it.
+            self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('[role=menuitem],button,[role=button]')].filter(visible).find(x=>/^all voices$/i.test((x.innerText||'').trim())); if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+            deadline = time.monotonic() + 20
+            while time.monotonic() < deadline:
+                search = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${x.placeholder||''} ${x.getAttribute('aria-label')||''}`)); if(!e)return {ok:false}; return {ok:true}; })()""")
+                if search.get("ok"):
+                    self._json(f"""(() => {{ const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${{x.placeholder||''}} ${{x.getAttribute('aria-label')||''}}`)); const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(e,{json.dumps(requested)});e.dispatchEvent(new Event('input',{{bubbles:true}}));return {{ok:true}}; }})()""")
+                    break
+                time.sleep(0.5)
         deadline = time.monotonic() + 15
         while time.monotonic() < deadline:
             point = self._json(f"""(() => {{
               const wanted={json.dumps(requested)}.trim().toLowerCase();
               const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
               const choices=[...document.querySelectorAll('[role=option],button,[role=button],li')].filter(visible);
-              const e=choices.find(x=>{{const t=(x.innerText||x.getAttribute('aria-label')||'').trim().toLowerCase(); return t===wanted||t.startsWith(wanted+' ');}});
+              const e=choices.find(x=>{{const t=(x.innerText||x.getAttribute('aria-label')||'').trim().toLowerCase(); return t===wanted||t.startsWith(wanted+' ')||t.startsWith(wanted+'-');}});
               if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
             }})()""")
             if point.get("ok"):
