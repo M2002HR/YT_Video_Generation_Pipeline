@@ -36,11 +36,14 @@ class NavigationAdvisor:
         prompt = {"goal": goal[:500], "choices": choices, "allowed_actions": sorted(ALLOWED_ACTIONS), "instruction": "Return JSON only: action, target, reason. Choose only an exact listed choice. Use open_all only when that exact option exists."}
         headers = {os.getenv("UAG_AUTH_HEADER_NAME", "x-api-token"): os.getenv("UAG_AUTH_TOKEN", "")}
         payload = {"model": [{"provider": "groq", "model": "openai/gpt-oss-120b", "priority": 0}], "messages": [{"role": "system", "content": "You are a cautious browser navigation planner. Never invent UI labels."}, {"role": "user", "content": json.dumps(prompt)}], "temperature": 0, "response_format": {"type": "json_object"}}
-        with httpx.Client(timeout=30, trust_env=False) as client:
-            response = client.post(f"{self.base_url}/v1/chat/completions", headers=headers, json=payload)
-            response.raise_for_status()
-        content = response.json()["choices"][0]["message"]["content"]
-        value = json.loads(content)
+        try:
+            with httpx.Client(timeout=45, trust_env=False) as client:
+                response = client.post(f"{self.base_url}/v1/chat/completions", headers=headers, json=payload)
+                response.raise_for_status()
+            content = response.json()["choices"][0]["message"]["content"]
+            value = json.loads(content)
+        except (httpx.HTTPError, KeyError, TypeError, json.JSONDecodeError) as exc:
+            return NavigationDecision("fail", "", f"advisor unavailable: {type(exc).__name__}")
         action, target = str(value.get("action", "fail")), str(value.get("target", ""))
         if action not in ALLOWED_ACTIONS or (action == "choose" and target not in choices):
             return NavigationDecision("fail", "", "advisor returned an unsafe decision")
