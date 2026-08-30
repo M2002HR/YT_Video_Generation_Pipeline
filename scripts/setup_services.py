@@ -14,6 +14,8 @@ AJIL_REQUIREMENTS = ROOT / "services" / "ajil_uag" / "unified_gateway" / "requir
 ORDAK_REQUIREMENTS = ROOT / "services" / "ordak" / "requirements.txt"
 ORDAK_VENV = ROOT / "services" / "ordak" / ".venv"
 ORDAK_VENV_PYTHON = ORDAK_VENV / "bin" / "python"
+ROOT_VENV = ROOT / ".venv"
+ROOT_VENV_PYTHON = ROOT_VENV / "bin" / "python"
 
 
 def run(*args: str) -> None:
@@ -45,8 +47,12 @@ def main() -> None:
             f"Ordak requirements not found after submodule init: {ORDAK_REQUIREMENTS}"
         )
 
-    run(sys.executable, "-m", "pip", "install", "-r", str(ROOT / "requirements.txt"))
-    run(sys.executable, "-m", "pip", "install", "-r", str(AJIL_REQUIREMENTS))
+    # Never install into the system interpreter: modern Debian/Ubuntu marks
+    # it externally managed (PEP 668), and this setup must work on a fresh VM.
+    if not ROOT_VENV_PYTHON.exists():
+        run(sys.executable, "-m", "venv", str(ROOT_VENV))
+    run(str(ROOT_VENV_PYTHON), "-m", "pip", "install", "-r", str(ROOT / "requirements.txt"))
+    run(str(ROOT_VENV_PYTHON), "-m", "pip", "install", "-r", str(AJIL_REQUIREMENTS))
     if not ORDAK_VENV_PYTHON.exists():
         run(supported_python(), "-m", "venv", str(ORDAK_VENV))
     version = subprocess.check_output(
@@ -60,9 +66,10 @@ def main() -> None:
     print()
     print("Service setup complete.")
     print("If needed, create root config: cp .env.example .env")
-    print("Start Ajil with: python scripts/run_ajil.py")
-    print("Start Ordak with: python scripts/run_ordak.py")
-    print("Check Ordak with: python scripts/check_ordak.py")
+    print(f"Root runtime: {ROOT_VENV_PYTHON}")
+    print("Start Ajil with: .venv/bin/python scripts/run_ajil.py")
+    print("Start Ordak with: .venv/bin/python scripts/run_ordak.py")
+    print("Check Ordak with: .venv/bin/python scripts/check_ordak.py")
 
 
 if __name__ == "__main__":
