@@ -35,3 +35,8 @@ videos/**/assets/music/*
 !videos/**/assets/music/.gitkeep
 videos/**/assets/sfx/*
 !videos/**/assets/sfx/.gitkeep
+
+# Per-video execution metadata is durable engineering evidence and must stay
+# eligible for Git even when generated media itself is ignored.
+!videos/**/visual_pipeline/
+!videos/**/visual_pipeline/*.json

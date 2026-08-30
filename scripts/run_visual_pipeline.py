@@ -83,6 +83,7 @@ class OrdakClient:
         return data
 
     def text(self, prompt: str, *, stage: str) -> dict[str, Any]:
+        started = time.perf_counter()
         response = self.http.post(
             f"{self.settings.base_url}/api/chatgpt/respond",
             json={"question": prompt, "mode": "chat", "start_new_chat": True,
@@ -92,10 +93,24 @@ class OrdakClient:
         payload = response.json()
         if payload.get("status") != "completed" or not str(payload.get("answer") or "").strip():
             raise RuntimeError(f"Ordak text stage {stage} failed: {payload.get('error_message') or payload.get('status')}")
+        payload["_client_timing"] = {
+            "operation": "chatgpt_text_request",
+            "stage": stage,
+            "elapsed_seconds": round(time.perf_counter() - started, 3),
+        }
         return payload
 
     def image(self, prompt: str, references: list[Path], *, beat_id: int) -> dict[str, Any]:
-        files = [("image", (reference.name, reference.read_bytes(), "image/png")) for reference in references]
+        reference_readings: list[dict[str, Any]] = []
+        files = []
+        for reference in references:
+            read_started = time.perf_counter()
+            content = reference.read_bytes()
+            reference_readings.append({
+                "path": str(reference), "bytes": len(content),
+                "read_elapsed_seconds": round(time.perf_counter() - read_started, 3),
+            })
+            files.append(("image", (reference.name, content, "image/png")))
         data = {
             "question": prompt,
             "provider": "chatgpt",
@@ -104,27 +119,41 @@ class OrdakClient:
             "wait_for_completion": "true",
             "wait_timeout_seconds": str(self.settings.wait_seconds),
         }
+        upload_started = time.perf_counter()
         response = self.http.post(f"{self.settings.base_url}/api/jobs", data=data, files=files)
         response.raise_for_status()
         created = response.json()
         job_id = created["job_id"]
         deadline = time.monotonic() + self.settings.wait_seconds
+        poll_started = time.perf_counter()
+        poll_count = 0
         while time.monotonic() < deadline:
+            poll_count += 1
             job_response = self.http.get(f"{self.settings.base_url}/api/jobs/{job_id}")
             job_response.raise_for_status()
             job = job_response.json()
             if job.get("status") in {"completed", "failed", "manual_verification_required", "cancelled"}:
                 if job.get("status") != "completed":
                     raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+                job["_client_timing"] = {
+                    "operation": "chatgpt_image_request",
+                    "beat_id": beat_id,
+                    "reference_payload_readings": reference_readings,
+                    "upload_and_enqueue_elapsed_seconds": round(poll_started - upload_started, 3),
+                    "polling_elapsed_seconds": round(time.perf_counter() - poll_started, 3),
+                    "poll_count": poll_count,
+                }
                 return job
             time.sleep(self.settings.poll_seconds)
         raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} exceeded parent wait timeout.")
 
-    def download(self, artifact: str, destination: Path) -> None:
+    def download(self, artifact: str, destination: Path) -> dict[str, Any]:
+        started = time.perf_counter()
         url = artifact if artifact.startswith("http") else f"{self.settings.base_url}/{artifact.lstrip('/')}"
         response = self.http.get(url)
         response.raise_for_status()
         destination.write_bytes(response.content)
+        return {"operation": "artifact_download", "elapsed_seconds": round(time.perf_counter() - started, 3), "bytes": len(response.content)}
 
 
 class Pipeline:
@@ -133,12 +162,34 @@ class Pipeline:
         self.project = root / "videos" / f"{video_id}_{slugify(topic)}"
         self.state_dir = self.project / "visual_pipeline"
         self.state_path = self.state_dir / "RUNTIME_STATE.json"
+        self.timing_path = self.state_dir / "EXECUTION_TIMINGS.json"
         self.state: dict[str, Any] = {}
 
     def save(self) -> None:
         self.state["updated_at"] = utcnow()
         self.state_dir.mkdir(parents=True, exist_ok=True)
         self.state_path.write_text(json.dumps(self.state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        events = self.state.get("timing_events", [])
+        totals: dict[str, float] = {}
+        for event in events:
+            name = str(event.get("operation") or "unknown")
+            totals[name] = totals.get(name, 0.0) + float(event.get("elapsed_seconds") or 0.0)
+        self.timing_path.write_text(json.dumps({
+            "schema_version": 1,
+            "video_id": self.video_id,
+            "topic": self.topic,
+            "events": events,
+            "totals_seconds_by_operation": {key: round(value, 3) for key, value in sorted(totals.items())},
+        }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    def record_timing(self, operation: str, started_at: str, started: float, **metadata: Any) -> None:
+        self.state.setdefault("timing_events", []).append({
+            "operation": operation,
+            "started_at": started_at,
+            "finished_at": utcnow(),
+            "elapsed_seconds": round(time.perf_counter() - started, 3),
+            **metadata,
+        })
 
     def load_or_init(self) -> None:
         if self.state_path.exists():
@@ -146,7 +197,7 @@ class Pipeline:
             if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset:
                 raise RuntimeError("Existing project state has a different topic or preset; choose another video ID.")
             return
-        self.state = {"version": 1, "topic": self.topic, "preset": self.preset, "created_at": utcnow(), "stages": {}, "beats": {}}
+        self.state = {"version": 2, "topic": self.topic, "preset": self.preset, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
         self.save()
 
     def write_once(self, relative: str, content: str) -> Path:
@@ -167,15 +218,19 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
 """)
 
     def _stage_text(self, name: str, prompt: str, output: str, validator) -> str:
+        started_at, started = utcnow(), time.perf_counter()
         target = self.project / output
         if target.exists() and not self.force:
             content = target.read_text(encoding="utf-8").strip()
             validator(content)
+            self.record_timing("reuse_text_artifact", started_at, started, stage=name, artifact=output)
+            self.save()
             return content
         result = self.client.text(prompt, stage=name)
         content = str(result["answer"]).strip()
         validator(content)
         self.write_once(output, content)
+        self.record_timing("text_stage", started_at, started, stage=name, artifact=output, ordak_job_id=result["job_id"], request_timing=result.get("_client_timing"))
         self.state["stages"][name] = {"status": "DONE", "ordak_job_id": result["job_id"], "completed_at": utcnow()}
         self.save()
         return content
@@ -225,12 +280,14 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
             beat_id = beat["id"]
             prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
             if not prompt_path.exists() or self.force:
+                started_at, started = utcnow(), time.perf_counter()
                 prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md"), STYLE_RULES=style_rules, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.")
                 prompt_result = self.client.text(prompt_request, stage=f"beat_{beat_id:03d}_prompt")
                 prompt = str(prompt_result["answer"]).strip()
                 if "exactly one" not in prompt.lower() or "16:9" not in prompt:
                     raise RuntimeError(f"Beat {beat_id:03d} prompt validation failed.")
                 self.write_once(str(prompt_path.relative_to(self.project)), prompt)
+                self.record_timing("beat_prompt", started_at, started, beat_id=beat_id, artifact=str(prompt_path.relative_to(self.project)), ordak_job_id=prompt_result["job_id"], request_timing=prompt_result.get("_client_timing"))
             self.state["beats"].setdefault(f"{beat_id:03d}", {"status": "PROMPT_READY", "attempts": 0})["prompt_path"] = str(prompt_path.relative_to(self.project))
             self.save()
         self.generate_images(beats, style, character)
@@ -277,12 +334,13 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
             record.update({"status": "GENERATING", "references": [str(path.relative_to(self.root)) for path in references], "attempts": int(record.get("attempts", 0)) + 1, "last_error": None})
             self.save()
             try:
+                started_at, started = utcnow(), time.perf_counter()
                 job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
                 artifacts = list(job.get("output_images") or [])
                 if len(artifacts) != 1:
                     raise RuntimeError(f"Beat {beat_id:03d} needs exactly one canonical generated artifact; got {len(artifacts)}.")
                 temporary = target.with_suffix(".download")
-                self.client.download(str(artifacts[0]), temporary)
+                download_timing = self.client.download(str(artifacts[0]), temporary)
                 shutil.move(temporary, target)
                 metadata = self.valid_image(target, previous_sha)
             except Exception as exc:
@@ -291,6 +349,7 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
                 self.save()
                 raise
             record.update({"status": "DONE", "ordak_job_id": job["job_id"], "output": metadata, "completed_at": utcnow()})
+            self.record_timing("beat_image", started_at, started, beat_id=beat_id, ordak_job_id=job["job_id"], references=[str(path.relative_to(self.root)) for path in references], request_timing=job.get("_client_timing"), download_timing=download_timing, output=metadata)
             previous, previous_sha = target, metadata["sha256"]
             self.save()
 
