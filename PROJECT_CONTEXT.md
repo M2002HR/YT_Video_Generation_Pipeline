@@ -249,3 +249,16 @@ Current policy:
 - polished output is A/B compared against the accepted clean baseline
 
 Music/SFX media remain local and Git-ignored; mix profiles and workflow metadata are committed.
+
+
+## Video 001 music-only mix acceptance
+
+The music-only polished mix has been rendered and reviewed successfully.
+
+Accepted state:
+- background music present
+- narration remains clear and dominant
+- current ducking/gain settings are acceptable
+- no SFX yet
+
+Next stage: add a very small number of semantic SFX events, compare against the accepted music-only polished mix, then run QC on the chosen polished output.
