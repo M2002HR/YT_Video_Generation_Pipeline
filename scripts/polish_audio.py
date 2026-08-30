@@ -69,6 +69,23 @@ def as_bool(value: Any, default: bool = False) -> bool:
     return bool(value)
 
 
+def audio_filter_chain(
+    input_label: str,
+    filters: list[str],
+    output_label: str,
+) -> str:
+    """Build a valid FFmpeg audio filter chain.
+
+    Input/output pad labels are adjacent to the filter chain; there must never
+    be a comma directly after an input pad such as "[1:a:0],atrim=...".
+    """
+
+    if not filters:
+        raise ValueError("Audio filter chain must contain at least one filter.")
+
+    return f"{input_label}{','.join(filters)}{output_label}"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Add music/SFX and loudness polish.")
     parser.add_argument("video_dir", type=Path)
@@ -170,7 +187,6 @@ def main() -> None:
         fade_out_start = max(0.0, duration - fade_out)
 
         music_filters = [
-            f"[{music_input_index}:a:0]",
             f"atrim=0:{duration:.6f}",
             "asetpts=PTS-STARTPTS",
             f"volume={gain_db:.3f}dB",
@@ -182,7 +198,13 @@ def main() -> None:
                 f"afade=t=out:st={fade_out_start:.3f}:d={fade_out:.3f}"
             )
 
-        filter_parts.append(",".join(music_filters) + "[musicpre]")
+        filter_parts.append(
+            audio_filter_chain(
+                f"[{music_input_index}:a:0]",
+                music_filters,
+                "[musicpre]",
+            )
+        )
 
         if duck_enabled:
             threshold = float(duck_cfg.get("threshold", 0.025))
@@ -233,7 +255,6 @@ def main() -> None:
 
         label = f"sfx{event_index}"
         chain = [
-            f"[{next_input_index}:a:0]",
             "asetpts=PTS-STARTPTS",
         ]
         if trim_sec is not None:
@@ -246,7 +267,13 @@ def main() -> None:
                 f"adelay={round(at * 1000)}:all=1",
             ]
         )
-        filter_parts.append(",".join(chain) + f"[{label}]")
+        filter_parts.append(
+            audio_filter_chain(
+                f"[{next_input_index}:a:0]",
+                chain,
+                f"[{label}]",
+            )
+        )
         sfx_labels.append(label)
         next_input_index += 1
 
@@ -282,10 +309,17 @@ def main() -> None:
     else:
         filter_parts.append("[mix]anull[aout]")
 
+    filter_complex = ";".join(filter_parts)
+    if "]," in filter_complex:
+        raise RuntimeError(
+            "Internal error: generated FFmpeg filter graph contains a comma "
+            "immediately after an input/output pad label."
+        )
+
     command.extend(
         [
             "-filter_complex",
-            ";".join(filter_parts),
+            filter_complex,
             "-map",
             "0:v:0",
             "-map",
