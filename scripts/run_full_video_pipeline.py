@@ -57,6 +57,27 @@ def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path) -> None
     path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
 
 
+def ensure_audio_mix_profile(project: Path) -> Path:
+    """Create the conservative music-only profile required by completion."""
+    profile = project / "audio_mix" / "AUDIO_MIX_PROFILE.json"
+    if profile.is_file():
+        return profile
+    music_dir = project / "assets" / "music"
+    tracks = sorted(path for path in music_dir.glob("*") if path.is_file() and path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"})
+    if not tracks:
+        raise FileNotFoundError("A downloaded background-music file is required before creating AUDIO_MIX_PROFILE.json.")
+    profile.parent.mkdir(parents=True, exist_ok=True)
+    profile.write_text(json.dumps({
+        "schema_version": 1,
+        "baseline_video": "assets/renders/final.mp4",
+        "output_video": "assets/renders/polished.mp4",
+        "music": {"enabled": True, "file": str(tracks[0].relative_to(project)), "gain_db": -20.0, "loop": True, "fade_in_sec": 0.8, "fade_out_sec": 1.4, "ducking": {"enabled": True, "threshold": 0.025, "ratio": 8.0, "attack_ms": 18, "release_ms": 320}},
+        "sfx": {"enabled": False, "events": []},
+        "loudness": {"enabled": True, "integrated_lufs": -14.0, "true_peak_db": -1.5, "lra": 11.0},
+    }, indent=2) + "\n", encoding="utf-8")
+    return profile
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
     parser.add_argument("--topic", required=True)
@@ -99,8 +120,18 @@ def main() -> None:
     else:
         run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3)
     run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path)
-    run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path)
-    run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)
+    timing_file = project / "timing" / "BEAT_TIMINGS.json"
+    if timing_file.is_file():
+        reuse("timing", timing_file, state, state_path)
+    else:
+        run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path)
+    music_file = next((path for path in (project / "assets" / "music").glob("*") if path.is_file() and path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"}), None)
+    if music_file is not None:
+        reuse("music", music_file, state, state_path)
+    else:
+        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)
+    mix_profile = ensure_audio_mix_profile(project)
+    reuse("audio_mix_profile", mix_profile, state, state_path)
     run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path)
     state.update({"status": "DONE", "completed_at": stamp(), "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3)})
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
