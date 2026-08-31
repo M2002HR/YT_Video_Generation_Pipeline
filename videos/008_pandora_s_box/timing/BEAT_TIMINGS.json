@@ -1,0 +1,136 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 34.952,
+  "stt": {
+    "backend": "local",
+    "provider": "faster-whisper",
+    "model": "small.en",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "transcript": "Pandora never actually opened a box. In the oldest Greek version of the myth, she opened a sealed jar and suffering and hardship escaped into the world. She slammed it shut, but it was too late. Only hope remained inside. Centuries later, retellings turned the jar into a box, but the warning survived. One tempting choice can unleash consequences you can't easily contain. That's why opening Pandora's box still means starting something that suddenly becomes far bigger than you expected.",
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Pandora never actually opened a box.",
+      "speech_start": 0.0,
+      "speech_end": 2.16,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 3.28,
+      "display_duration": 3.28
+    },
+    {
+      "beat_id": 2,
+      "narration": "In the oldest Greek version of the myth, she opened a sealed jar—",
+      "speech_start": 3.28,
+      "speech_end": 7.22,
+      "match_confidence": 1.0,
+      "display_start": 3.28,
+      "display_end": 7.22,
+      "display_duration": 3.94
+    },
+    {
+      "beat_id": 3,
+      "narration": "and suffering and hardship escaped into the world.",
+      "speech_start": 7.22,
+      "speech_end": 10.68,
+      "match_confidence": 1.0,
+      "display_start": 7.22,
+      "display_end": 11.92,
+      "display_duration": 4.7
+    },
+    {
+      "beat_id": 4,
+      "narration": "She slammed it shut,",
+      "speech_start": 11.92,
+      "speech_end": 12.84,
+      "match_confidence": 1.0,
+      "display_start": 11.92,
+      "display_end": 12.98,
+      "display_duration": 1.06
+    },
+    {
+      "beat_id": 5,
+      "narration": "but it was too late.",
+      "speech_start": 12.98,
+      "speech_end": 13.8,
+      "match_confidence": 1.0,
+      "display_start": 12.98,
+      "display_end": 14.7,
+      "display_duration": 1.72
+    },
+    {
+      "beat_id": 6,
+      "narration": "Only hope remained inside.",
+      "speech_start": 14.7,
+      "speech_end": 16.08,
+      "match_confidence": 1.0,
+      "display_start": 14.7,
+      "display_end": 17.36,
+      "display_duration": 2.66
+    },
+    {
+      "beat_id": 7,
+      "narration": "Centuries later,",
+      "speech_start": 17.36,
+      "speech_end": 18.12,
+      "match_confidence": 1.0,
+      "display_start": 17.36,
+      "display_end": 18.34,
+      "display_duration": 0.98
+    },
+    {
+      "beat_id": 8,
+      "narration": "retellings turned the jar into a box,",
+      "speech_start": 18.34,
+      "speech_end": 20.22,
+      "match_confidence": 1.0,
+      "display_start": 18.34,
+      "display_end": 20.36,
+      "display_duration": 2.02
+    },
+    {
+      "beat_id": 9,
+      "narration": "but the warning survived:",
+      "speech_start": 20.36,
+      "speech_end": 22.02,
+      "match_confidence": 1.0,
+      "display_start": 20.36,
+      "display_end": 23.06,
+      "display_duration": 2.7
+    },
+    {
+      "beat_id": 10,
+      "narration": "one tempting choice can unleash consequences you can’t easily contain.",
+      "speech_start": 23.06,
+      "speech_end": 27.42,
+      "match_confidence": 1.0,
+      "display_start": 23.06,
+      "display_end": 28.3,
+      "display_duration": 5.24
+    },
+    {
+      "beat_id": 11,
+      "narration": "That’s why “opening Pandora’s box” still means starting something",
+      "speech_start": 28.3,
+      "speech_end": 32.0,
+      "match_confidence": 1.0,
+      "display_start": 28.3,
+      "display_end": 32.0,
+      "display_duration": 3.7
+    },
+    {
+      "beat_id": 12,
+      "narration": "that suddenly becomes far bigger than you expected.",
+      "speech_start": 32.0,
+      "speech_end": 34.3,
+      "match_confidence": 1.0,
+      "display_start": 32.0,
+      "display_end": 34.952,
+      "display_duration": 2.952
+    }
+  ]
+}

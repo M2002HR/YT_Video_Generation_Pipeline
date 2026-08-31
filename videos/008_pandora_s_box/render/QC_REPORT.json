@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "input": "assets/renders/final.mp4",
+  "timeline": "timeline/TIMELINE.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "passed": true,
+  "checks": [
+    {
+      "name": "video_stream_count",
+      "ok": true,
+      "expected": 1,
+      "actual": 1,
+      "detail": ""
+    },
+    {
+      "name": "audio_stream_count",
+      "ok": true,
+      "expected": 1,
+      "actual": 1,
+      "detail": ""
+    },
+    {
+      "name": "resolution",
+      "ok": true,
+      "expected": "1920x1080",
+      "actual": "1920x1080",
+      "detail": ""
+    },
+    {
+      "name": "fps",
+      "ok": true,
+      "expected": 30.0,
+      "actual": 30.0,
+      "detail": ""
+    },
+    {
+      "name": "duration",
+      "ok": true,
+      "expected": 34.952,
+      "actual": 34.952,
+      "detail": "drift=-0.000s"
+    },
+    {
+      "name": "video_codec",
+      "ok": true,
+      "expected": "h264",
+      "actual": "h264",
+      "detail": ""
+    },
+    {
+      "name": "pixel_format",
+      "ok": true,
+      "expected": "yuv420p",
+      "actual": "yuv420p",
+      "detail": ""
+    },
+    {
+      "name": "audio_codec",
+      "ok": true,
+      "expected": "aac",
+      "actual": "aac",
+      "detail": ""
+    },
+    {
+      "name": "file_nonempty",
+      "ok": true,
+      "expected": ">0 bytes",
+      "actual": 25215153,
+      "detail": ""
+    },
+    {
+      "name": "full_decode",
+      "ok": true,
+      "expected": "no decode errors",
+      "actual": "ok",
+      "detail": ""
+    }
+  ],
+  "decode": {
+    "ok": true,
+    "stderr": ""
+  }
+}

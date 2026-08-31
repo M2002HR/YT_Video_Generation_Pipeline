@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 34.952,
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "beat_id": 1,
+      "image": "assets/raw_beats/beat_001.png",
+      "start": 0.0,
+      "end": 3.28,
+      "duration": 3.28,
+      "speech_start": 0.0,
+      "speech_end": 2.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pandora never actually opened a box."
+    },
+    {
+      "beat_id": 2,
+      "image": "assets/raw_beats/beat_002.png",
+      "start": 3.28,
+      "end": 7.22,
+      "duration": 3.94,
+      "speech_start": 3.28,
+      "speech_end": 7.22,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "In the oldest Greek version of the myth, she opened a sealed jar—"
+    },
+    {
+      "beat_id": 3,
+      "image": "assets/raw_beats/beat_003.png",
+      "start": 7.22,
+      "end": 11.92,
+      "duration": 4.7,
+      "speech_start": 7.22,
+      "speech_end": 10.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "and suffering and hardship escaped into the world."
+    },
+    {
+      "beat_id": 4,
+      "image": "assets/raw_beats/beat_004.png",
+      "start": 11.92,
+      "end": 12.98,
+      "duration": 1.06,
+      "speech_start": 11.92,
+      "speech_end": 12.84,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "She slammed it shut,"
+    },
+    {
+      "beat_id": 5,
+      "image": "assets/raw_beats/beat_005.png",
+      "start": 12.98,
+      "end": 14.7,
+      "duration": 1.72,
+      "speech_start": 12.98,
+      "speech_end": 13.8,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "but it was too late."
+    },
+    {
+      "beat_id": 6,
+      "image": "assets/raw_beats/beat_006.png",
+      "start": 14.7,
+      "end": 17.36,
+      "duration": 2.66,
+      "speech_start": 14.7,
+      "speech_end": 16.08,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Only hope remained inside."
+    },
+    {
+      "beat_id": 7,
+      "image": "assets/raw_beats/beat_007.png",
+      "start": 17.36,
+      "end": 18.34,
+      "duration": 0.98,
+      "speech_start": 17.36,
+      "speech_end": 18.12,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Centuries later,"
+    },
+    {
+      "beat_id": 8,
+      "image": "assets/raw_beats/beat_008.png",
+      "start": 18.34,
+      "end": 20.36,
+      "duration": 2.02,
+      "speech_start": 18.34,
+      "speech_end": 20.22,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "retellings turned the jar into a box,"
+    },
+    {
+      "beat_id": 9,
+      "image": "assets/raw_beats/beat_009.png",
+      "start": 20.36,
+      "end": 23.06,
+      "duration": 2.7,
+      "speech_start": 20.36,
+      "speech_end": 22.02,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "but the warning survived:"
+    },
+    {
+      "beat_id": 10,
+      "image": "assets/raw_beats/beat_010.png",
+      "start": 23.06,
+      "end": 28.3,
+      "duration": 5.24,
+      "speech_start": 23.06,
+      "speech_end": 27.42,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "one tempting choice can unleash consequences you can’t easily contain."
+    },
+    {
+      "beat_id": 11,
+      "image": "assets/raw_beats/beat_011.png",
+      "start": 28.3,
+      "end": 32.0,
+      "duration": 3.7,
+      "speech_start": 28.3,
+      "speech_end": 32.0,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "That’s why “opening Pandora’s box” still means starting something"
+    },
+    {
+      "beat_id": 12,
+      "image": "assets/raw_beats/beat_012.png",
+      "start": 32.0,
+      "end": 34.952,
+      "duration": 2.952,
+      "speech_start": 32.0,
+      "speech_end": 34.3,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "that suddenly becomes far bigger than you expected."
+    }
+  ],
+  "subtitles": [
+    {
+      "beat_id": 1,
+      "start": 0.0,
+      "end": 2.16,
+      "text": "Pandora never actually opened a box.",
+      "ass_text": "Pandora never actually opened a\\Nbox."
+    },
+    {
+      "beat_id": 2,
+      "start": 3.28,
+      "end": 5.098,
+      "text": "In the oldest Greek version of",
+      "ass_text": "In the oldest Greek version of"
+    },
+    {
+      "beat_id": 2,
+      "start": 5.098,
+      "end": 6.917,
+      "text": "the myth, she opened a sealed",
+      "ass_text": "the myth, she opened a sealed"
+    },
+    {
+      "beat_id": 2,
+      "start": 6.917,
+      "end": 7.22,
+      "text": "jar—",
+      "ass_text": "jar—"
+    },
+    {
+      "beat_id": 3,
+      "start": 7.22,
+      "end": 9.815,
+      "text": "and suffering and hardship escaped into",
+      "ass_text": "and suffering and hardship escaped\\Ninto"
+    },
+    {
+      "beat_id": 3,
+      "start": 9.815,
+      "end": 10.68,
+      "text": "the world.",
+      "ass_text": "the world."
+    },
+    {
+      "beat_id": 4,
+      "start": 11.92,
+      "end": 12.84,
+      "text": "She slammed it shut,",
+      "ass_text": "She slammed it shut,"
+    },
+    {
+      "beat_id": 5,
+      "start": 12.98,
+      "end": 13.8,
+      "text": "but it was too late.",
+      "ass_text": "but it was too late."
+    },
+    {
+      "beat_id": 6,
+      "start": 14.7,
+      "end": 16.08,
+      "text": "Only hope remained inside.",
+      "ass_text": "Only hope remained inside."
+    },
+    {
+      "beat_id": 7,
+      "start": 17.36,
+      "end": 18.12,
+      "text": "Centuries later,",
+      "ass_text": "Centuries later,"
+    },
+    {
+      "beat_id": 8,
+      "start": 18.34,
+      "end": 19.951,
+      "text": "retellings turned the jar into a",
+      "ass_text": "retellings turned the jar into a"
+    },
+    {
+      "beat_id": 8,
+      "start": 19.951,
+      "end": 20.22,
+      "text": "box,",
+      "ass_text": "box,"
+    },
+    {
+      "beat_id": 9,
+      "start": 20.36,
+      "end": 22.02,
+      "text": "but the warning survived:",
+      "ass_text": "but the warning survived:"
+    },
+    {
+      "beat_id": 10,
+      "start": 23.06,
+      "end": 25.676,
+      "text": "one tempting choice can unleash consequences",
+      "ass_text": "one tempting choice can unleash\\Nconsequences"
+    },
+    {
+      "beat_id": 10,
+      "start": 25.676,
+      "end": 27.42,
+      "text": "you can’t easily contain.",
+      "ass_text": "you can’t easily contain."
+    },
+    {
+      "beat_id": 11,
+      "start": 28.3,
+      "end": 30.767,
+      "text": "That’s why “opening Pandora’s box” still",
+      "ass_text": "That’s why “opening Pandora’s box”\\Nstill"
+    },
+    {
+      "beat_id": 11,
+      "start": 30.767,
+      "end": 32.0,
+      "text": "means starting something",
+      "ass_text": "means starting something"
+    },
+    {
+      "beat_id": 12,
+      "start": 32.0,
+      "end": 33.725,
+      "text": "that suddenly becomes far bigger than",
+      "ass_text": "that suddenly becomes far bigger\\Nthan"
+    },
+    {
+      "beat_id": 12,
+      "start": 33.725,
+      "end": 34.3,
+      "text": "you expected.",
+      "ass_text": "you expected."
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": []
+  }
+}

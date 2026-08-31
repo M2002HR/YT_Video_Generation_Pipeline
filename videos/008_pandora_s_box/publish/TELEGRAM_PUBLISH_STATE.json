@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "published_at": "2026-08-31T19:43:33.703801+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "message_id": 23114,
+  "file": "assets/renders/polished.mp4",
+  "bytes": 25347228,
+  "sha256": "5a833c7dcfa7c041ddf47b66c606fbb4590680c687f532857efc6067102e1e50",
+  "duration_seconds": 34.952,
+  "elapsed_seconds": 252.911,
+  "qc_report": "render/QC_REPORT_polished.json"
+}

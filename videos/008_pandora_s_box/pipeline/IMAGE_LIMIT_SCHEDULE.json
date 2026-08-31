@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "RESUMED",
+  "reason": "chatgpt_image_generation_limit",
+  "video_id": "008",
+  "beat_id": 1,
+  "ordak_job_id": "39d75f62-b63b-4c8e-976e-0fa31858ecc0",
+  "limit_message": "You've hit the Plus plan limit for image generations requests. You can create more images when the limit resets in 2 hours and 3 minutes. I was unable to invoke the image generation tool right now.",
+  "detected_at": "2026-08-31T15:57:43.318023+00:00",
+  "reset_at": "2026-08-31T17:26:12.674637+00:00",
+  "resume_at": "2026-08-31T17:31:12.674637+00:00",
+  "buffer_minutes": 5,
+  "systemd_unit": "yt-video-resume-c6f574abf83b42e2a0bd",
+  "scheduler": "systemd-run persistent timer",
+  "scheduled_at": "2026-08-31T15:57:43.342813+00:00",
+  "timer_calendar_utc": "2026-08-31 17:31:12 UTC",
+  "resume_started_at": "2026-08-31T17:31:14.825332+00:00",
+  "resume_finished_at": "2026-08-31T18:42:05.357490+00:00",
+  "resume_returncode": 1
+}

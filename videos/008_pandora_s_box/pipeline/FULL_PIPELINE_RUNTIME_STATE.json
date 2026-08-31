@@ -1,0 +1,94 @@
+{
+  "schema_version": 5,
+  "content_project": "world_behind_the_question",
+  "preset": "001_library_seeker",
+  "topic": "Pandora's box",
+  "video_id": "008",
+  "duration_min_seconds": 30.0,
+  "duration_max_seconds": 45.0,
+  "aspect_ratio": "16:9",
+  "creative_brief_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "started_at": "2026-08-31T19:32:31.675366+00:00",
+  "status": "FINALIZING",
+  "events": [
+    {
+      "stage": "visuals",
+      "status": "REUSED",
+      "artifact": "videos/008_pandora_s_box/visual_pipeline/VISUAL_QC_REPORT.json",
+      "ended_at": "2026-08-31T19:32:31.677604+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "voiceover",
+      "attempt": 1,
+      "started_at": "2026-08-31T19:32:31.678069+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_elevenlabs_voiceover.py",
+        "--video-id",
+        "008",
+        "--project",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--profile",
+        "videos/008_pandora_s_box/voiceover/REQUESTED_VOICE_PROFILE.json"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:32:32.018854+00:00",
+      "elapsed_seconds": 0.341
+    },
+    {
+      "stage": "timing",
+      "status": "REUSED",
+      "artifact": "videos/008_pandora_s_box/timing/BEAT_TIMINGS.json",
+      "ended_at": "2026-08-31T19:32:32.020962+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "music",
+      "attempt": 1,
+      "started_at": "2026-08-31T19:32:32.021902+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_pixabay_music.py",
+        "--video-id",
+        "008",
+        "--project",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--provider",
+        "mixkit"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:33:29.385004+00:00",
+      "elapsed_seconds": 57.363
+    },
+    {
+      "stage": "audio_mix_profile",
+      "status": "REUSED",
+      "artifact": "videos/008_pandora_s_box/audio_mix/AUDIO_MIX_PROFILE.json",
+      "ended_at": "2026-08-31T19:33:29.387810+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "render_profile",
+      "status": "REUSED",
+      "artifact": "videos/008_pandora_s_box/render/RENDER_PROFILE.json",
+      "ended_at": "2026-08-31T19:33:29.388916+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "completion",
+      "attempt": 1,
+      "started_at": "2026-08-31T19:33:29.389425+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_completion_pipeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--publish"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:43:33.869852+00:00",
+      "elapsed_seconds": 604.48
+    }
+  ],
+  "git_publish_started_at": "2026-08-31T19:43:33.877568+00:00"
+}

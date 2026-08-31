@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "video": "008_pandora_s_box",
+  "started_at": "2026-08-31T19:33:29.474299+00:00",
+  "status": "DONE",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-08-31T19:33:29.474742+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:33:29.645697+00:00",
+      "elapsed_seconds": 0.171
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-08-31T19:33:29.646662+00:00",
+      "command": [
+        "nice",
+        "-n",
+        "10",
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/renders/final.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:38:49.717133+00:00",
+      "elapsed_seconds": 320.071
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-08-31T19:38:49.718301+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:39:02.861561+00:00",
+      "elapsed_seconds": 13.143
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-08-31T19:39:02.862911+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:39:06.997658+00:00",
+      "elapsed_seconds": 4.135
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-08-31T19:39:06.998832+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:39:19.889069+00:00",
+      "elapsed_seconds": 12.89
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-08-31T19:39:19.890074+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T19:43:33.852262+00:00",
+      "elapsed_seconds": 253.962
+    }
+  ],
+  "completed_at": "2026-08-31T19:43:33.853709+00:00",
+  "total_elapsed_seconds": 604.372
+}

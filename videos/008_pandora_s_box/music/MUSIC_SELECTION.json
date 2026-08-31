@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "provider": "Mixkit web UI",
+  "source_url": "https://mixkit.co/free-stock-music/item/168/",
+  "downloaded_at": "2026-08-31T19:33:27.381398+00:00",
+  "status": "DONE",
+  "file": "assets/music/background.mp3",
+  "bytes": 4544958,
+  "license": "Mixkit source license; verify current source page before publication."
+}
