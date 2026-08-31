@@ -101,7 +101,24 @@ class Browser:
         if not isinstance(before, dict) or not before.get("ok"):
             raise RuntimeError("ChatGPT project composer was not visible.")
         existing = str(before.get("text") or "")
-        if existing and existing != text.strip():
+        def normalized(value: str) -> str:
+            return re.sub(r"\s+", " ", value).strip()
+        expected = normalized(text)
+        observed = normalized(existing)
+        # Rich-text composers can normalize line endings, spaces around smart
+        # punctuation, or non-breaking spaces.  Accept only the same pipeline
+        # request shape, never arbitrary text a user may have typed.
+        same_pipeline_request = (
+            observed == expected
+            or (
+                observed.startswith("Choose exactly one ")
+                and "track for this specific video. Narration duration:" in observed
+                and "Source brief/script follows:" in observed
+                and "Reply with only one direct https://" in observed
+                and expected.startswith(observed[:min(140, len(observed))])
+            )
+        )
+        if existing and not same_pipeline_request:
             raise RuntimeError("ChatGPT composer contains a different unsent request; refusing to overwrite it.")
         self.point_click(f"(() => {{ return {json.dumps(before)}; }})()")
         info = self.get_info(self.tab)
@@ -118,7 +135,7 @@ class Browser:
                             raise RuntimeError("Chrome rejected ChatGPT input.")
                         break
         ready = self.data(composer)
-        if str(ready.get("text") or "") != text.strip():
+        if normalized(str(ready.get("text") or "")) != expected and not (existing and same_pipeline_request):
             raise RuntimeError("ChatGPT did not retain the requested music-selection prompt.")
         send = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='send-button'||/send (prompt|message)|send$/i.test(`${x.getAttribute('aria-label')||''} ${(x.innerText||'').trim()}`));if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()"""
         self.point_click(send)
