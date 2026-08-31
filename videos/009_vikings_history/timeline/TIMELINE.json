@@ -14,22 +14,22 @@
       "beat_id": 1,
       "image": "assets/raw_beats/beat_001.png",
       "start": 0.0,
-      "end": 5.807,
-      "duration": 5.807,
-      "speech_start": 0.15,
-      "speech_end": 5.807,
-      "match_confidence": 1.0,
+      "end": 5.4,
+      "duration": 5.4,
+      "speech_start": 0.02,
+      "speech_end": 4.34,
+      "match_confidence": 0.923,
       "motion": "zoom_in",
       "narration": "A longship cuts through the fog, its striped sail rising over the sea."
     },
     {
       "beat_id": 2,
       "image": "assets/raw_beats/beat_002.png",
-      "start": 5.807,
-      "end": 9.288,
-      "duration": 3.481,
-      "speech_start": 5.807,
-      "speech_end": 9.288,
+      "start": 5.4,
+      "end": 8.02,
+      "duration": 2.62,
+      "speech_start": 5.4,
+      "speech_end": 7.26,
       "match_confidence": 1.0,
       "motion": "still",
       "narration": "So where did the Vikings actually come from?"
@@ -37,11 +37,11 @@
     {
       "beat_id": 3,
       "image": "assets/raw_beats/beat_003.png",
-      "start": 9.288,
-      "end": 14.51,
-      "duration": 5.222,
-      "speech_start": 9.288,
-      "speech_end": 14.51,
+      "start": 8.02,
+      "end": 14.46,
+      "duration": 6.44,
+      "speech_start": 8.02,
+      "speech_end": 13.38,
       "match_confidence": 1.0,
       "motion": "zoom_out",
       "narration": "Mostly from Scandinavia—the regions we now call Norway, Denmark, and Sweden."
@@ -49,11 +49,11 @@
     {
       "beat_id": 4,
       "image": "assets/raw_beats/beat_004.png",
-      "start": 14.51,
-      "end": 17.556,
-      "duration": 3.046,
-      "speech_start": 14.51,
-      "speech_end": 17.556,
+      "start": 14.46,
+      "end": 18.1,
+      "duration": 3.64,
+      "speech_start": 14.46,
+      "speech_end": 17.12,
       "match_confidence": 1.0,
       "motion": "slow_zoom_in",
       "narration": "But there was no single Viking nation."
@@ -61,23 +61,23 @@
     {
       "beat_id": 5,
       "image": "assets/raw_beats/beat_005.png",
-      "start": 17.556,
-      "end": 22.343,
-      "duration": 4.787,
-      "speech_start": 17.556,
-      "speech_end": 22.343,
-      "match_confidence": 1.0,
+      "start": 18.1,
+      "end": 21.98,
+      "duration": 3.88,
+      "speech_start": 18.1,
+      "speech_end": 21.56,
+      "match_confidence": 0.818,
       "motion": "zoom_in",
       "narration": "During the Viking Age, roughly the late eighth to eleventh centuries,"
     },
     {
       "beat_id": 6,
       "image": "assets/raw_beats/beat_006.png",
-      "start": 22.343,
-      "end": 26.259,
-      "duration": 3.916,
-      "speech_start": 22.343,
-      "speech_end": 26.259,
+      "start": 21.98,
+      "end": 27.38,
+      "duration": 5.4,
+      "speech_start": 21.98,
+      "speech_end": 26.26,
       "match_confidence": 1.0,
       "motion": "still",
       "narration": "Scandinavians sailed abroad to raid, trade, explore, and settle."
@@ -85,11 +85,11 @@
     {
       "beat_id": 7,
       "image": "assets/raw_beats/beat_007.png",
-      "start": 26.259,
-      "end": 29.305,
-      "duration": 3.046,
-      "speech_start": 26.259,
-      "speech_end": 29.305,
+      "start": 27.38,
+      "end": 30.8,
+      "duration": 3.42,
+      "speech_start": 27.38,
+      "speech_end": 30.8,
       "match_confidence": 1.0,
       "motion": "zoom_out",
       "narration": "Some headed west to Britain, Iceland, Greenland,"
@@ -97,11 +97,11 @@
     {
       "beat_id": 8,
       "image": "assets/raw_beats/beat_008.png",
-      "start": 29.305,
-      "end": 31.046,
-      "duration": 1.741,
-      "speech_start": 29.305,
-      "speech_end": 31.046,
+      "start": 30.8,
+      "end": 33.38,
+      "duration": 2.58,
+      "speech_start": 30.8,
+      "speech_end": 32.24,
       "match_confidence": 1.0,
       "motion": "slow_zoom_in",
       "narration": "and eventually North America."
@@ -109,11 +109,11 @@
     {
       "beat_id": 9,
       "image": "assets/raw_beats/beat_009.png",
-      "start": 31.046,
-      "end": 33.221,
-      "duration": 2.175,
-      "speech_start": 31.046,
-      "speech_end": 33.221,
+      "start": 33.38,
+      "end": 35.0,
+      "duration": 1.62,
+      "speech_start": 33.38,
+      "speech_end": 35.0,
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Others traveled east along rivers"
@@ -121,11 +121,11 @@
     {
       "beat_id": 10,
       "image": "assets/raw_beats/beat_010.png",
-      "start": 33.221,
-      "end": 35.832,
-      "duration": 2.611,
-      "speech_start": 33.221,
-      "speech_end": 35.832,
+      "start": 35.0,
+      "end": 39.36,
+      "duration": 4.36,
+      "speech_start": 35.0,
+      "speech_end": 37.68,
       "match_confidence": 1.0,
       "motion": "still",
       "narration": "toward the Baltic, Byzantium, and beyond."
@@ -133,11 +133,11 @@
     {
       "beat_id": 11,
       "image": "assets/raw_beats/beat_011.png",
-      "start": 35.832,
-      "end": 40.184,
-      "duration": 4.352,
-      "speech_start": 35.832,
-      "speech_end": 40.184,
+      "start": 39.36,
+      "end": 42.86,
+      "duration": 3.5,
+      "speech_start": 39.36,
+      "speech_end": 42.18,
       "match_confidence": 1.0,
       "motion": "zoom_out",
       "narration": "So the Vikings did not emerge from one mysterious homeland."
@@ -145,11 +145,11 @@
     {
       "beat_id": 12,
       "image": "assets/raw_beats/beat_012.png",
-      "start": 40.184,
-      "end": 42.795,
-      "duration": 2.611,
-      "speech_start": 40.184,
-      "speech_end": 42.795,
+      "start": 42.86,
+      "end": 47.06,
+      "duration": 4.2,
+      "speech_start": 42.86,
+      "speech_end": 45.28,
       "match_confidence": 1.0,
       "motion": "slow_zoom_in",
       "narration": "They came from different Scandinavian societies."
@@ -157,11 +157,11 @@
     {
       "beat_id": 13,
       "image": "assets/raw_beats/beat_013.png",
-      "start": 42.795,
-      "end": 45.841,
-      "duration": 3.046,
-      "speech_start": 42.795,
-      "speech_end": 45.841,
+      "start": 47.06,
+      "end": 50.28,
+      "duration": 3.22,
+      "speech_start": 47.06,
+      "speech_end": 49.52,
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "“Viking” wasn’t simply where someone was from—"
@@ -169,11 +169,11 @@
     {
       "beat_id": 14,
       "image": "assets/raw_beats/beat_014.png",
-      "start": 45.841,
-      "end": 51.933,
-      "duration": 6.092,
-      "speech_start": 45.841,
-      "speech_end": 51.933,
+      "start": 50.28,
+      "end": 54.92,
+      "duration": 4.64,
+      "speech_start": 50.28,
+      "speech_end": 54.02,
       "match_confidence": 1.0,
       "motion": "still",
       "narration": "it was connected to what some Scandinavians went out into the world to do."
@@ -181,12 +181,12 @@
     {
       "beat_id": 15,
       "image": "assets/raw_beats/beat_015.png",
-      "start": 51.933,
+      "start": 54.92,
       "end": 58.175,
-      "duration": 6.242,
-      "speech_start": 51.933,
-      "speech_end": 58.025,
-      "match_confidence": 1.0,
+      "duration": 3.255,
+      "speech_start": 54.92,
+      "speech_end": 55.14,
+      "match_confidence": 0.071,
       "motion": "zoom_out",
       "narration": "it was connected to what some Scandinavians went out into the world to do."
     }
@@ -194,211 +194,213 @@
   "subtitles": [
     {
       "beat_id": 1,
-      "start": 0.15,
-      "end": 2.761,
+      "start": 0.02,
+      "end": 2.014,
       "text": "A longship cuts through the fog,",
       "ass_text": "A longship cuts through the fog,"
     },
     {
       "beat_id": 1,
-      "start": 2.761,
-      "end": 5.372,
+      "start": 2.014,
+      "end": 4.008,
       "text": "its striped sail rising over the",
       "ass_text": "its striped sail rising over the"
     },
     {
       "beat_id": 1,
-      "start": 5.372,
-      "end": 5.807,
+      "start": 4.008,
+      "end": 4.34,
       "text": "sea.",
       "ass_text": "sea."
     },
     {
       "beat_id": 2,
-      "start": 5.807,
-      "end": 8.418,
+      "start": 5.4,
+      "end": 6.795,
       "text": "So where did the Vikings actually",
       "ass_text": "So where did the Vikings actually"
     },
     {
       "beat_id": 2,
-      "start": 8.418,
-      "end": 9.288,
+      "start": 6.795,
+      "end": 7.26,
       "text": "come from?",
       "ass_text": "come from?"
     },
     {
       "beat_id": 3,
-      "start": 9.288,
-      "end": 12.136,
+      "start": 8.02,
+      "end": 10.944,
       "text": "Mostly from Scandinavia—the regions we now",
       "ass_text": "Mostly from Scandinavia—the\\Nregions we now"
     },
     {
       "beat_id": 3,
-      "start": 12.136,
-      "end": 14.51,
+      "start": 10.944,
+      "end": 13.38,
       "text": "call Norway, Denmark, and Sweden.",
       "ass_text": "call Norway, Denmark, and Sweden."
     },
     {
       "beat_id": 4,
-      "start": 14.51,
-      "end": 17.121,
+      "start": 14.46,
+      "end": 16.74,
       "text": "But there was no single Viking",
       "ass_text": "But there was no single Viking"
     },
     {
       "beat_id": 4,
-      "start": 17.121,
-      "end": 17.556,
+      "start": 16.74,
+      "end": 17.12,
       "text": "nation.",
       "ass_text": "nation."
     },
     {
       "beat_id": 5,
-      "start": 17.556,
-      "end": 20.167,
+      "start": 18.1,
+      "end": 19.987,
       "text": "During the Viking Age, roughly the",
       "ass_text": "During the Viking Age, roughly the"
     },
     {
       "beat_id": 5,
-      "start": 20.167,
-      "end": 22.343,
+      "start": 19.987,
+      "end": 21.56,
       "text": "late eighth to eleventh centuries,",
       "ass_text": "late eighth to eleventh centuries,"
     },
     {
       "beat_id": 6,
-      "start": 22.343,
-      "end": 24.954,
+      "start": 21.98,
+      "end": 24.833,
       "text": "Scandinavians sailed abroad to raid, trade,",
       "ass_text": "Scandinavians sailed abroad to\\Nraid, trade,"
     },
     {
       "beat_id": 6,
-      "start": 24.954,
-      "end": 26.259,
+      "start": 24.833,
+      "end": 26.26,
       "text": "explore, and settle.",
       "ass_text": "explore, and settle."
     },
     {
       "beat_id": 7,
-      "start": 26.259,
-      "end": 28.87,
+      "start": 27.38,
+      "end": 30.311,
       "text": "Some headed west to Britain, Iceland,",
       "ass_text": "Some headed west to Britain,\\NIceland,"
     },
     {
       "beat_id": 7,
-      "start": 28.87,
-      "end": 29.305,
+      "start": 30.311,
+      "end": 30.8,
       "text": "Greenland,",
       "ass_text": "Greenland,"
     },
     {
       "beat_id": 8,
-      "start": 29.305,
-      "end": 31.046,
+      "start": 30.8,
+      "end": 32.24,
       "text": "and eventually North America.",
       "ass_text": "and eventually North America."
     },
     {
       "beat_id": 9,
-      "start": 31.046,
-      "end": 33.221,
+      "start": 33.38,
+      "end": 35.0,
       "text": "Others traveled east along rivers",
       "ass_text": "Others traveled east along rivers"
     },
     {
       "beat_id": 10,
-      "start": 33.221,
-      "end": 35.832,
+      "start": 35.0,
+      "end": 37.68,
       "text": "toward the Baltic, Byzantium, and beyond.",
       "ass_text": "toward the Baltic, Byzantium, and\\Nbeyond."
     },
     {
       "beat_id": 11,
-      "start": 35.832,
-      "end": 38.443,
+      "start": 39.36,
+      "end": 41.052,
       "text": "So the Vikings did not emerge",
       "ass_text": "So the Vikings did not emerge"
     },
     {
       "beat_id": 11,
-      "start": 38.443,
-      "end": 40.184,
+      "start": 41.052,
+      "end": 42.18,
       "text": "from one mysterious homeland.",
       "ass_text": "from one mysterious homeland."
     },
     {
       "beat_id": 12,
-      "start": 40.184,
-      "end": 42.795,
+      "start": 42.86,
+      "end": 45.28,
       "text": "They came from different Scandinavian societies.",
       "ass_text": "They came from different\\NScandinavian societies."
     },
     {
       "beat_id": 13,
-      "start": 42.795,
-      "end": 45.406,
+      "start": 47.06,
+      "end": 49.169,
       "text": "“Viking” wasn’t simply where someone was",
       "ass_text": "“Viking” wasn’t simply where\\Nsomeone was"
     },
     {
       "beat_id": 13,
-      "start": 45.406,
-      "end": 45.841,
+      "start": 49.169,
+      "end": 49.52,
       "text": "from—",
       "ass_text": "from—"
     },
     {
       "beat_id": 14,
-      "start": 45.841,
-      "end": 48.452,
+      "start": 50.28,
+      "end": 51.883,
       "text": "it was connected to what some",
       "ass_text": "it was connected to what some"
     },
     {
       "beat_id": 14,
-      "start": 48.452,
-      "end": 51.063,
+      "start": 51.883,
+      "end": 53.486,
       "text": "Scandinavians went out into the world",
       "ass_text": "Scandinavians went out into the\\Nworld"
     },
     {
       "beat_id": 14,
-      "start": 51.063,
-      "end": 51.933,
+      "start": 53.486,
+      "end": 54.02,
       "text": "to do.",
       "ass_text": "to do."
     },
     {
       "beat_id": 15,
-      "start": 51.933,
-      "end": 54.544,
+      "start": 54.92,
+      "end": 55.014,
       "text": "it was connected to what some",
       "ass_text": "it was connected to what some"
     },
     {
       "beat_id": 15,
-      "start": 54.544,
-      "end": 57.155,
+      "start": 55.014,
+      "end": 55.109,
       "text": "Scandinavians went out into the world",
       "ass_text": "Scandinavians went out into the\\Nworld"
     },
     {
       "beat_id": 15,
-      "start": 57.155,
-      "end": 58.025,
+      "start": 55.109,
+      "end": 55.14,
       "text": "to do.",
       "ass_text": "to do."
     }
   ],
   "qc": {
     "beat_count": 15,
-    "low_confidence_beats": [],
+    "low_confidence_beats": [
+      15
+    ],
     "timestamp_overlap_adjustments": [],
     "subtitle_overlap_adjustments": []
   }

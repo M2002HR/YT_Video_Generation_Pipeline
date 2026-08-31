@@ -372,8 +372,12 @@ A content project owns its pipeline prompts, visual presets, canonical character
 Current assignments:
 
 - `default`: Videos 001, 002, 006 and 007; legacy prompt behavior and the existing green-hoodie preset are preserved.
-- `world_behind_the_question`: new general-curiosity brand built around the Library of Living Questions. No videos yet; canonical character and style anchors are still pending human approval.
+- `world_behind_the_question`: production-ready general-curiosity brand built around the Library of Living Questions. Canonical character/style anchors and isolated project prompts are present. Each episode creates a durable `WORLD_DESIGN.md` for its question-specific book, portal, subject world, palette, locations, props, Seeker adaptation, and visual arc before beat planning.
 
-CLI and the web control panel now accept a content-project selection. Project-specific pipeline prompts and project visual presets are isolated from other brands.
+CLI and the web control panel accept a content-project selection. The panel
+defaults to `world_behind_the_question`, persists its editorial inputs in
+`launch/CREATIVE_BRIEF.json`, and passes them through the full pipeline.
+Project-specific pipeline prompts and visual presets are isolated from other
+brands.
 
 See: `projects/README.md`.

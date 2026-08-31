@@ -4,6 +4,10 @@ A content project is a long-lived channel/brand universe. It owns its own pipeli
 
 Individual videos intentionally remain under the stable repository-level `videos/` directory so the mature render/publish tooling is not broken by path migration. Membership is explicit through each video's `PROJECT.md`.
 
+On successful finalization, the publication step registers the new video in
+the selected project's `VIDEOS.json` and commits that registry entry together
+with the video's artifacts.
+
 Resolution order:
 1. `projects/<project_id>/prompts/pipeline/`
 2. `projects/<project_id>/visual_presets/`

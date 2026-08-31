@@ -2,165 +2,164 @@
   "audio": "assets/audio/narration.mp3",
   "audio_duration_seconds": 58.175,
   "stt": {
-    "backend": "proportional",
-    "provider": "approved-script-fallback",
-    "model": "none",
-    "fallback_used": true,
-    "timestamp_source": "script_proportional",
-    "primary_backend": "ajil",
-    "primary_error": "RuntimeError: Ajil returned non-JSON response (HTTP 200): <!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><link href=\"/favicon.ico\" rel=\"icon\"></head><body></body></html>"
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
   },
-  "transcript": "A longship cuts through the fog, its striped sail rising over the sea. So where did the Vikings actually come from? Mostly from Scandinavia—the regions we now call Norway, Denmark, and Sweden. But there was no single Viking nation. During the Viking Age, roughly the late eighth to eleventh centuries, Scandinavians sailed abroad to raid, trade, explore, and settle. Some headed west to Britain, Iceland, Greenland, and eventually North America. Others traveled east along rivers toward the Baltic, Byzantium, and beyond. So the Vikings did not emerge from one mysterious homeland. They came from different Scandinavian societies. “Viking” wasn’t simply where someone was from— it was connected to what some Scandinavians went out into the world to do. it was connected to what some Scandinavians went out into the world to do.",
+  "transcript": "A long ship cuts through the fog, its striped sail rising over the sea. So where did the Vikings actually come from? Mostly from Scandinavia, the regions we now call Norway, Denmark, and Sweden. But there was no single Viking nation. During the Viking Age, roughly the late 8th to 11th centuries, Scandinavians sailed abroad to raid, trade, explore, and settle. Some headed west to Britain, Iceland, Greenland, and eventually North America. Others traveled east along rivers toward the Baltic, Byzantium, and beyond. So the Vikings did not emerge from one mysterious homeland. They came from different Scandinavian societies. Viking wasn't simply where someone was from. It was connected to what some Scandinavians went out into the world to do, sharpen the final reframe. Trim the middle travel list.",
   "beats": [
     {
       "beat_id": 1,
       "narration": "A longship cuts through the fog, its striped sail rising over the sea.",
-      "speech_start": 0.15,
-      "speech_end": 5.807,
-      "match_confidence": 1.0,
+      "speech_start": 0.02,
+      "speech_end": 4.34,
+      "match_confidence": 0.923,
       "display_start": 0.0,
-      "display_end": 5.807,
-      "display_duration": 5.807
+      "display_end": 5.4,
+      "display_duration": 5.4
     },
     {
       "beat_id": 2,
       "narration": "So where did the Vikings actually come from?",
-      "speech_start": 5.807,
-      "speech_end": 9.288,
+      "speech_start": 5.4,
+      "speech_end": 7.26,
       "match_confidence": 1.0,
-      "display_start": 5.807,
-      "display_end": 9.288,
-      "display_duration": 3.481
+      "display_start": 5.4,
+      "display_end": 8.02,
+      "display_duration": 2.62
     },
     {
       "beat_id": 3,
       "narration": "Mostly from Scandinavia—the regions we now call Norway, Denmark, and Sweden.",
-      "speech_start": 9.288,
-      "speech_end": 14.51,
+      "speech_start": 8.02,
+      "speech_end": 13.38,
       "match_confidence": 1.0,
-      "display_start": 9.288,
-      "display_end": 14.51,
-      "display_duration": 5.222
+      "display_start": 8.02,
+      "display_end": 14.46,
+      "display_duration": 6.44
     },
     {
       "beat_id": 4,
       "narration": "But there was no single Viking nation.",
-      "speech_start": 14.51,
-      "speech_end": 17.556,
+      "speech_start": 14.46,
+      "speech_end": 17.12,
       "match_confidence": 1.0,
-      "display_start": 14.51,
-      "display_end": 17.556,
-      "display_duration": 3.046
+      "display_start": 14.46,
+      "display_end": 18.1,
+      "display_duration": 3.64
     },
     {
       "beat_id": 5,
       "narration": "During the Viking Age, roughly the late eighth to eleventh centuries,",
-      "speech_start": 17.556,
-      "speech_end": 22.343,
-      "match_confidence": 1.0,
-      "display_start": 17.556,
-      "display_end": 22.343,
-      "display_duration": 4.787
+      "speech_start": 18.1,
+      "speech_end": 21.56,
+      "match_confidence": 0.818,
+      "display_start": 18.1,
+      "display_end": 21.98,
+      "display_duration": 3.88
     },
     {
       "beat_id": 6,
       "narration": "Scandinavians sailed abroad to raid, trade, explore, and settle.",
-      "speech_start": 22.343,
-      "speech_end": 26.259,
+      "speech_start": 21.98,
+      "speech_end": 26.26,
       "match_confidence": 1.0,
-      "display_start": 22.343,
-      "display_end": 26.259,
-      "display_duration": 3.916
+      "display_start": 21.98,
+      "display_end": 27.38,
+      "display_duration": 5.4
     },
     {
       "beat_id": 7,
       "narration": "Some headed west to Britain, Iceland, Greenland,",
-      "speech_start": 26.259,
-      "speech_end": 29.305,
+      "speech_start": 27.38,
+      "speech_end": 30.8,
       "match_confidence": 1.0,
-      "display_start": 26.259,
-      "display_end": 29.305,
-      "display_duration": 3.046
+      "display_start": 27.38,
+      "display_end": 30.8,
+      "display_duration": 3.42
     },
     {
       "beat_id": 8,
       "narration": "and eventually North America.",
-      "speech_start": 29.305,
-      "speech_end": 31.046,
+      "speech_start": 30.8,
+      "speech_end": 32.24,
       "match_confidence": 1.0,
-      "display_start": 29.305,
-      "display_end": 31.046,
-      "display_duration": 1.741
+      "display_start": 30.8,
+      "display_end": 33.38,
+      "display_duration": 2.58
     },
     {
       "beat_id": 9,
       "narration": "Others traveled east along rivers",
-      "speech_start": 31.046,
-      "speech_end": 33.221,
+      "speech_start": 33.38,
+      "speech_end": 35.0,
       "match_confidence": 1.0,
-      "display_start": 31.046,
-      "display_end": 33.221,
-      "display_duration": 2.175
+      "display_start": 33.38,
+      "display_end": 35.0,
+      "display_duration": 1.62
     },
     {
       "beat_id": 10,
       "narration": "toward the Baltic, Byzantium, and beyond.",
-      "speech_start": 33.221,
-      "speech_end": 35.832,
+      "speech_start": 35.0,
+      "speech_end": 37.68,
       "match_confidence": 1.0,
-      "display_start": 33.221,
-      "display_end": 35.832,
-      "display_duration": 2.611
+      "display_start": 35.0,
+      "display_end": 39.36,
+      "display_duration": 4.36
     },
     {
       "beat_id": 11,
       "narration": "So the Vikings did not emerge from one mysterious homeland.",
-      "speech_start": 35.832,
-      "speech_end": 40.184,
+      "speech_start": 39.36,
+      "speech_end": 42.18,
       "match_confidence": 1.0,
-      "display_start": 35.832,
-      "display_end": 40.184,
-      "display_duration": 4.352
+      "display_start": 39.36,
+      "display_end": 42.86,
+      "display_duration": 3.5
     },
     {
       "beat_id": 12,
       "narration": "They came from different Scandinavian societies.",
-      "speech_start": 40.184,
-      "speech_end": 42.795,
+      "speech_start": 42.86,
+      "speech_end": 45.28,
       "match_confidence": 1.0,
-      "display_start": 40.184,
-      "display_end": 42.795,
-      "display_duration": 2.611
+      "display_start": 42.86,
+      "display_end": 47.06,
+      "display_duration": 4.2
     },
     {
       "beat_id": 13,
       "narration": "“Viking” wasn’t simply where someone was from—",
-      "speech_start": 42.795,
-      "speech_end": 45.841,
+      "speech_start": 47.06,
+      "speech_end": 49.52,
       "match_confidence": 1.0,
-      "display_start": 42.795,
-      "display_end": 45.841,
-      "display_duration": 3.046
+      "display_start": 47.06,
+      "display_end": 50.28,
+      "display_duration": 3.22
     },
     {
       "beat_id": 14,
       "narration": "it was connected to what some Scandinavians went out into the world to do.",
-      "speech_start": 45.841,
-      "speech_end": 51.933,
+      "speech_start": 50.28,
+      "speech_end": 54.02,
       "match_confidence": 1.0,
-      "display_start": 45.841,
-      "display_end": 51.933,
-      "display_duration": 6.092
+      "display_start": 50.28,
+      "display_end": 54.92,
+      "display_duration": 4.64
     },
     {
       "beat_id": 15,
       "narration": "it was connected to what some Scandinavians went out into the world to do.",
-      "speech_start": 51.933,
-      "speech_end": 58.025,
-      "match_confidence": 1.0,
-      "display_start": 51.933,
+      "speech_start": 54.92,
+      "speech_end": 55.14,
+      "match_confidence": 0.071,
+      "display_start": 54.92,
       "display_end": 58.175,
-      "display_duration": 6.242
+      "display_duration": 3.255
     }
   ]
 }

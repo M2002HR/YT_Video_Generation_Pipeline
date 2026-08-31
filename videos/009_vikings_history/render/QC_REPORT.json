@@ -37,8 +37,8 @@
       "name": "duration",
       "ok": true,
       "expected": 58.175,
-      "actual": 58.1,
-      "detail": "drift=-0.075s"
+      "actual": 58.174,
+      "detail": "drift=-0.001s"
     },
     {
       "name": "video_codec",
@@ -65,7 +65,7 @@
       "name": "file_nonempty",
       "ok": true,
       "expected": ">0 bytes",
-      "actual": 35921282,
+      "actual": 34732056,
       "detail": ""
     },
     {

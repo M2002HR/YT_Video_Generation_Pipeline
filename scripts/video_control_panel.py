@@ -17,20 +17,16 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs
 
-from content_projects import DEFAULT_CONTENT_PROJECT, list_content_projects
+from content_projects import DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project, validate_content_project, video_slug
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PRESET = "001_cinematic_storybook_green_hoodie"
 LAUNCH_LOCK = threading.Lock()
+PREFERRED_CONTENT_PROJECT = "world_behind_the_question"
+CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
 
 
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
-
-
-def slug(value: str) -> str:
-    result = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
-    return result or "video"
 
 
 def next_video_id() -> str:
@@ -45,6 +41,14 @@ def next_video_id() -> str:
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def form_text(values: dict[str, list[str]], key: str, limit: int = 4_000) -> str:
+    """Accept a bounded single form value without trusting duplicate fields."""
+    value = values.get(key, [""])[0].strip()
+    if len(value) > limit:
+        raise ValueError(f"{key} is too long (maximum {limit} characters).")
+    return value
 
 
 def pid_is_live(pid: object) -> bool:
@@ -69,6 +73,25 @@ def active_job(jobs_dir: Path) -> dict | None:
         if job.get("status") == "RUNNING" and pid_is_live(job.get("pid")):
             return job
     return None
+
+
+def reconcile_scheduled_resumes() -> None:
+    """Recreate a pending transient timer after a host/service restart.
+
+    The pause JSON is durable.  systemd transient timers are not, so the panel
+    service rehydrates any pending image-limit resume at boot without sending a
+    duplicate Telegram notification.
+    """
+    for path in (ROOT / "control_panel" / "jobs").glob("*.json"):
+        try:
+            job = json.loads(path.read_text(encoding="utf-8"))
+            if job.get("status") != "SCHEDULED" or not job.get("image_limit_schedule"):
+                continue
+            project = ROOT / str(job["project"])
+            subprocess.run([sys.executable, "scripts/schedule_image_limit_resume.py", str(project), "--no-notify"], cwd=ROOT, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except (KeyError, OSError, subprocess.SubprocessError, json.JSONDecodeError):
+            # The launch record remains visible in the panel for manual repair.
+            continue
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -99,12 +122,19 @@ class Handler(BaseHTTPRequestHandler):
                 jobs.append(job)
             except Exception: continue
         rows = "".join(f"<tr><td>{html.escape(str(j.get('video_id','')))}</td><td>{html.escape(str(j.get('content_project', DEFAULT_CONTENT_PROJECT)))}</td><td>{html.escape(str(j.get('topic','')))}</td><td>{html.escape(str(j.get('status','QUEUED')))}</td><td><a href='/logs/{html.escape(str(j.get('job_id','')))}'>log</a></td></tr>" for j in jobs) or "<tr><td colspan='5'>No launches yet.</td></tr>"
-        project_options = "".join(f"<option value='{html.escape(p.project_id)}'{' selected' if p.project_id == DEFAULT_CONTENT_PROJECT else ''}>{html.escape(p.display_name)}</option>" for p in list_content_projects())
+        project_options = "".join(f"<option value='{html.escape(p.project_id)}'{' selected' if p.project_id == PREFERRED_CONTENT_PROJECT else ''}>{html.escape(p.display_name)}</option>" for p in list_content_projects())
         return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline</title>
-<style>body{{font:16px system-ui;max-width:850px;margin:32px auto;background:#10131a;color:#e8edf4}}input,select{{width:100%;padding:8px;margin:4px 0 14px;box-sizing:border-box}}button{{padding:10px 18px;background:#58c;color:#fff;border:0;border-radius:5px}}table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;border-bottom:1px solid #344;text-align:left}}.msg{{color:#8f8}}</style>
+<style>body{{font:16px system-ui;max-width:850px;margin:32px auto;background:#10131a;color:#e8edf4}}input,select,textarea{{width:100%;padding:8px;margin:4px 0 14px;box-sizing:border-box}}textarea{{min-height:76px;resize:vertical}}small{{color:#aeb8c8}}button{{padding:10px 18px;background:#58c;color:#fff;border:0;border-radius:5px}}table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;border-bottom:1px solid #344;text-align:left}}.msg{{color:#8f8}}</style>
 <h1>Video Pipeline Launch</h1><p class=msg>{html.escape(message)}</p>
+<p>Select <strong>The World Behind the Question</strong> for the question-book format. The automation will design the episode's book, portal, subject world, palette, locations, props, and visual arc before it creates the visual beats.</p>
 <form method=post action=/launch><label>Content project<select name=content_project>{project_options}</select></label>
-<label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
+<label>Question / topic<input name=topic required maxlength=220 placeholder="Why does time seem to speed up as we get older?"></label>
+<label>Working title <small>(optional)</small><input name=working_title maxlength=220 placeholder="The strange reason years feel shorter"></label>
+<label>Audience <small>(optional; overrides project default)</small><input name=audience maxlength=500 placeholder="Curious adults who enjoy thoughtful explainers"></label>
+<label>Narrative angle <small>(optional)</small><textarea name=narrative_angle maxlength=2000 placeholder="Start with a familiar moment, then explain the idea carefully through a surprising metaphor."></textarea></label>
+<label>Must include <small>(optional)</small><textarea name=must_include maxlength=2000 placeholder="Key examples, questions, or points that must appear."></textarea></label>
+<label>Must avoid <small>(optional)</small><textarea name=must_avoid maxlength=2000 placeholder="Claims, framing, spoilers, or visual motifs to avoid."></textarea></label>
+<label>Source notes / verified facts <small>(optional but recommended for factual topics)</small><textarea name=source_notes maxlength=4000 placeholder="Paste only facts, links, quotations, or source summaries you have verified."></textarea></label>
 <label>Minimum duration (seconds)<input name=min_duration_seconds type=number min=15 max=300 value=60 required></label>
 <label>Maximum duration (seconds)<input name=max_duration_seconds type=number min=15 max=300 value=90 required></label>
 <label>Frame format<select name=aspect_ratio><option value="16:9">16:9 — YouTube landscape</option><option value="9:16">9:16 — Shorts / Reels vertical</option></select></label>
@@ -130,18 +160,31 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
-        length = int(self.headers.get("Content-Length", "0")); values = parse_qs(self.rfile.read(length).decode("utf-8"))
         try:
-            topic = values["topic"][0].strip(); video_id = next_video_id()
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Invalid Content-Length"); return
+        if length <= 0 or length > 24_000:
+            self.send_error(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "Launch form is too large"); return
+        try:
+            values = parse_qs(self.rfile.read(length).decode("utf-8"))
+        except UnicodeDecodeError:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Launch form must be UTF-8"); return
+        try:
+            topic = form_text(values, "topic", 220); video_id = next_video_id()
             content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()
             available_projects = {project.project_id for project in list_content_projects()}
             duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0]); aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             provider = values["music_provider"][0]
-            if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
+            if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} or not voice or len(voice) > 220 or model not in {"Eleven Multilingual v2", "Eleven v3"} or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
+            validate_content_project(load_content_project(content_project))
+            creative_brief = {key: form_text(values, key) for key in CREATIVE_FIELDS}
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
+        except RuntimeError as exc:
+            self.send_html(HTTPStatus.CONFLICT, self.page(str(exc))); return
         with LAUNCH_LOCK:
             active = active_job(self.jobs_dir)
             if active is not None:
@@ -149,16 +192,26 @@ class Handler(BaseHTTPRequestHandler):
             # Allocate inside the critical section so two quick submissions can
             # never receive the same ID or run concurrently.
             video_id = next_video_id()
-            project = ROOT / "videos" / f"{video_id}_{slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
+            project = ROOT / "videos" / f"{video_id}_{video_slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
-            job_id = str(uuid.uuid4()); record = {"schema_version": 4, "content_project": content_project, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
+            creative_brief_path = project / "launch" / "CREATIVE_BRIEF.json"; write_json(creative_brief_path, creative_brief)
+            job_id = str(uuid.uuid4()); record = {"schema_version": 5, "content_project": content_project, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT)), "creative_brief": str(creative_brief_path.relative_to(ROOT))}
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
             # The panel's live-log page is a monitoring surface.  Run Python
             # unbuffered so each stage is observable immediately instead of
             # appearing only when the complete pipeline exits.
-            command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--content-project", content_project, "--topic", topic, "--video-id", video_id, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", aspect_ratio, "--voice-profile", str(profile), "--music-provider", provider]
-            process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
+            command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--content-project", content_project, "--topic", topic, "--video-id", video_id, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", aspect_ratio, "--voice-profile", str(profile), "--creative-brief", str(creative_brief_path), "--music-provider", provider]
+            try:
+                process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
+            except OSError as exc:
+                handle.close()
+                record.update({"status": "FAILED", "completed_at": utcnow(), "error": f"Could not start pipeline: {exc}"})
+                write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
+                self.send_html(HTTPStatus.INTERNAL_SERVER_ERROR, self.page(record["error"])); return
+            finally:
+                if not handle.closed:
+                    handle.close()
             record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
         self.send_html(HTTPStatus.ACCEPTED, self.page(f"Launched {video_id}; live log is available in the table."))
 
@@ -166,6 +219,7 @@ class Handler(BaseHTTPRequestHandler):
 def main() -> None:
     parser = argparse.ArgumentParser(); parser.add_argument("--host", default="127.0.0.1"); parser.add_argument("--port", type=int, default=4142); args = parser.parse_args()
     (ROOT / "control_panel" / "jobs").mkdir(parents=True, exist_ok=True)
+    reconcile_scheduled_resumes()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"Video control panel: http://{args.host}:{args.port}", flush=True); server.serve_forever()
 

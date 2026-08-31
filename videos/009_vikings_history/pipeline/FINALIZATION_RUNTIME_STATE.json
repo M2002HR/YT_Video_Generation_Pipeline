@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
   "video": "009_vikings_history",
-  "started_at": "2026-08-31T21:27:49.623034+00:00",
+  "started_at": "2026-08-31T21:54:04.915357+00:00",
   "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-08-31T21:27:49.623467+00:00",
+      "started_at": "2026-08-31T21:54:04.915895+00:00",
       "command": [
         "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history"
       ],
       "status": "DONE",
-      "ended_at": "2026-08-31T21:27:49.773576+00:00",
-      "elapsed_seconds": 0.15
+      "ended_at": "2026-08-31T21:54:05.025305+00:00",
+      "elapsed_seconds": 0.109
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-08-31T21:27:49.774205+00:00",
+      "started_at": "2026-08-31T21:54:05.026390+00:00",
       "command": [
         "nice",
         "-n",
@@ -30,12 +30,12 @@
         "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/renders/final.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-08-31T21:37:00.619455+00:00",
-      "elapsed_seconds": 550.846
+      "ended_at": "2026-08-31T22:03:06.626341+00:00",
+      "elapsed_seconds": 541.6
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-08-31T21:37:00.630706+00:00",
+      "started_at": "2026-08-31T22:03:06.637666+00:00",
       "command": [
         "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -45,12 +45,12 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-08-31T21:37:21.502429+00:00",
-      "elapsed_seconds": 20.872
+      "ended_at": "2026-08-31T22:03:27.151785+00:00",
+      "elapsed_seconds": 20.514
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-08-31T21:37:21.504450+00:00",
+      "started_at": "2026-08-31T22:03:27.152672+00:00",
       "command": [
         "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -59,12 +59,12 @@
         "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-08-31T21:37:28.521447+00:00",
-      "elapsed_seconds": 7.017
+      "ended_at": "2026-08-31T22:03:33.676836+00:00",
+      "elapsed_seconds": 6.524
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-08-31T21:37:28.522447+00:00",
+      "started_at": "2026-08-31T22:03:33.677498+00:00",
       "command": [
         "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -74,12 +74,12 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-08-31T21:37:48.074019+00:00",
-      "elapsed_seconds": 19.552
+      "ended_at": "2026-08-31T22:03:53.160504+00:00",
+      "elapsed_seconds": 19.483
     },
     {
       "stage": "publish_telegram",
-      "started_at": "2026-08-31T21:37:48.074780+00:00",
+      "started_at": "2026-08-31T22:03:53.161689+00:00",
       "command": [
         "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/publish_to_telegram.py",
@@ -88,10 +88,10 @@
         "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-08-31T21:40:56.503253+00:00",
-      "elapsed_seconds": 188.429
+      "ended_at": "2026-08-31T22:06:23.760989+00:00",
+      "elapsed_seconds": 150.599
     }
   ],
-  "completed_at": "2026-08-31T21:40:56.504380+00:00",
-  "total_elapsed_seconds": 786.866
+  "completed_at": "2026-08-31T22:06:23.764180+00:00",
+  "total_elapsed_seconds": 738.829
 }

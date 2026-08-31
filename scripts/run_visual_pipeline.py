@@ -15,7 +15,7 @@ import shutil
 import sys
 import time
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 from PIL import Image
 
 from pipeline_notifier import PipelineNotifier, StageTimer, format_duration
-from content_projects import DEFAULT_CONTENT_PROJECT, ContentProject, load_content_project, resolve_pipeline_prompt, resolve_visual_preset
+from content_projects import DEFAULT_CONTENT_PROJECT, ContentProject, load_content_project, resolve_pipeline_prompt, resolve_visual_preset, video_slug
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,15 +36,16 @@ RECOVERABLE_ORDAK_ERRORS = (
     "connection refused",
     "chrome remote debugging is not reachable",
 )
+IMAGE_LIMIT_RESET_RE = re.compile(
+    r"(?:create more images when the )?limit resets in\s*"
+    r"(?:(?P<hours>\d+)\s*hours?)?\s*(?:and\s*)?"
+    r"(?:(?P<minutes>\d+)\s*minutes?)?",
+    re.IGNORECASE,
+)
 
 
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
-
-
-def slugify(value: str) -> str:
-    result = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
-    return result or "video"
 
 
 def sha256(path: Path) -> str:
@@ -63,6 +64,39 @@ def replace_tokens(template: str, **values: str) -> str:
     for key, value in values.items():
         template = template.replace("{{" + key + "}}", value)
     return template
+
+
+def clean_model_text(value: str) -> str:
+    """Remove ChatGPT's standalone editor affordance from durable artifacts."""
+    lines = value.strip().splitlines()
+    if lines and lines[0].strip().casefold() == "edit":
+        lines = lines[1:]
+    return "\n".join(lines).strip()
+
+
+def image_limit_reset_at(answer: str, finished_at: str | None) -> datetime | None:
+    """Return the explicit ChatGPT image-limit reset instant in UTC."""
+    match = IMAGE_LIMIT_RESET_RE.search(answer or "")
+    if match is None:
+        return None
+    hours, minutes = int(match.group("hours") or 0), int(match.group("minutes") or 0)
+    if hours == 0 and minutes == 0:
+        return None
+    try:
+        detected_at = datetime.fromisoformat((finished_at or "").replace("Z", "+00:00"))
+    except ValueError:
+        detected_at = datetime.now(timezone.utc)
+    if detected_at.tzinfo is None:
+        detected_at = detected_at.replace(tzinfo=timezone.utc)
+    return detected_at.astimezone(timezone.utc) + timedelta(hours=hours, minutes=minutes)
+
+
+class ImageGenerationLimitReached(RuntimeError):
+    """A non-retriable pause explicitly requested by ChatGPT."""
+
+    def __init__(self, *, beat_id: int, job_id: str, answer: str, reset_at: datetime) -> None:
+        self.beat_id, self.job_id, self.answer, self.reset_at = beat_id, job_id, answer, reset_at
+        super().__init__(f"ChatGPT image-generation limit reached for beat {beat_id:03d}; reset at {reset_at.isoformat()}.")
 
 
 def ordak_timing_events(logs: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -228,6 +262,11 @@ class OrdakClient:
             if job.get("status") in {"completed", "failed", "manual_verification_required", "cancelled"}:
                 if job.get("status") != "completed":
                     raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+                answer = str(job.get("answer") or "")
+                if reset_at := image_limit_reset_at(answer, str(job.get("finished_at") or "")):
+                    raise ImageGenerationLimitReached(
+                        beat_id=beat_id, job_id=job_id, answer=answer, reset_at=reset_at,
+                    )
                 job["_client_timing"] = {
                     "operation": "chatgpt_image_request",
                     "beat_id": beat_id,
@@ -253,9 +292,11 @@ class OrdakClient:
 
 
 class Pipeline:
-    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool) -> None:
+    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool, creative_brief: dict[str, str] | None = None) -> None:
         self.root, self.topic, self.video_id, self.preset, self.duration_min_seconds, self.duration_max_seconds, self.aspect_ratio, self.content_project, self.client, self.force = root, topic, video_id, preset, duration_min_seconds, duration_max_seconds, aspect_ratio, content_project, client, force
-        self.project = root / "videos" / f"{video_id}_{slugify(topic)}"
+        self.creative_brief = creative_brief or {}
+        self.creative_brief_sha256 = hashlib.sha256(json.dumps(self.creative_brief, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+        self.project = root / "videos" / f"{video_id}_{video_slug(topic)}"
         self.state_dir = self.project / "visual_pipeline"
         self.state_path = self.state_dir / "RUNTIME_STATE.json"
         self.timing_path = self.state_dir / "EXECUTION_TIMINGS.json"
@@ -295,10 +336,12 @@ class Pipeline:
             state_max = float(self.state.get("duration_max_seconds", self.state.get("duration_seconds", 60)))
             state_ratio = self.state.get("aspect_ratio", "16:9")
             state_content_project = self.state.get("content_project", DEFAULT_CONTENT_PROJECT)
-            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or state_content_project != self.content_project.project_id or state_min != self.duration_min_seconds or state_max != self.duration_max_seconds or state_ratio != self.aspect_ratio:
-                raise RuntimeError("Existing video state has different content project, topic, preset, duration, or frame format; choose another video ID.")
+            state_creative_hash = self.state.get("creative_brief_sha256")
+            legacy_empty_brief = state_creative_hash is None and not self.creative_brief
+            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or state_content_project != self.content_project.project_id or state_min != self.duration_min_seconds or state_max != self.duration_max_seconds or state_ratio != self.aspect_ratio or (not legacy_empty_brief and state_creative_hash != self.creative_brief_sha256):
+                raise RuntimeError("Existing video state has different content project, topic, preset, duration, frame format, or creative brief; choose another video ID.")
             return
-        self.state = {"version": 6, "content_project": self.content_project.project_id, "topic": self.topic, "preset": self.preset, "duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "aspect_ratio": self.aspect_ratio, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
+        self.state = {"version": 7, "content_project": self.content_project.project_id, "topic": self.topic, "preset": self.preset, "duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "aspect_ratio": self.aspect_ratio, "creative_brief_sha256": self.creative_brief_sha256, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
         self.save()
 
     def restore_notifier_image_progress(self) -> None:
@@ -335,6 +378,18 @@ class Pipeline:
         brief_defaults = self.content_project.config.get("brief_defaults", {})
         audience = str(brief_defaults.get("audience") or "general curious viewers")
         constraints = str(brief_defaults.get("constraints") or "be accurate; avoid invented statistics and unsupported factual claims")
+        optional_sections = "".join(
+            f"{label}: {value}\n"
+            for label, key in (
+                ("Working title", "working_title"),
+                ("Narrative angle", "narrative_angle"),
+                ("Must include", "must_include"),
+                ("Must avoid", "must_avoid"),
+                ("Source notes / verified facts", "source_notes"),
+            )
+            if (value := self.creative_brief.get(key, "").strip())
+        )
+        audience = self.creative_brief.get("audience", "").strip() or audience
         return self.write_once("BRIEF.md", f"""# Video Brief
 
 Topic: {self.topic}
@@ -344,7 +399,7 @@ Frame format: {self.aspect_ratio}. Compose visual ideas for {'a vertical mobile 
 Content project: {self.content_project.display_name} (`{self.content_project.project_id}`)
 Audience: {audience}
 Constraints: {constraints}
-""")
+{optional_sections}""")
 
     def _stage_text(self, name: str, prompt: str, output: str, validator) -> str:
         started_at, started = utcnow(), time.perf_counter()
@@ -356,8 +411,16 @@ Constraints: {constraints}
             self.save()
             return content
         result = self.client.text(prompt, stage=name)
-        content = str(result["answer"]).strip()
-        validator(content)
+        content = clean_model_text(str(result["answer"]))
+        try:
+            validator(content)
+        except Exception:
+            # Keep rejected model output out of the canonical artifact path,
+            # but preserve it for diagnostics and prompt/validator recovery.
+            rejected = self.state_dir / "rejected" / f"{name}_{result['job_id']}.md"
+            rejected.parent.mkdir(parents=True, exist_ok=True)
+            rejected.write_text(content + "\n", encoding="utf-8")
+            raise
         self.write_once(output, content)
         self.record_timing("text_stage", started_at, started, stage=name, artifact=output, ordak_job_id=result["job_id"], request_timing=result.get("_client_timing"))
         self.state["stages"][name] = {"status": "DONE", "ordak_job_id": result["job_id"], "completed_at": utcnow()}
@@ -371,6 +434,35 @@ Constraints: {constraints}
         maximum_words = round(self.duration_max_seconds * 2.5)
         if not minimum_words <= len(words) <= maximum_words or "###" in text:
             raise RuntimeError(f"Script validation failed: expected {minimum_words}–{maximum_words} spoken words for {self.duration_min_seconds:g}–{self.duration_max_seconds:g}s, got {len(words)} words.")
+
+    def validate_world_design(self, text: str) -> None:
+        # ChatGPT sometimes returns the requested labels as plain lines rather
+        # than Markdown headings. The labels and their order are the contract,
+        # not the number of # characters, so accept either representation.
+        required = (
+            "Governing Metaphor",
+            "The Question Book",
+            "Portal Transition",
+            "Subject World",
+            "Palette, Materials, and Light",
+            "Seeker Adaptation",
+            "Recurring Locations and Props",
+            "Visual Arc",
+            "Continuity Rules",
+            "Avoid",
+        )
+        positions: list[int] = []
+        missing: list[str] = []
+        for heading in required:
+            match = re.search(rf"(?im)^\s*(?:#+\s*)?{re.escape(heading)}\s*:?\s*$", text)
+            if match is None:
+                missing.append(heading)
+            else:
+                positions.append(match.start())
+        if positions != sorted(positions):
+            missing.append("required section order")
+        if missing or len(text.split()) < 120:
+            raise RuntimeError("Episode world design validation failed; missing or incomplete sections: " + ", ".join(missing or ["production detail"]))
 
     def parse_beats(self, text: str) -> list[dict[str, str]]:
         # ChatGPT commonly omits Markdown's optional ``###`` while retaining
@@ -404,7 +496,11 @@ Constraints: {constraints}
             self.write_once("PROJECT.md", f"# Content Project\n\nProject: `{self.content_project.project_id}`\n\nDisplay name: {self.content_project.display_name}\n")
             script_draft = self._stage_text("script_draft", replace_tokens(load_template("01_script_writer.md", self.content_project), VIDEO_BRIEF=brief), "SCRIPT_DRAFT.md", self.validate_script)
             script = self._stage_text("retention_edit", replace_tokens(load_template("02_retention_editor.md", self.content_project), VIDEO_BRIEF=brief, CURRENT_SCRIPT=script_draft), "SCRIPT_FINAL.md", self.validate_script)
-            beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md", self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "VISUAL_BEATS.md", self.parse_beats)
+            world_design = "No separate episode world-design stage is configured; follow the selected visual preset and brief."
+            world_design_prompt = str(self.content_project.config.get("world_design_prompt") or "").strip()
+            if world_design_prompt:
+                world_design = self._stage_text("world_design", replace_tokens(load_template(world_design_prompt, self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "WORLD_DESIGN.md", self.validate_world_design)
+            beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md", self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script, WORLD_DESIGN=world_design), "VISUAL_BEATS.md", self.parse_beats)
             beats = self.parse_beats(beats_text)
             self.write_once("VISUAL_PRESET.md", f"# Visual Preset\n\nContent project: `{self.content_project.project_id}`\n\nSelected preset: `{self.preset}`\n")
             preset_root = resolve_visual_preset(self.content_project, self.preset)
@@ -417,9 +513,9 @@ Constraints: {constraints}
                 prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
                 if not prompt_path.exists() or self.force:
                     started_at, started = utcnow(), time.perf_counter()
-                    prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md", self.content_project), STYLE_RULES=style_rules, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.", ASPECT_RATIO=self.aspect_ratio, FRAME_GUIDANCE="Use a tall mobile-first composition: keep the protagonist and key action in the center column, preserve comfortable headroom and lower-screen safe space, and use vertical depth rather than wide lateral detail." if self.aspect_ratio == "9:16" else "Use a cinematic widescreen composition: use left/right depth and balanced horizontal staging while keeping the main action readable.")
+                    prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md", self.content_project), STYLE_RULES=style_rules, WORLD_DESIGN=world_design, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.", ASPECT_RATIO=self.aspect_ratio, FRAME_GUIDANCE="Use a tall mobile-first composition: keep the protagonist and key action in the center column, preserve comfortable headroom and lower-screen safe space, and use vertical depth rather than wide lateral detail." if self.aspect_ratio == "9:16" else "Use a cinematic widescreen composition: use left/right depth and balanced horizontal staging while keeping the main action readable.")
                     prompt_result = self.client.text(prompt_request, stage=f"beat_{beat_id:03d}_prompt")
-                    prompt = str(prompt_result["answer"]).strip()
+                    prompt = clean_model_text(str(prompt_result["answer"]))
                     if "exactly one" not in prompt.lower() or self.aspect_ratio not in prompt:
                         raise RuntimeError(f"Beat {beat_id:03d} prompt validation failed.")
                     self.write_once(str(prompt_path.relative_to(self.project)), prompt)
@@ -434,6 +530,10 @@ Constraints: {constraints}
             report = self.write_report(beats)
             self.notifier.send("Visual pipeline complete", ["🏁 Quality checks passed", f"📍 Images: {completed}/{len(beats)}", f"⏱ Total runtime: {format_duration(total_timer.elapsed)}"])
             return report
+        except ImageGenerationLimitReached:
+            # A deliberate pause is notified at detection and scheduled by the
+            # full runner; never misreport it as a generic pipeline failure.
+            raise
         except Exception as exc:
             self.notifier.failure("Visual pipeline", total_timer.elapsed, str(exc))
             raise
@@ -479,8 +579,8 @@ Constraints: {constraints}
             references = [style, character] + ([previous] if previous else [])
             record.update({"status": "GENERATING", "references": [str(path.relative_to(self.root)) for path in references], "attempts": int(record.get("attempts", 0)) + 1, "last_error": None})
             self.save()
+            started_at, started = utcnow(), time.perf_counter()
             try:
-                started_at, started = utcnow(), time.perf_counter()
                 job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
                 artifacts = list(job.get("output_images") or [])
                 if not artifacts:
@@ -498,6 +598,34 @@ Constraints: {constraints}
                 download_timing = self.client.download(canonical_artifact, temporary)
                 shutil.move(temporary, target)
                 metadata = self.valid_image(target, previous_sha)
+            except ImageGenerationLimitReached as exc:
+                resume_at = exc.reset_at + timedelta(minutes=5)
+                pause = {
+                    "schema_version": 1,
+                    "status": "SCHEDULED",
+                    "reason": "chatgpt_image_generation_limit",
+                    "video_id": self.video_id,
+                    "content_project": self.content_project.project_id,
+                    "beat_id": beat_id,
+                    "ordak_job_id": exc.job_id,
+                    "limit_message": exc.answer,
+                    "detected_at": utcnow(),
+                    "reset_at": exc.reset_at.isoformat(),
+                    "resume_at": resume_at.isoformat(),
+                    "buffer_minutes": 5,
+                }
+                pause_path = self.project / "pipeline" / "IMAGE_LIMIT_SCHEDULE.json"
+                pause_path.parent.mkdir(parents=True, exist_ok=True)
+                pause_path.write_text(json.dumps(pause, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+                record.update({"status": "PAUSED_FOR_IMAGE_LIMIT", "last_error": str(exc), "limit_schedule": {"reset_at": pause["reset_at"], "resume_at": pause["resume_at"]}})
+                self.save()
+                self.notifier.send("Image-generation limit reached", [
+                    "⏸️ ChatGPT image generation is temporarily limited.",
+                    f"📍 Paused at beat {beat_id:03d}; no further image requests will be sent.",
+                    f"🕐 ChatGPT reset: {exc.reset_at.astimezone().strftime('%Y-%m-%d %H:%M %Z')}",
+                    f"▶️ Automatic resume scheduled: {resume_at.astimezone().strftime('%Y-%m-%d %H:%M %Z')} (5-minute buffer).",
+                ])
+                raise
             except Exception as exc:
                 target.unlink(missing_ok=True)
                 record.update({"status": "FAILED", "last_error": str(exc)})
@@ -520,7 +648,7 @@ Constraints: {constraints}
     def write_report(self, beats: list[dict[str, str]]) -> Path:
         results = [self.state["beats"].get(f"{int(beat['id']):03d}", {}) for beat in beats]
         valid = [result for result in results if result.get("status") == "DONE"]
-        payload = {"passed": len(valid) == len(beats), "content_project": self.content_project.project_id, "topic": self.topic, "aspect_ratio": self.aspect_ratio, "total_planned_beats": len(beats), "total_valid_images": len(valid), "missing_beats": [index + 1 for index, result in enumerate(results) if result.get("status") != "DONE"], "invalid_beats": [index + 1 for index, result in enumerate(results) if result.get("status") == "INVALID"], "images": [{"beat_id": index + 1, "attempts": result.get("attempts", 0), "previous_beat_reference_required": index > 0, "previous_beat_reference_present": len(result.get("references", [])) >= 3 if index > 0 else False, **(result.get("output") or {})} for index, result in enumerate(results)], "completed_at": utcnow()}
+        payload = {"passed": len(valid) == len(beats), "content_project": self.content_project.project_id, "preset": self.preset, "creative_brief_sha256": self.creative_brief_sha256, "topic": self.topic, "aspect_ratio": self.aspect_ratio, "world_design": "WORLD_DESIGN.md" if (self.project / "WORLD_DESIGN.md").is_file() else None, "total_planned_beats": len(beats), "total_valid_images": len(valid), "missing_beats": [index + 1 for index, result in enumerate(results) if result.get("status") != "DONE"], "invalid_beats": [index + 1 for index, result in enumerate(results) if result.get("status") == "INVALID"], "images": [{"beat_id": index + 1, "attempts": result.get("attempts", 0), "previous_beat_reference_required": index > 0, "previous_beat_reference_present": len(result.get("references", [])) >= 3 if index > 0 else False, **(result.get("output") or {})} for index, result in enumerate(results)], "completed_at": utcnow()}
         target = self.state_dir / "VISUAL_QC_REPORT.json"
         target.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         (self.state_dir / "RUN_SUMMARY.md").write_text(f"# Visual pipeline run\n\nPassed: `{payload['passed']}`\n\nFrame format: `{self.aspect_ratio}`\n\nPlanned beats: {len(beats)}\n\nValid images: {len(valid)}\n", encoding="utf-8")
@@ -537,6 +665,7 @@ def main() -> None:
     parser.add_argument("--min-duration-seconds", type=float, default=None)
     parser.add_argument("--max-duration-seconds", type=float, default=None)
     parser.add_argument("--aspect-ratio", choices=("16:9", "9:16"), default="16:9")
+    parser.add_argument("--creative-brief", type=Path, default=None, help="Optional JSON created by the launch panel with project-specific editorial inputs.")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
     content_project = load_content_project(args.content_project)
@@ -547,11 +676,23 @@ def main() -> None:
     duration_max = args.max_duration_seconds if args.max_duration_seconds is not None else args.duration_seconds
     if duration_min is None or duration_max is None or not 15 <= duration_min <= duration_max <= 300:
         raise RuntimeError("Duration range must be within 15..300 seconds and minimum must not exceed maximum.")
+    creative_brief: dict[str, str] = {}
+    if args.creative_brief is not None:
+        try:
+            loaded = json.loads(args.creative_brief.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Creative brief is unreadable: {args.creative_brief}") from exc
+        if not isinstance(loaded, dict):
+            raise RuntimeError("Creative brief must be a JSON object.")
+        creative_brief = {str(key): str(value).strip() for key, value in loaded.items() if isinstance(value, str) and value.strip()}
     env_file = ROOT / os.getenv("YT_ENV_FILE", ".env")
     load_dotenv(env_file, override=False)
     client = OrdakClient(Settings(os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/"), int(os.getenv("YT_ORDAK_JOB_WAIT_TIMEOUT_SECONDS", "900")), float(os.getenv("YT_ORDAK_JOB_POLL_INTERVAL_SECONDS", "2"))))
     try:
-        report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force).run()
+        report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force, creative_brief).run()
+    except ImageGenerationLimitReached:
+        print("VISUAL PIPELINE: PAUSED_FOR_IMAGE_LIMIT", flush=True)
+        raise SystemExit(75)
     finally:
         client.close()
     print(f"VISUAL PIPELINE: PASS\nReport: {report}")

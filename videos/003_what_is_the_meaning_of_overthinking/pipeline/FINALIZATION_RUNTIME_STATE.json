@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "video": "003_what_is_the_meaning_of_overthinking",
+  "started_at": "2026-08-31T05:18:59.656965+00:00",
+  "status": "DONE",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-08-31T05:18:59.657485+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:18:59.777688+00:00",
+      "elapsed_seconds": 0.12
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-08-31T05:18:59.778269+00:00",
+      "command": [
+        "nice",
+        "-n",
+        "10",
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/renders/final.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:23:58.607990+00:00",
+      "elapsed_seconds": 298.83
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-08-31T05:23:58.609669+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:24:08.552684+00:00",
+      "elapsed_seconds": 9.943
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-08-31T05:24:08.553561+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:24:12.068760+00:00",
+      "elapsed_seconds": 3.515
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-08-31T05:24:12.069441+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:24:21.651732+00:00",
+      "elapsed_seconds": 9.582
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-08-31T05:24:21.652817+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:25:46.561437+00:00",
+      "elapsed_seconds": 84.909
+    }
+  ],
+  "completed_at": "2026-08-31T05:25:46.563031+00:00",
+  "total_elapsed_seconds": 406.899
+}

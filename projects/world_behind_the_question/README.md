@@ -12,16 +12,17 @@ The channel is intentionally general rather than psychology-only. It can cover s
 
 No videos belong to this project yet.
 
-The main-character prompt and continuity bible are ready. The canonical character image and the project style/library anchor are intentionally pending human approval.
-
-Expected canonical files:
+The main-character prompt, continuity bible, canonical character image, and
+Library of Living Questions style anchor are ready for production. The selected
+canonical files are:
 
 ```text
 projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png
 projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png
 ```
 
-Do not substitute generated beat images for these canonical anchors.
+Do not substitute generated beat images for these canonical anchors. Any future
+redesign must be explicitly versioned and approved before replacing them.
 
 ## Clothing adaptation rule
 
@@ -31,4 +32,11 @@ Always preserve the recognizable face, hair language, subtle rounded glasses, sa
 
 ## Next
 
-Generate and approve the canonical protagonist first. Then design the Library of Living Questions style anchor. Before the first production video, review only this project's isolated pipeline prompts; legacy/default behavior must remain untouched.
+Use this project in the control panel, complete the creative brief fields that
+matter to the episode, and launch. The panel persists those inputs into the
+video's `launch/CREATIVE_BRIEF.json`; the automated script, beat-planning, and
+image-prompt stages consume them through `BRIEF.md`. The automation also writes
+`WORLD_DESIGN.md` before visual-beat planning so the episode's question book,
+portal, world theme, palette, locations, props, and visual arc stay consistent.
+See `CREATIVE_BRIEF.example.json` for a complete example. Legacy/default
+behavior remains isolated.

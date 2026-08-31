@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "topic": "What is the meaning of overthinking?!",
+  "video_id": "004",
+  "duration_seconds": 30.0,
+  "started_at": "2026-08-31T04:07:23.980215+00:00",
+  "status": "FAILED",
+  "events": [
+    {
+      "stage": "visuals",
+      "started_at": "2026-08-31T04:07:23.980452+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_visual_pipeline.py",
+        "--topic",
+        "What is the meaning of overthinking?!",
+        "--video-id",
+        "004",
+        "--preset",
+        "001_cinematic_storybook_green_hoodie",
+        "--duration-seconds",
+        "30.0"
+      ],
+      "status": "FAILED",
+      "ended_at": "2026-08-31T04:08:36.910750+00:00",
+      "elapsed_seconds": 72.93,
+      "returncode": 1
+    }
+  ]
+}

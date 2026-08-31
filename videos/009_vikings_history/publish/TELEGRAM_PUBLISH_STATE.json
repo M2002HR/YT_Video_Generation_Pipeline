@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "status": "DONE",
-  "published_at": "2026-08-31T21:40:56.320783+00:00",
+  "published_at": "2026-08-31T22:06:23.533392+00:00",
   "recipient": "we_are_waiting_for_him",
-  "message_id": 23161,
+  "message_id": 23162,
   "file": "assets/renders/polished.mp4",
-  "bytes": 36130656,
-  "sha256": "05bfcbac82db1e26c4cb534059445f1b02ad924914a68daa22f8ba32091d4772",
-  "duration_seconds": 58.1,
-  "elapsed_seconds": 187.07,
+  "bytes": 34942071,
+  "sha256": "24e4d5b10c2055f1641b5544c9d6e41f1bd74b84ee35ca33edc2e2b7d4ffe610",
+  "duration_seconds": 58.174,
+  "elapsed_seconds": 149.235,
   "qc_report": "render/QC_REPORT_polished.json"
 }

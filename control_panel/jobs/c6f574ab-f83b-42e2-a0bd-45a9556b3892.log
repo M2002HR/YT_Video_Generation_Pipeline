@@ -1,0 +1,107 @@
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 603, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 596, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force, creative_brief).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 438, in run
+    world_design = self._stage_text("world_design", replace_tokens(load_template(world_design_prompt, self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "WORLD_DESIGN.md", self.validate_world_design)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 371, in _stage_text
+    validator(content)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 401, in validate_world_design
+    raise RuntimeError("Episode world design validation failed; missing or incomplete sections: " + ", ".join(missing or ["production detail"]))
+RuntimeError: Episode world design validation failed; missing or incomplete sections: ## Governing Metaphor, ## The Question Book, ## Portal Transition, ## Subject World, ## Palette, Materials, and Light, ## Seeker Adaptation, ## Recurring Locations and Props, ## Visual Arc, ## Continuity Rules, ## Avoid
+visuals failed; resuming safely in 5s (attempt 2/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 603, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 596, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force, creative_brief).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 438, in run
+    world_design = self._stage_text("world_design", replace_tokens(load_template(world_design_prompt, self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "WORLD_DESIGN.md", self.validate_world_design)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 371, in _stage_text
+    validator(content)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 401, in validate_world_design
+    raise RuntimeError("Episode world design validation failed; missing or incomplete sections: " + ", ".join(missing or ["production detail"]))
+RuntimeError: Episode world design validation failed; missing or incomplete sections: ## Governing Metaphor, ## The Question Book, ## Portal Transition, ## Subject World, ## Palette, Materials, and Light, ## Seeker Adaptation, ## Recurring Locations and Props, ## Visual Arc, ## Continuity Rules, ## Avoid
+visuals failed; resuming safely in 10s (attempt 3/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 603, in <module>
+    creative_brief: dict[str, str] = {}
+    ^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 596, in main
+    preset = args.preset or content_project.default_visual_preset
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 438, in run
+    maximum = round(self.duration_max_seconds / 3.5) + 5
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 371, in _stage_text
+    try:
+    ^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 401, in validate_world_design
+    "Portal Transition",
+    ^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Episode world design validation failed; missing or incomplete sections: ## Governing Metaphor, ## The Question Book, ## Portal Transition, ## Subject World, ## Palette, Materials, and Light, ## Seeker Adaptation, ## Recurring Locations and Props, ## Visual Arc, ## Continuity Rules, ## Avoid
+visuals failed; resuming safely in 20s (attempt 4/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 623, in <module>
+    try:
+    ^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 616, in main
+    raise RuntimeError(f"Creative brief is unreadable: {args.creative_brief}") from exc
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 483, in run
+    if "exactly one" not in prompt.lower() or self.aspect_ratio not in prompt:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 539, in generate_images
+    references = [style, character] + ([previous] if previous else [])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Beat 001 did not produce a generated artifact.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 256, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 233, in main
+    run("visuals", visual_command, state, state_path, retries=3, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 37, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_visual_pipeline.py', '--content-project', 'world_behind_the_question', '--topic', "Pandora's box", '--video-id', '008', '--preset', '001_library_seeker', '--min-duration-seconds', '30.0', '--max-duration-seconds', '45.0', '--aspect-ratio', '16:9', '--creative-brief', '/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/launch/CREATIVE_BRIEF.json']' returned non-zero exit status 1.
+VISUAL PIPELINE: PASS
+Report: /root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/visual_pipeline/VISUAL_QC_REPORT.json
+ELEVENLABS VOICEOVER: PASS
+Audio: /root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/audio/narration.mp3
+Video: /root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box
+Audio: /root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/assets/audio/narration.mp3
+Beats: 12
+STT backend: local
+Local Whisper model: small.en
+Created: /root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/timing/BEAT_TIMINGS.json
+Created: /root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box/timing/BEAT_TIMINGS.md
+Audio duration: 34.952s
+Timestamp source: word
+Alignment QC: all beats >= 75% token match.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 275, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 235, in main
+    url = args.track_url or choose_track(browser, os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"), prompt, args.provider)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 203, in choose_track
+    raise RuntimeError(f"ChatGPT did not return a valid {provider} track URL.")
+RuntimeError: ChatGPT did not return a valid mixkit track URL.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 276, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 264, in main
+    run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 41, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_pixabay_music.py', '--video-id', '008', '--project', '/root/YT_Video_Generation_Pipeline/videos/008_pandora_s_box', '--provider', 'mixkit']' returned non-zero exit status 1.
+
+=== Scheduled image-limit resume at 2026-08-31T17:31:14.826786+00:00 ===

@@ -11,6 +11,12 @@ ROOT = Path(__file__).resolve().parents[1]
 PROJECTS_ROOT = ROOT / "projects"
 DEFAULT_CONTENT_PROJECT = "default"
 PROJECT_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
+PIPELINE_PROMPTS = (
+    "01_script_writer.md",
+    "02_retention_editor.md",
+    "03_visual_beats.md",
+    "04_single_beat_image_prompt_writer.md",
+)
 
 @dataclass(frozen=True)
 class ContentProject:
@@ -28,6 +34,12 @@ class ContentProject:
         if not value:
             raise RuntimeError(f"Content project {self.project_id!r} has no default_visual_preset.")
         return value
+
+
+def video_slug(value: str) -> str:
+    """Canonical video-directory slug used by panel and every runner."""
+    result = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+    return result or "video"
 
 def load_content_project(project_id: str) -> ContentProject:
     project_id = project_id.strip()
@@ -66,3 +78,21 @@ def resolve_visual_preset(project: ContentProject, preset: str) -> Path:
         if legacy.is_dir():
             return legacy
     raise RuntimeError(f"Visual preset {preset!r} is not available to content project {project.project_id!r}: expected {path.relative_to(ROOT)}")
+
+
+def validate_content_project(project: ContentProject, preset: str | None = None) -> Path:
+    """Fail before a launch when a project cannot complete the visual workflow."""
+    selected_preset = preset or project.default_visual_preset
+    for name in PIPELINE_PROMPTS:
+        resolve_pipeline_prompt(project, name)
+    world_design_prompt = str(project.config.get("world_design_prompt") or "").strip()
+    if world_design_prompt:
+        resolve_pipeline_prompt(project, world_design_prompt)
+    preset_root = resolve_visual_preset(project, selected_preset)
+    missing = [name for name in ("README.md", "style_anchor.png", "character_anchor.png") if not (preset_root / name).is_file()]
+    if missing:
+        raise RuntimeError(
+            f"Visual preset {selected_preset!r} for content project {project.project_id!r} is not production-ready; "
+            f"missing: {', '.join(missing)}"
+        )
+    return preset_root

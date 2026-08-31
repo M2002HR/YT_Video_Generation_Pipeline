@@ -1,0 +1,993 @@
+{
+  "schema_version": 1,
+  "video_id": "003",
+  "topic": "What is the meaning of overthinking?!",
+  "events": [
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T04:06:50.153475+00:00",
+      "finished_at": "2026-08-31T04:07:24.628162+00:00",
+      "elapsed_seconds": 34.475,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md",
+      "ordak_job_id": "0bb8b132-cc69-476d-9466-7a097f0c5db6",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "script_draft",
+        "elapsed_seconds": 34.473
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T04:07:26.607682+00:00",
+      "finished_at": "2026-08-31T04:08:34.325534+00:00",
+      "elapsed_seconds": 67.718,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md",
+      "ordak_job_id": "45572c89-1b1b-47af-8d4c-19471a70648b",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "retention_edit",
+        "elapsed_seconds": 67.717
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T04:08:35.558397+00:00",
+      "finished_at": "2026-08-31T04:09:14.797118+00:00",
+      "elapsed_seconds": 39.239,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md",
+      "ordak_job_id": "d313ab7d-b1cf-44cf-a38b-76185e456e3a",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "visual_beats",
+        "elapsed_seconds": 39.235
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:09:15.989007+00:00",
+      "finished_at": "2026-08-31T04:09:59.097019+00:00",
+      "elapsed_seconds": 43.108,
+      "beat_id": 1,
+      "artifact": "beats/BEAT_001_PROMPT.md",
+      "ordak_job_id": "79577f42-bac4-45ad-82de-493c00edbf4a",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_001_prompt",
+        "elapsed_seconds": 43.104
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:13:13.750923+00:00",
+      "finished_at": "2026-08-31T04:13:13.751406+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:13:13.753564+00:00",
+      "finished_at": "2026-08-31T04:13:13.753805+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:13:13.754797+00:00",
+      "finished_at": "2026-08-31T04:13:13.756476+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:15:39.112581+00:00",
+      "finished_at": "2026-08-31T04:15:39.113040+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:15:39.114801+00:00",
+      "finished_at": "2026-08-31T04:15:39.115088+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:15:39.116871+00:00",
+      "finished_at": "2026-08-31T04:15:39.118210+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:15:39.122998+00:00",
+      "finished_at": "2026-08-31T04:16:17.699932+00:00",
+      "elapsed_seconds": 38.577,
+      "beat_id": 2,
+      "artifact": "beats/BEAT_002_PROMPT.md",
+      "ordak_job_id": "139a69f9-df0a-4540-9952-2c0b6cf91ed1",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_002_prompt",
+        "elapsed_seconds": 38.576
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:16:19.180383+00:00",
+      "finished_at": "2026-08-31T04:17:00.318159+00:00",
+      "elapsed_seconds": 41.138,
+      "beat_id": 3,
+      "artifact": "beats/BEAT_003_PROMPT.md",
+      "ordak_job_id": "3add6e1d-24d3-410d-ae7d-f09d1facf018",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_003_prompt",
+        "elapsed_seconds": 41.136
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:17:01.435020+00:00",
+      "finished_at": "2026-08-31T04:17:45.286991+00:00",
+      "elapsed_seconds": 43.852,
+      "beat_id": 4,
+      "artifact": "beats/BEAT_004_PROMPT.md",
+      "ordak_job_id": "ed371e0c-30f7-49f0-a769-baa2a932b2f9",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_004_prompt",
+        "elapsed_seconds": 43.849
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:17:46.379939+00:00",
+      "finished_at": "2026-08-31T04:18:26.091591+00:00",
+      "elapsed_seconds": 39.712,
+      "beat_id": 5,
+      "artifact": "beats/BEAT_005_PROMPT.md",
+      "ordak_job_id": "6669d417-070c-439e-a032-e575edc0b4f7",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_005_prompt",
+        "elapsed_seconds": 39.71
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:18:27.193491+00:00",
+      "finished_at": "2026-08-31T04:19:09.834141+00:00",
+      "elapsed_seconds": 42.641,
+      "beat_id": 6,
+      "artifact": "beats/BEAT_006_PROMPT.md",
+      "ordak_job_id": "588bb240-5e9b-4066-8479-152dd5d08022",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_006_prompt",
+        "elapsed_seconds": 42.637
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:19:10.994932+00:00",
+      "finished_at": "2026-08-31T04:19:53.712183+00:00",
+      "elapsed_seconds": 42.717,
+      "beat_id": 7,
+      "artifact": "beats/BEAT_007_PROMPT.md",
+      "ordak_job_id": "ea3abbce-50b0-487c-a7f4-1cea62ab4a21",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_007_prompt",
+        "elapsed_seconds": 42.716
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:19:54.946115+00:00",
+      "finished_at": "2026-08-31T04:20:36.675059+00:00",
+      "elapsed_seconds": 41.729,
+      "beat_id": 8,
+      "artifact": "beats/BEAT_008_PROMPT.md",
+      "ordak_job_id": "5626a1d1-b369-4e04-b7d8-4de4b40caa52",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_008_prompt",
+        "elapsed_seconds": 41.727
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T04:20:37.800980+00:00",
+      "finished_at": "2026-08-31T04:21:17.211811+00:00",
+      "elapsed_seconds": 39.411,
+      "beat_id": 9,
+      "artifact": "beats/BEAT_009_PROMPT.md",
+      "ordak_job_id": "642eebc5-9251-4d02-9e19-d0915feabc27",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_009_prompt",
+        "elapsed_seconds": 39.409
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:21:18.272436+00:00",
+      "finished_at": "2026-08-31T04:23:34.512727+00:00",
+      "elapsed_seconds": 136.24,
+      "beat_id": 1,
+      "ordak_job_id": "9030065b-4e69-4859-b241-636c578401e1",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 1,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.204
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.016
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.166,
+        "polling_elapsed_seconds": 135.698,
+        "poll_count": 68,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:21:39.572233Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "9030065b-4e69-4859-b241-636c578401e1_style_anchor.png",
+            "elapsed_seconds": 10.342
+          },
+          {
+            "timestamp": "2026-08-31T04:21:47.451052Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "9030065b-4e69-4859-b241-636c578401e1_character_anchor.png",
+            "elapsed_seconds": 7.849
+          },
+          {
+            "timestamp": "2026-08-31T04:21:50.779760Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.118
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:21:18.659813",
+        "ordak_job_finished_at": "2026-08-31T04:23:33.524370"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.049,
+        "bytes": 2101172
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_001.png",
+        "bytes": 2101172,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "2960aa94384e196bb4a4254b62c90c572fb52f1e04cf30523881162b9a8f57d3"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:23:35.779727+00:00",
+      "finished_at": "2026-08-31T04:26:30.348182+00:00",
+      "elapsed_seconds": 174.568,
+      "beat_id": 2,
+      "ordak_job_id": "60466f37-05e7-4202-a7a2-8c6f003d3ec5",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_001.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 2,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_001.png",
+            "bytes": 2101172,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.142,
+        "polling_elapsed_seconds": 174.354,
+        "poll_count": 87,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:23:58.615490Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "60466f37-05e7-4202-a7a2-8c6f003d3ec5_style_anchor.png",
+            "elapsed_seconds": 11.674
+          },
+          {
+            "timestamp": "2026-08-31T04:24:13.276831Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "60466f37-05e7-4202-a7a2-8c6f003d3ec5_character_anchor.png",
+            "elapsed_seconds": 14.646
+          },
+          {
+            "timestamp": "2026-08-31T04:24:31.753327Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "60466f37-05e7-4202-a7a2-8c6f003d3ec5_beat_001.png",
+            "elapsed_seconds": 18.437
+          },
+          {
+            "timestamp": "2026-08-31T04:24:35.090669Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.087
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:23:35.933637",
+        "ordak_job_finished_at": "2026-08-31T04:26:29.493610"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.041,
+        "bytes": 2364977
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_002.png",
+        "bytes": 2364977,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "5e2cf3285a182498790379cf593ae383d90624e7774f1666c8dda42de27d1102"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:33:59.295877+00:00",
+      "finished_at": "2026-08-31T04:33:59.296400+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:33:59.299725+00:00",
+      "finished_at": "2026-08-31T04:33:59.300302+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:33:59.303382+00:00",
+      "finished_at": "2026-08-31T04:33:59.306052+00:00",
+      "elapsed_seconds": 0.003,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:37:40.358909+00:00",
+      "finished_at": "2026-08-31T04:37:40.359385+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:37:40.362690+00:00",
+      "finished_at": "2026-08-31T04:37:40.362907+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T04:37:40.365248+00:00",
+      "finished_at": "2026-08-31T04:37:40.366644+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:37:40.444929+00:00",
+      "finished_at": "2026-08-31T04:40:11.163895+00:00",
+      "elapsed_seconds": 150.719,
+      "beat_id": 3,
+      "ordak_job_id": "e485494f-3206-4acc-908f-9e9d9a62c93a",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_002.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 3,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_002.png",
+            "bytes": 2364977,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.117,
+        "polling_elapsed_seconds": 150.494,
+        "poll_count": 75,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:38:10.917081Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "e485494f-3206-4acc-908f-9e9d9a62c93a_style_anchor.png",
+            "elapsed_seconds": 19.316
+          },
+          {
+            "timestamp": "2026-08-31T04:38:24.193361Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "e485494f-3206-4acc-908f-9e9d9a62c93a_character_anchor.png",
+            "elapsed_seconds": 13.258
+          },
+          {
+            "timestamp": "2026-08-31T04:38:34.869740Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "e485494f-3206-4acc-908f-9e9d9a62c93a_beat_002.png",
+            "elapsed_seconds": 10.662
+          },
+          {
+            "timestamp": "2026-08-31T04:38:37.816334Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.69
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:37:40.567857",
+        "ordak_job_finished_at": "2026-08-31T04:40:10.631253"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.069,
+        "bytes": 2384425
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_003.png",
+        "bytes": 2384425,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "ec5972568f643fe47484408ea2550860dc6feb78bcae6a08984e96feb43acd6e"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:40:12.903799+00:00",
+      "finished_at": "2026-08-31T04:43:07.073122+00:00",
+      "elapsed_seconds": 174.169,
+      "beat_id": 4,
+      "ordak_job_id": "e853f651-3a18-4cc6-b2a8-4e4e2d76b02f",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_003.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 4,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_003.png",
+            "bytes": 2384425,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.121,
+        "polling_elapsed_seconds": 173.943,
+        "poll_count": 87,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:40:39.622437Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "e853f651-3a18-4cc6-b2a8-4e4e2d76b02f_style_anchor.png",
+            "elapsed_seconds": 15.798
+          },
+          {
+            "timestamp": "2026-08-31T04:40:51.623917Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "e853f651-3a18-4cc6-b2a8-4e4e2d76b02f_character_anchor.png",
+            "elapsed_seconds": 11.992
+          },
+          {
+            "timestamp": "2026-08-31T04:41:06.124359Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "e853f651-3a18-4cc6-b2a8-4e4e2d76b02f_beat_003.png",
+            "elapsed_seconds": 14.491
+          },
+          {
+            "timestamp": "2026-08-31T04:41:09.202766Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.672
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:40:13.041063",
+        "ordak_job_finished_at": "2026-08-31T04:43:06.154301"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.06,
+        "bytes": 2374316
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_004.png",
+        "bytes": 2374316,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "98d620d0dc5b3e58c8145196c9bbed4544ba8fb0276237ffc03a14790d3b0784"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:43:08.390975+00:00",
+      "finished_at": "2026-08-31T04:45:48.561593+00:00",
+      "elapsed_seconds": 160.171,
+      "beat_id": 5,
+      "ordak_job_id": "37f47f14-604f-4cd1-9d50-15e5143539a3",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_004.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 5,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_004.png",
+            "bytes": 2374316,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.171,
+        "polling_elapsed_seconds": 159.915,
+        "poll_count": 80,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:43:38.185221Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "37f47f14-604f-4cd1-9d50-15e5143539a3_style_anchor.png",
+            "elapsed_seconds": 18.099
+          },
+          {
+            "timestamp": "2026-08-31T04:43:50.655626Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "37f47f14-604f-4cd1-9d50-15e5143539a3_character_anchor.png",
+            "elapsed_seconds": 12.46
+          },
+          {
+            "timestamp": "2026-08-31T04:44:03.870459Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "37f47f14-604f-4cd1-9d50-15e5143539a3_beat_004.png",
+            "elapsed_seconds": 13.197
+          },
+          {
+            "timestamp": "2026-08-31T04:44:06.423375Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.329
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:43:08.570167",
+        "ordak_job_finished_at": "2026-08-31T04:45:47.331786"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.047,
+        "bytes": 2301299
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_005.png",
+        "bytes": 2301299,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "945093f84033aafa8ee6e32c1cdcc9b88e3cb703f299628f5e124c4818ddd382"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:45:50.171942+00:00",
+      "finished_at": "2026-08-31T04:48:46.414590+00:00",
+      "elapsed_seconds": 176.243,
+      "beat_id": 6,
+      "ordak_job_id": "d894937e-8ec1-47f2-9682-0b5b6fa6cf81",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_005.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 6,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_005.png",
+            "bytes": 2301299,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.108,
+        "polling_elapsed_seconds": 176.054,
+        "poll_count": 88,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:46:16.547886Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "d894937e-8ec1-47f2-9682-0b5b6fa6cf81_style_anchor.png",
+            "elapsed_seconds": 16.495
+          },
+          {
+            "timestamp": "2026-08-31T04:46:30.817479Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "d894937e-8ec1-47f2-9682-0b5b6fa6cf81_character_anchor.png",
+            "elapsed_seconds": 14.26
+          },
+          {
+            "timestamp": "2026-08-31T04:46:46.806230Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "d894937e-8ec1-47f2-9682-0b5b6fa6cf81_beat_005.png",
+            "elapsed_seconds": 15.977
+          },
+          {
+            "timestamp": "2026-08-31T04:46:50.446737Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.313
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:45:50.286099",
+        "ordak_job_finished_at": "2026-08-31T04:48:45.587896"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.043,
+        "bytes": 2411072
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_006.png",
+        "bytes": 2411072,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "dee99800a8fe7927dc8781fc2987e2b08fd6e6281cbf9a0e4fedbb4b142043ed"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:48:47.713880+00:00",
+      "finished_at": "2026-08-31T04:51:40.360249+00:00",
+      "elapsed_seconds": 172.646,
+      "beat_id": 7,
+      "ordak_job_id": "992ac8d5-da53-49a5-af2d-e24190a4ffe9",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_006.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 7,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_006.png",
+            "bytes": 2411072,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.088,
+        "polling_elapsed_seconds": 172.48,
+        "poll_count": 86,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:49:18.013434Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "992ac8d5-da53-49a5-af2d-e24190a4ffe9_style_anchor.png",
+            "elapsed_seconds": 19.678
+          },
+          {
+            "timestamp": "2026-08-31T04:49:30.196708Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "992ac8d5-da53-49a5-af2d-e24190a4ffe9_character_anchor.png",
+            "elapsed_seconds": 12.175
+          },
+          {
+            "timestamp": "2026-08-31T04:49:43.339471Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "992ac8d5-da53-49a5-af2d-e24190a4ffe9_beat_006.png",
+            "elapsed_seconds": 13.129
+          },
+          {
+            "timestamp": "2026-08-31T04:49:46.795581Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.18
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:48:47.814709",
+        "ordak_job_finished_at": "2026-08-31T04:51:38.373344"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.037,
+        "bytes": 2406276
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_007.png",
+        "bytes": 2406276,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "a87315650c1ca60f66f3bf66add0f4be4a447b016c09f78db5858a0f6afa6067"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:51:41.682809+00:00",
+      "finished_at": "2026-08-31T04:54:14.227931+00:00",
+      "elapsed_seconds": 152.545,
+      "beat_id": 8,
+      "ordak_job_id": "e254d0de-761d-49ee-a146-5077c3713a4d",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_007.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 8,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_007.png",
+            "bytes": 2406276,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.13,
+        "polling_elapsed_seconds": 152.336,
+        "poll_count": 76,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:52:07.362783Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "e254d0de-761d-49ee-a146-5077c3713a4d_style_anchor.png",
+            "elapsed_seconds": 15.812
+          },
+          {
+            "timestamp": "2026-08-31T04:52:18.449642Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "e254d0de-761d-49ee-a146-5077c3713a4d_character_anchor.png",
+            "elapsed_seconds": 11.072
+          },
+          {
+            "timestamp": "2026-08-31T04:52:30.556394Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "e254d0de-761d-49ee-a146-5077c3713a4d_beat_007.png",
+            "elapsed_seconds": 12.093
+          },
+          {
+            "timestamp": "2026-08-31T04:52:34.299223Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.421
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:51:41.827052",
+        "ordak_job_finished_at": "2026-08-31T04:54:13.163197"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.04,
+        "bytes": 2447066
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_008.png",
+        "bytes": 2447066,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "a8db5c73d6f08af9ba1b8176f65dcc5c3c479b24e0b64d9a85b3de30ee2e373a"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T04:54:15.504087+00:00",
+      "finished_at": "2026-08-31T04:56:43.639436+00:00",
+      "elapsed_seconds": 148.135,
+      "beat_id": 9,
+      "ordak_job_id": "dfa3faa2-ee00-4ca8-83aa-68de6cee6ee1",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_008.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 9,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/assets/raw_beats/beat_008.png",
+            "bytes": 2447066,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.128,
+        "polling_elapsed_seconds": 147.943,
+        "poll_count": 74,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T04:54:39.704201Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "dfa3faa2-ee00-4ca8-83aa-68de6cee6ee1_style_anchor.png",
+            "elapsed_seconds": 13.301
+          },
+          {
+            "timestamp": "2026-08-31T04:54:54.206585Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "dfa3faa2-ee00-4ca8-83aa-68de6cee6ee1_character_anchor.png",
+            "elapsed_seconds": 14.491
+          },
+          {
+            "timestamp": "2026-08-31T04:55:12.432288Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "dfa3faa2-ee00-4ca8-83aa-68de6cee6ee1_beat_008.png",
+            "elapsed_seconds": 18.217
+          },
+          {
+            "timestamp": "2026-08-31T04:55:16.107480Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.392
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T04:54:15.638431",
+        "ordak_job_finished_at": "2026-08-31T04:56:42.903854"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.034,
+        "bytes": 2437793
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_009.png",
+        "bytes": 2437793,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "34c868a75cab35a23ba4c9831b02457cf86a1772b21f9413912fb34f028b55de"
+      }
+    }
+  ],
+  "totals_seconds_by_operation": {
+    "beat_image": 1445.436,
+    "beat_prompt": 372.885,
+    "reuse_text_artifact": 0.009,
+    "text_stage": 141.432
+  }
+}

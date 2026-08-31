@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import subprocess
 import sys
@@ -12,17 +13,21 @@ from pathlib import Path
 from typing import Any
 
 from pipeline_notifier import PipelineNotifier
-from content_projects import DEFAULT_CONTENT_PROJECT, load_content_project
+from content_projects import DEFAULT_CONTENT_PROJECT, load_content_project, validate_content_project, video_slug
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class PipelinePausedForImageLimit(RuntimeError):
+    """Signal that the visual child stopped intentionally at a ChatGPT limit."""
 
 
 def stamp() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, retries: int = 0, notifier: PipelineNotifier | None = None) -> None:
+def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, retries: int = 0, notifier: PipelineNotifier | None = None, image_limit_pause_path: Path | None = None) -> None:
     """Run a resumable stage with bounded retries and durable attempt records."""
     for attempt in range(1, retries + 2):
         started = time.perf_counter()
@@ -35,6 +40,17 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
         try:
             subprocess.run(command, cwd=ROOT, check=True)
         except subprocess.CalledProcessError as exc:
+            if image_limit_pause_path is not None and image_limit_pause_path.is_file():
+                try:
+                    pause = json.loads(image_limit_pause_path.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    pause = {}
+                if exc.returncode == 75 and pause.get("status") == "SCHEDULED" and pause.get("reason") == "chatgpt_image_generation_limit":
+                    event.update({"status": "PAUSED_FOR_IMAGE_LIMIT", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode, "resume_at": pause.get("resume_at")})
+                    state["events"].append(event)
+                    state["status"] = "SCHEDULED"
+                    path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+                    raise PipelinePausedForImageLimit(str(pause.get("resume_at") or "image-limit pause")) from exc
             event.update({"status": "FAILED", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode})
             state["events"].append(event)
             if attempt > retries:
@@ -64,6 +80,47 @@ def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path, *, noti
     path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     if notifier is not None:
         notifier.stage_complete(stage.replace("_", " ").title(), 0.0, artifact=str(artifact.relative_to(ROOT)))
+
+
+def valid_music_artifact(path: Path) -> bool:
+    """Never reuse a truncated/HTML-disguised download as background audio."""
+    if not path.is_file() or path.stat().st_size < 64 * 1024:
+        return False
+    try:
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=20,
+        )
+        return result.returncode == 0 and float(result.stdout.strip()) >= 10
+    except (OSError, subprocess.TimeoutExpired, ValueError):
+        return False
+
+
+def valid_timing_artifact(path: Path) -> bool:
+    """Only reuse real STT word timings; never publish estimated subtitles."""
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        stt = payload.get("stt")
+    except (OSError, json.JSONDecodeError):
+        return False
+    return (
+        isinstance(stt, dict)
+        and stt.get("backend") in {"ajil", "local"}
+        and stt.get("timestamp_source") == "word"
+        and not bool(stt.get("fallback_used", False))
+    )
+
+
+def passed_visual_report(path: Path, content_project: str, topic: str, aspect_ratio: str, preset: str, creative_brief_sha256: str) -> bool:
+    """Only reuse visual output that belongs to this exact successful launch."""
+    try:
+        report = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    return bool(report.get("passed")) and report.get("content_project") == content_project and report.get("topic") == topic and report.get("aspect_ratio") == aspect_ratio and report.get("preset") == preset and report.get("creative_brief_sha256") == creative_brief_sha256
 
 
 def publish_git_artifacts(project: Path, state_path: Path, state: dict[str, Any], *, notifier: PipelineNotifier | None = None) -> None:
@@ -160,11 +217,13 @@ def main() -> None:
     parser.add_argument("--content-project", default=DEFAULT_CONTENT_PROJECT)
     parser.add_argument("--preset", default=None)
     parser.add_argument("--voice-profile", type=Path, required=True)
+    parser.add_argument("--creative-brief", type=Path, default=None)
     parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default="mixkit")
     parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
     args = parser.parse_args()
     content_project = load_content_project(args.content_project)
     preset = args.preset or content_project.default_visual_preset
+    validate_content_project(content_project, preset)
     if args.duration_seconds is not None and (args.min_duration_seconds is not None or args.max_duration_seconds is not None):
         raise SystemExit("Use either --duration-seconds or a min/max duration range, not both.")
     duration_min = args.min_duration_seconds if args.min_duration_seconds is not None else args.duration_seconds
@@ -182,14 +241,28 @@ def main() -> None:
     missing_voice_fields = sorted(name for name in required_voice_fields if name not in voice_settings)
     if missing_voice_fields:
         raise SystemExit("Voice profile missing: " + ", ".join(missing_voice_fields))
-    safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in args.topic).strip("_")
-    project = ROOT / "videos" / f"{args.video_id}_{safe_topic}"
+    creative_brief = args.creative_brief.expanduser().resolve() if args.creative_brief else None
+    creative_payload: dict[str, Any] = {}
+    if creative_brief is not None:
+        try:
+            payload = json.loads(creative_brief.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise SystemExit(f"Creative brief is unreadable: {creative_brief}") from exc
+        if not isinstance(payload, dict):
+            raise SystemExit("Creative brief must be a JSON object.")
+        creative_payload = {str(key): str(value).strip() for key, value in payload.items() if isinstance(value, str) and value.strip()}
+    creative_brief_sha256 = hashlib.sha256(json.dumps(creative_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+    project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     if args.dry_run:
-        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "content_project": content_project.project_id, "preset": preset, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish", "git_commit_push"]}, indent=2))
+        visual_stages = ["script_draft", "retention_edit"]
+        if content_project.config.get("world_design_prompt"):
+            visual_stages.append("episode_world_design")
+        visual_stages.extend(["visual_beats", "beat_prompts_and_images"])
+        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "content_project": content_project.project_id, "preset": preset, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_provider": args.music_provider, "voice_profile": str(profile), "creative_brief": str(creative_brief) if creative_brief else None, "stages": [*visual_stages, "voiceover", "timing", "music", "completion", "telegram_publish", "git_commit_push"]}, indent=2))
         return
     state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
     state_path.parent.mkdir(parents=True, exist_ok=True)
-    state: dict[str, Any] = {"schema_version": 4, "content_project": content_project.project_id, "preset": preset, "topic": args.topic, "video_id": args.video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "started_at": stamp(), "status": "RUNNING", "events": []}
+    state: dict[str, Any] = {"schema_version": 5, "content_project": content_project.project_id, "preset": preset, "topic": args.topic, "video_id": args.video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "creative_brief_sha256": creative_brief_sha256, "started_at": stamp(), "status": "RUNNING", "events": []}
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     notifier = PipelineNotifier(args.video_id, args.topic)
     notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target range: {duration_min:g}–{duration_max:g}s"])
@@ -198,21 +271,35 @@ def main() -> None:
     # stage is safe and resumes at the first incomplete beat after a transient
     # browser/UI failure.
     visual_report = project / "visual_pipeline" / "VISUAL_QC_REPORT.json"
-    if visual_report.is_file():
+    if visual_report.is_file() and passed_visual_report(visual_report, content_project.project_id, args.topic, args.aspect_ratio, preset, creative_brief_sha256):
         reuse("visuals", visual_report, state, state_path, notifier=notifier)
     else:
-        run("visuals", [py, "scripts/run_visual_pipeline.py", "--content-project", content_project.project_id, "--topic", args.topic, "--video-id", args.video_id, "--preset", preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", args.aspect_ratio], state, state_path, retries=3, notifier=notifier)
+        visual_command = [py, "scripts/run_visual_pipeline.py", "--content-project", content_project.project_id, "--topic", args.topic, "--video-id", args.video_id, "--preset", preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", args.aspect_ratio]
+        if creative_brief is not None:
+            visual_command.extend(["--creative-brief", str(creative_brief)])
+        try:
+            run("visuals", visual_command, state, state_path, retries=3, notifier=notifier, image_limit_pause_path=project / "pipeline" / "IMAGE_LIMIT_SCHEDULE.json")
+        except PipelinePausedForImageLimit:
+            subprocess.run([py, "scripts/schedule_image_limit_resume.py", str(project)], cwd=ROOT, check=True)
+            print("FULL VIDEO PIPELINE: PAUSED_FOR_IMAGE_LIMIT", flush=True)
+            return
     run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path, notifier=notifier)
     timing_file = project / "timing" / "BEAT_TIMINGS.json"
-    if timing_file.is_file():
+    if valid_timing_artifact(timing_file):
         reuse("timing", timing_file, state, state_path, notifier=notifier)
     else:
-        run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path, notifier=notifier)
-    music_file = next((path for path in (project / "assets" / "music").glob("*") if path.is_file() and path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"}), None)
+        # Respect YT_STT_BACKEND (Ajil by default). Forcing local small.en here
+        # consumed substantial RAM/CPU and could disappear before recording an
+        # event, leaving the panel looking stuck between ElevenLabs and music.
+        run("timing", [py, "scripts/align_beats.py", str(project), "--fallback-backend", "none"], state, state_path, retries=1, notifier=notifier)
+    music_file = next((path for path in (project / "assets" / "music").glob("*") if path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"} and valid_music_artifact(path)), None)
     if music_file is not None:
         reuse("music", music_file, state, state_path, notifier=notifier)
     else:
-        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, notifier=notifier)
+        # The music runner has its own bounded UI timeouts, durable selected-URL
+        # resume, audio validation, and verified local fallback. One outer retry
+        # still covers process-level failures such as an interrupted interpreter.
+        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, retries=1, notifier=notifier)
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)

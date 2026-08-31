@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "topic": "What is the meaning of overthinking?!",
+  "video_id": "003",
+  "duration_seconds": 30.0,
+  "started_at": "2026-08-31T05:18:59.224652+00:00",
+  "status": "DONE",
+  "events": [
+    {
+      "stage": "visuals",
+      "status": "REUSED",
+      "artifact": "videos/003_what_is_the_meaning_of_overthinking/visual_pipeline/VISUAL_QC_REPORT.json",
+      "ended_at": "2026-08-31T05:18:59.225454+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "voiceover",
+      "attempt": 1,
+      "started_at": "2026-08-31T05:18:59.226746+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_elevenlabs_voiceover.py",
+        "--video-id",
+        "003",
+        "--project",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--profile",
+        "videos/003_what_is_the_meaning_of_overthinking/voiceover/REQUESTED_VOICE_PROFILE.json"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:18:59.560179+00:00",
+      "elapsed_seconds": 0.333
+    },
+    {
+      "stage": "timing",
+      "status": "REUSED",
+      "artifact": "videos/003_what_is_the_meaning_of_overthinking/timing/BEAT_TIMINGS.json",
+      "ended_at": "2026-08-31T05:18:59.561169+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "music",
+      "status": "REUSED",
+      "artifact": "videos/003_what_is_the_meaning_of_overthinking/assets/music/background.mp3",
+      "ended_at": "2026-08-31T05:18:59.564277+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "audio_mix_profile",
+      "status": "REUSED",
+      "artifact": "videos/003_what_is_the_meaning_of_overthinking/audio_mix/AUDIO_MIX_PROFILE.json",
+      "ended_at": "2026-08-31T05:18:59.565103+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "render_profile",
+      "status": "REUSED",
+      "artifact": "videos/003_what_is_the_meaning_of_overthinking/render/RENDER_PROFILE.json",
+      "ended_at": "2026-08-31T05:18:59.565909+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "completion",
+      "attempt": 1,
+      "started_at": "2026-08-31T05:18:59.566375+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_completion_pipeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking",
+        "--publish"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T05:25:46.588266+00:00",
+      "elapsed_seconds": 407.022
+    }
+  ],
+  "completed_at": "2026-08-31T05:25:46.590171+00:00",
+  "total_elapsed_seconds": 407.355
+}

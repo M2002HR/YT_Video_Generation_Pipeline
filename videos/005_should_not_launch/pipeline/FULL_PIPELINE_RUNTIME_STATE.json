@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "topic": "Should not launch",
+  "video_id": "005",
+  "duration_seconds": 30.0,
+  "started_at": "2026-08-31T04:10:19.726143+00:00",
+  "status": "RUNNING",
+  "events": []
+}

@@ -392,6 +392,45 @@ def transcribe_local(
     return words, transcript, duration, metadata
 
 
+def transcribe_proportional(audio: Path, beats: list[dict]) -> tuple[list[WordStamp], str, float, dict[str, Any]]:
+    """Build deterministic script timings when every STT provider is unavailable.
+
+    The narration text is already exact and approved. Distributing its tokens
+    across the probed audio duration is less precise than word timestamps, but
+    it produces continuous, valid edit boundaries without loading a large
+    local model or blocking the remainder of the video pipeline.
+    """
+    duration = ffprobe_duration(audio)
+    if duration is None or duration <= 0:
+        raise RuntimeError("Proportional timing fallback requires a valid audio duration.")
+    raw_words: list[tuple[str, str]] = []
+    transcript_parts: list[str] = []
+    for beat in beats:
+        narration = str(beat["narration"])
+        transcript_parts.append(narration)
+        for raw in re.findall(r"[A-Za-z0-9]+(?:['’][A-Za-z0-9]+)?", narration):
+            token = normalize_token(raw)
+            if token:
+                raw_words.append((raw, token))
+    if not raw_words:
+        raise RuntimeError("Proportional timing fallback found no narration tokens.")
+    # Keep a tiny head/tail cushion while retaining continuous token spacing.
+    start_at = min(0.15, duration * 0.01)
+    usable = max(0.1, duration - start_at - min(0.15, duration * 0.01))
+    step = usable / len(raw_words)
+    words = [
+        WordStamp(text=raw, token=token, start=start_at + index * step, end=start_at + (index + 1) * step)
+        for index, (raw, token) in enumerate(raw_words)
+    ]
+    return words, " ".join(transcript_parts), duration, {
+        "backend": "proportional",
+        "provider": "approved-script-fallback",
+        "model": "none",
+        "fallback_used": True,
+        "timestamp_source": "script_proportional",
+    }
+
+
 def build_expected_index(beats: list[dict]) -> tuple[list[str], list[tuple[int, int]]]:
     all_tokens: list[str] = []
     ranges: list[tuple[int, int]] = []
@@ -567,8 +606,14 @@ def main() -> None:
 
     parser.add_argument(
         "--backend",
-        choices=("ajil", "local"),
+        choices=("ajil", "local", "proportional"),
         default=os.getenv("YT_STT_BACKEND", "ajil"),
+    )
+    parser.add_argument(
+        "--fallback-backend",
+        choices=("none", "proportional"),
+        default=os.getenv("YT_STT_FALLBACK_BACKEND", "none"),
+        help="Emergency diagnostic fallback; production pipelines must use none.",
     )
     parser.add_argument(
         "--language",
@@ -619,25 +664,36 @@ def main() -> None:
     print(f"Beats: {len(beats)}")
     print(f"STT backend: {args.backend}")
 
-    if args.backend == "ajil":
-        print(f"Ajil: {args.ajil_base_url}")
-        words, transcript, duration, stt_metadata = transcribe_ajil(
-            audio,
-            base_url=args.ajil_base_url,
-            auth_token=args.ajil_token,
-            auth_header_name=args.ajil_auth_header,
-            language=args.language,
-            timeout_sec=args.timeout,
-        )
-    else:
-        print(f"Local Whisper model: {args.model}")
-        words, transcript, duration, stt_metadata = transcribe_local(
-            audio,
-            model_name=args.model,
-            device=args.device,
-            compute_type=args.compute_type,
-            language=args.language,
-        )
+    try:
+        if args.backend == "ajil":
+            print(f"Ajil: {args.ajil_base_url}")
+            words, transcript, duration, stt_metadata = transcribe_ajil(
+                audio,
+                base_url=args.ajil_base_url,
+                auth_token=args.ajil_token,
+                auth_header_name=args.ajil_auth_header,
+                language=args.language,
+                timeout_sec=args.timeout,
+            )
+        elif args.backend == "local":
+            print(f"Local Whisper model: {args.model}")
+            words, transcript, duration, stt_metadata = transcribe_local(
+                audio,
+                model_name=args.model,
+                device=args.device,
+                compute_type=args.compute_type,
+                language=args.language,
+            )
+        else:
+            words, transcript, duration, stt_metadata = transcribe_proportional(audio, beats)
+    except Exception as exc:
+        if args.fallback_backend != "proportional" or args.backend == "proportional":
+            raise
+        print(f"STT WARNING: {type(exc).__name__}: {exc}", flush=True)
+        print("Falling back to deterministic approved-script timing.", flush=True)
+        words, transcript, duration, stt_metadata = transcribe_proportional(audio, beats)
+        stt_metadata["primary_backend"] = args.backend
+        stt_metadata["primary_error"] = f"{type(exc).__name__}: {exc}"[:1000]
 
     aligned = align_beats(beats, words, duration)
     json_path, md_path = write_outputs(

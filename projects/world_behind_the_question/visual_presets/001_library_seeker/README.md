@@ -1,23 +1,24 @@
 # Visual Preset 001 — Library Seeker
 
-Status: **SETUP / anchors pending**
+Status: **PRODUCTION READY**
 
 This preset belongs only to the `world_behind_the_question` content project.
 
 ## Required canonical anchors
 
-Before production:
+Canonical production files:
 
 ```text
 character_anchor.png
 style_anchor.png
 ```
 
-The approved main-character image must be produced from:
+The approved main-character image was designed from:
 
 `../../prompts/characters/MAIN_CHARACTER_ANCHOR.md`
 
-The style anchor for the Library of Living Questions will be designed next.
+The committed style anchor is the canonical Library of Living Questions
+environment and rendering-language reference.
 
 ## Reference hierarchy for future videos
 

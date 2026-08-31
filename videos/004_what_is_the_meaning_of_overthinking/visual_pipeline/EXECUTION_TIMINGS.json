@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "video_id": "004",
+  "topic": "What is the meaning of overthinking?!",
+  "events": [
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T04:07:25.807184+00:00",
+      "finished_at": "2026-08-31T04:08:01.043814+00:00",
+      "elapsed_seconds": 35.237,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md",
+      "ordak_job_id": "ba0b4fdf-1a31-4df3-ae7c-0dc048fa921e",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "script_draft",
+        "elapsed_seconds": 35.232
+      }
+    }
+  ],
+  "totals_seconds_by_operation": {
+    "text_stage": 35.237
+  }
+}

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import time
 from datetime import datetime, timezone
@@ -31,11 +32,12 @@ def git(*args: str, capture: bool = True) -> str:
     return (result.stdout or "").strip()
 
 
-def commit_project(project: Path, message: str) -> str | None:
-    relative = project.relative_to(ROOT)
-    git("add", "-A", "--", str(relative), capture=False)
+def commit_paths(paths: list[Path], message: str) -> str | None:
+    """Commit only these paths, preserving any unrelated staged user work."""
+    relatives = [str(path.relative_to(ROOT)) for path in paths]
+    git("add", "-A", "--", *relatives, capture=False)
     staged = subprocess.run(
-        ["git", "diff", "--cached", "--quiet", "--", str(relative)],
+        ["git", "diff", "--cached", "--quiet", "--", *relatives],
         cwd=ROOT,
         check=False,
     )
@@ -43,8 +45,29 @@ def commit_project(project: Path, message: str) -> str | None:
         return None
     if staged.returncode != 1:
         raise RuntimeError("Could not inspect the staged video artifacts.")
-    git("commit", "--no-verify", "-m", message, capture=False)
+    git("commit", "--no-verify", "--only", "-m", message, "--", *relatives, capture=False)
     return git("rev-parse", "HEAD")
+
+
+def register_content_project_video(project: Path, state: dict[str, Any]) -> Path:
+    """Add a completed video to its durable content-project registry."""
+    content_project = str(state.get("content_project") or "default").strip()
+    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", content_project):
+        raise RuntimeError(f"Invalid content project in pipeline state: {content_project!r}")
+    project_root = ROOT / "projects" / content_project
+    config = project_root / "PROJECT.json"
+    registry = project_root / "VIDEOS.json"
+    if not config.is_file() or not registry.is_file():
+        raise RuntimeError(f"Content-project registry is incomplete: projects/{content_project}")
+    payload = json.loads(registry.read_text(encoding="utf-8"))
+    if payload.get("project_id") != content_project or not isinstance(payload.get("videos"), list):
+        raise RuntimeError(f"Invalid content-project video registry: {registry.relative_to(ROOT)}")
+    videos = [str(value) for value in payload["videos"]]
+    if project.name not in videos:
+        videos.append(project.name)
+        payload["videos"] = sorted(set(videos), key=lambda value: (int(value.split("_", 1)[0]) if value.split("_", 1)[0].isdigit() else 10**9, value))
+        write_json(registry, payload)
+    return registry
 
 
 def push(branch: str, *, attempts: int = 4) -> None:
@@ -82,7 +105,9 @@ def main() -> None:
     if not branch:
         raise SystemExit("Automatic Git publication requires a named branch, not detached HEAD.")
 
-    first_commit = commit_project(project, f"Video {project.name}: finalized artifacts")
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    registry = register_content_project_video(project, state)
+    first_commit = commit_paths([project, registry], f"Video {project.name}: finalized artifacts")
     push(branch)
 
     completed_at = now()
@@ -116,7 +141,7 @@ def main() -> None:
         "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3),
     })
     write_json(state_path, state)
-    receipt_commit = commit_project(project, f"Video {project.name}: record Git publication")
+    receipt_commit = commit_paths([project], f"Video {project.name}: record Git publication")
     push(branch)
     print(json.dumps({"status": "GIT_PUBLISH_PASS", "branch": branch, "artifact_commit": first_commit, "receipt_commit": receipt_commit, "elapsed_seconds": elapsed}))
 

@@ -1,0 +1,106 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 30.093,
+  "stt": {
+    "backend": "local",
+    "provider": "faster-whisper",
+    "model": "small.en",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "transcript": "You replay one conversation, picture five different outcomes, and somehow feel less certain than when you started. That's overthinking. Your mind keeps circling a problem after useful thinking has run out. One answer creates another question, then another. It feels productive because you're still thinking. But more thought doesn't always bring more clarity. Sometimes the way forward isn't one more possibility. It's choosing what to do next.",
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "You replay one conversation,",
+      "speech_start": 0.0,
+      "speech_end": 1.6,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 2.44,
+      "display_duration": 2.44
+    },
+    {
+      "beat_id": 2,
+      "narration": "picture five different outcomes,",
+      "speech_start": 2.44,
+      "speech_end": 3.96,
+      "match_confidence": 1.0,
+      "display_start": 2.44,
+      "display_end": 4.1,
+      "display_duration": 1.66
+    },
+    {
+      "beat_id": 3,
+      "narration": "and somehow feel less certain than when you started.",
+      "speech_start": 4.1,
+      "speech_end": 6.86,
+      "match_confidence": 1.0,
+      "display_start": 4.1,
+      "display_end": 8.16,
+      "display_duration": 4.06
+    },
+    {
+      "beat_id": 4,
+      "narration": "That’s overthinking: your mind keeps circling a problem after useful thinking has run out.",
+      "speech_start": 8.16,
+      "speech_end": 13.52,
+      "match_confidence": 1.0,
+      "display_start": 8.16,
+      "display_end": 14.86,
+      "display_duration": 6.7
+    },
+    {
+      "beat_id": 5,
+      "narration": "One answer creates another question, then another.",
+      "speech_start": 14.86,
+      "speech_end": 17.42,
+      "match_confidence": 1.0,
+      "display_start": 14.86,
+      "display_end": 18.16,
+      "display_duration": 3.3
+    },
+    {
+      "beat_id": 6,
+      "narration": "It feels productive because you’re still thinking.",
+      "speech_start": 18.16,
+      "speech_end": 20.74,
+      "match_confidence": 1.0,
+      "display_start": 18.16,
+      "display_end": 21.62,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 7,
+      "narration": "But more thought doesn’t always bring more clarity.",
+      "speech_start": 21.62,
+      "speech_end": 23.98,
+      "match_confidence": 1.0,
+      "display_start": 21.62,
+      "display_end": 24.84,
+      "display_duration": 3.22
+    },
+    {
+      "beat_id": 8,
+      "narration": "Sometimes the way forward isn’t one more possibility.",
+      "speech_start": 24.84,
+      "speech_end": 27.28,
+      "match_confidence": 1.0,
+      "display_start": 24.84,
+      "display_end": 27.28,
+      "display_duration": 2.44
+    },
+    {
+      "beat_id": 9,
+      "narration": "It’s choosing what to do next.",
+      "speech_start": 27.28,
+      "speech_end": 29.52,
+      "match_confidence": 1.0,
+      "display_start": 27.28,
+      "display_end": 30.093,
+      "display_duration": 2.813
+    }
+  ]
+}

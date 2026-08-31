@@ -49,6 +49,11 @@ def test_parse_beats_requires_complete_sequential_range(tmp_path: Path) -> None:
     with pytest.raises(RuntimeError, match="sequential"):
         pipeline.parse_beats(malformed)
 
+
+def test_clean_model_text_removes_only_editor_affordance() -> None:
+    assert module.clean_model_text("Edit\n\nUseful answer") == "Useful answer"
+    assert module.clean_model_text("Editing is useful") == "Editing is useful"
+
 def test_image_validation_rejects_duplicate_and_wrong_aspect(tmp_path: Path) -> None:
     pipeline = make_pipeline(tmp_path)
     pipeline.project.mkdir(parents=True)
@@ -75,3 +80,31 @@ def test_existing_valid_beat_is_skipped(tmp_path: Path) -> None:
     pipeline.generate_images([{"id": 1}], style, character)
     assert pipeline.state["beats"]["001"]["status"] == "DONE"
     assert pipeline.state["beats"]["001"]["attempts"] == 0
+
+
+def test_creative_brief_is_persisted_and_resume_locked(tmp_path: Path) -> None:
+    project = make_content_project(tmp_path)
+    brief = {"narrative_angle": "Enter through a clockwork book.", "must_avoid": "No fake statistics."}
+    pipeline = module.Pipeline(tmp_path, "Topic", "002", "preset", 60, 60, "16:9", project, NoopClient(), False, brief)
+    text = pipeline.brief().read_text(encoding="utf-8")
+    assert "Narrative angle: Enter through a clockwork book." in text
+    assert "Must avoid: No fake statistics." in text
+    pipeline.load_or_init()
+
+    changed = module.Pipeline(tmp_path, "Topic", "002", "preset", 60, 60, "16:9", project, NoopClient(), False, {"narrative_angle": "A different world."})
+    with pytest.raises(RuntimeError, match="creative brief"):
+        changed.load_or_init()
+
+
+def test_world_design_requires_complete_production_bible(tmp_path: Path) -> None:
+    pipeline = make_pipeline(tmp_path)
+    headings = (
+        "Governing Metaphor", "The Question Book", "Portal Transition", "Subject World",
+        "Palette, Materials, and Light", "Seeker Adaptation", "Recurring Locations and Props",
+        "Visual Arc", "Continuity Rules", "Avoid",
+    )
+    complete = "# Episode World Design\n\n" + "\n\n".join(f"## {heading}\n" + "specific production detail " * 14 for heading in headings)
+    pipeline.validate_world_design(complete)
+    pipeline.validate_world_design(complete.replace("## ", ""))
+    with pytest.raises(RuntimeError, match="world design validation"):
+        pipeline.validate_world_design(complete.replace("## The Question Book", "## Missing Book"))

@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "run_id": "remote_run_01",
+  "beats": [
+    {
+      "beat": 1,
+      "job_id": "e260a180-1a65-445e-9d0b-edb959a399e8",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png"
+      ],
+      "path": "/root/YT_Video_Generation_Pipeline/videos/_ordak_continuity_smokes/remote_run_01/beat_001.png",
+      "bytes": 2101864,
+      "width": 1672,
+      "height": 941,
+      "sha256": "d01b85cc8ed9e391b70df653da541b78d4269fde5eed91bfd404898db4d8769c"
+    },
+    {
+      "beat": 2,
+      "job_id": "c3321514-546e-4a5e-90cc-9bc35c7bd956",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/_ordak_continuity_smokes/remote_run_01/beat_001.png"
+      ],
+      "path": "/root/YT_Video_Generation_Pipeline/videos/_ordak_continuity_smokes/remote_run_01/beat_002.png",
+      "bytes": 2502002,
+      "width": 1672,
+      "height": 941,
+      "sha256": "68b4509f2700b6d7969c25908a4df53e1955165f40b082960b2a14b3cb14e509"
+    },
+    {
+      "beat": 3,
+      "job_id": "9636282d-6b9e-47fd-946d-c1ff85c35eda",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/_ordak_continuity_smokes/remote_run_01/beat_002.png"
+      ],
+      "path": "/root/YT_Video_Generation_Pipeline/videos/_ordak_continuity_smokes/remote_run_01/beat_003.png",
+      "bytes": 2534175,
+      "width": 1672,
+      "height": 941,
+      "sha256": "9e3934d8335dbd75aa87e3b95fe1273f5d07407ea654de683069f751c0bf652e"
+    }
+  ]
+}

@@ -36,3 +36,12 @@ if response.status_code >= 400:
         "Ajil health check failed. The response body above is the authoritative "
         "server-side error. Local proxy environment variables were bypassed."
     )
+
+# A generic process listening on the configured port may also expose /health.
+# Do not accept it as Ajil: accepting Headscale's {"status": "pass"} here
+# previously sent transcription requests to the wrong service.
+if not isinstance(payload, dict) or payload.get("status") != "ok" or not isinstance(payload.get("providers"), dict):
+    raise SystemExit(
+        "Configured endpoint is not the Ajil Unified AI Gateway. Expected "
+        '{"status":"ok","providers":{...}} from /health.'
+    )

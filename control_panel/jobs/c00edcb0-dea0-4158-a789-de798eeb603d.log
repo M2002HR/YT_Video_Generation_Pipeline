@@ -1,0 +1,620 @@
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 488, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 481, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, args.duration_seconds, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 340, in run
+    self.client.readiness()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 113, in readiness
+    raise RuntimeError("Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.")
+RuntimeError: Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.
+visuals failed; resuming safely in 5s (attempt 2/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 488, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 481, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, args.duration_seconds, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 340, in run
+    self.client.readiness()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 113, in readiness
+    raise RuntimeError("Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.")
+RuntimeError: Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.
+visuals failed; resuming safely in 10s (attempt 3/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 488, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 481, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, args.duration_seconds, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 340, in run
+    self.client.readiness()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 113, in readiness
+    raise RuntimeError("Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.")
+RuntimeError: Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.
+visuals failed; resuming safely in 20s (attempt 4/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 488, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 481, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, args.duration_seconds, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 340, in run
+    self.client.readiness()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 113, in readiness
+    raise RuntimeError("Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.")
+RuntimeError: Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 176, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 152, in main
+    run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 35, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_visual_pipeline.py', '--topic', 'What is Karma and is it real or not?', '--video-id', '006', '--preset', '001_cinematic_storybook_green_hoodie', '--duration-seconds', '60.0']' returned non-zero exit status 1.
+
+=== RESUMED 2026-08-31T06:31:24Z (ChatGPT tab bootstrap recovery enabled) ===
+Attempt 1 at connecting failed: ConnectionError: Proxy connection timed out: 10
+Attempt 2 at connecting failed: ConnectionError: Proxy connection timed out: 10
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 493, in <module>
+    try:
+    ^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 486, in main
+    duration_min = args.min_duration_seconds if args.min_duration_seconds is not None else args.duration_seconds
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 374, in run
+    self.save()
+^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 426, in generate_images
+    try:
+         
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 204, in image
+    raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+RuntimeError: Beat 002 Ordak job 3fe3e7aa-0476-4dcb-9130-12c19d03e562 failed: Could not extract generated images from ChatGPT UI.
+visuals failed; resuming safely in 5s (attempt 2/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 501, in <module>
+    parser.add_argument("--min-duration-seconds", type=float, default=None)
+    ^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 494, in main
+    
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 376, in run
+    preset_root = self.root / "visual_presets" / self.preset
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 428, in generate_images
+    beat_id = int(beat["id"])
+              ^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 204, in image
+    raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+RuntimeError: Beat 004 Ordak job ef3de420-5df5-42ee-8b47-02a78df419b4 failed: Could not extract generated images from ChatGPT UI.
+visuals failed; resuming safely in 10s (attempt 3/4).
+Attempt 1 at connecting failed: ConnectionError: Proxy connection timed out: 10
+Attempt 2 at connecting failed: ConnectionResetError: [Errno 104] Connection reset by peer
+Attempt 3 at connecting failed: ConnectionError: Proxy connection timed out: 10
+Attempt 4 at connecting failed: ConnectionError: Proxy connection timed out: 10
+Attempt 5 at connecting failed: ConnectionResetError: [Errno 104] Connection reset by peer
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 522, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 515, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 397, in run
+    self.generate_images(beats, style, character)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 449, in generate_images
+    job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 204, in image
+    raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+RuntimeError: Beat 009 Ordak job af34b98a-01f5-4d13-b620-007987d81a42 failed: Timed out while waiting for image upload in the current Chrome tab.
+visuals failed; resuming safely in 20s (attempt 4/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 522, in <module>
+    print(f"VISUAL PIPELINE: PASS\nReport: {report}")
+    ^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 515, in main
+    env_file = ROOT / os.getenv("YT_ENV_FILE", ".env")
+                 ~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 397, in run
+    self.save()
+^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 449, in generate_images
+    self.save()
+              ^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 204, in image
+    raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+RuntimeError: Beat 010 Ordak job b9e3d499-5d87-49d5-8577-bbc93ff5d5fa failed: Timed out while waiting for image upload in the current Chrome tab.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 176, in <module>
+    if timing_file.is_file():
+    ^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 152, in main
+    if missing_voice_fields:
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 35, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_visual_pipeline.py', '--topic', 'What is Karma and is it real or not?', '--video-id', '006', '--preset', '001_cinematic_storybook_green_hoodie', '--duration-seconds', '60.0']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 370, in run
+    self.load_or_init()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 267, in load_or_init
+    self.state = json.loads(self.state_path.read_text(encoding="utf-8"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1429 column 2 (char 52711)
+visuals failed; resuming safely in 5s (attempt 2/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 370, in run
+    self.load_or_init()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 267, in load_or_init
+    self.state = json.loads(self.state_path.read_text(encoding="utf-8"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1429 column 2 (char 52711)
+visuals failed; resuming safely in 10s (attempt 3/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 370, in run
+    self.load_or_init()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 267, in load_or_init
+    self.state = json.loads(self.state_path.read_text(encoding="utf-8"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1429 column 2 (char 52711)
+visuals failed; resuming safely in 20s (attempt 4/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 370, in run
+    self.load_or_init()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 267, in load_or_init
+    self.state = json.loads(self.state_path.read_text(encoding="utf-8"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1429 column 2 (char 52711)
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 197, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 173, in main
+    run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", args.aspect_ratio], state, state_path, retries=3, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 35, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_visual_pipeline.py', '--topic', 'What is Karma and is it real or not?', '--video-id', '006', '--preset', '001_cinematic_storybook_green_hoodie', '--min-duration-seconds', '60.0', '--max-duration-seconds', '60.0', '--aspect-ratio', '16:9']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 399, in run
+    self.generate_images(beats, style, character)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 452, in generate_images
+    job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 199, in image
+    job_response = self.http.get(f"{self.settings.base_url}/api/jobs/{job_id}")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1053, in get
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 111] Connection refused
+visuals failed; resuming safely in 5s (attempt 2/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 399, in run
+    self.generate_images(beats, style, character)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 452, in generate_images
+    job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 204, in image
+    raise RuntimeError(f"Beat {beat_id:03d} Ordak job {job_id} failed: {job.get('error_message') or job.get('status')}")
+RuntimeError: Beat 013 Ordak job 21aaabb9-2216-4963-9fff-5ac610ac624e failed: Job cancelled.
+visuals failed; resuming safely in 10s (attempt 3/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 526, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 519, in main
+    report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 399, in run
+    self.generate_images(beats, style, character)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 452, in generate_images
+    job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_visual_pipeline.py", line 199, in image
+    job_response = self.http.get(f"{self.settings.base_url}/api/jobs/{job_id}")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1053, in get
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/root/YT_Video_Generation_Pipeline/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 111] Connection refused
+visuals failed; resuming safely in 20s (attempt 4/4).
+VISUAL PIPELINE: PASS
+Report: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/visual_pipeline/VISUAL_QC_REPORT.json
+/root/YT_Video_Generation_Pipeline/scripts/run_elevenlabs_voiceover.py:216: SyntaxWarning: invalid escape sequence '\/'
+  return self._json("""(() => {
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_elevenlabs_voiceover.py", line 567, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_elevenlabs_voiceover.py", line 552, in main
+    raise RuntimeError("ElevenLabs UI made no progress and did not expose a downloadable result after all recovery refreshes.")
+RuntimeError: ElevenLabs UI made no progress and did not expose a downloadable result after all recovery refreshes.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 197, in <module>
+    if visual_report.is_file():
+    ^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 174, in main
+    voice_settings = json.loads(profile.read_text(encoding="utf-8"))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 35, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_elevenlabs_voiceover.py', '--video-id', '006', '--project', '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not', '--profile', 'videos/006_what_is_karma_and_is_it_real_or_not/voiceover/REQUESTED_VOICE_PROFILE.json']' returned non-zero exit status 1.
+ELEVENLABS VOICEOVER: PASS
+Audio: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/audio/narration.mp3
+ELEVENLABS VOICEOVER: PASS (reused /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/audio/narration.mp3)
+Video: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not
+Audio: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/audio/narration.mp3
+Beats: 18
+STT backend: local
+Local Whisper model: small.en
+Created: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/timing/BEAT_TIMINGS.json
+Created: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/timing/BEAT_TIMINGS.md
+Audio duration: 64.261s
+Timestamp source: word
+Alignment QC: all beats >= 75% token match.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 230, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 190, in main
+    url = args.track_url or choose_track(browser, os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"), prompt, args.provider)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 158, in choose_track
+    raise RuntimeError(f"ChatGPT did not return a valid {provider} track URL.")
+RuntimeError: ChatGPT did not return a valid mixkit track URL.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 223, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 211, in main
+    run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 35, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_pixabay_music.py', '--video-id', '006', '--project', '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not', '--provider', 'mixkit']' returned non-zero exit status 1.
+ELEVENLABS VOICEOVER: PASS (reused /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/audio/narration.mp3)
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 258, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 218, in main
+    url = args.track_url or choose_track(browser, os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"), prompt, args.provider)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 178, in choose_track
+    browser.insert_and_submit(prompt)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_pixabay_music.py", line 105, in insert_and_submit
+    raise RuntimeError("ChatGPT composer contains a different unsent request; refusing to overwrite it.")
+RuntimeError: ChatGPT composer contains a different unsent request; refusing to overwrite it.
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 223, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 211, in main
+    run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 35, in run
+    subprocess.run(command, cwd=ROOT, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/run_pixabay_music.py', '--video-id', '006', '--project', '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not', '--provider', 'mixkit']' returned non-zero exit status 1.
+ELEVENLABS VOICEOVER: PASS (reused /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/audio/narration.mp3)
+MIXKIT MUSIC: PASS
+File: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/music/background.mp3
+Created: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/timeline/TIMELINE.json
+Created: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/timeline/SUBTITLES.ass
+Beats: 18
+Duration: 64.261s
+Subtitle cues: 32
+Subtitle QC: no overlapping cues.
+Timeline QC: no overlapping STT boundaries.
+[mp3 @ 0x5bc027b94dc0] Estimating duration from bitrate, this may be inaccurate
+Timeline: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/timeline/TIMELINE.json
+Beats: 18
+Resolution: 1920x1080 @ 30fps
+Duration target: 64.261s
+Subtitles: on
+Resource caps: encoder=2, filter=2, complex=2
+Output: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/final.mp4
+
+Render complete.
+Actual duration: 64.167s
+Duration drift: -0.094s
+File: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/final.mp4
+QC input: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/final.mp4
+[PASS] video_stream_count: expected=1 actual=1
+[PASS] audio_stream_count: expected=1 actual=1
+[PASS] resolution: expected=1920x1080 actual=1920x1080
+[PASS] fps: expected=30.0 actual=30.0
+[PASS] duration: expected=64.261 actual=64.167 (drift=-0.094s)
+[PASS] video_codec: expected=h264 actual=h264
+[PASS] pixel_format: expected=yuv420p actual=yuv420p
+[PASS] audio_codec: expected=aac actual=aac
+[PASS] file_nonempty: expected=>0 bytes actual=29799515
+[PASS] full_decode: expected=no decode errors actual=ok
+Report: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/render/QC_REPORT.json
+QC RESULT: PASS
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/final.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:01:04.17, start: 0.000000, bitrate: 3715 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], 3539 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 166 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+Input #1, mp3, from '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/music/background.mp3':
+  Metadata:
+    encoder         : Lavf58.12.100
+  Duration: 00:01:53.97, start: 0.025057, bitrate: 256 kb/s
+  Stream #1:0: Audio: mp3, 44100 Hz, stereo, fltp, 256 kb/s
+    Metadata:
+      encoder         : Lavc58.18
+Stream mapping:
+  Stream #0:1 (aac) -> atrim:default
+  Stream #1:0 (mp3float) -> atrim:default
+  Stream #0:0 -> #0:0 (copy)
+  loudnorm:default -> Stream #0:1 (aac)
+Press [q] to stop, [?] for help
+Output #0, mp4, to '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/polished.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 3539 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 96000 Hz, mono, fltp, 192 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 aac
+size=     256kB time=00:00:02.96 bitrate= 707.0kbits/s speed=  30x    size=    1536kB time=00:00:08.40 bitrate=1498.0kbits/s speed=  14x    size=    5120kB time=00:00:14.30 bitrate=2933.1kbits/s speed=  13x    size=    8192kB time=00:00:19.20 bitrate=3495.3kbits/s speed=  12x    size=   10752kB time=00:00:23.86 bitrate=3690.5kbits/s speed=11.3x    size=   13056kB time=00:00:28.86 bitrate=3705.1kbits/s speed=11.1x    size=   15104kB time=00:00:33.90 bitrate=3649.9kbits/s speed=10.9x    size=   18432kB time=00:00:39.56 bitrate=3816.2kbits/s speed=  11x    size=   22272kB time=00:00:45.40 bitrate=4018.8kbits/s speed=  11x    size=   24320kB time=00:00:51.30 bitrate=3883.6kbits/s speed=11.1x    size=   27136kB time=00:00:56.56 bitrate=3929.8kbits/s speed=11.1x    size=   28416kB time=00:01:01.80 bitrate=3766.7kbits/s speed=  11x    [mp4 @ 0x565979bc7b80] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0x565979bc7a40] video:27725kB audio:1552kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.232736%
+size=   29345kB time=00:01:04.16 bitrate=3746.8kbits/s speed=10.5x    
+[aac @ 0x565979bc95c0] Qavg: 301.821
+Baseline: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/final.mp4
+Duration: 64.167s
+Music: on
+SFX events: 0
+Output: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/polished.mp4
+
+Audio polish complete.
+Polished duration: 64.167s
+Duration drift: +0.000s
+File: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/polished.mp4
+QC input: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/renders/polished.mp4
+[PASS] video_stream_count: expected=1 actual=1
+[PASS] audio_stream_count: expected=1 actual=1
+[PASS] resolution: expected=1920x1080 actual=1920x1080
+[PASS] fps: expected=30.0 actual=30.0
+[PASS] duration: expected=64.261 actual=64.167 (drift=-0.094s)
+[PASS] video_codec: expected=h264 actual=h264
+[PASS] pixel_format: expected=yuv420p actual=yuv420p
+[PASS] audio_codec: expected=aac actual=aac
+[PASS] file_nonempty: expected=>0 bytes actual=30049709
+[PASS] full_decode: expected=no decode errors actual=ok
+Report: /root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/render/QC_REPORT_polished.json
+QC RESULT: PASS
+TELEGRAM PUBLISH: PASS
+Message ID: 23028
+COMPLETION PIPELINE: PASS
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 122, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 82, in main
+    first_commit = commit_project(project, f"Video {project.name}: finalized artifacts")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 33, in commit_project
+    git("add", "-A", "--", str(relative), capture=False)
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 28, in git
+    return result.stdout.strip()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+git commit/push failed; retrying in 2s (2/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 122, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 82, in main
+    first_commit = commit_project(project, f"Video {project.name}: finalized artifacts")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 33, in commit_project
+    git("add", "-A", "--", str(relative), capture=False)
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 28, in git
+    return result.stdout.strip()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+git commit/push failed; retrying in 4s (3/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 122, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 82, in main
+    first_commit = commit_project(project, f"Video {project.name}: finalized artifacts")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 33, in commit_project
+    git("add", "-A", "--", str(relative), capture=False)
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 28, in git
+    return result.stdout.strip()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+git commit/push failed; retrying in 8s (4/4).
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 122, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 82, in main
+    first_commit = commit_project(project, f"Video {project.name}: finalized artifacts")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 33, in commit_project
+    git("add", "-A", "--", str(relative), capture=False)
+  File "/root/YT_Video_Generation_Pipeline/scripts/commit_video_artifacts.py", line 28, in git
+    return result.stdout.strip()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+Traceback (most recent call last):
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 223, in <module>
+    main()
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 217, in main
+    publish_git_artifacts(project, state_path, state, notifier=notifier)
+  File "/root/YT_Video_Generation_Pipeline/scripts/run_full_video_pipeline.py", line 92, in publish_git_artifacts
+    raise RuntimeError(f"Automatic Git publication failed after 4 attempts: {last_error}")
+RuntimeError: Automatic Git publication failed after 4 attempts: Command '['/root/YT_Video_Generation_Pipeline/.venv/bin/python', 'scripts/commit_video_artifacts.py', '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not', '--full-state', '/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/pipeline/FULL_PIPELINE_RUNTIME_STATE.json', '--started-at', '21921.986760136']' returned non-zero exit status 1.

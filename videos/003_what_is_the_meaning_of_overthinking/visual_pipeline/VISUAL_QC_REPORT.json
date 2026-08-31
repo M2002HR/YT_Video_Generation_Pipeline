@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "topic": "What is the meaning of overthinking?!",
+  "total_planned_beats": 9,
+  "total_valid_images": 9,
+  "missing_beats": [],
+  "invalid_beats": [],
+  "images": [
+    {
+      "beat_id": 1,
+      "attempts": 1,
+      "previous_beat_reference_required": false,
+      "previous_beat_reference_present": false,
+      "path": "assets/raw_beats/beat_001.png",
+      "bytes": 2101172,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "2960aa94384e196bb4a4254b62c90c572fb52f1e04cf30523881162b9a8f57d3"
+    },
+    {
+      "beat_id": 2,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_002.png",
+      "bytes": 2364977,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "5e2cf3285a182498790379cf593ae383d90624e7774f1666c8dda42de27d1102"
+    },
+    {
+      "beat_id": 3,
+      "attempts": 3,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_003.png",
+      "bytes": 2384425,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "ec5972568f643fe47484408ea2550860dc6feb78bcae6a08984e96feb43acd6e"
+    },
+    {
+      "beat_id": 4,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_004.png",
+      "bytes": 2374316,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "98d620d0dc5b3e58c8145196c9bbed4544ba8fb0276237ffc03a14790d3b0784"
+    },
+    {
+      "beat_id": 5,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_005.png",
+      "bytes": 2301299,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "945093f84033aafa8ee6e32c1cdcc9b88e3cb703f299628f5e124c4818ddd382"
+    },
+    {
+      "beat_id": 6,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_006.png",
+      "bytes": 2411072,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "dee99800a8fe7927dc8781fc2987e2b08fd6e6281cbf9a0e4fedbb4b142043ed"
+    },
+    {
+      "beat_id": 7,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_007.png",
+      "bytes": 2406276,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "a87315650c1ca60f66f3bf66add0f4be4a447b016c09f78db5858a0f6afa6067"
+    },
+    {
+      "beat_id": 8,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_008.png",
+      "bytes": 2447066,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "a8db5c73d6f08af9ba1b8176f65dcc5c3c479b24e0b64d9a85b3de30ee2e373a"
+    },
+    {
+      "beat_id": 9,
+      "attempts": 1,
+      "previous_beat_reference_required": true,
+      "previous_beat_reference_present": true,
+      "path": "assets/raw_beats/beat_009.png",
+      "bytes": 2437793,
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.7768331562167907,
+      "sha256": "34c868a75cab35a23ba4c9831b02457cf86a1772b21f9413912fb34f028b55de"
+    }
+  ],
+  "completed_at": "2026-08-31T04:56:45.797414+00:00"
+}

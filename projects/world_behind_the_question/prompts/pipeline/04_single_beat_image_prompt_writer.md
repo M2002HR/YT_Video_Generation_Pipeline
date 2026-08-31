@@ -60,6 +60,31 @@ Short story-native text is allowed only when truly necessary and should remain r
 - Do not add unsupported scientific mechanisms.
 - Avoid unnecessary text.
 - Make metaphors readable inside a single coherent frame rather than through multiple panels.
+- For this project, use the supplied anchors as non-negotiable canon: the
+  hand-drawn educational-adventure language, Library of Living Questions mood,
+  and the Seeker's face, hair, small brass glasses, teal/moss outer layer,
+  satchel, and Page Key. If the beat does not need the Seeker, preserve the
+  style anchor's material, line, color, and lighting language instead.
+- When the Seeker enters a topic world, adapt only 15–30% of the outfit through
+  fabric, trim, or one modest accessory. Never replace the core silhouette or
+  turn him into a generic period/fantasy/space character.
+- Do not depict the Seeker as a famous existing character, a wizard, a
+  superhero, a child, or a photoreal person.
+- Treat EPISODE WORLD DESIGN as binding continuity for the topic-specific book,
+  portal, palette, materials, lighting, locations, props, and wardrobe
+  adaptation. Translate only the current beat into an image; do not redesign
+  the world from scratch for each beat.
+- If the current beat belongs to the Opening Hook Block, make it immediately
+  legible and high-impact as a still: one decisive subject, one clear
+  action/tension, strong depth, and no passive setup pose. Preserve screen
+  direction, geography, lighting logic, and action progression across the
+  neighboring hook beats. Compose with enough clean temporal and spatial logic
+  that the opening still sequence can later be replaced by one continuous
+  6–10 second video clip, but still generate exactly one image now.
+- For the final CTA beat, use a simple satisfying brand-world closing image
+  after the topic payoff—prefer the returned question book, Page Key, or Library
+  echo. Do not visualize literal like/subscribe buttons, platform UI, captions,
+  logos, pointing gestures, or text; the spoken narration carries the CTA.
 
 ## Required output format
 
@@ -93,6 +118,10 @@ FRAME COMPOSITION:
 ## STYLE RULES
 
 {{STYLE_RULES}}
+
+## EPISODE WORLD DESIGN
+
+{{WORLD_DESIGN}}
 
 ## VISUAL BEAT
 

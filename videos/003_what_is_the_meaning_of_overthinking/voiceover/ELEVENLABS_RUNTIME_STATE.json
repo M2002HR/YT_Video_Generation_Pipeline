@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "video_id": "003",
+  "created_at": "2026-08-31T04:56:47.385646+00:00",
+  "input_path": "/root/YT_Video_Generation_Pipeline/videos/003_what_is_the_meaning_of_overthinking/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "9d6250027a92c0cdb658b5ab713a45fa8b10451858d2b142fe2d4cbeb6564781",
+  "settings": {
+    "voice": "Mark - Natural Conversations",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.45,
+    "similarity": 0.75,
+    "style": 0.2,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-31T04:57:26.360775+00:00",
+      "elapsed_seconds": 38.974
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-08-31T05:00:42.235495+00:00",
+      "elapsed_seconds": 0.355
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-08-31T05:00:58.350969+00:00",
+      "elapsed_seconds": 16.115,
+      "settings": {
+        "voice": "Mark - Natural Conversations",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.45,
+        "similarity": 0.75,
+        "style": 0.2,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-08-31T05:00:58.620344+00:00",
+      "elapsed_seconds": 16.384,
+      "characters": 444
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-08-31T05:00:59.511211+00:00",
+      "elapsed_seconds": 0.89
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-08-31T05:01:13.858109+00:00",
+      "elapsed_seconds": 15.236,
+      "bytes": 498137,
+      "output": "assets/audio/narration.mp3"
+    },
+    {
+      "operation": "elevenlabs_download_recovered",
+      "finished_at": "2026-08-31T05:02:22.008401+00:00",
+      "elapsed_seconds": 0.0,
+      "bytes": 498137,
+      "output": "assets/audio/narration.mp3"
+    },
+    {
+      "operation": "elevenlabs_download_recovered",
+      "finished_at": "2026-08-31T05:10:56.927447+00:00",
+      "elapsed_seconds": 0.0,
+      "bytes": 498137,
+      "output": "assets/audio/narration.mp3"
+    },
+    {
+      "operation": "elevenlabs_download_recovered",
+      "finished_at": "2026-08-31T05:11:50.763265+00:00",
+      "elapsed_seconds": 0.0,
+      "bytes": 498137,
+      "output": "assets/audio/narration.mp3"
+    },
+    {
+      "operation": "elevenlabs_download_recovered",
+      "finished_at": "2026-08-31T05:16:05.045289+00:00",
+      "elapsed_seconds": 0.0,
+      "bytes": 498137,
+      "output": "assets/audio/narration.mp3"
+    },
+    {
+      "operation": "elevenlabs_download_recovered",
+      "finished_at": "2026-08-31T05:18:59.520371+00:00",
+      "elapsed_seconds": 0.0,
+      "bytes": 498137,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-08-31T05:18:59.520956+00:00",
+  "submitted_at": "2026-08-31T05:00:59.510547+00:00",
+  "download_choice": "Download Audio",
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-08-31T05:01:13.857837+00:00"
+}
