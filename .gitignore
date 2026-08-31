@@ -24,6 +24,8 @@ videos/**/assets/renders/*
 Thumbs.db
 __pycache__/
 *.pyc
+.venv/
+control_panel/
 
 # Root runtime secrets/config
 .env
