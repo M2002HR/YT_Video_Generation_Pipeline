@@ -42,11 +42,26 @@ def main() -> None:
     parser.add_argument("--preset", default="001_cinematic_storybook_green_hoodie")
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default="mixkit")
+    parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
     args = parser.parse_args()
     if not 15 <= args.duration_seconds <= 300:
         raise SystemExit("duration must be between 15 and 300 seconds")
+    profile = args.voice_profile.expanduser().resolve()
+    if not profile.is_file():
+        raise SystemExit(f"Voice profile not found: {profile}")
+    try:
+        voice_settings = json.loads(profile.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"Voice profile is not valid JSON: {profile}") from exc
+    required_voice_fields = {"voice", "model", "speed", "stability", "similarity", "style"}
+    missing_voice_fields = sorted(name for name in required_voice_fields if name not in voice_settings)
+    if missing_voice_fields:
+        raise SystemExit("Voice profile missing: " + ", ".join(missing_voice_fields))
     safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in args.topic).strip("_")
     project = ROOT / "videos" / f"{args.video_id}_{safe_topic}"
+    if args.dry_run:
+        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_seconds": args.duration_seconds, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish"]}, indent=2))
+        return
     state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state: dict[str, Any] = {"schema_version": 1, "topic": args.topic, "video_id": args.video_id, "duration_seconds": args.duration_seconds, "started_at": stamp(), "status": "RUNNING", "events": []}
