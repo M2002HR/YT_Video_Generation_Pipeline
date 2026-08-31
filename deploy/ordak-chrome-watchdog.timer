@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Ordak Chrome watchdog every 30 seconds
+
+[Timer]
+OnBootSec=30
+OnUnitActiveSec=30
+Unit=ordak-chrome-watchdog.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
