@@ -78,6 +78,25 @@ def ensure_audio_mix_profile(project: Path) -> Path:
     return profile
 
 
+def ensure_render_profile(project: Path) -> Path:
+    """Create the versioned, resource-capped render defaults for a new video."""
+    profile = project / "render" / "RENDER_PROFILE.json"
+    if profile.is_file():
+        return profile
+    profile.parent.mkdir(parents=True, exist_ok=True)
+    profile.write_text(json.dumps({
+        "schema_version": 1,
+        "resolution": {"width": 1920, "height": 1080},
+        "fps": 30,
+        "video": {"codec": "libx264", "preset": "medium", "crf": 18, "pixel_format": "yuv420p"},
+        "audio": {"codec": "aac", "bitrate": "192k"},
+        "resource_limits": {"ffmpeg_threads": 1, "filter_threads": 1, "filter_complex_threads": 1},
+        "motion": {"enabled": True, "strength": 0.035, "supersample": 2, "cycle": ["zoom_in", "still", "zoom_out", "slow_zoom_in"]},
+        "subtitles": {"enabled": True, "font_name": "DejaVu Sans", "font_size": 56, "bold": True, "margin_v": 90, "outline": 3, "shadow": 0, "max_words_per_cue": 6, "max_chars_per_line": 34, "max_lines": 2},
+    }, indent=2) + "\n", encoding="utf-8")
+    return profile
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
     parser.add_argument("--topic", required=True)
@@ -132,6 +151,8 @@ def main() -> None:
         run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path)
+    render_profile = ensure_render_profile(project)
+    reuse("render_profile", render_profile, state, state_path)
     run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path)
     state.update({"status": "DONE", "completed_at": stamp(), "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3)})
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
