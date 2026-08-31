@@ -30,6 +30,15 @@ def slug(value: str) -> str:
     return result or "video"
 
 
+def next_video_id() -> str:
+    ids = []
+    for path in (ROOT / "videos").iterdir():
+        match = re.match(r"^(\d+)_", path.name)
+        if match:
+            ids.append(int(match.group(1)))
+    return f"{max(ids, default=0) + 1:03d}"
+
+
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -69,7 +78,6 @@ class Handler(BaseHTTPRequestHandler):
 <style>body{{font:16px system-ui;max-width:850px;margin:32px auto;background:#10131a;color:#e8edf4}}input,select{{width:100%;padding:8px;margin:4px 0 14px;box-sizing:border-box}}button{{padding:10px 18px;background:#58c;color:#fff;border:0;border-radius:5px}}table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;border-bottom:1px solid #344;text-align:left}}.msg{{color:#8f8}}</style>
 <h1>Video Pipeline Launch</h1><p class=msg>{html.escape(message)}</p>
 <form method=post action=/launch><label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
-<label>Video ID<input name=video_id required pattern="[0-9A-Za-z_-]+" placeholder="003"></label>
 <label>Target duration (seconds)<input name=duration_seconds type=number min=15 max=300 value=60 required></label>
 <label>Voice<input name=voice value="Mark - Natural Conversations" required></label>
 <label>ElevenLabs model<select name=model><option>Eleven Multilingual v2</option><option>Eleven v3</option></select></label>
@@ -95,11 +103,11 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
         length = int(self.headers.get("Content-Length", "0")); values = parse_qs(self.rfile.read(length).decode("utf-8"))
         try:
-            topic = values["topic"][0].strip(); video_id = values["video_id"][0].strip()
+            topic = values["topic"][0].strip(); video_id = next_video_id()
             duration = float(values["duration_seconds"][0]); voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             provider = values["music_provider"][0]
-            if not topic or not re.fullmatch(r"[0-9A-Za-z_-]+", video_id) or not 15 <= duration <= 300 or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
+            if not topic or not 15 <= duration <= 300 or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
