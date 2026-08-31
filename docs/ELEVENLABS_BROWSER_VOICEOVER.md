@@ -55,8 +55,12 @@ refreshes, and after each recovery refresh re-applies and verifies all requested
 settings, restores the canonical narration text, and obtains a fresh visible
 submission acknowledgement. It then triggers the strongest visible web-UI
 download option and waits for the browser download before moving the audio into
-the video project. English Telegram progress, timing and failure notifications
-use the existing pipeline notifier when enabled.
+the video project. A stale persisted download-click record is cleared when a
+runner resumes, and a still-visible download option is retried after the
+configured retry window (`YT_ELEVENLABS_DOWNLOAD_RETRY_SECONDS`, default 30),
+so a process crash cannot strand an already-generated result. English Telegram
+progress, timing and failure notifications use the existing pipeline notifier
+when enabled.
 
 ## Navigation advisor
 

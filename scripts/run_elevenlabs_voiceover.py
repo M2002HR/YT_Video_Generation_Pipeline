@@ -534,6 +534,13 @@ def main() -> None:
     # A failed/restarted run may predate a newer versioned profile.  Persist
     # exactly what this invocation is about to apply for traceability.
     state.data["settings"] = settings.supplied()
+    # A prior process can die after recording a UI download click but before
+    # Chrome writes a file.  That historical click must never suppress the
+    # recovery process from clicking the *currently visible* result.
+    state.data.pop("download_choice", None)
+    state.data.pop("download_requested_at", None)
+    state.data.pop("error", None)
+    state.data.pop("failed_at", None)
     state.save()
     output_dir = project / "assets" / "audio"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -592,11 +599,14 @@ def main() -> None:
                 notifier.stage_complete("ElevenLabs voiceover", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
                 print(f"ELEVENLABS VOICEOVER: PASS\nAudio: {destination}")
                 return
-            if snapshot.get("downloads") and not state.data.get("download_choice"):
+            retry_after = float(os.getenv("YT_ELEVENLABS_DOWNLOAD_RETRY_SECONDS", "30"))
+            prior_download_at = float(state.data.get("download_requested_at") or 0)
+            if snapshot.get("downloads") and (not state.data.get("download_choice") or time.time() - prior_download_at >= retry_after):
                 choice = ui.download_best_available()
                 if choice.get("ok"):
-                    state.data["download_choice"] = choice.get("choice"); state.data["status"] = "DOWNLOAD_TRIGGERED"; state.save()
+                    state.data["download_choice"] = choice.get("choice"); state.data["download_requested_at"] = time.time(); state.data["status"] = "DOWNLOAD_TRIGGERED"; state.save()
                     download_started = time.time()
+                    state.event("elevenlabs_download_requested", submit_at, choice=choice.get("choice"), retry=bool(prior_download_at))
                     notifier.send("ElevenLabs audio ready", ["⬇️ Highest visible quality download requested", f"🎚️ Option: {choice.get('choice', 'Download')[:180]}"])
             if not snapshot.get("busy") and time.monotonic() - last_change >= ui.stall_seconds:
                 if refreshes >= ui.max_refreshes:
