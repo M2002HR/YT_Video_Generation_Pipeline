@@ -103,7 +103,8 @@ class Handler(BaseHTTPRequestHandler):
         return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline</title>
 <style>body{{font:16px system-ui;max-width:850px;margin:32px auto;background:#10131a;color:#e8edf4}}input,select{{width:100%;padding:8px;margin:4px 0 14px;box-sizing:border-box}}button{{padding:10px 18px;background:#58c;color:#fff;border:0;border-radius:5px}}table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;border-bottom:1px solid #344;text-align:left}}.msg{{color:#8f8}}</style>
 <h1>Video Pipeline Launch</h1><p class=msg>{html.escape(message)}</p>
-<form method=post action=/launch><label>Content project<select name=content_project>{project_options}</select></label>\n<label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
+<form method=post action=/launch><label>Content project<select name=content_project>{project_options}</select></label>
+<label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
 <label>Minimum duration (seconds)<input name=min_duration_seconds type=number min=15 max=300 value=60 required></label>
 <label>Maximum duration (seconds)<input name=max_duration_seconds type=number min=15 max=300 value=90 required></label>
 <label>Frame format<select name=aspect_ratio><option value="16:9">16:9 — YouTube landscape</option><option value="9:16">9:16 — Shorts / Reels vertical</option></select></label>
@@ -131,7 +132,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
         length = int(self.headers.get("Content-Length", "0")); values = parse_qs(self.rfile.read(length).decode("utf-8"))
         try:
-            topic = values["topic"][0].strip(); video_id = next_video_id()\n            content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()\n            available_projects = {project.project_id for project in list_content_projects()}\n            duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0]); aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
+            topic = values["topic"][0].strip(); video_id = next_video_id()
+            content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()
+            available_projects = {project.project_id for project in list_content_projects()}
+            duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0]); aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             provider = values["music_provider"][0]
             if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
