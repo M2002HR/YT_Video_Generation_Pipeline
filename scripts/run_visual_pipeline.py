@@ -420,10 +420,19 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
                 started_at, started = utcnow(), time.perf_counter()
                 job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
                 artifacts = list(job.get("output_images") or [])
-                if len(artifacts) != 1:
-                    raise RuntimeError(f"Beat {beat_id:03d} needs exactly one canonical generated artifact; got {len(artifacts)}.")
+                if not artifacts:
+                    raise RuntimeError(f"Beat {beat_id:03d} did not produce a generated artifact.")
+                # ChatGPT can expose multiple UI representations/variations
+                # for one requested image even when the prompt asks for one.
+                # Ordak exports these in deterministic rank order (generated
+                # hint, largest native area, then document position).  The
+                # pipeline therefore uses the highest-ranked item as the only
+                # canonical beat, while preserving all alternatives in state
+                # for audit rather than failing or picking at random.
+                canonical_artifact = str(artifacts[0])
+                alternative_artifacts = [str(item) for item in artifacts[1:]]
                 temporary = target.with_suffix(".download")
-                download_timing = self.client.download(str(artifacts[0]), temporary)
+                download_timing = self.client.download(canonical_artifact, temporary)
                 shutil.move(temporary, target)
                 metadata = self.valid_image(target, previous_sha)
             except Exception as exc:
@@ -432,7 +441,14 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
                 self.save()
                 self.notifier.failure(f"Beat {beat_id:03d} image", time.perf_counter() - started, str(exc))
                 raise
-            record.update({"status": "DONE", "ordak_job_id": job["job_id"], "output": metadata, "completed_at": utcnow()})
+            record.update({
+                "status": "DONE",
+                "ordak_job_id": job["job_id"],
+                "output": metadata,
+                "canonical_artifact": canonical_artifact,
+                "alternative_artifacts": alternative_artifacts,
+                "completed_at": utcnow(),
+            })
             self.record_timing("beat_image", started_at, started, beat_id=beat_id, ordak_job_id=job["job_id"], references=[str(path.relative_to(self.root)) for path in references], request_timing=job.get("_client_timing"), download_timing=download_timing, output=metadata)
             previous, previous_sha = target, metadata["sha256"]
             self.save()

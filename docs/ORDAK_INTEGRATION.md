@@ -122,6 +122,10 @@ Each retry and its elapsed time is retained in the per-video timing artifact.
 The full-pipeline runner additionally retries the resumable visual stage up to
 three times (5s, 10s, 20s backoff); it resumes from the first incomplete beat
 and records every failed attempt in `FULL_PIPELINE_RUNTIME_STATE.json`.
+If ChatGPT exposes more than one image for a single-beat request, the pipeline
+selects Ordak's deterministic top-ranked artifact (generated-image signal,
+native size, then page order) and records every unselected alternative in the
+beat state. It never chooses randomly or silently discards the evidence.
 
 ## Setup
 
