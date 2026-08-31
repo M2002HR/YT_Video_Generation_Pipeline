@@ -350,7 +350,8 @@ class ElevenLabsUI:
             time.sleep(0.25)
         raise RuntimeError(f"ElevenLabs did not expose requested output format '{requested}'.")
 
-    def apply_settings(self, settings: VoiceSettings) -> None:
+    def apply_settings(self, settings: VoiceSettings) -> dict[str, Any]:
+        applied: dict[str, Any] = {}
         if settings.model:
             self.select_option("model", settings.model)
         if settings.voice:
@@ -360,14 +361,33 @@ class ElevenLabsUI:
                 self.apply_numeric_setting(label, value)
         if settings.speaker_boost is not None:
             wanted = bool(settings.speaker_boost)
-            result = self._json(f"""(() => {{ const labels=[...document.querySelectorAll('label')]; const l=labels.find(x=>/speaker boost/i.test(x.innerText||'')); const i=l?.querySelector('input')||l?.parentElement?.querySelector('input[type=checkbox]'); if(!i)return {{ok:false}}; if(i.checked!=={str(wanted).lower()}) i.click(); return {{ok:true}}; }})()""")
-            if not result.get("ok"):
+            result = self._json(f"""(() => {{
+              const labels=[...document.querySelectorAll('label')];
+              const l=labels.find(x=>/speaker boost/i.test(x.innerText||''));
+              const i=l?.querySelector('input')||l?.parentElement?.querySelector('input[type=checkbox]');
+              if(!i)return {{available:false}};
+              if(i.checked!=={str(wanted).lower()}) i.click();
+              return {{available:true, checked:!!i.checked}};
+            }})()""")
+            if not result.get("available") and wanted:
                 raise RuntimeError("Could not set ElevenLabs Speaker boost in the current UI.")
+            if result.get("available") and bool(result.get("checked")) != wanted:
+                raise RuntimeError("ElevenLabs Speaker boost did not retain the requested value.")
+            # ElevenLabs hides Speaker Boost for some models (including the
+            # current multilingual UI).  Its absence is semantically the same
+            # as the requested default-off value, never a reason to abandon a
+            # valid voiceover before submission.
+            applied["speaker_boost"] = {
+                "requested": wanted,
+                "available_in_current_ui": bool(result.get("available")),
+                "effective": bool(result.get("checked")) if result.get("available") else False,
+            }
         selected_output = self.select_output_format(settings.output_format)
         if selected_output:
             settings_result = self._json("""(() => ({format:(document.querySelector(\"button[aria-label=\\\"Output format\\\"]\")?.innerText||'').trim()}))()""")
             if settings_result.get("format") != selected_output:
                 raise RuntimeError("ElevenLabs did not retain the requested output format.")
+        return applied
 
     def submit(self) -> None:
         self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='tts-generate'||/generate( speech)?/i.test(`${x.innerText||''} ${x.getAttribute('aria-label')||''}`)); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
@@ -487,8 +507,8 @@ def main() -> None:
             print("ELEVENLABS VOICEOVER: DRY RUN PASS")
             return
         configured_at = time.perf_counter()
-        ui.apply_settings(settings)
-        state.event("elevenlabs_settings_applied", configured_at, settings=settings.supplied())
+        applied_settings = ui.apply_settings(settings)
+        state.event("elevenlabs_settings_applied", configured_at, settings=settings.supplied(), ui_capabilities=applied_settings)
         ui.set_text(text)
         state.data["status"] = "TEXT_ENTERED"; state.save()
         state.event("elevenlabs_text_entered", configured_at, characters=len(text))

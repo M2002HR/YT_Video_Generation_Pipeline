@@ -34,6 +34,11 @@ model, speed, stability, similarity, style and speaker boost are supported;
 other provider controls remain at their UI defaults until explicitly added to a
 profile after verification in the live UI.
 
+Speaker Boost is capability-aware: when ElevenLabs does not expose that control
+for the selected model, an explicit `false` is recorded as unavailable/effective
+off and generation continues. An explicit `true` still fails safely, because it
+cannot be honestly applied without a visible control.
+
 While generation is active, the runner polls the actual page every configured
 few seconds. It treats visible generation activity as progress, refreshes only
 after a genuine no-progress stall, caps recovery refreshes, resumes from the
