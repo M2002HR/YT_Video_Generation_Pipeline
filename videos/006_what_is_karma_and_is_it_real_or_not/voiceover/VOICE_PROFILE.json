@@ -1,0 +1,17 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Mark - Natural Conversations",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.5,
+    "similarity": 0.75,
+    "style": 0.15,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "43956e52f4953e0320c407759cae3ba12ab4b3890531ecd3f09d743686684534",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-08-31T08:59:31.428616+00:00",
+  "recovered_from_existing_download": true
+}

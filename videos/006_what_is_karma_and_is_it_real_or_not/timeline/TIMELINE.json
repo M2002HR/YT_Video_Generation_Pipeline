@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 64.261,
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "beat_id": 1,
+      "image": "assets/raw_beats/beat_001.png",
+      "start": 0.0,
+      "end": 1.66,
+      "duration": 1.66,
+      "speech_start": 0.0,
+      "speech_end": 1.08,
+      "match_confidence": 0.8,
+      "motion": "zoom_in",
+      "narration": "Edit Someone cuts in line,"
+    },
+    {
+      "beat_id": 2,
+      "image": "assets/raw_beats/beat_002.png",
+      "start": 1.66,
+      "end": 5.84,
+      "duration": 4.18,
+      "speech_start": 1.66,
+      "speech_end": 4.3,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "smirks, then spills their coffee five minutes later."
+    },
+    {
+      "beat_id": 3,
+      "image": "assets/raw_beats/beat_003.png",
+      "start": 5.84,
+      "end": 8.98,
+      "duration": 3.14,
+      "speech_start": 5.84,
+      "speech_end": 7.24,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Your brain says, “Karma.”"
+    },
+    {
+      "beat_id": 4,
+      "image": "assets/raw_beats/beat_004.png",
+      "start": 8.98,
+      "end": 12.62,
+      "duration": 3.64,
+      "speech_start": 8.98,
+      "speech_end": 11.14,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "But did the universe actually keep score?"
+    },
+    {
+      "beat_id": 5,
+      "image": "assets/raw_beats/beat_005.png",
+      "start": 12.62,
+      "end": 19.5,
+      "duration": 6.88,
+      "speech_start": 12.62,
+      "speech_end": 18.4,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "In several Indian religious traditions, karma means something much deeper than instant payback:"
+    },
+    {
+      "beat_id": 6,
+      "image": "assets/raw_beats/beat_006.png",
+      "start": 19.5,
+      "end": 23.0,
+      "duration": 3.5,
+      "speech_start": 19.5,
+      "speech_end": 22.46,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "actions have consequences that can shape future experience,"
+    },
+    {
+      "beat_id": 7,
+      "image": "assets/raw_beats/beat_007.png",
+      "start": 23.0,
+      "end": 25.24,
+      "duration": 2.24,
+      "speech_start": 23.0,
+      "speech_end": 24.3,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "sometimes across lifetimes."
+    },
+    {
+      "beat_id": 8,
+      "image": "assets/raw_beats/beat_008.png",
+      "start": 25.24,
+      "end": 32.68,
+      "duration": 7.44,
+      "speech_start": 25.24,
+      "speech_end": 30.94,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Science can’t confirm a cosmic system that rewards good behavior and punishes bad behavior."
+    },
+    {
+      "beat_id": 9,
+      "image": "assets/raw_beats/beat_009.png",
+      "start": 32.68,
+      "end": 36.32,
+      "duration": 3.64,
+      "speech_start": 32.68,
+      "speech_end": 35.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Still, there’s a version of karma you can see every day."
+    },
+    {
+      "beat_id": 10,
+      "image": "assets/raw_beats/beat_010.png",
+      "start": 36.32,
+      "end": 37.38,
+      "duration": 1.06,
+      "speech_start": 36.32,
+      "speech_end": 37.02,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Treat people well,"
+    },
+    {
+      "beat_id": 11,
+      "image": "assets/raw_beats/beat_011.png",
+      "start": 37.38,
+      "end": 39.96,
+      "duration": 2.58,
+      "speech_start": 37.38,
+      "speech_end": 38.7,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "and you’re more likely to build trust."
+    },
+    {
+      "beat_id": 12,
+      "image": "assets/raw_beats/beat_012.png",
+      "start": 39.96,
+      "end": 41.16,
+      "duration": 1.2,
+      "speech_start": 39.96,
+      "speech_end": 40.74,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Treat them badly,"
+    },
+    {
+      "beat_id": 13,
+      "image": "assets/raw_beats/beat_013.png",
+      "start": 41.16,
+      "end": 43.74,
+      "duration": 2.58,
+      "speech_start": 41.16,
+      "speech_end": 42.66,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "and relationships can suffer."
+    },
+    {
+      "beat_id": 14,
+      "image": "assets/raw_beats/beat_014.png",
+      "start": 43.74,
+      "end": 47.98,
+      "duration": 4.24,
+      "speech_start": 43.74,
+      "speech_end": 47.1,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Your habits also change the kinds of situations you create for yourself."
+    },
+    {
+      "beat_id": 15,
+      "image": "assets/raw_beats/beat_015.png",
+      "start": 47.98,
+      "end": 51.46,
+      "duration": 3.48,
+      "speech_start": 47.98,
+      "speech_end": 50.88,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "And when a rude person gets perfect instant payback,"
+    },
+    {
+      "beat_id": 16,
+      "image": "assets/raw_beats/beat_016.png",
+      "start": 51.46,
+      "end": 52.92,
+      "duration": 1.46,
+      "speech_start": 51.46,
+      "speech_end": 52.68,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "that moment is memorable,"
+    },
+    {
+      "beat_id": 17,
+      "image": "assets/raw_beats/beat_017.png",
+      "start": 52.92,
+      "end": 55.0,
+      "duration": 2.08,
+      "speech_start": 52.92,
+      "speech_end": 53.84,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "so it feels meaningful."
+    },
+    {
+      "beat_id": 18,
+      "image": "assets/raw_beats/beat_018.png",
+      "start": 55.0,
+      "end": 64.261,
+      "duration": 9.261,
+      "speech_start": 55.0,
+      "speech_end": 63.66,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "So, is karma real? As cosmic justice, that’s a matter of belief. As actions creating consequences, it’s already happening."
+    }
+  ],
+  "subtitles": [
+    {
+      "beat_id": 1,
+      "start": 0.0,
+      "end": 1.08,
+      "text": "Edit Someone cuts in line,",
+      "ass_text": "Edit Someone cuts in line,"
+    },
+    {
+      "beat_id": 2,
+      "start": 1.66,
+      "end": 3.64,
+      "text": "smirks, then spills their coffee five",
+      "ass_text": "smirks, then spills their coffee\\Nfive"
+    },
+    {
+      "beat_id": 2,
+      "start": 3.64,
+      "end": 4.3,
+      "text": "minutes later.",
+      "ass_text": "minutes later."
+    },
+    {
+      "beat_id": 3,
+      "start": 5.84,
+      "end": 7.24,
+      "text": "Your brain says, “Karma.”",
+      "ass_text": "Your brain says, “Karma.”"
+    },
+    {
+      "beat_id": 4,
+      "start": 8.98,
+      "end": 10.831,
+      "text": "But did the universe actually keep",
+      "ass_text": "But did the universe actually keep"
+    },
+    {
+      "beat_id": 4,
+      "start": 10.831,
+      "end": 11.14,
+      "text": "score?",
+      "ass_text": "score?"
+    },
+    {
+      "beat_id": 5,
+      "start": 12.62,
+      "end": 15.288,
+      "text": "In several Indian religious traditions, karma",
+      "ass_text": "In several Indian religious\\Ntraditions, karma"
+    },
+    {
+      "beat_id": 5,
+      "start": 15.288,
+      "end": 17.955,
+      "text": "means something much deeper than instant",
+      "ass_text": "means something much deeper than\\Ninstant"
+    },
+    {
+      "beat_id": 5,
+      "start": 17.955,
+      "end": 18.4,
+      "text": "payback:",
+      "ass_text": "payback:"
+    },
+    {
+      "beat_id": 6,
+      "start": 19.5,
+      "end": 21.72,
+      "text": "actions have consequences that can shape",
+      "ass_text": "actions have consequences that can\\Nshape"
+    },
+    {
+      "beat_id": 6,
+      "start": 21.72,
+      "end": 22.46,
+      "text": "future experience,",
+      "ass_text": "future experience,"
+    },
+    {
+      "beat_id": 7,
+      "start": 23.0,
+      "end": 24.3,
+      "text": "sometimes across lifetimes.",
+      "ass_text": "sometimes across lifetimes."
+    },
+    {
+      "beat_id": 8,
+      "start": 25.24,
+      "end": 27.683,
+      "text": "Science can’t confirm a cosmic system",
+      "ass_text": "Science can’t confirm a cosmic\\Nsystem"
+    },
+    {
+      "beat_id": 8,
+      "start": 27.683,
+      "end": 30.126,
+      "text": "that rewards good behavior and punishes",
+      "ass_text": "that rewards good behavior and\\Npunishes"
+    },
+    {
+      "beat_id": 8,
+      "start": 30.126,
+      "end": 30.94,
+      "text": "bad behavior.",
+      "ass_text": "bad behavior."
+    },
+    {
+      "beat_id": 9,
+      "start": 32.68,
+      "end": 34.033,
+      "text": "Still, there’s a version of karma",
+      "ass_text": "Still, there’s a version of karma"
+    },
+    {
+      "beat_id": 9,
+      "start": 34.033,
+      "end": 35.16,
+      "text": "you can see every day.",
+      "ass_text": "you can see every day."
+    },
+    {
+      "beat_id": 10,
+      "start": 36.32,
+      "end": 37.02,
+      "text": "Treat people well,",
+      "ass_text": "Treat people well,"
+    },
+    {
+      "beat_id": 11,
+      "start": 37.38,
+      "end": 38.511,
+      "text": "and you’re more likely to build",
+      "ass_text": "and you’re more likely to build"
+    },
+    {
+      "beat_id": 11,
+      "start": 38.511,
+      "end": 38.7,
+      "text": "trust.",
+      "ass_text": "trust."
+    },
+    {
+      "beat_id": 12,
+      "start": 39.96,
+      "end": 40.74,
+      "text": "Treat them badly,",
+      "ass_text": "Treat them badly,"
+    },
+    {
+      "beat_id": 13,
+      "start": 41.16,
+      "end": 42.66,
+      "text": "and relationships can suffer.",
+      "ass_text": "and relationships can suffer."
+    },
+    {
+      "beat_id": 14,
+      "start": 43.74,
+      "end": 45.42,
+      "text": "Your habits also change the kinds",
+      "ass_text": "Your habits also change the kinds"
+    },
+    {
+      "beat_id": 14,
+      "start": 45.42,
+      "end": 47.1,
+      "text": "of situations you create for yourself.",
+      "ass_text": "of situations you create for\\Nyourself."
+    },
+    {
+      "beat_id": 15,
+      "start": 47.98,
+      "end": 49.913,
+      "text": "And when a rude person gets",
+      "ass_text": "And when a rude person gets"
+    },
+    {
+      "beat_id": 15,
+      "start": 49.913,
+      "end": 50.88,
+      "text": "perfect instant payback,",
+      "ass_text": "perfect instant payback,"
+    },
+    {
+      "beat_id": 16,
+      "start": 51.46,
+      "end": 52.68,
+      "text": "that moment is memorable,",
+      "ass_text": "that moment is memorable,"
+    },
+    {
+      "beat_id": 17,
+      "start": 52.92,
+      "end": 53.84,
+      "text": "so it feels meaningful.",
+      "ass_text": "so it feels meaningful."
+    },
+    {
+      "beat_id": 18,
+      "start": 55.0,
+      "end": 57.735,
+      "text": "So, is karma real? As cosmic",
+      "ass_text": "So, is karma real? As cosmic"
+    },
+    {
+      "beat_id": 18,
+      "start": 57.735,
+      "end": 60.469,
+      "text": "justice, that’s a matter of belief.",
+      "ass_text": "justice, that’s a matter of\\Nbelief."
+    },
+    {
+      "beat_id": 18,
+      "start": 60.469,
+      "end": 63.204,
+      "text": "As actions creating consequences, it’s already",
+      "ass_text": "As actions creating consequences,\\Nit’s already"
+    },
+    {
+      "beat_id": 18,
+      "start": 63.204,
+      "end": 63.66,
+      "text": "happening.",
+      "ass_text": "happening."
+    }
+  ],
+  "qc": {
+    "beat_count": 18,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": []
+  }
+}

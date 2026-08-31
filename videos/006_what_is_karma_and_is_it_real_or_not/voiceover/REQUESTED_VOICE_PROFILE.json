@@ -1,0 +1,10 @@
+{
+  "voice": "Mark - Natural Conversations",
+  "model": "Eleven Multilingual v2",
+  "speed": 0.9,
+  "stability": 0.5,
+  "similarity": 0.75,
+  "style": 0.15,
+  "speaker_boost": false,
+  "output_format": "MP3 44.1 kHz (128kbps)"
+}

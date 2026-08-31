@@ -1,0 +1,196 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 64.261,
+  "stt": {
+    "backend": "local",
+    "provider": "faster-whisper",
+    "model": "small.en",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "transcript": "Someone cuts in line, smirks, then spills their coffee five minutes later. Your brain says karma. But did the universe actually keep score? In several Indian religious traditions, karma means something much deeper than instant payback. Actions have consequences that can shape future experience, sometimes across lifetimes. Science can't confirm a cosmic system that rewards good behavior and punishes bad behavior. Still, there's a version of karma you can see every day. Treat people well, and you're more likely to build trust. Treat them badly, and relationships can suffer. Your habits also change the kinds of situations you create for yourself. And when a rude person gets perfect instant payback, that moment is memorable, so it feels meaningful. So, is karma real? As cosmic justice, that's a matter of belief. As actions creating consequences, it's already happening.",
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Edit Someone cuts in line,",
+      "speech_start": 0.0,
+      "speech_end": 1.08,
+      "match_confidence": 0.8,
+      "display_start": 0.0,
+      "display_end": 1.66,
+      "display_duration": 1.66
+    },
+    {
+      "beat_id": 2,
+      "narration": "smirks, then spills their coffee five minutes later.",
+      "speech_start": 1.66,
+      "speech_end": 4.3,
+      "match_confidence": 1.0,
+      "display_start": 1.66,
+      "display_end": 5.84,
+      "display_duration": 4.18
+    },
+    {
+      "beat_id": 3,
+      "narration": "Your brain says, “Karma.”",
+      "speech_start": 5.84,
+      "speech_end": 7.24,
+      "match_confidence": 1.0,
+      "display_start": 5.84,
+      "display_end": 8.98,
+      "display_duration": 3.14
+    },
+    {
+      "beat_id": 4,
+      "narration": "But did the universe actually keep score?",
+      "speech_start": 8.98,
+      "speech_end": 11.14,
+      "match_confidence": 1.0,
+      "display_start": 8.98,
+      "display_end": 12.62,
+      "display_duration": 3.64
+    },
+    {
+      "beat_id": 5,
+      "narration": "In several Indian religious traditions, karma means something much deeper than instant payback:",
+      "speech_start": 12.62,
+      "speech_end": 18.4,
+      "match_confidence": 1.0,
+      "display_start": 12.62,
+      "display_end": 19.5,
+      "display_duration": 6.88
+    },
+    {
+      "beat_id": 6,
+      "narration": "actions have consequences that can shape future experience,",
+      "speech_start": 19.5,
+      "speech_end": 22.46,
+      "match_confidence": 1.0,
+      "display_start": 19.5,
+      "display_end": 23.0,
+      "display_duration": 3.5
+    },
+    {
+      "beat_id": 7,
+      "narration": "sometimes across lifetimes.",
+      "speech_start": 23.0,
+      "speech_end": 24.3,
+      "match_confidence": 1.0,
+      "display_start": 23.0,
+      "display_end": 25.24,
+      "display_duration": 2.24
+    },
+    {
+      "beat_id": 8,
+      "narration": "Science can’t confirm a cosmic system that rewards good behavior and punishes bad behavior.",
+      "speech_start": 25.24,
+      "speech_end": 30.94,
+      "match_confidence": 1.0,
+      "display_start": 25.24,
+      "display_end": 32.68,
+      "display_duration": 7.44
+    },
+    {
+      "beat_id": 9,
+      "narration": "Still, there’s a version of karma you can see every day.",
+      "speech_start": 32.68,
+      "speech_end": 35.16,
+      "match_confidence": 1.0,
+      "display_start": 32.68,
+      "display_end": 36.32,
+      "display_duration": 3.64
+    },
+    {
+      "beat_id": 10,
+      "narration": "Treat people well,",
+      "speech_start": 36.32,
+      "speech_end": 37.02,
+      "match_confidence": 1.0,
+      "display_start": 36.32,
+      "display_end": 37.38,
+      "display_duration": 1.06
+    },
+    {
+      "beat_id": 11,
+      "narration": "and you’re more likely to build trust.",
+      "speech_start": 37.38,
+      "speech_end": 38.7,
+      "match_confidence": 1.0,
+      "display_start": 37.38,
+      "display_end": 39.96,
+      "display_duration": 2.58
+    },
+    {
+      "beat_id": 12,
+      "narration": "Treat them badly,",
+      "speech_start": 39.96,
+      "speech_end": 40.74,
+      "match_confidence": 1.0,
+      "display_start": 39.96,
+      "display_end": 41.16,
+      "display_duration": 1.2
+    },
+    {
+      "beat_id": 13,
+      "narration": "and relationships can suffer.",
+      "speech_start": 41.16,
+      "speech_end": 42.66,
+      "match_confidence": 1.0,
+      "display_start": 41.16,
+      "display_end": 43.74,
+      "display_duration": 2.58
+    },
+    {
+      "beat_id": 14,
+      "narration": "Your habits also change the kinds of situations you create for yourself.",
+      "speech_start": 43.74,
+      "speech_end": 47.1,
+      "match_confidence": 1.0,
+      "display_start": 43.74,
+      "display_end": 47.98,
+      "display_duration": 4.24
+    },
+    {
+      "beat_id": 15,
+      "narration": "And when a rude person gets perfect instant payback,",
+      "speech_start": 47.98,
+      "speech_end": 50.88,
+      "match_confidence": 1.0,
+      "display_start": 47.98,
+      "display_end": 51.46,
+      "display_duration": 3.48
+    },
+    {
+      "beat_id": 16,
+      "narration": "that moment is memorable,",
+      "speech_start": 51.46,
+      "speech_end": 52.68,
+      "match_confidence": 1.0,
+      "display_start": 51.46,
+      "display_end": 52.92,
+      "display_duration": 1.46
+    },
+    {
+      "beat_id": 17,
+      "narration": "so it feels meaningful.",
+      "speech_start": 52.92,
+      "speech_end": 53.84,
+      "match_confidence": 1.0,
+      "display_start": 52.92,
+      "display_end": 55.0,
+      "display_duration": 2.08
+    },
+    {
+      "beat_id": 18,
+      "narration": "So, is karma real? As cosmic justice, that’s a matter of belief. As actions creating consequences, it’s already happening.",
+      "speech_start": 55.0,
+      "speech_end": 63.66,
+      "match_confidence": 1.0,
+      "display_start": 55.0,
+      "display_end": 64.261,
+      "display_duration": 9.261
+    }
+  ]
+}

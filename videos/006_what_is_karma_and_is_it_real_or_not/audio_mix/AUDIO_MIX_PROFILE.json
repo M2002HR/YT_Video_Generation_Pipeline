@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "baseline_video": "assets/renders/final.mp4",
+  "output_video": "assets/renders/polished.mp4",
+  "music": {
+    "enabled": true,
+    "file": "assets/music/background.mp3",
+    "gain_db": -20.0,
+    "loop": true,
+    "fade_in_sec": 0.8,
+    "fade_out_sec": 1.4,
+    "ducking": {
+      "enabled": true,
+      "threshold": 0.025,
+      "ratio": 8.0,
+      "attack_ms": 18,
+      "release_ms": 320
+    }
+  },
+  "sfx": {
+    "enabled": false,
+    "events": []
+  },
+  "loudness": {
+    "enabled": true,
+    "integrated_lufs": -14.0,
+    "true_peak_db": -1.5,
+    "lra": 11.0
+  }
+}

@@ -1,0 +1,2319 @@
+{
+  "version": 3,
+  "topic": "What is Karma and is it real or not?",
+  "preset": "001_cinematic_storybook_green_hoodie",
+  "duration_seconds": 60.0,
+  "created_at": "2026-08-31T06:31:26.530023+00:00",
+  "stages": {
+    "script_draft": {
+      "status": "DONE",
+      "ordak_job_id": "1a01e5de-a078-4d79-a90d-0dbd5135659f",
+      "completed_at": "2026-08-31T06:32:05.826176+00:00"
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "ordak_job_id": "05d0c75f-94e0-484b-b2c9-f5b7640736e6",
+      "completed_at": "2026-08-31T06:32:50.746067+00:00"
+    },
+    "visual_beats": {
+      "status": "DONE",
+      "ordak_job_id": "8d519f5e-c782-4172-b860-c52f6bb3aa06",
+      "completed_at": "2026-08-31T06:33:53.044905+00:00"
+    }
+  },
+  "beats": {
+    "001": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_001_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "eccfc040-aebc-4cdd-b61d-f1fa14c458e6",
+      "output": {
+        "path": "assets/raw_beats/beat_001.png",
+        "bytes": 2242052,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "b878f24ac6b75d957a8e49a842c80c8c5e3666e4c095d5de8c92d9e8cdc61661"
+      },
+      "canonical_artifact": "storage/outputs/eccfc040-aebc-4cdd-b61d-f1fa14c458e6_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T06:52:52.644794+00:00"
+    },
+    "002": {
+      "status": "DONE",
+      "attempts": 2,
+      "prompt_path": "beats/BEAT_002_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_001.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "5a6109a4-03a9-4e0f-a15f-f3d621f70420",
+      "output": {
+        "path": "assets/raw_beats/beat_002.png",
+        "bytes": 2219204,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "334bdc27ae3ef5bbdee70be031634645bd3ee312b21e950acd3d476cc03c0942"
+      },
+      "canonical_artifact": "storage/outputs/5a6109a4-03a9-4e0f-a15f-f3d621f70420_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T06:59:02.615751+00:00"
+    },
+    "003": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_003_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_002.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "aee92f21-a611-4446-a5ec-1df87a90d1ae",
+      "output": {
+        "path": "assets/raw_beats/beat_003.png",
+        "bytes": 2250404,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "4f30fbb3d2d100c224cf7c1c056f8ef2011dbf6b32599cd99a8dc001b6346df7"
+      },
+      "canonical_artifact": "storage/outputs/aee92f21-a611-4446-a5ec-1df87a90d1ae_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:01:56.706424+00:00"
+    },
+    "004": {
+      "status": "DONE",
+      "attempts": 2,
+      "prompt_path": "beats/BEAT_004_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_003.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "13e2ef05-e00a-4969-a64e-756065ad38bd",
+      "output": {
+        "path": "assets/raw_beats/beat_004.png",
+        "bytes": 2143044,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "2f51e5900ba2a995241872273503b3a4a802b363c7c0de26546c7d9552679cc6"
+      },
+      "canonical_artifact": "storage/outputs/13e2ef05-e00a-4969-a64e-756065ad38bd_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:07:57.572909+00:00"
+    },
+    "005": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_005_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_004.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "999ba338-ea37-4671-b619-a28618936f37",
+      "output": {
+        "path": "assets/raw_beats/beat_005.png",
+        "bytes": 2468754,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "a8d19ea95a4839d3fd26e95f05d3bfb5e631de57e9747f3c9afab4eef828a609"
+      },
+      "canonical_artifact": "storage/outputs/999ba338-ea37-4671-b619-a28618936f37_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:10:41.340137+00:00"
+    },
+    "006": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_006_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_005.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "62a43be1-d68f-4a22-ae39-fe040ef7d7f5",
+      "output": {
+        "path": "assets/raw_beats/beat_006.png",
+        "bytes": 2418790,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "b96dd6ad27c7e674a098f6d303fb6292478e603583ac18ede18d852221aa317c"
+      },
+      "canonical_artifact": "storage/outputs/62a43be1-d68f-4a22-ae39-fe040ef7d7f5_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:13:26.001505+00:00"
+    },
+    "007": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_007_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_006.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "d641a003-407d-4068-9ae7-36200201f728",
+      "output": {
+        "path": "assets/raw_beats/beat_007.png",
+        "bytes": 2310862,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "6f8813dd93c6045470e5235916b1a40e02d2039b606d1bf37fee03e8a4808956"
+      },
+      "canonical_artifact": "storage/outputs/d641a003-407d-4068-9ae7-36200201f728_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:15:55.314591+00:00"
+    },
+    "008": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_008_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_007.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "3e2b091b-1de0-4d41-8c73-a0109b83f976",
+      "output": {
+        "path": "assets/raw_beats/beat_008.png",
+        "bytes": 2223382,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "be3c8dab0bf50afb8f66cb1123988e5dbe9c3fdf6a45eb73cc8dc4605a2c5c70"
+      },
+      "canonical_artifact": "storage/outputs/3e2b091b-1de0-4d41-8c73-a0109b83f976_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:19:09.060851+00:00"
+    },
+    "009": {
+      "status": "DONE",
+      "attempts": 2,
+      "prompt_path": "beats/BEAT_009_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_008.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "d27d3d84-64f9-4ea8-87c2-4cd3d28efdfd",
+      "output": {
+        "path": "assets/raw_beats/beat_009.png",
+        "bytes": 2340781,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "50a47332e3183d0db2d80efe723020abfbb7261540d63f0d504be4c1bec283b5"
+      },
+      "canonical_artifact": "storage/outputs/d27d3d84-64f9-4ea8-87c2-4cd3d28efdfd_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:25:08.231492+00:00"
+    },
+    "010": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_010_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_009.png"
+      ],
+      "output": {
+        "path": "assets/raw_beats/beat_010.png",
+        "bytes": 2276622,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "88ceb990a0daac77a8a853c9d6c84cf1d55cc2e7b881851b59fd96507865d785"
+      },
+      "recovered_from_ordak_job": "b9e3d499-5d87-49d5-8577-bbc93ff5d5fa",
+      "recovery_note": "Recovered the already-visible ChatGPT output from the exact Ordak conversation after a stale UI timeout."
+    },
+    "011": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_011_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_010.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "985ac660-486f-4860-a4ff-f519ab1dee82",
+      "output": {
+        "path": "assets/raw_beats/beat_011.png",
+        "bytes": 2350016,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "222737c79bbbc31434559eaa95a4c8b1f76377e75e2c4653a72e5957aa87f82f"
+      },
+      "canonical_artifact": "storage/outputs/985ac660-486f-4860-a4ff-f519ab1dee82_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:54:49.509433+00:00"
+    },
+    "012": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_012_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_011.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "7bab1978-db74-4af4-b495-506493334134",
+      "output": {
+        "path": "assets/raw_beats/beat_012.png",
+        "bytes": 2315406,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "0b4c8670bc25a29052537fa53c7b4e91b31aba5e3f6175c316ffa6c2c9bdbcba"
+      },
+      "canonical_artifact": "storage/outputs/7bab1978-db74-4af4-b495-506493334134_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T07:58:02.024992+00:00"
+    },
+    "013": {
+      "status": "DONE",
+      "attempts": 4,
+      "prompt_path": "beats/BEAT_013_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_012.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "bf0413f3-8ead-4fc3-a5d2-cc767ff94294",
+      "output": {
+        "path": "assets/raw_beats/beat_013.png",
+        "bytes": 2292836,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "3f488b42ab548af6ac15d43bf1930dafb83a81bb974b599c69010efc72b114fe"
+      },
+      "canonical_artifact": "storage/outputs/bf0413f3-8ead-4fc3-a5d2-cc767ff94294_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T08:06:37.893125+00:00"
+    },
+    "014": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_014_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_013.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "51657cf6-4131-435e-8153-070942470954",
+      "output": {
+        "path": "assets/raw_beats/beat_014.png",
+        "bytes": 2609914,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "3875f1c8b57ba6888de7249d7caceab6457b8dfef1743747bc7896f8800997da"
+      },
+      "canonical_artifact": "storage/outputs/51657cf6-4131-435e-8153-070942470954_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T08:10:44.801783+00:00"
+    },
+    "015": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_015_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_014.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "7fc6eb95-e95f-4543-a614-3085948b3d3d",
+      "output": {
+        "path": "assets/raw_beats/beat_015.png",
+        "bytes": 2120278,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "56071afbd8ada73d3c888cce8ed05f9a30a3acd40060bc8f0eaf1f11dce8a98e"
+      },
+      "canonical_artifact": "storage/outputs/7fc6eb95-e95f-4543-a614-3085948b3d3d_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T08:13:34.414831+00:00"
+    },
+    "016": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_016_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_015.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "b94e818d-f173-4f18-b921-7afa19ddafd2",
+      "output": {
+        "path": "assets/raw_beats/beat_016.png",
+        "bytes": 2116881,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "fb9bd058df1f4bcda8126b6f0f50a080621839dcebc4ba9baf7e48e12367b3f9"
+      },
+      "canonical_artifact": "storage/outputs/b94e818d-f173-4f18-b921-7afa19ddafd2_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T08:16:26.637887+00:00"
+    },
+    "017": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_017_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_016.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "9377bda0-f37e-405d-83dd-9656b69ca3ea",
+      "output": {
+        "path": "assets/raw_beats/beat_017.png",
+        "bytes": 2149606,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "0c58561c1691cfd20ddcfe02c7d93c5ab8b100e2dc0274be4d5b435deb3083fd"
+      },
+      "canonical_artifact": "storage/outputs/9377bda0-f37e-405d-83dd-9656b69ca3ea_output_1.png",
+      "alternative_artifacts": [
+        "storage/outputs/9377bda0-f37e-405d-83dd-9656b69ca3ea_output_2.png"
+      ],
+      "completed_at": "2026-08-31T08:19:36.574911+00:00"
+    },
+    "018": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_018_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_017.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "f9bb3abd-7403-47fa-9fa4-0d62d7873142",
+      "output": {
+        "path": "assets/raw_beats/beat_018.png",
+        "bytes": 2257279,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "760cac68eaf3a234e7b8d79d1bd58259a73c6edb8efeb295a461c2a889eb6dff"
+      },
+      "canonical_artifact": "storage/outputs/f9bb3abd-7403-47fa-9fa4-0d62d7873142_output_1.png",
+      "alternative_artifacts": [],
+      "completed_at": "2026-08-31T08:22:52.466430+00:00"
+    }
+  },
+  "timing_events": [
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T06:31:26.543777+00:00",
+      "finished_at": "2026-08-31T06:32:05.826114+00:00",
+      "elapsed_seconds": 39.282,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md",
+      "ordak_job_id": "1a01e5de-a078-4d79-a90d-0dbd5135659f",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "script_draft",
+        "elapsed_seconds": 39.279,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T06:32:07.604697+00:00",
+      "finished_at": "2026-08-31T06:32:50.746032+00:00",
+      "elapsed_seconds": 43.141,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md",
+      "ordak_job_id": "05d0c75f-94e0-484b-b2c9-f5b7640736e6",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "retention_edit",
+        "elapsed_seconds": 43.14,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T06:32:51.895780+00:00",
+      "finished_at": "2026-08-31T06:33:53.044879+00:00",
+      "elapsed_seconds": 61.149,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md",
+      "ordak_job_id": "8d519f5e-c782-4172-b860-c52f6bb3aa06",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "visual_beats",
+        "elapsed_seconds": 61.146,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:33:54.520456+00:00",
+      "finished_at": "2026-08-31T06:34:34.266694+00:00",
+      "elapsed_seconds": 39.746,
+      "beat_id": 1,
+      "artifact": "beats/BEAT_001_PROMPT.md",
+      "ordak_job_id": "d78b1bea-1033-49e8-a9a4-19ec33e2ae33",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_001_prompt",
+        "elapsed_seconds": 39.736,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:34:35.541471+00:00",
+      "finished_at": "2026-08-31T06:35:24.432867+00:00",
+      "elapsed_seconds": 48.891,
+      "beat_id": 2,
+      "artifact": "beats/BEAT_002_PROMPT.md",
+      "ordak_job_id": "7cbd1fe2-feb1-4f08-80c4-deaf2a5ecaa7",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_002_prompt",
+        "elapsed_seconds": 48.889,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:35:25.643613+00:00",
+      "finished_at": "2026-08-31T06:36:06.879697+00:00",
+      "elapsed_seconds": 41.236,
+      "beat_id": 3,
+      "artifact": "beats/BEAT_003_PROMPT.md",
+      "ordak_job_id": "bb1146da-519d-48b6-91f4-f4537d6a0ce0",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_003_prompt",
+        "elapsed_seconds": 41.235,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:36:08.057499+00:00",
+      "finished_at": "2026-08-31T06:36:54.963233+00:00",
+      "elapsed_seconds": 46.906,
+      "beat_id": 4,
+      "artifact": "beats/BEAT_004_PROMPT.md",
+      "ordak_job_id": "e1e53e86-523d-4765-af81-ef4751960454",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_004_prompt",
+        "elapsed_seconds": 46.904,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:36:56.155591+00:00",
+      "finished_at": "2026-08-31T06:37:40.602334+00:00",
+      "elapsed_seconds": 44.447,
+      "beat_id": 5,
+      "artifact": "beats/BEAT_005_PROMPT.md",
+      "ordak_job_id": "a37923ba-3e09-4178-aabd-b8fa11595a3f",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_005_prompt",
+        "elapsed_seconds": 44.445,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:37:41.749304+00:00",
+      "finished_at": "2026-08-31T06:38:28.271035+00:00",
+      "elapsed_seconds": 46.522,
+      "beat_id": 6,
+      "artifact": "beats/BEAT_006_PROMPT.md",
+      "ordak_job_id": "c7825fb1-3955-4434-8683-7d03e470ba7c",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_006_prompt",
+        "elapsed_seconds": 46.52,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:38:29.418794+00:00",
+      "finished_at": "2026-08-31T06:39:14.299802+00:00",
+      "elapsed_seconds": 44.881,
+      "beat_id": 7,
+      "artifact": "beats/BEAT_007_PROMPT.md",
+      "ordak_job_id": "02467d0f-f822-4de3-85d1-51fda5911c0e",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_007_prompt",
+        "elapsed_seconds": 44.88,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:39:15.478286+00:00",
+      "finished_at": "2026-08-31T06:40:05.460887+00:00",
+      "elapsed_seconds": 49.983,
+      "beat_id": 8,
+      "artifact": "beats/BEAT_008_PROMPT.md",
+      "ordak_job_id": "6fedc3d6-96d8-40f4-8dd4-c1627f391312",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_008_prompt",
+        "elapsed_seconds": 49.981,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:40:06.713651+00:00",
+      "finished_at": "2026-08-31T06:40:57.247839+00:00",
+      "elapsed_seconds": 50.534,
+      "beat_id": 9,
+      "artifact": "beats/BEAT_009_PROMPT.md",
+      "ordak_job_id": "2eb9d393-e060-4b04-8ae3-11cd3781f6d0",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_009_prompt",
+        "elapsed_seconds": 50.533,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:40:58.430378+00:00",
+      "finished_at": "2026-08-31T06:41:37.078827+00:00",
+      "elapsed_seconds": 38.648,
+      "beat_id": 10,
+      "artifact": "beats/BEAT_010_PROMPT.md",
+      "ordak_job_id": "581007b7-b630-4dba-93af-5622adc08f77",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_010_prompt",
+        "elapsed_seconds": 38.645,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:41:38.103155+00:00",
+      "finished_at": "2026-08-31T06:42:22.464174+00:00",
+      "elapsed_seconds": 44.361,
+      "beat_id": 11,
+      "artifact": "beats/BEAT_011_PROMPT.md",
+      "ordak_job_id": "075e3960-e57c-42de-abb3-dec12ba55dbe",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_011_prompt",
+        "elapsed_seconds": 44.358,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:42:23.475890+00:00",
+      "finished_at": "2026-08-31T06:43:11.858426+00:00",
+      "elapsed_seconds": 48.383,
+      "beat_id": 12,
+      "artifact": "beats/BEAT_012_PROMPT.md",
+      "ordak_job_id": "da58fceb-f456-4ef5-b152-3c03791a53ae",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_012_prompt",
+        "elapsed_seconds": 48.381,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:43:12.927690+00:00",
+      "finished_at": "2026-08-31T06:44:00.376066+00:00",
+      "elapsed_seconds": 47.448,
+      "beat_id": 13,
+      "artifact": "beats/BEAT_013_PROMPT.md",
+      "ordak_job_id": "4cf93ca6-81a7-41d1-ae4d-f7c6e88d8cf7",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_013_prompt",
+        "elapsed_seconds": 47.444,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:44:02.455215+00:00",
+      "finished_at": "2026-08-31T06:44:58.751128+00:00",
+      "elapsed_seconds": 56.296,
+      "beat_id": 14,
+      "artifact": "beats/BEAT_014_PROMPT.md",
+      "ordak_job_id": "29acc69b-cc02-47ec-8936-a82db529bfbe",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_014_prompt",
+        "elapsed_seconds": 56.293,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:44:59.848902+00:00",
+      "finished_at": "2026-08-31T06:45:49.617764+00:00",
+      "elapsed_seconds": 49.769,
+      "beat_id": 15,
+      "artifact": "beats/BEAT_015_PROMPT.md",
+      "ordak_job_id": "45a68f80-0eed-40c2-8931-9dac49a35118",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_015_prompt",
+        "elapsed_seconds": 49.768,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:45:50.674912+00:00",
+      "finished_at": "2026-08-31T06:46:41.225200+00:00",
+      "elapsed_seconds": 50.55,
+      "beat_id": 16,
+      "artifact": "beats/BEAT_016_PROMPT.md",
+      "ordak_job_id": "372347d1-edd8-461f-b734-3ef89414e8e2",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_016_prompt",
+        "elapsed_seconds": 50.549,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:46:43.728328+00:00",
+      "finished_at": "2026-08-31T06:47:26.658986+00:00",
+      "elapsed_seconds": 42.931,
+      "beat_id": 17,
+      "artifact": "beats/BEAT_017_PROMPT.md",
+      "ordak_job_id": "f029d104-476e-426d-8e6c-a6b416a05e59",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_017_prompt",
+        "elapsed_seconds": 42.928,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T06:47:27.821923+00:00",
+      "finished_at": "2026-08-31T06:48:19.662212+00:00",
+      "elapsed_seconds": 51.84,
+      "beat_id": 18,
+      "artifact": "beats/BEAT_018_PROMPT.md",
+      "ordak_job_id": "4627e52d-24a3-4648-a8a0-558bb253ee5a",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_018_prompt",
+        "elapsed_seconds": 51.838,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T06:48:20.733978+00:00",
+      "finished_at": "2026-08-31T06:52:52.645075+00:00",
+      "elapsed_seconds": 271.911,
+      "beat_id": 1,
+      "ordak_job_id": "eccfc040-aebc-4cdd-b61d-f1fa14c458e6",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 1,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.044
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.029
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.118,
+        "polling_elapsed_seconds": 271.568,
+        "poll_count": 135,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T06:48:44.257276Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "eccfc040-aebc-4cdd-b61d-f1fa14c458e6_style_anchor.png",
+            "elapsed_seconds": 12.651
+          },
+          {
+            "timestamp": "2026-08-31T06:48:52.195451Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "eccfc040-aebc-4cdd-b61d-f1fa14c458e6_character_anchor.png",
+            "elapsed_seconds": 7.931
+          },
+          {
+            "timestamp": "2026-08-31T06:48:55.158676Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.742
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T06:48:20.927503",
+        "ordak_job_finished_at": "2026-08-31T06:52:51.746367"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.046,
+        "bytes": 2242052
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_001.png",
+        "bytes": 2242052,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "b878f24ac6b75d957a8e49a842c80c8c5e3666e4c095d5de8c92d9e8cdc61661"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T06:55:45.499745+00:00",
+      "finished_at": "2026-08-31T06:55:45.500599+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T06:55:45.507217+00:00",
+      "finished_at": "2026-08-31T06:55:45.507633+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T06:55:45.511051+00:00",
+      "finished_at": "2026-08-31T06:55:45.513566+00:00",
+      "elapsed_seconds": 0.003,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T06:55:45.621274+00:00",
+      "finished_at": "2026-08-31T06:59:02.616171+00:00",
+      "elapsed_seconds": 196.995,
+      "beat_id": 2,
+      "ordak_job_id": "5a6109a4-03a9-4e0f-a15f-f3d621f70420",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_001.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 2,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_001.png",
+            "bytes": 2242052,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.092,
+        "polling_elapsed_seconds": 196.845,
+        "poll_count": 98,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T06:56:25.754541Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "5a6109a4-03a9-4e0f-a15f-f3d621f70420_style_anchor.png",
+            "elapsed_seconds": 28.541
+          },
+          {
+            "timestamp": "2026-08-31T06:56:45.786538Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "5a6109a4-03a9-4e0f-a15f-f3d621f70420_character_anchor.png",
+            "elapsed_seconds": 20.023
+          },
+          {
+            "timestamp": "2026-08-31T06:57:08.406005Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "5a6109a4-03a9-4e0f-a15f-f3d621f70420_beat_001.png",
+            "elapsed_seconds": 22.611
+          },
+          {
+            "timestamp": "2026-08-31T06:57:12.093672Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.41
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T06:55:45.723442",
+        "ordak_job_finished_at": "2026-08-31T06:59:02.445519"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.029,
+        "bytes": 2219204
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_002.png",
+        "bytes": 2219204,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "334bdc27ae3ef5bbdee70be031634645bd3ee312b21e950acd3d476cc03c0942"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T06:59:04.332302+00:00",
+      "finished_at": "2026-08-31T07:01:56.707320+00:00",
+      "elapsed_seconds": 172.375,
+      "beat_id": 3,
+      "ordak_job_id": "aee92f21-a611-4446-a5ec-1df87a90d1ae",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_002.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 3,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_002.png",
+            "bytes": 2219204,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.137,
+        "polling_elapsed_seconds": 172.154,
+        "poll_count": 86,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T06:59:35.771268Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "aee92f21-a611-4446-a5ec-1df87a90d1ae_style_anchor.png",
+            "elapsed_seconds": 20.763
+          },
+          {
+            "timestamp": "2026-08-31T06:59:50.373646Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "aee92f21-a611-4446-a5ec-1df87a90d1ae_character_anchor.png",
+            "elapsed_seconds": 14.594
+          },
+          {
+            "timestamp": "2026-08-31T07:00:06.533743Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "aee92f21-a611-4446-a5ec-1df87a90d1ae_beat_002.png",
+            "elapsed_seconds": 16.146
+          },
+          {
+            "timestamp": "2026-08-31T07:00:09.792797Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.025
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T06:59:04.485633",
+        "ordak_job_finished_at": "2026-08-31T07:01:55.818015"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.039,
+        "bytes": 2250404
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_003.png",
+        "bytes": 2250404,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "4f30fbb3d2d100c224cf7c1c056f8ef2011dbf6b32599cd99a8dc001b6346df7"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:05:09.083998+00:00",
+      "finished_at": "2026-08-31T07:05:09.084562+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:05:09.088329+00:00",
+      "finished_at": "2026-08-31T07:05:09.088612+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:05:09.091823+00:00",
+      "finished_at": "2026-08-31T07:05:09.093573+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:05:09.244135+00:00",
+      "finished_at": "2026-08-31T07:07:57.573581+00:00",
+      "elapsed_seconds": 168.329,
+      "beat_id": 4,
+      "ordak_job_id": "13e2ef05-e00a-4969-a64e-756065ad38bd",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_003.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 4,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_003.png",
+            "bytes": 2250404,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.09,
+        "polling_elapsed_seconds": 168.149,
+        "poll_count": 84,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:05:35.136575Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "13e2ef05-e00a-4969-a64e-756065ad38bd_style_anchor.png",
+            "elapsed_seconds": 15.616
+          },
+          {
+            "timestamp": "2026-08-31T07:05:49.648921Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "13e2ef05-e00a-4969-a64e-756065ad38bd_character_anchor.png",
+            "elapsed_seconds": 14.5
+          },
+          {
+            "timestamp": "2026-08-31T07:06:04.213171Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "13e2ef05-e00a-4969-a64e-756065ad38bd_beat_003.png",
+            "elapsed_seconds": 14.548
+          },
+          {
+            "timestamp": "2026-08-31T07:06:07.708947Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.113
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:05:09.344405",
+        "ordak_job_finished_at": "2026-08-31T07:07:56.908913"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.057,
+        "bytes": 2143044
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_004.png",
+        "bytes": 2143044,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "2f51e5900ba2a995241872273503b3a4a802b363c7c0de26546c7d9552679cc6"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:07:59.316415+00:00",
+      "finished_at": "2026-08-31T07:10:41.340790+00:00",
+      "elapsed_seconds": 162.024,
+      "beat_id": 5,
+      "ordak_job_id": "999ba338-ea37-4671-b619-a28618936f37",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_004.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 5,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.011
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_004.png",
+            "bytes": 2143044,
+            "read_elapsed_seconds": 0.008
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.188,
+        "polling_elapsed_seconds": 161.711,
+        "poll_count": 81,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:08:32.297233Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "999ba338-ea37-4671-b619-a28618936f37_style_anchor.png",
+            "elapsed_seconds": 22.142
+          },
+          {
+            "timestamp": "2026-08-31T07:08:45.847741Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "999ba338-ea37-4671-b619-a28618936f37_character_anchor.png",
+            "elapsed_seconds": 13.543
+          },
+          {
+            "timestamp": "2026-08-31T07:09:03.466766Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "999ba338-ea37-4671-b619-a28618936f37_beat_004.png",
+            "elapsed_seconds": 17.608
+          },
+          {
+            "timestamp": "2026-08-31T07:09:07.703207Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 4.006
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:07:59.530501",
+        "ordak_job_finished_at": "2026-08-31T07:10:39.438325"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.081,
+        "bytes": 2468754
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_005.png",
+        "bytes": 2468754,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "a8d19ea95a4839d3fd26e95f05d3bfb5e631de57e9747f3c9afab4eef828a609"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:10:43.135735+00:00",
+      "finished_at": "2026-08-31T07:13:26.003965+00:00",
+      "elapsed_seconds": 162.868,
+      "beat_id": 6,
+      "ordak_job_id": "62a43be1-d68f-4a22-ae39-fe040ef7d7f5",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_005.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 6,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_005.png",
+            "bytes": 2468754,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.108,
+        "polling_elapsed_seconds": 162.653,
+        "poll_count": 81,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:11:09.611061Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "62a43be1-d68f-4a22-ae39-fe040ef7d7f5_style_anchor.png",
+            "elapsed_seconds": 17.144
+          },
+          {
+            "timestamp": "2026-08-31T07:11:24.662091Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "62a43be1-d68f-4a22-ae39-fe040ef7d7f5_character_anchor.png",
+            "elapsed_seconds": 15.04
+          },
+          {
+            "timestamp": "2026-08-31T07:11:45.751796Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "62a43be1-d68f-4a22-ae39-fe040ef7d7f5_beat_005.png",
+            "elapsed_seconds": 21.082
+          },
+          {
+            "timestamp": "2026-08-31T07:11:49.237284Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.246
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:10:43.254119",
+        "ordak_job_finished_at": "2026-08-31T07:13:24.563448"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.066,
+        "bytes": 2418790
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_006.png",
+        "bytes": 2418790,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "b96dd6ad27c7e674a098f6d303fb6292478e603583ac18ede18d852221aa317c"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:13:27.164101+00:00",
+      "finished_at": "2026-08-31T07:15:55.315251+00:00",
+      "elapsed_seconds": 148.151,
+      "beat_id": 7,
+      "ordak_job_id": "d641a003-407d-4068-9ae7-36200201f728",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_006.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 7,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_006.png",
+            "bytes": 2418790,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.137,
+        "polling_elapsed_seconds": 147.884,
+        "poll_count": 74,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:13:55.416228Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "d641a003-407d-4068-9ae7-36200201f728_style_anchor.png",
+            "elapsed_seconds": 17.43
+          },
+          {
+            "timestamp": "2026-08-31T07:14:11.876154Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "d641a003-407d-4068-9ae7-36200201f728_character_anchor.png",
+            "elapsed_seconds": 16.452
+          },
+          {
+            "timestamp": "2026-08-31T07:14:26.667146Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "d641a003-407d-4068-9ae7-36200201f728_beat_006.png",
+            "elapsed_seconds": 14.772
+          },
+          {
+            "timestamp": "2026-08-31T07:14:30.161581Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.201
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:13:27.317699",
+        "ordak_job_finished_at": "2026-08-31T07:15:54.481501"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.086,
+        "bytes": 2310862
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_007.png",
+        "bytes": 2310862,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "6f8813dd93c6045470e5235916b1a40e02d2039b606d1bf37fee03e8a4808956"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:15:56.428962+00:00",
+      "finished_at": "2026-08-31T07:19:09.061253+00:00",
+      "elapsed_seconds": 192.632,
+      "beat_id": 8,
+      "ordak_job_id": "3e2b091b-1de0-4d41-8c73-a0109b83f976",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_007.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 8,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_007.png",
+            "bytes": 2310862,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.11,
+        "polling_elapsed_seconds": 192.449,
+        "poll_count": 96,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:16:26.040080Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "3e2b091b-1de0-4d41-8c73-a0109b83f976_style_anchor.png",
+            "elapsed_seconds": 17.742
+          },
+          {
+            "timestamp": "2026-08-31T07:16:55.827371Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "3e2b091b-1de0-4d41-8c73-a0109b83f976_character_anchor.png",
+            "elapsed_seconds": 29.756
+          },
+          {
+            "timestamp": "2026-08-31T07:17:13.170195Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "3e2b091b-1de0-4d41-8c73-a0109b83f976_beat_007.png",
+            "elapsed_seconds": 17.334
+          },
+          {
+            "timestamp": "2026-08-31T07:17:16.506652Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.071
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:15:56.548606",
+        "ordak_job_finished_at": "2026-08-31T07:19:08.645446"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.043,
+        "bytes": 2223382
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_008.png",
+        "bytes": 2223382,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "be3c8dab0bf50afb8f66cb1123988e5dbe9c3fdf6a45eb73cc8dc4605a2c5c70"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:22:07.509048+00:00",
+      "finished_at": "2026-08-31T07:22:07.511651+00:00",
+      "elapsed_seconds": 0.003,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:22:07.518251+00:00",
+      "finished_at": "2026-08-31T07:22:07.524420+00:00",
+      "elapsed_seconds": 0.006,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:22:07.535536+00:00",
+      "finished_at": "2026-08-31T07:22:07.544605+00:00",
+      "elapsed_seconds": 0.009,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:22:07.844369+00:00",
+      "finished_at": "2026-08-31T07:25:08.232049+00:00",
+      "elapsed_seconds": 180.388,
+      "beat_id": 9,
+      "ordak_job_id": "d27d3d84-64f9-4ea8-87c2-4cd3d28efdfd",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_008.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 9,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.01
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.008
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_008.png",
+            "bytes": 2223382,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.114,
+        "polling_elapsed_seconds": 180.162,
+        "poll_count": 90,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:22:38.876644Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "d27d3d84-64f9-4ea8-87c2-4cd3d28efdfd_style_anchor.png",
+            "elapsed_seconds": 19.916
+          },
+          {
+            "timestamp": "2026-08-31T07:22:56.949173Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "d27d3d84-64f9-4ea8-87c2-4cd3d28efdfd_character_anchor.png",
+            "elapsed_seconds": 18.063
+          },
+          {
+            "timestamp": "2026-08-31T07:23:06.031714Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "d27d3d84-64f9-4ea8-87c2-4cd3d28efdfd_beat_008.png",
+            "elapsed_seconds": 9.071
+          },
+          {
+            "timestamp": "2026-08-31T07:23:09.644452Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.338
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:22:07.993597",
+        "ordak_job_finished_at": "2026-08-31T07:25:07.064480"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.057,
+        "bytes": 2340781
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_009.png",
+        "bytes": 2340781,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "50a47332e3183d0db2d80efe723020abfbb7261540d63f0d504be4c1bec283b5"
+      }
+    },
+    {
+      "operation": "recovered_visible_chatgpt_image",
+      "started_at": "2026-08-31T07:49:44.103245+00:00",
+      "finished_at": "2026-08-31T07:49:44.103289+00:00",
+      "elapsed_seconds": 0.081,
+      "beat_id": 10,
+      "ordak_job_id": "b9e3d499-5d87-49d5-8577-bbc93ff5d5fa",
+      "artifact": "assets/raw_beats/beat_010.png",
+      "source": "same Ordak/ChatGPT Chrome conversation"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:51:38.496635+00:00",
+      "finished_at": "2026-08-31T07:51:38.497137+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:51:38.503374+00:00",
+      "finished_at": "2026-08-31T07:51:38.504062+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:51:38.509708+00:00",
+      "finished_at": "2026-08-31T07:51:38.511436+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:51:38.906991+00:00",
+      "finished_at": "2026-08-31T07:54:49.509977+00:00",
+      "elapsed_seconds": 190.603,
+      "beat_id": 11,
+      "ordak_job_id": "985ac660-486f-4860-a4ff-f519ab1dee82",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_010.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 11,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.01
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_010.png",
+            "bytes": 2276622,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.128,
+        "polling_elapsed_seconds": 190.386,
+        "poll_count": 95,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:52:12.474614Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "985ac660-486f-4860-a4ff-f519ab1dee82_style_anchor.png",
+            "elapsed_seconds": 21.558
+          },
+          {
+            "timestamp": "2026-08-31T07:52:24.832617Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "985ac660-486f-4860-a4ff-f519ab1dee82_character_anchor.png",
+            "elapsed_seconds": 12.349
+          },
+          {
+            "timestamp": "2026-08-31T07:52:38.284762Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "985ac660-486f-4860-a4ff-f519ab1dee82_beat_010.png",
+            "elapsed_seconds": 13.444
+          },
+          {
+            "timestamp": "2026-08-31T07:52:41.550161Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.934
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:51:39.064633",
+        "ordak_job_finished_at": "2026-08-31T07:54:48.150403"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.041,
+        "bytes": 2350016
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_011.png",
+        "bytes": 2350016,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "222737c79bbbc31434559eaa95a4c8b1f76377e75e2c4653a72e5957aa87f82f"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T07:54:51.335234+00:00",
+      "finished_at": "2026-08-31T07:58:02.025502+00:00",
+      "elapsed_seconds": 190.69,
+      "beat_id": 12,
+      "ordak_job_id": "7bab1978-db74-4af4-b495-506493334134",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_011.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 12,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.008
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_011.png",
+            "bytes": 2350016,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.139,
+        "polling_elapsed_seconds": 190.476,
+        "poll_count": 95,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T07:55:20.204914Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "7bab1978-db74-4af4-b495-506493334134_style_anchor.png",
+            "elapsed_seconds": 17.31
+          },
+          {
+            "timestamp": "2026-08-31T07:55:35.580164Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "7bab1978-db74-4af4-b495-506493334134_character_anchor.png",
+            "elapsed_seconds": 15.367
+          },
+          {
+            "timestamp": "2026-08-31T07:55:48.885910Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "7bab1978-db74-4af4-b495-506493334134_beat_011.png",
+            "elapsed_seconds": 13.297
+          },
+          {
+            "timestamp": "2026-08-31T07:55:52.446944Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.321
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T07:54:51.493730",
+        "ordak_job_finished_at": "2026-08-31T07:58:01.878327"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.04,
+        "bytes": 2315406
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_012.png",
+        "bytes": 2315406,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "0b4c8670bc25a29052537fa53c7b4e91b31aba5e3f6175c316ffa6c2c9bdbcba"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:58:20.559135+00:00",
+      "finished_at": "2026-08-31T07:58:20.559651+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:58:20.566855+00:00",
+      "finished_at": "2026-08-31T07:58:20.567157+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T07:58:20.573231+00:00",
+      "finished_at": "2026-08-31T07:58:20.575038+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T08:01:08.161727+00:00",
+      "finished_at": "2026-08-31T08:01:08.162221+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T08:01:08.168971+00:00",
+      "finished_at": "2026-08-31T08:01:08.169257+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T08:01:08.176346+00:00",
+      "finished_at": "2026-08-31T08:01:08.178094+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T08:04:05.533142+00:00",
+      "finished_at": "2026-08-31T08:04:05.533664+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T08:04:05.541107+00:00",
+      "finished_at": "2026-08-31T08:04:05.541488+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T08:04:05.548029+00:00",
+      "finished_at": "2026-08-31T08:04:05.549731+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T08:04:06.089672+00:00",
+      "finished_at": "2026-08-31T08:06:37.893783+00:00",
+      "elapsed_seconds": 151.804,
+      "beat_id": 13,
+      "ordak_job_id": "bf0413f3-8ead-4fc3-a5d2-cc767ff94294",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_012.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 13,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_012.png",
+            "bytes": 2315406,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.125,
+        "polling_elapsed_seconds": 151.596,
+        "poll_count": 76,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T08:04:31.662937Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "bf0413f3-8ead-4fc3-a5d2-cc767ff94294_style_anchor.png",
+            "elapsed_seconds": 14.123
+          },
+          {
+            "timestamp": "2026-08-31T08:04:39.368200Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "bf0413f3-8ead-4fc3-a5d2-cc767ff94294_character_anchor.png",
+            "elapsed_seconds": 7.697
+          },
+          {
+            "timestamp": "2026-08-31T08:04:54.439805Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "bf0413f3-8ead-4fc3-a5d2-cc767ff94294_beat_012.png",
+            "elapsed_seconds": 15.063
+          },
+          {
+            "timestamp": "2026-08-31T08:04:57.442284Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.776
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T08:04:06.222459",
+        "ordak_job_finished_at": "2026-08-31T08:06:37.560824"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.042,
+        "bytes": 2292836
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_013.png",
+        "bytes": 2292836,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "3f488b42ab548af6ac15d43bf1930dafb83a81bb974b599c69010efc72b114fe"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T08:06:39.576416+00:00",
+      "finished_at": "2026-08-31T08:10:44.802310+00:00",
+      "elapsed_seconds": 245.226,
+      "beat_id": 14,
+      "ordak_job_id": "51657cf6-4131-435e-8153-070942470954",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_013.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 14,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_013.png",
+            "bytes": 2292836,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.128,
+        "polling_elapsed_seconds": 245.023,
+        "poll_count": 122,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T08:07:09.072914Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "51657cf6-4131-435e-8153-070942470954_style_anchor.png",
+            "elapsed_seconds": 16.807
+          },
+          {
+            "timestamp": "2026-08-31T08:07:22.041148Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "51657cf6-4131-435e-8153-070942470954_character_anchor.png",
+            "elapsed_seconds": 12.958
+          },
+          {
+            "timestamp": "2026-08-31T08:07:36.521573Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "51657cf6-4131-435e-8153-070942470954_beat_013.png",
+            "elapsed_seconds": 14.467
+          },
+          {
+            "timestamp": "2026-08-31T08:07:40.044545Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.283
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T08:06:39.714419",
+        "ordak_job_finished_at": "2026-08-31T08:10:42.731457"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.041,
+        "bytes": 2609914
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_014.png",
+        "bytes": 2609914,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "3875f1c8b57ba6888de7249d7caceab6457b8dfef1743747bc7896f8800997da"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T08:10:46.141239+00:00",
+      "finished_at": "2026-08-31T08:13:34.415559+00:00",
+      "elapsed_seconds": 168.274,
+      "beat_id": 15,
+      "ordak_job_id": "7fc6eb95-e95f-4543-a614-3085948b3d3d",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_014.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 15,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.007
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.009
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_014.png",
+            "bytes": 2609914,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.153,
+        "polling_elapsed_seconds": 168.038,
+        "poll_count": 84,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T08:11:11.345938Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "7fc6eb95-e95f-4543-a614-3085948b3d3d_style_anchor.png",
+            "elapsed_seconds": 14.971
+          },
+          {
+            "timestamp": "2026-08-31T08:11:19.709457Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "7fc6eb95-e95f-4543-a614-3085948b3d3d_character_anchor.png",
+            "elapsed_seconds": 8.356
+          },
+          {
+            "timestamp": "2026-08-31T08:11:37.238294Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "7fc6eb95-e95f-4543-a614-3085948b3d3d_beat_014.png",
+            "elapsed_seconds": 17.519
+          },
+          {
+            "timestamp": "2026-08-31T08:11:40.779941Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.204
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T08:10:46.320285",
+        "ordak_job_finished_at": "2026-08-31T08:13:32.968107"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.032,
+        "bytes": 2120278
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_015.png",
+        "bytes": 2120278,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "56071afbd8ada73d3c888cce8ed05f9a30a3acd40060bc8f0eaf1f11dce8a98e"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T08:13:35.971101+00:00",
+      "finished_at": "2026-08-31T08:16:26.640200+00:00",
+      "elapsed_seconds": 170.669,
+      "beat_id": 16,
+      "ordak_job_id": "b94e818d-f173-4f18-b921-7afa19ddafd2",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_015.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 16,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_015.png",
+            "bytes": 2120278,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.125,
+        "polling_elapsed_seconds": 170.442,
+        "poll_count": 85,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T08:14:08.741154Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "b94e818d-f173-4f18-b921-7afa19ddafd2_style_anchor.png",
+            "elapsed_seconds": 21.852
+          },
+          {
+            "timestamp": "2026-08-31T08:14:22.309978Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "b94e818d-f173-4f18-b921-7afa19ddafd2_character_anchor.png",
+            "elapsed_seconds": 13.555
+          },
+          {
+            "timestamp": "2026-08-31T08:14:30.136719Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "b94e818d-f173-4f18-b921-7afa19ddafd2_beat_015.png",
+            "elapsed_seconds": 7.814
+          },
+          {
+            "timestamp": "2026-08-31T08:14:33.361615Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.005
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T08:13:36.117838",
+        "ordak_job_finished_at": "2026-08-31T08:16:25.988036"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.057,
+        "bytes": 2116881
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_016.png",
+        "bytes": 2116881,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "fb9bd058df1f4bcda8126b6f0f50a080621839dcebc4ba9baf7e48e12367b3f9"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T08:16:27.954226+00:00",
+      "finished_at": "2026-08-31T08:19:36.575869+00:00",
+      "elapsed_seconds": 188.622,
+      "beat_id": 17,
+      "ordak_job_id": "9377bda0-f37e-405d-83dd-9656b69ca3ea",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_016.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 17,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_016.png",
+            "bytes": 2116881,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.087,
+        "polling_elapsed_seconds": 188.467,
+        "poll_count": 94,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T08:16:50.681747Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "9377bda0-f37e-405d-83dd-9656b69ca3ea_style_anchor.png",
+            "elapsed_seconds": 12.072
+          },
+          {
+            "timestamp": "2026-08-31T08:17:04.197603Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "9377bda0-f37e-405d-83dd-9656b69ca3ea_character_anchor.png",
+            "elapsed_seconds": 13.507
+          },
+          {
+            "timestamp": "2026-08-31T08:17:18.897829Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "9377bda0-f37e-405d-83dd-9656b69ca3ea_beat_016.png",
+            "elapsed_seconds": 14.691
+          },
+          {
+            "timestamp": "2026-08-31T08:17:23.020025Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.847
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T08:16:28.059183",
+        "ordak_job_finished_at": "2026-08-31T08:19:36.005493"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.025,
+        "bytes": 2149606
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_017.png",
+        "bytes": 2149606,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "0c58561c1691cfd20ddcfe02c7d93c5ab8b100e2dc0274be4d5b435deb3083fd"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T08:19:37.863414+00:00",
+      "finished_at": "2026-08-31T08:22:52.466931+00:00",
+      "elapsed_seconds": 194.604,
+      "beat_id": 18,
+      "ordak_job_id": "f9bb3abd-7403-47fa-9fa4-0d62d7873142",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_017.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 18,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.001
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/006_what_is_karma_and_is_it_real_or_not/assets/raw_beats/beat_017.png",
+            "bytes": 2149606,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.096,
+        "polling_elapsed_seconds": 194.436,
+        "poll_count": 97,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T08:20:10.636688Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "f9bb3abd-7403-47fa-9fa4-0d62d7873142_style_anchor.png",
+            "elapsed_seconds": 20.419
+          },
+          {
+            "timestamp": "2026-08-31T08:20:28.822471Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "f9bb3abd-7403-47fa-9fa4-0d62d7873142_character_anchor.png",
+            "elapsed_seconds": 18.176
+          },
+          {
+            "timestamp": "2026-08-31T08:20:40.627845Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "f9bb3abd-7403-47fa-9fa4-0d62d7873142_beat_017.png",
+            "elapsed_seconds": 11.793
+          },
+          {
+            "timestamp": "2026-08-31T08:20:44.223497Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.285
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T08:19:37.975827",
+        "ordak_job_finished_at": "2026-08-31T08:22:50.618175"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.037,
+        "bytes": 2257279
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_018.png",
+        "bytes": 2257279,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "760cac68eaf3a234e7b8d79d1bd58259a73c6edb8efeb295a461c2a889eb6dff"
+      }
+    }
+  ],
+  "updated_at": "2026-08-31T08:22:52.466951+00:00"
+}
