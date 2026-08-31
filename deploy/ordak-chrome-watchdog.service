@@ -8,5 +8,5 @@ User=root
 Environment=DISPLAY=:99
 Environment=ORDAK_CHROME_PROFILE_DIR=/root/.config/google-chrome-ordak
 Environment=ORDAK_CHROME_PROFILE_NAME=Default
-Environment=ORDAK_CHROME_STARTUP_URL=https://pixabay.com/music/ambient-ambient-stillness-478783/
+Environment=ORDAK_CHROME_STARTUP_URL=about:blank
 ExecStart=/root/YT_Video_Generation_Pipeline/scripts/ordak_chrome_watchdog.sh

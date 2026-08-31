@@ -22,7 +22,7 @@ printf '%s\n' "$failures" >"$failure_file"
 profile_dir="${ORDAK_CHROME_PROFILE_DIR:-/root/.config/google-chrome-ordak}"
 profile_name="${ORDAK_CHROME_PROFILE_NAME:-Default}"
 display="${DISPLAY:-:99}"
-startup_url="${ORDAK_CHROME_STARTUP_URL:-https://pixabay.com/music/ambient-ambient-stillness-478783/}"
+startup_url="${ORDAK_CHROME_STARTUP_URL:-about:blank}"
 
 mapfile -t pids < <(pgrep -f "google-chrome.*--remote-debugging-port=9222.*${profile_dir}" || true)
 if ((${#pids[@]})); then

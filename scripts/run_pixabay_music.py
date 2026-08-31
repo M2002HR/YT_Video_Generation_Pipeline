@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Select and download background music through real ChatGPT and Pixabay UIs.
+"""Select and download background music through real ChatGPT and provider UIs.
 
-No ChatGPT, Pixabay, or media API is used.  Ordak is the only browser-control
+No ChatGPT, music-provider, or media API is used. Ordak is the only browser-control
 layer.  A Cloudflare human-verification interstitial is detected explicitly and
 reported without trying to bypass it; resume the same command after it has
 been completed in the visible VNC browser.
@@ -9,10 +9,12 @@ been completed in the visible VNC browser.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import time
 from datetime import datetime, timezone
@@ -25,7 +27,10 @@ from pipeline_notifier import PipelineNotifier
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PIXABAY_URL_RE = re.compile(r"https?://(?:www\.)?pixabay\.com/music/[\w/-]+", re.I)
+TRACK_URL_PATTERNS = {
+    "pixabay": re.compile(r"https?://(?:www\.)?pixabay\.com/music/[\w/-]+", re.I),
+    "mixkit": re.compile(r"https?://(?:www\.)?mixkit\.co/free-stock-music/item/\d+/?", re.I),
+}
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".m4a", ".ogg", ".flac"}
 
 
@@ -101,7 +106,38 @@ class Browser:
             request(3, "Input.dispatchKeyEvent", {"type": "keyUp", "key": "Enter", "code": "Enter", "windowsVirtualKeyCode": 13, "modifiers": 2})
 
 
-def choose_track(browser: Browser, project_url: str, prompt: str) -> str:
+def video_context(project: Path) -> tuple[str, float]:
+    """Build a compact, video-specific music brief from committed artifacts."""
+    parts = []
+    for name in ("BRIEF.md", "SCRIPT_FINAL.md"):
+        path = project / name
+        if path.exists():
+            parts.append(" ".join(path.read_text(encoding="utf-8").split()))
+    if not parts:
+        raise RuntimeError("Music selection needs BRIEF.md or SCRIPT_FINAL.md.")
+    duration = 0.0
+    audio = next((p for p in (project / "assets" / "audio").glob("narration.*") if p.suffix.lower() in AUDIO_EXTENSIONS), None)
+    if audio and shutil.which("ffprobe"):
+        result = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", str(audio)], capture_output=True, text=True, check=False)
+        try: duration = float(result.stdout.strip())
+        except ValueError: pass
+    return "\n".join(parts)[:2400], duration
+
+
+def music_prompt(provider: str, context: str, duration: float) -> str:
+    provider_text = "Pixabay Music" if provider == "pixabay" else "Mixkit Free Stock Music"
+    url_shape = "pixabay.com/music/" if provider == "pixabay" else "mixkit.co/free-stock-music/item/"
+    return (
+        f"Choose exactly one {provider_text} track for this specific video. "
+        f"Narration duration: {duration:.1f} seconds. Source brief/script follows:\n{context}\n\n"
+        "Infer the topic, emotional arc, pacing, language and audience from this material. "
+        "Choose an instrumental background suitable under spoken narration: no lyrics, no abrupt drops, "
+        "and a restrained mix that supports rather than competes with the voice. "
+        f"Reply with only one direct https://{url_shape} track URL and no other text."
+    )
+
+
+def choose_track(browser: Browser, project_url: str, prompt: str, provider: str) -> str:
     browser.select_or_open(project_url)
     deadline = time.monotonic() + 45
     while time.monotonic() < deadline:
@@ -115,15 +151,15 @@ def choose_track(browser: Browser, project_url: str, prompt: str) -> str:
     deadline = time.monotonic() + 180
     while time.monotonic() < deadline:
         text = str(browser.data("document.body?.innerText||''"))
-        found = PIXABAY_URL_RE.search(text)
+        found = TRACK_URL_PATTERNS[provider].search(text)
         if found:
             return found.group(0).rstrip("/.") + "/"
         time.sleep(2)
-    raise RuntimeError("ChatGPT did not return a Pixabay Music URL.")
+    raise RuntimeError(f"ChatGPT did not return a valid {provider} track URL.")
 
 
-def pixabay_snapshot(browser: Browser) -> dict[str, Any]:
-    return browser.data("""(() => { const text=document.body?.innerText||''; const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const button=[...document.querySelectorAll('button,a')].find(e=>visible(e)&&/^free download$/i.test((e.innerText||'').trim())); const r=button?.getBoundingClientRect(); return {ready:!!button, downloading:/downloading/i.test(text), challenge:/verify you are human|turnstile|captcha/i.test(text)||!!document.querySelector('iframe[src*=turnstile],iframe[src*=challenge]'), text:text.slice(0,2500), point:button?{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}:null}; })()""")
+def provider_snapshot(browser: Browser) -> dict[str, Any]:
+    return browser.data("""(() => { const text=document.body?.innerText||''; const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const controls=[...document.querySelectorAll('button,a')].filter(visible); const cookie=controls.find(e=>/^reject all$/i.test((e.innerText||'').trim())); const button=controls.find(e=>/^(free download|download free music)$/i.test((e.innerText||'').trim())||/download free music/i.test(e.getAttribute('aria-label')||'')); const rect=e=>{const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}}; return {ready:!!button, downloading:/downloading/i.test(text), challenge:/verify you are human|turnstile|captcha/i.test(text)||!!document.querySelector('iframe[src*=turnstile],iframe[src*=challenge]'), text:text.slice(0,2500), cookie_point:cookie?rect(cookie):null, point:button?rect(button):null}; })()""")
 
 
 def newest_download(directory: Path, after: float) -> Path | None:
@@ -133,54 +169,61 @@ def newest_download(directory: Path, after: float) -> Path | None:
 
 def main() -> None:
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
-    parser = argparse.ArgumentParser(description="Choose/download Pixabay music through ChatGPT and the visible browser.")
+    parser = argparse.ArgumentParser(description="Choose/download background music through ChatGPT and the visible browser.")
     parser.add_argument("--video-id", required=True)
     parser.add_argument("--project", type=Path)
-    parser.add_argument("--pixabay-url", help="Skip ChatGPT selection and resume this exact Pixabay URL.")
+    parser.add_argument("--provider", choices=tuple(TRACK_URL_PATTERNS), default=os.getenv("YT_MUSIC_PROVIDER", "mixkit"))
+    parser.add_argument("--track-url", help="Skip ChatGPT selection and resume this exact provider URL.")
     args = parser.parse_args()
     projects = [args.project.resolve()] if args.project else list((ROOT / "videos").glob(f"{args.video_id}_*"))
     if len(projects) != 1:
         raise RuntimeError("Pass --project when the video directory is ambiguous.")
     project = projects[0]
-    music_dir, meta_path = project / "assets" / "music", project / "music" / "PIXABAY_SELECTION.json"
+    if args.track_url and not TRACK_URL_PATTERNS[args.provider].fullmatch(args.track_url.rstrip("/") + "/"):
+        raise RuntimeError(f"--track-url is not a valid {args.provider} track URL.")
+    music_dir, meta_path = project / "assets" / "music", project / "music" / "MUSIC_SELECTION.json"
     notifier = PipelineNotifier(args.video_id, project.name)
     started = time.perf_counter()
     browser = Browser()
-    prompt = ("Recommend exactly one Pixabay Music track for this short English explainer. "
-              "Topic: why people forget why they walked into a room. Need a warm, subtle, reflective instrumental, "
-              "safe below narration; no lyrics, no dramatic beat drops. Reply with only one direct pixabay.com/music/ track URL.")
-    url = args.pixabay_url or choose_track(browser, os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"), prompt)
-    dump(meta_path, {"schema_version": 1, "provider": "Pixabay web UI", "source_url": url, "selection_prompt": prompt, "selected_at": utcnow(), "status": "SELECTED"})
-    notifier.send("Pixabay music selected", ["🎵 Background track chosen", f"🔗 Source: {url}"])
+    context, duration = video_context(project)
+    prompt = music_prompt(args.provider, context, duration)
+    url = args.track_url or choose_track(browser, os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"), prompt, args.provider)
+    provider_name = "Pixabay" if args.provider == "pixabay" else "Mixkit"
+    dump(meta_path, {"schema_version": 1, "provider": f"{provider_name} web UI", "source_url": url, "selection_prompt": prompt, "video_context_sha256": hashlib.sha256(context.encode()).hexdigest(), "narration_duration_seconds": duration, "selected_at": utcnow(), "status": "SELECTED"})
+    notifier.send(f"{provider_name} music selected", ["🎵 Background track chosen", f"🔗 Source: {url}"])
     browser.select_or_open(url)
     deadline = time.monotonic() + 45
     while time.monotonic() < deadline:
-        snap = pixabay_snapshot(browser)
+        snap = provider_snapshot(browser)
+        if snap.get("cookie_point"):
+            browser.point_click(f"(() => {{ return {json.dumps(snap['cookie_point'])}; }})()")
+            time.sleep(1)
+            snap = provider_snapshot(browser)
         if snap.get("challenge"):
-            dump(meta_path, {"schema_version": 1, "provider": "Pixabay web UI", "source_url": url, "status": "HUMAN_VERIFICATION_REQUIRED", "detected_at": utcnow()})
-            raise RuntimeError("Pixabay requires visible Cloudflare human verification in VNC; complete it, then rerun this command.")
+            dump(meta_path, {"schema_version": 1, "provider": f"{provider_name} web UI", "source_url": url, "status": "HUMAN_VERIFICATION_REQUIRED", "detected_at": utcnow()})
+            raise RuntimeError(f"{provider_name} requires visible human verification in VNC; complete it, then rerun this command.")
         if snap.get("ready"):
             break
         time.sleep(1)
     else:
-        raise RuntimeError("Pixabay Free download control did not become ready.")
-    download_dir = Path(os.getenv("YT_PIXABAY_DOWNLOAD_DIR", str(Path.home() / "Downloads"))).expanduser()
+        raise RuntimeError(f"{provider_name} Free download control did not become ready.")
+    download_dir = Path(os.getenv("YT_MUSIC_DOWNLOAD_DIR", str(Path.home() / "Downloads"))).expanduser()
     download_started = time.time()
     browser.point_click(f"(() => {{ return {json.dumps(snap['point'])}; }})()")
-    deadline = time.monotonic() + float(os.getenv("YT_PIXABAY_DOWNLOAD_TIMEOUT_SECONDS", "180"))
+    deadline = time.monotonic() + float(os.getenv("YT_MUSIC_DOWNLOAD_TIMEOUT_SECONDS", "180"))
     while time.monotonic() < deadline:
         download = newest_download(download_dir, download_started)
         if download:
             music_dir.mkdir(parents=True, exist_ok=True)
             destination = music_dir / f"background{download.suffix.lower()}"
             shutil.move(str(download), destination)
-            dump(meta_path, {"schema_version": 1, "provider": "Pixabay web UI", "source_url": url, "downloaded_at": utcnow(), "status": "DONE", "file": str(destination.relative_to(project)), "bytes": destination.stat().st_size, "license": "Pixabay Content License; verify current source page before publication."})
-            notifier.stage_complete("Pixabay background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
-            print(f"PIXABAY MUSIC: PASS\nFile: {destination}")
+            dump(meta_path, {"schema_version": 1, "provider": f"{provider_name} web UI", "source_url": url, "downloaded_at": utcnow(), "status": "DONE", "file": str(destination.relative_to(project)), "bytes": destination.stat().st_size, "license": f"{provider_name} source license; verify current source page before publication."})
+            notifier.stage_complete(f"{provider_name} background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
+            print(f"{provider_name.upper()} MUSIC: PASS\nFile: {destination}")
             return
         time.sleep(2)
-    dump(meta_path, {"schema_version": 1, "provider": "Pixabay web UI", "source_url": url, "status": "DOWNLOAD_TIMEOUT", "updated_at": utcnow()})
-    raise RuntimeError("Pixabay download did not reach Chrome's download directory before timeout.")
+    dump(meta_path, {"schema_version": 1, "provider": f"{provider_name} web UI", "source_url": url, "status": "DOWNLOAD_TIMEOUT", "updated_at": utcnow()})
+    raise RuntimeError(f"{provider_name} download did not reach Chrome's download directory before timeout.")
 
 
 if __name__ == "__main__":
