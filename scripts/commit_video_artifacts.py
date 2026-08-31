@@ -25,7 +25,10 @@ def git(*args: str, capture: bool = True) -> str:
     if result.returncode:
         detail = (result.stderr or result.stdout or "git command failed").strip()
         raise RuntimeError(f"git {' '.join(args)} failed: {detail}")
-    return result.stdout.strip()
+    # ``subprocess.run(..., capture_output=False)`` intentionally leaves both
+    # streams as None.  Commands such as ``git add``/``git push`` are still
+    # successful and must not turn into an AttributeError after completion.
+    return (result.stdout or "").strip()
 
 
 def commit_project(project: Path, message: str) -> str | None:
