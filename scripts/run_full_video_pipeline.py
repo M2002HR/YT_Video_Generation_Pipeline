@@ -98,10 +98,9 @@ def ensure_render_profile(project: Path) -> Path:
         "fps": 30,
         "video": {"codec": "libx264", "preset": "medium", "crf": 18, "pixel_format": "yuv420p"},
         "audio": {"codec": "aac", "bitrate": "192k"},
-        # The server has two vCPUs.  Allow x264 to use both while retaining
-        # single-threaded filter graphs to cap memory spikes and leave the UI,
-        # VNC and Ordak responsive under a long render.
-        "resource_limits": {"ffmpeg_threads": 2, "filter_threads": 1, "filter_complex_threads": 1},
+        # The server has two vCPUs.  Use the full CPU ceiling, never more,
+        # while niceness keeps the interactive services schedulable.
+        "resource_limits": {"ffmpeg_threads": 2, "filter_threads": 2, "filter_complex_threads": 2},
         "motion": {"enabled": True, "strength": 0.035, "supersample": 2, "cycle": ["zoom_in", "still", "zoom_out", "slow_zoom_in"]},
         "subtitles": {"enabled": True, "font_name": "DejaVu Sans", "font_size": 56, "bold": True, "margin_v": 90, "outline": 3, "shadow": 0, "max_words_per_cue": 6, "max_chars_per_line": 34, "max_lines": 2},
     }, indent=2) + "\n", encoding="utf-8")
