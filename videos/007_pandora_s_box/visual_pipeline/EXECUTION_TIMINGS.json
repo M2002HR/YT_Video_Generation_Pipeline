@@ -1,0 +1,1527 @@
+{
+  "schema_version": 1,
+  "video_id": "007",
+  "topic": "Pandora's box",
+  "events": [
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T09:17:45.568201+00:00",
+      "finished_at": "2026-08-31T09:18:20.701172+00:00",
+      "elapsed_seconds": 35.133,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md",
+      "ordak_job_id": "d435a671-ec89-4eb9-8e1c-71064e16ac84",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "script_draft",
+        "elapsed_seconds": 35.13,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T09:18:22.305150+00:00",
+      "finished_at": "2026-08-31T09:18:54.962647+00:00",
+      "elapsed_seconds": 32.657,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md",
+      "ordak_job_id": "433b2123-b791-488f-aafa-5eece34ed0c7",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "retention_edit",
+        "elapsed_seconds": 32.655,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T09:18:56.258919+00:00",
+      "finished_at": "2026-08-31T09:19:44.167898+00:00",
+      "elapsed_seconds": 47.909,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md",
+      "ordak_job_id": "22c40805-f3f0-4d07-9a13-cc3c6a7e5420",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "visual_beats",
+        "elapsed_seconds": 47.906,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:19:45.449490+00:00",
+      "finished_at": "2026-08-31T09:20:36.375963+00:00",
+      "elapsed_seconds": 50.926,
+      "beat_id": 1,
+      "artifact": "beats/BEAT_001_PROMPT.md",
+      "ordak_job_id": "0159a24e-22aa-4aa9-8464-3205977cf7b9",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_001_prompt",
+        "elapsed_seconds": 50.922,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:20:37.490798+00:00",
+      "finished_at": "2026-08-31T09:21:32.165434+00:00",
+      "elapsed_seconds": 54.675,
+      "beat_id": 2,
+      "artifact": "beats/BEAT_002_PROMPT.md",
+      "ordak_job_id": "3271fbb5-dedd-445a-a3ad-d8a083f3fa1a",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_002_prompt",
+        "elapsed_seconds": 54.671,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:21:33.249470+00:00",
+      "finished_at": "2026-08-31T09:22:23.966318+00:00",
+      "elapsed_seconds": 50.717,
+      "beat_id": 3,
+      "artifact": "beats/BEAT_003_PROMPT.md",
+      "ordak_job_id": "dc3efb54-c5e9-46fc-aad6-4152a7ac5543",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_003_prompt",
+        "elapsed_seconds": 50.716,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:22:25.161222+00:00",
+      "finished_at": "2026-08-31T09:23:16.613355+00:00",
+      "elapsed_seconds": 51.452,
+      "beat_id": 4,
+      "artifact": "beats/BEAT_004_PROMPT.md",
+      "ordak_job_id": "3c31faa1-88a4-4625-b0ad-e3284094dbdc",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_004_prompt",
+        "elapsed_seconds": 51.451,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:23:17.744451+00:00",
+      "finished_at": "2026-08-31T09:24:09.707924+00:00",
+      "elapsed_seconds": 51.963,
+      "beat_id": 5,
+      "artifact": "beats/BEAT_005_PROMPT.md",
+      "ordak_job_id": "b722c494-3dfc-4dc2-aaa9-b7d7156018e4",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_005_prompt",
+        "elapsed_seconds": 51.961,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:24:11.214347+00:00",
+      "finished_at": "2026-08-31T09:25:06.203482+00:00",
+      "elapsed_seconds": 54.989,
+      "beat_id": 6,
+      "artifact": "beats/BEAT_006_PROMPT.md",
+      "ordak_job_id": "1f8beabe-8b1c-4f46-9af5-228edf42ffb5",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_006_prompt",
+        "elapsed_seconds": 54.987,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:25:07.802610+00:00",
+      "finished_at": "2026-08-31T09:25:54.225548+00:00",
+      "elapsed_seconds": 46.423,
+      "beat_id": 7,
+      "artifact": "beats/BEAT_007_PROMPT.md",
+      "ordak_job_id": "2ec6d6f6-ebb9-457b-990e-f196ea545d36",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_007_prompt",
+        "elapsed_seconds": 46.422,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:25:56.011236+00:00",
+      "finished_at": "2026-08-31T09:26:43.878495+00:00",
+      "elapsed_seconds": 47.869,
+      "beat_id": 8,
+      "artifact": "beats/BEAT_008_PROMPT.md",
+      "ordak_job_id": "6683b19f-f550-4617-9692-21678f069e4e",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_008_prompt",
+        "elapsed_seconds": 47.866,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:26:45.213957+00:00",
+      "finished_at": "2026-08-31T09:27:41.586450+00:00",
+      "elapsed_seconds": 56.372,
+      "beat_id": 9,
+      "artifact": "beats/BEAT_009_PROMPT.md",
+      "ordak_job_id": "79b147fb-aaca-47b0-822c-ac9dcc6de3ad",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_009_prompt",
+        "elapsed_seconds": 56.37,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:27:42.871395+00:00",
+      "finished_at": "2026-08-31T09:28:33.242424+00:00",
+      "elapsed_seconds": 50.371,
+      "beat_id": 10,
+      "artifact": "beats/BEAT_010_PROMPT.md",
+      "ordak_job_id": "615986a0-b9a8-459f-b2f4-5c4852685752",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_010_prompt",
+        "elapsed_seconds": 50.368,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:28:35.488281+00:00",
+      "finished_at": "2026-08-31T09:29:26.932766+00:00",
+      "elapsed_seconds": 51.445,
+      "beat_id": 11,
+      "artifact": "beats/BEAT_011_PROMPT.md",
+      "ordak_job_id": "05747077-5a69-4f2a-be46-2cb5e34e6b5d",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_011_prompt",
+        "elapsed_seconds": 51.441,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:29:27.938804+00:00",
+      "finished_at": "2026-08-31T09:30:19.433253+00:00",
+      "elapsed_seconds": 51.494,
+      "beat_id": 12,
+      "artifact": "beats/BEAT_012_PROMPT.md",
+      "ordak_job_id": "244375c7-e345-461f-b85b-672a464fdd39",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_012_prompt",
+        "elapsed_seconds": 51.493,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:30:20.502208+00:00",
+      "finished_at": "2026-08-31T09:31:05.682508+00:00",
+      "elapsed_seconds": 45.18,
+      "beat_id": 13,
+      "artifact": "beats/BEAT_013_PROMPT.md",
+      "ordak_job_id": "3f81eb41-0010-4da1-b3b7-8d40076e58c5",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_013_prompt",
+        "elapsed_seconds": 45.179,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:31:06.780328+00:00",
+      "finished_at": "2026-08-31T09:31:54.660858+00:00",
+      "elapsed_seconds": 47.881,
+      "beat_id": 14,
+      "artifact": "beats/BEAT_014_PROMPT.md",
+      "ordak_job_id": "b5cd0723-c155-4195-867a-90d2f7874de5",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_014_prompt",
+        "elapsed_seconds": 47.878,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T09:31:55.807345+00:00",
+      "finished_at": "2026-08-31T09:32:41.539999+00:00",
+      "elapsed_seconds": 45.733,
+      "beat_id": 15,
+      "artifact": "beats/BEAT_015_PROMPT.md",
+      "ordak_job_id": "a1d6083e-ac0b-4185-8502-277b5fe97d4e",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_015_prompt",
+        "elapsed_seconds": 45.731,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:32:42.689553+00:00",
+      "finished_at": "2026-08-31T09:35:37.771301+00:00",
+      "elapsed_seconds": 175.082,
+      "beat_id": 1,
+      "ordak_job_id": "e47e7777-bf8c-4568-b24e-84b9284343ec",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 1,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.026
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.021
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.106,
+        "polling_elapsed_seconds": 174.682,
+        "poll_count": 87,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:33:08.161924Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "e47e7777-bf8c-4568-b24e-84b9284343ec_style_anchor.png",
+            "elapsed_seconds": 14.744
+          },
+          {
+            "timestamp": "2026-08-31T09:33:20.438015Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "e47e7777-bf8c-4568-b24e-84b9284343ec_character_anchor.png",
+            "elapsed_seconds": 12.241
+          },
+          {
+            "timestamp": "2026-08-31T09:33:24.175739Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.46
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:32:42.843605",
+        "ordak_job_finished_at": "2026-08-31T09:35:36.569375"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.028,
+        "bytes": 2162931
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_001.png",
+        "bytes": 2162931,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "d8e66688ad8640a07c022651d3fde02e0489b07758ba219460eb652e01ee77cc"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:35:38.881921+00:00",
+      "finished_at": "2026-08-31T09:38:33.229360+00:00",
+      "elapsed_seconds": 174.347,
+      "beat_id": 2,
+      "ordak_job_id": "94c76fae-9e0e-4405-914a-29f079b84794",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_001.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 2,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_001.png",
+            "bytes": 2162931,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.133,
+        "polling_elapsed_seconds": 174.158,
+        "poll_count": 87,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:36:07.830929Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "94c76fae-9e0e-4405-914a-29f079b84794_style_anchor.png",
+            "elapsed_seconds": 18.33
+          },
+          {
+            "timestamp": "2026-08-31T09:36:27.043205Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "94c76fae-9e0e-4405-914a-29f079b84794_character_anchor.png",
+            "elapsed_seconds": 19.203
+          },
+          {
+            "timestamp": "2026-08-31T09:36:37.732423Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "94c76fae-9e0e-4405-914a-29f079b84794_beat_001.png",
+            "elapsed_seconds": 10.675
+          },
+          {
+            "timestamp": "2026-08-31T09:36:41.101286Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.131
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:35:39.024354",
+        "ordak_job_finished_at": "2026-08-31T09:38:31.611304"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.026,
+        "bytes": 2220394
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_002.png",
+        "bytes": 2220394,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "c831e3081caa98d65349191de987f2c9d09013e56153f06d33ad5e3565d0f634"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:38:34.621313+00:00",
+      "finished_at": "2026-08-31T09:41:30.929923+00:00",
+      "elapsed_seconds": 176.309,
+      "beat_id": 3,
+      "ordak_job_id": "ce39cf59-4516-40c0-9129-9348320cc380",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_002.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 3,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_002.png",
+            "bytes": 2220394,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.077,
+        "polling_elapsed_seconds": 176.145,
+        "poll_count": 88,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:39:00.719085Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "ce39cf59-4516-40c0-9129-9348320cc380_style_anchor.png",
+            "elapsed_seconds": 16.306
+          },
+          {
+            "timestamp": "2026-08-31T09:39:14.108909Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "ce39cf59-4516-40c0-9129-9348320cc380_character_anchor.png",
+            "elapsed_seconds": 13.378
+          },
+          {
+            "timestamp": "2026-08-31T09:39:28.753548Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "ce39cf59-4516-40c0-9129-9348320cc380_beat_002.png",
+            "elapsed_seconds": 14.636
+          },
+          {
+            "timestamp": "2026-08-31T09:39:32.004740Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.988
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:38:34.704081",
+        "ordak_job_finished_at": "2026-08-31T09:41:30.461757"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.055,
+        "bytes": 2226418
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_003.png",
+        "bytes": 2226418,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "1260a84a094049981e6164e432426147a31fa5045b1d454397c2bdf149c45cee"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:41:32.717687+00:00",
+      "finished_at": "2026-08-31T09:44:39.674850+00:00",
+      "elapsed_seconds": 186.957,
+      "beat_id": 4,
+      "ordak_job_id": "c38ba142-713e-4c33-b443-3688f5059df6",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_003.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 4,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.001
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_003.png",
+            "bytes": 2226418,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.098,
+        "polling_elapsed_seconds": 186.774,
+        "poll_count": 93,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:42:02.863052Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "c38ba142-713e-4c33-b443-3688f5059df6_style_anchor.png",
+            "elapsed_seconds": 19.184
+          },
+          {
+            "timestamp": "2026-08-31T09:42:14.832957Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "c38ba142-713e-4c33-b443-3688f5059df6_character_anchor.png",
+            "elapsed_seconds": 11.955
+          },
+          {
+            "timestamp": "2026-08-31T09:42:26.495436Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "c38ba142-713e-4c33-b443-3688f5059df6_beat_003.png",
+            "elapsed_seconds": 11.651
+          },
+          {
+            "timestamp": "2026-08-31T09:42:29.784029Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.032
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:41:32.819761",
+        "ordak_job_finished_at": "2026-08-31T09:44:38.152733"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.045,
+        "bytes": 2471361
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_004.png",
+        "bytes": 2471361,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "35c6e2a8e25cd9ed5c3c3a535eaec5e59dba7b2fcebdd481794a31dc72772198"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:44:40.890840+00:00",
+      "finished_at": "2026-08-31T09:47:19.462077+00:00",
+      "elapsed_seconds": 158.571,
+      "beat_id": 5,
+      "ordak_job_id": "6d315f49-0d3b-4df3-8bbc-8a9370c5efa3",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_004.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 5,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.007
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.001
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_004.png",
+            "bytes": 2471361,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.111,
+        "polling_elapsed_seconds": 158.363,
+        "poll_count": 79,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:45:13.986966Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "6d315f49-0d3b-4df3-8bbc-8a9370c5efa3_style_anchor.png",
+            "elapsed_seconds": 23.075
+          },
+          {
+            "timestamp": "2026-08-31T09:45:23.158918Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "6d315f49-0d3b-4df3-8bbc-8a9370c5efa3_character_anchor.png",
+            "elapsed_seconds": 9.16
+          },
+          {
+            "timestamp": "2026-08-31T09:45:38.557893Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "6d315f49-0d3b-4df3-8bbc-8a9370c5efa3_beat_004.png",
+            "elapsed_seconds": 15.39
+          },
+          {
+            "timestamp": "2026-08-31T09:45:42.400016Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.559
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:44:41.015860",
+        "ordak_job_finished_at": "2026-08-31T09:47:18.568844"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.06,
+        "bytes": 2419192
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_005.png",
+        "bytes": 2419192,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "3bd4da55cd037b645fa202722108f0f9afff02ed9ab4f0470f656a9a85116eb2"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:47:20.662138+00:00",
+      "finished_at": "2026-08-31T09:50:09.135093+00:00",
+      "elapsed_seconds": 168.473,
+      "beat_id": 6,
+      "ordak_job_id": "bef66bf4-c3e7-4c00-bf29-c60f69370aea",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_005.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 6,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_005.png",
+            "bytes": 2419192,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.23,
+        "polling_elapsed_seconds": 168.16,
+        "poll_count": 84,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:47:49.127544Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "bef66bf4-c3e7-4c00-bf29-c60f69370aea_style_anchor.png",
+            "elapsed_seconds": 17.477
+          },
+          {
+            "timestamp": "2026-08-31T09:47:59.639378Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "bef66bf4-c3e7-4c00-bf29-c60f69370aea_character_anchor.png",
+            "elapsed_seconds": 10.503
+          },
+          {
+            "timestamp": "2026-08-31T09:48:10.736786Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "bef66bf4-c3e7-4c00-bf29-c60f69370aea_beat_005.png",
+            "elapsed_seconds": 11.062
+          },
+          {
+            "timestamp": "2026-08-31T09:48:14.379776Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.414
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:47:20.901907",
+        "ordak_job_finished_at": "2026-08-31T09:50:08.364752"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.039,
+        "bytes": 2374204
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_006.png",
+        "bytes": 2374204,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "e71f7e5e2814689e857affd77e005b4f8097ef6d325e783cee315e2e4e048ec8"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:50:10.247480+00:00",
+      "finished_at": "2026-08-31T09:52:44.386882+00:00",
+      "elapsed_seconds": 154.139,
+      "beat_id": 7,
+      "ordak_job_id": "496cfc14-b4b2-4567-bf0e-e87f592bf28e",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_006.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 7,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_006.png",
+            "bytes": 2374204,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.151,
+        "polling_elapsed_seconds": 153.926,
+        "poll_count": 77,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:50:36.641087Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "496cfc14-b4b2-4567-bf0e-e87f592bf28e_style_anchor.png",
+            "elapsed_seconds": 15.543
+          },
+          {
+            "timestamp": "2026-08-31T09:50:52.992581Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "496cfc14-b4b2-4567-bf0e-e87f592bf28e_character_anchor.png",
+            "elapsed_seconds": 16.331
+          },
+          {
+            "timestamp": "2026-08-31T09:51:02.395733Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "496cfc14-b4b2-4567-bf0e-e87f592bf28e_beat_006.png",
+            "elapsed_seconds": 9.393
+          },
+          {
+            "timestamp": "2026-08-31T09:51:06.307235Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.576
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:50:10.410867",
+        "ordak_job_finished_at": "2026-08-31T09:52:43.516150"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.03,
+        "bytes": 1974139
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_007.png",
+        "bytes": 1974139,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "ea892818c2399a45f2fd4aa050399e88e6af48f97e28841ceefd71179d0de037"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:52:45.714970+00:00",
+      "finished_at": "2026-08-31T09:55:07.975890+00:00",
+      "elapsed_seconds": 142.261,
+      "beat_id": 8,
+      "ordak_job_id": "d6319c52-619b-468f-988d-d336955487bf",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_007.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 8,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_007.png",
+            "bytes": 1974139,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.084,
+        "polling_elapsed_seconds": 142.075,
+        "poll_count": 71,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:53:08.583368Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "d6319c52-619b-468f-988d-d336955487bf_style_anchor.png",
+            "elapsed_seconds": 11.937
+          },
+          {
+            "timestamp": "2026-08-31T09:53:23.262039Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "d6319c52-619b-468f-988d-d336955487bf_character_anchor.png",
+            "elapsed_seconds": 14.664
+          },
+          {
+            "timestamp": "2026-08-31T09:53:34.569182Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "d6319c52-619b-468f-988d-d336955487bf_beat_007.png",
+            "elapsed_seconds": 11.298
+          },
+          {
+            "timestamp": "2026-08-31T09:53:38.044794Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.235
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:52:45.810133",
+        "ordak_job_finished_at": "2026-08-31T09:55:07.168347"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.053,
+        "bytes": 2341013
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_008.png",
+        "bytes": 2341013,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "adb87c19626416476257a1c278fb79af472fe0c097f5d93e603a6c88fa315cc5"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:55:09.735061+00:00",
+      "finished_at": "2026-08-31T09:59:27.253226+00:00",
+      "elapsed_seconds": 257.518,
+      "beat_id": 9,
+      "ordak_job_id": "f103c10b-1a7b-4eb0-98ca-94861ff619d6",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_008.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 9,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.007
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_008.png",
+            "bytes": 2341013,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.126,
+        "polling_elapsed_seconds": 257.316,
+        "poll_count": 128,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:55:38.712908Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "f103c10b-1a7b-4eb0-98ca-94861ff619d6_style_anchor.png",
+            "elapsed_seconds": 18.035
+          },
+          {
+            "timestamp": "2026-08-31T09:55:53.828075Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "f103c10b-1a7b-4eb0-98ca-94861ff619d6_character_anchor.png",
+            "elapsed_seconds": 15.108
+          },
+          {
+            "timestamp": "2026-08-31T09:56:04.074181Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "f103c10b-1a7b-4eb0-98ca-94861ff619d6_beat_008.png",
+            "elapsed_seconds": 10.237
+          },
+          {
+            "timestamp": "2026-08-31T09:56:06.975491Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.683
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:55:09.879817",
+        "ordak_job_finished_at": "2026-08-31T09:59:26.648618"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.039,
+        "bytes": 2843891
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_009.png",
+        "bytes": 2843891,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "82743e57a6aa885ec2a603685d4f745ecdb94e4e0a67d73600f3b737bce3ce78"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T09:59:28.743672+00:00",
+      "finished_at": "2026-08-31T10:01:42.340241+00:00",
+      "elapsed_seconds": 133.597,
+      "beat_id": 10,
+      "ordak_job_id": "ed92939a-70e7-4ba0-bbfd-333756abea4d",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_009.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 10,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.001
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_009.png",
+            "bytes": 2843891,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.082,
+        "polling_elapsed_seconds": 133.466,
+        "poll_count": 67,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T09:59:49.060770Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "ed92939a-70e7-4ba0-bbfd-333756abea4d_style_anchor.png",
+            "elapsed_seconds": 10.252
+          },
+          {
+            "timestamp": "2026-08-31T10:00:02.681422Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "ed92939a-70e7-4ba0-bbfd-333756abea4d_character_anchor.png",
+            "elapsed_seconds": 13.603
+          },
+          {
+            "timestamp": "2026-08-31T10:00:11.974769Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "ed92939a-70e7-4ba0-bbfd-333756abea4d_beat_009.png",
+            "elapsed_seconds": 9.278
+          },
+          {
+            "timestamp": "2026-08-31T10:00:15.525080Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.274
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T09:59:28.835587",
+        "ordak_job_finished_at": "2026-08-31T10:01:41.091753"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.021,
+        "bytes": 2498162
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_010.png",
+        "bytes": 2498162,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "785e723c0de44c8f4575bd5c036a3768aa6a1da4b9f407a331a7b2f7921ae434"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T10:01:43.697217+00:00",
+      "finished_at": "2026-08-31T10:04:03.603823+00:00",
+      "elapsed_seconds": 139.907,
+      "beat_id": 11,
+      "ordak_job_id": "af8e0aab-217b-41b5-869b-1d7ab9ac9b90",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_010.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 11,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.001
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_010.png",
+            "bytes": 2498162,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.118,
+        "polling_elapsed_seconds": 139.72,
+        "poll_count": 70,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T10:02:10.393176Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "af8e0aab-217b-41b5-869b-1d7ab9ac9b90_style_anchor.png",
+            "elapsed_seconds": 15.338
+          },
+          {
+            "timestamp": "2026-08-31T10:02:22.558758Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "af8e0aab-217b-41b5-869b-1d7ab9ac9b90_character_anchor.png",
+            "elapsed_seconds": 12.157
+          },
+          {
+            "timestamp": "2026-08-31T10:02:32.388498Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "af8e0aab-217b-41b5-869b-1d7ab9ac9b90_beat_010.png",
+            "elapsed_seconds": 9.82
+          },
+          {
+            "timestamp": "2026-08-31T10:02:35.771044Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.124
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T10:01:43.819622",
+        "ordak_job_finished_at": "2026-08-31T10:04:02.329594"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.036,
+        "bytes": 1855502
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_011.png",
+        "bytes": 1855502,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "c60e66ecdba38eaecf41557d297b96be81fbef3574d782b424d4155a4f56220a"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T10:04:04.849645+00:00",
+      "finished_at": "2026-08-31T10:06:45.330966+00:00",
+      "elapsed_seconds": 160.481,
+      "beat_id": 12,
+      "ordak_job_id": "3bcedced-e523-43c4-81db-1c12f073f42f",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_011.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 12,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_011.png",
+            "bytes": 1855502,
+            "read_elapsed_seconds": 0.003
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.125,
+        "polling_elapsed_seconds": 160.286,
+        "poll_count": 80,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T10:04:32.342052Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "3bcedced-e523-43c4-81db-1c12f073f42f_style_anchor.png",
+            "elapsed_seconds": 16.852
+          },
+          {
+            "timestamp": "2026-08-31T10:04:44.375399Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "3bcedced-e523-43c4-81db-1c12f073f42f_character_anchor.png",
+            "elapsed_seconds": 12.024
+          },
+          {
+            "timestamp": "2026-08-31T10:04:54.722359Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "3bcedced-e523-43c4-81db-1c12f073f42f_beat_011.png",
+            "elapsed_seconds": 10.338
+          },
+          {
+            "timestamp": "2026-08-31T10:04:57.893416Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.914
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T10:04:04.982683",
+        "ordak_job_finished_at": "2026-08-31T10:06:43.536372"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.04,
+        "bytes": 1960767
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_012.png",
+        "bytes": 1960767,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "7e9680749e910ee8b630475aa031fe22fa983b6726b555c7e629846b8ab8bc02"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T10:06:46.475342+00:00",
+      "finished_at": "2026-08-31T10:09:24.666405+00:00",
+      "elapsed_seconds": 158.191,
+      "beat_id": 13,
+      "ordak_job_id": "3c1ff807-f55b-4466-a984-14347182c161",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_012.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 13,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_012.png",
+            "bytes": 1960767,
+            "read_elapsed_seconds": 0.001
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.117,
+        "polling_elapsed_seconds": 158.003,
+        "poll_count": 79,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T10:07:12.855750Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "3c1ff807-f55b-4466-a984-14347182c161_style_anchor.png",
+            "elapsed_seconds": 14.651
+          },
+          {
+            "timestamp": "2026-08-31T10:07:24.902705Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "3c1ff807-f55b-4466-a984-14347182c161_character_anchor.png",
+            "elapsed_seconds": 12.039
+          },
+          {
+            "timestamp": "2026-08-31T10:07:35.844612Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "3c1ff807-f55b-4466-a984-14347182c161_beat_012.png",
+            "elapsed_seconds": 10.931
+          },
+          {
+            "timestamp": "2026-08-31T10:07:39.799755Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.66
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T10:06:46.604069",
+        "ordak_job_finished_at": "2026-08-31T10:09:22.682350"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.035,
+        "bytes": 2090461
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_013.png",
+        "bytes": 2090461,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "1622a245ed81a17e5ff801c17e214aa94af3789531b88a7832289ccbc3bbf1f9"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T10:12:34.250431+00:00",
+      "finished_at": "2026-08-31T10:12:34.250949+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T10:12:34.259392+00:00",
+      "finished_at": "2026-08-31T10:12:34.260115+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T10:12:34.266593+00:00",
+      "finished_at": "2026-08-31T10:12:34.268268+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T10:12:34.723417+00:00",
+      "finished_at": "2026-08-31T10:14:54.659760+00:00",
+      "elapsed_seconds": 139.936,
+      "beat_id": 14,
+      "ordak_job_id": "2a10db78-1826-471c-b3ac-7640cda8cbec",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_013.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 14,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_013.png",
+            "bytes": 2090461,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.093,
+        "polling_elapsed_seconds": 139.79,
+        "poll_count": 70,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T10:12:58.432773Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "2a10db78-1826-471c-b3ac-7640cda8cbec_style_anchor.png",
+            "elapsed_seconds": 11.508
+          },
+          {
+            "timestamp": "2026-08-31T10:13:10.781066Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "2a10db78-1826-471c-b3ac-7640cda8cbec_character_anchor.png",
+            "elapsed_seconds": 12.34
+          },
+          {
+            "timestamp": "2026-08-31T10:13:19.304295Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "2a10db78-1826-471c-b3ac-7640cda8cbec_beat_013.png",
+            "elapsed_seconds": 8.513
+          },
+          {
+            "timestamp": "2026-08-31T10:13:23.302771Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.772
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T10:12:34.827586",
+        "ordak_job_finished_at": "2026-08-31T10:14:53.783486"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.02,
+        "bytes": 1946195
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_014.png",
+        "bytes": 1946195,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "fa64155b79194d978c0b0a0a70fd088affd5baabc85c9e8c193d5e6f0728cbc1"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T10:14:56.281199+00:00",
+      "finished_at": "2026-08-31T10:17:14.205591+00:00",
+      "elapsed_seconds": 137.924,
+      "beat_id": 15,
+      "ordak_job_id": "3ad7e4b0-b7ac-4d22-8ef1-d2374b8577a6",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/007_pandora_s_box/assets/raw_beats/beat_014.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 15,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+            "bytes": 2596395,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+            "bytes": 1917260,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/raw_beats/beat_014.png",
+            "bytes": 1946195,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.109,
+        "polling_elapsed_seconds": 137.753,
+        "poll_count": 69,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T10:15:19.305465Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "3ad7e4b0-b7ac-4d22-8ef1-d2374b8577a6_style_anchor.png",
+            "elapsed_seconds": 12.535
+          },
+          {
+            "timestamp": "2026-08-31T10:15:30.560427Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "3ad7e4b0-b7ac-4d22-8ef1-d2374b8577a6_character_anchor.png",
+            "elapsed_seconds": 11.24
+          },
+          {
+            "timestamp": "2026-08-31T10:15:43.730023Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "3ad7e4b0-b7ac-4d22-8ef1-d2374b8577a6_beat_014.png",
+            "elapsed_seconds": 13.16
+          },
+          {
+            "timestamp": "2026-08-31T10:15:47.541048Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.586
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T10:14:56.405925",
+        "ordak_job_finished_at": "2026-08-31T10:17:12.279541"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.028,
+        "bytes": 1920101
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_015.png",
+        "bytes": 1920101,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "c61b898574cb6d43315fee66973eafd15087b54ddb884c4dc051a10930b1d142"
+      }
+    }
+  ],
+  "totals_seconds_by_operation": {
+    "beat_image": 2463.693,
+    "beat_prompt": 757.49,
+    "reuse_text_artifact": 0.004,
+    "text_stage": 115.699
+  }
+}

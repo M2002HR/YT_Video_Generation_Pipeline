@@ -1,0 +1,3 @@
+Edit
+
+Pandora’s box was never actually a box. In the oldest Greek version of the myth, Pandora opens a sealed jar—and out pour suffering, disease, and hardship. She slams it shut, but it’s too late. Only hope remains inside. Centuries later, translators and retellings turned the jar into a box, but the idea survived: one irresistible choice can unleash consequences you can’t easily undo. That’s why “opening Pandora’s box” still means starting something that suddenly becomes far bigger than you expected.

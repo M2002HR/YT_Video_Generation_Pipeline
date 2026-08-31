@@ -1,0 +1,34 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,90,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.40,Default,,0,0,0,,Pandora’s box was never actually a
+Dialogue: 0,0:00:02.40,0:00:02.80,Default,,0,0,0,,box.
+Dialogue: 0,0:00:04.20,0:00:05.46,Default,,0,0,0,,In the oldest Greek version of
+Dialogue: 0,0:00:05.46,0:00:05.88,Default,,0,0,0,,the myth,
+Dialogue: 0,0:00:06.74,0:00:08.40,Default,,0,0,0,,Pandora opens a sealed jar—
+Dialogue: 0,0:00:08.40,0:00:11.11,Default,,0,0,0,,and out pour suffering, disease,\Nand
+Dialogue: 0,0:00:11.11,0:00:11.56,Default,,0,0,0,,hardship.
+Dialogue: 0,0:00:12.98,0:00:13.96,Default,,0,0,0,,She slams it shut,
+Dialogue: 0,0:00:14.12,0:00:14.80,Default,,0,0,0,,but it’s too late.
+Dialogue: 0,0:00:15.84,0:00:17.44,Default,,0,0,0,,Only hope remains inside.
+Dialogue: 0,0:00:18.92,0:00:19.70,Default,,0,0,0,,Centuries later,
+Dialogue: 0,0:00:19.92,0:00:21.83,Default,,0,0,0,,translators and retellings turned\Nthe jar
+Dialogue: 0,0:00:21.83,0:00:22.78,Default,,0,0,0,,into a box,
+Dialogue: 0,0:00:23.14,0:00:24.74,Default,,0,0,0,,but the idea survived:
+Dialogue: 0,0:00:25.62,0:00:27.54,Default,,0,0,0,,one irresistible choice
+Dialogue: 0,0:00:27.54,0:00:29.14,Default,,0,0,0,,can unleash consequences
+Dialogue: 0,0:00:29.14,0:00:30.78,Default,,0,0,0,,you can’t easily undo.
+Dialogue: 0,0:00:31.90,0:00:34.42,Default,,0,0,0,,That’s why “opening Pandora’s box”\Nstill
+Dialogue: 0,0:00:34.42,0:00:35.68,Default,,0,0,0,,means starting something
+Dialogue: 0,0:00:35.68,0:00:37.48,Default,,0,0,0,,that suddenly becomes far bigger\Nthan
+Dialogue: 0,0:00:37.48,0:00:38.08,Default,,0,0,0,,you expected.

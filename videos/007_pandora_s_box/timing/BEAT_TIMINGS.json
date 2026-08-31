@@ -1,0 +1,166 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 38.713,
+  "stt": {
+    "backend": "local",
+    "provider": "faster-whisper",
+    "model": "small.en",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "transcript": "Pandora's box was never actually a box. In the oldest Greek version of the myth, Pandora opens a sealed jar and out pours suffering, disease, and hardship. She slams it shut, but it's too late. Only hope remains inside. Centuries later, translators and retellings turn the jar into a box, but the idea survived. One irresistible choice can unleash consequences you can't easily undo. That's why opening Pandora's box still means starting something that suddenly becomes far bigger than you expected.",
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Pandora’s box was never actually a box.",
+      "speech_start": 0.0,
+      "speech_end": 2.8,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 4.2,
+      "display_duration": 4.2
+    },
+    {
+      "beat_id": 2,
+      "narration": "In the oldest Greek version of the myth,",
+      "speech_start": 4.2,
+      "speech_end": 5.88,
+      "match_confidence": 1.0,
+      "display_start": 4.2,
+      "display_end": 6.74,
+      "display_duration": 2.54
+    },
+    {
+      "beat_id": 3,
+      "narration": "Pandora opens a sealed jar—",
+      "speech_start": 6.74,
+      "speech_end": 8.4,
+      "match_confidence": 1.0,
+      "display_start": 6.74,
+      "display_end": 8.4,
+      "display_duration": 1.66
+    },
+    {
+      "beat_id": 4,
+      "narration": "and out pour suffering, disease, and hardship.",
+      "speech_start": 8.4,
+      "speech_end": 11.56,
+      "match_confidence": 0.857,
+      "display_start": 8.4,
+      "display_end": 12.98,
+      "display_duration": 4.58
+    },
+    {
+      "beat_id": 5,
+      "narration": "She slams it shut,",
+      "speech_start": 12.98,
+      "speech_end": 13.96,
+      "match_confidence": 1.0,
+      "display_start": 12.98,
+      "display_end": 14.12,
+      "display_duration": 1.14
+    },
+    {
+      "beat_id": 6,
+      "narration": "but it’s too late.",
+      "speech_start": 14.12,
+      "speech_end": 14.8,
+      "match_confidence": 1.0,
+      "display_start": 14.12,
+      "display_end": 15.84,
+      "display_duration": 1.72
+    },
+    {
+      "beat_id": 7,
+      "narration": "Only hope remains inside.",
+      "speech_start": 15.84,
+      "speech_end": 17.44,
+      "match_confidence": 1.0,
+      "display_start": 15.84,
+      "display_end": 18.92,
+      "display_duration": 3.08
+    },
+    {
+      "beat_id": 8,
+      "narration": "Centuries later,",
+      "speech_start": 18.92,
+      "speech_end": 19.7,
+      "match_confidence": 1.0,
+      "display_start": 18.92,
+      "display_end": 19.92,
+      "display_duration": 1.0
+    },
+    {
+      "beat_id": 9,
+      "narration": "translators and retellings turned the jar into a box,",
+      "speech_start": 19.92,
+      "speech_end": 22.78,
+      "match_confidence": 0.889,
+      "display_start": 19.92,
+      "display_end": 23.14,
+      "display_duration": 3.22
+    },
+    {
+      "beat_id": 10,
+      "narration": "but the idea survived:",
+      "speech_start": 23.14,
+      "speech_end": 24.74,
+      "match_confidence": 1.0,
+      "display_start": 23.14,
+      "display_end": 25.62,
+      "display_duration": 2.48
+    },
+    {
+      "beat_id": 11,
+      "narration": "one irresistible choice",
+      "speech_start": 25.62,
+      "speech_end": 27.54,
+      "match_confidence": 1.0,
+      "display_start": 25.62,
+      "display_end": 27.54,
+      "display_duration": 1.92
+    },
+    {
+      "beat_id": 12,
+      "narration": "can unleash consequences",
+      "speech_start": 27.54,
+      "speech_end": 29.14,
+      "match_confidence": 1.0,
+      "display_start": 27.54,
+      "display_end": 29.14,
+      "display_duration": 1.6
+    },
+    {
+      "beat_id": 13,
+      "narration": "you can’t easily undo.",
+      "speech_start": 29.14,
+      "speech_end": 30.78,
+      "match_confidence": 1.0,
+      "display_start": 29.14,
+      "display_end": 31.9,
+      "display_duration": 2.76
+    },
+    {
+      "beat_id": 14,
+      "narration": "That’s why “opening Pandora’s box” still means starting something",
+      "speech_start": 31.9,
+      "speech_end": 35.68,
+      "match_confidence": 1.0,
+      "display_start": 31.9,
+      "display_end": 35.68,
+      "display_duration": 3.78
+    },
+    {
+      "beat_id": 15,
+      "narration": "that suddenly becomes far bigger than you expected.",
+      "speech_start": 35.68,
+      "speech_end": 38.08,
+      "match_confidence": 1.0,
+      "display_start": 35.68,
+      "display_end": 38.713,
+      "display_duration": 3.033
+    }
+  ]
+}

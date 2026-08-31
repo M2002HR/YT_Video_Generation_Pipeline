@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "video": "007_pandora_s_box",
+  "started_at": "2026-08-31T10:40:04.850617+00:00",
+  "status": "DONE",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-08-31T10:40:04.851057+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T10:40:04.976185+00:00",
+      "elapsed_seconds": 0.125
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-08-31T10:40:04.976964+00:00",
+      "command": [
+        "nice",
+        "-n",
+        "10",
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/renders/final.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T10:46:07.138791+00:00",
+      "elapsed_seconds": 362.162
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-08-31T10:46:07.139731+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T10:46:19.716448+00:00",
+      "elapsed_seconds": 12.577
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-08-31T10:46:19.717150+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T10:46:24.643566+00:00",
+      "elapsed_seconds": 4.926
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-08-31T10:46:24.644264+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T10:46:36.679943+00:00",
+      "elapsed_seconds": 12.036
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-08-31T10:46:36.680943+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/007_pandora_s_box/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T10:49:50.794690+00:00",
+      "elapsed_seconds": 194.114
+    }
+  ],
+  "completed_at": "2026-08-31T10:49:50.796018+00:00",
+  "total_elapsed_seconds": 585.94
+}
