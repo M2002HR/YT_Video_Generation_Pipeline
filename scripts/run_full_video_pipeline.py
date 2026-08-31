@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""One resumable command from topic to Telegram-ready finished video."""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def stamp() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def run(stage: str, command: list[str], state: dict[str, Any], path: Path) -> None:
+    started = time.perf_counter()
+    event: dict[str, Any] = {"stage": stage, "started_at": stamp(), "command": command}
+    try:
+        subprocess.run(command, cwd=ROOT, check=True)
+    except subprocess.CalledProcessError as exc:
+        event.update({"status": "FAILED", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode})
+        state["status"] = "FAILED"; state["events"].append(event)
+        path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+        raise
+    event.update({"status": "DONE", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3)})
+    state["events"].append(event)
+    path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
+    parser.add_argument("--topic", required=True)
+    parser.add_argument("--video-id", required=True)
+    parser.add_argument("--duration-seconds", type=float, required=True)
+    parser.add_argument("--preset", default="001_cinematic_storybook_green_hoodie")
+    parser.add_argument("--voice-profile", type=Path, required=True)
+    parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default="mixkit")
+    args = parser.parse_args()
+    if not 15 <= args.duration_seconds <= 300:
+        raise SystemExit("duration must be between 15 and 300 seconds")
+    safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in args.topic).strip("_")
+    project = ROOT / "videos" / f"{args.video_id}_{safe_topic}"
+    state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    state: dict[str, Any] = {"schema_version": 1, "topic": args.topic, "video_id": args.video_id, "duration_seconds": args.duration_seconds, "started_at": stamp(), "status": "RUNNING", "events": []}
+    state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    py = sys.executable
+    run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path)
+    run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path)
+    run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path)
+    run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)
+    run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path)
+    state.update({"status": "DONE", "completed_at": stamp(), "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3)})
+    state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    print("FULL VIDEO PIPELINE: PASS")
+
+
+if __name__ == "__main__":
+    main()

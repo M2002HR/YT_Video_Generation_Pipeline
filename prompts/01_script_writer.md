@@ -35,7 +35,11 @@ Your job is to write a script that sounds natural when spoken aloud, holds atten
 - Target the duration and word-count range given in the brief.
 - Write in natural conversational English.
 - Open with a specific, relatable hook rather than a generic introduction.
-- Make the first sentence immediately create curiosity or recognition.
+- The opening 2–4 spoken seconds must present an immediate concrete moment,
+  tension, or surprising recognition from this exact topic; do not spend those
+  seconds on setup, definitions, channel branding, or a rhetorical preamble.
+- Make the first sentence immediately create curiosity or recognition and make
+  sure the remainder of the script genuinely pays that promise off.
 - Keep sentences relatively short and easy for text-to-speech narration.
 - Maintain forward momentum. Every sentence should either increase curiosity, explain something useful, or deliver the payoff.
 - Prefer concrete language over abstract or academic wording.
@@ -66,7 +70,7 @@ Also avoid sounding like a lecture, textbook, motivational speech, or generic se
 
 Before returning the script, silently check:
 
-1. Is the hook strong within the first sentence?
+1. Does the first 2–4 seconds contain a strong, topic-specific hook?
 2. Does the script fit the requested duration?
 3. Is every sentence useful?
 4. Does the explanation stay scientifically careful?

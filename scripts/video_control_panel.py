@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+"""Small authenticated-behind-nginx launch panel for the full video pipeline."""
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import re
+import subprocess
+import sys
+import uuid
+from datetime import datetime, timezone
+from http import HTTPStatus
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import parse_qs
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_PRESET = "001_cinematic_storybook_green_hoodie"
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def slug(value: str) -> str:
+    result = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+    return result or "video"
+
+
+def write_json(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "VideoControlPanel/1.0"
+
+    @property
+    def jobs_dir(self) -> Path:
+        return ROOT / "control_panel" / "jobs"
+
+    def send_html(self, status: int, body: str) -> None:
+        encoded = body.encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(encoded)))
+        self.end_headers(); self.wfile.write(encoded)
+
+    def page(self, message: str = "") -> str:
+        jobs = []
+        for path in sorted(self.jobs_dir.glob("*.json"), reverse=True)[:12]:
+            try: jobs.append(json.loads(path.read_text(encoding="utf-8")))
+            except Exception: continue
+        rows = "".join(f"<tr><td>{html.escape(str(j.get('video_id','')))}</td><td>{html.escape(str(j.get('topic','')))}</td><td>{html.escape(str(j.get('status','QUEUED')))}</td><td><a href='/logs/{html.escape(str(j.get('job_id','')))}'>log</a></td></tr>" for j in jobs) or "<tr><td colspan='4'>No launches yet.</td></tr>"
+        return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline</title>
+<style>body{{font:16px system-ui;max-width:850px;margin:32px auto;background:#10131a;color:#e8edf4}}input,select{{width:100%;padding:8px;margin:4px 0 14px;box-sizing:border-box}}button{{padding:10px 18px;background:#58c;color:#fff;border:0;border-radius:5px}}table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;border-bottom:1px solid #344;text-align:left}}.msg{{color:#8f8}}</style>
+<h1>Video Pipeline Launch</h1><p class=msg>{html.escape(message)}</p>
+<form method=post action=/launch><label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
+<label>Video ID<input name=video_id required pattern="[0-9A-Za-z_-]+" placeholder="003"></label>
+<label>Target duration (seconds)<input name=duration_seconds type=number min=15 max=300 value=60 required></label>
+<label>Voice<input name=voice value="Mark - Natural Conversations" required></label>
+<label>ElevenLabs model<select name=model><option>Eleven Multilingual v2</option><option>Eleven v3</option></select></label>
+<label>Speed<input name=speed type=number min=.7 max=1.2 step=.01 value=.9 required></label>
+<label>Stability<input name=stability type=number min=0 max=1 step=.01 value=.45 required></label>
+<label>Similarity<input name=similarity type=number min=0 max=1 step=.01 value=.75 required></label>
+<label>Style / exaggeration<input name=style type=number min=0 max=1 step=.01 value=.10 required></label>
+<label>Music provider<select name=music_provider><option value=mixkit>Mixkit</option><option value=pixabay>Pixabay</option></select></label>
+<button type=submit>Launch full pipeline</button></form>
+<h2>Recent runs</h2><table><tr><th>ID</th><th>Topic</th><th>Status</th><th>Live log</th></tr>{rows}</table>"""
+
+    def do_GET(self) -> None:
+        if self.path == "/": self.send_html(HTTPStatus.OK, self.page()); return
+        if self.path.startswith("/logs/"):
+            job_id = Path(self.path).name
+            if not re.fullmatch(r"[a-f0-9-]{36}", job_id): self.send_error(HTTPStatus.NOT_FOUND); return
+            log = self.jobs_dir / f"{job_id}.log"
+            text = log.read_text(encoding="utf-8", errors="replace")[-120_000:] if log.exists() else "Waiting for runner output..."
+            self.send_html(HTTPStatus.OK, f"<meta http-equiv=refresh content=5><pre>{html.escape(text)}</pre>"); return
+        self.send_error(HTTPStatus.NOT_FOUND)
+
+    def do_POST(self) -> None:
+        if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
+        length = int(self.headers.get("Content-Length", "0")); values = parse_qs(self.rfile.read(length).decode("utf-8"))
+        try:
+            topic = values["topic"][0].strip(); video_id = values["video_id"][0].strip()
+            duration = float(values["duration_seconds"][0]); voice = values["voice"][0].strip(); model = values["model"][0].strip()
+            speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
+            provider = values["music_provider"][0]
+            if not topic or not re.fullmatch(r"[0-9A-Za-z_-]+", video_id) or not 15 <= duration <= 300 or not voice or provider not in {"mixkit", "pixabay"} or not all(0 <= value <= 1.2 for value in (speed, stability, similarity, style)):
+                raise ValueError("Invalid launch values.")
+        except (KeyError, ValueError) as exc:
+            self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
+        project = ROOT / "videos" / f"{video_id}_{slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
+        write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
+        job_id = str(uuid.uuid4()); record = {"schema_version": 1, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_seconds": duration, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
+        request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
+        log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
+        command = [sys.executable, "scripts/run_full_video_pipeline.py", "--topic", topic, "--video-id", video_id, "--duration-seconds", str(duration), "--voice-profile", str(profile), "--music-provider", provider]
+        process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
+        record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
+        self.send_html(HTTPStatus.ACCEPTED, self.page(f"Launched {video_id}; live log is available in the table."))
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(); parser.add_argument("--host", default="127.0.0.1"); parser.add_argument("--port", type=int, default=4142); args = parser.parse_args()
+    (ROOT / "control_panel" / "jobs").mkdir(parents=True, exist_ok=True)
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
+    print(f"Video control panel: http://{args.host}:{args.port}", flush=True); server.serve_forever()
+
+
+if __name__ == "__main__": main()

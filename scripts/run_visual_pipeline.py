@@ -184,8 +184,8 @@ class OrdakClient:
 
 
 class Pipeline:
-    def __init__(self, root: Path, topic: str, video_id: str, preset: str, client: OrdakClient, force: bool) -> None:
-        self.root, self.topic, self.video_id, self.preset, self.client, self.force = root, topic, video_id, preset, client, force
+    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_seconds: float, client: OrdakClient, force: bool) -> None:
+        self.root, self.topic, self.video_id, self.preset, self.duration_seconds, self.client, self.force = root, topic, video_id, preset, duration_seconds, client, force
         self.project = root / "videos" / f"{video_id}_{slugify(topic)}"
         self.state_dir = self.project / "visual_pipeline"
         self.state_path = self.state_dir / "RUNTIME_STATE.json"
@@ -222,10 +222,10 @@ class Pipeline:
     def load_or_init(self) -> None:
         if self.state_path.exists():
             self.state = json.loads(self.state_path.read_text(encoding="utf-8"))
-            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset:
-                raise RuntimeError("Existing project state has a different topic or preset; choose another video ID.")
+            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or float(self.state.get("duration_seconds", 60)) != self.duration_seconds:
+                raise RuntimeError("Existing project state has different topic, preset, or duration; choose another video ID.")
             return
-        self.state = {"version": 2, "topic": self.topic, "preset": self.preset, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
+        self.state = {"version": 3, "topic": self.topic, "preset": self.preset, "duration_seconds": self.duration_seconds, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
         self.save()
 
     def write_once(self, relative: str, content: str) -> Path:
@@ -236,11 +236,14 @@ class Pipeline:
         return target
 
     def brief(self) -> Path:
+        target_words = round(self.duration_seconds * 2.3)
+        minimum_words = round(self.duration_seconds * 2.05)
+        maximum_words = round(self.duration_seconds * 2.5)
         return self.write_once("BRIEF.md", f"""# Video Brief
 
 Topic: {self.topic}
 Language: English
-Target: 55–65 seconds; roughly 125–155 spoken words.
+Target: {self.duration_seconds:g} seconds; roughly {minimum_words}–{maximum_words} spoken words (aim near {target_words}).
 Audience: general viewers interested in an engaging psychology/neuroscience short.
 Constraints: no medical diagnosis or medical advice; avoid unsupported claims and invented statistics.
 """)
@@ -264,14 +267,14 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
         self.notifier.stage_complete(name, time.perf_counter() - started, artifact=output)
         return content
 
-    @staticmethod
-    def validate_script(text: str) -> None:
+    def validate_script(self, text: str) -> None:
         words = re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?", text)
-        if not 115 <= len(words) <= 170 or "###" in text:
-            raise RuntimeError(f"Script validation failed: expected a clean ~60-second narration, got {len(words)} words.")
+        minimum_words = round(self.duration_seconds * 2.05)
+        maximum_words = round(self.duration_seconds * 2.5)
+        if not minimum_words <= len(words) <= maximum_words or "###" in text:
+            raise RuntimeError(f"Script validation failed: expected {minimum_words}–{maximum_words} spoken words for {self.duration_seconds:g}s, got {len(words)} words.")
 
-    @staticmethod
-    def parse_beats(text: str) -> list[dict[str, str]]:
+    def parse_beats(self, text: str) -> list[dict[str, str]]:
         # ChatGPT commonly omits Markdown's optional ``###`` while retaining
         # the requested labelled Beat structure. Both forms are semantically
         # identical and must be accepted before image generation can begin.
@@ -285,8 +288,10 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
             re.S | re.I | re.M,
         )
         beats = [{"id": int(match.group(1)), "narration": match.group(2).strip(), "visual": match.group(3).strip(), "purpose": match.group(4).strip(), "type": match.group(5).strip(), "continuity": match.group(6).strip()} for match in pattern.finditer(text)]
-        if not 14 <= len(beats) <= 22 or [beat["id"] for beat in beats] != list(range(1, len(beats) + 1)):
-            raise RuntimeError("Visual beat validation failed: expected 14–22 sequential complete beats.")
+        expected = max(6, round(self.duration_seconds / 3.5))
+        minimum, maximum = max(4, expected - 4), expected + 5
+        if not minimum <= len(beats) <= maximum or [beat["id"] for beat in beats] != list(range(1, len(beats) + 1)):
+            raise RuntimeError(f"Visual beat validation failed: expected {minimum}–{maximum} sequential complete beats for {self.duration_seconds:g}s.")
         if any(not all(str(value).strip() for key, value in beat.items() if key != "id") for beat in beats):
             raise RuntimeError("Visual beat validation failed: one or more required fields are empty.")
         return beats
@@ -410,13 +415,16 @@ def main() -> None:
     parser.add_argument("--topic", required=True)
     parser.add_argument("--video-id", required=True)
     parser.add_argument("--preset", required=True)
+    parser.add_argument("--duration-seconds", type=float, default=60.0)
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
+    if not 15 <= args.duration_seconds <= 300:
+        raise RuntimeError("--duration-seconds must be between 15 and 300.")
     env_file = ROOT / os.getenv("YT_ENV_FILE", ".env")
     load_dotenv(env_file, override=False)
     client = OrdakClient(Settings(os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/"), int(os.getenv("YT_ORDAK_JOB_WAIT_TIMEOUT_SECONDS", "900")), float(os.getenv("YT_ORDAK_JOB_POLL_INTERVAL_SECONDS", "2"))))
     try:
-        report = Pipeline(ROOT, args.topic, args.video_id, args.preset, client, args.force).run()
+        report = Pipeline(ROOT, args.topic, args.video_id, args.preset, args.duration_seconds, client, args.force).run()
     finally:
         client.close()
     print(f"VISUAL PIPELINE: PASS\nReport: {report}")

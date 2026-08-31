@@ -1,0 +1,14 @@
+[Unit]
+Description=YT Video Generation Pipeline control panel
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/YT_Video_Generation_Pipeline
+ExecStart=/root/YT_Video_Generation_Pipeline/.venv/bin/python scripts/video_control_panel.py --host 127.0.0.1 --port 4142
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
