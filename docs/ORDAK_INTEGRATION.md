@@ -119,6 +119,9 @@ for/reasserts the configured Project URL and refuses to type in a generic chat;
 the parent then performs exponential backoff and a full readiness check before
 resubmitting.  Only explicit browser-route/readiness failures are retried.
 Each retry and its elapsed time is retained in the per-video timing artifact.
+The full-pipeline runner additionally retries the resumable visual stage up to
+three times (5s, 10s, 20s backoff); it resumes from the first incomplete beat
+and records every failed attempt in `FULL_PIPELINE_RUNTIME_STATE.json`.
 
 ## Setup
 

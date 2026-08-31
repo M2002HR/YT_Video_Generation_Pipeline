@@ -19,19 +19,35 @@ def stamp() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def run(stage: str, command: list[str], state: dict[str, Any], path: Path) -> None:
-    started = time.perf_counter()
-    event: dict[str, Any] = {"stage": stage, "started_at": stamp(), "command": command}
-    try:
-        subprocess.run(command, cwd=ROOT, check=True)
-    except subprocess.CalledProcessError as exc:
-        event.update({"status": "FAILED", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode})
-        state["status"] = "FAILED"; state["events"].append(event)
+def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, retries: int = 0) -> None:
+    """Run a resumable stage with bounded retries and durable attempt records."""
+    for attempt in range(1, retries + 2):
+        started = time.perf_counter()
+        event: dict[str, Any] = {
+            "stage": stage,
+            "attempt": attempt,
+            "started_at": stamp(),
+            "command": command,
+        }
+        try:
+            subprocess.run(command, cwd=ROOT, check=True)
+        except subprocess.CalledProcessError as exc:
+            event.update({"status": "FAILED", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode})
+            state["events"].append(event)
+            if attempt > retries:
+                state["status"] = "FAILED"
+                path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+                raise
+            delay = min(60, 5 * (2 ** (attempt - 1)))
+            event["next_retry_delay_seconds"] = delay
+            path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+            print(f"{stage} failed; resuming safely in {delay}s (attempt {attempt + 1}/{retries + 1}).", flush=True)
+            time.sleep(delay)
+            continue
+        event.update({"status": "DONE", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3)})
+        state["events"].append(event)
         path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
-        raise
-    event.update({"status": "DONE", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3)})
-    state["events"].append(event)
-    path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+        return
 
 
 def main() -> None:
@@ -67,7 +83,10 @@ def main() -> None:
     state: dict[str, Any] = {"schema_version": 1, "topic": args.topic, "video_id": args.video_id, "duration_seconds": args.duration_seconds, "started_at": stamp(), "status": "RUNNING", "events": []}
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     py = sys.executable
-    run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path)
+    # Visual generation persists each accepted prompt/image, so rerunning the
+    # stage is safe and resumes at the first incomplete beat after a transient
+    # browser/UI failure.
+    run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3)
     run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path)
     run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path)
     run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)
