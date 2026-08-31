@@ -9,6 +9,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import uuid
 from datetime import datetime, timezone
 from http import HTTPStatus
@@ -19,6 +20,7 @@ from urllib.parse import parse_qs
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PRESET = "001_cinematic_storybook_green_hoodie"
+LAUNCH_LOCK = threading.Lock()
 
 
 def utcnow() -> str:
@@ -44,6 +46,30 @@ def write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def pid_is_live(pid: object) -> bool:
+    if not isinstance(pid, int) or pid <= 0:
+        return False
+    try:
+        # A zombie process has exited and must never block the next launch.
+        if Path(f"/proc/{pid}/stat").read_text(encoding="utf-8").split()[2] == "Z":
+            return False
+        os.kill(pid, 0)
+        return True
+    except (FileNotFoundError, ProcessLookupError, PermissionError):
+        return False
+
+
+def active_job(jobs_dir: Path) -> dict | None:
+    for path in jobs_dir.glob("*.json"):
+        try:
+            job = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if job.get("status") == "RUNNING" and pid_is_live(job.get("pid")):
+            return job
+    return None
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "VideoControlPanel/1.0"
 
@@ -64,9 +90,7 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 job = json.loads(path.read_text(encoding="utf-8"))
                 if job.get("status") == "RUNNING" and isinstance(job.get("pid"), int):
-                    try:
-                        os.kill(job["pid"], 0)
-                    except ProcessLookupError:
+                    if not pid_is_live(job["pid"]):
                         log = self.jobs_dir / f"{job.get('job_id')}.log"
                         text = log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
                         job["status"] = "DONE" if "FULL VIDEO PIPELINE: PASS" in text else "FAILED"
@@ -111,14 +135,21 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid launch values.")
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
-        project = ROOT / "videos" / f"{video_id}_{slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
-        write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
-        job_id = str(uuid.uuid4()); record = {"schema_version": 1, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_seconds": duration, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
-        request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
-        log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
-        command = [sys.executable, "scripts/run_full_video_pipeline.py", "--topic", topic, "--video-id", video_id, "--duration-seconds", str(duration), "--voice-profile", str(profile), "--music-provider", provider]
-        process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
-        record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
+        with LAUNCH_LOCK:
+            active = active_job(self.jobs_dir)
+            if active is not None:
+                self.send_html(HTTPStatus.CONFLICT, self.page(f"Video {active.get('video_id')} is already running. Wait for it to finish before launching another.")); return
+            # Allocate inside the critical section so two quick submissions can
+            # never receive the same ID or run concurrently.
+            video_id = next_video_id()
+            project = ROOT / "videos" / f"{video_id}_{slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
+            write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
+            job_id = str(uuid.uuid4()); record = {"schema_version": 1, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_seconds": duration, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
+            request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
+            log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
+            command = [sys.executable, "scripts/run_full_video_pipeline.py", "--topic", topic, "--video-id", video_id, "--duration-seconds", str(duration), "--voice-profile", str(profile), "--music-provider", provider]
+            process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
+            record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
         self.send_html(HTTPStatus.ACCEPTED, self.page(f"Launched {video_id}; live log is available in the table."))
 
 
