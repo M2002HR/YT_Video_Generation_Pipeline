@@ -1,0 +1,1599 @@
+{
+  "schema_version": 1,
+  "video_id": "009",
+  "topic": "Vikings History",
+  "events": [
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T20:01:19.095417+00:00",
+      "finished_at": "2026-08-31T20:02:02.129645+00:00",
+      "elapsed_seconds": 43.034,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md",
+      "ordak_job_id": "5a62f4cc-999f-4719-ac35-b3f76c65ad6e",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "script_draft",
+        "elapsed_seconds": 43.032,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T20:02:04.100109+00:00",
+      "finished_at": "2026-08-31T20:02:42.794001+00:00",
+      "elapsed_seconds": 38.694,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md",
+      "ordak_job_id": "84ca6aee-2329-42d4-84cf-fd2af28eb008",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "retention_edit",
+        "elapsed_seconds": 38.693,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T20:02:44.305690+00:00",
+      "finished_at": "2026-08-31T20:03:50.549146+00:00",
+      "elapsed_seconds": 66.243,
+      "stage": "world_design",
+      "artifact": "WORLD_DESIGN.md",
+      "ordak_job_id": "16a96f10-f8cc-4a86-9b44-97e9ef5bf839",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "world_design",
+        "elapsed_seconds": 66.239,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:04:55.102235+00:00",
+      "finished_at": "2026-08-31T20:04:55.102910+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:04:55.104218+00:00",
+      "finished_at": "2026-08-31T20:04:55.107545+00:00",
+      "elapsed_seconds": 0.003,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:04:55.109336+00:00",
+      "finished_at": "2026-08-31T20:04:55.113330+00:00",
+      "elapsed_seconds": 0.004,
+      "stage": "world_design",
+      "artifact": "WORLD_DESIGN.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:06:06.210394+00:00",
+      "finished_at": "2026-08-31T20:06:06.210933+00:00",
+      "elapsed_seconds": 0.001,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:06:06.212291+00:00",
+      "finished_at": "2026-08-31T20:06:06.212543+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:06:06.213665+00:00",
+      "finished_at": "2026-08-31T20:06:06.216824+00:00",
+      "elapsed_seconds": 0.003,
+      "stage": "world_design",
+      "artifact": "WORLD_DESIGN.md"
+    },
+    {
+      "operation": "text_stage",
+      "started_at": "2026-08-31T20:06:06.218039+00:00",
+      "finished_at": "2026-08-31T20:07:07.573327+00:00",
+      "elapsed_seconds": 61.355,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md",
+      "ordak_job_id": "fa32b922-9543-44ca-85b0-b7a4a41c3047",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "visual_beats",
+        "elapsed_seconds": 61.348,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:07:09.865115+00:00",
+      "finished_at": "2026-08-31T20:08:05.710808+00:00",
+      "elapsed_seconds": 55.846,
+      "beat_id": 1,
+      "artifact": "beats/BEAT_001_PROMPT.md",
+      "ordak_job_id": "4b5cbd0a-b581-4663-b626-84727f3b0cd1",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_001_prompt",
+        "elapsed_seconds": 55.843,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:08:07.296718+00:00",
+      "finished_at": "2026-08-31T20:08:40.924055+00:00",
+      "elapsed_seconds": 33.627,
+      "beat_id": 2,
+      "artifact": "beats/BEAT_002_PROMPT.md",
+      "ordak_job_id": "0963bfaa-87bf-4b67-bfaf-a0cdacf0688d",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_002_prompt",
+        "elapsed_seconds": 33.625,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:08:42.711233+00:00",
+      "finished_at": "2026-08-31T20:09:14.939388+00:00",
+      "elapsed_seconds": 32.228,
+      "beat_id": 3,
+      "artifact": "beats/BEAT_003_PROMPT.md",
+      "ordak_job_id": "cc5eb026-227a-4606-a380-f86685554195",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_003_prompt",
+        "elapsed_seconds": 32.226,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:09:16.467619+00:00",
+      "finished_at": "2026-08-31T20:09:49.601664+00:00",
+      "elapsed_seconds": 33.134,
+      "beat_id": 4,
+      "artifact": "beats/BEAT_004_PROMPT.md",
+      "ordak_job_id": "22b7b83f-f5fa-467c-b10a-9515af2b12a5",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_004_prompt",
+        "elapsed_seconds": 33.132,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:09:51.152978+00:00",
+      "finished_at": "2026-08-31T20:10:25.752429+00:00",
+      "elapsed_seconds": 34.599,
+      "beat_id": 5,
+      "artifact": "beats/BEAT_005_PROMPT.md",
+      "ordak_job_id": "7cc577c1-b7ae-433a-9b25-23fbb1d820ac",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_005_prompt",
+        "elapsed_seconds": 34.598,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:10:27.322004+00:00",
+      "finished_at": "2026-08-31T20:14:15.330699+00:00",
+      "elapsed_seconds": 228.009,
+      "beat_id": 6,
+      "artifact": "beats/BEAT_006_PROMPT.md",
+      "ordak_job_id": "0f6ebcf5-c5d7-4544-810e-620028665659",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_006_prompt",
+        "elapsed_seconds": 228.007,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:14:18.606318+00:00",
+      "finished_at": "2026-08-31T20:14:54.753611+00:00",
+      "elapsed_seconds": 36.147,
+      "beat_id": 7,
+      "artifact": "beats/BEAT_007_PROMPT.md",
+      "ordak_job_id": "5d6ae544-8f76-45b5-a86d-6beee755b8bb",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_007_prompt",
+        "elapsed_seconds": 36.145,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:14:57.116998+00:00",
+      "finished_at": "2026-08-31T20:15:32.159401+00:00",
+      "elapsed_seconds": 35.042,
+      "beat_id": 8,
+      "artifact": "beats/BEAT_008_PROMPT.md",
+      "ordak_job_id": "d25d4be5-c365-48ca-9a6d-8d7bc6dc14f0",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_008_prompt",
+        "elapsed_seconds": 35.041,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:15:33.987786+00:00",
+      "finished_at": "2026-08-31T20:16:09.165497+00:00",
+      "elapsed_seconds": 35.178,
+      "beat_id": 9,
+      "artifact": "beats/BEAT_009_PROMPT.md",
+      "ordak_job_id": "7353303a-8977-4d92-9a6c-3e29e3a80358",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_009_prompt",
+        "elapsed_seconds": 35.176,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:16:11.002870+00:00",
+      "finished_at": "2026-08-31T20:16:46.674477+00:00",
+      "elapsed_seconds": 35.672,
+      "beat_id": 10,
+      "artifact": "beats/BEAT_010_PROMPT.md",
+      "ordak_job_id": "de30f53d-7ee6-439d-8b6d-c83732e723b9",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_010_prompt",
+        "elapsed_seconds": 35.67,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:16:48.179886+00:00",
+      "finished_at": "2026-08-31T20:17:21.353431+00:00",
+      "elapsed_seconds": 33.174,
+      "beat_id": 11,
+      "artifact": "beats/BEAT_011_PROMPT.md",
+      "ordak_job_id": "1704b4db-c50e-4c4c-ba7e-69286780b7e2",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_011_prompt",
+        "elapsed_seconds": 33.172,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:17:23.204240+00:00",
+      "finished_at": "2026-08-31T20:17:57.479712+00:00",
+      "elapsed_seconds": 34.275,
+      "beat_id": 12,
+      "artifact": "beats/BEAT_012_PROMPT.md",
+      "ordak_job_id": "a0015817-f462-40f3-b98b-b9d5269df35e",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_012_prompt",
+        "elapsed_seconds": 34.274,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:17:59.171300+00:00",
+      "finished_at": "2026-08-31T20:18:33.291072+00:00",
+      "elapsed_seconds": 34.12,
+      "beat_id": 13,
+      "artifact": "beats/BEAT_013_PROMPT.md",
+      "ordak_job_id": "63ffa7ac-9a79-4000-9fad-1355d300eab2",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_013_prompt",
+        "elapsed_seconds": 34.117,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:18:35.070964+00:00",
+      "finished_at": "2026-08-31T20:19:09.237609+00:00",
+      "elapsed_seconds": 34.167,
+      "beat_id": 14,
+      "artifact": "beats/BEAT_014_PROMPT.md",
+      "ordak_job_id": "53cb236c-4b19-452a-97e9-77d7f0a4b14f",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_014_prompt",
+        "elapsed_seconds": 34.165,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_prompt",
+      "started_at": "2026-08-31T20:19:10.730341+00:00",
+      "finished_at": "2026-08-31T20:19:45.328970+00:00",
+      "elapsed_seconds": 34.599,
+      "beat_id": 15,
+      "artifact": "beats/BEAT_015_PROMPT.md",
+      "ordak_job_id": "159f49bf-156c-4ea6-968a-3a2a42b04943",
+      "request_timing": {
+        "operation": "chatgpt_text_request",
+        "stage": "beat_015_prompt",
+        "elapsed_seconds": 34.593,
+        "attempt": 1,
+        "recovery_failures": []
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:19:46.938919+00:00",
+      "finished_at": "2026-08-31T20:22:57.426188+00:00",
+      "elapsed_seconds": 190.487,
+      "beat_id": 1,
+      "ordak_job_id": "d08a7647-f30b-4138-adaf-73512259d391",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 1,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.029
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.029
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.111,
+        "polling_elapsed_seconds": 190.151,
+        "poll_count": 95,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:20:32.065686Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "d08a7647-f30b-4138-adaf-73512259d391_style_anchor.png",
+            "elapsed_seconds": 33.775
+          },
+          {
+            "timestamp": "2026-08-31T20:20:55.222123Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "d08a7647-f30b-4138-adaf-73512259d391_character_anchor.png",
+            "elapsed_seconds": 23.145
+          },
+          {
+            "timestamp": "2026-08-31T20:20:59.862250Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 4.324
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:19:47.107867",
+        "ordak_job_finished_at": "2026-08-31T20:22:57.069667"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.05,
+        "bytes": 2706691
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_001.png",
+        "bytes": 2706691,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "3ef4832b4fa93a26a8ac24ee9b6a6de28ae730c5f8db6bf1d0969345ddc0a5a6"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:22:59.045322+00:00",
+      "finished_at": "2026-08-31T20:26:40.096814+00:00",
+      "elapsed_seconds": 221.051,
+      "beat_id": 2,
+      "ordak_job_id": "8505547c-f43a-421a-ba44-3f7311075cdb",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_001.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 2,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_001.png",
+            "bytes": 2706691,
+            "read_elapsed_seconds": 0.008
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.216,
+        "polling_elapsed_seconds": 220.73,
+        "poll_count": 110,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:23:50.515606Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "8505547c-f43a-421a-ba44-3f7311075cdb_style_anchor.png",
+            "elapsed_seconds": 40.626
+          },
+          {
+            "timestamp": "2026-08-31T20:24:19.041505Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "8505547c-f43a-421a-ba44-3f7311075cdb_character_anchor.png",
+            "elapsed_seconds": 28.513
+          },
+          {
+            "timestamp": "2026-08-31T20:24:52.664673Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "8505547c-f43a-421a-ba44-3f7311075cdb_beat_001.png",
+            "elapsed_seconds": 33.609
+          },
+          {
+            "timestamp": "2026-08-31T20:24:55.325343Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.427
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:22:59.279429",
+        "ordak_job_finished_at": "2026-08-31T20:26:38.458893"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.054,
+        "bytes": 2713097
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_002.png",
+        "bytes": 2713097,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "011e4f5930ecff08c8f5ad29c9b363468dbd29b48b0e07f8401bb0b14dd7a548"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:26:41.632124+00:00",
+      "finished_at": "2026-08-31T20:30:33.001929+00:00",
+      "elapsed_seconds": 231.37,
+      "beat_id": 3,
+      "ordak_job_id": "d117926b-e28d-4216-ad8f-49a58274962c",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_002.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 3,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_002.png",
+            "bytes": 2713097,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.155,
+        "polling_elapsed_seconds": 231.094,
+        "poll_count": 115,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:27:24.146945Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "d117926b-e28d-4216-ad8f-49a58274962c_style_anchor.png",
+            "elapsed_seconds": 32.855
+          },
+          {
+            "timestamp": "2026-08-31T20:27:55.396820Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "d117926b-e28d-4216-ad8f-49a58274962c_character_anchor.png",
+            "elapsed_seconds": 31.242
+          },
+          {
+            "timestamp": "2026-08-31T20:28:31.086224Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "d117926b-e28d-4216-ad8f-49a58274962c_beat_002.png",
+            "elapsed_seconds": 35.678
+          },
+          {
+            "timestamp": "2026-08-31T20:28:35.880606Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 4.356
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:26:41.805830",
+        "ordak_job_finished_at": "2026-08-31T20:30:32.113328"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.07,
+        "bytes": 2965922
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_003.png",
+        "bytes": 2965922,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "51f3c3f4b37146883e1ef90ca9fedd9b12708412db5c74cb9ab9a0953e2ad54a"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:30:34.744556+00:00",
+      "finished_at": "2026-08-31T20:33:51.902346+00:00",
+      "elapsed_seconds": 197.158,
+      "beat_id": 4,
+      "ordak_job_id": "cae334ca-adff-4384-87c6-ea2f24a919bc",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_003.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 4,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.002
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_003.png",
+            "bytes": 2965922,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.105,
+        "polling_elapsed_seconds": 196.946,
+        "poll_count": 98,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:31:29.780007Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "cae334ca-adff-4384-87c6-ea2f24a919bc_style_anchor.png",
+            "elapsed_seconds": 45.273
+          },
+          {
+            "timestamp": "2026-08-31T20:32:06.526167Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "cae334ca-adff-4384-87c6-ea2f24a919bc_character_anchor.png",
+            "elapsed_seconds": 36.737
+          },
+          {
+            "timestamp": "2026-08-31T20:32:45.091949Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "cae334ca-adff-4384-87c6-ea2f24a919bc_beat_003.png",
+            "elapsed_seconds": 38.557
+          },
+          {
+            "timestamp": "2026-08-31T20:32:49.402729Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.946
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:30:34.857041",
+        "ordak_job_finished_at": "2026-08-31T20:33:51.449554"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.07,
+        "bytes": 2860936
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_004.png",
+        "bytes": 2860936,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "629e5e3434b50b0a6a5ca53dd5a5a47a27e39d461c17bbea5bb957d92494cd72"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:33:53.445905+00:00",
+      "finished_at": "2026-08-31T20:36:35.965160+00:00",
+      "elapsed_seconds": 162.519,
+      "beat_id": 5,
+      "ordak_job_id": "ec57d957-456a-4f95-8a5e-a103658b6f60",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_004.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 5,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_004.png",
+            "bytes": 2860936,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.214,
+        "polling_elapsed_seconds": 162.244,
+        "poll_count": 81,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:34:42.078647Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "ec57d957-456a-4f95-8a5e-a103658b6f60_style_anchor.png",
+            "elapsed_seconds": 37.886
+          },
+          {
+            "timestamp": "2026-08-31T20:35:17.489790Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "ec57d957-456a-4f95-8a5e-a103658b6f60_character_anchor.png",
+            "elapsed_seconds": 35.401
+          },
+          {
+            "timestamp": "2026-08-31T20:35:35.146936Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "ec57d957-456a-4f95-8a5e-a103658b6f60_beat_004.png",
+            "elapsed_seconds": 17.649
+          },
+          {
+            "timestamp": "2026-08-31T20:35:37.963737Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.555
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:33:53.672837",
+        "ordak_job_finished_at": "2026-08-31T20:36:34.078362"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.027,
+        "bytes": 2779417
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_005.png",
+        "bytes": 2779417,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "fc383d4ef05c54262de733c2282bfc92786982528974ec1a924e0677c2c3240c"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:36:37.648822+00:00",
+      "finished_at": "2026-08-31T20:39:19.937278+00:00",
+      "elapsed_seconds": 162.288,
+      "beat_id": 6,
+      "ordak_job_id": "45275637-3766-4ba0-8cb4-bf771ee331c8",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_005.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 6,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_005.png",
+            "bytes": 2779417,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.144,
+        "polling_elapsed_seconds": 162.075,
+        "poll_count": 81,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:37:22.357818Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "45275637-3766-4ba0-8cb4-bf771ee331c8_style_anchor.png",
+            "elapsed_seconds": 33.268
+          },
+          {
+            "timestamp": "2026-08-31T20:37:44.905587Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "45275637-3766-4ba0-8cb4-bf771ee331c8_character_anchor.png",
+            "elapsed_seconds": 22.535
+          },
+          {
+            "timestamp": "2026-08-31T20:38:15.585316Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "45275637-3766-4ba0-8cb4-bf771ee331c8_beat_005.png",
+            "elapsed_seconds": 30.672
+          },
+          {
+            "timestamp": "2026-08-31T20:38:18.271308Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.363
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:36:37.807163",
+        "ordak_job_finished_at": "2026-08-31T20:39:18.405101"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.034,
+        "bytes": 2642655
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_006.png",
+        "bytes": 2642655,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "f811237da37a861d8e2ea197c50f2e7d64750774f02413c2eb9e0d7210ab3fb5"
+      }
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:43:38.459172+00:00",
+      "finished_at": "2026-08-31T20:43:38.462249+00:00",
+      "elapsed_seconds": 0.003,
+      "stage": "script_draft",
+      "artifact": "SCRIPT_DRAFT.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:43:38.469242+00:00",
+      "finished_at": "2026-08-31T20:43:38.469550+00:00",
+      "elapsed_seconds": 0.0,
+      "stage": "retention_edit",
+      "artifact": "SCRIPT_FINAL.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:43:38.474911+00:00",
+      "finished_at": "2026-08-31T20:43:38.481823+00:00",
+      "elapsed_seconds": 0.007,
+      "stage": "world_design",
+      "artifact": "WORLD_DESIGN.md"
+    },
+    {
+      "operation": "reuse_text_artifact",
+      "started_at": "2026-08-31T20:43:38.488772+00:00",
+      "finished_at": "2026-08-31T20:43:38.491191+00:00",
+      "elapsed_seconds": 0.002,
+      "stage": "visual_beats",
+      "artifact": "VISUAL_BEATS.md"
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:43:38.778398+00:00",
+      "finished_at": "2026-08-31T20:46:47.398351+00:00",
+      "elapsed_seconds": 188.62,
+      "beat_id": 7,
+      "ordak_job_id": "7e4312d7-2cb5-4084-bbc5-3cbabe1316fb",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_006.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 7,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.008
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_006.png",
+            "bytes": 2642655,
+            "read_elapsed_seconds": 0.008
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.103,
+        "polling_elapsed_seconds": 188.376,
+        "poll_count": 94,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:44:15.863108Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "7e4312d7-2cb5-4084-bbc5-3cbabe1316fb_style_anchor.png",
+            "elapsed_seconds": 27.144
+          },
+          {
+            "timestamp": "2026-08-31T20:44:39.090961Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "7e4312d7-2cb5-4084-bbc5-3cbabe1316fb_character_anchor.png",
+            "elapsed_seconds": 23.219
+          },
+          {
+            "timestamp": "2026-08-31T20:45:02.305787Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "7e4312d7-2cb5-4084-bbc5-3cbabe1316fb_beat_006.png",
+            "elapsed_seconds": 23.202
+          },
+          {
+            "timestamp": "2026-08-31T20:45:05.115852Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.595
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:43:38.907209",
+        "ordak_job_finished_at": "2026-08-31T20:46:47.042264"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.081,
+        "bytes": 2938508
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_007.png",
+        "bytes": 2938508,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "e0b1f9b75430a5c746af3df86e46ecc9c1b5165b989905624565819e548e0a11"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:46:49.330608+00:00",
+      "finished_at": "2026-08-31T20:50:02.082123+00:00",
+      "elapsed_seconds": 192.752,
+      "beat_id": 8,
+      "ordak_job_id": "e4565335-f810-40e1-8366-ecaca83a4667",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_007.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 8,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_007.png",
+            "bytes": 2938508,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.141,
+        "polling_elapsed_seconds": 192.508,
+        "poll_count": 96,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:47:23.281622Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "e4565335-f810-40e1-8366-ecaca83a4667_style_anchor.png",
+            "elapsed_seconds": 24.043
+          },
+          {
+            "timestamp": "2026-08-31T20:47:46.136338Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "e4565335-f810-40e1-8366-ecaca83a4667_character_anchor.png",
+            "elapsed_seconds": 22.843
+          },
+          {
+            "timestamp": "2026-08-31T20:48:11.820865Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "e4565335-f810-40e1-8366-ecaca83a4667_beat_007.png",
+            "elapsed_seconds": 25.668
+          },
+          {
+            "timestamp": "2026-08-31T20:48:14.994344Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.951
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:46:49.485013",
+        "ordak_job_finished_at": "2026-08-31T20:50:01.801243"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.053,
+        "bytes": 2746646
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_008.png",
+        "bytes": 2746646,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "e75b5e611ace57c78918a696814094793e4c9ed0e22d4184bcdd2cecc2bde960"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:50:03.895201+00:00",
+      "finished_at": "2026-08-31T20:52:28.371627+00:00",
+      "elapsed_seconds": 144.476,
+      "beat_id": 9,
+      "ordak_job_id": "59999a0e-b038-49c0-9c83-bf54c6bb00f7",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_008.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 9,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_008.png",
+            "bytes": 2746646,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.139,
+        "polling_elapsed_seconds": 144.235,
+        "poll_count": 72,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:50:36.720700Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "59999a0e-b038-49c0-9c83-bf54c6bb00f7_style_anchor.png",
+            "elapsed_seconds": 23.405
+          },
+          {
+            "timestamp": "2026-08-31T20:50:56.610572Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "59999a0e-b038-49c0-9c83-bf54c6bb00f7_character_anchor.png",
+            "elapsed_seconds": 19.882
+          },
+          {
+            "timestamp": "2026-08-31T20:51:20.297838Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "59999a0e-b038-49c0-9c83-bf54c6bb00f7_beat_008.png",
+            "elapsed_seconds": 23.678
+          },
+          {
+            "timestamp": "2026-08-31T20:51:23.070599Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.502
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:50:04.049284",
+        "ordak_job_finished_at": "2026-08-31T20:52:28.194081"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.053,
+        "bytes": 2970022
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_009.png",
+        "bytes": 2970022,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "824e66dbe73de8eb35ec1b849af4ce14e8dad223aa3c8466021f24c46d1ef042"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:52:29.983382+00:00",
+      "finished_at": "2026-08-31T20:54:29.969233+00:00",
+      "elapsed_seconds": 119.986,
+      "beat_id": 10,
+      "ordak_job_id": "1647e0f0-249f-4587-bc56-e411d4de0bf6",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_009.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 10,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.008
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_009.png",
+            "bytes": 2970022,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.137,
+        "polling_elapsed_seconds": 119.764,
+        "poll_count": 60,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:53:00.985780Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "1647e0f0-249f-4587-bc56-e411d4de0bf6_style_anchor.png",
+            "elapsed_seconds": 20.887
+          },
+          {
+            "timestamp": "2026-08-31T20:53:18.068692Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "1647e0f0-249f-4587-bc56-e411d4de0bf6_character_anchor.png",
+            "elapsed_seconds": 17.073
+          },
+          {
+            "timestamp": "2026-08-31T20:53:35.337682Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "1647e0f0-249f-4587-bc56-e411d4de0bf6_beat_009.png",
+            "elapsed_seconds": 17.252
+          },
+          {
+            "timestamp": "2026-08-31T20:53:38.474261Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.863
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:52:30.135244",
+        "ordak_job_finished_at": "2026-08-31T20:54:29.797003"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.046,
+        "bytes": 2710805
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_010.png",
+        "bytes": 2710805,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "e600197b9ff5d4e9ed41e0c6caa944c02ce28d4772f16d70ce39c6323e07e9b1"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:54:31.454747+00:00",
+      "finished_at": "2026-08-31T20:56:39.365423+00:00",
+      "elapsed_seconds": 127.911,
+      "beat_id": 11,
+      "ordak_job_id": "4c64f89f-cf7d-4d51-bd21-169f9062b9ea",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_010.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 11,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_010.png",
+            "bytes": 2710805,
+            "read_elapsed_seconds": 0.002
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.114,
+        "polling_elapsed_seconds": 127.688,
+        "poll_count": 64,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:54:59.425544Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "4c64f89f-cf7d-4d51-bd21-169f9062b9ea_style_anchor.png",
+            "elapsed_seconds": 18.005
+          },
+          {
+            "timestamp": "2026-08-31T20:55:19.378594Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "4c64f89f-cf7d-4d51-bd21-169f9062b9ea_character_anchor.png",
+            "elapsed_seconds": 19.941
+          },
+          {
+            "timestamp": "2026-08-31T20:55:36.998096Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "4c64f89f-cf7d-4d51-bd21-169f9062b9ea_beat_010.png",
+            "elapsed_seconds": 17.609
+          },
+          {
+            "timestamp": "2026-08-31T20:55:40.314880Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.076
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:54:31.572792",
+        "ordak_job_finished_at": "2026-08-31T20:56:38.380710"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.07,
+        "bytes": 2465906
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_011.png",
+        "bytes": 2465906,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "e64fcc35700e411d780d80c33be4ab7941b2b78a21a3daf4a36d53ae8152a1fc"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:56:41.210879+00:00",
+      "finished_at": "2026-08-31T20:58:59.331706+00:00",
+      "elapsed_seconds": 138.121,
+      "beat_id": 12,
+      "ordak_job_id": "faecf3ca-3b27-4770-bbc4-c73fd689652e",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_011.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 12,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.004
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_011.png",
+            "bytes": 2465906,
+            "read_elapsed_seconds": 0.005
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.113,
+        "polling_elapsed_seconds": 137.947,
+        "poll_count": 69,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:57:12.169671Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "faecf3ca-3b27-4770-bbc4-c73fd689652e_style_anchor.png",
+            "elapsed_seconds": 20.55
+          },
+          {
+            "timestamp": "2026-08-31T20:57:29.364338Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "faecf3ca-3b27-4770-bbc4-c73fd689652e_character_anchor.png",
+            "elapsed_seconds": 17.185
+          },
+          {
+            "timestamp": "2026-08-31T20:57:52.672369Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "faecf3ca-3b27-4770-bbc4-c73fd689652e_beat_011.png",
+            "elapsed_seconds": 23.299
+          },
+          {
+            "timestamp": "2026-08-31T20:57:55.970692Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 3.073
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:56:41.335117",
+        "ordak_job_finished_at": "2026-08-31T20:58:58.748311"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.029,
+        "bytes": 2689493
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_012.png",
+        "bytes": 2689493,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "56785256e9363b374c1188ea1972d26dbe8bb65edd7b9e25c69a2cd4bf16bc3c"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T20:59:01.240895+00:00",
+      "finished_at": "2026-08-31T21:01:11.744656+00:00",
+      "elapsed_seconds": 130.504,
+      "beat_id": 13,
+      "ordak_job_id": "be2ca1d3-ee23-4602-bae3-4e1851f36b9e",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_012.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 13,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.005
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_012.png",
+            "bytes": 2689493,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.127,
+        "polling_elapsed_seconds": 130.286,
+        "poll_count": 65,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T20:59:39.206764Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "be2ca1d3-ee23-4602-bae3-4e1851f36b9e_style_anchor.png",
+            "elapsed_seconds": 27.784
+          },
+          {
+            "timestamp": "2026-08-31T20:59:48.662234Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "be2ca1d3-ee23-4602-bae3-4e1851f36b9e_character_anchor.png",
+            "elapsed_seconds": 9.446
+          },
+          {
+            "timestamp": "2026-08-31T21:00:08.812738Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "be2ca1d3-ee23-4602-bae3-4e1851f36b9e_beat_012.png",
+            "elapsed_seconds": 20.137
+          },
+          {
+            "timestamp": "2026-08-31T21:00:11.680652Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.653
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T20:59:01.386769",
+        "ordak_job_finished_at": "2026-08-31T21:01:09.912314"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.042,
+        "bytes": 2526466
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_013.png",
+        "bytes": 2526466,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "c320bd554734ed9a0642d4b40dab20901340348a7b8e5b0d094e4214f8ce1c99"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T21:01:13.796619+00:00",
+      "finished_at": "2026-08-31T21:04:06.365842+00:00",
+      "elapsed_seconds": 172.569,
+      "beat_id": 14,
+      "ordak_job_id": "78c94d52-8b0d-4429-8a8b-c0939d85199c",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_013.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 14,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.008
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.003
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_013.png",
+            "bytes": 2526466,
+            "read_elapsed_seconds": 0.004
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.138,
+        "polling_elapsed_seconds": 172.284,
+        "poll_count": 86,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T21:01:42.814843Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "78c94d52-8b0d-4429-8a8b-c0939d85199c_style_anchor.png",
+            "elapsed_seconds": 18.648
+          },
+          {
+            "timestamp": "2026-08-31T21:01:51.769269Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "78c94d52-8b0d-4429-8a8b-c0939d85199c_character_anchor.png",
+            "elapsed_seconds": 8.936
+          },
+          {
+            "timestamp": "2026-08-31T21:02:06.968483Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "78c94d52-8b0d-4429-8a8b-c0939d85199c_beat_013.png",
+            "elapsed_seconds": 15.19
+          },
+          {
+            "timestamp": "2026-08-31T21:02:10.207442Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.994
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T21:01:13.950784",
+        "ordak_job_finished_at": "2026-08-31T21:04:05.213227"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.105,
+        "bytes": 2847697
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_014.png",
+        "bytes": 2847697,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "70914d7d4a661e17203302a596faca4029584ffd1b2dfe78ecf5bb588f45d35c"
+      }
+    },
+    {
+      "operation": "beat_image",
+      "started_at": "2026-08-31T21:04:07.789134+00:00",
+      "finished_at": "2026-08-31T21:07:00.637801+00:00",
+      "elapsed_seconds": 172.849,
+      "beat_id": 15,
+      "ordak_job_id": "6b7a1092-f172-4614-8f80-a6420a72d94a",
+      "references": [
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+        "projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+        "videos/009_vikings_history/assets/raw_beats/beat_014.png"
+      ],
+      "request_timing": {
+        "operation": "chatgpt_image_request",
+        "beat_id": 15,
+        "reference_payload_readings": [
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/style_anchor.png",
+            "bytes": 2951687,
+            "read_elapsed_seconds": 0.013
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/projects/world_behind_the_question/visual_presets/001_library_seeker/character_anchor.png",
+            "bytes": 2620919,
+            "read_elapsed_seconds": 0.006
+          },
+          {
+            "path": "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/assets/raw_beats/beat_014.png",
+            "bytes": 2847697,
+            "read_elapsed_seconds": 0.006
+          }
+        ],
+        "upload_and_enqueue_elapsed_seconds": 0.093,
+        "polling_elapsed_seconds": 172.633,
+        "poll_count": 86,
+        "ordak_component_timings": [
+          {
+            "timestamp": "2026-08-31T21:04:38.516193Z",
+            "operation": "reference_upload",
+            "reference_index": "1",
+            "reference_name": "6b7a1092-f172-4614-8f80-a6420a72d94a_style_anchor.png",
+            "elapsed_seconds": 20.577
+          },
+          {
+            "timestamp": "2026-08-31T21:04:53.879777Z",
+            "operation": "reference_upload",
+            "reference_index": "2",
+            "reference_name": "6b7a1092-f172-4614-8f80-a6420a72d94a_character_anchor.png",
+            "elapsed_seconds": 15.353
+          },
+          {
+            "timestamp": "2026-08-31T21:05:11.320320Z",
+            "operation": "reference_upload",
+            "reference_index": "3",
+            "reference_name": "6b7a1092-f172-4614-8f80-a6420a72d94a_beat_014.png",
+            "elapsed_seconds": 17.431
+          },
+          {
+            "timestamp": "2026-08-31T21:05:14.400732Z",
+            "operation": "prompt_submit",
+            "attempt": "1",
+            "elapsed_seconds": 2.77
+          }
+        ],
+        "ordak_job_started_at": "2026-08-31T21:04:07.907839",
+        "ordak_job_finished_at": "2026-08-31T21:06:58.924497"
+      },
+      "download_timing": {
+        "operation": "artifact_download",
+        "elapsed_seconds": 0.07,
+        "bytes": 2972426
+      },
+      "output": {
+        "path": "assets/raw_beats/beat_015.png",
+        "bytes": 2972426,
+        "width": 941,
+        "height": 1672,
+        "aspect_ratio": 0.562799043062201,
+        "sha256": "7862e67070b8673abf900443555a79c4861c3d825de201a41cf5af24829bfc81"
+      }
+    }
+  ],
+  "totals_seconds_by_operation": {
+    "beat_image": 2552.661,
+    "beat_prompt": 729.817,
+    "reuse_text_artifact": 0.024,
+    "text_stage": 209.326
+  }
+}

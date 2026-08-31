@@ -1,0 +1,94 @@
+{
+  "schema_version": 5,
+  "content_project": "world_behind_the_question",
+  "preset": "001_library_seeker",
+  "topic": "Vikings History",
+  "video_id": "009",
+  "duration_min_seconds": 40.0,
+  "duration_max_seconds": 60.0,
+  "aspect_ratio": "9:16",
+  "creative_brief_sha256": "dd01d3b5bb0b4f8d2be39d31e3d62f20a631db54d26874bf0775a9805cec9626",
+  "started_at": "2026-08-31T21:26:22.342313+00:00",
+  "status": "FINALIZING",
+  "events": [
+    {
+      "stage": "visuals",
+      "status": "REUSED",
+      "artifact": "videos/009_vikings_history/visual_pipeline/VISUAL_QC_REPORT.json",
+      "ended_at": "2026-08-31T21:26:22.348477+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "voiceover",
+      "attempt": 1,
+      "started_at": "2026-08-31T21:26:22.349183+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_elevenlabs_voiceover.py",
+        "--video-id",
+        "009",
+        "--project",
+        "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history",
+        "--profile",
+        "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history/voiceover/REQUESTED_VOICE_PROFILE.json"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T21:26:22.795431+00:00",
+      "elapsed_seconds": 0.446
+    },
+    {
+      "stage": "timing",
+      "status": "REUSED",
+      "artifact": "videos/009_vikings_history/timing/BEAT_TIMINGS.json",
+      "ended_at": "2026-08-31T21:26:22.796891+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "music",
+      "attempt": 1,
+      "started_at": "2026-08-31T21:26:22.798352+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_pixabay_music.py",
+        "--video-id",
+        "009",
+        "--project",
+        "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history",
+        "--provider",
+        "mixkit"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T21:27:49.492480+00:00",
+      "elapsed_seconds": 86.694
+    },
+    {
+      "stage": "audio_mix_profile",
+      "status": "REUSED",
+      "artifact": "videos/009_vikings_history/audio_mix/AUDIO_MIX_PROFILE.json",
+      "ended_at": "2026-08-31T21:27:49.495874+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "render_profile",
+      "status": "REUSED",
+      "artifact": "videos/009_vikings_history/render/RENDER_PROFILE.json",
+      "ended_at": "2026-08-31T21:27:49.497911+00:00",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "completion",
+      "attempt": 1,
+      "started_at": "2026-08-31T21:27:49.498417+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_completion_pipeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/009_vikings_history",
+        "--publish"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T21:40:56.525176+00:00",
+      "elapsed_seconds": 787.027
+    }
+  ],
+  "git_publish_started_at": "2026-08-31T21:40:56.527367+00:00"
+}

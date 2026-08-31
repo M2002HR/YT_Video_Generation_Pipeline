@@ -1,0 +1,4 @@
+A longship cuts through the fog, its striped sail rising over the sea. So where did the Vikings actually come from? Mostly from Scandinavia—the regions we now call Norway, Denmark, and Sweden. But there was no single Viking nation. During the Viking Age, roughly the late eighth to eleventh centuries, Scandinavians sailed abroad to raid, trade, explore, and settle. Some headed west to Britain, Iceland, Greenland, and eventually North America. Others traveled east along rivers toward the Baltic, Byzantium, and beyond. So the Vikings did not emerge from one mysterious homeland. They came from different Scandinavian societies. “Viking” wasn’t simply where someone was from—it was connected to what some Scandinavians went out into the world to do.
+
+Sharpen the final reframe
+Trim the middle travel list

@@ -1,0 +1,4 @@
+A Viking ship appears on the horizon—but where did the people aboard actually come from? Mostly from Scandinavia: the lands we now call Norway, Denmark, and Sweden. But “Viking” was not the name of a single nation or ethnic group. It described people who took part in seaborne raiding, trading, exploration, and settlement during the Viking Age, roughly from the late eighth to eleventh centuries. Some sailed west toward Britain, Iceland, Greenland, and eventually North America. Others traveled east through river networks toward the Baltic, Byzantium, and beyond. So the Vikings did not come from one mysterious homeland. They came from several Scandinavian societies—and “Viking” was more about what some people did than who an entire people were.
+
+Make the opening more vivid
+Strengthen the final reframe
