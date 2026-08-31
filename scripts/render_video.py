@@ -309,6 +309,9 @@ def main() -> None:
     command: list[str] = [
         ffmpeg,
         "-hide_banner",
+        "-nostats",
+        "-loglevel",
+        "warning",
         "-y",
         "-threads",
         str(thread_cap),
