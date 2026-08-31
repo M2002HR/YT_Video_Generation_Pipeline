@@ -50,6 +50,13 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
         return
 
 
+def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path) -> None:
+    """Record an already validated artifact so a full run can resume offline."""
+    event = {"stage": stage, "status": "REUSED", "artifact": str(artifact.relative_to(ROOT)), "ended_at": stamp(), "elapsed_seconds": 0.0}
+    state["events"].append(event)
+    path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
     parser.add_argument("--topic", required=True)
@@ -86,7 +93,11 @@ def main() -> None:
     # Visual generation persists each accepted prompt/image, so rerunning the
     # stage is safe and resumes at the first incomplete beat after a transient
     # browser/UI failure.
-    run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3)
+    visual_report = project / "visual_pipeline" / "VISUAL_QC_REPORT.json"
+    if visual_report.is_file():
+        reuse("visuals", visual_report, state, state_path)
+    else:
+        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3)
     run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path)
     run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path)
     run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)

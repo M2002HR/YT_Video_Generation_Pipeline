@@ -490,6 +490,7 @@ def main() -> None:
     existing = next((output_dir / f"narration{extension}" for extension in AUDIO_EXTENSIONS if (output_dir / f"narration{extension}").is_file()), None)
     if existing and not args.force:
         state.data.update({"status": "DONE", "output": str(existing.relative_to(project))})
+        state.data.pop("error", None); state.data.pop("failed_at", None)
         state.event("elevenlabs_download_recovered", started if "started" in locals() else time.perf_counter(), bytes=existing.stat().st_size, output=str(existing.relative_to(project)))
         state.save()
         json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(existing.relative_to(project)), "generated_at": utcnow(), "recovered_from_existing_download": True})
@@ -534,6 +535,7 @@ def main() -> None:
                 if destination.stat().st_size < 1024:
                     raise RuntimeError("ElevenLabs download is unexpectedly small.")
                 state.data.update({"status": "DONE", "output": str(destination.relative_to(project)), "completed_at": utcnow()})
+                state.data.pop("error", None); state.data.pop("failed_at", None)
                 state.event("elevenlabs_download", submit_at, bytes=destination.stat().st_size, output=str(destination.relative_to(project)))
                 json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(destination.relative_to(project)), "generated_at": utcnow()})
                 notifier.stage_complete("ElevenLabs voiceover", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
