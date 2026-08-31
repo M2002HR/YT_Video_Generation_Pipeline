@@ -184,7 +184,7 @@ optional recurring/video anchors
 previous accepted beat (Beat 02+)
 current beat prompt
         ↓
-exactly one accepted standalone 16:9 beat image
+exactly one accepted standalone image in the configured frame format
 ```
 
 A rejected/failed image must never become the previous-beat continuity reference.

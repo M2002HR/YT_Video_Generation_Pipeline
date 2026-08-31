@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Convert one approved visual beat into one high-quality standalone 16:9 image-generation prompt.
+Convert one approved visual beat into one high-quality standalone {{ASPECT_RATIO}} image-generation prompt.
 
 The pipeline no longer uses 2x2 storyboard sheets. **One visual beat = one generated image.**
 
@@ -34,7 +34,7 @@ Never use the previous image as the only character/style reference. If it has dr
 
 The generated prompt must explicitly require:
 - exactly one image
-- 16:9 composition
+- {{ASPECT_RATIO}} composition
 - no storyboard sheet
 - no grid
 - no collage
@@ -64,7 +64,7 @@ Short story-native text is allowed only when truly necessary and should remain r
 ## Required output format
 
 ```text
-Create exactly ONE standalone 16:9 image for one visual beat.
+Create exactly ONE standalone {{ASPECT_RATIO}} image for one visual beat.
 
 REFERENCE PRIORITY:
 <reference hierarchy>
@@ -82,7 +82,10 @@ CONTINUITY REQUIREMENT:
 <how to use previous beat without drift>
 
 OUTPUT REQUIREMENT:
-Generate exactly one high-quality standalone 16:9 image.
+Generate exactly one high-quality standalone {{ASPECT_RATIO}} image.
+
+FRAME COMPOSITION:
+{{FRAME_GUIDANCE}}
 ```
 
 ---

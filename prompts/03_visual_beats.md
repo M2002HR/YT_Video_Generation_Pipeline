@@ -44,7 +44,11 @@ A visual beat is not the same thing as a sentence. One sentence may contain mult
 - Keep the visuals understandable without relying on written text inside the image.
 - Prefer one dominant idea per beat.
 - Keep character, setting, and visual continuity in mind across neighboring beats.
-- Make the beats suitable for lightweight motion later, such as zoom, pan, or crop movement.
+- Follow the frame format specified in the VIDEO BRIEF. For a vertical frame,
+  prioritize one clear central subject, vertical depth, and comfortable top and
+  bottom safe space; never place essential action only at far left/right edges.
+  For a landscape frame, use balanced horizontal staging and left/right depth.
+- Make the beats suitable for lightweight motion later, such as zoom, pan, or crop movement, without cropping the key subject out of the configured frame.
 
 ### Beat count
 
@@ -93,7 +97,7 @@ Before returning the beats, silently verify:
 5. Abstract ideas have been made visually understandable where possible.
 6. The total beat count is appropriate for the target duration.
 7. Neighboring beats can maintain a coherent visual style and recurring character.
-8. The result can later be grouped into 2x2 storyboard sheets without major continuity problems.
+8. Every beat can be composed cleanly in the frame format requested by the VIDEO BRIEF.
 
 ## Required output format
 

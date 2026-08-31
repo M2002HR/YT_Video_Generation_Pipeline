@@ -86,15 +86,29 @@ def ensure_audio_mix_profile(project: Path) -> Path:
     return profile
 
 
-def ensure_render_profile(project: Path) -> Path:
+def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
     """Create the versioned, resource-capped render defaults for a new video."""
     profile = project / "render" / "RENDER_PROFILE.json"
+    width, height = (1920, 1080) if aspect_ratio == "16:9" else (1080, 1920)
     if profile.is_file():
+        existing = json.loads(profile.read_text(encoding="utf-8"))
+        resolution = existing.get("resolution", {})
+        existing_dimensions = (resolution.get("width"), resolution.get("height"))
+        # Never silently render a resumed project in a different orientation.
+        # Legacy landscape profiles omitted ``aspect_ratio`` but have the
+        # canonical 1920x1080 dimensions, so they remain resume-compatible.
+        if existing_dimensions != (width, height):
+            raise RuntimeError(
+                f"Existing render profile is {existing_dimensions[0]}x{existing_dimensions[1]}, "
+                f"but this launch requests {aspect_ratio} ({width}x{height}). "
+                "Use a new video ID for a different frame format."
+            )
         return profile
     profile.parent.mkdir(parents=True, exist_ok=True)
     profile.write_text(json.dumps({
         "schema_version": 1,
-        "resolution": {"width": 1920, "height": 1080},
+        "aspect_ratio": aspect_ratio,
+        "resolution": {"width": width, "height": height},
         "fps": 30,
         "video": {"codec": "libx264", "preset": "medium", "crf": 18, "pixel_format": "yuv420p"},
         "audio": {"codec": "aac", "bitrate": "192k"},
@@ -114,6 +128,7 @@ def main() -> None:
     parser.add_argument("--duration-seconds", type=float, default=None, help="Legacy fixed-duration shorthand.")
     parser.add_argument("--min-duration-seconds", type=float, default=None)
     parser.add_argument("--max-duration-seconds", type=float, default=None)
+    parser.add_argument("--aspect-ratio", choices=("16:9", "9:16"), default="16:9")
     parser.add_argument("--preset", default="001_cinematic_storybook_green_hoodie")
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default="mixkit")
@@ -139,11 +154,11 @@ def main() -> None:
     safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in args.topic).strip("_")
     project = ROOT / "videos" / f"{args.video_id}_{safe_topic}"
     if args.dry_run:
-        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish"]}, indent=2))
+        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish"]}, indent=2))
         return
     state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
     state_path.parent.mkdir(parents=True, exist_ok=True)
-    state: dict[str, Any] = {"schema_version": 2, "topic": args.topic, "video_id": args.video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "started_at": stamp(), "status": "RUNNING", "events": []}
+    state: dict[str, Any] = {"schema_version": 3, "topic": args.topic, "video_id": args.video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "started_at": stamp(), "status": "RUNNING", "events": []}
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     notifier = PipelineNotifier(args.video_id, args.topic)
     notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target range: {duration_min:g}–{duration_max:g}s"])
@@ -155,7 +170,7 @@ def main() -> None:
     if visual_report.is_file():
         reuse("visuals", visual_report, state, state_path, notifier=notifier)
     else:
-        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max)], state, state_path, retries=3, notifier=notifier)
+        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", args.aspect_ratio], state, state_path, retries=3, notifier=notifier)
     run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path, notifier=notifier)
     timing_file = project / "timing" / "BEAT_TIMINGS.json"
     if timing_file.is_file():
@@ -169,7 +184,7 @@ def main() -> None:
         run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, notifier=notifier)
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
-    render_profile = ensure_render_profile(project)
+    render_profile = ensure_render_profile(project, args.aspect_ratio)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path, notifier=notifier)
     state.update({"status": "DONE", "completed_at": stamp(), "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3)})

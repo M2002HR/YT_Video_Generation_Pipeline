@@ -9,6 +9,7 @@ For a new video, enter only:
 
 - topic;
 - minimum and maximum duration in seconds;
+- frame format: `16:9` landscape or `9:16` vertical Shorts/Reels;
 - ElevenLabs voice, model, speed, stability, similarity and style;
 - music provider.
 
@@ -29,3 +30,6 @@ The range is intentional: the writer chooses the most natural spoken length
 within the supplied bounds instead of padding to a fixed duration. Script word
 counts and visual-beat counts are validated against the whole range; later
 timing, music and rendering use the actual duration of the generated narration.
+The same frame format is carried into the image prompt, image validation,
+render profile and final QC resolution (`1920x1080` for `16:9`, `1080x1920`
+for `9:16`).
