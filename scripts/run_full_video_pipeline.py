@@ -111,14 +111,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
     parser.add_argument("--topic", required=True)
     parser.add_argument("--video-id", required=True)
-    parser.add_argument("--duration-seconds", type=float, required=True)
+    parser.add_argument("--duration-seconds", type=float, default=None, help="Legacy fixed-duration shorthand.")
+    parser.add_argument("--min-duration-seconds", type=float, default=None)
+    parser.add_argument("--max-duration-seconds", type=float, default=None)
     parser.add_argument("--preset", default="001_cinematic_storybook_green_hoodie")
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default="mixkit")
     parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
     args = parser.parse_args()
-    if not 15 <= args.duration_seconds <= 300:
-        raise SystemExit("duration must be between 15 and 300 seconds")
+    if args.duration_seconds is not None and (args.min_duration_seconds is not None or args.max_duration_seconds is not None):
+        raise SystemExit("Use either --duration-seconds or a min/max duration range, not both.")
+    duration_min = args.min_duration_seconds if args.min_duration_seconds is not None else args.duration_seconds
+    duration_max = args.max_duration_seconds if args.max_duration_seconds is not None else args.duration_seconds
+    if duration_min is None or duration_max is None or not 15 <= duration_min <= duration_max <= 300:
+        raise SystemExit("duration range must be within 15..300 seconds and minimum must not exceed maximum")
     profile = args.voice_profile.expanduser().resolve()
     if not profile.is_file():
         raise SystemExit(f"Voice profile not found: {profile}")
@@ -133,14 +139,14 @@ def main() -> None:
     safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in args.topic).strip("_")
     project = ROOT / "videos" / f"{args.video_id}_{safe_topic}"
     if args.dry_run:
-        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_seconds": args.duration_seconds, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish"]}, indent=2))
+        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish"]}, indent=2))
         return
     state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
     state_path.parent.mkdir(parents=True, exist_ok=True)
-    state: dict[str, Any] = {"schema_version": 1, "topic": args.topic, "video_id": args.video_id, "duration_seconds": args.duration_seconds, "started_at": stamp(), "status": "RUNNING", "events": []}
+    state: dict[str, Any] = {"schema_version": 2, "topic": args.topic, "video_id": args.video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "started_at": stamp(), "status": "RUNNING", "events": []}
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     notifier = PipelineNotifier(args.video_id, args.topic)
-    notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target duration: {args.duration_seconds:g}s"])
+    notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target range: {duration_min:g}–{duration_max:g}s"])
     py = sys.executable
     # Visual generation persists each accepted prompt/image, so rerunning the
     # stage is safe and resumes at the first incomplete beat after a transient
@@ -149,7 +155,7 @@ def main() -> None:
     if visual_report.is_file():
         reuse("visuals", visual_report, state, state_path, notifier=notifier)
     else:
-        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3, notifier=notifier)
+        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max)], state, state_path, retries=3, notifier=notifier)
     run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path, notifier=notifier)
     timing_file = project / "timing" / "BEAT_TIMINGS.json"
     if timing_file.is_file():
