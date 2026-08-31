@@ -87,23 +87,51 @@ class Browser:
             request(4, "Input.dispatchMouseEvent", {"type": "mouseReleased", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1})
 
     def insert_and_submit(self, text: str) -> None:
+        """Enter a ChatGPT request and prove that the UI accepted Send.
+
+        Ctrl+Enter is a configurable ChatGPT shortcut and is not a dependable
+        submission mechanism.  The visible blue Send control is canonical.  A
+        failed prior process may leave exactly this request in the composer; in
+        that case we preserve it and submit it once rather than duplicating it.
+        """
         if self.tab is None:
             raise RuntimeError("No ChatGPT tab is selected.")
-        point = self.data("""(() => { const e=[...document.querySelectorAll('textarea,[contenteditable=true]')].find(x=>!!(x.offsetWidth||x.offsetHeight||x.getClientRects().length)&&/new chat/i.test(`${x.getAttribute('aria-label')||''} ${x.placeholder||''}`));if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
-        self.point_click(f"(() => {{ return {json.dumps(point)}; }})()")
+        composer = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('#prompt-textarea,textarea,[contenteditable=true]')].filter(x=>visible(x)&&(/new chat|message|ask/i.test(`${x.getAttribute('aria-label')||''} ${x.placeholder||''}`)||x.id==='prompt-textarea'))[0];if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2,text:(e.value||e.innerText||'').trim(),is_textarea:e.tagName==='TEXTAREA'}; })()"""
+        before = self.data(composer)
+        if not isinstance(before, dict) or not before.get("ok"):
+            raise RuntimeError("ChatGPT project composer was not visible.")
+        existing = str(before.get("text") or "")
+        if existing and existing != text.strip():
+            raise RuntimeError("ChatGPT composer contains a different unsent request; refusing to overwrite it.")
+        self.point_click(f"(() => {{ return {json.dumps(before)}; }})()")
         info = self.get_info(self.tab)
-        from websockets.sync.client import connect
-        with connect(info.websocket_debugger_url, proxy=None, open_timeout=5, close_timeout=5) as ws:
-            def request(i: int, method: str, params: dict[str, Any]) -> None:
-                ws.send(json.dumps({"id": i, "method": method, "params": params}))
+        if not getattr(info, "websocket_debugger_url", None):
+            raise RuntimeError("Ordak could not focus the ChatGPT browser tab.")
+        if not existing:
+            from websockets.sync.client import connect
+            with connect(info.websocket_debugger_url, proxy=None, open_timeout=5, close_timeout=5) as ws:
+                ws.send(json.dumps({"id": 1, "method": "Input.insertText", "params": {"text": text}}))
                 while True:
-                    if (reply := json.loads(ws.recv())).get("id") == i:
+                    reply = json.loads(ws.recv())
+                    if reply.get("id") == 1:
                         if reply.get("error"):
                             raise RuntimeError("Chrome rejected ChatGPT input.")
-                        return
-            request(1, "Input.insertText", {"text": text})
-            request(2, "Input.dispatchKeyEvent", {"type": "keyDown", "key": "Enter", "code": "Enter", "windowsVirtualKeyCode": 13, "modifiers": 2})
-            request(3, "Input.dispatchKeyEvent", {"type": "keyUp", "key": "Enter", "code": "Enter", "windowsVirtualKeyCode": 13, "modifiers": 2})
+                        break
+        ready = self.data(composer)
+        if str(ready.get("text") or "") != text.strip():
+            raise RuntimeError("ChatGPT did not retain the requested music-selection prompt.")
+        send = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='send-button'||/send (prompt|message)|send$/i.test(`${x.getAttribute('aria-label')||''} ${(x.innerText||'').trim()}`));if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()"""
+        self.point_click(send)
+        deadline = time.monotonic() + 12
+        while time.monotonic() < deadline:
+            after = self.data(composer)
+            page = str(self.data("document.body?.innerText||''"))
+            # Empty composer is the strongest acknowledgement.  A visible Stop
+            # action covers streaming responses that retain a transient draft.
+            if not str(after.get("text") or "") or re.search(r"\bStop generating\b|\bStop streaming\b", page, re.I):
+                return
+            time.sleep(0.4)
+        raise RuntimeError("ChatGPT did not acknowledge the visible Send action; request remains unsent for safe retry.")
 
 
 def video_context(project: Path) -> tuple[str, float]:
