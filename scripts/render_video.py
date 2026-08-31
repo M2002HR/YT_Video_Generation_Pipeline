@@ -388,6 +388,10 @@ def main() -> None:
             f"{duration:.6f}",
             "-c:v",
             video_codec,
+            # ``-threads`` must appear in the output encoder option group;
+            # the earlier global option only constrains decoder threads.
+            "-threads",
+            str(thread_cap),
             "-preset",
             preset,
             "-crf",
@@ -404,6 +408,15 @@ def main() -> None:
             str(output_path),
         ]
     )
+
+    if video_codec == "libx264":
+        # libx264 otherwise derives a separate look-ahead worker even when
+        # FFmpeg's generic thread cap is set.
+        insert_at = command.index("-c:a")
+        command[insert_at:insert_at] = [
+            "-x264-params",
+            f"threads={thread_cap}:lookahead-threads=1",
+        ]
 
     print(f"Timeline: {timeline_path}")
     print(f"Beats: {len(beats)}")
