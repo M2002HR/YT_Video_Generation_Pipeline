@@ -108,9 +108,14 @@ class OrdakClient:
         diagnostics = self.http.get(f"{self.settings.base_url}/api/diagnostics")
         diagnostics.raise_for_status()
         data = diagnostics.json()
-        chatgpt = (data.get("provider_sessions") or {}).get("chatgpt") or {}
-        if not data.get("chrome_running") or not chatgpt.get("logged_in") or chatgpt.get("login_state") != "ready":
-            raise RuntimeError("Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.")
+        if not data.get("chrome_running"):
+            raise RuntimeError("Ordak/Chrome readiness check failed; the configured Chrome session is not running.")
+        # The diagnostics endpoint only reports a ChatGPT session after a
+        # ChatGPT tab exists.  A completed music/ElevenLabs stage can quite
+        # legitimately leave a different site as Chrome's sole tab, so do not
+        # misclassify that as a logout before Ordak gets a chance to open the
+        # configured Project URL.  The Ordak worker performs the authoritative
+        # login and project-URL checks immediately after opening that tab.
         return data
 
     @staticmethod
