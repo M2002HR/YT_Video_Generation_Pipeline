@@ -23,6 +23,20 @@ event list is append-only for a run and its aggregate totals are recalculated
 from the events. Future pipeline components must follow the same schema or add
 a documented schema version rather than replacing historical measurements.
 
+`scripts/run_completion_pipeline.py` applies this policy to the post-production
+path. It writes `pipeline/FINALIZATION_RUNTIME_STATE.json` after every stage:
+timeline build, baseline render, baseline QC, audio polish, polished QC and
+Telegram publishing. The default completion path forcibly disables SFX; use
+`--allow-sfx` only for a video explicitly designed with approved SFX events.
+
+```bash
+python scripts/run_completion_pipeline.py videos/<id> --publish
+```
+
+The publish command requires a passing polished QC report and persists a
+deduplicating receipt at `publish/TELEGRAM_PUBLISH_STATE.json`, so reruns never
+silently send the same artifact twice.
+
 ## Human progress notifications
 
 When `YT_PIPELINE_TELEGRAM_NOTIFICATIONS_ENABLED=true`, pipeline execution
