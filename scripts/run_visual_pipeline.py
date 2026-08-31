@@ -29,6 +29,13 @@ from pipeline_notifier import PipelineNotifier, StageTimer, format_duration
 ROOT = Path(__file__).resolve().parents[1]
 PROMPTS = ROOT / "prompts"
 DEFAULT_TOPIC = "Why You Forget Why You Walked Into a Room"
+RECOVERABLE_ORDAK_ERRORS = (
+    "did not open the configured project url",
+    "composer did not become ready",
+    "partially loaded page",
+    "connection refused",
+    "chrome remote debugging is not reachable",
+)
 
 
 def utcnow() -> str:
@@ -106,23 +113,54 @@ class OrdakClient:
             raise RuntimeError("Ordak/Chrome/ChatGPT readiness check failed; run python scripts/check_ordak.py.")
         return data
 
-    def text(self, prompt: str, *, stage: str) -> dict[str, Any]:
-        started = time.perf_counter()
-        response = self.http.post(
-            f"{self.settings.base_url}/api/chatgpt/respond",
-            json={"question": prompt, "mode": "chat", "start_new_chat": True,
-                  "wait_for_completion": True, "wait_timeout_seconds": self.settings.wait_seconds},
+    @staticmethod
+    def _recoverable(error: Exception) -> bool:
+        return any(marker in str(error).lower() for marker in RECOVERABLE_ORDAK_ERRORS)
+
+    def _recover_before_retry(self, *, stage: str, attempt: int, error: Exception) -> None:
+        """Bounded recovery for a browser page that has not settled yet.
+
+        Ordak itself safely refuses to type into a generic ChatGPT chat.  That
+        condition is transient while Chrome restores a project tab, so this
+        parent retry rechecks the complete browser session before submitting a
+        fresh, project-scoped job.  It never retries unknown failures.
+        """
+        delay = min(20.0, 2.0 ** attempt)
+        print(
+            f"ORDAK recoverable error at {stage}; retry {attempt}/4 in {delay:.0f}s: {error}",
+            flush=True,
         )
-        response.raise_for_status()
-        payload = response.json()
-        if payload.get("status") != "completed" or not str(payload.get("answer") or "").strip():
-            raise RuntimeError(f"Ordak text stage {stage} failed: {payload.get('error_message') or payload.get('status')}")
-        payload["_client_timing"] = {
-            "operation": "chatgpt_text_request",
-            "stage": stage,
-            "elapsed_seconds": round(time.perf_counter() - started, 3),
-        }
-        return payload
+        time.sleep(delay)
+        self.readiness()
+
+    def text(self, prompt: str, *, stage: str) -> dict[str, Any]:
+        total_started = time.perf_counter()
+        failures: list[dict[str, Any]] = []
+        for attempt in range(1, 5):
+            try:
+                response = self.http.post(
+                    f"{self.settings.base_url}/api/chatgpt/respond",
+                    json={"question": prompt, "mode": "chat", "start_new_chat": True,
+                          "wait_for_completion": True, "wait_timeout_seconds": self.settings.wait_seconds},
+                )
+                response.raise_for_status()
+                payload = response.json()
+                if payload.get("status") != "completed" or not str(payload.get("answer") or "").strip():
+                    raise RuntimeError(f"Ordak text stage {stage} failed: {payload.get('error_message') or payload.get('status')}")
+                payload["_client_timing"] = {
+                    "operation": "chatgpt_text_request",
+                    "stage": stage,
+                    "elapsed_seconds": round(time.perf_counter() - total_started, 3),
+                    "attempt": attempt,
+                    "recovery_failures": failures,
+                }
+                return payload
+            except (httpx.HTTPError, RuntimeError) as exc:
+                failures.append({"attempt": attempt, "error": str(exc), "at": utcnow()})
+                if attempt == 4 or not self._recoverable(exc):
+                    raise
+                self._recover_before_retry(stage=stage, attempt=attempt, error=exc)
+        raise RuntimeError(f"Ordak text stage {stage} exhausted its recovery attempts.")
 
     def image(self, prompt: str, references: list[Path], *, beat_id: int) -> dict[str, Any]:
         reference_readings: list[dict[str, Any]] = []

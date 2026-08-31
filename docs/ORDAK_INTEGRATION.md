@@ -111,6 +111,15 @@ Important semantic rule for future stabilization:
 - if still incomplete/stuck, resubmit the same idempotent job/exchange
 - cap recoveries and preserve evidence/logs
 
+### Project-tab recovery
+
+For parent-owned text stages, a transient ChatGPT route outside the configured
+project is retried automatically up to four total attempts.  Ordak first waits
+for/reasserts the configured Project URL and refuses to type in a generic chat;
+the parent then performs exponential backoff and a full readiness check before
+resubmitting.  Only explicit browser-route/readiness failures are retried.
+Each retry and its elapsed time is retained in the per-video timing artifact.
+
 ## Setup
 
 From repository root:
