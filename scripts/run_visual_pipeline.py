@@ -102,10 +102,36 @@ class OrdakClient:
     def close(self) -> None:
         self.http.close()
 
+    def _request(self, method: str, url: str, **kwargs: Any) -> httpx.Response:
+        """Keep an in-flight pipeline attached across a brief Ordak API restart.
+
+        Polling an already-created job is idempotent.  A local connection
+        refusal must therefore never discard its job ID or cause the visual
+        pipeline to create duplicate ChatGPT images.
+        """
+        deadline = time.monotonic() + min(90.0, max(30.0, float(self.settings.wait_seconds)))
+        attempt = 0
+        while True:
+            attempt += 1
+            try:
+                response = self.http.request(method, url, **kwargs)
+                if response.status_code not in {502, 503, 504}:
+                    return response
+                error: Exception = RuntimeError(f"Ordak API temporarily returned HTTP {response.status_code}")
+            except httpx.TransportError as exc:
+                error = exc
+            if time.monotonic() >= deadline:
+                raise RuntimeError(
+                    f"Ordak API remained unavailable for {int(min(90.0, max(30.0, float(self.settings.wait_seconds))))}s while {method} {url}: {error}"
+                ) from error
+            delay = min(8.0, 1.0 * (2 ** min(attempt - 1, 3)))
+            print(f"Ordak API transient error; preserving current job and retrying {method} in {delay:.0f}s: {error}", flush=True)
+            time.sleep(delay)
+
     def readiness(self) -> dict[str, Any]:
-        health = self.http.get(f"{self.settings.base_url}/api/health")
+        health = self._request("GET", f"{self.settings.base_url}/api/health")
         health.raise_for_status()
-        diagnostics = self.http.get(f"{self.settings.base_url}/api/diagnostics")
+        diagnostics = self._request("GET", f"{self.settings.base_url}/api/diagnostics")
         diagnostics.raise_for_status()
         data = diagnostics.json()
         if not data.get("chrome_running"):
@@ -120,7 +146,7 @@ class OrdakClient:
 
     @staticmethod
     def _recoverable(error: Exception) -> bool:
-        return any(marker in str(error).lower() for marker in RECOVERABLE_ORDAK_ERRORS)
+        return isinstance(error, httpx.TransportError) or any(marker in str(error).lower() for marker in RECOVERABLE_ORDAK_ERRORS)
 
     def _recover_before_retry(self, *, stage: str, attempt: int, error: Exception) -> None:
         """Bounded recovery for a browser page that has not settled yet.
@@ -143,7 +169,7 @@ class OrdakClient:
         failures: list[dict[str, Any]] = []
         for attempt in range(1, 5):
             try:
-                response = self.http.post(
+                response = self._request("POST",
                     f"{self.settings.base_url}/api/chatgpt/respond",
                     json={"question": prompt, "mode": "chat", "start_new_chat": True,
                           "wait_for_completion": True, "wait_timeout_seconds": self.settings.wait_seconds},
@@ -187,7 +213,7 @@ class OrdakClient:
             "wait_timeout_seconds": str(self.settings.wait_seconds),
         }
         upload_started = time.perf_counter()
-        response = self.http.post(f"{self.settings.base_url}/api/jobs", data=data, files=files)
+        response = self._request("POST", f"{self.settings.base_url}/api/jobs", data=data, files=files)
         response.raise_for_status()
         created = response.json()
         job_id = created["job_id"]
@@ -196,7 +222,7 @@ class OrdakClient:
         poll_count = 0
         while time.monotonic() < deadline:
             poll_count += 1
-            job_response = self.http.get(f"{self.settings.base_url}/api/jobs/{job_id}")
+            job_response = self._request("GET", f"{self.settings.base_url}/api/jobs/{job_id}")
             job_response.raise_for_status()
             job = job_response.json()
             if job.get("status") in {"completed", "failed", "manual_verification_required", "cancelled"}:
@@ -220,7 +246,7 @@ class OrdakClient:
     def download(self, artifact: str, destination: Path) -> dict[str, Any]:
         started = time.perf_counter()
         url = artifact if artifact.startswith("http") else f"{self.settings.base_url}/{artifact.lstrip('/')}"
-        response = self.http.get(url)
+        response = self._request("GET", url)
         response.raise_for_status()
         destination.write_bytes(response.content)
         return {"operation": "artifact_download", "elapsed_seconds": round(time.perf_counter() - started, 3), "bytes": len(response.content)}
