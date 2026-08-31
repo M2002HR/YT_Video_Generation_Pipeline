@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "8da108c55b85f29ddd4789b23c8d279eaead7dbc",
+  "started_at": "66779.566878821",
+  "completed_at": "2026-08-31T21:41:01.015969+00:00",
+  "elapsed_seconds": 4.489,
+  "scope": "videos/009_vikings_history"
+}
