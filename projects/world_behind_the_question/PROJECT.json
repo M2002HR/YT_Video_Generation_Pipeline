@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "project_id": "world_behind_the_question",
+  "display_name": "The World Behind the Question",
+  "description": "General curiosity/explainer channel universe. Every meaningful question leads to a book; every book opens a subject-specific world.",
+  "status": "setup",
+  "home_base": "The Library of Living Questions",
+  "default_visual_preset": "001_library_seeker",
+  "allow_global_visual_preset_fallback": false,
+  "allow_legacy_prompt_fallback": false,
+  "brief_defaults": {
+    "audience": "general curious viewers who enjoy clear, entertaining explanations, stories, mysteries, history, science, culture, philosophy, and human behavior",
+    "constraints": "be accurate; separate established facts from uncertainty; avoid invented statistics, fabricated sources, and unsupported claims"
+  }
+}
