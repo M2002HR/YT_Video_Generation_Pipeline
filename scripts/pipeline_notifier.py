@@ -83,6 +83,10 @@ class PipelineNotifier:
     settings: NotifierSettings = field(default_factory=NotifierSettings.from_environment)
     image_durations: list[float] = field(default_factory=list)
 
+    def restore_image_progress(self, durations: list[float]) -> None:
+        """Hydrate accepted-image progress after a resumable runner restart."""
+        self.image_durations = [max(0.0, float(value)) for value in durations]
+
     def _title(self, title: str) -> str:
         return f"<b>Video {html.escape(self.video_id)} · {html.escape(title)}</b>"
 
@@ -139,10 +143,11 @@ class PipelineNotifier:
 
     def images_complete(self, total: int, elapsed_seconds: float, completed: int | None = None) -> bool:
         count = completed if completed is not None else len(self.image_durations)
-        average = elapsed_seconds / count if count else 0
+        total_elapsed = sum(self.image_durations) or elapsed_seconds
+        average = total_elapsed / count if count else 0
         return self.send(
             "Image generation complete",
-            ["🎉 All planned images accepted", f"📍 Progress: {count}/{total} images", f"⏱ Total: {format_duration(elapsed_seconds)} · Avg/image: {format_duration(average)}"],
+            ["🎉 All planned images accepted", f"📍 Progress: {count}/{total} images", f"⏱ Total: {format_duration(total_elapsed)} · Avg/image: {format_duration(average)}"],
         )
 
     def warning(self, title: str, detail: str) -> bool:

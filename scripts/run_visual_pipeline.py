@@ -273,6 +273,26 @@ class Pipeline:
         self.state = {"version": 4, "topic": self.topic, "preset": self.preset, "duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
         self.save()
 
+    def restore_notifier_image_progress(self) -> None:
+        """Continue Telegram progress counters from durable accepted beats."""
+        durations: dict[int, float] = {}
+        for event in self.state.get("timing_events", []):
+            if event.get("operation") != "beat_image":
+                continue
+            try:
+                durations[int(event["beat_id"])] = float(event.get("elapsed_seconds") or 0)
+            except (KeyError, TypeError, ValueError):
+                continue
+        accepted = []
+        for key, record in sorted(self.state.get("beats", {}).items()):
+            if record.get("status") != "DONE":
+                continue
+            try:
+                accepted.append(durations.get(int(key), 0.0))
+            except ValueError:
+                continue
+        self.notifier.restore_image_progress(accepted)
+
     def write_once(self, relative: str, content: str) -> Path:
         target = self.project / relative
         if self.force or not target.exists():
@@ -346,6 +366,7 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
         try:
             self.client.readiness()
             self.load_or_init()
+            self.restore_notifier_image_progress()
             brief = self.brief().read_text(encoding="utf-8")
             script_draft = self._stage_text("script_draft", replace_tokens(load_template("01_script_writer.md"), VIDEO_BRIEF=brief), "SCRIPT_DRAFT.md", self.validate_script)
             script = self._stage_text("retention_edit", replace_tokens(load_template("02_retention_editor.md"), VIDEO_BRIEF=brief, CURRENT_SCRIPT=script_draft), "SCRIPT_FINAL.md", self.validate_script)
