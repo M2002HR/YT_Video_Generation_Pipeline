@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from pipeline_notifier import PipelineNotifier
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -19,7 +21,7 @@ def stamp() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, retries: int = 0) -> None:
+def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, retries: int = 0, notifier: PipelineNotifier | None = None) -> None:
     """Run a resumable stage with bounded retries and durable attempt records."""
     for attempt in range(1, retries + 2):
         started = time.perf_counter()
@@ -37,6 +39,8 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
             if attempt > retries:
                 state["status"] = "FAILED"
                 path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+                if notifier is not None:
+                    notifier.failure(stage.replace("_", " ").title(), time.perf_counter() - started, f"Stage failed after {attempt} attempt(s).")
                 raise
             delay = min(60, 5 * (2 ** (attempt - 1)))
             event["next_retry_delay_seconds"] = delay
@@ -47,14 +51,18 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
         event.update({"status": "DONE", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3)})
         state["events"].append(event)
         path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+        if notifier is not None:
+            notifier.stage_complete(stage.replace("_", " ").title(), float(event["elapsed_seconds"]))
         return
 
 
-def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path) -> None:
+def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path, *, notifier: PipelineNotifier | None = None) -> None:
     """Record an already validated artifact so a full run can resume offline."""
     event = {"stage": stage, "status": "REUSED", "artifact": str(artifact.relative_to(ROOT)), "ended_at": stamp(), "elapsed_seconds": 0.0}
     state["events"].append(event)
     path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    if notifier is not None:
+        notifier.stage_complete(stage.replace("_", " ").title(), 0.0, artifact=str(artifact.relative_to(ROOT)))
 
 
 def ensure_audio_mix_profile(project: Path) -> Path:
@@ -129,33 +137,36 @@ def main() -> None:
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state: dict[str, Any] = {"schema_version": 1, "topic": args.topic, "video_id": args.video_id, "duration_seconds": args.duration_seconds, "started_at": stamp(), "status": "RUNNING", "events": []}
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    notifier = PipelineNotifier(args.video_id, args.topic)
+    notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target duration: {args.duration_seconds:g}s"])
     py = sys.executable
     # Visual generation persists each accepted prompt/image, so rerunning the
     # stage is safe and resumes at the first incomplete beat after a transient
     # browser/UI failure.
     visual_report = project / "visual_pipeline" / "VISUAL_QC_REPORT.json"
     if visual_report.is_file():
-        reuse("visuals", visual_report, state, state_path)
+        reuse("visuals", visual_report, state, state_path, notifier=notifier)
     else:
-        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3)
-    run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path)
+        run("visuals", [py, "scripts/run_visual_pipeline.py", "--topic", args.topic, "--video-id", args.video_id, "--preset", args.preset, "--duration-seconds", str(args.duration_seconds)], state, state_path, retries=3, notifier=notifier)
+    run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path, notifier=notifier)
     timing_file = project / "timing" / "BEAT_TIMINGS.json"
     if timing_file.is_file():
-        reuse("timing", timing_file, state, state_path)
+        reuse("timing", timing_file, state, state_path, notifier=notifier)
     else:
-        run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path)
+        run("timing", [py, "scripts/align_beats.py", str(project), "--backend", "local"], state, state_path, notifier=notifier)
     music_file = next((path for path in (project / "assets" / "music").glob("*") if path.is_file() and path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"}), None)
     if music_file is not None:
-        reuse("music", music_file, state, state_path)
+        reuse("music", music_file, state, state_path, notifier=notifier)
     else:
-        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path)
+        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, notifier=notifier)
     mix_profile = ensure_audio_mix_profile(project)
-    reuse("audio_mix_profile", mix_profile, state, state_path)
+    reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project)
-    reuse("render_profile", render_profile, state, state_path)
-    run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path)
+    reuse("render_profile", render_profile, state, state_path, notifier=notifier)
+    run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path, notifier=notifier)
     state.update({"status": "DONE", "completed_at": stamp(), "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3)})
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    notifier.send("Full pipeline complete", ["🏁 All requested stages passed", f"⏱ Total: {state['total_elapsed_seconds']:.1f}s"])
     print("FULL VIDEO PIPELINE: PASS")
 
 
