@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -51,7 +52,17 @@ class Handler(BaseHTTPRequestHandler):
     def page(self, message: str = "") -> str:
         jobs = []
         for path in sorted(self.jobs_dir.glob("*.json"), reverse=True)[:12]:
-            try: jobs.append(json.loads(path.read_text(encoding="utf-8")))
+            try:
+                job = json.loads(path.read_text(encoding="utf-8"))
+                if job.get("status") == "RUNNING" and isinstance(job.get("pid"), int):
+                    try:
+                        os.kill(job["pid"], 0)
+                    except ProcessLookupError:
+                        log = self.jobs_dir / f"{job.get('job_id')}.log"
+                        text = log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
+                        job["status"] = "DONE" if "FULL VIDEO PIPELINE: PASS" in text else "FAILED"
+                        job["completed_at"] = utcnow(); write_json(path, job)
+                jobs.append(job)
             except Exception: continue
         rows = "".join(f"<tr><td>{html.escape(str(j.get('video_id','')))}</td><td>{html.escape(str(j.get('topic','')))}</td><td>{html.escape(str(j.get('status','QUEUED')))}</td><td><a href='/logs/{html.escape(str(j.get('job_id','')))}'>log</a></td></tr>" for j in jobs) or "<tr><td colspan='4'>No launches yet.</td></tr>"
         return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline</title>
@@ -88,7 +99,7 @@ class Handler(BaseHTTPRequestHandler):
             duration = float(values["duration_seconds"][0]); voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             provider = values["music_provider"][0]
-            if not topic or not re.fullmatch(r"[0-9A-Za-z_-]+", video_id) or not 15 <= duration <= 300 or not voice or provider not in {"mixkit", "pixabay"} or not all(0 <= value <= 1.2 for value in (speed, stability, similarity, style)):
+            if not topic or not re.fullmatch(r"[0-9A-Za-z_-]+", video_id) or not 15 <= duration <= 300 or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
