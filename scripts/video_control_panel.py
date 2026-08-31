@@ -17,6 +17,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs
 
+from content_projects import DEFAULT_CONTENT_PROJECT, list_content_projects
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PRESET = "001_cinematic_storybook_green_hoodie"
@@ -97,11 +98,12 @@ class Handler(BaseHTTPRequestHandler):
                         job["completed_at"] = utcnow(); write_json(path, job)
                 jobs.append(job)
             except Exception: continue
-        rows = "".join(f"<tr><td>{html.escape(str(j.get('video_id','')))}</td><td>{html.escape(str(j.get('topic','')))}</td><td>{html.escape(str(j.get('status','QUEUED')))}</td><td><a href='/logs/{html.escape(str(j.get('job_id','')))}'>log</a></td></tr>" for j in jobs) or "<tr><td colspan='4'>No launches yet.</td></tr>"
+        rows = "".join(f"<tr><td>{html.escape(str(j.get('video_id','')))}</td><td>{html.escape(str(j.get('content_project', DEFAULT_CONTENT_PROJECT)))}</td><td>{html.escape(str(j.get('topic','')))}</td><td>{html.escape(str(j.get('status','QUEUED')))}</td><td><a href='/logs/{html.escape(str(j.get('job_id','')))}'>log</a></td></tr>" for j in jobs) or "<tr><td colspan='5'>No launches yet.</td></tr>"
+        project_options = "".join(f"<option value='{html.escape(p.project_id)}'{' selected' if p.project_id == DEFAULT_CONTENT_PROJECT else ''}>{html.escape(p.display_name)}</option>" for p in list_content_projects())
         return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline</title>
 <style>body{{font:16px system-ui;max-width:850px;margin:32px auto;background:#10131a;color:#e8edf4}}input,select{{width:100%;padding:8px;margin:4px 0 14px;box-sizing:border-box}}button{{padding:10px 18px;background:#58c;color:#fff;border:0;border-radius:5px}}table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;border-bottom:1px solid #344;text-align:left}}.msg{{color:#8f8}}</style>
 <h1>Video Pipeline Launch</h1><p class=msg>{html.escape(message)}</p>
-<form method=post action=/launch><label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
+<form method=post action=/launch><label>Content project<select name=content_project>{project_options}</select></label>\n<label>Topic<input name=topic required maxlength=220 placeholder="Why you forget why you entered a room"></label>
 <label>Minimum duration (seconds)<input name=min_duration_seconds type=number min=15 max=300 value=60 required></label>
 <label>Maximum duration (seconds)<input name=max_duration_seconds type=number min=15 max=300 value=90 required></label>
 <label>Frame format<select name=aspect_ratio><option value="16:9">16:9 — YouTube landscape</option><option value="9:16">9:16 — Shorts / Reels vertical</option></select></label>
@@ -113,7 +115,7 @@ class Handler(BaseHTTPRequestHandler):
 <label>Style / exaggeration<input name=style type=number min=0 max=1 step=.01 value=.10 required></label>
 <label>Music provider<select name=music_provider><option value=mixkit>Mixkit</option><option value=pixabay>Pixabay</option></select></label>
 <button type=submit>Launch full pipeline</button></form>
-<h2>Recent runs</h2><table><tr><th>ID</th><th>Topic</th><th>Status</th><th>Live log</th></tr>{rows}</table>"""
+<h2>Recent runs</h2><table><tr><th>ID</th><th>Project</th><th>Topic</th><th>Status</th><th>Live log</th></tr>{rows}</table>"""
 
     def do_GET(self) -> None:
         if self.path == "/": self.send_html(HTTPStatus.OK, self.page()); return
@@ -129,11 +131,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
         length = int(self.headers.get("Content-Length", "0")); values = parse_qs(self.rfile.read(length).decode("utf-8"))
         try:
-            topic = values["topic"][0].strip(); video_id = next_video_id()
-            duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0]); aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
+            topic = values["topic"][0].strip(); video_id = next_video_id()\n            content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()\n            available_projects = {project.project_id for project in list_content_projects()}\n            duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0]); aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             provider = values["music_provider"][0]
-            if not topic or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
+            if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} or not voice or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
@@ -146,13 +147,13 @@ class Handler(BaseHTTPRequestHandler):
             video_id = next_video_id()
             project = ROOT / "videos" / f"{video_id}_{slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
-            job_id = str(uuid.uuid4()); record = {"schema_version": 3, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
+            job_id = str(uuid.uuid4()); record = {"schema_version": 4, "content_project": content_project, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
             # The panel's live-log page is a monitoring surface.  Run Python
             # unbuffered so each stage is observable immediately instead of
             # appearing only when the complete pipeline exits.
-            command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--topic", topic, "--video-id", video_id, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", aspect_ratio, "--voice-profile", str(profile), "--music-provider", provider]
+            command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--content-project", content_project, "--topic", topic, "--video-id", video_id, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", aspect_ratio, "--voice-profile", str(profile), "--music-provider", provider]
             process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
             record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
         self.send_html(HTTPStatus.ACCEPTED, self.page(f"Launched {video_id}; live log is available in the table."))

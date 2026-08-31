@@ -24,10 +24,10 @@ from dotenv import load_dotenv
 from PIL import Image
 
 from pipeline_notifier import PipelineNotifier, StageTimer, format_duration
+from content_projects import DEFAULT_CONTENT_PROJECT, ContentProject, load_content_project, resolve_pipeline_prompt, resolve_visual_preset
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROMPTS = ROOT / "prompts"
 DEFAULT_TOPIC = "Why You Forget Why You Walked Into a Room"
 RECOVERABLE_ORDAK_ERRORS = (
     "did not open the configured project url",
@@ -55,8 +55,8 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def load_template(name: str) -> str:
-    return (PROMPTS / name).read_text(encoding="utf-8")
+def load_template(name: str, content_project: ContentProject) -> str:
+    return resolve_pipeline_prompt(content_project, name).read_text(encoding="utf-8")
 
 
 def replace_tokens(template: str, **values: str) -> str:
@@ -253,8 +253,8 @@ class OrdakClient:
 
 
 class Pipeline:
-    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, client: OrdakClient, force: bool) -> None:
-        self.root, self.topic, self.video_id, self.preset, self.duration_min_seconds, self.duration_max_seconds, self.aspect_ratio, self.client, self.force = root, topic, video_id, preset, duration_min_seconds, duration_max_seconds, aspect_ratio, client, force
+    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool) -> None:
+        self.root, self.topic, self.video_id, self.preset, self.duration_min_seconds, self.duration_max_seconds, self.aspect_ratio, self.content_project, self.client, self.force = root, topic, video_id, preset, duration_min_seconds, duration_max_seconds, aspect_ratio, content_project, client, force
         self.project = root / "videos" / f"{video_id}_{slugify(topic)}"
         self.state_dir = self.project / "visual_pipeline"
         self.state_path = self.state_dir / "RUNTIME_STATE.json"
@@ -294,10 +294,11 @@ class Pipeline:
             state_min = float(self.state.get("duration_min_seconds", self.state.get("duration_seconds", 60)))
             state_max = float(self.state.get("duration_max_seconds", self.state.get("duration_seconds", 60)))
             state_ratio = self.state.get("aspect_ratio", "16:9")
-            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or state_min != self.duration_min_seconds or state_max != self.duration_max_seconds or state_ratio != self.aspect_ratio:
-                raise RuntimeError("Existing project state has different topic, preset, duration, or frame format; choose another video ID.")
+            state_content_project = self.state.get("content_project", DEFAULT_CONTENT_PROJECT)
+            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or state_content_project != self.content_project.project_id or state_min != self.duration_min_seconds or state_max != self.duration_max_seconds or state_ratio != self.aspect_ratio:
+                raise RuntimeError("Existing video state has different content project, topic, preset, duration, or frame format; choose another video ID.")
             return
-        self.state = {"version": 5, "topic": self.topic, "preset": self.preset, "duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "aspect_ratio": self.aspect_ratio, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
+        self.state = {"version": 6, "content_project": self.content_project.project_id, "topic": self.topic, "preset": self.preset, "duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "aspect_ratio": self.aspect_ratio, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
         self.save()
 
     def restore_notifier_image_progress(self) -> None:
@@ -331,14 +332,18 @@ class Pipeline:
         target_words = round(((self.duration_min_seconds + self.duration_max_seconds) / 2) * 2.3)
         minimum_words = round(self.duration_min_seconds * 2.05)
         maximum_words = round(self.duration_max_seconds * 2.5)
+        brief_defaults = self.content_project.config.get("brief_defaults", {})
+        audience = str(brief_defaults.get("audience") or "general curious viewers")
+        constraints = str(brief_defaults.get("constraints") or "be accurate; avoid invented statistics and unsupported factual claims")
         return self.write_once("BRIEF.md", f"""# Video Brief
 
 Topic: {self.topic}
 Language: English
 Target range: {self.duration_min_seconds:g}–{self.duration_max_seconds:g} seconds; roughly {minimum_words}–{maximum_words} spoken words (aim near {target_words}). Choose the most natural duration within this range; do not pad merely to reach the maximum.
 Frame format: {self.aspect_ratio}. Compose visual ideas for {'a vertical mobile frame with a clear central subject and generous top/bottom safe space' if self.aspect_ratio == '9:16' else 'a horizontal widescreen frame with balanced left/right composition'}.
-Audience: general viewers interested in an engaging psychology/neuroscience short.
-Constraints: no medical diagnosis or medical advice; avoid unsupported claims and invented statistics.
+Content project: {self.content_project.display_name} (`{self.content_project.project_id}`)
+Audience: {audience}
+Constraints: {constraints}
 """)
 
     def _stage_text(self, name: str, prompt: str, output: str, validator) -> str:
@@ -396,12 +401,13 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
             self.load_or_init()
             self.restore_notifier_image_progress()
             brief = self.brief().read_text(encoding="utf-8")
-            script_draft = self._stage_text("script_draft", replace_tokens(load_template("01_script_writer.md"), VIDEO_BRIEF=brief), "SCRIPT_DRAFT.md", self.validate_script)
-            script = self._stage_text("retention_edit", replace_tokens(load_template("02_retention_editor.md"), VIDEO_BRIEF=brief, CURRENT_SCRIPT=script_draft), "SCRIPT_FINAL.md", self.validate_script)
-            beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md"), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "VISUAL_BEATS.md", self.parse_beats)
+            self.write_once("PROJECT.md", f"# Content Project\n\nProject: `{self.content_project.project_id}`\n\nDisplay name: {self.content_project.display_name}\n")
+            script_draft = self._stage_text("script_draft", replace_tokens(load_template("01_script_writer.md", self.content_project), VIDEO_BRIEF=brief), "SCRIPT_DRAFT.md", self.validate_script)
+            script = self._stage_text("retention_edit", replace_tokens(load_template("02_retention_editor.md", self.content_project), VIDEO_BRIEF=brief, CURRENT_SCRIPT=script_draft), "SCRIPT_FINAL.md", self.validate_script)
+            beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md", self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "VISUAL_BEATS.md", self.parse_beats)
             beats = self.parse_beats(beats_text)
-            self.write_once("VISUAL_PRESET.md", f"# Visual Preset\n\nSelected preset: `{self.preset}`\n")
-            preset_root = self.root / "visual_presets" / self.preset
+            self.write_once("VISUAL_PRESET.md", f"# Visual Preset\n\nContent project: `{self.content_project.project_id}`\n\nSelected preset: `{self.preset}`\n")
+            preset_root = resolve_visual_preset(self.content_project, self.preset)
             style, character = preset_root / "style_anchor.png", preset_root / "character_anchor.png"
             if not style.is_file() or not character.is_file():
                 raise RuntimeError("Selected visual preset is missing canonical style or character anchors.")
@@ -411,7 +417,7 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
                 prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
                 if not prompt_path.exists() or self.force:
                     started_at, started = utcnow(), time.perf_counter()
-                    prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md"), STYLE_RULES=style_rules, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.", ASPECT_RATIO=self.aspect_ratio, FRAME_GUIDANCE="Use a tall mobile-first composition: keep the protagonist and key action in the center column, preserve comfortable headroom and lower-screen safe space, and use vertical depth rather than wide lateral detail." if self.aspect_ratio == "9:16" else "Use a cinematic widescreen composition: use left/right depth and balanced horizontal staging while keeping the main action readable.")
+                    prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md", self.content_project), STYLE_RULES=style_rules, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.", ASPECT_RATIO=self.aspect_ratio, FRAME_GUIDANCE="Use a tall mobile-first composition: keep the protagonist and key action in the center column, preserve comfortable headroom and lower-screen safe space, and use vertical depth rather than wide lateral detail." if self.aspect_ratio == "9:16" else "Use a cinematic widescreen composition: use left/right depth and balanced horizontal staging while keeping the main action readable.")
                     prompt_result = self.client.text(prompt_request, stage=f"beat_{beat_id:03d}_prompt")
                     prompt = str(prompt_result["answer"]).strip()
                     if "exactly one" not in prompt.lower() or self.aspect_ratio not in prompt:
@@ -514,7 +520,7 @@ Constraints: no medical diagnosis or medical advice; avoid unsupported claims an
     def write_report(self, beats: list[dict[str, str]]) -> Path:
         results = [self.state["beats"].get(f"{int(beat['id']):03d}", {}) for beat in beats]
         valid = [result for result in results if result.get("status") == "DONE"]
-        payload = {"passed": len(valid) == len(beats), "topic": self.topic, "aspect_ratio": self.aspect_ratio, "total_planned_beats": len(beats), "total_valid_images": len(valid), "missing_beats": [index + 1 for index, result in enumerate(results) if result.get("status") != "DONE"], "invalid_beats": [index + 1 for index, result in enumerate(results) if result.get("status") == "INVALID"], "images": [{"beat_id": index + 1, "attempts": result.get("attempts", 0), "previous_beat_reference_required": index > 0, "previous_beat_reference_present": len(result.get("references", [])) >= 3 if index > 0 else False, **(result.get("output") or {})} for index, result in enumerate(results)], "completed_at": utcnow()}
+        payload = {"passed": len(valid) == len(beats), "content_project": self.content_project.project_id, "topic": self.topic, "aspect_ratio": self.aspect_ratio, "total_planned_beats": len(beats), "total_valid_images": len(valid), "missing_beats": [index + 1 for index, result in enumerate(results) if result.get("status") != "DONE"], "invalid_beats": [index + 1 for index, result in enumerate(results) if result.get("status") == "INVALID"], "images": [{"beat_id": index + 1, "attempts": result.get("attempts", 0), "previous_beat_reference_required": index > 0, "previous_beat_reference_present": len(result.get("references", [])) >= 3 if index > 0 else False, **(result.get("output") or {})} for index, result in enumerate(results)], "completed_at": utcnow()}
         target = self.state_dir / "VISUAL_QC_REPORT.json"
         target.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         (self.state_dir / "RUN_SUMMARY.md").write_text(f"# Visual pipeline run\n\nPassed: `{payload['passed']}`\n\nFrame format: `{self.aspect_ratio}`\n\nPlanned beats: {len(beats)}\n\nValid images: {len(valid)}\n", encoding="utf-8")
@@ -525,13 +531,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--topic", required=True)
     parser.add_argument("--video-id", required=True)
-    parser.add_argument("--preset", required=True)
+    parser.add_argument("--content-project", default=DEFAULT_CONTENT_PROJECT)
+    parser.add_argument("--preset", default=None)
     parser.add_argument("--duration-seconds", type=float, default=None, help="Legacy fixed-duration shorthand.")
     parser.add_argument("--min-duration-seconds", type=float, default=None)
     parser.add_argument("--max-duration-seconds", type=float, default=None)
     parser.add_argument("--aspect-ratio", choices=("16:9", "9:16"), default="16:9")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
+    content_project = load_content_project(args.content_project)
+    preset = args.preset or content_project.default_visual_preset
     if args.duration_seconds is not None and (args.min_duration_seconds is not None or args.max_duration_seconds is not None):
         raise RuntimeError("Use either --duration-seconds or a min/max duration range, not both.")
     duration_min = args.min_duration_seconds if args.min_duration_seconds is not None else args.duration_seconds
@@ -542,7 +551,7 @@ def main() -> None:
     load_dotenv(env_file, override=False)
     client = OrdakClient(Settings(os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/"), int(os.getenv("YT_ORDAK_JOB_WAIT_TIMEOUT_SECONDS", "900")), float(os.getenv("YT_ORDAK_JOB_POLL_INTERVAL_SECONDS", "2"))))
     try:
-        report = Pipeline(ROOT, args.topic, args.video_id, args.preset, duration_min, duration_max, args.aspect_ratio, client, args.force).run()
+        report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force).run()
     finally:
         client.close()
     print(f"VISUAL PIPELINE: PASS\nReport: {report}")
