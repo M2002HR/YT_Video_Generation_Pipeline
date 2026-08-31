@@ -147,7 +147,10 @@ class Handler(BaseHTTPRequestHandler):
             job_id = str(uuid.uuid4()); record = {"schema_version": 1, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(), "topic": topic, "video_id": video_id, "duration_seconds": duration, "project": str(project.relative_to(ROOT)), "voice_profile": str(profile.relative_to(ROOT))}
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
-            command = [sys.executable, "scripts/run_full_video_pipeline.py", "--topic", topic, "--video-id", video_id, "--duration-seconds", str(duration), "--voice-profile", str(profile), "--music-provider", provider]
+            # The panel's live-log page is a monitoring surface.  Run Python
+            # unbuffered so each stage is observable immediately instead of
+            # appearing only when the complete pipeline exits.
+            command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--topic", topic, "--video-id", video_id, "--duration-seconds", str(duration), "--voice-profile", str(profile), "--music-provider", provider]
             process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
             record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
         self.send_html(HTTPStatus.ACCEPTED, self.page(f"Launched {video_id}; live log is available in the table."))
