@@ -214,18 +214,22 @@ class ElevenLabsUI:
 
     def snapshot(self) -> dict[str, Any]:
         return self._json("""(() => {
-          const visible = e => !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length);
+          const visible = e => { const r=e.getBoundingClientRect(); return !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length) && r.bottom>0 && r.right>0 && r.top<innerHeight && r.left<innerWidth; };
           const text = document.body?.innerText || '';
-          const controls = [...document.querySelectorAll('button,a,[role=button]')]
-            .filter(visible).map(e => ({text:(e.innerText||'').trim(), aria:e.getAttribute('aria-label')||'', title:e.getAttribute('title')||''}));
+          const controls = [...document.querySelectorAll('button,a,[role=button]')].filter(visible);
+          const describe = e => ({text:(e.innerText||'').trim(), aria:e.getAttribute('aria-label')||'', title:e.getAttribute('title')||'', disabled:!!e.disabled, ariaDisabled:e.getAttribute('aria-disabled')==='true'});
           const input = [...document.querySelectorAll('textarea')].find(e => visible(e) && (/main textarea/i.test(e.getAttribute('aria-label')||'') || /start typing|paste text/i.test(e.placeholder||'')));
-          const generate = controls.find(c => /^generate$/i.test(c.text) || /^generate$/i.test(c.aria));
-          const download = controls.filter(c => /download|export/i.test(`${c.text} ${c.aria} ${c.title}`));
+          const generateElement = controls.find(e => e.getAttribute('data-testid')==='tts-generate' || /^generate(?: speech)?$/i.test((e.innerText||'').trim()) || /^generate(?: speech)?$/i.test((e.getAttribute('aria-label')||'').trim()));
+          const generate = generateElement ? describe(generateElement) : null;
+          const download = controls.map(describe).filter(c => /download|export/i.test(`${c.text} ${c.aria} ${c.title}`));
+          const generationText = `${generate?.text||''} ${generate?.aria||''}`;
+          const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
+          const captcha = [...document.querySelectorAll('iframe')].some(e => visible(e) && /hcaptcha|recaptcha|turnstile/i.test(`${e.src||''} ${e.title||''} ${e.name||''}`));
           return {
             url: location.href, title: document.title, ready: !!input && /\/app\/speech-synthesis\/text-to-speech/.test(location.pathname),
             login_required: /sign in|log in|create an account/i.test(text) && !input,
-            busy: /generating|queued|creating audio|please wait|processing/i.test(text) || !!document.querySelector('[aria-busy=true],[role=progressbar]'),
-            downloads: download, summary: text.slice(0, 1600), generate
+            busy: loading || !!generate?.disabled || !!generate?.ariaDisabled || !!document.querySelector('[aria-busy=true],[role=progressbar]'),
+            loading, captcha, downloads: download, summary: text.slice(0, 1600), generate
           };
         })()""")
 
@@ -389,8 +393,54 @@ class ElevenLabsUI:
                 raise RuntimeError("ElevenLabs did not retain the requested output format.")
         return applied
 
-    def submit(self) -> None:
-        self._trusted_click("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='tts-generate'||/generate( speech)?/i.test(`${x.innerText||''} ${x.getAttribute('aria-label')||''}`)); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+    def effective_settings(self) -> dict[str, Any]:
+        """Read back the visible composer controls for the persistent record."""
+        return self._json("""(() => {
+          const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth};
+          const buttonText=selector=>{const e=[...document.querySelectorAll(selector)].find(visible);return (e?.innerText||e?.getAttribute('aria-label')||'').trim()||null};
+          const slider=label=>{const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')===label);return e?Number(e.getAttribute('aria-valuenow')):null};
+          return {voice:buttonText('button[data-testid=tts-voice-selector]'),model:buttonText('button[data-testid=tts-model-selector]'),speed:slider('Speed'),stability:slider('Stability'),similarity:slider('Similarity'),style:slider('Style Exaggeration'),output_format:buttonText('button[aria-label="Output format"]')};
+        })()""")
+
+    def verify_settings(self, settings: VoiceSettings) -> dict[str, Any]:
+        effective = self.effective_settings()
+        for field, requested in (("voice", settings.voice), ("model", settings.model), ("output_format", settings.output_format)):
+            observed = effective.get(field)
+            if requested is not None and requested.casefold() not in str(observed or "").casefold():
+                raise RuntimeError(f"ElevenLabs did not retain requested {field} '{requested}'; observed '{observed}'.")
+        for field, requested in (("speed", settings.speed), ("stability", settings.stability), ("similarity", settings.similarity), ("style", settings.style)):
+            observed = effective.get(field)
+            if requested is not None and (observed is None or abs(float(observed) - requested) > 0.011):
+                raise RuntimeError(f"ElevenLabs did not retain requested {field} {requested}; observed {observed}.")
+        return effective
+
+    def submit(self, *, acknowledgement_seconds: float = 12) -> dict[str, Any]:
+        """Submit once and require visible UI acknowledgement before proceeding.
+
+        A successful CDP input event alone is not proof that the React action
+        was accepted.  ElevenLabs currently changes this button to
+        ``Loading...``; other supported acknowledgement signals are a disabled
+        generate control, a progress indicator, or an immediately available
+        download.  This makes recovery safe: we never label a request submitted
+        until the page confirms it.
+        """
+        before = self.snapshot()
+        if before.get("captcha"):
+            raise RuntimeError("ElevenLabs requires an on-screen human verification in Chrome; complete it in VNC, then resume.")
+        if before.get("busy") or before.get("downloads"):
+            return {"acknowledged": True, "method": "existing_ui_state", "delay_seconds": 0.0}
+        click = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='tts-generate'||/^generate(?: speech)?$/i.test((x.innerText||'').trim())||/^generate(?: speech)?$/i.test((x.getAttribute('aria-label')||'').trim())); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()"""
+        started = time.monotonic()
+        self._trusted_click(click)
+        deadline = started + acknowledgement_seconds
+        while time.monotonic() < deadline:
+            current = self.snapshot()
+            if current.get("captcha"):
+                raise RuntimeError("ElevenLabs requires an on-screen human verification in Chrome; complete it in VNC, then resume.")
+            if current.get("busy") or current.get("downloads"):
+                return {"acknowledged": True, "method": "trusted_click", "delay_seconds": round(time.monotonic() - started, 3), "generate": current.get("generate")}
+            time.sleep(min(0.5, self.poll_seconds))
+        raise RuntimeError("ElevenLabs did not acknowledge Generate speech after a real browser click; no request was recorded as submitted.")
 
     def refresh(self) -> None:
         self._json("""(() => { location.reload(); return {ok:true}; })()""")
@@ -509,14 +559,15 @@ def main() -> None:
             return
         configured_at = time.perf_counter()
         applied_settings = ui.apply_settings(settings)
-        state.event("elevenlabs_settings_applied", configured_at, settings=settings.supplied(), ui_capabilities=applied_settings)
+        effective_settings = ui.verify_settings(settings)
+        state.event("elevenlabs_settings_applied", configured_at, settings=settings.supplied(), effective_settings=effective_settings, ui_capabilities=applied_settings)
         ui.set_text(text)
         state.data["status"] = "TEXT_ENTERED"; state.save()
         state.event("elevenlabs_text_entered", configured_at, characters=len(text))
         submit_at = time.perf_counter()
-        ui.submit()
+        acknowledgement = ui.submit()
         state.data.update({"status": "SUBMITTED", "submitted_at": utcnow()}); state.save()
-        state.event("elevenlabs_submit", submit_at)
+        state.event("elevenlabs_submit", submit_at, acknowledgement=acknowledgement)
         notifier.send("ElevenLabs generation submitted", ["🎙️ Full narration requested", f"📝 Characters: {len(text)}", "👀 Waiting for the web UI result"])
         download_dir = Path(os.getenv("YT_ELEVENLABS_DOWNLOAD_DIR", str(Path.home() / "Downloads"))).expanduser()
         download_dir.mkdir(parents=True, exist_ok=True)
@@ -525,7 +576,7 @@ def main() -> None:
         deadline = time.monotonic() + float(os.getenv("YT_ELEVENLABS_GENERATION_TIMEOUT_SECONDS", "900"))
         while time.monotonic() < deadline:
             snapshot = ui.snapshot()
-            signature = json.dumps({"busy": snapshot.get("busy"), "downloads": snapshot.get("downloads"), "summary": snapshot.get("summary", "")[:500]}, sort_keys=True)
+            signature = json.dumps({"busy": snapshot.get("busy"), "loading": snapshot.get("loading"), "generate": snapshot.get("generate"), "downloads": snapshot.get("downloads"), "summary": snapshot.get("summary", "")[:500]}, sort_keys=True)
             if signature != prior_signature:
                 prior_signature, last_change = signature, time.monotonic()
             downloaded = find_download(download_dir, download_started)
@@ -552,7 +603,16 @@ def main() -> None:
                     raise RuntimeError("ElevenLabs UI made no progress and did not expose a downloadable result after all recovery refreshes.")
                 refreshes += 1
                 ui.refresh()
-                state.event("elevenlabs_stall_refresh", started, refresh_number=refreshes)
+                # A refresh can restore the text field but cancel the browser
+                # action.  Re-open, re-apply every requested control, and only
+                # then resubmit after the page has visibly acknowledged it.
+                ui.open_and_verify()
+                recovered_settings = ui.apply_settings(settings)
+                recovered_effective = ui.verify_settings(settings)
+                ui.set_text(text)
+                acknowledgement = ui.submit()
+                state.data.update({"status": "SUBMITTED", "submitted_at": utcnow()}); state.save()
+                state.event("elevenlabs_stall_refresh", started, refresh_number=refreshes, recovery_settings=recovered_settings, effective_settings=recovered_effective, acknowledgement=acknowledgement)
                 notifier.warning("ElevenLabs recovery refresh", f"No UI progress for {format_duration(ui.stall_seconds)}; refresh {refreshes}/{ui.max_refreshes} completed.")
                 last_change = time.monotonic()
             time.sleep(ui.poll_seconds)

@@ -39,13 +39,24 @@ for the selected model, an explicit `false` is recorded as unavailable/effective
 off and generation continues. An explicit `true` still fails safely, because it
 cannot be honestly applied without a visible control.
 
+Before recording a submission, the runner reads the selected voice/model,
+numeric controls and output format back from the visible UI and compares them
+with the requested profile/CLI values. It also requires the Generate Speech
+action to produce a visible acknowledgement (for example `Loading...`, a
+disabled generate button, progress, or a visible download); a successfully
+sent mouse event by itself is never treated as a generation request. An
+on-screen human-verification challenge is reported safely for VNC completion
+and is never automated.
+
 While generation is active, the runner polls the actual page every configured
-few seconds. It treats visible generation activity as progress, refreshes only
-after a genuine no-progress stall, caps recovery refreshes, resumes from the
-persisted state, triggers the strongest visible web-UI download option, then
-waits for the browser download before moving the audio into the video project.
-English Telegram progress, timing and failure notifications use the existing
-pipeline notifier when enabled.
+few seconds. It treats `Loading...` and other visible generation activity as
+progress, refreshes only after a genuine no-progress stall, caps recovery
+refreshes, and after each recovery refresh re-applies and verifies all requested
+settings, restores the canonical narration text, and obtains a fresh visible
+submission acknowledgement. It then triggers the strongest visible web-UI
+download option and waits for the browser download before moving the audio into
+the video project. English Telegram progress, timing and failure notifications
+use the existing pipeline notifier when enabled.
 
 ## Navigation advisor
 
