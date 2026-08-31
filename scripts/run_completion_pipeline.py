@@ -64,7 +64,8 @@ def main() -> None:
     state_path = video / "pipeline" / "FINALIZATION_RUNTIME_STATE.json"
     state: dict[str, Any] = {"schema_version": 1, "video": video.name, "started_at": now(), "status": "RUNNING", "events": []}
     save(state_path, state)
-    py = sys.executable
+    managed_python = ROOT / ".venv" / "bin" / "python"
+    py = str(managed_python) if managed_python.is_file() else sys.executable
     execute("build_timeline", [py, "scripts/build_timeline.py", str(video)], state, state_path)
     baseline = video / "assets" / "renders" / "final.mp4"
     if args.skip_render:

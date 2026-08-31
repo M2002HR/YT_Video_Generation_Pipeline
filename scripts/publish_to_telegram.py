@@ -44,7 +44,7 @@ def write_json(path: Path, value: dict[str, Any]) -> None:
     temp.replace(path)
 
 
-async def send_video(settings: NotifierSettings, video: Path, caption: str) -> int:
+async def send_video(settings: NotifierSettings, video: Path, caption: str, artifact_marker: str) -> int:
     from telethon import TelegramClient
     from telethon.sessions import StringSession
 
@@ -53,13 +53,23 @@ async def send_video(settings: NotifierSettings, video: Path, caption: str) -> i
     try:
         if not await client.is_user_authorized():
             raise RuntimeError("Configured Telegram user session is not authorized.")
-        message = await client.send_file(
-            settings.recipient,
-            file=str(video),
-            caption=caption,
-            supports_streaming=True,
-        )
-        return int(message.id)
+        try:
+            message = await client.send_file(
+                settings.recipient,
+                file=str(video),
+                caption=caption,
+                supports_streaming=True,
+            )
+            return int(message.id)
+        except Exception:
+            # Some old Telegram TL schemas can fail while decoding the final
+            # update even though the upload was accepted. Confirm the marker
+            # before ever allowing a retry to create a duplicate upload.
+            recent = await client.get_messages(settings.recipient, limit=12)
+            recovered = next((item for item in recent if artifact_marker in (item.message or "")), None)
+            if recovered is not None:
+                return int(recovered.id)
+            raise
     finally:
         await client.disconnect()
 
@@ -99,11 +109,12 @@ def main() -> None:
         duration = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", str(video)], text=True).strip())
     except Exception:
         pass
+    marker = f"Artifact: {digest[:12]}"
     caption = "✅ Video pipeline complete\n🎬 Polished render with narration + background music\n"
-    caption += f"⏱ Duration: {format_duration(duration)}\n🔍 QC: passed"
+    caption += f"⏱ Duration: {format_duration(duration)}\n🔍 QC: passed\n{marker}"
     started = time.perf_counter()
     try:
-        message_id = asyncio.run(send_video(settings, video, caption))
+        message_id = asyncio.run(send_video(settings, video, caption, marker))
     except Exception as exc:
         write_json(receipt, {"schema_version": 1, "status": "FAILED", "updated_at": utcnow(), "file": str(video.relative_to(video_dir)), "sha256": digest, "error": f"{type(exc).__name__}: {exc}", "elapsed_seconds": round(time.perf_counter() - started, 3)})
         raise
