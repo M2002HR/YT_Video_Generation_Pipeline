@@ -7,6 +7,7 @@ the same credentials as Ordak VNC. The panel process itself listens only on
 
 For a new video, enter only:
 
+- content project / channel universe;
 - topic;
 - minimum and maximum duration in seconds;
 - frame format: `16:9` landscape or `9:16` vertical Shorts/Reels;
@@ -34,3 +35,10 @@ timing, music and rendering use the actual duration of the generated narration.
 The same frame format is carried into the image prompt, image validation,
 render profile and final QC resolution (`1920x1080` for `16:9`, `1080x1920`
 for `9:16`).
+
+
+## Content projects
+
+The panel reads available projects from `projects/*/PROJECT.json` and passes the selected project through the full pipeline. New videos record their membership in `PROJECT.md`.
+
+The legacy/default project preserves all existing videos and behavior. New brand work should use its own project namespace so prompt and canonical visual changes cannot silently affect previous channels.
