@@ -21,7 +21,8 @@ and launch request into that video's directory, then starts
 2. ElevenLabs browser voiceover using the selected settings;
 3. local timestamp alignment, provider-browser music download and no-SFX render;
 4. baseline and polished QC; and
-5. deduplicated Telegram publishing of the verified polished video.
+5. deduplicated Telegram publishing of the verified polished video; and
+6. a scoped Git commit and push of that video's durable artifacts and execution evidence.
 
 Launch and stage timing evidence is persisted under the video directory. The
 panel's log link provides a live, auto-refreshing view of the job output.

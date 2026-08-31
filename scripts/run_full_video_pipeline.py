@@ -65,6 +65,33 @@ def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path, *, noti
         notifier.stage_complete(stage.replace("_", " ").title(), 0.0, artifact=str(artifact.relative_to(ROOT)))
 
 
+def publish_git_artifacts(project: Path, state_path: Path, state: dict[str, Any], *, notifier: PipelineNotifier | None = None) -> None:
+    """Publish only this video's durable artifacts after Telegram succeeds."""
+    started_at, started = stamp(), time.perf_counter()
+    state.update({"status": "FINALIZING", "git_publish_started_at": started_at})
+    state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    command = [sys.executable, "scripts/commit_video_artifacts.py", str(project), "--full-state", str(state_path), "--started-at", str(started)]
+    last_error: Exception | None = None
+    for attempt in range(1, 5):
+        try:
+            subprocess.run(command, cwd=ROOT, check=True)
+            # The publication helper writes the final state before its second
+            # scoped commit, so refresh this in-memory copy for notifications.
+            state.clear()
+            state.update(json.loads(state_path.read_text(encoding="utf-8")))
+            if notifier is not None:
+                notifier.stage_complete("Git commit and push", time.perf_counter() - started)
+            return
+        except subprocess.CalledProcessError as exc:
+            last_error = exc
+            if attempt == 4:
+                break
+            delay = min(30, 2 ** attempt)
+            print(f"git commit/push failed; retrying in {delay}s ({attempt + 1}/4).", flush=True)
+            time.sleep(delay)
+    raise RuntimeError(f"Automatic Git publication failed after 4 attempts: {last_error}")
+
+
 def ensure_audio_mix_profile(project: Path) -> Path:
     """Create the conservative music-only profile required by completion."""
     profile = project / "audio_mix" / "AUDIO_MIX_PROFILE.json"
@@ -154,7 +181,7 @@ def main() -> None:
     safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in args.topic).strip("_")
     project = ROOT / "videos" / f"{args.video_id}_{safe_topic}"
     if args.dry_run:
-        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish"]}, indent=2))
+        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_provider": args.music_provider, "voice_profile": str(profile), "stages": ["visuals", "voiceover", "timing", "music", "completion", "telegram_publish", "git_commit_push"]}, indent=2))
         return
     state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
     state_path.parent.mkdir(parents=True, exist_ok=True)
@@ -187,8 +214,7 @@ def main() -> None:
     render_profile = ensure_render_profile(project, args.aspect_ratio)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path, notifier=notifier)
-    state.update({"status": "DONE", "completed_at": stamp(), "total_elapsed_seconds": round(sum(float(item.get("elapsed_seconds", 0)) for item in state["events"]), 3)})
-    state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    publish_git_artifacts(project, state_path, state, notifier=notifier)
     notifier.send("Full pipeline complete", ["🏁 All requested stages passed", f"⏱ Total: {state['total_elapsed_seconds']:.1f}s"])
     print("FULL VIDEO PIPELINE: PASS")
 

@@ -37,6 +37,16 @@ The publish command requires a passing polished QC report and persists a
 deduplicating receipt at `publish/TELEGRAM_PUBLISH_STATE.json`, so reruns never
 silently send the same artifact twice.
 
+## Final Git publication
+
+After Telegram publishing succeeds, the full pipeline automatically commits
+and pushes only the selected video's non-ignored durable artifacts. It never
+stages unrelated workspace changes or credentials. `pipeline/GIT_PUBLISH_STATE.json`
+records the branch, commits and exact elapsed time; the final full-pipeline
+state records this as `git_commit_push`. Ignored media remains excluded by the
+repository policy, while reports, prompts, timing evidence, QC and publish
+receipts are committed.
+
 ## Human progress notifications
 
 When `YT_PIPELINE_TELEGRAM_NOTIFICATIONS_ENABLED=true`, pipeline execution
