@@ -1,0 +1,13 @@
+Edit
+
+You walk into the kitchen, stop, and think, “Wait… why did I come in here?”
+
+It feels like the thought vanished. But the doorway itself may have helped knock it out of reach.
+
+Your brain tends to organize experience into separate events: sitting at your desk, walking down the hall, entering the kitchen. Moving into a new space can act like a boundary between one event and the next.
+
+That shift in context may make the thought you were holding harder to retrieve. It usually isn’t erased. The cues that made it easy to remember have changed.
+
+That may also explain why walking back to where you started can suddenly bring the thought back.
+
+So when you’re standing in a room with no clue why you’re there, your memory may not have failed. Your brain may have turned the page before you finished the sentence.

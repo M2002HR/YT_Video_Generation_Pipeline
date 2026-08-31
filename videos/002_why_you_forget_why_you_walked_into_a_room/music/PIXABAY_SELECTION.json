@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "provider": "Pixabay web UI",
+  "source_url": "https://pixabay.com/music/ambient-ambient-stillness-478783/",
+  "selection_prompt": "Recommend exactly one Pixabay Music track for this short English explainer. Topic: why people forget why they walked into a room. Need a warm, subtle, reflective instrumental, safe below narration; no lyrics, no dramatic beat drops. Reply with only one direct pixabay.com/music/ track URL.",
+  "selected_at": "2026-08-30T21:49:41.251191+00:00",
+  "status": "SELECTED"
+}

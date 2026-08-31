@@ -1,0 +1,186 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 53.943,
+  "stt": {
+    "backend": "local",
+    "provider": "faster-whisper",
+    "model": "small.en",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "transcript": "You walk into the kitchen, stop, and think, wait, why did I come in here? It feels like the thought vanished, but the doorway itself may have helped knock it out of reach. Your brain tends to organize experience into separate events, sitting at your desk, walking down the hall, entering the kitchen. Moving into a new space can act like a boundary between one event and the next. That shift in context may make the thought you were holding harder to retrieve. It usually isn't erased, the cues that made it easy to remember have changed. That may also explain why walking back to where you started can suddenly bring the thought back. So when you're standing in a room with no clue why you're there, your memory may not have failed. Your brain may have turned the page before you finish the sentence.",
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "You walk into the kitchen,",
+      "speech_start": 0.0,
+      "speech_end": 1.04,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 1.4,
+      "display_duration": 1.4
+    },
+    {
+      "beat_id": 2,
+      "narration": "stop, and think, “Wait… why did I come in here?”",
+      "speech_start": 1.4,
+      "speech_end": 5.12,
+      "match_confidence": 1.0,
+      "display_start": 1.4,
+      "display_end": 6.42,
+      "display_duration": 5.02
+    },
+    {
+      "beat_id": 3,
+      "narration": "It feels like the thought vanished.",
+      "speech_start": 6.42,
+      "speech_end": 8.34,
+      "match_confidence": 1.0,
+      "display_start": 6.42,
+      "display_end": 9.12,
+      "display_duration": 2.7
+    },
+    {
+      "beat_id": 4,
+      "narration": "But the doorway itself may have helped knock it out of reach.",
+      "speech_start": 9.12,
+      "speech_end": 11.98,
+      "match_confidence": 1.0,
+      "display_start": 9.12,
+      "display_end": 13.38,
+      "display_duration": 4.26
+    },
+    {
+      "beat_id": 5,
+      "narration": "Your brain tends to organize experience into separate events:",
+      "speech_start": 13.38,
+      "speech_end": 16.94,
+      "match_confidence": 1.0,
+      "display_start": 13.38,
+      "display_end": 17.68,
+      "display_duration": 4.3
+    },
+    {
+      "beat_id": 6,
+      "narration": "sitting at your desk,",
+      "speech_start": 17.68,
+      "speech_end": 18.64,
+      "match_confidence": 1.0,
+      "display_start": 17.68,
+      "display_end": 19.04,
+      "display_duration": 1.36
+    },
+    {
+      "beat_id": 7,
+      "narration": "walking down the hall,",
+      "speech_start": 19.04,
+      "speech_end": 20.18,
+      "match_confidence": 1.0,
+      "display_start": 19.04,
+      "display_end": 20.6,
+      "display_duration": 1.56
+    },
+    {
+      "beat_id": 8,
+      "narration": "entering the kitchen.",
+      "speech_start": 20.6,
+      "speech_end": 21.44,
+      "match_confidence": 1.0,
+      "display_start": 20.6,
+      "display_end": 22.82,
+      "display_duration": 2.22
+    },
+    {
+      "beat_id": 9,
+      "narration": "Moving into a new space can act like a boundary between one event and the next.",
+      "speech_start": 22.82,
+      "speech_end": 27.14,
+      "match_confidence": 1.0,
+      "display_start": 22.82,
+      "display_end": 28.18,
+      "display_duration": 5.36
+    },
+    {
+      "beat_id": 10,
+      "narration": "That shift in context may make the thought you were holding harder to retrieve.",
+      "speech_start": 28.18,
+      "speech_end": 32.66,
+      "match_confidence": 1.0,
+      "display_start": 28.18,
+      "display_end": 33.82,
+      "display_duration": 5.64
+    },
+    {
+      "beat_id": 11,
+      "narration": "It usually isn’t erased.",
+      "speech_start": 33.82,
+      "speech_end": 35.02,
+      "match_confidence": 1.0,
+      "display_start": 33.82,
+      "display_end": 35.66,
+      "display_duration": 1.84
+    },
+    {
+      "beat_id": 12,
+      "narration": "The cues that made it easy to remember have changed.",
+      "speech_start": 35.66,
+      "speech_end": 38.22,
+      "match_confidence": 1.0,
+      "display_start": 35.66,
+      "display_end": 39.04,
+      "display_duration": 3.38
+    },
+    {
+      "beat_id": 13,
+      "narration": "That may also explain why walking back to where you started",
+      "speech_start": 39.04,
+      "speech_end": 42.06,
+      "match_confidence": 1.0,
+      "display_start": 39.04,
+      "display_end": 42.06,
+      "display_duration": 3.02
+    },
+    {
+      "beat_id": 14,
+      "narration": "can suddenly bring the thought back.",
+      "speech_start": 42.06,
+      "speech_end": 43.62,
+      "match_confidence": 1.0,
+      "display_start": 42.06,
+      "display_end": 44.68,
+      "display_duration": 2.62
+    },
+    {
+      "beat_id": 15,
+      "narration": "So when you’re standing in a room with no clue why you’re there,",
+      "speech_start": 44.68,
+      "speech_end": 47.92,
+      "match_confidence": 1.0,
+      "display_start": 44.68,
+      "display_end": 48.5,
+      "display_duration": 3.82
+    },
+    {
+      "beat_id": 16,
+      "narration": "your memory may not have failed.",
+      "speech_start": 48.5,
+      "speech_end": 49.9,
+      "match_confidence": 1.0,
+      "display_start": 48.5,
+      "display_end": 50.68,
+      "display_duration": 2.18
+    },
+    {
+      "beat_id": 17,
+      "narration": "Your brain may have turned the page before you finished the sentence.",
+      "speech_start": 50.68,
+      "speech_end": 53.36,
+      "match_confidence": 0.917,
+      "display_start": 50.68,
+      "display_end": 53.943,
+      "display_duration": 3.263
+    }
+  ]
+}

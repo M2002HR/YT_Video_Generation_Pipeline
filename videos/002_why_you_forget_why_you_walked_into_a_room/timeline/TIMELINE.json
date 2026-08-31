@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 53.943,
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "beat_id": 1,
+      "image": "assets/raw_beats/beat_001.png",
+      "start": 0.0,
+      "end": 1.4,
+      "duration": 1.4,
+      "speech_start": 0.0,
+      "speech_end": 1.04,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "You walk into the kitchen,"
+    },
+    {
+      "beat_id": 2,
+      "image": "assets/raw_beats/beat_002.png",
+      "start": 1.4,
+      "end": 6.42,
+      "duration": 5.02,
+      "speech_start": 1.4,
+      "speech_end": 5.12,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "stop, and think, “Wait… why did I come in here?”"
+    },
+    {
+      "beat_id": 3,
+      "image": "assets/raw_beats/beat_003.png",
+      "start": 6.42,
+      "end": 9.12,
+      "duration": 2.7,
+      "speech_start": 6.42,
+      "speech_end": 8.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "It feels like the thought vanished."
+    },
+    {
+      "beat_id": 4,
+      "image": "assets/raw_beats/beat_004.png",
+      "start": 9.12,
+      "end": 13.38,
+      "duration": 4.26,
+      "speech_start": 9.12,
+      "speech_end": 11.98,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "But the doorway itself may have helped knock it out of reach."
+    },
+    {
+      "beat_id": 5,
+      "image": "assets/raw_beats/beat_005.png",
+      "start": 13.38,
+      "end": 17.68,
+      "duration": 4.3,
+      "speech_start": 13.38,
+      "speech_end": 16.94,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Your brain tends to organize experience into separate events:"
+    },
+    {
+      "beat_id": 6,
+      "image": "assets/raw_beats/beat_006.png",
+      "start": 17.68,
+      "end": 19.04,
+      "duration": 1.36,
+      "speech_start": 17.68,
+      "speech_end": 18.64,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "sitting at your desk,"
+    },
+    {
+      "beat_id": 7,
+      "image": "assets/raw_beats/beat_007.png",
+      "start": 19.04,
+      "end": 20.6,
+      "duration": 1.56,
+      "speech_start": 19.04,
+      "speech_end": 20.18,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "walking down the hall,"
+    },
+    {
+      "beat_id": 8,
+      "image": "assets/raw_beats/beat_008.png",
+      "start": 20.6,
+      "end": 22.82,
+      "duration": 2.22,
+      "speech_start": 20.6,
+      "speech_end": 21.44,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "entering the kitchen."
+    },
+    {
+      "beat_id": 9,
+      "image": "assets/raw_beats/beat_009.png",
+      "start": 22.82,
+      "end": 28.18,
+      "duration": 5.36,
+      "speech_start": 22.82,
+      "speech_end": 27.14,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Moving into a new space can act like a boundary between one event and the next."
+    },
+    {
+      "beat_id": 10,
+      "image": "assets/raw_beats/beat_010.png",
+      "start": 28.18,
+      "end": 33.82,
+      "duration": 5.64,
+      "speech_start": 28.18,
+      "speech_end": 32.66,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "That shift in context may make the thought you were holding harder to retrieve."
+    },
+    {
+      "beat_id": 11,
+      "image": "assets/raw_beats/beat_011.png",
+      "start": 33.82,
+      "end": 35.66,
+      "duration": 1.84,
+      "speech_start": 33.82,
+      "speech_end": 35.02,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "It usually isn’t erased."
+    },
+    {
+      "beat_id": 12,
+      "image": "assets/raw_beats/beat_012.png",
+      "start": 35.66,
+      "end": 39.04,
+      "duration": 3.38,
+      "speech_start": 35.66,
+      "speech_end": 38.22,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The cues that made it easy to remember have changed."
+    },
+    {
+      "beat_id": 13,
+      "image": "assets/raw_beats/beat_013.png",
+      "start": 39.04,
+      "end": 42.06,
+      "duration": 3.02,
+      "speech_start": 39.04,
+      "speech_end": 42.06,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That may also explain why walking back to where you started"
+    },
+    {
+      "beat_id": 14,
+      "image": "assets/raw_beats/beat_014.png",
+      "start": 42.06,
+      "end": 44.68,
+      "duration": 2.62,
+      "speech_start": 42.06,
+      "speech_end": 43.62,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "can suddenly bring the thought back."
+    },
+    {
+      "beat_id": 15,
+      "image": "assets/raw_beats/beat_015.png",
+      "start": 44.68,
+      "end": 48.5,
+      "duration": 3.82,
+      "speech_start": 44.68,
+      "speech_end": 47.92,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "So when you’re standing in a room with no clue why you’re there,"
+    },
+    {
+      "beat_id": 16,
+      "image": "assets/raw_beats/beat_016.png",
+      "start": 48.5,
+      "end": 50.68,
+      "duration": 2.18,
+      "speech_start": 48.5,
+      "speech_end": 49.9,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "your memory may not have failed."
+    },
+    {
+      "beat_id": 17,
+      "image": "assets/raw_beats/beat_017.png",
+      "start": 50.68,
+      "end": 53.943,
+      "duration": 3.263,
+      "speech_start": 50.68,
+      "speech_end": 53.36,
+      "match_confidence": 0.917,
+      "motion": "zoom_in",
+      "narration": "Your brain may have turned the page before you finished the sentence."
+    }
+  ],
+  "subtitles": [
+    {
+      "beat_id": 1,
+      "start": 0.0,
+      "end": 1.04,
+      "text": "You walk into the kitchen,",
+      "ass_text": "You walk into the kitchen,"
+    },
+    {
+      "beat_id": 2,
+      "start": 1.4,
+      "end": 3.632,
+      "text": "stop, and think, “Wait… why did",
+      "ass_text": "stop, and think, “Wait… why did"
+    },
+    {
+      "beat_id": 2,
+      "start": 3.632,
+      "end": 5.12,
+      "text": "I come in here?”",
+      "ass_text": "I come in here?”"
+    },
+    {
+      "beat_id": 3,
+      "start": 6.42,
+      "end": 8.34,
+      "text": "It feels like the thought vanished.",
+      "ass_text": "It feels like the thought\\Nvanished."
+    },
+    {
+      "beat_id": 4,
+      "start": 9.12,
+      "end": 10.55,
+      "text": "But the doorway itself may have",
+      "ass_text": "But the doorway itself may have"
+    },
+    {
+      "beat_id": 4,
+      "start": 10.55,
+      "end": 11.98,
+      "text": "helped knock it out of reach.",
+      "ass_text": "helped knock it out of reach."
+    },
+    {
+      "beat_id": 5,
+      "start": 13.38,
+      "end": 15.753,
+      "text": "Your brain tends to organize experience",
+      "ass_text": "Your brain tends to organize\\Nexperience"
+    },
+    {
+      "beat_id": 5,
+      "start": 15.753,
+      "end": 16.94,
+      "text": "into separate events:",
+      "ass_text": "into separate events:"
+    },
+    {
+      "beat_id": 6,
+      "start": 17.68,
+      "end": 18.64,
+      "text": "sitting at your desk,",
+      "ass_text": "sitting at your desk,"
+    },
+    {
+      "beat_id": 7,
+      "start": 19.04,
+      "end": 20.18,
+      "text": "walking down the hall,",
+      "ass_text": "walking down the hall,"
+    },
+    {
+      "beat_id": 8,
+      "start": 20.6,
+      "end": 21.44,
+      "text": "entering the kitchen.",
+      "ass_text": "entering the kitchen."
+    },
+    {
+      "beat_id": 9,
+      "start": 22.82,
+      "end": 24.44,
+      "text": "Moving into a new space can",
+      "ass_text": "Moving into a new space can"
+    },
+    {
+      "beat_id": 9,
+      "start": 24.44,
+      "end": 26.06,
+      "text": "act like a boundary between one",
+      "ass_text": "act like a boundary between one"
+    },
+    {
+      "beat_id": 9,
+      "start": 26.06,
+      "end": 27.14,
+      "text": "event and the next.",
+      "ass_text": "event and the next."
+    },
+    {
+      "beat_id": 10,
+      "start": 28.18,
+      "end": 30.1,
+      "text": "That shift in context may make",
+      "ass_text": "That shift in context may make"
+    },
+    {
+      "beat_id": 10,
+      "start": 30.1,
+      "end": 32.02,
+      "text": "the thought you were holding harder",
+      "ass_text": "the thought you were holding\\Nharder"
+    },
+    {
+      "beat_id": 10,
+      "start": 32.02,
+      "end": 32.66,
+      "text": "to retrieve.",
+      "ass_text": "to retrieve."
+    },
+    {
+      "beat_id": 11,
+      "start": 33.82,
+      "end": 35.02,
+      "text": "It usually isn’t erased.",
+      "ass_text": "It usually isn’t erased."
+    },
+    {
+      "beat_id": 12,
+      "start": 35.66,
+      "end": 37.196,
+      "text": "The cues that made it easy",
+      "ass_text": "The cues that made it easy"
+    },
+    {
+      "beat_id": 12,
+      "start": 37.196,
+      "end": 38.22,
+      "text": "to remember have changed.",
+      "ass_text": "to remember have changed."
+    },
+    {
+      "beat_id": 13,
+      "start": 39.04,
+      "end": 40.687,
+      "text": "That may also explain why walking",
+      "ass_text": "That may also explain why walking"
+    },
+    {
+      "beat_id": 13,
+      "start": 40.687,
+      "end": 42.06,
+      "text": "back to where you started",
+      "ass_text": "back to where you started"
+    },
+    {
+      "beat_id": 14,
+      "start": 42.06,
+      "end": 43.62,
+      "text": "can suddenly bring the thought back.",
+      "ass_text": "can suddenly bring the thought\\Nback."
+    },
+    {
+      "beat_id": 15,
+      "start": 44.68,
+      "end": 46.175,
+      "text": "So when you’re standing in a",
+      "ass_text": "So when you’re standing in a"
+    },
+    {
+      "beat_id": 15,
+      "start": 46.175,
+      "end": 47.671,
+      "text": "room with no clue why you’re",
+      "ass_text": "room with no clue why you’re"
+    },
+    {
+      "beat_id": 15,
+      "start": 47.671,
+      "end": 47.92,
+      "text": "there,",
+      "ass_text": "there,"
+    },
+    {
+      "beat_id": 16,
+      "start": 48.5,
+      "end": 49.9,
+      "text": "your memory may not have failed.",
+      "ass_text": "your memory may not have failed."
+    },
+    {
+      "beat_id": 17,
+      "start": 50.68,
+      "end": 52.02,
+      "text": "Your brain may have turned the",
+      "ass_text": "Your brain may have turned the"
+    },
+    {
+      "beat_id": 17,
+      "start": 52.02,
+      "end": 53.36,
+      "text": "page before you finished the sentence.",
+      "ass_text": "page before you finished the\\Nsentence."
+    }
+  ],
+  "qc": {
+    "beat_count": 17,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": []
+  }
+}

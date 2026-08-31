@@ -1,0 +1,382 @@
+{
+  "version": 1,
+  "topic": "Why You Forget Why You Walked Into a Room",
+  "preset": "001_cinematic_storybook_green_hoodie",
+  "created_at": "2026-08-30T19:21:05.746719+00:00",
+  "stages": {
+    "script_draft": {
+      "status": "DONE",
+      "ordak_job_id": "2f087319-eec4-49cb-9851-f341f20b0e46",
+      "completed_at": "2026-08-30T19:21:44.445926+00:00"
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "ordak_job_id": "91756303-1fdf-46a0-9ed1-f8090e035b12",
+      "completed_at": "2026-08-30T19:22:27.954030+00:00"
+    },
+    "visual_beats": {
+      "status": "DONE",
+      "ordak_job_id": "ad44a1c6-294e-4784-8657-1cd5af4f3831",
+      "completed_at": "2026-08-30T19:25:13.440024+00:00"
+    }
+  },
+  "beats": {
+    "001": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_001_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "100245ba-4d09-4d75-9807-cd747cdf4655",
+      "output": {
+        "path": "assets/raw_beats/beat_001.png",
+        "bytes": 1948356,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "81ecd8609124c38825610dc8d84f32afce5bf58834e4e5b6dcd09d147602553b"
+      },
+      "completed_at": "2026-08-30T19:46:12.374319+00:00"
+    },
+    "002": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_002_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_001.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "54ef904b-f381-47b3-bd04-1f555516d117",
+      "output": {
+        "path": "assets/raw_beats/beat_002.png",
+        "bytes": 2094650,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "32c396f04f2bb6250a3d7e510b6997c58d46b2bb0b96901bec3fd18a08d1c852"
+      },
+      "completed_at": "2026-08-30T19:48:44.617167+00:00"
+    },
+    "003": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_003_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_002.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "7f4be909-d546-46a7-a80f-81d4e295a858",
+      "output": {
+        "path": "assets/raw_beats/beat_003.png",
+        "bytes": 1929216,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "ea216236c00515f8b190a7e550cb6d6fed424545820d99249683f3749f97c496"
+      },
+      "completed_at": "2026-08-30T19:51:11.400927+00:00"
+    },
+    "004": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_004_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_003.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "2d2d46fe-290a-438b-8cbc-9dcd0c6737d2",
+      "output": {
+        "path": "assets/raw_beats/beat_004.png",
+        "bytes": 2079530,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "d894bc4648e57976b11edbe5ff2dc9181db4a93181069b293c1419c9a1a3ebed"
+      },
+      "completed_at": "2026-08-30T19:53:27.642075+00:00"
+    },
+    "005": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_005_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_004.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "6914d8b8-d754-4777-a1ef-6d91d528a151",
+      "output": {
+        "path": "assets/raw_beats/beat_005.png",
+        "bytes": 2257144,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "5e29813f4cd769bd4d4ecea90a7f7f2c2774377348b02250f71bd6f4a8b4c334"
+      },
+      "completed_at": "2026-08-30T19:56:04.025582+00:00"
+    },
+    "006": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_006_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_005.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "0d023340-8a9d-40b4-826b-fb6bccece377",
+      "output": {
+        "path": "assets/raw_beats/beat_006.png",
+        "bytes": 2136920,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "26fbf0746cfcefd4d536812af37e72da6fb37c9e833c7bb8f6b0a9d8fabd3d0a"
+      },
+      "completed_at": "2026-08-30T19:58:30.470607+00:00"
+    },
+    "007": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_007_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_006.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "7d7c1c5b-b987-435a-8ab1-761fb8578df1",
+      "output": {
+        "path": "assets/raw_beats/beat_007.png",
+        "bytes": 1939166,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "a2656fe9113ecefa6078c0cc82644466ef01e72ee38b53d54c532244da4f805e"
+      },
+      "completed_at": "2026-08-30T20:00:40.919063+00:00"
+    },
+    "008": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_008_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_007.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "d6af12b8-be48-446e-a758-251851b8231b",
+      "output": {
+        "path": "assets/raw_beats/beat_008.png",
+        "bytes": 1922541,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "5b063bd9af111cbcc01bd55a704e1e3e928e99d7978b98a0178abd881398071f"
+      },
+      "completed_at": "2026-08-30T20:03:11.523549+00:00"
+    },
+    "009": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_009_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_008.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "c4929421-e991-40ae-94bc-aabf8f863712",
+      "output": {
+        "path": "assets/raw_beats/beat_009.png",
+        "bytes": 1876241,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "22f71c853e4274e2230543be3914746eeed3f14ee98f9ff2b4bbfc8c14b2e66e"
+      },
+      "completed_at": "2026-08-30T20:05:28.129111+00:00"
+    },
+    "010": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_010_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_009.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "9690691c-b0a3-46c6-9a2a-96b1e99815f5",
+      "output": {
+        "path": "assets/raw_beats/beat_010.png",
+        "bytes": 1761670,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "83e918f83993fd89d0fc340c0e5f97293aa74eb5218428b7d340db8c140f1584"
+      },
+      "completed_at": "2026-08-30T20:07:47.006153+00:00"
+    },
+    "011": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_011_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_010.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "d9c1d563-d370-4dd6-80c7-1a7ccee89640",
+      "output": {
+        "path": "assets/raw_beats/beat_011.png",
+        "bytes": 1797748,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "887a539b656285be7c4e9757635c29fee2df8db41ddd560dc732dcdf8a7a6184"
+      },
+      "completed_at": "2026-08-30T20:10:32.082718+00:00"
+    },
+    "012": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_012_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_011.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "79c765b2-809b-4215-a178-7957a9feba92",
+      "output": {
+        "path": "assets/raw_beats/beat_012.png",
+        "bytes": 1997697,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "29ec4ff70d4eee316138df302e1608ba013ec127a0f29b60662cf0cdfbe33964"
+      },
+      "completed_at": "2026-08-30T20:15:45.914630+00:00"
+    },
+    "013": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_013_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_012.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "2f013de1-d0e3-438b-a099-9c2170fa79fd",
+      "output": {
+        "path": "assets/raw_beats/beat_013.png",
+        "bytes": 1921318,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "edb5d83df738612120ff6b3001fd49fd10979a9ab185390c61f712e44193ebe6"
+      },
+      "completed_at": "2026-08-30T20:18:14.870453+00:00"
+    },
+    "014": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_014_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_013.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "f11dd470-dd71-482d-aeca-a6ccbc2aa825",
+      "output": {
+        "path": "assets/raw_beats/beat_014.png",
+        "bytes": 2014168,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "8f258440e09f6272ac48502136b5a1b1496fb1365ae67b4616d905b7b7aa01c2"
+      },
+      "completed_at": "2026-08-30T20:20:52.010665+00:00"
+    },
+    "015": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_015_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_014.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "a7ed84fe-f312-4fbe-be39-ee2876538313",
+      "output": {
+        "path": "assets/raw_beats/beat_015.png",
+        "bytes": 2023437,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "6b6b06c57ab4f63cc503777bcbfc946d1b9561ee7fd1b3551c473ad44eb2684a"
+      },
+      "completed_at": "2026-08-30T20:23:30.233888+00:00"
+    },
+    "016": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_016_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_015.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "78ce3d85-b208-4f57-a860-55ec3c0d2866",
+      "output": {
+        "path": "assets/raw_beats/beat_016.png",
+        "bytes": 1967492,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "cdff37ee39474678677f379d3a5dc940dc5ce88eab62b027b4251cf724a606bd"
+      },
+      "completed_at": "2026-08-30T20:26:16.810386+00:00"
+    },
+    "017": {
+      "status": "DONE",
+      "attempts": 1,
+      "prompt_path": "beats/BEAT_017_PROMPT.md",
+      "references": [
+        "visual_presets/001_cinematic_storybook_green_hoodie/style_anchor.png",
+        "visual_presets/001_cinematic_storybook_green_hoodie/character_anchor.png",
+        "videos/002_why_you_forget_why_you_walked_into_a_room/assets/raw_beats/beat_016.png"
+      ],
+      "last_error": null,
+      "ordak_job_id": "dd653af3-c83e-4784-a953-eff2c32a3d2c",
+      "output": {
+        "path": "assets/raw_beats/beat_017.png",
+        "bytes": 2351677,
+        "width": 1672,
+        "height": 941,
+        "aspect_ratio": 1.7768331562167907,
+        "sha256": "bfbcb466e22dbfcb608a610b6ea1b6a1d11e1d0284b1bd8fa43ac24a51366fe5"
+      },
+      "completed_at": "2026-08-30T20:30:09.931577+00:00"
+    }
+  },
+  "updated_at": "2026-08-30T20:30:09.931609+00:00"
+}

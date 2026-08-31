@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "video": "002_why_you_forget_why_you_walked_into_a_room",
+  "started_at": "2026-08-31T03:25:04.986765+00:00",
+  "status": "DONE",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-08-31T03:25:04.987330+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T03:25:05.094447+00:00",
+      "elapsed_seconds": 0.107
+    },
+    {
+      "stage": "render_baseline",
+      "status": "REUSED",
+      "ended_at": "2026-08-31T03:25:05.096224+00:00",
+      "artifact": "assets/renders/final.mp4"
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-08-31T03:25:05.097342+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T03:25:21.225729+00:00",
+      "elapsed_seconds": 16.128
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-08-31T03:25:21.226355+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room",
+        "--output",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T03:25:27.006088+00:00",
+      "elapsed_seconds": 5.78
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-08-31T03:25:27.007422+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T03:25:42.668343+00:00",
+      "elapsed_seconds": 15.661
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-08-31T03:25:42.669409+00:00",
+      "command": [
+        "/root/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room",
+        "--input",
+        "/root/YT_Video_Generation_Pipeline/videos/002_why_you_forget_why_you_walked_into_a_room/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-08-31T03:25:42.993467+00:00",
+      "elapsed_seconds": 0.324
+    }
+  ],
+  "completed_at": "2026-08-31T03:25:42.995298+00:00",
+  "total_elapsed_seconds": 38.0
+}
