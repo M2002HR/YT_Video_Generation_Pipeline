@@ -226,7 +226,7 @@ class ElevenLabsUI:
           const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
           const captcha = [...document.querySelectorAll('iframe')].some(e => visible(e) && /hcaptcha|recaptcha|turnstile/i.test(`${e.src||''} ${e.title||''} ${e.name||''}`));
           return {
-            url: location.href, title: document.title, ready: !!input && /app\/speech-synthesis\/text-to-speech/.test(location.pathname),
+            url: location.href, title: document.title, ready: !!input && location.pathname.includes('app/speech-synthesis/text-to-speech'),
             login_required: /sign in|log in|create an account/i.test(text) && !input,
             busy: loading || !!generate?.disabled || !!generate?.ariaDisabled || !!document.querySelector('[aria-busy=true],[role=progressbar]'),
             loading, captcha, downloads: download, summary: text.slice(0, 1600), generate
