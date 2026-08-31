@@ -6,7 +6,7 @@
   "duration_max_seconds": 45.0,
   "aspect_ratio": "9:16",
   "started_at": "2026-08-31T09:17:43.607971+00:00",
-  "status": "FINALIZING",
+  "status": "DONE",
   "events": [
     {
       "stage": "visuals",
@@ -136,7 +136,19 @@
       "status": "DONE",
       "ended_at": "2026-08-31T10:49:50.814225+00:00",
       "elapsed_seconds": 586.05
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "27713.855037996",
+      "ended_at": "2026-08-31T10:49:54.111593+00:00",
+      "elapsed_seconds": 3.296,
+      "branch": "ordak",
+      "remote": "origin",
+      "artifact_commit": "7197e705c098a57e3e0f6f288912abd1092db31e"
     }
   ],
-  "git_publish_started_at": "2026-08-31T10:49:50.815498+00:00"
+  "git_publish_started_at": "2026-08-31T10:49:50.815498+00:00",
+  "completed_at": "2026-08-31T10:49:54.111593+00:00",
+  "total_elapsed_seconds": 5525.458
 }
