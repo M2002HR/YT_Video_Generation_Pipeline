@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "project_id": "default",
+  "display_name": "Default / Legacy Pipeline",
+  "description": "Legacy content project containing every video created before content-project separation.",
+  "default_visual_preset": "001_cinematic_storybook_green_hoodie",
+  "allow_global_visual_preset_fallback": true,
+  "allow_legacy_prompt_fallback": false,
+  "brief_defaults": {
+    "audience": "general viewers interested in an engaging psychology/neuroscience short",
+    "constraints": "no medical diagnosis or medical advice; avoid unsupported claims and invented statistics"
+  }
+}
