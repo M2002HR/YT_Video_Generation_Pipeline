@@ -47,6 +47,7 @@ def main() -> None:
     parser.add_argument("video_dir", type=Path)
     parser.add_argument("--publish", action="store_true", help="Send the passing polished output to Telegram.")
     parser.add_argument("--allow-sfx", action="store_true", help="Keep explicitly configured SFX; default is no SFX.")
+    parser.add_argument("--skip-render", action="store_true", help="Resume from an existing baseline render after an externally monitored render job.")
     args = parser.parse_args()
     video = args.video_dir.expanduser().resolve()
     if not (video / "timing" / "BEAT_TIMINGS.json").is_file():
@@ -66,13 +67,19 @@ def main() -> None:
     py = sys.executable
     execute("build_timeline", [py, "scripts/build_timeline.py", str(video)], state, state_path)
     baseline = video / "assets" / "renders" / "final.mp4"
-    render_command = [py, "scripts/render_video.py", str(video), "--output", str(baseline)]
-    # Inherited niceness keeps SSH, VNC and the watchdog schedulable even on a
-    # two-vCPU server. It is configurable for stronger machines.
-    nice_level = max(0, min(19, int(os.getenv("YT_RENDER_NICE", "10"))))
-    if nice_level:
-        render_command = ["nice", "-n", str(nice_level), *render_command]
-    execute("render_baseline", render_command, state, state_path)
+    if args.skip_render:
+        if not baseline.is_file() or baseline.stat().st_size == 0:
+            raise FileNotFoundError("--skip-render requires a non-empty assets/renders/final.mp4.")
+        state["events"].append({"stage": "render_baseline", "status": "REUSED", "ended_at": now(), "artifact": str(baseline.relative_to(video))})
+        save(state_path, state)
+    else:
+        render_command = [py, "scripts/render_video.py", str(video), "--output", str(baseline)]
+        # Inherited niceness keeps SSH, VNC and the watchdog schedulable even on a
+        # two-vCPU server. It is configurable for stronger machines.
+        nice_level = max(0, min(19, int(os.getenv("YT_RENDER_NICE", "10"))))
+        if nice_level:
+            render_command = ["nice", "-n", str(nice_level), *render_command]
+        execute("render_baseline", render_command, state, state_path)
     execute("qc_baseline", [py, "scripts/qc_render.py", str(video), "--input", str(baseline), "--decode"], state, state_path)
     polished = video / "assets" / "renders" / "polished.mp4"
     execute("polish_audio", [py, "scripts/polish_audio.py", str(video), "--output", str(polished)], state, state_path)
