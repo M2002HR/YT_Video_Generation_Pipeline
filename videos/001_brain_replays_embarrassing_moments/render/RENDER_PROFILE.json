@@ -15,6 +15,11 @@
     "codec": "aac",
     "bitrate": "192k"
   },
+  "resource_limits": {
+    "ffmpeg_threads": 1,
+    "filter_threads": 1,
+    "filter_complex_threads": 1
+  },
   "motion": {
     "enabled": true,
     "strength": 0.035,

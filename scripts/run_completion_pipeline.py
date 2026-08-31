@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -65,7 +66,13 @@ def main() -> None:
     py = sys.executable
     execute("build_timeline", [py, "scripts/build_timeline.py", str(video)], state, state_path)
     baseline = video / "assets" / "renders" / "final.mp4"
-    execute("render_baseline", [py, "scripts/render_video.py", str(video), "--output", str(baseline)], state, state_path)
+    render_command = [py, "scripts/render_video.py", str(video), "--output", str(baseline)]
+    # Inherited niceness keeps SSH, VNC and the watchdog schedulable even on a
+    # two-vCPU server. It is configurable for stronger machines.
+    nice_level = max(0, min(19, int(os.getenv("YT_RENDER_NICE", "10"))))
+    if nice_level:
+        render_command = ["nice", "-n", str(nice_level), *render_command]
+    execute("render_baseline", render_command, state, state_path)
     execute("qc_baseline", [py, "scripts/qc_render.py", str(video), "--input", str(baseline), "--decode"], state, state_path)
     polished = video / "assets" / "renders" / "polished.mp4"
     execute("polish_audio", [py, "scripts/polish_audio.py", str(video), "--output", str(polished)], state, state_path)

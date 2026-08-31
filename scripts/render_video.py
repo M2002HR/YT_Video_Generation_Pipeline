@@ -187,6 +187,12 @@ def main() -> None:
         help="Render without burning subtitles.",
     )
     parser.add_argument(
+        "--threads",
+        type=int,
+        default=None,
+        help="Override the profile FFmpeg thread cap. A cap of 1 keeps a small server responsive.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Validate and print the FFmpeg command without running it.",
@@ -285,7 +291,32 @@ def main() -> None:
     audio_codec = str(audio_cfg.get("codec", "aac"))
     audio_bitrate = str(audio_cfg.get("bitrate", "192k"))
 
-    command: list[str] = [ffmpeg, "-hide_banner", "-y"]
+    resource_cfg = (
+        profile.get("resource_limits")
+        if isinstance(profile.get("resource_limits"), dict)
+        else {}
+    )
+    configured_threads = int(resource_cfg.get("ffmpeg_threads", 1))
+    thread_cap = max(1, args.threads if args.threads is not None else configured_threads)
+    filter_threads = max(1, int(resource_cfg.get("filter_threads", thread_cap)))
+    filter_complex_threads = max(
+        1, int(resource_cfg.get("filter_complex_threads", filter_threads))
+    )
+
+    # These are deliberately global options. Without explicit caps, FFmpeg can
+    # schedule filters and x264 across every vCPU, starving SSH/VNC on small
+    # Ordak servers during a long render.
+    command: list[str] = [
+        ffmpeg,
+        "-hide_banner",
+        "-y",
+        "-threads",
+        str(thread_cap),
+        "-filter_threads",
+        str(filter_threads),
+        "-filter_complex_threads",
+        str(filter_complex_threads),
+    ]
 
     for beat, image_path in zip(beats, image_paths):
         beat_duration = float(beat["duration"])
@@ -379,6 +410,7 @@ def main() -> None:
     print(f"Resolution: {width}x{height} @ {fps}fps")
     print(f"Duration target: {duration:.3f}s")
     print(f"Subtitles: {'on' if subtitles_enabled else 'off'}")
+    print(f"Resource caps: encoder={thread_cap}, filter={filter_threads}, complex={filter_complex_threads}")
     print(f"Output: {output_path}")
 
     if args.dry_run:
