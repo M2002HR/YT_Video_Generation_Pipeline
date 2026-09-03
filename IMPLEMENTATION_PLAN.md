@@ -451,4 +451,63 @@ P3 (Flow واقعی: capability inspector، verify مدل/aspect/duration/resolu
 آپلود frame با نقش، credit safety، دانلود قطعی) → P4 (حذف synthetic) → P5 (سینک STT)
 → P6 (تست‌ها) → P9 (پنل/تلگرام/منابع).
 
+---
+
+## 10. کشف ساختار واقعی UI فلو (2026-09-03، مرورگر authenticated)
+
+هر سه provider الان `logged_in: true` هستند (پس از باز شدن tab — تشخیص لاگین فقط با tab باز کار می‌کند).
+DOM واقعی Flow را بررسی کردم؛ نتیجه، پایه‌ی پیاده‌سازی §18-21 شد:
+
+**همه‌ی تنظیمات در یک منوی Radix پشت یک دکمه‌ی خلاصه‌اند:** `"Video · 720p · 6s crop_16_9 x2"`
+(`aria-haspopup="menu"`, `data-state="closed|open"`). داخل آن هر تنظیم یک
+`div[role="tablist"]` از `button[role="tab"]` است و گزینه‌ی فعال `aria-selected="true"` دارد
+→ **read-back واقعی** برای تأیید، بدون هیچ اتکایی به `body.innerText`.
+
+| گروه | گزینه‌های زنده |
+|------|----------------|
+| media type | `Image` \| `Video` |
+| **reference mode** | `Frames` \| `Ingredients` — **متقابلاً انحصاری** |
+| aspect | `9:16` \| `16:9` |
+| model (dropdown) | `Omni 1.1 Flash` \| `Veo 3.1 - Lite` \| `Veo 3.1 - Fast` \| `Veo 3.1 - Quality` |
+| resolution | `360p` \| `720p` |
+| duration | `4s` \| `6s` \| `8s` \| `10s` |
+| outputs | `x1` \| `x2` \| `x3` \| `x4` |
+
+منو هزینه را هم نشان می‌دهد: `"Generating will use N credits"`.
+
+### سه یافته‌ی مهم که پلن را تغییر می‌دهد
+
+1. **`Frames` و `Ingredients` انحصاری‌اند.** پس Clip B نمی‌تواند هم‌زمان یک reference sheet
+   کانونیکال و first/last frame داشته باشد. انتخاب درست: Clip B در حالت **Frames** با
+   `Start = book_spread_frame` و `End = world_keyframe` (کلیک روی Frames، کنترل‌های
+   «Start / swap_horiz Swap first and last frames / End» ظاهر می‌شوند). هویت کتاب از قبل
+   داخل `book_spread_frame` ترکیب شده است. Clip A در حالت **Ingredients** با `character_sheet`.
+   این با escape hatch خود §16 و «NO CHARACTERS» در `book.txt` سازگار است.
+2. **`x2` پیش‌فرض است و هزینه را دو برابر می‌کند.** `x1` اجباری شد: هزینه‌ی
+   `6s x2` = ۲۰ credit ولی `4s x1` = **۷ credit**.
+3. **قابلیت‌ها به مدل وابسته‌اند.** با `Veo 3.1 - Lite` کنترل‌های resolution و duration
+   کاملاً از منو **حذف می‌شوند**. این یک واقعیت capability است نه خرابی UI، پس به
+   `MODEL_FEATURE_INCOMPATIBLE` نگاشت شد.
+
+### ✅ P3 (بخش تنظیمات) — پیاده و روی UI واقعی تست شد
+`services/ordak/app/automation/flow_settings.py` + helperهای CDP در `existing_chrome.py`
+(`dispatch_mouse_click`, `dispatch_key`, `insert_text` — چون `element.click()` منوی Radix را
+باز نمی‌کند و باید pointer event واقعی فرستاد).
+
+نتیجه‌ی اجرای زنده (بدون هیچ تولید و بدون مصرف credit):
+```
+APPLY Clip B contract → 9:16, 4s, 720p, Frames, x1
+  Flow reference_mode verified: Frames      (از Ingredients)
+  Flow aspect_ratio  verified: 9:16         (از 16:9)
+  Flow duration      verified: 4s           (از 6s)
+  Flow outputs       verified: x1           (از x2)
+  confirmed: Omni 1.1 Flash · 720p · 4s · 9:16 · Frames · x1 (credits: 7)   [4.9s]
+
+switch Omni ↔ Veo 3.1 - Lite            → هر دو جهت verify شد
+model 'best_available'                   → model_not_available
+duration 12s                             → model_feature_incompatible
+resolution 1080p                         → model_feature_incompatible
+```
+
+
 
