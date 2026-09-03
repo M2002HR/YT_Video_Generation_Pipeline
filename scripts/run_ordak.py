@@ -38,6 +38,10 @@ ENV_MAP = {
     "YT_ORDAK_CHATGPT_STABLE_RESPONSE_SECONDS": "CHATGPT_STABLE_RESPONSE_SECONDS",
     "YT_ORDAK_CHATGPT_STALL_REFRESH_SECONDS": "CHATGPT_STALL_REFRESH_SECONDS",
     "YT_ORDAK_CHATGPT_MAX_STALL_REFRESHES": "CHATGPT_MAX_STALL_REFRESHES",
+    "YT_ORDAK_GEMINI_URL": "GEMINI_URL",
+    "YT_ORDAK_GEMINI_RESPONSE_TIMEOUT_MS": "GEMINI_RESPONSE_TIMEOUT_MS",
+    "YT_ORDAK_FLOW_URL": "FLOW_URL",
+    "YT_ORDAK_FLOW_RESPONSE_TIMEOUT_MS": "FLOW_RESPONSE_TIMEOUT_MS",
 }
 
 
@@ -99,11 +103,12 @@ def main() -> None:
         raise SystemExit("YT_ORDAK_ENABLED is false.")
 
     provider = os.getenv("YT_ORDAK_PROVIDER", "chatgpt").strip().lower()
-    if provider != "chatgpt":
+    if provider not in {"chatgpt", "gemini", "flow"}:
         raise SystemExit(
-            "Current video-pipeline Ordak integration is intentionally ChatGPT-only. "
+            "YT_ORDAK_PROVIDER must be one of: chatgpt, gemini, flow (per-job provider selection is also supported). "
             "Set YT_ORDAK_PROVIDER=chatgpt."
         )
+    # Per-job provider selection is now supported; the same Ordak service handles chatgpt/gemini/flow concurrently.
 
     required_root_settings = {
         "YT_ORDAK_BROWSER_EXECUTABLE_PATH": os.getenv("YT_ORDAK_BROWSER_EXECUTABLE_PATH"),

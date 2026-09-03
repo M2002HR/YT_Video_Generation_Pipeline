@@ -1,0 +1,331 @@
+Create a 3-second vertical 9:16 pure 2D hand-drawn animated video.
+
+==================================================
+CORE CONCEPT
+==================================================
+
+A magical ancient storybook is being explored.
+
+This scene is ONLY about the magical book and the discovery of a hidden illustrated page.
+
+NO CHARACTERS.
+NO FARMER.
+NO PEOPLE.
+
+The focus is:
+
+BOOK
+→
+PAGE TURNING
+→
+MYSTERIOUS ILLUSTRATION
+→
+ENTERING THE PAINTING
+
+The viewer should feel:
+
+"What secret world is hidden inside this book?"
+
+==================================================
+REFERENCE LOCK
+==================================================
+
+REFERENCE IMAGE B = magical ancient book design sheet.
+
+Use Reference Image B as the exact visual identity source for the book.
+
+The book already exists.
+
+Do NOT create a new fantasy book.
+
+Do NOT redesign the book.
+
+Preserve exactly:
+
+- antique brown leather cover
+- worn aged surface
+- golden/brass corner protectors
+- side clasp
+- central eye symbol
+- crescent moon symbol
+- star symbols
+- thick aged pages
+- green bookmark ribbon
+- exact proportions
+- exact silhouette
+- exact illustration style
+
+The reference image is the asset.
+
+Animate the asset.
+
+Do not invent a different book.
+
+==================================================
+STYLE LOCK
+==================================================
+
+Maintain the same universe as the previous animation:
+
+Pure 2D hand-drawn storybook animation.
+
+Visual qualities:
+
+- clean ink outlines
+- flat illustrated colors
+- simple cel shading
+- warm parchment tones
+- handcrafted cartoon feeling
+- educational adventure atmosphere
+- magical storybook mood
+
+NO:
+
+- 3D
+- CGI
+- realistic materials
+- photorealism
+- cinematic realism
+- realistic camera effects
+- 3D depth
+- realistic portal effects
+
+Everything must look like a beautifully animated drawing.
+
+==================================================
+SCENE STRUCTURE
+==================================================
+
+
+SHOT 1 — MYSTERIOUS BOOK OPENING
+0.0s - 0.8s
+
+Start immediately with a close-up inside the magical book.
+
+The book is already open.
+
+Show only:
+
+- aged pages
+- beautiful hand-drawn illustrations
+- magical ancient paper texture
+
+The pages gently move.
+
+A soft golden light comes from between the pages.
+
+No character.
+No hands.
+No movement inside the illustration.
+
+The book itself feels mysterious and ancient.
+
+The viewer should immediately wonder:
+
+"What story is hidden here?"
+
+
+==================================================
+
+
+SHOT 2 — DISCOVERING THE PANDORA'S BOX PAGE
+0.8s - 1.8s
+
+The book slowly turns pages.
+
+Each page reveals different faded story illustrations.
+
+The camera follows the page movement.
+
+Then:
+
+The book stops on a special page.
+
+This page contains a beautiful hand-drawn illustration related to:
+
+Pandora's Box.
+
+The illustration should feel like an ancient educational storybook painting.
+
+Show:
+
+- mythological atmosphere
+- mysterious ancient world
+- symbolic Pandora's Box illustration
+- magical storytelling composition
+
+The drawing itself remains still.
+
+Nothing inside the painting moves.
+
+The magic comes only from:
+
+- soft golden glow around the page
+- subtle particles
+- illuminated ink lines
+
+The viewer understands:
+
+"This page contains the next adventure."
+
+
+==================================================
+
+
+SHOT 3 — ENTERING THE PAGE WORLD
+1.8s - 3.0s
+
+The camera slowly pushes into the Pandora's Box illustration.
+
+The painted image becomes larger.
+
+The paper texture gradually fills the screen.
+
+The transition should feel like:
+
+a camera entering a beautiful hand-drawn painting.
+
+The viewer moves from:
+
+REAL BOOK PAGE
+
+into
+
+THE ILLUSTRATED WORLD INSIDE THE PAGE.
+
+The final frame should be completely inside the Pandora's Box illustrated world.
+
+End exactly at the moment before the next adventure begins.
+
+
+==================================================
+CAMERA DIRECTION
+==================================================
+
+Use only simple 2D camera movement.
+
+Allowed:
+
+- slow push-in
+- gentle zoom
+- page-following movement
+- smooth transition into illustration
+
+Avoid:
+
+- camera orbit
+- 3D movement
+- dramatic perspective
+- lens effects
+- realistic depth of field
+
+
+==================================================
+ANIMATION DIRECTION
+==================================================
+
+Animation should be subtle and elegant.
+
+Animate only:
+
+- slow page turning
+- paper movement
+- gentle magical glow
+- floating tiny particles
+- camera movement
+
+Do NOT animate:
+
+- characters
+- creatures
+- objects inside the illustration
+- events inside the painting
+
+The page illustration must remain a still drawing until the camera enters it.
+
+
+==================================================
+HOOK AND RETENTION
+==================================================
+
+The first second must create curiosity.
+
+Opening feeling:
+
+"A mysterious ancient book is revealing a hidden secret."
+
+The audience should want to know:
+
+"What is inside this page?"
+
+The final moment should create anticipation:
+
+"The adventure is about to begin."
+
+
+==================================================
+AUDIO
+==================================================
+
+No dialogue.
+
+No narrator.
+
+Sound design:
+
+- soft ancient book opening sound
+- gentle page turning
+- subtle magical shimmer
+- quiet mysterious adventure music
+
+Keep the atmosphere magical and educational.
+
+
+==================================================
+NEGATIVE CONSTRAINTS
+==================================================
+
+Do not generate:
+
+- farmer
+- characters
+- people
+- hands opening the book
+- moving creatures
+- animated drawings inside the page
+- different book design
+- new symbols
+- 3D book
+- realistic paper
+- CGI magic
+- fantasy portal effects
+- chaotic transitions
+- style drift
+- identity drift
+
+
+==================================================
+FINAL GOAL
+==================================================
+
+Create a beautiful 3-second cinematic storybook transition:
+
+An ancient magical book reveals a hidden Pandora's Box illustration.
+
+The pages turn.
+
+The correct page is discovered.
+
+The camera enters the illustration.
+
+The viewer feels they are crossing from a magical book into a new illustrated adventure world.
+
+The result must be:
+
+mysterious,
+beautiful,
+curiosity-driven,
+pure 2D,
+hand-drawn,
+storybook-like,
+and visually consistent with the reference book.

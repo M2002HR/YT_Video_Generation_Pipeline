@@ -7,15 +7,9 @@ Requires=ordak-chrome.service
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/YT_Video_Generation_Pipeline
-Environment=DISPLAY=:99
-Environment=http_proxy=http://127.0.0.1:3128
-Environment=https_proxy=http://127.0.0.1:3128
-Environment=HTTP_PROXY=http://127.0.0.1:3128
-Environment=HTTPS_PROXY=http://127.0.0.1:3128
-Environment=NO_PROXY=localhost,127.0.0.1,::1
-Environment=no_proxy=localhost,127.0.0.1,::1
-ExecStart=/root/YT_Video_Generation_Pipeline/.venv/bin/python scripts/run_ordak.py
+WorkingDirectory=/opt/YT_Video_Generation_Pipeline
+Environment=DISPLAY=:1
+ExecStart=/opt/YT_Video_Generation_Pipeline/.venv/bin/python scripts/run_ordak.py
 Restart=always
 RestartSec=5
 

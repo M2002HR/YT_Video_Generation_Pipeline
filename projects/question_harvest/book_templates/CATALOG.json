@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "template_id": "001",
+      "display_name": "Straight On",
+      "camera_angle": "straight_on",
+      "path": "001"
+    },
+    {
+      "template_id": "002",
+      "display_name": "Top-Down Slight",
+      "camera_angle": "slight_top_down",
+      "path": "002"
+    },
+    {
+      "template_id": "003",
+      "display_name": "Angled Perspective",
+      "camera_angle": "angled_perspective",
+      "path": "003"
+    }
+  ]
+}

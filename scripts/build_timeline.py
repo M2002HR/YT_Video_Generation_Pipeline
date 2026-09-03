@@ -310,6 +310,27 @@ def write_ass(
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def detect_mixed_media(video_dir: Path) -> bool:
+    """Detect Question Harvest mixed-media mode: presence of trimmed opening clips."""
+    # QH stores trimmed clips as question_spark_trimmed.mp4 / book_transition_trimmed.mp4
+    # Legacy stores only raw_beats
+    for cand in [
+        video_dir / "assets" / "opening" / "question_spark_trimmed.mp4",
+        video_dir / "assets" / "opening" / "book_transition_trimmed.mp4",
+        video_dir / "references" / "world_keyframe.png",
+    ]:
+        if cand.is_file():
+            return True
+    # also check PROJECT.md content project
+    try:
+        pm = (video_dir / "PROJECT.md").read_text(encoding="utf-8")
+        if "question_harvest" in pm:
+            return True
+    except Exception:
+        pass
+    return False
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build render timeline from beat timings.")
     parser.add_argument("video_dir", type=Path)
@@ -329,6 +350,11 @@ def main() -> None:
         "--skip-asset-validation",
         action="store_true",
         help="Allow timeline metadata generation without local image/audio files.",
+    )
+    parser.add_argument(
+        "--mixed-media",
+        action="store_true",
+        help="Force mixed-media mode (video+image). Auto-detected for question_harvest.",
     )
     args = parser.parse_args()
 
@@ -366,6 +392,43 @@ def main() -> None:
     if not args.skip_asset_validation and not audio_path.exists():
         raise FileNotFoundError(f"Narration audio not found: {audio_path}")
 
+    is_mixed = args.mixed_media or detect_mixed_media(video_dir)
+
+    # For mixed-media (Question Harvest), opening clips are separate video beats
+    video_entries: list[dict[str, Any]] = []
+    video_total = 0.0
+    if is_mixed:
+        # Trimmed clips are the canonical render sources (§67-70)
+        opening_a = video_dir / "assets" / "opening" / "question_spark_trimmed.mp4"
+        opening_b = video_dir / "assets" / "opening" / "book_transition_trimmed.mp4"
+        # fallback to source if trimmed not yet exists
+        if not opening_a.is_file():
+            opening_a = video_dir / "assets" / "opening" / "question_spark_source.mp4"
+        if not opening_b.is_file():
+            opening_b = video_dir / "assets" / "opening" / "book_transition_source.mp4"
+        for idx, (path, name) in enumerate([(opening_a, "opening_a"), (opening_b, "opening_b")]):
+            if path.is_file():
+                # duration from ffprobe if possible, else use 5s/3s
+                try:
+                    import subprocess, json as js
+                    out = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", str(path)], text=True, timeout=10)
+                    dur = float(out.strip())
+                except Exception:
+                    dur = 5.0 if idx == 0 else 3.0
+                video_entries.append({
+                    "media_type": "video",
+                    "source": relative_to_video(path, video_dir),
+                    "start": round(video_total, 3),
+                    "end": round(video_total + dur, 3),
+                    "duration": round(dur, 3),
+                    "beat_id": f"video_{name}",
+                    "motion": "still",  # video has its own motion
+                })
+                video_total += dur
+            else:
+                if not args.skip_asset_validation:
+                    print(f"WARN mixed-media: missing {path}, will be skipped (use --skip-asset-validation to ignore)", flush=True)
+
     boundaries, adjustments = compute_display_boundaries(beats, audio_duration)
 
     motion_cfg = profile.get("motion") if isinstance(profile.get("motion"), dict) else {}
@@ -375,33 +438,84 @@ def main() -> None:
 
     timeline_beats: list[dict[str, Any]] = []
 
-    for index, beat in enumerate(beats):
-        beat_id = int(beat["beat_id"])
-        image_path = find_beat_image(
-            video_dir,
-            beat_id,
-            allow_missing=args.skip_asset_validation,
-        )
+    # Add video entries first (mixed-media: Clip A, Clip B before body images)
+    if is_mixed and video_entries:
+        # For image beats, offset by video_total (images start after videos)
+        # But audio is continuous: image beats speech timings are offset in STT? For simplicity, keep legacy boundaries for images and shift them
+        # The timeline overall duration is audio_duration; video clips occupy first video_total, images occupy remainder scaled
+        # We scale image boundaries to fit remaining duration if needed
+        remaining = max(0.1, audio_duration - video_total)
+        # original beats duration is audio_duration; we map them to remaining window
+        # But simpler: keep boundaries as computed but shift image start/end by video_total * (remaining/audio_duration) — approximate
+        # For smoke, we just keep boundaries as is but clamp
+        for index, beat in enumerate(beats):
+            beat_id = int(beat["beat_id"])
+            image_path = find_beat_image(
+                video_dir,
+                beat_id,
+                allow_missing=args.skip_asset_validation,
+            )
+            # Map original image timeline (0..audio_duration) onto (video_total .. audio_duration)
+            orig_start = float(boundaries[index])
+            orig_end = float(boundaries[index + 1])
+            # Scale to remaining window
+            scale = remaining / audio_duration if audio_duration > 0 else 1
+            start = video_total + orig_start * scale
+            end = video_total + orig_end * scale
+            if end <= start:
+                end = start + 0.1
+            # Clamp to audio_duration
+            end = min(end, audio_duration)
+            if end <= start:
+                continue
+            timeline_beats.append(
+                {
+                    "beat_id": beat_id,
+                    "media_type": "image",
+                    "image": relative_to_video(image_path, video_dir),
+                    "source": relative_to_video(image_path, video_dir),
+                    "start": round(start, 3),
+                    "end": round(end, 3),
+                    "duration": round(end - start, 3),
+                    "speech_start": round(float(beat["speech_start"]), 3),
+                    "speech_end": round(float(beat["speech_end"]), 3),
+                    "match_confidence": float(beat.get("match_confidence", 0.0)),
+                    "motion": str(motion_cycle[index % len(motion_cycle)]),
+                    "narration": str(beat["narration"]),
+                }
+            )
+        # Prepend video entries (they already have start/end)
+        timeline_beats = video_entries + timeline_beats
+    else:
+        for index, beat in enumerate(beats):
+            beat_id = int(beat["beat_id"])
+            image_path = find_beat_image(
+                video_dir,
+                beat_id,
+                allow_missing=args.skip_asset_validation,
+            )
 
-        start = float(boundaries[index])
-        end = float(boundaries[index + 1])
-        if end <= start:
-            raise ValueError(f"Non-positive timeline duration for Beat {beat_id}")
+            start = float(boundaries[index])
+            end = float(boundaries[index + 1])
+            if end <= start:
+                raise ValueError(f"Non-positive timeline duration for Beat {beat_id}")
 
-        timeline_beats.append(
-            {
-                "beat_id": beat_id,
-                "image": relative_to_video(image_path, video_dir),
-                "start": round(start, 3),
-                "end": round(end, 3),
-                "duration": round(end - start, 3),
-                "speech_start": round(float(beat["speech_start"]), 3),
-                "speech_end": round(float(beat["speech_end"]), 3),
-                "match_confidence": float(beat.get("match_confidence", 0.0)),
-                "motion": str(motion_cycle[index % len(motion_cycle)]),
-                "narration": str(beat["narration"]),
-            }
-        )
+            timeline_beats.append(
+                {
+                    "beat_id": beat_id,
+                    "media_type": "image",  # explicit for legacy compat (§69)
+                    "image": relative_to_video(image_path, video_dir),
+                    "source": relative_to_video(image_path, video_dir),
+                    "start": round(start, 3),
+                    "end": round(end, 3),
+                    "duration": round(end - start, 3),
+                    "speech_start": round(float(beat["speech_start"]), 3),
+                    "speech_end": round(float(beat["speech_end"]), 3),
+                    "match_confidence": float(beat.get("match_confidence", 0.0)),
+                    "motion": str(motion_cycle[index % len(motion_cycle)]),
+                    "narration": str(beat["narration"]),
+                }
+            )
 
     subtitle_cfg = (
         profile.get("subtitles")

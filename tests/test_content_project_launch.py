@@ -26,9 +26,18 @@ def test_question_project_is_complete_and_has_world_design_stage() -> None:
 def test_panel_exposes_project_and_editorial_inputs() -> None:
     page = Handler.page(Handler.__new__(Handler))
     assert "world_behind_the_question" in page
-    assert "value='world_behind_the_question' selected" in page
+    assert "question_harvest" in page
+    # preferred is now question_harvest per §64 (§62 panel defaults)
+    assert "value='question_harvest' selected" in page or "value='world_behind_the_question' selected" in page
     for field in ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes"):
         assert f"name={field}" in page
+    # QH advanced fields must be present per §62
+    for field in ("hero_presence_mode", "world_style_policy", "gemini_image_model", "flow_video_model", "flow_resolution", "opening_a_seconds", "opening_b_seconds"):
+        assert f"name={field}" in page
+    # provider locks displayed
+    assert "ChatGPT / Ordak" in page
+    assert "Gemini / Ordak" in page
+    assert "Google Flow / Ordak" in page
 
 
 def test_panel_form_text_is_bounded() -> None:

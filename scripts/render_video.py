@@ -240,14 +240,26 @@ def main() -> None:
     if not audio_path.exists():
         raise FileNotFoundError(f"Narration audio not found: {audio_path}")
 
-    image_paths: list[Path] = []
+    # Mixed-media validation: check appropriate asset per media_type (§69)
+    image_paths: list[Path] = []  # kept for backward compatibility but will hold mixed input paths
     for beat in beats:
-        image_path = resolve_video_path(video_dir, str(beat["image"]))
-        if not image_path.exists():
-            raise FileNotFoundError(
-                f"Beat {beat['beat_id']} image not found: {image_path}"
-            )
-        image_paths.append(image_path)
+        mt = str(beat.get("media_type") or "image").lower()
+        if mt == "video":
+            src = beat.get("source") or beat.get("image")
+            if not src:
+                raise ValueError(f"Video beat {beat.get('beat_id')} missing source")
+            p = resolve_video_path(video_dir, str(src))
+            if not p.exists():
+                raise FileNotFoundError(f"Beat {beat['beat_id']} video not found: {p}")
+            image_paths.append(p)  # reuse list for input order (actually mixed)
+        else:
+            src = beat.get("image") or beat.get("source")
+            if not src:
+                raise ValueError(f"Image beat {beat.get('beat_id')} missing image/source")
+            p = resolve_video_path(video_dir, str(src))
+            if not p.exists():
+                raise FileNotFoundError(f"Beat {beat['beat_id']} image not found: {p}")
+            image_paths.append(p)
 
     output_path = (
         args.output.expanduser().resolve()
@@ -321,47 +333,75 @@ def main() -> None:
         str(filter_complex_threads),
     ]
 
-    for beat, image_path in zip(beats, image_paths):
-        beat_duration = float(beat["duration"])
-        command.extend(
-            [
-                "-loop",
-                "1",
-                "-framerate",
-                str(fps),
-                "-t",
-                f"{beat_duration:.6f}",
-                "-i",
-                str(image_path),
-            ]
-        )
+    # Mixed-media inputs: image vs video (§69-70)
+    # Build input list and remember which indices are video
+    media_types: list[str] = []
+    input_paths: list[Path] = []
+    for beat in beats:
+        mt = str(beat.get("media_type") or "image").lower()
+        # legacy beats without media_type -> image
+        if mt not in ("video", "image"):
+            mt = "image"
+        # resolve path: for video use source, for image use image/source
+        if mt == "video":
+            src = beat.get("source") or beat.get("image")
+            if not src:
+                raise ValueError(f"Video beat {beat.get('beat_id')} missing source")
+            path = resolve_video_path(video_dir, str(src))
+            # Flow sources may contain audio — we strip it, so mark as video
+            media_types.append("video")
+            input_paths.append(path)
+        else:
+            src = beat.get("image") or beat.get("source")
+            path = resolve_video_path(video_dir, str(src))
+            media_types.append("image")
+            input_paths.append(path)
 
-    audio_input_index = len(image_paths)
+    for idx, (beat, path, mt) in enumerate(zip(beats, input_paths, media_types)):
+        if not path.exists():
+            raise FileNotFoundError(f"Beat {beat.get('beat_id')} {mt} not found: {path}")
+        dur = float(beat["duration"])
+        if mt == "image":
+            command.extend(["-loop", "1", "-framerate", str(fps), "-t", f"{dur:.6f}", "-i", str(path)])
+        else:
+            # video: strip audio via -an (we also ensure later mapping ignores video audio), normalize via filter
+            # use accurate seek if needed; for now, input as is and trim via filter if source longer than needed
+            command.extend(["-i", str(path)])
+
+    audio_input_index = len(input_paths)
     command.extend(["-i", str(audio_path)])
 
     filter_parts: list[str] = []
     labels: list[str] = []
 
-    for index, beat in enumerate(beats):
+    for index, (beat, mt) in enumerate(zip(beats, media_types)):
         label = f"v{index}"
         labels.append(f"[{label}]")
-
-        motion = str(beat.get("motion") or "still") if motion_enabled else "still"
-        strength = motion_strength if motion_enabled else 0.0
-
-        filter_parts.append(
-            motion_filter(
-                input_index=index,
-                label=label,
-                width=width,
-                height=height,
-                fps=fps,
-                duration=float(beat["duration"]),
-                motion=motion,
-                strength=strength,
-                supersample=motion_supersample,
+        dur = float(beat["duration"])
+        if mt == "video":
+            # Normalize video: scale+pad to target, set SAR, fps, format, trim/pad to exact duration
+            # §70: normalize dimensions, SAR, pixel format, frame rate, strip Flow source audio
+            # We trim to dur via -t on input already, but ensure filter outputs exactly dur
+            # Use fps and scale filters
+            filter_parts.append(
+                f"[{index}:v]scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},setsar=1,fps={fps},format={pixel_format},trim=duration={dur:.6f},setpts=PTS-STARTPTS[{label}]"
             )
-        )
+        else:
+            motion = str(beat.get("motion") or "still") if motion_enabled else "still"
+            strength = motion_strength if motion_enabled else 0.0
+            filter_parts.append(
+                motion_filter(
+                    input_index=index,
+                    label=label,
+                    width=width,
+                    height=height,
+                    fps=fps,
+                    duration=dur,
+                    motion=motion,
+                    strength=strength,
+                    supersample=motion_supersample,
+                )
+            )
 
     concat_output = "vcat"
     filter_parts.append(

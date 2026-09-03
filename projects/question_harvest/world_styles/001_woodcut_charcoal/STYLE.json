@@ -1,0 +1,21 @@
+{
+  "style_id": "woodcut_charcoal_warm",
+  "display_name": "Woodcut Charcoal Warm",
+  "medium_family": "woodcut",
+  "texture_family": "paper grain",
+  "palette_summary": "warm ochres, burnt umber, moss, cream paper",
+  "subject_affinities": [
+    "history",
+    "folk tale",
+    "nature"
+  ],
+  "negative_constraints": "no photorealism, no 3D, no anime",
+  "status": "ready",
+  "created_for_video": null,
+  "created_at": "2026-09-02T19:02:36.934408+00:00",
+  "usage_count": 0,
+  "recent_videos": [],
+  "gemini_model": "nano_banana_pro",
+  "anchor_sha256": "dcd765df07baf55cfc5bf0dabf028bc3dc9b1f94d3fe7a402b22c08f16e54f09",
+  "anchor_path": "style_anchor.png"
+}

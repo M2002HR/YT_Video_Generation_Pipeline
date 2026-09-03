@@ -227,7 +227,11 @@ class OrdakClient:
                 self._recover_before_retry(stage=stage, attempt=attempt, error=exc)
         raise RuntimeError(f"Ordak text stage {stage} exhausted its recovery attempts.")
 
-    def image(self, prompt: str, references: list[Path], *, beat_id: int) -> dict[str, Any]:
+    def image(self, prompt: str, references: list[Path], *, beat_id: int, provider: str = "chatgpt") -> dict[str, Any]:
+        # Provider is selected per content-project (§29): chatgpt for legacy, gemini for question_harvest, flow for video (§3)
+        provider = provider.strip().lower() or "chatgpt"
+        if provider not in {"chatgpt", "gemini", "flow"}:
+            raise RuntimeError(f"Unsupported image provider: {provider!r}")
         reference_readings: list[dict[str, Any]] = []
         files = []
         for reference in references:
@@ -240,7 +244,7 @@ class OrdakClient:
             files.append(("image", (reference.name, content, "image/png")))
         data = {
             "question": prompt,
-            "provider": "chatgpt",
+            "provider": provider,
             "mode": "image_generate",
             "start_new_chat": "true",
             "wait_for_completion": "true",
@@ -581,7 +585,14 @@ Constraints: {constraints}
             self.save()
             started_at, started = utcnow(), time.perf_counter()
             try:
-                job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id)
+                # provider per content-project §3: question_harvest → gemini, others → chatgpt
+                try:
+                    effective_provider = self.content_project.get_provider("image")
+                except Exception:
+                    effective_provider = "chatgpt"
+                if effective_provider not in {"chatgpt", "gemini"}:
+                    effective_provider = "chatgpt"
+                job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id, provider=effective_provider)
                 artifacts = list(job.get("output_images") or [])
                 if not artifacts:
                     raise RuntimeError(f"Beat {beat_id:03d} did not produce a generated artifact.")

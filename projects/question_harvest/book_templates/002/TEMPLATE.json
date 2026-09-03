@@ -1,0 +1,10 @@
+{
+  "template_id": "002",
+  "display_name": "Book Template 002",
+  "camera_angle": "slight_top_down",
+  "page_tilt": "5deg top-down",
+  "crop": "full spread",
+  "aspect": "9:16",
+  "blank_sha256": "a45c03148cb7a81ed675ba8b5f16bd825902efb877fd7a868dfbeede3a729d05",
+  "created_at": "2026-09-02T19:02:36.846009+00:00"
+}

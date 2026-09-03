@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "project_id": "question_harvest",
+  "display_name": "Question Harvest",
+  "description": "A question grows. A book opens. A world begins.",
+  "tagline": "A question grows. A book opens. A world begins.",
+  "pipeline_profile": "bookworld_mixed_media",
+  "status": "production_ready",
+  "providers": {
+    "text": { "provider": "chatgpt", "allow_fallback": false },
+    "image": { "provider": "gemini", "allow_fallback": false, "default_model": "nano_banana_pro" },
+    "video": { "provider": "flow", "allow_fallback": false, "default_model": "gemini_omni_1_1_flash" },
+    "voice": { "provider": "elevenlabs_web", "allow_fallback": false }
+  },
+  "defaults": {
+    "format": "short",
+    "aspect_ratio": "9:16",
+    "duration_min_seconds": 40,
+    "duration_max_seconds": 60,
+    "subtitles": false,
+    "hero_presence_mode": "auto",
+    "world_style_policy": "auto",
+    "gemini_image_model": "nano_banana_pro",
+    "flow_video_model": "gemini_omni_1_1_flash",
+    "flow_resolution": "720p",
+    "opening_a_source_seconds": 6,
+    "opening_b_source_seconds": 4
+  },
+  "default_visual_preset": "001_home_world",
+  "allow_global_visual_preset_fallback": false,
+  "allow_legacy_prompt_fallback": false
+}

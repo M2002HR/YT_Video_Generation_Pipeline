@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "styles": [
+    {
+      "style_id": "woodcut_charcoal_warm",
+      "display_name": "Woodcut Charcoal Warm",
+      "medium_family": "woodcut",
+      "texture_family": "paper grain",
+      "palette_summary": "warm ochres, moss, cream",
+      "status": "ready",
+      "path": "001_woodcut_charcoal",
+      "anchor": "001_woodcut_charcoal/style_anchor.png",
+      "usage_count": 0
+    }
+  ]
+}
