@@ -396,3 +396,59 @@ grep -l FALLBACK_SYNTHETIC videos/*/pipeline/QH_RUNTIME_STATE.json
 
 *این پلن مرجع اجراست. هر تسک انجام‌شده را با شاهد (خروجی دستور/تست) در همین فایل تیک بزنید.*
 
+---
+
+## 9. گزارش پیشرفت (به‌روزشده 2026-09-03)
+
+### ✅ P0 — تثبیت پایه: کامل
+| تسک | شاهد |
+|-----|------|
+| T0.1 | ordak commit `16217d7` + push به `AliBalash/ordak:yt-video-pipeline` ✅ |
+| T0.2 | pointer آپدیت شد، parent commit `4bea092`؛ **push والد ناموفق** (پایین) ⚠️ |
+| T0.3 | ۱۲ کلید به `.env` اضافه شد؛ `ordak-api` restart و health=ok ✅ |
+| T0.4 | ۲۰ عضو جدید `ErrorCode` (FLOW_*/MODEL_*/INVALID_VIDEO_OUTPUT)؛ ۴۳ عضو = ۴۳ descriptor ✅ |
+| T0.5 | policy یکی شد در `scripts/flow_reference_policy.py`؛ `content_projects` فقط re-export ✅ |
+| T0.6 | ۷ ویدیوی مصنوعی (011–017) و ۵ job record پاک شدند ✅ |
+| T0.7 | proxy از `deploy/remote-ordak/ordak-api.service` حذف؛ `YT_TELEGRAM_PROXY_ENABLED=false`؛ Chrome بدون `--proxy-server` ✅ |
+| T0.8 | `book.txt` → `prompts/reference/book_transition_reference_prompt.txt`؛ prompt 09 بازنویسی شد ✅ |
+
+### ✅ P1 — قرارداد انتقال پارامتر: کامل
+| تسک | شاهد |
+|-----|------|
+| T1.1 | `GenerationOptions` + `ReferenceSpec` + `GenerationReceipt` در `app/schemas.py`؛ ۳ ستون DB + migration `20260716_0004` ✅ |
+| T1.2 | `main.py` فیلد `role` per-upload می‌پذیرد؛ رد HTTP 422 برای style role / نقش نامشخص / عدم تطابق تعداد ✅ |
+| T1.3 | `job_manager.create_job(references=, generation=)` + `_attach_generation_receipt` ✅ |
+| T1.4 | hack `[MODEL:...]` از Ordak حذف شد؛ مدل از `job.generation.model` می‌آید ✅ |
+| T1.5 | `scripts/ordak_jobs.py` (client تایپ‌دار: submit/wait/run/download + نقشه‌ی error→state) ✅ |
+
+**تأیید زنده:** `generation` و `references` در `GET /api/jobs/<id>` persist می‌شوند
+(`duration_seconds: 6`, `role: character_sheet`), و سه مسیر رد policy با HTTP 422 پاسخ می‌دهند.
+
+### ✅ P2 (بخشی) — انتخاب مدل Gemini
+`_select_gemini_image_model` بازنویسی شد: خواندن label از **خودِ کنترل مدل** (نه
+`body.innerText`)، مقایسه‌ی نرمال‌شده، تأیید پس از انتخاب با ۴ بار تلاش،
+و خطای ساختاری `MODEL_NOT_AVAILABLE`/`MODEL_SELECTION_FAILED` **بدون swallow**.
+تست واحد: `Nano Banana Pro`→`nano_banana_pro`, `Nano Banana 2`→`nano_banana_2`,
+`2.5 Flash`→`None` (هرگز به‌عنوان Nano Banana خوانده نمی‌شود).
+
+### ⚠️ دو بلاکر که نیاز به اقدام شما دارد
+
+1. **push والد رد شد** — حساب `gh` روی این سرور `AliBalash` است و به
+   `M2002HR/YT_Video_Generation_Pipeline` دسترسی write ندارد:
+   `remote: Permission to M2002HR/... denied to AliBalash` (HTTP 403).
+   کامیت‌ها **لوکال محفوظ‌اند** (`4bea092`, `4aae51f`). برای اتوماسیون push والد یکی از این دو:
+   - `AliBalash` را collaborator مخزن والد کنید، یا
+   - یک token با دسترسی write برای `M2002HR` بدهید.
+   (push ordak کار می‌کند و انجام شد.)
+
+2. **لاگین provider‌ها تأیید نشده** — `/api/diagnostics` برای هر سه
+   (`chatgpt`, `gemini`, `flow`) `logged_in: false` و `open_tabs: []` می‌دهد.
+   `require_ready` الان صادقانه آن‌ها را «unverified» گزارش می‌کند (نه «ready»).
+   برای هر تولید واقعی، ورود دستی در noVNC لازم است.
+
+### ⏭ مرحله‌ی بعد
+P3 (Flow واقعی: capability inspector، verify مدل/aspect/duration/resolution،
+آپلود frame با نقش، credit safety، دانلود قطعی) → P4 (حذف synthetic) → P5 (سینک STT)
+→ P6 (تست‌ها) → P9 (پنل/تلگرام/منابع).
+
+
