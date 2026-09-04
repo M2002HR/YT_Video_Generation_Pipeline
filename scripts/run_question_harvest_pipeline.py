@@ -588,28 +588,11 @@ def stage_retention(runner: Runner, project: Path, content_project: Any, brief: 
     return plan
 
 
-def _recent_history(limit: int = 4) -> list[dict[str, Any]]:
-    """The last few episodes, for the anti-repetition heuristics (§35)."""
-    catalog = ROOT / "projects" / "question_harvest" / "VIDEOS.json"
-    if not catalog.is_file():
-        return []
-    try:
-        data = load_json(catalog)
-    except ValueError:
-        return []
-    episodes = data.get("videos") if isinstance(data, dict) else data
-    if not isinstance(episodes, list):
-        return []
-    keys = (
-        "video_id",
-        "topic",
-        "opening_activity",
-        "opening_location",
-        "camera_pattern",
-        "book_template_id",
-        "world_style_id",
-    )
-    return [{key: item.get(key) for key in keys if key in item} for item in episodes[-limit:]]
+def _recent_history(project_id: str = "question_harvest", limit: int = 4) -> list[dict[str, Any]]:
+    """The last few episodes' traits, for the anti-repetition heuristics (§35)."""
+    from episode_history import recent
+
+    return recent(project_id, limit)
 
 
 def stage_episode_director(
@@ -621,16 +604,43 @@ def stage_episode_director(
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
-    prompt = fill(
+    from episode_history import avoidance_note, repeated_traits
+
+    history = _recent_history(getattr(content_project, "project_id", "question_harvest"))
+    base_prompt = fill(
         resolve_prompt(content_project, "03_episode_director.md"),
         TOPIC=topic,
         CREATIVE_BRIEF=brief,
         FINAL_SCRIPT=plan["full_narration"],
-        RECENT_HISTORY=json.dumps(_recent_history(), ensure_ascii=False),
+        RECENT_HISTORY=json.dumps(history, ensure_ascii=False),
     )
-    data = runner.json(stage, prompt)
-    if not isinstance(data, dict) or not data.get("opening_activity"):
-        raise StageFailure(stage, "FAILED_VALIDATION", "The episode plan has no opening_activity.")
+    prompt = base_prompt
+    if history:
+        prompt = f"{base_prompt}\n\n{avoidance_note(history)}"
+
+    # §35 is a hard rule, not a hint: an opening that repeats a recent episode is sent back
+    # once with the specific repeat named, and only then treated as a validation failure.
+    data: Any = None
+    repeats: dict[str, str] = {}
+    for attempt in range(2):
+        data = runner.json(f"{stage}_try{attempt + 1}" if attempt else stage, prompt)
+        if not isinstance(data, dict) or not data.get("opening_activity"):
+            raise StageFailure(stage, "FAILED_VALIDATION", "The episode plan has no opening_activity.")
+        repeats = repeated_traits(data, history)
+        if not repeats:
+            break
+        named = ", ".join(f"{key}={value!r}" for key, value in repeats.items())
+        prompt = (
+            f"{base_prompt}\n\n{avoidance_note(history)}\n\n"
+            f"Your previous plan repeated: {named}. Choose different ones and return the same JSON shape."
+        )
+    if repeats:
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            "The episode plan still repeats a recent episode after a correction attempt: "
+            + ", ".join(f"{key}={value!r}" for key, value in repeats.items()),
+        )
     save_json(target, data)
     runner.stage_done(stage, started, str(data.get("opening_activity")), activity=data.get("opening_activity"))
     return data
@@ -663,6 +673,40 @@ def stage_world_style_director(
     save_json(target, data)
     runner.stage_done(stage, started, f"{data.get('style_id')} ({data.get('decision')})", style_id=data.get("style_id"))
     return data
+
+
+def stage_record_history(
+    runner: Runner,
+    content_project: Any,
+    video_id: str,
+    episode_plan: dict[str, Any],
+    world_style_plan: dict[str, Any],
+) -> None:
+    """Write this episode's traits into VIDEOS.json so the next one can avoid them (§35).
+
+    This runs as soon as the traits are decided rather than at publication, so an episode
+    that fails later still constrains the following one instead of vanishing from history.
+    """
+    stage = "episode_history"
+    from episode_history import EpisodeHistoryError, record_traits, traits_from_plans
+
+    started = runner.stage_start(stage)
+    project_id = getattr(content_project, "project_id", "question_harvest")
+    traits = traits_from_plans(episode_plan, world_style_plan)
+    try:
+        path = record_traits(project_id, video_id, traits)
+    except (EpisodeHistoryError, OSError) as exc:
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            f"Could not record the episode traits in projects/{project_id}/VIDEOS.json: {exc}",
+        ) from exc
+    runner.stage_done(
+        stage,
+        started,
+        str(path.relative_to(ROOT)),
+        **{key: value for key, value in traits.items() if value is not None},
+    )
 
 
 def stage_world_style_anchor(
@@ -1386,6 +1430,7 @@ def main() -> int:
                 runner, project, content_project, args.topic, plan, episode_plan
             )
             world_style_anchor = stage_world_style_anchor(runner, project, content_project, world_style_plan)
+            stage_record_history(runner, content_project, args.video_id, episode_plan, world_style_plan)
 
             body_seconds = max(20.0, plan["word_count"] * 0.42 - (opening_a_seconds + opening_b_seconds))
             visual_plan = stage_visual_plan(

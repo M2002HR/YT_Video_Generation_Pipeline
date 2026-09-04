@@ -62,10 +62,27 @@ def register_content_project_video(project: Path, state: dict[str, Any]) -> Path
     payload = json.loads(registry.read_text(encoding="utf-8"))
     if payload.get("project_id") != content_project or not isinstance(payload.get("videos"), list):
         raise RuntimeError(f"Invalid content-project video registry: {registry.relative_to(ROOT)}")
-    videos = [str(value) for value in payload["videos"]]
-    if project.name not in videos:
-        videos.append(project.name)
-        payload["videos"] = sorted(set(videos), key=lambda value: (int(value.split("_", 1)[0]) if value.split("_", 1)[0].isdigit() else 10**9, value))
+    # Entries carry the anti-repetition traits (§35), and older registries listed bare
+    # names; both shapes are read, and an existing entry keeps the traits already on it.
+    entries = [
+        dict(value) if isinstance(value, dict) else {"video_id": str(value)}
+        for value in payload["videos"]
+    ]
+    if not any(str(entry.get("video_id")) == project.name for entry in entries):
+        entries.append({"video_id": project.name})
+    ordered = sorted(
+        entries,
+        key=lambda entry: (
+            int(str(entry.get("video_id", "")).split("_", 1)[0])
+            if str(entry.get("video_id", "")).split("_", 1)[0].isdigit()
+            else 10**9,
+            str(entry.get("video_id", "")),
+        ),
+    )
+    # Written whenever the normalized list differs, so a legacy registry is upgraded once
+    # instead of leaving later readers to handle two shapes forever.
+    if ordered != payload["videos"]:
+        payload["videos"] = ordered
         write_json(registry, payload)
     return registry
 
