@@ -222,6 +222,43 @@ def word_count(text: str) -> int:
 # --------------------------------------------------------------------- provider plumbing
 
 
+def require_verified_image_model(stage: str, model: str, receipt: dict[str, Any] | None) -> None:
+    """A Gemini image is only usable if the UI confirmed the model that made it (§8, §18).
+
+    ``model_verified`` cannot be set without an observed label — the receipt schema refuses
+    that — so an unverified receipt means Ordak never read the model control, and the image
+    could have come from any model Gemini happened to have selected.
+    """
+    data = dict(receipt or {})
+    if not data.get("model_verified"):
+        raise StageFailure(
+            stage,
+            "FAILED_MODEL_SELECTION",
+            f"{stage}: Gemini did not confirm {model!r} in its own UI "
+            f"(observed label: {data.get('actual_model_label')!r}), so this image cannot be "
+            "accepted as produced by the requested model.",
+        )
+    if model == "nano_banana_pro" and not data.get("pro_regeneration_used"):
+        raise StageFailure(
+            stage,
+            "FAILED_MODEL_SELECTION",
+            f"{stage}: Nano Banana Pro was requested but the receipt shows no Pro "
+            "regeneration, and a Nano Banana 2 image is never accepted as Pro (§6).",
+        )
+
+
+def require_verified_video_model(stage: str, model: str, receipt: dict[str, Any] | None) -> None:
+    """A Flow clip is only usable if Flow confirmed the model that rendered it (§18)."""
+    data = dict(receipt or {})
+    if not data.get("model_verified"):
+        raise StageFailure(
+            stage,
+            "FAILED_MODEL_SELECTION",
+            f"{stage}: Flow did not confirm {model!r} in its own settings menu "
+            f"(observed label: {data.get('actual_model_label')!r}).",
+        )
+
+
 class Runner:
     """One place where every provider call happens, so the rules hold everywhere.
 
@@ -369,6 +406,7 @@ class Runner:
                 "FAILED_VALIDATION",
                 f"{stage}: the downloaded image is not a decodable image ({destination}).",
             )
+        require_verified_image_model(stage, model, result.generation_receipt)
         return result
 
     def video(
@@ -411,6 +449,7 @@ class Runner:
                 "FAILED_VALIDATION",
                 f"{stage}: the downloaded file is not a playable video ({destination}).",
             )
+        require_verified_video_model(stage, model, result.generation_receipt)
         return result
 
 
