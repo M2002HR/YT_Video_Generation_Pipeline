@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import textwrap
 from pathlib import Path
@@ -185,13 +186,81 @@ def wrap_caption(text: str, max_chars_per_line: int, max_lines: int) -> str:
     return r"\N".join(lines)
 
 
+def caption_token(value: str) -> str:
+    """The comparable form of a word: letters and digits only, lowercased."""
+    return re.sub(r"[^a-z0-9']+", "", str(value).lower())
+
+
+def load_word_timings(video_dir: Path) -> list[dict[str, Any]]:
+    """Measured per-word timings, or ``[]`` when the aligner did not write any."""
+    path = Path(video_dir) / "timing" / "WORD_TIMINGS.json"
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    words = payload.get("words") or []
+    return [
+        {
+            "token": caption_token(word.get("token") or word.get("text") or ""),
+            "start": float(word.get("start") or 0.0),
+            "end": float(word.get("end") or 0.0),
+        }
+        for word in words
+        if caption_token(word.get("token") or word.get("text") or "")
+    ]
+
+
+def _match_chunk_words(
+    chunk: list[str],
+    words: list[dict[str, Any]],
+    cursor: int,
+    *,
+    lookahead: int = 12,
+) -> tuple[tuple[float, float] | None, int]:
+    """Find the spoken span of ``chunk`` starting near ``cursor`` in ``words``.
+
+    Returns the measured ``(start, end)`` and the new cursor. A chunk whose words cannot be
+    located returns ``None`` so the caller can fall back for that chunk alone rather than
+    abandoning real timings for the whole beat.
+    """
+    tokens = [caption_token(word) for word in chunk]
+    tokens = [token for token in tokens if token]
+    if not tokens:
+        return None, cursor
+    for offset in range(0, lookahead + 1):
+        begin = cursor + offset
+        if begin >= len(words):
+            break
+        matched: list[dict[str, Any]] = []
+        index = begin
+        for token in tokens:
+            # Tolerate a word the transcriber dropped: skip at most one observed word
+            # per expected token before giving up on this alignment.
+            found = None
+            for probe in range(index, min(index + 2, len(words))):
+                if words[probe]["token"] == token:
+                    found = probe
+                    break
+            if found is None:
+                matched = []
+                break
+            matched.append(words[found])
+            index = found + 1
+        if matched:
+            return (matched[0]["start"], matched[-1]["end"]), index
+    return None, cursor
+
+
 def build_subtitle_cues(
     beats: list[dict[str, Any]],
     subtitle_cfg: dict[str, Any],
+    word_timings: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     max_words = int(subtitle_cfg.get("max_words_per_cue", 6))
     max_chars = int(subtitle_cfg.get("max_chars_per_line", 34))
     max_lines = int(subtitle_cfg.get("max_lines", 2))
+    words = list(word_timings or [])
+    word_cursor = 0
 
     cues: list[dict[str, Any]] = []
 
@@ -215,19 +284,31 @@ def build_subtitle_cues(
 
         cursor = speech_start
         for index, (chunk, weight) in enumerate(zip(chunks, weights)):
-            if index == len(chunks) - 1:
-                cue_end = speech_end
+            measured = None
+            if words:
+                measured, word_cursor = _match_chunk_words(chunk, words, word_cursor)
+
+            if measured is not None:
+                cue_start, cue_end = measured
+                timing_source = "word"
             else:
-                cue_end = cursor + speech_duration * (weight / total_weight)
+                cue_start = cursor
+                cue_end = (
+                    speech_end
+                    if index == len(chunks) - 1
+                    else cursor + speech_duration * (weight / total_weight)
+                )
+                timing_source = "proportional"
 
             plain = " ".join(chunk)
             cues.append(
                 {
                     "beat_id": int(beat["beat_id"]),
-                    "start": round(cursor, 3),
+                    "start": round(cue_start, 3),
                     "end": round(cue_end, 3),
                     "text": plain,
                     "ass_text": wrap_caption(plain, max_chars, max_lines),
+                    "timing_source": timing_source,
                 }
             )
             cursor = cue_end
@@ -290,6 +371,27 @@ def escape_ass_text(value: str) -> str:
     return value.replace("{", r"\{").replace("}", r"\}")
 
 
+#: Share of the frame height the platform UI covers at the bottom of a vertical short.
+#: Captions inside that band get hidden behind the progress bar and the action buttons.
+PORTRAIT_BOTTOM_SAFE_FRACTION = 0.12
+LANDSCAPE_BOTTOM_SAFE_FRACTION = 0.08
+
+
+def subtitle_margin_v(subtitle_cfg: dict[str, Any], height: int) -> int:
+    """Bottom margin in pixels, respecting an explicit value and the safe area otherwise.
+
+    The old fixed 90px sat inside the Shorts UI band on a 1920-tall frame, which put the
+    last line of every caption behind the seek bar.
+    """
+    configured = subtitle_cfg.get("margin_v")
+    if configured is not None:
+        return max(0, int(configured))
+    fraction = (
+        PORTRAIT_BOTTOM_SAFE_FRACTION if height >= 1.2 * 1080 else LANDSCAPE_BOTTOM_SAFE_FRACTION
+    )
+    return max(48, round(height * fraction))
+
+
 def write_ass(
     path: Path,
     *,
@@ -301,7 +403,7 @@ def write_ass(
     font_name = str(subtitle_cfg.get("font_name", "DejaVu Sans"))
     font_size = int(subtitle_cfg.get("font_size", 56))
     bold = -1 if bool(subtitle_cfg.get("bold", True)) else 0
-    margin_v = int(subtitle_cfg.get("margin_v", 90))
+    margin_v = subtitle_margin_v(subtitle_cfg, height)
     outline = float(subtitle_cfg.get("outline", 3))
     shadow = float(subtitle_cfg.get("shadow", 0))
 
@@ -554,8 +656,12 @@ def main() -> None:
         if isinstance(profile.get("subtitles"), dict)
         else {}
     )
-    cues = build_subtitle_cues(beats, subtitle_cfg)
+    word_timings = load_word_timings(video_dir)
+    cues = build_subtitle_cues(beats, subtitle_cfg, word_timings)
     cues, subtitle_adjustments = normalize_subtitle_cue_boundaries(cues)
+    proportional_cues = [
+        index for index, cue in enumerate(cues) if cue.get("timing_source") != "word"
+    ]
 
     resolution = profile.get("resolution") or {}
     width = int(resolution.get("width", 1920))
@@ -587,6 +693,9 @@ def main() -> None:
             ],
             "timestamp_overlap_adjustments": adjustments,
             "subtitle_overlap_adjustments": subtitle_adjustments,
+            "subtitle_word_timings_available": bool(word_timings),
+            "subtitle_cues_from_measured_words": len(cues) - len(proportional_cues),
+            "subtitle_cues_estimated": len(proportional_cues),
         },
     }
 

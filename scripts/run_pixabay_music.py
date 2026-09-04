@@ -429,6 +429,44 @@ def resumable_selected_url(meta_path: Path, provider: str) -> str | None:
     return valid_track_url(str(meta.get("source_url") or ""), provider)
 
 
+def write_music_plan(
+    project: Path,
+    provider: str,
+    prompt: str,
+    narration_seconds: float,
+    *,
+    source_url: str | None = None,
+    file: str | None = None,
+    status: str = "SELECTED",
+) -> None:
+    """Record the plan beside the selection receipt (T9.7).
+
+    One bed today; the plan is a segment list so a second cue is an appended entry rather
+    than a rewrite. A plan that will not validate is reported and skipped — music must never
+    be the reason an otherwise finished episode fails.
+    """
+    from music_plan import MusicPlanError, single_bed, write_plan
+
+    if narration_seconds <= 0:
+        print("music plan skipped: narration duration is unknown", flush=True)
+        return
+    try:
+        write_plan(
+            project,
+            single_bed(
+                narration_seconds=narration_seconds,
+                provider=provider,
+                query_prompt=prompt,
+                source_url=source_url,
+                file=file,
+            ),
+            narration_seconds=narration_seconds,
+            status=status,
+        )
+    except (MusicPlanError, OSError) as exc:
+        print(f"music plan warning: {type(exc).__name__}: {exc}", flush=True)
+
+
 def main() -> None:
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
     parser = argparse.ArgumentParser(description="Choose/download background music through ChatGPT and the visible browser.")
@@ -462,6 +500,7 @@ def main() -> None:
             if url is None:
                 raise RuntimeError(f"No valid {args.provider} track URL was selected.")
             dump(meta_path, {"schema_version": 2, "provider": f"{provider_name} web UI", "source_url": url, "selection_prompt": prompt, "video_context_sha256": hashlib.sha256(context.encode()).hexdigest(), "narration_duration_seconds": duration, "selected_at": utcnow(), "status": "SELECTED"})
+            write_music_plan(project, args.provider, prompt, duration, source_url=url)
             notifier.send(f"{provider_name} music selected", ["🎵 Background track chosen", f"🔗 Source: {url}"])
             browser.select_or_open(url)
             deadline = time.monotonic() + max(15.0, float(os.getenv("YT_MUSIC_PROVIDER_READY_TIMEOUT_SECONDS", "45")))
@@ -488,6 +527,7 @@ def main() -> None:
                     destination = music_dir / f"background{download.suffix.lower()}"
                     track_duration = install_audio(download, destination, move=True)
                     dump(meta_path, {"schema_version": 2, "provider": f"{provider_name} web UI", "source_url": url, "downloaded_at": utcnow(), "status": "DONE", "selection_mode": "BROWSER", "file": str(destination.relative_to(project)), "bytes": destination.stat().st_size, "sha256": file_sha256(destination), "duration_seconds": round(track_duration, 3), "license": f"{provider_name} source license; verify current source page before publication."})
+                    write_music_plan(project, args.provider, prompt, duration, source_url=url, file=str(destination.relative_to(project)), status="DONE")
                     notifier.stage_complete(f"{provider_name} background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
                     print(f"{provider_name.upper()} MUSIC: PASS\nFile: {destination}", flush=True)
                     return

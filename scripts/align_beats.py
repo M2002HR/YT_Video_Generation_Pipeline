@@ -690,6 +690,42 @@ def write_opening_timing(
     return path
 
 
+def write_word_timings(
+    video_dir: Path,
+    audio: Path,
+    stt_metadata: dict[str, Any],
+    duration: float,
+    words: list[WordStamp],
+) -> Path:
+    """Persist the measured per-word timings (T9.8).
+
+    Subtitles are placed on the words that were actually spoken, so those timings have to
+    outlive this process instead of being recomputed from character counts later.
+    """
+    timing_dir = video_dir / "timing"
+    timing_dir.mkdir(parents=True, exist_ok=True)
+    path = timing_dir / "WORD_TIMINGS.json"
+    payload = {
+        "schema_version": 1,
+        "audio": str(audio.relative_to(video_dir)) if audio.is_relative_to(video_dir) else str(audio),
+        "audio_duration_seconds": round(duration, 3),
+        "backend": stt_metadata.get("backend"),
+        "timestamp_source": stt_metadata.get("timestamp_source"),
+        "word_count": len(words),
+        "words": [
+            {
+                "text": word.text,
+                "token": word.token,
+                "start": round(float(word.start), 3),
+                "end": round(float(word.end), 3),
+            }
+            for word in words
+        ],
+    }
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return path
+
+
 def write_outputs(
     video_dir: Path,
     audio: Path,
@@ -697,6 +733,7 @@ def write_outputs(
     transcript: str,
     duration: float,
     aligned: list[dict],
+    words: list[WordStamp] | None = None,
 ) -> tuple[Path, Path]:
     timing_dir = video_dir / "timing"
     timing_dir.mkdir(parents=True, exist_ok=True)
@@ -709,9 +746,12 @@ def write_outputs(
         "audio_duration_seconds": round(duration, 3),
         "stt": stt_metadata,
         "transcript": transcript,
+        "word_count": len(words or []),
         "beats": aligned,
     }
     json_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if words:
+        write_word_timings(video_dir, audio, stt_metadata, duration, words)
 
     lines = [
         "# Beat Timings",
@@ -861,6 +901,7 @@ def main() -> None:
         transcript,
         duration,
         aligned,
+        words,
     )
 
     plan = load_script_plan(video_dir)

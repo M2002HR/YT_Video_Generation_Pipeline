@@ -150,6 +150,28 @@ def publish_git_artifacts(project: Path, state_path: Path, state: dict[str, Any]
     raise RuntimeError(f"Automatic Git publication failed after 4 attempts: {last_error}")
 
 
+def music_segments(project: Path, fallback_track: Path) -> list[dict[str, Any]]:
+    """The music timeline from MUSIC_PLAN.json, or the single downloaded track."""
+    try:
+        from music_plan import audio_mix_music_entries, load_plan
+
+        segments, _payload = load_plan(project)
+        entries = audio_mix_music_entries(segments)
+        if entries:
+            return entries
+    except Exception:
+        pass
+    return [{
+        "file": str(fallback_track.relative_to(project)),
+        "start_seconds": 0.0,
+        "end_seconds": None,
+        "gain_db": -20.0,
+        "fade_in_sec": 0.8,
+        "fade_out_sec": 1.4,
+        "segment_id": "bed_001",
+    }]
+
+
 def ensure_audio_mix_profile(project: Path) -> Path:
     """Create the conservative music-only profile required by completion."""
     profile = project / "audio_mix" / "AUDIO_MIX_PROFILE.json"
@@ -164,7 +186,9 @@ def ensure_audio_mix_profile(project: Path) -> Path:
         "schema_version": 1,
         "baseline_video": "assets/renders/final.mp4",
         "output_video": "assets/renders/polished.mp4",
-        "music": {"enabled": True, "file": str(tracks[0].relative_to(project)), "gain_db": -20.0, "loop": True, "fade_in_sec": 0.8, "fade_out_sec": 1.4, "ducking": {"enabled": True, "threshold": 0.025, "ratio": 8.0, "attack_ms": 18, "release_ms": 320}},
+        # ``file`` stays for the current single-bed mixer; ``segments`` is what a second cue
+        # will use, and it comes straight from MUSIC_PLAN.json when one exists (T9.7).
+        "music": {"enabled": True, "file": str(tracks[0].relative_to(project)), "segments": music_segments(project, tracks[0]), "gain_db": -20.0, "loop": True, "fade_in_sec": 0.8, "fade_out_sec": 1.4, "ducking": {"enabled": True, "threshold": 0.025, "ratio": 8.0, "attack_ms": 18, "release_ms": 320}},
         "sfx": {"enabled": False, "events": []},
         "loudness": {"enabled": True, "integrated_lufs": -14.0, "true_peak_db": -1.5, "lra": 11.0},
     }, indent=2) + "\n", encoding="utf-8")
@@ -201,7 +225,9 @@ def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
         # while niceness keeps the interactive services schedulable.
         "resource_limits": {"ffmpeg_threads": 2, "filter_threads": 2, "filter_complex_threads": 2},
         "motion": {"enabled": True, "strength": 0.035, "supersample": 2, "cycle": ["zoom_in", "still", "zoom_out", "slow_zoom_in"]},
-        "subtitles": {"enabled": True, "font_name": "DejaVu Sans", "font_size": 56, "bold": True, "margin_v": 90, "outline": 3, "shadow": 0, "max_words_per_cue": 6, "max_chars_per_line": 34, "max_lines": 2},
+        # margin_v is omitted on purpose: build_timeline derives it from the frame height so
+        # captions clear the platform UI band at the bottom of a vertical short (T9.8).
+        "subtitles": {"enabled": True, "font_name": "DejaVu Sans", "font_size": 56, "bold": True, "outline": 3, "shadow": 0, "max_words_per_cue": 6, "max_chars_per_line": 34, "max_lines": 2},
     }, indent=2) + "\n", encoding="utf-8")
     return profile
 
