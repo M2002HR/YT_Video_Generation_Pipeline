@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -95,6 +96,17 @@ def main() -> int:
     parser.add_argument("--aspect-ratio", default="9:16")
     parser.add_argument("--music-provider", default="mixkit")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
+    parser.add_argument(
+        "--commit",
+        action="store_true",
+        help="Commit and push the finished artifacts after both QC gates pass (§76, §111).",
+    )
+    parser.add_argument(
+        "--resource-budget",
+        type=float,
+        default=float(os.getenv("YT_RENDER_RESOURCE_BUDGET", "0.8")),
+        help="Share of the machine the render may use (default 0.8).",
+    )
     args = parser.parse_args()
 
     from content_projects import video_slug
@@ -167,9 +179,14 @@ def main() -> int:
     ensure_audio_mix_profile(project)
     apply_subtitle_preference(ensure_render_profile(project, args.aspect_ratio), args.creative_brief)
 
-    completion = [python, "scripts/run_completion_pipeline.py", str(project)]
+    completion = [
+        python, "scripts/run_completion_pipeline.py", str(project),
+        "--resource-budget", f"{args.resource_budget:.3f}",
+    ]
     if args.publish:
         completion.append("--publish")
+    if args.commit:
+        completion.append("--commit")
     run(completion)
 
     print("FULL QH PIPELINE: PASS", flush=True)

@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Launch panel for the full video pipeline — now with Question Harvest §§62-64."""
+"""Single-page launch and monitoring panel for the video pipeline (§§62-64, T9.1/T9.2).
+
+Official address: **http://<host>:4141/** behind nginx basic auth (4144 is kept as a
+legacy alias). Everything happens on one page: launch, provider health, a live log tail,
+and resume — no navigation, so a long run can be watched from where it was started.
+
+Locked choices (text=ChatGPT, image=Gemini, video=Flow) are rendered as disabled controls
+rather than editable ones, so the UI cannot suggest a combination the pipeline would reject.
+"""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +23,7 @@ from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlparse
 
 from content_projects import (
     DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project,
@@ -26,6 +34,11 @@ ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
 PREFERRED_CONTENT_PROJECT = "question_harvest"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
+
+#: Where Ordak answers, for the provider badges.
+ORDAK_BASE_URL = os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
+PROVIDERS = ("chatgpt", "gemini", "flow")
+JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
 
 
 def utcnow() -> str:
@@ -130,6 +143,102 @@ def reconcile_scheduled_resumes() -> None:
         except (KeyError, OSError, subprocess.SubprocessError, json.JSONDecodeError):
             continue
 
+def pipeline_command(record: dict) -> list[str]:
+    """The command that runs one episode. Launch and resume must not diverge (§78)."""
+    content_project = str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)
+    project = ROOT / str(record["project"])
+    creative_brief = ROOT / str(record["creative_brief"])
+    voice_profile = ROOT / str(record["voice_profile"])
+    if content_project == "question_harvest":
+        return [
+            sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
+            "--topic", str(record["topic"]),
+            "--video-id", str(record["video_id"]),
+            "--content-project", content_project,
+            "--creative-brief", str(creative_brief),
+            "--voice-profile", str(voice_profile),
+            "--aspect-ratio", str(record.get("aspect_ratio") or "9:16"),
+            "--music-provider", str(record.get("music_provider") or "mixkit"),
+            "--publish",
+        ] + (["--commit"] if record.get("commit_artifacts") else [])
+    return [
+        sys.executable, "-u", "scripts/run_full_video_pipeline.py",
+        "--content-project", content_project,
+        "--topic", str(record["topic"]),
+        "--video-id", str(record["video_id"]),
+        "--min-duration-seconds", str(record.get("duration_min_seconds") or 40),
+        "--max-duration-seconds", str(record.get("duration_max_seconds") or 60),
+        "--aspect-ratio", str(record.get("aspect_ratio") or "9:16"),
+        "--voice-profile", str(voice_profile),
+        "--creative-brief", str(creative_brief),
+        "--music-provider", str(record.get("music_provider") or "mixkit"),
+    ]
+
+
+def provider_status() -> dict:
+    """Ordak's own view of each provider session, for the badges (§9.2).
+
+    An unreachable Ordak is reported as unreachable rather than as "all fine": the panel
+    must never imply a provider is ready when nothing confirmed it.
+    """
+    try:
+        import httpx
+
+        response = httpx.get(f"{ORDAK_BASE_URL}/api/diagnostics", timeout=6, trust_env=False)
+        data = response.json() if response.status_code == 200 else {}
+    except Exception as exc:
+        return {
+            "reachable": False,
+            "error": f"{type(exc).__name__}: {exc}"[:160],
+            "chrome_running": None,
+            "providers": {name: {"state": "unknown", "logged_in": None} for name in PROVIDERS},
+        }
+    sessions = data.get("provider_sessions") or {}
+    return {
+        "reachable": True,
+        "error": "",
+        "chrome_running": bool(data.get("chrome_running")),
+        "providers": {
+            name: {
+                "state": str((sessions.get(name) or {}).get("login_state") or "unknown"),
+                "logged_in": (sessions.get(name) or {}).get("logged_in"),
+                "tabs": len((sessions.get(name) or {}).get("open_tabs") or []),
+            }
+            for name in PROVIDERS
+        },
+    }
+
+
+def pipeline_state_of(record: dict) -> dict:
+    """The orchestrator's own state for a job, when it has written one (§81)."""
+    try:
+        path = ROOT / str(record.get("project") or "") / "pipeline" / "QH_RUNTIME_STATE.json"
+        state = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return {}
+    stages = state.get("stages") or {}
+    running = [name for name, entry in stages.items() if entry.get("status") == "RUNNING"]
+    return {
+        "pipeline_state": state.get("pipeline_state"),
+        "stage_count": len(stages),
+        "done": sum(1 for entry in stages.values() if entry.get("status") in ("DONE", "REUSED")),
+        "running": running[0] if running else None,
+    }
+
+
+def job_records(jobs_dir: Path, limit: int = 12) -> list[dict]:
+    records: list[dict] = []
+    for path in sorted(jobs_dir.glob("*.json"), reverse=True)[:limit]:
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        record["_pipeline"] = pipeline_state_of(record)
+        record["_resumable"] = record.get("status") not in ("RUNNING",) and bool(record.get("project"))
+        records.append(record)
+    return records
+
+
 def start_stuck_job_reconciler(interval: int = 30) -> None:
     """Background thread to periodically reconcile stuck jobs — permanent anti-hang (§81)."""
     def loop() -> None:
@@ -158,20 +267,33 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(encoded)))
         self.end_headers(); self.wfile.write(encoded)
 
+    def send_json(self, status: int, payload: dict) -> None:
+        encoded = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(encoded)))
+        self.end_headers(); self.wfile.write(encoded)
+
+    def log_tail(self, job_id: str, offset: int) -> dict:
+        """Incremental log bytes, so the page can tail without refetching megabytes."""
+        log = self.jobs_dir / f"{job_id}.log"
+        if not log.exists():
+            return {"offset": 0, "text": "", "waiting": True}
+        size = log.stat().st_size
+        start = min(max(offset, 0), size)
+        if size - start > 200_000:  # a page that fell far behind gets the tail, not everything
+            start = size - 200_000
+        with log.open("rb") as handle:
+            handle.seek(start)
+            chunk = handle.read()
+        return {"offset": size, "text": chunk.decode("utf-8", errors="replace"), "waiting": False}
+
     def page(self, message: str = "") -> str:
-        jobs = []
-        for path in sorted(self.jobs_dir.glob("*.json"), reverse=True)[:12]:
-            try:
-                job = json.loads(path.read_text(encoding="utf-8"))
-                if job.get("status") == "RUNNING" and isinstance(job.get("pid"), int):
-                    if not pid_is_live(job["pid"]):
-                        log = self.jobs_dir / f"{job.get('job_id')}.log"
-                        text = log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
-                        job["status"] = "DONE" if ("FULL VIDEO PIPELINE: PASS" in text or "QH PIPELINE BODY IMAGES" in text or "COMPLETION PIPELINE: PASS" in text) else "FAILED"
-                        job["completed_at"] = utcnow(); write_json(path, job)
-                jobs.append(job)
-            except Exception: continue
-        rows = "".join(f"<tr><td>{html.escape(str(j.get('video_id','')))}</td><td>{html.escape(str(j.get('content_project', DEFAULT_CONTENT_PROJECT)))}</td><td>{html.escape(str(j.get('topic','')))}</td><td>{html.escape(str(j.get('status','QUEUED')))}</td><td><a href='/logs/{html.escape(str(j.get('job_id','')))}'>log</a></td></tr>" for j in jobs) or "<tr><td colspan='5'>No launches yet.</td></tr>"
+        # Status of defunct RUNNING jobs is settled by the background reconciler, so the
+        # page only reads; it never has to decide whether a pid is still alive.
+        reconcile_stuck_jobs_once()
+        jobs = job_records(self.jobs_dir)
         project_options = "".join(f"<option value='{html.escape(p.project_id)}'{' selected' if p.project_id == PREFERRED_CONTENT_PROJECT else ''}>{html.escape(p.display_name)}</option>" for p in list_content_projects())
         return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline — Question Harvest</title>
 <style>
@@ -182,8 +304,21 @@ table{{width:100%;border-collapse:collapse;margin-top:28px}}td,th{{padding:8px;b
 fieldset{{border:1px solid #334;margin:16px 0;padding:14px 14px 6px;border-radius:6px}}legend{{padding:0 8px;color:#8ab4ff;font-weight:600}}
 .notice{{background:#1e293b;padding:10px;border-radius:6px;margin:12px 0;font-size:14px;border-left:4px solid #58c}}
 .badge{{display:inline-block;background:#2a3a5a;color:#8ab4ff;padding:2px 7px;border-radius:10px;font-size:12px;margin-left:6px}}
+.pill{{display:inline-block;padding:2px 9px;border-radius:11px;font-size:12px;font-weight:600;margin-right:6px}}
+.pill.ok{{background:#12351f;color:#7fdb9a;border:1px solid #2a6b41}}
+.pill.warn{{background:#3a2f12;color:#e8c37f;border:1px solid #6b552a}}
+.pill.bad{{background:#3a1616;color:#ff9c9c;border:1px solid #6b2a2a}}
+#status{{background:#161b28;border:1px solid #2a344a;border-radius:6px;padding:10px 12px;margin:14px 0}}
+button.ghost{{background:transparent;color:#8ab4ff;border:1px solid #2a344a;padding:4px 10px;font-size:13px}}
+button.ghost:hover{{background:#1a2030}}
+#logtail{{background:#0b0e14;border:1px solid #2a344a;border-radius:6px;padding:10px;max-height:340px;
+ overflow:auto;white-space:pre-wrap;word-break:break-word;font:13px ui-monospace,monospace}}
+[disabled]{{opacity:.55;cursor:not-allowed}}
 </style>
 <h1>Video Pipeline Launch</h1><p class=msg>{html.escape(message)}</p>
+
+<div id=status><strong>Provider status</strong> <small>(from Ordak /api/diagnostics, refreshed every 5s)</small><br>
+ <span id=providers><span class="pill warn">checking…</span></span></div>
 
 <div class=notice>
  <strong>Question Harvest</strong> — A question grows. A book opens. A world begins.<br>
@@ -224,6 +359,7 @@ function onProjectChange() {{
   <label>Maximum duration (seconds) <input name=max_duration_seconds type=number min=15 max=300 value=60 required></label>
   <label>Frame format <select name=aspect_ratio><option value="16:9">16:9 — YouTube landscape</option><option value="9:16" selected>9:16 — Shorts / Reels vertical</option></select></label>
   <label><input type=checkbox name=show_subtitles> Show subtitles <small>(Question Harvest default: OFF §71)</small></label>
+  <label><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC <small>(needs a remote with write access)</small></label>
  </fieldset>
 
  <fieldset id="qh_advanced"><legend>Question Harvest — Advanced (auto when project = question_harvest)</legend>
@@ -237,13 +373,14 @@ function onProjectChange() {{
   <label>Opening Clip B source duration <small>(Flow, default 4s → trimmed to ~3s)</small> <select name=opening_b_seconds><option value=3>3s</option><option value=4 selected>4s</option><option value=6>6s</option><option value=8>8s</option></select></label>
  </fieldset>
 
- <fieldset><legend>Generation Engines (§62-63)</legend>
-  <p style="font-size:14px;color:#aeb8c8">
-   Text: <strong>ChatGPT / Ordak</strong> LOCKED<br>
-   Images: <strong>Gemini / Ordak</strong> LOCKED — Nano Banana Pro default<br>
-   Videos: <strong>Google Flow / Ordak</strong> LOCKED — Flow receives <code>character_sheet.png ONLY</code>, never a style sheet.<br>
-   Flow character reference: <span style="color:#7fdb9a">ENABLED / required</span> · Flow style sheet: <span style="color:#ff8f8f">DISABLED by project design</span>
-  </p>
+ <fieldset><legend>Generation Engines (§62-63) — locked</legend>
+  <p style="font-size:14px;color:#aeb8c8">These are fixed by project design, so they are shown
+   as they are and cannot be edited here.</p>
+  <label>Text provider <input value="ChatGPT / Ordak" disabled></label>
+  <label>Image provider <input value="Gemini / Ordak" disabled></label>
+  <label>Video provider <input value="Google Flow / Ordak" disabled></label>
+  <label>Flow canonical reference <input value="character_sheet.png (Clip A) · first_frame + last_frame (Clip B)" disabled></label>
+  <label>Flow style sheet <input value="never uploaded — forbidden by §12-16, §61" disabled></label>
  </fieldset>
 
  <fieldset><legend>Voice & Music</legend>
@@ -259,21 +396,225 @@ function onProjectChange() {{
  <button type=submit>Launch full pipeline</button>
 </form>
 <p><small>Tip: For Question Harvest, duration 40–60, 9:16, Nano Banana Pro + Gemini Omni 1.1 Flash + 720p are defaults per §64. Changing project updates defaults via JS.</small></p>
-<h2>Recent runs</h2><table><tr><th>ID</th><th>Project</th><th>Topic</th><th>Status</th><th>Live log</th></tr>{rows}</table>
-<script>onProjectChange();</script>
+<h2>Runs</h2>
+<table id=runs><thead><tr><th>ID</th><th>Project</th><th>Topic</th><th>Status</th><th>Progress</th><th></th></tr></thead>
+<tbody><tr><td colspan=6>loading…</td></tr></tbody></table>
+
+<section id=logpanel hidden>
+ <h2>Live log <span class=badge id=logjob></span>
+  <button type=button class=ghost id=logclose>close</button></h2>
+ <pre id=logtail></pre>
+</section>
+
+<form method=post action=/resume id=resumeform hidden><input type=hidden name=job_id id=resumejob></form>
+
+<p><small>Official panel address: <code>:4141</code> (behind basic auth). Defaults for Question
+Harvest are 40–60s, 9:16, Nano Banana Pro + Gemini Omni 1.1 Flash + 720p (§64).</small></p>
+
+<script>
+var tailedJob = null, tailOffset = 0;
+
+function badgeClass(entry) {{
+  if (entry.logged_in === true && entry.state === 'ready') return 'ok';
+  if (entry.state === 'login_required' || entry.state === 'manual_verification_required') return 'bad';
+  return 'warn';
+}}
+
+function renderProviders(ordak) {{
+  var host = document.getElementById('providers');
+  if (!ordak.reachable) {{
+    host.innerHTML = '<span class="pill bad">Ordak unreachable</span> <small>' +
+      (ordak.error || '') + '</small>';
+    return;
+  }}
+  var parts = ['<span class="pill ' + (ordak.chrome_running ? 'ok' : 'bad') +
+               '">Chrome ' + (ordak.chrome_running ? 'running' : 'down') + '</span>'];
+  Object.keys(ordak.providers).forEach(function (name) {{
+    var entry = ordak.providers[name];
+    parts.push('<span class="pill ' + badgeClass(entry) + '">' + name + ': ' +
+      (entry.logged_in === true ? 'signed in' : entry.state) + '</span>');
+  }});
+  host.innerHTML = parts.join(' ');
+}}
+
+function renderJobs(jobs) {{
+  var body = document.querySelector('#runs tbody');
+  if (!jobs.length) {{ body.innerHTML = '<tr><td colspan=6>No launches yet.</td></tr>'; return; }}
+  body.innerHTML = jobs.map(function (job) {{
+    var progress = job.pipeline && job.pipeline.stage_count
+      ? job.pipeline.done + '/' + job.pipeline.stage_count +
+        (job.pipeline.running ? ' · ' + job.pipeline.running : '')
+      : '—';
+    var actions = '<button type=button class=ghost onclick="watch(\'' + job.job_id + '\')">watch</button>';
+    if (job.resumable) {{
+      actions += ' <button type=button class=ghost onclick="resume(\'' + job.job_id + '\')">resume</button>';
+    }}
+    return '<tr><td>' + (job.video_id || '') + '</td><td>' + job.content_project +
+      '</td><td>' + escapeHtml(job.topic || '') + '</td><td><span class="pill ' +
+      (job.status === 'DONE' ? 'ok' : job.status === 'RUNNING' ? 'warn' : 'bad') + '">' +
+      job.status + '</span></td><td>' + progress + '</td><td>' + actions + '</td></tr>';
+  }}).join('');
+}}
+
+function escapeHtml(text) {{
+  var div = document.createElement('div'); div.textContent = text; return div.innerHTML;
+}}
+
+function watch(jobId) {{
+  tailedJob = jobId; tailOffset = 0;
+  document.getElementById('logjob').textContent = jobId.slice(0, 8);
+  document.getElementById('logtail').textContent = '';
+  document.getElementById('logpanel').hidden = false;
+  pollLog();
+}}
+
+function resume(jobId) {{
+  document.getElementById('resumejob').value = jobId;
+  document.getElementById('resumeform').submit();
+}}
+
+document.getElementById('logclose').addEventListener('click', function () {{
+  tailedJob = null; document.getElementById('logpanel').hidden = true;
+}});
+
+function pollStatus() {{
+  fetch('/api/status').then(function (r) {{ return r.json(); }}).then(function (data) {{
+    renderProviders(data.ordak); renderJobs(data.jobs);
+  }}).catch(function () {{}});
+}}
+
+function pollLog() {{
+  if (!tailedJob) return;
+  fetch('/api/log/' + tailedJob + '?offset=' + tailOffset)
+    .then(function (r) {{ return r.json(); }})
+    .then(function (data) {{
+      if (data.text) {{
+        var pre = document.getElementById('logtail');
+        pre.textContent += data.text;
+        pre.scrollTop = pre.scrollHeight;
+      }}
+      if (typeof data.offset === 'number') tailOffset = data.offset;
+    }}).catch(function () {{}});
+}}
+
+onProjectChange();
+pollStatus();
+setInterval(pollStatus, 5000);
+setInterval(pollLog, 2000);
+</script>
 """
 
+    def handle_resume(self) -> None:
+        """Re-run an existing episode. Completed stages are reused, so nothing is paid twice."""
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError:
+            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Invalid Content-Length")); return
+        if length <= 0 or length > 4_000:
+            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Invalid resume request")); return
+        values = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
+        job_id = (values.get("job_id") or [""])[0].strip()
+        if not JOB_ID_RE.fullmatch(job_id):
+            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Unknown job id")); return
+        record_path = self.jobs_dir / f"{job_id}.json"
+        if not record_path.is_file():
+            self.send_html(HTTPStatus.NOT_FOUND, self.page("That job no longer exists")); return
+
+        with LAUNCH_LOCK:
+            active = active_job(self.jobs_dir)
+            if active is not None:
+                self.send_html(
+                    HTTPStatus.CONFLICT,
+                    self.page(f"Video {active.get('video_id')} is still running; resume after it finishes."),
+                ); return
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            try:
+                command = pipeline_command(record)
+            except (KeyError, TypeError) as exc:
+                self.send_html(HTTPStatus.CONFLICT, self.page(f"That job cannot be resumed: {exc}")); return
+            log = self.jobs_dir / f"{job_id}.log"
+            handle = log.open("a", encoding="utf-8")
+            handle.write(f"\n=== resume requested at {utcnow()} ===\n")
+            handle.flush()
+            try:
+                process = subprocess.Popen(
+                    command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True
+                )
+            except OSError as exc:
+                handle.close()
+                self.send_html(HTTPStatus.INTERNAL_SERVER_ERROR, self.page(f"Could not resume: {exc}")); return
+            finally:
+                if not handle.closed:
+                    handle.close()
+            record.update({
+                "status": "RUNNING",
+                "pid": process.pid,
+                "command": command,
+                "resumed_at": utcnow(),
+                "resume_count": int(record.get("resume_count") or 0) + 1,
+            })
+            record.pop("completed_at", None)
+            write_json(record_path, record)
+            request = ROOT / str(record.get("project") or "") / "launch" / "LAUNCH_REQUEST.json"
+            if request.is_file():
+                write_json(request, record)
+        self.send_html(
+            HTTPStatus.ACCEPTED,
+            self.page(f"Resumed {record.get('video_id')} — completed stages are reused, not regenerated."),
+        )
+
     def do_GET(self) -> None:
-        if self.path == "/": self.send_html(HTTPStatus.OK, self.page()); return
-        if self.path.startswith("/logs/"):
-            job_id = Path(self.path).name
-            if not re.fullmatch(r"[a-f0-9-]{36}", job_id): self.send_error(HTTPStatus.NOT_FOUND); return
+        parsed = urlparse(self.path)
+        route = parsed.path
+        query = parse_qs(parsed.query)
+
+        if route == "/":
+            self.send_html(HTTPStatus.OK, self.page()); return
+
+        if route == "/api/status":
+            jobs = job_records(self.jobs_dir)
+            active = active_job(self.jobs_dir)
+            self.send_json(HTTPStatus.OK, {
+                "at": utcnow(),
+                "ordak": provider_status(),
+                "active_job_id": (active or {}).get("job_id"),
+                "jobs": [
+                    {
+                        "job_id": job.get("job_id"),
+                        "video_id": job.get("video_id"),
+                        "content_project": job.get("content_project", DEFAULT_CONTENT_PROJECT),
+                        "topic": job.get("topic", ""),
+                        "status": job.get("status", "QUEUED"),
+                        "created_at": job.get("created_at"),
+                        "pipeline": job.get("_pipeline") or {},
+                        "resumable": bool(job.get("_resumable")),
+                    }
+                    for job in jobs
+                ],
+            }); return
+
+        if route.startswith("/api/log/"):
+            job_id = route.rsplit("/", 1)[-1]
+            if not JOB_ID_RE.fullmatch(job_id):
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown job"}); return
+            try:
+                offset = int((query.get("offset") or ["0"])[0])
+            except ValueError:
+                offset = 0
+            self.send_json(HTTPStatus.OK, self.log_tail(job_id, offset)); return
+
+        if route.startswith("/logs/"):
+            # Kept for links already in circulation; the panel itself tails in place now.
+            job_id = Path(route).name
+            if not JOB_ID_RE.fullmatch(job_id): self.send_error(HTTPStatus.NOT_FOUND); return
             log = self.jobs_dir / f"{job_id}.log"
             text = log.read_text(encoding="utf-8", errors="replace")[-150_000:] if log.exists() else "Waiting for runner output..."
             self.send_html(HTTPStatus.OK, f"<meta http-equiv=refresh content=5><pre style='white-space:pre-wrap;word-break:break-word'>{html.escape(text)}</pre>"); return
+
         self.send_error(HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:
+        if self.path == "/resume": self.handle_resume(); return
         if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
         try:
             length = int(self.headers.get("Content-Length", "0"))
@@ -294,6 +635,7 @@ function onProjectChange() {{
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             provider = values["music_provider"][0]
             show_subtitles = "show_subtitles" in values
+            commit_artifacts = "commit_artifacts" in values
             # QH advanced
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
@@ -370,23 +712,15 @@ function onProjectChange() {{
                 "voice_profile": str(profile.relative_to(ROOT)), "creative_brief": str(creative_brief_path.relative_to(ROOT)),
                 "qh": creative_brief["_qh"],
                 "subtitles": subtitles_enabled,
+                # Recorded so a resume rebuilds exactly this command (§78).
+                "music_provider": provider,
+                "commit_artifacts": commit_artifacts,
             }
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
-            # Route to correct pipeline per content project profile
-            if content_project == "question_harvest":
-                # The wrapper owns the whole episode: visual stages, narration, measured
-                # timing, opening trims, music, render, QC and publish.
-                command = [sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
-                           "--topic", topic, "--video-id", video_id,
-                           "--content-project", content_project,
-                           "--creative-brief", str(creative_brief_path),
-                           "--voice-profile", str(profile),
-                           "--aspect-ratio", aspect_ratio,
-                           "--music-provider", provider,
-                           "--publish"]
-            else:
-                command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--content-project", content_project, "--topic", topic, "--video-id", video_id, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", aspect_ratio, "--voice-profile", str(profile), "--creative-brief", str(creative_brief_path), "--music-provider", provider]
+            # One builder for launch and resume: the QH wrapper owns the whole episode
+            # (visual stages, narration, measured timing, trims, music, render, QC, publish).
+            command = pipeline_command(record)
             try:
                 process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
             except OSError as exc:

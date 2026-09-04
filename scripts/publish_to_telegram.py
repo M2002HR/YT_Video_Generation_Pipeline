@@ -110,15 +110,21 @@ def main() -> None:
     except Exception:
         pass
     marker = f"Artifact: {digest[:12]}"
-    caption = "✅ Video pipeline complete\n🎬 Polished render with narration + background music\n"
-    caption += f"⏱ Duration: {format_duration(duration)}\n🔍 QC: passed\n{marker}"
+    # The caption is built from the artifacts the run produced — beat counts, the models each
+    # provider confirmed, and what the render cost — so the message is auditable (T9.4).
+    from episode_summary import build_summary, format_caption
+
+    summary = build_summary(video_dir, artifact=video)
+    if not summary.get("duration_seconds") and duration:
+        summary["duration_seconds"] = duration
+    caption = format_caption(summary, artifact_marker=marker)
     started = time.perf_counter()
     try:
         message_id = asyncio.run(send_video(settings, video, caption, marker))
     except Exception as exc:
         write_json(receipt, {"schema_version": 1, "status": "FAILED", "updated_at": utcnow(), "file": str(video.relative_to(video_dir)), "sha256": digest, "error": f"{type(exc).__name__}: {exc}", "elapsed_seconds": round(time.perf_counter() - started, 3)})
         raise
-    write_json(receipt, {"schema_version": 1, "status": "DONE", "published_at": utcnow(), "recipient": settings.recipient, "message_id": message_id, "file": str(video.relative_to(video_dir)), "bytes": video.stat().st_size, "sha256": digest, "duration_seconds": round(duration, 3), "elapsed_seconds": round(time.perf_counter() - started, 3), "qc_report": str(report.relative_to(video_dir))})
+    write_json(receipt, {"schema_version": 2, "status": "DONE", "published_at": utcnow(), "recipient": settings.recipient, "message_id": message_id, "file": str(video.relative_to(video_dir)), "bytes": video.stat().st_size, "sha256": digest, "duration_seconds": round(duration, 3), "elapsed_seconds": round(time.perf_counter() - started, 3), "qc_report": str(report.relative_to(video_dir)), "summary": summary, "caption": caption})
     print(f"TELEGRAM PUBLISH: PASS\nMessage ID: {message_id}")
 
 

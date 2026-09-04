@@ -84,6 +84,25 @@ def push(branch: str, *, attempts: int = 4) -> None:
     raise RuntimeError(f"Could not push video artifacts after {attempts} attempts: {last_error}")
 
 
+def elapsed_since(started_at: str) -> float:
+    """Seconds since ``started_at``, whether it is an ISO stamp or a perf_counter value.
+
+    A perf_counter value only means anything inside the process that produced it, so an ISO
+    timestamp is the form callers in other processes should pass.
+    """
+    text = str(started_at).strip()
+    try:
+        moment = datetime.fromisoformat(text)
+    except ValueError:
+        try:
+            return max(0.0, round(time.perf_counter() - float(text), 3))
+        except ValueError:
+            return 0.0
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=timezone.utc)
+    return max(0.0, round((datetime.now(timezone.utc) - moment).total_seconds(), 3))
+
+
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -93,7 +112,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Commit and push one completed video's durable Git artifacts.")
     parser.add_argument("project", type=Path)
     parser.add_argument("--full-state", type=Path, required=True)
-    parser.add_argument("--started-at", required=True)
+    parser.add_argument(
+        "--started-at",
+        required=True,
+        help="ISO timestamp, or a perf_counter value from this same process.",
+    )
+    parser.add_argument(
+        "--no-push",
+        action="store_true",
+        help="Commit locally without pushing. Useful when the remote credential is not in place.",
+    )
     args = parser.parse_args()
     project = args.project.expanduser().resolve()
     state_path = args.full_state.expanduser().resolve()
@@ -108,10 +136,11 @@ def main() -> None:
     state = json.loads(state_path.read_text(encoding="utf-8"))
     registry = register_content_project_video(project, state)
     first_commit = commit_paths([project, registry], f"Video {project.name}: finalized artifacts")
-    push(branch)
+    if not args.no_push:
+        push(branch)
 
     completed_at = now()
-    elapsed = round(time.perf_counter() - float(args.started_at), 3)
+    elapsed = elapsed_since(args.started_at)
     receipt = project / "pipeline" / "GIT_PUBLISH_STATE.json"
     write_json(receipt, {
         "schema_version": 1,
@@ -142,8 +171,17 @@ def main() -> None:
     })
     write_json(state_path, state)
     receipt_commit = commit_paths([project], f"Video {project.name}: record Git publication")
-    push(branch)
-    print(json.dumps({"status": "GIT_PUBLISH_PASS", "branch": branch, "artifact_commit": first_commit, "receipt_commit": receipt_commit, "elapsed_seconds": elapsed}))
+    if not args.no_push:
+        push(branch)
+    print(json.dumps({
+        "status": "GIT_PUBLISH_PASS",
+        "branch": branch,
+        "pushed": not args.no_push,
+        "artifact_commit": first_commit,
+        "receipt_commit": receipt_commit,
+        "no_change": first_commit is None and receipt_commit is None,
+        "elapsed_seconds": elapsed,
+    }))
 
 
 if __name__ == "__main__":

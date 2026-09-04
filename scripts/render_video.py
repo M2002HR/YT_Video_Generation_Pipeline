@@ -18,11 +18,24 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
+import resource
 import shlex
 import shutil
 import subprocess
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+#: Share of the machine a render may use. The server this runs on has two vCPUs and 7 GB,
+#: and an uncapped x264 makes SSH, VNC and the watchdog unresponsive for the whole render.
+DEFAULT_RESOURCE_BUDGET = 0.8
+
+#: Supersampling multiplies the working frame area, which is where render memory goes.
+#: Above this many megapixels of intermediate frame the factor is reduced rather than
+#: letting the render get OOM-killed halfway through.
+MAX_SUPERSAMPLED_MEGAPIXELS = 12.0
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -58,6 +71,52 @@ def ffmpeg_has_ass_filter(ffmpeg: str) -> bool:
 
 #: A clip may fall this far short of its timeline slot before the render is a lie.
 VIDEO_SLOT_TOLERANCE = 0.04
+
+
+def cpu_count() -> int:
+    """Schedulable CPUs, honouring cgroup/affinity limits rather than the host total."""
+    try:
+        return max(1, len(os.sched_getaffinity(0)))
+    except AttributeError:
+        return max(1, os.cpu_count() or 1)
+
+
+def budgeted_threads(budget: float, *, cpus: int | None = None) -> int:
+    """``round(cpus * budget)``, never zero and never more than the machine has."""
+    total = cpus if cpus is not None else cpu_count()
+    share = max(0.05, min(1.0, float(budget)))
+    return max(1, min(total, round(total * share)))
+
+
+def capped_supersample(requested: int, width: int, height: int) -> tuple[int, str]:
+    """Reduce the supersample factor until the intermediate frame fits the memory budget."""
+    factor = max(1, int(requested))
+    pixels = width * height
+    while factor > 1 and (pixels * factor * factor) / 1_000_000 > MAX_SUPERSAMPLED_MEGAPIXELS:
+        factor -= 1
+    if factor != max(1, int(requested)):
+        return factor, (
+            f"supersample reduced {requested}->{factor} to stay under "
+            f"{MAX_SUPERSAMPLED_MEGAPIXELS:.0f} MP of intermediate frame"
+        )
+    return factor, ""
+
+
+def child_peak_rss_mb() -> float:
+    """Peak resident memory of the FFmpeg child, as the kernel measured it."""
+    try:
+        usage = resource.getrusage(resource.RUSAGE_CHILDREN)
+    except (ValueError, OSError):
+        return 0.0
+    return round(usage.ru_maxrss / 1024, 1)
+
+
+def ionice_prefix() -> list[str]:
+    """Best-effort idle I/O class, so a long render does not starve the rest of the box."""
+    binary = shutil.which("ionice")
+    if not binary:
+        return []
+    return [binary, "-c", "2", "-n", "7"]
 
 
 def resolve_video_path(video_dir: Path, value: str) -> Path:
@@ -197,6 +256,21 @@ def main() -> None:
         help="Override the profile FFmpeg thread cap. A cap of 1 keeps a small server responsive.",
     )
     parser.add_argument(
+        "--resource-budget",
+        type=float,
+        default=float(os.getenv("YT_RENDER_RESOURCE_BUDGET", str(DEFAULT_RESOURCE_BUDGET))),
+        help=(
+            "Share of the machine the render may use (default 0.8). Sets the thread caps from "
+            "the schedulable CPU count unless --threads or the profile overrides them."
+        ),
+    )
+    parser.add_argument(
+        "--nice",
+        type=int,
+        default=int(os.getenv("YT_RENDER_NICE", "10")),
+        help="Niceness for FFmpeg (0-19). Combined with idle I/O priority when ionice exists.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Validate and print the FFmpeg command without running it.",
@@ -286,7 +360,11 @@ def main() -> None:
     motion_cfg = profile.get("motion") if isinstance(profile.get("motion"), dict) else {}
     motion_enabled = bool(motion_cfg.get("enabled", True))
     motion_strength = float(motion_cfg.get("strength", 0.035))
-    motion_supersample = int(motion_cfg.get("supersample", 2))
+    motion_supersample, supersample_note = capped_supersample(
+        int(motion_cfg.get("supersample", 2)), width, height
+    )
+    if supersample_note:
+        print(f"Resource budget: {supersample_note}")
 
     subtitle_cfg = (
         profile.get("subtitles")
@@ -323,8 +401,17 @@ def main() -> None:
         if isinstance(profile.get("resource_limits"), dict)
         else {}
     )
-    configured_threads = int(resource_cfg.get("ffmpeg_threads", 1))
-    thread_cap = max(1, args.threads if args.threads is not None else configured_threads)
+    # Precedence: --threads (explicit) > profile ffmpeg_threads > the resource budget.
+    budget_threads = budgeted_threads(args.resource_budget)
+    if args.threads is not None:
+        thread_cap = max(1, args.threads)
+        thread_source = "--threads"
+    elif "ffmpeg_threads" in resource_cfg:
+        thread_cap = max(1, int(resource_cfg["ffmpeg_threads"]))
+        thread_source = "render profile"
+    else:
+        thread_cap = budget_threads
+        thread_source = f"{args.resource_budget:.2f} of {cpu_count()} CPU(s)"
     filter_threads = max(1, int(resource_cfg.get("filter_threads", thread_cap)))
     filter_complex_threads = max(
         1, int(resource_cfg.get("filter_complex_threads", filter_threads))
@@ -480,8 +567,19 @@ def main() -> None:
     print(f"Beats: {len(beats)}")
     print(f"Resolution: {width}x{height} @ {fps}fps")
     print(f"Duration target: {duration:.3f}s")
+    nice_level = max(0, min(19, int(args.nice)))
+    launcher: list[str] = ionice_prefix()
+    if nice_level:
+        launcher = [*launcher, "nice", "-n", str(nice_level)]
+    command = [*launcher, *command] if launcher else command
+
     print(f"Subtitles: {'on' if subtitles_enabled else 'off'}")
-    print(f"Resource caps: encoder={thread_cap}, filter={filter_threads}, complex={filter_complex_threads}")
+    print(
+        f"Resource caps: encoder={thread_cap}, filter={filter_threads}, "
+        f"complex={filter_complex_threads} (from {thread_source})"
+    )
+    print(f"Scheduling: nice={nice_level}, io={'idle-ish' if ionice_prefix() else 'default'}")
+    print(f"Supersample: {motion_supersample}")
     print(f"Output: {output_path}")
 
     if args.dry_run:
@@ -490,16 +588,53 @@ def main() -> None:
         print(shlex.join(command))
         return
 
+    started = time.perf_counter()
     subprocess.run(command, check=True)
+    elapsed = time.perf_counter() - started
 
     probe = probe_video(ffprobe, output_path)
     actual_duration = float((probe.get("format") or {}).get("duration") or 0.0)
     drift = actual_duration - duration
 
+    stats = {
+        "schema_version": 1,
+        "completed_at": datetime.now(timezone.utc).isoformat(),
+        "output": str(output_path),
+        "output_bytes": output_path.stat().st_size if output_path.exists() else 0,
+        "target_duration_seconds": round(duration, 3),
+        "actual_duration_seconds": round(actual_duration, 3),
+        "duration_drift_seconds": round(drift, 3),
+        "wall_seconds": round(elapsed, 3),
+        "realtime_factor": round(elapsed / duration, 3) if duration else None,
+        "beats": len(beats),
+        "resolution": f"{width}x{height}",
+        "fps": fps,
+        "subtitles": subtitles_enabled,
+        "resource_budget": round(float(args.resource_budget), 3),
+        "cpus_available": cpu_count(),
+        "threads": {
+            "encoder": thread_cap,
+            "filter": filter_threads,
+            "filter_complex": filter_complex_threads,
+            "source": thread_source,
+        },
+        "nice": nice_level,
+        "ionice": bool(ionice_prefix()),
+        "supersample": motion_supersample,
+        "supersample_note": supersample_note,
+        "peak_child_rss_mb": child_peak_rss_mb(),
+    }
+    stats_path = video_dir / "render" / "RENDER_STATS.json"
+    stats_path.parent.mkdir(parents=True, exist_ok=True)
+    stats_path.write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     print()
     print("Render complete.")
     print(f"Actual duration: {actual_duration:.3f}s")
     print(f"Duration drift: {drift:+.3f}s")
+    print(f"Wall time: {elapsed:.1f}s ({stats['realtime_factor']}x realtime)")
+    print(f"Peak child RSS: {stats['peak_child_rss_mb']} MB")
+    print(f"Stats: {stats_path}")
     print(f"File: {output_path}")
 
     if abs(drift) > 0.10:
