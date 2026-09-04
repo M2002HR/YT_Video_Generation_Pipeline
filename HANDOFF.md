@@ -1,6 +1,6 @@
 # HANDOFF — Question Harvest (برای ادامه از چت جدید)
 
-> تاریخ: 2026-09-04 · branch: `ordak` · والد: `707ee2e` · ordak: `852a284`
+> تاریخ: 2026-09-04 (سشن دوم) · branch: `ordak` · والد: `d6626b3` · ordak: `370a975`
 
 ---
 
@@ -20,153 +20,129 @@ CURRENT_STATE.md قدیمی است (2026-09-02) — به آن اعتماد نک�
 هیچ provider/model/synthetic fallback، هیچ style sheet به Flow، بدون پروکسی.
 هر مرحله‌ای که prompt دارد از ChatGPT گرفته شود.
 
-⚠️ مهم: بعد از هر تغییر در services/ordak/app باید `systemctl restart ordak-api` بزنی،
+⚠️ بعد از هر تغییر در services/ordak/app باید `systemctl restart ordak-api` بزنی،
 وگرنه جاب با کد قدیمی اجرا می‌شود (یک‌بار ۷ credit تلف شد).
 
-از P2 (مسیر Nano Banana Pro) ادامه بده، بعد P6/P9/P8.
+از P8 (مستندات) شروع کن، بعد P7 (اجرای واقعی end-to-end با لاگین کاربر).
 گیت را خودت مدیریت کن با پیام‌های کوتاه. سریع و کامل جلو برو.
 ```
 
 ---
 
-## ۱) این سشن چه چیزی تمام شد (با شاهد واقعی مرورگر)
+## ۱) این سشن چه چیزی تمام شد
 
-### ✅ P3 — Flow واقعی: **کامل و تست‌شده روی مرورگر**
+تست‌ها: **والد 181 pass** (از ۶۹) · **ordak 140 pass** (از ۹۲ pass + ۳ fail)
 
-| تسک | شاهد |
-|-----|------|
-| T3.1 capability snapshot | `FLOW_CAPABILITY.json` در پوشه‌ی هر جاب نوشته می‌شود |
-| T3.2 select+verify تنظیمات | لاگ واقعی: `Omni 1.1 Flash · 720p · 4s · 9:16 · Ingredients · x1 (credits: 7)` |
-| T3.3 آپلود frame با نقش | ماژول جدید `flow_references.py` — Start/End روی UI واقعی پر و **تأیید بصری** شد |
-| T3.3b نقش کانونیکال | Clip A = Ingredients + `character_sheet` · Clip B = Frames + `first_frame`/`last_frame` |
-| T3.4 credit safety | `PENDING_GENERATE.json` **قبل از** Generate نوشته می‌شود؛ reconcile اجباری؛ blind retry = صفر |
-| T3.5 دانلود قطعی | `download_to()` + `allowAndName` → فایل با GUID داخل پوشه‌ی مخصوص جاب |
-| T3.6/T3.7 login/credits | `FLOW_LOGIN_REQUIRED` / `FLOW_CREDITS_EXHAUSTED` ساختاری |
-| receipt واقعی | `FLOW_RECEIPT.json` با `model_verified=true`, `actual_duration_seconds=4`, `credits_required=7` |
+### ✅ P2 — Gemini سخت‌گیرانه: کامل (به‌جز اجرای واقعی مرورگر)
 
-**ویدیوی واقعی تولیدشده:** `services/ordak/app/storage/outputs/3110b55a-.../3110b55a-....mp4`
-→ ffprobe: **4.01s · 720x1280 · h264 · 1.85MB** (دقیقاً همان قراردادی که خواسته شد)
+| تسک | چه شد |
+|-----|-------|
+| **T2.2 مسیر Nano Banana Pro** | ماژول جدید `services/ordak/app/automation/gemini_pro.py`: baseline نتیجه‌ها → یافتن کنترل Pro → invoke → **تمایز مثبت** (asset id جدید + SHA-256 محاسبه‌شده **داخل صفحه** با `crypto.subtle` روی بایت‌های fetch شده + dimension). نبودن کنترل یا نتیجه‌ی غیرمتمایز → `MODEL_NOT_AVAILABLE`. NB2 هرگز به‌عنوان Pro قبول نمی‌شود. |
+| **T2.4 receipt واقعی** | `GenerationReceipt` حالا **validator** دارد: `model_verified=True` بدون `actual_model_label` رد می‌شود، و `pro_regeneration_used=True` بدون note ‏`pro_distinction=…` رد می‌شود. `_build_gemini_receipt` فقط از مشاهده می‌سازد (label + source از کنترل مدل، SHA از فایل). |
+| **T2.5 validation دانلود §32** | ماژول جدید `image_validation.py` (بدون dependency: هدر PNG/JPEG/WebP/GIF را خودش پارس می‌کند + ffprobe به‌عنوان نظر دوم). رد: `missing_file, too_small, undecodable, dimension_too_small, aspect_mismatch, matches_uploaded_reference, duplicate_of_previous, stale_result`. |
+| **T2.7 تست compositor** | `compose_book_spread.py` بازنویسی شد: **fallback مصنوعی کتاب حذف شد** (نبود template → `FileNotFoundError`)، متادیتا حالا `right_page_box` / `world_transform` / SHA هر دو منبع را ثبت می‌کند و تست اثبات می‌کند صفحه‌ی راست **بایت‌به‌بایت** همان `ImageOps.fit(world_keyframe, box)` است. تست «هیچ glyph رندر نمی‌شود» با monkeypatch روی `ImageDraw.text`. |
+| گارد جدید | `runner.image()/video()` حالا `require_verified_image_model` / `require_verified_video_model` را صدا می‌زنند: receipt بدون `model_verified` → `FAILED_MODEL_SELECTION`؛ درخواست Pro بدون `pro_regeneration_used` → همان. |
 
-### ✅ کشف‌های DOM فلو (پایه‌ی همه‌ی کد، verified 2026-09-04)
-- **Frames mode**: ردیف slot = `parent` دکمه‌ی `Swap first and last frames`؛ فرزندان `[start, swap, end]`؛
-  slot خالی متن `Start`/`End` و بدون `<img>`؛ پرشده = یک `<img>` با src `media.getMediaUrlRedirect` و لیبل `cancel`
-- **Ingredients mode**: دکمه‌ی `add_2` در composer
-- **آپلود**: کلیک روی هدف → `[role="dialog"]` → `DOM.setFileInputFiles` روی تک
-  `input[type="file"][accept*="image"]` → asset جدید **auto-select** می‌شود و `Add to Prompt` فعال → کلیک confirm
-  (⚠️ کلیک روی ردیف در این حالت selection را **لغو** می‌کند)
-- **نتیجه‌ها**: `video.src` هر نتیجه شناسه‌ی یکتا دارد → «کدام نتیجه جدید است» با set-difference حل شد
-- **تایل نتیجه**: نزدیک‌ترین ancestor بزرگ‌تر از 60px از `img/video` با آن src (یک `BUTTON` 150×267)
-- **دانلود**: `Browser.setDownloadBehavior` فقط روی **browser endpoint** و فقط تا وقتی همان
-  websocket باز است کار می‌کند؛ `behavior=allowAndName` فایل را با GUID می‌نویسد
-- viewport مرورگر 7644×3952 با dpr=0.25 (مختصات CSS = پیکسل اسکرین‌شات × 4)
+### ✅ P6 — تست‌های واقعی: کامل
 
-### ✅ P4 — حذف کامل synthetic
-`grep -rn "allow_synthetic\|synthetic_fallback\|_dummy_\|\[MODEL:" scripts/` = **صفر**
+- `tests/test_model_lock.py` **بازنویسی شد** — تاتولوژی‌ها (`assert "720p" != "360p"`) حذف؛ حالا قرارداد `Generation` و گاردهای واقعی را تست می‌کند (۱۵ تست)
+- `services/ordak/tests/test_flow_settings_verification.py` **جدید** — mock کامل composer فلو؛ کنترلی که عوض نمی‌شود → `MODEL_SELECTION_FAILED`، مدلی که UI ندارد → `MODEL_NOT_AVAILABLE`، ۷۲۰p روی مدل ۳۶۰p-only → `MODEL_FEATURE_INCOMPATIBLE` (۱۱ تست)
+- `services/ordak/tests/test_flow_credit_safety.py` **جدید** — `_reconcile_pending` در همه‌ی حالت‌های restart؛ «نه نتیجه نه فایل» → `FLOW_RECONCILIATION_REQUIRED` نه Generate دوباره (۷ تست)
+- `services/ordak/tests/test_gemini_pro_path.py` (۸) + `test_image_validation.py` (۱۱) + `test_generation_receipt_evidence.py` (۸) **جدید**
+- `tests/test_integration_media.py` **جدید، §97** — ۱۰ سناریو با FFmpeg واقعی (image-only قدیمی، video+video+image، crop 9:16، **صدای کلیپ مبدأ هرگز map نمی‌شود**، subtitle on/off، mp4 خراب، کلیپ کوتاه‌تر از slot، asset گم‌شده)
+- `tests/test_resume_stages.py` **جدید، §78/§102** — هر stage گران با کلاینت Ordak‌ای که روی هر تماس exception می‌دهد؛ بدون مصرف credit (۱۲ تست)
+- `tests/test_provider_lock.py` — تست grep تاتولوژیک با **spy واقعی** جایگزین شد: شکست Gemini/Flow ثابت می‌کند provider دیگری صدا نشده
+- `scripts/check_full_stack.py` **بازنویسی شد** — هیچ `True` هاردکدی نمانده: گارد style-sheet با **درخواست پذیرش یک style role و الزام رد شدن** تست می‌شود، لاگین provider حالا `logged_in is True` می‌خواهد، advisory از failure جدا شد، exit code معنادار (0/1/2)، فلگ `--skip-providers`
+- دو تست شکسته‌ی ordak درست شد (`python` هاردکد → `sys.executable`؛ تست image_generate الان مدل و PNG واقعی می‌فرستد)
 
-- `run_question_harvest_pipeline.py` **کامل بازنویسی شد** (1415 خط) روی `ordak_jobs.OrdakJobs`
-  با state machine (`PENDING/RUNNING/DONE/REUSED/PAUSED_*/FAILED_*`)، کلاس `Runner`،
-  notify تلگرام برای هر stage، receipt واقعی از provider، `stage_book_design_sheet` جدید
-- `run_full_video_pipeline_qh_wrapper.py` بازنویسی شد — جعل STT حذف شد،
-  `word_timing_is_usable()` واقعاً `backend∈{ajil,local}` و `timestamp_source=="word"` را چک می‌کند
-- `generate_character_sheet.py` بازنویسی شد — بدون fallback، exit 2 در خطا
-- `video_control_panel.py` — چک‌باکس allow_synthetic حذف شد، QH همیشه از wrapper با `--publish`
+### ✅ P9 — پنل / تلگرام / منابع: کامل
 
-### ✅ P5 — سینک روایت (بخش عمده)
-- `01_script_writer.md` و `02_retention_editor.md` → خروجی **JSON ساختاریافته**
-  (`opening_question_spark`/`book_transition`/`body[]`/`optional_closing`/`cta`/`full_narration`)
-- `validate_script_plan()` تأیید می‌کند `full_narration` **دقیقاً** الحاق segmentها است
-  (وگرنه تریم روی کلماتی حساب می‌شود که گفته نشده‌اند)
-- `align_beats.py` + `align_segments()`/`write_opening_timing()` → `timing/OPENING_TIMING.json`
-  با `spark_end`/`transition_end`/`clip_a_target_seconds`/`clip_b_target_seconds`
-- `trim_opening_clips.py` **کامل بازنویسی** — هدف از `OPENING_TIMING.json`، بدون clamp/stretch،
-  گارد drift 0.12s، خروج غیرصفر `FAILED_VALIDATION`
-- `build_timeline.py` — `scale = remaining/audio_duration` **حذف شد**؛ `start_at` اضافه شد؛
-  گارد `|video_total − transition_end| < 0.05s`؛ fallback به source untrimmed حذف شد
-- `render_video.py` — fail-fast اگر کلیپ کوتاه‌تر از slot خودش باشد (`VIDEO_SLOT_TOLERANCE=0.04`)
+| تسک | چه شد |
+|-----|-------|
+| **T9.1 پنل ۴۱۴۱** | تأیید شد: بدون auth → **401** روی ۴۱۴۱ و ۴۱۴۳؛ `nginx-health` باز. `chmod 600` روی هر دو htpasswd زده شد (T8.2). ۴۱۴۱ به‌عنوان آدرس رسمی در docstring پنل ثبت شد. |
+| **T9.2 UI/UX تک‌صفحه‌ای** | `GET /api/status` (badge سبز/زرد/قرمز provider از `/api/diagnostics` + progress هر job از `QH_RUNTIME_STATE.json`) · `GET /api/log/<job_id>?offset=N` (**tail افزایشی**، نه refresh کامل) · `POST /resume` · فیلدهای locked حالا `disabled` رندر می‌شوند · چک‌باکس commit · همه در یک صفحه بدون navigation |
+| **T9.3 notify کامل** | `run_completion_pipeline.py` از **صفر** نقطه به notify شروع/پایان/مدت/artifact/خطا برای **هر** stage رسید |
+| **T9.4 ویدیو + خلاصه** | ماژول جدید `scripts/episode_summary.py` — خلاصه فقط از artifactها ساخته می‌شود (مدت، تعداد بیت video/image، رزولوشن، مدل‌های **تأییدشده** از receiptها، STT backend، QC، مصرف منابع). caption تلگرام و پیام پایانی از همین می‌آید. |
+| **T9.5 بودجه‌ی منابع** | `render_video.py`: `--resource-budget` (پیش‌فرض 0.8) → `threads=max(1,round(nproc*0.8))`، `nice` + `ionice` داخل خود اسکریپت، **سقف supersample** بر اساس مساحت فریم میانی (۱۲ MP)، و `render/RENDER_STATS.json` (wall time, realtime factor, peak child RSS, threads, source). اولویت: `--threads` > profile > بودجه. |
+| **T9.6 git به‌عنوان stage** | بعد از **هر دو** QC اجرا می‌شود (`--commit`)، idempotent (تغییر نبود → `no_change`)، `--no-push` برای وقتی credential نیست، `--started-at` حالا ISO می‌پذیرد (قبلاً `perf_counter` بین دو پروسه بی‌معنا بود) |
+| **T9.7 MUSIC_PLAN.json** | ماژول جدید `scripts/music_plan.py` — segment list مرتب/بدون gap/بدون overlap با prompt جست‌وجوی هر segment. یک bed = یک entry. `AUDIO_MIX_PROFILE.json` حالا `music.segments` دارد → segment دوم **بدون refactor** |
+| **T9.8 زیرنویس دقیق** | `align_beats.py` حالا `timing/WORD_TIMINGS.json` می‌نویسد؛ `build_timeline.py` هر cue را روی **کلمات واقعی** می‌گذارد (تحمل یک کلمه‌ی افتاده)، و فقط برای chunkی که پیدا نشود proportional می‌شود — با ثبت تعداد در QC. `margin_v` از ارتفاع فریم مشتق می‌شود (۱۲٪ portrait = 230px؛ ۹۰px قبلی زیر نوار UI شورتس بود) |
 
-### ✅ اصلاح مهم قرارداد Clip B
-Flow حالت `Frames` و `Ingredients` را **انحصاری** نشان می‌دهد (یک tablist، یک active).
-پس Clip B نمی‌تواند هم‌زمان `book_design_sheet` (ingredient) و frame داشته باشد.
-→ `build_flow_uploads(clip="B")` الان فقط `first_frame` + `last_frame` می‌فرستد.
-هویت کتاب از طریق `book_spread_frame` (که خودش composite شده) می‌رسد.
-`book_design_sheet` در واژگان policy می‌ماند (مصرفش سمت Gemini است).
+### ✅ P5 — T5.6 anti-repetition: کامل
 
-### ✅ تست‌ها: **69 pass** (از ۶۵)
-- `tests/test_mixed_timeline.py` کامل بازنویسی شد: ۶ تست، شامل
-  «هر تصویر باید وسط گفتار خودش را در بر بگیرد»، رد drift، رد نبود OPENING_TIMING،
-  رد استفاده از source untrimmed
-- `test_provider_lock.py::test_pipeline_has_no_synthetic_or_fallback_path` جای تست قبلی
-- `test_flow_reference_policy.py` برای قرارداد جدید Clip B آپدیت شد
+- ماژول جدید `scripts/episode_history.py`: `VIDEOS.json` حالا به‌جای رشته، برای هر قسمت entry دارد با `opening_activity / opening_location / camera_pattern / book_template_id / world_style_id` (entryهای رشته‌ای قدیمی **در جا upgrade** می‌شوند)
+- stage جدید `stage_record_history` بلافاصله بعد از style anchor اجرا می‌شود (نه در publish) تا قسمتی که بعداً fail کند هم قسمت بعدی را محدود کند
+- `stage_episode_director`: `avoidance_note` صریح به prompt اضافه می‌شود؛ تکرار → **یک retry با نام‌بردن دقیق تکرار**؛ تکرار دوباره → `FAILED_VALIDATION`
+- `book_template_id` و `world_style_id` عمداً از قاعده‌ی تکرار مستثنا هستند (reuse آن‌ها تصمیم درست است)
+
+### ✅ اصلاحات جانبی
+
+- `align_beats`: بیتی که **هیچ** توکنش در transcript پیدا نشود دیگر تایمینگ proportional برنمی‌گرداند → خطا (تخمین = drift خاموش)
+- `compose_book_spread`: `random.Random(hash(...))` (per-process salt) و `perspective_warp` مرده حذف شدند
+- `video_control_panel`: launch و resume از **یک** سازنده‌ی command استفاده می‌کنند (`pipeline_command`)
 
 ---
 
-## ۲) فایل‌های جدید/بازنویسی‌شده
+## ۲) فایل‌های جدید این سشن
 
 ```
-services/ordak/app/automation/flow_references.py     ← جدید: attach/verify/clear مراجع فلو
-services/ordak/app/automation/flow_worker.py         ← بازنویسی کامل (~1000 خط)
-services/ordak/app/automation/existing_chrome.py     ← + set_file_input_files / download_to / _linux_cdp_call
-services/ordak/app/automation/gemini_worker.py       ← _map_login_error حالا provider-aware
-services/ordak/app/job_manager.py                    ← OrdaKError دیگر کدش را از دست نمی‌دهد
-scripts/run_question_harvest_pipeline.py             ← بازنویسی کامل
-scripts/run_full_video_pipeline_qh_wrapper.py        ← بازنویسی کامل
-scripts/trim_opening_clips.py                        ← بازنویسی کامل
-scripts/generate_character_sheet.py                  ← بازنویسی کامل
-scripts/align_beats.py                               ← + segment alignment + OPENING_TIMING
-scripts/build_timeline.py                            ← حذف rescale + گاردها
-scripts/render_video.py                              ← fail-fast کلیپ کوتاه
-scripts/flow_reference_policy.py, content_projects.py ← قرارداد Clip B
-tests/test_mixed_timeline.py                         ← بازنویسی کامل
-.env                                                 ← YT_ORDAK_FLOW_URL به یک project واقعی pin شد
+services/ordak/app/automation/gemini_pro.py          ← مسیر Nano Banana Pro
+services/ordak/app/automation/image_validation.py    ← §32
+services/ordak/tests/imagefixtures.py                ← PNG واقعی بدون Pillow
+services/ordak/tests/test_gemini_pro_path.py
+services/ordak/tests/test_image_validation.py
+services/ordak/tests/test_generation_receipt_evidence.py
+services/ordak/tests/test_flow_settings_verification.py
+services/ordak/tests/test_flow_credit_safety.py
+scripts/episode_summary.py                           ← خلاصه‌ی قسمت (T9.4)
+scripts/music_plan.py                                ← MUSIC_PLAN.json (T9.7)
+scripts/episode_history.py                           ← anti-repetition (T5.6)
+tests/test_integration_media.py                      ← §97
+tests/test_resume_stages.py                          ← §78/§102
+tests/test_render_resource_budget.py                 ← T9.5
+tests/test_subtitle_timing.py                        ← T9.8
+tests/test_music_plan.py, tests/test_episode_history.py, tests/test_control_panel_api.py
 ```
+
+بازنویسی‌شده: `compose_book_spread.py`, `check_full_stack.py`, `tests/test_model_lock.py`,
+`tests/test_book_compositor.py` · تغییر یافته: `gemini_worker.py`, `schemas.py`,
+`run_question_harvest_pipeline.py`, `render_video.py`, `build_timeline.py`, `align_beats.py`,
+`run_completion_pipeline.py`, `publish_to_telegram.py`, `commit_video_artifacts.py`,
+`video_control_panel.py`, `run_pixabay_music.py`, `run_full_video_pipeline*.py`
 
 ---
 
-## ۳) کارهای مانده (به ترتیب اولویت)
+## ۳) کارهای مانده
 
-### P2 — Gemini سخت‌گیرانه (اولویت ۱)
-- [ ] **T2.2 مسیر Nano Banana Pro**: submit → نتیجه‌ی اول → یافتن کنترل «Redo with Pro»/Pro
-      → invoke → **تمایز مثبت** نتیجه (node id + SHA + dimension) → فقط Pro بپذیر،
-      وگرنه `MODEL_NOT_AVAILABLE`. الان `pro_regeneration_used` همیشه false است.
-- [ ] **T2.4 receipt واقعی**: `model_verified` فقط با شاهد UI؛ تست: receipt با
-      `model_verified=True` بدون فیلد شاهد → رد
-- [ ] **T2.5 validation دانلود §32**: رد SHA تکراری با تصویر قبلی، رد thumbnail آپلود کاربر، رد نتیجه‌ی stale
-- [ ] **T2.6 `book_design_sheet.png`** واقعی با Gemini Pro (کد stage آماده است:
-      `stage_book_design_sheet` در QH pipeline) + بازبینی بصری
-- [ ] **T2.7** تست compositor: صفحه‌ی راست دقیقاً همان world_keyframe
+### P8 — مستندات / دیپلوی (اولویت ۱ — تنها کار بلاک‌نشده)
+- [ ] ۵ سند: `docs/QUESTION_HARVEST_PIPELINE.md`, `docs/ORDAK_GEMINI_BROWSER_AUTOMATION.md`,
+      `docs/ORDAK_FLOW_BROWSER_AUTOMATION.md`, `docs/SERVER_DEPLOYMENT.md`, `docs/RECOVERY_RUNBOOK.md`
+      + آپدیت `VIDEO_CONTROL_PANEL.md` (۴۱۴۱ آدرس رسمی، endpointهای جدید `/api/status`, `/api/log`, `/resume`)
+      → قواعد مطلق §104 با زبان صریح؛ کشف‌های DOM فلو/جمینای که در بخش ۵ همین فایل است را منتقل کن
+- [ ] T8.1 وحدت مسیر systemd: یونیت روی `/root/...` است ولی کار روی `/opt/...` — `systemctl cat ordak-api` را ببین و یکی کن
+- [x] T8.2 `chmod 600` روی htpasswdها (انجام شد) — `access-credentials.txt` از قبل `600` بود
+- [ ] T8.4 commit/push نهایی: ordak → pointer → والد (بلاکر #1 را ببین)
 
-### P6 — تست‌های واقعی (اولویت ۲)
-- [ ] `tests/test_model_lock.py` هنوز تاتولوژیک است (`assert "720p" != "360p"`) → تست رفتار
-      واقعی توابع verify با DOM mock
-- [ ] `scripts/check_full_stack.py` مقدار هاردکد `True` دارد → چک واقعی + exit code معنادار
-- [ ] integration media §97 (۷ سناریو) + resume tests §78/§102 (بدون مصرف credit)
-- [ ] تست unit برای `flow_worker._reconcile_pending` (restart وسط جاب → reconcile نه Generate)
+### P7 — پذیرش انتها به انتها (نیاز به لاگین کاربر — بلاک)
+- [ ] **T7.1**: لاگین ChatGPT / Gemini / Flow از noVNC روی پورت **4143**. الان هر سه
+      `logged_in: false` با `open_tabs: 0` هستند. تا این نشود هیچ‌کدام از موارد زیر ممکن نیست.
+- [ ] **T2.2 اجرای واقعی**: یک جاب Gemini با `nano_banana_pro` → لاگ باید دو نتیجه‌ی متمایز
+      نشان دهد و receipt `pro_regeneration_used=true` با note ‏`pro_distinction=…`
+      ⚠️ **نکته‌ی مهم**: needleهای کنترل Pro در `gemini_pro.PRO_ACTION_VERBS` /
+      `PRO_QUALITY_TOKENS` از اسپک حدس زده شده‌اند، **روی UI واقعی تأیید نشده‌اند**.
+      اولین کار بعد از لاگین: `find_pro_control` را روی یک نتیجه‌ی واقعی اجرا کن و اگر
+      برنگشت، متن واقعی دکمه را ببین و لیست را اصلاح کن.
+- [ ] **T2.6**: ساخت واقعی `book_design_sheet.png` با Gemini Pro (کد stage آماده است) + بازبینی بصری
+- [ ] T7.2–T7.5: تولید واقعی Gemini، Flow Clip A/B، smoke غیرتولیدی تا QC
+- [ ] یک اجرای کامل: ChatGPT → Gemini(Pro) → Flow A/B → ElevenLabs → Ajil → trim → music
+      → mixed render → QC → publish. **هنوز انجام نشده.**
+- [ ] یک جاب Flow با status نهایی `completed` (خط `update_status("completed")` اضافه شده ولی
+      با جاب واقعی تأیید نشده)
 
-### P9 — پنل / تلگرام / منابع (اولویت ۳)
-- [ ] پنل روی **4141**: تأیید auth + websocket؛ ثبت ۴۱۴۱ به‌عنوان آدرس رسمی در مستندات
-- [ ] UI/UX تک‌صفحه‌ای بهتر: گروه‌بندی Content/Voice/Engines/Advanced، status badge provider
-      از `/api/diagnostics`، tail زنده‌ی لاگ، دکمه‌ی resume
-- [ ] `run_completion_pipeline.py` هنوز **صفر** نقطه‌ی notify دارد → به سطح QH برسان
-- [ ] ارسال ویدیوی نهایی + خلاصه (مدت، تعداد بیت، مدل‌های تأییدشده، مصرف منابع) به تلگرام
-- [ ] **بودجه‌ی منابع**: سرور ۲ vCPU / ۷GB → `threads=max(1,round(nproc*0.8))` + `nice`/`ionice`
-      + سقف supersample + `render/RENDER_STATS.json` + knob `--resource-budget 0.8`
-- [ ] git به‌عنوان stage اتوماسیون بعد از QC (idempotent، بدون secret)
-- [ ] `MUSIC_PLAN.json` با ساختار segment-list + prompt جست‌وجوی موسیقی از ChatGPT
-- [ ] زیرنویس دقیق از word timestamps با margin درست (وقتی روشن باشد)
-- [ ] T5.6 ثبت anti-repetition §35 در `VIDEOS.json` (`_recent_history()` آماده است، نوشتن مانده)
-
-### P7 — پذیرش انتها به انتها (اولویت ۴)
-- [ ] یک اجرای کامل واقعی: ChatGPT → Gemini(Pro) → Flow A/B → ElevenLabs → Ajil → trim
-      → music → mixed render → QC. **هنوز انجام نشده.**
-- [ ] یک جاب Flow با status نهایی `completed` (خط `runtime.update_status("completed")`
-      اضافه شد ولی با جاب واقعی تأیید نشده — آخرین جاب قبل از این fix، `failed` ثبت شد
-      در حالی که ویدیو سالم روی دیسک بود)
-
-### P8 — مستندات / دیپلوی
-- [ ] ۵ سند: `QUESTION_HARVEST_PIPELINE.md`, `ORDAK_GEMINI_BROWSER_AUTOMATION.md`,
-      `ORDAK_FLOW_BROWSER_AUTOMATION.md`, `SERVER_DEPLOYMENT.md`, `RECOVERY_RUNBOOK.md`
-- [ ] وحدت مسیر systemd (`/root/...` vs `/opt/...`)
-- [ ] `chmod 600` روی htpasswdها + `access-credentials.txt`
+### باقی‌مانده‌های کوچک
+- [ ] `--commit` هنوز از پنل پیش‌فرض روشن نیست (چک‌باکس دارد) چون push والد ۴۰۳ می‌دهد
+- [ ] mixer صدا هنوز فقط `music.file` را می‌خواند؛ `music.segments` نوشته می‌شود ولی
+      مصرف‌کننده‌ی چند-segment در `polish_audio.py` وقتی segment دوم لازم شد باید اضافه شود
 
 ---
 
@@ -176,8 +152,11 @@ tests/test_mixed_timeline.py                         ← بازنویسی کام
    `M2002HR/YT_Video_Generation_Pipeline` دسترسی write ندارد (HTTP 403).
    کامیت‌ها لوکال محفوظ‌اند. راه‌حل: collaborator کردن `AliBalash` یا token با write.
    (push به `AliBalash/ordak` کار می‌کند.)
-2. **مصرف credit فلو** — این سشن ۳ جاب واقعی (۲۱ credit) مصرف شد؛ یکی از آن‌ها
-   به‌خاطر restart نکردن سرویس تلف شد. برای هر تست واقعی اول restart.
+2. **هیچ provider لاگین نیست** — `logged_in: false` برای هر سه، `open_tabs: 0`.
+   کل P7 و اجرای واقعی به این گره خورده. از `http://<host>:4143` (noVNC، basic auth) وارد شو.
+3. **مصرف credit فلو** — هر جاب واقعی ۷ credit. برای هر تست واقعی **اول** `systemctl restart ordak-api`.
+4. **رمز basic auth پنل** — در `/root/.config/yt-video-pipeline/access-credentials.txt` است.
+   من عمداً محتوایش را چاپ نکردم؛ تست `200 with auth` را خودت بزن.
 
 ---
 
@@ -186,21 +165,35 @@ tests/test_mixed_timeline.py                         ← بازنویسی کام
 ```bash
 cd /opt/YT_Video_Generation_Pipeline
 
-# تست‌ها (باید 69 pass)
+# تست‌ها — باید 181 pass
 PYTHONPATH=.venv/lib/python3.12/site-packages:scripts \
   services/ordak/.venv/bin/python -m pytest tests/ -q
+
+# تست‌های ordak — باید 140 pass
+cd services/ordak && .venv/bin/python -m pytest tests/ -q; cd ../..
+
+# full stack — advisory فقط لاگین provider و working tree باید باشد
+.venv/bin/python scripts/check_full_stack.py --skip-providers   # exit 0
+.venv/bin/python scripts/check_full_stack.py                    # exit 1 تا لاگین نشود
 
 # هیچ synthetic نماند
 grep -rn "allow_synthetic\|synthetic_fallback\|_dummy_\|\[MODEL:" scripts/   # → خالی
 
-# سلامت + لاگین سه provider (هر سه باید True)
-curl -s http://127.0.0.1:8000/api/health
+# پنل تک‌صفحه‌ای
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:4141/          # 401
+curl -s http://127.0.0.1:4142/api/status | python3 -m json.tool | head -20
+curl -s "http://127.0.0.1:4142/api/log/00000000-0000-0000-0000-000000000000?offset=0"
+
+# خلاصه‌ی یک قسمت واقعی
+.venv/bin/python scripts/episode_summary.py videos/009_vikings_history --caption
+
+# لاگین سه provider (هر سه باید True شود)
 curl -s http://127.0.0.1:8000/api/diagnostics | python3 -c "
 import json,sys
 for p,s in (json.load(sys.stdin).get('provider_sessions') or {}).items():
     print(p, s.get('logged_in'), s.get('login_state'), len(s.get('open_tabs') or []))"
 
-# capability زنده‌ی فلو (بدون مصرف credit)
+# capability زنده‌ی فلو (بدون مصرف credit) — تب فلو باید روی flow/project/<id> باز باشد
 services/ordak/.venv/bin/python - <<'PY'
 import sys, json; sys.path.insert(0,'services/ordak')
 from app.automation.existing_chrome import ChromeTabRef, list_google_chrome_tabs
@@ -210,39 +203,62 @@ r=ChromeTabRef(window_id=getattr(i,'window_id',0), tab_id=getattr(i,'tab_id',0),
 print(json.dumps(fs.read_capabilities(r).to_dict(), indent=1)); fs.close_settings_menu(r)
 PY
 
-# آپلود frame روی UI واقعی (بدون مصرف credit)
+# کنترل Pro جمینای روی UI واقعی (بدون مصرف credit) — needleها را همین‌جا تأیید کن
 services/ordak/.venv/bin/python - <<'PY'
 import sys, json; sys.path.insert(0,'services/ordak')
-from pathlib import Path
 from app.automation.existing_chrome import ChromeTabRef, list_google_chrome_tabs
-import app.automation.flow_settings as fs, app.automation.flow_references as fr
-i=[t for t in list_google_chrome_tabs() if 'flow/project/' in (getattr(i,'url','') or '')][0]
+import app.automation.gemini_pro as gp
+i=[t for t in list_google_chrome_tabs() if 'gemini.google.com' in (getattr(t,'url','') or '')][0]
 r=ChromeTabRef(window_id=getattr(i,'window_id',0), tab_id=getattr(i,'tab_id',0), target_id=getattr(i,'target_id',None))
-fs._select_tab_option(r, "reference_mode", "Frames"); fs.close_settings_menu(r)
-print(json.dumps(fr.read_frame_slots(r)))
+print('results:', [x.to_dict() for x in gp.read_result_identities(r)])
+print('pro control:', gp.find_pro_control(r))
 PY
 
-# جاب واقعی فلو (⚠️ ۷ credit) — اول systemctl restart ordak-api
-# اسکریپت آماده: /tmp/flow_e2e_test.py
-
 # گیت
-git log --oneline -5; git -C services/ordak log --oneline -3
+git log --oneline -6; git -C services/ordak log --oneline -3
 ```
 
-**نکته:** تب فلو باید روی `flow/project/<id>` باز باشد.
-`YT_ORDAK_FLOW_URL` الان به `.../project/36400b0f-605e-484b-95c5-48e727479dfc` pin است
+**نکته:** `YT_ORDAK_FLOW_URL` به `.../project/36400b0f-605e-484b-95c5-48e727479dfc` pin است
 (به‌جای base URL) تا هر جاب پروژه‌ی جدید نسازد و baseline نتیجه‌ها معنا داشته باشد.
 
 ---
 
-## ۶) قواعدی که نباید نقض شوند
+## ۶) کشف‌های DOM (verified 2026-09-04، پایه‌ی همه‌ی کد — به سند P8 منتقل شود)
+
+### Flow
+- **Frames mode**: ردیف slot = `parent` دکمه‌ی `Swap first and last frames`؛ فرزندان `[start, swap, end]`؛
+  slot خالی متن `Start`/`End` و بدون `<img>`؛ پرشده = یک `<img>` با src `media.getMediaUrlRedirect` و لیبل `cancel`
+- **Ingredients mode**: دکمه‌ی `add_2` در composer
+- **آپلود**: کلیک روی هدف → `[role="dialog"]` → `DOM.setFileInputFiles` روی تک
+  `input[type="file"][accept*="image"]` → asset جدید **auto-select** می‌شود و `Add to Prompt` فعال → کلیک confirm
+  (⚠️ کلیک روی ردیف در این حالت selection را **لغو** می‌کند)
+- **نتیجه‌ها**: `video.src` هر نتیجه شناسه‌ی یکتا دارد → «کدام نتیجه جدید است» با set-difference
+- **دانلود**: `Browser.setDownloadBehavior` فقط روی **browser endpoint** و فقط تا وقتی همان
+  websocket باز است کار می‌کند؛ `behavior=allowAndName` فایل را با GUID می‌نویسد
+- Frames و Ingredients **انحصاری**‌اند (یک tablist، یک active) → Clip B فقط `first_frame` + `last_frame`
+- گروه‌های تنظیمات با **محتوای گزینه‌ها** شناسایی می‌شوند نه index (`GROUP_SIGNATURES`)
+- لیبل مدل‌ها: `Omni 1.1 Flash`, `Veo 3.1 - Lite/Fast/Quality` (با خط تیره)
+- viewport مرورگر 7644×3952 با dpr=0.25 (مختصات CSS = پیکسل اسکرین‌شات × 4)
+
+### Gemini
+- لیبل مدل **فقط** از خود کنترل خوانده می‌شود، هرگز از `document.body.innerText`
+  (نام مدل‌ها داخل dropdown بسته هم match می‌شود)
+- SHA-256 نتیجه را می‌توان **داخل صفحه** حساب کرد: `fetch(src)` → `crypto.subtle.digest`
+  (`_linux_execute_javascript` با `awaitPromise: true` اجرا می‌کند، پس async IIFE کار می‌کند)
+- URL نتیجه‌ها query param گذرا دارد → identity = بخش قبل از `?`
+- ⚠️ **تأیید نشده**: متن دکمه‌ی Pro regeneration
+
+---
+
+## ۷) قواعدی که نباید نقض شوند
 
 - تصویر = **Gemini فقط** · ویدیو = **Google Flow فقط** · متن = **ChatGPT فقط** (همه با Ordak)
-- **هیچ** provider/model/synthetic fallback
+- **هیچ** provider/model/synthetic fallback — نه در media، نه در تایمینگ، نه در template کتاب
 - به Flow **هیچ style sheet** نمی‌رود
-- Frames و Ingredients **انحصاری**‌اند — یک کلیپ یا frame دارد یا ingredient
-- `outputs=x1` اجباری (هر output اضافه credit را چند برابر می‌کند)
+- Frames و Ingredients **انحصاری**‌اند
+- `outputs=x1` اجباری
 - blind duplicate Generate = **صفر**
 - بدون پروکسی، اتصال مستقیم
+- `model_verified` فقط با شاهد UI؛ Pro فقط با تمایز مثبت
 - هیچ ادعای «کامل شد» بدون تست واقعی مرورگر
 - **بعد از تغییر کد ordak، سرویس را restart کن**
