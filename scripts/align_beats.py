@@ -532,6 +532,151 @@ def align_beats(
     return aligned
 
 
+SCRIPT_PLAN_SEGMENTS = ("opening_question_spark", "book_transition")
+
+
+def load_script_plan(video_dir: Path) -> dict[str, Any] | None:
+    """Read the segmented narration contract, if this project produced one."""
+    path = video_dir / "creative" / "SCRIPT_PLAN.json"
+    if not path.is_file():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ValueError(f"SCRIPT_PLAN.json is not readable JSON: {exc}") from exc
+    if not isinstance(data, dict):
+        raise ValueError("SCRIPT_PLAN.json must contain a JSON object.")
+    return data
+
+
+def script_plan_segments(plan: dict[str, Any]) -> list[tuple[str, str]]:
+    """Ordered ``(name, text)`` segments exactly as they are spoken."""
+    segments: list[tuple[str, str]] = []
+    for key in SCRIPT_PLAN_SEGMENTS:
+        segments.append((key, str(plan.get(key) or "").strip()))
+    body = plan.get("body")
+    if isinstance(body, list):
+        for index, entry in enumerate(body, start=1):
+            segments.append((f"body_{index:02d}", str(entry or "").strip()))
+    elif body:
+        segments.append(("body", str(body).strip()))
+    for key in ("optional_closing", "cta"):
+        text = str(plan.get(key) or "").strip()
+        if text:
+            segments.append((key, text))
+    return [(name, text) for name, text in segments if text]
+
+
+def verify_script_plan_concatenation(plan: dict[str, Any]) -> None:
+    """The segments must reproduce ``full_narration`` token for token.
+
+    If they do not, the segment boundaries describe a different script than the one that was
+    narrated, and every opening trim computed from them would be silently wrong (§67).
+    """
+    full = str(plan.get("full_narration") or "").strip()
+    if not full:
+        raise ValueError("SCRIPT_PLAN.json has no full_narration to verify against.")
+    joined = " ".join(text for _, text in script_plan_segments(plan))
+    if tokenize_expected(joined) != tokenize_expected(full):
+        raise ValueError(
+            "SCRIPT_PLAN.json segments do not concatenate into full_narration; "
+            "the narration and the segment boundaries disagree, so opening trims would be "
+            "computed from the wrong words."
+        )
+
+
+def align_segments(
+    segments: list[tuple[str, str]],
+    words: list[WordStamp],
+    duration: float,
+) -> list[dict]:
+    """Map named narration segments onto the real word timeline."""
+    prepared = [{"beat_id": name, "narration": text, "tokens": tokenize_expected(text)} for name, text in segments]
+    expected_tokens, ranges = build_expected_index(prepared)
+    mapping = exact_token_mapping(expected_tokens, [w.token for w in words])
+
+    aligned: list[dict] = []
+    for entry, (start_idx, end_idx) in zip(prepared, ranges):
+        mapped = nearest_mapped(mapping, start_idx, end_idx)
+        if mapped:
+            speech_start = words[mapped[0][1]].start
+            speech_end = words[mapped[-1][1]].end
+            confidence = len(mapped) / max(1, end_idx - start_idx)
+        else:
+            speech_start = duration * (start_idx / max(1, len(expected_tokens)))
+            speech_end = duration * (end_idx / max(1, len(expected_tokens)))
+            confidence = 0.0
+        aligned.append(
+            {
+                "segment": entry["beat_id"],
+                "narration": entry["narration"],
+                "speech_start": round(speech_start, 3),
+                "speech_end": round(speech_end, 3),
+                "match_confidence": round(confidence, 3),
+            }
+        )
+    return aligned
+
+
+MIN_SEGMENT_CONFIDENCE = 0.6
+
+
+def write_opening_timing(
+    video_dir: Path,
+    plan: dict[str, Any],
+    aligned_segments: list[dict],
+    duration: float,
+) -> Path:
+    """Write the measured opening boundaries the Flow trims are cut to (§67 step 4).
+
+    ``spark_end`` and ``transition_end`` are read off the real word timeline. Nothing here
+    estimates from word counts, and a segment that could not be matched fails loudly rather
+    than producing a plausible-looking wrong number.
+    """
+    by_name = {entry["segment"]: entry for entry in aligned_segments}
+    spark = by_name.get("opening_question_spark")
+    transition = by_name.get("book_transition")
+    if spark is None or transition is None:
+        raise ValueError(
+            "Opening timing needs both opening_question_spark and book_transition segments."
+        )
+    weak = [
+        entry["segment"]
+        for entry in (spark, transition)
+        if entry["match_confidence"] < MIN_SEGMENT_CONFIDENCE
+    ]
+    if weak:
+        raise ValueError(
+            "Opening segments could not be located in the narration audio with enough "
+            f"confidence: {weak}. The narration does not match SCRIPT_PLAN.json."
+        )
+    if transition["speech_end"] <= spark["speech_end"]:
+        raise ValueError(
+            "book_transition ends before opening_question_spark does; the segment order in "
+            "SCRIPT_PLAN.json does not match the narration."
+        )
+
+    body = [entry for entry in aligned_segments if str(entry["segment"]).startswith("body")]
+    payload = {
+        "audio_duration_seconds": round(duration, 3),
+        "spark_start": spark["speech_start"],
+        "spark_end": spark["speech_end"],
+        "spark_duration": round(spark["speech_end"] - spark["speech_start"], 3),
+        "transition_start": transition["speech_start"],
+        "transition_end": transition["speech_end"],
+        "transition_duration": round(transition["speech_end"] - transition["speech_start"], 3),
+        "clip_a_target_seconds": round(spark["speech_end"], 3),
+        "clip_b_target_seconds": round(transition["speech_end"] - spark["speech_end"], 3),
+        "body_start": body[0]["speech_start"] if body else transition["speech_end"],
+        "segments": aligned_segments,
+    }
+    timing_dir = video_dir / "timing"
+    timing_dir.mkdir(parents=True, exist_ok=True)
+    path = timing_dir / "OPENING_TIMING.json"
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return path
+
+
 def write_outputs(
     video_dir: Path,
     audio: Path,
@@ -705,10 +850,19 @@ def main() -> None:
         aligned,
     )
 
+    plan = load_script_plan(video_dir)
+    opening_path = None
+    if plan is not None:
+        verify_script_plan_concatenation(plan)
+        aligned_segments = align_segments(script_plan_segments(plan), words, duration)
+        opening_path = write_opening_timing(video_dir, plan, aligned_segments, duration)
+
     low = [b for b in aligned if b["match_confidence"] < 0.75]
 
     print(f"Created: {json_path}")
     print(f"Created: {md_path}")
+    if opening_path is not None:
+        print(f"Created: {opening_path}")
     print(f"Audio duration: {duration:.3f}s")
     print(f"Timestamp source: {stt_metadata.get('timestamp_source')}")
     if low:
