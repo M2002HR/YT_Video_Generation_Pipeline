@@ -938,6 +938,13 @@ def stage_book_spread(runner: Runner, project: Path, world_keyframe: Path, episo
 
     template_id = str(episode_plan.get("book_template_id") or "001")
     template_path = BOOK_TEMPLATES_ROOT / template_id / "blank_book.png"
+    if not template_path.is_file():
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            f"Book template {template_id!r} has no blank_book.png at {template_path}. "
+            "The compositor never draws a stand-in book, so this must be fixed in the catalog.",
+        )
     seed = int(hashlib.sha256((str(project) + template_id).encode()).hexdigest()[:8], 16) % 100_000
     meta = compose(
         world_keyframe=world_keyframe,
@@ -945,7 +952,7 @@ def stage_book_spread(runner: Runner, project: Path, world_keyframe: Path, episo
         template_id=template_id,
         seed=seed,
         aspect_ratio="9:16",
-        template_path=template_path if template_path.is_file() else None,
+        template_path=template_path,
     )
     save_json(project / "creative" / "BOOK_SPREAD_META.json", meta)
     runner.stage_done(stage, started, target.name, template_id=template_id, sha256=meta["sha256"])

@@ -497,7 +497,9 @@ def align_beats(
             speech_end = last_word.end
             confidence = len(mapped) / max(1, end_idx - start_idx)
         else:
-            # Fallback should rarely be needed for synthetic narration.
+            # Not one token of this beat could be located in the transcript. The
+            # proportional estimate below exists only so the failure message can show
+            # where the beat would have landed; it is never returned as usable timing.
             fraction_start = start_idx / max(1, len(expected_tokens))
             fraction_end = end_idx / max(1, len(expected_tokens))
             speech_start = duration * fraction_start
@@ -512,6 +514,17 @@ def align_beats(
                 "speech_end": round(speech_end, 3),
                 "match_confidence": round(confidence, 3),
             }
+        )
+
+    unlocatable = [
+        beat["beat_id"] for beat in aligned if beat["match_confidence"] <= 0.0
+    ]
+    if unlocatable:
+        raise ValueError(
+            "These beats could not be located in the narration audio at all: "
+            f"{unlocatable}. Their timing would be a proportional guess, which is how "
+            "images drift away from the words they illustrate, so alignment fails here "
+            "instead of emitting timings nothing measured."
         )
 
     # Convert phrase timings into a continuous image timeline.
