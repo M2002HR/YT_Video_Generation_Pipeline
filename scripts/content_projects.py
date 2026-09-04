@@ -252,7 +252,6 @@ def build_flow_clip_references(
     *,
     clip: str,
     has_character: bool = True,
-    has_book_design_sheet: bool = True,
     has_first_frame: bool = False,
     has_last_frame: bool = False,
 ) -> list[str]:
@@ -264,7 +263,6 @@ def build_flow_clip_references(
         return clip_a_roles(has_character_sheet=has_character)
     if clip_key == "B":
         return clip_b_roles(
-            has_book_design_sheet=has_book_design_sheet,
             has_first_frame=has_first_frame,
             has_last_frame=has_last_frame,
         )

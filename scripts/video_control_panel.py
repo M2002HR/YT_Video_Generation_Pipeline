@@ -254,7 +254,6 @@ function onProjectChange() {{
   <label>Similarity <input name=similarity type=number min=0 max=1 step=.01 value=.75 required></label>
   <label>Style / exaggeration <input name=style type=number min=0 max=1 step=.01 value=.10 required></label>
   <label>Music provider <select name=music_provider><option value=mixkit>Mixkit</option><option value=pixabay>Pixabay</option></select></label>
-  <label><input type=checkbox name=allow_synthetic> Allow synthetic fallback <small>(for smoke tests when Flow/Gemini unavailable — real production must be unchecked)</small></label>
  </fieldset>
 
  <button type=submit>Launch full pipeline</button>
@@ -304,7 +303,6 @@ function onProjectChange() {{
             flow_resolution = values.get("flow_resolution", ["720p"])[0].strip() or "720p"
             opening_a_seconds = int(values.get("opening_a_seconds", ["6"])[0])
             opening_b_seconds = int(values.get("opening_b_seconds", ["4"])[0])
-            allow_synthetic = "allow_synthetic" in values
             if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} \
                or not voice or len(voice) > 220 or model not in {"Eleven Multilingual v2", "Eleven v3"} \
                or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
@@ -345,7 +343,6 @@ function onProjectChange() {{
                 "opening_a_source_seconds": opening_a_seconds,
                 "opening_b_source_seconds": opening_b_seconds,
                 "show_subtitles": show_subtitles,
-                "allow_synthetic": allow_synthetic,
             }
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
@@ -378,36 +375,16 @@ function onProjectChange() {{
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
             # Route to correct pipeline per content project profile
             if content_project == "question_harvest":
-                # QH uses dedicated pipeline with allow-synthetic flag
-                cmd = [sys.executable, "-u", "scripts/run_question_harvest_pipeline.py",
-                       "--topic", topic, "--video-id", video_id,
-                       "--content-project", content_project,
-                       "--creative-brief", str(creative_brief_path),
-                       "--voice-profile", str(profile),
-                       "--gemini-model", gemini_image_model,
-                       "--flow-model", flow_video_model,
-                       "--flow-resolution", flow_resolution,
-                       "--opening-a-seconds", str(opening_a_seconds),
-                       "--opening-b-seconds", str(opening_b_seconds),
-                       "--aspect-ratio", aspect_ratio]
-                if allow_synthetic:
-                    cmd.append("--allow-synthetic")
-                # After QH core, continue to timing/music/completion if needed — for now QH pipeline handles up to body images; the remaining steps (voiceover etc) will be chained via wrapper
-                # To keep full video pipeline, we wrap with run_full_video_pipeline_qh helper that chains QH core + completion
-                # Simplest: launch QH core then chain via shell: qh_pipeline && full pipeline steps for music/timeline/render
-                # For now, launch a wrapper that runs QH core and then the generic completion steps
-                wrapper = [sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
-                           "--topic", topic, "--video-id", video_id, "--content-project", content_project,
-                           "--creative-brief", str(creative_brief_path), "--voice-profile", str(profile),
-                           "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max),
-                           "--aspect-ratio", aspect_ratio, "--music-provider", provider]
-                if allow_synthetic:
-                    wrapper.append("--allow-synthetic")
-                # we need the wrapper script — if not exists, fallback to qh pipeline only
-                if not (ROOT / "scripts" / "run_full_video_pipeline_qh_wrapper.py").is_file():
-                    command = cmd
-                else:
-                    command = wrapper
+                # The wrapper owns the whole episode: visual stages, narration, measured
+                # timing, opening trims, music, render, QC and publish.
+                command = [sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
+                           "--topic", topic, "--video-id", video_id,
+                           "--content-project", content_project,
+                           "--creative-brief", str(creative_brief_path),
+                           "--voice-profile", str(profile),
+                           "--aspect-ratio", aspect_ratio,
+                           "--music-provider", provider,
+                           "--publish"]
             else:
                 command = [sys.executable, "-u", "scripts/run_full_video_pipeline.py", "--content-project", content_project, "--topic", topic, "--video-id", video_id, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", aspect_ratio, "--voice-profile", str(profile), "--creative-brief", str(creative_brief_path), "--music-provider", provider]
             try:

@@ -42,12 +42,10 @@ def test_gemini_failure_must_not_fallback_to_chatgpt():
     assert "pollinations" not in text.lower()
 
 
-def test_flow_failure_must_not_fallback():
+def test_pipeline_has_no_synthetic_or_fallback_path():
+    """The production orchestrator must contain no way to substitute made-up media (§4)."""
     text = (Path(ROOT) / "scripts" / "run_question_harvest_pipeline.py").read_text(encoding="utf-8")
-    # Flow failure should not invoke another provider
-    assert "flow" in text.lower()
-    # ensure no other video provider like pollinations/vertex mentioned as fallback
     lowered = text.lower()
-    assert "pollinations" not in lowered
-    # The stage_flow_video should raise, not fallback, when allow_synthetic False
-    assert "allow_synthetic" in text
+    assert "flow" in lowered
+    for banned in ("allow_synthetic", "synthetic_fallback", "_dummy_", "pollinations", "fallback_synthetic"):
+        assert banned not in lowered, f"{banned!r} is still reachable in the production pipeline"

@@ -5,14 +5,21 @@ Absolute rules (master_prompt §12-16, §41, §61 + user workflow decision 2026-
 
   * Flow NEVER receives a style sheet. Not the world style anchor, not a home/environment
     style sheet, not a mood board, not a previous image used as a style reference.
-  * Flow receives exactly one canonical reference sheet per clip:
-        Clip A (question spark)   -> character_sheet
-        Clip B (book -> world)    -> book_design_sheet
-    Clip B has no characters at all (see prompts/reference/book_transition_reference_prompt.txt),
-    so the character sheet is deliberately not sent there.
-  * Frame inputs are job content, not style references, and stay allowed for Clip B:
-        first_frame -> book_spread_frame.png
-        last_frame  -> world_keyframe.png
+  * Flow's two reference modes are mutually exclusive — the live composer exposes
+    ``Frames | Ingredients`` as one tablist with a single active option (verified
+    2026-09-04). A clip therefore uses either frame slots or ingredient chips, never both:
+        Clip A (question spark) -> Ingredients: character_sheet
+        Clip B (book -> world)  -> Frames: first_frame=book_spread_frame,
+                                            last_frame=world_keyframe
+  * Clip B has no characters at all (see
+    prompts/reference/book_transition_reference_prompt.txt), so no character sheet is sent
+    there. The book's locked identity reaches Clip B through the composited
+    ``book_spread_frame`` rather than through a separate ingredient, which is what the
+    exclusive mode allows.
+  * ``book_design_sheet`` remains an allowed canonical role: it is the Gemini-side reference
+    used to compose that spread, and it stays in the vocabulary so a future
+    Ingredients-mode book shot can use it directly.
+  * Frame inputs are job content, not style references.
 
 Every place that builds a Flow job must go through this module. `content_projects`
 re-exports these helpers so there is only one definition of the policy.
@@ -152,14 +159,16 @@ def clip_a_roles(*, has_character_sheet: bool = True) -> list[str]:
 
 def clip_b_roles(
     *,
-    has_book_design_sheet: bool = True,
     has_first_frame: bool = True,
     has_last_frame: bool = True,
 ) -> list[str]:
-    """Clip B (book -> world): book design sheet plus the two scene frames (§16)."""
+    """Clip B (book -> world): the two scene frames only (§16).
+
+    Frames mode and Ingredients mode are mutually exclusive in the Flow composer, so Clip B
+    cannot carry a canonical sheet alongside its frames. The book identity arrives inside the
+    composited first frame instead.
+    """
     roles: list[str] = []
-    if has_book_design_sheet:
-        roles.append("book_design_sheet")
     if has_first_frame:
         roles.append("first_frame")
     if has_last_frame:
@@ -203,7 +212,8 @@ def build_flow_uploads(
     if clip_key == "A":
         uploads.append(("character_sheet", _require_file(character_sheet, "character_sheet")))
     elif clip_key == "B":
-        uploads.append(("book_design_sheet", _require_file(book_design_sheet, "book_design_sheet")))
+        # Frames mode excludes ingredient chips, so Clip B sends only its two frames. The
+        # book identity is already baked into the composited first frame.
         uploads.append(("first_frame", _require_file(book_spread_frame, "first_frame (book_spread_frame)")))
         uploads.append(("last_frame", _require_file(world_keyframe, "last_frame (world_keyframe)")))
     else:

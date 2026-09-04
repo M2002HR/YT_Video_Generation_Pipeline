@@ -50,11 +50,13 @@ def test_clip_a_is_character_sheet_only():
     assert clip_a_roles(has_character_sheet=False) == []
 
 
-def test_clip_b_is_book_sheet_plus_frames_without_character():
+def test_clip_b_is_frames_only_without_character():
     roles = clip_b_roles()
-    assert roles == ["book_design_sheet", "first_frame", "last_frame"]
-    # Clip B carries no character: the character sheet is not part of its contract.
+    assert roles == ["first_frame", "last_frame"]
+    # Clip B carries no character, and Frames mode leaves no room for a canonical sheet:
+    # the book identity travels inside the composited first frame.
     assert "character_sheet" not in roles
+    assert "book_design_sheet" not in roles
 
 
 @pytest.mark.parametrize("bad", STYLE_ROLES)
@@ -108,7 +110,8 @@ def test_build_uploads_clip_a():
             build_flow_uploads(clip="A", character_sheet=d / "missing.png")
 
 
-def test_build_uploads_clip_b_requires_all_three():
+def test_build_uploads_clip_b_sends_only_its_two_frames():
+    """Frames mode is exclusive, so a canonical sheet must not ride along with the frames."""
     with tempfile.TemporaryDirectory() as tmp:
         d = Path(tmp)
         book_sheet = _touch(d, "book_design_sheet.png")
@@ -121,12 +124,12 @@ def test_build_uploads_clip_b_requires_all_three():
             book_spread_frame=spread,
             world_keyframe=world,
         )
-        assert [role for role, _ in uploads] == ["book_design_sheet", "first_frame", "last_frame"]
+        assert [role for role, _ in uploads] == ["first_frame", "last_frame"]
+        assert book_sheet not in [path for _, path in uploads]
 
         for kwargs in (
-            {"book_design_sheet": d / "nope.png", "book_spread_frame": spread, "world_keyframe": world},
-            {"book_design_sheet": book_sheet, "book_spread_frame": d / "nope.png", "world_keyframe": world},
-            {"book_design_sheet": book_sheet, "book_spread_frame": spread, "world_keyframe": d / "nope.png"},
+            {"book_spread_frame": d / "nope.png", "world_keyframe": world},
+            {"book_spread_frame": spread, "world_keyframe": d / "nope.png"},
         ):
             with pytest.raises(FileNotFoundError):
                 build_flow_uploads(clip="B", **kwargs)
@@ -158,6 +161,6 @@ def test_content_projects_reexports_same_policy():
     assert cp.build_flow_clip_references(clip="A") == ["character_sheet"]
     assert cp.build_flow_clip_references(
         clip="B", has_first_frame=True, has_last_frame=True
-    ) == ["book_design_sheet", "first_frame", "last_frame"]
+    ) == ["first_frame", "last_frame"]
     with pytest.raises(FlowReferencePolicyError):
         cp.build_flow_clip_references(clip="A", has_first_frame=True)

@@ -13,9 +13,33 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import textwrap
 from pathlib import Path
 from typing import Any
+
+
+#: How far the rendered opening may sit from the measured narration boundary (§67 step 8).
+OPENING_ALIGNMENT_TOLERANCE = 0.05
+
+
+def ffprobe_seconds(path: Path) -> float:
+    """Real duration of a media file. A missing probe is a hard error, never a guess."""
+    output = subprocess.check_output(
+        [
+            "ffprobe",
+            "-v",
+            "error",
+            "-show_entries",
+            "format=duration",
+            "-of",
+            "default=nw=1:nk=1",
+            str(path),
+        ],
+        text=True,
+        timeout=30,
+    )
+    return float(output.strip())
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -58,18 +82,23 @@ def relative_to_video(path: Path, video_dir: Path) -> str:
 def compute_display_boundaries(
     beats: list[dict[str, Any]],
     audio_duration: float,
+    start_at: float = 0.0,
 ) -> tuple[list[float], list[dict[str, Any]]]:
     """Create one continuous, non-overlapping image timeline.
 
     Pauses belong to the current beat. If STT word timestamps overlap across a
     beat boundary, use the midpoint of the overlap instead of cutting one phrase
     completely early or late.
+
+    ``start_at`` is where the image section begins on the narration timeline. For a
+    mixed-media episode that is the measured end of the book transition, so the body
+    images keep their real spoken positions instead of being rescaled into a window.
     """
 
     if not beats:
         raise ValueError("Timing file contains no beats.")
 
-    boundaries = [0.0]
+    boundaries = [round(float(start_at), 3)]
     adjustments: list[dict[str, Any]] = []
 
     for index in range(len(beats) - 1):
@@ -394,27 +423,36 @@ def main() -> None:
 
     is_mixed = args.mixed_media or detect_mixed_media(video_dir)
 
-    # For mixed-media (Question Harvest), opening clips are separate video beats
+    # For mixed-media (Question Harvest) the two Flow clips are real video beats whose
+    # boundaries were measured from the narration, not estimated (§67).
+    opening_timing: dict[str, Any] = {}
+    if is_mixed:
+        opening_path = video_dir / "timing" / "OPENING_TIMING.json"
+        if not opening_path.is_file():
+            raise FileNotFoundError(
+                f"{opening_path} is missing. A mixed-media timeline needs the measured "
+                "opening boundaries; run align_beats.py first."
+            )
+        opening_timing = load_json(opening_path)
+
     video_entries: list[dict[str, Any]] = []
     video_total = 0.0
     if is_mixed:
-        # Trimmed clips are the canonical render sources (§67-70)
+        # Only the trimmed clips are render sources (§67-70). The untrimmed source is one
+        # second longer by design, so substituting it would desynchronise the whole episode.
         opening_a = video_dir / "assets" / "opening" / "question_spark_trimmed.mp4"
         opening_b = video_dir / "assets" / "opening" / "book_transition_trimmed.mp4"
-        # fallback to source if trimmed not yet exists
-        if not opening_a.is_file():
-            opening_a = video_dir / "assets" / "opening" / "question_spark_source.mp4"
-        if not opening_b.is_file():
-            opening_b = video_dir / "assets" / "opening" / "book_transition_source.mp4"
         for idx, (path, name) in enumerate([(opening_a, "opening_a"), (opening_b, "opening_b")]):
-            if path.is_file():
-                # duration from ffprobe if possible, else use 5s/3s
-                try:
-                    import subprocess, json as js
-                    out = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", str(path)], text=True, timeout=10)
-                    dur = float(out.strip())
-                except Exception:
-                    dur = 5.0 if idx == 0 else 3.0
+            if not path.is_file():
+                if args.skip_asset_validation:
+                    print(f"WARN mixed-media: missing {path}, skipped", flush=True)
+                    continue
+                raise FileNotFoundError(
+                    f"{path} is missing. Run trim_opening_clips.py — the untrimmed source runs "
+                    "one second long on purpose and must not be rendered."
+                )
+            if True:
+                dur = ffprobe_seconds(path)
                 video_entries.append({
                     "media_type": "video",
                     "source": relative_to_video(path, video_dir),
@@ -425,11 +463,9 @@ def main() -> None:
                     "motion": "still",  # video has its own motion
                 })
                 video_total += dur
-            else:
-                if not args.skip_asset_validation:
-                    print(f"WARN mixed-media: missing {path}, will be skipped (use --skip-asset-validation to ignore)", flush=True)
 
-    boundaries, adjustments = compute_display_boundaries(beats, audio_duration)
+    body_start = float(opening_timing.get("transition_end") or 0.0) if is_mixed else 0.0
+    boundaries, adjustments = compute_display_boundaries(beats, audio_duration, start_at=body_start)
 
     motion_cfg = profile.get("motion") if isinstance(profile.get("motion"), dict) else {}
     motion_cycle = motion_cfg.get("cycle") or ["zoom_in"]
@@ -440,14 +476,19 @@ def main() -> None:
 
     # Add video entries first (mixed-media: Clip A, Clip B before body images)
     if is_mixed and video_entries:
-        # For image beats, offset by video_total (images start after videos)
-        # But audio is continuous: image beats speech timings are offset in STT? For simplicity, keep legacy boundaries for images and shift them
-        # The timeline overall duration is audio_duration; video clips occupy first video_total, images occupy remainder scaled
-        # We scale image boundaries to fit remaining duration if needed
-        remaining = max(0.1, audio_duration - video_total)
-        # original beats duration is audio_duration; we map them to remaining window
-        # But simpler: keep boundaries as computed but shift image start/end by video_total * (remaining/audio_duration) — approximate
-        # For smoke, we just keep boundaries as is but clamp
+        # The narration is one continuous track, so a body beat's STT timings are already its
+        # real position in the finished video. Rescaling them into the "remaining" window —
+        # which is what this used to do — moved every image off its own sentence. The images
+        # therefore keep their measured boundaries, and the only thing checked is that the two
+        # clips really end where the narration says the book transition ends (§67 step 8).
+        drift = abs(video_total - body_start)
+        if drift > OPENING_ALIGNMENT_TOLERANCE:
+            raise ValueError(
+                f"The opening clips total {video_total:.3f}s but the narration puts the end of "
+                f"the book transition at {body_start:.3f}s (drift {drift:+.3f}s > "
+                f"{OPENING_ALIGNMENT_TOLERANCE}s). Re-run trim_opening_clips.py: rendering this "
+                "would push every body image off its own sentence."
+            )
         for index, beat in enumerate(beats):
             beat_id = int(beat["beat_id"])
             image_path = find_beat_image(
@@ -455,17 +496,8 @@ def main() -> None:
                 beat_id,
                 allow_missing=args.skip_asset_validation,
             )
-            # Map original image timeline (0..audio_duration) onto (video_total .. audio_duration)
-            orig_start = float(boundaries[index])
-            orig_end = float(boundaries[index + 1])
-            # Scale to remaining window
-            scale = remaining / audio_duration if audio_duration > 0 else 1
-            start = video_total + orig_start * scale
-            end = video_total + orig_end * scale
-            if end <= start:
-                end = start + 0.1
-            # Clamp to audio_duration
-            end = min(end, audio_duration)
+            start = max(float(boundaries[index]), video_total)
+            end = min(float(boundaries[index + 1]), audio_duration)
             if end <= start:
                 continue
             timeline_beats.append(

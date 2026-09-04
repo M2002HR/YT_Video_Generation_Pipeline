@@ -56,6 +56,10 @@ def ffmpeg_has_ass_filter(ffmpeg: str) -> bool:
     )
 
 
+#: A clip may fall this far short of its timeline slot before the render is a lie.
+VIDEO_SLOT_TOLERANCE = 0.04
+
+
 def resolve_video_path(video_dir: Path, value: str) -> Path:
     path = Path(value)
     if path.is_absolute():
@@ -251,6 +255,17 @@ def main() -> None:
             p = resolve_video_path(video_dir, str(src))
             if not p.exists():
                 raise FileNotFoundError(f"Beat {beat['beat_id']} video not found: {p}")
+            # A clip shorter than its slot silently shortens the concat and drifts the
+            # narration against everything after it, so it fails here instead (§70).
+            slot = float(beat["duration"])
+            probed = probe_video(ffprobe, p).get("format") or {}
+            actual = float(probed.get("duration") or 0.0)
+            if actual + VIDEO_SLOT_TOLERANCE < slot:
+                raise ValueError(
+                    f"Beat {beat['beat_id']} needs {slot:.3f}s of video but {p.name} is only "
+                    f"{actual:.3f}s. Re-generate or re-trim that clip: rendering it would drop "
+                    f"{slot - actual:.3f}s and desynchronise the narration."
+                )
             image_paths.append(p)  # reuse list for input order (actually mixed)
         else:
             src = beat.get("image") or beat.get("source")
