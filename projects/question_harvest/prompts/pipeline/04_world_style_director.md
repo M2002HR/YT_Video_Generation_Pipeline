@@ -9,6 +9,7 @@ Select per-episode world visual style (one primary, optionally subtle secondary)
 - EPISODE PLAN (JSON): {{EPISODE_PLAN}}
 - STYLE CATALOG (JSON, available reusable styles): {{STYLE_CATALOG}}
 - RECENT STYLES (JSON): {{RECENT_STYLES}}
+- OPERATOR STYLE DIRECTIVE: {{STYLE_DIRECTIVE}}
 
 ## Available medium families (choose one primary)
 woodcut, historical engraving, charcoal, ink wash, clay / stop-motion-like, paper cut, collage, fresco, manuscript illustration, retro educational illustration, blueprint, technical drawing, screen print, painted storybook, monochrome illustration, surreal conceptual collage
@@ -34,6 +35,10 @@ woodcut, historical engraving, charcoal, ink wash, clay / stop-motion-like, pape
 ```
 
 ## Rules
+- The OPERATOR STYLE DIRECTIVE outranks every heuristic below. When it names a
+  style_id you must answer `"decision": "reuse"` with that exact id in both
+  `style_id` and `reuse_of`. When it forbids reuse you must answer `"new"`. When it
+  gives a free-text steer, honour it while still choosing coherent values.
 - One primary world style per Short; optionally subtle secondary; do NOT randomly mix media beat-by-beat.
 - Score existing catalog vs topic affinity + recent usage (penalize overused texture_family, avoid same as last 2).
 - If catalog empty or no good reuse, propose new with subject_affinities.

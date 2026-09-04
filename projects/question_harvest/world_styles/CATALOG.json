@@ -11,6 +11,17 @@
       "path": "001_woodcut_charcoal",
       "anchor": "001_woodcut_charcoal/style_anchor.png",
       "usage_count": 0
+    },
+    {
+      "style_id": "ink_wash_vintage_animation_001",
+      "display_name": "Ink Wash Vintage Animation 001",
+      "medium_family": "ink wash",
+      "texture_family": "paper grain",
+      "palette_summary": "warm cream paper, sepia ink, muted ochres, faded teal accents, soft moss greens",
+      "status": "ready",
+      "path": "002_ink_wash_vintage_animation_001",
+      "anchor": "002_ink_wash_vintage_animation_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

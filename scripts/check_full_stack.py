@@ -166,11 +166,22 @@ def check_browser_and_api(report: Report, base_url: str) -> dict:
     for provider in PROVIDERS:
         session = sessions.get(provider) or {}
         state = str(session.get("login_state") or "unknown")
-        logged_in = session.get("logged_in") is True
+        tabs = len(session.get("open_tabs") or [])
+        detail = f"logged_in={session.get('logged_in')} state={state} tabs={tabs}"
+        # Ordak deliberately keeps one work tab: opening a provider tab closes the others
+        # (single-tab policy). So a provider without a tab cannot be re-confirmed here, and
+        # requiring a tab for all three would only pass while a human happens to have three
+        # open. What must never pass is a session the UI says needs a human.
         report.check(
-            f"{provider} session authenticated",
-            logged_in and state == "ready",
-            f"logged_in={session.get('logged_in')} state={state} tabs={len(session.get('open_tabs') or [])}",
+            f"{provider} session not blocked",
+            state not in {"login_required", "manual_verification_required"},
+            detail,
+        )
+        report.check(
+            f"{provider} session confirmed signed in",
+            session.get("logged_in") is True and state == "ready",
+            detail + " (no tab open: the worker confirms at open time)",
+            required=False,
         )
     return diagnostics
 

@@ -1,0 +1,284 @@
+{
+  "schema_version": 2,
+  "video_id": "010",
+  "topic": "What was the very first Disney animation?",
+  "created_at": "2026-09-04T19:41:51Z",
+  "pipeline_state": "FAILED",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:13:57Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:13:58Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:13:59Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:01Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:02Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-04T20:14:04Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:05Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:07Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:08Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:10Z",
+      "artifact": "book_design_sheet.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:11Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:12Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:13Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "flow_clip_a": {
+      "status": "FAILED",
+      "updated_at": "2026-09-04T20:15:25Z",
+      "message": "flow/video_generate failed: Google Flow is not available in this country. (observed url: 'https://flow.google.com/unsupported-country')",
+      "error_code": "flow_region_blocked"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:15Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:16Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:17Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:18Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-04T20:14:20Z",
+      "artifact": "beat_005.png"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 24.091,
+      "at": "2026-09-04T19:42:17Z",
+      "words": 72
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 18.058,
+      "at": "2026-09-04T19:42:39Z",
+      "words": 66
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 15.032,
+      "at": "2026-09-04T19:42:57Z",
+      "activity": "workshop repair"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.052,
+      "at": "2026-09-04T19:43:17Z",
+      "style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 27.154,
+      "at": "2026-09-04T19:43:48Z",
+      "sha256": "dd6d97cd6f9fb228bb7585c6285693132b9f105a75fea69b36f0db7fe65dcabe",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-04T19:43:50Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 18.093,
+      "at": "2026-09-04T19:44:11Z",
+      "beats": 5
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 15.05,
+      "at": "2026-09-04T19:44:29Z",
+      "prompt_sha256": "83ea90c7452918c3b07a00645896da8d697cf04598699818ff7466072d4c49a8"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 39.129,
+      "at": "2026-09-04T19:45:10Z",
+      "sha256": "d25293a9837b91c0f077c4ab528abfb514a5c75f30376a56992116b576b48a77",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-04T19:51:32Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.189,
+      "at": "2026-09-04T19:51:42Z",
+      "template_id": "002",
+      "sha256": "37db35aef255e8cb0008f124e71630f7ae84e91116f3fa2f92bb24e563e6eb8a"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 15.034,
+      "at": "2026-09-04T19:52:00Z",
+      "prompt_sha256": "31c9552355b9be23e6c19d47091d81839b763f10bfd74a6f2e764752a9b29bbd"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 18.061,
+      "at": "2026-09-04T19:52:20Z",
+      "prompt_sha256": "280755b23d39c64ef6a898a0857b229f86e56e4505ae4d5bf622302364650209"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-04T20:02:35Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 57.245,
+      "at": "2026-09-04T20:03:43Z",
+      "sha256": "fcdb4e1e25f93de582423c1baf293fdea6fe138592f0c2a1d11cb7939b5d51aa",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 60.262,
+      "at": "2026-09-04T20:04:46Z",
+      "sha256": "758a9a4ecbfeb083e033d259f29bf6c01cc4571dad5ebab1472a569e93271ba9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 252.78,
+      "at": "2026-09-04T20:09:01Z",
+      "sha256": "a9a7e8e4a3c81401dfc242571ce30e62627f3e63418c6988d4eebec96003fb7e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 60.234,
+      "at": "2026-09-04T20:10:04Z",
+      "sha256": "67f0c5aa9b9062f51edbef4eec7b41947554b8ec870955de69cc3b4710fc9ddf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-04T20:14:04Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    }
+  ],
+  "updated_at": "2026-09-04T20:15:25Z"
+}

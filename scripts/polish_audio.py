@@ -69,6 +69,67 @@ def as_bool(value: Any, default: bool = False) -> bool:
     return bool(value)
 
 
+def music_segment_inputs(
+    video_dir: Path, music_cfg: dict[str, Any], duration: float
+) -> list[dict[str, Any]]:
+    """Normalise the profile's music into one entry per ffmpeg input.
+
+    ``music.segments`` is the general shape; ``music.file`` is the older spelling of a
+    single bed covering the whole video. Both end up here as the same kind of dict, so the
+    filter graph does not branch on which one the profile happened to use.
+
+    Segments are clamped to the render duration and ordered by start time. A segment whose
+    file is missing is an error rather than a silent gap: the caller enabled music.
+    """
+    raw_segments = music_cfg.get("segments")
+    entries: list[dict[str, Any]] = []
+
+    if isinstance(raw_segments, list) and raw_segments:
+        for index, item in enumerate(raw_segments):
+            if not isinstance(item, dict):
+                continue
+            file_value = str(item.get("file") or "").strip()
+            if not file_value:
+                raise FileNotFoundError(
+                    f"Music segment {item.get('segment_id') or index} has no file."
+                )
+            path = resolve_video_path(video_dir, file_value)
+            if not path.exists():
+                raise FileNotFoundError(f"Music segment file is missing: {path}")
+            start = max(0.0, float(item.get("start_seconds") or 0.0))
+            end = float(item.get("end_seconds") or 0.0)
+            end = duration if end <= 0 else min(end, duration)
+            if end <= start:
+                continue
+            entries.append({
+                "file": path,
+                "start": start,
+                "end": end,
+                "gain_db": float(item.get("gain_db", music_cfg.get("gain_db", -20.0))),
+                "fade_in": max(0.0, float(item.get("fade_in_seconds", music_cfg.get("fade_in_sec", 0.8)))),
+                "fade_out": max(0.0, float(item.get("fade_out_seconds", music_cfg.get("fade_out_sec", 1.4)))),
+                "loop": as_bool(item.get("loop", music_cfg.get("loop", True)), True),
+            })
+        entries.sort(key=lambda entry: entry["start"])
+        return entries
+
+    file_value = str(music_cfg.get("file") or "").strip()
+    if not file_value:
+        return []
+    path = resolve_video_path(video_dir, file_value)
+    if not path.exists():
+        raise FileNotFoundError(f"Background music is enabled but file is missing: {path}")
+    return [{
+        "file": path,
+        "start": 0.0,
+        "end": duration,
+        "gain_db": float(music_cfg.get("gain_db", -20.0)),
+        "fade_in": max(0.0, float(music_cfg.get("fade_in_sec", 0.8))),
+        "fade_out": max(0.0, float(music_cfg.get("fade_out_sec", 1.4))),
+        "loop": as_bool(music_cfg.get("loop", True), True),
+    }]
+
+
 def audio_filter_chain(
     input_label: str,
     filters: list[str],
@@ -150,18 +211,24 @@ def main() -> None:
     narration_mix_label = "narr"
     sidechain_label = ""
 
+    # ``music.segments`` is the general shape: one entry per continuous stretch of music.
+    # A single bed is the one-entry case, and ``music.file`` remains the older spelling of
+    # exactly that, so both are read here and neither needs the other.
+    music_segments = music_segment_inputs(video_dir, music_cfg, duration)
+
     music_input_index: int | None = None
     if music_enabled:
-        music_file = resolve_video_path(video_dir, str(music_cfg.get("file") or ""))
-        if not music_file.exists():
+        if not music_segments:
             raise FileNotFoundError(
-                f"Background music is enabled but file is missing: {music_file}"
+                "Background music is enabled but the profile has neither music.file nor "
+                "a music.segments entry with a file."
             )
-
         music_input_index = 1
-        if as_bool(music_cfg.get("loop"), True):
-            command.extend(["-stream_loop", "-1"])
-        command.extend(["-i", str(music_file)])
+        for segment in music_segments:
+            # Looping is per input: a segment shorter than its window is repeated to fill it.
+            if segment["loop"]:
+                command.extend(["-stream_loop", "-1"])
+            command.extend(["-i", str(segment["file"])])
 
         duck_cfg = (
             music_cfg.get("ducking")
@@ -181,30 +248,42 @@ def main() -> None:
                 f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS[narr]"
             )
 
-        gain_db = float(music_cfg.get("gain_db", -20.0))
-        fade_in = max(0.0, float(music_cfg.get("fade_in_sec", 0.8)))
-        fade_out = max(0.0, float(music_cfg.get("fade_out_sec", 1.4)))
-        fade_out_start = max(0.0, duration - fade_out)
+        segment_labels: list[str] = []
+        for offset, segment in enumerate(music_segments):
+            window = max(0.0, segment["end"] - segment["start"])
+            fade_in = min(segment["fade_in"], window)
+            fade_out = min(segment["fade_out"], window)
+            fade_out_start = max(0.0, window - fade_out)
+            label = f"[mseg{offset}]"
 
-        music_filters = [
-            f"atrim=0:{duration:.6f}",
-            "asetpts=PTS-STARTPTS",
-            f"volume={gain_db:.3f}dB",
-        ]
-        if fade_in > 0:
-            music_filters.append(f"afade=t=in:st=0:d={fade_in:.3f}")
-        if fade_out > 0:
-            music_filters.append(
-                f"afade=t=out:st={fade_out_start:.3f}:d={fade_out:.3f}"
-            )
+            # Each segment is cut to its own length, then delayed to where it belongs, so
+            # the segments land end to end instead of all starting at zero.
+            filters = [
+                f"atrim=0:{window:.6f}",
+                "asetpts=PTS-STARTPTS",
+                f"volume={segment['gain_db']:.3f}dB",
+            ]
+            if fade_in > 0:
+                filters.append(f"afade=t=in:st=0:d={fade_in:.3f}")
+            if fade_out > 0:
+                filters.append(f"afade=t=out:st={fade_out_start:.3f}:d={fade_out:.3f}")
+            if segment["start"] > 0:
+                delay_ms = int(round(segment["start"] * 1000))
+                filters.append(f"adelay={delay_ms}:all=1")
+            filters.append(f"apad=whole_dur={duration:.6f}")
 
-        filter_parts.append(
-            audio_filter_chain(
-                f"[{music_input_index}:a:0]",
-                music_filters,
-                "[musicpre]",
+            filter_parts.append(
+                audio_filter_chain(f"[{music_input_index + offset}:a:0]", filters, label)
             )
-        )
+            segment_labels.append(label)
+
+        if len(segment_labels) == 1:
+            filter_parts.append(f"{segment_labels[0]}anull[musicpre]")
+        else:
+            filter_parts.append(
+                "".join(segment_labels)
+                + f"amix=inputs={len(segment_labels)}:duration=first:normalize=0[musicpre]"
+            )
 
         if duck_enabled:
             threshold = float(duck_cfg.get("threshold", 0.025))
@@ -228,7 +307,7 @@ def main() -> None:
             f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS[narr]"
         )
 
-    next_input_index = 2 if music_enabled else 1
+    next_input_index = (1 + len(music_segments)) if music_enabled else 1
     sfx_labels: list[str] = []
 
     for event_index, event in enumerate(sfx_events):

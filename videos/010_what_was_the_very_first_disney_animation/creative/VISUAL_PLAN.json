@@ -1,0 +1,55 @@
+{
+  "body_duration_seconds": 20.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "In Kansas City, Disney created the Laugh-O-Grams.",
+      "visual": "A 1920s Kansas City animation workspace with hand-drawn cartoon pages, ink bottles, drafting desks, and early animation sketches spread across a warm paper-covered table.",
+      "purpose": "show Disney's early Laugh-O-Grams creation environment in Kansas City",
+      "type": "subject_world",
+      "continuity": "continues from the opened book by entering the historical animation world",
+      "hero_present": false,
+      "world_keyframe_is_first": true
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "These early cartoons came before the famous mouse.",
+      "visual": "A stack of early cartoon drawings and flipbook pages from a 1920s studio, with empty character sketches and no recognizable later Disney icons.",
+      "purpose": "explain that these cartoons predated Mickey Mouse",
+      "type": "literal",
+      "continuity": "same studio desk, closer view of earlier drawings",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "The Alice Comedies blended live action with animation.",
+      "visual": "A vintage ink-wash illustration showing a child actor silhouette stepping into a hand-drawn animated landscape, with paper layers suggesting the mix of live action and cartoons.",
+      "purpose": "show the combination of live action and animation in the Alice Comedies",
+      "type": "literal",
+      "continuity": "moves from cartoon production drawings into the blended storytelling process",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Those experiments shaped Disney’s future.",
+      "visual": "A timeline-like trail of loose animation sketches, ink marks, and evolving character drawings flowing across warm paper, symbolizing creative development.",
+      "purpose": "show how early experiments influenced later animation work",
+      "type": "metaphor",
+      "continuity": "same paper-and-ink world, expanding from one project to a larger legacy",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "The story began long before Mickey.",
+      "visual": "A quiet 1920s studio shelf with early cartoon reels, sketchbooks, and unfinished animation pages illuminated by a warm lamp, emphasizing beginnings before famous characters.",
+      "purpose": "reinforce that Disney animation history started before Mickey",
+      "type": "literal",
+      "continuity": "returns to a reflective studio view after showing the experiments",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    }
+  ]
+}

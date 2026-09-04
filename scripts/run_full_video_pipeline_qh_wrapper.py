@@ -67,6 +67,11 @@ def qh_overrides(creative_brief: Path) -> list[str]:
         "flow_resolution": "--flow-resolution",
         "opening_a_source_seconds": "--opening-a-seconds",
         "opening_b_source_seconds": "--opening-b-seconds",
+        "world_style_policy": "--world-style-policy",
+        "world_style_id": "--world-style-id",
+        "world_style_hint": "--world-style-hint",
+        "min_duration_seconds": "--min-duration-seconds",
+        "max_duration_seconds": "--max-duration-seconds",
     }
     flags: list[str] = []
     for key, flag in mapping.items():

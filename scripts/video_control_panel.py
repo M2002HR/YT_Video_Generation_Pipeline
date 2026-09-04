@@ -41,6 +41,25 @@ PROVIDERS = ("chatgpt", "gemini", "flow")
 JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
 
 
+def catalogued_style_ids(content_project: str) -> list[str]:
+    """The world styles this content project can reuse, newest catalog order kept."""
+    catalog = ROOT / "projects" / content_project / "world_styles" / "CATALOG.json"
+    try:
+        entries = json.loads(catalog.read_text(encoding="utf-8")).get("styles") or []
+    except (OSError, ValueError):
+        return []
+    return [str(entry.get("style_id")) for entry in entries if entry.get("style_id")]
+
+
+def style_options_html(content_project: str) -> str:
+    """<option> list for the style picker: Auto first, then every catalogued style."""
+    options = ['<option value="" selected>Auto — let the director decide (reuse or new)</option>']
+    for style_id in catalogued_style_ids(content_project):
+        options.append(f'<option value="{html.escape(style_id, quote=True)}">'
+                       f'{html.escape(style_id)}</option>')
+    return "".join(options)
+
+
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -295,6 +314,7 @@ class Handler(BaseHTTPRequestHandler):
         reconcile_stuck_jobs_once()
         jobs = job_records(self.jobs_dir)
         project_options = "".join(f"<option value='{html.escape(p.project_id)}'{' selected' if p.project_id == PREFERRED_CONTENT_PROJECT else ''}>{html.escape(p.display_name)}</option>" for p in list_content_projects())
+        style_options = style_options_html(PREFERRED_CONTENT_PROJECT)
         return f"""<!doctype html><meta charset=utf-8><title>Video Pipeline — Question Harvest</title>
 <style>
 body{{font:16px system-ui;max-width:920px;margin:32px auto;background:#10131a;color:#e8edf4;padding:0 18px}}
@@ -364,9 +384,10 @@ function onProjectChange() {{
 
  <fieldset id="qh_advanced"><legend>Question Harvest — Advanced (auto when project = question_harvest)</legend>
   <label>Hero presence <select name=hero_presence_mode><option value=auto selected>auto (recommended)</option><option value=opener_only>opener_only</option><option value=limited_in_world>limited_in_world</option><option value=in_world>in_world</option></select> <small>auto chooses based on topic (§44)</small></label>
-  <label>World style policy <select name=world_style_policy><option value=auto selected>auto</option><option value=reuse>reuse existing</option><option value=new>force new</option></select></label>
-  <label>World style hint <small>(optional, e.g., “charcoal warm paper”)</small> <input name=world_style_hint maxlength=500 placeholder="e.g., charcoal, woodcut, ink wash …"></label>
-  <label>Gemini Image Model <select name=gemini_image_model><option value=nano_banana_pro selected>Nano Banana Pro (default, best quality)</option><option value=nano_banana_2>Nano Banana 2</option></select> <small>Provider LOCKED to Gemini (§4)</small></label>
+  <label>World style <select name=world_style_id>{style_options}</select> <small>pick a catalogued style to reuse it, or leave on Auto</small></label>
+  <label>World style policy <select name=world_style_policy><option value=auto selected>auto — reuse or create, whichever fits</option><option value=reuse>reuse an existing style</option><option value=new>create a new style</option></select> <small>ignored when a style is picked above</small></label>
+  <label>World style hint <small>(optional free text; steers a new style)</small> <input name=world_style_hint maxlength=500 placeholder="e.g., charcoal, woodcut, ink wash …"></label>
+  <label>Gemini Image Model <select name=gemini_image_model><option value=nano_banana_2 selected>Nano Banana 2 (the model Gemini offers today)</option><option value=nano_banana_pro>Nano Banana Pro (fails until Gemini exposes it)</option></select> <small>Provider LOCKED to Gemini (§4)</small></label>
   <label>Flow Video Model <select name=flow_video_model><option value=gemini_omni_1_1_flash selected>Gemini Omni 1.1 Flash (default)</option><option value=veo_3_1_quality>Veo 3.1 Quality</option><option value=veo_3_1_fast>Veo 3.1 Fast</option><option value=veo_3_1_lite>Veo 3.1 Lite</option></select> <small>Provider LOCKED to Google Flow (§4)</small></label>
   <label>Flow Resolution <select name=flow_resolution><option value="720p" selected>720p (default)</option><option value="360p">360p Draft (where supported)</option></select></label>
   <label>Opening Clip A source duration <small>(Flow, default 6s → trimmed to ~5s)</small> <select name=opening_a_seconds><option value=4>4s</option><option value=5>5s</option><option value=6 selected>6s</option><option value=8>8s</option></select></label>
@@ -415,8 +436,8 @@ Harvest are 40–60s, 9:16, Nano Banana Pro + Gemini Omni 1.1 Flash + 720p (§64
 var tailedJob = null, tailOffset = 0;
 
 function badgeClass(entry) {{
-  if (entry.logged_in === true && entry.state === 'ready') return 'ok';
   if (entry.state === 'login_required' || entry.state === 'manual_verification_required') return 'bad';
+  if (entry.logged_in === true && entry.state === 'ready') return 'ok';
   return 'warn';
 }}
 
@@ -431,8 +452,11 @@ function renderProviders(ordak) {{
                '">Chrome ' + (ordak.chrome_running ? 'running' : 'down') + '</span>'];
   Object.keys(ordak.providers).forEach(function (name) {{
     var entry = ordak.providers[name];
-    parts.push('<span class="pill ' + badgeClass(entry) + '">' + name + ': ' +
-      (entry.logged_in === true ? 'signed in' : entry.state) + '</span>');
+    // Ordak keeps exactly one work tab open, so the two providers that are not in
+    // use have no tab and cannot be re-confirmed. That is idle, not broken.
+    var label = entry.logged_in === true ? 'signed in'
+      : (entry.state === 'ready' && entry.tabs === 0 ? 'idle (no tab)' : entry.state);
+    parts.push('<span class="pill ' + badgeClass(entry) + '">' + name + ': ' + label + '</span>');
   }});
   host.innerHTML = parts.join(' ');
 }}
@@ -640,7 +664,10 @@ setInterval(pollLog, 2000);
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
             world_style_hint = form_text(values, "world_style_hint", 500) if values.get("world_style_hint") else ""
-            gemini_image_model = values.get("gemini_image_model", ["nano_banana_pro"])[0].strip() or "nano_banana_pro"
+            world_style_id = values.get("world_style_id", [""])[0].strip()
+            if world_style_id and world_style_id not in catalogued_style_ids(content_project):
+                raise ValueError(f"Unknown world style: {world_style_id}")
+            gemini_image_model = values.get("gemini_image_model", ["nano_banana_2"])[0].strip() or "nano_banana_2"
             flow_video_model = values.get("flow_video_model", ["gemini_omni_1_1_flash"])[0].strip() or "gemini_omni_1_1_flash"
             flow_resolution = values.get("flow_resolution", ["720p"])[0].strip() or "720p"
             opening_a_seconds = int(values.get("opening_a_seconds", ["6"])[0])
@@ -678,7 +705,10 @@ setInterval(pollLog, 2000);
             creative_brief["_qh"] = {
                 "hero_presence_mode": hero_presence_mode,
                 "world_style_policy": world_style_policy,
+                "world_style_id": world_style_id,
                 "world_style_hint": world_style_hint,
+                "min_duration_seconds": duration_min,
+                "max_duration_seconds": duration_max,
                 "gemini_image_model": gemini_image_model,
                 "flow_video_model": flow_video_model,
                 "flow_resolution": flow_resolution,

@@ -1,5 +1,15 @@
 {
   "schema_version": 1,
   "project_id": "question_harvest",
-  "videos": []
+  "videos": [
+    {
+      "video_id": "010",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001",
+      "updated_at": "2026-09-04T20:14:04.707695+00:00"
+    }
+  ]
 }

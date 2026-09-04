@@ -46,9 +46,11 @@ def execute(
     notifier: PipelineNotifier | None = None,
     artifact: Path | None = None,
     video: Path | None = None,
+    position: str = "",
 ) -> None:
     """Run one stage, persist the transition, and report both ends of it to Telegram."""
-    title = name.replace("_", " ").title()
+    human = name.replace("_", " ").title()
+    title = f"{position} · {human}" if position else human
     started_wall, started = now(), time.perf_counter()
     event: dict[str, Any] = {"stage": name, "started_at": started_wall, "command": command}
     print(f"▶ {name}", flush=True)
@@ -76,7 +78,7 @@ def execute(
     save(path, state)
     print(f"✔ {name} in {format_duration(elapsed)}", flush=True)
     if notifier is not None:
-        notifier.stage_complete(name, elapsed, artifact=str(event.get("artifact") or ""))
+        notifier.stage_complete(title, elapsed, artifact=str(event.get("artifact") or ""))
 
 
 def main() -> None:
@@ -115,9 +117,19 @@ def main() -> None:
     except (OSError, ValueError):
         pass
     notifier = None if args.no_notify else PipelineNotifier(video_id=video.name, topic=topic)
-    step = lambda name, command, **kw: execute(  # noqa: E731 - a thin partial, not logic
-        name, command, state, state_path, notifier=notifier, video=video, **kw
-    )
+    #: The completion half, in order, so each notification says where the run is.
+    sequence = ["build_timeline", "render_baseline", "qc_baseline", "polish_audio", "qc_polished"]
+    if args.commit:
+        sequence.append("git_commit_push")
+    if args.publish:
+        sequence.append("publish_telegram")
+
+    def step(name: str, command: list[str], **kw: Any) -> None:
+        position = f"step {sequence.index(name) + 1}/{len(sequence)}" if name in sequence else ""
+        execute(
+            name, command, state, state_path,
+            notifier=notifier, video=video, position=position, **kw,
+        )
 
     managed_python = ROOT / ".venv" / "bin" / "python"
     py = str(managed_python) if managed_python.is_file() else sys.executable

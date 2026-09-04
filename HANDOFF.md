@@ -1,31 +1,100 @@
 # HANDOFF — Question Harvest (برای ادامه از چت جدید)
 
-> تاریخ: 2026-09-04 (سشن دوم) · branch: `ordak` · والد: `d6626b3` · ordak: `370a975`
+> تاریخ: 2026-09-04 (سشن سوم) · branch: `ordak` · والد: در حال کامیت · ordak: `71ed0f8`
 
 ---
 
-## پرامپت شروع چت بعدی (کپی کن)
+## ⛔ بلاکر بیرونی فعال: Flow جغرافیایی بسته است
 
 ```
-ادامه‌ی پیاده‌سازی Question Harvest در /opt/YT_Video_Generation_Pipeline (branch ordak).
-
-اول این سه فایل را کامل بخوان:
-1. HANDOFF.md             ← وضعیت فعلی، کارهای مانده، دستورات تأیید
-2. IMPLEMENTATION_PLAN.md ← پلن ۴۷ تسک + §3.5 قرارداد ورکفلو + §10 ساختار UI فلو
-3. mater_prompt.md        ← اسپک اصلی
-
-CURRENT_STATE.md قدیمی است (2026-09-02) — به آن اعتماد نکن.
-
-قواعد مطلق: تصویر=Gemini فقط، ویدیو=Google Flow فقط، متن=ChatGPT فقط (همه با Ordak)،
-هیچ provider/model/synthetic fallback، هیچ style sheet به Flow، بدون پروکسی.
-هر مرحله‌ای که prompt دارد از ChatGPT گرفته شود.
-
-⚠️ بعد از هر تغییر در services/ordak/app باید `systemctl restart ordak-api` بزنی،
-وگرنه جاب با کد قدیمی اجرا می‌شود (یک‌بار ۷ credit تلف شد).
-
-از P8 (مستندات) شروع کن، بعد P7 (اجرای واقعی end-to-end با لاگین کاربر).
-گیت را خودت مدیریت کن با پیام‌های کوتاه. سریع و کامل جلو برو.
+https://labs.google/fx/tools/flow/project/36400b0f-…
+  → https://flow.google.com/unsupported-country
+     "Flow is not available in your country yet."
 ```
+
+سه بار پشت هم، هر بار redirect. یک جاب واقعی Flow **ساعت ۱۹:۰۵ همین امروز موفق بود**
+(۷ credit، `completed`، ‏720×1280، ‏4.01s)، پس بلاک بین ۱۹:۰۵ و ۱۹:۴۵ شروع شده. صفحه
+همچنین می‌گوید Flow با «high demand» مواجه است.
+
+قاعده‌ی «بدون پروکسی» یعنی از این هاست دور نمی‌زنیم. **هیچ credit تلف نشد** — چک قبل از
+upload و قبل از Generate است.
+
+کار باقی‌مانده‌ی ویدیوی ۰۱۰: فقط `flow_clip_a` و `flow_clip_b`. بقیه‌ی مراحل بصری تمام است.
+به‌محض باز شدن Flow: `POST /resume job_id=ba363b0a-b6eb-47e3-aaa0-40c9ef56b1ff`.
+`/tmp/flow_watch.sh` یک واچر بدون هزینه است (وقتی مرورگر آزاد باشد probe می‌زند).
+
+---
+
+## ۰) این سشن چه چیزی درست شد (سشن سوم)
+
+### باگ ریشه‌ای که همه‌ی اتوماسیون مرورگر را بی‌صدا می‌شکست
+
+`Input.dispatchMouseEvent` برای تبی که **جلو نیست** دور ریخته می‌شود و CDP همان‌طور
+`{"result":{}}` برمی‌گرداند. پایپ‌لاین سه پروایدر را در یک مرورگر می‌راند، پس همیشه حداکثر
+یکی جلوست: هر خواندن تنظیمات Flow و هر کلیک منوی جمینای no-op بود. حالا هر بچ حاوی
+`Input.*` با `Page.bringToFront` شروع می‌شود.
+
+⚠️ یادداشت سشن قبل («مختصات CSS = پیکسل × ۴») برای input **غلط** بود: با dpr=0.25 هم input
+مختصات CSS می‌خواهد. با listener روی `pointerdown` تأیید شد.
+
+### UI جمینای با فرض کد فرق داشت
+
+- dropdown مدل تصویر **وجود ندارد**. تولید تصویر = `Upload & tools` → `Create image`.
+- تنها جای نام مدل: خط zero-state ‏`span.subtitle-attribution` → **`Create with Nano Banana 2.`**
+- مدل‌پیکر (`3.5 Flash-Lite / 3.8 Flash / 3.1 Pro / Extended thinking`) مدل **متنی** است.
+- **هیچ affordance ی برای Nano Banana Pro نیست** — نتیجه فقط `Share image` / `Copy image` /
+  `Download full size image` دارد. پس `PRO_ACTION_VERBS` چیزی برای تطبیق ندارد و
+  `find_pro_control` درست `None` می‌دهد.
+- منو Angular Material است (`.cdk-overlay-pane` + `.mat-mdc-action-list`)، نه Radix.
+- جمینای **کنترل aspect ratio ندارد** → نسبت درخواستی در متن prompt گفته می‌شود و فایل
+  دانلودشده اندازه‌گیری می‌شود. بدون آن ۱۰۲۴×۵۵۹ می‌داد (رد شد)، با آن ۵۷۲×۱۰۲۴ (قبول).
+
+پیش‌فرض `nano_banana_pro` → `nano_banana_2` در `.env`، CLI و پنل. Pro به‌عنوان گزینه ماند و
+صادقانه `MODEL_NOT_AVAILABLE` می‌دهد.
+
+### طول ویدیو و استایل حالا واقعاً از پنل می‌آیند
+
+- طول از پنل **هرگز به پایپ‌لاین QH نمی‌رسید**؛ هر دو prompt و validator روی 40-60s و
+  92-150 کلمه hardcode بودند. `DurationTarget` حالا از ثانیه‌ی درخواستی، بازه‌ی کلمه
+  (2.3-2.5 w/s) و بازه‌ی بیت را می‌سازد. 40-60s دقیقاً همان 92-150 و 8-15 را می‌دهد؛
+  25-30s → 57-75 کلمه و 5-8 بیت.
+- **استایل جدید هرگز در کاتالوگ ثبت نمی‌شد** (فقط خوانده می‌شد)، پس «reuse اگر موجود بود»
+  هیچ‌وقت فعال نمی‌شد. `scripts/world_style_catalog.py` جدید: ثبت idempotent با anchor و
+  `STYLE_PLAN.json`، و شمارش reuse. پنل حالا style picker دارد (Auto + هر `style_id`).
+
+### ترتیب مراحل برای پایداری عوض شد
+
+`body_images` **قبل از** کلیپ‌های Flow اجرا می‌شود. تصاویر فقط به plan و anchor و keyframe
+وابسته‌اند، و Flow محتمل‌ترین مرحله برای قطعی بیرونی است — همین امروز ۵ تصویر را نجات داد.
+
+### باگ‌های دیگر
+
+- `stage_book_design_sheet` در پوشه‌ی preset مشترک می‌نویسد، ولی receipt
+  `output.relative_to(project)` می‌زد و **بعد از** تولید تصویر crash می‌کرد.
+- `except GeminiAutomationError: pass` جاب را بدون کد و پیام «failed» رها می‌کرد.
+- provider `flow` به شاخه‌ی URL جمینای می‌افتاد: تب واقعی Flow دیده نمی‌شد و تب جمینای
+  به‌عنوان سشن Flow گزارش می‌شد.
+- **htpasswd با `chmod 600` (T8.2 سشن قبل) هم VNC و هم پنل را شکسته بود**: nginx با
+  `www-data` اجرا می‌شود، پس رمز درست `500` می‌داد و رمز خالی `401` — به همین دلیل تست
+  «۴۰۱ بدون auth» سبز بود و کسی نمی‌توانست وارد شود. `root:www-data` + `640`.
+- mixer صدا حالا `music.segments` را مصرف می‌کند (هر segment یک input، delay شده، mix).
+
+### مستندات P8 (تمام)
+
+`docs/QUESTION_HARVEST_PIPELINE.md` · `ORDAK_GEMINI_BROWSER_AUTOMATION.md` ·
+`ORDAK_FLOW_BROWSER_AUTOMATION.md` · `SERVER_DEPLOYMENT.md` · `RECOVERY_RUNBOOK.md` ·
+`VIDEO_CONTROL_PANEL.md` بازنویسی شد.
+
+**T8.1 منتفی است**: هر دو یونیت از قبل روی `/opt/...` هستند — ادعای سشن قبل کهنه بود.
+
+### تست‌ها
+
+والد **۲۱۶ pass** (از ۱۸۱) · ordak **۱۶۵ pass** (از ۱۴۰)
+
+فایل‌های جدید: `tests/test_duration_and_style_inputs.py`, `test_world_style_catalog.py`,
+`test_receipt_paths.py`, `test_music_segment_mixing.py`,
+`services/ordak/tests/test_cdp_input_focus.py`, `test_provider_url_matching.py`,
+`test_gemini_image_model_evidence.py`, `test_flow_region_block.py`
 
 ---
 

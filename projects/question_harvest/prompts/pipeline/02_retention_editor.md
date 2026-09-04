@@ -32,11 +32,11 @@ script if it does not hold, so an edit that changes a segment must also update
 - the book retrieval and the ~3s `book_transition` beat
 - factual integrity: do not strengthen uncertain claims, never add statistics
 - a hook that works from second zero
-- between 8 and 15 `body` entries, each independently visualisable
+- between {{BEAT_MIN}} and {{BEAT_MAX}} `body` entries, each independently visualisable
 
 ## May sharpen
 - hook compression and curiosity payoff
-- word count tightened to 92–150 for a 40–60s Short
+- word count tightened to {{WORD_RANGE}} for a {{DURATION_RANGE}} Short
 - TTS rhythm and visual translatability
 - removing generic openers such as "Have you ever wondered"
 - making the book-transition sentence a more natural hinge

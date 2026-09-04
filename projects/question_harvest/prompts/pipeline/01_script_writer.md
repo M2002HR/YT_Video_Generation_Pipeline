@@ -1,7 +1,7 @@
 # Prompt 01 — Question Harvest Script Writer
 
 ## Purpose
-Turn a video brief into the spoken narration for a **Question Harvest** short (40–60s, 9:16,
+Turn a video brief into the spoken narration for a **Question Harvest** short ({{DURATION_RANGE}}, 9:16,
 vertical). This is the ONLY narration source for the episode.
 
 ## Why the output is JSON
@@ -11,8 +11,9 @@ exactly which words belong to which segment. Segment boundaries chosen here are 
 nothing downstream re-guesses them by counting words.
 
 ## Input
-VIDEO BRIEF below contains topic, audience, target duration (40–60s => ~92–150 spoken words,
-aim near 115), aspect 9:16, hero presence mode, and optional Must Include/Avoid.
+VIDEO BRIEF below contains topic, audience, target duration ({{DURATION_RANGE}} => {{WORD_RANGE}} spoken
+words, aim near {{WORD_TARGET}}), aspect 9:16, hero presence mode, and optional Must Include/Avoid.
+The duration in the brief is binding: write for it, not for any other length.
 
 ## Output — raw JSON only
 Return ONLY a raw JSON object, no markdown fences, no commentary:
@@ -33,7 +34,7 @@ Hard rules for the JSON:
   `book_transition`, each `body` entry in order, `optional_closing`, then `cta`, joined by a
   single space. No extra words, no repeated words, no re-ordering. The alignment step verifies
   this and rejects the script if it does not hold.
-- `body` must contain between 8 and 15 entries. One entry = one visual beat.
+- `body` must contain between {{BEAT_MIN}} and {{BEAT_MAX}} entries. One entry = one visual beat.
 - No headings, no timestamps, no scene directions, no speaker labels, no emoji.
 - Plain spoken English only — anything unspeakable (URLs, parentheses, asterisks) is a defect.
 

@@ -1,0 +1,14 @@
+{
+  "opening_activity": "workshop repair",
+  "opening_location": "workshop",
+  "curiosity_trigger": "noticing an old sketch with a moving figure drawn across pages",
+  "trigger_object": "flipbook sketch",
+  "reaction": "pauses, flips the pages, looks closer",
+  "book_retrieval": "sets the sketch down, walks to the shelf, pulls down the worn green book",
+  "camera_pattern": "slow_push_in",
+  "book_template_id": "002",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "hand-drawn 1920s animation studio feel with warm paper, ink lines, and vintage textures",
+  "reason": "A sketching and workshop setting naturally connects to animation creation without forcing a historical object into the farm world."
+}

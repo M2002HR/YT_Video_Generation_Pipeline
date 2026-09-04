@@ -1,64 +1,74 @@
-# Video control panel
+# Control panel
 
-The control panel is a small authenticated launch surface for a complete new
-video run. It is served on port `4143` behind nginx basic authentication using
-the same credentials as Ordak VNC. The panel process itself listens only on
-`127.0.0.1:4142`.
+**http://&lt;host&gt;:4141/** behind nginx basic auth. Port 4144 is a legacy alias for the same
+thing. The backend listens only on `127.0.0.1:4142`; nginx is the only public door.
 
-For a new video, enter only:
+Everything is on one page: launch a run, watch provider health, tail the live log, resume a
+stopped run. No navigation, so a long run can be watched from where it was started.
 
-- content project / channel universe;
-- topic;
-- optional working title, audience override, narrative angle, required/forbidden
-  points, and verified source notes;
-- minimum and maximum duration in seconds;
-- frame format: `16:9` landscape or `9:16` vertical Shorts/Reels;
-- ElevenLabs voice, model, speed, stability, similarity and style;
-- music provider.
+## Launching
 
-The panel assigns the next numeric video ID, writes the requested voice profile,
-creative brief (`launch/CREATIVE_BRIEF.json`), and launch request into that
-video's directory, then starts
-`scripts/run_full_video_pipeline.py` in the background. That runner executes:
+Locked choices are rendered as **disabled** inputs rather than editable ones, so the UI cannot
+suggest a combination the pipeline would reject: text=ChatGPT, image=Gemini, video=Flow, and
+Flow's reference contract (`character_sheet` for Clip A, `first_frame`+`last_frame` for Clip
+B, never a style sheet).
 
-1. duration-range-aware hook/script;
-2. for configured projects such as The World Behind the Question, a durable
-   episode design for the question book, portal, subject world, palette,
-   locations, props, Seeker adaptation, and visual arc;
-3. visual beats and sequential ChatGPT/Ordak images bound to that design;
-4. ElevenLabs browser voiceover using the selected settings;
-5. local timestamp alignment, provider-browser music download and no-SFX render;
-6. baseline and polished QC;
-7. deduplicated Telegram publishing of the verified polished video; and
-8. a scoped Git commit and push of that video's durable artifacts and execution evidence.
+| Field | Notes |
+|---|---|
+| Question / topic | required; becomes the episode slug |
+| Working title, audience, narrative angle, must include / must avoid, source notes | free text, stored in `launch/CREATIVE_BRIEF.json` |
+| Min / max duration | **binding.** Drives the word and beat ranges in the script prompts — a 25-30s request asks for ~57-75 words in 5-8 beats, a 40-60s one for 92-150 in 8-15 |
+| Frame format | 9:16 Shorts (default) or 16:9 |
+| Show subtitles | off by default for Question Harvest (§71) |
+| Commit & push artifacts | off by default; needs a remote with write access |
+| **World style** | `Auto` or any catalogued `style_id`. Picking one is a binding reuse instruction; the run fails rather than silently using another |
+| World style policy | `auto` / `reuse` / `new`; ignored when a style is picked |
+| World style hint | free text steer for a new style |
+| Gemini image model | Nano Banana 2 (what the UI offers today) or Nano Banana Pro, which fails with `MODEL_NOT_AVAILABLE` until Google exposes it |
+| Flow model / resolution | verified against the live Flow settings menu |
+| Opening A / B seconds | Flow source length; one second of headroom over the planned segment |
+| Voice, model, speed, stability, similarity, style | ElevenLabs profile |
+| Music provider | mixkit or pixabay, through the browser |
 
-After successful finalization, the video is also added to the selected content
-project's `VIDEOS.json`. Git publication is path-scoped to that video and its
-registry entry, so unrelated staged work is preserved.
+A new style created during a run is written into
+`projects/<id>/world_styles/CATALOG.json` with its anchor, so it appears in this picker for
+the next episode. That is what makes "reuse if it exists" real.
 
-Launch and stage timing evidence is persisted under the video directory. The
-panel's log link provides a live, auto-refreshing view of the job output.
+Only one run at a time: a launch while another is `RUNNING` returns `409` naming the busy
+episode.
 
-The range is intentional: the writer chooses the most natural spoken length
-within the supplied bounds instead of padding to a fixed duration. Script word
-counts and visual-beat counts are validated against the whole range; later
-timing, music and rendering use the actual duration of the generated narration.
-The same frame format is carried into the image prompt, image validation,
-render profile and final QC resolution (`1920x1080` for `16:9`, `1080x1920`
-for `9:16`).
+## Endpoints
 
+| Route | Purpose |
+|---|---|
+| `GET /` | the page |
+| `POST /launch` | start a run; `202` on success, `400` on invalid input, `409` when busy |
+| `GET /api/status` | provider badges plus per-job progress from `QH_RUNTIME_STATE.json` |
+| `GET /api/log/<job_id>?offset=N` | **incremental** tail — returns new bytes and the next offset, not the whole file |
+| `POST /resume` | re-run an episode; completed stages are reused |
+| `GET /logs/<job_id>` | the whole log |
+| `GET /nginx-health` | open, no auth |
 
-## Content projects
+## Provider badges
 
-The panel reads available projects from `projects/*/PROJECT.json` and passes the selected project through the full pipeline. New videos record their membership in `PROJECT.md`.
+Read them with the single-tab policy in mind. Ordak keeps exactly one work tab, so at most one
+provider can have its login re-confirmed at any moment.
 
-The legacy/default project preserves all existing videos and behavior. New brand work should use its own project namespace so prompt and canonical visual changes cannot silently affect previous channels.
+| Badge | Meaning |
+|---|---|
+| `signed in` (green) | has a tab, and the UI says ready |
+| `idle (no tab)` (amber) | ready, but no tab to confirm it — **normal**, not a problem |
+| `login_required` / `manual_verification_required` (red) | a human must sign in at 4143 |
+| `Ordak unreachable` | the API is down; nothing else on the row is trustworthy |
 
-For **The World Behind the Question**, the panel selects that project by default.
-Its creative brief is included in `BRIEF.md`, so its project-owned script,
-retention, visual-beat, and image-prompt templates all use the same editorial
-constraints. A launch is rejected before a background process starts if the
-selected project is missing a required prompt or canonical visual anchor.
-The generated episode bible is persisted as `WORLD_DESIGN.md` beside the
-script, making the question-specific visual template auditable and reusable
-through every beat.
+## Anti-stuck
+
+A background reconciler runs every 30s: a job marked `RUNNING` whose pid is gone becomes
+`FAILED` (or `DONE` when the log reported a pass **and** `final.mp4` plus `QC_REPORT.json`
+exist). Page loads only read this state, so no row depends on someone refreshing.
+
+## Credentials
+
+`/root/.config/yt-video-pipeline/access-credentials.txt`, mode `600`. The htpasswd files must
+be `root:www-data` mode `640` — see the trap described in `docs/SERVER_DEPLOYMENT.md`, where
+correct credentials return `500` instead of `200`.

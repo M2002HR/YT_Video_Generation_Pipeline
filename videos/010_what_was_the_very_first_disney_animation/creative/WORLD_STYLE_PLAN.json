@@ -1,0 +1,16 @@
+{
+  "style_id": "ink_wash_vintage_animation_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "ink wash",
+  "secondary_treatment": "subtle retro educational illustration",
+  "texture_family": "paper grain",
+  "palette_summary": "warm cream paper, sepia ink, muted ochres, faded teal accents, soft moss greens",
+  "line_treatment": "loose hand-drawn ink outlines with sketchbook imperfections and delicate animation-pencil marks",
+  "lighting": "warm studio lamp with soft daylight spill",
+  "subject_constraints": "1920s animation studio vocabulary: drafting desks, flipbooks, animation drawings, ink bottles, paper stacks, early cartoon production tools; avoid modern animation equipment",
+  "historical_accuracy_note": "Depict early 1920s Kansas City animation work with period-appropriate studios, paper drawings, and hand-drawn production methods; do not show Mickey Mouse as the first creation or imply Steamboat Willie predates Laugh-O-Grams",
+  "hero_rendering_in_world": "If present, render the protagonist's existing hair silhouette, beard, and overalls silhouette as a hand-inked sketch character with warm paper shading while preserving recognizable clothing identity",
+  "negative_constraints": "no photorealism, no 3D CGI, no anime, no glossy digital rendering, no modern animation software, no inaccurate Disney-era objects",
+  "reason": "A new style better matches the operator steer for a hand-drawn 1920s animation studio feel. The only reusable catalog style is woodcut charcoal warm, which has no usage history but is less aligned with the topic's focus on ink drawings, animation sketches, and early cartoon production. The new ink wash approach creates clearer episode-specific identity without overusing the existing woodcut texture family."
+}

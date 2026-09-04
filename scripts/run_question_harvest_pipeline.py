@@ -32,6 +32,7 @@ import shutil
 import subprocess
 import sys
 import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -282,10 +283,16 @@ class Runner:
         except Exception as exc:  # pragma: no cover - telemetry must never break a run
             print(f"notify failed: {exc}", flush=True)
 
+    @staticmethod
+    def _stage_title(stage: str) -> str:
+        position = stage_position(stage)
+        human = stage.replace("_", " ").title()
+        return f"{position} · {human}" if position else human
+
     def stage_start(self, stage: str) -> float:
         self.state.mark(stage, STATE_RUNNING)
         print(f"▶ {stage}", flush=True)
-        self._send(stage.replace("_", " ").title(), ["▶ Stage started"])
+        self._send(self._stage_title(stage), ["▶ Stage started"])
         return time.perf_counter()
 
     def stage_done(self, stage: str, started: float, summary: str = "", **meta: Any) -> None:
@@ -295,14 +302,14 @@ class Runner:
         print(f"✔ {stage} ({elapsed:.1f}s){' — ' + summary if summary else ''}", flush=True)
         if self.notifier is not None:
             try:
-                self.notifier.stage_complete(stage, elapsed, artifact=summary)
+                self.notifier.stage_complete(self._stage_title(stage), elapsed, artifact=summary)
             except Exception as exc:  # pragma: no cover
                 print(f"notify failed: {exc}", flush=True)
 
     def stage_reused(self, stage: str, summary: str = "") -> None:
         self.state.mark(stage, STATE_REUSED, artifact=summary or None)
         print(f"↻ {stage} reused{(' — ' + summary) if summary else ''}", flush=True)
-        self._send(stage.replace("_", " ").title(), ["↻ Reused existing artifact", summary])
+        self._send(self._stage_title(stage), ["↻ Reused existing artifact", summary])
 
     def stage_failed(self, stage: str, failure: StageFailure, started: float) -> None:
         self.state.fail(stage, failure)
@@ -310,7 +317,7 @@ class Runner:
         print(f"✘ {stage} [{failure.state}] {failure.message}", flush=True)
         if self.notifier is not None:
             try:
-                self.notifier.failure(stage.replace("_", " ").title(), elapsed, f"{failure.state}: {failure.message}")
+                self.notifier.failure(self._stage_title(stage), elapsed, f"{failure.state}: {failure.message}")
             except Exception as exc:  # pragma: no cover
                 print(f"notify failed: {exc}", flush=True)
 
@@ -457,8 +464,103 @@ class Runner:
 
 SCRIPT_PLAN_KEYS = ("opening_question_spark", "book_transition", "body", "cta", "full_narration")
 
+#: Spoken words per second, measured against the format's own 40-60s => 92-150 word rule.
+WORDS_PER_SECOND_RANGE = (2.3, 2.5)
+
+#: The body-beat count the 40-60s format asks for; other lengths scale from it.
 MIN_BODY_BEATS = 8
 MAX_BODY_BEATS = 15
+
+
+@dataclass(frozen=True)
+class DurationTarget:
+    """The episode length the operator asked for, in the terms each prompt needs."""
+
+    min_seconds: float
+    max_seconds: float
+
+    @property
+    def word_min(self) -> int:
+        return int(round(self.min_seconds * WORDS_PER_SECOND_RANGE[0]))
+
+    @property
+    def word_max(self) -> int:
+        return int(round(self.max_seconds * WORDS_PER_SECOND_RANGE[1]))
+
+    @property
+    def word_target(self) -> int:
+        return int(round((self.word_min + self.word_max) / 2))
+
+    @property
+    def beat_min(self) -> int:
+        """Body beats scale with the length, anchored on the format's own 40-60s => 8-15.
+
+        A 25-30s Short cut into 8-15 beats would flash an image roughly every two
+        seconds; the same beat *rate* is what the format actually encodes.
+        """
+        return max(4, round(MIN_BODY_BEATS * self.min_seconds / 40))
+
+    @property
+    def beat_max(self) -> int:
+        return max(self.beat_min + 2, round(MAX_BODY_BEATS * self.max_seconds / 60))
+
+    @property
+    def beat_range(self) -> str:
+        return f"{self.beat_min}\u2013{self.beat_max}"
+
+    @property
+    def duration_range(self) -> str:
+        return f"{self.min_seconds:g}\u2013{self.max_seconds:g}s"
+
+    @property
+    def word_range(self) -> str:
+        return f"~{self.word_min}\u2013{self.word_max}"
+
+    def as_prompt_values(self) -> dict[str, str]:
+        return {
+            "DURATION_RANGE": self.duration_range,
+            "WORD_RANGE": self.word_range,
+            "WORD_TARGET": str(self.word_target),
+            "BEAT_RANGE": self.beat_range,
+            "BEAT_MIN": str(self.beat_min),
+            "BEAT_MAX": str(self.beat_max),
+        }
+
+
+#: The visual half of the run, in order, so a notification can say "step 5/17".
+QH_STAGE_SEQUENCE = (
+    "script_draft",
+    "retention_edit",
+    "episode_director",
+    "world_style_director",
+    "world_style_anchor",
+    "episode_history",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_design_sheet",
+    "book_spread",
+    "flow_prompt_a",
+    "flow_prompt_b",
+    "beat_prompts",
+    "body_images",
+    "flow_clip_a",
+    "flow_clip_b",
+)
+
+
+def stage_position(stage: str) -> str:
+    """``step 4/17`` for a known stage, empty for an ad-hoc one."""
+    try:
+        index = QH_STAGE_SEQUENCE.index(stage)
+    except ValueError:
+        return ""
+    return f"step {index + 1}/{len(QH_STAGE_SEQUENCE)}"
+
+
+MIN_BODY_BEATS = 8
+MAX_BODY_BEATS = 15
+#: The format default, kept as the fallback when no length was requested.
 MIN_SCRIPT_WORDS = 92
 MAX_SCRIPT_WORDS = 150
 
@@ -467,7 +569,7 @@ def _plan_tokens(text: str) -> list[str]:
     return [token.lower() for token in re.findall(r"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?", text)]
 
 
-def validate_script_plan(stage: str, data: Any) -> dict[str, Any]:
+def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | None = None) -> dict[str, Any]:
     """Accept a script only if its segments really are the narration.
 
     Downstream, the Flow clips are trimmed to the measured end of ``opening_question_spark``
@@ -482,14 +584,19 @@ def validate_script_plan(stage: str, data: Any) -> dict[str, Any]:
     if missing:
         raise StageFailure(stage, "FAILED_VALIDATION", f"The script is missing keys: {missing}")
 
+    # The acceptable ranges follow the length that was asked for. A fixed 8-15 beats or
+    # 92-150 words would reject a correctly written 25-30s script for being that length.
+    target = duration or DurationTarget(40.0, 60.0)
+
     body = data.get("body")
     if not isinstance(body, list) or not all(isinstance(item, str) and item.strip() for item in body):
         raise StageFailure(stage, "FAILED_VALIDATION", "`body` must be a list of non-empty strings.")
-    if not MIN_BODY_BEATS <= len(body) <= MAX_BODY_BEATS:
+    if not target.beat_min <= len(body) <= target.beat_max:
         raise StageFailure(
             stage,
             "FAILED_VALIDATION",
-            f"`body` has {len(body)} beats; the format needs {MIN_BODY_BEATS}-{MAX_BODY_BEATS}.",
+            f"`body` has {len(body)} beats; a {target.duration_range} Short needs "
+            f"{target.beat_min}-{target.beat_max}.",
         )
 
     ordered = [
@@ -510,12 +617,13 @@ def validate_script_plan(stage: str, data: Any) -> dict[str, Any]:
         )
 
     words = word_count(full)
-    if not MIN_SCRIPT_WORDS <= words <= MAX_SCRIPT_WORDS:
+    low, high = target.word_min, target.word_max
+    if not low <= words <= high:
         raise StageFailure(
             stage,
             "FAILED_VALIDATION",
-            f"The narration is {words} words; a 40-60s Short needs "
-            f"{MIN_SCRIPT_WORDS}-{MAX_SCRIPT_WORDS}.",
+            f"The narration is {words} words; a {target.duration_range} Short needs "
+            f"{low}-{high}.",
         )
 
     normalized = {key: data.get(key) for key in ("opening_question_spark", "book_transition", "cta")}
@@ -554,21 +662,34 @@ def fill(template: str, **values: str) -> str:
 # ------------------------------------------------------------------------------- stages
 
 
-def stage_script(runner: Runner, project: Path, content_project: Any, brief: str) -> dict[str, Any]:
+def stage_script(
+    runner: Runner, project: Path, content_project: Any, brief: str, duration: DurationTarget
+) -> dict[str, Any]:
     stage = "script_draft"
     target = project / "creative" / "SCRIPT_DRAFT.json"
     if runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
-    prompt = fill(resolve_prompt(content_project, "01_script_writer.md"), VIDEO_BRIEF=brief)
-    plan = validate_script_plan(stage, runner.json(stage, prompt))
+    prompt = fill(
+        resolve_prompt(content_project, "01_script_writer.md"),
+        VIDEO_BRIEF=brief,
+        **duration.as_prompt_values(),
+    )
+    plan = validate_script_plan(stage, runner.json(stage, prompt), duration)
     save_json(target, plan)
     runner.stage_done(stage, started, f"{plan['word_count']} words, {len(plan['body'])} beats", words=plan["word_count"])
     return plan
 
 
-def stage_retention(runner: Runner, project: Path, content_project: Any, brief: str, draft: dict[str, Any]) -> dict[str, Any]:
+def stage_retention(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    brief: str,
+    draft: dict[str, Any],
+    duration: DurationTarget,
+) -> dict[str, Any]:
     stage = "retention_edit"
     target = project / "creative" / "SCRIPT_PLAN.json"
     if runner.state.done(stage) and target.is_file():
@@ -579,8 +700,9 @@ def stage_retention(runner: Runner, project: Path, content_project: Any, brief: 
         resolve_prompt(content_project, "02_retention_editor.md"),
         VIDEO_BRIEF=brief,
         CURRENT_SCRIPT=json.dumps(draft, ensure_ascii=False, indent=2),
+        **duration.as_prompt_values(),
     )
-    plan = validate_script_plan(stage, runner.json(stage, prompt))
+    plan = validate_script_plan(stage, runner.json(stage, prompt), duration)
     save_json(target, plan)
     # The plain-text narration is what ElevenLabs speaks; it must be the same words.
     (project / "SCRIPT_FINAL.md").write_text(plan["full_narration"] + "\n", encoding="utf-8")
@@ -646,8 +768,43 @@ def stage_episode_director(
     return data
 
 
+def style_directive(policy: str, style_id: str, hint: str) -> str:
+    """State the operator's style choice to the director in one binding sentence."""
+    style_id = (style_id or "").strip()
+    hint = (hint or "").strip()
+    policy = (policy or "auto").strip().lower()
+    if style_id:
+        return (
+            f"Reuse the catalogued style {style_id!r}. Answer decision='reuse' with "
+            f"style_id={style_id!r} and reuse_of={style_id!r}. Do not invent a new style."
+        )
+    if policy == "reuse":
+        return (
+            "Reuse the best-fitting style already in the catalog; answer decision='reuse'. "
+            "Only if the catalog is empty may you propose a new one."
+            + (f" Operator steer for the choice: {hint}." if hint else "")
+        )
+    if policy == "new":
+        return (
+            "Create a new style; answer decision='new' and reuse_of=null."
+            + (f" Operator steer for the new style: {hint}." if hint else "")
+        )
+    if hint:
+        return (
+            "Choose freely between reuse and new, whichever fits the topic better. "
+            f"Operator steer: {hint}."
+        )
+    return "No operator constraint: choose reuse or new on the merits, per the rules below."
+
+
 def stage_world_style_director(
-    runner: Runner, project: Path, content_project: Any, topic: str, plan: dict[str, Any], episode_plan: dict[str, Any]
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    topic: str,
+    plan: dict[str, Any],
+    episode_plan: dict[str, Any],
+    directive: str,
 ) -> dict[str, Any]:
     stage = "world_style_director"
     target = project / "creative" / "WORLD_STYLE_PLAN.json"
@@ -666,6 +823,7 @@ def stage_world_style_director(
         EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
         STYLE_CATALOG=json.dumps(catalog, ensure_ascii=False),
         RECENT_STYLES=json.dumps([item.get("world_style_id") for item in _recent_history()], ensure_ascii=False),
+        STYLE_DIRECTIVE=directive,
     )
     data = runner.json(stage, prompt)
     if not isinstance(data, dict) or not data.get("style_id"):
@@ -732,7 +890,16 @@ def stage_world_style_anchor(
                 break
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(str(source), str(target))
-            runner.stage_done(stage, started, f"reused {reuse_of}", reuse_of=reuse_of, sha256=sha256_file(target))
+            from world_style_catalog import WorldStyleCatalogError, record_reuse
+
+            try:
+                uses = record_reuse(getattr(content_project, "project_id", "question_harvest"), reuse_of)
+            except WorldStyleCatalogError:
+                uses = None
+            runner.stage_done(
+                stage, started, f"reused {reuse_of}", reuse_of=reuse_of,
+                sha256=sha256_file(target), **({"usage_count": uses} if uses else {}),
+            )
             return target
         raise StageFailure(
             stage,
@@ -752,11 +919,48 @@ def stage_world_style_anchor(
         "No characters, no text, no logos, no photorealism."
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_pro")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
     result = runner.image(stage, prompt, [], model=model, destination=target)
     _write_image_receipt(project, "gemini_world_style_anchor", result, prompt, [], target, model)
-    runner.stage_done(stage, started, target.name, sha256=sha256_file(target), model=model)
+
+    # A new style is only reusable once it is in the catalog: the director is shown that
+    # file, the panel lists it, and a later episode can be pinned to it (§35).
+    from world_style_catalog import WorldStyleCatalogError, publish_style
+
+    published = ""
+    try:
+        entry = publish_style(
+            getattr(content_project, "project_id", "question_harvest"), world_style_plan, target
+        )
+        published = str(entry.get("path") or "")
+    except WorldStyleCatalogError as exc:
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            f"The new style could not be registered for reuse: {exc}",
+        ) from exc
+
+    runner.stage_done(
+        stage, started, f"{target.name} → catalog/{published}",
+        sha256=sha256_file(target), model=model, catalog_path=published,
+    )
     return target
+
+
+def _receipt_path(project: Path, output: Path) -> str:
+    """A stable, readable path for the receipt.
+
+    Most outputs live inside the episode directory, but a few are project-level assets
+    shared by every episode — the book design sheet is written into the content project's
+    preset directory. Those are recorded relative to the repository root instead of
+    crashing on ``relative_to``.
+    """
+    for base in (project, ROOT):
+        try:
+            return str(output.relative_to(base))
+        except ValueError:
+            continue
+    return str(output)
 
 
 def _write_image_receipt(
@@ -791,7 +995,7 @@ def _write_image_receipt(
             for ref in references
         ],
         "prompt_sha256": sha256_text(prompt),
-        "output_path": str(output.relative_to(project)),
+        "output_path": _receipt_path(project, output),
         "output_sha256": sha256_file(output),
         "output_dimensions": dimensions,
         "elapsed_seconds": result.elapsed_seconds,
@@ -832,7 +1036,7 @@ def _write_video_receipt(
         "provider_receipt": receipt,
         "uploaded_roles": [ref.role for ref in references],
         "prompt_sha256": sha256_text(prompt),
-        "output_file": str(output.relative_to(project)),
+        "output_file": _receipt_path(project, output),
         "output_sha256": sha256_file(output),
         "elapsed_seconds": result.elapsed_seconds,
         "completed_at": utcnow(),
@@ -974,7 +1178,7 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
         f"{identity[:4000]}"
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_pro")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
     result = runner.image(stage, prompt, [], model=model, destination=target)
     _write_image_receipt(project, "gemini_book_design_sheet", result, prompt, [], target, model)
     runner.stage_done(stage, started, str(target.relative_to(ROOT)), sha256=sha256_file(target))
@@ -993,7 +1197,7 @@ def stage_world_keyframe(
         return target
     started = runner.stage_start(stage)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_pro")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
 
     # §30 reference order: the recurring identity first, then the style, then continuity.
     references: list[Reference] = []
@@ -1235,7 +1439,7 @@ def stage_body_images(
     output_dir = project / "assets" / "raw_beats"
     output_dir.mkdir(parents=True, exist_ok=True)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_pro")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
 
     produced: list[Path] = []
     previous: Path | None = None
@@ -1295,6 +1499,10 @@ def ensure_launch_request(
     flow_resolution: str,
     opening_a_seconds: int,
     opening_b_seconds: int,
+    duration: "DurationTarget",
+    style_policy: str,
+    style_id: str,
+    style_hint: str,
 ) -> dict[str, Any]:
     """The immutable launch contract (§59, §79). An existing file is never rewritten."""
     path = project / "launch" / "LAUNCH_REQUEST.json"
@@ -1313,6 +1521,16 @@ def ensure_launch_request(
             "opening_b_source_seconds": opening_b_seconds,
             "outputs": "x1",
             "flow_style_sheet_upload": False,
+        },
+        "episode": {
+            "min_duration_seconds": duration.min_seconds,
+            "max_duration_seconds": duration.max_seconds,
+            "word_range": duration.word_range,
+        },
+        "world_style": {
+            "policy": style_policy,
+            "requested_style_id": style_id or None,
+            "hint": style_hint or None,
         },
         "project": str(project.relative_to(ROOT)),
     }
@@ -1339,13 +1557,16 @@ def write_visual_beats_markdown(project: Path, plan: dict[str, Any], visual_plan
     return path
 
 
-def build_brief(project: Path, topic: str, content_project: Any) -> str:
+def build_brief(
+    project: Path, topic: str, content_project: Any, duration: DurationTarget
+) -> str:
     brief_path = project / "launch" / "CREATIVE_BRIEF.json"
     brief_json = brief_path.read_text(encoding="utf-8") if brief_path.is_file() else "{}"
     return (
         f"Topic: {topic}\n"
         "Language: English\n"
-        "Target: 40-60s vertical Short, aspect 9:16\n"
+        f"Target: {duration.duration_range} vertical Short, aspect 9:16 "
+        f"({duration.word_range} spoken words, aim near {duration.word_target})\n"
         f"Content project: {content_project.display_name}\n"
         f"Brief JSON: {brief_json}"
     )
@@ -1358,7 +1579,15 @@ def main() -> int:
     parser.add_argument("--content-project", default="question_harvest")
     parser.add_argument("--creative-brief", type=Path, default=None)
     parser.add_argument("--voice-profile", type=Path, default=None)
-    parser.add_argument("--gemini-model", default="nano_banana_pro")
+    parser.add_argument(
+        "--gemini-model",
+        default="nano_banana_2",
+        help=(
+            "Gemini image model to verify against the UI. Gemini currently names only "
+            "Nano Banana 2 in its image composer, so nano_banana_pro fails with "
+            "MODEL_NOT_AVAILABLE rather than running on a model nobody asked for."
+        ),
+    )
     parser.add_argument("--flow-model", default="gemini_omni_1_1_flash")
     parser.add_argument("--flow-resolution", default="720p")
     parser.add_argument("--aspect-ratio", default="9:16")
@@ -1369,7 +1598,40 @@ def main() -> int:
         help="Flow source length for Clip A; one second of headroom over the planned segment.",
     )
     parser.add_argument("--opening-b-seconds", type=int, default=4)
+    parser.add_argument(
+        "--min-duration-seconds",
+        type=float,
+        default=40.0,
+        help="Shortest acceptable episode length; the script prompts are written for it.",
+    )
+    parser.add_argument(
+        "--max-duration-seconds",
+        type=float,
+        default=60.0,
+        help="Longest acceptable episode length.",
+    )
+    parser.add_argument(
+        "--world-style-policy",
+        default="auto",
+        choices=("auto", "reuse", "new"),
+        help="auto lets the director choose; reuse forbids a new style; new forbids reuse.",
+    )
+    parser.add_argument(
+        "--world-style-id",
+        default="",
+        help=(
+            "Reuse this catalogued style_id instead of letting the director pick. "
+            "Implies --world-style-policy reuse."
+        ),
+    )
+    parser.add_argument(
+        "--world-style-hint",
+        default="",
+        help="Free-text steer for a new style, e.g. 'charcoal warm paper'.",
+    )
     args = parser.parse_args()
+    if args.min_duration_seconds > args.max_duration_seconds:
+        parser.error("--min-duration-seconds cannot exceed --max-duration-seconds")
 
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
 
@@ -1397,6 +1659,25 @@ def main() -> int:
         if Path(args.voice_profile).resolve() != voice_target.resolve():
             shutil.copy(str(args.voice_profile), str(voice_target))
 
+    duration = DurationTarget(float(args.min_duration_seconds), float(args.max_duration_seconds))
+    requested_style_id = str(args.world_style_id or "").strip()
+    style_policy = "reuse" if requested_style_id else str(args.world_style_policy)
+    directive = style_directive(style_policy, requested_style_id, args.world_style_hint)
+    if requested_style_id:
+        catalogued = {
+            str(entry.get("style_id"))
+            for entry in (load_json(WORLD_STYLES_ROOT / "CATALOG.json").get("styles") or [])
+        } if (WORLD_STYLES_ROOT / "CATALOG.json").is_file() else set()
+        if requested_style_id not in catalogued:
+            print(
+                f"FAILED_VALIDATION: world style {requested_style_id!r} is not in "
+                f"projects/{args.content_project}/world_styles/CATALOG.json "
+                f"(known: {sorted(catalogued)}).",
+                file=sys.stderr,
+                flush=True,
+            )
+            return 2
+
     launch = ensure_launch_request(
         project,
         args.content_project,
@@ -1405,6 +1686,10 @@ def main() -> int:
         args.flow_resolution,
         args.opening_a_seconds,
         args.opening_b_seconds,
+        duration,
+        style_policy,
+        requested_style_id,
+        args.world_style_hint,
     )
     state = QHState(project, args.video_id, args.topic)
     notifier = PipelineNotifier(video_id=args.video_id, topic=args.topic)
@@ -1421,14 +1706,21 @@ def main() -> int:
         try:
             # Fail before spending anything if the browser stack is not usable (§65).
             jobs.require_ready(["chatgpt", "gemini", "flow"])
-            brief = build_brief(project, args.topic, content_project)
+            brief = build_brief(project, args.topic, content_project, duration)
 
-            draft = stage_script(runner, project, content_project, brief)
-            plan = stage_retention(runner, project, content_project, brief, draft)
+            draft = stage_script(runner, project, content_project, brief, duration)
+            plan = stage_retention(runner, project, content_project, brief, draft, duration)
             episode_plan = stage_episode_director(runner, project, content_project, args.topic, brief, plan)
             world_style_plan = stage_world_style_director(
-                runner, project, content_project, args.topic, plan, episode_plan
+                runner, project, content_project, args.topic, plan, episode_plan, directive
             )
+            if requested_style_id and str(world_style_plan.get("style_id") or "") != requested_style_id:
+                raise StageFailure(
+                    "world_style_director",
+                    "FAILED_VALIDATION",
+                    f"The operator asked for style {requested_style_id!r} but the director "
+                    f"answered {world_style_plan.get('style_id')!r}.",
+                )
             world_style_anchor = stage_world_style_anchor(runner, project, content_project, world_style_plan)
             stage_record_history(runner, content_project, args.video_id, episode_plan, world_style_plan)
 
@@ -1456,6 +1748,16 @@ def main() -> int:
                 episode_plan, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
             )
 
+            # The body images depend only on the plan, the style anchor and the world
+            # keyframe, so they run before the Flow clips. Flow is the stage most likely to
+            # be unavailable for reasons outside this host — quota, high demand, or a
+            # regional block — and doing the image work first means an outage there costs a
+            # resume rather than the whole visual half.
+            body_images = stage_body_images(
+                runner, project, content_project, visual_plan, world_style_plan,
+                world_style_anchor, world_keyframe,
+            )
+
             clip_a = stage_flow_clip(
                 runner, project, content_project, "A", clip_a_prompt,
                 book_spread=None, world_keyframe=None,
@@ -1467,11 +1769,6 @@ def main() -> int:
                 book_spread=book_spread, world_keyframe=world_keyframe,
                 model=flow_model, resolution=flow_resolution, aspect_ratio=args.aspect_ratio,
                 source_seconds=opening_b_seconds,
-            )
-
-            body_images = stage_body_images(
-                runner, project, content_project, visual_plan, world_style_plan,
-                world_style_anchor, world_keyframe,
             )
 
             state.mark("qh_visual_complete", STATE_DONE, body_images=len(body_images))
