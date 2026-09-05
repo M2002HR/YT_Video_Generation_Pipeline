@@ -1,0 +1,105 @@
+{
+  "audio_duration_seconds": 57.391,
+  "spark_start": 0.0,
+  "spark_end": 5.86,
+  "spark_duration": 5.86,
+  "transition_start": 7.34,
+  "transition_end": 9.38,
+  "transition_duration": 2.04,
+  "clip_a_target_seconds": 5.86,
+  "clip_b_target_seconds": 3.52,
+  "body_start": 10.78,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Sorting stones by the garden wall, I wondered: why do Egypt's pyramids still raise so many questions?",
+      "speech_start": 0.0,
+      "speech_end": 5.86,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "So I reach for the volume marked Egypt.",
+      "speech_start": 7.34,
+      "speech_end": 9.38,
+      "match_confidence": 0.875
+    },
+    {
+      "segment": "body_01",
+      "narration": "How were such immense structures planned?",
+      "speech_start": 10.78,
+      "speech_end": 12.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "How were heavy materials moved into place?",
+      "speech_start": 13.52,
+      "speech_end": 15.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "How did builders keep each side aligned?",
+      "speech_start": 17.02,
+      "speech_end": 19.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "What tools made the work possible?",
+      "speech_start": 20.44,
+      "speech_end": 22.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "How was a project this complex organized?",
+      "speech_start": 23.28,
+      "speech_end": 25.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "What did the pyramids mean to the people who lived around them?",
+      "speech_start": 27.22,
+      "speech_end": 30.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Which clues are solid evidence, and which interpretations remain debated?",
+      "speech_start": 31.34,
+      "speech_end": 35.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "That distinction matters, because this brief includes no source notes to check.",
+      "speech_start": 37.18,
+      "speech_end": 42.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "So rather than turn uncertainty into a confident story, we stop where the evidence stops.",
+      "speech_start": 43.58,
+      "speech_end": 49.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "A mystery is better when the facts stay intact.",
+      "speech_start": 50.9,
+      "speech_end": 53.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 54.38,
+      "speech_end": 56.96,
+      "match_confidence": 1.0
+    }
+  ]
+}

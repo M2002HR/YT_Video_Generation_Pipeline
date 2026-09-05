@@ -1,0 +1,95 @@
+{
+  "body_duration_seconds": 40.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "How were such immense structures planned?",
+      "visual": "A vertical archaeological engraving of the Giza plateau with a pyramid shown as a measured architectural reconstruction: faint charcoal baseline, corner sightlines, proportional guide marks, and a few scale figures beside limestone courses, all on sun-aged papyrus with restrained ochre and desert-blue accents.",
+      "purpose": "introduce the question of how a massive pyramid could be planned and laid out with precision",
+      "type": "diagram",
+      "continuity": "first body image establishes the archaeological sketchbook world after the Egypt book transition",
+      "hero_present": false,
+      "world_keyframe_is_first": true
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "How were heavy materials moved into place?",
+      "visual": "Engraved workers hauling a large limestone block on a wooden sledge across prepared ground, ropes visibly under tension; a faint alternative ramp contour appears as a lightly drawn hypothetical reconstruction rather than a definitive scene.",
+      "purpose": "show the physical problem of transporting heavy stone while keeping disputed transport methods visibly hypothetical",
+      "type": "literal",
+      "continuity": "moves closer from the overall pyramid plan to one construction task at ground level",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "How did builders keep each side aligned?",
+      "visual": "Top-down oblique engraving of a pyramid foundation corner with taut surveying cords, straight reference lines, simple wooden measuring implements, and carefully squared limestone edges casting sparse dusty shadows.",
+      "purpose": "visualize the challenge of maintaining straight, accurately aligned pyramid sides",
+      "type": "diagram",
+      "continuity": "shifts from moving blocks to the precision required when placing them",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "What tools made the work possible?",
+      "visual": "A simple archaeological still life on papyrus: copper-era chisels, stone pounders, wooden mallets, rope, a wooden lever, and a plumb-like surveying implement arranged beside a partially worked limestone block, rendered as evidence objects rather than a labeled museum display.",
+      "purpose": "show historically plausible categories of tools associated with quarrying, shaping, moving, and measuring stone",
+      "type": "literal",
+      "continuity": "cuts from surveying in use to a close study of the physical implements themselves",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "How was a project this complex organized?",
+      "visual": "Wide engraved scene linking quarry edge, hauling route, work crews, food preparation area, and worker settlement near the plateau through natural spatial flow; small groups perform different tasks without any modern hierarchy chart or readable labels.",
+      "purpose": "show that pyramid construction required coordinated labor, supply, logistics, and specialized work",
+      "type": "subject_world",
+      "continuity": "widens from individual tools to the larger human system needed to sustain construction",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "What did the pyramids mean to the people who lived around them?",
+      "visual": "Quiet archival-style engraving of a completed pyramid dominating the desert horizon while nearby settlement figures, procession-like silhouettes, and cultivated land occupy the foreground; symbolic elements remain restrained and non-specific rather than inventing religious claims.",
+      "purpose": "raise the social and symbolic meaning of the pyramids without asserting a single interpretation",
+      "type": "subject_world",
+      "continuity": "moves from how the project functioned to how the finished monument related to surrounding life",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Which clues are solid evidence, and which interpretations remain debated?",
+      "visual": "A single archaeological composition with excavated limestone courses, tool marks, a sledge fragment, settlement remains, and surveying traces rendered in firm dark engraving, while possible ramp and organizational reconstructions appear only as pale, incomplete charcoal overlays fading into the papyrus.",
+      "purpose": "visually distinguish material archaeological evidence from more tentative reconstruction and interpretation",
+      "type": "metaphor",
+      "continuity": "turns the preceding historical questions into an explicit evidence-versus-hypothesis distinction",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "That distinction matters, because this brief includes no source notes to check.",
+      "visual": "Close archaeological desk-like composition without readable writing: a few evidence fragments and measured drawings sit sharply rendered at the center, while empty papyrus margins and unfinished annotation strokes surround them, emphasizing the absence of supporting source material.",
+      "purpose": "show that the episode lacks source notes needed to verify detailed claims",
+      "type": "metaphor",
+      "continuity": "narrows from the broad evidence comparison to the specific limitation of this episode's source material",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "So rather than turn uncertainty into a confident story, we stop where the evidence stops.",
+      "visual": "A partially reconstructed pyramid drawing ends deliberately at a crisp boundary: confirmed masonry and excavated traces are rendered in complete engraved lines on one side, while the unverified continuation dissolves into blank papyrus with only a few faint unfinished guide strokes.",
+      "purpose": "communicate the editorial decision to stop making claims once reliable evidence runs out",
+      "type": "metaphor",
+      "continuity": "resolves the evidence theme by transforming uncertainty into a deliberate visual stopping point suitable for the closing book echo",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    }
+  ]
+}

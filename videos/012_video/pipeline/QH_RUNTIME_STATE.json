@@ -1,0 +1,511 @@
+{
+  "schema_version": 2,
+  "video_id": "012",
+  "topic": "اهرام مصر",
+  "created_at": "2026-09-05T19:22:27Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:01Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:02Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:04Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:05Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:07Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-05T20:34:09Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:10Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:12Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:13Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:14Z",
+      "artifact": "book_design_sheet.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:15Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:17Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:18Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:19Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:20Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:22Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:23Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:25Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:26Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:27Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:29Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:30Z",
+      "artifact": "beat_009.png"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T20:34:31Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-05T20:36:28Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "62f7031c6436d749067ccbb2485e43b8ad339c89f41b2c1e40d16450138dca62"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-05T20:36:30Z",
+      "body_images": 9
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 42.602,
+      "at": "2026-09-05T19:23:11Z",
+      "words": 109
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 27.079,
+      "at": "2026-09-05T19:23:41Z",
+      "words": 123
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 21.069,
+      "at": "2026-09-05T19:24:04Z",
+      "activity": "gardening"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 27.092,
+      "at": "2026-09-05T19:24:34Z",
+      "style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 54.433,
+      "at": "2026-09-05T19:26:36Z",
+      "sha256": "032434d0d4401429900215c79029ac27cb877db1e8d7e08353ca805a870eeda8",
+      "model": "nano_banana_2",
+      "catalog_path": "004_archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T19:26:38Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 36.114,
+      "at": "2026-09-05T19:27:17Z",
+      "beats": 9
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 21.123,
+      "at": "2026-09-05T19:27:41Z",
+      "prompt_sha256": "a5bb6b7a7b30a88225395032819e7feec4909f0aa402b59db27c38dce1db25b3"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 75.193,
+      "at": "2026-09-05T19:28:59Z",
+      "sha256": "8f41d1951075e95b6e41f4954de5c8f2f7f48c965d79cf44779187e90623398b",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.213,
+      "at": "2026-09-05T19:29:02Z",
+      "template_id": "001",
+      "sha256": "1f443ec3666852dbbdd98c6b1929ec86358a461cd6645b155277f8faaaaafd1f"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 21.072,
+      "at": "2026-09-05T19:29:26Z",
+      "prompt_sha256": "a1e60f4bf62d5a5b512f9c35a186f4e82d101a5424ad95bdcc9f3f42502fb1af"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 21.061,
+      "at": "2026-09-05T19:29:49Z",
+      "prompt_sha256": "654a61582c47af212fe9e311b3137afbb500b99c8850fac05f30e5153f3cc9b4"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T19:32:29Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 66.81,
+      "at": "2026-09-05T19:33:49Z",
+      "sha256": "10f8a563462c470b109348b216f5c0c1ee360dce9a0222880434e31005d17345",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 96.326,
+      "at": "2026-09-05T19:35:28Z",
+      "sha256": "3bf4b74a00d9212172be676f4feda4b147d8b147d12a5ac991759dd9fb10a486",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 81.309,
+      "at": "2026-09-05T19:36:52Z",
+      "sha256": "bfdc99f697f811d035a6be34a99338114960ea8d6d3f6a842efc4dd679bb2d20",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 126.409,
+      "at": "2026-09-05T19:39:01Z",
+      "sha256": "8a0c73c020aef386c18a5c75178ee1be55265f300a808e753c1d817cfb7888ba",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 78.293,
+      "at": "2026-09-05T19:40:22Z",
+      "sha256": "f5f7c57d87204ebe9dd197370cd3317766f5ec440b4f5f07b811d451d6d4eacf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 84.263,
+      "at": "2026-09-05T19:41:48Z",
+      "sha256": "4a69fbbf5d9bbe5606327783a702aaf0e1fb28bb1682048e564a3f6d1b69acbf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T19:43:46Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 66.22,
+      "at": "2026-09-05T19:45:13Z",
+      "sha256": "d545b130b36227cd7f2f04f55775a90c38c5f162fba0211ea8039ee67f174599",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-05T20:00:43Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 63.272,
+      "at": "2026-09-05T20:02:13Z",
+      "sha256": "0f82c999255691d576afad07a60329ac8e99802707d7af3503c114b78c573434",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:06:03Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:08:28Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:09:13Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:09:58Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:10:44Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:11:28Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:12:58Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:13:43Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:22:06Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 400.619,
+      "at": "2026-09-05T20:29:09Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "d0d4e5ab45b5ff5bfa954a21010863b183cd39121597c5c100acb466625f31d2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:32:49Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T20:34:09Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "001",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 114.462,
+      "at": "2026-09-05T20:36:28Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "62f7031c6436d749067ccbb2485e43b8ad339c89f41b2c1e40d16450138dca62"
+    }
+  ],
+  "updated_at": "2026-09-05T20:36:30Z"
+}

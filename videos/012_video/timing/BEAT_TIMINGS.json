@@ -1,0 +1,106 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 57.391,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Sorting stones by the garden wall, I wondered, why do Egypt's pyramids still raise so many questions? So I reached for the volume marked Egypt. How were such immense structures planned? How were heavy materials moved into place? How did builders keep each side aligned? What tools made the work possible? How was a project this complex organized? What did the pyramids mean to the people who lived around them? Which clues are solid evidence and which interpretations remain debated? That distinction matters because this brief includes no source notes to check. So rather than turn uncertainty into a confident story, we stop where the evidence stops. A mystery is better when the facts stay intact. Like and subscribe to grow more questions.",
+  "word_count": 123,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "How were such immense structures planned?",
+      "speech_start": 10.78,
+      "speech_end": 12.68,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 13.52,
+      "display_duration": 13.52
+    },
+    {
+      "beat_id": 2,
+      "narration": "How were heavy materials moved into place?",
+      "speech_start": 13.52,
+      "speech_end": 15.66,
+      "match_confidence": 1.0,
+      "display_start": 13.52,
+      "display_end": 17.02,
+      "display_duration": 3.5
+    },
+    {
+      "beat_id": 3,
+      "narration": "How did builders keep each side aligned?",
+      "speech_start": 17.02,
+      "speech_end": 19.24,
+      "match_confidence": 1.0,
+      "display_start": 17.02,
+      "display_end": 20.44,
+      "display_duration": 3.42
+    },
+    {
+      "beat_id": 4,
+      "narration": "What tools made the work possible?",
+      "speech_start": 20.44,
+      "speech_end": 22.16,
+      "match_confidence": 1.0,
+      "display_start": 20.44,
+      "display_end": 23.28,
+      "display_duration": 2.84
+    },
+    {
+      "beat_id": 5,
+      "narration": "How was a project this complex organized?",
+      "speech_start": 23.28,
+      "speech_end": 25.58,
+      "match_confidence": 1.0,
+      "display_start": 23.28,
+      "display_end": 27.22,
+      "display_duration": 3.94
+    },
+    {
+      "beat_id": 6,
+      "narration": "What did the pyramids mean to the people who lived around them?",
+      "speech_start": 27.22,
+      "speech_end": 30.06,
+      "match_confidence": 1.0,
+      "display_start": 27.22,
+      "display_end": 31.34,
+      "display_duration": 4.12
+    },
+    {
+      "beat_id": 7,
+      "narration": "Which clues are solid evidence, and which interpretations remain debated?",
+      "speech_start": 31.34,
+      "speech_end": 35.54,
+      "match_confidence": 1.0,
+      "display_start": 31.34,
+      "display_end": 37.18,
+      "display_duration": 5.84
+    },
+    {
+      "beat_id": 8,
+      "narration": "That distinction matters, because this brief includes no source notes to check.",
+      "speech_start": 37.18,
+      "speech_end": 42.62,
+      "match_confidence": 1.0,
+      "display_start": 37.18,
+      "display_end": 43.58,
+      "display_duration": 6.4
+    },
+    {
+      "beat_id": 9,
+      "narration": "So rather than turn uncertainty into a confident story, we stop where the evidence stops.",
+      "speech_start": 43.58,
+      "speech_end": 49.54,
+      "match_confidence": 1.0,
+      "display_start": 43.58,
+      "display_end": 57.391,
+      "display_duration": 13.811
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 57.391,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 5.875,
+      "duration": 5.875,
+      "beat_id": "video_opening_a",
+      "motion": "still"
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 5.875,
+      "end": 9.417,
+      "duration": 3.542,
+      "beat_id": "video_opening_b",
+      "motion": "still"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.417,
+      "end": 13.52,
+      "duration": 4.103,
+      "speech_start": 10.78,
+      "speech_end": 12.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "How were such immense structures planned?"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 13.52,
+      "end": 17.02,
+      "duration": 3.5,
+      "speech_start": 13.52,
+      "speech_end": 15.66,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "How were heavy materials moved into place?"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 17.02,
+      "end": 20.44,
+      "duration": 3.42,
+      "speech_start": 17.02,
+      "speech_end": 19.24,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "How did builders keep each side aligned?"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 20.44,
+      "end": 23.28,
+      "duration": 2.84,
+      "speech_start": 20.44,
+      "speech_end": 22.16,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "What tools made the work possible?"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 23.28,
+      "end": 27.22,
+      "duration": 3.94,
+      "speech_start": 23.28,
+      "speech_end": 25.58,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "How was a project this complex organized?"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 27.22,
+      "end": 31.34,
+      "duration": 4.12,
+      "speech_start": 27.22,
+      "speech_end": 30.06,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "What did the pyramids mean to the people who lived around them?"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 31.34,
+      "end": 37.18,
+      "duration": 5.84,
+      "speech_start": 31.34,
+      "speech_end": 35.54,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Which clues are solid evidence, and which interpretations remain debated?"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 37.18,
+      "end": 43.58,
+      "duration": 6.4,
+      "speech_start": 37.18,
+      "speech_end": 42.62,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "That distinction matters, because this brief includes no source notes to check."
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 43.58,
+      "end": 57.391,
+      "duration": 13.811,
+      "speech_start": 43.58,
+      "speech_end": 49.54,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "So rather than turn uncertainty into a confident story, we stop where the evidence stops."
+    }
+  ],
+  "subtitles": [
+    {
+      "beat_id": 1,
+      "start": 10.78,
+      "end": 12.68,
+      "text": "How were such immense structures planned?",
+      "ass_text": "How were such immense structures\\Nplanned?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 2,
+      "start": 13.52,
+      "end": 15.354,
+      "text": "How were heavy materials moved into",
+      "ass_text": "How were heavy materials moved\\Ninto",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 2,
+      "start": 15.354,
+      "end": 15.66,
+      "text": "place?",
+      "ass_text": "place?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 3,
+      "start": 17.02,
+      "end": 18.923,
+      "text": "How did builders keep each side",
+      "ass_text": "How did builders keep each side",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 3,
+      "start": 18.923,
+      "end": 19.24,
+      "text": "aligned?",
+      "ass_text": "aligned?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 4,
+      "start": 20.44,
+      "end": 22.16,
+      "text": "What tools made the work possible?",
+      "ass_text": "What tools made the work possible?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 5,
+      "start": 23.28,
+      "end": 25.251,
+      "text": "How was a project this complex",
+      "ass_text": "How was a project this complex",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 5,
+      "start": 25.251,
+      "end": 25.58,
+      "text": "organized?",
+      "ass_text": "organized?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 6,
+      "start": 27.22,
+      "end": 28.64,
+      "text": "What did the pyramids mean to",
+      "ass_text": "What did the pyramids mean to",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 6,
+      "start": 28.64,
+      "end": 30.06,
+      "text": "the people who lived around them?",
+      "ass_text": "the people who lived around them?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 7,
+      "start": 31.34,
+      "end": 33.86,
+      "text": "Which clues are solid evidence, and",
+      "ass_text": "Which clues are solid evidence,\\Nand",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 7,
+      "start": 33.86,
+      "end": 35.54,
+      "text": "which interpretations remain debated?",
+      "ass_text": "which interpretations remain\\Ndebated?",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 8,
+      "start": 37.18,
+      "end": 39.9,
+      "text": "That distinction matters, because this brief",
+      "ass_text": "That distinction matters, because\\Nthis brief",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 8,
+      "start": 39.9,
+      "end": 42.62,
+      "text": "includes no source notes to check.",
+      "ass_text": "includes no source notes to check.",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 9,
+      "start": 43.58,
+      "end": 45.964,
+      "text": "So rather than turn uncertainty into",
+      "ass_text": "So rather than turn uncertainty\\Ninto",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 9,
+      "start": 45.964,
+      "end": 48.348,
+      "text": "a confident story, we stop where",
+      "ass_text": "a confident story, we stop where",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 9,
+      "start": 48.348,
+      "end": 49.54,
+      "text": "the evidence stops.",
+      "ass_text": "the evidence stops.",
+      "timing_source": "proportional"
+    }
+  ],
+  "qc": {
+    "beat_count": 11,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 0,
+    "subtitle_cues_estimated": 17
+  }
+}

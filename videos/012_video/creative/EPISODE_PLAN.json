@@ -1,0 +1,14 @@
+{
+  "opening_activity": "gardening",
+  "opening_location": "garden",
+  "curiosity_trigger": "sorting loose wall stones and noticing how uneven pieces can still form a stable, carefully aligned structure",
+  "trigger_object": "flat weathered stone",
+  "reaction": "pauses with the stone in hand, studies the straight garden wall, then looks thoughtful",
+  "book_retrieval": "sets the stone down, brushes dust from his hands, crosses to the nearby shelf, and pulls down the worn volume marked Egypt",
+  "camera_pattern": "over_shoulder",
+  "book_template_id": "001",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "sun-bleached archaeological sketchbook aesthetic with warm papyrus grain, charcoal-and-ochre linework, measured architectural diagrams, and restrained desert blue accents",
+  "reason": "Working with ordinary garden-wall stones naturally prompts questions about planning, moving, and aligning much larger stone structures without forcing a pyramid-shaped object into the home world."
+}

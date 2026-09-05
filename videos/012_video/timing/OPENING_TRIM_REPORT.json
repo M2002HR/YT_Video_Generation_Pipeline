@@ -1,0 +1,21 @@
+{
+  "spark_end": 5.86,
+  "transition_end": 9.38,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/012_video/assets/opening/question_spark_trimmed.mp4",
+      "target": 5.86,
+      "actual": 5.875
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/012_video/assets/opening/book_transition_trimmed.mp4",
+      "target": 3.52,
+      "actual": 3.542
+    }
+  ],
+  "opening_total_seconds": 9.417,
+  "opening_total_target_seconds": 9.38,
+  "opening_total_drift_seconds": 0.037
+}

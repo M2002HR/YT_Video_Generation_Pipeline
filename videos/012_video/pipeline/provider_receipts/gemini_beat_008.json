@@ -1,0 +1,59 @@
+{
+  "provider": "gemini",
+  "job_id": "17bd80b2-c7a2-46dd-882e-b4559a3fc6a7",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "572:1024",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/2bf4396ea94439b0",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "image=17bd80b2-c7a2-46dd-882e-b4559a3fc6a7_output_1.png 572x1024 sha256=d545b130b36227cd7f2f04f55775a90c38c5f162fba0211ea8039ee67f174599"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/012_video/references/world_style_anchor.png",
+      "sha256": "032434d0d4401429900215c79029ac27cb877db1e8d7e08353ca805a870eeda8"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/012_video/references/world_keyframe.png",
+      "sha256": "8f41d1951075e95b6e41f4954de5c8f2f7f48c965d79cf44779187e90623398b"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/012_video/assets/raw_beats/beat_007.png",
+      "sha256": "4a69fbbf5d9bbe5606327783a702aaf0e1fb28bb1682048e564a3f6d1b69acbf"
+    }
+  ],
+  "prompt_sha256": "fa0e7da7c186cd7b5239e851c94b53cc949f9042d5a12ea8c891c36d5ad05301",
+  "output_path": "assets/raw_beats/beat_008.png",
+  "output_sha256": "d545b130b36227cd7f2f04f55775a90c38c5f162fba0211ea8039ee67f174599",
+  "output_dimensions": [
+    572,
+    1024
+  ],
+  "elapsed_seconds": 66.175,
+  "completed_at": "2026-09-05T19:45:13Z"
+}
