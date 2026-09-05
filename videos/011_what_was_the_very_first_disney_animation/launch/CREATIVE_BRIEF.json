@@ -1,0 +1,22 @@
+{
+  "working_title": "The first thing Disney ever animated",
+  "audience": "Curious adults who like short history explainers",
+  "narrative_angle": "Trace it back further than the famous mouse",
+  "must_include": "Laugh-O-Grams, Kansas City, Alice Comedies",
+  "must_avoid": "Claiming Steamboat Willie was the first",
+  "source_notes": "",
+  "_qh": {
+    "hero_presence_mode": "auto",
+    "world_style_policy": "auto",
+    "world_style_id": "",
+    "world_style_hint": "hand-drawn 1920s animation studio feel, warm paper, ink",
+    "min_duration_seconds": 25.0,
+    "max_duration_seconds": 30.0,
+    "gemini_image_model": "nano_banana_2",
+    "flow_video_model": "gemini_omni_1_1_flash",
+    "flow_resolution": "720p",
+    "opening_a_source_seconds": 6,
+    "opening_b_source_seconds": 4,
+    "show_subtitles": false
+  }
+}

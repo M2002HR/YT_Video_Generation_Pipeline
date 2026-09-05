@@ -34,10 +34,15 @@ def test_panel_exposes_project_and_editorial_inputs() -> None:
     # QH advanced fields must be present per §62
     for field in ("hero_presence_mode", "world_style_policy", "gemini_image_model", "flow_video_model", "flow_resolution", "opening_a_seconds", "opening_b_seconds"):
         assert f"name={field}" in page
-    # provider locks displayed
-    assert "ChatGPT / Ordak" in page
-    assert "Gemini / Ordak" in page
-    assert "Google Flow / Ordak" in page
+    # The world-style picker must be offered, or a catalogued style can never be reused.
+    assert "name=world_style_id" in page
+    assert "name=world_style_hint" in page
+    # Provider locks are shown as disabled inputs so the UI cannot suggest a combination
+    # the pipeline would reject.
+    for locked in ("ChatGPT", "Gemini", "Google Flow"):
+        assert locked in page
+    assert page.count("disabled") >= 5
+    assert "never uploaded" in page, "the Flow style-sheet prohibition must be visible"
 
 
 def test_panel_form_text_is_bounded() -> None:

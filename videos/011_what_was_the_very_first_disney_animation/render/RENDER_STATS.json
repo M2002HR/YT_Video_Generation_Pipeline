@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-05T18:11:52.803666+00:00",
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/renders/final.mp4",
+  "output_bytes": 18113342,
+  "target_duration_seconds": 34.168,
+  "actual_duration_seconds": 34.133,
+  "duration_drift_seconds": -0.035,
+  "wall_seconds": 126.34,
+  "realtime_factor": 3.698,
+  "beats": 7,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "subtitles": false,
+  "resource_budget": 0.8,
+  "cpus_available": 2,
+  "threads": {
+    "encoder": 2,
+    "filter": 2,
+    "filter_complex": 2,
+    "source": "render profile"
+  },
+  "nice": 10,
+  "ionice": true,
+  "supersample": 2,
+  "supersample_note": "",
+  "peak_child_rss_mb": 965.8
+}

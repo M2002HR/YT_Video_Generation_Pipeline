@@ -1,0 +1,59 @@
+{
+  "provider": "gemini",
+  "job_id": "82768749-07d0-4f6e-91d3-849079affddc",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "572:1024",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/28dcc7cac41dcfc9",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "image=82768749-07d0-4f6e-91d3-849079affddc_output_1.png 572x1024 sha256=993520e2e031b2e9784e8654cac6480b3eb58743db5719472005b3449b88cb21"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/011_what_was_the_very_first_disney_animation/references/world_style_anchor.png",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/011_what_was_the_very_first_disney_animation/references/world_keyframe.png",
+      "sha256": "b55146b6f5acf06f37549642136e8d3577ec03ec715d4fcc16589649f7fcc35f"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/011_what_was_the_very_first_disney_animation/assets/raw_beats/beat_003.png",
+      "sha256": "8395994fe9df3ee1c36fb844efb73029342c8adf63cdeca74f2f8afbbc418f30"
+    }
+  ],
+  "prompt_sha256": "88120fbcdbf80bf4cf62ea8d7def0d6297471d86d76140c45dba02fefc7d71c0",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "993520e2e031b2e9784e8654cac6480b3eb58743db5719472005b3449b88cb21",
+  "output_dimensions": [
+    572,
+    1024
+  ],
+  "elapsed_seconds": 69.205,
+  "completed_at": "2026-09-05T17:05:17Z"
+}

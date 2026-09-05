@@ -1,0 +1,21 @@
+{
+  "spark_end": 4.96,
+  "transition_end": 8.22,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/opening/question_spark_trimmed.mp4",
+      "target": 4.96,
+      "actual": 5.0
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/opening/book_transition_trimmed.mp4",
+      "target": 3.188,
+      "actual": 3.208
+    }
+  ],
+  "opening_total_seconds": 8.208,
+  "opening_total_target_seconds": 8.22,
+  "opening_total_drift_seconds": -0.012
+}

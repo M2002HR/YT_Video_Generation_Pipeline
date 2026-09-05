@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "video": "011_what_was_the_very_first_disney_animation",
+  "started_at": "2026-09-05T18:09:46.107815+00:00",
+  "status": "DONE",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-05T18:09:46.108077+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-05T18:09:46.258500+00:00",
+      "elapsed_seconds": 0.15,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 4550
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-05T18:09:46.258960+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-05T18:11:52.810581+00:00",
+      "elapsed_seconds": 126.552,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 18113342
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-05T18:11:52.812000+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-05T18:11:56.245365+00:00",
+      "elapsed_seconds": 3.433,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-05T18:11:56.245782+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-05T18:11:57.825095+00:00",
+      "elapsed_seconds": 1.579,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 18234074
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-05T18:11:57.825510+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-05T18:12:01.326228+00:00",
+      "elapsed_seconds": 3.501,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-05T18:12:01.326661+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-05T18:12:30.656160+00:00",
+      "elapsed_seconds": 29.329,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 1654
+    }
+  ],
+  "completed_at": "2026-09-05T18:12:30.656640+00:00",
+  "total_elapsed_seconds": 164.544,
+  "summary": {
+    "video": "011_what_was_the_very_first_disney_animation",
+    "duration_seconds": 34.168,
+    "beat_count": 7,
+    "video_beat_count": 2,
+    "image_beat_count": 5,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": false,
+    "opening": {
+      "spark_end": 4.96,
+      "transition_end": 8.22
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 126.34,
+      "realtime_factor": 3.698,
+      "peak_child_rss_mb": 965.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
+}

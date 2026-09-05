@@ -1,0 +1,16 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "George",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.45,
+    "similarity": 0.75,
+    "style": 0.1,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "38952faabc4c7f09b9821a0cf7c12a4abaac8a74cc7a1f6608b7975d90585665",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-09-05T17:45:22.962610+00:00"
+}

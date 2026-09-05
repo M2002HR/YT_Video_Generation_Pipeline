@@ -1,0 +1,77 @@
+{
+  "audio_duration_seconds": 34.168,
+  "spark_start": 0.04,
+  "spark_end": 4.96,
+  "spark_duration": 4.92,
+  "transition_start": 5.5,
+  "transition_end": 8.22,
+  "transition_duration": 2.72,
+  "clip_a_target_seconds": 4.96,
+  "clip_b_target_seconds": 3.26,
+  "body_start": 8.86,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Sorting workshop tools, I found Disney's animation story starts before Mickey.",
+      "speech_start": 0.04,
+      "speech_end": 4.96,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "So I pull down a book: Kansas City.",
+      "speech_start": 5.5,
+      "speech_end": 8.22,
+      "match_confidence": 0.875
+    },
+    {
+      "segment": "body_01",
+      "narration": "Disney's earliest Kansas City cartoons were the Laugh-O-Grams.",
+      "speech_start": 8.86,
+      "speech_end": 11.92,
+      "match_confidence": 0.7
+    },
+    {
+      "segment": "body_02",
+      "narration": "They came years before Mickey.",
+      "speech_start": 13.56,
+      "speech_end": 15.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Next came the Alice Comedies.",
+      "speech_start": 15.78,
+      "speech_end": 17.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Those blended live action with animation.",
+      "speech_start": 18.32,
+      "speech_end": 20.98,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Steamboat Willie was a milestone, not the start.",
+      "speech_start": 21.52,
+      "speech_end": 24.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Disney's first chapter begins farther back than most people think.",
+      "speech_start": 25.66,
+      "speech_end": 29.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more questions with surprising answers.",
+      "speech_start": 30.0,
+      "speech_end": 33.52,
+      "match_confidence": 1.0
+    }
+  ]
+}

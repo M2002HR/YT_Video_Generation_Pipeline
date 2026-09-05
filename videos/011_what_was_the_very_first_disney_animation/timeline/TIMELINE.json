@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 34.168,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 5.0,
+      "duration": 5.0,
+      "beat_id": "video_opening_a",
+      "motion": "still"
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 5.0,
+      "end": 8.208,
+      "duration": 3.208,
+      "beat_id": "video_opening_b",
+      "motion": "still"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 8.22,
+      "end": 13.56,
+      "duration": 5.34,
+      "speech_start": 8.86,
+      "speech_end": 11.92,
+      "match_confidence": 0.7,
+      "motion": "zoom_in",
+      "narration": "Disney's earliest Kansas City cartoons were the Laugh-O-Grams."
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 13.56,
+      "end": 15.78,
+      "duration": 2.22,
+      "speech_start": 13.56,
+      "speech_end": 15.38,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "They came years before Mickey."
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 15.78,
+      "end": 18.32,
+      "duration": 2.54,
+      "speech_start": 15.78,
+      "speech_end": 17.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Next came the Alice Comedies."
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 18.32,
+      "end": 21.52,
+      "duration": 3.2,
+      "speech_start": 18.32,
+      "speech_end": 20.98,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Those blended live action with animation."
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 21.52,
+      "end": 34.168,
+      "duration": 12.648,
+      "speech_start": 21.52,
+      "speech_end": 24.54,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Steamboat Willie was a milestone, not the start."
+    }
+  ],
+  "subtitles": [
+    {
+      "beat_id": 1,
+      "start": 8.86,
+      "end": 11.155,
+      "text": "Disney's earliest Kansas City cartoons were",
+      "ass_text": "Disney's earliest Kansas City\\Ncartoons were",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 1,
+      "start": 11.155,
+      "end": 11.92,
+      "text": "the Laugh-O-Grams.",
+      "ass_text": "the Laugh-O-Grams.",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 2,
+      "start": 13.56,
+      "end": 15.38,
+      "text": "They came years before Mickey.",
+      "ass_text": "They came years before Mickey.",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 3,
+      "start": 15.78,
+      "end": 17.68,
+      "text": "Next came the Alice Comedies.",
+      "ass_text": "Next came the Alice Comedies.",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 4,
+      "start": 18.32,
+      "end": 20.98,
+      "text": "Those blended live action with animation.",
+      "ass_text": "Those blended live action with\\Nanimation.",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 5,
+      "start": 21.52,
+      "end": 23.785,
+      "text": "Steamboat Willie was a milestone, not",
+      "ass_text": "Steamboat Willie was a milestone,\\Nnot",
+      "timing_source": "proportional"
+    },
+    {
+      "beat_id": 5,
+      "start": 23.785,
+      "end": 24.54,
+      "text": "the start.",
+      "ass_text": "the start.",
+      "timing_source": "proportional"
+    }
+  ],
+  "qc": {
+    "beat_count": 7,
+    "low_confidence_beats": [
+      1
+    ],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 0,
+    "subtitle_cues_estimated": 7
+  }
+}

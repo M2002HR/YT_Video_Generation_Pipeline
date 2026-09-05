@@ -10,9 +10,9 @@ Stage order (§57):
 
     run_question_harvest_pipeline.py   script → images → Flow clips
     run_elevenlabs_voiceover.py        one continuous narration track (§66)
+    run_pixabay_music.py               background track (needs only narration + brief)
     align_beats.py                     Ajil word timestamps → BEAT_TIMINGS + OPENING_TIMING
     trim_opening_clips.py              cut the Flow sources to the measured boundaries (§67)
-    run_pixabay_music.py               background track
     run_completion_pipeline.py         timeline → render → QC → publish
 """
 from __future__ import annotations
@@ -91,6 +91,38 @@ def apply_subtitle_preference(profile_path: Path, creative_brief: Path) -> None:
     profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
 
 
+def write_pending_state(project: Path, absent: str, reason: str) -> Path:
+    """Record why the episode is parked, for the panel and the watcher to read."""
+    from datetime import datetime, timezone
+
+    path = project / "pipeline" / "FLOW_PENDING_STATE.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "status": "WAITING_FOR_FLOW",
+                "missing_clips": [name.strip() for name in absent.split(",") if name.strip()],
+                "reason": reason,
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return path
+
+
+def clear_pending_state(project: Path) -> None:
+    path = project / "pipeline" / "FLOW_PENDING_STATE.json"
+    try:
+        path.unlink()
+    except FileNotFoundError:
+        pass
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Question Harvest end-to-end pipeline")
     parser.add_argument("--topic", required=True)
@@ -119,19 +151,37 @@ def main() -> int:
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     python = sys.executable
 
-    # 1. Visual stages: script, plans, world keyframe, book spread, Flow clips, body images.
-    run(
-        [
-            python, "-u", "scripts/run_question_harvest_pipeline.py",
-            "--topic", args.topic,
-            "--video-id", args.video_id,
-            "--content-project", args.content_project,
-            "--creative-brief", str(args.creative_brief),
-            "--voice-profile", str(args.voice_profile),
-            "--aspect-ratio", args.aspect_ratio,
-        ]
-        + qh_overrides(args.creative_brief)
-    )
+    from flow_gate import blocked_only_on_flow, clips_ready, missing_clips
+
+    # 1. Visual stages: script, plans, world keyframe, book spread, body images, Flow clips.
+    #    A Flow outage is Google's, not this episode's: when it is the only failure, the
+    #    stages that need no video clip still run, and the trim and render wait instead of
+    #    the whole episode being thrown away.
+    flow_pending_reason = ""
+    try:
+        run(
+            [
+                python, "-u", "scripts/run_question_harvest_pipeline.py",
+                "--topic", args.topic,
+                "--video-id", args.video_id,
+                "--content-project", args.content_project,
+                "--creative-brief", str(args.creative_brief),
+                "--voice-profile", str(args.voice_profile),
+                "--aspect-ratio", args.aspect_ratio,
+            ]
+            + qh_overrides(args.creative_brief)
+        )
+    except subprocess.CalledProcessError:
+        only_flow, reason = blocked_only_on_flow(project)
+        if not only_flow:
+            raise
+        flow_pending_reason = reason
+        print(
+            "FLOW PENDING: the visual stages are complete except the Flow clips "
+            f"({reason}). Continuing with narration, timing and music; the trim and render "
+            "wait for the clips.",
+            flush=True,
+        )
 
     # 2. One continuous narration track (§66).
     narration = project / "assets" / "audio" / "narration.mp3"
@@ -147,24 +197,9 @@ def main() -> int:
             ]
         )
 
-    # 3. Real word timestamps, and the measured opening boundaries derived from them.
-    if word_timing_is_usable(project):
-        print("timing reuse: word-level timestamps already present", flush=True)
-    else:
-        run([python, "scripts/align_beats.py", str(project), "--fallback-backend", "none"])
-        if not word_timing_is_usable(project):
-            print(
-                "FAILED_VALIDATION: alignment did not produce word-level timestamps plus "
-                "OPENING_TIMING.json, so the opening clips cannot be trimmed truthfully.",
-                file=sys.stderr,
-                flush=True,
-            )
-            return 2
-
-    # 4. Cut the Flow sources to the measured narration boundaries (§67).
-    run([python, "scripts/trim_opening_clips.py", str(project)])
-
-    # 5. Background music.
+    # 3. Background music. It needs only the narration and the brief, so it runs before the
+    #    timing: when alignment is blocked by its STT provider, the episode should still gain
+    #    its music instead of every resume stopping at the same step with nothing to show.
     music_dir = project / "assets" / "music"
     if music_dir.is_dir() and any(music_dir.iterdir()):
         print("music reuse", flush=True)
@@ -178,7 +213,39 @@ def main() -> int:
             ]
         )
 
-    # 6. Render profiles, then timeline → render → QC → publish.
+    # 4. Real word timestamps, and the measured opening boundaries derived from them. Both
+    #    accepted backends measure real words; only invented timing is refused (§67).
+    if word_timing_is_usable(project):
+        print("timing reuse: word-level timestamps already present", flush=True)
+    else:
+        run([python, "scripts/align_beats.py", str(project), "--fallback-backend", "none"])
+        if not word_timing_is_usable(project):
+            print(
+                "FAILED_VALIDATION: alignment did not produce word-level timestamps plus "
+                "OPENING_TIMING.json, so the opening clips cannot be trimmed truthfully.",
+                file=sys.stderr,
+                flush=True,
+            )
+            return 2
+
+    # 5. Everything past here needs the Flow sources. Park the run rather than render an
+    #    episode without its opening, and let the watcher resume when Flow answers again.
+    if not clips_ready(project):
+        absent = ", ".join(path.name for path in missing_clips(project))
+        write_pending_state(project, absent, flow_pending_reason)
+        print(
+            f"QH PIPELINE PARKED: waiting for Flow clips ({absent}). "
+            "Narration, timing and music are done; resume to finish the render.",
+            flush=True,
+        )
+        print("FLOW_CLIPS_PENDING", flush=True)
+        return 4
+
+    # 6. Cut the Flow sources to the measured narration boundaries (§67).
+    clear_pending_state(project)
+    run([python, "scripts/trim_opening_clips.py", str(project)])
+
+    # 7. Render profiles, then timeline → render → QC → publish.
     from run_full_video_pipeline import ensure_audio_mix_profile, ensure_render_profile
 
     ensure_audio_mix_profile(project)

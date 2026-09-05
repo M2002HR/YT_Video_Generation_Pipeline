@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-05T17:56:02.711705+00:00",
+  "status": "DONE",
+  "narration_seconds": 34.168,
+  "segment_count": 1,
+  "segments": [
+    {
+      "segment_id": "bed_001",
+      "start_seconds": 0.0,
+      "end_seconds": 34.168,
+      "duration_seconds": 34.168,
+      "role": "bed",
+      "provider": "mixkit",
+      "query_prompt": "Choose exactly one Mixkit Free Stock Music track for this specific video. Narration duration: 34.2 seconds. Source brief/script follows:\nSorting workshop tools, I found Disney's animation story starts before Mickey. So I pull down a book: Kansas City. Disney's earliest Kansas City cartoons were the Laugh-O-Grams. They came years before Mickey. Next came the Alice Comedies. Those blended live action with animation. Steamboat Willie was a milestone, not the start. Disney's first chapter begins farther back than most people think. Like and subscribe for more questions with surprising answers.\n\nInfer the topic, emotional arc, pacing, language and audience from this material. Choose an instrumental background suitable under spoken narration: no lyrics, no abrupt drops, and a restrained mix that supports rather than competes with the voice. Reply with only one direct https://mixkit.co/free-stock-music/item/ track URL and no other text.",
+      "source_url": "https://mixkit.co/free-stock-music/item/684/",
+      "file": "assets/music/background.mp3",
+      "gain_db": -20.0,
+      "fade_in_seconds": 0.8,
+      "fade_out_seconds": 1.4,
+      "notes": []
+    }
+  ]
+}

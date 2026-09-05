@@ -3,36 +3,36 @@
   "video_id": "010",
   "topic": "What was the very first Disney animation?",
   "created_at": "2026-09-04T19:41:51Z",
-  "pipeline_state": "FAILED",
+  "pipeline_state": "FAILED_UPLOAD",
   "stages": {
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:13:57Z",
+      "updated_at": "2026-09-05T15:25:52Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:13:58Z",
+      "updated_at": "2026-09-05T15:25:54Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:13:59Z",
+      "updated_at": "2026-09-05T15:25:55Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:01Z",
+      "updated_at": "2026-09-05T15:25:56Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:02Z",
+      "updated_at": "2026-09-05T15:25:58Z",
       "artifact": "world_style_anchor.png"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-04T20:14:04Z",
+      "updated_at": "2026-09-05T15:26:00Z",
       "opening_activity": "workshop repair",
       "opening_location": "workshop",
       "camera_pattern": "slow_push_in",
@@ -41,68 +41,68 @@
     },
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:05Z",
+      "updated_at": "2026-09-05T15:26:01Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:07Z",
+      "updated_at": "2026-09-05T15:26:03Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:08Z",
+      "updated_at": "2026-09-05T15:26:04Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:10Z",
+      "updated_at": "2026-09-05T15:26:05Z",
       "artifact": "book_design_sheet.png"
     },
     "book_spread": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:11Z",
+      "updated_at": "2026-09-05T15:26:06Z",
       "artifact": "book_spread_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:12Z",
+      "updated_at": "2026-09-05T15:26:08Z",
       "artifact": "flow_prompt_opening_a.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:13Z",
+      "updated_at": "2026-09-05T15:26:09Z",
       "artifact": "flow_prompt_book_transition.txt"
     },
     "flow_clip_a": {
-      "status": "FAILED",
-      "updated_at": "2026-09-04T20:15:25Z",
-      "message": "flow/video_generate failed: Google Flow is not available in this country. (observed url: 'https://flow.google.com/unsupported-country')",
-      "error_code": "flow_region_blocked"
+      "status": "FAILED_UPLOAD",
+      "updated_at": "2026-09-05T15:26:48Z",
+      "message": "flow/video_generate failed: Flow did not show 09f82779-bb26-4871-8b10-59bf42318b14_character_sheet.png as an attached reference after upload.",
+      "error_code": "flow_upload_failed"
     },
     "beat_image_001": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:15Z",
+      "updated_at": "2026-09-05T15:26:10Z",
       "artifact": "beat_001.png"
     },
     "beat_image_002": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:16Z",
+      "updated_at": "2026-09-05T15:26:11Z",
       "artifact": "beat_002.png"
     },
     "beat_image_003": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:17Z",
+      "updated_at": "2026-09-05T15:26:13Z",
       "artifact": "beat_003.png"
     },
     "beat_image_004": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:18Z",
+      "updated_at": "2026-09-05T15:26:14Z",
       "artifact": "beat_004.png"
     },
     "beat_image_005": {
       "status": "REUSED",
-      "updated_at": "2026-09-04T20:14:20Z",
+      "updated_at": "2026-09-05T15:26:15Z",
       "artifact": "beat_005.png"
     }
   },
@@ -278,7 +278,139 @@
       "camera_pattern": "slow_push_in",
       "book_template_id": "002",
       "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-04T21:10:31Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-04T21:19:47Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T13:09:24Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T13:19:36Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T13:54:07Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-05T14:10:40Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-05T14:17:03Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T14:21:52Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T14:36:32Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T15:00:36Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T15:15:59Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T15:26:00Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "ink_wash_vintage_animation_001"
     }
   ],
-  "updated_at": "2026-09-04T20:15:25Z"
+  "updated_at": "2026-09-05T15:26:48Z"
 }

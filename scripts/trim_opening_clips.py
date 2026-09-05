@@ -28,6 +28,13 @@ from pathlib import Path
 #: How far the trimmed file may sit from its target before we call it a defect.
 MAX_TRIM_DRIFT_SECONDS = 0.12
 
+#: How far the *sum* of the two clips may sit from the measured transition end. This is the
+#: figure the timeline enforces (build_timeline.py), and it is tighter than the per-clip
+#: tolerance: ffmpeg cuts on whole frames, so each clip lands up to a frame from its request
+#: and the two errors add. Without closing the loop on the total, a pair that passed here was
+#: rejected there with "re-run trim_opening_clips.py", which on its own changed nothing.
+MAX_OPENING_TOTAL_DRIFT_SECONDS = 0.04
+
 #: A trim shorter than this cannot be a real shot.
 MIN_TARGET_SECONDS = 0.5
 
@@ -140,24 +147,63 @@ def main() -> int:
         flush=True,
     )
 
-    results = []
-    for label, source, destination, target in jobs:
+    def cut(label: str, source: Path, destination: Path, target: float) -> dict:
         actual = trim(source, destination, target)
         drift = actual - target
-        print(f"  {label}: {destination.name} {actual:.3f}s (target {target:.3f}s, drift {drift:+.3f}s)", flush=True)
+        print(
+            f"  {label}: {destination.name} {actual:.3f}s "
+            f"(target {target:.3f}s, drift {drift:+.3f}s)",
+            flush=True,
+        )
         if abs(drift) > MAX_TRIM_DRIFT_SECONDS:
             raise TrimError(
                 f"{label} trimmed to {actual:.3f}s but {target:.3f}s was requested "
                 f"(drift {drift:+.3f}s > {MAX_TRIM_DRIFT_SECONDS}s). The render would drift "
                 "against the narration."
             )
-        results.append({"label": label, "path": str(destination), "target": round(target, 3), "actual": round(actual, 3)})
+        return {
+            "label": label,
+            "path": str(destination),
+            "target": round(target, 3),
+            "actual": round(actual, 3),
+        }
+
+    results = [cut(label, source, destination, target) for label, source, destination, target in jobs]
+
+    # The boundary that matters is where the narration says the transition ends, so the total
+    # is corrected rather than merely reported: Clip B absorbs the frame-rounding of both cuts.
+    # One frame of shot length is invisible; a total that misses the boundary is not, and the
+    # timeline refuses it.
+    total_target = clip_a_target + clip_b_target
+    label_b, source_b, destination_b, _ = jobs[1]
+    for attempt in range(3):
+        drift = sum(item["actual"] for item in results) - total_target
+        if abs(drift) <= MAX_OPENING_TOTAL_DRIFT_SECONDS:
+            break
+        adjusted = max(MIN_TARGET_SECONDS, results[1]["target"] - drift)
+        print(
+            f"  correcting {label_b} by {-drift:+.3f}s "
+            f"(opening total drift {drift:+.3f}s > {MAX_OPENING_TOTAL_DRIFT_SECONDS}s)",
+            flush=True,
+        )
+        results[1] = cut(label_b, source_b, destination_b, adjusted)
+    else:
+        drift = sum(item["actual"] for item in results) - total_target
+        raise TrimError(
+            f"The opening clips total {sum(item['actual'] for item in results):.3f}s but the "
+            f"narration puts the transition end at {total_target:.3f}s "
+            f"(drift {drift:+.3f}s). The clips cannot be cut to that boundary."
+        )
 
     report = {
         "spark_end": timing.get("spark_end"),
         "transition_end": timing.get("transition_end"),
         "clips": results,
         "opening_total_seconds": round(sum(item["actual"] for item in results), 3),
+        "opening_total_target_seconds": round(clip_a_target + clip_b_target, 3),
+        "opening_total_drift_seconds": round(
+            sum(item["actual"] for item in results) - (clip_a_target + clip_b_target), 3
+        ),
     }
     (video_dir / "timing" / "OPENING_TRIM_REPORT.json").write_text(
         json.dumps(report, indent=2) + "\n", encoding="utf-8"

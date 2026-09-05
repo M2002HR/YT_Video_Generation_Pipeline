@@ -1,0 +1,14 @@
+{
+  "opening_activity": "sorting tools",
+  "opening_location": "barn",
+  "curiosity_trigger": "noticing an old hand drill buried beneath newer tools",
+  "trigger_object": "worn hand drill",
+  "reaction": "pauses, turns the old drill in his hand, then glances thoughtfully toward the shelf",
+  "book_retrieval": "sets the drill down, wipes his hands on his overalls, and pulls a worn book from the barn shelf",
+  "camera_pattern": "gentle_pan_left",
+  "book_template_id": "003",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "hand-drawn 1920s animation-studio mood with warm aged paper, soft ink lines, and restrained sepia wash",
+  "reason": "Finding an older tool beneath newer ones naturally supports the episode's idea of tracing Disney history past the famous later milestone to what came first."
+}

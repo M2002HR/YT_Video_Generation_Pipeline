@@ -9,7 +9,16 @@
       "camera_pattern": "slow_push_in",
       "book_template_id": "002",
       "world_style_id": "ink_wash_vintage_animation_001",
-      "updated_at": "2026-09-04T20:14:04.707695+00:00"
+      "updated_at": "2026-09-05T15:26:00.731874+00:00"
+    },
+    {
+      "video_id": "011",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001",
+      "updated_at": "2026-09-05T18:09:18.398029+00:00"
     }
   ]
 }

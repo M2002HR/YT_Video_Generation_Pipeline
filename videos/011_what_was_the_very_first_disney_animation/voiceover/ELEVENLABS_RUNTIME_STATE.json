@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "video_id": "011",
+  "created_at": "2026-09-05T17:38:25.499090+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "38952faabc4c7f09b9821a0cf7c12a4abaac8a74cc7a1f6608b7975d90585665",
+  "settings": {
+    "voice": "George",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.45,
+    "similarity": 0.75,
+    "style": 0.1,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-05T17:38:31.009430+00:00",
+      "elapsed_seconds": 5.51
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-05T17:39:55.985995+00:00",
+      "elapsed_seconds": 0.129
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-05T17:44:56.655636+00:00",
+      "elapsed_seconds": 0.13
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-05T17:45:04.174914+00:00",
+      "elapsed_seconds": 7.519,
+      "settings": {
+        "voice": "George",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.45,
+        "similarity": 0.75,
+        "style": 0.1,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "George - Warm, Captivating Storyteller",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.45,
+        "similarity": 0.75,
+        "style": 0.1,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-05T17:45:04.280889+00:00",
+      "elapsed_seconds": 7.625,
+      "characters": 459
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-05T17:45:09.868639+00:00",
+      "elapsed_seconds": 5.587,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "trusted_click",
+        "delay_seconds": 0.383,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-05T17:45:16.590393+00:00",
+      "elapsed_seconds": 12.309,
+      "choice": "Download latest  tts-download-latest-button",
+      "retry": false
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-09-05T17:45:22.962230+00:00",
+      "elapsed_seconds": 18.681,
+      "bytes": 563338,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-09-05T17:45:22.962238+00:00",
+  "submitted_at": "2026-09-05T17:45:09.868357+00:00",
+  "download_choice": "Download latest  tts-download-latest-button",
+  "download_requested_at": 1788630316.5900536,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-05T17:45:22.962168+00:00"
+}

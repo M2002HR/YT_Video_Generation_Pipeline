@@ -1,0 +1,32 @@
+{
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/references/book_spread_frame.png",
+  "sha256": "4c72f32a62a7a5d3992f43494bd0613479bf5cd5591bc607119a7b439ce9747b",
+  "template_id": "003",
+  "template_path": "/opt/YT_Video_Generation_Pipeline/projects/question_harvest/book_templates/003/blank_book.png",
+  "template_sha256": "5b1ea1897fee1d35f9f11edde4af92fda72c1eebc7b790bfd02d6edec1be2f69",
+  "seed": 56977,
+  "aspect_ratio": "9:16",
+  "canvas": "1080x1920",
+  "world_keyframe": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/references/world_keyframe.png",
+  "world_keyframe_sha256": "b55146b6f5acf06f37549642136e8d3577ec03ec715d4fcc16589649f7fcc35f",
+  "world_keyframe_dimensions": [
+    572,
+    1024
+  ],
+  "left_page_box": [
+    86,
+    444,
+    530,
+    1475
+  ],
+  "right_page_box": [
+    558,
+    444,
+    986,
+    1475
+  ],
+  "world_transform": "ImageOps.fit centering=(0.5,0.5) LANCZOS",
+  "world_kept_fraction": 0.7432,
+  "readable_text_drawn": false,
+  "book_spread_frame": "/opt/YT_Video_Generation_Pipeline/videos/011_what_was_the_very_first_disney_animation/references/book_spread_frame.png"
+}

@@ -1,0 +1,430 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 34.168,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 70,
+  "words": [
+    {
+      "text": "Sorting",
+      "token": "sorting",
+      "start": 0.04,
+      "end": 0.46
+    },
+    {
+      "text": "workshop",
+      "token": "workshop",
+      "start": 0.46,
+      "end": 0.9
+    },
+    {
+      "text": "tools,",
+      "token": "tools",
+      "start": 0.9,
+      "end": 1.36
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 1.36,
+      "end": 1.8
+    },
+    {
+      "text": "found",
+      "token": "found",
+      "start": 1.8,
+      "end": 2.06
+    },
+    {
+      "text": "Disney's",
+      "token": "disney's",
+      "start": 2.06,
+      "end": 2.54
+    },
+    {
+      "text": "animation",
+      "token": "animation",
+      "start": 2.54,
+      "end": 3.02
+    },
+    {
+      "text": "story",
+      "token": "story",
+      "start": 3.02,
+      "end": 3.54
+    },
+    {
+      "text": "starts",
+      "token": "starts",
+      "start": 3.54,
+      "end": 4.0
+    },
+    {
+      "text": "before",
+      "token": "before",
+      "start": 4.0,
+      "end": 4.36
+    },
+    {
+      "text": "Mickey.",
+      "token": "mickey",
+      "start": 4.36,
+      "end": 4.96
+    },
+    {
+      "text": "So",
+      "token": "so",
+      "start": 5.5,
+      "end": 5.66
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 5.66,
+      "end": 5.82
+    },
+    {
+      "text": "pulled",
+      "token": "pulled",
+      "start": 5.82,
+      "end": 6.04
+    },
+    {
+      "text": "down",
+      "token": "down",
+      "start": 6.04,
+      "end": 6.22
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 6.22,
+      "end": 6.38
+    },
+    {
+      "text": "book.",
+      "token": "book",
+      "start": 6.38,
+      "end": 6.84
+    },
+    {
+      "text": "Kansas",
+      "token": "kansas",
+      "start": 7.22,
+      "end": 7.58
+    },
+    {
+      "text": "City.",
+      "token": "city",
+      "start": 7.58,
+      "end": 8.22
+    },
+    {
+      "text": "Disney's",
+      "token": "disney's",
+      "start": 8.86,
+      "end": 9.34
+    },
+    {
+      "text": "earliest",
+      "token": "earliest",
+      "start": 9.34,
+      "end": 9.72
+    },
+    {
+      "text": "Kansas",
+      "token": "kansas",
+      "start": 9.72,
+      "end": 10.22
+    },
+    {
+      "text": "City",
+      "token": "city",
+      "start": 10.22,
+      "end": 10.58
+    },
+    {
+      "text": "cartoons",
+      "token": "cartoons",
+      "start": 10.58,
+      "end": 11.06
+    },
+    {
+      "text": "were",
+      "token": "were",
+      "start": 11.06,
+      "end": 11.78
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 11.78,
+      "end": 11.92
+    },
+    {
+      "text": "Laugh-O-Grams.",
+      "token": "laughograms",
+      "start": 11.92,
+      "end": 12.92
+    },
+    {
+      "text": "They",
+      "token": "they",
+      "start": 13.56,
+      "end": 13.72
+    },
+    {
+      "text": "came",
+      "token": "came",
+      "start": 13.72,
+      "end": 14.0
+    },
+    {
+      "text": "years",
+      "token": "years",
+      "start": 14.0,
+      "end": 14.32
+    },
+    {
+      "text": "before",
+      "token": "before",
+      "start": 14.32,
+      "end": 14.68
+    },
+    {
+      "text": "Mickey.",
+      "token": "mickey",
+      "start": 14.68,
+      "end": 15.38
+    },
+    {
+      "text": "Next",
+      "token": "next",
+      "start": 15.78,
+      "end": 16.08
+    },
+    {
+      "text": "came",
+      "token": "came",
+      "start": 16.08,
+      "end": 16.44
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 16.44,
+      "end": 16.62
+    },
+    {
+      "text": "Alice",
+      "token": "alice",
+      "start": 16.62,
+      "end": 16.9
+    },
+    {
+      "text": "comedies.",
+      "token": "comedies",
+      "start": 16.9,
+      "end": 17.68
+    },
+    {
+      "text": "Those",
+      "token": "those",
+      "start": 18.32,
+      "end": 18.62
+    },
+    {
+      "text": "blended",
+      "token": "blended",
+      "start": 18.62,
+      "end": 19.02
+    },
+    {
+      "text": "live",
+      "token": "live",
+      "start": 19.02,
+      "end": 19.38
+    },
+    {
+      "text": "action",
+      "token": "action",
+      "start": 19.38,
+      "end": 19.62
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 19.62,
+      "end": 19.92
+    },
+    {
+      "text": "animation.",
+      "token": "animation",
+      "start": 19.92,
+      "end": 20.98
+    },
+    {
+      "text": "Steamboat",
+      "token": "steamboat",
+      "start": 21.52,
+      "end": 22.06
+    },
+    {
+      "text": "Willie",
+      "token": "willie",
+      "start": 22.06,
+      "end": 22.32
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 22.32,
+      "end": 22.62
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 22.62,
+      "end": 22.74
+    },
+    {
+      "text": "milestone,",
+      "token": "milestone",
+      "start": 22.74,
+      "end": 23.8
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 23.8,
+      "end": 23.94
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 23.94,
+      "end": 24.12
+    },
+    {
+      "text": "start.",
+      "token": "start",
+      "start": 24.12,
+      "end": 24.54
+    },
+    {
+      "text": "Disney's",
+      "token": "disney's",
+      "start": 25.66,
+      "end": 26.14
+    },
+    {
+      "text": "first",
+      "token": "first",
+      "start": 26.14,
+      "end": 26.42
+    },
+    {
+      "text": "chapter",
+      "token": "chapter",
+      "start": 26.42,
+      "end": 26.86
+    },
+    {
+      "text": "begins",
+      "token": "begins",
+      "start": 26.86,
+      "end": 27.34
+    },
+    {
+      "text": "farther",
+      "token": "farther",
+      "start": 27.34,
+      "end": 27.7
+    },
+    {
+      "text": "back",
+      "token": "back",
+      "start": 27.7,
+      "end": 28.04
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 28.04,
+      "end": 28.26
+    },
+    {
+      "text": "most",
+      "token": "most",
+      "start": 28.26,
+      "end": 28.5
+    },
+    {
+      "text": "people",
+      "token": "people",
+      "start": 28.5,
+      "end": 28.86
+    },
+    {
+      "text": "think.",
+      "token": "think",
+      "start": 28.86,
+      "end": 29.5
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 30.0,
+      "end": 30.2
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 30.2,
+      "end": 30.44
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 30.44,
+      "end": 30.86
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 30.86,
+      "end": 31.36
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 31.36,
+      "end": 31.5
+    },
+    {
+      "text": "questions",
+      "token": "questions",
+      "start": 31.5,
+      "end": 32.0
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 32.0,
+      "end": 32.46
+    },
+    {
+      "text": "surprising",
+      "token": "surprising",
+      "start": 32.46,
+      "end": 33.0
+    },
+    {
+      "text": "answers.",
+      "token": "answers",
+      "start": 33.0,
+      "end": 33.52
+    }
+  ]
+}

@@ -662,6 +662,62 @@ def fill(template: str, **values: str) -> str:
 # ------------------------------------------------------------------------------- stages
 
 
+def ask_with_correction(
+    runner: Runner,
+    stage: str,
+    prompt: str,
+    validate: Any,
+    *,
+    attempts: int = 3,
+    hint: str = "",
+) -> Any:
+    """Ask for JSON and send the validator's own complaint back when it refuses.
+
+    A miss that names its own fix — one word over the range, one beat too many — is
+    correctable, and the writer needs nothing but the complaint to correct it. Only a plan
+    that still fails after the corrections becomes a stage failure, so an episode is never
+    thrown away for something the next answer would have fixed. The validator stays the
+    authority: nothing here relaxes a rule to make an answer pass.
+    """
+    failure: StageFailure | None = None
+    current = prompt
+    for attempt in range(attempts):
+        label = stage if attempt == 0 else f"{stage}_fix{attempt}"
+        try:
+            return validate(runner.json(label, current))
+        except StageFailure as exc:
+            failure = exc
+            print(f"    ↻ {stage} rejected: {exc.message}", flush=True)
+            current = (
+                f"{prompt}\n\nYour previous answer was rejected: {exc.message}\n"
+                f"Return the same JSON shape, corrected.{(' ' + hint) if hint else ''}"
+            )
+    assert failure is not None
+    raise failure
+
+
+def ask_for_script(
+    runner: Runner,
+    stage: str,
+    prompt: str,
+    duration: DurationTarget,
+    *,
+    attempts: int = 3,
+) -> dict[str, Any]:
+    """One script plan, re-asked with the complaint until it satisfies the validator."""
+    return ask_with_correction(
+        runner,
+        stage,
+        prompt,
+        lambda data: validate_script_plan(stage, data, duration),
+        attempts=attempts,
+        hint=(
+            "Keep `full_narration` exactly the concatenation of the segments in order, and "
+            "respect the word and beat counts."
+        ),
+    )
+
+
 def stage_script(
     runner: Runner, project: Path, content_project: Any, brief: str, duration: DurationTarget
 ) -> dict[str, Any]:
@@ -676,7 +732,7 @@ def stage_script(
         VIDEO_BRIEF=brief,
         **duration.as_prompt_values(),
     )
-    plan = validate_script_plan(stage, runner.json(stage, prompt), duration)
+    plan = ask_for_script(runner, stage, prompt, duration)
     save_json(target, plan)
     runner.stage_done(stage, started, f"{plan['word_count']} words, {len(plan['body'])} beats", words=plan["word_count"])
     return plan
@@ -702,7 +758,7 @@ def stage_retention(
         CURRENT_SCRIPT=json.dumps(draft, ensure_ascii=False, indent=2),
         **duration.as_prompt_values(),
     )
-    plan = validate_script_plan(stage, runner.json(stage, prompt), duration)
+    plan = ask_for_script(runner, stage, prompt, duration)
     save_json(target, plan)
     # The plain-text narration is what ElevenLabs speaks; it must be the same words.
     (project / "SCRIPT_FINAL.md").write_text(plan["full_narration"] + "\n", encoding="utf-8")
@@ -825,9 +881,12 @@ def stage_world_style_director(
         RECENT_STYLES=json.dumps([item.get("world_style_id") for item in _recent_history()], ensure_ascii=False),
         STYLE_DIRECTIVE=directive,
     )
-    data = runner.json(stage, prompt)
-    if not isinstance(data, dict) or not data.get("style_id"):
-        raise StageFailure(stage, "FAILED_VALIDATION", "The world style plan has no style_id.")
+    def check_style(data: Any) -> dict[str, Any]:
+        if not isinstance(data, dict) or not data.get("style_id"):
+            raise StageFailure(stage, "FAILED_VALIDATION", "The world style plan has no style_id.")
+        return data
+
+    data = ask_with_correction(runner, stage, prompt, check_style)
     save_json(target, data)
     runner.stage_done(stage, started, f"{data.get('style_id')} ({data.get('decision')})", style_id=data.get("style_id"))
     return data
@@ -1077,18 +1136,30 @@ def stage_visual_plan(
         VIDEO_BRIEF="aspect 9:16 vertical Short",
         BODY_DURATION_SECONDS=f"{body_seconds:.0f}",
     )
-    data = runner.json(stage, prompt)
-    beats = data.get("beats") if isinstance(data, dict) else None
-    if not isinstance(beats, list) or not beats:
-        raise StageFailure(stage, "FAILED_VALIDATION", "The visual plan has no beats.")
-    if len(beats) != len(plan["body"]):
-        raise StageFailure(
-            stage,
-            "FAILED_VALIDATION",
-            f"The visual plan has {len(beats)} beats but the narration has {len(plan['body'])} "
-            "body segments; one beat must correspond to one segment or the images will not "
-            "land on their own sentences.",
-        )
+    def check(data: Any) -> dict[str, Any]:
+        beats = data.get("beats") if isinstance(data, dict) else None
+        if not isinstance(beats, list) or not beats:
+            raise StageFailure(stage, "FAILED_VALIDATION", "The visual plan has no beats.")
+        if len(beats) != len(plan["body"]):
+            raise StageFailure(
+                stage,
+                "FAILED_VALIDATION",
+                f"The visual plan has {len(beats)} beats but the narration has {len(plan['body'])} "
+                "body segments; one beat must correspond to one segment or the images will not "
+                "land on their own sentences.",
+            )
+        return data
+
+    # One beat per narration segment is a hard rule, but a plan with the wrong count is a
+    # correctable answer: it is sent back with the two counts named (§35, §57).
+    data = ask_with_correction(
+        runner,
+        stage,
+        prompt,
+        check,
+        hint=f"Return exactly {len(plan['body'])} beats, one per narration body segment, in order.",
+    )
+    beats = data["beats"]
     save_json(target, data)
     runner.stage_done(stage, started, f"{len(beats)} beats", beats=len(beats))
     return data

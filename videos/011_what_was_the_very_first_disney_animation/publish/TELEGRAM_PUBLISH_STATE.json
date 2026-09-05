@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "status": "DONE",
+  "published_at": "2026-09-05T18:12:30.610760+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "message_id": 24030,
+  "file": "assets/renders/polished.mp4",
+  "bytes": 18234074,
+  "sha256": "dadea491adf9df200fe9c4dd83ef5553117dd248d5c625ac3bf4b6c4dfa783d5",
+  "duration_seconds": 34.133,
+  "elapsed_seconds": 29.105,
+  "qc_report": "render/QC_REPORT_polished.json",
+  "summary": {
+    "video": "011_what_was_the_very_first_disney_animation",
+    "duration_seconds": 34.168,
+    "beat_count": 7,
+    "video_beat_count": 2,
+    "image_beat_count": 5,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": false,
+    "opening": {
+      "spark_end": 4.96,
+      "transition_end": 8.22
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 126.34,
+      "realtime_factor": 3.698,
+      "peak_child_rss_mb": 965.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  },
+  "caption": "✅ Video pipeline complete\n🎬 011_what_was_the_very_first_disney_animation\n⏱ Duration: 0:34\n🎞 Beats: 7 (2 video · 5 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 2:06 wall (3.698x realtime) · 2 thread(s) · peak 965.8 MB\nArtifact: dadea491adf9"
+}

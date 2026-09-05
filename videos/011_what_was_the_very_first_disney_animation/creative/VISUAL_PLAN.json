@@ -1,0 +1,55 @@
+{
+  "body_duration_seconds": 20.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Disney's earliest Kansas City cartoons were the Laugh-O-Grams.",
+      "visual": "A small early-1920s Kansas City animation workspace rendered as a vertical retro educational illustration: wooden drawing desk, pinned animation sheets showing simple fairy-tale-style cartoon figures, ink bottle, pencils, registration pegs, and a modest film camera stand, all on warm aged paper with loose sepia ink contours and restrained wash; no readable lettering.",
+      "purpose": "Establish the Laugh-O-Grams as Disney's earliest Kansas City cartoon work and place them in a modest period animation studio.",
+      "type": "subject_world",
+      "continuity": "First body image transitions from the opened history book into its illustrated early-1920s Kansas City animation world.",
+      "hero_present": false,
+      "world_keyframe_is_first": true
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "They came years before Mickey.",
+      "visual": "A vertical visual timeline metaphor without labels: at the lower foreground, rough early cartoon animation sheets and a hand-cranked film reel; farther upward and noticeably separated in time, only a distant generic round-eared mouse-like silhouette is hinted at behind several intervening calendar-page shapes, kept abstract and secondary so it does not imply the mouse came first.",
+      "purpose": "Show that the Laugh-O-Grams preceded the famous mouse era by several years.",
+      "type": "metaphor",
+      "continuity": "Keeps the same aged-paper ink world while pulling back from the studio desk into a simple passage-of-time composition.",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Next came the Alice Comedies.",
+      "visual": "An early-1920s film set and drawing table sharing one simple vertical composition: a young live-action girl figure suggested in period dress near a plain camera setup, with loose hand-drawn cartoon animals emerging from animation sheets beside her; warm cream paper, sepia ink, muted ochre and faded teal accents, no text.",
+      "purpose": "Introduce the Alice Comedies as the next major step after the Laugh-O-Grams.",
+      "type": "subject_world",
+      "continuity": "Moves forward chronologically while retaining the same period studio materials and hand-drawn visual language.",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Those blended live action with animation.",
+      "visual": "A single integrated scene showing a period live-action girl standing on a simple photographed floor while hand-drawn ink characters and sketched props appear to interact around her, with the boundary between filmed reality and drawn animation visibly merging through loose ink strokes rather than split panels.",
+      "purpose": "Explain the defining Alice Comedies technique of combining filmed live action with drawn animation.",
+      "type": "literal",
+      "continuity": "Pushes closer into the Alice Comedies concept introduced in the previous beat, now emphasizing the mixed-media interaction itself.",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Steamboat Willie was a milestone, not the start.",
+      "visual": "A chronological depth composition in the same 1920s ink style: foreground contains earlier worn animation sheets, ink bottles, and film reels; farther along the visual path sits a later simple river-steamboat cinema motif illuminated like an important milestone, but clearly positioned after the earlier materials, with no branded characters or readable title text.",
+      "purpose": "Clarify that Steamboat Willie was historically important but came after Disney's earlier animation work.",
+      "type": "metaphor",
+      "continuity": "Concludes the chronological sequence by placing the later steamboat milestone beyond the previously established Kansas City and Alice-era materials.",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    }
+  ]
+}

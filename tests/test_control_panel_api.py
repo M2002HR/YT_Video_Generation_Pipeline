@@ -110,14 +110,33 @@ def test_job_records_marks_finished_runs_resumable(tmp_path: Path, monkeypatch: 
     monkeypatch.setattr(panel, "ROOT", tmp_path)
     jobs = tmp_path / "control_panel" / "jobs"
     jobs.mkdir(parents=True)
-    (jobs / "a.json").write_text(json.dumps(_record(status="FAILED")), encoding="utf-8")
-    (jobs / "b.json").write_text(json.dumps(_record(status="RUNNING")), encoding="utf-8")
+    (jobs / "a.json").write_text(json.dumps(_record(status="FAILED", pid=101)), encoding="utf-8")
+    (jobs / "b.json").write_text(json.dumps(_record(status="RUNNING", pid=202)), encoding="utf-8")
     (jobs / "c.json").write_text("{not json", encoding="utf-8")
+    # Resumability follows whether the process is actually alive, not the recorded label:
+    # a RUNNING row whose pid is gone is exactly what needs resuming.
+    monkeypatch.setattr(panel, "pid_is_live", lambda pid: pid == 202)
 
     records = panel.job_records(jobs)
     assert len(records) == 2, "an unreadable record is skipped, not fatal"
     by_status = {record["status"]: record["_resumable"] for record in records}
     assert by_status == {"FAILED": True, "RUNNING": False}
+    stoppable = {record["status"]: record["_stoppable"] for record in records}
+    assert stoppable == {"FAILED": False, "RUNNING": True}
+
+
+def test_a_running_row_whose_process_died_can_be_resumed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    jobs = tmp_path / "control_panel" / "jobs"
+    jobs.mkdir(parents=True)
+    (jobs / "a.json").write_text(json.dumps(_record(status="RUNNING", pid=303)), encoding="utf-8")
+    monkeypatch.setattr(panel, "pid_is_live", lambda pid: False)
+
+    record = panel.job_records(jobs)[0]
+    assert record["_resumable"] is True
+    assert record["_stoppable"] is False
 
 
 class _Handler(panel.Handler):

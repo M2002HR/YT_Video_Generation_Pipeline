@@ -1,0 +1,16 @@
+{
+  "style_id": "retro_1920s_animation_ink_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "retro educational illustration",
+  "secondary_treatment": "subtle ink wash",
+  "texture_family": "aged paper grain",
+  "palette_summary": "warm cream paper, sepia and soft black ink, muted ochres, restrained faded teal, occasional moss-gray accents",
+  "line_treatment": "loose hand-drawn period ink contours with slightly uneven brush-and-pen variation, simplified 1920s cartoon-studio shapes, minimal crosshatching",
+  "lighting": "warm diffuse studio daylight with gentle amber falloff",
+  "subject_constraints": "1920s Kansas City animation-studio vocabulary: wooden drawing desks, paper animation sheets, registration pegs, ink bottles, brushes, pencils, simple camera stands, film reels, clapboards, modest workshop shelves, early cinema equipment, period office furnishings, and abstract hand-drawn cartoon frames; the barn opener may retain period wood tools while transitioning visually into the animation-history book world",
+  "historical_accuracy_note": "Keep technology, clothing, furniture, animation equipment, and studio atmosphere consistent with the early 1920s. Laugh-O-Gram-era Kansas City should feel small-scale and workmanlike rather than like a later Hollywood studio. Alice Comedies may be suggested through the concept of live-action footage interacting with drawn animation, but avoid implying Steamboat Willie or Mickey came first and avoid anachronistic modern Disney branding, castle imagery, or post-1920s production technology.",
+  "hero_rendering_in_world": "Preserve the protagonist's recognizable hair silhouette, beard, facial proportions, and overalls silhouette, translated into loose sepia ink contours with flat warm-paper shading and restrained wash; keep him visually consistent with the surrounding hand-drawn world rather than rendering him more realistically than the environment.",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime, no modern vector-flat corporate style, no neon palette, no polished contemporary animation studio, no modern computers, no modern Disney castle or logo, no Mickey-led origin imagery, no frame-by-frame shifts into unrelated media",
+  "reason": "The topic strongly favors a hand-drawn early-animation aesthetic, matching the operator's 1920s studio steer. The existing ink_wash_vintage_animation_001 is also highly suitable, but it is the most recently used style and its paper-grain/ink-wash texture would repeat the immediately previous visual language. Creating a closely related but distinct retro educational illustration style preserves historical and thematic affinity while increasing between-episode diversity; ink wash remains only a subtle secondary treatment rather than the primary medium."
+}

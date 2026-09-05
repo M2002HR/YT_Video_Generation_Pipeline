@@ -1,0 +1,526 @@
+{
+  "schema_version": 2,
+  "video_id": "011",
+  "topic": "What was the very first Disney animation?",
+  "created_at": "2026-09-05T15:30:40Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:10Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:11Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:13Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:14Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:15Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-05T18:09:18Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:19Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:21Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:22Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:23Z",
+      "artifact": "book_design_sheet.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:25Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:26Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:27Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:29Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:31Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:32Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:34Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:35Z",
+      "artifact": "beat_005.png"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:36Z",
+      "artifact": "question_spark_source.mp4 (6.02s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-05T18:09:38Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-05T18:09:39Z",
+      "body_images": 5
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 42.178,
+      "at": "2026-09-05T16:52:41Z",
+      "words": 60
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 27.15,
+      "at": "2026-09-05T16:53:11Z",
+      "words": 72
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 24.075,
+      "at": "2026-09-05T16:53:37Z",
+      "activity": "sorting tools"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 30.073,
+      "at": "2026-09-05T16:54:10Z",
+      "style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 45.205,
+      "at": "2026-09-05T16:54:58Z",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f",
+      "model": "nano_banana_2",
+      "catalog_path": "003_retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.002,
+      "at": "2026-09-05T16:55:01Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T16:56:43Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T16:58:09Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 30.074,
+      "at": "2026-09-05T16:58:41Z",
+      "beats": 5
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.045,
+      "at": "2026-09-05T16:59:02Z",
+      "prompt_sha256": "90d1e3e9657c63f76c5c80a76694e4e400bf6c99ba9ccffd12188e677a4b6b8a"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 57.15,
+      "at": "2026-09-05T17:00:02Z",
+      "sha256": "b55146b6f5acf06f37549642136e8d3577ec03ec715d4fcc16589649f7fcc35f",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.201,
+      "at": "2026-09-05T17:00:07Z",
+      "template_id": "003",
+      "sha256": "4c72f32a62a7a5d3992f43494bd0613479bf5cd5591bc607119a7b439ce9747b"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 18.063,
+      "at": "2026-09-05T17:00:27Z",
+      "prompt_sha256": "0dd0822488c9412dce0dc638767626664c097c27e9028d8a0953e61261281c5f"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 24.061,
+      "at": "2026-09-05T17:00:54Z",
+      "prompt_sha256": "3d5ae5ddb65afc008b2d6031e4235394ec0bc1f83cfd9551823b9a5e98145502"
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 84.234,
+      "at": "2026-09-05T17:02:21Z",
+      "sha256": "8913ecc6862ac5a1b2b595c36820552fa2b4650f3ebfd5801e55dcd19aac536b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 84.261,
+      "at": "2026-09-05T17:03:47Z",
+      "sha256": "8395994fe9df3ee1c36fb844efb73029342c8adf63cdeca74f2f8afbbc418f30",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 87.306,
+      "at": "2026-09-05T17:05:17Z",
+      "sha256": "993520e2e031b2e9784e8654cac6480b3eb58743db5719472005b3449b88cb21",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 87.289,
+      "at": "2026-09-05T17:06:47Z",
+      "sha256": "f0bd23bca202de23b7e36a14ab0f50c4aa0bc5ba90b2d80d342fcc6ee3595a7d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:19:05Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 93.479,
+      "at": "2026-09-05T17:20:57Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "0610ec64e61b4ae321347d8a858ca2d04ac765c8ca9a4ce72f851b2c3afa0f02"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:21:30Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:22:35Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:25:00Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:33:49Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 252.604,
+      "at": "2026-09-05T17:38:22Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "a2d5782de6b5ca2123123e10af46707027ea7beee421dc4a6db5f3306759aa4a"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:39:34Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:44:34Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-05T17:45:59Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-05T17:47:05Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:48:09Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:48:54Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:50:00Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:51:04Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:52:10Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:53:34Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T17:56:40Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T18:00:19Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T18:01:05Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T18:02:08Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-05T18:09:18Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "barn",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    }
+  ],
+  "updated_at": "2026-09-05T18:09:39Z"
+}

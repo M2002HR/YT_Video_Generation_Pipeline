@@ -100,8 +100,25 @@ class State:
         self.save()
 
 
+def search_term_for_voice(requested: str) -> str:
+    """The name to type into the voice search.
+
+    ElevenLabs labels a row "<name> - <use case>" ("Mark - Natural Conversations") but its
+    search matches the name alone, so typing the whole label filters the list to nothing.
+    The exact label is still what gets selected; this only widens what the search returns.
+    """
+    text = str(requested or "").strip()
+    for separator in (" - ", " — ", " – "):
+        if separator in text:
+            return text.split(separator, 1)[0].strip()
+    return text
+
+
 class ElevenLabsUI:
     """Small, explicit UI state machine backed by Ordak's authenticated Chrome."""
+
+    #: How long a settings control may take to render before it counts as absent.
+    control_timeout_seconds: float = 25.0
 
     def __init__(self, *, poll_seconds: float, stall_seconds: float, max_refreshes: int) -> None:
         sys.path.insert(0, str(ROOT / "services" / "ordak"))
@@ -221,7 +238,12 @@ class ElevenLabsUI:
           const input = [...document.querySelectorAll('textarea')].find(e => visible(e) && (/main textarea/i.test(e.getAttribute('aria-label')||'') || /start typing|paste text/i.test(e.placeholder||'')));
           const generateElement = controls.find(e => e.getAttribute('data-testid')==='tts-generate' || /^generate(?: speech)?$/i.test((e.innerText||'').trim()) || /^generate(?: speech)?$/i.test((e.getAttribute('aria-label')||'').trim()));
           const generate = generateElement ? describe(generateElement) : null;
-          const download = controls.map(describe).filter(c => /download|export/i.test(`${c.text} ${c.aria} ${c.title}`));
+          // Only an *enabled* download control means there is something to download.
+          // ElevenLabs always renders "Download latest" and "Download previous in history
+          // tab"; both sit disabled until a generation finishes. Counting them made submit()
+          // believe a render was already in flight and skip clicking Generate entirely.
+          const enabled = e => !e.disabled && e.getAttribute('aria-disabled') !== 'true';
+          const download = controls.filter(enabled).map(describe).filter(c => /download|export/i.test(`${c.text} ${c.aria} ${c.title}`));
           const generationText = `${generate?.text||''} ${generate?.aria||''}`;
           const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
           const captcha = [...document.querySelectorAll('iframe')].some(e => visible(e) && /hcaptcha|recaptcha|turnstile/i.test(`${e.src||''} ${e.title||''} ${e.name||''}`));
@@ -255,14 +277,27 @@ class ElevenLabsUI:
         Defaults are intentionally left untouched; this is used only for an
         explicit CLI/env parameter and fails loudly rather than guessing.
         """
-        control = self._json(f"""(() => {{
+        probe = f"""(() => {{
           const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
           const selector={json.dumps("button[data-testid=tts-model-selector]" if kind == "model" else "button[data-testid=tts-voice-selector]")};
           const e=[...document.querySelectorAll(selector)].filter(visible)[0];
           if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,text:(e.innerText||e.getAttribute('aria-label')||'').trim(),open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}};
-        }})()""")
+        }})()"""
+        # The composer becomes usable before its selectors finish rendering, so the control
+        # is waited for rather than demanded on the first look. Still fails loudly: a
+        # control that never appears is a UI change, not something to guess around.
+        control: dict[str, Any] = {}
+        deadline = time.monotonic() + self.control_timeout_seconds
+        while time.monotonic() < deadline:
+            control = self._json(probe)
+            if control.get("ok"):
+                break
+            time.sleep(self.poll_seconds)
         if not control.get("ok"):
-            raise RuntimeError(f"Could not find the ElevenLabs {kind} control for explicit value '{requested}'.")
+            raise RuntimeError(
+                f"Could not find the ElevenLabs {kind} control for explicit value "
+                f"'{requested}' after {self.control_timeout_seconds:g}s."
+            )
         if requested.lower() in str(control.get("text", "")).lower():
             return
         if not control.get("open"):
@@ -273,11 +308,15 @@ class ElevenLabsUI:
             all_voices = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('[role=menuitem],button,[role=button]')].filter(visible).find(x=>/^all voices$/i.test((x.innerText||'').trim())); if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
             if all_voices.get("ok"):
                 self._trusted_click(f"""(() => {{ return {json.dumps(all_voices)}; }})()""")
+            # The catalog search matches the voice *name*, while the row is labelled
+            # "<name> - <use case>". Searching the whole label returns nothing, so only the
+            # name is typed; the exact label is still what gets clicked below.
+            search_term = search_term_for_voice(requested)
             deadline = time.monotonic() + 20
             while time.monotonic() < deadline:
                 search = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${x.placeholder||''} ${x.getAttribute('aria-label')||''}`)); if(!e)return {ok:false}; return {ok:true}; })()""")
                 if search.get("ok"):
-                    self._json(f"""(() => {{ const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${{x.placeholder||''}} ${{x.getAttribute('aria-label')||''}}`)); const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(e,{json.dumps(requested)});e.dispatchEvent(new Event('input',{{bubbles:true}}));return {{ok:true}}; }})()""")
+                    self._json(f"""(() => {{ const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${{x.placeholder||''}} ${{x.getAttribute('aria-label')||''}}`)); const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(e,{json.dumps("SEARCH_TERM")});e.dispatchEvent(new Event('input',{{bubbles:true}}));return {{ok:true}}; }})()""".replace('"SEARCH_TERM"', json.dumps(search_term)))
                     break
                 time.sleep(0.5)
         deadline = time.monotonic() + 15
@@ -285,8 +324,11 @@ class ElevenLabsUI:
             point = self._json(f"""(() => {{
               const wanted={json.dumps(requested)}.trim().toLowerCase();
               const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-              const choices=[...document.querySelectorAll('[role=option],button,[role=button],li')].filter(visible);
-              const e=choices.find(x=>{{const t=(x.innerText||x.getAttribute('aria-label')||'').trim().toLowerCase(); return t===wanted||t.startsWith(wanted+' ')||t.startsWith(wanted+'-');}});
+              const choices=[...document.querySelectorAll('[role=option],button,[role=button],li,[cmdk-item],div')].filter(visible);
+              const matching=choices.filter(x=>{{const t=(x.innerText||x.getAttribute('aria-label')||'').trim().toLowerCase(); return t===wanted||t.startsWith(wanted+' ')||t.startsWith(wanted+'-');}});
+              // Several ancestors contain the row's text. The tightest box is the row.
+              matching.sort((a,b)=>{{const ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect(); return ra.width*ra.height-rb.width*rb.height;}});
+              const e=matching[0];
               if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
             }})()""")
             if point.get("ok"):
@@ -302,6 +344,37 @@ class ElevenLabsUI:
             time.sleep(0.5)
         raise RuntimeError(f"ElevenLabs did not show the requested {kind} option '{requested}'.")
 
+    def open_settings_tab(self) -> None:
+        """Show the voice-settings sliders, which live behind their own tab.
+
+        The composer is "ready" as soon as the narration textarea exists, but the sliders
+        are only in the DOM while the Settings tab is the active one. Without this, the
+        first numeric setting fails with "slider not found" on a page that has the slider.
+        """
+        deadline = time.monotonic() + self.control_timeout_seconds
+        while time.monotonic() < deadline:
+            present = self._json("""(() => {
+              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+              const sliders=[...document.querySelectorAll('[role=slider]')].filter(visible);
+              return {ok:sliders.length>0};
+            })()""")
+            if present.get("ok"):
+                return
+            tab = self._json("""(() => {
+              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+              const e=[...document.querySelectorAll('[data-testid=tts-settings-tab]')].filter(visible)[0];
+              if(!e) return {ok:false};
+              const r=e.getBoundingClientRect();
+              return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2};
+            })()""")
+            if tab.get("ok"):
+                self._trusted_click(f"""(() => {{ return {json.dumps(tab)}; }})()""")
+            time.sleep(self.poll_seconds)
+        raise RuntimeError(
+            "ElevenLabs voice-settings sliders never appeared, even after opening the "
+            f"Settings tab, within {self.control_timeout_seconds:g}s."
+        )
+
     def apply_numeric_setting(self, label: str, value: float) -> None:
         """Set the canonical Text-to-Speech Radix slider with real keys.
 
@@ -309,7 +382,11 @@ class ElevenLabsUI:
         Starting from Home then moving in 0.01 increments is deterministic and
         lets us verify the value after every real browser interaction.
         """
-        detail = self._json(f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,min:Number(e.getAttribute('aria-valuemin')),max:Number(e.getAttribute('aria-valuemax')),current:Number(e.getAttribute('aria-valuenow'))}}; }})()""")
+        probe = f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,min:Number(e.getAttribute('aria-valuemin')),max:Number(e.getAttribute('aria-valuemax')),current:Number(e.getAttribute('aria-valuenow'))}}; }})()"""
+        detail = self._json(probe)
+        if not detail.get("ok"):
+            self.open_settings_tab()
+            detail = self._json(probe)
         if not detail.get("ok"):
             raise RuntimeError(f"Could not find ElevenLabs '{label}' slider on the canonical Text to Speech page.")
         if not float(detail["min"]) <= value <= float(detail["max"]):
@@ -354,12 +431,36 @@ class ElevenLabsUI:
             time.sleep(0.25)
         raise RuntimeError(f"ElevenLabs did not expose requested output format '{requested}'.")
 
+    def dismiss_overlays(self) -> None:
+        """Close any panel left open, because an open one hides the settings controls.
+
+        A leftover voice or model panel makes the selectors unfindable, and the resulting
+        "control not found" reads like a UI change rather than a stale overlay.
+        """
+        for _ in range(3):
+            open_panel = self._json("""(() => {
+              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+              const panes=[...document.querySelectorAll('[role=dialog],[data-radix-popper-content-wrapper]')].filter(visible);
+              return {ok:panes.length>0};
+            })()""")
+            if not open_panel.get("ok"):
+                return
+            try:
+                self._trusted_key("Escape")
+            except RuntimeError:
+                return
+            time.sleep(0.4)
+
     def apply_settings(self, settings: VoiceSettings) -> dict[str, Any]:
+        self.dismiss_overlays()
         applied: dict[str, Any] = {}
         if settings.model:
             self.select_option("model", settings.model)
         if settings.voice:
             self.select_option("voice", settings.voice)
+            self.dismiss_overlays()
+        if any(value is not None for value in (settings.speed, settings.stability, settings.similarity, settings.style)):
+            self.open_settings_tab()
         for label, value in (("Speed", settings.speed), ("Stability", settings.stability), ("Similarity", settings.similarity), ("Style Exaggeration", settings.style)):
             if value is not None:
                 self.apply_numeric_setting(label, value)
@@ -430,6 +531,14 @@ class ElevenLabsUI:
         if before.get("busy") or before.get("downloads"):
             return {"acknowledged": True, "method": "existing_ui_state", "delay_seconds": 0.0}
         click = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='tts-generate'||/^generate(?: speech)?$/i.test((x.innerText||'').trim())||/^generate(?: speech)?$/i.test((x.getAttribute('aria-label')||'').trim())); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()"""
+        # The generate control is disabled for a moment after the text lands while the app
+        # prices the request, so it is waited for rather than demanded on the first look.
+        # A control that never becomes clickable is still an error.
+        deadline = time.monotonic() + self.control_timeout_seconds
+        while time.monotonic() < deadline:
+            if self._json(click).get("ok"):
+                break
+            time.sleep(self.poll_seconds)
         started = time.monotonic()
         self._trusted_click(click)
         deadline = started + acknowledgement_seconds
@@ -450,9 +559,10 @@ class ElevenLabsUI:
         choice = self._json("""(() => {
           const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
           const controls=[...document.querySelectorAll('button,a,[role=button],[role=menuitem]')].filter(visible);
-          const candidates=controls.map(e=>({e,t:`${e.innerText||''} ${e.getAttribute('aria-label')||''} ${e.getAttribute('title')||''}`.trim()})).filter(x=>/download|export/i.test(x.t));
+          const usable=controls.filter(e=>!e.disabled&&e.getAttribute('aria-disabled')!=='true');
+          const candidates=usable.map(e=>({e,t:`${e.innerText||''} ${e.getAttribute('aria-label')||''} ${e.getAttribute('title')||''} ${e.getAttribute('data-testid')||''}`.trim()})).filter(x=>/download|export/i.test(x.t));
           if(!candidates.length)return {ok:false,reason:'no visible download control'};
-          const score=t=>{const n=(t.match(/(\\d+)\\s*kbps/i)||[])[1]||0;return (/\\bwav\\b/i.test(t)?1000000:0)+(/\\bflac\\b/i.test(t)?900000:0)+Number(n)*100+(/download/i.test(t)?1:0)};
+          const score=t=>{const n=(t.match(/(\\d+)\\s*kbps/i)||[])[1]||0;return (/tts-download-latest-button|download latest/i.test(t)?5000000:0)+(/history/i.test(t)?-1000000:0)+(/\\bwav\\b/i.test(t)?1000000:0)+(/\\bflac\\b/i.test(t)?900000:0)+Number(n)*100+(/download/i.test(t)?1:0)};
           candidates.sort((a,b)=>score(b.t)-score(a.t)); const r=candidates[0].e.getBoundingClientRect();
           return {ok:true,choice:candidates[0].t,x:r.left+r.width/2,y:r.top+r.height/2};
         })()""")

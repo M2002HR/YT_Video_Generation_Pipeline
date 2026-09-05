@@ -22,6 +22,17 @@
       "path": "002_ink_wash_vintage_animation_001",
       "anchor": "002_ink_wash_vintage_animation_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "retro_1920s_animation_ink_001",
+      "display_name": "Retro 1920S Animation Ink 001",
+      "medium_family": "retro educational illustration",
+      "texture_family": "aged paper grain",
+      "palette_summary": "warm cream paper, sepia and soft black ink, muted ochres, restrained faded teal, occasional moss-gray accents",
+      "status": "ready",
+      "path": "003_retro_1920s_animation_ink_001",
+      "anchor": "003_retro_1920s_animation_ink_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

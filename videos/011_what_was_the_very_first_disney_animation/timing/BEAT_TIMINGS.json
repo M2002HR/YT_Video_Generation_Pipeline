@@ -1,0 +1,66 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 34.168,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Sorting workshop tools, I found Disney's animation story starts before Mickey. So I pulled down a book. Kansas City. Disney's earliest Kansas City cartoons were the Laugh-O-Grams. They came years before Mickey. Next came the Alice comedies. Those blended live action with animation. Steamboat Willie was a milestone, not the start. Disney's first chapter begins farther back than most people think. Like and subscribe for more questions with surprising answers.",
+  "word_count": 70,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Disney's earliest Kansas City cartoons were the Laugh-O-Grams.",
+      "speech_start": 8.86,
+      "speech_end": 11.92,
+      "match_confidence": 0.7,
+      "display_start": 0.0,
+      "display_end": 13.56,
+      "display_duration": 13.56
+    },
+    {
+      "beat_id": 2,
+      "narration": "They came years before Mickey.",
+      "speech_start": 13.56,
+      "speech_end": 15.38,
+      "match_confidence": 1.0,
+      "display_start": 13.56,
+      "display_end": 15.78,
+      "display_duration": 2.22
+    },
+    {
+      "beat_id": 3,
+      "narration": "Next came the Alice Comedies.",
+      "speech_start": 15.78,
+      "speech_end": 17.68,
+      "match_confidence": 1.0,
+      "display_start": 15.78,
+      "display_end": 18.32,
+      "display_duration": 2.54
+    },
+    {
+      "beat_id": 4,
+      "narration": "Those blended live action with animation.",
+      "speech_start": 18.32,
+      "speech_end": 20.98,
+      "match_confidence": 1.0,
+      "display_start": 18.32,
+      "display_end": 21.52,
+      "display_duration": 3.2
+    },
+    {
+      "beat_id": 5,
+      "narration": "Steamboat Willie was a milestone, not the start.",
+      "speech_start": 21.52,
+      "speech_end": 24.54,
+      "match_confidence": 1.0,
+      "display_start": 21.52,
+      "display_end": 34.168,
+      "display_duration": 12.648
+    }
+  ]
+}
