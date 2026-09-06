@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "c96cdb03-ae6a-4a58-9bf7-f0361664ecc3",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-06T04:11:07.363536+00:00",
   "topic": "Pandora's box",
   "video_id": "014",
@@ -57,5 +57,6 @@
   ],
   "started_at": "2026-09-06T04:11:07.364251+00:00",
   "resumed_at": "2026-09-06T15:18:51.263476+00:00",
-  "resume_count": 5
+  "resume_count": 5,
+  "completed_at": "2026-09-06T15:28:23.104634+00:00"
 }

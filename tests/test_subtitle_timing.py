@@ -25,6 +25,7 @@ from build_timeline import (
     build_subtitle_cues,
     caption_token,
     load_word_timings,
+    normalize_subtitle_cue_boundaries,
     subtitle_margin_v,
     write_ass,
 )
@@ -140,6 +141,20 @@ def test_word_timings_are_loaded_from_the_aligner_artifact(tmp_path: Path) -> No
 
 def test_a_project_without_word_timings_loads_nothing(tmp_path: Path) -> None:
     assert load_word_timings(tmp_path) == []
+
+
+def test_overlapping_whole_narration_word_cues_do_not_require_beat_ids() -> None:
+    cues, adjustments = normalize_subtitle_cue_boundaries([
+        {"start": 1.0, "end": 2.0, "text": "opening", "timing_source": "word"},
+        {"start": 1.8, "end": 2.6, "text": "continues", "timing_source": "word"},
+    ])
+    assert cues[0]["end"] == cues[1]["start"] == 1.9
+    assert adjustments == [{
+        "previous_beat": None, "current_beat": None,
+        "previous_cue": 0, "current_cue": 1,
+        "previous_end": 2.0, "current_start": 1.8,
+        "overlap_seconds": 0.2, "chosen_boundary": 1.9,
+    }]
 
 
 def test_the_bottom_margin_clears_the_shorts_ui_band() -> None:

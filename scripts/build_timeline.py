@@ -466,8 +466,14 @@ def normalize_subtitle_cue_boundaries(
 
         adjustments.append(
             {
-                "previous_beat": int(previous["beat_id"]),
-                "current_beat": int(current["beat_id"]),
+                # Whole-narration word cues intentionally have no beat id:
+                # they include the opener, book transition and CTA as well as
+                # body beats.  Keep their cue positions for the QC receipt
+                # instead of treating their first real STT overlap as a crash.
+                "previous_beat": previous.get("beat_id"),
+                "current_beat": current.get("beat_id"),
+                "previous_cue": index - 1,
+                "current_cue": index,
                 "previous_end": round(previous_end, 3),
                 "current_start": round(current_start, 3),
                 "overlap_seconds": round(previous_end - current_start, 3),

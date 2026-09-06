@@ -88,15 +88,77 @@
     },
     {
       "stage": "git_commit_push",
+      "started_at": "2026-09-06T15:26:29.410193+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/014_pandora_s_box",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/014_pandora_s_box/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-06T15:19:38.981764+00:00"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-06T15:19:38.981764+00:00",
-      "ended_at": "2026-09-06T15:26:33.141559+00:00",
-      "elapsed_seconds": 414.16,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "0790f0c4da2c897628c463f4aaa4e73da1eecaba"
+      "ended_at": "2026-09-06T15:26:34.941905+00:00",
+      "elapsed_seconds": 5.532,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 328
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-06T15:26:34.942480+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/014_pandora_s_box",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/014_pandora_s_box/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T15:27:55.864416+00:00",
+      "elapsed_seconds": 80.922,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 1606
     }
   ],
-  "completed_at": "2026-09-06T15:26:33.141559+00:00",
-  "total_elapsed_seconds": 824.585
+  "completed_at": "2026-09-06T15:27:55.864916+00:00",
+  "total_elapsed_seconds": 496.879,
+  "summary": {
+    "video": "014_pandora_s_box",
+    "duration_seconds": 87.719,
+    "beat_count": 28,
+    "video_beat_count": 2,
+    "image_beat_count": 26,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 7.76,
+      "transition_end": 11.62
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 387.001,
+      "realtime_factor": 4.412,
+      "peak_child_rss_mb": 3118.7,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }
