@@ -48,6 +48,10 @@ RETRYABLE_ERROR_CODES = {
     "submit_failed",
     "response_timeout",
     "provider_ui_changed",
+    # A Gemini response can render a transient provider error instead of an image.
+    # The worker classifies it as non-extractable; retrying in a fresh chat is safe and
+    # bounded, unlike retrying model, login, policy, or validation failures.
+    "result_not_extractable",
     "flow_ui_changed",
     "chrome_control_unavailable",
     "chrome_not_open",

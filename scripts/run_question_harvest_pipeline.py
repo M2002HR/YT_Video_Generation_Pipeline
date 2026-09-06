@@ -318,8 +318,7 @@ class Runner:
         self.state.mark(stage, STATE_REUSED, artifact=summary or None)
         print(f"↻ {stage} reused{(' — ' + summary) if summary else ''}", flush=True)
         if self.notifier is not None:
-            message = self.notifier.stage_started(self._stage_title(stage))
-            self.notifier.stage_update(message, self._stage_title(stage), ["↻ Reused existing artifact", summary])
+            self.notifier.stage_reused(self._stage_title(stage), ["↻ Reused existing artifact", summary])
 
     def stage_progress(self, stage: str, lines: list[str]) -> None:
         """Refresh one aggregate stage message; used for the whole body-image batch."""
@@ -367,6 +366,7 @@ class Runner:
                 generation=generation,
                 references=references,
                 timeout_seconds=timeout_seconds,
+                attempts=3 if provider == "gemini" and mode == "image_generate" else 1,
                 on_log=lambda message: print(f"    [{provider}] {message[:160]}", flush=True),
             )
         except OrdakJobError as exc:
@@ -430,6 +430,13 @@ class Runner:
         )
         if not result.output_images:
             raise StageFailure(stage, "FAILED_DOWNLOAD", f"{stage}: Gemini produced no image artifact.")
+        receipt_notes = list((result.generation_receipt or {}).get("notes") or [])
+        if "artifact_source=download" not in receipt_notes:
+            raise StageFailure(
+                stage,
+                "FAILED_VALIDATION",
+                f"{stage}: Gemini artifact has no verified download provenance; refusing to save it.",
+            )
         destination.parent.mkdir(parents=True, exist_ok=True)
         partial = destination.with_suffix(destination.suffix + ".download")
         self.jobs.download(result.output_images[0], partial)
@@ -1555,9 +1562,18 @@ def stage_body_images(
     world_style_plan: dict[str, Any],
     world_style_anchor: Path,
     world_keyframe: Path,
+    regenerate_beats: set[int] | None = None,
 ) -> list[Path]:
     """One Gemini image per body beat, sequential because each uses the previous for continuity."""
     beats = list(visual_plan.get("beats") or [])
+    requested_regenerations = regenerate_beats or set()
+    unknown_regenerations = requested_regenerations - {int(beat["beat_id"]) for beat in beats}
+    if unknown_regenerations:
+        raise StageFailure(
+            "body_images",
+            "FAILED_VALIDATION",
+            f"Requested regeneration for unknown beat IDs: {sorted(unknown_regenerations)}.",
+        )
     output_dir = project / "assets" / "raw_beats"
     output_dir.mkdir(parents=True, exist_ok=True)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
@@ -1572,7 +1588,7 @@ def stage_body_images(
             stage = f"beat_image_{beat_id:03d}"
             target = output_dir / f"beat_{beat_id:03d}.png"
 
-            if valid_image(target):
+            if valid_image(target) and beat_id not in requested_regenerations:
                 runner.state.mark(stage, STATE_REUSED, artifact=target.name)
                 print(f"↻ {stage} reused — {target.name}", flush=True)
                 produced.append(target)
@@ -1623,6 +1639,8 @@ def stage_transition_direction(
     content_project: Any,
     visual_plan: dict[str, Any],
     images: list[Path],
+    *,
+    force: bool = False,
 ) -> dict[str, Any]:
     """Let ChatGPT inspect adjacent rendered images and make semantic edit decisions.
 
@@ -1635,7 +1653,7 @@ def stage_transition_direction(
     beats = list(visual_plan.get("beats") or [])
     if len(beats) != len(images):
         raise StageFailure(stage, "FAILED_VALIDATION", "Transition editor needs one accepted image for every visual beat.")
-    if runner.state.done(stage) and target.is_file():
+    if not force and runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
         return load_json(target)
 
@@ -1831,9 +1849,22 @@ def main() -> int:
         default="",
         help="Free-text steer for a new style, e.g. 'charcoal warm paper'.",
     )
+    parser.add_argument(
+        "--regenerate-beats",
+        default="",
+        help="Comma-separated body beat IDs to regenerate even when their existing files are valid (for example: 1,9,13).",
+    )
     args = parser.parse_args()
     if args.min_duration_seconds > args.max_duration_seconds:
         parser.error("--min-duration-seconds cannot exceed --max-duration-seconds")
+    try:
+        regenerate_beats = {
+            int(part.strip()) for part in str(args.regenerate_beats).split(",") if part.strip()
+        }
+    except ValueError:
+        parser.error("--regenerate-beats must contain only comma-separated positive integer beat IDs")
+    if any(beat_id < 1 for beat_id in regenerate_beats):
+        parser.error("--regenerate-beats must contain only positive beat IDs")
 
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
 
@@ -1957,9 +1988,16 @@ def main() -> int:
             # resume rather than the whole visual half.
             body_images = stage_body_images(
                 runner, project, content_project, visual_plan, world_style_plan,
-                world_style_anchor, world_keyframe,
+                world_style_anchor, world_keyframe, regenerate_beats,
             )
-            stage_transition_direction(runner, project, content_project, visual_plan, body_images)
+            stage_transition_direction(
+                runner,
+                project,
+                content_project,
+                visual_plan,
+                body_images,
+                force=bool(regenerate_beats),
+            )
 
             clip_a = stage_flow_clip(
                 runner, project, content_project, "A", clip_a_prompt,
