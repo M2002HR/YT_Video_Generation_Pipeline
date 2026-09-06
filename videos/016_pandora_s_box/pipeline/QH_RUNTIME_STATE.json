@@ -3,36 +3,36 @@
   "video_id": "016",
   "topic": "Pandora's box",
   "created_at": "2026-09-06T17:38:04Z",
-  "pipeline_state": "DONE",
+  "pipeline_state": "FAILED_DOWNLOAD",
   "stages": {
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:09:57Z",
+      "updated_at": "2026-09-06T20:32:39Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:09:57Z",
+      "updated_at": "2026-09-06T20:32:39Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:09:57Z",
+      "updated_at": "2026-09-06T20:32:39Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:09:57Z",
+      "updated_at": "2026-09-06T20:32:39Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:09:57Z",
+      "updated_at": "2026-09-06T20:32:39Z",
       "artifact": "world_style_anchor.png"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-06T20:09:59Z",
+      "updated_at": "2026-09-06T20:32:41Z",
       "opening_activity": "greenhouse work",
       "opening_location": "greenhouse",
       "camera_pattern": "gentle_pan_left",
@@ -41,47 +41,48 @@
     },
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "book_design_sheet_v2.png"
     },
     "book_spread": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "book_spread_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "flow_prompt_opening_a.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:00Z",
+      "updated_at": "2026-09-06T20:32:42Z",
       "artifact": "flow_prompt_book_transition.txt"
     },
     "body_images": {
-      "status": "DONE",
-      "updated_at": "2026-09-06T20:10:30Z"
+      "status": "FAILED_DOWNLOAD",
+      "updated_at": "2026-09-06T20:33:44Z",
+      "message": "Body image batch stopped: gemini/image_generate failed: Could not extract generated images from Gemini UI.",
+      "error_code": "result_not_extractable"
     },
     "beat_image_001": {
-      "status": "REUSED",
-      "updated_at": "2026-09-06T20:10:03Z",
-      "artifact": "beat_001.png"
+      "status": "RUNNING",
+      "updated_at": "2026-09-06T20:32:44Z"
     },
     "beat_image_002": {
       "status": "REUSED",
@@ -716,7 +717,18 @@
       "status": "DONE",
       "elapsed_seconds": 26.854,
       "at": "2026-09-06T20:10:30Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T20:32:41Z",
+      "opening_activity": "greenhouse work",
+      "opening_location": "greenhouse",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
     }
   ],
-  "updated_at": "2026-09-06T20:10:31Z"
+  "updated_at": "2026-09-06T20:33:44Z"
 }
