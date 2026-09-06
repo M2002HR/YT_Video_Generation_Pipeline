@@ -183,7 +183,7 @@ function renderJobs(jobs){
     var pct = p.stage_count ? Math.round(100 * (p.done || 0) / p.stage_count) : 0;
     var progress = p.stage_count
       ? '<div class="stage">' + (p.done || 0) + '/' + p.stage_count +
-        (p.current ? ' · ' + esc(p.current) : '') + '</div>' +
+        (p.running ? ' · ' + esc(p.running) : '') + '</div>' +
         '<div class="bar"><i style="width:' + pct + '%"></i></div>'
       : '<span class="stage">—</span>';
     var what = job.kind === 'flow_watcher'

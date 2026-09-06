@@ -396,24 +396,114 @@ def pipeline_state_of(record: dict) -> dict:
         return {}
     stages = state.get("stages") or {}
     running = [name for name, entry in stages.items() if entry.get("status") == "RUNNING"]
+    # Body-image stages are added to QH_RUNTIME_STATE one at a time, so counting
+    # only keys already present makes the total jump from 21 to 38 during a normal
+    # run. Once the visual plan exists we know the complete, stable QH stage total:
+    # 18 fixed visual stages plus one stage per planned beat.
+    stage_count = len(stages)
+    try:
+        visual_plan = json.loads(
+            (ROOT / str(record.get("project") or "") / "creative" / "VISUAL_PLAN.json").read_text(encoding="utf-8")
+        )
+        planned_beats = len(visual_plan.get("beats") or [])
+        if planned_beats:
+            stage_count = max(stage_count, 18 + planned_beats)
+    except (OSError, ValueError, TypeError):
+        pass
     return {
         "pipeline_state": state.get("pipeline_state"),
-        "stage_count": len(stages),
+        "stage_count": stage_count,
         "done": sum(1 for entry in stages.values() if entry.get("status") in ("DONE", "REUSED")),
         "running": running[0] if running else None,
     }
+
+
+def external_pipeline_pid(project: Path) -> int | None:
+    """Return the live direct-runner PID for an externally launched episode, if any."""
+    needle = str(project.relative_to(ROOT))
+    for proc in Path("/proc").iterdir():
+        if not proc.name.isdigit():
+            continue
+        try:
+            command = (proc / "cmdline").read_text(encoding="utf-8", errors="replace").replace("\0", " ")
+        except OSError:
+            continue
+        if (
+            ("run_question_harvest_pipeline.py" in command or "run_full_video_pipeline_qh_wrapper.py" in command)
+            and needle in command
+        ):
+            return int(proc.name)
+    return None
+
+
+def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[dict]:
+    """Expose active pipelines started outside the panel as read-only live rows.
+
+    Operators and recovery tooling can legitimately invoke a runner from the terminal.
+    Those runs still persist a QH runtime state, but historically became invisible because
+    the panel only listed its own launch-record files.  Discovering them here preserves a
+    single truthful monitoring view without taking ownership of their process or log file.
+    """
+    records: list[dict] = []
+    videos = ROOT / "videos"
+    if not videos.is_dir():
+        return records
+    for project in videos.iterdir():
+        if not project.is_dir():
+            continue
+        relative_project = str(project.relative_to(ROOT))
+        if relative_project in known_projects:
+            continue
+        state_path = project / "pipeline" / "QH_RUNTIME_STATE.json"
+        try:
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        pipeline_state = str(state.get("pipeline_state") or "").upper()
+        live_pid = external_pipeline_pid(project)
+        # Completed/old manual runs do not need duplicate rows.  A failed run stays
+        # visible as well: it is the actionable counterpart of a live run.
+        if live_pid is None and pipeline_state not in {"RUNNING", "FAILED", "FAILED_DOWNLOAD", "PAUSED_LOGIN_REQUIRED", "PAUSED_MANUAL_VERIFICATION", "PAUSED_CREDITS"}:
+            continue
+        video_id = str(state.get("video_id") or project.name.split("_", 1)[0])
+        records.append(
+            {
+                "job_id": str(uuid.uuid5(uuid.NAMESPACE_URL, f"external-panel:{relative_project}")),
+                "kind": "external_episode",
+                "video_id": video_id,
+                "content_project": "question_harvest",
+                "topic": str(state.get("topic") or project.name),
+                # A resumed direct runner may retain the prior terminal state until it
+                # reaches its next durable checkpoint. The live PID is authoritative.
+                "status": "RUNNING" if live_pid is not None or pipeline_state == "RUNNING" else "FAILED",
+                "created_at": state.get("created_at"),
+                "project": relative_project,
+                "external": True,
+                "pid": live_pid,
+                "_live": live_pid is not None or pipeline_state == "RUNNING",
+                "_pipeline": pipeline_state_of({"project": relative_project}),
+                "_resumable": False,
+                "_stoppable": False,
+                "_flow_pending": flow_pending_of({"project": relative_project}),
+            }
+        )
+    return records
 
 
 def job_records(jobs_dir: Path, limit: int = 20) -> list[dict]:
     """Newest jobs first, with the derived fields the page and the API both need."""
     records: list[dict] = []
     paths = sorted(jobs_dir.glob("*.json"), key=lambda item: item.stat().st_mtime, reverse=True)
-    for path in paths[:limit]:
+    known_projects: set[str] = set()
+    for path in paths:
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             continue
         kind = str(record.get("kind") or "episode")
+        project = str(record.get("project") or "")
+        if project:
+            known_projects.add(project)
         live = pid_is_live(record.get("pid"))
         record["kind"] = kind
         record["_live"] = live
@@ -426,7 +516,9 @@ def job_records(jobs_dir: Path, limit: int = 20) -> list[dict]:
         record["_stoppable"] = live
         record["_flow_pending"] = flow_pending_of(record) if kind == "episode" else {}
         records.append(record)
-    return records
+    records.extend(external_pipeline_records(jobs_dir, known_projects))
+    records.sort(key=lambda record: str(record.get("created_at") or ""), reverse=True)
+    return records[:limit]
 
 
 def flow_pending_of(record: dict) -> dict:
