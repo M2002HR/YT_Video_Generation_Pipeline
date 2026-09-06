@@ -21,6 +21,7 @@ from render_video import (
     capped_supersample,
     cpu_count,
     ionice_prefix,
+    render_progress_message,
 )
 
 WIDTH, HEIGHT, FPS = 240, 426, 24
@@ -53,6 +54,20 @@ def test_a_normal_short_keeps_its_requested_supersample() -> None:
 
 def test_cpu_count_reflects_what_this_process_may_schedule_on() -> None:
     assert cpu_count() >= 1
+
+
+def test_render_progress_message_has_zero_percent_and_resource_telemetry() -> None:
+    text = render_progress_message(
+        "014_pandora_s_box",
+        {"share": 0.0, "position": 0.0, "total_seconds": 87.719, "elapsed_seconds": 0.0},
+        {"render_cpu_percent": 0.0, "render_rss_mb": 0.0, "system_memory_used_gb": 2.4,
+         "system_memory_total_gb": 7.0, "load_1m": 0.52},
+    )
+    assert "0%" in text
+    assert "00:00 / 01:28" in text
+    assert "FFmpeg: 0% CPU · 0 MB RAM" in text
+    assert "2.4/7.0 GB RAM · load 0.52" in text
+    assert "every 20 seconds" in text
 
 
 def _workspace(root: Path) -> Path:

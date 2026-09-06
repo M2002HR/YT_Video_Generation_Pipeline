@@ -76,6 +76,13 @@ class NotifierSettings:
         return self.enabled and bool(self.recipient and self.api_id > 0 and self.api_hash and self.string_session)
 
 
+@dataclass(frozen=True)
+class EditableMessage:
+    """A Telegram message that later progress updates may edit in place."""
+
+    message_id: int
+
+
 @dataclass
 class PipelineNotifier:
     video_id: str
@@ -89,6 +96,55 @@ class PipelineNotifier:
 
     def _title(self, title: str) -> str:
         return f"<b>Video {html.escape(self.video_id)} · {html.escape(title)}</b>"
+
+    def send_editable(self, body: str) -> EditableMessage | None:
+        """Send one HTML message and retain its id for in-place progress updates."""
+        if not self.settings.configured:
+            return None
+        try:
+            message_id = asyncio.run(self._send_editable_async(body))
+        except Exception as exc:  # notifications must never stop the render
+            print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
+            return None
+        return EditableMessage(message_id=message_id)
+
+    def edit(self, message: EditableMessage | None, body: str) -> bool:
+        """Edit a prior notification; failures are deliberately non-fatal."""
+        if message is None or not self.settings.configured:
+            return False
+        try:
+            asyncio.run(self._edit_async(message.message_id, body))
+        except Exception as exc:
+            print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
+            return False
+        return True
+
+    async def _send_editable_async(self, body: str) -> int:
+        from telethon import TelegramClient
+        from telethon.sessions import StringSession
+
+        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy)
+        await client.connect()
+        try:
+            if not await client.is_user_authorized():
+                raise RuntimeError("configured Telegram session is not authorized")
+            message = await client.send_message(self.settings.recipient, body, parse_mode="html", link_preview=False)
+            return int(message.id)
+        finally:
+            await client.disconnect()
+
+    async def _edit_async(self, message_id: int, body: str) -> None:
+        from telethon import TelegramClient
+        from telethon.sessions import StringSession
+
+        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy)
+        await client.connect()
+        try:
+            if not await client.is_user_authorized():
+                raise RuntimeError("configured Telegram session is not authorized")
+            await client.edit_message(self.settings.recipient, message_id, body, parse_mode="html", link_preview=False)
+        finally:
+            await client.disconnect()
 
     def send(self, title: str, lines: list[str]) -> bool:
         """Send a compact HTML message; return False without raising on failure."""

@@ -26,7 +26,9 @@ import subprocess
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
+
+from pipeline_notifier import EditableMessage, PipelineNotifier, format_duration
 
 #: Share of the machine a render may use. The server this runs on has two vCPUs and 7 GB,
 #: and an uncapped x264 makes SSH, VNC and the watchdog unresponsive for the whole render.
@@ -238,7 +240,127 @@ def probe_video(ffprobe: str, path: Path) -> dict[str, Any]:
 #: How often a running render says where it has got to. The render is the longest step in an
 #: episode, and it used to be silent until it finished, so a slow render and a stuck one looked
 #: identical in the log.
-RENDER_PROGRESS_INTERVAL_SECONDS = float(os.getenv("YT_RENDER_PROGRESS_INTERVAL_SECONDS", "60"))
+RENDER_PROGRESS_INTERVAL_SECONDS = float(os.getenv("YT_RENDER_PROGRESS_INTERVAL_SECONDS", "20"))
+
+
+def read_process_resources(pid: int, *, started_cpu_seconds: float, elapsed_seconds: float) -> dict[str, float | str]:
+    """Read render and host resource usage from procfs without another dependency."""
+    process_cpu_seconds = started_cpu_seconds
+    process_rss_mb = 0.0
+    try:
+        stat = Path(f"/proc/{pid}/stat").read_text(encoding="utf-8")
+        fields = stat[stat.rfind(")") + 2 :].split()
+        ticks = float(os.sysconf("SC_CLK_TCK"))
+        process_cpu_seconds = (float(fields[11]) + float(fields[12])) / ticks
+    except (OSError, ValueError, IndexError):
+        pass
+    try:
+        for line in Path(f"/proc/{pid}/status").read_text(encoding="utf-8").splitlines():
+            if line.startswith("VmRSS:"):
+                process_rss_mb = float(line.split()[1]) / 1024
+                break
+    except (OSError, ValueError, IndexError):
+        pass
+    mem_total = mem_available = 0.0
+    try:
+        values = {
+            line.split(":", 1)[0]: float(line.split()[1]) / 1024 / 1024
+            for line in Path("/proc/meminfo").read_text(encoding="utf-8").splitlines()
+            if ":" in line and len(line.split()) >= 2
+        }
+        mem_total = values.get("MemTotal", 0.0)
+        mem_available = values.get("MemAvailable", 0.0)
+    except (OSError, ValueError):
+        pass
+    try:
+        load = os.getloadavg()[0]
+    except OSError:
+        load = 0.0
+    return {
+        "render_cpu_percent": max(0.0, (process_cpu_seconds - started_cpu_seconds) / max(elapsed_seconds, 0.001) * 100),
+        "render_rss_mb": process_rss_mb,
+        "system_memory_used_gb": max(0.0, mem_total - mem_available),
+        "system_memory_total_gb": mem_total,
+        "load_1m": load,
+    }
+
+
+def render_progress_message(
+    video_id: str,
+    progress: dict[str, Any],
+    resources: dict[str, float | str],
+    *,
+    finished: bool = False,
+    failed: bool = False,
+) -> str:
+    """One compact, readable Telegram message for the entire render lifecycle."""
+    percent = max(0, min(100, round(float(progress.get("share", 0.0)) * 100)))
+    filled = round(percent / 10)
+    bar = "▓" * filled + "░" * (10 - filled)
+    state = "✅ Render complete" if finished else "❌ Render failed" if failed else "🎬 Rendering"
+    position = float(progress.get("position", 0.0))
+    total = float(progress.get("total_seconds", 0.0))
+    elapsed = float(progress.get("elapsed_seconds", 0.0))
+    remaining = float(progress.get("remaining_seconds", 0.0))
+    speed = str(progress.get("speed") or "—")
+    frame = str(progress.get("frame") or "—")
+    eta = "—" if not remaining else format_duration(remaining)
+    return "\n".join([
+        f"<b>Video {video_id} · {state}</b>",
+        "",
+        f"<code>{bar}</code> <b>{percent}%</b>",
+        f"🎞 Encoded: {format_duration(position)} / {format_duration(total)} · frame {frame}",
+        f"⚡ Speed: {speed} · ⏱ Elapsed: {format_duration(elapsed)} · ETA: {eta}",
+        "",
+        "<b>🖥 Resources</b>",
+        f"• FFmpeg: {float(resources.get('render_cpu_percent', 0.0)):.0f}% CPU · {float(resources.get('render_rss_mb', 0.0)):.0f} MB RAM",
+        f"• System: {float(resources.get('system_memory_used_gb', 0.0)):.1f}/{float(resources.get('system_memory_total_gb', 0.0)):.1f} GB RAM · load {float(resources.get('load_1m', 0.0)):.2f}",
+        "",
+        "↻ Live update every 20 seconds" if not (finished or failed) else "↻ Final render status",
+    ])
+
+
+class TelegramRenderProgress:
+    """Best-effort in-place render monitor, driven solely by FFmpeg's progress stream."""
+
+    def __init__(self, video_id: str, total_seconds: float) -> None:
+        self.notifier = PipelineNotifier(video_id=video_id, topic="render")
+        self.total_seconds = total_seconds
+        self.message: EditableMessage | None = None
+        self.pid = 0
+        self.started_cpu_seconds = 0.0
+
+    def start(self, pid: int) -> None:
+        self.pid = pid
+        initial = read_process_resources(pid, started_cpu_seconds=0.0, elapsed_seconds=1.0)
+        self.started_cpu_seconds = max(0.0, float(initial.get("render_cpu_percent", 0.0)) / 100)
+        # Start at precisely 0%, before FFmpeg has encoded a frame.
+        self.message = self.notifier.send_editable(render_progress_message(
+            self.notifier.video_id,
+            {"share": 0.0, "position": 0.0, "total_seconds": self.total_seconds, "elapsed_seconds": 0.0},
+            initial,
+        ))
+
+    def update(self, progress: dict[str, Any]) -> None:
+        if self.message is None:
+            return
+        resources = read_process_resources(
+            self.pid, started_cpu_seconds=self.started_cpu_seconds,
+            elapsed_seconds=float(progress.get("elapsed_seconds", 0.0)),
+        )
+        self.notifier.edit(self.message, render_progress_message(self.notifier.video_id, progress, resources))
+
+    def finish(self, progress: dict[str, Any], *, failed: bool = False) -> None:
+        if self.message is None:
+            return
+        resources = read_process_resources(
+            self.pid, started_cpu_seconds=self.started_cpu_seconds,
+            elapsed_seconds=max(0.001, float(progress.get("elapsed_seconds", 0.0))),
+        )
+        self.notifier.edit(
+            self.message,
+            render_progress_message(self.notifier.video_id, progress, resources, finished=not failed, failed=failed),
+        )
 
 
 def run_with_progress(
@@ -246,6 +368,7 @@ def run_with_progress(
     *,
     total_seconds: float,
     interval: float = RENDER_PROGRESS_INTERVAL_SECONDS,
+    progress_callback: Callable[[dict[str, Any]], None] | None = None,
 ) -> None:
     """Run ffmpeg, reporting the timeline position it has encoded on a fixed cadence.
 
@@ -262,6 +385,12 @@ def run_with_progress(
     position = 0.0
     speed = ""
     frame = ""
+    if progress_callback is not None:
+        progress_callback({
+            "position": 0.0, "total_seconds": total_seconds, "share": 0.0,
+            "elapsed_seconds": 0.0, "remaining_seconds": 0.0,
+            "speed": speed, "frame": frame, "pid": process.pid, "event": "started",
+        })
     assert process.stdout is not None
     for line in process.stdout:
         key, _, value = line.strip().partition("=")
@@ -282,6 +411,13 @@ def run_with_progress(
         elapsed = now - started
         share = min(1.0, position / total_seconds) if total_seconds > 0 else 0.0
         remaining = (elapsed / share - elapsed) if share > 0.02 else 0.0
+        progress = {
+            "position": position, "total_seconds": total_seconds, "share": share,
+            "elapsed_seconds": elapsed, "remaining_seconds": remaining,
+            "speed": speed, "frame": frame, "pid": process.pid, "event": "progress",
+        }
+        if progress_callback is not None:
+            progress_callback(progress)
         left = f" · ~{remaining / 60:.1f}m left" if remaining else ""
         print(
             f"render progress: {share * 100:.0f}% ({position:.1f}s/{total_seconds:.1f}s) "
@@ -289,6 +425,20 @@ def run_with_progress(
             flush=True,
         )
     code = process.wait()
+    final_elapsed = time.monotonic() - started
+    final_progress = {
+        "position": total_seconds if code == 0 else position,
+        "total_seconds": total_seconds,
+        "share": 1.0 if code == 0 else (min(1.0, position / total_seconds) if total_seconds > 0 else 0.0),
+        "elapsed_seconds": final_elapsed,
+        "remaining_seconds": 0.0,
+        "speed": speed,
+        "frame": frame,
+        "pid": process.pid,
+        "event": "finished" if code == 0 else "failed",
+    }
+    if progress_callback is not None:
+        progress_callback(final_progress)
     if code != 0:
         raise subprocess.CalledProcessError(code, progressive)
 
@@ -338,6 +488,11 @@ def main() -> None:
         "--dry-run",
         action="store_true",
         help="Validate and print the FFmpeg command without running it.",
+    )
+    parser.add_argument(
+        "--no-telegram-progress",
+        action="store_true",
+        help="Disable the editable Telegram render-progress message for this invocation.",
     )
     args = parser.parse_args()
 
@@ -653,7 +808,20 @@ def main() -> None:
         return
 
     started = time.perf_counter()
-    run_with_progress(command, total_seconds=duration)
+    reporter = None if args.no_telegram_progress else TelegramRenderProgress(video_dir.name, duration)
+
+    def report_render_progress(progress: dict[str, Any]) -> None:
+        if reporter is None:
+            return
+        event = str(progress.get("event") or "")
+        if event == "started":
+            reporter.start(int(progress["pid"]))
+        elif event in {"finished", "failed"}:
+            reporter.finish(progress, failed=event == "failed")
+        else:
+            reporter.update(progress)
+
+    run_with_progress(command, total_seconds=duration, progress_callback=report_render_progress)
     elapsed = time.perf_counter() - started
 
     probe = probe_video(ffprobe, output_path)
