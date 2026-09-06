@@ -1,0 +1,95 @@
+{
+  "body_duration_seconds": 46.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Inside, tiny connected units pass signals from one layer to the next.",
+      "visual": "A clean vertical technical illustration of three staggered layers of simple circular nodes connected by thin geometric lines, with a few pale-cyan signal pulses visibly progressing from the lower input layer upward through the middle layer toward the final layer; deep navy matte background, restrained luminous edges, no labels or interface panels.",
+      "purpose": "establish that a neural network is made of connected units arranged in layers that pass signals forward",
+      "type": "diagram",
+      "continuity": "first body image opens directly into the technical network world introduced by the book",
+      "hero_present": false,
+      "world_keyframe_is_first": true
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Each connection can carry a little more or less influence.",
+      "visual": "Close technical view of several node-to-node connections in the same layered network, with line thickness and restrained glow intensity varying clearly from faint thin links to stronger bright links while the nodes remain uniform and uncluttered.",
+      "purpose": "show that different connections have different strengths or weights",
+      "type": "diagram",
+      "continuity": "moves closer into the same network from beat 1 to inspect individual connections",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "At first, the network’s output may be far off.",
+      "visual": "The protagonist stands beside the network diagram in crisp technical-illustration form, watching an input pattern travel through uneven weak pathways and emerge as a visibly mismatched abstract output shape compared with a nearby simple target shape; comparison is purely visual with no text or UI frames.",
+      "purpose": "show that an untrained network can initially produce an inaccurate result",
+      "type": "subject_world",
+      "continuity": "widens from the connection close-up to reveal the protagonist observing the network's first poor result",
+      "hero_present": true,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "During training, feedback adjusts those connections again and again.",
+      "visual": "A simplified network fills the vertical frame while a clean looping feedback path arcs from the output side back toward earlier layers; several connection lines visibly shift between thinner and thicker states along the loop, with restrained amber highlights marking the adjustments.",
+      "purpose": "show feedback repeatedly changing connection weights during training",
+      "type": "diagram",
+      "continuity": "removes the protagonist and focuses on the mechanism correcting the poor output from beat 3",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Those adjustments repeat, making some pathways matter more than others.",
+      "visual": "The same network after repeated training, now with a few coherent pathways rendered as stronger luminous cyan routes while many alternative links remain faint graphite lines, creating an obvious hierarchy of important versus less-important connections.",
+      "purpose": "show repeated adjustment strengthening useful pathways and weakening others",
+      "type": "diagram",
+      "continuity": "same network and feedback result as beat 4, now shown after many adjustment cycles",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Layer by layer, the network gets better at recognizing patterns.",
+      "visual": "A vertical progression through successive network layers where a scattered cluster of simple input marks becomes increasingly organized into a clean repeating geometric pattern as signals move upward, with each layer extracting more structure without any readable labels.",
+      "purpose": "show successive layers building increasingly useful pattern recognition",
+      "type": "diagram",
+      "continuity": "follows the strengthened pathways from beat 5 forward through the network's layers",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Give it new input, and those learned patterns help shape an output.",
+      "visual": "The protagonist introduces a fresh abstract input cluster at the left-lower side of a familiar trained network; luminous pathways selectively activate through the layers and converge into a clear organized output symbol at the upper-right, all within one simple vertical composition.",
+      "purpose": "show a trained network applying learned patterns to previously unseen input",
+      "type": "subject_world",
+      "continuity": "returns the protagonist to interact with the now-trained network established in beats 5 and 6",
+      "hero_present": true,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "That basic loop powers many modern AI systems.",
+      "visual": "A central simplified neural-network diagram glows softly while several restrained branching paths radiate outward toward abstract modern data destinations, implying one shared underlying mechanism powering many systems; no devices, labels, dashboards, or readable text.",
+      "purpose": "connect the training-and-inference loop to modern AI systems broadly",
+      "type": "diagram",
+      "continuity": "pulls back from the single new-input example in beat 7 to show the same mechanism at broader scale",
+      "hero_present": false,
+      "world_keyframe_is_first": false
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "They can work with text, images, sound, and other kinds of data.",
+      "visual": "The protagonist stands at the base of one clean network while four distinct abstract input motifs flow toward it: short line-like text marks without readable words, a simple framed image pictogram, a waveform-like sound symbol, and a neutral cluster of generic data shapes; the network unifies them into the same luminous layered structure.",
+      "purpose": "show that neural networks can process multiple forms of data including text, images, sound, and other inputs",
+      "type": "subject_world",
+      "continuity": "keeps the broad AI context from beat 8 while grounding the final body beat in concrete input types and the familiar protagonist",
+      "hero_present": true,
+      "world_keyframe_is_first": false
+    }
+  ]
+}

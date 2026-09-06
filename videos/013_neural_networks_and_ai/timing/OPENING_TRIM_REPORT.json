@@ -1,0 +1,21 @@
+{
+  "spark_end": 3.4,
+  "transition_end": 7.28,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/opening/question_spark_trimmed.mp4",
+      "target": 3.4,
+      "actual": 3.417
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/opening/book_transition_trimmed.mp4",
+      "target": 3.826,
+      "actual": 3.833
+    }
+  ],
+  "opening_total_seconds": 7.25,
+  "opening_total_target_seconds": 7.28,
+  "opening_total_drift_seconds": -0.03
+}

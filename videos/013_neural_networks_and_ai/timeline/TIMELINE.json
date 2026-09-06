@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 56.66,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.417,
+      "duration": 3.417,
+      "beat_id": "video_opening_a",
+      "motion": "still"
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 3.417,
+      "end": 7.25,
+      "duration": 3.833,
+      "beat_id": "video_opening_b",
+      "motion": "still"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.28,
+      "end": 10.5,
+      "duration": 3.22,
+      "speech_start": 8.44,
+      "speech_end": 12.44,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Inside, tiny connected units pass signals from one layer to the next.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 10.5,
+      "end": 13.72,
+      "duration": 3.22,
+      "speech_start": 8.44,
+      "speech_end": 12.44,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Inside, tiny connected units pass signals from one layer to the next.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 13.72,
+      "end": 18.0,
+      "duration": 4.28,
+      "speech_start": 13.72,
+      "speech_end": 16.64,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Each connection can carry a little more or less influence."
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 18.0,
+      "end": 21.08,
+      "duration": 3.08,
+      "speech_start": 18.0,
+      "speech_end": 20.5,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "At first, the network’s output may be far off."
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 21.08,
+      "end": 24.74,
+      "duration": 3.66,
+      "speech_start": 21.08,
+      "speech_end": 23.9,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "During training, feedback adjusts those connections again and again."
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 24.74,
+      "end": 27.56,
+      "duration": 2.82,
+      "speech_start": 24.74,
+      "speech_end": 29.4,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Those adjustments repeat, making some pathways matter more than others.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 27.56,
+      "end": 30.38,
+      "duration": 2.82,
+      "speech_start": 24.74,
+      "speech_end": 29.4,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Those adjustments repeat, making some pathways matter more than others.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 30.38,
+      "end": 34.42,
+      "duration": 4.04,
+      "speech_start": 30.38,
+      "speech_end": 33.96,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Layer by layer, the network gets better at recognizing patterns."
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 34.42,
+      "end": 36.72,
+      "duration": 2.3,
+      "speech_start": 34.42,
+      "speech_end": 38.02,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Give it new input, and those learned patterns help shape an output.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 36.72,
+      "end": 39.02,
+      "duration": 2.3,
+      "speech_start": 34.42,
+      "speech_end": 38.02,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Give it new input, and those learned patterns help shape an output.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 39.02,
+      "end": 43.08,
+      "duration": 4.06,
+      "speech_start": 39.02,
+      "speech_end": 42.64,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "That basic loop powers many modern AI systems."
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 43.08,
+      "end": 46.475,
+      "duration": 3.395,
+      "speech_start": 43.08,
+      "speech_end": 47.18,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "They can work with text, images, sound, and other kinds of data.",
+      "sub_shot": 1,
+      "sub_shot_count": 4
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 46.475,
+      "end": 49.87,
+      "duration": 3.395,
+      "speech_start": 43.08,
+      "speech_end": 47.18,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "They can work with text, images, sound, and other kinds of data.",
+      "sub_shot": 2,
+      "sub_shot_count": 4
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 49.87,
+      "end": 53.265,
+      "duration": 3.395,
+      "speech_start": 43.08,
+      "speech_end": 47.18,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "They can work with text, images, sound, and other kinds of data.",
+      "sub_shot": 3,
+      "sub_shot_count": 4
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 53.265,
+      "end": 56.66,
+      "duration": 3.395,
+      "speech_start": 43.08,
+      "speech_end": 47.18,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "They can work with text, images, sound, and other kinds of data.",
+      "sub_shot": 4,
+      "sub_shot_count": 4
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 1.82,
+      "text": "While I untangle this chord, here's",
+      "ass_text": "While I untangle this chord,\\Nhere's",
+      "timing_source": "word"
+    },
+    {
+      "start": 1.82,
+      "end": 3.4,
+      "text": "what neural networks are really doing.",
+      "ass_text": "what neural networks are really\\Ndoing.",
+      "timing_source": "word"
+    },
+    {
+      "start": 4.74,
+      "end": 6.16,
+      "text": "I set down my tools and",
+      "ass_text": "I set down my tools and",
+      "timing_source": "word"
+    },
+    {
+      "start": 6.16,
+      "end": 7.28,
+      "text": "pull out the right volume.",
+      "ass_text": "pull out the right volume.",
+      "timing_source": "word"
+    },
+    {
+      "start": 8.44,
+      "end": 11.04,
+      "text": "Inside, tiny connected units pass signals",
+      "ass_text": "Inside, tiny connected units pass\\Nsignals",
+      "timing_source": "word"
+    },
+    {
+      "start": 11.04,
+      "end": 12.44,
+      "text": "from one layer to the next.",
+      "ass_text": "from one layer to the next.",
+      "timing_source": "word"
+    },
+    {
+      "start": 13.72,
+      "end": 15.38,
+      "text": "Each connection can carry a little",
+      "ass_text": "Each connection can carry a little",
+      "timing_source": "word"
+    },
+    {
+      "start": 15.38,
+      "end": 16.64,
+      "text": "more or less influence.",
+      "ass_text": "more or less influence.",
+      "timing_source": "word"
+    },
+    {
+      "start": 18.0,
+      "end": 19.66,
+      "text": "At first, the network's output may",
+      "ass_text": "At first, the network's output may",
+      "timing_source": "word"
+    },
+    {
+      "start": 19.66,
+      "end": 20.5,
+      "text": "be far off.",
+      "ass_text": "be far off.",
+      "timing_source": "word"
+    },
+    {
+      "start": 21.08,
+      "end": 23.14,
+      "text": "During training, feedback adjusts those connections",
+      "ass_text": "During training, feedback adjusts\\Nthose connections",
+      "timing_source": "word"
+    },
+    {
+      "start": 23.14,
+      "end": 23.9,
+      "text": "again and again.",
+      "ass_text": "again and again.",
+      "timing_source": "word"
+    },
+    {
+      "start": 24.74,
+      "end": 27.58,
+      "text": "Those adjustments repeat, making some pathways",
+      "ass_text": "Those adjustments repeat, making\\Nsome pathways",
+      "timing_source": "word"
+    },
+    {
+      "start": 27.58,
+      "end": 29.4,
+      "text": "matter more than others.",
+      "ass_text": "matter more than others.",
+      "timing_source": "word"
+    },
+    {
+      "start": 30.38,
+      "end": 32.06,
+      "text": "Layer by layer the network gets",
+      "ass_text": "Layer by layer the network gets",
+      "timing_source": "word"
+    },
+    {
+      "start": 32.06,
+      "end": 33.96,
+      "text": "better at recognizing patterns.",
+      "ass_text": "better at recognizing patterns.",
+      "timing_source": "word"
+    },
+    {
+      "start": 34.42,
+      "end": 35.96,
+      "text": "Give it new input and those",
+      "ass_text": "Give it new input and those",
+      "timing_source": "word"
+    },
+    {
+      "start": 35.96,
+      "end": 38.02,
+      "text": "learned patterns help shape an output.",
+      "ass_text": "learned patterns help shape an\\Noutput.",
+      "timing_source": "word"
+    },
+    {
+      "start": 39.02,
+      "end": 41.5,
+      "text": "That basic loop powers many modern",
+      "ass_text": "That basic loop powers many modern",
+      "timing_source": "word"
+    },
+    {
+      "start": 41.5,
+      "end": 42.64,
+      "text": "AI systems.",
+      "ass_text": "AI systems.",
+      "timing_source": "word"
+    },
+    {
+      "start": 43.08,
+      "end": 45.24,
+      "text": "They can work with text, images,",
+      "ass_text": "They can work with text, images,",
+      "timing_source": "word"
+    },
+    {
+      "start": 45.24,
+      "end": 47.18,
+      "text": "sound and other kinds of data.",
+      "ass_text": "sound and other kinds of data.",
+      "timing_source": "word"
+    },
+    {
+      "start": 48.22,
+      "end": 49.96,
+      "text": "So the magic is learned patterns,",
+      "ass_text": "So the magic is learned patterns,",
+      "timing_source": "word"
+    },
+    {
+      "start": 49.96,
+      "end": 52.2,
+      "text": "weighted connections and repeated adjustment.",
+      "ass_text": "weighted connections and repeated\\Nadjustment.",
+      "timing_source": "word"
+    },
+    {
+      "start": 53.34,
+      "end": 55.14,
+      "text": "Like and subscribe to keep growing",
+      "ass_text": "Like and subscribe to keep growing",
+      "timing_source": "word"
+    },
+    {
+      "start": 55.14,
+      "end": 56.32,
+      "text": "the question harvest.",
+      "ass_text": "the question harvest.",
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 17,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 26,
+    "subtitle_cues_estimated": 0
+  }
+}

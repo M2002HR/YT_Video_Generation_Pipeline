@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "video": "013_neural_networks_and_ai",
+  "started_at": "2026-09-06T03:39:38.027730+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-06T03:39:38.028017+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T03:39:38.175680+00:00",
+      "elapsed_seconds": 0.148,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 12769
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-06T03:39:38.176150+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T03:43:38.200392+00:00",
+      "elapsed_seconds": 240.024,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 28349209
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-06T03:43:38.202335+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T03:43:44.088765+00:00",
+      "elapsed_seconds": 5.886,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1556
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-06T03:43:44.089237+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T03:43:46.838132+00:00",
+      "elapsed_seconds": 2.749,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 28534097
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-06T03:43:46.838594+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T03:43:52.825330+00:00",
+      "elapsed_seconds": 5.987,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1559
+    }
+  ]
+}

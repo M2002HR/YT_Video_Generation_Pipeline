@@ -1,0 +1,20 @@
+{
+  "opening_question_spark": "While I untangle this cord, here’s what neural networks are really doing.",
+  "book_transition": "I set down my tools and pull out the right volume.",
+  "cta": "Like and subscribe to keep growing the question harvest.",
+  "body": [
+    "Inside, tiny connected units pass signals from one layer to the next.",
+    "Each connection can carry a little more or less influence.",
+    "At first, the network’s output may be far off.",
+    "During training, feedback adjusts those connections again and again.",
+    "Those adjustments repeat, making some pathways matter more than others.",
+    "Layer by layer, the network gets better at recognizing patterns.",
+    "Give it new input, and those learned patterns help shape an output.",
+    "That basic loop powers many modern AI systems.",
+    "They can work with text, images, sound, and other kinds of data."
+  ],
+  "optional_closing": "So the magic is learned patterns, weighted connections, and repeated adjustment.",
+  "full_narration": "While I untangle this cord, here’s what neural networks are really doing. I set down my tools and pull out the right volume. Inside, tiny connected units pass signals from one layer to the next. Each connection can carry a little more or less influence. At first, the network’s output may be far off. During training, feedback adjusts those connections again and again. Those adjustments repeat, making some pathways matter more than others. Layer by layer, the network gets better at recognizing patterns. Give it new input, and those learned patterns help shape an output. That basic loop powers many modern AI systems. They can work with text, images, sound, and other kinds of data. So the magic is learned patterns, weighted connections, and repeated adjustment. Like and subscribe to keep growing the question harvest.",
+  "word_count": 137,
+  "created_at": "2026-09-06T03:20:02Z"
+}

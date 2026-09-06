@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-06T03:43:38.193240+00:00",
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/renders/final.mp4",
+  "output_bytes": 28349209,
+  "target_duration_seconds": 56.66,
+  "actual_duration_seconds": 56.659,
+  "duration_drift_seconds": -0.001,
+  "wall_seconds": 239.727,
+  "realtime_factor": 4.231,
+  "beats": 17,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "subtitles": true,
+  "resource_budget": 0.8,
+  "cpus_available": 2,
+  "threads": {
+    "encoder": 2,
+    "filter": 2,
+    "filter_complex": 2,
+    "source": "render profile"
+  },
+  "nice": 10,
+  "ionice": true,
+  "supersample": 2,
+  "supersample_note": "",
+  "peak_child_rss_mb": 1969.3
+}

@@ -1,0 +1,412 @@
+{
+  "schema_version": 2,
+  "video_id": "013",
+  "topic": "Neural networks and AI",
+  "created_at": "2026-09-06T03:18:58Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:19:32Z",
+      "words": 126
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:20:02Z",
+      "words": 137
+    },
+    "episode_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:20:26Z",
+      "activity": "handling rope"
+    },
+    "world_style_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:20:49Z",
+      "style_id": "luminous_technical_network_001"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:21:25Z",
+      "sha256": "96393fb163bab6c878cf2b581dd32e529047059947e235cdd3d4e6ecbf70e3ac",
+      "model": "nano_banana_2",
+      "catalog_path": "005_luminous_technical_network_001"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:21:27Z",
+      "opening_activity": "handling rope",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "002",
+      "world_style_id": "luminous_technical_network_001"
+    },
+    "visual_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:22:03Z",
+      "beats": 9
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:22:23Z",
+      "prompt_sha256": "db34e792c63c9930e2a476ed2c01b4070de5b4d0be65f81141f9eecced79beff"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:23:26Z",
+      "sha256": "040785656bfc7a28abdea279dbefc9bd3c014a4b7f49f1ead9eb4f11f31a8327",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T03:23:27Z",
+      "artifact": "book_design_sheet.png"
+    },
+    "book_spread": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:23:30Z",
+      "template_id": "002",
+      "sha256": "237dbeb8884e3e53910dc3c9335336a58822cb3792b5b29cbcf14c4cfb3059fd"
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:23:51Z",
+      "prompt_sha256": "a4750f7dcac4860eafc0853b5b99a6f883314b0a0f7a8677bf81b7b14388b62e"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:24:14Z",
+      "prompt_sha256": "dc225486ae16ec8a4f57ca8dfb670ad50a79965e968038bd72c2bc0334db6034"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T03:24:16Z",
+      "source": "world_keyframe",
+      "sha256": "040785656bfc7a28abdea279dbefc9bd3c014a4b7f49f1ead9eb4f11f31a8327"
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:25:29Z",
+      "sha256": "fb19607a68b9a1f225085da6a97bd8849f0f164cbd77f34d0b12a62049974964",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:27:11Z",
+      "sha256": "f1cca7fd7338341ec9d313e3bf6ab55508426e37b33d90193b75713cb302ebdc",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:28:32Z",
+      "sha256": "a13c2d06e0d0c193d6b3db34891bdefa3b722614ddfa81c28c1ee61e0838e615",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:29:43Z",
+      "sha256": "33eca0d0d3881ea6150fe7db6574a09fd9636fb3056b087b457b14fa28102554",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:31:01Z",
+      "sha256": "66dc78f6140f60bcbf1144bf9542d5b4d804514e3670eb37e5223a586c81ae14",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:32:22Z",
+      "sha256": "d1398557a20d908ff6a784b4663a85b8c77c226aa30430412e247aa87ed05f35",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:33:36Z",
+      "sha256": "9f25d034c5b16e02b8cfbb8c00fefaff22e09fc6d449e65cc5516b4483f6d21c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:34:54Z",
+      "sha256": "9de4f70d2ec158cfac1fe5f305c44f995092aef0811fad22de3f9598872f1f27",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:36:42Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "ddae5600c251d2a36c7d7a098a784faa7baaade0ee9e8919213d43a2b5e3ddfe"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:38:38Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "9984fe29ab77fb5b3b99cc715ccedeb957fb31289ef87a4df60dbb0778aae367"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T03:38:40Z",
+      "body_images": 9
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 33.109,
+      "at": "2026-09-06T03:19:32Z",
+      "words": 126
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 27.075,
+      "at": "2026-09-06T03:20:02Z",
+      "words": 137
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 21.059,
+      "at": "2026-09-06T03:20:26Z",
+      "activity": "handling rope"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 21.058,
+      "at": "2026-09-06T03:20:49Z",
+      "style_id": "luminous_technical_network_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 33.108,
+      "at": "2026-09-06T03:21:25Z",
+      "sha256": "96393fb163bab6c878cf2b581dd32e529047059947e235cdd3d4e6ecbf70e3ac",
+      "model": "nano_banana_2",
+      "catalog_path": "005_luminous_technical_network_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-06T03:21:27Z",
+      "opening_activity": "handling rope",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "002",
+      "world_style_id": "luminous_technical_network_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 33.105,
+      "at": "2026-09-06T03:22:03Z",
+      "beats": 9
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.067,
+      "at": "2026-09-06T03:22:23Z",
+      "prompt_sha256": "db34e792c63c9930e2a476ed2c01b4070de5b4d0be65f81141f9eecced79beff"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 60.161,
+      "at": "2026-09-06T03:23:26Z",
+      "sha256": "040785656bfc7a28abdea279dbefc9bd3c014a4b7f49f1ead9eb4f11f31a8327",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.155,
+      "at": "2026-09-06T03:23:30Z",
+      "template_id": "002",
+      "sha256": "237dbeb8884e3e53910dc3c9335336a58822cb3792b5b29cbcf14c4cfb3059fd"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 18.069,
+      "at": "2026-09-06T03:23:51Z",
+      "prompt_sha256": "a4750f7dcac4860eafc0853b5b99a6f883314b0a0f7a8677bf81b7b14388b62e"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 21.062,
+      "at": "2026-09-06T03:24:14Z",
+      "prompt_sha256": "dc225486ae16ec8a4f57ca8dfb670ad50a79965e968038bd72c2bc0334db6034"
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 72.229,
+      "at": "2026-09-06T03:25:29Z",
+      "sha256": "fb19607a68b9a1f225085da6a97bd8849f0f164cbd77f34d0b12a62049974964",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 99.338,
+      "at": "2026-09-06T03:27:11Z",
+      "sha256": "f1cca7fd7338341ec9d313e3bf6ab55508426e37b33d90193b75713cb302ebdc",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 78.244,
+      "at": "2026-09-06T03:28:32Z",
+      "sha256": "a13c2d06e0d0c193d6b3db34891bdefa3b722614ddfa81c28c1ee61e0838e615",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 69.239,
+      "at": "2026-09-06T03:29:43Z",
+      "sha256": "33eca0d0d3881ea6150fe7db6574a09fd9636fb3056b087b457b14fa28102554",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 75.186,
+      "at": "2026-09-06T03:31:01Z",
+      "sha256": "66dc78f6140f60bcbf1144bf9542d5b4d804514e3670eb37e5223a586c81ae14",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 78.223,
+      "at": "2026-09-06T03:32:22Z",
+      "sha256": "d1398557a20d908ff6a784b4663a85b8c77c226aa30430412e247aa87ed05f35",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 72.254,
+      "at": "2026-09-06T03:33:36Z",
+      "sha256": "9f25d034c5b16e02b8cfbb8c00fefaff22e09fc6d449e65cc5516b4483f6d21c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 75.282,
+      "at": "2026-09-06T03:34:54Z",
+      "sha256": "9de4f70d2ec158cfac1fe5f305c44f995092aef0811fad22de3f9598872f1f27",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 105.406,
+      "at": "2026-09-06T03:36:42Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "ddae5600c251d2a36c7d7a098a784faa7baaade0ee9e8919213d43a2b5e3ddfe"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 114.393,
+      "at": "2026-09-06T03:38:38Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "9984fe29ab77fb5b3b99cc715ccedeb957fb31289ef87a4df60dbb0778aae367"
+    }
+  ],
+  "updated_at": "2026-09-06T03:38:40Z"
+}

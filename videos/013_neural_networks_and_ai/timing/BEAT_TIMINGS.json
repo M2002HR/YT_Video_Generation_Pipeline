@@ -1,0 +1,106 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 56.66,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "While I untangle this chord, here's what neural networks are really doing. I set down my tools and pull out the right volume. Inside, tiny connected units pass signals from one layer to the next. Each connection can carry a little more or less influence. At first, the network's output may be far off. During training, feedback adjusts those connections again and again. Those adjustments repeat, making some pathways matter more than others. Layer by layer the network gets better at recognizing patterns. Give it new input and those learned patterns help shape an output. That basic loop powers many modern AI systems. They can work with text, images, sound and other kinds of data. So the magic is learned patterns, weighted connections and repeated adjustment. Like and subscribe to keep growing the question harvest.",
+  "word_count": 135,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Inside, tiny connected units pass signals from one layer to the next.",
+      "speech_start": 8.44,
+      "speech_end": 12.44,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 13.72,
+      "display_duration": 13.72
+    },
+    {
+      "beat_id": 2,
+      "narration": "Each connection can carry a little more or less influence.",
+      "speech_start": 13.72,
+      "speech_end": 16.64,
+      "match_confidence": 1.0,
+      "display_start": 13.72,
+      "display_end": 18.0,
+      "display_duration": 4.28
+    },
+    {
+      "beat_id": 3,
+      "narration": "At first, the network’s output may be far off.",
+      "speech_start": 18.0,
+      "speech_end": 20.5,
+      "match_confidence": 1.0,
+      "display_start": 18.0,
+      "display_end": 21.08,
+      "display_duration": 3.08
+    },
+    {
+      "beat_id": 4,
+      "narration": "During training, feedback adjusts those connections again and again.",
+      "speech_start": 21.08,
+      "speech_end": 23.9,
+      "match_confidence": 1.0,
+      "display_start": 21.08,
+      "display_end": 24.74,
+      "display_duration": 3.66
+    },
+    {
+      "beat_id": 5,
+      "narration": "Those adjustments repeat, making some pathways matter more than others.",
+      "speech_start": 24.74,
+      "speech_end": 29.4,
+      "match_confidence": 1.0,
+      "display_start": 24.74,
+      "display_end": 30.38,
+      "display_duration": 5.64
+    },
+    {
+      "beat_id": 6,
+      "narration": "Layer by layer, the network gets better at recognizing patterns.",
+      "speech_start": 30.38,
+      "speech_end": 33.96,
+      "match_confidence": 1.0,
+      "display_start": 30.38,
+      "display_end": 34.42,
+      "display_duration": 4.04
+    },
+    {
+      "beat_id": 7,
+      "narration": "Give it new input, and those learned patterns help shape an output.",
+      "speech_start": 34.42,
+      "speech_end": 38.02,
+      "match_confidence": 1.0,
+      "display_start": 34.42,
+      "display_end": 39.02,
+      "display_duration": 4.6
+    },
+    {
+      "beat_id": 8,
+      "narration": "That basic loop powers many modern AI systems.",
+      "speech_start": 39.02,
+      "speech_end": 42.64,
+      "match_confidence": 1.0,
+      "display_start": 39.02,
+      "display_end": 43.08,
+      "display_duration": 4.06
+    },
+    {
+      "beat_id": 9,
+      "narration": "They can work with text, images, sound, and other kinds of data.",
+      "speech_start": 43.08,
+      "speech_end": 47.18,
+      "match_confidence": 1.0,
+      "display_start": 43.08,
+      "display_end": 56.66,
+      "display_duration": 13.58
+    }
+  ]
+}

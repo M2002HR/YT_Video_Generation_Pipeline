@@ -1,0 +1,59 @@
+{
+  "provider": "gemini",
+  "job_id": "3ba2a147-2bde-4442-a171-b70cb5dfca21",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "572:1024",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/b321bf9adf2dc66d",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "image=3ba2a147-2bde-4442-a171-b70cb5dfca21_output_1.png 572x1024 sha256=a13c2d06e0d0c193d6b3db34891bdefa3b722614ddfa81c28c1ee61e0838e615"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/013_neural_networks_and_ai/references/world_style_anchor.png",
+      "sha256": "96393fb163bab6c878cf2b581dd32e529047059947e235cdd3d4e6ecbf70e3ac"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/013_neural_networks_and_ai/references/world_keyframe.png",
+      "sha256": "040785656bfc7a28abdea279dbefc9bd3c014a4b7f49f1ead9eb4f11f31a8327"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/013_neural_networks_and_ai/assets/raw_beats/beat_003.png",
+      "sha256": "f1cca7fd7338341ec9d313e3bf6ab55508426e37b33d90193b75713cb302ebdc"
+    }
+  ],
+  "prompt_sha256": "8c2bf28f38586268fcafdb49344202fb46a59775d27130dc383b40200926bd1e",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "a13c2d06e0d0c193d6b3db34891bdefa3b722614ddfa81c28c1ee61e0838e615",
+  "output_dimensions": [
+    572,
+    1024
+  ],
+  "elapsed_seconds": 60.152,
+  "completed_at": "2026-09-06T03:28:32Z"
+}

@@ -1,0 +1,53 @@
+{
+  "provider": "gemini",
+  "job_id": "22224527-8771-4be7-b202-424011aafc16",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "572:1024",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/513a71bfa768d2de",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "image=22224527-8771-4be7-b202-424011aafc16_output_1.png 572x1024 sha256=040785656bfc7a28abdea279dbefc9bd3c014a4b7f49f1ead9eb4f11f31a8327"
+    ]
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
+      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/013_neural_networks_and_ai/references/world_style_anchor.png",
+      "sha256": "96393fb163bab6c878cf2b581dd32e529047059947e235cdd3d4e6ecbf70e3ac"
+    }
+  ],
+  "prompt_sha256": "db34e792c63c9930e2a476ed2c01b4070de5b4d0be65f81141f9eecced79beff",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "040785656bfc7a28abdea279dbefc9bd3c014a4b7f49f1ead9eb4f11f31a8327",
+  "output_dimensions": [
+    572,
+    1024
+  ],
+  "elapsed_seconds": 60.129,
+  "completed_at": "2026-09-06T03:23:26Z"
+}

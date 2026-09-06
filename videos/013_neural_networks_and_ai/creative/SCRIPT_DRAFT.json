@@ -1,0 +1,20 @@
+{
+  "opening_question_spark": "While I untangle this cord, here is the simple idea behind neural networks.",
+  "book_transition": "So I set down my tools and reach for the right volume.",
+  "cta": "Like and subscribe to grow more questions.",
+  "body": [
+    "Inside, a web of tiny connections begins to glow.",
+    "Each connection passes a signal onward.",
+    "Some paths become more important than others.",
+    "Layer by layer, the pattern becomes clearer.",
+    "That is the basic idea behind a neural network.",
+    "It takes input, transforms it through connected layers, and produces an output.",
+    "Training adjusts those connections again and again.",
+    "With enough examples, the network can get better at spotting useful patterns.",
+    "Modern AI can combine many such networks to work with text, images, sound, and more."
+  ],
+  "optional_closing": "So the magic is really patterns, connections, and repeated adjustment.",
+  "full_narration": "While I untangle this cord, here is the simple idea behind neural networks. So I set down my tools and reach for the right volume. Inside, a web of tiny connections begins to glow. Each connection passes a signal onward. Some paths become more important than others. Layer by layer, the pattern becomes clearer. That is the basic idea behind a neural network. It takes input, transforms it through connected layers, and produces an output. Training adjusts those connections again and again. With enough examples, the network can get better at spotting useful patterns. Modern AI can combine many such networks to work with text, images, sound, and more. So the magic is really patterns, connections, and repeated adjustment. Like and subscribe to grow more questions.",
+  "word_count": 126,
+  "created_at": "2026-09-06T03:19:32Z"
+}

@@ -1,0 +1,820 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 56.66,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 135,
+  "words": [
+    {
+      "text": "While",
+      "token": "while",
+      "start": 0.02,
+      "end": 0.26
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 0.26,
+      "end": 0.44
+    },
+    {
+      "text": "untangle",
+      "token": "untangle",
+      "start": 0.44,
+      "end": 0.94
+    },
+    {
+      "text": "this",
+      "token": "this",
+      "start": 0.94,
+      "end": 1.16
+    },
+    {
+      "text": "chord,",
+      "token": "chord",
+      "start": 1.16,
+      "end": 1.54
+    },
+    {
+      "text": "here's",
+      "token": "here's",
+      "start": 1.54,
+      "end": 1.82
+    },
+    {
+      "text": "what",
+      "token": "what",
+      "start": 1.82,
+      "end": 1.94
+    },
+    {
+      "text": "neural",
+      "token": "neural",
+      "start": 1.94,
+      "end": 2.24
+    },
+    {
+      "text": "networks",
+      "token": "networks",
+      "start": 2.24,
+      "end": 2.66
+    },
+    {
+      "text": "are",
+      "token": "are",
+      "start": 2.66,
+      "end": 2.92
+    },
+    {
+      "text": "really",
+      "token": "really",
+      "start": 2.92,
+      "end": 3.1
+    },
+    {
+      "text": "doing.",
+      "token": "doing",
+      "start": 3.1,
+      "end": 3.4
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 4.74,
+      "end": 4.88
+    },
+    {
+      "text": "set",
+      "token": "set",
+      "start": 4.88,
+      "end": 5.14
+    },
+    {
+      "text": "down",
+      "token": "down",
+      "start": 5.14,
+      "end": 5.3
+    },
+    {
+      "text": "my",
+      "token": "my",
+      "start": 5.3,
+      "end": 5.48
+    },
+    {
+      "text": "tools",
+      "token": "tools",
+      "start": 5.48,
+      "end": 5.8
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 5.8,
+      "end": 6.16
+    },
+    {
+      "text": "pull",
+      "token": "pull",
+      "start": 6.16,
+      "end": 6.42
+    },
+    {
+      "text": "out",
+      "token": "out",
+      "start": 6.42,
+      "end": 6.56
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 6.56,
+      "end": 6.72
+    },
+    {
+      "text": "right",
+      "token": "right",
+      "start": 6.72,
+      "end": 6.86
+    },
+    {
+      "text": "volume.",
+      "token": "volume",
+      "start": 6.86,
+      "end": 7.28
+    },
+    {
+      "text": "Inside,",
+      "token": "inside",
+      "start": 8.44,
+      "end": 8.86
+    },
+    {
+      "text": "tiny",
+      "token": "tiny",
+      "start": 8.86,
+      "end": 9.54
+    },
+    {
+      "text": "connected",
+      "token": "connected",
+      "start": 9.54,
+      "end": 9.96
+    },
+    {
+      "text": "units",
+      "token": "units",
+      "start": 9.96,
+      "end": 10.34
+    },
+    {
+      "text": "pass",
+      "token": "pass",
+      "start": 10.34,
+      "end": 10.7
+    },
+    {
+      "text": "signals",
+      "token": "signals",
+      "start": 10.7,
+      "end": 11.04
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 11.04,
+      "end": 11.32
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 11.32,
+      "end": 11.6
+    },
+    {
+      "text": "layer",
+      "token": "layer",
+      "start": 11.6,
+      "end": 11.84
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 11.84,
+      "end": 12.04
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 12.04,
+      "end": 12.18
+    },
+    {
+      "text": "next.",
+      "token": "next",
+      "start": 12.18,
+      "end": 12.44
+    },
+    {
+      "text": "Each",
+      "token": "each",
+      "start": 13.72,
+      "end": 13.92
+    },
+    {
+      "text": "connection",
+      "token": "connection",
+      "start": 13.92,
+      "end": 14.26
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 14.26,
+      "end": 14.6
+    },
+    {
+      "text": "carry",
+      "token": "carry",
+      "start": 14.6,
+      "end": 14.9
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 14.9,
+      "end": 15.12
+    },
+    {
+      "text": "little",
+      "token": "little",
+      "start": 15.12,
+      "end": 15.38
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 15.38,
+      "end": 15.8
+    },
+    {
+      "text": "or",
+      "token": "or",
+      "start": 15.8,
+      "end": 16.0
+    },
+    {
+      "text": "less",
+      "token": "less",
+      "start": 16.0,
+      "end": 16.12
+    },
+    {
+      "text": "influence.",
+      "token": "influence",
+      "start": 16.12,
+      "end": 16.64
+    },
+    {
+      "text": "At",
+      "token": "at",
+      "start": 18.0,
+      "end": 18.18
+    },
+    {
+      "text": "first,",
+      "token": "first",
+      "start": 18.18,
+      "end": 18.62
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 18.62,
+      "end": 18.7
+    },
+    {
+      "text": "network's",
+      "token": "network's",
+      "start": 18.7,
+      "end": 19.08
+    },
+    {
+      "text": "output",
+      "token": "output",
+      "start": 19.08,
+      "end": 19.44
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 19.44,
+      "end": 19.66
+    },
+    {
+      "text": "be",
+      "token": "be",
+      "start": 19.66,
+      "end": 19.74
+    },
+    {
+      "text": "far",
+      "token": "far",
+      "start": 19.74,
+      "end": 20.06
+    },
+    {
+      "text": "off.",
+      "token": "off",
+      "start": 20.06,
+      "end": 20.5
+    },
+    {
+      "text": "During",
+      "token": "during",
+      "start": 21.08,
+      "end": 21.32
+    },
+    {
+      "text": "training,",
+      "token": "training",
+      "start": 21.32,
+      "end": 21.66
+    },
+    {
+      "text": "feedback",
+      "token": "feedback",
+      "start": 21.66,
+      "end": 22.08
+    },
+    {
+      "text": "adjusts",
+      "token": "adjusts",
+      "start": 22.08,
+      "end": 22.62
+    },
+    {
+      "text": "those",
+      "token": "those",
+      "start": 22.62,
+      "end": 22.74
+    },
+    {
+      "text": "connections",
+      "token": "connections",
+      "start": 22.74,
+      "end": 23.14
+    },
+    {
+      "text": "again",
+      "token": "again",
+      "start": 23.14,
+      "end": 23.52
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 23.52,
+      "end": 23.68
+    },
+    {
+      "text": "again.",
+      "token": "again",
+      "start": 23.68,
+      "end": 23.9
+    },
+    {
+      "text": "Those",
+      "token": "those",
+      "start": 24.74,
+      "end": 24.98
+    },
+    {
+      "text": "adjustments",
+      "token": "adjustments",
+      "start": 24.98,
+      "end": 25.42
+    },
+    {
+      "text": "repeat,",
+      "token": "repeat",
+      "start": 25.42,
+      "end": 26.14
+    },
+    {
+      "text": "making",
+      "token": "making",
+      "start": 26.14,
+      "end": 26.86
+    },
+    {
+      "text": "some",
+      "token": "some",
+      "start": 26.86,
+      "end": 27.18
+    },
+    {
+      "text": "pathways",
+      "token": "pathways",
+      "start": 27.18,
+      "end": 27.58
+    },
+    {
+      "text": "matter",
+      "token": "matter",
+      "start": 27.58,
+      "end": 28.02
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 28.02,
+      "end": 28.32
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 28.32,
+      "end": 28.52
+    },
+    {
+      "text": "others.",
+      "token": "others",
+      "start": 28.52,
+      "end": 29.4
+    },
+    {
+      "text": "Layer",
+      "token": "layer",
+      "start": 30.38,
+      "end": 30.62
+    },
+    {
+      "text": "by",
+      "token": "by",
+      "start": 30.62,
+      "end": 30.92
+    },
+    {
+      "text": "layer",
+      "token": "layer",
+      "start": 30.92,
+      "end": 31.3
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 31.3,
+      "end": 31.54
+    },
+    {
+      "text": "network",
+      "token": "network",
+      "start": 31.54,
+      "end": 31.82
+    },
+    {
+      "text": "gets",
+      "token": "gets",
+      "start": 31.82,
+      "end": 32.06
+    },
+    {
+      "text": "better",
+      "token": "better",
+      "start": 32.06,
+      "end": 32.4
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 32.4,
+      "end": 32.6
+    },
+    {
+      "text": "recognizing",
+      "token": "recognizing",
+      "start": 32.6,
+      "end": 32.98
+    },
+    {
+      "text": "patterns.",
+      "token": "patterns",
+      "start": 32.98,
+      "end": 33.96
+    },
+    {
+      "text": "Give",
+      "token": "give",
+      "start": 34.42,
+      "end": 34.62
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 34.62,
+      "end": 34.74
+    },
+    {
+      "text": "new",
+      "token": "new",
+      "start": 34.74,
+      "end": 34.86
+    },
+    {
+      "text": "input",
+      "token": "input",
+      "start": 34.86,
+      "end": 35.2
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 35.2,
+      "end": 35.8
+    },
+    {
+      "text": "those",
+      "token": "those",
+      "start": 35.8,
+      "end": 35.96
+    },
+    {
+      "text": "learned",
+      "token": "learned",
+      "start": 35.96,
+      "end": 36.3
+    },
+    {
+      "text": "patterns",
+      "token": "patterns",
+      "start": 36.3,
+      "end": 36.72
+    },
+    {
+      "text": "help",
+      "token": "help",
+      "start": 36.72,
+      "end": 37.02
+    },
+    {
+      "text": "shape",
+      "token": "shape",
+      "start": 37.02,
+      "end": 37.3
+    },
+    {
+      "text": "an",
+      "token": "an",
+      "start": 37.3,
+      "end": 37.5
+    },
+    {
+      "text": "output.",
+      "token": "output",
+      "start": 37.5,
+      "end": 38.02
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 39.02,
+      "end": 39.28
+    },
+    {
+      "text": "basic",
+      "token": "basic",
+      "start": 39.28,
+      "end": 39.82
+    },
+    {
+      "text": "loop",
+      "token": "loop",
+      "start": 39.82,
+      "end": 40.18
+    },
+    {
+      "text": "powers",
+      "token": "powers",
+      "start": 40.18,
+      "end": 40.66
+    },
+    {
+      "text": "many",
+      "token": "many",
+      "start": 40.66,
+      "end": 41.08
+    },
+    {
+      "text": "modern",
+      "token": "modern",
+      "start": 41.08,
+      "end": 41.5
+    },
+    {
+      "text": "AI",
+      "token": "ai",
+      "start": 41.5,
+      "end": 41.82
+    },
+    {
+      "text": "systems.",
+      "token": "systems",
+      "start": 41.82,
+      "end": 42.64
+    },
+    {
+      "text": "They",
+      "token": "they",
+      "start": 43.08,
+      "end": 43.18
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 43.18,
+      "end": 43.28
+    },
+    {
+      "text": "work",
+      "token": "work",
+      "start": 43.28,
+      "end": 43.44
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 43.44,
+      "end": 43.62
+    },
+    {
+      "text": "text,",
+      "token": "text",
+      "start": 43.62,
+      "end": 44.3
+    },
+    {
+      "text": "images,",
+      "token": "images",
+      "start": 44.3,
+      "end": 45.24
+    },
+    {
+      "text": "sound",
+      "token": "sound",
+      "start": 45.24,
+      "end": 45.58
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 45.58,
+      "end": 46.14
+    },
+    {
+      "text": "other",
+      "token": "other",
+      "start": 46.14,
+      "end": 46.36
+    },
+    {
+      "text": "kinds",
+      "token": "kinds",
+      "start": 46.36,
+      "end": 46.64
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 46.64,
+      "end": 46.8
+    },
+    {
+      "text": "data.",
+      "token": "data",
+      "start": 46.8,
+      "end": 47.18
+    },
+    {
+      "text": "So",
+      "token": "so",
+      "start": 48.22,
+      "end": 48.38
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 48.38,
+      "end": 48.5
+    },
+    {
+      "text": "magic",
+      "token": "magic",
+      "start": 48.5,
+      "end": 48.8
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 48.8,
+      "end": 49.04
+    },
+    {
+      "text": "learned",
+      "token": "learned",
+      "start": 49.04,
+      "end": 49.32
+    },
+    {
+      "text": "patterns,",
+      "token": "patterns",
+      "start": 49.32,
+      "end": 49.96
+    },
+    {
+      "text": "weighted",
+      "token": "weighted",
+      "start": 49.96,
+      "end": 50.14
+    },
+    {
+      "text": "connections",
+      "token": "connections",
+      "start": 50.14,
+      "end": 50.62
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 50.62,
+      "end": 51.04
+    },
+    {
+      "text": "repeated",
+      "token": "repeated",
+      "start": 51.04,
+      "end": 51.46
+    },
+    {
+      "text": "adjustment.",
+      "token": "adjustment",
+      "start": 51.46,
+      "end": 52.2
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 53.34,
+      "end": 53.54
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 53.54,
+      "end": 53.8
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 53.8,
+      "end": 54.22
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 54.22,
+      "end": 54.62
+    },
+    {
+      "text": "keep",
+      "token": "keep",
+      "start": 54.62,
+      "end": 54.84
+    },
+    {
+      "text": "growing",
+      "token": "growing",
+      "start": 54.84,
+      "end": 55.14
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 55.14,
+      "end": 55.32
+    },
+    {
+      "text": "question",
+      "token": "question",
+      "start": 55.32,
+      "end": 55.62
+    },
+    {
+      "text": "harvest.",
+      "token": "harvest",
+      "start": 55.62,
+      "end": 56.32
+    }
+  ]
+}

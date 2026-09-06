@@ -1,0 +1,14 @@
+{
+  "opening_activity": "handling rope",
+  "opening_location": "home interior",
+  "curiosity_trigger": "noticing how pulling one section of the tangled cord shifts tension through several connected loops",
+  "trigger_object": "knotted cord",
+  "reaction": "pauses mid-untangle, studies the crossing strands, then glances toward the bookshelf",
+  "book_retrieval": "sets the cord and tools down, crosses to a nearby shelf, and pulls out a worn reference volume",
+  "camera_pattern": "pan_right",
+  "book_template_id": "002",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "clean modern technical illustration with layered network diagrams, soft luminous signal paths, and restrained digital glow",
+  "reason": "Untangling a cord naturally introduces the idea of connected parts influencing one another, giving the neural-network explanation a grounded physical starting point without pretending the cord itself is a computer network."
+}

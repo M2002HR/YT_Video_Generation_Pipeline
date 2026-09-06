@@ -1,0 +1,105 @@
+{
+  "audio_duration_seconds": 56.66,
+  "spark_start": 0.02,
+  "spark_end": 3.4,
+  "spark_duration": 3.38,
+  "transition_start": 4.74,
+  "transition_end": 7.28,
+  "transition_duration": 2.54,
+  "clip_a_target_seconds": 3.4,
+  "clip_b_target_seconds": 3.88,
+  "body_start": 8.44,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "While I untangle this cord, here’s what neural networks are really doing.",
+      "speech_start": 0.02,
+      "speech_end": 3.4,
+      "match_confidence": 0.917
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I set down my tools and pull out the right volume.",
+      "speech_start": 4.74,
+      "speech_end": 7.28,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Inside, tiny connected units pass signals from one layer to the next.",
+      "speech_start": 8.44,
+      "speech_end": 12.44,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Each connection can carry a little more or less influence.",
+      "speech_start": 13.72,
+      "speech_end": 16.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "At first, the network’s output may be far off.",
+      "speech_start": 18.0,
+      "speech_end": 20.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "During training, feedback adjusts those connections again and again.",
+      "speech_start": 21.08,
+      "speech_end": 23.9,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Those adjustments repeat, making some pathways matter more than others.",
+      "speech_start": 24.74,
+      "speech_end": 29.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Layer by layer, the network gets better at recognizing patterns.",
+      "speech_start": 30.38,
+      "speech_end": 33.96,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Give it new input, and those learned patterns help shape an output.",
+      "speech_start": 34.42,
+      "speech_end": 38.02,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "That basic loop powers many modern AI systems.",
+      "speech_start": 39.02,
+      "speech_end": 42.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "They can work with text, images, sound, and other kinds of data.",
+      "speech_start": 43.08,
+      "speech_end": 47.18,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "So the magic is learned patterns, weighted connections, and repeated adjustment.",
+      "speech_start": 48.22,
+      "speech_end": 52.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to keep growing the question harvest.",
+      "speech_start": 53.34,
+      "speech_end": 56.32,
+      "match_confidence": 1.0
+    }
+  ]
+}
