@@ -1228,24 +1228,43 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
         runner.stage_reused(stage, target.name)
         return target
     started = runner.stage_start(stage)
-    reference_prompt = (
-        ROOT / "projects" / content_project.project_id / "prompts" / "reference" / "book_transition_reference_prompt.txt"
-    )
+    # The identity file describes the object. The older path fed this stage the *clip B video*
+    # prompt — a shot list with audio notes and one episode's subject named in it — which is why
+    # the sheet came out as a scene rather than a clean, natural reference.
+    reference_dir = ROOT / "projects" / content_project.project_id / "prompts" / "reference"
+    reference_prompt = reference_dir / "book_identity.txt"
+    if not reference_prompt.is_file():
+        reference_prompt = reference_dir / "book_transition_reference_prompt.txt"
     if not reference_prompt.is_file():
         raise StageFailure(
             stage,
             "FAILED_VALIDATION",
-            f"The locked book identity description is missing: {reference_prompt}",
+            f"The locked book identity description is missing: {reference_dir / 'book_identity.txt'}",
         )
     identity = reference_prompt.read_text(encoding="utf-8")
     prompt = (
-        "Create exactly one 9:16 vertical reference sheet of a single closed antique book, "
-        "centred on a neutral background, as a design reference — not a scene, no hands, no "
-        "people, no text on the cover.\n\n"
-        "The book identity is locked by this description and must match it exactly:\n"
-        "antique brown leather cover, brass corner caps, a side clasp, an eye symbol, a "
-        "crescent moon, small stars, thick aged page block, and a green ribbon bookmark.\n\n"
-        "Source description for tone and detail:\n"
+        "One hand-drawn design reference of a single antique storybook, 9:16 vertical, the book "
+        "centred and filling most of the frame on a plain warm parchment backdrop. This is a "
+        "reference sheet for an object, not a scene: no people, no hands, no room, no props.\n\n"
+        "Show the book twice in the same image, as a designer's sheet: closed at the top, and "
+        "lying open at the bottom. Nothing else.\n\n"
+        "Locked identity, which must match exactly:\n"
+        "- antique brown leather cover, softly worn at the edges\n"
+        "- brass corner protectors on all four corners\n"
+        "- a brass clasp on the fore-edge\n"
+        "- an eye symbol centred on the cover, a crescent moon above it, small scattered stars\n"
+        "- a thick block of aged, uneven pages\n"
+        "- a green ribbon bookmark falling from the pages\n"
+        "- no title, no lettering, no numbers, no extra symbols anywhere\n\n"
+        "The open book shows two completely blank aged pages: warm paper with visible grain, "
+        "clean margins and a soft shadow along the inner spine. Leave the pages empty — an "
+        "episode's illustration is composited onto the right page later, so any drawing or "
+        "writing there would fight it.\n\n"
+        "Style: pure 2D hand-drawn illustration, clean ink outlines, flat colours, simple cel "
+        "shading, warm parchment and leather tones, soft even light. Natural and handcrafted, "
+        "the way a good children's encyclopaedia is drawn. No 3D, no CGI, no photoreal leather "
+        "or metal, no lens effects, no glowing magic, no portal.\n\n"
+        "The locked description this sheet must agree with:\n"
         f"{identity[:4000]}"
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")

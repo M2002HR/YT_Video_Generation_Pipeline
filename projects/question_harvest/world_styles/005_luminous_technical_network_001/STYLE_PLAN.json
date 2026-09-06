@@ -1,0 +1,16 @@
+{
+  "style_id": "luminous_technical_network_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "technical drawing",
+  "secondary_treatment": "subtle blueprint",
+  "texture_family": "smooth matte",
+  "palette_summary": "deep navy and cool graphite foundations, pale cyan and electric blue signal accents, restrained soft violet highlights, off-white diagram lines, minimal warm amber for emphasis",
+  "line_treatment": "crisp precise technical linework with thin geometric connectors, clean node circles, layered schematic paths, and restrained luminous edge accents",
+  "lighting": "soft cool ambient illumination with localized digital glow around active signal paths",
+  "subject_constraints": "modern neural-network vocabulary only: layered node diagrams, weighted connections, directional signal paths, abstract input and output fields, training-feedback loops, pattern clusters, clean data symbols, simplified text-image-sound representations, and restrained interface-like geometry; keep diagrams visually understandable rather than densely mathematical",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "preserve the protagonist's tall slim silhouette, chestnut hair shape, beard and moustache, light moss sweater, dark blue overalls, and rust-orange boots while translating him into crisp technical-illustration linework with flat matte fills and subtle cool rim lighting; maintain familiar face proportions and clothing silhouette without turning him into a hologram or robot",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no cyberpunk city imagery, no anime, no excessive neon, no dense code walls, no generic humanoid robots, no glowing brain cliché, no chaotic HUD overlays, no aged paper or historical textures, no beat-by-beat medium switching",
+  "reason": "A new modern technical-drawing style directly supports the episode's explanation of layers, weighted connections, signal flow, feedback, and learned patterns while allowing clean visual continuity from the tangled-cord analogy into abstract network diagrams. The restrained blueprint treatment adds structural clarity without becoming a second competing medium. Creating a fresh smooth-matte digital language also avoids repeating the three most recent styles, all of which rely on aged paper, ink, engraving, or historical illustration textures."
+}

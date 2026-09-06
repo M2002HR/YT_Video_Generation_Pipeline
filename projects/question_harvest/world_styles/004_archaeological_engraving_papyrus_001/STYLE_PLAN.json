@@ -1,0 +1,16 @@
+{
+  "style_id": "archaeological_engraving_papyrus_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "historical engraving",
+  "secondary_treatment": "subtle technical drawing",
+  "texture_family": "sun-aged papyrus paper grain",
+  "palette_summary": "warm sand and papyrus cream, charcoal brown, muted ochre, restrained desert blue accents, sparse dusty umber shadows",
+  "line_treatment": "fine engraved contour lines with selective cross-hatching, measured architectural guide marks, and restrained hand-drawn annotation strokes",
+  "lighting": "hard desert daylight softened into flat archival illustration shading",
+  "subject_constraints": "Old Kingdom Egyptian architectural vocabulary only where historically appropriate: limestone masonry, pyramid faces and courses, ramps or transport concepts only when framed as hypotheses, sledges, ropes, copper-era tools, wooden implements, surveying lines, worker settlements, quarries, desert plateau geometry, measured plans, sectional diagrams, scale figures, and archaeological evidence fragments; compositions should favor evidence-based diagrams, construction details, and landscape context over spectacle",
+  "historical_accuracy_note": "Avoid presenting unresolved construction theories as established fact. Do not depict modern cranes, iron or steel tools, wheels used for hauling pyramid blocks, fantasy machinery, aliens, anachronistic costumes, or invented hieroglyphic claims. Where transport, ramp systems, workforce organization, surveying methods, or symbolic interpretations remain debated, imagery must read as analytical reconstruction or hypothesis rather than documentary certainty.",
+  "hero_rendering_in_world": "If the protagonist appears, preserve his tall slim silhouette, chestnut hair shape, beard and moustache, green-sweater value grouping, dark-overalls silhouette, and rust-boot shape, translated into engraved charcoal-and-ochre linework with minimal desert-blue accents while keeping his familiar face proportions and clothing identity readable.",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime, no cinematic fantasy Egypt, no gold-saturated palace aesthetic, no neon colors, no sci-fi machinery, no alien imagery, no pseudo-archaeology, no modern construction equipment, no random mixed-media changes between beats",
+  "reason": "The episode is explicitly about separating solid archaeological evidence from debated interpretations, so a new archaeological engraving language with subtle technical-drawing structure makes uncertainty, measurement, construction detail, and evidence legible without implying false certainty. The sun-aged papyrus surface and restrained ochre/desert-blue palette also align closely with the episode's archaeological sketchbook direction. A new style is required by the operator directive, and it deliberately avoids reusing the two most recent paper-grain ink/retro-animation styles despite their topical compatibility."
+}

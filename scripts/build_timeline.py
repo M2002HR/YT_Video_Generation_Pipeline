@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import os
 import re
 import subprocess
 import textwrap
@@ -202,6 +204,10 @@ def load_word_timings(video_dir: Path) -> list[dict[str, Any]]:
     return [
         {
             "token": caption_token(word.get("token") or word.get("text") or ""),
+            # The matcher compares tokens, but a caption has to show the word as written —
+            # with its capital letter and its full stop, which is also what tells a cue where
+            # a sentence ends.
+            "text": str(word.get("text") or word.get("token") or "").strip(),
             "start": float(word.get("start") or 0.0),
             "end": float(word.get("end") or 0.0),
         }
@@ -313,6 +319,119 @@ def build_subtitle_cues(
             )
             cursor = cue_end
 
+    return cues
+
+
+#: The longest a single still may hold the screen. A body segment that runs longer than this is
+#: cut into equal sub-shots of the same image, each re-framed by the next motion in the cycle, so
+#: the rhythm keeps moving and the narration keeps its measured boundaries. Without it the last
+#: image sat for 13.8s on episode 012 while the closing was read.
+MAX_IMAGE_SECONDS = float(os.getenv("YT_MAX_IMAGE_SECONDS", "4.5"))
+
+
+def split_long_image_beats(
+    entries: list[dict[str, Any]],
+    motion_cycle: list[str],
+    *,
+    limit: float = MAX_IMAGE_SECONDS,
+) -> list[dict[str, Any]]:
+    """Cut any over-long still into equal sub-shots of itself.
+
+    Nothing here moves a boundary: a sub-shot's start and end stay inside the slot the narration
+    measured for that beat, and the image is the same one the visual plan assigned to that
+    sentence. Only the framing changes between sub-shots, which is what makes a long sentence read
+    as several shots instead of a freeze.
+    """
+    if limit <= 0.5:
+        return entries
+    out: list[dict[str, Any]] = []
+    motion_index = 0
+    for entry in entries:
+        duration = float(entry.get("duration") or 0.0)
+        if entry.get("media_type") != "image" or duration <= limit:
+            out.append(entry)
+            motion_index += 1
+            continue
+        pieces = int(math.ceil(duration / limit))
+        start = float(entry["start"])
+        end = float(entry["end"])
+        step = (end - start) / pieces
+        for piece in range(pieces):
+            piece_start = start + step * piece
+            piece_end = end if piece == pieces - 1 else start + step * (piece + 1)
+            clone = dict(entry)
+            clone.update(
+                {
+                    "start": round(piece_start, 3),
+                    "end": round(piece_end, 3),
+                    "duration": round(piece_end - piece_start, 3),
+                    "motion": str(motion_cycle[motion_index % len(motion_cycle)]),
+                    "sub_shot": piece + 1,
+                    "sub_shot_count": pieces,
+                }
+            )
+            out.append(clone)
+            motion_index += 1
+    return out
+
+
+def build_cues_from_words(
+    words: list[dict[str, Any]],
+    subtitle_cfg: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Caption the whole narration, from its first measured word to its last.
+
+    Cues used to be built per body beat, so everything spoken outside a body segment — the
+    opening question, the book transition, the closing and the CTA — had no caption at all: the
+    subtitles appeared partway in and stopped before the end (observed on 011 and 012). The word
+    stream *is* the narration, so chunking it is what makes the captions cover all of it, and
+    every cue still starts and ends on a measured word rather than on an estimate.
+    """
+    max_words = max(1, int(subtitle_cfg.get("max_words_per_cue", 6)))
+    max_chars = max(8, int(subtitle_cfg.get("max_chars_per_line", 34)))
+    max_lines = max(1, int(subtitle_cfg.get("max_lines", 2)))
+    budget = max_chars * max_lines
+
+    cues: list[dict[str, Any]] = []
+    chunk: list[dict[str, Any]] = []
+
+    def flush() -> None:
+        if not chunk:
+            return
+        text = " ".join(str(item.get("text") or "").strip() for item in chunk).strip()
+        if not text:
+            chunk.clear()
+            return
+        cues.append(
+            {
+                "start": round(float(chunk[0]["start"]), 3),
+                "end": round(float(chunk[-1]["end"]), 3),
+                "text": text,
+                "ass_text": wrap_caption(text, max_chars, max_lines),
+                "timing_source": "word",
+            }
+        )
+        chunk.clear()
+
+    for word in words:
+        token = str(word.get("text") or word.get("token") or "").strip()
+        if not token:
+            continue
+        try:
+            start = float(word["start"])
+            end = float(word["end"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        candidate = " ".join(
+            [*(str(item.get("text") or "").strip() for item in chunk), token]
+        ).strip()
+        if chunk and (len(chunk) >= max_words or len(candidate) > budget):
+            flush()
+        chunk.append({"text": token, "start": start, "end": end})
+        # A sentence end is a natural caption end, so the line breaks where the voice does.
+        if token.endswith((".", "!", "?", "…")):
+            flush()
+    flush()
     return cues
 
 
@@ -651,13 +770,23 @@ def main() -> None:
                 }
             )
 
+    # A still that holds too long reads as a freeze, so long slots become several framings of
+    # the same image. Video beats are never split: their motion is their own.
+    timeline_beats = split_long_image_beats(timeline_beats, list(motion_cycle))
+
     subtitle_cfg = (
         profile.get("subtitles")
         if isinstance(profile.get("subtitles"), dict)
         else {}
     )
     word_timings = load_word_timings(video_dir)
-    cues = build_subtitle_cues(beats, subtitle_cfg, word_timings)
+    # Measured words cover the whole narration; the per-beat builder only covers the body, so it
+    # stays as the fallback for a run without word timings.
+    cues = (
+        build_cues_from_words(word_timings, subtitle_cfg)
+        if word_timings
+        else build_subtitle_cues(beats, subtitle_cfg, word_timings)
+    )
     cues, subtitle_adjustments = normalize_subtitle_cue_boundaries(cues)
     proportional_cues = [
         index for index, cue in enumerate(cues) if cue.get("timing_source") != "word"

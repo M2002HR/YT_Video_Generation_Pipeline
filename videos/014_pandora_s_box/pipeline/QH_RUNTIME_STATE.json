@@ -1,0 +1,470 @@
+{
+  "schema_version": 2,
+  "video_id": "014",
+  "topic": "Pandora's box",
+  "created_at": "2026-09-06T04:11:07Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:02:58Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:02:59Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:00Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:02Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:03Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T05:03:05Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:06Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:08Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:09Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:10Z",
+      "artifact": "book_design_sheet.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:12Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:13Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:14Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:15Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:16Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:18Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:19Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:21Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:22Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:23Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:24Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:26Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:27Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:28Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:30Z",
+      "artifact": "beat_012.png"
+    },
+    "beat_image_013": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:31Z",
+      "artifact": "beat_013.png"
+    },
+    "beat_image_014": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:32Z",
+      "artifact": "beat_014.png"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:34Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T05:03:35Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T05:03:36Z",
+      "body_images": 14
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 42.093,
+      "at": "2026-09-06T04:11:51Z",
+      "words": 150
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 30.075,
+      "at": "2026-09-06T04:12:23Z",
+      "words": 202
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 24.092,
+      "at": "2026-09-06T04:12:50Z",
+      "activity": "home maintenance"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 27.085,
+      "at": "2026-09-06T04:13:19Z",
+      "style_id": "greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 45.129,
+      "at": "2026-09-06T04:14:07Z",
+      "sha256": "cd8aa64ae0b787ea17275c94c00bace6bf61cf4311dd685cd2590956bf36f146",
+      "model": "nano_banana_2",
+      "catalog_path": "006_greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T04:14:09Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 42.121,
+      "at": "2026-09-06T04:14:54Z",
+      "beats": 14
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.051,
+      "at": "2026-09-06T04:15:15Z",
+      "prompt_sha256": "c98e67500e0eac94e67bc4d298e643615e5326e970a5976a70b8651e754ddec8"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 75.312,
+      "at": "2026-09-06T04:16:32Z",
+      "sha256": "e94477cd83376515947b089294510e0591327a8d290f52f746dca0cbb69a427c",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.189,
+      "at": "2026-09-06T04:16:36Z",
+      "template_id": "003",
+      "sha256": "14ba7299e782243f6cfc3604e803ae13c83438b2234a35841d3588d4c3ea5b10"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 18.07,
+      "at": "2026-09-06T04:16:56Z",
+      "prompt_sha256": "a1772ee6cb9f1ea75c3f3011b4dc5c077cd56a04ea918634d7fd4341ea4ceef2"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 21.08,
+      "at": "2026-09-06T04:17:20Z",
+      "prompt_sha256": "3ed59147f8d5ea1544cdb09190f3230ddd19ea3dd0f9cef63a56217b1385dc67"
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 117.378,
+      "at": "2026-09-06T04:19:19Z",
+      "sha256": "949f58a84be3468b407071c2f4f0bbc175a4a2566aba8e3b77086434e11b23a3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 78.265,
+      "at": "2026-09-06T04:20:41Z",
+      "sha256": "b150387143e224472a8093c1e2e613cfa46e9058eafba1d04c819953e1912ac7",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 81.272,
+      "at": "2026-09-06T04:22:05Z",
+      "sha256": "9e1aa12f9eefae7b16ee2b03412b9daf343f92269b3497c33f1a1d92609f8ca8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 78.294,
+      "at": "2026-09-06T04:23:25Z",
+      "sha256": "a8c56b0e5eb0793cf979597ddcc9156323e347be56b1da237e1ff48a91454bbb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 81.203,
+      "at": "2026-09-06T04:24:49Z",
+      "sha256": "2c3977b55ab22bc3f08bcb4194e13c81deacf0d2def7d763634c64de8d8e5ce9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 96.353,
+      "at": "2026-09-06T04:26:27Z",
+      "sha256": "a319ce973df6f0b1dd1b2c675c642d04ece3e7126c4f6dfc460e0a05cf35d059",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-06T04:33:17Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 54.201,
+      "at": "2026-09-06T04:34:32Z",
+      "sha256": "6bde622cdc61b880d9b2f2c13acb878bd5e2e648fb10a12f1877718688cd1dc6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 90.387,
+      "at": "2026-09-06T04:36:05Z",
+      "sha256": "cc8f834f4170f4198efa47b80ce1492301f88ff9b148690a40a78aab75540f57",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 93.335,
+      "at": "2026-09-06T04:37:41Z",
+      "sha256": "e8853b57dc87aa964eaa550febeead6f07b7e3740149468d933d74fbe40287fb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 81.269,
+      "at": "2026-09-06T04:39:04Z",
+      "sha256": "ff4ac938b7a5492f309c5a1e885fd3d55e38e0d2e944de648d7b735b31275db0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 72.226,
+      "at": "2026-09-06T04:40:19Z",
+      "sha256": "51d1d0c0f8461baaa1a38a2e5d9377a0d8b73fc1440591bb082fca3c8503012e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 84.289,
+      "at": "2026-09-06T04:41:46Z",
+      "sha256": "dae2b47b8a752d140740fe76e3bd414e36c00967299bf973fec1e0d46f09f3ba",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 81.246,
+      "at": "2026-09-06T04:43:10Z",
+      "sha256": "452292210e0a23eab9bac391a8e622833ca7a8a8930a9cceebae79933aa0aa7b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 111.474,
+      "at": "2026-09-06T04:45:03Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "a6dd2df196ce5e886ae720107b186feabd0e66fe7db0984186de36e2e95ffa03"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 117.524,
+      "at": "2026-09-06T04:47:03Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "d290aa058a94e98f0cf1909f632b6faaeaaba3bab7ed47bac46086fd731d85a4"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T04:51:22Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T05:03:05Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
+    }
+  ],
+  "updated_at": "2026-09-06T05:03:36Z"
+}

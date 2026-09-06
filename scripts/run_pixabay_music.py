@@ -266,6 +266,37 @@ class Browser:
             request(3, "Input.dispatchMouseEvent", {"type": "mousePressed", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1})
             request(4, "Input.dispatchMouseEvent", {"type": "mouseReleased", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1})
 
+    def press_enter(self) -> None:
+        """Submit the composer with a real Enter key event.
+
+        Used only when no Send control could be found: ChatGPT submits a non-empty composer on
+        Enter by default, and the caller verifies the send either way, so this can never turn an
+        unsent request into a reported success.
+        """
+        if self.tab is None:
+            raise RuntimeError("No ChatGPT tab is selected.")
+        info = self.get_info(self.tab)
+        websocket_url = getattr(info, "websocket_debugger_url", None)
+        if not websocket_url:
+            raise RuntimeError("Ordak could not focus the browser tab.")
+        from websockets.sync.client import connect
+
+        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as ws:
+            def request(request_id: int, method: str, params: dict[str, Any]) -> None:
+                ws.send(json.dumps({"id": request_id, "method": method, "params": params}))
+                while True:
+                    reply = json.loads(ws.recv(timeout=5))
+                    if reply.get("id") == request_id:
+                        if reply.get("error"):
+                            raise RuntimeError(f"Chrome rejected {method}.")
+                        return
+
+            key = {"key": "Enter", "code": "Enter", "windowsVirtualKeyCode": 13, "nativeVirtualKeyCode": 13}
+            request(1, "Page.bringToFront", {})
+            request(2, "Input.dispatchKeyEvent", {"type": "rawKeyDown", **key})
+            request(3, "Input.dispatchKeyEvent", {"type": "char", "text": "\r", **key})
+            request(4, "Input.dispatchKeyEvent", {"type": "keyUp", **key})
+
     def track_url_snapshot(self) -> list[str]:
         """Read both human-visible answer text and rendered outbound link targets."""
         snapshot = self.data("""(() => ({text:document.body?.innerText||'',hrefs:[...document.querySelectorAll('a[href]')].map(a=>a.href)}))()""")
@@ -327,7 +358,22 @@ class Browser:
         if normalized(str(ready.get("text") or "")) != expected and not (existing and same_pipeline_request):
             raise RuntimeError("ChatGPT did not retain the requested music-selection prompt.")
         send = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='send-button'||/send (prompt|message)|send$/i.test(`${x.getAttribute('aria-label')||''} ${(x.innerText||'').trim()}`));if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()"""
-        self.point_click(send)
+        # The Send control only becomes clickable once ChatGPT's own state has caught up with
+        # the inserted text, and demanding it at the first read failed the stage outright with
+        # the request left sitting in the composer (observed 2026-09-05). So it is waited for,
+        # and if it never appears the composer's own Enter is used — the acknowledgement check
+        # below still decides whether anything was actually sent.
+        clicked = False
+        send_deadline = time.monotonic() + 15
+        while time.monotonic() < send_deadline:
+            point = self.data(send)
+            if isinstance(point, dict) and point.get("ok"):
+                self.point_click(f"(() => {{ return {json.dumps(point)}; }})()")
+                clicked = True
+                break
+            time.sleep(0.5)
+        if not clicked:
+            self.press_enter()
         deadline = time.monotonic() + 12
         while time.monotonic() < deadline:
             after = self.data(composer)

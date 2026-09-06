@@ -33,6 +33,39 @@
       "path": "003_retro_1920s_animation_ink_001",
       "anchor": "003_retro_1920s_animation_ink_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "archaeological_engraving_papyrus_001",
+      "display_name": "Archaeological Engraving Papyrus 001",
+      "medium_family": "historical engraving",
+      "texture_family": "sun-aged papyrus paper grain",
+      "palette_summary": "warm sand and papyrus cream, charcoal brown, muted ochre, restrained desert blue accents, sparse dusty umber shadows",
+      "status": "ready",
+      "path": "004_archaeological_engraving_papyrus_001",
+      "anchor": "004_archaeological_engraving_papyrus_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "luminous_technical_network_001",
+      "display_name": "Luminous Technical Network 001",
+      "medium_family": "technical drawing",
+      "texture_family": "smooth matte",
+      "palette_summary": "deep navy and cool graphite foundations, pale cyan and electric blue signal accents, restrained soft violet highlights, off-white diagram lines, minimal warm amber for emphasis",
+      "status": "ready",
+      "path": "005_luminous_technical_network_001",
+      "anchor": "005_luminous_technical_network_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "greek_black_figure_fresco_001",
+      "display_name": "Greek Black Figure Fresco 001",
+      "medium_family": "fresco",
+      "texture_family": "weathered plaster and aged stone",
+      "palette_summary": "warm terracotta, kiln black, limestone cream, muted ochre, dusty umber, restrained faded olive, with sparse chalk-white highlights",
+      "status": "ready",
+      "path": "006_greek_black_figure_fresco_001",
+      "anchor": "006_greek_black_figure_fresco_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

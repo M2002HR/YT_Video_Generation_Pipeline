@@ -88,15 +88,77 @@
     },
     {
       "stage": "git_commit_push",
+      "started_at": "2026-09-06T03:43:52.825859+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-06T03:39:38.027730+00:00"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-06T03:39:38.027730+00:00",
-      "ended_at": "2026-09-06T03:43:58.350245+00:00",
-      "elapsed_seconds": 260.323,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "35cb17fa8192467005d9171b353130aa906e4b7f"
+      "ended_at": "2026-09-06T03:44:00.076719+00:00",
+      "elapsed_seconds": 7.251,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 338
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-06T03:44:00.077227+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/013_neural_networks_and_ai/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-06T03:44:42.457166+00:00",
+      "elapsed_seconds": 42.38,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 1622
     }
   ],
-  "completed_at": "2026-09-06T03:43:58.350245+00:00",
-  "total_elapsed_seconds": 515.117
+  "completed_at": "2026-09-06T03:44:42.457674+00:00",
+  "total_elapsed_seconds": 304.425,
+  "summary": {
+    "video": "013_neural_networks_and_ai",
+    "duration_seconds": 56.66,
+    "beat_count": 17,
+    "video_beat_count": 2,
+    "image_beat_count": 15,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.4,
+      "transition_end": 7.28
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 239.727,
+      "realtime_factor": 4.231,
+      "peak_child_rss_mb": 1969.3,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

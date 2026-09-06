@@ -1,0 +1,14 @@
+{
+  "opening_activity": "home maintenance",
+  "opening_location": "farmyard",
+  "curiosity_trigger": "a small parts tin tips open and sends several loose fasteners scattering across the work surface",
+  "trigger_object": "parts tin",
+  "reaction": "pauses mid-repair, watches the pieces scatter, then studies the open tin",
+  "book_retrieval": "sets down the tool, gathers the tin, then steps to a nearby shelf and pulls out the worn question book",
+  "camera_pattern": "static_wide",
+  "book_template_id": "003",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "ancient Greek black-figure pottery imagery blended with weathered fresco and warm aged-stone textures",
+  "reason": "A routine maintenance mishap lets one small opening create an immediate spread of consequences, naturally echoing the central idea of Pandora's container without placing a mythic object in the farmyard."
+}

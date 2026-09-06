@@ -40,6 +40,11 @@ SUCCESS_MARKERS = ("FULL QH PIPELINE: PASS", "FULL VIDEO PIPELINE: PASS")
 #: A pipeline state that means "waiting on Google", not "this episode is wrong".
 FLOW_PARKED = "WAITING_FOR_FLOW"
 
+#: Statuses that mean a human decided this episode is done for now. Resuming one of these
+#: would restart a run the operator has just stopped from the panel, which is the opposite of
+#: what stopping it meant.
+OPERATOR_TERMINAL = ("STOPPED", "CANCELLED", "PAUSED", "DELETED")
+
 
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -100,7 +105,10 @@ def failure_reason(job_id: str) -> str:
         return specific[-1][:300]
     if raised:
         return raised[-1][:300]
-    return lines[-1][:300] if lines else ""
+    # Nothing failed in this attempt's own output: the process was killed — a service restart,
+    # a stop from the panel, a reboot. Saying so keeps the repeat-detection meaningful; quoting
+    # whatever line happened to be last made ordinary stage lines look like failures.
+    return "interrupted with no failure recorded"
 
 
 def published(project: Path) -> bool:
@@ -150,6 +158,9 @@ def main() -> int:
 
         if published(project) or any(marker in text for marker in SUCCESS_MARKERS):
             say(f"episode {job.get('video_id')} is finished: {project}")
+            return 0
+        if status in OPERATOR_TERMINAL:
+            say(f"{status.lower()} from the panel, so the episode stays stopped")
             return 0
         if status == "RUNNING" and pid_is_live(job.get("pid")):
             time.sleep(args.poll_seconds)

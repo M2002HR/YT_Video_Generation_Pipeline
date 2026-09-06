@@ -23,13 +23,13 @@
   },
   "motion": {
     "enabled": true,
-    "strength": 0.035,
+    "strength": 0.085,
     "supersample": 2,
     "cycle": [
       "zoom_in",
-      "still",
       "zoom_out",
-      "slow_zoom_in"
+      "slow_zoom_in",
+      "slow_zoom_out"
     ]
   },
   "subtitles": {

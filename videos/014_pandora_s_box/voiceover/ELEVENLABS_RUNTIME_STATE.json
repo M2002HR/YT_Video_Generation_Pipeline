@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "video_id": "014",
+  "created_at": "2026-09-06T04:47:06.448321+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/014_pandora_s_box/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "5ec893698cef207bd092a1526274a01e25e30bcc5aada172390d1be7649df277",
+  "settings": {
+    "voice": "Mark - Natural Conversations",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.3,
+    "similarity": 0.5,
+    "style": 0.15,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-06T04:47:12.053963+00:00",
+      "elapsed_seconds": 5.605
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-06T04:47:17.952627+00:00",
+      "elapsed_seconds": 5.898,
+      "settings": {
+        "voice": "Mark - Natural Conversations",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.3,
+        "similarity": 0.5,
+        "style": 0.15,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Mark - Natural Conversations",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.3,
+        "similarity": 0.5,
+        "style": 0.15,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-06T04:47:18.040900+00:00",
+      "elapsed_seconds": 5.986,
+      "characters": 1182
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-06T04:47:18.551100+00:00",
+      "elapsed_seconds": 0.509,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "trusted_click",
+        "delay_seconds": 0.392,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-06T04:47:35.361372+00:00",
+      "elapsed_seconds": 17.32,
+      "choice": "Download latest  tts-download-latest-button",
+      "retry": false
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-09-06T04:47:41.788737+00:00",
+      "elapsed_seconds": 23.747,
+      "bytes": 1420154,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-09-06T04:47:41.788746+00:00",
+  "submitted_at": "2026-09-06T04:47:18.550823+00:00",
+  "download_choice": "Download latest  tts-download-latest-button",
+  "download_requested_at": 1788670055.3610616,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-06T04:47:41.788666+00:00"
+}

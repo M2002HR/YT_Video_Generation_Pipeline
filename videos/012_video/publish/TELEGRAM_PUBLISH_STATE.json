@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "status": "DONE",
+  "published_at": "2026-09-05T21:13:10.709103+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "message_id": 24329,
+  "file": "assets/renders/polished.mp4",
+  "bytes": 36157484,
+  "sha256": "ad2ed59d0a11752d38dcd3f9d7cf2c447cf888503e071fc4dec0e18e1f001d8a",
+  "duration_seconds": 57.391,
+  "elapsed_seconds": 55.536,
+  "qc_report": "render/QC_REPORT_polished.json",
+  "summary": {
+    "video": "012_video",
+    "duration_seconds": 57.391,
+    "beat_count": 16,
+    "video_beat_count": 2,
+    "image_beat_count": 14,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 5.86,
+      "transition_end": 9.38
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 259.275,
+      "realtime_factor": 4.518,
+      "peak_child_rss_mb": 1929.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  },
+  "caption": "✅ Video pipeline complete\n🎬 012_video\n⏱ Duration: 0:57\n🎞 Beats: 16 (2 video · 14 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 4:19 wall (4.518x realtime) · 2 thread(s) · peak 1929.8 MB\nArtifact: ad2ed59d0a11"
+}

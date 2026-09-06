@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "78babc9a-5e45-4a3c-a9bb-20ced491e213",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-05T19:22:27.088473+00:00",
   "topic": "اهرام مصر",
   "video_id": "012",
@@ -54,5 +54,6 @@
   "started_at": "2026-09-05T19:22:27.097499+00:00",
   "resumed_at": "2026-09-05T20:34:00.920657+00:00",
   "resume_count": 17,
-  "stopped_by": "panel"
+  "stopped_by": "panel",
+  "completed_at": "2026-09-05T20:42:16.535754+00:00"
 }

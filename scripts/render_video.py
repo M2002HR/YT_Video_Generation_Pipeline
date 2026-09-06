@@ -158,6 +158,10 @@ def motion_filter(
     frames = max(2, int(math.ceil(duration * fps)))
     strength = max(0.0, min(float(strength), 0.10))
     supersample = max(1, min(int(supersample), 4))
+    # A still cut against a still is a jump; a brief dissolve at the head of each shot turns the
+    # same cut into a transition without moving a single boundary the narration measured.
+    fade_in = max(0.0, min(float(os.getenv("YT_BEAT_FADE_SECONDS", "0.18")), duration / 3))
+    fade = f"fade=t=in:st=0:d={fade_in:.3f}," if fade_in > 0.01 else ""
 
     if motion == "still" or strength <= 0:
         return (
@@ -166,6 +170,7 @@ def motion_filter(
             f"crop={width}:{height},"
             "setsar=1,"
             f"fps={fps},"
+            f"{fade}"
             f"trim=duration={duration:.6f},"
             "setpts=PTS-STARTPTS"
             f"[{label}]"
@@ -203,6 +208,7 @@ def motion_filter(
         f"y='{y}':"
         f"d=1:s={work_width}x{work_height}:fps={fps},"
         f"scale={width}:{height}:flags=lanczos,"
+        f"{fade}"
         f"trim=duration={duration:.6f},"
         "setpts=PTS-STARTPTS"
         f"[{label}]"
@@ -227,6 +233,64 @@ def probe_video(ffprobe: str, path: Path) -> dict[str, Any]:
     )
     payload = json.loads(result.stdout)
     return payload if isinstance(payload, dict) else {}
+
+
+#: How often a running render says where it has got to. The render is the longest step in an
+#: episode, and it used to be silent until it finished, so a slow render and a stuck one looked
+#: identical in the log.
+RENDER_PROGRESS_INTERVAL_SECONDS = float(os.getenv("YT_RENDER_PROGRESS_INTERVAL_SECONDS", "60"))
+
+
+def run_with_progress(
+    command: list[str],
+    *,
+    total_seconds: float,
+    interval: float = RENDER_PROGRESS_INTERVAL_SECONDS,
+) -> None:
+    """Run ffmpeg, reporting the timeline position it has encoded on a fixed cadence.
+
+    ``-progress pipe:1`` is ffmpeg's own machine-readable stream, so the percentage is measured
+    against the timeline's known duration rather than guessed from wall time. Failure still
+    raises ``CalledProcessError``, exactly as ``subprocess.run(check=True)`` did.
+    """
+    binary = next((index for index, part in enumerate(command) if part.endswith("ffmpeg")), 0)
+    progressive = [*command]
+    progressive[binary + 1 : binary + 1] = ["-nostats", "-progress", "pipe:1"]
+    process = subprocess.Popen(progressive, stdout=subprocess.PIPE, text=True, bufsize=1)
+    started = time.monotonic()
+    last_report = started
+    position = 0.0
+    speed = ""
+    frame = ""
+    assert process.stdout is not None
+    for line in process.stdout:
+        key, _, value = line.strip().partition("=")
+        value = value.strip()
+        if key == "out_time_ms":
+            try:
+                position = int(value) / 1_000_000
+            except ValueError:
+                pass
+        elif key == "speed":
+            speed = value
+        elif key == "frame":
+            frame = value
+        now = time.monotonic()
+        if now - last_report < interval:
+            continue
+        last_report = now
+        elapsed = now - started
+        share = min(1.0, position / total_seconds) if total_seconds > 0 else 0.0
+        remaining = (elapsed / share - elapsed) if share > 0.02 else 0.0
+        left = f" · ~{remaining / 60:.1f}m left" if remaining else ""
+        print(
+            f"render progress: {share * 100:.0f}% ({position:.1f}s/{total_seconds:.1f}s) "
+            f"· frame {frame or '?'} · {speed or '?'} · {elapsed / 60:.1f}m elapsed{left}",
+            flush=True,
+        )
+    code = process.wait()
+    if code != 0:
+        raise subprocess.CalledProcessError(code, progressive)
 
 
 def main() -> None:
@@ -589,7 +653,7 @@ def main() -> None:
         return
 
     started = time.perf_counter()
-    subprocess.run(command, check=True)
+    run_with_progress(command, total_seconds=duration)
     elapsed = time.perf_counter() - started
 
     probe = probe_video(ffprobe, output_path)

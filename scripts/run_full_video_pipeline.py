@@ -224,7 +224,10 @@ def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
         # The server has two vCPUs.  Use the full CPU ceiling, never more,
         # while niceness keeps the interactive services schedulable.
         "resource_limits": {"ffmpeg_threads": 2, "filter_threads": 2, "filter_complex_threads": 2},
-        "motion": {"enabled": True, "strength": 0.035, "supersample": 2, "cycle": ["zoom_in", "still", "zoom_out", "slow_zoom_in"]},
+        # Every still moves, and consecutive stills move in opposite directions: a cut between a
+        # push-in and a pull-out reads as a real change of shot, where a cut into a motionless
+        # frame read as a freeze. "still" is deliberately not in the cycle any more.
+        "motion": {"enabled": True, "strength": 0.085, "supersample": 2, "cycle": ["zoom_in", "zoom_out", "slow_zoom_in", "slow_zoom_out"]},
         # margin_v is omitted on purpose: build_timeline derives it from the frame height so
         # captions clear the platform UI band at the bottom of a vertical short (T9.8).
         "subtitles": {"enabled": True, "font_name": "DejaVu Sans", "font_size": 56, "bold": True, "outline": 3, "shadow": 0, "max_words_per_cue": 6, "max_chars_per_line": 34, "max_lines": 2},

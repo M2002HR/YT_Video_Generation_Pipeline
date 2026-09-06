@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "provider": "Pixabay web UI",
+  "source_url": "https://pixabay.com/music/ancient-temple-mysterious-ethnic-music-5874/",
+  "status": "PRIMARY_FAILED",
+  "updated_at": "2026-09-06T05:05:12.174252+00:00",
+  "error": "RuntimeError: Pixabay download did not reach Chrome's download directory before timeout."
+}

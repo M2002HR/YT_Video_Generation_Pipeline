@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "1854465b-5981-4a46-8fb2-aacf5ce3094e",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-06T03:18:57.919237+00:00",
   "topic": "Neural networks and AI",
   "video_id": "013",
@@ -51,5 +51,6 @@
     "--publish",
     "--commit"
   ],
-  "started_at": "2026-09-06T03:18:57.919959+00:00"
+  "started_at": "2026-09-06T03:18:57.919959+00:00",
+  "completed_at": "2026-09-06T03:44:46.915429+00:00"
 }

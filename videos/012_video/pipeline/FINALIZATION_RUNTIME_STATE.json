@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "012_video",
-  "started_at": "2026-09-05T20:37:32.346706+00:00",
+  "started_at": "2026-09-05T21:07:38.474348+00:00",
   "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-05T20:37:32.346981+00:00",
+      "started_at": "2026-09-05T21:07:38.474662+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/012_video"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-05T20:37:32.489925+00:00",
-      "elapsed_seconds": 0.143,
+      "ended_at": "2026-09-05T21:07:38.648015+00:00",
+      "elapsed_seconds": 0.173,
       "artifact": "timeline/TIMELINE.json",
-      "artifact_bytes": 8400
+      "artifact_bytes": 12119
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-05T20:37:32.490357+00:00",
+      "started_at": "2026-09-05T21:07:38.648430+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -31,14 +31,14 @@
         "0.800"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-05T20:41:03.030395+00:00",
-      "elapsed_seconds": 210.54,
+      "ended_at": "2026-09-05T21:11:58.212228+00:00",
+      "elapsed_seconds": 259.564,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 27534377
+      "artifact_bytes": 35921270
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-05T20:41:03.031809+00:00",
+      "started_at": "2026-09-05T21:11:58.213946+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -48,14 +48,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-05T20:41:08.371628+00:00",
-      "elapsed_seconds": 5.34,
+      "ended_at": "2026-09-05T21:12:05.228595+00:00",
+      "elapsed_seconds": 7.015,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-05T20:41:08.372041+00:00",
+      "started_at": "2026-09-05T21:12:05.229010+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -64,14 +64,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/012_video/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-05T20:41:11.032954+00:00",
-      "elapsed_seconds": 2.661,
+      "ended_at": "2026-09-05T21:12:07.969032+00:00",
+      "elapsed_seconds": 2.74,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 27769180
+      "artifact_bytes": 36157484
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-05T20:41:11.033390+00:00",
+      "started_at": "2026-09-05T21:12:07.969442+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -81,22 +81,66 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-05T20:41:16.471906+00:00",
-      "elapsed_seconds": 5.439,
+      "ended_at": "2026-09-05T21:12:14.941356+00:00",
+      "elapsed_seconds": 6.972,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
-      "stage": "git_commit_push",
+      "stage": "publish_telegram",
+      "started_at": "2026-09-05T21:12:14.941916+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/012_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/012_video/assets/renders/polished.mp4"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-05T20:37:32.346706+00:00",
-      "ended_at": "2026-09-05T20:41:21.736763+00:00",
-      "elapsed_seconds": 229.39,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "a6f7ccb4fb7fee185a97d573e6eaa8180b6f9ffb"
+      "ended_at": "2026-09-05T21:13:10.783015+00:00",
+      "elapsed_seconds": 55.841,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 1590
     }
   ],
-  "completed_at": "2026-09-05T20:41:21.736763+00:00",
-  "total_elapsed_seconds": 453.513
+  "completed_at": "2026-09-05T21:13:10.783472+00:00",
+  "total_elapsed_seconds": 332.305,
+  "summary": {
+    "video": "012_video",
+    "duration_seconds": 57.391,
+    "beat_count": 16,
+    "video_beat_count": 2,
+    "image_beat_count": 14,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 5.86,
+      "transition_end": 9.38
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 259.275,
+      "realtime_factor": 4.518,
+      "peak_child_rss_mb": 1929.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

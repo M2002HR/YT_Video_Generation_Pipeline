@@ -11,20 +11,29 @@ Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:01.42,Default,,0,0,0,,Sorting stones by the garden wall,
+Dialogue: 0,0:00:01.42,0:00:04.44,Default,,0,0,0,,I wondered, why do Egypt's\Npyramids
+Dialogue: 0,0:00:04.44,0:00:05.86,Default,,0,0,0,,still raise so many questions?
+Dialogue: 0,0:00:07.34,0:00:08.48,Default,,0,0,0,,So I reached for the volume
+Dialogue: 0,0:00:08.48,0:00:09.38,Default,,0,0,0,,marked Egypt.
 Dialogue: 0,0:00:10.78,0:00:12.68,Default,,0,0,0,,How were such immense structures\Nplanned?
-Dialogue: 0,0:00:13.52,0:00:15.35,Default,,0,0,0,,How were heavy materials moved\Ninto
-Dialogue: 0,0:00:15.35,0:00:15.66,Default,,0,0,0,,place?
-Dialogue: 0,0:00:17.02,0:00:18.92,Default,,0,0,0,,How did builders keep each side
-Dialogue: 0,0:00:18.92,0:00:19.24,Default,,0,0,0,,aligned?
+Dialogue: 0,0:00:13.52,0:00:15.28,Default,,0,0,0,,How were heavy materials moved\Ninto
+Dialogue: 0,0:00:15.28,0:00:15.66,Default,,0,0,0,,place?
+Dialogue: 0,0:00:17.02,0:00:18.78,Default,,0,0,0,,How did builders keep each side
+Dialogue: 0,0:00:18.78,0:00:19.24,Default,,0,0,0,,aligned?
 Dialogue: 0,0:00:20.44,0:00:22.16,Default,,0,0,0,,What tools made the work possible?
-Dialogue: 0,0:00:23.28,0:00:25.25,Default,,0,0,0,,How was a project this complex
-Dialogue: 0,0:00:25.25,0:00:25.58,Default,,0,0,0,,organized?
-Dialogue: 0,0:00:27.22,0:00:28.64,Default,,0,0,0,,What did the pyramids mean to
-Dialogue: 0,0:00:28.64,0:00:30.06,Default,,0,0,0,,the people who lived around them?
-Dialogue: 0,0:00:31.34,0:00:33.86,Default,,0,0,0,,Which clues are solid evidence,\Nand
-Dialogue: 0,0:00:33.86,0:00:35.54,Default,,0,0,0,,which interpretations remain\Ndebated?
-Dialogue: 0,0:00:37.18,0:00:39.90,Default,,0,0,0,,That distinction matters, because\Nthis brief
-Dialogue: 0,0:00:39.90,0:00:42.62,Default,,0,0,0,,includes no source notes to check.
-Dialogue: 0,0:00:43.58,0:00:45.96,Default,,0,0,0,,So rather than turn uncertainty\Ninto
-Dialogue: 0,0:00:45.96,0:00:48.35,Default,,0,0,0,,a confident story, we stop where
-Dialogue: 0,0:00:48.35,0:00:49.54,Default,,0,0,0,,the evidence stops.
+Dialogue: 0,0:00:23.28,0:00:25.12,Default,,0,0,0,,How was a project this complex
+Dialogue: 0,0:00:25.12,0:00:25.58,Default,,0,0,0,,organized?
+Dialogue: 0,0:00:27.22,0:00:28.52,Default,,0,0,0,,What did the pyramids mean to
+Dialogue: 0,0:00:28.52,0:00:30.06,Default,,0,0,0,,the people who lived around them?
+Dialogue: 0,0:00:31.34,0:00:33.54,Default,,0,0,0,,Which clues are solid evidence and
+Dialogue: 0,0:00:33.54,0:00:35.54,Default,,0,0,0,,which interpretations remain\Ndebated?
+Dialogue: 0,0:00:37.18,0:00:40.16,Default,,0,0,0,,That distinction matters because\Nthis brief
+Dialogue: 0,0:00:40.16,0:00:42.62,Default,,0,0,0,,includes no source notes to check.
+Dialogue: 0,0:00:43.58,0:00:45.64,Default,,0,0,0,,So rather than turn uncertainty\Ninto
+Dialogue: 0,0:00:45.64,0:00:48.30,Default,,0,0,0,,a confident story, we stop where
+Dialogue: 0,0:00:48.30,0:00:49.54,Default,,0,0,0,,the evidence stops.
+Dialogue: 0,0:00:50.90,0:00:52.32,Default,,0,0,0,,A mystery is better when the
+Dialogue: 0,0:00:52.32,0:00:53.84,Default,,0,0,0,,facts stay intact.
+Dialogue: 0,0:00:54.38,0:00:56.22,Default,,0,0,0,,Like and subscribe to grow more
+Dialogue: 0,0:00:56.22,0:00:56.96,Default,,0,0,0,,questions.
