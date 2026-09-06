@@ -1,0 +1,16 @@
+{
+  "style_id": "luminous_mythic_manuscript_gouache_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "manuscript illustration",
+  "secondary_treatment": "subtle opaque gouache modeling with restrained gold-leaf illumination accents",
+  "texture_family": "aged parchment paper grain with lightly worn painted edges and delicate gilded surface texture",
+  "palette_summary": "deep lapis blue, aged parchment cream, muted ochre and umber, restrained burgundy and olive, with sparse luminous gold-leaf accents",
+  "line_treatment": "expressive hand-painted contour lines with elegant manuscript-style silhouettes, controlled brush variation, and selective fine ink detailing",
+  "lighting": "symbolic luminous illumination rather than realistic light, with warm gilded highlights emerging against deep lapis and parchment tones",
+  "subject_constraints": "Use a mythic ancient Greek visual vocabulary: Pandora, a large lidded storage jar or pithos, simple archaic Greek garments, domestic architectural hints, stylized winds, shadowy personifications of hardship, and hope represented through restrained symbolic light. Compose scenes like richly illustrated manuscript folios with decorative borders and editorial storybook staging, but avoid introducing medieval European objects or costumes into the Greek narrative.",
+  "historical_accuracy_note": "Depict the earliest container as a Greek jar or pithos rather than a modern box whenever the mythic object is shown. Keep clothing, vessels, furniture, and architectural cues broadly compatible with ancient Greek material culture while allowing the illuminated-manuscript presentation to remain deliberately anachronistic as a framing medium.",
+  "hero_rendering_in_world": "If the protagonist appears in a transitional or imagined world shot, preserve his tall slim silhouette, chestnut hair shape, beard and moustache, green sweater, dark blue overalls, and rust-orange boots, translated into opaque hand-painted gouache with manuscript-style contouring and restrained gilded accents.",
+  "negative_constraints": "no Greek black-figure pottery rendering, no fresco look, no photorealism, no 3D CGI, no glossy digital concept-art finish, no anime, no modern fantasy armor, no medieval European costumes, no excessive gold ornament, no beat-by-beat medium switching",
+  "reason": "A new luminous illuminated-manuscript style gives the myth a sense of ancient wonder, temptation, and symbolic consequence while supporting the script's shift from a sealed mystery to an uncontrollable release and the final survival of hope. Deep lapis and restrained gold provide a strong visual language for darkness versus remaining hope, while expressive gouache figures keep the story emotionally readable in vertical compositions. Creating a new style also follows the operator directive and avoids repeating the recently used Greek black-figure fresco, archaeological engraving, retro ink, and technical-network treatments."
+}

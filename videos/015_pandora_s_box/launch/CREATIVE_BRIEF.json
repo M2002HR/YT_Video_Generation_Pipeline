@@ -1,0 +1,22 @@
+{
+  "working_title": "",
+  "audience": "",
+  "narrative_angle": "",
+  "must_include": "",
+  "must_avoid": "",
+  "source_notes": "",
+  "_qh": {
+    "hero_presence_mode": "opener_only",
+    "world_style_policy": "new",
+    "world_style_id": "",
+    "world_style_hint": "luminous mythic illuminated-manuscript gouache: deep lapis blue, aged parchment, restrained gold-leaf accents, expressive hand-painted figures, rich editorial storybook composition; no black-figure fresco, no photorealism, no 3D",
+    "min_duration_seconds": 60.0,
+    "max_duration_seconds": 90.0,
+    "gemini_image_model": "nano_banana_2",
+    "flow_video_model": "gemini_omni_1_1_flash",
+    "flow_resolution": "720p",
+    "opening_a_source_seconds": 8,
+    "opening_b_source_seconds": 4,
+    "show_subtitles": true
+  }
+}

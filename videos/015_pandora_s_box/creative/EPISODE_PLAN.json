@@ -1,0 +1,14 @@
+{
+  "opening_activity": "workshop repair",
+  "opening_location": "workshop",
+  "curiosity_trigger": "hearing loose screws rattle inside a small lidded parts tin as he reaches to open it",
+  "trigger_object": "lidded parts tin",
+  "reaction": "pauses with fingers on the lid, listens to the rattle, and looks thoughtfully at the container",
+  "book_retrieval": "sets the parts tin down, wipes his hands on his overalls, and pulls a worn book from the workshop shelf",
+  "camera_pattern": "slow_push_in",
+  "book_template_id": "001",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "luminous mythic illuminated-manuscript gouache with deep lapis blue, aged parchment, restrained gold-leaf accents, expressive hand-painted figures, and rich editorial storybook composition; no black-figure fresco, photorealism, or 3D",
+  "reason": "Workshop repair naturally includes loose screws and a small lidded container, giving the opening question a physical trigger without forcing a literal Pandora object into the farm setting."
+}

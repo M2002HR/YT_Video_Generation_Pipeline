@@ -1,0 +1,505 @@
+{
+  "schema_version": 2,
+  "video_id": "015",
+  "topic": "Pandora's box",
+  "created_at": "2026-09-06T16:02:08Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:00Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:03Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:06Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:08Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:11Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T16:44:16Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "001",
+      "world_style_id": "luminous_mythic_manuscript_gouache_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:17Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:20Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:22Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:25Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:27Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:30Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:32Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:34Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:37Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:39Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:42Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:44Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:47Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:49Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:52Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:54Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:44:57Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:00Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:02Z",
+      "artifact": "beat_012.png"
+    },
+    "beat_image_013": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:05Z",
+      "artifact": "beat_013.png"
+    },
+    "beat_image_014": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:07Z",
+      "artifact": "beat_014.png"
+    },
+    "beat_image_015": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:10Z",
+      "artifact": "beat_015.png"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:13Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-06T16:45:15Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-06T16:45:18Z",
+      "body_images": 15
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 33.089,
+      "at": "2026-09-06T16:02:43Z",
+      "words": 142
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 30.076,
+      "at": "2026-09-06T16:03:15Z",
+      "words": 214
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 24.047,
+      "at": "2026-09-06T16:03:42Z",
+      "activity": "workshop repair"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 24.07,
+      "at": "2026-09-06T16:04:09Z",
+      "style_id": "luminous_mythic_manuscript_gouache_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 42.128,
+      "at": "2026-09-06T16:04:54Z",
+      "sha256": "cdabc7064e15e2ee30407f4985b5357bf74afd75381ad489a93bc39df405717b",
+      "model": "nano_banana_2",
+      "catalog_path": "007_luminous_mythic_manuscript_gouache_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.002,
+      "at": "2026-09-06T16:04:57Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "001",
+      "world_style_id": "luminous_mythic_manuscript_gouache_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 45.124,
+      "at": "2026-09-06T16:05:45Z",
+      "beats": 15
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.049,
+      "at": "2026-09-06T16:06:06Z",
+      "prompt_sha256": "411f8cfd765a70c9b1b652cf76b039b6d8adfc97cad5c87310beede449b04ad7"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 63.168,
+      "at": "2026-09-06T16:07:11Z",
+      "sha256": "f13cb1c051890203f24c0732460b46466d57a60ac7c44b07456c690fbe82185f",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-06T16:08:32Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "001",
+      "world_style_id": "luminous_mythic_manuscript_gouache_001"
+    },
+    {
+      "stage": "book_design_sheet",
+      "status": "DONE",
+      "elapsed_seconds": 48.133,
+      "at": "2026-09-06T16:09:26Z",
+      "sha256": "2485ef40fc012d3ecd55c342a7281e772693dfabe11ad3cf2b54905a8e388a59"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.208,
+      "at": "2026-09-06T16:09:29Z",
+      "template_id": "001",
+      "sha256": "8d66f8c8f27b2da6cf39c7dda15af9d59a1e75637f247557c4a625a302200f32"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 18.038,
+      "at": "2026-09-06T16:09:50Z",
+      "prompt_sha256": "15fc6198b486a68b256e0167d13e843f42527b0a84166c4a669e696f3c6d72fb"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 24.06,
+      "at": "2026-09-06T16:10:16Z",
+      "prompt_sha256": "ca51c178896df17c4fbee5f3afc5347618997f7b87c5a517c181d7ba9e7128f0"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 81.276,
+      "at": "2026-09-06T16:11:40Z",
+      "sha256": "8e0c99fbe4b8f9cda53bb7d22df89152982f1f67c21b6a205572971712b3b10a",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 78.224,
+      "at": "2026-09-06T16:13:01Z",
+      "sha256": "c46eec6f0c83ec80361c40d3705d186fece16c99ed6250f2a41cc373ede97a0c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 81.237,
+      "at": "2026-09-06T16:14:25Z",
+      "sha256": "5e317cedb4258db3e0da73362ce6440ea00524aeec079bc567ceffd6d3849eb0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 99.254,
+      "at": "2026-09-06T16:16:07Z",
+      "sha256": "c196ac1c8a41d9479e6c616e291ee6fb1aa5b470495fe9545daaf6b1bf41ffc6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 84.315,
+      "at": "2026-09-06T16:17:33Z",
+      "sha256": "5084579a2cf6cd64dda8ecc6241997dbd3b0dc6d705a608e3da8e8dcffbbb884",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 78.236,
+      "at": "2026-09-06T16:18:54Z",
+      "sha256": "05ebe66d2b8a5716ec6261b40f6ca6bd1c292ba54dbf065cf5c5fd6c0f83ffc6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 90.296,
+      "at": "2026-09-06T16:20:28Z",
+      "sha256": "f9232c76a21539032d91ebb20d763fd95865a22e42abef1c59cd25c94453ca2d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T16:22:18Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "001",
+      "world_style_id": "luminous_mythic_manuscript_gouache_001"
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 75.27,
+      "at": "2026-09-06T16:24:12Z",
+      "sha256": "b380e5d01bb7f1379ac65adc57d7872faf0b3522fa169cf8f169760b20b9ac8a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 84.27,
+      "at": "2026-09-06T16:25:39Z",
+      "sha256": "42da4d3d11fece5d907b2be4ff3abfe8691a8cc3f7db11cce6c99bf6ac0c7a1b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 102.334,
+      "at": "2026-09-06T16:27:24Z",
+      "sha256": "472806a974d5b9cf7f79ed79f81b252f884d8b931f61df4fa1c369af32b72307",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 84.241,
+      "at": "2026-09-06T16:28:50Z",
+      "sha256": "42ed0be6ba789e72420d1ee064de3b6434cbe49490d128292b0e575f3a83a9d6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 81.242,
+      "at": "2026-09-06T16:30:14Z",
+      "sha256": "d3a54865359de6ba02a6b75be5e46564e18c546a4ab3b4395db2f051e541e732",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 84.314,
+      "at": "2026-09-06T16:31:41Z",
+      "sha256": "ba8566e546bf3718c479a00ca431d38e762a86bb75f4b7ee51b524d56568188a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 105.308,
+      "at": "2026-09-06T16:33:29Z",
+      "sha256": "949a518adf8ea75cb9b80f54ec13ce965d7f5867dd131f585b4cb9035722f401",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_015",
+      "status": "DONE",
+      "elapsed_seconds": 87.244,
+      "at": "2026-09-06T16:34:59Z",
+      "sha256": "89e14b427f270f404f7879058791342f2e52f4faf157c77488666e2d9af75fdd",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 105.404,
+      "at": "2026-09-06T16:36:47Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "a493e8e4bedc8b2cdf33a9b1f4245cf3969e3ede0229ca4904f9ebafd38bb739"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 120.423,
+      "at": "2026-09-06T16:38:50Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "ecea6defc29d62209870964b53d643a4b93dfd2e065e26fdc9ab73af65d226a6"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T16:44:16Z",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "001",
+      "world_style_id": "luminous_mythic_manuscript_gouache_001"
+    }
+  ],
+  "updated_at": "2026-09-06T16:45:18Z"
+}

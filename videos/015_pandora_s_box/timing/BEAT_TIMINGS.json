@@ -1,0 +1,166 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 89.757,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "While I sort these loose screws, one question keeps snagging me. Why does Pandora's box mean disaster? I reach for the answer and the old story opens. Pandora is given a sealed container and warned not to open it. In the oldest Greek telling, it is actually a jar, not a box. That warning turns the container into a mystery sitting within reach. curiosity keeps pressing until pandora finally lifts the lid then the trouble is suddenly bigger than the choice that released it evils and hardships rush into the world before she can contain them pandora shuts the container but what escaped cannot simply be called back only hope remains inside that strange ending keeps the myth from being just a warning about curiosity. The story is really about consequences that can outrun the action that starts them. One small decision can release problems far larger than the decision itself. That is why we still talk about opening Pandora's box. We mean a choice may trigger a chain of trouble that keeps spreading. The danger is not that every forbidden thing must stay untouched forever. It is that some doors are much easier to open than to close. Sometimes the smallest opening changes everything that follows. Like and subscribe to grow more questions.",
+  "word_count": 214,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Pandora is given a sealed container and warned not to open it.",
+      "speech_start": 12.74,
+      "speech_end": 16.32,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 17.32,
+      "display_duration": 17.32
+    },
+    {
+      "beat_id": 2,
+      "narration": "In the oldest Greek telling, it is actually a jar, not a box.",
+      "speech_start": 17.32,
+      "speech_end": 21.58,
+      "match_confidence": 1.0,
+      "display_start": 17.32,
+      "display_end": 22.76,
+      "display_duration": 5.44
+    },
+    {
+      "beat_id": 3,
+      "narration": "That warning turns the container into a mystery sitting within reach.",
+      "speech_start": 22.76,
+      "speech_end": 26.56,
+      "match_confidence": 1.0,
+      "display_start": 22.76,
+      "display_end": 27.64,
+      "display_duration": 4.88
+    },
+    {
+      "beat_id": 4,
+      "narration": "Curiosity keeps pressing until Pandora finally lifts the lid.",
+      "speech_start": 27.64,
+      "speech_end": 31.18,
+      "match_confidence": 1.0,
+      "display_start": 27.64,
+      "display_end": 31.18,
+      "display_duration": 3.54
+    },
+    {
+      "beat_id": 5,
+      "narration": "Then the trouble is suddenly bigger than the choice that released it.",
+      "speech_start": 31.18,
+      "speech_end": 34.74,
+      "match_confidence": 1.0,
+      "display_start": 31.18,
+      "display_end": 34.74,
+      "display_duration": 3.56
+    },
+    {
+      "beat_id": 6,
+      "narration": "Evils and hardships rush into the world before she can contain them.",
+      "speech_start": 34.74,
+      "speech_end": 40.5,
+      "match_confidence": 1.0,
+      "display_start": 34.74,
+      "display_end": 40.5,
+      "display_duration": 5.76
+    },
+    {
+      "beat_id": 7,
+      "narration": "Pandora shuts the container, but what escaped cannot simply be called back.",
+      "speech_start": 40.5,
+      "speech_end": 45.66,
+      "match_confidence": 1.0,
+      "display_start": 40.5,
+      "display_end": 46.7,
+      "display_duration": 6.2
+    },
+    {
+      "beat_id": 8,
+      "narration": "Only hope remains inside.",
+      "speech_start": 46.7,
+      "speech_end": 48.28,
+      "match_confidence": 1.0,
+      "display_start": 46.7,
+      "display_end": 48.28,
+      "display_duration": 1.58
+    },
+    {
+      "beat_id": 9,
+      "narration": "That strange ending keeps the myth from being just a warning about curiosity.",
+      "speech_start": 48.28,
+      "speech_end": 53.58,
+      "match_confidence": 1.0,
+      "display_start": 48.28,
+      "display_end": 53.58,
+      "display_duration": 5.3
+    },
+    {
+      "beat_id": 10,
+      "narration": "The story is really about consequences that can outrun the action that starts them.",
+      "speech_start": 53.58,
+      "speech_end": 59.62,
+      "match_confidence": 1.0,
+      "display_start": 53.58,
+      "display_end": 60.6,
+      "display_duration": 7.02
+    },
+    {
+      "beat_id": 11,
+      "narration": "One small decision can release problems far larger than the decision itself.",
+      "speech_start": 60.6,
+      "speech_end": 64.74,
+      "match_confidence": 1.0,
+      "display_start": 60.6,
+      "display_end": 65.88,
+      "display_duration": 5.28
+    },
+    {
+      "beat_id": 12,
+      "narration": "That is why we still talk about opening Pandora's box.",
+      "speech_start": 65.88,
+      "speech_end": 68.94,
+      "match_confidence": 1.0,
+      "display_start": 65.88,
+      "display_end": 68.94,
+      "display_duration": 3.06
+    },
+    {
+      "beat_id": 13,
+      "narration": "We mean a choice may trigger a chain of trouble that keeps spreading.",
+      "speech_start": 68.94,
+      "speech_end": 73.38,
+      "match_confidence": 1.0,
+      "display_start": 68.94,
+      "display_end": 73.38,
+      "display_duration": 4.44
+    },
+    {
+      "beat_id": 14,
+      "narration": "The danger is not that every forbidden thing must stay untouched forever.",
+      "speech_start": 73.38,
+      "speech_end": 78.84,
+      "match_confidence": 1.0,
+      "display_start": 73.38,
+      "display_end": 78.84,
+      "display_duration": 5.46
+    },
+    {
+      "beat_id": 15,
+      "narration": "It is that some doors are much easier to open than to close.",
+      "speech_start": 78.84,
+      "speech_end": 82.88,
+      "match_confidence": 1.0,
+      "display_start": 78.84,
+      "display_end": 89.757,
+      "display_duration": 10.917
+    }
+  ]
+}

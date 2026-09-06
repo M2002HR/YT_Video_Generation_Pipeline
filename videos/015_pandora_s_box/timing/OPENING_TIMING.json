@@ -1,0 +1,147 @@
+{
+  "audio_duration_seconds": 89.757,
+  "spark_start": 0.04,
+  "spark_end": 7.52,
+  "spark_duration": 7.48,
+  "transition_start": 8.86,
+  "transition_end": 11.26,
+  "transition_duration": 2.4,
+  "clip_a_target_seconds": 7.52,
+  "clip_b_target_seconds": 3.74,
+  "body_start": 12.74,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "While I sort these loose screws, one question keeps snagging me: why does Pandora's box mean disaster?",
+      "speech_start": 0.04,
+      "speech_end": 7.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I reach for the answer, and the old story opens.",
+      "speech_start": 8.86,
+      "speech_end": 11.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Pandora is given a sealed container and warned not to open it.",
+      "speech_start": 12.74,
+      "speech_end": 16.32,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "In the oldest Greek telling, it is actually a jar, not a box.",
+      "speech_start": 17.32,
+      "speech_end": 21.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "That warning turns the container into a mystery sitting within reach.",
+      "speech_start": 22.76,
+      "speech_end": 26.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Curiosity keeps pressing until Pandora finally lifts the lid.",
+      "speech_start": 27.64,
+      "speech_end": 31.18,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Then the trouble is suddenly bigger than the choice that released it.",
+      "speech_start": 31.18,
+      "speech_end": 34.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Evils and hardships rush into the world before she can contain them.",
+      "speech_start": 34.74,
+      "speech_end": 40.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Pandora shuts the container, but what escaped cannot simply be called back.",
+      "speech_start": 40.5,
+      "speech_end": 45.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Only hope remains inside.",
+      "speech_start": 46.7,
+      "speech_end": 48.28,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "That strange ending keeps the myth from being just a warning about curiosity.",
+      "speech_start": 48.28,
+      "speech_end": 53.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "The story is really about consequences that can outrun the action that starts them.",
+      "speech_start": 53.58,
+      "speech_end": 59.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "One small decision can release problems far larger than the decision itself.",
+      "speech_start": 60.6,
+      "speech_end": 64.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "That is why we still talk about opening Pandora's box.",
+      "speech_start": 65.88,
+      "speech_end": 68.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_13",
+      "narration": "We mean a choice may trigger a chain of trouble that keeps spreading.",
+      "speech_start": 68.94,
+      "speech_end": 73.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_14",
+      "narration": "The danger is not that every forbidden thing must stay untouched forever.",
+      "speech_start": 73.38,
+      "speech_end": 78.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_15",
+      "narration": "It is that some doors are much easier to open than to close.",
+      "speech_start": 78.84,
+      "speech_end": 82.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Sometimes the smallest opening changes everything that follows.",
+      "speech_start": 82.88,
+      "speech_end": 87.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 87.64,
+      "speech_end": 89.44,
+      "match_confidence": 1.0
+    }
+  ]
+}

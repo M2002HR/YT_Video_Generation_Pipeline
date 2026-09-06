@@ -1,0 +1,170 @@
+{
+  "body_duration_seconds": 78.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Pandora is given a sealed container and warned not to open it.",
+      "visual": "In luminous mythic illuminated-manuscript gouache, Pandora stands in a simple ancient Greek interior as an elder figure presents her with a large sealed pithos; Pandora's hands hover cautiously near the vessel while the giver raises one warning hand, framed by deep lapis architecture and restrained gold-leaf accents.",
+      "purpose": "show Pandora receiving the sealed container together with the warning not to open it",
+      "type": "literal",
+      "continuity": "first body image establishes Pandora, the pithos, and the manuscript world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "In the oldest Greek telling, it is actually a jar, not a box.",
+      "visual": "A clean vertical manuscript-style still centers the ancient Greek pithos alone on a low stone stand, emphasizing its tall ceramic body, rounded shoulders, and fitted lid; Pandora appears small in the background for scale, with no modern box anywhere in the composition.",
+      "purpose": "clarify that the original mythic container is a Greek jar or pithos rather than a box",
+      "type": "subject_world",
+      "continuity": "same pithos from the previous scene, isolated for a clearer historical reveal",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "That warning turns the container into a mystery sitting within reach.",
+      "visual": "Pandora sits beside the sealed pithos in a quiet lapis-and-parchment room, staring at it from arm's length while a narrow symbolic gold glow traces the lid seam, making the otherwise ordinary vessel feel charged with unanswered mystery.",
+      "purpose": "show how the warning makes the nearby sealed jar feel mysterious and irresistible",
+      "type": "metaphor",
+      "continuity": "same vessel and room, shifting from factual identification to Pandora's growing fixation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Curiosity keeps pressing until Pandora finally lifts the lid.",
+      "visual": "Close vertical composition of Pandora kneeling beside the pithos, one hand gripping the lid as she raises it a few inches; her face shows tense curiosity, and a thin ribbon of dark blue wind curls from the opening beneath a restrained gilded halo.",
+      "purpose": "depict the decisive moment when Pandora gives in to curiosity and opens the jar",
+      "type": "literal",
+      "continuity": "moves closer to the same jar as contemplation becomes action",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Then the trouble is suddenly bigger than the choice that released it.",
+      "visual": "The tiny opening at the pithos lid erupts into an enormous sweeping plume of stylized lapis, burgundy, and umber forms that tower above Pandora, visually dwarfing both her and the small motion of her hand that caused the release.",
+      "purpose": "show the consequence instantly becoming far larger than the small act that triggered it",
+      "type": "metaphor",
+      "continuity": "same opening moment, expanded dramatically upward to emphasize disproportionate consequence",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Evils and hardships rush into the world before she can contain them.",
+      "visual": "Shadowy personifications of sickness, grief, conflict, hunger, and fear stream from the pithos as expressive winglike silhouettes and wind-borne figures, racing past Pandora toward distant stylized Greek homes and fields while she reaches helplessly after them.",
+      "purpose": "show evils and hardships escaping too quickly for Pandora to stop them",
+      "type": "literal",
+      "continuity": "the towering release from the previous beat becomes a fast outward rush across the wider world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Pandora shuts the container, but what escaped cannot simply be called back.",
+      "visual": "Pandora presses the lid firmly back onto the pithos in the foreground while the escaped shadow-figures are already scattered far across a receding landscape, some disappearing beyond hills and rooftops, making the closed vessel feel too late.",
+      "purpose": "show that closing the jar cannot reverse what has already escaped",
+      "type": "literal",
+      "continuity": "same escape sequence, now contrasting the resealed jar with consequences already far away",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Only hope remains inside.",
+      "visual": "A quiet close view into the now slightly reopened pithos reveals a single small warm golden light resting deep inside the dark vessel, with Pandora's face softly illuminated at the rim and all surrounding space subdued in lapis shadow.",
+      "purpose": "reveal hope as the one thing still remaining inside the container",
+      "type": "subject_world",
+      "continuity": "returns attention from the distant escaped troubles back into the sealed vessel for a quiet reveal",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "That strange ending keeps the myth from being just a warning about curiosity.",
+      "visual": "Pandora sits thoughtfully between two symbolic elements: the closed pithos with its faint inner gold glow beside her and, beyond her, a troubled world under dark flowing forms; her expression is reflective rather than ashamed, creating a contemplative manuscript tableau.",
+      "purpose": "show that the survival of hope complicates a simple curiosity-is-bad interpretation",
+      "type": "metaphor",
+      "continuity": "builds directly on the golden hope reveal while widening back to the myth's larger meaning",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "The story is really about consequences that can outrun the action that starts them.",
+      "visual": "A tiny hand lifting a pithos lid occupies the lower foreground while a long stream of dark winged consequences races far ahead across hills, sea, and distant settlements, visually separating the small initiating action from the vast distance traveled by its effects.",
+      "purpose": "illustrate consequences moving farther and faster than the original action",
+      "type": "metaphor",
+      "continuity": "shifts from reflective tableau into a symbolic cause-and-effect composition",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "One small decision can release problems far larger than the decision itself.",
+      "visual": "At the bottom of a tall parchment composition, Pandora's fingertip nudges the small lid edge upward; above it, an immense branching storm of dark painted shapes expands like a tree canopy, overwhelming the visual scale of the original gesture.",
+      "purpose": "show a tiny decision producing problems vastly larger than the decision itself",
+      "type": "metaphor",
+      "continuity": "continues the cause-and-effect idea with an even clearer contrast of scale",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "That is why we still talk about opening Pandora's box.",
+      "visual": "A timeless editorial manuscript composition shows the ancient pithos centered like an enduring cultural symbol, with faint concentric gilded echoes spreading outward into later generations of silhouetted human figures who gesture toward the vessel without any readable text.",
+      "purpose": "show the mythic container becoming a lasting symbol people continue to reference",
+      "type": "subject_world",
+      "continuity": "pulls away from Pandora's individual action to the myth's enduring cultural afterlife",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 13,
+      "narration_slice": "We mean a choice may trigger a chain of trouble that keeps spreading.",
+      "visual": "A single opened pithos at the bottom of the image sends one dark ribbon outward; that ribbon divides into several branching streams, which divide again as they pass through fields, homes, and ships, forming a cascading chain of consequences across the vertical scene.",
+      "purpose": "visualize one choice triggering a spreading chain of trouble",
+      "type": "diagram",
+      "continuity": "the enduring symbol from the prior beat becomes an explicit visual model of cascading consequences",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 14,
+      "narration_slice": "The danger is not that every forbidden thing must stay untouched forever.",
+      "visual": "Pandora stands before several ordinary sealed vessels and doors rendered calmly in parchment and muted ochre, while only the familiar pithos carries a subtle dark pressure beneath its lid; the composition distinguishes thoughtful caution from blanket fear of everything forbidden.",
+      "purpose": "clarify that the lesson is not simply to avoid every forbidden or closed thing",
+      "type": "metaphor",
+      "continuity": "moves from the spreading chain to a quieter interpretive contrast about what the myth does and does not mean",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 15,
+      "narration_slice": "It is that some doors are much easier to open than to close.",
+      "visual": "Final symbolic manuscript image: a narrow ancient Greek doorway has swung easily open toward a vast dark windswept landscape, while Pandora strains with both hands to pull it shut against the powerful outward flow; a small restrained gold glow remains behind her in the interior.",
+      "purpose": "express the final lesson that initiating a consequence can be far easier than reversing it",
+      "type": "metaphor",
+      "continuity": "concludes the interpretation by transforming the container lesson into a strong open-versus-close visual echo",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    }
+  ]
+}
