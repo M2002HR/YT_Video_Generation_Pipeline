@@ -28,7 +28,7 @@ from urllib.parse import urlsplit, urlunsplit
 
 from dotenv import load_dotenv
 
-from pipeline_notifier import PipelineNotifier
+from pipeline_notifier import PipelineNotifier, format_duration
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -160,6 +160,7 @@ def install_cached_fallback(
     attempts: list[dict[str, Any]],
     started: float,
     notifier: PipelineNotifier,
+    stage_message: Any | None = None,
 ) -> Path:
     """Use a verified local track only after every requested provider has failed."""
     candidate: tuple[Path, dict[str, Any], Path] | None = None
@@ -192,8 +193,18 @@ def install_cached_fallback(
         "duration_seconds": round(duration, 3),
         "license": source_meta.get("license") or f"{provider_name(selected_provider)} source license; verify current source page before publication.",
     })
-    notifier.warning("Music cache fallback", "Every requested provider failed; a previously verified licensed track was reused.")
-    notifier.stage_complete("Background music cache fallback", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
+    # Cache fallback is a successful completion with a different provenance, not a warning
+    # message that obscures the stage log.  Keep it on the original mutable entry.
+    lines = [
+        "✅ Stage complete — verified cache fallback",
+        f"⏱ Duration: {format_duration(time.perf_counter() - started)}",
+        f"📄 Saved: {destination.relative_to(project)}",
+        f"ℹ️ Providers exhausted: {', '.join(provider_name(item['provider']) for item in attempts)}",
+    ]
+    if hasattr(notifier, "stage_update"):
+        notifier.stage_update(stage_message, "Background music", lines)
+    else:  # compatibility for minimal notifier doubles and external integrations
+        notifier.stage_complete("Background music cache fallback", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
     print(f"MUSIC: PASS (VERIFIED LOCAL FALLBACK: {provider_name(selected_provider)})\nFile: {destination}", flush=True)
     return destination
 
@@ -256,6 +267,15 @@ class Browser:
     def select_or_open(self, url: str) -> None:
         existing = next((tab for tab in self.list_tabs() if tab.url.startswith(url)), None)
         self.tab = existing.ref if existing else self.open_url(url)
+
+    def open_fresh(self, url: str) -> None:
+        """Always open an isolated ChatGPT project tab for a new selection request.
+
+        Reusing a matching project tab can inherit an unrelated unsent composer draft from a
+        preceding provider attempt.  That made a safe no-overwrite guard look like a Mixkit
+        failure.  A fresh project tab keeps the guard intact without touching user text.
+        """
+        self.tab = self.open_url(url)
 
     def data(self, expression: str) -> Any:
         if self.tab is None:
@@ -490,7 +510,12 @@ def music_prompt(provider: str, context: str, duration: float) -> str:
 
 
 def choose_track(browser: Browser, project_url: str, prompt: str, provider: str) -> str:
-    browser.select_or_open(project_url)
+    # Third-party integrations may provide the older Browser protocol; production Browser
+    # always opens a fresh tab to avoid inheriting an unrelated composer draft.
+    if hasattr(browser, "open_fresh"):
+        browser.open_fresh(project_url)
+    else:
+        browser.select_or_open(project_url)
     deadline = time.monotonic() + 45
     while time.monotonic() < deadline:
         snap = browser.data("(() => ({ready:[...document.querySelectorAll('textarea,[contenteditable=true]')].some(e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&/new chat/i.test(`${e.getAttribute('aria-label')||''} ${e.placeholder||''}`)), text:(document.body?.innerText||'').slice(-4000)}))()")
@@ -751,6 +776,7 @@ def main() -> None:
         raise RuntimeError("--track-url requires exactly one provider and a valid direct track URL.")
     music_dir, meta_path = project / "assets" / "music", project / "music" / "MUSIC_SELECTION.json"
     notifier = PipelineNotifier(args.video_id, project.name)
+    stage_message = notifier.stage_started("Background music")
     started = time.perf_counter()
     context, duration = video_context(project)
     attempts: list[dict[str, Any]] = []
@@ -769,7 +795,15 @@ def main() -> None:
                     # Use the same verified downloader after persisting the supplied selection.
                     args.track_url = None
                 destination, url = download_from_provider(browser, project, provider, prompt, duration, meta_path, providers, attempts)
-            notifier.stage_complete(f"{provider_name(provider)} background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
+            notifier.stage_update(
+                stage_message,
+                "Background music",
+                [
+                    f"✅ Stage complete — {provider_name(provider)}",
+                    f"⏱ Duration: {format_duration(time.perf_counter() - started)}",
+                    f"📄 Saved: {destination.relative_to(project)}",
+                ],
+            )
             print(f"MUSIC: PASS ({provider_name(provider)})\nFile: {destination}\nSource: {url}", flush=True)
             return
         except Exception as exc:
@@ -785,7 +819,7 @@ def main() -> None:
         "status": "FAILED_ALL_PROVIDERS",
         "updated_at": utcnow(),
     })
-    install_cached_fallback(project, providers, meta_path, attempts, started, notifier)
+    install_cached_fallback(project, providers, meta_path, attempts, started, notifier, stage_message)
 
 
 if __name__ == "__main__":
