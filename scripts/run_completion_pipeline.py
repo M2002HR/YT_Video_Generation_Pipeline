@@ -54,8 +54,9 @@ def execute(
     started_wall, started = now(), time.perf_counter()
     event: dict[str, Any] = {"stage": name, "started_at": started_wall, "command": command}
     print(f"▶ {name}", flush=True)
+    stage_message = None
     if notifier is not None:
-        notifier.send(title, ["▶ Stage started"])
+        stage_message = notifier.stage_started(title)
     try:
         subprocess.run(command, cwd=ROOT, check=True)
     except subprocess.CalledProcessError as exc:
@@ -78,7 +79,10 @@ def execute(
     save(path, state)
     print(f"✔ {name} in {format_duration(elapsed)}", flush=True)
     if notifier is not None:
-        notifier.stage_complete(title, elapsed, artifact=str(event.get("artifact") or ""))
+        lines = ["✅ Stage complete", f"⏱ Duration: {format_duration(elapsed)}"]
+        if event.get("artifact"):
+            lines.append(f"📄 Saved: {event['artifact']}")
+        notifier.stage_update(stage_message, title, lines)
 
 
 def main() -> None:

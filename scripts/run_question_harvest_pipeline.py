@@ -59,7 +59,7 @@ from ordak_jobs import (  # noqa: E402
     sha256_file,
     sha256_text,
 )
-from pipeline_notifier import PipelineNotifier  # noqa: E402
+from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
 
 WORLD_STYLES_ROOT = ROOT / "projects" / "question_harvest" / "world_styles"
 BOOK_TEMPLATES_ROOT = ROOT / "projects" / "question_harvest" / "book_templates"
@@ -272,6 +272,7 @@ class Runner:
         self.jobs = jobs
         self.notifier = notifier
         self.state = state
+        self.stage_messages: dict[str, Any] = {}
 
     # -- stage bookkeeping and Telegram log (§9.3) -----------------------
 
@@ -292,7 +293,8 @@ class Runner:
     def stage_start(self, stage: str) -> float:
         self.state.mark(stage, STATE_RUNNING)
         print(f"▶ {stage}", flush=True)
-        self._send(self._stage_title(stage), ["▶ Stage started"])
+        if self.notifier is not None:
+            self.stage_messages[stage] = self.notifier.stage_started(self._stage_title(stage))
         return time.perf_counter()
 
     def stage_done(self, stage: str, started: float, summary: str = "", **meta: Any) -> None:
@@ -302,14 +304,19 @@ class Runner:
         print(f"✔ {stage} ({elapsed:.1f}s){' — ' + summary if summary else ''}", flush=True)
         if self.notifier is not None:
             try:
-                self.notifier.stage_complete(self._stage_title(stage), elapsed, artifact=summary)
+                lines = ["✅ Stage complete", f"⏱ Duration: {format_duration(elapsed)}"]
+                if summary:
+                    lines.append(f"📄 Saved: {summary}")
+                self.notifier.stage_update(self.stage_messages.pop(stage, None), self._stage_title(stage), lines)
             except Exception as exc:  # pragma: no cover
                 print(f"notify failed: {exc}", flush=True)
 
     def stage_reused(self, stage: str, summary: str = "") -> None:
         self.state.mark(stage, STATE_REUSED, artifact=summary or None)
         print(f"↻ {stage} reused{(' — ' + summary) if summary else ''}", flush=True)
-        self._send(self._stage_title(stage), ["↻ Reused existing artifact", summary])
+        if self.notifier is not None:
+            message = self.notifier.stage_started(self._stage_title(stage))
+            self.notifier.stage_update(message, self._stage_title(stage), ["↻ Reused existing artifact", summary])
 
     def stage_failed(self, stage: str, failure: StageFailure, started: float) -> None:
         self.state.fail(stage, failure)
@@ -317,6 +324,9 @@ class Runner:
         print(f"✘ {stage} [{failure.state}] {failure.message}", flush=True)
         if self.notifier is not None:
             try:
+                # Failure is intentionally a separate alert. The last normal-stage entry stays
+                # intact, so one new message always means the pipeline needs attention.
+                self.stage_messages.pop(stage, None)
                 self.notifier.failure(self._stage_title(stage), elapsed, f"{failure.state}: {failure.message}")
             except Exception as exc:  # pragma: no cover
                 print(f"notify failed: {exc}", flush=True)
@@ -1878,10 +1888,6 @@ def main() -> int:
                 f"📝 Narration: {plan['word_count']} words",
             ]
             print("\n".join(summary), flush=True)
-            try:
-                notifier.send("Question Harvest visual stages complete", summary)
-            except Exception:
-                pass
             print(f"Project: {project}", flush=True)
             print("NEXT: narration → align_beats.py → trim_opening_clips.py → build_timeline.py → render_video.py", flush=True)
             return 0

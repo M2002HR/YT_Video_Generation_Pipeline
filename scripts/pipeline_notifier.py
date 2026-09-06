@@ -158,6 +158,20 @@ class PipelineNotifier:
             return False
         return True
 
+    def stage_started(self, title: str) -> EditableMessage | None:
+        """Create the single mutable log entry for one pipeline stage."""
+        return self.send_editable("\n".join([self._title(title), "▶ Stage started"]))
+
+    def stage_update(
+        self,
+        message: EditableMessage | None,
+        title: str,
+        lines: list[str],
+    ) -> bool:
+        """Update a stage's original Telegram entry instead of adding log noise."""
+        body = "\n".join([self._title(title), *[html.escape(line) for line in lines if line]])
+        return self.edit(message, body)
+
     async def _send_async(self, body: str) -> None:
         from telethon import TelegramClient
         from telethon.sessions import StringSession
