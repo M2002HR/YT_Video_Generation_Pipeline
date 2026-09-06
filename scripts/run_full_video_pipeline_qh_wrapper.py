@@ -131,7 +131,8 @@ def main() -> int:
     parser.add_argument("--creative-brief", type=Path, required=True)
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--aspect-ratio", default="9:16")
-    parser.add_argument("--music-provider", default="mixkit")
+    parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
+    parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
     parser.add_argument(
         "--commit",
@@ -209,7 +210,7 @@ def main() -> int:
                 python, "scripts/run_pixabay_music.py",
                 "--video-id", args.video_id,
                 "--project", str(project),
-                "--provider", args.music_provider,
+                "--providers", args.music_providers or args.music_provider or "mixkit",
             ]
         )
 

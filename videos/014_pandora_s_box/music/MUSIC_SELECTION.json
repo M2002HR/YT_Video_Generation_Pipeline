@@ -1,8 +1,17 @@
 {
-  "schema_version": 2,
-  "provider": "Pixabay web UI",
-  "source_url": "https://pixabay.com/music/ancient-temple-mysterious-ethnic-music-5874/",
-  "status": "PRIMARY_FAILED",
-  "updated_at": "2026-09-06T05:05:12.174252+00:00",
-  "error": "RuntimeError: Pixabay download did not reach Chrome's download directory before timeout."
+  "schema_version": 3,
+  "provider": "Mixkit web UI",
+  "provider_priority": [
+    "mixkit"
+  ],
+  "provider_attempts": [],
+  "source_url": "https://mixkit.co/free-stock-music/item/168/",
+  "downloaded_at": "2026-09-06T12:40:02.020509+00:00",
+  "status": "DONE",
+  "selection_mode": "BROWSER",
+  "file": "assets/music/background.mp3",
+  "bytes": 4544958,
+  "sha256": "be546a0bd618715bc16e1f6fa7b30f5ff009e9f1ec055bc4b3f6feaf2cc64c3e",
+  "duration_seconds": 142.028,
+  "license": "Mixkit source license; verify current source page before publication."
 }

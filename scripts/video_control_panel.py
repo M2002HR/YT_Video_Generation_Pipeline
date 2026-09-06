@@ -40,6 +40,7 @@ CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include
 #: Where Ordak answers, for the provider badges.
 ORDAK_BASE_URL = os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
 PROVIDERS = ("chatgpt", "gemini", "flow")
+MUSIC_PROVIDERS = ("mixkit", "pixabay")
 JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
 
 
@@ -85,6 +86,19 @@ def form_text(values: dict[str, list[str]], key: str, limit: int = 4_000) -> str
     if len(value) > limit:
         raise ValueError(f"{key} is too long (maximum {limit} characters).")
     return value
+
+
+def music_provider_priority(value: object) -> list[str]:
+    """Parse the panel's ordered provider chain and reject ambiguous launches."""
+    raw = value if isinstance(value, list) else str(value or "").split(",")
+    providers = [str(part).strip().lower() for part in raw if str(part).strip()]
+    if not providers:
+        raise ValueError("Choose at least one music provider.")
+    if any(provider not in MUSIC_PROVIDERS for provider in providers):
+        raise ValueError("Music providers must be Mixkit and/or Pixabay.")
+    if len(set(providers)) != len(providers):
+        raise ValueError("Music provider priority cannot contain duplicates.")
+    return providers
 
 
 def pid_is_live(pid: object) -> bool:
@@ -312,6 +326,7 @@ def pipeline_command(record: dict) -> list[str]:
     project = ROOT / str(record["project"])
     creative_brief = ROOT / str(record["creative_brief"])
     voice_profile = ROOT / str(record["voice_profile"])
+    music_providers = ",".join(music_provider_priority(record.get("music_providers") or record.get("music_provider") or "mixkit"))
     if content_project == "question_harvest":
         return [
             sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
@@ -321,7 +336,7 @@ def pipeline_command(record: dict) -> list[str]:
             "--creative-brief", str(creative_brief),
             "--voice-profile", str(voice_profile),
             "--aspect-ratio", str(record.get("aspect_ratio") or "9:16"),
-            "--music-provider", str(record.get("music_provider") or "mixkit"),
+            "--music-providers", music_providers,
             "--publish",
         ] + (["--commit"] if record.get("commit_artifacts") else [])
     return [
@@ -334,7 +349,7 @@ def pipeline_command(record: dict) -> list[str]:
         "--aspect-ratio", str(record.get("aspect_ratio") or "9:16"),
         "--voice-profile", str(voice_profile),
         "--creative-brief", str(creative_brief),
-        "--music-provider", str(record.get("music_provider") or "mixkit"),
+        "--music-providers", music_providers,
     ]
 
 
@@ -711,7 +726,7 @@ class Handler(BaseHTTPRequestHandler):
             duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0])
             aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
-            provider = values["music_provider"][0]
+            providers = music_provider_priority(values.get("music_providers", values.get("music_provider", ["mixkit"]))[0])
             show_subtitles = "show_subtitles" in values
             commit_artifacts = "commit_artifacts" in values
             # QH advanced
@@ -728,7 +743,7 @@ class Handler(BaseHTTPRequestHandler):
             opening_b_seconds = int(values.get("opening_b_seconds", ["4"])[0])
             if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} \
                or not voice or len(voice) > 220 or model not in {"Eleven Multilingual v2", "Eleven v3"} \
-               or provider not in {"mixkit", "pixabay"} or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
+               or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
             if hero_presence_mode not in {"auto", "opener_only", "limited_in_world", "in_world"}:
                 raise ValueError("Invalid hero_presence_mode")
@@ -797,7 +812,8 @@ class Handler(BaseHTTPRequestHandler):
                 "qh": creative_brief["_qh"],
                 "subtitles": subtitles_enabled,
                 # Recorded so a resume rebuilds exactly this command (§78).
-                "music_provider": provider,
+                "music_provider": providers[0],  # legacy readers retain the first choice
+                "music_providers": providers,
                 "commit_artifacts": commit_artifacts,
             }
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)

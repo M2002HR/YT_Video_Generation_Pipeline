@@ -375,8 +375,10 @@ def launch_form(project_options: str, style_options: str) -> str:
    <label>Similarity <input name=similarity type=number min=0 max=1 step=.01 value=.75 required></label>
    <label>Style <input name=style type=number min=0 max=1 step=.01 value=.10 required></label>
   </div>
-  <label>Music provider <select name=music_provider>
-    <option value=mixkit selected>Mixkit</option><option value=pixabay>Pixabay</option></select></label>
+  <label>Music provider priority
+   <input name=music_providers value="mixkit,pixabay" pattern="(mixkit|pixabay)(,(mixkit|pixabay))*" required>
+   <small>Comma-separated order. The pipeline tries each provider in order, then uses only a verified cached track if all fail.</small>
+  </label>
  </fieldset>
 
  <fieldset><legend>Locked by project design</legend>

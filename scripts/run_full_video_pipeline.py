@@ -247,7 +247,8 @@ def main() -> None:
     parser.add_argument("--preset", default=None)
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--creative-brief", type=Path, default=None)
-    parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default="mixkit")
+    parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default=None, help="Legacy single music provider.")
+    parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
     args = parser.parse_args()
     content_project = load_content_project(args.content_project)
@@ -287,7 +288,8 @@ def main() -> None:
         if content_project.config.get("world_design_prompt"):
             visual_stages.append("episode_world_design")
         visual_stages.extend(["visual_beats", "beat_prompts_and_images"])
-        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "content_project": content_project.project_id, "preset": preset, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_provider": args.music_provider, "voice_profile": str(profile), "creative_brief": str(creative_brief) if creative_brief else None, "stages": [*visual_stages, "voiceover", "timing", "music", "completion", "telegram_publish", "git_commit_push"]}, indent=2))
+        music_providers = args.music_providers or args.music_provider or "mixkit"
+        print(json.dumps({"status": "DRY_RUN_PASS", "project": str(project), "content_project": content_project.project_id, "preset": preset, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "music_providers": music_providers, "voice_profile": str(profile), "creative_brief": str(creative_brief) if creative_brief else None, "stages": [*visual_stages, "voiceover", "timing", "music", "completion", "telegram_publish", "git_commit_push"]}, indent=2))
         return
     state_path = project / "pipeline" / "FULL_PIPELINE_RUNTIME_STATE.json"
     state_path.parent.mkdir(parents=True, exist_ok=True)
@@ -328,7 +330,7 @@ def main() -> None:
         # The music runner has its own bounded UI timeouts, durable selected-URL
         # resume, audio validation, and verified local fallback. One outer retry
         # still covers process-level failures such as an interrupted interpreter.
-        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--provider", args.music_provider], state, state_path, retries=1, notifier=notifier)
+        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--providers", args.music_providers or args.music_provider or "mixkit"], state, state_path, retries=1, notifier=notifier)
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)

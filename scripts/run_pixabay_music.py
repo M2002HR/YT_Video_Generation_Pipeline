@@ -37,6 +37,7 @@ ROOT = Path(__file__).resolve().parents[1]
 URL_CANDIDATE = re.compile(r"https?://[^\s<>\"'`]+", re.I)
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".m4a", ".ogg", ".flac"}
 MIN_FALLBACK_AUDIO_BYTES = 64 * 1024
+SUPPORTED_PROVIDERS = ("mixkit", "pixabay")
 
 
 def utcnow() -> str:
@@ -134,33 +135,66 @@ def install_audio(source: Path, destination: Path, *, move: bool = False) -> flo
     return duration
 
 
-def install_cached_fallback(project: Path, provider: str, meta_path: Path, reason: BaseException, started: float, notifier: PipelineNotifier) -> Path:
-    """Fail open with a licensed, verified local track when browser UIs fail."""
-    candidates = cached_music_candidates(project, provider)
-    if not candidates:
-        raise RuntimeError("Music browser failed and no verified local fallback track exists.") from reason
-    source, source_meta, source_project = candidates[0]
+def provider_name(provider: str) -> str:
+    return "Pixabay" if provider == "pixabay" else "Mixkit"
+
+
+def parse_provider_priority(value: str | list[str]) -> list[str]:
+    """Validate an ordered, duplicate-free provider chain from CLI or panel input."""
+    parts = value if isinstance(value, list) else value.split(",")
+    providers = [part.strip().lower() for part in parts if part.strip()]
+    if not providers:
+        raise ValueError("Choose at least one music provider.")
+    invalid = [provider for provider in providers if provider not in SUPPORTED_PROVIDERS]
+    if invalid:
+        raise ValueError("Unsupported music provider: " + ", ".join(invalid))
+    if len(set(providers)) != len(providers):
+        raise ValueError("Music providers must not be repeated.")
+    return providers
+
+
+def install_cached_fallback(
+    project: Path,
+    providers: list[str],
+    meta_path: Path,
+    attempts: list[dict[str, Any]],
+    started: float,
+    notifier: PipelineNotifier,
+) -> Path:
+    """Use a verified local track only after every requested provider has failed."""
+    candidate: tuple[Path, dict[str, Any], Path] | None = None
+    selected_provider = ""
+    for provider in providers:
+        candidates = cached_music_candidates(project, provider)
+        if candidates:
+            candidate = candidates[0]
+            selected_provider = provider
+            break
+    if candidate is None:
+        detail = "; ".join(f"{item['provider']}: {item['error']}" for item in attempts)
+        raise RuntimeError(f"All music providers failed and no verified local fallback track exists. {detail}")
+    source, source_meta, source_project = candidate
     destination = project / "assets" / "music" / f"background{source.suffix.lower()}"
     duration = install_audio(source, destination)
-    provider_name = "Pixabay" if provider == "pixabay" else "Mixkit"
     dump(meta_path, {
-        "schema_version": 2,
-        "provider": f"{provider_name} verified local fallback",
+        "schema_version": 3,
+        "provider": f"{provider_name(selected_provider)} verified local fallback",
+        "provider_priority": providers,
+        "provider_attempts": attempts,
         "source_url": source_meta["source_url"],
         "status": "DONE",
         "selection_mode": "CACHE_FALLBACK",
-        "fallback_reason": f"{type(reason).__name__}: {reason}"[:1000],
         "cached_from": str(source.relative_to(ROOT)),
         "installed_at": utcnow(),
         "file": str(destination.relative_to(project)),
         "bytes": destination.stat().st_size,
         "sha256": file_sha256(destination),
         "duration_seconds": round(duration, 3),
-        "license": source_meta.get("license") or f"{provider_name} source license; verify current source page before publication.",
+        "license": source_meta.get("license") or f"{provider_name(selected_provider)} source license; verify current source page before publication.",
     })
-    notifier.warning(f"{provider_name} music fallback", "Browser selection/download failed; a previously verified licensed track was reused so the pipeline can continue.")
-    notifier.stage_complete(f"{provider_name} background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
-    print(f"{provider_name.upper()} MUSIC: PASS (VERIFIED LOCAL FALLBACK)\nFile: {destination}", flush=True)
+    notifier.warning("Music cache fallback", "Every requested provider failed; a previously verified licensed track was reused.")
+    notifier.stage_complete("Background music cache fallback", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
+    print(f"MUSIC: PASS (VERIFIED LOCAL FALLBACK: {provider_name(selected_provider)})\nFile: {destination}", flush=True)
     return destination
 
 
@@ -266,6 +300,37 @@ class Browser:
             request(3, "Input.dispatchMouseEvent", {"type": "mousePressed", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1})
             request(4, "Input.dispatchMouseEvent", {"type": "mouseReleased", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1})
 
+    def configure_downloads(self, directory: Path) -> None:
+        """Tell the live Chrome profile exactly where this run's audio must land.
+
+        Polling ``~/Downloads`` was unreliable: Ordak can attach to a Chrome
+        profile whose configured download directory belongs to a different user
+        or browser session.  CDP is the browser's supported download routing
+        mechanism, and a per-project staging directory also prevents a stale
+        MP3 from being mistaken for this track.
+        """
+        if self.tab is None:
+            raise RuntimeError("No browser tab is selected.")
+        directory.mkdir(parents=True, exist_ok=True)
+        info = self.get_info(self.tab)
+        websocket_url = getattr(info, "websocket_debugger_url", None)
+        if not websocket_url:
+            raise RuntimeError("Ordak could not configure Chrome downloads.")
+        from websockets.sync.client import connect
+
+        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as ws:
+            ws.send(json.dumps({
+                "id": 1,
+                "method": "Browser.setDownloadBehavior",
+                "params": {"behavior": "allow", "downloadPath": str(directory.resolve()), "eventsEnabled": True},
+            }))
+            while True:
+                reply = json.loads(ws.recv(timeout=5))
+                if reply.get("id") == 1:
+                    if reply.get("error"):
+                        raise RuntimeError("Chrome rejected the music download directory.")
+                    return
+
     def press_enter(self) -> None:
         """Submit the composer with a real Enter key event.
 
@@ -320,6 +385,12 @@ class Browser:
         before = self.data(composer)
         if not isinstance(before, dict) or not before.get("ok"):
             raise RuntimeError("ChatGPT project composer was not visible.")
+        # The composer normally clears after sending, but some ChatGPT layouts
+        # retain the draft while a response streams.  The user-message count is
+        # an independent visible acknowledgement that avoids falsely treating a
+        # delivered music request as unsent (and then needlessly skipping Mixkit).
+        before_messages = self.data("document.querySelectorAll('[data-message-author-role=\"user\"]').length")
+        before_message_count = int(before_messages) if isinstance(before_messages, (int, float)) else 0
         existing = str(before.get("text") or "")
         def normalized(value: str) -> str:
             return re.sub(r"\s+", " ", value).strip()
@@ -378,9 +449,12 @@ class Browser:
         while time.monotonic() < deadline:
             after = self.data(composer)
             page = str(self.data("document.body?.innerText||''"))
+            message_count = self.data("document.querySelectorAll('[data-message-author-role=\"user\"]').length")
             # Empty composer is the strongest acknowledgement.  A visible Stop
-            # action covers streaming responses that retain a transient draft.
-            if not str(after.get("text") or "") or re.search(r"\bStop generating\b|\bStop streaming\b", page, re.I):
+            # action or a newly mounted user message covers layouts that retain
+            # a transient draft while the answer streams.
+            delivered_message = isinstance(message_count, (int, float)) and int(message_count) > before_message_count
+            if not str(after.get("text") or "") or re.search(r"\bStop generating\b|\bStop streaming\b", page, re.I) or delivered_message:
                 return
             time.sleep(0.4)
         raise RuntimeError("ChatGPT did not acknowledge the visible Send action; request remains unsent for safe retry.")
@@ -455,13 +529,73 @@ def choose_track(browser: Browser, project_url: str, prompt: str, provider: str)
     raise RuntimeError(f"ChatGPT did not return exactly one new valid {provider} track URL after 2 attempts.")
 
 
-def provider_snapshot(browser: Browser) -> dict[str, Any]:
-    return browser.data("""(() => { const text=document.body?.innerText||''; const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const controls=[...document.querySelectorAll('button,a')].filter(visible); const cookie=controls.find(e=>/^reject all$/i.test((e.innerText||'').trim())); const button=controls.find(e=>/^(free download|download free music)$/i.test((e.innerText||'').trim())||/download free music/i.test(e.getAttribute('aria-label')||'')); const rect=e=>{const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}}; return {ready:!!button, downloading:/downloading/i.test(text), challenge:/verify you are human|turnstile|captcha/i.test(text)||!!document.querySelector('iframe[src*=turnstile],iframe[src*=challenge]'), text:text.slice(0,2500), cookie_point:cookie?rect(cookie):null, point:button?rect(button):null}; })()""")
+def provider_snapshot(browser: Browser, provider: str) -> dict[str, Any]:
+    """Find the provider's actual visible download action, not a generic link."""
+    return browser.data(f"""(() => {{
+      const provider={json.dumps(provider)};
+      const text=document.body?.innerText||'';
+      const visible=e=>!!(e&&(e.offsetWidth||e.offsetHeight||e.getClientRects().length));
+      const label=e=>`${{e.innerText||''}} ${{e.getAttribute('aria-label')||''}} ${{e.getAttribute('title')||''}}`.replace(/\\s+/g,' ').trim();
+      const controls=[...document.querySelectorAll('button,a,[role=button],[role=menuitem]')].filter(visible).filter(e=>!e.disabled&&e.getAttribute('aria-disabled')!=='true');
+      const cookie=controls.find(e=>/^(reject all|decline|accept essential)$/i.test(label(e)));
+      const download=controls.filter(e=>{{
+        const value=label(e).toLowerCase();
+        if (!/download/.test(value)) return false;
+        if (/app|our app|plugin|image|video|template|bundle|all assets/.test(value)) return false;
+        return provider==='mixkit'
+          ? /free download|download free music|download music|download/.test(value)
+          : /free download|download free music|download/.test(value);
+      }}).sort((a,b)=>{{
+        const score=e=>{{ const v=label(e).toLowerCase(); return /free download|download free music/.test(v)?0:/music/.test(v)?1:2; }};
+        return score(a)-score(b);
+      }})[0];
+      const rect=e=>{{const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,label:label(e)}}}};
+      return {{
+        ready:!!download,
+        challenge:/verify you are human|turnstile|captcha|security check/i.test(text)||!!document.querySelector('iframe[src*=turnstile],iframe[src*=challenge]'),
+        cookie_point:cookie?rect(cookie):null,
+        point:download?rect(download):null,
+        controls:controls.map(label).filter(Boolean).filter(v=>/download/i.test(v)).slice(0,12),
+      }};
+    }})()""")
 
 
-def newest_download(directory: Path, after: float) -> Path | None:
-    files = [p for p in directory.glob("*") if p.is_file() and p.suffix.lower() in AUDIO_EXTENSIONS and p.stat().st_mtime >= after - 2]
-    return max(files, key=lambda p: p.stat().st_mtime) if files else None
+def download_directories(staging: Path) -> list[Path]:
+    """Every plausible Chrome destination, ordered from run-specific to default.
+
+    Some Chromium builds acknowledge ``Browser.setDownloadBehavior`` from a
+    page target but retain the profile's configured directory.  Watching both
+    locations makes that implementation quirk observable rather than turning a
+    real Mixkit download into a false timeout.
+    """
+    configured = os.getenv("YT_MUSIC_DOWNLOAD_DIR", "").strip()
+    paths = [staging]
+    if configured:
+        paths.append(Path(configured).expanduser())
+    paths.append(Path.home() / "Downloads")
+    unique: list[Path] = []
+    for path in paths:
+        resolved = path.expanduser().resolve()
+        if resolved not in unique:
+            unique.append(resolved)
+    return unique
+
+
+def newest_download(directories: Path | list[Path], after: float) -> Path | None:
+    """Return a new, completed audio file from any known Chrome destination."""
+    paths = [directories] if isinstance(directories, Path) else directories
+    files: list[Path] = []
+    for directory in paths:
+        if not directory.is_dir():
+            continue
+        files.extend(
+            path for path in directory.glob("*")
+            if path.is_file()
+            and path.suffix.lower() in AUDIO_EXTENSIONS
+            and path.stat().st_mtime >= after - 2
+            and path.stat().st_size >= MIN_FALLBACK_AUDIO_BYTES
+        )
+    return max(files, key=lambda path: path.stat().st_mtime) if files else None
 
 
 def resumable_selected_url(meta_path: Path, provider: str) -> str | None:
@@ -513,75 +647,145 @@ def write_music_plan(
         print(f"music plan warning: {type(exc).__name__}: {exc}", flush=True)
 
 
+def download_from_provider(
+    browser: Browser,
+    project: Path,
+    provider: str,
+    prompt: str,
+    duration: float,
+    meta_path: Path,
+    providers: list[str],
+    attempts: list[dict[str, Any]],
+) -> tuple[Path, str]:
+    """Select and download one track using one provider, with no cache fallback."""
+    name = provider_name(provider)
+    url = resumable_selected_url(meta_path, provider) or choose_track(
+        browser,
+        os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"),
+        prompt,
+        provider,
+    )
+    dump(meta_path, {
+        "schema_version": 3,
+        "provider": f"{name} web UI",
+        "provider_priority": providers,
+        "provider_attempts": attempts,
+        "source_url": url,
+        "selection_prompt": prompt,
+        "narration_duration_seconds": duration,
+        "selected_at": utcnow(),
+        "status": "SELECTED",
+    })
+    write_music_plan(project, provider, prompt, duration, source_url=url)
+    browser.select_or_open(url)
+    deadline = time.monotonic() + max(15.0, float(os.getenv("YT_MUSIC_PROVIDER_READY_TIMEOUT_SECONDS", "45")))
+    snap: dict[str, Any] = {}
+    while time.monotonic() < deadline:
+        snap = provider_snapshot(browser, provider)
+        if snap.get("cookie_point"):
+            browser.point_click(f"(() => {{ return {json.dumps(snap['cookie_point'])}; }})()")
+            time.sleep(1)
+            continue
+        if snap.get("challenge"):
+            raise RuntimeError(f"{name} requires visible human verification.")
+        if snap.get("ready"):
+            break
+        time.sleep(1)
+    else:
+        offered = ", ".join(str(item) for item in snap.get("controls", []))
+        raise RuntimeError(f"{name} download control did not become ready. Visible download controls: {offered or 'none'}")
+
+    staging = project / "music" / ".downloads" / provider
+    staging.mkdir(parents=True, exist_ok=True)
+    # A previous interrupted download must never block this provider attempt.
+    for stale in staging.glob("*"):
+        if stale.is_file():
+            stale.unlink()
+    browser.configure_downloads(staging)
+    watch_directories = download_directories(staging)
+    print("music download directories: " + ", ".join(str(path) for path in watch_directories), flush=True)
+    download_started = time.time()
+    browser.point_click(f"(() => {{ return {json.dumps(snap['point'])}; }})()")
+    deadline = time.monotonic() + max(30.0, float(os.getenv("YT_MUSIC_DOWNLOAD_TIMEOUT_SECONDS", "180")))
+    while time.monotonic() < deadline:
+        download = newest_download(watch_directories, download_started)
+        if download:
+            destination = project / "assets" / "music" / f"background{download.suffix.lower()}"
+            track_duration = install_audio(download, destination, move=True)
+            dump(meta_path, {
+                "schema_version": 3,
+                "provider": f"{name} web UI",
+                "provider_priority": providers,
+                "provider_attempts": attempts,
+                "source_url": url,
+                "downloaded_at": utcnow(),
+                "status": "DONE",
+                "selection_mode": "BROWSER",
+                "file": str(destination.relative_to(project)),
+                "bytes": destination.stat().st_size,
+                "sha256": file_sha256(destination),
+                "duration_seconds": round(track_duration, 3),
+                "license": f"{name} source license; verify current source page before publication.",
+            })
+            write_music_plan(project, provider, prompt, duration, source_url=url, file=str(destination.relative_to(project)), status="DONE")
+            return destination, url
+        time.sleep(1)
+    raise RuntimeError(f"{name} did not write a completed audio file into Chrome's configured staging directory.")
+
+
 def main() -> None:
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
     parser = argparse.ArgumentParser(description="Choose/download background music through ChatGPT and the visible browser.")
     parser.add_argument("--video-id", required=True)
     parser.add_argument("--project", type=Path)
-    parser.add_argument("--provider", choices=("pixabay", "mixkit"), default=os.getenv("YT_MUSIC_PROVIDER", "mixkit"))
+    parser.add_argument("--provider", choices=SUPPORTED_PROVIDERS, help="Legacy shorthand for a one-provider run.")
+    parser.add_argument("--providers", help="Comma-separated provider priority, e.g. mixkit,pixabay.")
     parser.add_argument("--track-url", help="Skip ChatGPT selection and resume this exact provider URL.")
     args = parser.parse_args()
     projects = [args.project.resolve()] if args.project else list((ROOT / "videos").glob(f"{args.video_id}_*"))
     if len(projects) != 1:
         raise RuntimeError("Pass --project when the video directory is ambiguous.")
     project = projects[0]
-    if args.track_url and not valid_track_url(args.track_url, args.provider):
-        raise RuntimeError(f"--track-url is not a valid {args.provider} track URL.")
+    providers = parse_provider_priority(args.providers or args.provider or os.getenv("YT_MUSIC_PROVIDERS") or os.getenv("YT_MUSIC_PROVIDER", "mixkit"))
+    if args.track_url and (len(providers) != 1 or not valid_track_url(args.track_url, providers[0])):
+        raise RuntimeError("--track-url requires exactly one provider and a valid direct track URL.")
     music_dir, meta_path = project / "assets" / "music", project / "music" / "MUSIC_SELECTION.json"
     notifier = PipelineNotifier(args.video_id, project.name)
     started = time.perf_counter()
     context, duration = video_context(project)
-    prompt = music_prompt(args.provider, context, duration)
-    provider_name = "Pixabay" if args.provider == "pixabay" else "Mixkit"
-    url: str | None = None
-    try:
-        with primary_deadline(max(60.0, float(os.getenv("YT_MUSIC_PRIMARY_TIMEOUT_SECONDS", "300")))):
-            browser = Browser()
-            url = (
-                valid_track_url(args.track_url, args.provider)
-                if args.track_url
-                else resumable_selected_url(meta_path, args.provider)
-                or choose_track(browser, os.getenv("YT_CHATGPT_PROJECT_URL", "https://chatgpt.com/g/g-p-6a9476ed80b08191a4db1065939e08b6/project"), prompt, args.provider)
-            )
-            if url is None:
-                raise RuntimeError(f"No valid {args.provider} track URL was selected.")
-            dump(meta_path, {"schema_version": 2, "provider": f"{provider_name} web UI", "source_url": url, "selection_prompt": prompt, "video_context_sha256": hashlib.sha256(context.encode()).hexdigest(), "narration_duration_seconds": duration, "selected_at": utcnow(), "status": "SELECTED"})
-            write_music_plan(project, args.provider, prompt, duration, source_url=url)
-            notifier.send(f"{provider_name} music selected", ["🎵 Background track chosen", f"🔗 Source: {url}"])
-            browser.select_or_open(url)
-            deadline = time.monotonic() + max(15.0, float(os.getenv("YT_MUSIC_PROVIDER_READY_TIMEOUT_SECONDS", "45")))
-            while time.monotonic() < deadline:
-                snap = provider_snapshot(browser)
-                if snap.get("cookie_point"):
-                    browser.point_click(f"(() => {{ return {json.dumps(snap['cookie_point'])}; }})()")
-                    time.sleep(1)
-                    snap = provider_snapshot(browser)
-                if snap.get("challenge"):
-                    raise RuntimeError(f"{provider_name} requires visible human verification.")
-                if snap.get("ready"):
-                    break
-                time.sleep(1)
-            else:
-                raise RuntimeError(f"{provider_name} Free download control did not become ready.")
-            download_dir = Path(os.getenv("YT_MUSIC_DOWNLOAD_DIR", str(Path.home() / "Downloads"))).expanduser()
-            download_started = time.time()
-            browser.point_click(f"(() => {{ return {json.dumps(snap['point'])}; }})()")
-            deadline = time.monotonic() + max(30.0, float(os.getenv("YT_MUSIC_DOWNLOAD_TIMEOUT_SECONDS", "90")))
-            while time.monotonic() < deadline:
-                download = newest_download(download_dir, download_started)
-                if download:
-                    destination = music_dir / f"background{download.suffix.lower()}"
-                    track_duration = install_audio(download, destination, move=True)
-                    dump(meta_path, {"schema_version": 2, "provider": f"{provider_name} web UI", "source_url": url, "downloaded_at": utcnow(), "status": "DONE", "selection_mode": "BROWSER", "file": str(destination.relative_to(project)), "bytes": destination.stat().st_size, "sha256": file_sha256(destination), "duration_seconds": round(track_duration, 3), "license": f"{provider_name} source license; verify current source page before publication."})
-                    write_music_plan(project, args.provider, prompt, duration, source_url=url, file=str(destination.relative_to(project)), status="DONE")
-                    notifier.stage_complete(f"{provider_name} background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
-                    print(f"{provider_name.upper()} MUSIC: PASS\nFile: {destination}", flush=True)
-                    return
-                time.sleep(2)
-            raise RuntimeError(f"{provider_name} download did not reach Chrome's download directory before timeout.")
-    except Exception as exc:
-        dump(meta_path, {"schema_version": 2, "provider": f"{provider_name} web UI", "source_url": url, "status": "PRIMARY_FAILED", "updated_at": utcnow(), "error": f"{type(exc).__name__}: {exc}"[:1000]})
-        install_cached_fallback(project, args.provider, meta_path, exc, started, notifier)
+    attempts: list[dict[str, Any]] = []
+    browser = Browser()
+    for provider in providers:
+        prompt = music_prompt(provider, context, duration)
+        try:
+            with primary_deadline(max(60.0, float(os.getenv("YT_MUSIC_PRIMARY_TIMEOUT_SECONDS", "300")))):
+                if args.track_url:
+                    # An explicit URL is intentionally not mixed with ChatGPT selection.
+                    url = valid_track_url(args.track_url, provider)
+                    if url is None:
+                        raise RuntimeError("The explicit track URL is invalid.")
+                    dump(meta_path, {"schema_version": 3, "provider": f"{provider_name(provider)} web UI", "provider_priority": providers, "provider_attempts": attempts, "source_url": url, "status": "SELECTED"})
+                    browser.select_or_open(url)
+                    # Use the same verified downloader after persisting the supplied selection.
+                    args.track_url = None
+                destination, url = download_from_provider(browser, project, provider, prompt, duration, meta_path, providers, attempts)
+            notifier.stage_complete(f"{provider_name(provider)} background music", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
+            print(f"MUSIC: PASS ({provider_name(provider)})\nFile: {destination}\nSource: {url}", flush=True)
+            return
+        except Exception as exc:
+            failure = {"provider": provider, "error": f"{type(exc).__name__}: {exc}"[:1000], "failed_at": utcnow()}
+            attempts.append(failure)
+            print(f"MUSIC PROVIDER FAILED ({provider_name(provider)}): {failure['error']}; trying next provider.", flush=True)
+    # Keep the complete failure evidence even when there is no cache candidate
+    # and the caller must surface a hard music-stage failure.
+    dump(meta_path, {
+        "schema_version": 3,
+        "provider_priority": providers,
+        "provider_attempts": attempts,
+        "status": "FAILED_ALL_PROVIDERS",
+        "updated_at": utcnow(),
+    })
+    install_cached_fallback(project, providers, meta_path, attempts, started, notifier)
 
 
 if __name__ == "__main__":

@@ -52,9 +52,15 @@ def test_the_commit_flag_is_carried_into_the_command() -> None:
     assert "--commit" in panel.pipeline_command(_record(commit_artifacts=True))
 
 
-def test_the_music_provider_survives_into_a_resume() -> None:
-    command = panel.pipeline_command(_record())
-    assert command[command.index("--music-provider") + 1] == "pixabay"
+def test_the_music_provider_priority_survives_into_a_resume() -> None:
+    command = panel.pipeline_command(_record(music_providers=["mixkit", "pixabay"]))
+    assert command[command.index("--music-providers") + 1] == "mixkit,pixabay"
+
+
+def test_music_provider_priority_requires_unique_supported_values() -> None:
+    assert panel.music_provider_priority("pixabay,mixkit") == ["pixabay", "mixkit"]
+    with pytest.raises(ValueError, match="duplicates"):
+        panel.music_provider_priority("mixkit,mixkit")
 
 
 def test_a_non_question_harvest_project_uses_the_generic_pipeline() -> None:
