@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "016_pandora_s_box",
   "started_at": "2026-09-06T19:58:08.767269+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -85,6 +85,18 @@
       "elapsed_seconds": 9.054,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-06T19:58:08.767269+00:00",
+      "ended_at": "2026-09-06T20:04:04.421577+00:00",
+      "elapsed_seconds": 355.654,
+      "branch": "ordak",
+      "remote": "origin",
+      "artifact_commit": "c762dafa497094d5276d5974543da3b962e1fc6b"
     }
-  ]
+  ],
+  "completed_at": "2026-09-06T20:04:04.421577+00:00",
+  "total_elapsed_seconds": 705.687
 }
