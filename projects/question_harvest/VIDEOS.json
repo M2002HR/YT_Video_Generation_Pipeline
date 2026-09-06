@@ -55,6 +55,24 @@
       "book_template_id": "001",
       "world_style_id": "luminous_mythic_manuscript_gouache_001",
       "updated_at": "2026-09-06T16:44:16.525930+00:00"
+    },
+    {
+      "video_id": "016",
+      "opening_activity": "greenhouse work",
+      "opening_location": "greenhouse",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001",
+      "updated_at": "2026-09-06T20:32:41.151899+00:00"
+    },
+    {
+      "video_id": "017",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001",
+      "updated_at": "2026-09-06T21:15:19.685611+00:00"
     }
   ]
 }

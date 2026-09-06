@@ -77,6 +77,17 @@
       "path": "007_luminous_mythic_manuscript_gouache_001",
       "anchor": "007_luminous_mythic_manuscript_gouache_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "aegean_bronze_relief_mineral_fresco_001",
+      "display_name": "Aegean Bronze Relief Mineral Fresco 001",
+      "medium_family": "fresco",
+      "texture_family": "weathered mineral-plaster surface with terracotta grain, shallow relief-like edge wear, oxidized metal patina, and tactile archaeological abrasion",
+      "palette_summary": "oxidized copper teal, charcoal black, sun-baked terracotta and ochre, limestone cream, deep umber shadows, with sparse restrained gold inlay",
+      "status": "ready",
+      "path": "008_aegean_bronze_relief_mineral_fresco_001",
+      "anchor": "008_aegean_bronze_relief_mineral_fresco_001/style_anchor.png",
+      "usage_count": 2
     }
   ]
 }
