@@ -64,6 +64,10 @@ from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 
 WORLD_STYLES_ROOT = ROOT / "projects" / "question_harvest" / "world_styles"
 BOOK_TEMPLATES_ROOT = ROOT / "projects" / "question_harvest" / "book_templates"
+# Ordak's typed request schema permits 20,000 characters. Keep a small safety
+# margin so a future prompt expansion cannot become an opaque HTTP 500 before a
+# job is even recorded.
+ORDAK_QUESTION_LIMIT = 19_000
 
 MIN_IMAGE_BYTES = 10_000
 MIN_VIDEO_BYTES = 100_000
@@ -348,6 +352,13 @@ class Runner:
         references: list[Reference] = (),
         timeout_seconds: int | None = None,
     ) -> JobResult:
+        if len(question) > ORDAK_QUESTION_LIMIT:
+            raise StageFailure(
+                stage,
+                "FAILED_VALIDATION",
+                f"Prompt is {len(question):,} characters, above the safe Ordak limit of {ORDAK_QUESTION_LIMIT:,}. "
+                "Pass a stage-specific summary instead of a full downstream artifact.",
+            )
         try:
             return self.jobs.run(
                 question,
@@ -1177,12 +1188,31 @@ def stage_world_keyframe_prompt(
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8")
     started = runner.stage_start(stage)
+    # The keyframe writer needs the visual world's representative motifs, not the
+    # full prose of every fast-cut body beat. Passing the complete 20–30 beat plan
+    # exceeded Ordak's 20k request schema and failed before a job existed.
+    keyframe_beats = list(visual_plan.get("beats") or [])
+    representative = keyframe_beats[:3]
+    if len(keyframe_beats) > 3:
+        representative.append(keyframe_beats[len(keyframe_beats) // 2])
+        representative.append(keyframe_beats[-1])
+    compact_visual_plan = {
+        "beat_count": len(keyframe_beats),
+        "representative_beats": [
+            {
+                key: beat.get(key)
+                for key in ("beat_id", "narration_slice", "visual", "purpose", "visual_fingerprint", "type")
+            }
+            for beat in representative
+            if isinstance(beat, dict)
+        ],
+    }
     prompt = fill(
         resolve_prompt(content_project, "06_world_keyframe_prompt_writer.md"),
         FINAL_SCRIPT=plan["full_narration"],
         EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
-        VISUAL_PLAN=json.dumps(visual_plan, ensure_ascii=False),
+        VISUAL_PLAN=json.dumps(compact_visual_plan, ensure_ascii=False),
     )
     text = runner.text(stage, prompt)
     target.parent.mkdir(parents=True, exist_ok=True)
