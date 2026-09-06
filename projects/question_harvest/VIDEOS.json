@@ -46,6 +46,15 @@
       "book_template_id": "003",
       "world_style_id": "greek_black_figure_fresco_001",
       "updated_at": "2026-09-06T15:18:59.528471+00:00"
+    },
+    {
+      "video_id": "015",
+      "opening_activity": "workshop repair",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "001",
+      "world_style_id": "luminous_mythic_manuscript_gouache_001",
+      "updated_at": "2026-09-06T16:44:16.525930+00:00"
     }
   ]
 }

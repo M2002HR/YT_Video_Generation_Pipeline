@@ -66,6 +66,17 @@
       "path": "006_greek_black_figure_fresco_001",
       "anchor": "006_greek_black_figure_fresco_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "luminous_mythic_manuscript_gouache_001",
+      "display_name": "Luminous Mythic Manuscript Gouache 001",
+      "medium_family": "manuscript illustration",
+      "texture_family": "aged parchment paper grain with lightly worn painted edges and delicate gilded surface texture",
+      "palette_summary": "deep lapis blue, aged parchment cream, muted ochre and umber, restrained burgundy and olive, with sparse luminous gold-leaf accents",
+      "status": "ready",
+      "path": "007_luminous_mythic_manuscript_gouache_001",
+      "anchor": "007_luminous_mythic_manuscript_gouache_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }
