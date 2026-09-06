@@ -1,0 +1,14 @@
+{
+  "opening_activity": "greenhouse work",
+  "opening_location": "greenhouse",
+  "curiosity_trigger": "noticing an unusually deep clay planter with a narrow mouth while rearranging pots",
+  "trigger_object": "large terracotta planter",
+  "reaction": "pauses, turns the planter in his hands, and studies its jar-like shape",
+  "book_retrieval": "sets the planter down, wipes his hands on his overalls, and pulls a worn book from the greenhouse shelf",
+  "camera_pattern": "gentle_pan_left",
+  "book_template_id": "002",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "Aegean bronze-relief and mineral-pigment story world with sculpted terracotta figures, oxidized copper teal, charcoal black, sun-baked ochre, restrained gold inlay, and dramatic low raking light",
+  "reason": "Handling ordinary terracotta planters naturally creates the visual question of why Pandora's famous 'box' was originally a large clay storage jar without forcing a mythic artifact into the home world."
+}

@@ -1,0 +1,50 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,230,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.04,0:00:02.34,Default,,0,0,0,,Pandora's box was actually a jar,
+Dialogue: 0,0:00:02.34,0:00:04.30,Default,,0,0,0,,and this clay planter reveals what
+Dialogue: 0,0:00:04.30,0:00:05.50,Default,,0,0,0,,the famous phrase hides.
+Dialogue: 0,0:00:06.34,0:00:08.04,Default,,0,0,0,,Let's check Hesiod's version.
+Dialogue: 0,0:00:08.04,0:00:10.58,Default,,0,0,0,,Prometheus steals fire for humans.
+Dialogue: 0,0:00:10.58,0:00:14.36,Default,,0,0,0,,Zeus responds by ordering\NPandora's creation.
+Dialogue: 0,0:00:14.36,0:00:16.62,Default,,0,0,0,,Hephaestus shapes her from Earth.
+Dialogue: 0,0:00:16.62,0:00:19.12,Default,,0,0,0,,Athena clothes her and teaches\Nskilled
+Dialogue: 0,0:00:19.12,0:00:19.98,Default,,0,0,0,,work.
+Dialogue: 0,0:00:20.56,0:00:23.10,Default,,0,0,0,,Aphrodite gives her grace and\Ndesire.
+Dialogue: 0,0:00:23.10,0:00:25.26,Default,,0,0,0,,Hermes gives her persuasive\Nspeech.
+Dialogue: 0,0:00:26.48,0:00:28.94,Default,,0,0,0,,Zeus sends Pandora to Epimetheus.
+Dialogue: 0,0:00:29.68,0:00:31.48,Default,,0,0,0,,Prometheus had warned his brother\Nnot
+Dialogue: 0,0:00:31.48,0:00:32.92,Default,,0,0,0,,to trust Zeus' gifts.
+Dialogue: 0,0:00:34.52,0:00:36.54,Default,,0,0,0,,Epimetheus accepts Pandora anyway.
+Dialogue: 0,0:00:37.66,0:00:39.02,Default,,0,0,0,,Then comes the object we remember
+Dialogue: 0,0:00:39.02,0:00:39.54,Default,,0,0,0,,wrongly.
+Dialogue: 0,0:00:40.34,0:00:41.68,Default,,0,0,0,,Her vessel is a pythos.
+Dialogue: 0,0:00:42.20,0:00:43.46,Default,,0,0,0,,It is a large Greek storage
+Dialogue: 0,0:00:43.46,0:00:44.86,Default,,0,0,0,,jar, not literally a box.
+Dialogue: 0,0:00:45.88,0:00:47.50,Default,,0,0,0,,The familiar box belongs to later
+Dialogue: 0,0:00:47.50,0:00:47.90,Default,,0,0,0,,tradition.
+Dialogue: 0,0:00:49.28,0:00:51.04,Default,,0,0,0,,Pandora opens the jar.
+Dialogue: 0,0:00:51.84,0:00:53.64,Default,,0,0,0,,Troubles escape into human life.
+Dialogue: 0,0:00:55.08,0:00:56.44,Default,,0,0,0,,She closes the lid, but not
+Dialogue: 0,0:00:56.44,0:00:57.72,Default,,0,0,0,,before they're gone.
+Dialogue: 0,0:00:58.64,0:01:00.06,Default,,0,0,0,,One thing remains inside.
+Dialogue: 0,0:01:00.72,0:01:01.32,Default,,0,0,0,,Elpis.
+Dialogue: 0,0:01:02.10,0:01:04.18,Default,,0,0,0,,Elpis is often translated as hope.
+Dialogue: 0,0:01:04.68,0:01:06.18,Default,,0,0,0,,What that remaining hope means is
+Dialogue: 0,0:01:06.18,0:01:06.90,Default,,0,0,0,,still debated.
+Dialogue: 0,0:01:08.24,0:01:09.58,Default,,0,0,0,,So Hesiod's Pandora is not just
+Dialogue: 0,0:01:09.58,0:01:10.44,Default,,0,0,0,,a simple villain.
+Dialogue: 0,0:01:11.12,0:01:12.76,Default,,0,0,0,,The jar leaves the myth stranger.
+Dialogue: 0,0:01:13.54,0:01:16.16,Default,,0,0,0,,Punishment, uncertainty, and hope\Nheld back.
+Dialogue: 0,0:01:16.94,0:01:18.40,Default,,0,0,0,,Like and subscribe to grow more
+Dialogue: 0,0:01:18.40,0:01:18.78,Default,,0,0,0,,questions.

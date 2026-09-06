@@ -1,0 +1,216 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 79.438,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Pandora's box was actually a jar, and this clay planter reveals what the famous phrase hides. Let's check Hesiod's version. Prometheus steals fire for humans. Zeus responds by ordering Pandora's creation. Hephaestus shapes her from Earth. Athena clothes her and teaches skilled work. Aphrodite gives her grace and desire. Hermes gives her persuasive speech. Zeus sends Pandora to Epimetheus. Prometheus had warned his brother not to trust Zeus' gifts. Epimetheus accepts Pandora anyway. Then comes the object we remember wrongly. Her vessel is a pythos. It is a large Greek storage jar, not literally a box. The familiar box belongs to later tradition. Pandora opens the jar. Troubles escape into human life. She closes the lid, but not before they're gone. One thing remains inside. Elpis. Elpis is often translated as hope. What that remaining hope means is still debated. So Hesiod's Pandora is not just a simple villain. The jar leaves the myth stranger. Punishment, uncertainty, and hope held back. Like and subscribe to grow more questions.",
+  "word_count": 168,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Prometheus steals fire for humans.",
+      "speech_start": 8.04,
+      "speech_end": 10.58,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 10.58,
+      "display_duration": 10.58
+    },
+    {
+      "beat_id": 2,
+      "narration": "Zeus responds by ordering Pandora’s creation.",
+      "speech_start": 10.58,
+      "speech_end": 14.36,
+      "match_confidence": 1.0,
+      "display_start": 10.58,
+      "display_end": 14.36,
+      "display_duration": 3.78
+    },
+    {
+      "beat_id": 3,
+      "narration": "Hephaestus shapes her from earth.",
+      "speech_start": 14.36,
+      "speech_end": 16.62,
+      "match_confidence": 1.0,
+      "display_start": 14.36,
+      "display_end": 16.62,
+      "display_duration": 2.26
+    },
+    {
+      "beat_id": 4,
+      "narration": "Athena clothes her and teaches skilled work.",
+      "speech_start": 16.62,
+      "speech_end": 19.98,
+      "match_confidence": 1.0,
+      "display_start": 16.62,
+      "display_end": 20.56,
+      "display_duration": 3.94
+    },
+    {
+      "beat_id": 5,
+      "narration": "Aphrodite gives her grace and desire.",
+      "speech_start": 20.56,
+      "speech_end": 23.1,
+      "match_confidence": 1.0,
+      "display_start": 20.56,
+      "display_end": 23.1,
+      "display_duration": 2.54
+    },
+    {
+      "beat_id": 6,
+      "narration": "Hermes gives her persuasive speech.",
+      "speech_start": 23.1,
+      "speech_end": 25.26,
+      "match_confidence": 1.0,
+      "display_start": 23.1,
+      "display_end": 26.48,
+      "display_duration": 3.38
+    },
+    {
+      "beat_id": 7,
+      "narration": "Zeus sends Pandora to Epimetheus.",
+      "speech_start": 26.48,
+      "speech_end": 28.94,
+      "match_confidence": 1.0,
+      "display_start": 26.48,
+      "display_end": 29.68,
+      "display_duration": 3.2
+    },
+    {
+      "beat_id": 8,
+      "narration": "Prometheus had warned his brother not to trust Zeus’s gifts.",
+      "speech_start": 29.68,
+      "speech_end": 32.92,
+      "match_confidence": 0.9,
+      "display_start": 29.68,
+      "display_end": 34.52,
+      "display_duration": 4.84
+    },
+    {
+      "beat_id": 9,
+      "narration": "Epimetheus accepts Pandora anyway.",
+      "speech_start": 34.52,
+      "speech_end": 36.54,
+      "match_confidence": 1.0,
+      "display_start": 34.52,
+      "display_end": 37.66,
+      "display_duration": 3.14
+    },
+    {
+      "beat_id": 10,
+      "narration": "Then comes the object we remember wrongly.",
+      "speech_start": 37.66,
+      "speech_end": 39.54,
+      "match_confidence": 1.0,
+      "display_start": 37.66,
+      "display_end": 40.34,
+      "display_duration": 2.68
+    },
+    {
+      "beat_id": 11,
+      "narration": "Her vessel is a pithos.",
+      "speech_start": 40.34,
+      "speech_end": 41.02,
+      "match_confidence": 0.8,
+      "display_start": 40.34,
+      "display_end": 42.2,
+      "display_duration": 1.86
+    },
+    {
+      "beat_id": 12,
+      "narration": "It is a large Greek storage jar, not literally a box.",
+      "speech_start": 42.2,
+      "speech_end": 44.86,
+      "match_confidence": 1.0,
+      "display_start": 42.2,
+      "display_end": 45.88,
+      "display_duration": 3.68
+    },
+    {
+      "beat_id": 13,
+      "narration": "The familiar box belongs to later tradition.",
+      "speech_start": 45.88,
+      "speech_end": 47.9,
+      "match_confidence": 1.0,
+      "display_start": 45.88,
+      "display_end": 49.28,
+      "display_duration": 3.4
+    },
+    {
+      "beat_id": 14,
+      "narration": "Pandora opens the jar.",
+      "speech_start": 49.28,
+      "speech_end": 51.04,
+      "match_confidence": 1.0,
+      "display_start": 49.28,
+      "display_end": 51.84,
+      "display_duration": 2.56
+    },
+    {
+      "beat_id": 15,
+      "narration": "Troubles escape into human life.",
+      "speech_start": 51.84,
+      "speech_end": 53.64,
+      "match_confidence": 1.0,
+      "display_start": 51.84,
+      "display_end": 55.08,
+      "display_duration": 3.24
+    },
+    {
+      "beat_id": 16,
+      "narration": "She closes the lid, but not before they are gone.",
+      "speech_start": 55.08,
+      "speech_end": 57.72,
+      "match_confidence": 0.8,
+      "display_start": 55.08,
+      "display_end": 58.64,
+      "display_duration": 3.56
+    },
+    {
+      "beat_id": 17,
+      "narration": "One thing remains inside: Elpis.",
+      "speech_start": 58.64,
+      "speech_end": 61.32,
+      "match_confidence": 1.0,
+      "display_start": 58.64,
+      "display_end": 62.1,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 18,
+      "narration": "Elpis is often translated as hope.",
+      "speech_start": 62.1,
+      "speech_end": 64.18,
+      "match_confidence": 1.0,
+      "display_start": 62.1,
+      "display_end": 64.68,
+      "display_duration": 2.58
+    },
+    {
+      "beat_id": 19,
+      "narration": "What that remaining hope means is still debated.",
+      "speech_start": 64.68,
+      "speech_end": 66.9,
+      "match_confidence": 1.0,
+      "display_start": 64.68,
+      "display_end": 68.24,
+      "display_duration": 3.56
+    },
+    {
+      "beat_id": 20,
+      "narration": "So Hesiod’s Pandora is not just a simple villain.",
+      "speech_start": 68.24,
+      "speech_end": 70.44,
+      "match_confidence": 1.0,
+      "display_start": 68.24,
+      "display_end": 79.438,
+      "display_duration": 11.198
+    }
+  ]
+}
