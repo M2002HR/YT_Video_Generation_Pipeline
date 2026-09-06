@@ -160,11 +160,6 @@ def motion_filter(
     frames = max(2, int(math.ceil(duration * fps)))
     strength = max(0.0, min(float(strength), 0.10))
     supersample = max(1, min(int(supersample), 4))
-    # A still cut against a still is a jump; a brief dissolve at the head of each shot turns the
-    # same cut into a transition without moving a single boundary the narration measured.
-    fade_in = max(0.0, min(float(os.getenv("YT_BEAT_FADE_SECONDS", "0.18")), duration / 3))
-    fade = f"fade=t=in:st=0:d={fade_in:.3f}," if fade_in > 0.01 else ""
-
     if motion == "still" or strength <= 0:
         return (
             f"[{input_index}:v]"
@@ -172,7 +167,6 @@ def motion_filter(
             f"crop={width}:{height},"
             "setsar=1,"
             f"fps={fps},"
-            f"{fade}"
             f"trim=duration={duration:.6f},"
             "setpts=PTS-STARTPTS"
             f"[{label}]"
@@ -210,7 +204,6 @@ def motion_filter(
         f"y='{y}':"
         f"d=1:s={work_width}x{work_height}:fps={fps},"
         f"scale={width}:{height}:flags=lanczos,"
-        f"{fade}"
         f"trim=duration={duration:.6f},"
         "setpts=PTS-STARTPTS"
         f"[{label}]"
@@ -654,7 +647,8 @@ def main() -> None:
         str(filter_complex_threads),
     ]
 
-    # Mixed-media inputs: image vs video (§69-70)
+    # Mixed-media inputs: image vs video (§69-70). Each source receives a tiny tail hold when
+    # the next boundary crossfades; that overlap preserves the measured total duration.
     # Build input list and remember which indices are video
     media_types: list[str] = []
     input_paths: list[Path] = []
@@ -678,10 +672,27 @@ def main() -> None:
             media_types.append("image")
             input_paths.append(path)
 
+    allowed_transitions = {
+        "fade", "dissolve", "wipeleft", "wiperight", "slideleft", "slideright",
+        "radial", "circleopen", "smoothleft", "smoothright",
+    }
+    incoming_transitions: list[tuple[str, float]] = [("cut", 0.0)]
+    for index, beat in enumerate(beats[1:], start=1):
+        name = str(beat.get("transition_in") or "fade").strip().lower()
+        if name not in allowed_transitions:
+            name = "fade"
+        requested = float(beat.get("transition_seconds") or 0.24)
+        max_overlap = max(0.08, min(float(beats[index - 1]["duration"]), float(beat["duration"])) / 3)
+        incoming_transitions.append((name, round(max(0.08, min(requested, max_overlap, 0.45)), 3)))
+    outgoing_holds = [
+        incoming_transitions[index + 1][1] if index + 1 < len(beats) else 0.0
+        for index in range(len(beats))
+    ]
+
     for idx, (beat, path, mt) in enumerate(zip(beats, input_paths, media_types)):
         if not path.exists():
             raise FileNotFoundError(f"Beat {beat.get('beat_id')} {mt} not found: {path}")
-        dur = float(beat["duration"])
+        dur = float(beat["duration"]) + outgoing_holds[idx]
         if mt == "image":
             command.extend(["-loop", "1", "-framerate", str(fps), "-t", f"{dur:.6f}", "-i", str(path)])
         else:
@@ -698,14 +709,15 @@ def main() -> None:
     for index, (beat, mt) in enumerate(zip(beats, media_types)):
         label = f"v{index}"
         labels.append(f"[{label}]")
-        dur = float(beat["duration"])
+        base_dur = float(beat["duration"])
+        dur = base_dur + outgoing_holds[index]
         if mt == "video":
             # Normalize video: scale+pad to target, set SAR, fps, format, trim/pad to exact duration
             # §70: normalize dimensions, SAR, pixel format, frame rate, strip Flow source audio
             # We trim to dur via -t on input already, but ensure filter outputs exactly dur
             # Use fps and scale filters
             filter_parts.append(
-                f"[{index}:v]scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},setsar=1,fps={fps},format={pixel_format},trim=duration={dur:.6f},setpts=PTS-STARTPTS[{label}]"
+                f"[{index}:v]scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},setsar=1,fps={fps},format={pixel_format},trim=duration={base_dur:.6f},setpts=PTS-STARTPTS,tpad=stop_mode=clone:stop_duration={outgoing_holds[index]:.6f},trim=duration={dur:.6f},setpts=PTS-STARTPTS[{label}]"
             )
         else:
             motion = str(beat.get("motion") or "still") if motion_enabled else "still"
@@ -725,10 +737,17 @@ def main() -> None:
             )
 
     concat_output = "vcat"
-    filter_parts.append(
-        "".join(labels)
-        + f"concat=n={len(beats)}:v=1:a=0[{concat_output}]"
-    )
+    current_label = "v0"
+    planned_duration = float(beats[0]["duration"])
+    for index in range(1, len(beats)):
+        transition, overlap = incoming_transitions[index]
+        next_label = f"x{index}"
+        filter_parts.append(
+            f"[{current_label}][v{index}]xfade=transition={transition}:duration={overlap:.3f}:offset={planned_duration:.6f}[{next_label}]"
+        )
+        current_label = next_label
+        planned_duration += float(beats[index]["duration"])
+    filter_parts.append(f"[{current_label}]null[{concat_output}]")
 
     final_video_label = concat_output
     if subtitles_enabled:

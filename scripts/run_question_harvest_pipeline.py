@@ -591,6 +591,20 @@ def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | Non
     body = data.get("body")
     if not isinstance(body, list) or not all(isinstance(item, str) and item.strip() for item in body):
         raise StageFailure(stage, "FAILED_VALIDATION", "`body` must be a list of non-empty strings.")
+    sentence_end = re.compile(r"[.!?…][\"')\]]*\s*$")
+    if any(not sentence_end.search(item.strip()) for item in body):
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            "Every `body` entry must be exactly one complete spoken sentence ending in . ! ? or …; "
+            "each entry receives its own image.",
+        )
+    if any(len(re.findall(r"[.!?…](?:[\"')\]]|\s)*", item.strip())) > 1 for item in body):
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            "A `body` entry contains more than one sentence. Split it so every sentence gets a unique image.",
+        )
     if not target.beat_min <= len(body) <= target.beat_max:
         raise StageFailure(
             stage,
@@ -1212,7 +1226,7 @@ def book_design_sheet_path(content_project: Any) -> Path:
         / content_project.project_id
         / "visual_presets"
         / content_project.default_visual_preset
-        / "book_design_sheet.png"
+        / "book_design_sheet_v2.png"
     )
 
 
@@ -1243,11 +1257,12 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
         )
     identity = reference_prompt.read_text(encoding="utf-8")
     prompt = (
-        "One hand-drawn design reference of a single antique storybook, 9:16 vertical, the book "
-        "centred and filling most of the frame on a plain warm parchment backdrop. This is a "
-        "reference sheet for an object, not a scene: no people, no hands, no room, no props.\n\n"
-        "Show the book twice in the same image, as a designer's sheet: closed at the top, and "
-        "lying open at the bottom. Nothing else.\n\n"
+        "A premium hand-drawn object turnaround of the same antique storybook, 9:16 vertical. "
+        "Split the frame into TWO large, equally clear product-reference views on a plain warm "
+        "parchment backdrop: a CLOSED FRONT COVER in the upper half and a WIDE-OPEN TWO-PAGE "
+        "SPREAD in the lower half. Both views must be fully visible, centred, large, and have the "
+        "same proportions and binding. This is an object reference, not a scene: no people, no "
+        "hands, no room, no props, no labels, no arrows, no writing.\n\n"
         "Locked identity, which must match exactly:\n"
         "- antique brown leather cover, softly worn at the edges\n"
         "- brass corner protectors on all four corners\n"
@@ -1256,14 +1271,17 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
         "- a thick block of aged, uneven pages\n"
         "- a green ribbon bookmark falling from the pages\n"
         "- no title, no lettering, no numbers, no extra symbols anywhere\n\n"
-        "The open book shows two completely blank aged pages: warm paper with visible grain, "
-        "clean margins and a soft shadow along the inner spine. Leave the pages empty — an "
+        "The OPEN view is mandatory and must visibly show two completely blank aged pages with "
+        "a generous clean rectangular illustration area on the right page, warm paper grain, "
+        "clean margins and a soft shadow along the inner spine. Leave both pages empty — an "
         "episode's illustration is composited onto the right page later, so any drawing or "
         "writing there would fight it.\n\n"
-        "Style: pure 2D hand-drawn illustration, clean ink outlines, flat colours, simple cel "
-        "shading, warm parchment and leather tones, soft even light. Natural and handcrafted, "
-        "the way a good children's encyclopaedia is drawn. No 3D, no CGI, no photoreal leather "
-        "or metal, no lens effects, no glowing magic, no portal.\n\n"
+        "Style: refined 2D illuminated-storybook illustration, confident clean ink contours, "
+        "rich but restrained chestnut leather, antique gold/brass with hand-painted highlights, "
+        "subtle cel shading, warm parchment texture, elegant page deck and believable hand-drawn "
+        "craftsmanship. It should feel like a beautifully illustrated heirloom reference from a "
+        "premium educational adventure book, never generic clip-art. No 3D, CGI, photoreal leather "
+        "or metal, lens effects, glowing magic, portal, text, diagrams, or watermark.\n\n"
         "The locked description this sheet must agree with:\n"
         f"{identity[:4000]}"
     )
@@ -1533,8 +1551,6 @@ def stage_body_images(
 
     produced: list[Path] = []
     previous: Path | None = None
-    reuse_keyframe_as_first = any(beat.get("world_keyframe_is_first") for beat in beats)
-
     for beat in beats:
         beat_id = int(beat["beat_id"])
         stage = f"beat_image_{beat_id:03d}"
@@ -1542,14 +1558,6 @@ def stage_body_images(
 
         if valid_image(target):
             runner.stage_reused(stage, target.name)
-            produced.append(target)
-            previous = target
-            continue
-
-        if reuse_keyframe_as_first and beat_id == 1:
-            shutil.copy(str(world_keyframe), str(target))
-            runner.state.mark(stage, STATE_REUSED, source="world_keyframe", sha256=sha256_file(target))
-            print(f"↻ {stage} reused the world keyframe as the first body image", flush=True)
             produced.append(target)
             previous = target
             continue

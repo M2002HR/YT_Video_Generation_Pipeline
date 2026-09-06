@@ -1,7 +1,7 @@
 # Prompt 05 — Visual Beat Planner (Question Harvest)
 
 ## Purpose
-Plan BODY visual beats. First ~8 seconds are Flow video (Clip A ~5s + Clip B ~3s) and are NOT counted as still-image beats. Use BODY narration duration (total minus ~8s) to choose beat count.
+Plan BODY visual beats. First ~8 seconds are Flow video (Clip A ~5s + Clip B ~3s) and are NOT counted as still-image beats. The script has already split BODY into one complete spoken sentence per entry: produce exactly one unique still-image beat for every one of those sentences.
 
 ## Inputs
 - FINAL SCRIPT (segmented): {{FINAL_SCRIPT}}
@@ -24,20 +24,21 @@ Return RAW JSON:
       "type": "literal|diagram|metaphor|subject_world",
       "continuity": "how this beat connects to previous (e.g., 'same field, wider angle')",
       "hero_present": true|false,
-      "world_keyframe_is_first": true|false
+      "world_keyframe_is_first": false,
+      "transition_in": "fade|dissolve|wipeleft|wiperight|slideleft|slideright|radial|circleopen|smoothleft|smoothright"
     }
   ]
 }
 ```
 
 ## Rules
-- world_keyframe.png may serve as first body image — mark one beat with "world_keyframe_is_first": true if so.
-- For 40–60s Short, usually 8–15 body stills depending on narration density. Do not force one image every 3.5s if storytelling suffers.
-- One standalone image per beat, 9:16 vertical, simple composition.
+- Return exactly as many beats as there are BODY entries, in the same order. One narration_slice must equal exactly one complete BODY sentence; never combine sentences and never split one sentence across beats.
+- Every beat needs a freshly generated, unique standalone image. `world_keyframe_is_first` is always false: the world keyframe is an anchor, never a substitute body image.
+- One standalone image per beat, 9:16 vertical, simple composition. Make the visual idea distinct from its neighbours even when the setting remains continuous.
+- `transition_in` is the transition from the preceding body image. Choose a restrained transition appropriate to the meaning: dissolve/fade for reflection or explanation; directional wipes/slides for travel, sequence, cause-and-effect; radial/circleopen for reveals or discoveries; smooth directions for gentle continuity. Avoid flashy or arbitrary effects. The first body's value is ignored.
 - Continuity is short-range support only; canonical character/style anchors beat drift (§56).
 - No unwanted readable text in images; no UI/grid/panels.
 
 Narration slices must concatenate to exactly the body narration (no missing or overlapping text).
 
 Return ONLY JSON.
-

@@ -22,7 +22,7 @@ Return ONLY a raw JSON object, no markdown fences, no commentary:
 {
   "opening_question_spark": "<~5s of narration: the hook, spoken while the hero is mid-activity>",
   "book_transition": "<~3s of narration: the hero reaches for the book and it opens>",
-  "body": ["<one sentence or clause per visual beat>", "..."],
+  "body": ["<exactly one complete spoken sentence per visual beat>", "..."],
   "optional_closing": "<one short echo sentence, or empty string>",
   "cta": "<one CTA of at most 12 words>",
   "full_narration": "<every field above concatenated in order, exactly as it will be spoken>"
@@ -34,7 +34,9 @@ Hard rules for the JSON:
   `book_transition`, each `body` entry in order, `optional_closing`, then `cta`, joined by a
   single space. No extra words, no repeated words, no re-ordering. The alignment step verifies
   this and rejects the script if it does not hold.
-- `body` must contain between {{BEAT_MIN}} and {{BEAT_MAX}} entries. One entry = one visual beat.
+- `body` must contain between {{BEAT_MIN}} and {{BEAT_MAX}} entries. One entry = one visual beat
+  = exactly one complete spoken sentence. Never put two sentences, a semicolon-separated pair,
+  or a clause fragment into one entry. This is a hard picture-change boundary.
 - No headings, no timestamps, no scene directions, no speaker labels, no emoji.
 - Plain spoken English only — anything unspeakable (URLs, parentheses, asterisks) is a defect.
 
@@ -54,7 +56,8 @@ return/closing.
 - Tie the hook to that physical activity: curiosity arrives while the hands are busy.
 - Make the book retrieval natural. `book_transition` is roughly 3 seconds of speech.
 - `opening_question_spark` is roughly 5 seconds of speech.
-- Every `body` entry should be independently visualisable — it becomes one image prompt.
+- Every `body` entry must be one complete, independently visualisable sentence — it becomes one
+  unique image prompt. Prefer 8–16 concise body sentences over long compound sentences.
 - Use only facts present in the brief's Source notes. Never invent statistics or sources.
 
 ## Style

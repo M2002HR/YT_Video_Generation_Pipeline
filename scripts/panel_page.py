@@ -366,14 +366,14 @@ def launch_form(project_options: str, style_options: str) -> str:
 
  <fieldset><legend>Voice &amp; music</legend>
   <label><span class="q">Voice</span>
-   <input name=voice value="George" required></label>
+   <input name=voice value="Mark - Natural Conversations" required></label>
   <label>ElevenLabs model <select name=model>
-    <option>Eleven Multilingual v2</option><option>Eleven v3</option></select></label>
+    <option selected>Eleven Multilingual v2</option><option>Eleven v3</option></select></label>
   <div class="grid2">
    <label>Speed <input name=speed type=number min=.7 max=1.2 step=.01 value=.9 required></label>
-   <label>Stability <input name=stability type=number min=0 max=1 step=.01 value=.45 required></label>
-   <label>Similarity <input name=similarity type=number min=0 max=1 step=.01 value=.75 required></label>
-   <label>Style <input name=style type=number min=0 max=1 step=.01 value=.10 required></label>
+   <label>Stability <input name=stability type=number min=0 max=1 step=.01 value=.30 required></label>
+   <label>Similarity <input name=similarity type=number min=0 max=1 step=.01 value=.50 required></label>
+   <label>Style <input name=style type=number min=0 max=1 step=.01 value=.15 required></label>
   </div>
   <label>Music provider priority
    <input name=music_providers value="mixkit,pixabay" pattern="(mixkit|pixabay)(,(mixkit|pixabay))*" required>

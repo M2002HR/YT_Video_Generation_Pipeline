@@ -32,7 +32,9 @@ script if it does not hold, so an edit that changes a segment must also update
 - the book retrieval and the ~3s `book_transition` beat
 - factual integrity: do not strengthen uncertain claims, never add statistics
 - a hook that works from second zero
-- between {{BEAT_MIN}} and {{BEAT_MAX}} `body` entries, each independently visualisable
+- between {{BEAT_MIN}} and {{BEAT_MAX}} `body` entries, each independently visualisable and
+  exactly one complete spoken sentence. Do not merge two sentences into one body entry and do
+  not leave a clause fragment as its own entry: each entry triggers one unique picture.
 
 ## May sharpen
 - hook compression and curiosity payoff

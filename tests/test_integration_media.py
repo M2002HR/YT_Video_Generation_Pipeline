@@ -165,7 +165,9 @@ def test_video_video_image_renders_as_one_continuous_clip(tmp_path: Path) -> Non
     assert result.returncode == 0, result.stdout + result.stderr
     probe = _probe(video_dir / "assets" / "renders" / "preview.mp4")
     assert abs(float(probe["format"]["duration"]) - 1.5) < 0.2
-    assert "concat=n=3:v=1:a=0" in " ".join(_ffmpeg_command(_render(video_dir, "--dry-run")))
+    command_text = " ".join(_ffmpeg_command(_render(video_dir, "--dry-run")))
+    assert "xfade=transition=fade" in command_text
+    assert "concat=n=" not in command_text
 
 
 # --------------------------------------------------------------------------- 3
@@ -211,7 +213,7 @@ def test_source_clip_audio_never_reaches_the_render(tmp_path: Path) -> None:
     audio_maps = [command[i + 1] for i, token in enumerate(command)
                   if token == "-map" and ":a" in command[i + 1]]
     assert audio_maps == ["2:a:0"], "exactly one audio map, and it is the narration input"
-    assert "concat=n=2:v=1:a=0" in " ".join(command), "concat must not carry audio"
+    assert "xfade=transition=fade" in " ".join(command), "visual transitions must not carry audio"
 
     result = _render(video_dir)
     assert result.returncode == 0, result.stdout + result.stderr

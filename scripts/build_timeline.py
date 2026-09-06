@@ -322,57 +322,52 @@ def build_subtitle_cues(
     return cues
 
 
-#: The longest a single still may hold the screen. A body segment that runs longer than this is
-#: cut into equal sub-shots of the same image, each re-framed by the next motion in the cycle, so
-#: the rhythm keeps moving and the narration keeps its measured boundaries. Without it the last
-#: image sat for 13.8s on episode 012 while the closing was read.
-MAX_IMAGE_SECONDS = float(os.getenv("YT_MAX_IMAGE_SECONDS", "4.5"))
+TRANSITION_TYPES = (
+    "fade", "dissolve", "wipeleft", "wiperight", "slideleft", "slideright",
+    "radial", "circleopen", "smoothleft", "smoothright",
+)
 
 
-def split_long_image_beats(
-    entries: list[dict[str, Any]],
-    motion_cycle: list[str],
-    *,
-    limit: float = MAX_IMAGE_SECONDS,
-) -> list[dict[str, Any]]:
-    """Cut any over-long still into equal sub-shots of itself.
+def transition_for_entry(entry: dict[str, Any], index: int) -> str:
+    """Choose a restrained, meaningful transition when a planner hint is unavailable."""
+    hinted = str(entry.get("transition_in") or "").lower().strip()
+    if hinted in TRANSITION_TYPES:
+        return hinted
+    text = str(entry.get("narration") or "").lower()
+    if any(word in text for word in ("reveal", "discover", "open", "unleash", "escape")):
+        return "circleopen" if index % 2 else "radial"
+    if any(word in text for word in ("then", "across", "through", "into", "from")):
+        return "slideleft" if index % 2 else "slideright"
+    if any(word in text for word in ("but", "however", "instead", "yet")):
+        return "dissolve"
+    return ("fade", "smoothleft", "dissolve", "smoothright", "wipeleft", "wiperight")[index % 6]
 
-    Nothing here moves a boundary: a sub-shot's start and end stay inside the slot the narration
-    measured for that beat, and the image is the same one the visual plan assigned to that
-    sentence. Only the framing changes between sub-shots, which is what makes a long sentence read
-    as several shots instead of a freeze.
-    """
-    if limit <= 0.5:
-        return entries
-    out: list[dict[str, Any]] = []
-    motion_index = 0
-    for entry in entries:
-        duration = float(entry.get("duration") or 0.0)
-        if entry.get("media_type") != "image" or duration <= limit:
-            out.append(entry)
-            motion_index += 1
+
+def load_visual_transition_hints(video_dir: Path) -> dict[int, str]:
+    """Read the planner's semantic transition choices when this is a QH project."""
+    try:
+        beats = load_json(video_dir / "creative" / "VISUAL_PLAN.json").get("beats") or []
+    except (OSError, ValueError):
+        return {}
+    return {
+        int(beat["beat_id"]): str(beat.get("transition_in") or "")
+        for beat in beats
+        if isinstance(beat, dict) and str(beat.get("beat_id") or "").isdigit()
+    }
+
+
+def add_transitions(entries: list[dict[str, Any]], hints: dict[int, str]) -> None:
+    """Annotate boundaries without duplicating an image or moving speech timing."""
+    for index, entry in enumerate(entries):
+        if index == 0:
+            entry["transition_in"] = "cut"
+            entry["transition_seconds"] = 0.0
             continue
-        pieces = int(math.ceil(duration / limit))
-        start = float(entry["start"])
-        end = float(entry["end"])
-        step = (end - start) / pieces
-        for piece in range(pieces):
-            piece_start = start + step * piece
-            piece_end = end if piece == pieces - 1 else start + step * (piece + 1)
-            clone = dict(entry)
-            clone.update(
-                {
-                    "start": round(piece_start, 3),
-                    "end": round(piece_end, 3),
-                    "duration": round(piece_end - piece_start, 3),
-                    "motion": str(motion_cycle[motion_index % len(motion_cycle)]),
-                    "sub_shot": piece + 1,
-                    "sub_shot_count": pieces,
-                }
-            )
-            out.append(clone)
-            motion_index += 1
-    return out
+        if entry.get("media_type") == "image":
+            entry["transition_in"] = hints.get(int(entry["beat_id"]), "")
+        duration = float(entry.get("duration") or 0.0)
+        entry["transition_in"] = transition_for_entry(entry, index)
+        entry["transition_seconds"] = round(min(0.32, max(0.16, duration / 8)), 3)
 
 
 def build_cues_from_words(
@@ -776,9 +771,9 @@ def main() -> None:
                 }
             )
 
-    # A still that holds too long reads as a freeze, so long slots become several framings of
-    # the same image. Video beats are never split: their motion is their own.
-    timeline_beats = split_long_image_beats(timeline_beats, list(motion_cycle))
+    # Each body sentence owns one image. Never split a long slot into repeated reframings of
+    # the same source: that looks slow and violates the sentence-to-picture contract.
+    add_transitions(timeline_beats, load_visual_transition_hints(video_dir))
 
     subtitle_cfg = (
         profile.get("subtitles")

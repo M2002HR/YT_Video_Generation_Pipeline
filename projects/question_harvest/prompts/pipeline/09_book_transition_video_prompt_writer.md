@@ -43,9 +43,10 @@ star symbols, thick aged pages, green bookmark ribbon, exact proportions, exact 
 exact illustration style. Animate the asset; do not invent a different book.
 
 ## Style lock
-Pure 2D hand-drawn storybook animation: clean ink outlines, flat illustrated colors,
-simple cel shading, warm parchment tones, handcrafted cartoon feeling, educational
-adventure atmosphere, magical storybook mood.
+Refined 2D illuminated-storybook animation: confident clean ink contours, rich restrained
+chestnut leather and antique-gold details, warm parchment grain, elegant page deck, subtle
+cel shading, handcrafted premium educational-adventure feeling. It must feel like a carefully
+animated heirloom illustration, not generic clip-art.
 
 Forbid: 3D, CGI, realistic materials, photorealism, cinematic realism, realistic camera
 effects, 3D depth, realistic portal effects. Everything must look like a beautifully
@@ -53,9 +54,9 @@ animated drawing.
 
 ## Shot structure (scale the timings to SOURCE DURATION SECONDS)
 1. **Mysterious book opening** (first ~27% of the clip) — start immediately close-up inside
-   the already-open book: aged pages, hand-drawn illustrations, ancient paper texture.
-   Pages gently move; soft golden light comes from between them. No character, no hands,
-   no movement inside the illustration.
+   the already-open book, matching the supplied open spread exactly: aged pages, rich ink
+   contours, subtle paper texture and a composed centred layout. Pages gently move; soft golden
+   light comes from between them. No character, no hands, no movement inside the illustration.
 2. **Discovering the topic page** (middle ~33%) — the book slowly turns pages revealing
    faded story illustrations; the camera follows the page movement; the book stops on the
    special page whose hand-drawn illustration relates to **{{TOPIC}}**. The drawing itself
