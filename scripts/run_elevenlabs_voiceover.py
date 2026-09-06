@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import sys
 import time
@@ -46,6 +47,11 @@ def json_dump(path: Path, value: Any) -> None:
 
 def bool_env(name: str, default: bool = False) -> bool:
     return os.getenv(name, str(default)).strip().lower() in {"1", "true", "yes", "on"}
+
+
+def output_format_identity(value: str | None) -> str:
+    """Compare ElevenLabs format labels despite harmless UI typography changes."""
+    return re.sub(r"[^a-z0-9]+", "", str(value or "").casefold())
 
 
 @dataclass(frozen=True)
@@ -415,17 +421,33 @@ class ElevenLabsUI:
             raise RuntimeError(f"ElevenLabs '{label}' did not reach requested value {value}; observed {final_value}.")
 
     def select_output_format(self, requested: str | None) -> str | None:
-        """Select an explicit format, or keep ElevenLabs' current default."""
+        """Select an explicit format, or retain an already-matching current value.
+
+        ElevenLabs' current output-format popup no longer exposes choices as
+        ``role=option``.  More importantly, reopening it is needless when the
+        visible control already has the requested setting, and made a correct
+        configured state fail as if the setting were missing.
+        """
         if requested is None:
             return None
-        control = self._json("""(() => { const e=document.querySelector(\"button[aria-label=\\\"Output format\\\"]\");if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+        control = self._json("""(() => { const e=document.querySelector(\"button[aria-label=\\\"Output format\\\"]\");if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,text:(e.innerText||'').trim(),open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
         if not control.get("ok"):
             raise RuntimeError("Could not find ElevenLabs Output format control.")
+        if output_format_identity(str(control.get("text") or "")) == output_format_identity(requested):
+            return str(control["text"])
         if not control.get("open"):
             self._trusted_click(f"""(() => {{ return {json.dumps(control)}; }})()""")
         deadline = time.monotonic() + 10
         while time.monotonic() < deadline:
-            option = self._json(f"""(() => {{ const wanted={json.dumps(requested)}.toLowerCase();const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);const e=[...document.querySelectorAll('[role=option]')].filter(visible).find(x=>(x.innerText||'').trim().toLowerCase()===wanted);if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,text:(e.innerText||'').trim()}}; }})()""")
+            option = self._json(f"""(() => {{
+              const wanted={json.dumps(output_format_identity(requested))};
+              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+              const identity=text=>(text||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
+              const choices=[...document.querySelectorAll('[role=option],[role=menuitemradio],[data-radix-collection-item],button,[role=button]')].filter(visible);
+              const matches=choices.filter(x=>identity((x.innerText||'').trim())===wanted);
+              matches.sort((a,b)=>{{const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect();return ar.width*ar.height-br.width*br.height;}});
+              const e=matches[0]; if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,text:(e.innerText||'').trim()}};
+            }})()""")
             if option.get("ok"):
                 self._trusted_click(f"""(() => {{ return {json.dumps(option)}; }})()""")
                 return str(option["text"])
