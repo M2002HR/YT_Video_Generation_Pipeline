@@ -1,0 +1,1228 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 87.719,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 203,
+  "words": [
+    {
+      "text": "This",
+      "token": "this",
+      "start": 0.02,
+      "end": 0.3
+    },
+    {
+      "text": "part",
+      "token": "part",
+      "start": 0.3,
+      "end": 0.66
+    },
+    {
+      "text": "10",
+      "token": "10",
+      "start": 0.66,
+      "end": 0.92
+    },
+    {
+      "text": "makes",
+      "token": "makes",
+      "start": 0.92,
+      "end": 1.18
+    },
+    {
+      "text": "me",
+      "token": "me",
+      "start": 1.18,
+      "end": 1.36
+    },
+    {
+      "text": "wonder,",
+      "token": "wonder",
+      "start": 1.36,
+      "end": 1.72
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 1.72,
+      "end": 2.66
+    },
+    {
+      "text": "does",
+      "token": "does",
+      "start": 2.66,
+      "end": 2.98
+    },
+    {
+      "text": "Pandora's",
+      "token": "pandora's",
+      "start": 2.98,
+      "end": 3.64
+    },
+    {
+      "text": "box",
+      "token": "box",
+      "start": 3.64,
+      "end": 4.02
+    },
+    {
+      "text": "mean",
+      "token": "mean",
+      "start": 4.02,
+      "end": 4.34
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 4.34,
+      "end": 4.74
+    },
+    {
+      "text": "tiny",
+      "token": "tiny",
+      "start": 4.74,
+      "end": 5.18
+    },
+    {
+      "text": "choice",
+      "token": "choice",
+      "start": 5.18,
+      "end": 5.64
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 5.64,
+      "end": 5.9
+    },
+    {
+      "text": "unleash",
+      "token": "unleash",
+      "start": 5.9,
+      "end": 6.36
+    },
+    {
+      "text": "huge",
+      "token": "huge",
+      "start": 6.36,
+      "end": 7.1
+    },
+    {
+      "text": "consequences?",
+      "token": "consequences",
+      "start": 6.7,
+      "end": 7.76
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 7.76,
+      "end": 9.22
+    },
+    {
+      "text": "stop",
+      "token": "stop",
+      "start": 9.22,
+      "end": 9.5
+    },
+    {
+      "text": "sorting",
+      "token": "sorting",
+      "start": 9.5,
+      "end": 9.86
+    },
+    {
+      "text": "screws",
+      "token": "screws",
+      "start": 9.86,
+      "end": 10.26
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 10.26,
+      "end": 10.52
+    },
+    {
+      "text": "reach",
+      "token": "reach",
+      "start": 10.52,
+      "end": 10.74
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 10.74,
+      "end": 10.9
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 10.9,
+      "end": 11.0
+    },
+    {
+      "text": "answer.",
+      "token": "answer",
+      "start": 11.0,
+      "end": 11.62
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 11.62,
+      "end": 12.6
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 12.6,
+      "end": 12.88
+    },
+    {
+      "text": "given",
+      "token": "given",
+      "start": 12.88,
+      "end": 13.08
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 13.08,
+      "end": 13.28
+    },
+    {
+      "text": "sealed",
+      "token": "sealed",
+      "start": 13.28,
+      "end": 13.62
+    },
+    {
+      "text": "container",
+      "token": "container",
+      "start": 13.62,
+      "end": 14.1
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 13.7,
+      "end": 14.52
+    },
+    {
+      "text": "warned",
+      "token": "warned",
+      "start": 14.52,
+      "end": 14.88
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 14.88,
+      "end": 15.32
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 15.32,
+      "end": 15.54
+    },
+    {
+      "text": "open",
+      "token": "open",
+      "start": 15.54,
+      "end": 15.88
+    },
+    {
+      "text": "it.",
+      "token": "it",
+      "start": 15.88,
+      "end": 16.42
+    },
+    {
+      "text": "In",
+      "token": "in",
+      "start": 16.42,
+      "end": 16.98
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 16.98,
+      "end": 17.1
+    },
+    {
+      "text": "earliest",
+      "token": "earliest",
+      "start": 17.1,
+      "end": 17.46
+    },
+    {
+      "text": "Greek",
+      "token": "greek",
+      "start": 17.46,
+      "end": 17.74
+    },
+    {
+      "text": "version,",
+      "token": "version",
+      "start": 17.74,
+      "end": 18.42
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 18.42,
+      "end": 18.52
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 18.52,
+      "end": 18.66
+    },
+    {
+      "text": "actually",
+      "token": "actually",
+      "start": 18.66,
+      "end": 19.12
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 19.12,
+      "end": 19.42
+    },
+    {
+      "text": "jar,",
+      "token": "jar",
+      "start": 19.42,
+      "end": 19.84
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 19.84,
+      "end": 20.46
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 20.46,
+      "end": 20.6
+    },
+    {
+      "text": "box.",
+      "token": "box",
+      "start": 20.6,
+      "end": 21.06
+    },
+    {
+      "text": "But",
+      "token": "but",
+      "start": 22.1,
+      "end": 22.34
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 22.34,
+      "end": 22.46
+    },
+    {
+      "text": "dangerous",
+      "token": "dangerous",
+      "start": 22.46,
+      "end": 22.96
+    },
+    {
+      "text": "idea",
+      "token": "idea",
+      "start": 22.96,
+      "end": 23.48
+    },
+    {
+      "text": "stays",
+      "token": "stays",
+      "start": 23.48,
+      "end": 23.84
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 23.84,
+      "end": 24.02
+    },
+    {
+      "text": "same.",
+      "token": "same",
+      "start": 24.02,
+      "end": 24.58
+    },
+    {
+      "text": "Something",
+      "token": "something",
+      "start": 24.58,
+      "end": 25.4
+    },
+    {
+      "text": "forbidden",
+      "token": "forbidden",
+      "start": 25.4,
+      "end": 25.88
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 25.88,
+      "end": 26.2
+    },
+    {
+      "text": "sitting",
+      "token": "sitting",
+      "start": 26.2,
+      "end": 26.46
+    },
+    {
+      "text": "within",
+      "token": "within",
+      "start": 26.46,
+      "end": 26.7
+    },
+    {
+      "text": "reach.",
+      "token": "reach",
+      "start": 26.7,
+      "end": 27.44
+    },
+    {
+      "text": "Curiosity",
+      "token": "curiosity",
+      "start": 28.28,
+      "end": 28.72
+    },
+    {
+      "text": "wins",
+      "token": "wins",
+      "start": 28.72,
+      "end": 29.34
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 29.34,
+      "end": 29.62
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 29.62,
+      "end": 30.22
+    },
+    {
+      "text": "opens",
+      "token": "opens",
+      "start": 30.22,
+      "end": 30.72
+    },
+    {
+      "text": "it.",
+      "token": "it",
+      "start": 30.72,
+      "end": 31.26
+    },
+    {
+      "text": "Suddenly,",
+      "token": "suddenly",
+      "start": 31.78,
+      "end": 32.18
+    },
+    {
+      "text": "Trouble's",
+      "token": "trouble's",
+      "start": 32.18,
+      "end": 32.58
+    },
+    {
+      "text": "escape",
+      "token": "escape",
+      "start": 32.58,
+      "end": 32.9
+    },
+    {
+      "text": "into",
+      "token": "into",
+      "start": 32.9,
+      "end": 33.16
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 33.16,
+      "end": 33.32
+    },
+    {
+      "text": "world",
+      "token": "world",
+      "start": 33.32,
+      "end": 33.54
+    },
+    {
+      "text": "faster",
+      "token": "faster",
+      "start": 33.54,
+      "end": 34.14
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 34.14,
+      "end": 34.38
+    },
+    {
+      "text": "she",
+      "token": "she",
+      "start": 34.38,
+      "end": 34.54
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 34.54,
+      "end": 34.7
+    },
+    {
+      "text": "contain",
+      "token": "contain",
+      "start": 34.7,
+      "end": 35.06
+    },
+    {
+      "text": "them.",
+      "token": "them",
+      "start": 35.06,
+      "end": 35.38
+    },
+    {
+      "text": "She",
+      "token": "she",
+      "start": 36.34,
+      "end": 36.54
+    },
+    {
+      "text": "closes",
+      "token": "closes",
+      "start": 36.54,
+      "end": 36.84
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 36.84,
+      "end": 37.04
+    },
+    {
+      "text": "container,",
+      "token": "container",
+      "start": 37.04,
+      "end": 37.56
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 37.56,
+      "end": 37.62
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 37.62,
+      "end": 37.72
+    },
+    {
+      "text": "damage",
+      "token": "damage",
+      "start": 37.72,
+      "end": 38.04
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 38.04,
+      "end": 38.22
+    },
+    {
+      "text": "already",
+      "token": "already",
+      "start": 38.22,
+      "end": 38.62
+    },
+    {
+      "text": "beyond",
+      "token": "beyond",
+      "start": 38.62,
+      "end": 38.94
+    },
+    {
+      "text": "her",
+      "token": "her",
+      "start": 38.94,
+      "end": 39.14
+    },
+    {
+      "text": "control.",
+      "token": "control",
+      "start": 39.14,
+      "end": 39.52
+    },
+    {
+      "text": "Only",
+      "token": "only",
+      "start": 40.94,
+      "end": 41.26
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 41.26,
+      "end": 41.66
+    },
+    {
+      "text": "thing",
+      "token": "thing",
+      "start": 41.66,
+      "end": 41.92
+    },
+    {
+      "text": "remains",
+      "token": "remains",
+      "start": 41.92,
+      "end": 42.3
+    },
+    {
+      "text": "inside.",
+      "token": "inside",
+      "start": 42.3,
+      "end": 42.8
+    },
+    {
+      "text": "Hope?",
+      "token": "hope",
+      "start": 43.9,
+      "end": 44.18
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 45.36,
+      "end": 45.56
+    },
+    {
+      "text": "final",
+      "token": "final",
+      "start": 45.56,
+      "end": 45.92
+    },
+    {
+      "text": "detail",
+      "token": "detail",
+      "start": 45.92,
+      "end": 46.22
+    },
+    {
+      "text": "makes",
+      "token": "makes",
+      "start": 46.22,
+      "end": 46.52
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 46.52,
+      "end": 46.66
+    },
+    {
+      "text": "story",
+      "token": "story",
+      "start": 46.66,
+      "end": 46.96
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 46.96,
+      "end": 47.36
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 47.36,
+      "end": 47.54
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 47.54,
+      "end": 47.68
+    },
+    {
+      "text": "simple",
+      "token": "simple",
+      "start": 47.68,
+      "end": 48.0
+    },
+    {
+      "text": "warning",
+      "token": "warning",
+      "start": 48.0,
+      "end": 48.3
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 48.3,
+      "end": 48.58
+    },
+    {
+      "text": "curiosity.",
+      "token": "curiosity",
+      "start": 48.58,
+      "end": 49.14
+    },
+    {
+      "text": "Pandora's",
+      "token": "pandora's",
+      "start": 50.86,
+      "end": 51.4
+    },
+    {
+      "text": "box",
+      "token": "box",
+      "start": 51.4,
+      "end": 51.66
+    },
+    {
+      "text": "becomes",
+      "token": "becomes",
+      "start": 51.66,
+      "end": 52.02
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 52.02,
+      "end": 52.22
+    },
+    {
+      "text": "symbol",
+      "token": "symbol",
+      "start": 52.22,
+      "end": 52.54
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 52.54,
+      "end": 52.78
+    },
+    {
+      "text": "decisions",
+      "token": "decisions",
+      "start": 52.78,
+      "end": 53.2
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 53.2,
+      "end": 53.48
+    },
+    {
+      "text": "release",
+      "token": "release",
+      "start": 53.48,
+      "end": 53.78
+    },
+    {
+      "text": "consequences",
+      "token": "consequences",
+      "start": 53.78,
+      "end": 54.46
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 54.46,
+      "end": 54.96
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 54.96,
+      "end": 55.26
+    },
+    {
+      "text": "easily",
+      "token": "easily",
+      "start": 55.26,
+      "end": 55.88
+    },
+    {
+      "text": "reverse.",
+      "token": "reverse",
+      "start": 55.88,
+      "end": 56.36
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 57.82,
+      "end": 57.9
+    },
+    {
+      "text": "small",
+      "token": "small",
+      "start": 57.9,
+      "end": 58.22
+    },
+    {
+      "text": "action",
+      "token": "action",
+      "start": 58.22,
+      "end": 58.66
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 58.66,
+      "end": 58.92
+    },
+    {
+      "text": "trigger",
+      "token": "trigger",
+      "start": 58.92,
+      "end": 59.2
+    },
+    {
+      "text": "problems",
+      "token": "problems",
+      "start": 59.2,
+      "end": 59.76
+    },
+    {
+      "text": "far",
+      "token": "far",
+      "start": 59.76,
+      "end": 60.36
+    },
+    {
+      "text": "larger",
+      "token": "larger",
+      "start": 60.36,
+      "end": 60.8
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 60.8,
+      "end": 61.08
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 61.08,
+      "end": 61.2
+    },
+    {
+      "text": "action",
+      "token": "action",
+      "start": 61.2,
+      "end": 61.52
+    },
+    {
+      "text": "itself.",
+      "token": "itself",
+      "start": 61.52,
+      "end": 62.02
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 62.94,
+      "end": 63.1
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 63.1,
+      "end": 63.24
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 63.24,
+      "end": 63.46
+    },
+    {
+      "text": "we",
+      "token": "we",
+      "start": 63.46,
+      "end": 63.64
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 63.64,
+      "end": 63.88
+    },
+    {
+      "text": "say",
+      "token": "say",
+      "start": 63.88,
+      "end": 64.16
+    },
+    {
+      "text": "someone",
+      "token": "someone",
+      "start": 64.16,
+      "end": 64.48
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 64.48,
+      "end": 64.66
+    },
+    {
+      "text": "opening",
+      "token": "opening",
+      "start": 64.66,
+      "end": 65.06
+    },
+    {
+      "text": "Pandora's",
+      "token": "pandora's",
+      "start": 65.06,
+      "end": 65.8
+    },
+    {
+      "text": "box.",
+      "token": "box",
+      "start": 65.8,
+      "end": 66.28
+    },
+    {
+      "text": "We",
+      "token": "we",
+      "start": 67.52,
+      "end": 67.7
+    },
+    {
+      "text": "mean",
+      "token": "mean",
+      "start": 67.7,
+      "end": 67.98
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 67.98,
+      "end": 68.14
+    },
+    {
+      "text": "choice",
+      "token": "choice",
+      "start": 68.14,
+      "end": 68.5
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 68.5,
+      "end": 68.74
+    },
+    {
+      "text": "start",
+      "token": "start",
+      "start": 68.74,
+      "end": 69.04
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 69.04,
+      "end": 69.18
+    },
+    {
+      "text": "chain",
+      "token": "chain",
+      "start": 69.18,
+      "end": 69.5
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 69.5,
+      "end": 69.7
+    },
+    {
+      "text": "trouble",
+      "token": "trouble",
+      "start": 69.7,
+      "end": 70.06
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 70.06,
+      "end": 70.32
+    },
+    {
+      "text": "keeps",
+      "token": "keeps",
+      "start": 70.32,
+      "end": 70.74
+    },
+    {
+      "text": "spreading.",
+      "token": "spreading",
+      "start": 70.74,
+      "end": 71.22
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 72.28,
+      "end": 72.46
+    },
+    {
+      "text": "deeper",
+      "token": "deeper",
+      "start": 72.46,
+      "end": 72.72
+    },
+    {
+      "text": "lesson",
+      "token": "lesson",
+      "start": 72.72,
+      "end": 73.04
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 73.04,
+      "end": 73.22
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 73.22,
+      "end": 73.34
+    },
+    {
+      "text": "just",
+      "token": "just",
+      "start": 73.34,
+      "end": 73.52
+    },
+    {
+      "text": "do",
+      "token": "do",
+      "start": 73.52,
+      "end": 74.14
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 74.14,
+      "end": 74.36
+    },
+    {
+      "text": "be",
+      "token": "be",
+      "start": 74.36,
+      "end": 74.58
+    },
+    {
+      "text": "curious.",
+      "token": "curious",
+      "start": 74.58,
+      "end": 75.0
+    },
+    {
+      "text": "It",
+      "token": "it",
+      "start": 76.34,
+      "end": 76.48
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 76.48,
+      "end": 76.6
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 76.6,
+      "end": 76.72
+    },
+    {
+      "text": "some",
+      "token": "some",
+      "start": 76.72,
+      "end": 77.0
+    },
+    {
+      "text": "doors",
+      "token": "doors",
+      "start": 77.0,
+      "end": 77.28
+    },
+    {
+      "text": "are",
+      "token": "are",
+      "start": 77.28,
+      "end": 77.46
+    },
+    {
+      "text": "much",
+      "token": "much",
+      "start": 77.46,
+      "end": 77.62
+    },
+    {
+      "text": "easier",
+      "token": "easier",
+      "start": 77.62,
+      "end": 78.1
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 78.1,
+      "end": 78.34
+    },
+    {
+      "text": "open",
+      "token": "open",
+      "start": 78.34,
+      "end": 78.62
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 78.62,
+      "end": 78.84
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 78.84,
+      "end": 78.96
+    },
+    {
+      "text": "close.",
+      "token": "close",
+      "start": 78.96,
+      "end": 79.56
+    },
+    {
+      "text": "Sometimes",
+      "token": "sometimes",
+      "start": 80.44,
+      "end": 80.74
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 80.74,
+      "end": 81.0
+    },
+    {
+      "text": "smallest",
+      "token": "smallest",
+      "start": 81.0,
+      "end": 81.32
+    },
+    {
+      "text": "opening",
+      "token": "opening",
+      "start": 81.32,
+      "end": 81.74
+    },
+    {
+      "text": "changes",
+      "token": "changes",
+      "start": 81.74,
+      "end": 82.2
+    },
+    {
+      "text": "everything",
+      "token": "everything",
+      "start": 82.2,
+      "end": 82.76
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 82.76,
+      "end": 83.06
+    },
+    {
+      "text": "follows.",
+      "token": "follows",
+      "start": 83.06,
+      "end": 83.4
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 84.34,
+      "end": 84.6
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 84.6,
+      "end": 84.84
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 84.84,
+      "end": 85.28
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 85.28,
+      "end": 85.8
+    },
+    {
+      "text": "grow",
+      "token": "grow",
+      "start": 85.8,
+      "end": 86.32
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 86.32,
+      "end": 86.6
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 86.6,
+      "end": 87.24
+    },
+    {
+      "text": "Yes.",
+      "token": "yes",
+      "start": 87.26,
+      "end": 87.32
+    }
+  ]
+}

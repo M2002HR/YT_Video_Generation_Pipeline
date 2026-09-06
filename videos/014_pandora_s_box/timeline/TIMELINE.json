@@ -1,0 +1,765 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 87.719,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 7.792,
+      "duration": 7.792,
+      "beat_id": "video_opening_a",
+      "motion": "still"
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 7.792,
+      "end": 11.625,
+      "duration": 3.833,
+      "beat_id": "video_opening_b",
+      "motion": "still"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 11.625,
+      "end": 14.023,
+      "duration": 2.398,
+      "speech_start": 11.62,
+      "speech_end": 16.42,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Pandora is given a sealed container and warned not to open it.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 14.023,
+      "end": 16.42,
+      "duration": 2.398,
+      "speech_start": 11.62,
+      "speech_end": 16.42,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Pandora is given a sealed container and warned not to open it.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 16.42,
+      "end": 19.26,
+      "duration": 2.84,
+      "speech_start": 16.42,
+      "speech_end": 21.06,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "In the earliest Greek version, it is actually a jar, not a box.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 19.26,
+      "end": 22.1,
+      "duration": 2.84,
+      "speech_start": 16.42,
+      "speech_end": 21.06,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "In the earliest Greek version, it is actually a jar, not a box.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 22.1,
+      "end": 25.19,
+      "duration": 3.09,
+      "speech_start": 22.1,
+      "speech_end": 27.44,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "But the dangerous idea stays the same: something forbidden is sitting within reach.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 25.19,
+      "end": 28.28,
+      "duration": 3.09,
+      "speech_start": 22.1,
+      "speech_end": 27.44,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "But the dangerous idea stays the same: something forbidden is sitting within reach.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 28.28,
+      "end": 31.78,
+      "duration": 3.5,
+      "speech_start": 28.28,
+      "speech_end": 31.26,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Curiosity wins, and Pandora opens it."
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 31.78,
+      "end": 34.06,
+      "duration": 2.28,
+      "speech_start": 31.78,
+      "speech_end": 35.38,
+      "match_confidence": 0.917,
+      "motion": "zoom_out",
+      "narration": "Suddenly, troubles escape into the world faster than she can contain them.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 34.06,
+      "end": 36.34,
+      "duration": 2.28,
+      "speech_start": 31.78,
+      "speech_end": 35.38,
+      "match_confidence": 0.917,
+      "motion": "slow_zoom_in",
+      "narration": "Suddenly, troubles escape into the world faster than she can contain them.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 36.34,
+      "end": 38.64,
+      "duration": 2.3,
+      "speech_start": 36.34,
+      "speech_end": 39.52,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "She closes the container, but the damage is already beyond her control.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 38.64,
+      "end": 40.94,
+      "duration": 2.3,
+      "speech_start": 36.34,
+      "speech_end": 39.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "She closes the container, but the damage is already beyond her control.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 40.94,
+      "end": 45.36,
+      "duration": 4.42,
+      "speech_start": 40.94,
+      "speech_end": 44.18,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Only one thing remains inside: hope."
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 45.36,
+      "end": 48.11,
+      "duration": 2.75,
+      "speech_start": 45.36,
+      "speech_end": 49.14,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "That final detail makes the story more than a simple warning about curiosity.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 48.11,
+      "end": 50.86,
+      "duration": 2.75,
+      "speech_start": 45.36,
+      "speech_end": 49.14,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "That final detail makes the story more than a simple warning about curiosity.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 50.86,
+      "end": 54.34,
+      "duration": 3.48,
+      "speech_start": 50.86,
+      "speech_end": 56.36,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pandora's box becomes a symbol for decisions that release consequences you cannot easily reverse.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 54.34,
+      "end": 57.82,
+      "duration": 3.48,
+      "speech_start": 50.86,
+      "speech_end": 56.36,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Pandora's box becomes a symbol for decisions that release consequences you cannot easily reverse.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 57.82,
+      "end": 60.38,
+      "duration": 2.56,
+      "speech_start": 57.82,
+      "speech_end": 62.02,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "A small action can trigger problems far larger than the action itself.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 60.38,
+      "end": 62.94,
+      "duration": 2.56,
+      "speech_start": 57.82,
+      "speech_end": 62.02,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "A small action can trigger problems far larger than the action itself.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 62.94,
+      "end": 65.23,
+      "duration": 2.29,
+      "speech_start": 62.94,
+      "speech_end": 66.28,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That is why we still say someone is opening Pandora's box.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 65.23,
+      "end": 67.52,
+      "duration": 2.29,
+      "speech_start": 62.94,
+      "speech_end": 66.28,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "That is why we still say someone is opening Pandora's box.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 67.52,
+      "end": 69.9,
+      "duration": 2.38,
+      "speech_start": 67.52,
+      "speech_end": 71.22,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "We mean the choice may start a chain of trouble that keeps spreading.",
+      "sub_shot": 1,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 69.9,
+      "end": 72.28,
+      "duration": 2.38,
+      "speech_start": 67.52,
+      "speech_end": 71.22,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "We mean the choice may start a chain of trouble that keeps spreading.",
+      "sub_shot": 2,
+      "sub_shot_count": 2
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 72.28,
+      "end": 76.34,
+      "duration": 4.06,
+      "speech_start": 72.28,
+      "speech_end": 75.0,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The deeper lesson is not just 'do not be curious.'"
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 76.34,
+      "end": 80.133,
+      "duration": 3.793,
+      "speech_start": 76.34,
+      "speech_end": 79.56,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "It is that some doors are much easier to open than to close.",
+      "sub_shot": 1,
+      "sub_shot_count": 3
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 80.133,
+      "end": 83.926,
+      "duration": 3.793,
+      "speech_start": 76.34,
+      "speech_end": 79.56,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "It is that some doors are much easier to open than to close.",
+      "sub_shot": 2,
+      "sub_shot_count": 3
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 83.926,
+      "end": 87.719,
+      "duration": 3.793,
+      "speech_start": 76.34,
+      "speech_end": 79.56,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "It is that some doors are much easier to open than to close.",
+      "sub_shot": 3,
+      "sub_shot_count": 3
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 1.72,
+      "text": "This part 10 makes me wonder,",
+      "ass_text": "This part 10 makes me wonder,",
+      "timing_source": "word"
+    },
+    {
+      "start": 1.72,
+      "end": 4.74,
+      "text": "why does Pandora's box mean one",
+      "ass_text": "why does Pandora's box mean one",
+      "timing_source": "word"
+    },
+    {
+      "start": 4.74,
+      "end": 7.76,
+      "text": "tiny choice can unleash huge consequences?",
+      "ass_text": "tiny choice can unleash huge\\Nconsequences?",
+      "timing_source": "word"
+    },
+    {
+      "start": 7.76,
+      "end": 10.74,
+      "text": "I stop sorting screws and reach",
+      "ass_text": "I stop sorting screws and reach",
+      "timing_source": "word"
+    },
+    {
+      "start": 10.74,
+      "end": 11.62,
+      "text": "for the answer.",
+      "ass_text": "for the answer.",
+      "timing_source": "word"
+    },
+    {
+      "start": 11.62,
+      "end": 13.9,
+      "text": "Pandora is given a sealed container",
+      "ass_text": "Pandora is given a sealed\\Ncontainer",
+      "timing_source": "word"
+    },
+    {
+      "start": 13.9,
+      "end": 16.42,
+      "text": "and warned not to open it.",
+      "ass_text": "and warned not to open it.",
+      "timing_source": "word"
+    },
+    {
+      "start": 16.42,
+      "end": 18.52,
+      "text": "In the earliest Greek version, it",
+      "ass_text": "In the earliest Greek version, it",
+      "timing_source": "word"
+    },
+    {
+      "start": 18.52,
+      "end": 20.6,
+      "text": "is actually a jar, not a",
+      "ass_text": "is actually a jar, not a",
+      "timing_source": "word"
+    },
+    {
+      "start": 20.6,
+      "end": 21.06,
+      "text": "box.",
+      "ass_text": "box.",
+      "timing_source": "word"
+    },
+    {
+      "start": 22.1,
+      "end": 24.02,
+      "text": "But the dangerous idea stays the",
+      "ass_text": "But the dangerous idea stays the",
+      "timing_source": "word"
+    },
+    {
+      "start": 24.02,
+      "end": 24.58,
+      "text": "same.",
+      "ass_text": "same.",
+      "timing_source": "word"
+    },
+    {
+      "start": 24.58,
+      "end": 27.44,
+      "text": "Something forbidden is sitting within reach.",
+      "ass_text": "Something forbidden is sitting\\Nwithin reach.",
+      "timing_source": "word"
+    },
+    {
+      "start": 28.28,
+      "end": 31.26,
+      "text": "Curiosity wins and Pandora opens it.",
+      "ass_text": "Curiosity wins and Pandora opens\\Nit.",
+      "timing_source": "word"
+    },
+    {
+      "start": 31.78,
+      "end": 33.54,
+      "text": "Suddenly, Trouble's escape into the world",
+      "ass_text": "Suddenly, Trouble's escape into\\Nthe world",
+      "timing_source": "word"
+    },
+    {
+      "start": 33.54,
+      "end": 35.38,
+      "text": "faster than she can contain them.",
+      "ass_text": "faster than she can contain them.",
+      "timing_source": "word"
+    },
+    {
+      "start": 36.34,
+      "end": 37.72,
+      "text": "She closes the container, but the",
+      "ass_text": "She closes the container, but the",
+      "timing_source": "word"
+    },
+    {
+      "start": 37.72,
+      "end": 39.52,
+      "text": "damage is already beyond her control.",
+      "ass_text": "damage is already beyond her\\Ncontrol.",
+      "timing_source": "word"
+    },
+    {
+      "start": 40.94,
+      "end": 42.8,
+      "text": "Only one thing remains inside.",
+      "ass_text": "Only one thing remains inside.",
+      "timing_source": "word"
+    },
+    {
+      "start": 43.9,
+      "end": 44.18,
+      "text": "Hope?",
+      "ass_text": "Hope?",
+      "timing_source": "word"
+    },
+    {
+      "start": 45.36,
+      "end": 46.96,
+      "text": "That final detail makes the story",
+      "ass_text": "That final detail makes the story",
+      "timing_source": "word"
+    },
+    {
+      "start": 46.96,
+      "end": 48.58,
+      "text": "more than a simple warning about",
+      "ass_text": "more than a simple warning about",
+      "timing_source": "word"
+    },
+    {
+      "start": 48.58,
+      "end": 49.14,
+      "text": "curiosity.",
+      "ass_text": "curiosity.",
+      "timing_source": "word"
+    },
+    {
+      "start": 50.86,
+      "end": 52.78,
+      "text": "Pandora's box becomes a symbol for",
+      "ass_text": "Pandora's box becomes a symbol for",
+      "timing_source": "word"
+    },
+    {
+      "start": 52.78,
+      "end": 55.26,
+      "text": "decisions that release consequences you cannot",
+      "ass_text": "decisions that release\\Nconsequences you cannot",
+      "timing_source": "word"
+    },
+    {
+      "start": 55.26,
+      "end": 56.36,
+      "text": "easily reverse.",
+      "ass_text": "easily reverse.",
+      "timing_source": "word"
+    },
+    {
+      "start": 57.82,
+      "end": 59.76,
+      "text": "A small action can trigger problems",
+      "ass_text": "A small action can trigger\\Nproblems",
+      "timing_source": "word"
+    },
+    {
+      "start": 59.76,
+      "end": 62.02,
+      "text": "far larger than the action itself.",
+      "ass_text": "far larger than the action itself.",
+      "timing_source": "word"
+    },
+    {
+      "start": 62.94,
+      "end": 64.16,
+      "text": "That is why we still say",
+      "ass_text": "That is why we still say",
+      "timing_source": "word"
+    },
+    {
+      "start": 64.16,
+      "end": 66.28,
+      "text": "someone is opening Pandora's box.",
+      "ass_text": "someone is opening Pandora's box.",
+      "timing_source": "word"
+    },
+    {
+      "start": 67.52,
+      "end": 69.04,
+      "text": "We mean the choice may start",
+      "ass_text": "We mean the choice may start",
+      "timing_source": "word"
+    },
+    {
+      "start": 69.04,
+      "end": 70.74,
+      "text": "a chain of trouble that keeps",
+      "ass_text": "a chain of trouble that keeps",
+      "timing_source": "word"
+    },
+    {
+      "start": 70.74,
+      "end": 71.22,
+      "text": "spreading.",
+      "ass_text": "spreading.",
+      "timing_source": "word"
+    },
+    {
+      "start": 72.28,
+      "end": 73.52,
+      "text": "The deeper lesson is not just",
+      "ass_text": "The deeper lesson is not just",
+      "timing_source": "word"
+    },
+    {
+      "start": 73.52,
+      "end": 75.0,
+      "text": "do not be curious.",
+      "ass_text": "do not be curious.",
+      "timing_source": "word"
+    },
+    {
+      "start": 76.34,
+      "end": 77.46,
+      "text": "It is that some doors are",
+      "ass_text": "It is that some doors are",
+      "timing_source": "word"
+    },
+    {
+      "start": 77.46,
+      "end": 78.96,
+      "text": "much easier to open than to",
+      "ass_text": "much easier to open than to",
+      "timing_source": "word"
+    },
+    {
+      "start": 78.96,
+      "end": 79.56,
+      "text": "close.",
+      "ass_text": "close.",
+      "timing_source": "word"
+    },
+    {
+      "start": 80.44,
+      "end": 82.76,
+      "text": "Sometimes the smallest opening changes everything",
+      "ass_text": "Sometimes the smallest opening\\Nchanges everything",
+      "timing_source": "word"
+    },
+    {
+      "start": 82.76,
+      "end": 83.4,
+      "text": "that follows.",
+      "ass_text": "that follows.",
+      "timing_source": "word"
+    },
+    {
+      "start": 84.34,
+      "end": 86.6,
+      "text": "Like and subscribe to grow more",
+      "ass_text": "Like and subscribe to grow more",
+      "timing_source": "word"
+    },
+    {
+      "start": 86.6,
+      "end": 87.24,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "timing_source": "word"
+    },
+    {
+      "start": 87.26,
+      "end": 87.32,
+      "text": "Yes.",
+      "ass_text": "Yes.",
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 28,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 5,
+        "current_cue": 6,
+        "previous_end": 14.1,
+        "current_start": 13.7,
+        "overlap_seconds": 0.4,
+        "chosen_boundary": 13.9
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 43,
+    "subtitle_cues_estimated": 0
+  }
+}

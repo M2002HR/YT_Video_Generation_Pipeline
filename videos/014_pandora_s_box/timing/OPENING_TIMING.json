@@ -1,0 +1,140 @@
+{
+  "audio_duration_seconds": 87.719,
+  "spark_start": 0.02,
+  "spark_end": 7.76,
+  "spark_duration": 7.74,
+  "transition_start": 7.76,
+  "transition_end": 11.62,
+  "transition_duration": 3.86,
+  "clip_a_target_seconds": 7.76,
+  "clip_b_target_seconds": 3.86,
+  "body_start": 11.62,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "This parts tin makes me wonder: why does Pandora's box mean one tiny choice can unleash huge consequences?",
+      "speech_start": 0.02,
+      "speech_end": 7.76,
+      "match_confidence": 0.889
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I stop sorting screws and reach for the answer.",
+      "speech_start": 7.76,
+      "speech_end": 11.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Pandora is given a sealed container and warned not to open it.",
+      "speech_start": 11.62,
+      "speech_end": 16.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "In the earliest Greek version, it is actually a jar, not a box.",
+      "speech_start": 16.42,
+      "speech_end": 21.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "But the dangerous idea stays the same: something forbidden is sitting within reach.",
+      "speech_start": 22.1,
+      "speech_end": 27.44,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Curiosity wins, and Pandora opens it.",
+      "speech_start": 28.28,
+      "speech_end": 31.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Suddenly, troubles escape into the world faster than she can contain them.",
+      "speech_start": 31.78,
+      "speech_end": 35.38,
+      "match_confidence": 0.917
+    },
+    {
+      "segment": "body_06",
+      "narration": "She closes the container, but the damage is already beyond her control.",
+      "speech_start": 36.34,
+      "speech_end": 39.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Only one thing remains inside: hope.",
+      "speech_start": 40.94,
+      "speech_end": 44.18,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "That final detail makes the story more than a simple warning about curiosity.",
+      "speech_start": 45.36,
+      "speech_end": 49.14,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Pandora's box becomes a symbol for decisions that release consequences you cannot easily reverse.",
+      "speech_start": 50.86,
+      "speech_end": 56.36,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "A small action can trigger problems far larger than the action itself.",
+      "speech_start": 57.82,
+      "speech_end": 62.02,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "That is why we still say someone is opening Pandora's box.",
+      "speech_start": 62.94,
+      "speech_end": 66.28,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "We mean the choice may start a chain of trouble that keeps spreading.",
+      "speech_start": 67.52,
+      "speech_end": 71.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_13",
+      "narration": "The deeper lesson is not just 'do not be curious.'",
+      "speech_start": 72.28,
+      "speech_end": 75.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_14",
+      "narration": "It is that some doors are much easier to open than to close.",
+      "speech_start": 76.34,
+      "speech_end": 79.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Sometimes the smallest opening changes everything that follows.",
+      "speech_start": 80.44,
+      "speech_end": 83.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 84.34,
+      "speech_end": 87.24,
+      "match_confidence": 1.0
+    }
+  ]
+}

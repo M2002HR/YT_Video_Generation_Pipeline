@@ -7,32 +7,32 @@
   "stages": {
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:02:58Z",
+      "updated_at": "2026-09-06T15:18:51Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:02:59Z",
+      "updated_at": "2026-09-06T15:18:53Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:00Z",
+      "updated_at": "2026-09-06T15:18:54Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:02Z",
+      "updated_at": "2026-09-06T15:18:55Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:03Z",
+      "updated_at": "2026-09-06T15:18:56Z",
       "artifact": "world_style_anchor.png"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-06T05:03:05Z",
+      "updated_at": "2026-09-06T15:18:59Z",
       "opening_activity": "home maintenance",
       "opening_location": "farmyard",
       "camera_pattern": "static_wide",
@@ -41,122 +41,122 @@
     },
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:06Z",
+      "updated_at": "2026-09-06T15:19:00Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:08Z",
+      "updated_at": "2026-09-06T15:19:02Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:09Z",
+      "updated_at": "2026-09-06T15:19:03Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:10Z",
+      "updated_at": "2026-09-06T15:19:04Z",
       "artifact": "book_design_sheet.png"
     },
     "book_spread": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:12Z",
+      "updated_at": "2026-09-06T15:19:06Z",
       "artifact": "book_spread_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:13Z",
+      "updated_at": "2026-09-06T15:19:07Z",
       "artifact": "flow_prompt_opening_a.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:14Z",
+      "updated_at": "2026-09-06T15:19:08Z",
       "artifact": "flow_prompt_book_transition.txt"
     },
     "beat_image_001": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:15Z",
+      "updated_at": "2026-09-06T15:19:09Z",
       "artifact": "beat_001.png"
     },
     "beat_image_002": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:16Z",
+      "updated_at": "2026-09-06T15:19:11Z",
       "artifact": "beat_002.png"
     },
     "beat_image_003": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:18Z",
+      "updated_at": "2026-09-06T15:19:12Z",
       "artifact": "beat_003.png"
     },
     "beat_image_004": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:19Z",
+      "updated_at": "2026-09-06T15:19:14Z",
       "artifact": "beat_004.png"
     },
     "beat_image_005": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:21Z",
+      "updated_at": "2026-09-06T15:19:15Z",
       "artifact": "beat_005.png"
     },
     "beat_image_006": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:22Z",
+      "updated_at": "2026-09-06T15:19:17Z",
       "artifact": "beat_006.png"
     },
     "beat_image_007": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:23Z",
+      "updated_at": "2026-09-06T15:19:18Z",
       "artifact": "beat_007.png"
     },
     "beat_image_008": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:24Z",
+      "updated_at": "2026-09-06T15:19:19Z",
       "artifact": "beat_008.png"
     },
     "beat_image_009": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:26Z",
+      "updated_at": "2026-09-06T15:19:20Z",
       "artifact": "beat_009.png"
     },
     "beat_image_010": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:27Z",
+      "updated_at": "2026-09-06T15:19:22Z",
       "artifact": "beat_010.png"
     },
     "beat_image_011": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:28Z",
+      "updated_at": "2026-09-06T15:19:23Z",
       "artifact": "beat_011.png"
     },
     "beat_image_012": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:30Z",
+      "updated_at": "2026-09-06T15:19:24Z",
       "artifact": "beat_012.png"
     },
     "beat_image_013": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:31Z",
+      "updated_at": "2026-09-06T15:19:25Z",
       "artifact": "beat_013.png"
     },
     "beat_image_014": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:32Z",
+      "updated_at": "2026-09-06T15:19:27Z",
       "artifact": "beat_014.png"
     },
     "flow_clip_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:34Z",
+      "updated_at": "2026-09-06T15:19:28Z",
       "artifact": "question_spark_source.mp4 (8.00s)"
     },
     "flow_clip_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-06T05:03:35Z",
+      "updated_at": "2026-09-06T15:19:30Z",
       "artifact": "book_transition_source.mp4 (4.01s)"
     },
     "qh_visual_complete": {
       "status": "DONE",
-      "updated_at": "2026-09-06T05:03:36Z",
+      "updated_at": "2026-09-06T15:19:32Z",
       "body_images": 14
     }
   },
@@ -464,7 +464,29 @@
       "camera_pattern": "static_wide",
       "book_template_id": "003",
       "world_style_id": "greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-06T15:17:03Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T15:18:59Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "farmyard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "greek_black_figure_fresco_001"
     }
   ],
-  "updated_at": "2026-09-06T05:03:36Z"
+  "updated_at": "2026-09-06T15:19:32Z"
 }
