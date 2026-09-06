@@ -60,6 +60,7 @@ from ordak_jobs import (  # noqa: E402
     sha256_text,
 )
 from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
+from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 
 WORLD_STYLES_ROOT = ROOT / "projects" / "question_harvest" / "world_styles"
 BOOK_TEMPLATES_ROOT = ROOT / "projects" / "question_harvest" / "book_templates"
@@ -286,9 +287,7 @@ class Runner:
 
     @staticmethod
     def _stage_title(stage: str) -> str:
-        position = stage_position(stage)
-        human = stage.replace("_", " ").title()
-        return f"{position} · {human}" if position else human
+        return full_stage_title(stage)
 
     def stage_start(self, stage: str) -> float:
         self.state.mark(stage, STATE_RUNNING)
@@ -317,6 +316,11 @@ class Runner:
         if self.notifier is not None:
             message = self.notifier.stage_started(self._stage_title(stage))
             self.notifier.stage_update(message, self._stage_title(stage), ["↻ Reused existing artifact", summary])
+
+    def stage_progress(self, stage: str, lines: list[str]) -> None:
+        """Refresh one aggregate stage message; used for the whole body-image batch."""
+        if self.notifier is not None:
+            self.notifier.stage_update(self.stage_messages.get(stage), self._stage_title(stage), lines)
 
     def stage_failed(self, stage: str, failure: StageFailure, started: float) -> None:
         self.state.fail(stage, failure)
@@ -535,37 +539,6 @@ class DurationTarget:
             "BEAT_MIN": str(self.beat_min),
             "BEAT_MAX": str(self.beat_max),
         }
-
-
-#: The visual half of the run, in order, so a notification can say "step 5/17".
-QH_STAGE_SEQUENCE = (
-    "script_draft",
-    "retention_edit",
-    "episode_director",
-    "world_style_director",
-    "world_style_anchor",
-    "episode_history",
-    "visual_plan",
-    "world_keyframe_prompt",
-    "world_keyframe",
-    "book_design_sheet",
-    "book_spread",
-    "flow_prompt_a",
-    "flow_prompt_b",
-    "beat_prompts",
-    "body_images",
-    "flow_clip_a",
-    "flow_clip_b",
-)
-
-
-def stage_position(stage: str) -> str:
-    """``step 4/17`` for a known stage, empty for an ad-hoc one."""
-    try:
-        index = QH_STAGE_SEQUENCE.index(stage)
-    except ValueError:
-        return ""
-    return f"step {index + 1}/{len(QH_STAGE_SEQUENCE)}"
 
 
 MIN_BODY_BEATS = 8
@@ -1559,33 +1532,39 @@ def stage_body_images(
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
 
+    batch_started = runner.stage_start("body_images")
     produced: list[Path] = []
     previous: Path | None = None
-    for beat in beats:
-        beat_id = int(beat["beat_id"])
-        stage = f"beat_image_{beat_id:03d}"
-        target = output_dir / f"beat_{beat_id:03d}.png"
+    try:
+        for beat in beats:
+            beat_id = int(beat["beat_id"])
+            stage = f"beat_image_{beat_id:03d}"
+            target = output_dir / f"beat_{beat_id:03d}.png"
 
-        if valid_image(target):
-            runner.stage_reused(stage, target.name)
+            if valid_image(target):
+                runner.state.mark(stage, STATE_REUSED, artifact=target.name)
+                print(f"↻ {stage} reused — {target.name}", flush=True)
+                produced.append(target)
+                previous = target
+                runner.stage_progress("body_images", ["🖼️ Image batch in progress", f"📍 Progress: {len(produced)}/{len(beats)} images", "↻ Existing image reused"])
+                continue
+
+            started = time.perf_counter()
+            runner.state.mark(stage, STATE_RUNNING)
+            print(f"▶ {stage}", flush=True)
+            references = _beat_reference_stack(content_project, beat, world_style_anchor, world_keyframe, previous)
+            prompt = stage_beat_prompt(runner, project, content_project, beat, world_style_plan, references)
+            result = runner.image(stage, prompt, references, model=model, destination=target)
+            _write_image_receipt(project, f"gemini_beat_{beat_id:03d}", result, prompt, references, target, model)
+            elapsed = time.perf_counter() - started
+            runner.state.mark(stage, STATE_DONE, sha256=sha256_file(target), references=[ref.role for ref in references])
+            runner.state.record(stage, STATE_DONE, elapsed, sha256=sha256_file(target), references=[ref.role for ref in references])
+            print(f"✔ {stage} ({elapsed:.1f}s) — {target.name}", flush=True)
             produced.append(target)
             previous = target
-            continue
-
-        started = runner.stage_start(stage)
-        references = _beat_reference_stack(content_project, beat, world_style_anchor, world_keyframe, previous)
-        prompt = stage_beat_prompt(runner, project, content_project, beat, world_style_plan, references)
-        result = runner.image(stage, prompt, references, model=model, destination=target)
-        _write_image_receipt(project, f"gemini_beat_{beat_id:03d}", result, prompt, references, target, model)
-        runner.stage_done(
-            stage,
-            started,
-            f"{target.name} refs={[ref.role for ref in references]}",
-            sha256=sha256_file(target),
-            references=[ref.role for ref in references],
-        )
-        produced.append(target)
-        previous = target
+            runner.stage_progress("body_images", ["🖼️ Image batch in progress", f"📍 Progress: {len(produced)}/{len(beats)} images", f"⏱ Latest image: {format_duration(elapsed)}"])
+    except StageFailure as exc:
+        raise StageFailure("body_images", exc.state, f"Body image batch stopped: {exc.message}", error_code=exc.error_code) from exc
 
     if len(produced) != len(beats):
         raise StageFailure(
@@ -1593,6 +1572,7 @@ def stage_body_images(
             "FAILED_VALIDATION",
             f"{len(produced)} of {len(beats)} body images were produced.",
         )
+    runner.stage_done("body_images", batch_started, f"{len(produced)}/{len(beats)} unique images")
     return produced
 
 

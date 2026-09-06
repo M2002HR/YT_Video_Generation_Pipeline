@@ -29,6 +29,7 @@ from urllib.parse import urlsplit, urlunsplit
 from dotenv import load_dotenv
 
 from pipeline_notifier import PipelineNotifier, format_duration
+from pipeline_stages import stage_title
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -202,7 +203,7 @@ def install_cached_fallback(
         f"ℹ️ Providers exhausted: {', '.join(provider_name(item['provider']) for item in attempts)}",
     ]
     if hasattr(notifier, "stage_update"):
-        notifier.stage_update(stage_message, "Background music", lines)
+        notifier.stage_update(stage_message, stage_title("background_music"), lines)
     else:  # compatibility for minimal notifier doubles and external integrations
         notifier.stage_complete("Background music cache fallback", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
     print(f"MUSIC: PASS (VERIFIED LOCAL FALLBACK: {provider_name(selected_provider)})\nFile: {destination}", flush=True)
@@ -776,7 +777,7 @@ def main() -> None:
         raise RuntimeError("--track-url requires exactly one provider and a valid direct track URL.")
     music_dir, meta_path = project / "assets" / "music", project / "music" / "MUSIC_SELECTION.json"
     notifier = PipelineNotifier(args.video_id, project.name)
-    stage_message = notifier.stage_started("Background music")
+    stage_message = notifier.stage_started(stage_title("background_music"))
     started = time.perf_counter()
     context, duration = video_context(project)
     attempts: list[dict[str, Any]] = []
@@ -797,7 +798,7 @@ def main() -> None:
                 destination, url = download_from_provider(browser, project, provider, prompt, duration, meta_path, providers, attempts)
             notifier.stage_update(
                 stage_message,
-                "Background music",
+                stage_title("background_music"),
                 [
                     f"✅ Stage complete — {provider_name(provider)}",
                     f"⏱ Duration: {format_duration(time.perf_counter() - started)}",
@@ -819,7 +820,11 @@ def main() -> None:
         "status": "FAILED_ALL_PROVIDERS",
         "updated_at": utcnow(),
     })
-    install_cached_fallback(project, providers, meta_path, attempts, started, notifier, stage_message)
+    try:
+        install_cached_fallback(project, providers, meta_path, attempts, started, notifier, stage_message)
+    except Exception as exc:
+        notifier.failure(stage_title("background_music"), time.perf_counter() - started, str(exc))
+        raise
 
 
 if __name__ == "__main__":

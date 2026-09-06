@@ -22,6 +22,7 @@ from typing import Any
 from dotenv import load_dotenv
 
 from pipeline_notifier import PipelineNotifier, format_duration
+from pipeline_stages import stage_title
 from ui_navigation_advisor import NavigationAdvisor
 
 
@@ -665,13 +666,15 @@ def main() -> None:
         return
     notifier = PipelineNotifier(args.video_id, project.name)
     started = time.perf_counter()
+    title = stage_title("elevenlabs_voiceover")
+    stage_message = notifier.stage_started(title)
     ui = ElevenLabsUI(poll_seconds=float(os.getenv("YT_ELEVENLABS_POLL_SECONDS", "5")), stall_seconds=float(os.getenv("YT_ELEVENLABS_STALL_REFRESH_SECONDS", "90")), max_refreshes=int(os.getenv("YT_ELEVENLABS_MAX_STALL_REFRESHES", "3")))
     try:
         ui.open_and_verify()
         state.data["status"] = "UI_READY"; state.save()
         state.event("elevenlabs_ui_ready", started)
         if args.dry_run:
-            notifier.stage_complete("ElevenLabs UI readiness", time.perf_counter() - started, artifact=str(input_path.relative_to(project)))
+            notifier.stage_update(stage_message, title, ["✅ Dry run complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}", f"📄 Input: {input_path.relative_to(project)}"])
             print("ELEVENLABS VOICEOVER: DRY RUN PASS")
             return
         configured_at = time.perf_counter()
@@ -685,7 +688,7 @@ def main() -> None:
         acknowledgement = ui.submit()
         state.data.update({"status": "SUBMITTED", "submitted_at": utcnow()}); state.save()
         state.event("elevenlabs_submit", submit_at, acknowledgement=acknowledgement)
-        notifier.send("ElevenLabs generation submitted", ["🎙️ Full narration requested", f"📝 Characters: {len(text)}", "👀 Waiting for the web UI result"])
+        notifier.stage_update(stage_message, title, ["🎙️ Generation submitted", f"📝 Characters: {len(text)}", "👀 Waiting for the web UI result"])
         download_dir = Path(os.getenv("YT_ELEVENLABS_DOWNLOAD_DIR", str(Path.home() / "Downloads"))).expanduser()
         download_dir.mkdir(parents=True, exist_ok=True)
         last_change, refreshes, download_started = time.monotonic(), 0, time.time()
@@ -706,7 +709,7 @@ def main() -> None:
                 state.data.pop("error", None); state.data.pop("failed_at", None)
                 state.event("elevenlabs_download", submit_at, bytes=destination.stat().st_size, output=str(destination.relative_to(project)))
                 json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(destination.relative_to(project)), "generated_at": utcnow()})
-                notifier.stage_complete("ElevenLabs voiceover", time.perf_counter() - started, artifact=str(destination.relative_to(project)))
+                notifier.stage_update(stage_message, title, ["✅ Stage complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}", f"📄 Saved: {destination.relative_to(project)}"])
                 print(f"ELEVENLABS VOICEOVER: PASS\nAudio: {destination}")
                 return
             retry_after = float(os.getenv("YT_ELEVENLABS_DOWNLOAD_RETRY_SECONDS", "30"))
@@ -717,7 +720,7 @@ def main() -> None:
                     state.data["download_choice"] = choice.get("choice"); state.data["download_requested_at"] = time.time(); state.data["status"] = "DOWNLOAD_TRIGGERED"; state.save()
                     download_started = time.time()
                     state.event("elevenlabs_download_requested", submit_at, choice=choice.get("choice"), retry=bool(prior_download_at))
-                    notifier.send("ElevenLabs audio ready", ["⬇️ Highest visible quality download requested", f"🎚️ Option: {choice.get('choice', 'Download')[:180]}"])
+                    notifier.stage_update(stage_message, title, ["⬇️ Download requested", f"🎚️ Option: {choice.get('choice', 'Download')[:180]}", "👀 Waiting for the browser download"])
             if not snapshot.get("busy") and time.monotonic() - last_change >= ui.stall_seconds:
                 if refreshes >= ui.max_refreshes:
                     raise RuntimeError("ElevenLabs UI made no progress and did not expose a downloadable result after all recovery refreshes.")
@@ -733,13 +736,13 @@ def main() -> None:
                 acknowledgement = ui.submit()
                 state.data.update({"status": "SUBMITTED", "submitted_at": utcnow()}); state.save()
                 state.event("elevenlabs_stall_refresh", started, refresh_number=refreshes, recovery_settings=recovered_settings, effective_settings=recovered_effective, acknowledgement=acknowledgement)
-                notifier.warning("ElevenLabs recovery refresh", f"No UI progress for {format_duration(ui.stall_seconds)}; refresh {refreshes}/{ui.max_refreshes} completed.")
+                notifier.stage_update(stage_message, title, ["↻ Recovery refresh completed", f"⏱ No UI progress for {format_duration(ui.stall_seconds)}", f"📍 Refresh {refreshes}/{ui.max_refreshes}"])
                 last_change = time.monotonic()
             time.sleep(ui.poll_seconds)
         raise RuntimeError("ElevenLabs generation exceeded the configured timeout.")
     except Exception as exc:
         state.data.update({"status": "FAILED", "error": str(exc), "failed_at": utcnow()}); state.save()
-        notifier.failure("ElevenLabs voiceover", time.perf_counter() - started, str(exc))
+        notifier.failure(title, time.perf_counter() - started, str(exc))
         raise
 
 

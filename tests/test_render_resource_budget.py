@@ -70,6 +70,14 @@ def test_render_progress_message_has_zero_percent_and_resource_telemetry() -> No
     assert "every 20 seconds" in text
 
 
+def test_render_progress_message_can_use_the_shared_render_stage_title() -> None:
+    text = render_progress_message(
+        "014", {"share": 0.0, "total_seconds": 1.0}, {},
+        title="step 22/27 · Render Baseline",
+    )
+    assert "step 22/27 · Render Baseline · 🎬 Rendering" in text
+
+
 def _workspace(root: Path) -> Path:
     video_dir = root / "videos" / "903_budget"
     (video_dir / "render").mkdir(parents=True)

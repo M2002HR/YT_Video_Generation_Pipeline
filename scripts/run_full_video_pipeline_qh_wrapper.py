@@ -22,6 +22,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,38 @@ ACCEPTED_STT_BACKENDS = ("ajil", "local")
 def run(command: list[str]) -> None:
     print(f"$ {' '.join(command)}", flush=True)
     subprocess.run(command, cwd=ROOT, check=True)
+
+
+def report_reused(notifier, stage: str, artifact: str) -> None:
+    """A reused artifact is still a completed visible stage, using one edited message."""
+    from pipeline_stages import stage_title
+
+    title = stage_title(stage)
+    message = notifier.stage_started(title)
+    notifier.stage_update(message, title, ["↻ Reused existing artifact", f"📄 {artifact}"])
+
+
+def run_owned_stage(command: list[str], notifier, stage: str, artifact: Path | None = None, project: Path | None = None) -> None:
+    """Run a child that has no notifier of its own as one mutable Telegram stage."""
+    from pipeline_notifier import format_duration
+    from pipeline_stages import stage_title
+
+    title = stage_title(stage)
+    message = notifier.stage_started(title)
+    started = time.perf_counter()
+    try:
+        run(command)
+    except subprocess.CalledProcessError as exc:
+        notifier.failure(title, time.perf_counter() - started, f"{stage} exited with code {exc.returncode}")
+        raise
+    lines = ["✅ Stage complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}"]
+    if artifact is not None and artifact.exists():
+        try:
+            shown = artifact.relative_to(project) if project is not None else artifact
+        except ValueError:
+            shown = artifact
+        lines.append(f"📄 Saved: {shown}")
+    notifier.stage_update(message, title, lines)
 
 
 def word_timing_is_usable(project: Path) -> bool:
@@ -151,6 +184,8 @@ def main() -> int:
 
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     python = sys.executable
+    from pipeline_notifier import PipelineNotifier
+    notifier = PipelineNotifier(args.video_id, args.topic)
 
     from flow_gate import blocked_only_on_flow, clips_ready, missing_clips
 
@@ -188,6 +223,7 @@ def main() -> int:
     narration = project / "assets" / "audio" / "narration.mp3"
     if narration.is_file():
         print(f"narration reuse: {narration}", flush=True)
+        report_reused(notifier, "elevenlabs_voiceover", str(narration.relative_to(project)))
     else:
         run(
             [
@@ -204,6 +240,7 @@ def main() -> int:
     music_dir = project / "assets" / "music"
     if music_dir.is_dir() and any(music_dir.iterdir()):
         print("music reuse", flush=True)
+        report_reused(notifier, "background_music", str(music_dir.relative_to(project)))
     else:
         run(
             [
@@ -218,8 +255,9 @@ def main() -> int:
     #    accepted backends measure real words; only invented timing is refused (§67).
     if word_timing_is_usable(project):
         print("timing reuse: word-level timestamps already present", flush=True)
+        report_reused(notifier, "ajil_alignment", "timing/BEAT_TIMINGS.json")
     else:
-        run([python, "scripts/align_beats.py", str(project), "--fallback-backend", "none"])
+        run_owned_stage([python, "scripts/align_beats.py", str(project), "--fallback-backend", "none"], notifier, "ajil_alignment", project / "timing" / "BEAT_TIMINGS.json", project)
         if not word_timing_is_usable(project):
             print(
                 "FAILED_VALIDATION: alignment did not produce word-level timestamps plus "
@@ -244,7 +282,7 @@ def main() -> int:
 
     # 6. Cut the Flow sources to the measured narration boundaries (§67).
     clear_pending_state(project)
-    run([python, "scripts/trim_opening_clips.py", str(project)])
+    run_owned_stage([python, "scripts/trim_opening_clips.py", str(project)], notifier, "opening_trim", project / "timing" / "OPENING_TIMING.json", project)
 
     # 7. Render profiles, then timeline → render → QC → publish.
     from run_full_video_pipeline import ensure_audio_mix_profile, ensure_render_profile

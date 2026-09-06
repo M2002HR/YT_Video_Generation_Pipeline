@@ -24,8 +24,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
-from episode_summary import build_summary, format_caption  # noqa: E402
+from episode_summary import build_summary  # noqa: E402
 from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
+from pipeline_stages import stage_title  # noqa: E402
 
 
 def now() -> str:
@@ -47,15 +48,15 @@ def execute(
     artifact: Path | None = None,
     video: Path | None = None,
     position: str = "",
+    manages_own_progress: bool = False,
 ) -> None:
     """Run one stage, persist the transition, and report both ends of it to Telegram."""
-    human = name.replace("_", " ").title()
-    title = f"{position} · {human}" if position else human
+    title = stage_title(name)
     started_wall, started = now(), time.perf_counter()
     event: dict[str, Any] = {"stage": name, "started_at": started_wall, "command": command}
     print(f"▶ {name}", flush=True)
     stage_message = None
-    if notifier is not None:
+    if notifier is not None and not manages_own_progress:
         stage_message = notifier.stage_started(title)
     try:
         subprocess.run(command, cwd=ROOT, check=True)
@@ -78,7 +79,7 @@ def execute(
     state["status"] = "RUNNING"
     save(path, state)
     print(f"✔ {name} in {format_duration(elapsed)}", flush=True)
-    if notifier is not None:
+    if notifier is not None and not manages_own_progress:
         lines = ["✅ Stage complete", f"⏱ Duration: {format_duration(elapsed)}"]
         if event.get("artifact"):
             lines.append(f"📄 Saved: {event['artifact']}")
@@ -146,7 +147,8 @@ def main() -> None:
         state["events"].append({"stage": "render_baseline", "status": "REUSED", "ended_at": now(), "artifact": str(baseline.relative_to(video))})
         save(state_path, state)
         if notifier is not None:
-            notifier.send("Render Baseline", ["↻ Reused existing baseline render", baseline.name])
+            message = notifier.stage_started(stage_title("render_baseline"))
+            notifier.stage_update(message, stage_title("render_baseline"), ["↻ Reused existing baseline render", baseline.name])
     else:
         # render_video applies its own nice/ionice and thread budget, so the stage just
         # passes the budget through instead of wrapping the command again.
@@ -155,6 +157,7 @@ def main() -> None:
             [py, "scripts/render_video.py", str(video), "--output", str(baseline),
              "--resource-budget", f"{args.resource_budget:.3f}"],
             artifact=baseline,
+            manages_own_progress=True,
         )
     step("qc_baseline", [py, "scripts/qc_render.py", str(video), "--input", str(baseline), "--decode"],
          artifact=video / "render" / "QC_REPORT.json")
@@ -187,14 +190,6 @@ def main() -> None:
     summary = build_summary(video, artifact=polished)
     state["summary"] = summary
     save(state_path, state)
-    if notifier is not None:
-        notifier.send(
-            "Completion pipeline finished",
-            [
-                format_caption(summary),
-                f"⏱ Completion stages: {format_duration(state['total_elapsed_seconds'])}",
-            ],
-        )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     print("COMPLETION PIPELINE: PASS")
 

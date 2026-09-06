@@ -29,6 +29,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from pipeline_notifier import EditableMessage, PipelineNotifier, format_duration
+from pipeline_stages import stage_title
 
 #: Share of the machine a render may use. The server this runs on has two vCPUs and 7 GB,
 #: and an uncapped x264 makes SSH, VNC and the watchdog unresponsive for the whole render.
@@ -285,6 +286,7 @@ def render_progress_message(
     *,
     finished: bool = False,
     failed: bool = False,
+    title: str | None = None,
 ) -> str:
     """One compact, readable Telegram message for the entire render lifecycle."""
     percent = max(0, min(100, round(float(progress.get("share", 0.0)) * 100)))
@@ -299,7 +301,7 @@ def render_progress_message(
     frame = str(progress.get("frame") or "—")
     eta = "—" if not remaining else format_duration(remaining)
     return "\n".join([
-        f"<b>Video {video_id} · {state}</b>",
+        f"<b>{title or f'Video {video_id}'} · {state}</b>",
         "",
         f"<code>{bar}</code> <b>{percent}%</b>",
         f"🎞 Encoded: {format_duration(position)} / {format_duration(total)} · frame {frame}",
@@ -322,6 +324,7 @@ class TelegramRenderProgress:
         self.message: EditableMessage | None = None
         self.pid = 0
         self.started_cpu_seconds = 0.0
+        self.title = stage_title("render_baseline")
 
     def start(self, pid: int) -> None:
         self.pid = pid
@@ -332,6 +335,7 @@ class TelegramRenderProgress:
             self.notifier.video_id,
             {"share": 0.0, "position": 0.0, "total_seconds": self.total_seconds, "elapsed_seconds": 0.0},
             initial,
+            title=self.title,
         ))
 
     def update(self, progress: dict[str, Any]) -> None:
@@ -341,7 +345,7 @@ class TelegramRenderProgress:
             self.pid, started_cpu_seconds=self.started_cpu_seconds,
             elapsed_seconds=float(progress.get("elapsed_seconds", 0.0)),
         )
-        self.notifier.edit(self.message, render_progress_message(self.notifier.video_id, progress, resources))
+        self.notifier.edit(self.message, render_progress_message(self.notifier.video_id, progress, resources, title=self.title))
 
     def finish(self, progress: dict[str, Any], *, failed: bool = False) -> None:
         if self.message is None:
@@ -352,7 +356,7 @@ class TelegramRenderProgress:
         )
         self.notifier.edit(
             self.message,
-            render_progress_message(self.notifier.video_id, progress, resources, finished=not failed, failed=failed),
+            render_progress_message(self.notifier.video_id, progress, resources, finished=not failed, failed=failed, title=self.title),
         )
 
 
@@ -827,7 +831,7 @@ def main() -> None:
         return
 
     started = time.perf_counter()
-    reporter = None if args.no_telegram_progress else TelegramRenderProgress(video_dir.name, duration)
+    reporter = None if args.no_telegram_progress else TelegramRenderProgress(video_dir.name.split("_", 1)[0], duration)
 
     def report_render_progress(progress: dict[str, Any]) -> None:
         if reporter is None:
