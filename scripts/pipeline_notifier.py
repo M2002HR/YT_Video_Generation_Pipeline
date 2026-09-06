@@ -12,7 +12,10 @@ import html
 import os
 import time
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
+
+from dotenv import load_dotenv
 
 
 def _enabled(value: str | None) -> bool:
@@ -37,6 +40,13 @@ class NotifierSettings:
 
     @classmethod
     def from_environment(cls) -> "NotifierSettings":
+        # Not every pipeline entry point loads the root .env (notably the
+        # completion/render child processes).  Notifications must not depend
+        # on which stage happened to be the executable entry point.
+        env_file = Path(os.getenv("YT_ENV_FILE", ".env")).expanduser()
+        if not env_file.is_absolute():
+            env_file = Path(__file__).resolve().parents[1] / env_file
+        load_dotenv(env_file, override=False)
         raw_api_id = os.getenv("YT_TELEGRAM_API_ID", "0")
         try:
             api_id = int(raw_api_id)
@@ -89,6 +99,14 @@ class PipelineNotifier:
     topic: str
     settings: NotifierSettings = field(default_factory=NotifierSettings.from_environment)
     image_durations: list[float] = field(default_factory=list)
+    # The most recent pipeline entry is deliberately retained so resume-only
+    # work can extend it instead of flooding the chat with one message per
+    # artifact that was already on disk.
+    last_message: EditableMessage | None = field(default=None, init=False)
+    last_body: str = field(default="", init=False)
+    pending_reuse_bodies: list[str] = field(default_factory=list, init=False)
+    stage_prefixes: dict[int, str] = field(default_factory=dict, init=False)
+    reuse_edit_pending: bool = field(default=False, init=False)
 
     def restore_image_progress(self, durations: list[float]) -> None:
         """Hydrate accepted-image progress after a resumable runner restart."""
@@ -97,12 +115,26 @@ class PipelineNotifier:
     def _title(self, title: str) -> str:
         return f"<b>Video {html.escape(self.video_id)} · {html.escape(title)}</b>"
 
+    def _run_telegram(self, operation: Any) -> Any:
+        """Retry Telegram's explicit, bounded flood wait once instead of dropping a log."""
+        for attempt in range(2):
+            try:
+                return asyncio.run(operation())
+            except Exception as exc:
+                wait_seconds = int(getattr(exc, "seconds", 0) or 0)
+                if attempt == 0 and 0 < wait_seconds <= 60:
+                    print(f"NOTIFICATION INFO: Telegram rate limit; retrying in {wait_seconds}s", flush=True)
+                    time.sleep(wait_seconds)
+                    continue
+                raise
+        raise AssertionError("unreachable")
+
     def send_editable(self, body: str) -> EditableMessage | None:
         """Send one HTML message and retain its id for in-place progress updates."""
         if not self.settings.configured:
             return None
         try:
-            message_id = asyncio.run(self._send_editable_async(body))
+            message_id = self._run_telegram(lambda: self._send_editable_async(body))
         except Exception as exc:  # notifications must never stop the render
             print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
             return None
@@ -113,7 +145,7 @@ class PipelineNotifier:
         if message is None or not self.settings.configured:
             return False
         try:
-            asyncio.run(self._edit_async(message.message_id, body))
+            self._run_telegram(lambda: self._edit_async(message.message_id, body))
         except Exception as exc:
             print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
             return False
@@ -148,19 +180,24 @@ class PipelineNotifier:
 
     def send(self, title: str, lines: list[str]) -> bool:
         """Send a compact HTML message; return False without raising on failure."""
-        if not self.settings.configured:
-            return False
         body = "\n".join([self._title(title), *[html.escape(line) for line in lines if line]])
-        try:
-            asyncio.run(self._send_async(body))
-        except Exception as exc:  # notification is strictly best-effort
-            print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
+        message = self.send_editable(body)
+        if message is None:
             return False
+        self.last_message, self.last_body = message, body
         return True
 
     def stage_started(self, title: str) -> EditableMessage | None:
-        """Create the single mutable log entry for one pipeline stage."""
-        return self.send_editable("\n".join([self._title(title), "▶ Stage started"]))
+        """Start a new work phase and create its one mutable log entry."""
+        self._flush_reuse_edit()
+        prefix = "\n".join(self.pending_reuse_bodies)
+        body = "\n".join(part for part in (prefix, self._title(title), "▶ Stage started") if part)
+        message = self.send_editable(body)
+        if message is not None:
+            self.pending_reuse_bodies.clear()
+            self.last_message, self.last_body = message, body
+            self.stage_prefixes[message.message_id] = prefix
+        return message
 
     def stage_update(
         self,
@@ -169,8 +206,43 @@ class PipelineNotifier:
         lines: list[str],
     ) -> bool:
         """Update a stage's original Telegram entry instead of adding log noise."""
+        stage_body = "\n".join([self._title(title), *[html.escape(line) for line in lines if line]])
+        prefix = self.stage_prefixes.get(message.message_id, "") if message is not None else ""
+        body = "\n".join(part for part in (prefix, stage_body) if part)
+        edited = self.edit(message, body)
+        if edited and message is not None:
+            self.last_message, self.last_body = message, body
+        return edited
+
+    def _flush_reuse_edit(self) -> bool:
+        if not self.reuse_edit_pending or self.last_message is None:
+            return True
+        if not self.edit(self.last_message, self.last_body):
+            return False
+        self.reuse_edit_pending = False
+        return True
+
+    def stage_reused(self, title: str, lines: list[str]) -> bool:
+        """Append a reuse result to the preceding log entry without sending a new one.
+
+        A resumed run can discover several completed artifacts before it does
+        any fresh work.  Those discoveries are log details, not new phases.
+        When there is no earlier Telegram entry in this process, hold them
+        until the first fresh stage starts, rather than emitting an orphan
+        reuse message.
+        """
         body = "\n".join([self._title(title), *[html.escape(line) for line in lines if line]])
-        return self.edit(message, body)
+        if self.last_message is None:
+            self.pending_reuse_bodies.append(body)
+            return False
+        combined = "\n".join(part for part in (self.last_body, body) if part)
+        self.last_body = combined
+        self.reuse_edit_pending = True
+        # A resumed run commonly discovers dozens of completed artifacts in a
+        # few seconds.  Do not edit Telegram for each discovery: flush the
+        # complete batch exactly once, immediately before the next fresh
+        # phase starts.
+        return True
 
     async def _send_async(self, body: str) -> None:
         from telethon import TelegramClient

@@ -147,8 +147,10 @@ def main() -> None:
         state["events"].append({"stage": "render_baseline", "status": "REUSED", "ended_at": now(), "artifact": str(baseline.relative_to(video))})
         save(state_path, state)
         if notifier is not None:
-            message = notifier.stage_started(stage_title("render_baseline"))
-            notifier.stage_update(message, stage_title("render_baseline"), ["↻ Reused existing baseline render", baseline.name])
+            notifier.stage_reused(
+                stage_title("render_baseline"),
+                ["↻ Reused existing baseline render", baseline.name],
+            )
     else:
         # render_video applies its own nice/ionice and thread budget, so the stage just
         # passes the budget through instead of wrapping the command again.

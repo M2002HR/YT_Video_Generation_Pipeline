@@ -38,12 +38,11 @@ def run(command: list[str]) -> None:
 
 
 def report_reused(notifier, stage: str, artifact: str) -> None:
-    """A reused artifact is still a completed visible stage, using one edited message."""
+    """Append a reuse result to the prior phase instead of creating a new log entry."""
     from pipeline_stages import stage_title
 
     title = stage_title(stage)
-    message = notifier.stage_started(title)
-    notifier.stage_update(message, title, ["↻ Reused existing artifact", f"📄 {artifact}"])
+    notifier.stage_reused(title, ["↻ Reused existing artifact", f"📄 {artifact}"])
 
 
 def run_owned_stage(command: list[str], notifier, stage: str, artifact: Path | None = None, project: Path | None = None) -> None:

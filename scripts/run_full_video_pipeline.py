@@ -79,7 +79,10 @@ def reuse(stage: str, artifact: Path, state: dict[str, Any], path: Path, *, noti
     state["events"].append(event)
     path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     if notifier is not None:
-        notifier.stage_complete(stage.replace("_", " ").title(), 0.0, artifact=str(artifact.relative_to(ROOT)))
+        notifier.stage_reused(
+            stage.replace("_", " ").title(),
+            ["↻ Reused existing artifact", f"📄 {artifact.relative_to(ROOT)}"],
+        )
 
 
 def valid_music_artifact(path: Path) -> bool:
