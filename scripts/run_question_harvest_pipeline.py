@@ -1456,7 +1456,7 @@ def _beat_reference_stack(
     world_keyframe: Path,
     previous: Path | None,
 ) -> list[Reference]:
-    """§30 reference order: identity, style, and world — never a prior beat image.
+    """§30 reference order: identity, style, world, then texture-only continuity.
 
     The character sheet is only sent when the hero is actually in the shot — sending it for a
     hero-free beat is how a character drifts into scenes that should not contain one.
@@ -1469,6 +1469,8 @@ def _beat_reference_stack(
         references.append(Reference(role="style_reference", path=world_style_anchor))
     if valid_image(world_keyframe):
         references.append(Reference(role="world_keyframe", path=world_keyframe))
+    if previous is not None and valid_image(previous):
+        references.append(Reference(role="previous_beat", path=previous))
     return references
 
 
@@ -1501,7 +1503,12 @@ def stage_beat_prompt(
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VISUAL_BEAT=json.dumps(beat, ensure_ascii=False),
         REFERENCE_IMAGES=", ".join(ref.role for ref in references) or "none",
-        PREVIOUS_BEAT="Do not use the previous image as a reference; continuity comes from the world plan, not copied composition.",
+        PREVIOUS_BEAT=(
+            "No previous image — establish the world's texture and palette from the canonical anchors."
+            if not any(ref.role == "previous_beat" for ref in references)
+            else "Previous image is supplied only for texture, palette, lighting continuity, and world material. "
+            "Never copy its composition, crop, camera angle, pose, subject placement, or focal object."
+        ),
         ASPECT_RATIO="9:16",
     )
     text = runner.text(stage, prompt)
