@@ -133,6 +133,27 @@ def test_body_images_keep_their_measured_positions():
         assert abs(images[-1]["end"] - AUDIO_DURATION) <= 0.05
 
 
+def test_image_pair_editor_decision_controls_the_next_boundary_and_motion():
+    with tempfile.TemporaryDirectory() as tmp:
+        video_dir = _build_workspace(Path(tmp), spark=SPARK_END, transition=TRANSITION_END)
+        _write_opening_timing(video_dir, spark=SPARK_END, transition=TRANSITION_END)
+        (video_dir / "creative").mkdir()
+        (video_dir / "creative" / "TRANSITION_PLAN.json").write_text(
+            json.dumps({"decisions": [{
+                "from_beat_id": 1, "to_beat_id": 2,
+                "transition_in": "circleopen", "transition_seconds": 0.37,
+                "next_motion": "slow_zoom_out", "reason": "a reveal",
+            }]}), encoding="utf-8",
+        )
+        result = _run_builder(video_dir)
+        assert result.returncode == 0, result.stderr
+        timeline = json.loads((video_dir / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))
+        second_image = [entry for entry in timeline["beats"] if entry["media_type"] == "image"][1]
+        assert second_image["transition_in"] == "circleopen"
+        assert second_image["transition_seconds"] == 0.37
+        assert second_image["motion"] == "slow_zoom_out"
+
+
 def test_opening_drift_is_rejected():
     """Clips that do not end where the narration says must not render."""
     with tempfile.TemporaryDirectory() as tmp:

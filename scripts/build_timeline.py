@@ -323,9 +323,13 @@ def build_subtitle_cues(
 
 
 TRANSITION_TYPES = (
-    "fade", "dissolve", "wipeleft", "wiperight", "slideleft", "slideright",
-    "radial", "circleopen", "smoothleft", "smoothright",
+    "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft", "smoothright", "smoothup", "smoothdown",
+    "wipeleft", "wiperight", "wipeup", "wipedown", "wipetl", "wipetr", "wipebl", "wipebr",
+    "slideleft", "slideright", "slideup", "slidedown", "radial", "circleopen", "circleclose", "zoomin",
+    "hblur", "distance", "diagtl", "diagtr", "diagbl", "diagbr", "coverleft", "coverright", "coverup",
+    "coverdown", "revealleft", "revealright", "revealup", "revealdown",
 )
+MOTION_TYPES = {"still", "slow_zoom_in", "slow_zoom_out", "zoom_in", "zoom_out"}
 
 
 def transition_for_entry(entry: dict[str, Any], index: int) -> str:
@@ -343,20 +347,30 @@ def transition_for_entry(entry: dict[str, Any], index: int) -> str:
     return ("fade", "smoothleft", "dissolve", "smoothright", "wipeleft", "wiperight")[index % 6]
 
 
-def load_visual_transition_hints(video_dir: Path) -> dict[int, str]:
-    """Read the planner's semantic transition choices when this is a QH project."""
+def load_visual_transition_hints(video_dir: Path) -> dict[int, dict[str, Any]]:
+    """Read image-pair edit decisions, with legacy visual-plan hints as a fallback."""
+    try:
+        decisions = load_json(video_dir / "creative" / "TRANSITION_PLAN.json").get("decisions") or []
+        planned = {
+            int(item["to_beat_id"]): item for item in decisions
+            if isinstance(item, dict) and str(item.get("to_beat_id") or "").isdigit()
+        }
+        if planned:
+            return planned
+    except (OSError, ValueError):
+        pass
     try:
         beats = load_json(video_dir / "creative" / "VISUAL_PLAN.json").get("beats") or []
     except (OSError, ValueError):
         return {}
     return {
-        int(beat["beat_id"]): str(beat.get("transition_in") or "")
+        int(beat["beat_id"]): {"transition_in": str(beat.get("transition_in") or "")}
         for beat in beats
         if isinstance(beat, dict) and str(beat.get("beat_id") or "").isdigit()
     }
 
 
-def add_transitions(entries: list[dict[str, Any]], hints: dict[int, str]) -> None:
+def add_transitions(entries: list[dict[str, Any]], hints: dict[int, dict[str, Any]]) -> None:
     """Annotate boundaries without duplicating an image or moving speech timing."""
     for index, entry in enumerate(entries):
         if index == 0:
@@ -364,10 +378,15 @@ def add_transitions(entries: list[dict[str, Any]], hints: dict[int, str]) -> Non
             entry["transition_seconds"] = 0.0
             continue
         if entry.get("media_type") == "image":
-            entry["transition_in"] = hints.get(int(entry["beat_id"]), "")
+            direction = hints.get(int(entry["beat_id"]), {})
+            entry["transition_in"] = str(direction.get("transition_in") or "")
+            motion = str(direction.get("next_motion") or "")
+            if motion in MOTION_TYPES:
+                entry["motion"] = motion
         duration = float(entry.get("duration") or 0.0)
         entry["transition_in"] = transition_for_entry(entry, index)
-        entry["transition_seconds"] = round(min(0.32, max(0.16, duration / 8)), 3)
+        requested = float(direction.get("transition_seconds") or 0.0) if entry.get("media_type") == "image" else 0.0
+        entry["transition_seconds"] = round(min(0.42, max(0.14, requested or min(0.32, max(0.16, duration / 8)))), 3)
 
 
 def build_cues_from_words(

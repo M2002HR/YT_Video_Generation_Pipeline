@@ -366,21 +366,23 @@ class Runner:
                 error_code=exc.error_code,
             ) from exc
 
-    def text(self, stage: str, prompt: str) -> str:
+    def text(self, stage: str, prompt: str, *, references: list[Reference] = ()) -> str:
         """One ChatGPT call. An empty answer is a failure, not something to invent around."""
-        result = self._run(stage, prompt, provider="chatgpt", mode="chat")
+        result = self._run(stage, prompt, provider="chatgpt", mode="chat", references=references)
         answer = (result.answer or "").strip()
         if not answer:
             raise StageFailure(stage, "FAILED", f"ChatGPT returned an empty answer for {stage}.")
         return answer
 
-    def json(self, stage: str, prompt: str, *, retries: int = 2) -> Any:
+    def json(
+        self, stage: str, prompt: str, *, retries: int = 2, references: list[Reference] = ()
+    ) -> Any:
         """ChatGPT call that must parse as JSON, with a bounded correction retry (§50)."""
         current = prompt
         last_error = ""
         last_raw = ""
         for attempt in range(retries + 1):
-            last_raw = self.text(f"{stage}_json{attempt + 1}", current)
+            last_raw = self.text(f"{stage}_json{attempt + 1}", current, references=references)
             try:
                 return json.loads(strip_fences(last_raw))
             except ValueError as exc:
@@ -481,9 +483,10 @@ SCRIPT_PLAN_KEYS = ("opening_question_spark", "book_transition", "body", "cta", 
 #: Spoken words per second, measured against the format's own 40-60s => 92-150 word rule.
 WORDS_PER_SECOND_RANGE = (2.3, 2.5)
 
-#: The body-beat count the 40-60s format asks for; other lengths scale from it.
-MIN_BODY_BEATS = 8
-MAX_BODY_BEATS = 15
+#: A 60–90s episode needs a new picture roughly every 2.5–4 seconds, rather
+#: than holding one generic illustration over a whole compound thought.
+MIN_BODY_BEATS = 18
+MAX_BODY_BEATS = 30
 
 
 @dataclass(frozen=True)
@@ -507,16 +510,12 @@ class DurationTarget:
 
     @property
     def beat_min(self) -> int:
-        """Body beats scale with the length, anchored on the format's own 40-60s => 8-15.
-
-        A 25-30s Short cut into 8-15 beats would flash an image roughly every two
-        seconds; the same beat *rate* is what the format actually encodes.
-        """
-        return max(4, round(MIN_BODY_BEATS * self.min_seconds / 40))
+        """Visual units scale to keep a brisk 2.5–4s editorial image cadence."""
+        return max(6, round(MIN_BODY_BEATS * self.min_seconds / 60))
 
     @property
     def beat_max(self) -> int:
-        return max(self.beat_min + 2, round(MAX_BODY_BEATS * self.max_seconds / 60))
+        return max(self.beat_min + 3, round(MAX_BODY_BEATS * self.max_seconds / 90))
 
     @property
     def beat_range(self) -> str:
@@ -541,8 +540,6 @@ class DurationTarget:
         }
 
 
-MIN_BODY_BEATS = 8
-MAX_BODY_BEATS = 15
 #: The format default, kept as the fallback when no length was requested.
 MIN_SCRIPT_WORDS = 92
 MAX_SCRIPT_WORDS = 150
@@ -574,19 +571,17 @@ def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | Non
     body = data.get("body")
     if not isinstance(body, list) or not all(isinstance(item, str) and item.strip() for item in body):
         raise StageFailure(stage, "FAILED_VALIDATION", "`body` must be a list of non-empty strings.")
-    sentence_end = re.compile(r"[.!?…][\"')\]]*\s*$")
-    if any(not sentence_end.search(item.strip()) for item in body):
-        raise StageFailure(
-            stage,
-            "FAILED_VALIDATION",
-            "Every `body` entry must be exactly one complete spoken sentence ending in . ! ? or …; "
-            "each entry receives its own image.",
-        )
     if any(len(re.findall(r"[.!?…](?:[\"')\]]|\s)*", item.strip())) > 1 for item in body):
         raise StageFailure(
             stage,
             "FAILED_VALIDATION",
-            "A `body` entry contains more than one sentence. Split it so every sentence gets a unique image.",
+            "A `body` entry contains more than one sentence. Split it into atomic visual units.",
+        )
+    if any(len(_plan_tokens(item)) > 16 for item in body):
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            "A body visual unit exceeds 16 words. Split distinct actions, actors, reveals, and consequences into faster picture beats.",
         )
     if not target.beat_min <= len(body) <= target.beat_max:
         raise StageFailure(
@@ -1145,6 +1140,11 @@ def stage_visual_plan(
                 "body segments; one beat must correspond to one segment or the images will not "
                 "land on their own sentences.",
             )
+        fingerprints = [str(item.get("visual_fingerprint") or "").strip().lower() for item in beats if isinstance(item, dict)]
+        if len(fingerprints) != len(beats) or any(not value for value in fingerprints):
+            raise StageFailure(stage, "FAILED_VALIDATION", "Every visual beat needs a non-empty visual_fingerprint.")
+        if len(set(fingerprints)) != len(fingerprints):
+            raise StageFailure(stage, "FAILED_VALIDATION", "Visual fingerprints repeat; assign every beat a genuinely different composition.")
         return data
 
     # One beat per narration segment is a hard rule, but a plan with the wrong count is a
@@ -1456,7 +1456,7 @@ def _beat_reference_stack(
     world_keyframe: Path,
     previous: Path | None,
 ) -> list[Reference]:
-    """§30 reference order: identity, then style, then world, then short-range continuity.
+    """§30 reference order: identity, style, and world — never a prior beat image.
 
     The character sheet is only sent when the hero is actually in the shot — sending it for a
     hero-free beat is how a character drifts into scenes that should not contain one.
@@ -1469,8 +1469,6 @@ def _beat_reference_stack(
         references.append(Reference(role="style_reference", path=world_style_anchor))
     if valid_image(world_keyframe):
         references.append(Reference(role="world_keyframe", path=world_keyframe))
-    if previous is not None and valid_image(previous):
-        references.append(Reference(role="previous_beat", path=previous))
     return references
 
 
@@ -1503,11 +1501,7 @@ def stage_beat_prompt(
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VISUAL_BEAT=json.dumps(beat, ensure_ascii=False),
         REFERENCE_IMAGES=", ".join(ref.role for ref in references) or "none",
-        PREVIOUS_BEAT=(
-            "No previous image — this is the first body beat."
-            if not any(ref.role == "previous_beat" for ref in references)
-            else "Use the previous beat image for short-range continuity only."
-        ),
+        PREVIOUS_BEAT="Do not use the previous image as a reference; continuity comes from the world plan, not copied composition.",
         ASPECT_RATIO="9:16",
     )
     text = runner.text(stage, prompt)
@@ -1574,6 +1568,89 @@ def stage_body_images(
         )
     runner.stage_done("body_images", batch_started, f"{len(produced)}/{len(beats)} unique images")
     return produced
+
+
+TRANSITION_EDITOR_TYPES = {
+    "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft", "smoothright", "smoothup", "smoothdown",
+    "wipeleft", "wiperight", "wipeup", "wipedown", "wipetl", "wipetr", "wipebl", "wipebr",
+    "slideleft", "slideright", "slideup", "slidedown", "radial", "circleopen", "circleclose", "zoomin",
+    "hblur", "distance", "diagtl", "diagtr", "diagbl", "diagbr", "coverleft", "coverright", "coverup",
+    "coverdown", "revealleft", "revealright", "revealup", "revealdown",
+}
+TRANSITION_EDITOR_MOTIONS = {"still", "slow_zoom_in", "slow_zoom_out", "zoom_in", "zoom_out"}
+
+
+def stage_transition_direction(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    visual_plan: dict[str, Any],
+    images: list[Path],
+) -> dict[str, Any]:
+    """Let ChatGPT inspect adjacent rendered images and make semantic edit decisions.
+
+    The stage owns one Telegram message even though each boundary is an individual Ordak chat
+    request. Sending exactly the two adjacent images gives the editor visual context without
+    turning a twenty-image request into an unreliable, uninspectable collage.
+    """
+    stage = "transition_direction"
+    target = project / "creative" / "TRANSITION_PLAN.json"
+    beats = list(visual_plan.get("beats") or [])
+    if len(beats) != len(images):
+        raise StageFailure(stage, "FAILED_VALIDATION", "Transition editor needs one accepted image for every visual beat.")
+    if runner.state.done(stage) and target.is_file():
+        runner.stage_reused(stage, target.name)
+        return load_json(target)
+
+    started = runner.stage_start(stage)
+    decisions: list[dict[str, Any]] = []
+    previous_transition = ""
+    for index in range(1, len(beats)):
+        previous, current = beats[index - 1], beats[index]
+        prompt = fill(
+            resolve_prompt(content_project, "10_transition_editor.md"),
+            PREVIOUS_BEAT=json.dumps(previous, ensure_ascii=False),
+            NEXT_BEAT=json.dumps(current, ensure_ascii=False),
+        )
+        raw = runner.json(
+            f"{stage}_{index:03d}", prompt,
+            references=[
+                Reference(role="previous_beat_for_edit", path=images[index - 1]),
+                Reference(role="next_beat_for_edit", path=images[index]),
+            ],
+        )
+        transition = str(raw.get("transition_in") or "").lower().strip() if isinstance(raw, dict) else ""
+        motion = str(raw.get("next_motion") or "").lower().strip() if isinstance(raw, dict) else ""
+        try:
+            seconds = float(raw.get("transition_seconds")) if isinstance(raw, dict) else 0.0
+        except (TypeError, ValueError):
+            seconds = 0.0
+        if transition not in TRANSITION_EDITOR_TYPES or motion not in TRANSITION_EDITOR_MOTIONS or not 0.14 <= seconds <= 0.42:
+            raise StageFailure(stage, "FAILED_VALIDATION", f"Transition editor returned an unsupported decision for boundary {index}->{index + 1}.")
+        if transition == previous_transition and transition not in {"fade", "dissolve"}:
+            # A repeated flashy effect is editorially arbitrary. Ask once with an explicit repair.
+            repair = prompt + f"\n\nYour previous boundary used {transition!r}. Choose a different restrained transition; return the same JSON."
+            raw = runner.json(
+                f"{stage}_{index:03d}_repair", repair,
+                references=[Reference(role="previous_beat_for_edit", path=images[index - 1]), Reference(role="next_beat_for_edit", path=images[index])],
+            )
+            transition = str(raw.get("transition_in") or "").lower().strip() if isinstance(raw, dict) else ""
+            motion = str(raw.get("next_motion") or "").lower().strip() if isinstance(raw, dict) else ""
+            seconds = float(raw.get("transition_seconds") or 0.0) if isinstance(raw, dict) else 0.0
+            if transition not in TRANSITION_EDITOR_TYPES or motion not in TRANSITION_EDITOR_MOTIONS or not 0.14 <= seconds <= 0.42:
+                raise StageFailure(stage, "FAILED_VALIDATION", f"Transition editor repair was invalid for boundary {index}->{index + 1}.")
+        decision = {
+            "from_beat_id": int(previous["beat_id"]), "to_beat_id": int(current["beat_id"]),
+            "transition_in": transition, "transition_seconds": round(seconds, 3), "next_motion": motion,
+            "reason": str(raw.get("reason") or "").strip()[:400],
+        }
+        decisions.append(decision)
+        previous_transition = transition
+        runner.stage_progress(stage, ["🎞️ Picture edit in progress", f"📍 Boundaries: {len(decisions)}/{len(beats) - 1}", f"✦ Latest: {transition} · {seconds:.2f}s · {motion}"])
+    payload = {"schema_version": 1, "decisions": decisions, "created_at": utcnow()}
+    save_json(target, payload)
+    runner.stage_done(stage, started, f"{len(decisions)} image boundaries", boundaries=len(decisions))
+    return payload
 
 
 # --------------------------------------------------------------------------- workspace
@@ -1845,6 +1922,7 @@ def main() -> int:
                 runner, project, content_project, visual_plan, world_style_plan,
                 world_style_anchor, world_keyframe,
             )
+            stage_transition_direction(runner, project, content_project, visual_plan, body_images)
 
             clip_a = stage_flow_clip(
                 runner, project, content_project, "A", clip_a_prompt,

@@ -677,8 +677,11 @@ def main() -> None:
             input_paths.append(path)
 
     allowed_transitions = {
-        "fade", "dissolve", "wipeleft", "wiperight", "slideleft", "slideright",
-        "radial", "circleopen", "smoothleft", "smoothright",
+        "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft", "smoothright", "smoothup", "smoothdown",
+        "wipeleft", "wiperight", "wipeup", "wipedown", "wipetl", "wipetr", "wipebl", "wipebr",
+        "slideleft", "slideright", "slideup", "slidedown", "radial", "circleopen", "circleclose", "zoomin",
+        "hblur", "distance", "diagtl", "diagtr", "diagbl", "diagbr", "coverleft", "coverright", "coverup",
+        "coverdown", "revealleft", "revealright", "revealup", "revealdown",
     }
     incoming_transitions: list[tuple[str, float]] = [("cut", 0.0)]
     for index, beat in enumerate(beats[1:], start=1):

@@ -22,7 +22,7 @@ Return ONLY a raw JSON object, no markdown fences, no commentary:
 {
   "opening_question_spark": "<~5s of narration: the hook, spoken while the hero is mid-activity>",
   "book_transition": "<~3s of narration: the hero reaches for the book and it opens>",
-  "body": ["<exactly one complete spoken sentence per visual beat>", "..."],
+  "body": ["<one short spoken visual unit: a sentence or a natural clause>", "..."],
   "optional_closing": "<one short echo sentence, or empty string>",
   "cta": "<one CTA of at most 12 words>",
   "full_narration": "<every field above concatenated in order, exactly as it will be spoken>"
@@ -34,9 +34,11 @@ Hard rules for the JSON:
   `book_transition`, each `body` entry in order, `optional_closing`, then `cta`, joined by a
   single space. No extra words, no repeated words, no re-ordering. The alignment step verifies
   this and rejects the script if it does not hold.
-- `body` must contain between {{BEAT_MIN}} and {{BEAT_MAX}} entries. One entry = one visual beat
-  = exactly one complete spoken sentence. Never put two sentences, a semicolon-separated pair,
-  or a clause fragment into one entry. This is a hard picture-change boundary.
+- `body` must contain between {{BEAT_MIN}} and {{BEAT_MAX}} entries. One entry = one visual beat.
+  Split at every independently depictable action, actor, object, reveal, setting change, causal
+  turn, or consequence — even when those pieces came from one conventional sentence. A natural
+  spoken clause is allowed as a unit; never put two sentences or two separately depictable ideas
+  in one entry. This is a hard picture-change boundary.
 - No headings, no timestamps, no scene directions, no speaker labels, no emoji.
 - Plain spoken English only — anything unspeakable (URLs, parentheses, asterisks) is a defect.
 
@@ -56,9 +58,16 @@ return/closing.
 - Tie the hook to that physical activity: curiosity arrives while the hands are busy.
 - Make the book retrieval natural. `book_transition` is roughly 3 seconds of speech.
 - `opening_question_spark` is roughly 5 seconds of speech.
-- Every `body` entry must be one complete, independently visualisable sentence — it becomes one
-  unique image prompt. Prefer 8–16 concise body sentences over long compound sentences.
-- Use only facts present in the brief's Source notes. Never invent statistics or sources.
+- Every `body` entry must be a short, independently visualisable unit (normally ≤16 words). It
+  becomes one unique image prompt. Prefer a brisk sequence of precise moments over generic
+  summary images.
+- For mythology, history, science, biography, and culture, make the payoff concrete: include
+  2–4 vivid, checkable details that explain *who did what, where the idea came from, how it
+  changed,* or *why it matters*. Name relevant people, places, original terms, objects, or causes
+  when supported by Source notes. If Source notes are absent, use only conservative,
+  widely-established canonical details and avoid contested variants. For example, a myth should
+  name the relevant gods and motive, not merely retell a vague moral. Never invent statistics,
+  citations, or disputed facts.
 
 ## Style
 - Short sentences for TTS, conversational, forward momentum.
@@ -73,7 +82,8 @@ return/closing.
 2. Is one opening activity chosen and kept consistent?
 3. Is the total spoken word count between 92 and 150?
 4. Are there no invented statistics?
-5. Does `full_narration` concatenate the segments exactly, with nothing added or dropped?
+5. Did I split every picturable sub-action or reveal into its own short visual unit?
+6. Does `full_narration` concatenate the segments exactly, with nothing added or dropped?
 6. Is the output raw JSON with no fences?
 
 ---

@@ -40,18 +40,18 @@ def test_prompt_values_fill_every_new_token() -> None:
 
 
 def test_beat_count_scales_with_length_and_keeps_the_default() -> None:
-    assert (DurationTarget(40, 60).beat_min, DurationTarget(40, 60).beat_max) == (8, 15)
-    assert (DurationTarget(25, 30).beat_min, DurationTarget(25, 30).beat_max) == (5, 8)
+    assert (DurationTarget(40, 60).beat_min, DurationTarget(40, 60).beat_max) == (12, 20)
+    assert (DurationTarget(25, 30).beat_min, DurationTarget(25, 30).beat_max) == (8, 11)
     # However short the request, a Short still needs enough beats to cut on.
-    assert DurationTarget(5, 6).beat_min == 4
+    assert DurationTarget(5, 6).beat_min == 6
     assert DurationTarget(5, 6).beat_max >= 6
 
 
 def test_the_beat_gate_follows_the_requested_length() -> None:
-    """Six beats is right for 25-30s and wrong for 40-60s; the gate must say so."""
+    """The faster image cadence scales with the requested duration."""
     from run_question_harvest_pipeline import StageFailure, validate_script_plan
 
-    body = [f"Beat {index} moves the story along." for index in range(6)]
+    body = [f"Beat {index} moves the story along." for index in range(8)]
     plan = {
         "opening_question_spark": "What did Disney animate first?",
         "book_transition": "The answer sits in an older book.",
@@ -64,11 +64,11 @@ def test_the_beat_gate_follows_the_requested_length() -> None:
          plan["optional_closing"], plan["cta"]]
     )
     accepted = validate_script_plan("retention_edit", dict(plan), DurationTarget(25, 30))
-    assert len(accepted["body"]) == 6
+    assert len(accepted["body"]) == 8
 
     with pytest.raises(StageFailure) as excinfo:
         validate_script_plan("retention_edit", dict(plan), DurationTarget(40, 60))
-    assert "8-15" in str(excinfo.value.message)
+    assert "12-20" in str(excinfo.value.message)
 
 
 def test_the_script_prompts_ask_for_the_requested_length() -> None:

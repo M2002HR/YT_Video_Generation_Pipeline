@@ -32,9 +32,11 @@ script if it does not hold, so an edit that changes a segment must also update
 - the book retrieval and the ~3s `book_transition` beat
 - factual integrity: do not strengthen uncertain claims, never add statistics
 - a hook that works from second zero
-- between {{BEAT_MIN}} and {{BEAT_MAX}} `body` entries, each independently visualisable and
-  exactly one complete spoken sentence. Do not merge two sentences into one body entry and do
-  not leave a clause fragment as its own entry: each entry triggers one unique picture.
+- between {{BEAT_MIN}} and {{BEAT_MAX}} `body` entries, each an independently visualisable
+  spoken unit of ≤16 words. Split every separately depictable action, object, reveal, cause, or
+  consequence into its own unit, including natural clauses from a longer sentence. Each entry
+  triggers one unique picture; never merge separate visual moments to make the narration sound
+  more literary.
 
 ## May sharpen
 - hook compression and curiosity payoff
@@ -42,6 +44,9 @@ script if it does not hold, so an edit that changes a segment must also update
 - TTS rhythm and visual translatability
 - removing generic openers such as "Have you ever wondered"
 - making the book-transition sentence a more natural hinge
+- replacing vague summaries with supported, concrete named details (people, place, origin,
+  mechanism, or consequence) when the brief's Source notes support them; if they are absent,
+  retain only conservative, widely-established canonical details
 
 ## Checks before answering
 1. Is the hook still topic-specific rather than generic?

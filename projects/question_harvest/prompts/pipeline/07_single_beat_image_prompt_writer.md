@@ -18,13 +18,14 @@ Return plain text prompt for Gemini — single paragraph.
 - exactly one standalone image, {{ASPECT_RATIO}}, no storyboard/grid/collage/panels/captions
 - world medium (from WORLD STYLE PLAN), texture, palette, lighting
 - composition for vertical 9:16 (centered subject, top/bottom safe space)
-- narrative moment + reference hierarchy (character_sheet beats drift; previous image short-range only)
+- narrative moment + reference hierarchy (character_sheet prevents identity drift; style/world
+  references establish medium). This must be a fresh composition, not a crop, remake, or pose
+  variation of the prior beat.
 - if hero present: same identity (chestnut hair, beard, moss sweater, blue overalls, orange boots) rendered in current world medium — world changes, character identity does not
 - no unwanted readable text, no UI
 
 ## Reference Hierarchy (§30) to mention:
-- If protagonist absent: world style anchor, world keyframe, recurring world reference if needed, previous accepted body image if applicable, prompt
-- If present: canonical character_sheet, world style anchor, world keyframe, recurring ref, previous image, prompt
+- If protagonist absent: world style anchor, world keyframe, recurring world reference if needed, prompt
+- If present: canonical character_sheet, world style anchor, world keyframe, recurring ref, prompt
 
 Return ONLY prompt (under 600 chars).
-
