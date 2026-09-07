@@ -234,7 +234,9 @@ def probe_video(ffprobe: str, path: Path) -> dict[str, Any]:
 #: How often a running render says where it has got to. The render is the longest step in an
 #: episode, and it used to be silent until it finished, so a slow render and a stuck one looked
 #: identical in the log.
-RENDER_PROGRESS_INTERVAL_SECONDS = float(os.getenv("YT_RENDER_PROGRESS_INTERVAL_SECONDS", "20"))
+# A render status is useful, but a malformed environment value must never turn
+# it into a message stream.  Fifteen seconds is the shortest useful cadence.
+RENDER_PROGRESS_INTERVAL_SECONDS = max(15.0, float(os.getenv("YT_RENDER_PROGRESS_INTERVAL_SECONDS", "20")))
 
 
 def read_process_resources(pid: int, *, started_cpu_seconds: float, elapsed_seconds: float) -> dict[str, float | str]:
@@ -316,27 +318,51 @@ def render_progress_message(
 
 
 class TelegramRenderProgress:
-    """Best-effort in-place render monitor, driven solely by FFmpeg's progress stream."""
+    """One durable, in-place Telegram monitor for one render lifecycle."""
 
-    def __init__(self, video_id: str, total_seconds: float) -> None:
+    def __init__(self, video_id: str, total_seconds: float, state_path: Path) -> None:
         self.notifier = PipelineNotifier(video_id=video_id, topic="render")
         self.total_seconds = total_seconds
+        self.state_path = state_path
         self.message: EditableMessage | None = None
         self.pid = 0
         self.started_cpu_seconds = 0.0
         self.title = stage_title("render_baseline")
+
+    def _save_state(self, status: str) -> None:
+        if self.message is None:
+            return
+        self.state_path.parent.mkdir(parents=True, exist_ok=True)
+        self.state_path.write_text(
+            json.dumps({"schema_version": 1, "message_id": self.message.message_id, "status": status}, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    def _restore_running_message(self, body: str) -> EditableMessage | None:
+        """Reuse a monitor left by a restarted parent instead of sending another one."""
+        try:
+            payload = json.loads(self.state_path.read_text(encoding="utf-8"))
+            message_id = int(payload.get("message_id") or 0)
+        except (OSError, ValueError, TypeError):
+            return None
+        if payload.get("status") != "RUNNING" or message_id <= 0:
+            return None
+        message = EditableMessage(message_id=message_id)
+        return message if self.notifier.edit(message, body) else None
 
     def start(self, pid: int) -> None:
         self.pid = pid
         initial = read_process_resources(pid, started_cpu_seconds=0.0, elapsed_seconds=1.0)
         self.started_cpu_seconds = max(0.0, float(initial.get("render_cpu_percent", 0.0)) / 100)
         # Start at precisely 0%, before FFmpeg has encoded a frame.
-        self.message = self.notifier.send_editable(render_progress_message(
+        body = render_progress_message(
             self.notifier.video_id,
             {"share": 0.0, "position": 0.0, "total_seconds": self.total_seconds, "elapsed_seconds": 0.0},
             initial,
             title=self.title,
-        ))
+        )
+        self.message = self._restore_running_message(body) or self.notifier.send_editable(body)
+        self._save_state("RUNNING")
 
     def update(self, progress: dict[str, Any]) -> None:
         if self.message is None:
@@ -358,6 +384,7 @@ class TelegramRenderProgress:
             self.message,
             render_progress_message(self.notifier.video_id, progress, resources, finished=not failed, failed=failed, title=self.title),
         )
+        self._save_state("FAILED" if failed else "DONE")
 
 
 def run_with_progress(
@@ -834,7 +861,9 @@ def main() -> None:
         return
 
     started = time.perf_counter()
-    reporter = None if args.no_telegram_progress else TelegramRenderProgress(video_dir.name.split("_", 1)[0], duration)
+    reporter = None if args.no_telegram_progress else TelegramRenderProgress(
+        video_dir.name.split("_", 1)[0], duration, video_dir / "render" / "TELEGRAM_RENDER_PROGRESS.json"
+    )
 
     def report_render_progress(progress: dict[str, Any]) -> None:
         if reporter is None:
