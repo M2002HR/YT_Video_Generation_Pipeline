@@ -279,6 +279,8 @@ def main() -> None:
     parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
+    parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Send a compressed Telegram copy (default: enabled).")
+    parser.add_argument("--telegram-original", action="store_true", help="Also send the polished original to Telegram.")
     args = parser.parse_args()
     content_project = load_content_project(args.content_project)
     preset = args.preset or content_project.default_visual_preset
@@ -365,7 +367,10 @@ def main() -> None:
     render_profile = ensure_render_profile(project, args.aspect_ratio)
     apply_word_highlight_preference(render_profile, creative_payload)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
-    run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path, notifier=notifier)
+    completion = [py, "scripts/run_completion_pipeline.py", str(project), "--publish", "--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size"]
+    if args.telegram_original:
+        completion.append("--telegram-original")
+    run("completion", completion, state, state_path, notifier=notifier)
     publish_git_artifacts(project, state_path, state, notifier=notifier)
     notifier.send("Full pipeline complete", ["🏁 All requested stages passed", f"⏱ Total: {state['total_elapsed_seconds']:.1f}s"])
     print("FULL VIDEO PIPELINE: PASS")

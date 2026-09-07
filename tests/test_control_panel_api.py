@@ -54,10 +54,18 @@ def test_launch_form_exposes_the_word_highlight_choice() -> None:
     form = launch_form("", "")
     assert 'name=word_highlight checked' in form
     assert "Highlight the spoken word" in form
+    assert 'name=telegram_low_size checked' in form
+    assert 'name=telegram_original' in form
 
 
 def test_the_commit_flag_is_carried_into_the_command() -> None:
     assert "--commit" in panel.pipeline_command(_record(commit_artifacts=True))
+
+
+def test_telegram_delivery_preferences_survive_into_a_resume() -> None:
+    command = panel.pipeline_command(_record(telegram_low_size=False, telegram_original=True))
+    assert "--no-telegram-low-size" in command
+    assert "--telegram-original" in command
 
 
 def test_the_music_provider_priority_survives_into_a_resume() -> None:

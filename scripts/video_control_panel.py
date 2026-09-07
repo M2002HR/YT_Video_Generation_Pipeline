@@ -338,7 +338,9 @@ def pipeline_command(record: dict) -> list[str]:
             "--aspect-ratio", str(record.get("aspect_ratio") or "9:16"),
             "--music-providers", music_providers,
             "--publish",
-        ] + (["--commit"] if record.get("commit_artifacts") else [])
+        ] + (["--commit"] if record.get("commit_artifacts") else []) \
+          + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
+          + (["--telegram-original"] if record.get("telegram_original") else [])
     return [
         sys.executable, "-u", "scripts/run_full_video_pipeline.py",
         "--content-project", content_project,
@@ -350,7 +352,8 @@ def pipeline_command(record: dict) -> list[str]:
         "--voice-profile", str(voice_profile),
         "--creative-brief", str(creative_brief),
         "--music-providers", music_providers,
-    ]
+    ] + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
+      + (["--telegram-original"] if record.get("telegram_original") else [])
 
 
 def provider_status() -> dict:
@@ -830,6 +833,8 @@ class Handler(BaseHTTPRequestHandler):
             show_subtitles = "show_subtitles" in values
             word_highlight = "word_highlight" in values
             commit_artifacts = "commit_artifacts" in values
+            telegram_low_size = "telegram_low_size" in values
+            telegram_original = "telegram_original" in values
             # QH advanced
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
@@ -920,6 +925,8 @@ class Handler(BaseHTTPRequestHandler):
                 "music_provider": providers[0],  # legacy readers retain the first choice
                 "music_providers": providers,
                 "commit_artifacts": commit_artifacts,
+                "telegram_low_size": telegram_low_size,
+                "telegram_original": telegram_original,
             }
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")

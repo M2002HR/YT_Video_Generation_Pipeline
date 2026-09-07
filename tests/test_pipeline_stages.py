@@ -24,6 +24,6 @@ def test_independent_post_visual_work_has_its_own_visible_stage() -> None:
 
 def test_titles_use_the_global_count_for_visual_and_render_stages() -> None:
     total = len(PIPELINE_STAGE_SEQUENCE)
-    assert stage_title("body_images") == f"step 14/{total} · Body Images"
-    assert stage_title("transition_direction") == f"step 15/{total} · Transition Direction"
-    assert stage_title("render_baseline") == f"step 23/{total} · Render Baseline"
+    assert stage_title("body_images") == f"step 15/{total} · Body Images"
+    assert stage_title("transition_direction") == f"step 16/{total} · Transition Direction"
+    assert stage_title("render_baseline") == f"step 24/{total} · Render Baseline"

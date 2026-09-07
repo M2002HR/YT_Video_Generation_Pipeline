@@ -171,6 +171,8 @@ def main() -> int:
     parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
+    parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Send a compressed Telegram copy (default: enabled).")
+    parser.add_argument("--telegram-original", action="store_true", help="Also send the polished original to Telegram.")
     parser.add_argument(
         "--commit",
         action="store_true",
@@ -300,6 +302,9 @@ def main() -> int:
     ]
     if args.publish:
         completion.append("--publish")
+        completion.append("--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size")
+        if args.telegram_original:
+            completion.append("--telegram-original")
     if args.commit:
         completion.append("--commit")
     run(completion)

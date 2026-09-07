@@ -90,6 +90,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Complete a prepared video from beat timings through Telegram publication.")
     parser.add_argument("video_dir", type=Path)
     parser.add_argument("--publish", action="store_true", help="Send the passing polished output to Telegram.")
+    parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Create and send the compressed Telegram copy (default: enabled).")
+    parser.add_argument("--telegram-original", action="store_true", help="Also send the original polished file to Telegram.")
     parser.add_argument("--allow-sfx", action="store_true", help="Keep explicitly configured SFX; default is no SFX.")
     parser.add_argument("--skip-render", action="store_true", help="Resume from an existing baseline render after an externally monitored render job.")
     parser.add_argument("--commit", action="store_true", help="Commit and push the finished artifacts after QC (§76, §111).")
@@ -124,6 +126,8 @@ def main() -> None:
     notifier = None if args.no_notify else PipelineNotifier(video_id=video.name, topic=topic)
     #: The completion half, in order, so each notification says where the run is.
     sequence = ["build_timeline", "render_baseline", "qc_baseline", "polish_audio", "qc_polished"]
+    if args.publish and args.telegram_low_size:
+        sequence.append("telegram_compress")
     if args.commit:
         sequence.append("git_commit_push")
     if args.publish:
@@ -169,6 +173,10 @@ def main() -> None:
     step("qc_polished", [py, "scripts/qc_render.py", str(video), "--input", str(polished), "--decode"],
          artifact=video / "render" / "QC_REPORT_polished.json")
 
+    compressed = video / "assets" / "renders" / "telegram_low.mp4"
+    if args.publish and args.telegram_low_size:
+        step("telegram_compress", [py, "scripts/compress_for_telegram.py", str(video), "--input", str(polished), "--output", str(compressed)], artifact=compressed)
+
     # Git publication runs only after both QC gates passed, and re-running it is a no-op
     # when nothing changed (§76, §111).
     if args.commit:
@@ -182,8 +190,14 @@ def main() -> None:
         state = json.loads(state_path.read_text(encoding="utf-8"))
 
     if args.publish:
-        step("publish_telegram",
-             [py, "scripts/publish_to_telegram.py", str(video), "--input", str(polished)],
+        publish_command = [py, "scripts/publish_to_telegram.py", str(video)]
+        if args.telegram_low_size:
+            publish_command += ["--input", str(compressed), "--kind", "compressed"]
+        if args.telegram_original:
+            publish_command += ["--input", str(polished), "--kind", "original"]
+        if not args.telegram_low_size and not args.telegram_original:
+            raise RuntimeError("Telegram publish requested with neither delivery option enabled.")
+        step("publish_telegram", publish_command,
              artifact=video / "publish" / "TELEGRAM_PUBLISH_STATE.json")
 
     state["status"] = "DONE"

@@ -324,6 +324,10 @@ def launch_form(project_options: str, style_options: str) -> str:
    <small>Warm-gold sweep follows each measured word; requires burned subtitles and real word timing.</small></label>
   <label class="check"><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC
    <small>needs a remote with write access</small></label>
+  <label class="check"><input type=checkbox name=telegram_low_size checked> Send low-size copy to Telegram
+   <small>Default: compressed 480px delivery copy; the full-quality master remains unchanged.</small></label>
+  <label class="check"><input type=checkbox name=telegram_original> Send original file to Telegram too
+   <small>Optional: sends the full-quality polished file in addition to the compact copy.</small></label>
  </fieldset>
 
  <fieldset id="qh_advanced"><legend>Question Harvest</legend>
