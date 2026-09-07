@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "smoothright",
+      "transition_seconds": 0.26,
+      "next_motion": "slow_zoom_in",
+      "reason": "The two orchard scenes share the same paper-cut world and continue the same workday problem. A gentle rightward handoff matches the move from a missed physical task to the next planning mistake, while a subtle zoom-in emphasizes the protagonist's growing uncertainty and cognitive difficulty."
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing scene shows a concrete orchard mistake with the hero, while the incoming image shifts into a symbolic memory explanation. A soft dissolve preserves the paper-crafted world and supports the move from confusion into reflection. The memory tree composition benefits from a gentle slow zoom to draw attention to the unattached apple symbols and brain sketch details."
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "wipeleft",
+      "transition_seconds": 0.22,
+      "next_motion": "slow_zoom_in",
+      "reason": "The leftward wipe cleanly returns from the centered memory metaphor to literal orchard action while preserving the shared paper-page layout; a restrained slow zoom emphasizes the delayed hand-to-apple moment without competing with the drawn motion trail."
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "wiperight",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing shot shows a delayed catch attempt with a left-to-right motion trail, and the incoming shot reveals the consequence in the same orchard space. A rightward wipe preserves the action direction into the spilled basket outcome, while a subtle zoom-in emphasizes the accident and the protagonist's careful recovery."
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34,
+      "next_motion": "slow_zoom_in",
+      "reason": "The sequence shifts from a visible accident consequence to an internal emotional state. A gentle dissolve softens the change, while a slow zoom-in on the seated figure emphasizes reflection and the mood shift."
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "still",
+      "reason": "The outgoing quiet emotional orchard scene shifts into an educational body-signal diagram, so a soft dissolve preserves the reflective tone while allowing the new explanatory composition to emerge without a hard visual break."
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both images are paper-cut educational diagrams continuing the body-system explanation, so a gentle dissolve preserves continuity while a subtle zoom-in draws attention to the new bloodstream and sugar-regulation details."
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both images are educational body-system diagrams in the same paper orchard world, so a soft dissolve preserves the explanatory flow while shifting from blood sugar regulation to another internal health effect. A gentle zoom adds focus to the new pressure gauge and moon symbols without making the diagram feel like an action scene."
+    },
+    {
+      "from_beat_id": 9,
+      "to_beat_id": 10,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both images are educational paper-cut body-system metaphors, so a soft dissolve preserves the continuous health explanation while the subtle zoom draws attention into the immune-defense tree and shield details."
+    },
+    {
+      "from_beat_id": 10,
+      "to_beat_id": 11,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The immune tree metaphor shifts into a human consequence, so a gentle dissolve preserves the educational flow while the slow zoom draws attention to the hero's dangerous microsleep moment."
+    },
+    {
+      "from_beat_id": 11,
+      "to_beat_id": 12,
+      "transition_in": "zoomin",
+      "transition_seconds": 0.32,
+      "next_motion": "still",
+      "reason": "The cut moves from the visible microsleep episode into an internal brain explanation, so a controlled zoom-in creates the feeling of entering the head and revealing the mechanism without adding unnecessary motion to the anatomical diagram."
+    },
+    {
+      "from_beat_id": 12,
+      "to_beat_id": 13,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The cut moves from an intimate brain interruption diagram into a calm recovery metaphor, so a gentle dissolve softens the shift in meaning while a slow zoom draws attention to the plant's moon-to-sun renewal."
+    },
+    {
+      "from_beat_id": 13,
+      "to_beat_id": 14,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The calm moon-to-sun recovery metaphor shifts into a more abstract accumulation diagram, so a gentle dissolve preserves the educational tone while the slow zoom emphasizes the growing stack of stressed body systems."
+    },
+    {
+      "from_beat_id": 14,
+      "to_beat_id": 15,
+      "transition_in": "fade",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The layered body-strain diagram shifts into a calm closing reflection. A soft fade matches the move from accumulated damage to the restorative idea of sleep as maintenance, while a gentle zoom-in emphasizes the protagonist and balanced tree illustration without disrupting the final scene."
+    }
+  ],
+  "created_at": "2026-09-07T04:56:06Z"
+}

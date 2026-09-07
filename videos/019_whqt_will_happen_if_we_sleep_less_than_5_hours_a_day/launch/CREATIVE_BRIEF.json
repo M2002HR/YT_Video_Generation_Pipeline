@@ -1,0 +1,22 @@
+{
+  "working_title": "",
+  "audience": "",
+  "narrative_angle": "",
+  "must_include": "",
+  "must_avoid": "",
+  "source_notes": "",
+  "_qh": {
+    "hero_presence_mode": "auto",
+    "world_style_policy": "new",
+    "world_style_id": "",
+    "world_style_hint": "",
+    "min_duration_seconds": 40.0,
+    "max_duration_seconds": 60.0,
+    "gemini_image_model": "nano_banana_2",
+    "flow_video_model": "gemini_omni_1_1_flash",
+    "flow_resolution": "720p",
+    "opening_a_source_seconds": 8,
+    "opening_b_source_seconds": 6,
+    "show_subtitles": true
+  }
+}

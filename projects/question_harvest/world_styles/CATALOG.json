@@ -99,6 +99,28 @@
       "path": "009_layered_anatomical_storybook_paper_001",
       "anchor": "009_layered_anatomical_storybook_paper_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "orchard_sleep_memory_collage_001",
+      "display_name": "Orchard Sleep Memory Collage 001",
+      "medium_family": "paper cut",
+      "texture_family": "hand-layered paper grain with fibrous cut edges",
+      "palette_summary": "warm orchard greens, muted amber sunlight, cream paper layers, soft slate blues for fatigue states, restrained honey highlights for brain and body signals",
+      "status": "ready",
+      "path": "010_orchard_sleep_memory_collage_001",
+      "anchor": "010_orchard_sleep_memory_collage_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "sketch_painting_wrestling_memory_001",
+      "display_name": "Sketch Painting Wrestling Memory 001",
+      "medium_family": "painted storybook",
+      "texture_family": "hand-painted fibrous paper grain",
+      "palette_summary": "warm cream paper, muted sepia, soft charcoal, faded teal, moss green, and restrained ochre highlights inspired by historical sports memories",
+      "status": "ready",
+      "path": "011_sketch_painting_wrestling_memory_001",
+      "anchor": "011_sketch_painting_wrestling_memory_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

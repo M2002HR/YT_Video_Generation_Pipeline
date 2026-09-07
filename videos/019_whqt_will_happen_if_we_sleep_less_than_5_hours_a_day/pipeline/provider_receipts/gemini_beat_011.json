@@ -1,0 +1,66 @@
+{
+  "provider": "gemini",
+  "job_id": "00a8a59b-c9e7-4dbd-b28e-7c3fa456bcdf",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/eb3f4699a91baa9c",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=00a8a59b-c9e7-4dbd-b28e-7c3fa456bcdf_output_1.png 1536x2752 sha256=1cfe7bdd915cfb95241c2cac32aa5d14f715a80f515c5b5ca03409ef5669713d"
+    ]
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
+      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "41bb759adbbccdbb7a29fcadbede5dbc273c9fb5de80a1116ad8fe72ce939b45"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_010.png",
+      "sha256": "eec6609fc69ffda1e7677ff99d170c404db679e95435f4ac964f27a1bcb6b3b4"
+    }
+  ],
+  "prompt_sha256": "71441949ec287f8c60edbe4af374d8ccd0306b69dcfe7987402e899352ec9f66",
+  "output_path": "assets/raw_beats/beat_011.png",
+  "output_sha256": "1cfe7bdd915cfb95241c2cac32aa5d14f715a80f515c5b5ca03409ef5669713d",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.267,
+  "completed_at": "2026-09-07T04:40:29Z"
+}

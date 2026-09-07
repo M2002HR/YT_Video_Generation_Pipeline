@@ -1,0 +1,56 @@
+{
+  "provider": "flow",
+  "job_id": "387cb623-c784-4a58-a81a-d1ce4861c582",
+  "requested": {
+    "model": "gemini_omni_1_1_flash",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "duration_seconds": 8
+  },
+  "actual_model_label": "Omni 1.1 Flash",
+  "model_verified": true,
+  "duration_actual": 8,
+  "resolution_actual": "720p",
+  "aspect_actual": "9:16",
+  "reference_roles": [
+    "character_sheet"
+  ],
+  "submission_fingerprint": "281ce206d61b13178887c02fb9185eef",
+  "workspace_url": "https://flow.google.com/project/acd758d2-ebb7-45d3-90e8-ea6c8515ae15",
+  "provider_receipt": {
+    "provider": "flow",
+    "requested_model": "gemini_omni_1_1_flash",
+    "actual_model_label": "Omni 1.1 Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": null,
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "9:16",
+    "requested_duration_seconds": 8,
+    "actual_duration_seconds": 8,
+    "requested_resolution": "720p",
+    "actual_resolution": "720p",
+    "workspace_url": "https://flow.google.com/project/acd758d2-ebb7-45d3-90e8-ea6c8515ae15",
+    "submission_fingerprint": "281ce206d61b13178887c02fb9185eef",
+    "reference_roles": [
+      "character_sheet"
+    ],
+    "notes": [
+      "credits_required=12",
+      "outputs=x1",
+      "reference_mode=ingredients",
+      "pixels=720x1280",
+      "bytes=7320468",
+      "duration 8.00s vs requested 8s",
+      "resolution 720x1280 vs 720p"
+    ]
+  },
+  "uploaded_roles": [
+    "character_sheet"
+  ],
+  "prompt_sha256": "b9f6b25126ce4b3df4845fd39fc06fc56e9cb51a583215adae71450f95b5b691",
+  "output_file": "assets/opening/question_spark_source.mp4",
+  "output_sha256": "0f240e265617dc042810cda314857510bdf2742a337aca0c64ba58367e374382",
+  "elapsed_seconds": 108.275,
+  "completed_at": "2026-09-07T04:57:57Z"
+}

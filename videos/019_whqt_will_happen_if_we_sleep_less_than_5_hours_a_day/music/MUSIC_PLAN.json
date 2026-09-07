@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-07T05:31:34.177116+00:00",
+  "status": "SELECTED",
+  "narration_seconds": 64.078,
+  "segment_count": 1,
+  "segments": [
+    {
+      "segment_id": "bed_001",
+      "start_seconds": 0.0,
+      "end_seconds": 64.078,
+      "duration_seconds": 64.078,
+      "role": "bed",
+      "provider": "pixabay",
+      "query_prompt": "Choose exactly one Pixabay Music track for this specific video. Narration duration: 64.1 seconds. Source brief/script follows:\nWhat happens when I water the garden after sleeping less than five hours? I grab the book to see what gives way first. Attention slips during simple tasks. Following instructions becomes harder to track. New memories become harder to form. Reaction time slows during everyday moments. Mistakes and accidents become more likely. Mood can shift toward irritability or sadness. Hunger signals may push toward heavier foods. Blood sugar control can become harder over time. Blood pressure may rise with repeated short nights. Immune defenses can become less effective. Severe tiredness can trigger sudden microsleeps. Your brain may briefly stop responding normally. One short night often causes temporary effects. Repeated nights under five hours strain many systems. Sleep is essential maintenance, not empty time. Like and subscribe to grow more questions.\n\nInfer the topic, emotional arc, pacing, language and audience from this material. Choose an instrumental background suitable under spoken narration: no lyrics, no abrupt drops, and a restrained mix that supports rather than competes with the voice. Reply with only one direct https://pixabay.com/music/ track URL and no other text.",
+      "source_url": "https://pixabay.com/music/",
+      "file": null,
+      "gain_db": -20.0,
+      "fade_in_seconds": 0.8,
+      "fade_out_seconds": 1.4,
+      "notes": []
+    }
+  ]
+}

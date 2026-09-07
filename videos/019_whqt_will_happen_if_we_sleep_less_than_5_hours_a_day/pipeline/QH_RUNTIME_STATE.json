@@ -1,0 +1,529 @@
+{
+  "schema_version": 2,
+  "video_id": "019",
+  "topic": "whqt will happen if we sleep less than 5 hours a day?",
+  "created_at": "2026-09-07T04:14:41Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:36Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:36Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:36Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:36Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:36Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T05:38:38Z",
+      "opening_activity": "orchard work",
+      "opening_location": "orchard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:39Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T05:39:00Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:41Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:42Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:43Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:45Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:46Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:47Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:48Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:50Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:51Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:52Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:53Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:54Z",
+      "artifact": "beat_012.png"
+    },
+    "beat_image_013": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:56Z",
+      "artifact": "beat_013.png"
+    },
+    "beat_image_014": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:57Z",
+      "artifact": "beat_014.png"
+    },
+    "beat_image_015": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:38:59Z",
+      "artifact": "beat_015.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:39:01Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:39:01Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T05:39:01Z",
+      "artifact": "book_transition_source.mp4 (6.02s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T05:39:01Z",
+      "body_images": 15
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 21.077,
+      "at": "2026-09-07T04:15:04Z",
+      "words": 132
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 21.065,
+      "at": "2026-09-07T04:15:27Z",
+      "words": 130
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.061,
+      "at": "2026-09-07T04:15:48Z",
+      "activity": "orchard work"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.071,
+      "at": "2026-09-07T04:16:09Z",
+      "style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 48.14,
+      "at": "2026-09-07T04:17:00Z",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57",
+      "model": "nano_banana_2",
+      "catalog_path": "010_orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-07T04:17:03Z",
+      "opening_activity": "orchard work",
+      "opening_location": "orchard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 27.068,
+      "at": "2026-09-07T04:17:32Z",
+      "beats": 15
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 15.056,
+      "at": "2026-09-07T04:17:50Z",
+      "prompt_sha256": "cca4cc6b49bdc872e222fd49babd959a5ce9e5a8c50248408b74970b1f854a25"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 96.399,
+      "at": "2026-09-07T04:19:29Z",
+      "sha256": "41bb759adbbccdbb7a29fcadbede5dbc273c9fb5de80a1116ad8fe72ce939b45",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.314,
+      "at": "2026-09-07T04:19:34Z",
+      "template_id": "002",
+      "sha256": "773ff9d0990bda1d35896a6d71eb84634d7b2b52687593c8ae34cb2cdc032de3"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 15.04,
+      "at": "2026-09-07T04:19:52Z",
+      "prompt_sha256": "b9f6b25126ce4b3df4845fd39fc06fc56e9cb51a583215adae71450f95b5b691"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 15.037,
+      "at": "2026-09-07T04:20:09Z",
+      "prompt_sha256": "6fe9bd5ddbf3803997ab23bb0f3c40466605159c12a965c16bb64a59f8c4b868"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 87.278,
+      "at": "2026-09-07T04:21:39Z",
+      "sha256": "88538c610f2a9e46ed7805ef7f634e2eec27e85c9d38a3d6e0a448b1b8feb920",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 105.435,
+      "at": "2026-09-07T04:23:25Z",
+      "sha256": "2822375760cee666877a13651ddc6bcf5556cf22350e12f531100bf9a3ce03c3",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 153.539,
+      "at": "2026-09-07T04:26:00Z",
+      "sha256": "1360e11a6da424fba2b3cd0ef4c3f2eb1ea31c72dfd9470f08d42f87e16cf7b5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 117.581,
+      "at": "2026-09-07T04:27:59Z",
+      "sha256": "74cdec3a1b0de0cb78b72a26b791cba20ce1593828fed7d08642f668007c32fa",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 123.52,
+      "at": "2026-09-07T04:30:04Z",
+      "sha256": "abffc631d193b2e0435191f8a9a1adde4a13499ec3ada6e1abbfa999d9d44d4e",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 93.418,
+      "at": "2026-09-07T04:31:39Z",
+      "sha256": "1abd9546e946fcd405fc76a4ee407e5c14d35a1876dbab526a9a6663feb2406e",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 90.356,
+      "at": "2026-09-07T04:33:10Z",
+      "sha256": "4944538b7416bc68d983299c82623895de1779c17ce020019284ddce2cc76e51",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 105.5,
+      "at": "2026-09-07T04:34:57Z",
+      "sha256": "00b866b5478a4950d281f700b04f7090617abf29c1e2d09a23d474c849bc011f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 93.427,
+      "at": "2026-09-07T04:36:32Z",
+      "sha256": "6c4cf23f4db80080f36bbc2e1163b9d308c1c3cbe6ae8efb1704e43d0e0537a3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 111.516,
+      "at": "2026-09-07T04:38:24Z",
+      "sha256": "eec6609fc69ffda1e7677ff99d170c404db679e95435f4ac964f27a1bcb6b3b4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 123.57,
+      "at": "2026-09-07T04:40:29Z",
+      "sha256": "1cfe7bdd915cfb95241c2cac32aa5d14f715a80f515c5b5ca03409ef5669713d",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 99.482,
+      "at": "2026-09-07T04:42:10Z",
+      "sha256": "c3578a02f767b694063d905e3f2b515db31e6eb841ecb5ac865209590d988127",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 240.969,
+      "at": "2026-09-07T04:46:12Z",
+      "sha256": "9dc7cdffd040860a06c0d6646726fa068df966b648e0742a7c4b5a3ead1c8b72",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 99.401,
+      "at": "2026-09-07T04:47:53Z",
+      "sha256": "3f9085dcae96a9d1c087a25d442ad0cd079ec152eb92a8850303775d0995af2a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_015",
+      "status": "DONE",
+      "elapsed_seconds": 102.508,
+      "at": "2026-09-07T04:49:37Z",
+      "sha256": "640aa347a8927f05eedb13f9ecea5183f89c3fd8f719bf7eef69f1527082933e",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1766.677,
+      "at": "2026-09-07T04:49:38Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 385.215,
+      "at": "2026-09-07T04:56:06Z",
+      "boundaries": 14
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 108.46,
+      "at": "2026-09-07T04:57:57Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "0f240e265617dc042810cda314857510bdf2742a337aca0c64ba58367e374382"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 126.559,
+      "at": "2026-09-07T05:00:06Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "3705c0fbc2f78e64d5770edaaeb9313aa762fecee29b6a6b8d93893c52abb8b5"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-07T05:28:17Z",
+      "opening_activity": "orchard work",
+      "opening_location": "orchard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 19.095,
+      "at": "2026-09-07T05:28:39Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-07T05:38:38Z",
+      "opening_activity": "orchard work",
+      "opening_location": "orchard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.905,
+      "at": "2026-09-07T05:39:00Z"
+    }
+  ],
+  "updated_at": "2026-09-07T05:39:01Z"
+}

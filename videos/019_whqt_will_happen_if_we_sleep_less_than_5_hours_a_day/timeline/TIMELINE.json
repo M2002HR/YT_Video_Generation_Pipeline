@@ -1,0 +1,1154 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 64.078,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.583,
+      "duration": 3.583,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 3.583,
+      "end": 7.583,
+      "duration": 4.0,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.583,
+      "end": 11.52,
+      "duration": 3.937,
+      "speech_start": 8.14,
+      "speech_end": 10.24,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Attention slips during simple tasks.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 11.52,
+      "end": 14.5,
+      "duration": 2.98,
+      "speech_start": 11.52,
+      "speech_end": 13.58,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Following instructions becomes harder to track.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.26
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 14.5,
+      "end": 17.38,
+      "duration": 2.88,
+      "speech_start": 14.5,
+      "speech_end": 16.54,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "New memories become harder to form.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 17.38,
+      "end": 20.86,
+      "duration": 3.48,
+      "speech_start": 17.38,
+      "speech_end": 20.02,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Reaction time slows during everyday moments.",
+      "transition_in": "wipeleft",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 20.86,
+      "end": 24.1,
+      "duration": 3.24,
+      "speech_start": 20.86,
+      "speech_end": 23.1,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Mistakes and accidents become more likely.",
+      "transition_in": "wiperight",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 24.1,
+      "end": 27.84,
+      "duration": 3.74,
+      "speech_start": 24.1,
+      "speech_end": 26.82,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Mood can shift toward irritability or sadness.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 27.84,
+      "end": 31.0,
+      "duration": 3.16,
+      "speech_start": 27.84,
+      "speech_end": 30.56,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Hunger signals may push toward heavier foods.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 31.0,
+      "end": 34.58,
+      "duration": 3.58,
+      "speech_start": 31.0,
+      "speech_end": 33.54,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Blood sugar control can become harder over time.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 34.58,
+      "end": 38.26,
+      "duration": 3.68,
+      "speech_start": 34.58,
+      "speech_end": 37.16,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Blood pressure may rise with repeated short nights.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 38.26,
+      "end": 41.8,
+      "duration": 3.54,
+      "speech_start": 38.26,
+      "speech_end": 40.48,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Immune defenses can become less effective.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 41.8,
+      "end": 45.88,
+      "duration": 4.08,
+      "speech_start": 41.8,
+      "speech_end": 44.68,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Severe tiredness can trigger sudden microsleeps.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 45.88,
+      "end": 49.28,
+      "duration": 3.4,
+      "speech_start": 45.88,
+      "speech_end": 48.12,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Your brain may briefly stop responding normally.",
+      "transition_in": "zoomin",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 49.28,
+      "end": 53.44,
+      "duration": 4.16,
+      "speech_start": 49.28,
+      "speech_end": 52.04,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "One short night often causes temporary effects.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 53.44,
+      "end": 56.76,
+      "duration": 3.32,
+      "speech_start": 53.44,
+      "speech_end": 55.92,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Repeated nights under five hours strain many systems.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 15,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_015.png",
+      "source": "assets/raw_beats/beat_015.png",
+      "start": 56.76,
+      "end": 64.078,
+      "duration": 7.318,
+      "speech_start": 56.76,
+      "speech_end": 59.42,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Sleep is essential maintenance, not empty time.",
+      "transition_in": "fade",
+      "transition_seconds": 0.32
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.04,
+      "end": 1.18,
+      "text": "What happens when I water the",
+      "ass_text": "What happens when I water the",
+      "words": [
+        {
+          "text": "What",
+          "start": 0.04,
+          "end": 0.22
+        },
+        {
+          "text": "happens",
+          "start": 0.22,
+          "end": 0.48
+        },
+        {
+          "text": "when",
+          "start": 0.48,
+          "end": 0.68
+        },
+        {
+          "text": "I",
+          "start": 0.68,
+          "end": 0.76
+        },
+        {
+          "text": "water",
+          "start": 0.76,
+          "end": 1.02
+        },
+        {
+          "text": "the",
+          "start": 1.02,
+          "end": 1.18
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 1.18,
+      "end": 2.96,
+      "text": "garden after sleeping less than five",
+      "ass_text": "garden after sleeping less than\\Nfive",
+      "words": [
+        {
+          "text": "garden",
+          "start": 1.18,
+          "end": 1.42
+        },
+        {
+          "text": "after",
+          "start": 1.42,
+          "end": 1.76
+        },
+        {
+          "text": "sleeping",
+          "start": 1.76,
+          "end": 2.12
+        },
+        {
+          "text": "less",
+          "start": 2.12,
+          "end": 2.54
+        },
+        {
+          "text": "than",
+          "start": 2.54,
+          "end": 2.74
+        },
+        {
+          "text": "five",
+          "start": 2.74,
+          "end": 2.96
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 2.96,
+      "end": 3.58,
+      "text": "hours?",
+      "ass_text": "hours?",
+      "words": [
+        {
+          "text": "hours?",
+          "start": 2.96,
+          "end": 3.58
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 4.74,
+      "end": 6.14,
+      "text": "I grab the book to see",
+      "ass_text": "I grab the book to see",
+      "words": [
+        {
+          "text": "I",
+          "start": 4.74,
+          "end": 4.9
+        },
+        {
+          "text": "grab",
+          "start": 4.9,
+          "end": 5.34
+        },
+        {
+          "text": "the",
+          "start": 5.34,
+          "end": 5.56
+        },
+        {
+          "text": "book",
+          "start": 5.56,
+          "end": 5.78
+        },
+        {
+          "text": "to",
+          "start": 5.78,
+          "end": 5.94
+        },
+        {
+          "text": "see",
+          "start": 5.94,
+          "end": 6.14
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 6.14,
+      "end": 7.56,
+      "text": "what gives way first.",
+      "ass_text": "what gives way first.",
+      "words": [
+        {
+          "text": "what",
+          "start": 6.14,
+          "end": 6.36
+        },
+        {
+          "text": "gives",
+          "start": 6.36,
+          "end": 6.62
+        },
+        {
+          "text": "way",
+          "start": 6.62,
+          "end": 6.9
+        },
+        {
+          "text": "first.",
+          "start": 6.9,
+          "end": 7.56
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 8.14,
+      "end": 10.24,
+      "text": "Attention slips during simple tasks.",
+      "ass_text": "Attention slips during simple\\Ntasks.",
+      "words": [
+        {
+          "text": "Attention",
+          "start": 8.14,
+          "end": 8.48
+        },
+        {
+          "text": "slips",
+          "start": 8.48,
+          "end": 8.9
+        },
+        {
+          "text": "during",
+          "start": 8.9,
+          "end": 9.22
+        },
+        {
+          "text": "simple",
+          "start": 9.22,
+          "end": 9.58
+        },
+        {
+          "text": "tasks.",
+          "start": 9.58,
+          "end": 10.24
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 11.52,
+      "end": 13.58,
+      "text": "Following instructions becomes harder to track.",
+      "ass_text": "Following instructions becomes\\Nharder to track.",
+      "words": [
+        {
+          "text": "Following",
+          "start": 11.52,
+          "end": 11.82
+        },
+        {
+          "text": "instructions",
+          "start": 11.82,
+          "end": 12.26
+        },
+        {
+          "text": "becomes",
+          "start": 12.26,
+          "end": 12.8
+        },
+        {
+          "text": "harder",
+          "start": 12.8,
+          "end": 13.1
+        },
+        {
+          "text": "to",
+          "start": 13.1,
+          "end": 13.3
+        },
+        {
+          "text": "track.",
+          "start": 13.3,
+          "end": 13.58
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 14.5,
+      "end": 16.54,
+      "text": "New memories become harder to form.",
+      "ass_text": "New memories become harder to\\Nform.",
+      "words": [
+        {
+          "text": "New",
+          "start": 14.5,
+          "end": 14.68
+        },
+        {
+          "text": "memories",
+          "start": 14.68,
+          "end": 15.16
+        },
+        {
+          "text": "become",
+          "start": 15.16,
+          "end": 15.56
+        },
+        {
+          "text": "harder",
+          "start": 15.56,
+          "end": 15.96
+        },
+        {
+          "text": "to",
+          "start": 15.96,
+          "end": 16.18
+        },
+        {
+          "text": "form.",
+          "start": 16.18,
+          "end": 16.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 17.38,
+      "end": 20.02,
+      "text": "Reaction time slows during everyday moments.",
+      "ass_text": "Reaction time slows during\\Neveryday moments.",
+      "words": [
+        {
+          "text": "Reaction",
+          "start": 17.38,
+          "end": 17.84
+        },
+        {
+          "text": "time",
+          "start": 17.84,
+          "end": 18.24
+        },
+        {
+          "text": "slows",
+          "start": 18.24,
+          "end": 18.6
+        },
+        {
+          "text": "during",
+          "start": 18.6,
+          "end": 19.02
+        },
+        {
+          "text": "everyday",
+          "start": 19.02,
+          "end": 19.48
+        },
+        {
+          "text": "moments.",
+          "start": 19.48,
+          "end": 20.02
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 20.86,
+      "end": 23.1,
+      "text": "Mistakes and accidents become more likely.",
+      "ass_text": "Mistakes and accidents become more\\Nlikely.",
+      "words": [
+        {
+          "text": "Mistakes",
+          "start": 20.86,
+          "end": 21.34
+        },
+        {
+          "text": "and",
+          "start": 21.34,
+          "end": 21.52
+        },
+        {
+          "text": "accidents",
+          "start": 21.52,
+          "end": 22.0
+        },
+        {
+          "text": "become",
+          "start": 22.0,
+          "end": 22.42
+        },
+        {
+          "text": "more",
+          "start": 22.42,
+          "end": 22.74
+        },
+        {
+          "text": "likely.",
+          "start": 22.74,
+          "end": 23.1
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 24.1,
+      "end": 26.4,
+      "text": "Mood can shift toward irritability or",
+      "ass_text": "Mood can shift toward irritability\\Nor",
+      "words": [
+        {
+          "text": "Mood",
+          "start": 24.1,
+          "end": 24.36
+        },
+        {
+          "text": "can",
+          "start": 24.36,
+          "end": 24.62
+        },
+        {
+          "text": "shift",
+          "start": 24.62,
+          "end": 24.98
+        },
+        {
+          "text": "toward",
+          "start": 24.98,
+          "end": 25.22
+        },
+        {
+          "text": "irritability",
+          "start": 25.22,
+          "end": 26.04
+        },
+        {
+          "text": "or",
+          "start": 26.04,
+          "end": 26.4
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 26.4,
+      "end": 26.82,
+      "text": "sadness.",
+      "ass_text": "sadness.",
+      "words": [
+        {
+          "text": "sadness.",
+          "start": 26.4,
+          "end": 26.82
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 27.84,
+      "end": 29.74,
+      "text": "Hunger signals may push toward heavier",
+      "ass_text": "Hunger signals may push toward\\Nheavier",
+      "words": [
+        {
+          "text": "Hunger",
+          "start": 27.84,
+          "end": 28.12
+        },
+        {
+          "text": "signals",
+          "start": 28.12,
+          "end": 28.64
+        },
+        {
+          "text": "may",
+          "start": 28.64,
+          "end": 28.96
+        },
+        {
+          "text": "push",
+          "start": 28.96,
+          "end": 29.28
+        },
+        {
+          "text": "toward",
+          "start": 29.28,
+          "end": 29.48
+        },
+        {
+          "text": "heavier",
+          "start": 29.48,
+          "end": 29.74
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 29.74,
+      "end": 30.56,
+      "text": "foods.",
+      "ass_text": "foods.",
+      "words": [
+        {
+          "text": "foods.",
+          "start": 29.74,
+          "end": 30.56
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 31.0,
+      "end": 32.82,
+      "text": "Blood sugar control can become harder",
+      "ass_text": "Blood sugar control can become\\Nharder",
+      "words": [
+        {
+          "text": "Blood",
+          "start": 31.0,
+          "end": 31.2
+        },
+        {
+          "text": "sugar",
+          "start": 31.2,
+          "end": 31.44
+        },
+        {
+          "text": "control",
+          "start": 31.44,
+          "end": 31.84
+        },
+        {
+          "text": "can",
+          "start": 31.84,
+          "end": 32.08
+        },
+        {
+          "text": "become",
+          "start": 32.08,
+          "end": 32.34
+        },
+        {
+          "text": "harder",
+          "start": 32.34,
+          "end": 32.82
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 32.82,
+      "end": 33.54,
+      "text": "over time.",
+      "ass_text": "over time.",
+      "words": [
+        {
+          "text": "over",
+          "start": 32.82,
+          "end": 33.1
+        },
+        {
+          "text": "time.",
+          "start": 33.1,
+          "end": 33.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 34.58,
+      "end": 36.46,
+      "text": "Blood pressure may rise with repeated",
+      "ass_text": "Blood pressure may rise with\\Nrepeated",
+      "words": [
+        {
+          "text": "Blood",
+          "start": 34.58,
+          "end": 34.78
+        },
+        {
+          "text": "pressure",
+          "start": 34.78,
+          "end": 35.14
+        },
+        {
+          "text": "may",
+          "start": 35.14,
+          "end": 35.46
+        },
+        {
+          "text": "rise",
+          "start": 35.46,
+          "end": 35.86
+        },
+        {
+          "text": "with",
+          "start": 35.86,
+          "end": 36.04
+        },
+        {
+          "text": "repeated",
+          "start": 36.04,
+          "end": 36.46
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 36.46,
+      "end": 37.16,
+      "text": "short nights.",
+      "ass_text": "short nights.",
+      "words": [
+        {
+          "text": "short",
+          "start": 36.46,
+          "end": 36.86
+        },
+        {
+          "text": "nights.",
+          "start": 36.86,
+          "end": 37.16
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 38.26,
+      "end": 40.48,
+      "text": "Immune defenses can become less effective.",
+      "ass_text": "Immune defenses can become less\\Neffective.",
+      "words": [
+        {
+          "text": "Immune",
+          "start": 38.26,
+          "end": 38.58
+        },
+        {
+          "text": "defenses",
+          "start": 38.58,
+          "end": 38.92
+        },
+        {
+          "text": "can",
+          "start": 38.92,
+          "end": 39.26
+        },
+        {
+          "text": "become",
+          "start": 39.26,
+          "end": 39.52
+        },
+        {
+          "text": "less",
+          "start": 39.52,
+          "end": 39.94
+        },
+        {
+          "text": "effective.",
+          "start": 39.94,
+          "end": 40.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 41.8,
+      "end": 44.68,
+      "text": "Severe tiredness can trigger sudden micro-sleeps.",
+      "ass_text": "Severe tiredness can trigger\\Nsudden micro-sleeps.",
+      "words": [
+        {
+          "text": "Severe",
+          "start": 41.8,
+          "end": 42.1
+        },
+        {
+          "text": "tiredness",
+          "start": 42.1,
+          "end": 42.72
+        },
+        {
+          "text": "can",
+          "start": 42.72,
+          "end": 42.94
+        },
+        {
+          "text": "trigger",
+          "start": 42.94,
+          "end": 43.24
+        },
+        {
+          "text": "sudden",
+          "start": 43.24,
+          "end": 43.74
+        },
+        {
+          "text": "micro-sleeps.",
+          "start": 43.74,
+          "end": 44.68
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 45.88,
+      "end": 47.7,
+      "text": "Your brain may briefly stop responding",
+      "ass_text": "Your brain may briefly stop\\Nresponding",
+      "words": [
+        {
+          "text": "Your",
+          "start": 45.88,
+          "end": 46.04
+        },
+        {
+          "text": "brain",
+          "start": 46.04,
+          "end": 46.34
+        },
+        {
+          "text": "may",
+          "start": 46.34,
+          "end": 46.54
+        },
+        {
+          "text": "briefly",
+          "start": 46.54,
+          "end": 46.9
+        },
+        {
+          "text": "stop",
+          "start": 46.9,
+          "end": 47.2
+        },
+        {
+          "text": "responding",
+          "start": 47.2,
+          "end": 47.7
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 47.7,
+      "end": 48.12,
+      "text": "normally.",
+      "ass_text": "normally.",
+      "words": [
+        {
+          "text": "normally.",
+          "start": 47.7,
+          "end": 48.12
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 49.28,
+      "end": 51.38,
+      "text": "One short night often causes temporary",
+      "ass_text": "One short night often causes\\Ntemporary",
+      "words": [
+        {
+          "text": "One",
+          "start": 49.28,
+          "end": 49.52
+        },
+        {
+          "text": "short",
+          "start": 49.52,
+          "end": 49.78
+        },
+        {
+          "text": "night",
+          "start": 49.78,
+          "end": 50.0
+        },
+        {
+          "text": "often",
+          "start": 50.0,
+          "end": 50.58
+        },
+        {
+          "text": "causes",
+          "start": 50.58,
+          "end": 50.98
+        },
+        {
+          "text": "temporary",
+          "start": 50.98,
+          "end": 51.38
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 51.38,
+      "end": 52.04,
+      "text": "effects.",
+      "ass_text": "effects.",
+      "words": [
+        {
+          "text": "effects.",
+          "start": 51.38,
+          "end": 52.04
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 53.44,
+      "end": 55.08,
+      "text": "Repeated nights under five hours strain",
+      "ass_text": "Repeated nights under five hours\\Nstrain",
+      "words": [
+        {
+          "text": "Repeated",
+          "start": 53.44,
+          "end": 53.7
+        },
+        {
+          "text": "nights",
+          "start": 53.7,
+          "end": 54.0
+        },
+        {
+          "text": "under",
+          "start": 54.0,
+          "end": 54.22
+        },
+        {
+          "text": "five",
+          "start": 54.22,
+          "end": 54.54
+        },
+        {
+          "text": "hours",
+          "start": 54.54,
+          "end": 54.8
+        },
+        {
+          "text": "strain",
+          "start": 54.8,
+          "end": 55.08
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 55.08,
+      "end": 55.92,
+      "text": "many systems.",
+      "ass_text": "many systems.",
+      "words": [
+        {
+          "text": "many",
+          "start": 55.08,
+          "end": 55.4
+        },
+        {
+          "text": "systems.",
+          "start": 55.4,
+          "end": 55.92
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 56.76,
+      "end": 58.92,
+      "text": "Sleep is essential maintenance, not empty",
+      "ass_text": "Sleep is essential maintenance,\\Nnot empty",
+      "words": [
+        {
+          "text": "Sleep",
+          "start": 56.76,
+          "end": 56.88
+        },
+        {
+          "text": "is",
+          "start": 56.88,
+          "end": 57.12
+        },
+        {
+          "text": "essential",
+          "start": 57.12,
+          "end": 57.6
+        },
+        {
+          "text": "maintenance,",
+          "start": 57.6,
+          "end": 58.5
+        },
+        {
+          "text": "not",
+          "start": 58.5,
+          "end": 58.64
+        },
+        {
+          "text": "empty",
+          "start": 58.64,
+          "end": 58.92
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 58.92,
+      "end": 59.42,
+      "text": "time.",
+      "ass_text": "time.",
+      "words": [
+        {
+          "text": "time.",
+          "start": 58.92,
+          "end": 59.42
+        }
+      ],
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 17,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 28,
+    "subtitle_cues_estimated": 0
+  }
+}

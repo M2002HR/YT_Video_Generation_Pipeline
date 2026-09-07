@@ -1,0 +1,32 @@
+{
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/book_spread_frame.png",
+  "sha256": "773ff9d0990bda1d35896a6d71eb84634d7b2b52687593c8ae34cb2cdc032de3",
+  "template_id": "002",
+  "template_path": "/opt/YT_Video_Generation_Pipeline/projects/question_harvest/book_templates/002/blank_book.png",
+  "template_sha256": "a45c03148cb7a81ed675ba8b5f16bd825902efb877fd7a868dfbeede3a729d05",
+  "seed": 43314,
+  "aspect_ratio": "9:16",
+  "canvas": "1080x1920",
+  "world_keyframe": "/opt/YT_Video_Generation_Pipeline/videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+  "world_keyframe_sha256": "41bb759adbbccdbb7a29fcadbede5dbc273c9fb5de80a1116ad8fe72ce939b45",
+  "world_keyframe_dimensions": [
+    1536,
+    2752
+  ],
+  "left_page_box": [
+    86,
+    463,
+    530,
+    1494
+  ],
+  "right_page_box": [
+    550,
+    463,
+    994,
+    1494
+  ],
+  "world_transform": "ImageOps.fit centering=(0.5,0.5) LANCZOS",
+  "world_kept_fraction": 0.7716,
+  "readable_text_drawn": false,
+  "book_spread_frame": "/opt/YT_Video_Generation_Pipeline/videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/book_spread_frame.png"
+}

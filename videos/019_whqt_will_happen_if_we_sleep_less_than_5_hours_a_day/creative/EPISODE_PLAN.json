@@ -1,0 +1,14 @@
+{
+  "opening_activity": "orchard work",
+  "opening_location": "orchard",
+  "curiosity_trigger": "noticing several apples hanging untouched while his movements feel unusually slow",
+  "trigger_object": "half-filled harvest basket",
+  "reaction": "pauses, lifts the basket, and notices his delayed response",
+  "book_retrieval": "sets down the basket, wipes his hands, and pulls the worn book from a nearby wooden shelf",
+  "camera_pattern": "static_wide",
+  "book_template_id": "002",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "layered storybook paper textures with warm orchard light and subtle anatomical diagram accents",
+  "reason": "Orchard work naturally shows slowed performance and mistakes from fatigue without forcing sleep effects into an unrelated setting."
+}

@@ -1,0 +1,60 @@
+{
+  "provider": "gemini",
+  "job_id": "8a074d01-57ed-4a43-8120-26dc2338e575",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/50672f8cc0377599",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=8a074d01-57ed-4a43-8120-26dc2338e575_output_1.png 1536x2752 sha256=9dc7cdffd040860a06c0d6646726fa068df966b648e0742a7c4b5a3ead1c8b72"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "41bb759adbbccdbb7a29fcadbede5dbc273c9fb5de80a1116ad8fe72ce939b45"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/019_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_012.png",
+      "sha256": "c3578a02f767b694063d905e3f2b515db31e6eb841ecb5ac865209590d988127"
+    }
+  ],
+  "prompt_sha256": "f9b30b48f9abb32b9ae117b7e0c032784c0f4b9a91559962b9805670608581c9",
+  "output_path": "assets/raw_beats/beat_013.png",
+  "output_sha256": "9dc7cdffd040860a06c0d6646726fa068df966b648e0742a7c4b5a3ead1c8b72",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 114.409,
+  "completed_at": "2026-09-07T04:46:12Z"
+}

@@ -1,0 +1,42 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+Style: Karaoke,DejaVu Sans,56,&H0000D7FF,&H00F5F5F5,&H00130D09,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.04,0:00:01.18,Karaoke,,0,0,0,,{\kf18}What {\kf26}happens {\kf20}when {\kf8}I {\kf26}water {\kf16}the
+Dialogue: 0,0:00:01.18,0:00:02.96,Karaoke,,0,0,0,,{\kf24}garden {\kf34}after {\kf36}sleeping {\kf42}less {\kf20}than\N{\kf22}five
+Dialogue: 0,0:00:02.96,0:00:03.58,Karaoke,,0,0,0,,{\kf62}hours?
+Dialogue: 0,0:00:04.74,0:00:06.14,Karaoke,,0,0,0,,{\kf16}I {\kf44}grab {\kf22}the {\kf22}book {\kf16}to {\kf20}see
+Dialogue: 0,0:00:06.14,0:00:07.56,Karaoke,,0,0,0,,{\kf22}what {\kf26}gives {\kf28}way {\kf66}first.
+Dialogue: 0,0:00:08.14,0:00:10.24,Karaoke,,0,0,0,,{\kf34}Attention {\kf42}slips {\kf32}during {\kf36}simple\N{\kf66}tasks.
+Dialogue: 0,0:00:11.52,0:00:13.58,Karaoke,,0,0,0,,{\kf30}Following {\kf44}instructions {\kf54}becomes\N{\kf30}harder {\kf20}to {\kf28}track.
+Dialogue: 0,0:00:14.50,0:00:16.54,Karaoke,,0,0,0,,{\kf18}New {\kf48}memories {\kf40}become {\kf40}harder {\kf22}to\N{\kf36}form.
+Dialogue: 0,0:00:17.38,0:00:20.02,Karaoke,,0,0,0,,{\kf46}Reaction {\kf40}time {\kf36}slows {\kf42}during\N{\kf46}everyday {\kf54}moments.
+Dialogue: 0,0:00:20.86,0:00:23.10,Karaoke,,0,0,0,,{\kf48}Mistakes {\kf18}and {\kf48}accidents {\kf42}become {\kf32}more\N{\kf36}likely.
+Dialogue: 0,0:00:24.10,0:00:26.40,Karaoke,,0,0,0,,{\kf26}Mood {\kf26}can {\kf36}shift {\kf24}toward {\kf82}irritability\N{\kf36}or
+Dialogue: 0,0:00:26.40,0:00:26.82,Karaoke,,0,0,0,,{\kf42}sadness.
+Dialogue: 0,0:00:27.84,0:00:29.74,Karaoke,,0,0,0,,{\kf28}Hunger {\kf52}signals {\kf32}may {\kf32}push {\kf20}toward\N{\kf26}heavier
+Dialogue: 0,0:00:29.74,0:00:30.56,Karaoke,,0,0,0,,{\kf82}foods.
+Dialogue: 0,0:00:31.00,0:00:32.82,Karaoke,,0,0,0,,{\kf20}Blood {\kf24}sugar {\kf40}control {\kf24}can {\kf26}become\N{\kf48}harder
+Dialogue: 0,0:00:32.82,0:00:33.54,Karaoke,,0,0,0,,{\kf28}over {\kf44}time.
+Dialogue: 0,0:00:34.58,0:00:36.46,Karaoke,,0,0,0,,{\kf20}Blood {\kf36}pressure {\kf32}may {\kf40}rise {\kf18}with\N{\kf42}repeated
+Dialogue: 0,0:00:36.46,0:00:37.16,Karaoke,,0,0,0,,{\kf40}short {\kf30}nights.
+Dialogue: 0,0:00:38.26,0:00:40.48,Karaoke,,0,0,0,,{\kf32}Immune {\kf34}defenses {\kf34}can {\kf26}become {\kf42}less\N{\kf54}effective.
+Dialogue: 0,0:00:41.80,0:00:44.68,Karaoke,,0,0,0,,{\kf30}Severe {\kf62}tiredness {\kf22}can {\kf30}trigger\N{\kf50}sudden {\kf94}micro-sleeps.
+Dialogue: 0,0:00:45.88,0:00:47.70,Karaoke,,0,0,0,,{\kf16}Your {\kf30}brain {\kf20}may {\kf36}briefly {\kf30}stop\N{\kf50}responding
+Dialogue: 0,0:00:47.70,0:00:48.12,Karaoke,,0,0,0,,{\kf42}normally.
+Dialogue: 0,0:00:49.28,0:00:51.38,Karaoke,,0,0,0,,{\kf24}One {\kf26}short {\kf22}night {\kf58}often {\kf40}causes\N{\kf40}temporary
+Dialogue: 0,0:00:51.38,0:00:52.04,Karaoke,,0,0,0,,{\kf66}effects.
+Dialogue: 0,0:00:53.44,0:00:55.08,Karaoke,,0,0,0,,{\kf26}Repeated {\kf30}nights {\kf22}under {\kf32}five {\kf26}hours\N{\kf28}strain
+Dialogue: 0,0:00:55.08,0:00:55.92,Karaoke,,0,0,0,,{\kf32}many {\kf52}systems.
+Dialogue: 0,0:00:56.76,0:00:58.92,Karaoke,,0,0,0,,{\kf12}Sleep {\kf24}is {\kf48}essential {\kf90}maintenance,\N{\kf14}not {\kf28}empty
+Dialogue: 0,0:00:58.92,0:00:59.42,Karaoke,,0,0,0,,{\kf50}time.

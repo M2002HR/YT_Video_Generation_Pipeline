@@ -1,0 +1,140 @@
+{
+  "audio_duration_seconds": 64.078,
+  "spark_start": 0.04,
+  "spark_end": 3.58,
+  "spark_duration": 3.54,
+  "transition_start": 4.74,
+  "transition_end": 7.56,
+  "transition_duration": 2.82,
+  "clip_a_target_seconds": 3.58,
+  "clip_b_target_seconds": 3.98,
+  "body_start": 8.14,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "What happens when I water the garden after sleeping less than five hours?",
+      "speech_start": 0.04,
+      "speech_end": 3.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I grab the book to see what gives way first.",
+      "speech_start": 4.74,
+      "speech_end": 7.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Attention slips during simple tasks.",
+      "speech_start": 8.14,
+      "speech_end": 10.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Following instructions becomes harder to track.",
+      "speech_start": 11.52,
+      "speech_end": 13.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "New memories become harder to form.",
+      "speech_start": 14.5,
+      "speech_end": 16.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Reaction time slows during everyday moments.",
+      "speech_start": 17.38,
+      "speech_end": 20.02,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Mistakes and accidents become more likely.",
+      "speech_start": 20.86,
+      "speech_end": 23.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Mood can shift toward irritability or sadness.",
+      "speech_start": 24.1,
+      "speech_end": 26.82,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Hunger signals may push toward heavier foods.",
+      "speech_start": 27.84,
+      "speech_end": 30.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Blood sugar control can become harder over time.",
+      "speech_start": 31.0,
+      "speech_end": 33.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Blood pressure may rise with repeated short nights.",
+      "speech_start": 34.58,
+      "speech_end": 37.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "Immune defenses can become less effective.",
+      "speech_start": 38.26,
+      "speech_end": 40.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "Severe tiredness can trigger sudden microsleeps.",
+      "speech_start": 41.8,
+      "speech_end": 44.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "Your brain may briefly stop responding normally.",
+      "speech_start": 45.88,
+      "speech_end": 48.12,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_13",
+      "narration": "One short night often causes temporary effects.",
+      "speech_start": 49.28,
+      "speech_end": 52.04,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_14",
+      "narration": "Repeated nights under five hours strain many systems.",
+      "speech_start": 53.44,
+      "speech_end": 55.92,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_15",
+      "narration": "Sleep is essential maintenance, not empty time.",
+      "speech_start": 56.76,
+      "speech_end": 59.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 60.628,
+      "speech_end": 64.078,
+      "match_confidence": 0.0
+    }
+  ]
+}

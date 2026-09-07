@@ -82,6 +82,24 @@
       "book_template_id": "001",
       "world_style_id": "layered_anatomical_storybook_paper_001",
       "updated_at": "2026-09-07T02:47:02.543669+00:00"
+    },
+    {
+      "video_id": "019",
+      "opening_activity": "orchard work",
+      "opening_location": "orchard",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001",
+      "updated_at": "2026-09-07T05:38:38.083007+00:00"
+    },
+    {
+      "video_id": "020",
+      "opening_activity": "handling rope",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "003",
+      "world_style_id": "sketch_painting_wrestling_memory_001",
+      "updated_at": "2026-09-07T08:18:14.437815+00:00"
     }
   ]
 }
