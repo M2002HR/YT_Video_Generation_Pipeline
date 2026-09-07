@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "still",
+      "reason": "The dissolve smoothly shifts from the protagonist's broken amber attention fragments to the matching amber memory tokens inside the brain, turning an outward symptom into an internal explanation without forcing directional motion; the anatomical diagram is strongest held still."
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "wipeleft",
+      "transition_seconds": 0.18,
+      "next_motion": "slow_zoom_in",
+      "reason": "The edit moves from an internal brain diagram to its immediate physical consequence; a fast right-to-left wipe follows the hero’s reaching direction toward the falling scoop and makes the cause-and-effect feel urgent without turning the transition into a novelty effect."
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing frame is busy diagonal action while the incoming image compresses into a calm, centered emotional portrait; a slightly longer dissolve softens that shift from accident risk to internal mood, and a slow zoom-in gently emphasizes the protagonist’s tired expression without adding directional energy."
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.24,
+      "next_motion": "still",
+      "reason": "The centered portrait gives way to a centered anatomical diagram, so a restrained leftward handoff advances the explanatory sequence without implying a dramatic rupture; keeping the torso still preserves the branching signal paths and food-choice contrast."
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "slideleft",
+      "transition_seconds": 0.24,
+      "next_motion": "still",
+      "reason": "The narration moves causally from altered hunger signaling into deeper metabolic regulation, so a concise leftward slide keeps the explanatory sequence moving forward; the incoming S-curve vessel is already visually dynamic and should remain still for clear reading."
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "smoothup",
+      "transition_seconds": 0.24,
+      "next_motion": "still",
+      "reason": "The outgoing vessel already carries the eye upward toward center, so a smooth upward handoff naturally resolves the sweeping S-curve into the next centered vertical artery while supporting the metabolic-to-circulatory sequence and softening the dark-to-light background change."
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both frames are quiet anatomical paper illustrations, so a soft dissolve preserves continuity while shifting from the vessel interior into a broader immune-system view. A subtle slow zoom-in draws attention toward the drifting immune cells and invading shapes without adding unnecessary motion."
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The cut shifts from an abstract immune-system view back into the protagonist's lived experience, so a soft dissolve preserves documentary continuity while the slow zoom-in builds tension toward the sudden microsleep event."
+    },
+    {
+      "from_beat_id": 9,
+      "to_beat_id": 10,
+      "transition_in": "zoomin",
+      "transition_seconds": 0.28,
+      "next_motion": "slow_zoom_in",
+      "reason": "The previous shot captures the sudden external microsleep event, while the next image moves directly into an internal brain explanation. A restrained zoom-in bridges the circular head shadow into the anatomical head cutaway as if entering the character's mind, matching the narration's shift from visible symptom to hidden mechanism."
+    },
+    {
+      "from_beat_id": 10,
+      "to_beat_id": 11,
+      "transition_in": "fade",
+      "transition_seconds": 0.34,
+      "next_motion": "slow_zoom_in",
+      "reason": "The cut moves from an intense internal brain interruption to a calm recovery metaphor. A gentle fade creates a reflective time shift, while a slow zoom into the recovering plant reinforces the reassuring idea of temporary effects easing over time."
+    },
+    {
+      "from_beat_id": 11,
+      "to_beat_id": 12,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The warm recovery metaphor shifts into a broader explanation of accumulated chronic strain, so a gentle dissolve preserves the reflective tone while the slow zoom-in emphasizes the protagonist becoming a focal point for multiple connected body systems."
+    }
+  ],
+  "created_at": "2026-09-07T02:36:27Z"
+}

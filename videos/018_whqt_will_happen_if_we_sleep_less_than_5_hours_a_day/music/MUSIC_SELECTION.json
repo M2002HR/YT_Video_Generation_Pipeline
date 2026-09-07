@@ -1,0 +1,30 @@
+{
+  "schema_version": 3,
+  "provider": "Mixkit verified local fallback",
+  "provider_priority": [
+    "mixkit",
+    "pixabay"
+  ],
+  "provider_attempts": [
+    {
+      "provider": "mixkit",
+      "error": "RuntimeError: ChatGPT did not retain the requested music-selection prompt.",
+      "failed_at": "2026-09-07T02:43:39.508728+00:00"
+    },
+    {
+      "provider": "pixabay",
+      "error": "RuntimeError: ChatGPT did not retain the requested music-selection prompt.",
+      "failed_at": "2026-09-07T02:43:43.582904+00:00"
+    }
+  ],
+  "source_url": "https://mixkit.co/free-stock-music/item/684/",
+  "status": "DONE",
+  "selection_mode": "CACHE_FALLBACK",
+  "cached_from": "videos/011_what_was_the_very_first_disney_animation/assets/music/background.mp3",
+  "installed_at": "2026-09-07T02:43:44.148358+00:00",
+  "file": "assets/music/background.mp3",
+  "bytes": 4390542,
+  "sha256": "45f5275e91f05dfa5bd8b7451955596566ef02419570b8888dda2ef20a401515",
+  "duration_seconds": 137.169,
+  "license": "Mixkit source license; verify current source page before publication."
+}

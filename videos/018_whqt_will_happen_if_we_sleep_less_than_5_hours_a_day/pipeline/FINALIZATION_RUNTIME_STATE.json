@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "video": "018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+  "started_at": "2026-09-07T02:49:57.889322+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-07T02:49:57.908305+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-07T02:49:59.449738+00:00",
+      "elapsed_seconds": 1.541,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 27533
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-07T02:50:00.705408+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-07T02:53:10.659758+00:00",
+      "elapsed_seconds": 189.954,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 59545355
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-07T02:53:10.660173+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-07T02:53:19.255119+00:00",
+      "elapsed_seconds": 8.595,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-07T02:53:20.540152+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-07T02:53:25.035514+00:00",
+      "elapsed_seconds": 4.495,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 59774819
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-07T02:53:26.538807+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-07T02:53:35.266562+00:00",
+      "elapsed_seconds": 8.728,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    }
+  ]
+}

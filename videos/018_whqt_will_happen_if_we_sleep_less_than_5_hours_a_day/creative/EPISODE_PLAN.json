@@ -1,0 +1,14 @@
+{
+  "opening_activity": "feeding chickens",
+  "opening_location": "barn",
+  "curiosity_trigger": "realizing after a heavy blink that he has started filling the same feeder twice",
+  "trigger_object": "feed scoop",
+  "reaction": "stops mid-pour, squints at the feeder, then rubs his tired eyes",
+  "book_retrieval": "sets down the scoop, brushes grain from his overalls, and pulls a worn book from a small barn shelf",
+  "camera_pattern": "pan_right",
+  "book_template_id": "001",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "return_to_home",
+  "world_style_hint": "hand-crafted anatomical storybook world with layered paper textures, muted nocturnal blues, warm amber highlights, and clear visual metaphors for brain and body systems",
+  "reason": "A sleepy feeding mistake naturally demonstrates the attention failures caused by severe sleep restriction without forcing a sleep-related object into the farm setting."
+}

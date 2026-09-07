@@ -1,0 +1,126 @@
+{
+  "audio_duration_seconds": 64.967,
+  "spark_start": 0.04,
+  "spark_end": 3.5,
+  "spark_duration": 3.46,
+  "transition_start": 4.96,
+  "transition_end": 7.6,
+  "transition_duration": 2.64,
+  "clip_a_target_seconds": 3.5,
+  "clip_b_target_seconds": 4.1,
+  "body_start": 8.12,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "What happens if you sleep under five hours, then push through your morning watering?",
+      "speech_start": 0.04,
+      "speech_end": 3.5,
+      "match_confidence": 0.929
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I grab the book to see what gives way first.",
+      "speech_start": 4.96,
+      "speech_end": 7.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Attention starts slipping, making simple tasks harder to follow.",
+      "speech_start": 8.12,
+      "speech_end": 11.78,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Forming new memories becomes more difficult.",
+      "speech_start": 12.58,
+      "speech_end": 14.8,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Reaction time slows, increasing the chance of mistakes and accidents.",
+      "speech_start": 16.44,
+      "speech_end": 19.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Your mood may become more irritable or low.",
+      "speech_start": 21.12,
+      "speech_end": 23.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Hunger signals can shift toward more calorie-dense foods.",
+      "speech_start": 24.16,
+      "speech_end": 26.98,
+      "match_confidence": 0.778
+    },
+    {
+      "segment": "body_06",
+      "narration": "Repeated short nights can make blood sugar harder to control.",
+      "speech_start": 28.18,
+      "speech_end": 31.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Blood pressure can rise with ongoing sleep restriction.",
+      "speech_start": 31.78,
+      "speech_end": 34.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Your immune defenses may become less effective.",
+      "speech_start": 35.32,
+      "speech_end": 38.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Severe tiredness can trigger brief microsleeps without warning.",
+      "speech_start": 38.88,
+      "speech_end": 42.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "During a microsleep, your brain briefly stops responding normally.",
+      "speech_start": 43.42,
+      "speech_end": 47.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "One short night usually brings mostly temporary effects.",
+      "speech_start": 48.38,
+      "speech_end": 51.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "But regularly sleeping under five hours can compound strain across multiple systems.",
+      "speech_start": 52.16,
+      "speech_end": 57.04,
+      "match_confidence": 0.917
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Sleep is not empty time; it is essential maintenance.",
+      "speech_start": 58.12,
+      "speech_end": 61.32,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 62.24,
+      "speech_end": 64.66,
+      "match_confidence": 1.0
+    }
+  ]
+}

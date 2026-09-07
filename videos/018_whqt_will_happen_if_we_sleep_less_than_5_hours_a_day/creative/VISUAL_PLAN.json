@@ -1,0 +1,149 @@
+{
+  "body_duration_seconds": 48.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Attention starts slipping, making simple tasks harder to follow.",
+      "visual": "In the layered anatomical storybook world, the tired protagonist stands at a barn workbench trying to sort three simple farm objects while a faint amber attention-path above his head breaks into disconnected paper segments.",
+      "purpose": "show reduced attention making simple tasks harder to follow",
+      "visual_fingerprint": "medium-wide three-quarter barn workbench view; hero at lower center with drooping eyelids; three farm objects arranged in a simple sequence; broken amber paper pathway floating above; pre-dawn blue barn interior",
+      "type": "metaphor",
+      "continuity": "moves from the opening feeding mistake into a clearer visualization of the same attention failure",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Forming new memories becomes more difficult.",
+      "visual": "A simplified paper-cut brain fills the frame as several glowing amber memory tokens travel toward a hippocampus-like region, but some fade and fall away before reaching it.",
+      "purpose": "show that new memory formation becomes less effective",
+      "visual_fingerprint": "close anatomical brain cutaway; hippocampus-like curved structure at center-right; small glowing memory tokens moving inward then fading; torn navy paper layers surrounding the brain; no human figure",
+      "type": "diagram",
+      "continuity": "shifts from outward attention problems to what sleep loss does inside the brain",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Reaction time slows, increasing the chance of mistakes and accidents.",
+      "visual": "The protagonist reaches too late to catch a falling metal feed scoop, while a delayed amber signal travels visibly from his eye to brain to hand in an elongated paper pathway.",
+      "purpose": "show slower reaction time increasing accident risk",
+      "visual_fingerprint": "low-angle action shot beside barn feeder; falling scoop suspended midair at lower left; hero's delayed reaching hand at right; stretched eye-brain-hand amber signal arc; diagonal composition with scattered grain",
+      "type": "diagram",
+      "continuity": "returns to the barn and turns slowed brain processing into an immediate physical consequence",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Your mood may become more irritable or low.",
+      "visual": "A waist-up portrait of the protagonist sits against a softly layered blue background as the warm glow around him shrinks and dusty rose storm-like paper shapes gather near his temples and shoulders.",
+      "purpose": "show increased irritability or low mood",
+      "visual_fingerprint": "tight waist-up portrait; hero facing slightly left with tense brow and slumped shoulders; shrinking amber halo; dusty rose torn-paper cloud shapes near head; minimal abstract backdrop",
+      "type": "metaphor",
+      "continuity": "slows from accident risk into the emotional effects of sleep loss",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Hunger signals can shift toward more calorie-dense foods.",
+      "visual": "Inside a stylized torso silhouette, two paper signal paths diverge toward food symbols, with the stronger glowing path bending toward a rich pastry and the weaker path toward a simple apple.",
+      "purpose": "show hunger signaling shifting toward calorie-dense foods",
+      "visual_fingerprint": "front-facing torso silhouette without hero identity; branching hunger-signal pathway from abdomen upward; glowing amber route toward pastry on upper right; dimmer route toward apple on upper left; cream and navy anatomical paper layers",
+      "type": "diagram",
+      "continuity": "moves from mood regulation to another brain-body signal system affected by short sleep",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Repeated short nights can make blood sugar harder to control.",
+      "visual": "A layered paper bloodstream curves through the frame as many small glucose-like amber shapes remain crowded in the vessel instead of passing smoothly into nearby simplified body cells.",
+      "purpose": "show impaired blood sugar regulation after repeated short sleep",
+      "visual_fingerprint": "macro-style curved blood-vessel cross-section; clustered amber glucose shapes inside vessel; simplified blue-gray cells along outer edge receiving fewer particles; sweeping S-curve composition; softly painted anatomical paper texture",
+      "type": "diagram",
+      "continuity": "follows the hunger beat deeper into metabolic regulation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Blood pressure can rise with ongoing sleep restriction.",
+      "visual": "A vertical artery rises through the center of the image while the paper vessel wall visibly tightens inward and the flow inside presses more forcefully against its sides, marked by restrained dusty rose stress accents.",
+      "purpose": "show rising blood pressure during ongoing sleep restriction",
+      "visual_fingerprint": "centered vertical artery cutaway; narrowing vessel walls; compressed flowing shapes pressing outward; dusty rose pressure marks around the wall; symmetrical anatomical composition on deep navy ground",
+      "type": "diagram",
+      "continuity": "continues the cardiovascular consequences from metabolism into circulation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Your immune defenses may become less effective.",
+      "visual": "Simplified cream-colored immune-cell paper figures drift sluggishly through a dark blue tissue field while several tiny invading shapes pass gaps that would normally be blocked.",
+      "purpose": "show weakened immune defense under sleep restriction",
+      "visual_fingerprint": "wide microscopic storybook scene; sparse rounded immune cells moving slowly across dark tissue layers; small invading motifs slipping between them; cool low-contrast lighting with only faint amber highlights",
+      "type": "subject_world",
+      "continuity": "widens from blood vessels to another body defense system affected by chronic short sleep",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Severe tiredness can trigger brief microsleeps without warning.",
+      "visual": "The protagonist stands carrying a grain bucket when his eyes suddenly close and a small circular pool of dark paper shadow snaps around his head while the rest of the barn remains sharply lit.",
+      "purpose": "show a microsleep happening suddenly and without warning",
+      "visual_fingerprint": "full-body barn aisle shot; hero mid-step holding bucket; eyes closed unexpectedly; localized dark circular shadow around head; distant barn door glowing amber behind him; strong vertical depth",
+      "type": "literal",
+      "continuity": "brings the invisible physiological effects back to a sudden real-world fatigue event",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "During a microsleep, your brain briefly stops responding normally.",
+      "visual": "A close side-profile head cutaway shows the protagonist's eye, brain, and incoming sound-and-light signals, with the external signals reaching the brain but ending at a temporary dark interruption zone.",
+      "purpose": "show that normal brain responsiveness briefly drops during a microsleep",
+      "visual_fingerprint": "close side-profile anatomical head cutaway; eye and ear inputs entering from left; amber signals stopping at dark blue interruption band inside brain; hero facial profile recognizable along outer silhouette; high-detail single-subject composition",
+      "type": "diagram",
+      "continuity": "zooms inside the microsleep from the previous external moment to show what the brain is doing",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "One short night usually brings mostly temporary effects.",
+      "visual": "A night-to-morning visual metaphor shows a wilted paper plant under moonlight on the left gradually standing upright again as warm morning light reaches it from the right.",
+      "purpose": "show that effects from one short night are often temporary and can recover",
+      "visual_fingerprint": "sideways time-transition scene; single paper plant drooping beneath crescent moon at left; same stem recovering toward amber sunrise at right; no anatomy or hero; broad horizontal movement adapted within vertical frame",
+      "type": "metaphor",
+      "continuity": "reassures after the microsleep explanation by distinguishing a single bad night from a chronic pattern",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "But regularly sleeping under five hours can compound strain across multiple systems.",
+      "visual": "A layered full-body silhouette of the protagonist stands centered while separate brain, heart, blood vessel, immune, and metabolic paper motifs around him all carry small dusty rose strain marks connected by one dimming amber network.",
+      "purpose": "show chronic short sleep accumulating strain across multiple body systems",
+      "visual_fingerprint": "full-height centered human silhouette; five distinct surrounding system motifs arranged asymmetrically without panel borders; shared dim amber network linking brain heart vessels immune cells and metabolism; deep nocturnal paper background with restrained rose stress accents",
+      "type": "diagram",
+      "continuity": "pulls all previously shown systems together into one cumulative whole-body consequence before the closing message",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

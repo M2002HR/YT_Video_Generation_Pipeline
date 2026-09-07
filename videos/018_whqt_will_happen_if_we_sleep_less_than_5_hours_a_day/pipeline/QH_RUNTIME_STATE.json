@@ -1,0 +1,493 @@
+{
+  "schema_version": 2,
+  "video_id": "018",
+  "topic": "whqt will happen if we sleep less than 5 hours a day?",
+  "created_at": "2026-09-07T01:59:54Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:00Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:00Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:00Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:00Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:00Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T02:47:02Z",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "layered_anatomical_storybook_paper_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:03Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T02:47:21Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:06Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:07Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:08Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:10Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:11Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:12Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:13Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:14Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:16Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:17Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:18Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:20Z",
+      "artifact": "beat_012.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:22Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T02:47:22Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T02:49:49Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "fa54ce3c8aeb57386481e8a123faf49866e9ec53c644e730bc86a67e38c7420e"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T02:49:50Z",
+      "body_images": 12
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 42.152,
+      "at": "2026-09-07T02:00:38Z",
+      "words": 132
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 27.232,
+      "at": "2026-09-07T02:01:09Z",
+      "words": 144
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 30.08,
+      "at": "2026-09-07T02:01:42Z",
+      "activity": "feeding chickens"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 30.457,
+      "at": "2026-09-07T02:02:14Z",
+      "style_id": "layered_anatomical_storybook_paper_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 63.292,
+      "at": "2026-09-07T02:03:20Z",
+      "sha256": "4b2d9028a63bc8041eb1cc3339b2ffe0183d02bace7b4be21f392908e1107274",
+      "model": "nano_banana_2",
+      "catalog_path": "009_layered_anatomical_storybook_paper_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-07T02:03:23Z",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "layered_anatomical_storybook_paper_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 51.119,
+      "at": "2026-09-07T02:04:16Z",
+      "beats": 12
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.061,
+      "at": "2026-09-07T02:04:37Z",
+      "prompt_sha256": "3c853903a82fdee3430441f3c78c141b780b7986a3bc6cb0988b692ea8426ae8"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 60.799,
+      "at": "2026-09-07T02:05:40Z",
+      "sha256": "c4ba6b6377116c2c27297ac83a869e4242482213da216b157ece860e246691be",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.313,
+      "at": "2026-09-07T02:05:45Z",
+      "template_id": "001",
+      "sha256": "4e82189d87b041029505ade1a9955b82ba4a12fca864063b90534499fb95f265"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 21.462,
+      "at": "2026-09-07T02:06:09Z",
+      "prompt_sha256": "51c764258184195214b3071ffafd085275ae5b0cd0fcca0f8e044018ec1a9081"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 21.078,
+      "at": "2026-09-07T02:06:32Z",
+      "prompt_sha256": "6bf4f833a78d7c5dfb9e916e13b85d3ab7741c635498756a0b74635ba444e781"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 96.435,
+      "at": "2026-09-07T02:08:11Z",
+      "sha256": "71ac59a8b07b2ce32c1e33ef198add5311a41de255760bc36bdf0d84ccfe1cec",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 100.193,
+      "at": "2026-09-07T02:09:52Z",
+      "sha256": "277bf6a8fdca369c9d6f7c8f1a1b763bd24c349301984215b79ef8e861c8e2c1",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 102.505,
+      "at": "2026-09-07T02:11:36Z",
+      "sha256": "32434ef57551d0cdaf51b035c62f0c0d174caad12b43770de04f4e084fa64207",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 141.907,
+      "at": "2026-09-07T02:13:59Z",
+      "sha256": "06854b2840da99b463c4be308cd60b5dbc18d37c179e3d2121b8a43912842cb9",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 96.425,
+      "at": "2026-09-07T02:15:37Z",
+      "sha256": "cfe6d1bbbbb53c046f705bfda151a7e77842a71e6f6c1a6eb980a14d4c10265b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 156.532,
+      "at": "2026-09-07T02:18:15Z",
+      "sha256": "603c9eceefe71dc5f1398bd43d57c810575ca3519b87c7eb128f454cf6ddef8a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 153.949,
+      "at": "2026-09-07T02:20:50Z",
+      "sha256": "83cd2c7a42ed920ef7fb7fc91a2669a55238ed38e090f06a3c26a7c6c1b7308b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 102.271,
+      "at": "2026-09-07T02:22:34Z",
+      "sha256": "848ada4f784282aaf71fac0c45e1c6d6b99dfa7bf4651a28b809005307662072",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 96.415,
+      "at": "2026-09-07T02:24:12Z",
+      "sha256": "c955b21dbd9886eef2fb557aa0ced5b7b0c3dd8718019046b69f0c99bdcf5ce0",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 109.084,
+      "at": "2026-09-07T02:26:03Z",
+      "sha256": "3e9bc2b0a9e3e9e8a7edc71d79bb73536105ce1db160a9965e122b9d893ed88c",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 178.002,
+      "at": "2026-09-07T02:29:02Z",
+      "sha256": "e9326ce3653d64fc04902fa4ed5bb3f5ce089df41de1977be76a1833826e5bb1",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 96.662,
+      "at": "2026-09-07T02:30:40Z",
+      "sha256": "35484b5c3f685f5f2dcb0707da64a4d4c79c03ae5689ea30fe7efa6855128e1c",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1446.846,
+      "at": "2026-09-07T02:30:41Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 343.564,
+      "at": "2026-09-07T02:36:27Z",
+      "boundaries": 11
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 105.371,
+      "at": "2026-09-07T02:38:16Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "a3b9cf4e6a072110571b33654ebbbbd059e01afc258b7a0f6d89a5ce9c167cef"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 114.683,
+      "at": "2026-09-07T02:40:13Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "c3a21ad7f0a4d60b61d04f0448b79cd99a1c0da367079d97acb5229e39da5a12"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-07T02:41:27Z",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "layered_anatomical_storybook_paper_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 15.018,
+      "at": "2026-09-07T02:41:46Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-07T02:47:02Z",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "layered_anatomical_storybook_paper_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 14.714,
+      "at": "2026-09-07T02:47:21Z"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 144.516,
+      "at": "2026-09-07T02:49:49Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "fa54ce3c8aeb57386481e8a123faf49866e9ec53c644e730bc86a67e38c7420e"
+    }
+  ],
+  "updated_at": "2026-09-07T02:49:50Z"
+}

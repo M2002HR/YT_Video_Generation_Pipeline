@@ -1,0 +1,21 @@
+{
+  "spark_end": 3.5,
+  "transition_end": 7.6,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/opening/question_spark_trimmed.mp4",
+      "target": 3.5,
+      "actual": 3.5
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/opening/book_transition_trimmed.mp4",
+      "target": 4.1,
+      "actual": 4.125
+    }
+  ],
+  "opening_total_seconds": 7.625,
+  "opening_total_target_seconds": 7.6,
+  "opening_total_drift_seconds": 0.025
+}
