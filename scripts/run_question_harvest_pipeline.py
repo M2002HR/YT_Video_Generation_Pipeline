@@ -1449,7 +1449,16 @@ def stage_flow_clip(
     receipt_name = "flow_opening_a" if clip == "A" else "flow_opening_b"
     target = project / "assets" / "opening" / filename
     receipt = project / "pipeline" / "provider_receipts" / f"{receipt_name}.json"
-    if valid_video(target) and receipt.is_file() and runner.state.done(stage):
+    receipt_duration = None
+    if receipt.is_file():
+        try:
+            receipt_duration = int((load_json(receipt).get("requested") or {}).get("duration_seconds") or 0)
+        except (OSError, ValueError, TypeError):
+            pass
+    # A recovered episode may need a longer opening source after real narration
+    # alignment.  Never silently reuse a clip generated to an older, shorter
+    # contract: trim_opening_clips correctly refuses to stretch it later.
+    if valid_video(target) and receipt.is_file() and runner.state.done(stage) and receipt_duration == source_seconds:
         runner.stage_reused(stage, f"{filename} ({ffprobe_duration(target):.2f}s)")
         return target
     started = runner.stage_start(stage)
@@ -2021,6 +2030,20 @@ def main() -> int:
 
             state.mark("qh_visual_complete", STATE_DONE, body_images=len(body_images))
             state.finish()
+            # This runner is also invoked directly during recovery.  Without an
+            # explicit terminal notification, Telegram appears to go silent after
+            # the final Flow clip even though the visual phase finished normally.
+            # The wrapper may continue with narration/render afterwards, but this
+            # checkpoint must stand on its own for both entry points.
+            if notifier is not None:
+                notifier.send(
+                    "Visual phase complete",
+                    [
+                        "✅ Script, images, transitions and Flow clips are complete",
+                        f"🖼 Body images: {len(body_images)}",
+                        "▶ Next: narration, timing, render and delivery",
+                    ],
+                )
             summary = [
                 f"🎬 Clip A: {clip_a.name} ({ffprobe_duration(clip_a):.2f}s)",
                 f"🎬 Clip B: {clip_b.name} ({ffprobe_duration(clip_b):.2f}s)",
