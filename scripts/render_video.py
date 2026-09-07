@@ -31,6 +31,8 @@ from typing import Any, Callable
 from pipeline_notifier import EditableMessage, PipelineNotifier, format_duration
 from pipeline_stages import stage_title
 
+ROOT = Path(__file__).resolve().parents[1]
+
 #: Share of the machine a render may use. The server this runs on has two vCPUs and 7 GB,
 #: and an uncapped x264 makes SSH, VNC and the watchdog unresponsive for the whole render.
 DEFAULT_RESOURCE_BUDGET = 0.8
@@ -237,6 +239,20 @@ def probe_video(ffprobe: str, path: Path) -> dict[str, Any]:
 # A render status is useful, but a malformed environment value must never turn
 # it into a message stream.  Fifteen seconds is the shortest useful cadence.
 RENDER_PROGRESS_INTERVAL_SECONDS = max(15.0, float(os.getenv("YT_RENDER_PROGRESS_INTERVAL_SECONDS", "20")))
+
+
+def is_production_episode(video_dir: Path) -> bool:
+    """Only a real workspace episode may emit Telegram render telemetry.
+
+    Integration tests intentionally render tiny videos under ``/tmp``.  They use
+    the same executable and environment as production, so without this boundary
+    every test render looked like a completed production render in Telegram.
+    """
+    try:
+        video_dir.resolve().relative_to(ROOT / "videos")
+    except ValueError:
+        return False
+    return (video_dir / "launch" / "LAUNCH_REQUEST.json").is_file()
 
 
 def read_process_resources(pid: int, *, started_cpu_seconds: float, elapsed_seconds: float) -> dict[str, float | str]:
@@ -861,7 +877,7 @@ def main() -> None:
         return
 
     started = time.perf_counter()
-    reporter = None if args.no_telegram_progress else TelegramRenderProgress(
+    reporter = None if args.no_telegram_progress or not is_production_episode(video_dir) else TelegramRenderProgress(
         video_dir.name.split("_", 1)[0], duration, video_dir / "render" / "TELEGRAM_RENDER_PROGRESS.json"
     )
 
