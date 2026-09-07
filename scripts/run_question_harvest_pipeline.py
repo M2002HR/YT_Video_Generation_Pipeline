@@ -73,6 +73,24 @@ MIN_IMAGE_BYTES = 10_000
 MIN_VIDEO_BYTES = 100_000
 
 
+def episode_frame_contract(world_style_plan: dict[str, Any]) -> str:
+    """A non-negotiable layout contract appended to every Gemini still prompt.
+
+    Prompt writers describe each narrative scene independently, which used to let a later
+    image silently drop the page/card material that made earlier frames feel like one world.
+    This compact instruction travels with the final image request as well as the writer prompt.
+    """
+    frame = str(world_style_plan.get("frame_language") or "the chosen medium's recurring outer material, edge treatment and inner illustration window").strip()
+    reserve = str(world_style_plan.get("subtitle_reserve") or "a calm lower caption field occupying only the bottom 8–10% of the frame, enough for two subtitle lines").strip()
+    return (
+        "NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this "
+        f"image: {frame}. Preserve its material/edge grammar and inner illustration window while "
+        "changing only the scene inside it. Keep "
+        f"{reserve}; keep faces, hands, focal action and critical details above it. "
+        "It may contain subdued texture, never an oversized empty banner or a UI panel."
+    )
+
+
 # ------------------------------------------------------------------ state machine (§81)
 
 #: The only states a stage may hold. There is deliberately no FALLBACK_* state.
@@ -901,6 +919,12 @@ def stage_world_style_director(
     def check_style(data: Any) -> dict[str, Any]:
         if not isinstance(data, dict) or not data.get("style_id"):
             raise StageFailure(stage, "FAILED_VALIDATION", "The world style plan has no style_id.")
+        if not str(data.get("frame_language") or "").strip() or not str(data.get("subtitle_reserve") or "").strip():
+            raise StageFailure(
+                stage,
+                "FAILED_VALIDATION",
+                "The world style plan must define both frame_language and subtitle_reserve.",
+            )
         return data
 
     data = ask_with_correction(runner, stage, prompt, check_style)
@@ -1228,9 +1252,12 @@ def stage_world_keyframe_prompt(
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VISUAL_PLAN=json.dumps(compact_visual_plan, ensure_ascii=False),
     )
-    text = runner.text(stage, prompt)
+    text = runner.text(stage, prompt).strip()
+    # The world keyframe is the visual constitution for every body frame, so make its
+    # repeatable material border and caption reserve explicit in the actual Gemini prompt.
+    text = f"{text} {episode_frame_contract(world_style_plan)}"
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(text.strip() + "\n", encoding="utf-8")
+    target.write_text(text + "\n", encoding="utf-8")
     runner.stage_done(stage, started, target.name, prompt_sha256=sha256_text(text))
     return text
 
@@ -1321,13 +1348,19 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
 
 
 def stage_world_keyframe(
-    runner: Runner, project: Path, content_project: Any, prompt: str, world_style_anchor: Path
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    prompt: str,
+    world_style_anchor: Path,
+    *,
+    force: bool = False,
 ) -> Path:
     """The one image that defines the episode's world. Gemini only, verified, no substitute."""
     stage = "world_keyframe"
     target = project / "references" / "world_keyframe.png"
     receipt = project / "pipeline" / "provider_receipts" / "gemini_world_keyframe.json"
-    if valid_image(target) and receipt.is_file() and runner.state.done(stage):
+    if not force and valid_image(target) and receipt.is_file() and runner.state.done(stage):
         runner.stage_reused(stage, target.name)
         return target
     started = runner.stage_start(stage)
@@ -1348,11 +1381,18 @@ def stage_world_keyframe(
     return target
 
 
-def stage_book_spread(runner: Runner, project: Path, world_keyframe: Path, episode_plan: dict[str, Any]) -> Path:
+def stage_book_spread(
+    runner: Runner,
+    project: Path,
+    world_keyframe: Path,
+    episode_plan: dict[str, Any],
+    *,
+    force: bool = False,
+) -> Path:
     """Composite the world keyframe onto a book page — the Start frame for Clip B."""
     stage = "book_spread"
     target = project / "references" / "book_spread_frame.png"
-    if valid_image(target) and runner.state.done(stage):
+    if not force and valid_image(target) and runner.state.done(stage):
         runner.stage_reused(stage, target.name)
         return target
     started = runner.stage_start(stage)
@@ -1381,6 +1421,68 @@ def stage_book_spread(runner: Runner, project: Path, world_keyframe: Path, episo
     return target
 
 
+def stage_topic_book_cover(
+    runner: Runner, project: Path, content_project: Any, topic: str, world_style_anchor: Path, *, force: bool = False
+) -> Path:
+    """Generate Clip B's closed, topic-symbolic first frame — never an open spread."""
+    stage = "book_cover"
+    target = project / "references" / "book_cover_frame.png"
+    receipt = project / "pipeline" / "provider_receipts" / "gemini_book_cover.json"
+    if not force and valid_image(target) and receipt.is_file() and runner.state.done(stage):
+        runner.stage_reused(stage, target.name)
+        return target
+    launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
+    # Direct, stage-only runs may use a placeholder CLI topic.  The durable launch
+    # request is the canonical subject for an episode asset and must win in that case.
+    launch_topic = str(launch.get("topic") or "").strip()
+    cover_topic = launch_topic if launch_topic and topic.strip().lower() in {"", "topic"} else topic
+    # A bare topic prompt makes image models fall back to generic "book" symbols.
+    # First pin down a small, auditable set of subject-specific visual facts.
+    brief_stage = "book_cover_design"
+    brief_target = project / "creative" / "BOOK_COVER_DESIGN.txt"
+    if force or not (runner.state.done(brief_stage) and brief_target.is_file()):
+        brief_started = runner.stage_start(brief_stage)
+        brief_prompt = (
+            "Create a compact visual art-direction brief (55–90 words) for a CLOSED illustrated book cover "
+            f"about this episode topic: {cover_topic!r}. Name exactly 3–5 concrete, non-textual motifs, materials or "
+            "ornaments unmistakably tied to this topic, plus their arrangement on a cover. If the topic mentions "
+            "a real person, represent only their era, field, tools, place, or values indirectly: never their face, "
+            "body, name, initials, signature, or likeness. Do not use generic compass, globe, ship, starfield, "
+            "laurel, lightbulb, or random celestial/nautical imagery unless the topic itself requires it. No words, "
+            "letters, numbers, logos, UI, markdown, or explanation; return the art-direction brief only."
+        )
+        cover_design = runner.text(brief_stage, brief_prompt).strip()
+        if len(cover_design) < 40:
+            raise StageFailure(brief_stage, "FAILED_VALIDATION", "Book-cover design brief was unusably short.")
+        brief_target.parent.mkdir(parents=True, exist_ok=True)
+        brief_target.write_text(cover_design + "\n", encoding="utf-8")
+        runner.stage_done(brief_stage, brief_started, brief_target.name, prompt_sha256=sha256_text(cover_design))
+    else:
+        runner.stage_reused(brief_stage, brief_target.name)
+        cover_design = brief_target.read_text(encoding="utf-8").strip()
+
+    started = runner.stage_start(stage)
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    prompt = (
+        "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly "
+        "top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and "
+        "occupies about 82–88% of the canvas height with narrow even margins. The entire cover and page block are "
+        "visible. The surrounding tabletop/paper/ground uses ONLY the supplied episode style reference's texture, "
+        "palette and frame language; it must not borrow the book-cover subject matter. The cover itself is uniquely "
+        f"and richly crafted for this topic: {cover_topic}. The authoritative COVER DESIGN BRIEF is: {cover_design} "
+        "Render every named motif as visible cover craftsmanship — central emblem, border, binding, corners or page "
+        "edges — rather than as tiny incidental decoration. Use ONLY motifs justified by that brief; do not substitute "
+        "generic book imagery. No title, letters, numbers, readable marks, logos or real-person "
+        "likeness. This is a closed cover only: no open pages, no two-page spread, no hands, no people, no UI, no "
+        "photorealism and no 3D."
+    )
+    refs = [Reference(role="style_reference", path=world_style_anchor)] if valid_image(world_style_anchor) else []
+    result = runner.image(stage, prompt, refs, model=model, destination=target)
+    _write_image_receipt(project, "gemini_book_cover", result, prompt, refs, target, model)
+    runner.stage_done(stage, started, target.name, sha256=sha256_file(target), model=model)
+    return target
+
+
 def stage_flow_prompt(
     runner: Runner,
     project: Path,
@@ -1391,12 +1493,12 @@ def stage_flow_prompt(
     world_style_plan: dict[str, Any],
     world_keyframe_description: str,
     topic: str,
-    source_seconds: int,
+    source_seconds: int, *, force: bool = False,
 ) -> str:
     """Every Flow prompt comes from ChatGPT; none of them is hardcoded (§194)."""
     stage = f"flow_prompt_{'a' if clip == 'A' else 'b'}"
     target = project / "references" / f"flow_prompt_{'opening_a' if clip == 'A' else 'book_transition'}.txt"
-    if runner.state.done(stage) and target.is_file():
+    if not force and runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8")
     started = runner.stage_start(stage)
@@ -1437,6 +1539,7 @@ def stage_flow_clip(
     resolution: str,
     aspect_ratio: str,
     source_seconds: int,
+    force: bool = False,
 ) -> Path:
     """Generate one Flow clip with the references its role contract allows.
 
@@ -1458,7 +1561,15 @@ def stage_flow_clip(
     # A recovered episode may need a longer opening source after real narration
     # alignment.  Never silently reuse a clip generated to an older, shorter
     # contract: trim_opening_clips correctly refuses to stretch it later.
-    if valid_video(target) and receipt.is_file() and runner.state.done(stage) and receipt_duration == source_seconds:
+    # Legacy receipts did not persist the requested source length.  They remain valid
+    # resumable artifacts; only a *known*, conflicting contract forces regeneration.
+    if (
+        not force
+        and valid_video(target)
+        and receipt.is_file()
+        and runner.state.done(stage)
+        and receipt_duration in (None, 0, source_seconds)
+    ):
         runner.stage_reused(stage, f"{filename} ({ffprobe_duration(target):.2f}s)")
         return target
     started = runner.stage_start(stage)
@@ -1500,6 +1611,204 @@ def stage_flow_clip(
         sha256=sha256_file(target),
     )
     return target
+
+
+FLOW_POLICY_RETRY_LIMIT = 3
+FLOW_POLICY_REPAIR_REQUEST = "FLOW_POLICY_REPAIR_REQUEST.json"
+
+
+def is_flow_policy_rejection(failure: StageFailure) -> bool:
+    """Only a provider-confirmed policy rejection may rewrite paid-for media inputs.
+
+    Timeouts, credit limits and "unusual activity" are service/account conditions.  Altering
+    an episode for those would hide the real fault and repeatedly spend credits without a
+    reason.  Ordak preserves Flow's visible message in ``failure.message`` for the audit.
+    """
+    return failure.error_code == "flow_policy_violation"
+
+
+def stage_flow_policy_repair_prompt(
+    runner: Runner,
+    project: Path,
+    clip: str,
+    original_prompt: str,
+    flow_evidence: str,
+    attempt: int,
+) -> str:
+    """Ask the text provider for one conservative, Flow-safe replacement prompt.
+
+    The replacement deliberately removes the two common causes of an ambiguous policy
+    rejection: a real person's identity/likeness and depictions of harm.  It does not invent
+    a substitute video or silently switch providers.
+    """
+    stage = f"flow_policy_repair_{clip.lower()}_{attempt:02d}"
+    target = project / "references" / f"flow_prompt_{clip.lower()}_policy_repair_{attempt:02d}.txt"
+    started = runner.stage_start(stage)
+    instruction = (
+        "Rewrite the following Google Flow video prompt after Flow rejected it. Return ONLY one "
+        "compact production prompt, no explanation or markdown. Preserve the supplied frame-to-frame "
+        "camera transition and 2D illustrated-book treatment, but make it policy-safe: depict only "
+        "fictional, non-identifiable adults; do not name, imitate or recreate any real person or public "
+        "figure; do not include injury, fighting, weapons, threats, extremist symbols, logos, readable "
+        "text, or claims about a real person. Keep all action calm, symbolic and non-violent. Do not tell "
+        "Flow to upload references or change its settings.\n\n"
+        f"Flow's visible rejection message: {flow_evidence[:500]}\n\n"
+        f"Original prompt:\n{original_prompt[:8000]}"
+    )
+    repaired = runner.text(stage, instruction).strip()
+    if len(repaired) < 40:
+        raise StageFailure(stage, "FAILED_VALIDATION", "Policy-repair writer returned an unusably short Flow prompt.")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(repaired + "\n", encoding="utf-8")
+    runner.stage_done(
+        stage,
+        started,
+        target.name,
+        attempt=attempt,
+        flow_evidence=flow_evidence[:300],
+        prompt_sha256=sha256_text(repaired),
+    )
+    return repaired
+
+
+def policy_safe_frame_prompt(original: str, flow_evidence: str, attempt: int) -> str:
+    """A narrow image-stage rewind for Flow's two endpoint frames.
+
+    Flow cannot tell us reliably whether it objected to text or a frame.  On a real policy
+    rejection we therefore regenerate the *only* images sent to Flow (world keyframe and its
+    composed book spread), keeping all body images and already-completed work intact.
+    """
+    return (
+        f"{original.strip()}\n\n"
+        "FLOW POLICY-SAFE FRAME REVISION: This endpoint must be a fictional hand-drawn scene. "
+        "If it includes a person, use an anonymous adult illustrated subject with no real-person "
+        "name, likeness, biography, uniform, logo or identifying marks. Depict no combat, injury, "
+        "weapons, threats, political/extremist symbols, readable text or brand marks. Keep the action "
+        "calm, educational and non-violent while preserving the requested medium, composition and 9:16 frame. "
+        f"This is revision {attempt}, prompted by Flow UI evidence: {flow_evidence[:300]}"
+    )
+
+
+def consume_flow_policy_repair_request(project: Path, clip: str) -> str | None:
+    """Consume one explicit operator-confirmed policy-repair request, if present.
+
+    Automatic recovery remains tied to Ordak's ``flow_policy_violation``.  This tiny durable
+    hand-off exists for an older timed-out job where the operator saw Flow's rejection in the
+    browser after Ordak had stopped polling; it is consumed once, audited in state, and cannot
+    cause future resumes to keep rewriting media.
+    """
+    path = project / "pipeline" / FLOW_POLICY_REPAIR_REQUEST
+    try:
+        data = load_json(path)
+    except (OSError, ValueError):
+        return None
+    if not isinstance(data, dict) or str(data.get("clip") or "").upper() != clip.upper():
+        return None
+    evidence = str(data.get("flow_evidence") or "operator confirmed a Flow policy rejection").strip()
+    path.unlink(missing_ok=True)
+    return evidence[:500]
+
+
+def stage_flow_clip_with_policy_recovery(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    clip: str,
+    prompt: str,
+    *,
+    book_spread: Path | None,
+    world_keyframe: Path | None,
+    world_keyframe_prompt: str | None,
+    world_style_anchor: Path | None,
+    episode_plan: dict[str, Any],
+    model: str,
+    resolution: str,
+    aspect_ratio: str,
+    source_seconds: int,
+) -> Path:
+    """Run a Flow clip and perform up to three audited policy-only rewinds.
+
+    Each retry gets a fresh Ordak/Flow job.  For Clip B, the rewind regenerates both endpoint
+    images — including its subject-specific closed cover — then retries with a rewritten prompt.  The
+    maximum is intentional: repeated provider policy rejections must end as a clear failure,
+    not an unbounded credit loop.
+    """
+    active_prompt = prompt
+    active_book_spread = book_spread
+    active_world_keyframe = world_keyframe
+    requested_evidence = consume_flow_policy_repair_request(project, clip)
+    if requested_evidence:
+        recovery_stage = f"flow_policy_recovery_{clip.lower()}"
+        runner.state.mark(
+            recovery_stage,
+            STATE_RUNNING,
+            attempt=0,
+            trigger="operator_confirmed_policy_rejection",
+            flow_evidence=requested_evidence,
+        )
+        print(f"↻ {recovery_stage}: applying the operator-confirmed Flow policy repair before retrying.", flush=True)
+        active_prompt = stage_flow_policy_repair_prompt(
+            runner, project, clip, active_prompt, requested_evidence, 0
+        )
+        if clip == "B":
+            if world_keyframe_prompt is None or world_style_anchor is None:
+                raise StageFailure(recovery_stage, "FAILED_VALIDATION", "Clip B policy recovery is missing its endpoint-frame inputs.")
+            safe_prompt = policy_safe_frame_prompt(world_keyframe_prompt, requested_evidence, 0)
+            active_world_keyframe = stage_world_keyframe(
+                runner, project, content_project, safe_prompt, world_style_anchor, force=True
+            )
+            active_book_spread = stage_topic_book_cover(
+                runner, project, content_project, runner.state.state["topic"], world_style_anchor, force=True
+            )
+        runner.state.mark(recovery_stage, STATE_DONE, attempt=0, next_attempt=1)
+    for attempt in range(1, FLOW_POLICY_RETRY_LIMIT + 1):
+        try:
+            return stage_flow_clip(
+                runner, project, content_project, clip, active_prompt,
+                book_spread=active_book_spread, world_keyframe=active_world_keyframe,
+                model=model, resolution=resolution, aspect_ratio=aspect_ratio,
+                source_seconds=source_seconds,
+            )
+        except StageFailure as failure:
+            if not is_flow_policy_rejection(failure) or attempt == FLOW_POLICY_RETRY_LIMIT:
+                if is_flow_policy_rejection(failure):
+                    raise StageFailure(
+                        failure.stage,
+                        failure.state,
+                        f"Flow rejected this clip after {attempt} policy-safe attempt(s); stopping to avoid further credit spend. "
+                        f"Last reason: {failure.message}",
+                        error_code=failure.error_code,
+                    ) from failure
+                raise
+
+            recovery_stage = f"flow_policy_recovery_{clip.lower()}"
+            runner.state.mark(
+                recovery_stage,
+                STATE_RUNNING,
+                attempt=attempt,
+                error_code=failure.error_code,
+                flow_evidence=failure.message[:500],
+            )
+            print(
+                f"↻ {recovery_stage}: Flow policy rejection detected; rewinding prompt and endpoint frames "
+                f"for retry {attempt + 1}/{FLOW_POLICY_RETRY_LIMIT}.",
+                flush=True,
+            )
+            active_prompt = stage_flow_policy_repair_prompt(
+                runner, project, clip, active_prompt, failure.message, attempt
+            )
+            if clip == "B":
+                if world_keyframe_prompt is None or world_style_anchor is None:
+                    raise StageFailure(recovery_stage, "FAILED_VALIDATION", "Clip B policy recovery is missing its endpoint-frame inputs.")
+                safe_prompt = policy_safe_frame_prompt(world_keyframe_prompt, failure.message, attempt)
+                active_world_keyframe = stage_world_keyframe(
+                    runner, project, content_project, safe_prompt, world_style_anchor, force=True
+                )
+                active_book_spread = stage_topic_book_cover(
+                    runner, project, content_project, runner.state.state["topic"], world_style_anchor, force=True
+                )
+            runner.state.mark(recovery_stage, STATE_DONE, attempt=attempt, next_attempt=attempt + 1)
+    raise AssertionError("policy recovery loop must return or raise")
 
 
 def _beat_reference_stack(
@@ -1559,14 +1868,18 @@ def stage_beat_prompt(
         PREVIOUS_BEAT=(
             "No previous image — establish the world's texture and palette from the canonical anchors."
             if not any(ref.role == "previous_beat" for ref in references)
-            else "Previous image is supplied only for texture, palette, lighting continuity, and world material. "
+            else "Previous image is binding for the recurring frame language, material/edge treatment, "
+            "inner illustration window and lower caption reserve; it also supports texture, palette and lighting. "
             "Never copy its composition, crop, camera angle, pose, subject placement, or focal object."
         ),
         ASPECT_RATIO="9:16",
     )
-    text = runner.text(stage, prompt)
+    text = runner.text(stage, prompt).strip()
+    # Do not rely solely on a text-writer's summary: Gemini receives this direct final
+    # constraint with every beat, including a composition that otherwise changes radically.
+    text = f"{text} {episode_frame_contract(world_style_plan)}"
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(text.strip() + "\n", encoding="utf-8")
+    target.write_text(text + "\n", encoding="utf-8")
     return text
 
 
@@ -1986,7 +2299,11 @@ def main() -> int:
                 runner, project, content_project, keyframe_prompt, world_style_anchor
             )
             stage_book_design_sheet(runner, project, content_project)
-            book_spread = stage_book_spread(runner, project, world_keyframe, episode_plan)
+            # Clip B now begins on an episode-specific closed cover.  The old spread remains
+            # available for legacy episodes, but is never a Flow start frame for new work.
+            book_cover = stage_topic_book_cover(
+                runner, project, content_project, args.topic, world_style_anchor
+            )
 
             clip_a_prompt = stage_flow_prompt(
                 runner, project, content_project, "A", plan["opening_question_spark"],
@@ -2015,15 +2332,18 @@ def main() -> int:
                 force=bool(regenerate_beats),
             )
 
-            clip_a = stage_flow_clip(
+            clip_a = stage_flow_clip_with_policy_recovery(
                 runner, project, content_project, "A", clip_a_prompt,
                 book_spread=None, world_keyframe=None,
+                world_keyframe_prompt=None, world_style_anchor=None, episode_plan=episode_plan,
                 model=flow_model, resolution=flow_resolution, aspect_ratio=args.aspect_ratio,
                 source_seconds=opening_a_seconds,
             )
-            clip_b = stage_flow_clip(
+            clip_b = stage_flow_clip_with_policy_recovery(
                 runner, project, content_project, "B", clip_b_prompt,
-                book_spread=book_spread, world_keyframe=world_keyframe,
+                book_spread=book_cover, world_keyframe=world_keyframe,
+                world_keyframe_prompt=keyframe_prompt, world_style_anchor=world_style_anchor,
+                episode_plan=episode_plan,
                 model=flow_model, resolution=flow_resolution, aspect_ratio=args.aspect_ratio,
                 source_seconds=opening_b_seconds,
             )

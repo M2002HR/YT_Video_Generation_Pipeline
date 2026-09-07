@@ -17,11 +17,17 @@ Return plain text prompt for Gemini — single paragraph.
 ## Must Specify
 - exactly one standalone image, {{ASPECT_RATIO}}, no storyboard/grid/collage/panels/captions
 - world medium (from WORLD STYLE PLAN), texture, palette, lighting
-- composition for vertical 9:16 (centered subject, top/bottom safe space)
+- composition for vertical 9:16: preserve the episode's recurring frame language from the
+  world keyframe and previous accepted beat (outer material, edge treatment, inner illustration
+  window). The interior scene may change freely, but do not drop the framing system.
+- reserve a calm, low-detail caption field inside only the bottom 8–10% of the image (two subtitle lines). Keep faces,
+  hands, key action, focal objects and critical diagram details above it. This is balanced
+  negative space, not a large empty banner and not a hard rectangular UI panel.
 - narrative moment + reference hierarchy (character_sheet prevents identity drift; style/world
-  references establish medium). When present, `previous_beat` may inform only
-  texture, palette, lighting, and material continuity. It must never be copied as a crop,
-  composition, camera angle, pose, subject placement, or focal object.
+  references establish medium). When present, `previous_beat` is binding for the recurring
+  frame language, material/edge treatment, inner illustration window and lower caption reserve;
+  it may also inform texture, palette and lighting. It must never be copied as a crop, camera
+  angle, pose, subject placement, or focal object.
 - if hero present: same identity (chestnut hair, beard, moss sweater, blue overalls, orange boots) rendered in current world medium — world changes, character identity does not
 - no unwanted readable text, no UI
 

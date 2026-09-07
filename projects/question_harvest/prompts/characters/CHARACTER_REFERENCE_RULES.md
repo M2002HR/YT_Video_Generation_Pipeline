@@ -27,3 +27,9 @@ BOOK_SPREAD_FRAME.png and WORLD_KEYFRAME.png are scene-specific image inputs def
 - `scripts/flow_reference_policy.py:validate_flow_roles()` must be called before any Flow upload. Forbidden roles → immediate structured error.
 - Gemini prompts must still carry character identity description even though sheet is uploaded (belt-and-suspenders).
 
+## Episode Frame Continuity
+
+For every Gemini body image, the world keyframe and previous accepted beat define a recurring
+frame language: outer material, edge treatment, inner illustration window and a balanced
+lower caption reserve (about 8–10% of a 9:16 frame, enough for two lines). The subject and composition may change;
+the episode's chosen material/frame grammar and the clear lower field must not disappear.

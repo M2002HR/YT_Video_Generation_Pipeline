@@ -10,7 +10,7 @@ This clip is the bridge from the home world into the book world. It has **no cha
 ## Canonical reference contract (do not restate as an upload instruction)
 Flow receives, through its own controls:
 - canonical reference sheet: `book_design_sheet.png` (the magical book's locked identity)
-- first frame: `book_spread_frame.png` (the open spread whose page holds this episode's world)
+- first frame: `book_cover_frame.png` (one CLOSED, episode-specific book cover)
 - last frame: `world_keyframe.png` (the exact frame the camera must end inside)
 
 Flow receives **NO style sheet** — no world style anchor, no home style sheet, no mood board.
@@ -28,19 +28,19 @@ Therefore your prompt text must carry the visual treatment in words.
 Return **only** the Flow prompt as plain text. No markdown, no headings, no commentary.
 
 ## Core concept the prompt must express
-A magical ancient storybook is being explored. The scene is only about the book and the
-discovery of a hidden illustrated page:
+A magical, episode-specific storybook is seen closed, opens naturally, then reveals one right-hand
+illustrated page and enters it:
 
 BOOK → PAGE TURNING → MYSTERIOUS ILLUSTRATION → ENTERING THE PAINTING
 
 The viewer should feel: "What secret world is hidden inside this book?"
 
 ## Reference lock — the book already exists
-State that the book's visual identity comes from the supplied reference sheet and must be
-preserved exactly, never redesigned: antique brown leather cover, worn aged surface,
-golden/brass corner protectors, side clasp, central eye symbol, crescent moon symbol,
-star symbols, thick aged pages, green bookmark ribbon, exact proportions, exact silhouette,
-exact illustration style. Animate the asset; do not invent a different book.
+State that the CLOSED supplied cover is the exact start frame and must be preserved at the first
+moment. Camera is locked perfectly top-down and the cover fills almost the whole vertical frame;
+never tilt, orbit, use perspective, or pull back. Its detailed topic-symbolic ornament and material
+texture are episode-specific; do not add titles, lettering, extra symbols or redesign it. Open this
+exact physical book naturally while retaining the top-down view.
 
 ## Style lock
 Refined 2D illuminated-storybook animation: confident clean ink contours, rich restrained
@@ -53,15 +53,15 @@ effects, 3D depth, realistic portal effects. Everything must look like a beautif
 animated drawing.
 
 ## Shot structure (scale the timings to SOURCE DURATION SECONDS)
-1. **Mysterious book opening** (first ~27% of the clip) — start immediately close-up inside
-   the already-open book, matching the supplied open spread exactly: aged pages, rich ink
-   contours, subtle paper texture and a composed centred layout. Pages gently move; soft golden
-   light comes from between them. No character, no hands, no movement inside the illustration.
-2. **Discovering the topic page** (middle ~33%) — the book slowly turns pages revealing
-   faded story illustrations; the camera follows the page movement; the book stops on the
-   special page whose hand-drawn illustration relates to **{{TOPIC}}**. The drawing itself
-   stays still. Magic comes only from a soft golden glow around the page, subtle particles,
-   and illuminated ink lines.
+1. **Closed cover to natural opening** (first ~32% of the clip) — begin on the supplied closed
+   cover, fully intact and nearly frame-filling. From the locked overhead view, the cover lifts and
+   the book opens by its own believable hinge and page weight; camera stays overhead and follows
+   smoothly. No hands, no cut, no jump, no sudden already-open spread.
+2. **One right-hand page** (middle ~30%) — pages turn naturally, then settle on ONE visible
+   right-hand page; never show a two-page spread. Its hand-drawn illustration relates to
+   **{{TOPIC}}** and its paper/material texture belongs to that topic. The drawing stays still.
+   The lower 8–10% of this page is an intentionally clean, texture-only subtitle reserve: no
+   words, symbols, figures, objects, marks, or decorative detail anywhere in that strip.
 3. **Entering the page world** (final ~40%) — the camera slowly pushes into that
    illustration; the painted image grows; the paper texture fills the screen; the final
    frame is completely inside the illustrated world, matching the supplied last frame.
@@ -85,8 +85,11 @@ no readable text (decorative marks must stay abstract, never real words), no sty
 no identity drift.
 
 ## Continuity requirements
-- Preserve the first frame's geometry exactly at the start.
-- Preserve the page illustration exactly — never invent page elements.
+- Preserve the closed-cover geometry exactly at the start.
+- Show only the right-hand target page before entering it; never show a two-page spread.
+- The final frame must match the supplied world keyframe exactly so the cut to the first image
+  beat is imperceptible: same top-down-to-world push-in direction, palette, edge/frame grammar
+  and subtitle reserve; no flash, dissolve, jump, or unrelated intermediate composition.
 - End exactly inside the world of the supplied last frame, at the moment before the next
   beat begins.
 

@@ -399,7 +399,9 @@ class ElevenLabsUI:
         if not float(detail["min"]) <= value <= float(detail["max"]):
             raise RuntimeError(f"ElevenLabs '{label}' value {value} is outside its current UI range {detail['min']}..{detail['max']}.")
         self._trusted_click(f"""(() => {{ return {json.dumps(detail)}; }})()""")
+        time.sleep(0.2)
         self._trusted_key("Home")
+        time.sleep(0.15)
         def observed_value() -> float:
             observed = self._json(f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); return e?{{ok:true,value:Number(e.getAttribute('aria-valuenow'))}}:{{ok:false}}; }})()""")
             if not observed.get("ok"):
@@ -411,6 +413,7 @@ class ElevenLabsUI:
         # baking either assumption into the workflow.
         minimum = observed_value()
         self._trusted_key("ArrowRight")
+        time.sleep(0.15)
         step = observed_value() - minimum
         if step <= 0:
             raise RuntimeError(f"ElevenLabs '{label}' did not respond to a real keyboard increment.")
@@ -468,6 +471,37 @@ class ElevenLabsUI:
             })()""")
             if not open_panel.get("ok"):
                 return
+            # ElevenLabs shows a "credits remaining" modal that does NOT close on
+            # Escape and puts aria-hidden on the main content, making the Radix
+            # sliders unfocusable (pointerEvents:none). That breaks the real
+            # keyboard increment check. Close it via its explicit button.
+            credits_closed = self._json("""(() => {
+              const dlg=[...document.querySelectorAll('[role=dialog]')].find(d=>d.offsetWidth>0 && /credits remaining/i.test(d.innerText||''));
+              if(!dlg) return {ok:false};
+              const btn=[...dlg.querySelectorAll('button')].find(b=>/^(Close|Remind Me Later)$/i.test((b.innerText||'').trim()));
+              if(!btn) return {ok:false};
+              btn.click();
+              return {ok:true, text:(btn.innerText||'').trim()};
+            })()""")
+            if credits_closed.get("ok"):
+                time.sleep(0.6)
+                continue
+            # Fallback: try clicking the visible Close via trusted mouse
+            close_probe = self._json("""(() => {
+              const dlg=[...document.querySelectorAll('[role=dialog]')].find(d=>d.offsetWidth>0 && /credits remaining/i.test(d.innerText||''));
+              if(!dlg) return {ok:false};
+              const btn=[...dlg.querySelectorAll('button')].find(b=>/^(Close|Remind Me Later)$/i.test((b.innerText||'').trim()));
+              if(!btn) return {ok:false};
+              const r=btn.getBoundingClientRect();
+              return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2};
+            })()""")
+            if close_probe.get("ok"):
+                try:
+                    self._trusted_click(f"""(() => {{ return {json.dumps(close_probe)}; }})()""")
+                    time.sleep(0.6)
+                    continue
+                except RuntimeError:
+                    pass
             try:
                 self._trusted_key("Escape")
             except RuntimeError:
