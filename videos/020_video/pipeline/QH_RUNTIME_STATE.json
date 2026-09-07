@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "video_id": "020",
-  "topic": "جهان پهلوان تختی، کشتی گیر ایرانی",
+  "topic": "topic",
   "created_at": "2026-09-07T06:54:17Z",
   "pipeline_state": "DONE",
   "stages": {
@@ -51,8 +51,8 @@
     },
     "world_keyframe": {
       "status": "DONE",
-      "updated_at": "2026-09-07T08:20:28Z",
-      "sha256": "0f6cf2620b9dda3f07895015ccb86b8e0c105947011a9b80b72bd8e6054a3d13",
+      "updated_at": "2026-09-07T09:29:00Z",
+      "sha256": "383a62ca44957ebd02dea4c20f39bf2c73b3c2f42cccf47d602e535a87c98e42",
       "model": "nano_banana_2"
     },
     "book_design_sheet": {
@@ -72,9 +72,9 @@
       "artifact": "flow_prompt_opening_a.txt"
     },
     "flow_prompt_b": {
-      "status": "REUSED",
-      "updated_at": "2026-09-07T08:18:15Z",
-      "artifact": "flow_prompt_book_transition.txt"
+      "status": "DONE",
+      "updated_at": "2026-09-07T10:04:01Z",
+      "prompt_sha256": "4f0f2351349ac52602e5a41defff63b447e0949b6413b0b67e8471bbbabdf22e"
     },
     "body_images": {
       "status": "DONE",
@@ -152,13 +152,13 @@
     },
     "flow_clip_b": {
       "status": "DONE",
-      "updated_at": "2026-09-07T08:22:37Z",
+      "updated_at": "2026-09-07T10:06:10Z",
       "duration_seconds": 4.011,
       "roles": [
         "first_frame",
         "last_frame"
       ],
-      "sha256": "1e84a7b931294394481794faa7212eab432755ebd287c993e78c15e12cd6617a"
+      "sha256": "94a8174323141c6c6d08c056200bf5c25f0283d3da4492b6db0025e56965b071"
     },
     "flow_policy_recovery_b": {
       "status": "DONE",
@@ -177,6 +177,17 @@
       "status": "DONE",
       "updated_at": "2026-09-07T08:22:38Z",
       "body_images": 12
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T10:02:50Z",
+      "sha256": "df5fac5b0af58db018de5c55d80ee65163f5c2cb8f0bb83ff5a365df7c52add2",
+      "model": "nano_banana_2"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T10:01:38Z",
+      "prompt_sha256": "dba6a7ed34f64836992e49e4ba327126e1aa43959062f684cb21a9309e017b72"
     }
   },
   "events": [
@@ -492,7 +503,111 @@
         "last_frame"
       ],
       "sha256": "1e84a7b931294394481794faa7212eab432755ebd287c993e78c15e12cd6617a"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 123.447,
+      "at": "2026-09-07T08:54:13Z",
+      "sha256": "10d7bedd9408f0c5b91ab1f1aa983bbb800a46ca5f2b50fd5c0a45ddd3229f3e",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 18.055,
+      "at": "2026-09-07T08:54:31Z",
+      "prompt_sha256": "2babc15c02d1926f066f2fa1f791a3362cf8915ca3b0630828e9b080bdea7e71"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 138.543,
+      "at": "2026-09-07T08:57:37Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "821e17695ac1fae07204774b4475390a603080bd455b6c6c261db46d437bc3c8"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 90.386,
+      "at": "2026-09-07T09:00:00Z",
+      "sha256": "ecb67072b6dfcfa5c59091113a6b5ccba239f004f21ded8d05b6f5870efacbd1",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 69.372,
+      "at": "2026-09-07T09:27:41Z",
+      "sha256": "380f320a2668cec243d5af1ea2443a2064c9b59681d1365ac6d02d8c18a768b6",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 78.274,
+      "at": "2026-09-07T09:29:00Z",
+      "sha256": "383a62ca44957ebd02dea4c20f39bf2c73b3c2f42cccf47d602e535a87c98e42",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 18.071,
+      "at": "2026-09-07T09:29:18Z",
+      "prompt_sha256": "315e7f6337a6e3c9b78da84f7ff3b170cbb4551d85e5b33e2e1e93501283879d"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 126.563,
+      "at": "2026-09-07T09:31:24Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "daf322f6e9d30bb9d8adbdef0bcf61c4e6d16c49b44fe1dc96fd85e3f4ba56fa"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 18.044,
+      "at": "2026-09-07T10:01:38Z",
+      "prompt_sha256": "dba6a7ed34f64836992e49e4ba327126e1aa43959062f684cb21a9309e017b72"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 72.327,
+      "at": "2026-09-07T10:02:50Z",
+      "sha256": "df5fac5b0af58db018de5c55d80ee65163f5c2cb8f0bb83ff5a365df7c52add2",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 18.055,
+      "at": "2026-09-07T10:04:01Z",
+      "prompt_sha256": "4f0f2351349ac52602e5a41defff63b447e0949b6413b0b67e8471bbbabdf22e"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 129.571,
+      "at": "2026-09-07T10:06:10Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "94a8174323141c6c6d08c056200bf5c25f0283d3da4492b6db0025e56965b071"
     }
   ],
-  "updated_at": "2026-09-07T08:22:38Z"
+  "updated_at": "2026-09-07T10:06:10Z"
 }

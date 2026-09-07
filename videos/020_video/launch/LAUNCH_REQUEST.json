@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "d75fe9a4-c190-4adf-9de4-e3a9bc2137fb",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-07T06:54:17.429173+00:00",
   "topic": "جهان پهلوان تختی، کشتی گیر ایرانی",
   "video_id": "020",
@@ -58,5 +58,6 @@
   ],
   "started_at": "2026-09-07T06:54:17.429900+00:00",
   "resumed_at": "2026-09-07T08:18:11.990090+00:00",
-  "resume_count": 1
+  "resume_count": 1,
+  "completed_at": "2026-09-07T08:30:14.708185+00:00"
 }

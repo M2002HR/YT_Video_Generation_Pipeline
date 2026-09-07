@@ -1,6 +1,6 @@
 {
   "provider": "flow",
-  "job_id": "478703fe-0611-4aae-a07f-6d670eeb2f60",
+  "job_id": "ddf05f58-1714-4e61-bd91-ff3420086f82",
   "requested": {
     "model": "gemini_omni_1_1_flash",
     "resolution": "720p",
@@ -16,7 +16,7 @@
     "first_frame",
     "last_frame"
   ],
-  "submission_fingerprint": "4a53a8d4ef154a0af10cbbca8f5966c6",
+  "submission_fingerprint": "5f0554d3715b555274a67ba29d8d6348",
   "workspace_url": "https://flow.google.com/project/acd758d2-ebb7-45d3-90e8-ea6c8515ae15",
   "provider_receipt": {
     "provider": "flow",
@@ -32,7 +32,7 @@
     "requested_resolution": "720p",
     "actual_resolution": "720p",
     "workspace_url": "https://flow.google.com/project/acd758d2-ebb7-45d3-90e8-ea6c8515ae15",
-    "submission_fingerprint": "4a53a8d4ef154a0af10cbbca8f5966c6",
+    "submission_fingerprint": "5f0554d3715b555274a67ba29d8d6348",
     "reference_roles": [
       "first_frame",
       "last_frame"
@@ -42,7 +42,7 @@
       "outputs=x1",
       "reference_mode=frames",
       "pixels=720x1280",
-      "bytes=3981685",
+      "bytes=3977040",
       "duration 4.01s vs requested 4s",
       "resolution 720x1280 vs 720p"
     ]
@@ -51,9 +51,9 @@
     "first_frame",
     "last_frame"
   ],
-  "prompt_sha256": "31d33b78f5f3b088050adb4a1d63c110be5851e54a19bb8751333b415dcc85fb",
+  "prompt_sha256": "4f0f2351349ac52602e5a41defff63b447e0949b6413b0b67e8471bbbabdf22e",
   "output_file": "assets/opening/book_transition_source.mp4",
-  "output_sha256": "1e84a7b931294394481794faa7212eab432755ebd287c993e78c15e12cd6617a",
-  "elapsed_seconds": 123.33,
-  "completed_at": "2026-09-07T08:22:37Z"
+  "output_sha256": "94a8174323141c6c6d08c056200bf5c25f0283d3da4492b6db0025e56965b071",
+  "elapsed_seconds": 129.389,
+  "completed_at": "2026-09-07T10:06:10Z"
 }

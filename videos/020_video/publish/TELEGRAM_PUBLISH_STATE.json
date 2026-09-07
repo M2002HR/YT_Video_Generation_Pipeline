@@ -1,0 +1,59 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-07T10:25:26.973314+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-07T10:25:26.973124+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25105,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2370435,
+      "sha256": "3f8a1b4842f09f090a522debad8836dedc21cf5f076609463f435aedb5e34916",
+      "duration_seconds": 58.505,
+      "elapsed_seconds": 6.22,
+      "qc_report": null,
+      "summary": {
+        "video": "020_video",
+        "duration_seconds": 58.514,
+        "beat_count": 14,
+        "video_beat_count": 2,
+        "image_beat_count": 12,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 6.24,
+          "transition_end": 9.6
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Create with Nano Banana 2."
+          ]
+        },
+        "qc": {
+          "report": null,
+          "passed": null
+        },
+        "resources": {
+          "wall_seconds": 202.122,
+          "realtime_factor": 3.454,
+          "peak_child_rss_mb": 1415.4,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 020_video\n⏱ Duration: 0:59\n🎞 Beats: 14 (2 video · 12 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🧮 Render: 3:22 wall (3.454x realtime) · 2 thread(s) · peak 1415.4 MB\nArtifact: 3f8a1b4842f0 · Delivery: compressed"
+    }
+  }
+}

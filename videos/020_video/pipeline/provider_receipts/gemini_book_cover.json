@@ -1,6 +1,6 @@
 {
   "provider": "gemini",
-  "job_id": "3a0f3b7d-d399-4417-be1e-3e6a78450ea8",
+  "job_id": "f49aff75-f018-4af6-b43c-f6e97afce4ec",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Create with Nano Banana 2.",
   "model_verified": true,
@@ -18,37 +18,31 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/19eac0c0836fbbdf",
+    "workspace_url": "https://gemini.google.com/app/2a1d100d71eb3d28",
     "submission_fingerprint": null,
     "reference_roles": [
-      "character_sheet",
       "style_reference"
     ],
     "notes": [
       "model_label_source=composer-attribution",
       "artifact_source=download",
-      "image=3a0f3b7d-d399-4417-be1e-3e6a78450ea8_output_1.png 1536x2752 sha256=383a62ca44957ebd02dea4c20f39bf2c73b3c2f42cccf47d602e535a87c98e42"
+      "image=f49aff75-f018-4af6-b43c-f6e97afce4ec_output_1.png 1536x2752 sha256=df5fac5b0af58db018de5c55d80ee65163f5c2cb8f0bb83ff5a365df7c52add2"
     ]
   },
   "references": [
-    {
-      "role": "character_sheet",
-      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
-      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
-    },
     {
       "role": "style_reference",
       "path": "videos/020_video/references/world_style_anchor.png",
       "sha256": "ae159aae75641becc5fdadbb61aa2dac0742fd2d74b0000b3ff5fe5cd2ca3a7e"
     }
   ],
-  "prompt_sha256": "11287c8f29afda11e0e9fc6f604c595ee1559b935be9cf8a6760c4bd92d5130e",
-  "output_path": "references/world_keyframe.png",
-  "output_sha256": "383a62ca44957ebd02dea4c20f39bf2c73b3c2f42cccf47d602e535a87c98e42",
+  "prompt_sha256": "5b6057fb3289cb2437bd4f8d60d19fc18426626b4678b12ecc417d779153f4c0",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "df5fac5b0af58db018de5c55d80ee65163f5c2cb8f0bb83ff5a365df7c52add2",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 78.222,
-  "completed_at": "2026-09-07T09:29:00Z"
+  "elapsed_seconds": 72.266,
+  "completed_at": "2026-09-07T10:02:50Z"
 }
