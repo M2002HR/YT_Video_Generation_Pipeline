@@ -1,0 +1,43 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+Style: Karaoke,DejaVu Sans,56,&H0000D7FF,&H00F5F5F5,&H00130D09,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:01.44,Karaoke,,0,0,0,,{\kf22}While {\kf16}I {\kf24}water {\kf14}the {\kf60}garden, {\kf8}I
+Dialogue: 0,0:00:01.44,0:00:04.62,Karaoke,,0,0,0,,{\kf68}ask, {\kf64}why {\kf48}is {\kf48}Gholam {\kf32}Ressa {\kf58}Takhti
+Dialogue: 0,0:00:04.62,0:00:06.24,Karaoke,,0,0,0,,{\kf54}remembered {\kf46}beyond {\kf62}wrestling?
+Dialogue: 0,0:00:07.80,0:00:09.16,Karaoke,,0,0,0,,{\kf18}I {\kf24}reach {\kf14}for {\kf12}the {\kf36}book, {\kf32}and
+Dialogue: 0,0:00:09.16,0:00:09.60,Karaoke,,0,0,0,,{\kf12}it {\kf32}opens.
+Dialogue: 0,0:00:11.34,0:00:12.86,Karaoke,,0,0,0,,{\kf32}Takhti {\kf20}was {\kf22}born {\kf20}in {\kf40}Tehran {\kf18}in
+Dialogue: 0,0:00:12.86,0:00:13.60,Karaoke,,0,0,0,,{\kf74}1930.
+Dialogue: 0,0:00:14.40,0:00:17.14,Karaoke,,0,0,0,,{\kf16}He {\kf34}became {\kf56}Iran's {\kf58}Olympic {\kf60}freestyle\N{\kf50}wrestling
+Dialogue: 0,0:00:17.14,0:00:17.52,Karaoke,,0,0,0,,{\kf38}star.
+Dialogue: 0,0:00:18.28,0:00:19.86,Karaoke,,0,0,0,,{\kf20}He {\kf24}won {\kf30}gold {\kf20}at {\kf6}the {\kf58}1956
+Dialogue: 0,0:00:19.86,0:00:21.08,Karaoke,,0,0,0,,{\kf82}Melbourne {\kf40}Olympics.
+Dialogue: 0,0:00:22.42,0:00:23.94,Karaoke,,0,0,0,,{\kf12}He {\kf28}earned {\kf26}silver {\kf34}medals {\kf22}in {\kf30}Rome
+Dialogue: 0,0:00:23.94,0:00:24.54,Karaoke,,0,0,0,,{\kf24}and {\kf36}Tokyo.
+Dialogue: 0,0:00:25.78,0:00:27.80,Karaoke,,0,0,0,,{\kf30}Fans {\kf42}admired {\kf22}his {\kf40}humility {\kf38}and {\kf30}fair
+Dialogue: 0,0:00:27.80,0:00:28.16,Karaoke,,0,0,0,,{\kf36}play.
+Dialogue: 0,0:00:29.24,0:00:31.98,Karaoke,,0,0,0,,{\kf38}Takhti {\kf30}helped {\kf40}opponents {\kf38}after\N{\kf44}fierce {\kf84}matches.
+Dialogue: 0,0:00:33.04,0:00:35.54,Karaoke,,0,0,0,,{\kf44}Jahan {\kf48}Palavan {\kf28}means {\kf44}world\N{\kf86}champion.
+Dialogue: 0,0:00:36.30,0:00:38.52,Karaoke,,0,0,0,,{\kf20}The {\kf26}title {\kf52}reflected {\kf92}respect, {\kf12}not\N{\kf20}only
+Dialogue: 0,0:00:38.52,0:00:38.94,Karaoke,,0,0,0,,{\kf42}victories.
+Dialogue: 0,0:00:40.08,0:00:41.54,Karaoke,,0,0,0,,{\kf14}He {\kf28}became {\kf20}a {\kf24}symbol {\kf20}of {\kf40}Iranian
+Dialogue: 0,0:00:41.54,0:00:42.70,Karaoke,,0,0,0,,{\kf116}sportsmanship.
+Dialogue: 0,0:00:43.16,0:00:45.76,Karaoke,,0,0,0,,{\kf22}His {\kf28}legacy {\kf36}still {\kf52}inspires {\kf70}athletes\N{\kf52}today.
+Dialogue: 0,0:00:46.84,0:00:49.00,Karaoke,,0,0,0,,{\kf14}A {\kf40}Tehran {\kf50}statue {\kf36}honors {\kf30}his {\kf46}lasting
+Dialogue: 0,0:00:49.00,0:00:49.46,Karaoke,,0,0,0,,{\kf46}memory.
+Dialogue: 0,0:00:50.30,0:00:52.36,Karaoke,,0,0,0,,{\kf26}People {\kf34}remember {\kf48}Takhti {\kf22}for\N{\kf34}character {\kf42}and
+Dialogue: 0,0:00:52.36,0:00:52.72,Karaoke,,0,0,0,,{\kf36}courage.
+Dialogue: 0,0:00:53.54,0:00:55.82,Karaoke,,0,0,0,,{\kf18}His {\kf24}name {\kf42}remains {\kf30}tied {\kf24}to {\kf90}honor.
+Dialogue: 0,0:00:56.12,0:00:58.22,Karaoke,,0,0,0,,{\kf32}Like {\kf16}and {\kf36}subscribe {\kf38}for {\kf12}more\N{\kf76}questions.
+Dialogue: 0,0:00:58.24,0:00:58.58,Karaoke,,0,0,0,,{\kf32}Thank {\kf2}you.

@@ -1,0 +1,136 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 58.514,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "While I water the garden, I ask, why is Gholam Ressa Takhti remembered beyond wrestling? I reach for the book, and it opens. Takhti was born in Tehran in 1930. He became Iran's Olympic freestyle wrestling star. He won gold at the 1956 Melbourne Olympics. He earned silver medals in Rome and Tokyo. Fans admired his humility and fair play. Takhti helped opponents after fierce matches. Jahan Palavan means world champion. The title reflected respect, not only victories. He became a symbol of Iranian sportsmanship. His legacy still inspires athletes today. A Tehran statue honors his lasting memory. People remember Takhti for character and courage. His name remains tied to honor. Like and subscribe for more questions. Thank you.",
+  "word_count": 119,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Takhti was born in Tehran in 1930.",
+      "speech_start": 11.34,
+      "speech_end": 13.6,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 14.4,
+      "display_duration": 14.4
+    },
+    {
+      "beat_id": 2,
+      "narration": "He became Iran's Olympic freestyle wrestling star.",
+      "speech_start": 14.4,
+      "speech_end": 17.52,
+      "match_confidence": 1.0,
+      "display_start": 14.4,
+      "display_end": 18.28,
+      "display_duration": 3.88
+    },
+    {
+      "beat_id": 3,
+      "narration": "He won gold at the 1956 Melbourne Olympics.",
+      "speech_start": 18.28,
+      "speech_end": 21.08,
+      "match_confidence": 1.0,
+      "display_start": 18.28,
+      "display_end": 22.42,
+      "display_duration": 4.14
+    },
+    {
+      "beat_id": 4,
+      "narration": "He earned silver medals in Rome and Tokyo.",
+      "speech_start": 22.42,
+      "speech_end": 24.54,
+      "match_confidence": 1.0,
+      "display_start": 22.42,
+      "display_end": 25.78,
+      "display_duration": 3.36
+    },
+    {
+      "beat_id": 5,
+      "narration": "Fans admired his humility and fair play.",
+      "speech_start": 25.78,
+      "speech_end": 28.16,
+      "match_confidence": 1.0,
+      "display_start": 25.78,
+      "display_end": 29.24,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 6,
+      "narration": "Takhti helped opponents after fierce matches.",
+      "speech_start": 29.24,
+      "speech_end": 31.98,
+      "match_confidence": 1.0,
+      "display_start": 29.24,
+      "display_end": 33.04,
+      "display_duration": 3.8
+    },
+    {
+      "beat_id": 7,
+      "narration": "Jahan Pahlavan means world champion.",
+      "speech_start": 33.04,
+      "speech_end": 35.54,
+      "match_confidence": 0.8,
+      "display_start": 33.04,
+      "display_end": 36.3,
+      "display_duration": 3.26
+    },
+    {
+      "beat_id": 8,
+      "narration": "The title reflected respect, not only victories.",
+      "speech_start": 36.3,
+      "speech_end": 38.94,
+      "match_confidence": 1.0,
+      "display_start": 36.3,
+      "display_end": 40.08,
+      "display_duration": 3.78
+    },
+    {
+      "beat_id": 9,
+      "narration": "He became a symbol of Iranian sportsmanship.",
+      "speech_start": 40.08,
+      "speech_end": 42.7,
+      "match_confidence": 1.0,
+      "display_start": 40.08,
+      "display_end": 43.16,
+      "display_duration": 3.08
+    },
+    {
+      "beat_id": 10,
+      "narration": "His legacy still inspires athletes today.",
+      "speech_start": 43.16,
+      "speech_end": 45.76,
+      "match_confidence": 1.0,
+      "display_start": 43.16,
+      "display_end": 46.84,
+      "display_duration": 3.68
+    },
+    {
+      "beat_id": 11,
+      "narration": "A Tehran statue honors his lasting memory.",
+      "speech_start": 46.84,
+      "speech_end": 49.46,
+      "match_confidence": 1.0,
+      "display_start": 46.84,
+      "display_end": 50.3,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 12,
+      "narration": "People remember Takhti for character and courage.",
+      "speech_start": 50.3,
+      "speech_end": 52.72,
+      "match_confidence": 1.0,
+      "display_start": 50.3,
+      "display_end": 58.514,
+      "display_duration": 8.214
+    }
+  ]
+}

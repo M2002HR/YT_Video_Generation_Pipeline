@@ -1,0 +1,60 @@
+{
+  "provider": "gemini",
+  "job_id": "76b8d726-ec79-491d-b8b1-b5dbac42ced8",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/bdf9f2754d9af1e3",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=76b8d726-ec79-491d-b8b1-b5dbac42ced8_output_1.png 1536x2752 sha256=40cb086672a70f36fcde7a9460bcb492f80450cb42ae0a7ff11577a2eb9af506"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/020_video/references/world_style_anchor.png",
+      "sha256": "ae159aae75641becc5fdadbb61aa2dac0742fd2d74b0000b3ff5fe5cd2ca3a7e"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/020_video/references/world_keyframe.png",
+      "sha256": "7d1b73465426efe93f3236de5ff29c781c5c30bebff8b4c81bc96e1f8ae7a02c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/020_video/assets/raw_beats/beat_006.png",
+      "sha256": "d90cf8cc5a47e536bffe35da5035390eb3bf3343d371ab7925b39312c33ea475"
+    }
+  ],
+  "prompt_sha256": "9d6439d2755e0249089f1ef299d2fbac8e87027023796395b96b581f3c4f4d79",
+  "output_path": "assets/raw_beats/beat_007.png",
+  "output_sha256": "40cb086672a70f36fcde7a9460bcb492f80450cb42ae0a7ff11577a2eb9af506",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 84.262,
+  "completed_at": "2026-09-07T07:14:40Z"
+}

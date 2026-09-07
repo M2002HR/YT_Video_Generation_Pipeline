@@ -1,0 +1,149 @@
+{
+  "body_duration_seconds": 36.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Takhti was born in Tehran in 1930.",
+      "visual": "A hand-painted historical view of 1930 Tehran with a small family home, cobbled street, and a newborn-era memory atmosphere inside the sketch painting frame.",
+      "purpose": "show Takhti's birth in Tehran in 1930",
+      "visual_fingerprint": "1930 Tehran neighborhood scene with family doorway and archival cradle, wide establishing composition, warm dawn light",
+      "type": "subject_world",
+      "continuity": "begins the historical journey by moving from the book discovery into Takhti's origins",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "He became Iran's Olympic freestyle wrestling star.",
+      "visual": "A young Takhti-inspired wrestler in mid-century training clothes stands in an old wrestling hall holding a rope and preparing for competition, surrounded by traditional wrestling equipment.",
+      "purpose": "show his rise as Iran's Olympic freestyle wrestling star",
+      "visual_fingerprint": "young Iranian wrestler tying training rope in vintage wrestling hall, medium shot, wooden beams and hanging equipment composition",
+      "type": "subject_world",
+      "continuity": "moves from birthplace memory into his athletic development",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "He won gold at the 1956 Melbourne Olympics.",
+      "visual": "A symbolic painted Olympic memory showing Takhti on a podium receiving a gold medal beneath a soft archival arena glow, with no readable text.",
+      "purpose": "show his 1956 Melbourne Olympic gold achievement",
+      "visual_fingerprint": "mid-century wrestler on Olympic podium holding gold medal, upward angle, faded arena lights and cream paper background",
+      "type": "literal",
+      "continuity": "continues the wrestling journey from training to international achievement",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "He earned silver medals in Rome and Tokyo.",
+      "visual": "Two silver medals rest beside painted travel stamps and wrestling gear, with faint silhouettes of Olympic arenas representing Rome and Tokyo.",
+      "purpose": "show his silver medal achievements in Rome and Tokyo",
+      "visual_fingerprint": "paired silver medals beside vintage wrestling bag and travel symbols, overhead composition, archival object focus",
+      "type": "metaphor",
+      "continuity": "expands the medal story beyond one Olympic victory",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Fans admired his humility and fair play.",
+      "visual": "A respectful crowd of Iranian fans surrounds Takhti after a match, with gentle expressions and a humble bow replacing celebration poses.",
+      "purpose": "show why fans respected his humility and fair play",
+      "visual_fingerprint": "wrestler bowing toward simple crowd after match, eye-level composition, warm indoor wrestling hall atmosphere",
+      "type": "literal",
+      "continuity": "shifts from achievements to the character behind them",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Takhti helped opponents after fierce matches.",
+      "visual": "Takhti offers a hand and supports a tired opponent after a wrestling bout on a simple mat, emphasizing sportsmanship.",
+      "purpose": "show his kindness toward opponents after competition",
+      "visual_fingerprint": "two wrestlers helping each other rise from mat, close human gesture, low angle inside vintage gym",
+      "type": "literal",
+      "continuity": "shows a specific example of the humility introduced before",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Jahan Pahlavan means world champion.",
+      "visual": "A painted symbolic scene of a traditional champion figure standing beneath a globe motif and wrestling belt-like cloth, representing the meaning of the title.",
+      "purpose": "explain the meaning of Jahan Pahlavan",
+      "visual_fingerprint": "champion silhouette with globe symbol and traditional wrestling cloth, centered symbolic composition, soft ink wash",
+      "type": "metaphor",
+      "continuity": "moves from actions to the meaning behind his famous title",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "The title reflected respect, not only victories.",
+      "visual": "An old wrestling hall scene where a champion is surrounded by peers rather than trophies, showing honor through relationships.",
+      "purpose": "show that the title represented respect beyond winning",
+      "visual_fingerprint": "wrestler standing among fellow athletes without trophies, wide circular gathering composition, muted sepia lighting",
+      "type": "metaphor",
+      "continuity": "deepens the title explanation into social meaning",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "He became a symbol of Iranian sportsmanship.",
+      "visual": "A painted national sports memory card showing Takhti's figure beside a wrestling mat, traditional Iranian motifs, and respectful athletes watching him.",
+      "purpose": "show Takhti becoming a symbol of Iranian sportsmanship",
+      "visual_fingerprint": "iconic wrestler portrait beside mat and cultural motifs, vertical portrait composition, soft charcoal outlines",
+      "type": "subject_world",
+      "continuity": "transitions from personal respect into broader cultural legacy",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "His legacy still inspires athletes today.",
+      "visual": "Modern-day young athletes in a simple training hall look at an old Takhti photograph on the wall while practicing wrestling.",
+      "purpose": "show his lasting inspiration for athletes",
+      "visual_fingerprint": "young wrestlers training beneath historical portrait, back view composition, contemporary but non-branded gym setting",
+      "type": "literal",
+      "continuity": "connects historical memory to present-day influence",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "A Tehran statue honors his lasting memory.",
+      "visual": "A hand-painted Tehran street scene featuring a statue of Takhti with people quietly passing and paying respect.",
+      "purpose": "show the Tehran statue honoring Takhti's memory",
+      "visual_fingerprint": "Tehran public square with Takhti statue and pedestrians, vertical city composition, evening golden light",
+      "type": "literal",
+      "continuity": "returns from athletes to a public memorial place",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "People remember Takhti for character and courage.",
+      "visual": "A final archival-style painted portrait of Takhti's calm face beside a worn wrestling rope and open memory book, emphasizing character.",
+      "purpose": "show that his character and courage define his remembrance",
+      "visual_fingerprint": "elder memory portrait with worn rope and open book, close-up composition, warm reflective workshop light",
+      "type": "metaphor",
+      "continuity": "echoes the opening rope mystery and closes the historical journey",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

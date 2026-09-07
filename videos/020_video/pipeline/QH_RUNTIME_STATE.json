@@ -1,0 +1,498 @@
+{
+  "schema_version": 2,
+  "video_id": "020",
+  "topic": "جهان پهلوان تختی، کشتی گیر ایرانی",
+  "created_at": "2026-09-07T06:54:17Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:12Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:12Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:12Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:12Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:12Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:18:14Z",
+      "opening_activity": "handling rope",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "003",
+      "world_style_id": "sketch_painting_wrestling_memory_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:15Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:15Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:20:28Z",
+      "sha256": "0f6cf2620b9dda3f07895015ccb86b8e0c105947011a9b80b72bd8e6054a3d13",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:15Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_spread": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:20:31Z",
+      "template_id": "003",
+      "sha256": "6993be1c3ca08eec9ffdf8c52c4b91fdf95866b888121027cad1eb7925149083"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:15Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:15Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:18:32Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:18Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:19Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:20Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:21Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:23Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:24Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:25Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:26Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:27Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:29Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:30Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:31Z",
+      "artifact": "beat_012.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:34Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T08:18:34Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:22:37Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "1e84a7b931294394481794faa7212eab432755ebd287c993e78c15e12cd6617a"
+    },
+    "flow_policy_recovery_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:20:32Z",
+      "attempt": 0,
+      "next_attempt": 1
+    },
+    "flow_policy_repair_b_00": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:18:55Z",
+      "attempt": 0,
+      "flow_evidence": "Operator reported that Flow objected to the named-person/frame request after Ordak job bffdb0dd-0cae-4308-98b2-a4b4eebe9e1b timed out. The original prompt named a real athlete and its endpoint frame was described as a Takhti wrestling memory; regenerate a fictional, non-identifiable, non-violent ill",
+      "prompt_sha256": "31d33b78f5f3b088050adb4a1d63c110be5851e54a19bb8751333b415dcc85fb"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T08:22:38Z",
+      "body_images": 12
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 27.069,
+      "at": "2026-09-07T06:54:46Z",
+      "words": 131
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 21.065,
+      "at": "2026-09-07T06:55:10Z",
+      "words": 114
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.05,
+      "at": "2026-09-07T06:55:31Z",
+      "activity": "handling rope"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.047,
+      "at": "2026-09-07T06:55:51Z",
+      "style_id": "sketch_painting_wrestling_memory_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 72.239,
+      "at": "2026-09-07T06:57:06Z",
+      "sha256": "ae159aae75641becc5fdadbb61aa2dac0742fd2d74b0000b3ff5fe5cd2ca3a7e",
+      "model": "nano_banana_2",
+      "catalog_path": "011_sketch_painting_wrestling_memory_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-07T06:57:09Z",
+      "opening_activity": "handling rope",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "003",
+      "world_style_id": "sketch_painting_wrestling_memory_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 24.091,
+      "at": "2026-09-07T06:57:35Z",
+      "beats": 12
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 15.044,
+      "at": "2026-09-07T06:57:53Z",
+      "prompt_sha256": "fc13da0e234c156218928bdb29f472c1376a4c043ed22c60598a80167ac26ad9"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 60.214,
+      "at": "2026-09-07T06:58:56Z",
+      "sha256": "7d1b73465426efe93f3236de5ff29c781c5c30bebff8b4c81bc96e1f8ae7a02c",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.334,
+      "at": "2026-09-07T06:59:00Z",
+      "template_id": "003",
+      "sha256": "3fd80b700633fe6d418ccb3f49cf2d62de76178d60b3b7fbac8d4cf052942ac2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 15.053,
+      "at": "2026-09-07T06:59:18Z",
+      "prompt_sha256": "385ffa0477e031c306c191afaad94e9e1884ec084ab5f10ea20070e259d7f555"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 204.517,
+      "at": "2026-09-07T07:02:45Z",
+      "prompt_sha256": "dedf704ef6e2935d2a75d48a96ba70bfa99bafd4655f5024792be866e5d223c7"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 87.341,
+      "at": "2026-09-07T07:04:15Z",
+      "sha256": "6a1fd2bfe1c795f07643d1ffde0cebff1f63bdbee418e74a8f88597976735f18",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 87.344,
+      "at": "2026-09-07T07:05:44Z",
+      "sha256": "331eb63f0361a48236c6a4564a45ae5de491ebfc155245f45fb3c98d90472521",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 96.376,
+      "at": "2026-09-07T07:07:21Z",
+      "sha256": "1e9add692b6e562a41611dac43f7d75e36321e8e73d496dcd1b56751793a9b1f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 117.52,
+      "at": "2026-09-07T07:09:20Z",
+      "sha256": "510e08a04755ba7eef61dea9a9b0900c8473331f2f3a15993882ab39fd4d26ad",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 105.451,
+      "at": "2026-09-07T07:11:07Z",
+      "sha256": "14e2aa1331b8ba110f48e694b64c72c9b08b249729559890cda469b85041f449",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 108.489,
+      "at": "2026-09-07T07:12:57Z",
+      "sha256": "d90cf8cc5a47e536bffe35da5035390eb3bf3343d371ab7925b39312c33ea475",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 102.395,
+      "at": "2026-09-07T07:14:40Z",
+      "sha256": "40cb086672a70f36fcde7a9460bcb492f80450cb42ae0a7ff11577a2eb9af506",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 102.47,
+      "at": "2026-09-07T07:16:24Z",
+      "sha256": "1446c51d3a35f96ae3cd20152f7ec21472972d9ba30fdcff9d230f37fa13cf2b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 99.417,
+      "at": "2026-09-07T07:18:05Z",
+      "sha256": "7fa532f978584c5bbe406e2e6e031d4189d7b05d32267141d26d22b68e82dee6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 102.411,
+      "at": "2026-09-07T07:19:49Z",
+      "sha256": "47be3ac01e2b6f05f5771288b31a83bc84c44fe9d227d30564197d8afb79af96",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 99.319,
+      "at": "2026-09-07T07:21:29Z",
+      "sha256": "dea126128ab3e643d8f27280f018b8b207b936dacf707f7ccd602bc17c2e418b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 102.47,
+      "at": "2026-09-07T07:23:13Z",
+      "sha256": "26204710a44ebc59cb51767e7937d66ef06d6a7496d0ad82cf32eb70de40b79b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1226.516,
+      "at": "2026-09-07T07:23:14Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 327.412,
+      "at": "2026-09-07T07:28:44Z",
+      "boundaries": 11
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 141.46,
+      "at": "2026-09-07T07:31:08Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "2b7cda9195de1e836805b77e188d2d24d7c15bbe91eeae678cd2c90206e6d384"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-07T08:18:14Z",
+      "opening_activity": "handling rope",
+      "opening_location": "workshop",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "003",
+      "world_style_id": "sketch_painting_wrestling_memory_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 14.759,
+      "at": "2026-09-07T08:18:32Z"
+    },
+    {
+      "stage": "flow_policy_repair_b_00",
+      "status": "DONE",
+      "elapsed_seconds": 18.093,
+      "at": "2026-09-07T08:18:55Z",
+      "attempt": 0,
+      "flow_evidence": "Operator reported that Flow objected to the named-person/frame request after Ordak job bffdb0dd-0cae-4308-98b2-a4b4eebe9e1b timed out. The original prompt named a real athlete and its endpoint frame was described as a Takhti wrestling memory; regenerate a fictional, non-identifiable, non-violent ill",
+      "prompt_sha256": "31d33b78f5f3b088050adb4a1d63c110be5851e54a19bb8751333b415dcc85fb"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 90.356,
+      "at": "2026-09-07T08:20:28Z",
+      "sha256": "0f6cf2620b9dda3f07895015ccb86b8e0c105947011a9b80b72bd8e6054a3d13",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.318,
+      "at": "2026-09-07T08:20:31Z",
+      "template_id": "003",
+      "sha256": "6993be1c3ca08eec9ffdf8c52c4b91fdf95866b888121027cad1eb7925149083"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 123.489,
+      "at": "2026-09-07T08:22:37Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "1e84a7b931294394481794faa7212eab432755ebd287c993e78c15e12cd6617a"
+    }
+  ],
+  "updated_at": "2026-09-07T08:22:38Z"
+}

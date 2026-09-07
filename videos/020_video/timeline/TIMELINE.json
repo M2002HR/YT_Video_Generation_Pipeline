@@ -1,0 +1,1095 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 58.514,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 6.25,
+      "duration": 6.25,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 6.25,
+      "end": 9.625,
+      "duration": 3.375,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.625,
+      "end": 14.4,
+      "duration": 4.775,
+      "speech_start": 11.34,
+      "speech_end": 13.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Takhti was born in Tehran in 1930.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 14.4,
+      "end": 18.28,
+      "duration": 3.88,
+      "speech_start": 14.4,
+      "speech_end": 17.52,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "He became Iran's Olympic freestyle wrestling star.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 18.28,
+      "end": 22.42,
+      "duration": 4.14,
+      "speech_start": 18.28,
+      "speech_end": 21.08,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "He won gold at the 1956 Melbourne Olympics.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 22.42,
+      "end": 25.78,
+      "duration": 3.36,
+      "speech_start": 22.42,
+      "speech_end": 24.54,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "He earned silver medals in Rome and Tokyo.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 25.78,
+      "end": 29.24,
+      "duration": 3.46,
+      "speech_start": 25.78,
+      "speech_end": 28.16,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Fans admired his humility and fair play.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 29.24,
+      "end": 33.04,
+      "duration": 3.8,
+      "speech_start": 29.24,
+      "speech_end": 31.98,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Takhti helped opponents after fierce matches.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 33.04,
+      "end": 36.3,
+      "duration": 3.26,
+      "speech_start": 33.04,
+      "speech_end": 35.54,
+      "match_confidence": 0.8,
+      "motion": "slow_zoom_in",
+      "narration": "Jahan Pahlavan means world champion.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 36.3,
+      "end": 40.08,
+      "duration": 3.78,
+      "speech_start": 36.3,
+      "speech_end": 38.94,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The title reflected respect, not only victories.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 40.08,
+      "end": 43.16,
+      "duration": 3.08,
+      "speech_start": 40.08,
+      "speech_end": 42.7,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "He became a symbol of Iranian sportsmanship.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 43.16,
+      "end": 46.84,
+      "duration": 3.68,
+      "speech_start": 43.16,
+      "speech_end": 45.76,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "His legacy still inspires athletes today.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 46.84,
+      "end": 50.3,
+      "duration": 3.46,
+      "speech_start": 46.84,
+      "speech_end": 49.46,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "A Tehran statue honors his lasting memory.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 50.3,
+      "end": 58.514,
+      "duration": 8.214,
+      "speech_start": 50.3,
+      "speech_end": 52.72,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "People remember Takhti for character and courage.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 1.44,
+      "text": "While I water the garden, I",
+      "ass_text": "While I water the garden, I",
+      "words": [
+        {
+          "text": "While",
+          "start": 0.0,
+          "end": 0.22
+        },
+        {
+          "text": "I",
+          "start": 0.22,
+          "end": 0.38
+        },
+        {
+          "text": "water",
+          "start": 0.38,
+          "end": 0.62
+        },
+        {
+          "text": "the",
+          "start": 0.62,
+          "end": 0.76
+        },
+        {
+          "text": "garden,",
+          "start": 0.76,
+          "end": 1.36
+        },
+        {
+          "text": "I",
+          "start": 1.36,
+          "end": 1.44
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 1.44,
+      "end": 4.62,
+      "text": "ask, why is Gholam Ressa Takhti",
+      "ass_text": "ask, why is Gholam Ressa Takhti",
+      "words": [
+        {
+          "text": "ask,",
+          "start": 1.44,
+          "end": 2.12
+        },
+        {
+          "text": "why",
+          "start": 2.12,
+          "end": 2.76
+        },
+        {
+          "text": "is",
+          "start": 2.76,
+          "end": 3.24
+        },
+        {
+          "text": "Gholam",
+          "start": 3.24,
+          "end": 3.72
+        },
+        {
+          "text": "Ressa",
+          "start": 3.72,
+          "end": 4.04
+        },
+        {
+          "text": "Takhti",
+          "start": 4.04,
+          "end": 4.62
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 4.62,
+      "end": 6.24,
+      "text": "remembered beyond wrestling?",
+      "ass_text": "remembered beyond wrestling?",
+      "words": [
+        {
+          "text": "remembered",
+          "start": 4.62,
+          "end": 5.16
+        },
+        {
+          "text": "beyond",
+          "start": 5.16,
+          "end": 5.62
+        },
+        {
+          "text": "wrestling?",
+          "start": 5.62,
+          "end": 6.24
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 7.8,
+      "end": 9.16,
+      "text": "I reach for the book, and",
+      "ass_text": "I reach for the book, and",
+      "words": [
+        {
+          "text": "I",
+          "start": 7.8,
+          "end": 7.98
+        },
+        {
+          "text": "reach",
+          "start": 7.98,
+          "end": 8.22
+        },
+        {
+          "text": "for",
+          "start": 8.22,
+          "end": 8.36
+        },
+        {
+          "text": "the",
+          "start": 8.36,
+          "end": 8.48
+        },
+        {
+          "text": "book,",
+          "start": 8.48,
+          "end": 8.84
+        },
+        {
+          "text": "and",
+          "start": 8.84,
+          "end": 9.16
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 9.16,
+      "end": 9.6,
+      "text": "it opens.",
+      "ass_text": "it opens.",
+      "words": [
+        {
+          "text": "it",
+          "start": 9.16,
+          "end": 9.28
+        },
+        {
+          "text": "opens.",
+          "start": 9.28,
+          "end": 9.6
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 11.34,
+      "end": 12.86,
+      "text": "Takhti was born in Tehran in",
+      "ass_text": "Takhti was born in Tehran in",
+      "words": [
+        {
+          "text": "Takhti",
+          "start": 11.34,
+          "end": 11.66
+        },
+        {
+          "text": "was",
+          "start": 11.66,
+          "end": 11.86
+        },
+        {
+          "text": "born",
+          "start": 11.86,
+          "end": 12.08
+        },
+        {
+          "text": "in",
+          "start": 12.08,
+          "end": 12.28
+        },
+        {
+          "text": "Tehran",
+          "start": 12.28,
+          "end": 12.68
+        },
+        {
+          "text": "in",
+          "start": 12.68,
+          "end": 12.86
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 12.86,
+      "end": 13.6,
+      "text": "1930.",
+      "ass_text": "1930.",
+      "words": [
+        {
+          "text": "1930.",
+          "start": 12.86,
+          "end": 13.6
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 14.4,
+      "end": 17.14,
+      "text": "He became Iran's Olympic freestyle wrestling",
+      "ass_text": "He became Iran's Olympic freestyle\\Nwrestling",
+      "words": [
+        {
+          "text": "He",
+          "start": 14.4,
+          "end": 14.56
+        },
+        {
+          "text": "became",
+          "start": 14.56,
+          "end": 14.9
+        },
+        {
+          "text": "Iran's",
+          "start": 14.9,
+          "end": 15.46
+        },
+        {
+          "text": "Olympic",
+          "start": 15.46,
+          "end": 16.04
+        },
+        {
+          "text": "freestyle",
+          "start": 16.04,
+          "end": 16.64
+        },
+        {
+          "text": "wrestling",
+          "start": 16.64,
+          "end": 17.14
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 17.14,
+      "end": 17.52,
+      "text": "star.",
+      "ass_text": "star.",
+      "words": [
+        {
+          "text": "star.",
+          "start": 17.14,
+          "end": 17.52
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 18.28,
+      "end": 19.86,
+      "text": "He won gold at the 1956",
+      "ass_text": "He won gold at the 1956",
+      "words": [
+        {
+          "text": "He",
+          "start": 18.28,
+          "end": 18.48
+        },
+        {
+          "text": "won",
+          "start": 18.48,
+          "end": 18.72
+        },
+        {
+          "text": "gold",
+          "start": 18.72,
+          "end": 19.02
+        },
+        {
+          "text": "at",
+          "start": 19.02,
+          "end": 19.22
+        },
+        {
+          "text": "the",
+          "start": 19.22,
+          "end": 19.28
+        },
+        {
+          "text": "1956",
+          "start": 19.28,
+          "end": 19.86
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 19.86,
+      "end": 21.08,
+      "text": "Melbourne Olympics.",
+      "ass_text": "Melbourne Olympics.",
+      "words": [
+        {
+          "text": "Melbourne",
+          "start": 19.86,
+          "end": 20.68
+        },
+        {
+          "text": "Olympics.",
+          "start": 20.68,
+          "end": 21.08
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 22.42,
+      "end": 23.94,
+      "text": "He earned silver medals in Rome",
+      "ass_text": "He earned silver medals in Rome",
+      "words": [
+        {
+          "text": "He",
+          "start": 22.42,
+          "end": 22.54
+        },
+        {
+          "text": "earned",
+          "start": 22.54,
+          "end": 22.82
+        },
+        {
+          "text": "silver",
+          "start": 22.82,
+          "end": 23.08
+        },
+        {
+          "text": "medals",
+          "start": 23.08,
+          "end": 23.42
+        },
+        {
+          "text": "in",
+          "start": 23.42,
+          "end": 23.64
+        },
+        {
+          "text": "Rome",
+          "start": 23.64,
+          "end": 23.94
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 23.94,
+      "end": 24.54,
+      "text": "and Tokyo.",
+      "ass_text": "and Tokyo.",
+      "words": [
+        {
+          "text": "and",
+          "start": 23.94,
+          "end": 24.18
+        },
+        {
+          "text": "Tokyo.",
+          "start": 24.18,
+          "end": 24.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 25.78,
+      "end": 27.8,
+      "text": "Fans admired his humility and fair",
+      "ass_text": "Fans admired his humility and fair",
+      "words": [
+        {
+          "text": "Fans",
+          "start": 25.78,
+          "end": 26.08
+        },
+        {
+          "text": "admired",
+          "start": 26.08,
+          "end": 26.5
+        },
+        {
+          "text": "his",
+          "start": 26.5,
+          "end": 26.72
+        },
+        {
+          "text": "humility",
+          "start": 26.72,
+          "end": 27.12
+        },
+        {
+          "text": "and",
+          "start": 27.12,
+          "end": 27.5
+        },
+        {
+          "text": "fair",
+          "start": 27.5,
+          "end": 27.8
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 27.8,
+      "end": 28.16,
+      "text": "play.",
+      "ass_text": "play.",
+      "words": [
+        {
+          "text": "play.",
+          "start": 27.8,
+          "end": 28.16
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 29.24,
+      "end": 31.98,
+      "text": "Takhti helped opponents after fierce matches.",
+      "ass_text": "Takhti helped opponents after\\Nfierce matches.",
+      "words": [
+        {
+          "text": "Takhti",
+          "start": 29.24,
+          "end": 29.62
+        },
+        {
+          "text": "helped",
+          "start": 29.62,
+          "end": 29.92
+        },
+        {
+          "text": "opponents",
+          "start": 29.92,
+          "end": 30.32
+        },
+        {
+          "text": "after",
+          "start": 30.32,
+          "end": 30.7
+        },
+        {
+          "text": "fierce",
+          "start": 30.7,
+          "end": 31.14
+        },
+        {
+          "text": "matches.",
+          "start": 31.14,
+          "end": 31.98
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 33.04,
+      "end": 35.54,
+      "text": "Jahan Palavan means world champion.",
+      "ass_text": "Jahan Palavan means world\\Nchampion.",
+      "words": [
+        {
+          "text": "Jahan",
+          "start": 33.04,
+          "end": 33.48
+        },
+        {
+          "text": "Palavan",
+          "start": 33.48,
+          "end": 33.96
+        },
+        {
+          "text": "means",
+          "start": 33.96,
+          "end": 34.24
+        },
+        {
+          "text": "world",
+          "start": 34.24,
+          "end": 34.68
+        },
+        {
+          "text": "champion.",
+          "start": 34.68,
+          "end": 35.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 36.3,
+      "end": 38.52,
+      "text": "The title reflected respect, not only",
+      "ass_text": "The title reflected respect, not\\Nonly",
+      "words": [
+        {
+          "text": "The",
+          "start": 36.3,
+          "end": 36.5
+        },
+        {
+          "text": "title",
+          "start": 36.5,
+          "end": 36.76
+        },
+        {
+          "text": "reflected",
+          "start": 36.76,
+          "end": 37.28
+        },
+        {
+          "text": "respect,",
+          "start": 37.28,
+          "end": 38.2
+        },
+        {
+          "text": "not",
+          "start": 38.2,
+          "end": 38.32
+        },
+        {
+          "text": "only",
+          "start": 38.32,
+          "end": 38.52
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 38.52,
+      "end": 38.94,
+      "text": "victories.",
+      "ass_text": "victories.",
+      "words": [
+        {
+          "text": "victories.",
+          "start": 38.52,
+          "end": 38.94
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 40.08,
+      "end": 41.54,
+      "text": "He became a symbol of Iranian",
+      "ass_text": "He became a symbol of Iranian",
+      "words": [
+        {
+          "text": "He",
+          "start": 40.08,
+          "end": 40.22
+        },
+        {
+          "text": "became",
+          "start": 40.22,
+          "end": 40.5
+        },
+        {
+          "text": "a",
+          "start": 40.5,
+          "end": 40.7
+        },
+        {
+          "text": "symbol",
+          "start": 40.7,
+          "end": 40.94
+        },
+        {
+          "text": "of",
+          "start": 40.94,
+          "end": 41.14
+        },
+        {
+          "text": "Iranian",
+          "start": 41.14,
+          "end": 41.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 41.54,
+      "end": 42.7,
+      "text": "sportsmanship.",
+      "ass_text": "sportsmanship.",
+      "words": [
+        {
+          "text": "sportsmanship.",
+          "start": 41.54,
+          "end": 42.7
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 43.16,
+      "end": 45.76,
+      "text": "His legacy still inspires athletes today.",
+      "ass_text": "His legacy still inspires athletes\\Ntoday.",
+      "words": [
+        {
+          "text": "His",
+          "start": 43.16,
+          "end": 43.38
+        },
+        {
+          "text": "legacy",
+          "start": 43.38,
+          "end": 43.66
+        },
+        {
+          "text": "still",
+          "start": 43.66,
+          "end": 44.02
+        },
+        {
+          "text": "inspires",
+          "start": 44.02,
+          "end": 44.54
+        },
+        {
+          "text": "athletes",
+          "start": 44.54,
+          "end": 45.24
+        },
+        {
+          "text": "today.",
+          "start": 45.24,
+          "end": 45.76
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 46.84,
+      "end": 49.0,
+      "text": "A Tehran statue honors his lasting",
+      "ass_text": "A Tehran statue honors his lasting",
+      "words": [
+        {
+          "text": "A",
+          "start": 46.84,
+          "end": 46.98
+        },
+        {
+          "text": "Tehran",
+          "start": 46.98,
+          "end": 47.38
+        },
+        {
+          "text": "statue",
+          "start": 47.38,
+          "end": 47.88
+        },
+        {
+          "text": "honors",
+          "start": 47.88,
+          "end": 48.24
+        },
+        {
+          "text": "his",
+          "start": 48.24,
+          "end": 48.54
+        },
+        {
+          "text": "lasting",
+          "start": 48.54,
+          "end": 49.0
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 49.0,
+      "end": 49.46,
+      "text": "memory.",
+      "ass_text": "memory.",
+      "words": [
+        {
+          "text": "memory.",
+          "start": 49.0,
+          "end": 49.46
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 50.3,
+      "end": 52.36,
+      "text": "People remember Takhti for character and",
+      "ass_text": "People remember Takhti for\\Ncharacter and",
+      "words": [
+        {
+          "text": "People",
+          "start": 50.3,
+          "end": 50.56
+        },
+        {
+          "text": "remember",
+          "start": 50.56,
+          "end": 50.9
+        },
+        {
+          "text": "Takhti",
+          "start": 50.9,
+          "end": 51.38
+        },
+        {
+          "text": "for",
+          "start": 51.38,
+          "end": 51.6
+        },
+        {
+          "text": "character",
+          "start": 51.6,
+          "end": 51.94
+        },
+        {
+          "text": "and",
+          "start": 51.94,
+          "end": 52.36
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 52.36,
+      "end": 52.72,
+      "text": "courage.",
+      "ass_text": "courage.",
+      "words": [
+        {
+          "text": "courage.",
+          "start": 52.36,
+          "end": 52.72
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 53.54,
+      "end": 55.82,
+      "text": "His name remains tied to honor.",
+      "ass_text": "His name remains tied to honor.",
+      "words": [
+        {
+          "text": "His",
+          "start": 53.54,
+          "end": 53.72
+        },
+        {
+          "text": "name",
+          "start": 53.72,
+          "end": 53.96
+        },
+        {
+          "text": "remains",
+          "start": 53.96,
+          "end": 54.38
+        },
+        {
+          "text": "tied",
+          "start": 54.38,
+          "end": 54.68
+        },
+        {
+          "text": "to",
+          "start": 54.68,
+          "end": 54.92
+        },
+        {
+          "text": "honor.",
+          "start": 54.92,
+          "end": 55.82
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 56.12,
+      "end": 58.22,
+      "text": "Like and subscribe for more questions.",
+      "ass_text": "Like and subscribe for more\\Nquestions.",
+      "words": [
+        {
+          "text": "Like",
+          "start": 56.12,
+          "end": 56.44
+        },
+        {
+          "text": "and",
+          "start": 56.44,
+          "end": 56.6
+        },
+        {
+          "text": "subscribe",
+          "start": 56.6,
+          "end": 56.96
+        },
+        {
+          "text": "for",
+          "start": 56.96,
+          "end": 57.34
+        },
+        {
+          "text": "more",
+          "start": 57.34,
+          "end": 57.46
+        },
+        {
+          "text": "questions.",
+          "start": 57.46,
+          "end": 58.22
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 58.24,
+      "end": 58.58,
+      "text": "Thank you.",
+      "ass_text": "Thank you.",
+      "words": [
+        {
+          "text": "Thank",
+          "start": 58.24,
+          "end": 58.56
+        },
+        {
+          "text": "you.",
+          "start": 58.56,
+          "end": 58.58
+        }
+      ],
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 14,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 29,
+    "subtitle_cues_estimated": 0
+  }
+}

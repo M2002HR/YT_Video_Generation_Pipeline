@@ -1,0 +1,40 @@
+{
+  "provider": "gemini",
+  "job_id": "2000dfe0-ec4c-482c-8736-04fbeeb8cd32",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/05d4e8fbb8b81a6d",
+    "submission_fingerprint": null,
+    "reference_roles": [],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=2000dfe0-ec4c-482c-8736-04fbeeb8cd32_output_1.png 1536x2752 sha256=ae159aae75641becc5fdadbb61aa2dac0742fd2d74b0000b3ff5fe5cd2ca3a7e"
+    ]
+  },
+  "references": [],
+  "prompt_sha256": "0d6673ce939ce43c8484f446ec9f3f85c381c4ace0cd11a05a137dcdc8619fc7",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "ae159aae75641becc5fdadbb61aa2dac0742fd2d74b0000b3ff5fe5cd2ca3a7e",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 48.113,
+  "completed_at": "2026-09-07T06:57:06Z"
+}

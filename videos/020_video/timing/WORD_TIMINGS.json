@@ -1,0 +1,724 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 58.514,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 119,
+  "words": [
+    {
+      "text": "While",
+      "token": "while",
+      "start": 0.0,
+      "end": 0.22
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 0.22,
+      "end": 0.38
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 0.38,
+      "end": 0.62
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 0.62,
+      "end": 0.76
+    },
+    {
+      "text": "garden,",
+      "token": "garden",
+      "start": 0.76,
+      "end": 1.36
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 1.36,
+      "end": 1.44
+    },
+    {
+      "text": "ask,",
+      "token": "ask",
+      "start": 1.44,
+      "end": 2.12
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 2.12,
+      "end": 2.76
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 2.76,
+      "end": 3.24
+    },
+    {
+      "text": "Gholam",
+      "token": "gholam",
+      "start": 3.24,
+      "end": 3.72
+    },
+    {
+      "text": "Ressa",
+      "token": "ressa",
+      "start": 3.72,
+      "end": 4.04
+    },
+    {
+      "text": "Takhti",
+      "token": "takhti",
+      "start": 4.04,
+      "end": 4.62
+    },
+    {
+      "text": "remembered",
+      "token": "remembered",
+      "start": 4.62,
+      "end": 5.16
+    },
+    {
+      "text": "beyond",
+      "token": "beyond",
+      "start": 5.16,
+      "end": 5.62
+    },
+    {
+      "text": "wrestling?",
+      "token": "wrestling",
+      "start": 5.62,
+      "end": 6.24
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 7.8,
+      "end": 7.98
+    },
+    {
+      "text": "reach",
+      "token": "reach",
+      "start": 7.98,
+      "end": 8.22
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 8.22,
+      "end": 8.36
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 8.36,
+      "end": 8.48
+    },
+    {
+      "text": "book,",
+      "token": "book",
+      "start": 8.48,
+      "end": 8.84
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 8.84,
+      "end": 9.16
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 9.16,
+      "end": 9.28
+    },
+    {
+      "text": "opens.",
+      "token": "opens",
+      "start": 9.28,
+      "end": 9.6
+    },
+    {
+      "text": "Takhti",
+      "token": "takhti",
+      "start": 11.34,
+      "end": 11.66
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 11.66,
+      "end": 11.86
+    },
+    {
+      "text": "born",
+      "token": "born",
+      "start": 11.86,
+      "end": 12.08
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 12.08,
+      "end": 12.28
+    },
+    {
+      "text": "Tehran",
+      "token": "tehran",
+      "start": 12.28,
+      "end": 12.68
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 12.68,
+      "end": 12.86
+    },
+    {
+      "text": "1930.",
+      "token": "1930",
+      "start": 12.86,
+      "end": 13.6
+    },
+    {
+      "text": "He",
+      "token": "he",
+      "start": 14.4,
+      "end": 14.56
+    },
+    {
+      "text": "became",
+      "token": "became",
+      "start": 14.56,
+      "end": 14.9
+    },
+    {
+      "text": "Iran's",
+      "token": "iran's",
+      "start": 14.9,
+      "end": 15.46
+    },
+    {
+      "text": "Olympic",
+      "token": "olympic",
+      "start": 15.46,
+      "end": 16.04
+    },
+    {
+      "text": "freestyle",
+      "token": "freestyle",
+      "start": 16.04,
+      "end": 16.64
+    },
+    {
+      "text": "wrestling",
+      "token": "wrestling",
+      "start": 16.64,
+      "end": 17.14
+    },
+    {
+      "text": "star.",
+      "token": "star",
+      "start": 17.14,
+      "end": 17.52
+    },
+    {
+      "text": "He",
+      "token": "he",
+      "start": 18.28,
+      "end": 18.48
+    },
+    {
+      "text": "won",
+      "token": "won",
+      "start": 18.48,
+      "end": 18.72
+    },
+    {
+      "text": "gold",
+      "token": "gold",
+      "start": 18.72,
+      "end": 19.02
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 19.02,
+      "end": 19.22
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 19.22,
+      "end": 19.28
+    },
+    {
+      "text": "1956",
+      "token": "1956",
+      "start": 19.28,
+      "end": 19.86
+    },
+    {
+      "text": "Melbourne",
+      "token": "melbourne",
+      "start": 19.86,
+      "end": 20.68
+    },
+    {
+      "text": "Olympics.",
+      "token": "olympics",
+      "start": 20.68,
+      "end": 21.08
+    },
+    {
+      "text": "He",
+      "token": "he",
+      "start": 22.42,
+      "end": 22.54
+    },
+    {
+      "text": "earned",
+      "token": "earned",
+      "start": 22.54,
+      "end": 22.82
+    },
+    {
+      "text": "silver",
+      "token": "silver",
+      "start": 22.82,
+      "end": 23.08
+    },
+    {
+      "text": "medals",
+      "token": "medals",
+      "start": 23.08,
+      "end": 23.42
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 23.42,
+      "end": 23.64
+    },
+    {
+      "text": "Rome",
+      "token": "rome",
+      "start": 23.64,
+      "end": 23.94
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 23.94,
+      "end": 24.18
+    },
+    {
+      "text": "Tokyo.",
+      "token": "tokyo",
+      "start": 24.18,
+      "end": 24.54
+    },
+    {
+      "text": "Fans",
+      "token": "fans",
+      "start": 25.78,
+      "end": 26.08
+    },
+    {
+      "text": "admired",
+      "token": "admired",
+      "start": 26.08,
+      "end": 26.5
+    },
+    {
+      "text": "his",
+      "token": "his",
+      "start": 26.5,
+      "end": 26.72
+    },
+    {
+      "text": "humility",
+      "token": "humility",
+      "start": 26.72,
+      "end": 27.12
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 27.12,
+      "end": 27.5
+    },
+    {
+      "text": "fair",
+      "token": "fair",
+      "start": 27.5,
+      "end": 27.8
+    },
+    {
+      "text": "play.",
+      "token": "play",
+      "start": 27.8,
+      "end": 28.16
+    },
+    {
+      "text": "Takhti",
+      "token": "takhti",
+      "start": 29.24,
+      "end": 29.62
+    },
+    {
+      "text": "helped",
+      "token": "helped",
+      "start": 29.62,
+      "end": 29.92
+    },
+    {
+      "text": "opponents",
+      "token": "opponents",
+      "start": 29.92,
+      "end": 30.32
+    },
+    {
+      "text": "after",
+      "token": "after",
+      "start": 30.32,
+      "end": 30.7
+    },
+    {
+      "text": "fierce",
+      "token": "fierce",
+      "start": 30.7,
+      "end": 31.14
+    },
+    {
+      "text": "matches.",
+      "token": "matches",
+      "start": 31.14,
+      "end": 31.98
+    },
+    {
+      "text": "Jahan",
+      "token": "jahan",
+      "start": 33.04,
+      "end": 33.48
+    },
+    {
+      "text": "Palavan",
+      "token": "palavan",
+      "start": 33.48,
+      "end": 33.96
+    },
+    {
+      "text": "means",
+      "token": "means",
+      "start": 33.96,
+      "end": 34.24
+    },
+    {
+      "text": "world",
+      "token": "world",
+      "start": 34.24,
+      "end": 34.68
+    },
+    {
+      "text": "champion.",
+      "token": "champion",
+      "start": 34.68,
+      "end": 35.54
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 36.3,
+      "end": 36.5
+    },
+    {
+      "text": "title",
+      "token": "title",
+      "start": 36.5,
+      "end": 36.76
+    },
+    {
+      "text": "reflected",
+      "token": "reflected",
+      "start": 36.76,
+      "end": 37.28
+    },
+    {
+      "text": "respect,",
+      "token": "respect",
+      "start": 37.28,
+      "end": 38.2
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 38.2,
+      "end": 38.32
+    },
+    {
+      "text": "only",
+      "token": "only",
+      "start": 38.32,
+      "end": 38.52
+    },
+    {
+      "text": "victories.",
+      "token": "victories",
+      "start": 38.52,
+      "end": 38.94
+    },
+    {
+      "text": "He",
+      "token": "he",
+      "start": 40.08,
+      "end": 40.22
+    },
+    {
+      "text": "became",
+      "token": "became",
+      "start": 40.22,
+      "end": 40.5
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 40.5,
+      "end": 40.7
+    },
+    {
+      "text": "symbol",
+      "token": "symbol",
+      "start": 40.7,
+      "end": 40.94
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 40.94,
+      "end": 41.14
+    },
+    {
+      "text": "Iranian",
+      "token": "iranian",
+      "start": 41.14,
+      "end": 41.54
+    },
+    {
+      "text": "sportsmanship.",
+      "token": "sportsmanship",
+      "start": 41.54,
+      "end": 42.7
+    },
+    {
+      "text": "His",
+      "token": "his",
+      "start": 43.16,
+      "end": 43.38
+    },
+    {
+      "text": "legacy",
+      "token": "legacy",
+      "start": 43.38,
+      "end": 43.66
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 43.66,
+      "end": 44.02
+    },
+    {
+      "text": "inspires",
+      "token": "inspires",
+      "start": 44.02,
+      "end": 44.54
+    },
+    {
+      "text": "athletes",
+      "token": "athletes",
+      "start": 44.54,
+      "end": 45.24
+    },
+    {
+      "text": "today.",
+      "token": "today",
+      "start": 45.24,
+      "end": 45.76
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 46.84,
+      "end": 46.98
+    },
+    {
+      "text": "Tehran",
+      "token": "tehran",
+      "start": 46.98,
+      "end": 47.38
+    },
+    {
+      "text": "statue",
+      "token": "statue",
+      "start": 47.38,
+      "end": 47.88
+    },
+    {
+      "text": "honors",
+      "token": "honors",
+      "start": 47.88,
+      "end": 48.24
+    },
+    {
+      "text": "his",
+      "token": "his",
+      "start": 48.24,
+      "end": 48.54
+    },
+    {
+      "text": "lasting",
+      "token": "lasting",
+      "start": 48.54,
+      "end": 49.0
+    },
+    {
+      "text": "memory.",
+      "token": "memory",
+      "start": 49.0,
+      "end": 49.46
+    },
+    {
+      "text": "People",
+      "token": "people",
+      "start": 50.3,
+      "end": 50.56
+    },
+    {
+      "text": "remember",
+      "token": "remember",
+      "start": 50.56,
+      "end": 50.9
+    },
+    {
+      "text": "Takhti",
+      "token": "takhti",
+      "start": 50.9,
+      "end": 51.38
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 51.38,
+      "end": 51.6
+    },
+    {
+      "text": "character",
+      "token": "character",
+      "start": 51.6,
+      "end": 51.94
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 51.94,
+      "end": 52.36
+    },
+    {
+      "text": "courage.",
+      "token": "courage",
+      "start": 52.36,
+      "end": 52.72
+    },
+    {
+      "text": "His",
+      "token": "his",
+      "start": 53.54,
+      "end": 53.72
+    },
+    {
+      "text": "name",
+      "token": "name",
+      "start": 53.72,
+      "end": 53.96
+    },
+    {
+      "text": "remains",
+      "token": "remains",
+      "start": 53.96,
+      "end": 54.38
+    },
+    {
+      "text": "tied",
+      "token": "tied",
+      "start": 54.38,
+      "end": 54.68
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 54.68,
+      "end": 54.92
+    },
+    {
+      "text": "honor.",
+      "token": "honor",
+      "start": 54.92,
+      "end": 55.82
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 56.12,
+      "end": 56.44
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 56.44,
+      "end": 56.6
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 56.6,
+      "end": 56.96
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 56.96,
+      "end": 57.34
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 57.34,
+      "end": 57.46
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 57.46,
+      "end": 58.22
+    },
+    {
+      "text": "Thank",
+      "token": "thank",
+      "start": 58.24,
+      "end": 58.56
+    },
+    {
+      "text": "you.",
+      "token": "you",
+      "start": 58.56,
+      "end": 58.58
+    }
+  ]
+}

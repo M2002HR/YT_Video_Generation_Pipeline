@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The cut moves from Takhti's birthplace memory into his athletic journey across time, so a gentle dissolve preserves the archival storybook feeling while the slow zoom emphasizes his emergence as a wrestling figure."
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The training hall image and Olympic medal scene form a natural time progression from preparation to achievement. A soft dissolve preserves the archival painted-memory style, while a gentle zoom into the medal moment adds emotional weight to the historic victory."
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The medal ceremony shifts from a personal victory moment into a reflective summary of his wider Olympic legacy. A soft dissolve preserves the archival memory feel, while a gentle zoom into the medals and travel objects emphasizes the passage from one achievement to a broader career story."
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing image is an archival object-focused medal memory, while the incoming image shifts to the human meaning behind those achievements. A gentle dissolve bridges the reflective time jump, and a slow zoom-in on the respectful crowd scene emphasizes Takhti's humility rather than the medals themselves."
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The two scenes share the same warm wrestling world and emotional focus, so a subtle rightward flow preserves continuity while moving from general respect to a specific act of sportsmanship. A slow zoom-in emphasizes the human gesture of helping an opponent."
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing image shows a human act of sportsmanship, while the incoming image shifts into a symbolic explanation of Takhti's title. A gentle dissolve preserves the emotional continuity from kindness to legacy, and a slow zoom-in draws attention to the globe and champion symbolism."
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The symbolic globe-and-champion image shifts naturally into a human-centered wrestling hall scene. A soft dissolve preserves the reflective meaning of the title while the slow zoom draws attention from the abstract idea of world champion toward the relationships and respect that define it."
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing image emphasizes communal respect and shared honor, while the incoming image broadens that idea into Takhti's cultural legacy. A gentle dissolve preserves the reflective tone and the slow zoom-in adds weight to the iconic portrait-like composition without creating a harsh shift."
+    },
+    {
+      "from_beat_id": 9,
+      "to_beat_id": 10,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The transition moves from a symbolic portrait of Takhti's cultural legacy into a present-day scene of athletes honoring him. A soft dissolve preserves the reflective documentary tone, while a gentle zoom-in on the new training hall emphasizes the continuing inspiration and living legacy."
+    },
+    {
+      "from_beat_id": 10,
+      "to_beat_id": 11,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The scene shifts from young athletes carrying Takhti's memory to a public memorial, so a reflective dissolve preserves the emotional continuity. The statue scene has a grand vertical composition and benefits from a gentle slow zoom to emphasize lasting legacy."
+    },
+    {
+      "from_beat_id": 11,
+      "to_beat_id": 12,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34,
+      "next_motion": "slow_zoom_in",
+      "reason": "The memorial statue dissolves naturally into a reflective close portrait, shifting from public remembrance to personal character. A gentle zoom-in reinforces the emotional closing focus on Takhti's courage and legacy."
+    }
+  ],
+  "created_at": "2026-09-07T07:28:44Z"
+}

@@ -1,0 +1,14 @@
+{
+  "opening_activity": "handling rope",
+  "opening_location": "workshop",
+  "curiosity_trigger": "noticing an old training rope with unusual knots and wear marks",
+  "trigger_object": "worn wrestling rope",
+  "reaction": "pauses, examines the knots, wonders about the stories behind it",
+  "book_retrieval": "wipes hands, walks to a wooden shelf, pulls down the worn green book",
+  "camera_pattern": "slow_push_in",
+  "book_template_id": "003",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "soft sketch painting with textured paper, warm workshop light, and hand-drawn historical atmosphere",
+  "reason": "Handling training rope naturally connects the farm workshop world to Takhti's wrestling career and opens a question about why his character became his greatest legacy."
+}

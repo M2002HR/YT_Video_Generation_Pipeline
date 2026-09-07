@@ -1,0 +1,126 @@
+{
+  "audio_duration_seconds": 58.514,
+  "spark_start": 0.0,
+  "spark_end": 6.24,
+  "spark_duration": 6.24,
+  "transition_start": 7.8,
+  "transition_end": 9.6,
+  "transition_duration": 1.8,
+  "clip_a_target_seconds": 6.24,
+  "clip_b_target_seconds": 3.36,
+  "body_start": 11.34,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "While I water the garden, I ask: why is Gholamreza Takhti remembered beyond wrestling?",
+      "speech_start": 0.0,
+      "speech_end": 6.24,
+      "match_confidence": 0.929
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I reach for the book and it opens.",
+      "speech_start": 7.8,
+      "speech_end": 9.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Takhti was born in Tehran in 1930.",
+      "speech_start": 11.34,
+      "speech_end": 13.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "He became Iran's Olympic freestyle wrestling star.",
+      "speech_start": 14.4,
+      "speech_end": 17.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "He won gold at the 1956 Melbourne Olympics.",
+      "speech_start": 18.28,
+      "speech_end": 21.08,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "He earned silver medals in Rome and Tokyo.",
+      "speech_start": 22.42,
+      "speech_end": 24.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Fans admired his humility and fair play.",
+      "speech_start": 25.78,
+      "speech_end": 28.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Takhti helped opponents after fierce matches.",
+      "speech_start": 29.24,
+      "speech_end": 31.98,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Jahan Pahlavan means world champion.",
+      "speech_start": 33.04,
+      "speech_end": 35.54,
+      "match_confidence": 0.8
+    },
+    {
+      "segment": "body_08",
+      "narration": "The title reflected respect, not only victories.",
+      "speech_start": 36.3,
+      "speech_end": 38.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "He became a symbol of Iranian sportsmanship.",
+      "speech_start": 40.08,
+      "speech_end": 42.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "His legacy still inspires athletes today.",
+      "speech_start": 43.16,
+      "speech_end": 45.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "A Tehran statue honors his lasting memory.",
+      "speech_start": 46.84,
+      "speech_end": 49.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "People remember Takhti for character and courage.",
+      "speech_start": 50.3,
+      "speech_end": 52.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "His name remains tied to honor.",
+      "speech_start": 53.54,
+      "speech_end": 55.82,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more questions.",
+      "speech_start": 56.12,
+      "speech_end": 58.22,
+      "match_confidence": 1.0
+    }
+  ]
+}
