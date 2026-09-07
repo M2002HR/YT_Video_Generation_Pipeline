@@ -1,0 +1,22 @@
+{
+  "working_title": "Pandora's Jar: The Story Behind the Box",
+  "audience": "Curious viewers who enjoy concise mythology explained with visual storytelling.",
+  "narrative_angle": "Move from the familiar phrase to Hesiod's stranger original story, then show why its details still matter.",
+  "must_include": "Use a precise, engaging explanation of Zeus's response to Prometheus, Pandora's connection to Epimetheus, the original pithos jar, and Elpis/hope remaining; phrase contested details carefully.",
+  "must_avoid": "Do not portray Pandora as a simplistic villain or claim that every classical version says exactly the same thing.",
+  "source_notes": "Hesiod's Works and Days is the core source. It presents Zeus ordering Pandora's creation after Prometheus stole fire; the Olympians give her gifts and Zeus sends her to Epimetheus. The original vessel is a pithos, a large storage jar, not literally a box. Pandora opens it; hardships escape, while Elpis (often translated Hope) remains under the lid. The meaning of Elpis is debated, so say it is often translated as hope rather than asserting one final interpretation.",
+  "_qh": {
+    "hero_presence_mode": "opener_only",
+    "world_style_policy": "reuse",
+    "world_style_id": "aegean_bronze_relief_mineral_fresco_001",
+    "world_style_hint": "New Aegean bronze-relief and mineral-pigment story world: sculpted terracotta figures, oxidized copper teal, charcoal black, sun-baked ochre, restrained gold inlay, dramatic low raking light, tactile archaeological depth; no illuminated manuscript gouache, no photorealism, no 3D.",
+    "min_duration_seconds": 60.0,
+    "max_duration_seconds": 90.0,
+    "gemini_image_model": "nano_banana_2",
+    "flow_video_model": "gemini_omni_1_1_flash",
+    "flow_resolution": "720p",
+    "opening_a_source_seconds": 8,
+    "opening_b_source_seconds": 6,
+    "show_subtitles": true
+  }
+}

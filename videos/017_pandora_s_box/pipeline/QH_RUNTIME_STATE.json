@@ -1,0 +1,679 @@
+{
+  "schema_version": 2,
+  "video_id": "017",
+  "topic": "Pandora's box",
+  "created_at": "2026-09-06T20:50:07Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:22Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:22Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:22Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:22Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:22Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T01:25:23Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_spread": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "book_spread_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:24Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T01:25:54Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:27Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:28Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:30Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:31Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:32Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:33Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:35Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:36Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:37Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:39Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:40Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:41Z",
+      "artifact": "beat_012.png"
+    },
+    "beat_image_013": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:43Z",
+      "artifact": "beat_013.png"
+    },
+    "beat_image_014": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:44Z",
+      "artifact": "beat_014.png"
+    },
+    "beat_image_015": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:46Z",
+      "artifact": "beat_015.png"
+    },
+    "beat_image_016": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:47Z",
+      "artifact": "beat_016.png"
+    },
+    "beat_image_017": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:48Z",
+      "artifact": "beat_017.png"
+    },
+    "beat_image_018": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:50Z",
+      "artifact": "beat_018.png"
+    },
+    "beat_image_019": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:51Z",
+      "artifact": "beat_019.png"
+    },
+    "beat_image_020": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:52Z",
+      "artifact": "beat_020.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:55Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "transition_direction_001_json1": {
+      "status": "FAILED_UPLOAD",
+      "updated_at": "2026-09-06T22:08:06Z",
+      "message": "chatgpt/chat failed: Timed out while waiting for image upload in the current Chrome tab.",
+      "error_code": "upload_incomplete"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-07T01:25:55Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T01:28:22Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "2b17d567cf00cd1595d71189f39d28de2c2eb9705d97a7db873032ec688f73f1"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-07T01:28:23Z",
+      "body_images": 20
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 45.074,
+      "at": "2026-09-06T20:50:54Z",
+      "words": 151
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 30.351,
+      "at": "2026-09-06T20:51:27Z",
+      "words": 195
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 21.174,
+      "at": "2026-09-06T20:51:51Z",
+      "activity": "planting"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 24.423,
+      "at": "2026-09-06T20:52:18Z",
+      "style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 0.013,
+      "at": "2026-09-06T20:52:21Z",
+      "reuse_of": "aegean_bronze_relief_mineral_fresco_001",
+      "sha256": "0e6791961389670acdd67a4ee513a22b88d2e718ab338dac9435479d7740891b",
+      "usage_count": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T20:52:23Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 57.634,
+      "at": "2026-09-06T20:53:23Z",
+      "beats": 20
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.111,
+      "at": "2026-09-06T20:53:44Z",
+      "prompt_sha256": "41e190da683ddad44632dd429d045bc989c32d95d7c1115143c7d3cd5e08569d"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 63.169,
+      "at": "2026-09-06T20:54:50Z",
+      "sha256": "5d56f19bec5391ef1c06bb2f58b162fdf6a0db0011d756aa10352658ca8f93fc",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_spread",
+      "status": "DONE",
+      "elapsed_seconds": 0.267,
+      "at": "2026-09-06T20:54:54Z",
+      "template_id": "003",
+      "sha256": "260f864bb0886fe5d4e6115f86bba263da1e9ba0ffc4ec1663bdfc83cf6e8387"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 18.034,
+      "at": "2026-09-06T20:55:15Z",
+      "prompt_sha256": "90dfb0dbd482c062cfd3a4cbb81674bc077ffb5962f9575819fc1eb5b8dde460"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 21.043,
+      "at": "2026-09-06T20:55:38Z",
+      "prompt_sha256": "92cdd147e108f7b5f1bca2395f3973691b1fed607d1e848bb6a658a2189aa913"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-06T21:02:03Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 58.136,
+      "at": "2026-09-06T21:03:05Z",
+      "sha256": "edcc0b86e4edeaf818c08296e4cbe9a4c59f9572ee927b397518881e1ee553db",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 111.617,
+      "at": "2026-09-06T21:04:58Z",
+      "sha256": "ff304a6843e835dc5e728be2bf9b70b045f36b9c3e1a96136a1e1e215e0aee06",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 108.553,
+      "at": "2026-09-06T21:06:48Z",
+      "sha256": "627c58bc387b66b22243ca3f372e97a98ef8fc18a19a57fa2834ffeadee20270",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-06T21:15:19Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 81.229,
+      "at": "2026-09-06T21:16:49Z",
+      "sha256": "0cc232062929b2d400f49bb949f50d3ed8a4e751220124d950a2515660b57c64",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 126.713,
+      "at": "2026-09-06T21:18:57Z",
+      "sha256": "a2f2350675f4982e8188ffdec27d8234f643c5d4af7e9ec2a654397cf8c039b5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 139.411,
+      "at": "2026-09-06T21:21:18Z",
+      "sha256": "eaa84e50bf0b2011735450e2e9ce727b4852b258f6659e26e84fdf889f467e85",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 112.648,
+      "at": "2026-09-06T21:23:12Z",
+      "sha256": "d20a58853729273b1915c8e3dc814d5a9166be1fdffdd27df9fe5d1fddbee044",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 96.702,
+      "at": "2026-09-06T21:24:50Z",
+      "sha256": "6ab9d20808e6ba472d517daf6d3073c771d4f15edcc53338e5a916478e08cbc8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 117.316,
+      "at": "2026-09-06T21:26:48Z",
+      "sha256": "7cca0c749c1848e5e38953be96bd70d3be7b0dab1b10d04839adcaf1c9513bed",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 97.286,
+      "at": "2026-09-06T21:28:27Z",
+      "sha256": "00e29119a099bd254e97af34cba1064485c83ec4183a3b9b5cf29b70e5948100",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 108.684,
+      "at": "2026-09-06T21:30:17Z",
+      "sha256": "6bb176f8870606cda53eff46b9bd83fda1e56ac01d261f54c77bc810608dfe09",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 117.937,
+      "at": "2026-09-06T21:32:16Z",
+      "sha256": "f11aba68a1224865555fc6798f2daf4805bc565bc92afedb46d1bbd3ce1b6aeb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 93.261,
+      "at": "2026-09-06T21:33:51Z",
+      "sha256": "8c5ad91b1283ed04f2ec519e3f81e7bd50332dd3a75291afaf3bfbb2163d41ab",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-06T21:53:59Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 72.223,
+      "at": "2026-09-06T21:55:32Z",
+      "sha256": "5539a9a8fa811165cf034084a887bc93e8e1983f07fd0160198d3543a6271571",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_015",
+      "status": "DONE",
+      "elapsed_seconds": 108.378,
+      "at": "2026-09-06T21:57:21Z",
+      "sha256": "f7cbebfc727eaaaabcd367b4e3827de86ad6408e1066547906117620fcbc5b58",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_016",
+      "status": "DONE",
+      "elapsed_seconds": 105.326,
+      "at": "2026-09-06T21:59:08Z",
+      "sha256": "a3513e41c06a241d5a827862e13e6dd27281973a4397921d68c6821c938d5364",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_017",
+      "status": "DONE",
+      "elapsed_seconds": 93.311,
+      "at": "2026-09-06T22:00:43Z",
+      "sha256": "f3164c3e800dbf9d9179a91b72aae93b396f26fc37eba89900e910483a6270e9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_018",
+      "status": "DONE",
+      "elapsed_seconds": 126.407,
+      "at": "2026-09-06T22:02:50Z",
+      "sha256": "41b4554a3a2df42855e2f86e292f9a4f4f7622b2b70ee936174b3b443124817f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_019",
+      "status": "DONE",
+      "elapsed_seconds": 108.443,
+      "at": "2026-09-06T22:04:40Z",
+      "sha256": "387381e3f44fb649dfea1ada6fa1f0c46cd767cf8cd3c81a87c04268b166895a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_020",
+      "status": "DONE",
+      "elapsed_seconds": 105.324,
+      "at": "2026-09-06T22:06:26Z",
+      "sha256": "bb090ba76f95d9a828c0c4b68df8d212b928f1f3ba5598981344ff289dc8a74e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 744.094,
+      "at": "2026-09-06T22:06:28Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-07T00:54:42Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 24.054,
+      "at": "2026-09-07T00:55:10Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 658.311,
+      "at": "2026-09-07T01:06:11Z",
+      "boundaries": 19
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 108.561,
+      "at": "2026-09-07T01:08:02Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "845e8df21be7482723226cd1498b7fb21f949384303ef625852d8353ad8ba4f0"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 129.558,
+      "at": "2026-09-07T01:10:14Z",
+      "duration_seconds": 4.011,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "4c8be49903a6d14a37b9d00a42b6f857eefad3317d522fea561c0e5017885708"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-07T01:22:34Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 24.574,
+      "at": "2026-09-07T01:23:02Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-07T01:25:23Z",
+      "opening_activity": "planting",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "aegean_bronze_relief_mineral_fresco_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 26.489,
+      "at": "2026-09-07T01:25:54Z"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 144.559,
+      "at": "2026-09-07T01:28:22Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "2b17d567cf00cd1595d71189f39d28de2c2eb9705d97a7db873032ec688f73f1"
+    }
+  ],
+  "updated_at": "2026-09-07T01:28:23Z"
+}

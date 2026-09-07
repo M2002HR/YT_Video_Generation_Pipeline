@@ -22,6 +22,7 @@ if str(SCRIPTS) not in sys.path:
 from build_timeline import (
     LANDSCAPE_BOTTOM_SAFE_FRACTION,
     PORTRAIT_BOTTOM_SAFE_FRACTION,
+    build_cues_from_words,
     build_subtitle_cues,
     caption_token,
     load_word_timings,
@@ -181,10 +182,42 @@ def test_the_written_ass_carries_the_derived_margin(tmp_path: Path) -> None:
     assert "0:00:04" in text, "the first cue starts where the first word was measured"
 
 
+def test_measured_words_generate_a_word_by_word_karaoke_sweep(tmp_path: Path) -> None:
+    words = _words("alpha bravo charlie", start=1.0, step=0.3)
+    for word, text in zip(words, ["Alpha", "bravo", "charlie"]):
+        word["text"] = text
+    cues = build_cues_from_words(words, SUBTITLE_CFG)
+    ass = tmp_path / "SUBTITLES.ass"
+    write_ass(ass, width=1080, height=1920, subtitle_cfg=SUBTITLE_CFG, cues=cues)
+
+    text = ass.read_text(encoding="utf-8")
+    dialogue = next(line for line in text.splitlines() if line.startswith("Dialogue: 0,"))
+    assert "Karaoke" in dialogue
+    assert dialogue.count(r"{\kf") == 3
+    assert r"{\kf" in dialogue and "Alpha" in dialogue and "bravo" in dialogue
+    assert "Style: Karaoke," in text
+
+
+def test_word_highlight_can_be_disabled_without_changing_plain_subtitles(tmp_path: Path) -> None:
+    words = _words("alpha bravo", start=1.0, step=0.3)
+    for word, text in zip(words, ["alpha", "bravo"]):
+        word["text"] = text
+    cues = build_cues_from_words(words, SUBTITLE_CFG)
+    ass = tmp_path / "SUBTITLES.ass"
+    cfg = {**SUBTITLE_CFG, "word_highlight": {"enabled": False}}
+    write_ass(ass, width=1080, height=1920, subtitle_cfg=cfg, cues=cues)
+
+    dialogue = next(line for line in ass.read_text(encoding="utf-8").splitlines() if line.startswith("Dialogue: 0,"))
+    assert ",Default,," in dialogue
+    assert r"{\kf" not in dialogue
+
+
 def test_libass_accepts_the_generated_file(tmp_path: Path) -> None:
     """A file FFmpeg cannot parse would silently render a caption-free video."""
     words = _words(NARRATION)
-    cues = build_subtitle_cues([_beat(NARRATION, words)], SUBTITLE_CFG, words)
+    for word, text in zip(words, NARRATION.split()):
+        word["text"] = text
+    cues = build_cues_from_words(words, SUBTITLE_CFG)
     ass = tmp_path / "SUBTITLES.ass"
     write_ass(ass, width=240, height=426, subtitle_cfg=SUBTITLE_CFG, cues=cues)
     output = tmp_path / "burned.mp4"

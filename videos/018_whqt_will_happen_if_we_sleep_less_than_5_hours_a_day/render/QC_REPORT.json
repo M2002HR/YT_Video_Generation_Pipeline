@@ -65,7 +65,7 @@
       "name": "file_nonempty",
       "ok": true,
       "expected": ">0 bytes",
-      "actual": 59545355,
+      "actual": 59528058,
       "detail": ""
     },
     {

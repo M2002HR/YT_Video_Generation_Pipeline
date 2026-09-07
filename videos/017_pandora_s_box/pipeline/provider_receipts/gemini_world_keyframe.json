@@ -1,0 +1,54 @@
+{
+  "provider": "gemini",
+  "job_id": "6a54142a-f8b1-4fd1-9aeb-abe57669a847",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/50b0b75b340098f8",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=6a54142a-f8b1-4fd1-9aeb-abe57669a847_output_1.png 1536x2752 sha256=5d56f19bec5391ef1c06bb2f58b162fdf6a0db0011d756aa10352658ca8f93fc"
+    ]
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
+      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/017_pandora_s_box/references/world_style_anchor.png",
+      "sha256": "0e6791961389670acdd67a4ee513a22b88d2e718ab338dac9435479d7740891b"
+    }
+  ],
+  "prompt_sha256": "41e190da683ddad44632dd429d045bc989c32d95d7c1115143c7d3cd5e08569d",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "5d56f19bec5391ef1c06bb2f58b162fdf6a0db0011d756aa10352658ca8f93fc",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.119,
+  "completed_at": "2026-09-06T20:54:50Z"
+}

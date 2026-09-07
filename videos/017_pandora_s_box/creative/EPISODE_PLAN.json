@@ -1,0 +1,14 @@
+{
+  "opening_activity": "planting",
+  "opening_location": "garden",
+  "curiosity_trigger": "repotting a seedling into a broad terracotta jar and noticing how strongly the container changes what we imagine is inside",
+  "trigger_object": "terracotta planting pot",
+  "reaction": "pauses with soil on his fingers, taps the pot rim, and looks at it again",
+  "book_retrieval": "sets the seedling down, brushes soil from his hands, and reaches to the garden shelf for the worn book",
+  "camera_pattern": "over_shoulder",
+  "book_template_id": "003",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "return_to_home",
+  "world_style_hint": "Aegean bronze-relief and mineral-pigment world with sculpted terracotta figures, oxidized copper teal, charcoal, sun-baked ochre, restrained gold inlay, and dramatic low raking light.",
+  "reason": "Repotting naturally puts a large terracotta vessel in the hero's hands, creating a grounded visual bridge to the revelation that Pandora's famous box was originally a pithos jar."
+}

@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
-  "started_at": "2026-09-07T02:49:57.889322+00:00",
+  "started_at": "2026-09-07T03:04:04.273586+00:00",
   "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-07T02:49:57.908305+00:00",
+      "started_at": "2026-09-07T03:04:04.281745+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T02:49:59.449738+00:00",
-      "elapsed_seconds": 1.541,
+      "ended_at": "2026-09-07T03:04:05.746984+00:00",
+      "elapsed_seconds": 1.465,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 27533
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-07T02:50:00.705408+00:00",
+      "started_at": "2026-09-07T03:04:07.000734+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -31,14 +31,14 @@
         "0.800"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T02:53:10.659758+00:00",
-      "elapsed_seconds": 189.954,
+      "ended_at": "2026-09-07T03:07:18.095325+00:00",
+      "elapsed_seconds": 191.095,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 59545355
+      "artifact_bytes": 59528058
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-07T02:53:10.660173+00:00",
+      "started_at": "2026-09-07T03:07:18.095916+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -48,14 +48,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T02:53:19.255119+00:00",
-      "elapsed_seconds": 8.595,
+      "ended_at": "2026-09-07T03:07:27.130351+00:00",
+      "elapsed_seconds": 9.034,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-07T02:53:20.540152+00:00",
+      "started_at": "2026-09-07T03:07:28.323861+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -64,14 +64,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T02:53:25.035514+00:00",
-      "elapsed_seconds": 4.495,
+      "ended_at": "2026-09-07T03:07:32.733536+00:00",
+      "elapsed_seconds": 4.41,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 59774819
+      "artifact_bytes": 59757522
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-07T02:53:26.538807+00:00",
+      "started_at": "2026-09-07T03:07:33.858194+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -81,22 +81,66 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T02:53:35.266562+00:00",
-      "elapsed_seconds": 8.728,
+      "ended_at": "2026-09-07T03:07:42.572199+00:00",
+      "elapsed_seconds": 8.714,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
-      "stage": "git_commit_push",
+      "stage": "publish_telegram",
+      "started_at": "2026-09-07T03:07:43.826930+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/polished.mp4"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-07T02:49:57.889322+00:00",
-      "ended_at": "2026-09-07T02:53:43.558528+00:00",
-      "elapsed_seconds": 225.669,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "5cc5790f0f2ef6885479685a9aa3d7dcf7ad7959"
+      "ended_at": "2026-09-07T03:09:16.244180+00:00",
+      "elapsed_seconds": 92.417,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 1682
     }
   ],
-  "completed_at": "2026-09-07T02:53:43.558528+00:00",
-  "total_elapsed_seconds": 438.982
+  "completed_at": "2026-09-07T03:09:17.478871+00:00",
+  "total_elapsed_seconds": 307.135,
+  "summary": {
+    "video": "018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+    "duration_seconds": 64.967,
+    "beat_count": 14,
+    "video_beat_count": 2,
+    "image_beat_count": 12,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.5,
+      "transition_end": 7.6
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 190.757,
+      "realtime_factor": 2.936,
+      "peak_child_rss_mb": 1283.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

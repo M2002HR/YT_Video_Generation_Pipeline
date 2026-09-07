@@ -1,0 +1,668 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 87.249,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 5.125,
+      "duration": 5.125,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 5.125,
+      "end": 9.292,
+      "duration": 4.167,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.292,
+      "end": 13.2,
+      "duration": 3.908,
+      "speech_start": 9.84,
+      "speech_end": 12.26,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Prometheus steals fire and gives it to humanity.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 13.2,
+      "end": 16.58,
+      "duration": 3.38,
+      "speech_start": 13.2,
+      "speech_end": 15.84,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Zeus answers by ordering Pandora to be created.",
+      "transition_in": "wiperight",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 16.58,
+      "end": 19.82,
+      "duration": 3.24,
+      "speech_start": 16.58,
+      "speech_end": 18.46,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "The Olympian gods furnish her with gifts.",
+      "transition_in": "circleopen",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 19.82,
+      "end": 24.78,
+      "duration": 4.96,
+      "speech_start": 19.82,
+      "speech_end": 23.3,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Then Zeus sends Pandora to Prometheus's brother, Epimetheus.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 24.78,
+      "end": 30.28,
+      "duration": 5.5,
+      "speech_start": 24.78,
+      "speech_end": 28.64,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Prometheus had already warned Epimetheus not to trust gifts from Zeus.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 30.28,
+      "end": 32.56,
+      "duration": 2.28,
+      "speech_start": 30.28,
+      "speech_end": 32.56,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Epimetheus accepts Pandora anyway.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 32.56,
+      "end": 36.94,
+      "duration": 4.38,
+      "speech_start": 32.56,
+      "speech_end": 35.84,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Beside her stands the object later remembered as a box.",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 36.94,
+      "end": 38.9,
+      "duration": 1.96,
+      "speech_start": 36.94,
+      "speech_end": 38.2,
+      "match_confidence": 0.833,
+      "motion": "still",
+      "narration": "But Hesiod's vessel is a pithos.",
+      "transition_in": "zoomin",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 38.9,
+      "end": 43.14,
+      "duration": 4.24,
+      "speech_start": 38.9,
+      "speech_end": 41.96,
+      "match_confidence": 0.9,
+      "motion": "still",
+      "narration": "A pithos is a large storage jar, not a chest.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 43.14,
+      "end": 44.7,
+      "duration": 1.56,
+      "speech_start": 43.14,
+      "speech_end": 44.7,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pandora opens the jar.",
+      "transition_in": "circleopen",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 44.7,
+      "end": 46.6,
+      "duration": 1.9,
+      "speech_start": 44.7,
+      "speech_end": 46.6,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Hardships pour out into human life.",
+      "transition_in": "wipeup",
+      "transition_seconds": 0.2
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 46.6,
+      "end": 50.24,
+      "duration": 3.64,
+      "speech_start": 46.6,
+      "speech_end": 50.24,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "She closes the lid, but not before they are gone.",
+      "transition_in": "wipedown",
+      "transition_seconds": 0.2
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 50.24,
+      "end": 53.22,
+      "duration": 2.98,
+      "speech_start": 50.24,
+      "speech_end": 53.22,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "One thing remains inside: Elpis.",
+      "transition_in": "zoomin",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 53.22,
+      "end": 56.6,
+      "duration": 3.38,
+      "speech_start": 53.22,
+      "speech_end": 56.22,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Elpis is often translated as hope.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 15,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_015.png",
+      "source": "assets/raw_beats/beat_015.png",
+      "start": 56.6,
+      "end": 59.68,
+      "duration": 3.08,
+      "speech_start": 56.6,
+      "speech_end": 58.96,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "What that remaining hope means is still debated.",
+      "transition_in": "fade",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 16,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_016.png",
+      "source": "assets/raw_beats/beat_016.png",
+      "start": 59.68,
+      "end": 63.4,
+      "duration": 3.72,
+      "speech_start": 59.68,
+      "speech_end": 62.0,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "That ambiguity changes the story's ending.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 17,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_017.png",
+      "source": "assets/raw_beats/beat_017.png",
+      "start": 63.4,
+      "end": 65.8,
+      "duration": 2.4,
+      "speech_start": 63.4,
+      "speech_end": 65.06,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Pandora is not simply a villain.",
+      "transition_in": "fade",
+      "transition_seconds": 0.34
+    },
+    {
+      "beat_id": 18,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_018.png",
+      "source": "assets/raw_beats/beat_018.png",
+      "start": 65.8,
+      "end": 70.18,
+      "duration": 4.38,
+      "speech_start": 65.8,
+      "speech_end": 69.3,
+      "match_confidence": 0.9,
+      "motion": "still",
+      "narration": "She is part of Zeus's punishment after Prometheus steals fire.",
+      "transition_in": "wipedown",
+      "transition_seconds": 0.26
+    },
+    {
+      "beat_id": 19,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_019.png",
+      "source": "assets/raw_beats/beat_019.png",
+      "start": 70.18,
+      "end": 73.72,
+      "duration": 3.54,
+      "speech_start": 70.18,
+      "speech_end": 72.48,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The famous box belongs to later tradition.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 20,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_020.png",
+      "source": "assets/raw_beats/beat_020.png",
+      "start": 73.72,
+      "end": 87.249,
+      "duration": 13.529,
+      "speech_start": 73.72,
+      "speech_end": 77.54,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The older story leaves us with a jar and an unresolved hope.",
+      "transition_in": "fade",
+      "transition_seconds": 0.34
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.04,
+      "end": 1.88,
+      "text": "While I repot this seedling, here's",
+      "ass_text": "While I repot this seedling,\\Nhere's",
+      "timing_source": "word"
+    },
+    {
+      "start": 1.88,
+      "end": 4.08,
+      "text": "why Pandora's famous box was never",
+      "ass_text": "why Pandora's famous box was never",
+      "timing_source": "word"
+    },
+    {
+      "start": 4.08,
+      "end": 5.12,
+      "text": "actually a box.",
+      "ass_text": "actually a box.",
+      "timing_source": "word"
+    },
+    {
+      "start": 6.6,
+      "end": 8.48,
+      "text": "The clue is in Hesiod's works",
+      "ass_text": "The clue is in Hesiod's works",
+      "timing_source": "word"
+    },
+    {
+      "start": 8.48,
+      "end": 9.26,
+      "text": "and days.",
+      "ass_text": "and days.",
+      "timing_source": "word"
+    },
+    {
+      "start": 9.84,
+      "end": 11.68,
+      "text": "Prometheus steals fire and gives it",
+      "ass_text": "Prometheus steals fire and gives\\Nit",
+      "timing_source": "word"
+    },
+    {
+      "start": 11.68,
+      "end": 12.26,
+      "text": "to humanity.",
+      "ass_text": "to humanity.",
+      "timing_source": "word"
+    },
+    {
+      "start": 13.2,
+      "end": 15.28,
+      "text": "Zeus answers by ordering Pandora to",
+      "ass_text": "Zeus answers by ordering Pandora\\Nto",
+      "timing_source": "word"
+    },
+    {
+      "start": 15.28,
+      "end": 15.84,
+      "text": "be created.",
+      "ass_text": "be created.",
+      "timing_source": "word"
+    },
+    {
+      "start": 16.58,
+      "end": 18.16,
+      "text": "The Olympian gods furnish her with",
+      "ass_text": "The Olympian gods furnish her with",
+      "timing_source": "word"
+    },
+    {
+      "start": 18.16,
+      "end": 18.46,
+      "text": "gifts.",
+      "ass_text": "gifts.",
+      "timing_source": "word"
+    },
+    {
+      "start": 19.82,
+      "end": 21.86,
+      "text": "Then Zeus sends Pandora to Prometheus's",
+      "ass_text": "Then Zeus sends Pandora to\\NPrometheus's",
+      "timing_source": "word"
+    },
+    {
+      "start": 21.86,
+      "end": 23.3,
+      "text": "brother, Epimetheus.",
+      "ass_text": "brother, Epimetheus.",
+      "timing_source": "word"
+    },
+    {
+      "start": 24.78,
+      "end": 27.36,
+      "text": "Prometheus had already warned Epimetheus not",
+      "ass_text": "Prometheus had already warned\\NEpimetheus not",
+      "timing_source": "word"
+    },
+    {
+      "start": 27.36,
+      "end": 28.64,
+      "text": "to trust gifts from Zeus.",
+      "ass_text": "to trust gifts from Zeus.",
+      "timing_source": "word"
+    },
+    {
+      "start": 30.28,
+      "end": 32.56,
+      "text": "Epimetheus accepts Pandora anyway.",
+      "ass_text": "Epimetheus accepts Pandora anyway.",
+      "timing_source": "word"
+    },
+    {
+      "start": 32.56,
+      "end": 34.84,
+      "text": "Beside her stands the object, later",
+      "ass_text": "Beside her stands the object,\\Nlater",
+      "timing_source": "word"
+    },
+    {
+      "start": 34.84,
+      "end": 35.84,
+      "text": "remembered as a box.",
+      "ass_text": "remembered as a box.",
+      "timing_source": "word"
+    },
+    {
+      "start": 36.94,
+      "end": 38.9,
+      "text": "But Hesiod's vessel is a pythos.",
+      "ass_text": "But Hesiod's vessel is a pythos.",
+      "timing_source": "word"
+    },
+    {
+      "start": 38.9,
+      "end": 40.9,
+      "text": "A pythos is a large storage",
+      "ass_text": "A pythos is a large storage",
+      "timing_source": "word"
+    },
+    {
+      "start": 40.9,
+      "end": 41.96,
+      "text": "jar, not a chest.",
+      "ass_text": "jar, not a chest.",
+      "timing_source": "word"
+    },
+    {
+      "start": 43.14,
+      "end": 44.7,
+      "text": "Pandora opens the jar.",
+      "ass_text": "Pandora opens the jar.",
+      "timing_source": "word"
+    },
+    {
+      "start": 44.7,
+      "end": 46.6,
+      "text": "Hardships pour out into human life.",
+      "ass_text": "Hardships pour out into human\\Nlife.",
+      "timing_source": "word"
+    },
+    {
+      "start": 46.6,
+      "end": 48.92,
+      "text": "She closes the lid, but not",
+      "ass_text": "She closes the lid, but not",
+      "timing_source": "word"
+    },
+    {
+      "start": 48.92,
+      "end": 50.24,
+      "text": "before they are gone.",
+      "ass_text": "before they are gone.",
+      "timing_source": "word"
+    },
+    {
+      "start": 50.24,
+      "end": 52.1,
+      "text": "One thing remains inside.",
+      "ass_text": "One thing remains inside.",
+      "timing_source": "word"
+    },
+    {
+      "start": 52.1,
+      "end": 53.22,
+      "text": "Elpis.",
+      "ass_text": "Elpis.",
+      "timing_source": "word"
+    },
+    {
+      "start": 53.22,
+      "end": 56.22,
+      "text": "Elpis is often translated as hope.",
+      "ass_text": "Elpis is often translated as hope.",
+      "timing_source": "word"
+    },
+    {
+      "start": 56.6,
+      "end": 58.22,
+      "text": "What that remaining hope means is",
+      "ass_text": "What that remaining hope means is",
+      "timing_source": "word"
+    },
+    {
+      "start": 58.22,
+      "end": 58.96,
+      "text": "still debated.",
+      "ass_text": "still debated.",
+      "timing_source": "word"
+    },
+    {
+      "start": 59.68,
+      "end": 62.0,
+      "text": "That ambiguity changes the story's ending.",
+      "ass_text": "That ambiguity changes the story's\\Nending.",
+      "timing_source": "word"
+    },
+    {
+      "start": 63.4,
+      "end": 65.06,
+      "text": "Pandora is not simply a villain.",
+      "ass_text": "Pandora is not simply a villain.",
+      "timing_source": "word"
+    },
+    {
+      "start": 65.8,
+      "end": 67.36,
+      "text": "She is part of Zeus' punishment",
+      "ass_text": "She is part of Zeus' punishment",
+      "timing_source": "word"
+    },
+    {
+      "start": 67.36,
+      "end": 69.3,
+      "text": "after Prometheus steals fire.",
+      "ass_text": "after Prometheus steals fire.",
+      "timing_source": "word"
+    },
+    {
+      "start": 70.18,
+      "end": 72.04,
+      "text": "The famous box belongs to later",
+      "ass_text": "The famous box belongs to later",
+      "timing_source": "word"
+    },
+    {
+      "start": 72.04,
+      "end": 72.48,
+      "text": "tradition.",
+      "ass_text": "tradition.",
+      "timing_source": "word"
+    },
+    {
+      "start": 73.72,
+      "end": 75.24,
+      "text": "The older story leaves us with",
+      "ass_text": "The older story leaves us with",
+      "timing_source": "word"
+    },
+    {
+      "start": 75.24,
+      "end": 77.54,
+      "text": "a jar and an unresolved hope.",
+      "ass_text": "a jar and an unresolved hope.",
+      "timing_source": "word"
+    },
+    {
+      "start": 78.58,
+      "end": 80.0,
+      "text": "The famous box began as a",
+      "ass_text": "The famous box began as a",
+      "timing_source": "word"
+    },
+    {
+      "start": 80.0,
+      "end": 81.9,
+      "text": "jar and its final mystery stayed",
+      "ass_text": "jar and its final mystery stayed",
+      "timing_source": "word"
+    },
+    {
+      "start": 81.9,
+      "end": 82.26,
+      "text": "sealed.",
+      "ass_text": "sealed.",
+      "timing_source": "word"
+    },
+    {
+      "start": 83.7,
+      "end": 86.06,
+      "text": "Like and subscribe to Grow More",
+      "ass_text": "Like and subscribe to Grow More",
+      "timing_source": "word"
+    },
+    {
+      "start": 86.06,
+      "end": 86.56,
+      "text": "Questions",
+      "ass_text": "Questions",
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 22,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 43,
+    "subtitle_cues_estimated": 0
+  }
+}

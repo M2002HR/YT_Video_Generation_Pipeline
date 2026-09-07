@@ -14,6 +14,8 @@ SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
+from panel_page import launch_form
+
 SPEC = importlib.util.spec_from_file_location("video_control_panel", SCRIPTS / "video_control_panel.py")
 assert SPEC and SPEC.loader
 panel = importlib.util.module_from_spec(SPEC)
@@ -46,6 +48,12 @@ def test_launch_and_resume_build_the_same_command() -> None:
     assert "--publish" in command
     assert "--commit" not in command
     assert panel.pipeline_command(record) == command, "the builder must be deterministic"
+
+
+def test_launch_form_exposes_the_word_highlight_choice() -> None:
+    form = launch_form("", "")
+    assert 'name=word_highlight checked' in form
+    assert "Highlight the spoken word" in form
 
 
 def test_the_commit_flag_is_carried_into_the_command() -> None:

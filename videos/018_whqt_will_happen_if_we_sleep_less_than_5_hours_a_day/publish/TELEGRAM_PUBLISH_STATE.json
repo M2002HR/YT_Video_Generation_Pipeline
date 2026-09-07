@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "status": "DONE",
+  "published_at": "2026-09-07T03:09:16.196204+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "message_id": 25003,
+  "file": "assets/renders/polished.mp4",
+  "bytes": 59757522,
+  "sha256": "ebcb8e9cc53cccaf5cd00fb2cf57e669cc609fed6ecbb78b7b0abae3451dbc55",
+  "duration_seconds": 64.966,
+  "elapsed_seconds": 90.966,
+  "qc_report": "render/QC_REPORT_polished.json",
+  "summary": {
+    "video": "018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day",
+    "duration_seconds": 64.967,
+    "beat_count": 14,
+    "video_beat_count": 2,
+    "image_beat_count": 12,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.5,
+      "transition_end": 7.6
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 190.757,
+      "realtime_factor": 2.936,
+      "peak_child_rss_mb": 1283.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  },
+  "caption": "✅ Video pipeline complete\n🎬 018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day\n⏱ Duration: 1:05\n🎞 Beats: 14 (2 video · 12 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:11 wall (2.936x realtime) · 2 thread(s) · peak 1283.8 MB\nArtifact: ebcb8e9cc53c"
+}

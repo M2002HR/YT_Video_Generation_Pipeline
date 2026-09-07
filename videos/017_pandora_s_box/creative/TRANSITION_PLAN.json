@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "wiperight",
+      "transition_seconds": 0.22,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing flame travels left-to-right toward humanity, and Zeus's command continues that causal direction into Pandora at lower right; a quick rightward wipe preserves the handoff, while a slow zoom emphasizes Zeus's imposing throne and deliberate retaliation."
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "circleopen",
+      "transition_seconds": 0.24,
+      "next_motion": "still",
+      "reason": "The outgoing frame points attention to Pandora forming at lower right, while the incoming image resolves her as the completed centered figure; a brief centered circle-open makes that completion read as a purposeful reveal without adding directional conflict, and the gift tableau is best held still for clarity."
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The narration shifts from Pandora being furnished in a centered, static tableau to her being sent toward Epimetheus, and the incoming composition carries a clear left-to-right journey down the rocky path. A brief smooth-right handoff reinforces that travel and cause-and-effect without competing with the fresco style; a slow zoom-in gently draws attention toward Pandora and the waiting Epimetheus w"
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "The narration jumps backward from Pandora’s approach to an earlier warning, so a brief dissolve cleanly signals the temporal interruption without implying continued travel. The incoming tight two-figure composition benefits from a restrained slow push-in that concentrates attention on Prometheus’s cautioning gesture and the sealed vessel between them."
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "smoothright",
+      "transition_seconds": 0.22,
+      "next_motion": "slow_zoom_in",
+      "reason": "The warning resolves immediately into Epimetheus’s contrary choice, so a brief directional handoff keeps the cause-and-effect moving while preserving his right-side screen position; the slow push-in concentrates attention on the nearly joined hands at the threshold."
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "Pandora remains anchored on the left while the outgoing right-side figure is replaced by the monumental pithos; a short leftward handoff naturally redirects attention to the object without implying a time break, and the slow push-in reinforces its scale and narrative importance."
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "zoomin",
+      "transition_seconds": 0.22,
+      "next_motion": "still",
+      "reason": "The cut narrows from Pandora beside the oversized vessel to the pithos isolated as the sole subject, so a brief zoom-in turns the narration's correction into a focused archaeological reveal while masking the jar's shift from right-weighted to centered. The specimen-like incoming frame is strongest held still."
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28,
+      "next_motion": "still",
+      "reason": "The centered specimen becomes a centered cutaway explanation of the same vessel, so a short dissolve preserves object continuity while signaling the shift from archaeological reveal to diagrammatic function; the explanatory composition should remain still."
+    },
+    {
+      "from_beat_id": 9,
+      "to_beat_id": 10,
+      "transition_in": "circleopen",
+      "transition_seconds": 0.22,
+      "next_motion": "zoom_in",
+      "reason": "The cutaway explanation resolves into Pandora physically opening the same vessel; a quick circle-open tracks the dominant round mouth and turns the black interior into the reveal, while a restrained zoom-in heightens the action without disrupting the centered jar continuity."
+    },
+    {
+      "from_beat_id": 10,
+      "to_beat_id": 11,
+      "transition_in": "wipeup",
+      "transition_seconds": 0.2,
+      "next_motion": "slow_zoom_out",
+      "reason": "The jar mouth anchors both frames, and the consequence erupts strongly upward from it, so a fast upward wipe carries the opening action directly into the escaping hardships. A slow zoom out then reinforces their spread from the vessel into the wider human world."
+    },
+    {
+      "from_beat_id": 11,
+      "to_beat_id": 12,
+      "transition_in": "wipedown",
+      "transition_seconds": 0.2,
+      "next_motion": "zoom_in",
+      "reason": "The outgoing image drives hardships upward from the jar, while the incoming image reverses that energy with the lid descending onto the pithos. A fast downward wipe reinforces Pandora's too-late containment action without repeating the prior leftward wipe, and a restrained zoom-in adds urgency to the closing gesture."
+    },
+    {
+      "from_beat_id": 12,
+      "to_beat_id": 13,
+      "transition_in": "zoomin",
+      "transition_seconds": 0.3,
+      "next_motion": "still",
+      "reason": "The narration shifts from Pandora sealing the exterior to discovering what remains inside, so a controlled zoom-in reads as entering the pithos and revealing its cutaway interior; the centered diagram should then hold still so the isolated ember is immediately legible."
+    },
+    {
+      "from_beat_id": 13,
+      "to_beat_id": 14,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "The cutaway’s tiny isolated ember naturally resolves into the enlarged flame-sprout, so a gentle dissolve preserves the exact central motif while shifting from factual diagram to reflective metaphor; the slow push-in quietly emphasizes the hopeful interpretation without turning it into an action reveal."
+    },
+    {
+      "from_beat_id": 14,
+      "to_beat_id": 15,
+      "transition_in": "fade",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The cut moves from a singular hopeful symbol to a balanced, unresolved interpretation, so a reflective fade avoids implying directional causality while separating the two ideas; the centered symmetrical jar-and-hands composition benefits from a restrained slow push-in."
+    },
+    {
+      "from_beat_id": 15,
+      "to_beat_id": 16,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_out",
+      "reason": "The centered pithos provides a strong visual anchor as the opposing hands dissolve into the two branching paths; the reflective dissolve suits the abstract interpretive shift, while a slow zoom out expands the ambiguity into divergent endings."
+    },
+    {
+      "from_beat_id": 16,
+      "to_beat_id": 17,
+      "transition_in": "fade",
+      "transition_seconds": 0.34,
+      "next_motion": "slow_zoom_in",
+      "reason": "The abstract forked-path image resolves into a quiet human reappraisal, so a reflective fade avoids implying physical movement or causality. A slow zoom toward Pandora's lowered profile gently concentrates attention on her conflicted expression while keeping the blurred jar as contextual evidence."
+    },
+    {
+      "from_beat_id": 17,
+      "to_beat_id": 18,
+      "transition_in": "wipedown",
+      "transition_seconds": 0.26,
+      "next_motion": "still",
+      "reason": "A top-to-bottom wipe follows the incoming frieze’s descending causal structure, revealing Zeus first, then Pandora, then Prometheus; keeping the diagram still preserves its tiered explanatory clarity."
+    },
+    {
+      "from_beat_id": 18,
+      "to_beat_id": 19,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The dissolve cleanly marks the shift from the mythic cause-and-effect frieze into later tradition, while the slow push lets the sharp ancient pithos hold attention before the faint chest silhouette registers behind it."
+    },
+    {
+      "from_beat_id": 19,
+      "to_beat_id": 20,
+      "transition_in": "fade",
+      "transition_seconds": 0.34,
+      "next_motion": "slow_zoom_in",
+      "reason": "A gentle fade cleanly removes the later chest imagery and settles into the older, solitary pithos without implying physical movement; the slow push inward quietly draws attention toward the hairline glow of unresolved Elpis for the closing reflection."
+    }
+  ],
+  "created_at": "2026-09-07T01:06:11Z"
+}

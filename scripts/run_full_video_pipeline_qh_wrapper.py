@@ -116,10 +116,15 @@ def apply_subtitle_preference(profile_path: Path, creative_brief: Path) -> None:
     try:
         brief = json.loads(Path(creative_brief).read_text(encoding="utf-8"))
         wanted = bool((brief.get("_qh") or {}).get("show_subtitles", False))
+        word_highlight = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
     except (OSError, ValueError):
-        wanted = False
+        wanted, word_highlight = False, True
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
-    profile.setdefault("subtitles", {})["enabled"] = wanted
+    subtitles = profile.setdefault("subtitles", {})
+    subtitles["enabled"] = wanted
+    if not isinstance(subtitles.get("word_highlight"), dict):
+        subtitles["word_highlight"] = {}
+    subtitles["word_highlight"]["enabled"] = word_highlight
     profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
 
 

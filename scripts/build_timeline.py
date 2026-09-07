@@ -422,6 +422,10 @@ def build_cues_from_words(
                 "end": round(float(chunk[-1]["end"]), 3),
                 "text": text,
                 "ass_text": wrap_caption(text, max_chars, max_lines),
+                # Retain the measured word spans all the way to the ASS writer.  A phrase
+                # cue by itself only tells us when the phrase is visible; these spans make
+                # it possible to move the visual emphasis with the narration.
+                "words": [dict(item) for item in chunk],
                 "timing_source": "word",
             }
         )
@@ -510,17 +514,95 @@ def escape_ass_text(value: str) -> str:
     return value.replace("{", r"\{").replace("}", r"\}")
 
 
-#: Share of the frame height the platform UI covers at the bottom of a vertical short.
-#: Captions inside that band get hidden behind the progress bar and the action buttons.
-PORTRAIT_BOTTOM_SAFE_FRACTION = 0.12
+def ass_colour(value: Any, default: str) -> str:
+    """Return a safe ASS colour literal, accepting either six or eight hex digits.
+
+    ASS colours are ``&HAABBGGRR``.  Keeping this validation here means a hand-edited
+    render profile cannot turn a perfectly good subtitle file into an invalid one.
+    """
+    candidate = str(value or "").strip().upper()
+    if re.fullmatch(r"&H[0-9A-F]{6}(?:[0-9A-F]{2})?", candidate):
+        return candidate
+    return default
+
+
+def karaoke_ass_text(cue: dict[str, Any], subtitle_cfg: dict[str, Any]) -> str | None:
+    """Build a libass karaoke line from real word timings.
+
+    ``\\kf`` progressively fills the current word, while words not yet spoken use
+    the style's secondary colour.  It is deliberately based only on measured spans:
+    using an estimated duration would make the highlight lead or lag the voice.
+    """
+    highlight_cfg = subtitle_cfg.get("word_highlight")
+    if isinstance(highlight_cfg, dict):
+        enabled = bool(highlight_cfg.get("enabled", True))
+    else:
+        # Existing profiles gain the improvement automatically, but only for cues that
+        # actually carry measured words.  Explicit ``false`` remains an opt-out.
+        enabled = highlight_cfg is not False
+    if not enabled:
+        return None
+
+    raw_words = cue.get("words")
+    if not isinstance(raw_words, list) or not raw_words:
+        return None
+
+    words: list[dict[str, Any]] = []
+    for raw in raw_words:
+        if not isinstance(raw, dict):
+            return None
+        text = str(raw.get("text") or "").strip()
+        try:
+            start, end = float(raw["start"]), float(raw["end"])
+        except (KeyError, TypeError, ValueError):
+            return None
+        if not text or end < start:
+            return None
+        words.append({"text": text, "start": start, "end": end})
+    if not words:
+        return None
+
+    max_chars = max(8, int(subtitle_cfg.get("max_chars_per_line", 34)))
+    max_lines = max(1, int(subtitle_cfg.get("max_lines", 2)))
+    wrapped = wrap_caption(" ".join(word["text"] for word in words), max_chars, max_lines)
+    line_lengths = [len(line.split()) for line in wrapped.split(r"\N")]
+    if not line_lengths or sum(line_lengths) != len(words):
+        # This should not happen for text constructed above, but a plain caption is a
+        # safer fallback than a malformed subtitle if wrapping rules ever change.
+        return None
+    break_after = set()
+    count = 0
+    for length in line_lengths[:-1]:
+        count += length
+        break_after.add(count - 1)
+
+    parts: list[str] = []
+    for index, word in enumerate(words):
+        # The karaoke duration includes the gap before the following word.  Thus the
+        # current word remains active until the next measured word begins, rather than
+        # flashing back to the inactive colour during a natural pause.
+        until = words[index + 1]["start"] if index + 1 < len(words) else word["end"]
+        centiseconds = max(1, round(max(0.01, until - word["start"]) * 100))
+        parts.append(r"{\kf" + str(centiseconds) + "}" + escape_ass_text(word["text"]))
+        if index in break_after:
+            parts.append(r"\N")
+        elif index + 1 < len(words):
+            parts.append(" ")
+    return "".join(parts)
+
+
+#: Reserve a compact bottom inset on vertical video.  The former 12% (230px at
+#: 1920px) put captions visibly too high; 7.5% keeps a 144px clearance while
+#: placing the baseline naturally in the lower third.
+PORTRAIT_BOTTOM_SAFE_FRACTION = 0.075
 LANDSCAPE_BOTTOM_SAFE_FRACTION = 0.08
 
 
 def subtitle_margin_v(subtitle_cfg: dict[str, Any], height: int) -> int:
     """Bottom margin in pixels, respecting an explicit value and the safe area otherwise.
 
-    The old fixed 90px sat inside the Shorts UI band on a 1920-tall frame, which put the
-    last line of every caption behind the seek bar.
+    The inset balances the Shorts UI clearance against a natural lower-third caption
+    position.  An explicit profile value still wins for a channel-specific layout.
     """
     configured = subtitle_cfg.get("margin_v")
     if configured is not None:
@@ -545,6 +627,13 @@ def write_ass(
     margin_v = subtitle_margin_v(subtitle_cfg, height)
     outline = float(subtitle_cfg.get("outline", 3))
     shadow = float(subtitle_cfg.get("shadow", 0))
+    highlight_cfg = subtitle_cfg.get("word_highlight")
+    highlight_cfg = highlight_cfg if isinstance(highlight_cfg, dict) else {}
+    # Warm gold reads clearly against the white phrase without the visual noise of a
+    # glow or blur.  The dark outline retains contrast over both bright and dark footage.
+    active_colour = ass_colour(highlight_cfg.get("active_colour"), "&H0000D7FF")
+    inactive_colour = ass_colour(highlight_cfg.get("inactive_colour"), "&H00F5F5F5")
+    outline_colour = ass_colour(highlight_cfg.get("outline_colour"), "&H00130D09")
 
     lines = [
         "[Script Info]",
@@ -563,18 +652,23 @@ def write_ass(
         f"{font_name},{font_size},"
         "&H00FFFFFF,&H000000FF,&H00000000,&H80000000,"
         f"{bold},0,0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
+        "Style: Karaoke,"
+        f"{font_name},{font_size},"
+        f"{active_colour},{inactive_colour},{outline_colour},&H80000000,"
+        f"{bold},0,0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
 
     for cue in cues:
-        text = escape_ass_text(str(cue["ass_text"]))
+        karaoke_text = karaoke_ass_text(cue, subtitle_cfg)
+        text = karaoke_text if karaoke_text is not None else escape_ass_text(str(cue["ass_text"]))
+        style = "Karaoke" if karaoke_text is not None else "Default"
         lines.append(
             "Dialogue: 0,"
             f"{ass_timestamp(float(cue['start']))},"
-            f"{ass_timestamp(float(cue['end']))},"
-            f"Default,,0,0,0,,{text}"
+            f"{ass_timestamp(float(cue['end']))},{style},,0,0,0,,{text}"
         )
 
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")

@@ -1,0 +1,16 @@
+{
+  "style_id": "layered_anatomical_storybook_paper_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "painted storybook",
+  "secondary_treatment": "subtle layered paper-cut depth for anatomical systems, signal pathways, and visual metaphors",
+  "texture_family": "hand-painted fibrous paper with softly torn layered edges, dry-brush pigment, and gentle tactile grain",
+  "palette_summary": "muted nocturnal navy, desaturated blue-gray and slate, soft moss and cream neutrals, warm amber and honey highlights for active signals, with restrained dusty rose accents for stressed body systems",
+  "line_treatment": "clean hand-inked contours with slightly irregular storybook edges, simplified anatomical shapes, and sparse fine internal diagram lines",
+  "lighting": "dim pre-dawn ambient light with localized warm amber glows around active brain signals, warning moments, and key physiological changes",
+  "subject_constraints": "Allow simplified but recognizable brain regions, neurons, eyes, heart, blood vessels, immune-cell motifs, glucose and hunger signaling metaphors, microsleep interruptions, clocks, pathways, layered body silhouettes, barn and farm objects from the opening, and clear cause-and-effect compositions. Keep anatomy educational and readable rather than clinical or graphic. Visual metaphors may bend scale but should preserve the underlying biological relationship being explained.",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Preserve the protagonist's tall slim silhouette, chestnut hair shape, beard and moustache, light moss sweater, dark blue overalls, and rust-orange boots, translated into softly painted paper-storybook forms with hand-inked outlines and subtle layered-paper depth. Keep his face proportions and clothing identity consistent while allowing tired eyelids, slumped posture, and slowed gestures to communicate sleep loss.",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime, no cyberpunk neon, no medical-horror imagery, no gore, no hyper-detailed anatomical dissection, no sterile hospital infographic aesthetic, no random medium changes between beats, no fresco or archaeological surface treatment, no manuscript illumination styling",
+  "reason": "A new layered anatomical storybook style fits the episode's need to move fluidly from a sleepy farm mistake into understandable brain-and-body consequences while keeping the visuals tactile, approachable, and metaphor-friendly. The nocturnal blue and warm amber palette directly supports fatigue versus active biological signaling. Creating a new style also obeys the operator directive and avoids repeating the recently used fresco and manuscript families, especially the Aegean bronze relief style that appears twice in the recent-style history."
+}

@@ -1,0 +1,1180 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 87.249,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 195,
+  "words": [
+    {
+      "text": "While",
+      "token": "while",
+      "start": 0.04,
+      "end": 0.24
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 0.24,
+      "end": 0.42
+    },
+    {
+      "text": "repot",
+      "token": "repot",
+      "start": 0.42,
+      "end": 0.82
+    },
+    {
+      "text": "this",
+      "token": "this",
+      "start": 0.82,
+      "end": 1.02
+    },
+    {
+      "text": "seedling,",
+      "token": "seedling",
+      "start": 1.02,
+      "end": 1.7
+    },
+    {
+      "text": "here's",
+      "token": "here's",
+      "start": 1.7,
+      "end": 1.88
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 1.88,
+      "end": 2.14
+    },
+    {
+      "text": "Pandora's",
+      "token": "pandora's",
+      "start": 2.14,
+      "end": 2.72
+    },
+    {
+      "text": "famous",
+      "token": "famous",
+      "start": 2.72,
+      "end": 3.1
+    },
+    {
+      "text": "box",
+      "token": "box",
+      "start": 3.1,
+      "end": 3.48
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 3.48,
+      "end": 3.7
+    },
+    {
+      "text": "never",
+      "token": "never",
+      "start": 3.7,
+      "end": 4.08
+    },
+    {
+      "text": "actually",
+      "token": "actually",
+      "start": 4.08,
+      "end": 4.56
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 4.56,
+      "end": 4.76
+    },
+    {
+      "text": "box.",
+      "token": "box",
+      "start": 4.76,
+      "end": 5.12
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 6.6,
+      "end": 6.76
+    },
+    {
+      "text": "clue",
+      "token": "clue",
+      "start": 6.76,
+      "end": 7.0
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 7.0,
+      "end": 7.28
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 7.28,
+      "end": 7.44
+    },
+    {
+      "text": "Hesiod's",
+      "token": "hesiod's",
+      "start": 7.44,
+      "end": 8.12
+    },
+    {
+      "text": "works",
+      "token": "works",
+      "start": 8.12,
+      "end": 8.48
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 8.48,
+      "end": 8.7
+    },
+    {
+      "text": "days.",
+      "token": "days",
+      "start": 8.7,
+      "end": 9.26
+    },
+    {
+      "text": "Prometheus",
+      "token": "prometheus",
+      "start": 9.84,
+      "end": 10.3
+    },
+    {
+      "text": "steals",
+      "token": "steals",
+      "start": 10.3,
+      "end": 10.68
+    },
+    {
+      "text": "fire",
+      "token": "fire",
+      "start": 10.68,
+      "end": 11.12
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 11.12,
+      "end": 11.34
+    },
+    {
+      "text": "gives",
+      "token": "gives",
+      "start": 11.34,
+      "end": 11.6
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 11.6,
+      "end": 11.68
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 11.68,
+      "end": 11.84
+    },
+    {
+      "text": "humanity.",
+      "token": "humanity",
+      "start": 11.84,
+      "end": 12.26
+    },
+    {
+      "text": "Zeus",
+      "token": "zeus",
+      "start": 13.2,
+      "end": 13.44
+    },
+    {
+      "text": "answers",
+      "token": "answers",
+      "start": 13.44,
+      "end": 13.88
+    },
+    {
+      "text": "by",
+      "token": "by",
+      "start": 13.88,
+      "end": 14.2
+    },
+    {
+      "text": "ordering",
+      "token": "ordering",
+      "start": 14.2,
+      "end": 14.54
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 14.54,
+      "end": 15.12
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 15.12,
+      "end": 15.28
+    },
+    {
+      "text": "be",
+      "token": "be",
+      "start": 15.28,
+      "end": 15.36
+    },
+    {
+      "text": "created.",
+      "token": "created",
+      "start": 15.36,
+      "end": 15.84
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 16.58,
+      "end": 16.76
+    },
+    {
+      "text": "Olympian",
+      "token": "olympian",
+      "start": 16.76,
+      "end": 17.18
+    },
+    {
+      "text": "gods",
+      "token": "gods",
+      "start": 17.18,
+      "end": 17.52
+    },
+    {
+      "text": "furnish",
+      "token": "furnish",
+      "start": 17.52,
+      "end": 17.9
+    },
+    {
+      "text": "her",
+      "token": "her",
+      "start": 17.9,
+      "end": 18.0
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 18.0,
+      "end": 18.16
+    },
+    {
+      "text": "gifts.",
+      "token": "gifts",
+      "start": 18.16,
+      "end": 18.46
+    },
+    {
+      "text": "Then",
+      "token": "then",
+      "start": 19.82,
+      "end": 19.98
+    },
+    {
+      "text": "Zeus",
+      "token": "zeus",
+      "start": 19.98,
+      "end": 20.28
+    },
+    {
+      "text": "sends",
+      "token": "sends",
+      "start": 20.28,
+      "end": 20.58
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 20.58,
+      "end": 21.04
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 21.04,
+      "end": 21.22
+    },
+    {
+      "text": "Prometheus's",
+      "token": "prometheus's",
+      "start": 21.22,
+      "end": 21.86
+    },
+    {
+      "text": "brother,",
+      "token": "brother",
+      "start": 21.86,
+      "end": 22.72
+    },
+    {
+      "text": "Epimetheus.",
+      "token": "epimetheus",
+      "start": 22.72,
+      "end": 23.3
+    },
+    {
+      "text": "Prometheus",
+      "token": "prometheus",
+      "start": 24.78,
+      "end": 25.28
+    },
+    {
+      "text": "had",
+      "token": "had",
+      "start": 25.28,
+      "end": 25.48
+    },
+    {
+      "text": "already",
+      "token": "already",
+      "start": 25.48,
+      "end": 25.9
+    },
+    {
+      "text": "warned",
+      "token": "warned",
+      "start": 25.9,
+      "end": 26.3
+    },
+    {
+      "text": "Epimetheus",
+      "token": "epimetheus",
+      "start": 26.3,
+      "end": 26.94
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 26.94,
+      "end": 27.36
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 27.36,
+      "end": 27.56
+    },
+    {
+      "text": "trust",
+      "token": "trust",
+      "start": 27.56,
+      "end": 27.82
+    },
+    {
+      "text": "gifts",
+      "token": "gifts",
+      "start": 27.82,
+      "end": 28.16
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 28.16,
+      "end": 28.36
+    },
+    {
+      "text": "Zeus.",
+      "token": "zeus",
+      "start": 28.36,
+      "end": 28.64
+    },
+    {
+      "text": "Epimetheus",
+      "token": "epimetheus",
+      "start": 30.28,
+      "end": 30.72
+    },
+    {
+      "text": "accepts",
+      "token": "accepts",
+      "start": 30.72,
+      "end": 31.18
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 31.18,
+      "end": 31.7
+    },
+    {
+      "text": "anyway.",
+      "token": "anyway",
+      "start": 31.7,
+      "end": 32.56
+    },
+    {
+      "text": "Beside",
+      "token": "beside",
+      "start": 32.56,
+      "end": 33.34
+    },
+    {
+      "text": "her",
+      "token": "her",
+      "start": 33.34,
+      "end": 33.42
+    },
+    {
+      "text": "stands",
+      "token": "stands",
+      "start": 33.42,
+      "end": 33.74
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 33.74,
+      "end": 33.9
+    },
+    {
+      "text": "object,",
+      "token": "object",
+      "start": 33.9,
+      "end": 34.28
+    },
+    {
+      "text": "later",
+      "token": "later",
+      "start": 34.28,
+      "end": 34.84
+    },
+    {
+      "text": "remembered",
+      "token": "remembered",
+      "start": 34.84,
+      "end": 35.2
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 35.2,
+      "end": 35.42
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 35.42,
+      "end": 35.48
+    },
+    {
+      "text": "box.",
+      "token": "box",
+      "start": 35.48,
+      "end": 35.84
+    },
+    {
+      "text": "But",
+      "token": "but",
+      "start": 36.94,
+      "end": 37.16
+    },
+    {
+      "text": "Hesiod's",
+      "token": "hesiod's",
+      "start": 37.16,
+      "end": 37.62
+    },
+    {
+      "text": "vessel",
+      "token": "vessel",
+      "start": 37.62,
+      "end": 37.92
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 37.92,
+      "end": 38.14
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 38.14,
+      "end": 38.2
+    },
+    {
+      "text": "pythos.",
+      "token": "pythos",
+      "start": 38.2,
+      "end": 38.9
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 38.9,
+      "end": 39.68
+    },
+    {
+      "text": "pythos",
+      "token": "pythos",
+      "start": 39.68,
+      "end": 40.02
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 40.02,
+      "end": 40.16
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 40.16,
+      "end": 40.24
+    },
+    {
+      "text": "large",
+      "token": "large",
+      "start": 40.24,
+      "end": 40.52
+    },
+    {
+      "text": "storage",
+      "token": "storage",
+      "start": 40.52,
+      "end": 40.9
+    },
+    {
+      "text": "jar,",
+      "token": "jar",
+      "start": 40.9,
+      "end": 41.3
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 41.3,
+      "end": 41.38
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 41.38,
+      "end": 41.5
+    },
+    {
+      "text": "chest.",
+      "token": "chest",
+      "start": 41.5,
+      "end": 41.96
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 43.14,
+      "end": 43.58
+    },
+    {
+      "text": "opens",
+      "token": "opens",
+      "start": 43.58,
+      "end": 44.0
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 44.0,
+      "end": 44.16
+    },
+    {
+      "text": "jar.",
+      "token": "jar",
+      "start": 44.16,
+      "end": 44.7
+    },
+    {
+      "text": "Hardships",
+      "token": "hardships",
+      "start": 44.7,
+      "end": 45.46
+    },
+    {
+      "text": "pour",
+      "token": "pour",
+      "start": 45.46,
+      "end": 45.7
+    },
+    {
+      "text": "out",
+      "token": "out",
+      "start": 45.7,
+      "end": 45.88
+    },
+    {
+      "text": "into",
+      "token": "into",
+      "start": 45.88,
+      "end": 46.06
+    },
+    {
+      "text": "human",
+      "token": "human",
+      "start": 46.06,
+      "end": 46.26
+    },
+    {
+      "text": "life.",
+      "token": "life",
+      "start": 46.26,
+      "end": 46.6
+    },
+    {
+      "text": "She",
+      "token": "she",
+      "start": 46.6,
+      "end": 47.88
+    },
+    {
+      "text": "closes",
+      "token": "closes",
+      "start": 47.88,
+      "end": 48.16
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 48.16,
+      "end": 48.36
+    },
+    {
+      "text": "lid,",
+      "token": "lid",
+      "start": 48.36,
+      "end": 48.64
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 48.64,
+      "end": 48.7
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 48.7,
+      "end": 48.92
+    },
+    {
+      "text": "before",
+      "token": "before",
+      "start": 48.92,
+      "end": 49.12
+    },
+    {
+      "text": "they",
+      "token": "they",
+      "start": 48.64,
+      "end": 49.34
+    },
+    {
+      "text": "are",
+      "token": "are",
+      "start": 49.34,
+      "end": 49.36
+    },
+    {
+      "text": "gone.",
+      "token": "gone",
+      "start": 49.36,
+      "end": 50.24
+    },
+    {
+      "text": "One",
+      "token": "one",
+      "start": 50.24,
+      "end": 50.96
+    },
+    {
+      "text": "thing",
+      "token": "thing",
+      "start": 50.96,
+      "end": 51.12
+    },
+    {
+      "text": "remains",
+      "token": "remains",
+      "start": 51.12,
+      "end": 51.42
+    },
+    {
+      "text": "inside.",
+      "token": "inside",
+      "start": 51.42,
+      "end": 52.1
+    },
+    {
+      "text": "Elpis.",
+      "token": "elpis",
+      "start": 52.1,
+      "end": 53.22
+    },
+    {
+      "text": "Elpis",
+      "token": "elpis",
+      "start": 53.22,
+      "end": 54.02
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 54.02,
+      "end": 54.28
+    },
+    {
+      "text": "often",
+      "token": "often",
+      "start": 54.28,
+      "end": 54.54
+    },
+    {
+      "text": "translated",
+      "token": "translated",
+      "start": 54.54,
+      "end": 55.08
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 55.08,
+      "end": 55.44
+    },
+    {
+      "text": "hope.",
+      "token": "hope",
+      "start": 55.44,
+      "end": 56.22
+    },
+    {
+      "text": "What",
+      "token": "what",
+      "start": 56.6,
+      "end": 56.8
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 56.8,
+      "end": 56.98
+    },
+    {
+      "text": "remaining",
+      "token": "remaining",
+      "start": 56.98,
+      "end": 57.26
+    },
+    {
+      "text": "hope",
+      "token": "hope",
+      "start": 57.26,
+      "end": 57.54
+    },
+    {
+      "text": "means",
+      "token": "means",
+      "start": 57.54,
+      "end": 57.92
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 57.92,
+      "end": 58.22
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 58.22,
+      "end": 58.44
+    },
+    {
+      "text": "debated.",
+      "token": "debated",
+      "start": 58.44,
+      "end": 58.96
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 59.68,
+      "end": 59.92
+    },
+    {
+      "text": "ambiguity",
+      "token": "ambiguity",
+      "start": 59.92,
+      "end": 60.3
+    },
+    {
+      "text": "changes",
+      "token": "changes",
+      "start": 60.3,
+      "end": 61.06
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 61.06,
+      "end": 61.32
+    },
+    {
+      "text": "story's",
+      "token": "story's",
+      "start": 61.32,
+      "end": 61.74
+    },
+    {
+      "text": "ending.",
+      "token": "ending",
+      "start": 61.74,
+      "end": 62.0
+    },
+    {
+      "text": "Pandora",
+      "token": "pandora",
+      "start": 63.4,
+      "end": 63.84
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 63.84,
+      "end": 64.12
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 64.12,
+      "end": 64.26
+    },
+    {
+      "text": "simply",
+      "token": "simply",
+      "start": 64.26,
+      "end": 64.64
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 64.64,
+      "end": 64.82
+    },
+    {
+      "text": "villain.",
+      "token": "villain",
+      "start": 64.82,
+      "end": 65.06
+    },
+    {
+      "text": "She",
+      "token": "she",
+      "start": 65.8,
+      "end": 65.98
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 65.98,
+      "end": 66.2
+    },
+    {
+      "text": "part",
+      "token": "part",
+      "start": 66.2,
+      "end": 66.44
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 66.44,
+      "end": 66.58
+    },
+    {
+      "text": "Zeus'",
+      "token": "zeus",
+      "start": 66.58,
+      "end": 66.96
+    },
+    {
+      "text": "punishment",
+      "token": "punishment",
+      "start": 66.96,
+      "end": 67.36
+    },
+    {
+      "text": "after",
+      "token": "after",
+      "start": 67.36,
+      "end": 67.86
+    },
+    {
+      "text": "Prometheus",
+      "token": "prometheus",
+      "start": 67.86,
+      "end": 68.54
+    },
+    {
+      "text": "steals",
+      "token": "steals",
+      "start": 68.54,
+      "end": 68.88
+    },
+    {
+      "text": "fire.",
+      "token": "fire",
+      "start": 68.88,
+      "end": 69.3
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 70.18,
+      "end": 70.42
+    },
+    {
+      "text": "famous",
+      "token": "famous",
+      "start": 70.42,
+      "end": 70.7
+    },
+    {
+      "text": "box",
+      "token": "box",
+      "start": 70.7,
+      "end": 71.08
+    },
+    {
+      "text": "belongs",
+      "token": "belongs",
+      "start": 71.08,
+      "end": 71.4
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 71.4,
+      "end": 71.68
+    },
+    {
+      "text": "later",
+      "token": "later",
+      "start": 71.68,
+      "end": 72.04
+    },
+    {
+      "text": "tradition.",
+      "token": "tradition",
+      "start": 72.04,
+      "end": 72.48
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 73.72,
+      "end": 73.88
+    },
+    {
+      "text": "older",
+      "token": "older",
+      "start": 73.88,
+      "end": 74.18
+    },
+    {
+      "text": "story",
+      "token": "story",
+      "start": 74.18,
+      "end": 74.48
+    },
+    {
+      "text": "leaves",
+      "token": "leaves",
+      "start": 74.48,
+      "end": 74.82
+    },
+    {
+      "text": "us",
+      "token": "us",
+      "start": 74.82,
+      "end": 75.02
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 75.02,
+      "end": 75.24
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 75.24,
+      "end": 75.36
+    },
+    {
+      "text": "jar",
+      "token": "jar",
+      "start": 75.36,
+      "end": 75.68
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 75.68,
+      "end": 75.96
+    },
+    {
+      "text": "an",
+      "token": "an",
+      "start": 75.96,
+      "end": 76.1
+    },
+    {
+      "text": "unresolved",
+      "token": "unresolved",
+      "start": 76.1,
+      "end": 76.92
+    },
+    {
+      "text": "hope.",
+      "token": "hope",
+      "start": 76.92,
+      "end": 77.54
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 78.58,
+      "end": 78.76
+    },
+    {
+      "text": "famous",
+      "token": "famous",
+      "start": 78.76,
+      "end": 79.0
+    },
+    {
+      "text": "box",
+      "token": "box",
+      "start": 79.0,
+      "end": 79.34
+    },
+    {
+      "text": "began",
+      "token": "began",
+      "start": 79.34,
+      "end": 79.68
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 79.68,
+      "end": 79.9
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 79.9,
+      "end": 80.0
+    },
+    {
+      "text": "jar",
+      "token": "jar",
+      "start": 80.0,
+      "end": 80.26
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 80.26,
+      "end": 80.54
+    },
+    {
+      "text": "its",
+      "token": "its",
+      "start": 80.54,
+      "end": 80.68
+    },
+    {
+      "text": "final",
+      "token": "final",
+      "start": 80.68,
+      "end": 81.08
+    },
+    {
+      "text": "mystery",
+      "token": "mystery",
+      "start": 81.08,
+      "end": 81.48
+    },
+    {
+      "text": "stayed",
+      "token": "stayed",
+      "start": 81.48,
+      "end": 81.9
+    },
+    {
+      "text": "sealed.",
+      "token": "sealed",
+      "start": 81.9,
+      "end": 82.26
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 83.7,
+      "end": 83.82
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 83.82,
+      "end": 84.1
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 84.1,
+      "end": 84.56
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 84.56,
+      "end": 85.18
+    },
+    {
+      "text": "Grow",
+      "token": "grow",
+      "start": 85.18,
+      "end": 85.72
+    },
+    {
+      "text": "More",
+      "token": "more",
+      "start": 85.72,
+      "end": 86.06
+    },
+    {
+      "text": "Questions",
+      "token": "questions",
+      "start": 86.06,
+      "end": 86.56
+    }
+  ]
+}

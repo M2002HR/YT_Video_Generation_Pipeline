@@ -233,9 +233,35 @@ def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
         "motion": {"enabled": True, "strength": 0.085, "supersample": 2, "cycle": ["zoom_in", "zoom_out", "slow_zoom_in", "slow_zoom_out"]},
         # margin_v is omitted on purpose: build_timeline derives it from the frame height so
         # captions clear the platform UI band at the bottom of a vertical short (T9.8).
-        "subtitles": {"enabled": True, "font_name": "DejaVu Sans", "font_size": 56, "bold": True, "outline": 3, "shadow": 0, "max_words_per_cue": 6, "max_chars_per_line": 34, "max_lines": 2},
+        "subtitles": {
+            "enabled": True, "font_name": "DejaVu Sans", "font_size": 56,
+            "bold": True, "outline": 3, "shadow": 0, "max_words_per_cue": 6,
+            "max_chars_per_line": 34, "max_lines": 2,
+            # When measured word timings are available, libass sweeps this warm
+            # accent through the word currently being spoken.
+            "word_highlight": {
+                "enabled": True,
+                "active_colour": "&H0000D7FF",
+                "inactive_colour": "&H00F5F5F5",
+                "outline_colour": "&H00130D09",
+            },
+        },
     }, indent=2) + "\n", encoding="utf-8")
     return profile
+
+
+def apply_word_highlight_preference(profile_path: Path, creative_brief: dict[str, Any]) -> None:
+    """Apply the panel's per-episode highlight choice without altering subtitle timing.
+
+    Older briefs simply omit ``_subtitle`` and retain the new, safe default (enabled).
+    """
+    requested = (creative_brief.get("_subtitle") or {}).get("word_highlight", True)
+    profile = json.loads(profile_path.read_text(encoding="utf-8"))
+    subtitles = profile.setdefault("subtitles", {})
+    if not isinstance(subtitles.get("word_highlight"), dict):
+        subtitles["word_highlight"] = {}
+    subtitles["word_highlight"]["enabled"] = bool(requested)
+    profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -337,6 +363,7 @@ def main() -> None:
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)
+    apply_word_highlight_preference(render_profile, creative_payload)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     run("completion", [py, "scripts/run_completion_pipeline.py", str(project), "--publish"], state, state_path, notifier=notifier)
     publish_git_artifacts(project, state_path, state, notifier=notifier)

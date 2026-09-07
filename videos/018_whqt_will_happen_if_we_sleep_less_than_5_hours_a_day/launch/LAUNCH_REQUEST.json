@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "1fd4d51c-7295-4518-b19a-6adf8c379ab8",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-07T01:59:54.540774+00:00",
   "topic": "whqt will happen if we sleep less than 5 hours a day?",
   "video_id": "018",
@@ -57,5 +57,6 @@
   ],
   "started_at": "2026-09-07T01:59:54.541652+00:00",
   "resumed_at": "2026-09-07T02:47:00.184764+00:00",
-  "resume_count": 2
+  "resume_count": 2,
+  "completed_at": "2026-09-07T02:55:35.314687+00:00"
 }

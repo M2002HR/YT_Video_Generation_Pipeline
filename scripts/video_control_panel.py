@@ -828,6 +828,7 @@ class Handler(BaseHTTPRequestHandler):
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
             providers = music_provider_priority(values.get("music_providers", values.get("music_provider", ["mixkit"]))[0])
             show_subtitles = "show_subtitles" in values
+            word_highlight = "word_highlight" in values
             commit_artifacts = "commit_artifacts" in values
             # QH advanced
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
@@ -885,6 +886,9 @@ class Handler(BaseHTTPRequestHandler):
                 "opening_b_source_seconds": opening_b_seconds,
                 "show_subtitles": show_subtitles,
             }
+            # Kept outside the QH-only settings so legacy content projects use the same
+            # visible panel choice when their render profile is created.
+            creative_brief["_subtitle"] = {"word_highlight": word_highlight}
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
         except RuntimeError as exc:
@@ -911,6 +915,7 @@ class Handler(BaseHTTPRequestHandler):
                 "voice_profile": str(profile.relative_to(ROOT)), "creative_brief": str(creative_brief_path.relative_to(ROOT)),
                 "qh": creative_brief["_qh"],
                 "subtitles": subtitles_enabled,
+                "word_highlight": word_highlight,
                 # Recorded so a resume rebuilds exactly this command (§78).
                 "music_provider": providers[0],  # legacy readers retain the first choice
                 "music_providers": providers,

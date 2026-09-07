@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "completed_at": "2026-09-07T02:53:10.596074+00:00",
+  "completed_at": "2026-09-07T03:07:18.045777+00:00",
   "output": "/opt/YT_Video_Generation_Pipeline/videos/018_whqt_will_happen_if_we_sleep_less_than_5_hours_a_day/assets/renders/final.mp4",
-  "output_bytes": 59545355,
+  "output_bytes": 59528058,
   "target_duration_seconds": 64.967,
   "actual_duration_seconds": 64.966,
   "duration_drift_seconds": -0.001,
-  "wall_seconds": 189.608,
-  "realtime_factor": 2.919,
+  "wall_seconds": 190.757,
+  "realtime_factor": 2.936,
   "beats": 14,
   "resolution": "1080x1920",
   "fps": 30,
@@ -24,5 +24,5 @@
   "ionice": true,
   "supersample": 2,
   "supersample_note": "",
-  "peak_child_rss_mb": 1286.4
+  "peak_child_rss_mb": 1283.8
 }

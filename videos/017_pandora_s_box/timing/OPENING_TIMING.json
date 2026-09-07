@@ -1,0 +1,182 @@
+{
+  "audio_duration_seconds": 87.249,
+  "spark_start": 0.04,
+  "spark_end": 5.12,
+  "spark_duration": 5.08,
+  "transition_start": 6.6,
+  "transition_end": 9.26,
+  "transition_duration": 2.66,
+  "clip_a_target_seconds": 5.12,
+  "clip_b_target_seconds": 4.14,
+  "body_start": 9.84,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "While I repot this seedling, here's why Pandora's famous box was never actually a box.",
+      "speech_start": 0.04,
+      "speech_end": 5.12,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "The clue is in Hesiod's Works and Days.",
+      "speech_start": 6.6,
+      "speech_end": 9.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Prometheus steals fire and gives it to humanity.",
+      "speech_start": 9.84,
+      "speech_end": 12.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Zeus answers by ordering Pandora to be created.",
+      "speech_start": 13.2,
+      "speech_end": 15.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "The Olympian gods furnish her with gifts.",
+      "speech_start": 16.58,
+      "speech_end": 18.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Then Zeus sends Pandora to Prometheus's brother, Epimetheus.",
+      "speech_start": 19.82,
+      "speech_end": 23.3,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Prometheus had already warned Epimetheus not to trust gifts from Zeus.",
+      "speech_start": 24.78,
+      "speech_end": 28.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Epimetheus accepts Pandora anyway.",
+      "speech_start": 30.28,
+      "speech_end": 32.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Beside her stands the object later remembered as a box.",
+      "speech_start": 32.56,
+      "speech_end": 35.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "But Hesiod's vessel is a pithos.",
+      "speech_start": 36.94,
+      "speech_end": 38.2,
+      "match_confidence": 0.833
+    },
+    {
+      "segment": "body_09",
+      "narration": "A pithos is a large storage jar, not a chest.",
+      "speech_start": 38.9,
+      "speech_end": 41.96,
+      "match_confidence": 0.9
+    },
+    {
+      "segment": "body_10",
+      "narration": "Pandora opens the jar.",
+      "speech_start": 43.14,
+      "speech_end": 44.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "Hardships pour out into human life.",
+      "speech_start": 44.7,
+      "speech_end": 46.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "She closes the lid, but not before they are gone.",
+      "speech_start": 46.6,
+      "speech_end": 50.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_13",
+      "narration": "One thing remains inside: Elpis.",
+      "speech_start": 50.24,
+      "speech_end": 53.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_14",
+      "narration": "Elpis is often translated as hope.",
+      "speech_start": 53.22,
+      "speech_end": 56.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_15",
+      "narration": "What that remaining hope means is still debated.",
+      "speech_start": 56.6,
+      "speech_end": 58.96,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_16",
+      "narration": "That ambiguity changes the story's ending.",
+      "speech_start": 59.68,
+      "speech_end": 62.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_17",
+      "narration": "Pandora is not simply a villain.",
+      "speech_start": 63.4,
+      "speech_end": 65.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_18",
+      "narration": "She is part of Zeus's punishment after Prometheus steals fire.",
+      "speech_start": 65.8,
+      "speech_end": 69.3,
+      "match_confidence": 0.9
+    },
+    {
+      "segment": "body_19",
+      "narration": "The famous box belongs to later tradition.",
+      "speech_start": 70.18,
+      "speech_end": 72.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_20",
+      "narration": "The older story leaves us with a jar and an unresolved hope.",
+      "speech_start": 73.72,
+      "speech_end": 77.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "The famous box began as a jar, and its final mystery stayed sealed.",
+      "speech_start": 78.58,
+      "speech_end": 82.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 83.7,
+      "speech_end": 86.56,
+      "match_confidence": 1.0
+    }
+  ]
+}

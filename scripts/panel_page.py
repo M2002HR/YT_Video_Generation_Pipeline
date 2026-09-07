@@ -320,6 +320,8 @@ def launch_form(project_options: str, style_options: str) -> str:
     <option value="16:9">16:9 — YouTube landscape</option></select></label>
   <label class="check"><input type=checkbox name=show_subtitles> Burn in subtitles
    <small>Question Harvest default: off (§71)</small></label>
+  <label class="check"><input type=checkbox name=word_highlight checked> Highlight the spoken word
+   <small>Warm-gold sweep follows each measured word; requires burned subtitles and real word timing.</small></label>
   <label class="check"><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC
    <small>needs a remote with write access</small></label>
  </fieldset>

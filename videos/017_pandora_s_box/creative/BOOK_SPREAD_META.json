@@ -1,0 +1,32 @@
+{
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/017_pandora_s_box/references/book_spread_frame.png",
+  "sha256": "260f864bb0886fe5d4e6115f86bba263da1e9ba0ffc4ec1663bdfc83cf6e8387",
+  "template_id": "003",
+  "template_path": "/opt/YT_Video_Generation_Pipeline/projects/question_harvest/book_templates/003/blank_book.png",
+  "template_sha256": "5b1ea1897fee1d35f9f11edde4af92fda72c1eebc7b790bfd02d6edec1be2f69",
+  "seed": 54833,
+  "aspect_ratio": "9:16",
+  "canvas": "1080x1920",
+  "world_keyframe": "/opt/YT_Video_Generation_Pipeline/videos/017_pandora_s_box/references/world_keyframe.png",
+  "world_keyframe_sha256": "5d56f19bec5391ef1c06bb2f58b162fdf6a0db0011d756aa10352658ca8f93fc",
+  "world_keyframe_dimensions": [
+    1536,
+    2752
+  ],
+  "left_page_box": [
+    86,
+    444,
+    530,
+    1475
+  ],
+  "right_page_box": [
+    558,
+    444,
+    986,
+    1475
+  ],
+  "world_transform": "ImageOps.fit centering=(0.5,0.5) LANCZOS",
+  "world_kept_fraction": 0.7438,
+  "readable_text_drawn": false,
+  "book_spread_frame": "/opt/YT_Video_Generation_Pipeline/videos/017_pandora_s_box/references/book_spread_frame.png"
+}

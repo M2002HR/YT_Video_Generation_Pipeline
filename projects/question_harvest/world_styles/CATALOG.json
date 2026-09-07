@@ -88,6 +88,17 @@
       "path": "008_aegean_bronze_relief_mineral_fresco_001",
       "anchor": "008_aegean_bronze_relief_mineral_fresco_001/style_anchor.png",
       "usage_count": 2
+    },
+    {
+      "style_id": "layered_anatomical_storybook_paper_001",
+      "display_name": "Layered Anatomical Storybook Paper 001",
+      "medium_family": "painted storybook",
+      "texture_family": "hand-painted fibrous paper with softly torn layered edges, dry-brush pigment, and gentle tactile grain",
+      "palette_summary": "muted nocturnal navy, desaturated blue-gray and slate, soft moss and cream neutrals, warm amber and honey highlights for active signals, with restrained dusty rose accents for stressed body systems",
+      "status": "ready",
+      "path": "009_layered_anatomical_storybook_paper_001",
+      "anchor": "009_layered_anatomical_storybook_paper_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

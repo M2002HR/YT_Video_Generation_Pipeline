@@ -1,0 +1,34 @@
+{
+  "schema_version": 3,
+  "content_project": "question_harvest",
+  "created_at": "2026-09-06T20:50:07Z",
+  "providers": {
+    "text": "chatgpt",
+    "image": "gemini",
+    "video": "flow",
+    "voice": "elevenlabs_web"
+  },
+  "image_generation": {
+    "model": "nano_banana_2",
+    "quality": "best"
+  },
+  "video_generation": {
+    "model": "gemini_omni_1_1_flash",
+    "resolution": "720p",
+    "opening_a_source_seconds": 8,
+    "opening_b_source_seconds": 6,
+    "outputs": "x1",
+    "flow_style_sheet_upload": false
+  },
+  "episode": {
+    "min_duration_seconds": 60.0,
+    "max_duration_seconds": 90.0,
+    "word_range": "~138–225"
+  },
+  "world_style": {
+    "policy": "reuse",
+    "requested_style_id": "aegean_bronze_relief_mineral_fresco_001",
+    "hint": "New Aegean bronze-relief and mineral-pigment story world: sculpted terracotta figures, oxidized copper teal, charcoal black, sun-baked ochre, restrained gold inlay, dramatic low raking light, tactile archaeological depth; no illuminated manuscript gouache, no photorealism, no 3D."
+  },
+  "project": "videos/017_pandora_s_box"
+}

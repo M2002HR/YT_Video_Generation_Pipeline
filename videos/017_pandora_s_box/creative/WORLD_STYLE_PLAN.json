@@ -1,0 +1,16 @@
+{
+  "style_id": "aegean_bronze_relief_mineral_fresco_001",
+  "decision": "reuse",
+  "reuse_of": "aegean_bronze_relief_mineral_fresco_001",
+  "medium": "fresco",
+  "secondary_treatment": "subtle shallow bronze-relief treatment with sparse restrained gold inlay",
+  "texture_family": "weathered mineral-plaster surface with terracotta grain, shallow relief-like edge wear, oxidized metal patina, and tactile archaeological abrasion",
+  "palette_summary": "oxidized copper teal, charcoal black, sun-baked terracotta and ochre, limestone cream, deep umber shadows, with sparse restrained gold inlay",
+  "line_treatment": "sculpted relief-like contours with crisp incised edges, simplified archaic silhouettes, mineral-pigment blocking, and selective charcoal-dark definition",
+  "lighting": "dramatic low raking light that catches raised bronze-like edges, terracotta texture, and worn plaster while leaving deep carved shadows",
+  "subject_constraints": "Use an Aegean and archaic Greek archaeological vocabulary: monumental terracotta pithoi, stone and plaster surfaces, bronze-relief figures, stylized Olympian gods, Prometheus, Epimetheus, Pandora, fire, vessels, carved hands, restrained plant and flame motifs, and symbolic hardship forms. Favor profile or frieze-like staging, relief compositions, cutaway vessel diagrams, and museum-object clarity. Keep the pithos visually large enough to read as a storage jar rather than a small household pot or chest.",
+  "historical_accuracy_note": "Treat Hesiod's Works and Days as the narrative anchor without implying that every ancient source agrees on every detail. Depict the central container as a large pithos storage jar, not a later European chest. Avoid anachronistic classical marble-statue clichés, Renaissance costume, medieval boxes, or modern literalized monsters for the released hardships. Pandora should read as a participant in Zeus's punishment rather than a simplistic villain.",
+  "hero_rendering_in_world": "If the protagonist appears within the mythic world, preserve his recognizable hair silhouette, beard, facial proportions, and overalls silhouette, translated into simplified terracotta-and-bronze relief forms with mineral-pigment surfaces and the same low raking light.",
+  "negative_constraints": "No photorealism, no glossy 3D CGI, no anime, no modern comic-book rendering, no neon cyberpunk palette, no polished marble-statue aesthetic, no medieval or Renaissance visual vocabulary, no literal treasure chest as Pandora's vessel, no excessive gold, and no beat-by-beat medium changes.",
+  "reason": "The operator directive explicitly requires reuse of aegean_bronze_relief_mineral_fresco_001. Despite its presence among the most recent styles and the normal recent-usage penalty, this style has unusually strong topic affinity: terracotta vessel forms directly reinforce the pithos reveal, oxidized bronze and mineral fresco surfaces evoke an archaeological Greek world, and low raking light makes the jar, released hardships, and sealed Elpis visually legible. Reusing it also preserves continuity with the episode plan's stated Aegean bronze-relief direction."
+}

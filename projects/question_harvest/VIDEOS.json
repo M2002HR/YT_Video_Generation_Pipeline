@@ -72,7 +72,16 @@
       "camera_pattern": "over_shoulder",
       "book_template_id": "003",
       "world_style_id": "aegean_bronze_relief_mineral_fresco_001",
-      "updated_at": "2026-09-06T21:15:19.685611+00:00"
+      "updated_at": "2026-09-07T01:25:23.689438+00:00"
+    },
+    {
+      "video_id": "018",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "layered_anatomical_storybook_paper_001",
+      "updated_at": "2026-09-07T02:47:02.543669+00:00"
     }
   ]
 }
