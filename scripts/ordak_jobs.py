@@ -55,6 +55,10 @@ RETRYABLE_ERROR_CODES = {
     "flow_ui_changed",
     "chrome_control_unavailable",
     "chrome_not_open",
+    # A provider's attachment acknowledgement can time out even though the next
+    # fresh-chat attempt succeeds.  Retrying is safe: the failed job never
+    # submitted its prompt, so it cannot have produced a duplicate edit decision.
+    "upload_incomplete",
 }
 
 TERMINAL_STATUSES = {"completed", "failed", "cancelled", "manual_verification_required"}

@@ -139,6 +139,13 @@ class QHState:
             }
         self.state["video_id"] = video_id
         self.state["topic"] = topic
+        # A resumed process is actively making forward progress even though the
+        # durable file still contains the last terminal failure.  Clear that stale
+        # terminal label before the first stage writes, so the panel and recovery
+        # tooling never report a live pipeline as failed.
+        if self.state.get("pipeline_state") != STATE_DONE:
+            self.state["pipeline_state"] = STATE_RUNNING
+            self.save()
 
     def save(self) -> None:
         self.state["updated_at"] = utcnow()

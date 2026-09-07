@@ -410,8 +410,12 @@ def pipeline_state_of(record: dict) -> dict:
             stage_count = max(stage_count, 18 + planned_beats)
     except (OSError, ValueError, TypeError):
         pass
+    is_live = bool(record.get("_live")) or bool(running)
     return {
-        "pipeline_state": state.get("pipeline_state"),
+        # The PID is the source of truth during a direct resume: QH's durable
+        # state is intentionally only checkpointed at stage boundaries and can
+        # still contain the prior failure for a short time.
+        "pipeline_state": "RUNNING" if is_live else state.get("pipeline_state"),
         "stage_count": stage_count,
         "done": sum(1 for entry in stages.values() if entry.get("status") in ("DONE", "REUSED")),
         "running": running[0] if running else None,
@@ -463,7 +467,11 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
         live_pid = external_pipeline_pid(project)
         # Completed/old manual runs do not need duplicate rows.  A failed run stays
         # visible as well: it is the actionable counterpart of a live run.
-        if live_pid is None and pipeline_state not in {"RUNNING", "FAILED", "FAILED_DOWNLOAD", "PAUSED_LOGIN_REQUIRED", "PAUSED_MANUAL_VERIFICATION", "PAUSED_CREDITS"}:
+        if live_pid is None and pipeline_state not in {
+            "RUNNING", "FAILED", "FAILED_DOWNLOAD", "FAILED_UPLOAD", "FAILED_UI_CHANGED",
+            "FAILED_VALIDATION", "PAUSED_LOGIN_REQUIRED", "PAUSED_MANUAL_VERIFICATION",
+            "PAUSED_CREDITS",
+        }:
             continue
         video_id = str(state.get("video_id") or project.name.split("_", 1)[0])
         records.append(
