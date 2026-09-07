@@ -1,30 +1,25 @@
 {
-  "schema_version": 3,
-  "provider": "Mixkit verified local fallback",
+  "schema_version": 4,
+  "provider": "freesound",
   "provider_priority": [
-    "mixkit",
-    "pixabay"
+    "freesound"
   ],
-  "provider_attempts": [
-    {
-      "provider": "mixkit",
-      "error": "RuntimeError: ChatGPT did not return exactly one new valid mixkit track URL after 2 attempts.",
-      "failed_at": "2026-09-07T05:31:26.067429+00:00"
-    },
-    {
-      "provider": "pixabay",
-      "error": "RuntimeError: Pixabay download control did not become ready. Visible download controls: none",
-      "failed_at": "2026-09-07T05:32:20.015739+00:00"
-    }
+  "provider_attempts": [],
+  "selection_prompt": "calm instrumental ambient",
+  "alternate_queries": [
+    "sleep instrumental ambient",
+    "focus instrumental music",
+    "soft instrumental piano"
   ],
-  "source_url": "https://mixkit.co/free-stock-music/item/684/",
   "status": "DONE",
-  "selection_mode": "CACHE_FALLBACK",
-  "cached_from": "videos/011_what_was_the_very_first_disney_animation/assets/music/background.mp3",
-  "installed_at": "2026-09-07T05:32:20.879232+00:00",
-  "file": "assets/music/background.mp3",
-  "bytes": 4390542,
-  "sha256": "45f5275e91f05dfa5bd8b7451955596566ef02419570b8888dda2ef20a401515",
-  "duration_seconds": 137.169,
-  "license": "Mixkit source license; verify current source page before publication."
+  "selection_mode": "FREESOUND_DOWNLOAD",
+  "query": "calm instrumental ambient",
+  "library_id": "freesound_790936",
+  "provider_id": "790936",
+  "source_url": "https://freesound.org/people/kontraamusic/sounds/790936/",
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "file": "assets/music/freesound_background.mp3",
+  "library_file": "/opt/YT_Video_Generation_Pipeline/runtime/freesound_music_library/assets/freesound_790936_c96743f18da0.mp3",
+  "duration_seconds": 60.081633,
+  "bytes": 1441218
 }

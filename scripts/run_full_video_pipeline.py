@@ -304,6 +304,7 @@ def main() -> None:
         raise SystemExit("Voice profile missing: " + ", ".join(missing_voice_fields))
     creative_brief = args.creative_brief.expanduser().resolve() if args.creative_brief else None
     creative_payload: dict[str, Any] = {}
+    sfx_settings: dict[str, Any] = {}
     if creative_brief is not None:
         try:
             payload = json.loads(creative_brief.read_text(encoding="utf-8"))
@@ -311,6 +312,7 @@ def main() -> None:
             raise SystemExit(f"Creative brief is unreadable: {creative_brief}") from exc
         if not isinstance(payload, dict):
             raise SystemExit("Creative brief must be a JSON object.")
+        sfx_settings = dict(payload.get("_sfx") or {}) if isinstance(payload.get("_sfx"), dict) else {}
         creative_payload = {str(key): str(value).strip() for key, value in payload.items() if isinstance(value, str) and value.strip()}
     creative_brief_sha256 = hashlib.sha256(json.dumps(creative_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
@@ -368,6 +370,8 @@ def main() -> None:
     apply_word_highlight_preference(render_profile, creative_payload)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     completion = [py, "scripts/run_completion_pipeline.py", str(project), "--publish", "--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size"]
+    if bool(sfx_settings.get("enabled")) and creative_brief is not None:
+        completion.extend(["--sfx-config", str(creative_brief)])
     if args.telegram_original:
         completion.append("--telegram-original")
     run("completion", completion, state, state_path, notifier=notifier)

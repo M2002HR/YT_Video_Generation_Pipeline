@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "937d6c1db1fa8cb8920bd65d81c4b89aaf24aa9939e45674e9e8915f46f85d7f",
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 8.7,
+      "intent": "Quiet magical book opening in the home-to-story transition.",
+      "query": "old leather book opening pages turning soft",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_584864",
+      "provider": "freesound",
+      "provider_id": "584864",
+      "source_url": "https://freesound.org/people/Kawgrim/sounds/584864/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_584864_560f91e99eab.wav",
+      "duration_seconds": 2.4,
+      "gain_db": -22.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 18.9,
+      "intent": "Subtle vintage wrestling hall atmosphere during Olympic career visuals.",
+      "query": "quiet old wrestling gym ambience crowd distant",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_109744",
+      "provider": "freesound",
+      "provider_id": "109744",
+      "source_url": "https://freesound.org/people/SoundCollectah/sounds/109744/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_109744_e5fea55b6996.mp3",
+      "duration_seconds": 3.2,
+      "gain_db": -14.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_003",
+      "at": 47.2,
+      "intent": "Respectful Tehran public space atmosphere around the memorial statue.",
+      "query": "quiet Tehran street ambience pedestrians soft",
+      "selection_mode": "SKIPPED_NO_GOOD_MATCH",
+      "gain_db": -14.0
+    }
+  ]
+}

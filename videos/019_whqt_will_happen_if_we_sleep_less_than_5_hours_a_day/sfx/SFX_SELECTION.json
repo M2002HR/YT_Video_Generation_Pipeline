@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "ec9c11d3c8dfeee2b6a30edfc13cc79a84a7f9cd3cfd56975146a224b236f092",
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 1.0,
+      "intent": "Quiet garden watering establishes the opening action.",
+      "query": "gentle garden watering can pour water",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_473713",
+      "provider": "freesound",
+      "provider_id": "473713",
+      "source_url": "https://freesound.org/people/Joao_Janz/sounds/473713/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_473713_b216ff36882d.mp3",
+      "duration_seconds": 2.2,
+      "gain_db": -9.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 5.0,
+      "intent": "Subtle handling sound as the storybook is picked up.",
+      "query": "old book pickup paper cover movement",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_202534",
+      "provider": "freesound",
+      "provider_id": "202534",
+      "source_url": "https://freesound.org/people/Abolla/sounds/202534/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_202534_6fbdbaf238e8.mp3",
+      "duration_seconds": 1.5,
+      "gain_db": -9.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_003",
+      "at": 21.2,
+      "intent": "Light orchard accident cue for the spilled harvest moment.",
+      "query": "apples falling from basket soft impact",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_846927",
+      "provider": "freesound",
+      "provider_id": "846927",
+      "source_url": "https://freesound.org/people/Nox_Sound/sounds/846927/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_846927_34d71f490f83.mp3",
+      "duration_seconds": 1.8,
+      "gain_db": -9.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_004",
+      "at": 42.2,
+      "intent": "Subtle sleepy orchard atmosphere during the microsleep visualization.",
+      "query": "quiet early morning orchard ambience",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_159728",
+      "provider": "freesound",
+      "provider_id": "159728",
+      "source_url": "https://freesound.org/people/lolamadeus/sounds/159728/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_159728_7c30e8574302.mp3",
+      "duration_seconds": 2.2,
+      "gain_db": -9.0,
+      "score": 1.0
+    }
+  ]
+}

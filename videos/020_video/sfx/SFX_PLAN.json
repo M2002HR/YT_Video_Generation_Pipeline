@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "episode_duration_seconds": 58.514,
+  "planner": {
+    "approach": "Minimal documentary sound design. Use only a few subtle environmental accents and avoid competing with narration.",
+    "max_events_per_minute": 4.0,
+    "minimum_gap_seconds": 2.0,
+    "notes": "No transition whooshes or decorative effects. Prioritize natural historical atmosphere and quiet emotional support.",
+    "provider": "chatgpt_ordak",
+    "style": "balanced"
+  },
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 8.7,
+      "window_start": 7.8,
+      "window_end": 10.2,
+      "category": "foley",
+      "intent": "Quiet magical book opening in the home-to-story transition.",
+      "search_query": "old leather book opening pages turning soft",
+      "alternate_queries": [
+        "antique book cover open gentle page rustle",
+        "vintage paper pages turning close up"
+      ],
+      "desired_duration_seconds": 1.8,
+      "max_duration_seconds": 2.4,
+      "priority": "high",
+      "suggested_gain_db": -22.0,
+      "speech_overlap": "low",
+      "reason": "Supports the visual transition into the historical story while leaving narration space."
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 18.9,
+      "window_start": 18.3,
+      "window_end": 21.5,
+      "category": "ambience",
+      "intent": "Subtle vintage wrestling hall atmosphere during Olympic career visuals.",
+      "search_query": "quiet old wrestling gym ambience crowd distant",
+      "alternate_queries": [
+        "vintage sports arena room tone",
+        "wrestling mat hall ambience"
+      ],
+      "desired_duration_seconds": 2.5,
+      "max_duration_seconds": 3.2,
+      "priority": "medium",
+      "suggested_gain_db": -28.0,
+      "speech_overlap": "yes",
+      "reason": "Adds historical sports context without creating a dramatic match sound effect."
+    },
+    {
+      "event_id": "sfx_003",
+      "at": 47.2,
+      "window_start": 46.8,
+      "window_end": 50.0,
+      "category": "ambience",
+      "intent": "Respectful Tehran public space atmosphere around the memorial statue.",
+      "search_query": "quiet Tehran street ambience pedestrians soft",
+      "alternate_queries": [
+        "calm city square ambience",
+        "memorial plaza distant footsteps"
+      ],
+      "desired_duration_seconds": 2.8,
+      "max_duration_seconds": 3.5,
+      "priority": "medium",
+      "suggested_gain_db": -30.0,
+      "speech_overlap": "yes",
+      "reason": "Reinforces the sense of lasting public memory while keeping the ending reflective."
+    }
+  ],
+  "timeline_context_sha256": "937d6c1db1fa8cb8920bd65d81c4b89aaf24aa9939e45674e9e8915f46f85d7f",
+  "event_count": 3,
+  "updated_at": "2026-09-07T13:26:07.683576+00:00",
+  "status": "DONE"
+}

@@ -300,6 +300,14 @@ def main() -> int:
         python, "scripts/run_completion_pipeline.py", str(project),
         "--resource-budget", f"{args.resource_budget:.3f}",
     ]
+    # The panel freezes non-secret SFX settings in the creative brief. Completion owns the
+    # stages because it owns the final timeline/baseline/QC boundary.
+    try:
+        sfx_enabled = bool((json.loads(args.creative_brief.read_text(encoding="utf-8")).get("_sfx") or {}).get("enabled"))
+    except (OSError, ValueError):
+        sfx_enabled = False
+    if sfx_enabled:
+        completion += ["--sfx-config", str(args.creative_brief)]
     if args.publish:
         completion.append("--publish")
         completion.append("--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size")

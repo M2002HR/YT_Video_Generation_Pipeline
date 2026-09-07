@@ -4,12 +4,12 @@
   "output_video": "assets/renders/polished.mp4",
   "music": {
     "enabled": true,
-    "file": "assets/music/background.mp3",
+    "file": "assets/music/freesound_background.mp3",
     "segments": [
       {
-        "file": "assets/music/background.mp3",
+        "file": "assets/music/freesound_background.mp3",
         "start_seconds": 0.0,
-        "end_seconds": null,
+        "end_seconds": 58.51425,
         "gain_db": -20.0,
         "fade_in_sec": 0.8,
         "fade_out_sec": 1.4,
@@ -29,8 +29,21 @@
     }
   },
   "sfx": {
-    "enabled": false,
-    "events": []
+    "enabled": true,
+    "events": [
+      {
+        "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_584864_560f91e99eab.wav",
+        "at": 8.7,
+        "gain_db": -22.0,
+        "trim_sec": 2.4
+      },
+      {
+        "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_109744_e5fea55b6996.mp3",
+        "at": 18.9,
+        "gain_db": -14.0,
+        "trim_sec": 3.2
+      }
+    ]
   },
   "loudness": {
     "enabled": true,

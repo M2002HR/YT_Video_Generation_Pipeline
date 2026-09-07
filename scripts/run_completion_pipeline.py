@@ -92,7 +92,8 @@ def main() -> None:
     parser.add_argument("--publish", action="store_true", help="Send the passing polished output to Telegram.")
     parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Create and send the compressed Telegram copy (default: enabled).")
     parser.add_argument("--telegram-original", action="store_true", help="Also send the original polished file to Telegram.")
-    parser.add_argument("--allow-sfx", action="store_true", help="Keep explicitly configured SFX; default is no SFX.")
+    parser.add_argument("--allow-sfx", action="store_true", help="Enable SFX stages when configuration permits it.")
+    parser.add_argument("--sfx-config", type=Path, help="Frozen launch/brief JSON containing the non-secret _sfx settings.")
     parser.add_argument("--skip-render", action="store_true", help="Resume from an existing baseline render after an externally monitored render job.")
     parser.add_argument("--commit", action="store_true", help="Commit and push the finished artifacts after QC (§76, §111).")
     parser.add_argument("--no-notify", action="store_true", help="Run without Telegram stage reports.")
@@ -109,7 +110,14 @@ def main() -> None:
     profile = video / "audio_mix" / "AUDIO_MIX_PROFILE.json"
     if not profile.is_file():
         raise FileNotFoundError("AUDIO_MIX_PROFILE.json is required before completion.")
-    if not args.allow_sfx:
+    sfx_config: dict[str, Any] = {}
+    if args.sfx_config:
+        try:
+            sfx_config = (json.loads(args.sfx_config.read_text(encoding="utf-8")).get("_sfx") or {})
+        except (OSError, ValueError) as exc:
+            raise ValueError(f"SFX configuration is unreadable: {args.sfx_config}") from exc
+    sfx_enabled = bool(args.allow_sfx or sfx_config.get("enabled", False))
+    if not sfx_enabled:
         data = json.loads(profile.read_text(encoding="utf-8"))
         data.setdefault("sfx", {})["enabled"] = False
         data["sfx"]["events"] = []
@@ -125,7 +133,7 @@ def main() -> None:
         pass
     notifier = None if args.no_notify else PipelineNotifier(video_id=video.name, topic=topic)
     #: The completion half, in order, so each notification says where the run is.
-    sequence = ["build_timeline", "render_baseline", "qc_baseline", "polish_audio", "qc_polished"]
+    sequence = ["build_timeline"] + (["sfx_plan"] if sfx_enabled and sfx_config.get("planner_enabled", True) else []) + ["render_baseline", "qc_baseline"] + (["sfx_acquire"] if sfx_enabled else []) + ["polish_audio", "qc_polished"]
     if args.publish and args.telegram_low_size:
         sequence.append("telegram_compress")
     if args.commit:
@@ -144,6 +152,8 @@ def main() -> None:
     py = str(managed_python) if managed_python.is_file() else sys.executable
     step("build_timeline", [py, "scripts/build_timeline.py", str(video)],
          artifact=video / "timeline" / "TIMELINE.json")
+    if sfx_enabled and sfx_config.get("planner_enabled", True):
+        step("sfx_plan", [py, "scripts/run_sfx_planner.py", str(video), "--style", str(sfx_config.get("planner_style", "restrained")), "--max-events-per-minute", str(sfx_config.get("max_events_per_minute", 4)), "--minimum-gap-seconds", str(sfx_config.get("minimum_gap_seconds", 2))], artifact=video / "sfx" / "SFX_PLAN.json")
     baseline = video / "assets" / "renders" / "final.mp4"
     if args.skip_render:
         if not baseline.is_file() or baseline.stat().st_size == 0:
@@ -167,6 +177,10 @@ def main() -> None:
         )
     step("qc_baseline", [py, "scripts/qc_render.py", str(video), "--input", str(baseline), "--decode"],
          artifact=video / "render" / "QC_REPORT.json")
+    if sfx_enabled:
+        acquire = [py, "scripts/run_sfx_acquire.py", str(video), "--local-threshold", str(sfx_config.get("local_match_threshold", .35)), "--license-policy", "cc0_by" if sfx_config.get("license_policy") == "cc0_by" else "cc0", "--candidate-count", str(sfx_config.get("candidate_count", 12)), "--max-queries-per-event", str(sfx_config.get("max_queries_per_event", 2)), "--default-gain-db", str(sfx_config.get("default_gain_db", -9)), "--min-gain-db", str(sfx_config.get("min_gain_db", -20)), "--max-gain-db", str(sfx_config.get("max_gain_db", -3))]
+        if not sfx_config.get("freesound_enabled", True): acquire.append("--no-freesound-enabled")
+        step("sfx_acquire", acquire, artifact=video / "sfx" / "SFX_SELECTION.json")
     polished = video / "assets" / "renders" / "polished.mp4"
     step("polish_audio", [py, "scripts/polish_audio.py", str(video), "--output", str(polished)],
          artifact=polished)

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "episode_duration_seconds": 64.078,
+  "planner": {
+    "approach": "Sparse naturalistic sound design. Use only a few grounded cues to reinforce physical actions and key moments while preserving narration clarity.",
+    "event_density": "4 events total, below the allowed maximum.",
+    "avoid": [
+      "whooshes on cuts",
+      "meme sounds",
+      "constant background effects",
+      "narration competition"
+    ],
+    "provider": "chatgpt_ordak",
+    "style": "expressive"
+  },
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 1.0,
+      "window_start": 0.7,
+      "window_end": 2.8,
+      "category": "water",
+      "intent": "Quiet garden watering establishes the opening action.",
+      "search_query": "gentle garden watering can pour water",
+      "alternate_queries": [
+        "soft water pouring on plants",
+        "orchard morning water ambience"
+      ],
+      "desired_duration_seconds": 1.8,
+      "max_duration_seconds": 2.2,
+      "priority": "medium",
+      "suggested_gain_db": -18.0,
+      "speech_overlap": true,
+      "reason": "Supports the opening visual without competing with the opening narration."
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 5.0,
+      "window_start": 4.8,
+      "window_end": 6.2,
+      "category": "foley",
+      "intent": "Subtle handling sound as the storybook is picked up.",
+      "search_query": "old book pickup paper cover movement",
+      "alternate_queries": [
+        "leather book handling sound",
+        "quiet page and cover foley"
+      ],
+      "desired_duration_seconds": 1.0,
+      "max_duration_seconds": 1.5,
+      "priority": "medium",
+      "suggested_gain_db": -20.0,
+      "speech_overlap": true,
+      "reason": "Adds tactile realism to the transition into the book world."
+    },
+    {
+      "event_id": "sfx_003",
+      "at": 21.2,
+      "window_start": 21.0,
+      "window_end": 22.8,
+      "category": "foley",
+      "intent": "Light orchard accident cue for the spilled harvest moment.",
+      "search_query": "apples falling from basket soft impact",
+      "alternate_queries": [
+        "wooden basket tipping fruit roll",
+        "gentle fruit drop sound"
+      ],
+      "desired_duration_seconds": 1.3,
+      "max_duration_seconds": 1.8,
+      "priority": "low",
+      "suggested_gain_db": -22.0,
+      "speech_overlap": true,
+      "reason": "Illustrates mistakes becoming more likely without creating a dramatic accident sound."
+    },
+    {
+      "event_id": "sfx_004",
+      "at": 42.2,
+      "window_start": 42.0,
+      "window_end": 44.2,
+      "category": "ambience",
+      "intent": "Subtle sleepy orchard atmosphere during the microsleep visualization.",
+      "search_query": "quiet early morning orchard ambience",
+      "alternate_queries": [
+        "soft wind through trees",
+        "calm rural morning atmosphere"
+      ],
+      "desired_duration_seconds": 1.8,
+      "max_duration_seconds": 2.2,
+      "priority": "low",
+      "suggested_gain_db": -24.0,
+      "speech_overlap": true,
+      "reason": "Creates a tired, slowed feeling while keeping the educational narration dominant."
+    }
+  ],
+  "timeline_context_sha256": "ec9c11d3c8dfeee2b6a30edfc13cc79a84a7f9cd3cfd56975146a224b236f092",
+  "event_count": 4,
+  "updated_at": "2026-09-07T13:39:50.865293+00:00",
+  "status": "DONE"
+}

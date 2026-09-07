@@ -382,9 +382,25 @@ def launch_form(project_options: str, style_options: str) -> str:
    <label>Style <input name=style type=number min=0 max=1 step=.01 value=.15 required></label>
   </div>
   <label>Music provider priority
-   <input name=music_providers value="mixkit,pixabay" pattern="(mixkit|pixabay)(,(mixkit|pixabay))*" required>
+   <input name=music_providers value="freesound,mixkit,pixabay" pattern="(freesound|mixkit|pixabay)(,(freesound|mixkit|pixabay))*" required>
    <small>Comma-separated order. The pipeline tries each provider in order, then uses only a verified cached track if all fail.</small>
   </label>
+ </fieldset>
+
+ <fieldset><legend>Sound effects</legend>
+  <label class=check><input name=sfx_enabled type=checkbox> Enable restrained SFX</label>
+  <div class=grid2>
+   <label>Planner style <select name=sfx_planner_style><option value=restrained selected>Restrained</option><option value=balanced>Balanced</option><option value=expressive>Expressive</option></select></label>
+   <label>Max events/min <input name=sfx_max_events_per_minute type=number min=0 max=20 step=.5 value=4></label>
+   <label>Minimum gap (sec) <input name=sfx_minimum_gap_seconds type=number min=0 max=30 step=.1 value=2></label>
+   <label>Local-match threshold <input name=sfx_local_match_threshold type=number min=0 max=1 step=.05 value=.35></label>
+   <label>License policy <select name=sfx_license_policy><option value=cc0 selected>CC0 only</option><option value=cc0_by>CC0 + CC BY</option></select></label>
+   <label>Candidate count <input name=sfx_candidate_count type=number min=1 max=50 value=12></label>
+   <label>Max queries/event <input name=sfx_max_queries_per_event type=number min=1 max=5 value=2></label>
+   <label>Default gain dB <input name=sfx_default_gain_db type=number min=-20 max=-3 step=1 value=-9></label>
+  </div>
+  <label class=check><input name=sfx_freesound_enabled type=checkbox checked> Use Freesound only after a local-library miss</label>
+  <small>Freesound credentials remain server-side. CC0 is the production default; API use must comply with Freesound terms.</small>
  </fieldset>
 
  <fieldset><legend>Locked by project design</legend>

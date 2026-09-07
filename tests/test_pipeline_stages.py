@@ -15,7 +15,7 @@ from pipeline_stages import PIPELINE_STAGE_SEQUENCE, stage_title  # noqa: E402
 def test_independent_post_visual_work_has_its_own_visible_stage() -> None:
     expected = {
         "transition_direction", "elevenlabs_voiceover", "background_music", "ajil_alignment", "opening_trim",
-        "build_timeline", "render_baseline", "qc_baseline", "polish_audio", "qc_polished",
+        "build_timeline", "sfx_plan", "render_baseline", "qc_baseline", "sfx_acquire", "polish_audio", "qc_polished",
         "git_commit_push", "publish_telegram",
     }
     assert expected <= set(PIPELINE_STAGE_SEQUENCE)
@@ -26,4 +26,4 @@ def test_titles_use_the_global_count_for_visual_and_render_stages() -> None:
     total = len(PIPELINE_STAGE_SEQUENCE)
     assert stage_title("body_images") == f"step 15/{total} · Body Images"
     assert stage_title("transition_direction") == f"step 16/{total} · Transition Direction"
-    assert stage_title("render_baseline") == f"step 24/{total} · Render Baseline"
+    assert stage_title("render_baseline") == f"step 25/{total} · Render Baseline"

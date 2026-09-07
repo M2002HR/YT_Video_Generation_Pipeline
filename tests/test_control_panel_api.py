@@ -56,6 +56,9 @@ def test_launch_form_exposes_the_word_highlight_choice() -> None:
     assert "Highlight the spoken word" in form
     assert 'name=telegram_low_size checked' in form
     assert 'name=telegram_original' in form
+    assert 'name=sfx_enabled' in form
+    assert 'name=sfx_license_policy' in form
+    assert 'FREESOUND_API_KEY' not in form
 
 
 def test_the_commit_flag_is_carried_into_the_command() -> None:

@@ -40,7 +40,7 @@ CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include
 #: Where Ordak answers, for the provider badges.
 ORDAK_BASE_URL = os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
 PROVIDERS = ("chatgpt", "gemini", "flow")
-MUSIC_PROVIDERS = ("mixkit", "pixabay")
+MUSIC_PROVIDERS = ("freesound", "mixkit", "pixabay")
 JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
 
 
@@ -95,7 +95,7 @@ def music_provider_priority(value: object) -> list[str]:
     if not providers:
         raise ValueError("Choose at least one music provider.")
     if any(provider not in MUSIC_PROVIDERS for provider in providers):
-        raise ValueError("Music providers must be Mixkit and/or Pixabay.")
+        raise ValueError("Music providers must be Freesound, Mixkit, and/or Pixabay.")
     if len(set(providers)) != len(providers):
         raise ValueError("Music provider priority cannot contain duplicates.")
     return providers
@@ -835,6 +835,16 @@ class Handler(BaseHTTPRequestHandler):
             commit_artifacts = "commit_artifacts" in values
             telegram_low_size = "telegram_low_size" in values
             telegram_original = "telegram_original" in values
+            sfx_enabled = "sfx_enabled" in values
+            sfx_freesound_enabled = "sfx_freesound_enabled" in values
+            sfx_style = values.get("sfx_planner_style", ["restrained"])[0]
+            sfx_max_events = float(values.get("sfx_max_events_per_minute", ["4"])[0])
+            sfx_min_gap = float(values.get("sfx_minimum_gap_seconds", ["2"])[0])
+            sfx_threshold = float(values.get("sfx_local_match_threshold", [".35"])[0])
+            sfx_license = values.get("sfx_license_policy", ["cc0"])[0]
+            sfx_candidates = int(values.get("sfx_candidate_count", ["12"])[0])
+            sfx_queries = int(values.get("sfx_max_queries_per_event", ["2"])[0])
+            sfx_gain = float(values.get("sfx_default_gain_db", ["-9"])[0])
             # QH advanced
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
@@ -869,6 +879,8 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid flow_resolution")
             if opening_a_seconds not in {4,5,6,8} or opening_b_seconds not in {3,4,6,8}:
                 raise ValueError("Invalid opening durations")
+            if sfx_style not in {"restrained", "balanced", "expressive"} or not 0 <= sfx_max_events <= 20 or not 0 <= sfx_min_gap <= 30 or not 0 <= sfx_threshold <= 1 or sfx_license not in {"cc0", "cc0_by"} or not 1 <= sfx_candidates <= 50 or not 1 <= sfx_queries <= 5 or not -40 <= sfx_gain <= -3:
+                raise ValueError("Invalid SFX settings")
             cp = load_content_project(content_project)
             # provider locks (§60)
             validate_provider_locks(cp)
@@ -894,6 +906,7 @@ class Handler(BaseHTTPRequestHandler):
             # Kept outside the QH-only settings so legacy content projects use the same
             # visible panel choice when their render profile is created.
             creative_brief["_subtitle"] = {"word_highlight": word_highlight}
+            creative_brief["_sfx"] = {"enabled": sfx_enabled, "planner_enabled": sfx_enabled, "planner_style": sfx_style, "max_events_per_minute": sfx_max_events, "minimum_gap_seconds": sfx_min_gap, "local_match_threshold": sfx_threshold, "freesound_enabled": sfx_freesound_enabled, "license_policy": sfx_license, "candidate_count": sfx_candidates, "max_queries_per_event": sfx_queries, "default_gain_db": sfx_gain, "min_gain_db": -20, "max_gain_db": -3}
         except (KeyError, ValueError) as exc:
             self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
         except RuntimeError as exc:
@@ -921,6 +934,7 @@ class Handler(BaseHTTPRequestHandler):
                 "qh": creative_brief["_qh"],
                 "subtitles": subtitles_enabled,
                 "word_highlight": word_highlight,
+                "sfx": creative_brief["_sfx"],
                 # Recorded so a resume rebuilds exactly this command (§78).
                 "music_provider": providers[0],  # legacy readers retain the first choice
                 "music_providers": providers,

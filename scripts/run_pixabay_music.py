@@ -38,7 +38,7 @@ ROOT = Path(__file__).resolve().parents[1]
 URL_CANDIDATE = re.compile(r"https?://[^\s<>\"'`]+", re.I)
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".m4a", ".ogg", ".flac"}
 MIN_FALLBACK_AUDIO_BYTES = 64 * 1024
-SUPPORTED_PROVIDERS = ("mixkit", "pixabay")
+SUPPORTED_PROVIDERS = ("freesound", "mixkit", "pixabay")
 
 
 def utcnow() -> str:
@@ -137,7 +137,7 @@ def install_audio(source: Path, destination: Path, *, move: bool = False) -> flo
 
 
 def provider_name(provider: str) -> str:
-    return "Pixabay" if provider == "pixabay" else "Mixkit"
+    return {"freesound": "Freesound", "pixabay": "Pixabay", "mixkit": "Mixkit"}[provider]
 
 
 def parse_provider_priority(value: str | list[str]) -> list[str]:
@@ -673,6 +673,17 @@ def write_music_plan(
         print(f"music plan warning: {type(exc).__name__}: {exc}", flush=True)
 
 
+def sync_existing_mix_profile(project: Path, file: str, duration: float) -> None:
+    """Point an already-created profile at a newly selected music provider on resume."""
+    profile = project / "audio_mix" / "AUDIO_MIX_PROFILE.json"
+    if not profile.is_file():
+        return
+    data = json.loads(profile.read_text(encoding="utf-8"))
+    music = data.setdefault("music", {})
+    music.update({"enabled": True, "file": file, "segments": [{"file": file, "start_seconds": 0.0, "end_seconds": duration or None, "gain_db": -20.0, "fade_in_sec": 0.8, "fade_out_sec": 1.4, "segment_id": "bed_001"}]})
+    profile.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def download_from_provider(
     browser: Browser,
     project: Path,
@@ -781,10 +792,21 @@ def main() -> None:
     started = time.perf_counter()
     context, duration = video_context(project)
     attempts: list[dict[str, Any]] = []
-    browser = Browser()
+    browser: Browser | None = None
     for provider in providers:
-        prompt = music_prompt(provider, context, duration)
+        prompt = music_prompt(provider, context, duration) if provider != "freesound" else ""
         try:
+            if provider == "freesound":
+                from freesound_music import acquire
+                selected = acquire(project, context, duration, license_policy=os.getenv("YT_FREESOUND_MUSIC_LICENSE_POLICY", "cc0_by"))
+                dump(meta_path, {"schema_version": 4, "provider": "Freesound API", "provider_priority": providers, "provider_attempts": attempts, "selection_prompt": selected["query"], "alternate_queries": selected["alternate_queries"], "status": "DONE", **selected})
+                write_music_plan(project, "freesound", selected["query"], duration, source_url=selected["source_url"], file=selected["file"], status="DONE")
+                sync_existing_mix_profile(project, selected["file"], duration)
+                destination = project / selected["file"]
+                notifier.stage_update(stage_message, stage_title("background_music"), [f"✅ Stage complete — Freesound ({selected['selection_mode']})", f"⏱ Duration: {format_duration(time.perf_counter() - started)}", f"📄 Saved: {selected['file']}"])
+                print(f"MUSIC: PASS (Freesound)\nFile: {destination}\nSource: {selected['source_url']}", flush=True)
+                return
+            browser = browser or Browser()
             with primary_deadline(max(60.0, float(os.getenv("YT_MUSIC_PRIMARY_TIMEOUT_SECONDS", "300")))):
                 if args.track_url:
                     # An explicit URL is intentionally not mixed with ChatGPT selection.
@@ -805,6 +827,7 @@ def main() -> None:
                     f"📄 Saved: {destination.relative_to(project)}",
                 ],
             )
+            sync_existing_mix_profile(project, str(destination.relative_to(project)), duration)
             print(f"MUSIC: PASS ({provider_name(provider)})\nFile: {destination}\nSource: {url}", flush=True)
             return
         except Exception as exc:
