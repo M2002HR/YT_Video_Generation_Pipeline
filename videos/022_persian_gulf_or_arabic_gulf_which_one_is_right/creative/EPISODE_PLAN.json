@@ -1,0 +1,14 @@
+{
+  "opening_activity": "gardening",
+  "opening_location": "garden",
+  "curiosity_trigger": "noticing an old map-shaped leaf marking in the garden journal",
+  "trigger_object": "weathered paper map",
+  "reaction": "pauses while watering, wipes soil from hands, and studies the markings",
+  "book_retrieval": "walks to the garden shelf, pulls down the worn green history book, and opens it to ancient maps",
+  "camera_pattern": "over_shoulder",
+  "book_template_id": "003",
+  "hero_presence_mode": "limited_in_world",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "hand-drawn storybook garden with warm paper textures and layered historical map illustrations",
+  "reason": "A garden journal and old map discovery create a natural curiosity about names and history without forcing the gulf topic into farm objects."
+}

@@ -1,0 +1,1232 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 62.72,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.583,
+      "duration": 3.583,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 3.583,
+      "end": 7.375,
+      "duration": 3.792,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.375,
+      "end": 12.64,
+      "duration": 5.265,
+      "speech_start": 7.92,
+      "speech_end": 11.54,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Ancient maps show the waterway between Iran and the Arabian Peninsula.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 12.64,
+      "end": 16.64,
+      "duration": 4.0,
+      "speech_start": 12.64,
+      "speech_end": 15.74,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Greek and Roman writers recorded names connected to Persia.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 16.64,
+      "end": 20.56,
+      "duration": 3.92,
+      "speech_start": 16.64,
+      "speech_end": 19.46,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Many historical maps label it the Persian Gulf.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 20.56,
+      "end": 24.62,
+      "duration": 4.06,
+      "speech_start": 20.56,
+      "speech_end": 23.48,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Arab communities often use the name Arabian Gulf today.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 24.62,
+      "end": 28.54,
+      "duration": 3.92,
+      "speech_start": 24.62,
+      "speech_end": 27.42,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The naming debate reflects modern regional identity.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 28.54,
+      "end": 32.08,
+      "duration": 3.54,
+      "speech_start": 28.54,
+      "speech_end": 31.52,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Countries around the gulf choose different names publicly.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 32.08,
+      "end": 36.26,
+      "duration": 4.18,
+      "speech_start": 32.08,
+      "speech_end": 35.14,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Iran officially uses Persian Gulf in geography.",
+      "transition_in": "revealleft",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 36.26,
+      "end": 39.92,
+      "duration": 3.66,
+      "speech_start": 36.26,
+      "speech_end": 38.74,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Several Arab states publicly use Arabian Gulf.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 39.92,
+      "end": 43.84,
+      "duration": 3.92,
+      "speech_start": 39.92,
+      "speech_end": 42.56,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The Strait of Hormuz links the gulf to open waters.",
+      "transition_in": "revealleft",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 43.84,
+      "end": 48.46,
+      "duration": 4.62,
+      "speech_start": 43.84,
+      "speech_end": 47.7,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The answer depends on history, politics, and usage.",
+      "transition_in": "radial",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 48.46,
+      "end": 53.96,
+      "duration": 5.5,
+      "speech_start": 48.46,
+      "speech_end": 53.0,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "International geography commonly recognizes Persian Gulf as the established name.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 53.96,
+      "end": 62.72,
+      "duration": 8.76,
+      "speech_start": 53.96,
+      "speech_end": 56.66,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "These names show how places carry memory and meaning.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 1.5,
+      "text": "Why do people call this gulf",
+      "ass_text": "Why do people call this gulf",
+      "words": [
+        {
+          "text": "Why",
+          "start": 0.02,
+          "end": 0.2
+        },
+        {
+          "text": "do",
+          "start": 0.2,
+          "end": 0.4
+        },
+        {
+          "text": "people",
+          "start": 0.4,
+          "end": 0.58
+        },
+        {
+          "text": "call",
+          "start": 0.58,
+          "end": 0.88
+        },
+        {
+          "text": "this",
+          "start": 0.88,
+          "end": 1.12
+        },
+        {
+          "text": "gulf",
+          "start": 1.12,
+          "end": 1.5
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 1.5,
+      "end": 3.12,
+      "text": "by different names and which one",
+      "ass_text": "by different names and which one",
+      "words": [
+        {
+          "text": "by",
+          "start": 1.5,
+          "end": 1.78
+        },
+        {
+          "text": "different",
+          "start": 1.78,
+          "end": 2.12
+        },
+        {
+          "text": "names",
+          "start": 2.12,
+          "end": 2.54
+        },
+        {
+          "text": "and",
+          "start": 2.54,
+          "end": 2.76
+        },
+        {
+          "text": "which",
+          "start": 2.76,
+          "end": 2.94
+        },
+        {
+          "text": "one",
+          "start": 2.94,
+          "end": 3.12
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 3.12,
+      "end": 3.56,
+      "text": "is right?",
+      "ass_text": "is right?",
+      "words": [
+        {
+          "text": "is",
+          "start": 3.12,
+          "end": 3.26
+        },
+        {
+          "text": "right?",
+          "start": 3.26,
+          "end": 3.56
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 4.64,
+      "end": 6.1,
+      "text": "The Gardener opens a history book",
+      "ass_text": "The Gardener opens a history book",
+      "words": [
+        {
+          "text": "The",
+          "start": 4.64,
+          "end": 4.78
+        },
+        {
+          "text": "Gardener",
+          "start": 4.78,
+          "end": 5.06
+        },
+        {
+          "text": "opens",
+          "start": 5.06,
+          "end": 5.48
+        },
+        {
+          "text": "a",
+          "start": 5.48,
+          "end": 5.64
+        },
+        {
+          "text": "history",
+          "start": 5.64,
+          "end": 5.9
+        },
+        {
+          "text": "book",
+          "start": 5.9,
+          "end": 6.1
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 6.1,
+      "end": 7.34,
+      "text": "to find the answer.",
+      "ass_text": "to find the answer.",
+      "words": [
+        {
+          "text": "to",
+          "start": 6.1,
+          "end": 6.28
+        },
+        {
+          "text": "find",
+          "start": 6.28,
+          "end": 6.46
+        },
+        {
+          "text": "the",
+          "start": 6.46,
+          "end": 6.6
+        },
+        {
+          "text": "answer.",
+          "start": 6.6,
+          "end": 7.34
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 7.92,
+      "end": 9.64,
+      "text": "Ancient maps show the waterway between",
+      "ass_text": "Ancient maps show the waterway\\Nbetween",
+      "words": [
+        {
+          "text": "Ancient",
+          "start": 7.92,
+          "end": 8.24
+        },
+        {
+          "text": "maps",
+          "start": 8.24,
+          "end": 8.64
+        },
+        {
+          "text": "show",
+          "start": 8.64,
+          "end": 8.84
+        },
+        {
+          "text": "the",
+          "start": 8.84,
+          "end": 8.98
+        },
+        {
+          "text": "waterway",
+          "start": 8.98,
+          "end": 9.4
+        },
+        {
+          "text": "between",
+          "start": 9.4,
+          "end": 9.64
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 9.64,
+      "end": 11.54,
+      "text": "Iran and the Arabian Peninsula.",
+      "ass_text": "Iran and the Arabian Peninsula.",
+      "words": [
+        {
+          "text": "Iran",
+          "start": 9.64,
+          "end": 10.12
+        },
+        {
+          "text": "and",
+          "start": 10.12,
+          "end": 10.5
+        },
+        {
+          "text": "the",
+          "start": 10.5,
+          "end": 10.62
+        },
+        {
+          "text": "Arabian",
+          "start": 10.62,
+          "end": 11.1
+        },
+        {
+          "text": "Peninsula.",
+          "start": 11.1,
+          "end": 11.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 12.64,
+      "end": 14.64,
+      "text": "Greek and Roman writers recorded names",
+      "ass_text": "Greek and Roman writers recorded\\Nnames",
+      "words": [
+        {
+          "text": "Greek",
+          "start": 12.64,
+          "end": 12.9
+        },
+        {
+          "text": "and",
+          "start": 12.9,
+          "end": 13.08
+        },
+        {
+          "text": "Roman",
+          "start": 13.08,
+          "end": 13.4
+        },
+        {
+          "text": "writers",
+          "start": 13.4,
+          "end": 13.8
+        },
+        {
+          "text": "recorded",
+          "start": 13.8,
+          "end": 14.24
+        },
+        {
+          "text": "names",
+          "start": 14.24,
+          "end": 14.64
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 14.64,
+      "end": 15.74,
+      "text": "connected to Persia.",
+      "ass_text": "connected to Persia.",
+      "words": [
+        {
+          "text": "connected",
+          "start": 14.64,
+          "end": 15.02
+        },
+        {
+          "text": "to",
+          "start": 15.02,
+          "end": 15.2
+        },
+        {
+          "text": "Persia.",
+          "start": 15.2,
+          "end": 15.74
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 16.64,
+      "end": 18.6,
+      "text": "Many historical maps label it the",
+      "ass_text": "Many historical maps label it the",
+      "words": [
+        {
+          "text": "Many",
+          "start": 16.64,
+          "end": 16.9
+        },
+        {
+          "text": "historical",
+          "start": 16.9,
+          "end": 17.38
+        },
+        {
+          "text": "maps",
+          "start": 17.38,
+          "end": 17.76
+        },
+        {
+          "text": "label",
+          "start": 17.76,
+          "end": 18.08
+        },
+        {
+          "text": "it",
+          "start": 18.08,
+          "end": 18.24
+        },
+        {
+          "text": "the",
+          "start": 18.24,
+          "end": 18.6
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 18.6,
+      "end": 19.46,
+      "text": "Persian Gulf.",
+      "ass_text": "Persian Gulf.",
+      "words": [
+        {
+          "text": "Persian",
+          "start": 18.6,
+          "end": 19.02
+        },
+        {
+          "text": "Gulf.",
+          "start": 19.02,
+          "end": 19.46
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 20.56,
+      "end": 22.16,
+      "text": "Arab communities often use the name",
+      "ass_text": "Arab communities often use the\\Nname",
+      "words": [
+        {
+          "text": "Arab",
+          "start": 20.56,
+          "end": 20.8
+        },
+        {
+          "text": "communities",
+          "start": 20.8,
+          "end": 21.24
+        },
+        {
+          "text": "often",
+          "start": 21.24,
+          "end": 21.58
+        },
+        {
+          "text": "use",
+          "start": 21.58,
+          "end": 21.86
+        },
+        {
+          "text": "the",
+          "start": 21.86,
+          "end": 21.98
+        },
+        {
+          "text": "name",
+          "start": 21.98,
+          "end": 22.16
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 22.16,
+      "end": 23.48,
+      "text": "Arabian Gulf today.",
+      "ass_text": "Arabian Gulf today.",
+      "words": [
+        {
+          "text": "Arabian",
+          "start": 22.16,
+          "end": 22.92
+        },
+        {
+          "text": "Gulf",
+          "start": 22.92,
+          "end": 23.14
+        },
+        {
+          "text": "today.",
+          "start": 23.14,
+          "end": 23.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 24.62,
+      "end": 26.82,
+      "text": "The naming debate reflects modern regional",
+      "ass_text": "The naming debate reflects modern\\Nregional",
+      "words": [
+        {
+          "text": "The",
+          "start": 24.62,
+          "end": 24.76
+        },
+        {
+          "text": "naming",
+          "start": 24.76,
+          "end": 24.98
+        },
+        {
+          "text": "debate",
+          "start": 24.98,
+          "end": 25.38
+        },
+        {
+          "text": "reflects",
+          "start": 25.38,
+          "end": 25.8
+        },
+        {
+          "text": "modern",
+          "start": 25.8,
+          "end": 26.28
+        },
+        {
+          "text": "regional",
+          "start": 26.28,
+          "end": 26.82
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 26.82,
+      "end": 27.42,
+      "text": "identity.",
+      "ass_text": "identity.",
+      "words": [
+        {
+          "text": "identity.",
+          "start": 26.82,
+          "end": 27.42
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 28.54,
+      "end": 30.24,
+      "text": "Countries around the Gulf choose different",
+      "ass_text": "Countries around the Gulf choose\\Ndifferent",
+      "words": [
+        {
+          "text": "Countries",
+          "start": 28.54,
+          "end": 28.82
+        },
+        {
+          "text": "around",
+          "start": 28.82,
+          "end": 29.16
+        },
+        {
+          "text": "the",
+          "start": 29.16,
+          "end": 29.38
+        },
+        {
+          "text": "Gulf",
+          "start": 29.38,
+          "end": 29.54
+        },
+        {
+          "text": "choose",
+          "start": 29.54,
+          "end": 29.92
+        },
+        {
+          "text": "different",
+          "start": 29.92,
+          "end": 30.24
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 30.24,
+      "end": 31.52,
+      "text": "names publicly.",
+      "ass_text": "names publicly.",
+      "words": [
+        {
+          "text": "names",
+          "start": 30.24,
+          "end": 30.56
+        },
+        {
+          "text": "publicly.",
+          "start": 30.56,
+          "end": 31.52
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 32.08,
+      "end": 34.6,
+      "text": "Iran officially uses Persian Gulf in",
+      "ass_text": "Iran officially uses Persian Gulf\\Nin",
+      "words": [
+        {
+          "text": "Iran",
+          "start": 32.08,
+          "end": 32.36
+        },
+        {
+          "text": "officially",
+          "start": 32.36,
+          "end": 33.08
+        },
+        {
+          "text": "uses",
+          "start": 33.08,
+          "end": 33.54
+        },
+        {
+          "text": "Persian",
+          "start": 33.54,
+          "end": 34.06
+        },
+        {
+          "text": "Gulf",
+          "start": 34.06,
+          "end": 34.36
+        },
+        {
+          "text": "in",
+          "start": 34.36,
+          "end": 34.6
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 34.6,
+      "end": 35.14,
+      "text": "geography.",
+      "ass_text": "geography.",
+      "words": [
+        {
+          "text": "geography.",
+          "start": 34.6,
+          "end": 35.14
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 36.26,
+      "end": 38.48,
+      "text": "Several Arab states publicly use Arabian",
+      "ass_text": "Several Arab states publicly use\\NArabian",
+      "words": [
+        {
+          "text": "Several",
+          "start": 36.26,
+          "end": 36.56
+        },
+        {
+          "text": "Arab",
+          "start": 36.56,
+          "end": 36.88
+        },
+        {
+          "text": "states",
+          "start": 36.88,
+          "end": 37.24
+        },
+        {
+          "text": "publicly",
+          "start": 37.24,
+          "end": 37.68
+        },
+        {
+          "text": "use",
+          "start": 37.68,
+          "end": 38.02
+        },
+        {
+          "text": "Arabian",
+          "start": 38.02,
+          "end": 38.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 38.48,
+      "end": 38.74,
+      "text": "Gulf.",
+      "ass_text": "Gulf.",
+      "words": [
+        {
+          "text": "Gulf.",
+          "start": 38.48,
+          "end": 38.74
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 39.92,
+      "end": 41.42,
+      "text": "The Strait of Hormuz links the",
+      "ass_text": "The Strait of Hormuz links the",
+      "words": [
+        {
+          "text": "The",
+          "start": 39.92,
+          "end": 40.12
+        },
+        {
+          "text": "Strait",
+          "start": 40.12,
+          "end": 40.28
+        },
+        {
+          "text": "of",
+          "start": 40.28,
+          "end": 40.44
+        },
+        {
+          "text": "Hormuz",
+          "start": 40.44,
+          "end": 40.76
+        },
+        {
+          "text": "links",
+          "start": 40.76,
+          "end": 41.22
+        },
+        {
+          "text": "the",
+          "start": 41.22,
+          "end": 41.42
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 41.42,
+      "end": 42.56,
+      "text": "Gulf to open waters.",
+      "ass_text": "Gulf to open waters.",
+      "words": [
+        {
+          "text": "Gulf",
+          "start": 41.42,
+          "end": 41.62
+        },
+        {
+          "text": "to",
+          "start": 41.62,
+          "end": 41.86
+        },
+        {
+          "text": "open",
+          "start": 41.86,
+          "end": 42.16
+        },
+        {
+          "text": "waters.",
+          "start": 42.16,
+          "end": 42.56
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 43.84,
+      "end": 46.54,
+      "text": "The answer depends on history, politics,",
+      "ass_text": "The answer depends on history,\\Npolitics,",
+      "words": [
+        {
+          "text": "The",
+          "start": 43.84,
+          "end": 44.0
+        },
+        {
+          "text": "answer",
+          "start": 44.0,
+          "end": 44.24
+        },
+        {
+          "text": "depends",
+          "start": 44.24,
+          "end": 44.58
+        },
+        {
+          "text": "on",
+          "start": 44.58,
+          "end": 44.76
+        },
+        {
+          "text": "history,",
+          "start": 44.76,
+          "end": 45.6
+        },
+        {
+          "text": "politics,",
+          "start": 45.6,
+          "end": 46.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 46.54,
+      "end": 47.7,
+      "text": "and usage.",
+      "ass_text": "and usage.",
+      "words": [
+        {
+          "text": "and",
+          "start": 46.54,
+          "end": 46.72
+        },
+        {
+          "text": "usage.",
+          "start": 46.72,
+          "end": 47.7
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 48.46,
+      "end": 51.52,
+      "text": "International geography commonly recognizes Persian Gulf",
+      "ass_text": "International geography commonly\\Nrecognizes Persian Gulf",
+      "words": [
+        {
+          "text": "International",
+          "start": 48.46,
+          "end": 48.9
+        },
+        {
+          "text": "geography",
+          "start": 48.9,
+          "end": 49.46
+        },
+        {
+          "text": "commonly",
+          "start": 49.46,
+          "end": 50.0
+        },
+        {
+          "text": "recognizes",
+          "start": 50.0,
+          "end": 50.66
+        },
+        {
+          "text": "Persian",
+          "start": 50.66,
+          "end": 51.2
+        },
+        {
+          "text": "Gulf",
+          "start": 51.2,
+          "end": 51.52
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 51.52,
+      "end": 53.0,
+      "text": "as the established name.",
+      "ass_text": "as the established name.",
+      "words": [
+        {
+          "text": "as",
+          "start": 51.52,
+          "end": 51.82
+        },
+        {
+          "text": "the",
+          "start": 51.82,
+          "end": 51.98
+        },
+        {
+          "text": "established",
+          "start": 51.98,
+          "end": 52.56
+        },
+        {
+          "text": "name.",
+          "start": 52.56,
+          "end": 53.0
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 53.96,
+      "end": 55.6,
+      "text": "These names show how places carry",
+      "ass_text": "These names show how places carry",
+      "words": [
+        {
+          "text": "These",
+          "start": 53.96,
+          "end": 54.2
+        },
+        {
+          "text": "names",
+          "start": 54.2,
+          "end": 54.46
+        },
+        {
+          "text": "show",
+          "start": 54.46,
+          "end": 54.72
+        },
+        {
+          "text": "how",
+          "start": 54.72,
+          "end": 54.9
+        },
+        {
+          "text": "places",
+          "start": 54.9,
+          "end": 55.3
+        },
+        {
+          "text": "carry",
+          "start": 55.3,
+          "end": 55.6
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 55.6,
+      "end": 56.66,
+      "text": "memory and meaning.",
+      "ass_text": "memory and meaning.",
+      "words": [
+        {
+          "text": "memory",
+          "start": 55.6,
+          "end": 55.96
+        },
+        {
+          "text": "and",
+          "start": 55.96,
+          "end": 56.22
+        },
+        {
+          "text": "meaning.",
+          "start": 56.22,
+          "end": 56.66
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 57.32,
+      "end": 58.84,
+      "text": "Names can tell stories about people",
+      "ass_text": "Names can tell stories about\\Npeople",
+      "words": [
+        {
+          "text": "Names",
+          "start": 57.32,
+          "end": 57.56
+        },
+        {
+          "text": "can",
+          "start": 57.56,
+          "end": 57.74
+        },
+        {
+          "text": "tell",
+          "start": 57.74,
+          "end": 57.88
+        },
+        {
+          "text": "stories",
+          "start": 57.88,
+          "end": 58.28
+        },
+        {
+          "text": "about",
+          "start": 58.28,
+          "end": 58.5
+        },
+        {
+          "text": "people",
+          "start": 58.5,
+          "end": 58.84
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 58.84,
+      "end": 61.52,
+      "text": "and places Like and subscribe for",
+      "ass_text": "and places Like and subscribe for",
+      "words": [
+        {
+          "text": "and",
+          "start": 58.84,
+          "end": 59.02
+        },
+        {
+          "text": "places",
+          "start": 59.02,
+          "end": 59.4
+        },
+        {
+          "text": "Like",
+          "start": 60.28,
+          "end": 60.52
+        },
+        {
+          "text": "and",
+          "start": 60.52,
+          "end": 60.76
+        },
+        {
+          "text": "subscribe",
+          "start": 60.76,
+          "end": 60.96
+        },
+        {
+          "text": "for",
+          "start": 60.96,
+          "end": 61.52
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 61.52,
+      "end": 62.08,
+      "text": "more questions",
+      "ass_text": "more questions",
+      "words": [
+        {
+          "text": "more",
+          "start": 61.52,
+          "end": 61.66
+        },
+        {
+          "text": "questions",
+          "start": 61.66,
+          "end": 62.08
+        }
+      ],
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 14,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 32,
+    "subtitle_cues_estimated": 0
+  }
+}

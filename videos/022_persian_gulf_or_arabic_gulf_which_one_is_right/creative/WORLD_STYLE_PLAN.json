@@ -1,0 +1,18 @@
+{
+  "style_id": "archaeological_engraving_papyrus_001",
+  "decision": "reuse",
+  "reuse_of": "archaeological_engraving_papyrus_001",
+  "medium": "historical engraving",
+  "secondary_treatment": "subtle manuscript illustration accents",
+  "texture_family": "sun-aged papyrus paper grain",
+  "palette_summary": "warm sand and papyrus cream, charcoal brown, muted ochre, restrained desert blue accents, sparse dusty umber shadows",
+  "line_treatment": "crisp engraved linework with fine historical map details and restrained hand-drawn marks",
+  "lighting": "soft golden daylight with gentle archival warmth",
+  "frame_language": "a recurring aged papyrus illustration window with softly worn deckled edges, engraved border marks, and a consistent parchment-like outer frame surrounding each scene",
+  "subtitle_reserve": "a calm lower 8–10% papyrus field with minimal grain and no faces, hands, map labels, key objects, or important actions, reserved for two subtitle lines",
+  "subject_constraints": "historical maps, garden discovery elements, books, manuscripts, maritime routes, ancient geographic illustrations, and archaeological-style artifacts are allowed; keep modern political imagery symbolic rather than documentary",
+  "historical_accuracy_note": "Ancient Greek and Roman references, Persian Gulf mapping traditions, Strait of Hormuz geography, and historical cartographic elements should be depicted with period-appropriate materials and avoid implying that modern borders or labels existed unchanged in ancient eras",
+  "hero_rendering_in_world": "the gardener keeps the same recognizable hair silhouette, beard, and overalls silhouette, translated into engraved brown ink lines with muted papyrus shading and simple historical illustration proportions",
+  "negative_constraints": "no photorealism, no 3D CGI, no anime, no glossy digital painting, no modern infographic style, no futuristic elements",
+  "reason": "This episode is driven by ancient maps, written records, and historical naming layers, making archaeological engraving the strongest fit. It reuses a suitable catalog style rather than creating a new one because the medium directly supports geography and history. Recent usage is lower priority here because the last two episodes used different visual families, avoiding immediate repetition."
+}

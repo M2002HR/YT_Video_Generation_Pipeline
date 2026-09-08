@@ -1,0 +1,502 @@
+{
+  "schema_version": 2,
+  "video_id": "022",
+  "topic": "Persian Gulf or Arabic Gulf, which one is right",
+  "created_at": "2026-09-08T15:18:15Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:26Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:26Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:26Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:26Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:26Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T17:56:27Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T15:22:38Z",
+      "prompt_sha256": "09e2efb1d7a553b9598a52dda81b671314610148216ffbdb967c99861ae41624"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:28Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T17:56:46Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:31Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:32Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:33Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:34Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:36Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:37Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:38Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:40Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:41Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:42Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:43Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:45Z",
+      "artifact": "beat_012.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:47Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:48Z",
+      "artifact": "question_spark_source.mp4 (6.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T17:56:48Z",
+      "artifact": "book_transition_source.mp4 (4.00s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T17:56:48Z",
+      "body_images": 12
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 27.053,
+      "at": "2026-09-08T15:18:44Z",
+      "words": 135
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 27.085,
+      "at": "2026-09-08T15:19:14Z",
+      "words": 141
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.043,
+      "at": "2026-09-08T15:19:34Z",
+      "activity": "gardening"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.084,
+      "at": "2026-09-08T15:19:55Z",
+      "style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 0.016,
+      "at": "2026-09-08T15:19:58Z",
+      "reuse_of": "archaeological_engraving_papyrus_001",
+      "sha256": "032434d0d4401429900215c79029ac27cb877db1e8d7e08353ca805a870eeda8",
+      "usage_count": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T15:20:01Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 27.066,
+      "at": "2026-09-08T15:20:30Z",
+      "beats": 12
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 18.057,
+      "at": "2026-09-08T15:20:51Z",
+      "prompt_sha256": "b288ebcb68b53832d29225f4685aa0ce3466f2dc8a705f2c6b43f640d4a1b278"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 78.294,
+      "at": "2026-09-08T15:22:12Z",
+      "sha256": "814a44bab0f001c25de4320aeb3b71f666e4aee0bd42c92307cba4f38f7422a0",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 21.296,
+      "at": "2026-09-08T15:22:38Z",
+      "prompt_sha256": "09e2efb1d7a553b9598a52dda81b671314610148216ffbdb967c99861ae41624"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 51.246,
+      "at": "2026-09-08T15:23:31Z",
+      "sha256": "1798c5583215584937c65492c4a3c4659240735f21d87ece24ba008194e00bbb",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 21.06,
+      "at": "2026-09-08T15:23:55Z",
+      "prompt_sha256": "4d98a17810d584c6eab7e752623037b077c9c37b8333d34bb26d193567768474"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 21.062,
+      "at": "2026-09-08T15:24:19Z",
+      "prompt_sha256": "afe3e7d2f98daebdd473cb3c92046a92f34f1c1cc52431e2e0923076bf1c5c89"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 96.279,
+      "at": "2026-09-08T15:25:58Z",
+      "sha256": "7921368a52ee409132fc255ea69c900a098fba3026c957ca049bd82cca399f36",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 108.416,
+      "at": "2026-09-08T15:27:47Z",
+      "sha256": "3ad4be3904e1933ec8cd6e2ddd3f7eaf2d2a3b03b5529668c71ce33a79517b69",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 96.309,
+      "at": "2026-09-08T15:29:25Z",
+      "sha256": "cdfb1b632f3ac024e3d0737054eb44f86e8534bd9a413069bd68ac42f2733b41",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 96.276,
+      "at": "2026-09-08T15:31:03Z",
+      "sha256": "52e5f909513260095db89833524db855a5fc18b7d0a6a45a887297cba2321677",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 114.932,
+      "at": "2026-09-08T15:32:59Z",
+      "sha256": "4764c84cc70a7645f91eeea700584759be69b707427be554da004c8ee7e8f2fc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 114.399,
+      "at": "2026-09-08T15:34:55Z",
+      "sha256": "74df4d97f034e010157075ab39e575c506d7ceccfcc81a732b1cf9b4268b3770",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 96.3,
+      "at": "2026-09-08T15:36:32Z",
+      "sha256": "f7d42d147fedb118eabbc5305ef2b59749a7fc2af9806140252cdcb5327787e5",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 123.4,
+      "at": "2026-09-08T15:38:37Z",
+      "sha256": "d24cc24da91a4fa9192fc19e39fd126ba771c9d758e23340e303ba49dce6cc40",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 97.293,
+      "at": "2026-09-08T15:40:16Z",
+      "sha256": "9a38f6f4e4f866c2bed571afbfe027362850aed4707205d0b8b3f11b2812cd7b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 126.476,
+      "at": "2026-09-08T15:42:24Z",
+      "sha256": "313cd93aceaf5807463ec19718a9957bd9e83cc06070f8e93b47e564e58edbac",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 93.291,
+      "at": "2026-09-08T15:43:58Z",
+      "sha256": "1d2484cca71f548520f0293abc83915ccb189a9ed4d34dd1770db440117be385",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 117.461,
+      "at": "2026-09-08T15:45:57Z",
+      "sha256": "41c8f98c5feef1a22cd88a324d1a22f93ddc17f0c5cfeda32d42ff391aded687",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1296.863,
+      "at": "2026-09-08T15:45:58Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 481.086,
+      "at": "2026-09-08T15:54:02Z",
+      "boundaries": 11
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 138.637,
+      "at": "2026-09-08T15:56:23Z",
+      "duration_seconds": 6.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "f98d9002506fe34935a5137f129aace3838860c4077109262db645faa4076d8a"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 150.592,
+      "at": "2026-09-08T15:58:56Z",
+      "duration_seconds": 4.0,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "59ab7821181309dd2ecd5089f70ab9d3c9974b5ce46399bceed0d3bea28f95ca"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T16:03:25Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 15.978,
+      "at": "2026-09-08T16:03:45Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T17:31:31Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 15.306,
+      "at": "2026-09-08T17:31:50Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T17:56:27Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 15.065,
+      "at": "2026-09-08T17:56:46Z"
+    }
+  ],
+  "updated_at": "2026-09-08T17:56:48Z"
+}

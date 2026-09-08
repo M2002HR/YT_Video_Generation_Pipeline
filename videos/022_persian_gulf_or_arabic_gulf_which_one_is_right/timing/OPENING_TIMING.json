@@ -1,0 +1,126 @@
+{
+  "audio_duration_seconds": 62.72,
+  "spark_start": 0.02,
+  "spark_end": 3.56,
+  "spark_duration": 3.54,
+  "transition_start": 4.64,
+  "transition_end": 7.34,
+  "transition_duration": 2.7,
+  "clip_a_target_seconds": 3.56,
+  "clip_b_target_seconds": 3.78,
+  "body_start": 7.92,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Why do people call this gulf by different names, and which one is right?",
+      "speech_start": 0.02,
+      "speech_end": 3.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "The gardener opens a history book to find the answer.",
+      "speech_start": 4.64,
+      "speech_end": 7.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Ancient maps show the waterway between Iran and the Arabian Peninsula.",
+      "speech_start": 7.92,
+      "speech_end": 11.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Greek and Roman writers recorded names connected to Persia.",
+      "speech_start": 12.64,
+      "speech_end": 15.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Many historical maps label it the Persian Gulf.",
+      "speech_start": 16.64,
+      "speech_end": 19.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Arab communities often use the name Arabian Gulf today.",
+      "speech_start": 20.56,
+      "speech_end": 23.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "The naming debate reflects modern regional identity.",
+      "speech_start": 24.62,
+      "speech_end": 27.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Countries around the gulf choose different names publicly.",
+      "speech_start": 28.54,
+      "speech_end": 31.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Iran officially uses Persian Gulf in geography.",
+      "speech_start": 32.08,
+      "speech_end": 35.14,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Several Arab states publicly use Arabian Gulf.",
+      "speech_start": 36.26,
+      "speech_end": 38.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "The Strait of Hormuz links the gulf to open waters.",
+      "speech_start": 39.92,
+      "speech_end": 42.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "The answer depends on history, politics, and usage.",
+      "speech_start": 43.84,
+      "speech_end": 47.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "International geography commonly recognizes Persian Gulf as the established name.",
+      "speech_start": 48.46,
+      "speech_end": 53.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "These names show how places carry memory and meaning.",
+      "speech_start": 53.96,
+      "speech_end": 56.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Names can tell stories about people and places.",
+      "speech_start": 57.32,
+      "speech_end": 59.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more questions.",
+      "speech_start": 60.28,
+      "speech_end": 62.08,
+      "match_confidence": 1.0
+    }
+  ]
+}

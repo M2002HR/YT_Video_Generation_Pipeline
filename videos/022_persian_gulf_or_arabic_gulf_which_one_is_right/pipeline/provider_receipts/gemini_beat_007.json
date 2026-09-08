@@ -1,0 +1,66 @@
+{
+  "provider": "gemini",
+  "job_id": "4f3e5ba4-77cb-435d-adc1-8253cca63563",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/f22b0dac9951f73a",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=4f3e5ba4-77cb-435d-adc1-8253cca63563_output_1.png 1536x2752 sha256=f7d42d147fedb118eabbc5305ef2b59749a7fc2af9806140252cdcb5327787e5"
+    ]
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
+      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/references/world_style_anchor.png",
+      "sha256": "032434d0d4401429900215c79029ac27cb877db1e8d7e08353ca805a870eeda8"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/references/world_keyframe.png",
+      "sha256": "814a44bab0f001c25de4320aeb3b71f666e4aee0bd42c92307cba4f38f7422a0"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/raw_beats/beat_006.png",
+      "sha256": "74df4d97f034e010157075ab39e575c506d7ceccfcc81a732b1cf9b4268b3770"
+    }
+  ],
+  "prompt_sha256": "c847faa730736b280297b1be2dc57e155fef8544a617ebac67d369774e4254c3",
+  "output_path": "assets/raw_beats/beat_007.png",
+  "output_sha256": "f7d42d147fedb118eabbc5305ef2b59749a7fc2af9806140252cdcb5327787e5",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.166,
+  "completed_at": "2026-09-08T15:36:32Z"
+}

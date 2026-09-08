@@ -1,0 +1,46 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+Style: Karaoke,DejaVu Sans,56,&H0000D7FF,&H00F5F5F5,&H00130D09,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.02,0:00:01.50,Karaoke,,0,0,0,,{\kf18}Why {\kf20}do {\kf18}people {\kf30}call {\kf24}this {\kf38}gulf
+Dialogue: 0,0:00:01.50,0:00:03.12,Karaoke,,0,0,0,,{\kf28}by {\kf34}different {\kf42}names {\kf22}and {\kf18}which {\kf18}one
+Dialogue: 0,0:00:03.12,0:00:03.56,Karaoke,,0,0,0,,{\kf14}is {\kf30}right?
+Dialogue: 0,0:00:04.64,0:00:06.10,Karaoke,,0,0,0,,{\kf14}The {\kf28}Gardener {\kf42}opens {\kf16}a {\kf26}history {\kf20}book
+Dialogue: 0,0:00:06.10,0:00:07.34,Karaoke,,0,0,0,,{\kf18}to {\kf18}find {\kf14}the {\kf74}answer.
+Dialogue: 0,0:00:07.92,0:00:09.64,Karaoke,,0,0,0,,{\kf32}Ancient {\kf40}maps {\kf20}show {\kf14}the {\kf42}waterway\N{\kf24}between
+Dialogue: 0,0:00:09.64,0:00:11.54,Karaoke,,0,0,0,,{\kf48}Iran {\kf38}and {\kf12}the {\kf48}Arabian {\kf44}Peninsula.
+Dialogue: 0,0:00:12.64,0:00:14.64,Karaoke,,0,0,0,,{\kf26}Greek {\kf18}and {\kf32}Roman {\kf40}writers {\kf44}recorded\N{\kf40}names
+Dialogue: 0,0:00:14.64,0:00:15.74,Karaoke,,0,0,0,,{\kf38}connected {\kf18}to {\kf54}Persia.
+Dialogue: 0,0:00:16.64,0:00:18.60,Karaoke,,0,0,0,,{\kf26}Many {\kf48}historical {\kf38}maps {\kf32}label {\kf16}it {\kf36}the
+Dialogue: 0,0:00:18.60,0:00:19.46,Karaoke,,0,0,0,,{\kf42}Persian {\kf44}Gulf.
+Dialogue: 0,0:00:20.56,0:00:22.16,Karaoke,,0,0,0,,{\kf24}Arab {\kf44}communities {\kf34}often {\kf28}use {\kf12}the\N{\kf18}name
+Dialogue: 0,0:00:22.16,0:00:23.48,Karaoke,,0,0,0,,{\kf76}Arabian {\kf22}Gulf {\kf34}today.
+Dialogue: 0,0:00:24.62,0:00:26.82,Karaoke,,0,0,0,,{\kf14}The {\kf22}naming {\kf40}debate {\kf42}reflects {\kf48}modern\N{\kf54}regional
+Dialogue: 0,0:00:26.82,0:00:27.42,Karaoke,,0,0,0,,{\kf60}identity.
+Dialogue: 0,0:00:28.54,0:00:30.24,Karaoke,,0,0,0,,{\kf28}Countries {\kf34}around {\kf22}the {\kf16}Gulf {\kf38}choose\N{\kf32}different
+Dialogue: 0,0:00:30.24,0:00:31.52,Karaoke,,0,0,0,,{\kf32}names {\kf96}publicly.
+Dialogue: 0,0:00:32.08,0:00:34.60,Karaoke,,0,0,0,,{\kf28}Iran {\kf72}officially {\kf46}uses {\kf52}Persian {\kf30}Gulf\N{\kf24}in
+Dialogue: 0,0:00:34.60,0:00:35.14,Karaoke,,0,0,0,,{\kf54}geography.
+Dialogue: 0,0:00:36.26,0:00:38.48,Karaoke,,0,0,0,,{\kf30}Several {\kf32}Arab {\kf36}states {\kf44}publicly {\kf34}use\N{\kf46}Arabian
+Dialogue: 0,0:00:38.48,0:00:38.74,Karaoke,,0,0,0,,{\kf26}Gulf.
+Dialogue: 0,0:00:39.92,0:00:41.42,Karaoke,,0,0,0,,{\kf20}The {\kf16}Strait {\kf16}of {\kf32}Hormuz {\kf46}links {\kf20}the
+Dialogue: 0,0:00:41.42,0:00:42.56,Karaoke,,0,0,0,,{\kf20}Gulf {\kf24}to {\kf30}open {\kf40}waters.
+Dialogue: 0,0:00:43.84,0:00:46.54,Karaoke,,0,0,0,,{\kf16}The {\kf24}answer {\kf34}depends {\kf18}on {\kf84}history,\N{\kf94}politics,
+Dialogue: 0,0:00:46.54,0:00:47.70,Karaoke,,0,0,0,,{\kf18}and {\kf98}usage.
+Dialogue: 0,0:00:48.46,0:00:51.52,Karaoke,,0,0,0,,{\kf44}International {\kf56}geography {\kf54}commonly\N{\kf66}recognizes {\kf54}Persian {\kf32}Gulf
+Dialogue: 0,0:00:51.52,0:00:53.00,Karaoke,,0,0,0,,{\kf30}as {\kf16}the {\kf58}established {\kf44}name.
+Dialogue: 0,0:00:53.96,0:00:55.60,Karaoke,,0,0,0,,{\kf24}These {\kf26}names {\kf26}show {\kf18}how {\kf40}places {\kf30}carry
+Dialogue: 0,0:00:55.60,0:00:56.66,Karaoke,,0,0,0,,{\kf36}memory {\kf26}and {\kf44}meaning.
+Dialogue: 0,0:00:57.32,0:00:58.84,Karaoke,,0,0,0,,{\kf24}Names {\kf18}can {\kf14}tell {\kf40}stories {\kf22}about\N{\kf34}people
+Dialogue: 0,0:00:58.84,0:01:01.52,Karaoke,,0,0,0,,{\kf18}and {\kf126}places {\kf24}Like {\kf24}and {\kf20}subscribe {\kf56}for
+Dialogue: 0,0:01:01.52,0:01:02.08,Karaoke,,0,0,0,,{\kf14}more {\kf42}questions

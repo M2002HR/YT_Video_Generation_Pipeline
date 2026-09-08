@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both images share the same aged papyrus, engraving, and archival documentary language. A gentle dissolve preserves the historical continuity while shifting from geographic evidence on a map to written records and scholarly sources; a slow zoom-in draws attention to the scrolls and tablet details."
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "The archival scroll scene and the layered historical maps share the same parchment world, so a gentle dissolve preserves continuity while the slow zoom draws attention into the growing collection of map evidence."
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The layered antique map dissolves naturally into the coastal scene, signaling a shift from historical naming records to a living regional perspective while preserving the shared papyrus engraving world."
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both images share the same engraved papyrus world and Gulf subject, but the next frame shifts from a present-day coastal scene to a symbolic identity composition. A gentle dissolve preserves the reflective documentary tone, while a slow zoom-in emphasizes the central shared waterway and the idea of layered perspectives."
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing image frames the gulf as a shared identity symbol, while the incoming globe-and-markers scene broadens that idea into official perspectives. A gentle dissolve preserves the reflective thematic link, and a slow zoom-in supports the move toward a wider geopolitical view."
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "revealleft",
+      "transition_seconds": 0.28,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing globe diagram shifts into a close investigative book scene, so a subtle left reveal suggests moving from broad national perspectives into a specific geographic reference. The incoming image's open page and focused examination benefit from a gentle zoom to emphasize discovery."
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28,
+      "next_motion": "slow_zoom_in",
+      "reason": "Both shots remain in the same archival investigation world, shifting from the gardener's examined geography book to another reference page. A soft dissolve preserves continuity while the slow zoom-in draws attention to the new maritime symbols and perspective."
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "revealleft",
+      "transition_seconds": 0.28,
+      "next_motion": "slow_zoom_in",
+      "reason": "The open reference book shifts naturally into a focused geographic map, so a leftward reveal suggests turning from a naming record to the physical location. A subtle zoom emphasizes the Strait of Hormuz diagram without adding unnecessary motion."
+    },
+    {
+      "from_beat_id": 9,
+      "to_beat_id": 10,
+      "transition_in": "radial",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The map of the Strait of Hormuz transitions from physical geography into the gardener's final investigation setup. A radial reveal fits the move from a focused location to the broader conclusion, while the gentle zoom into the balanced scroll-compass-artifacts composition supports a reflective synthesis."
+    },
+    {
+      "from_beat_id": 10,
+      "to_beat_id": 11,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The scene shifts from the gardener's symbolic triangle of history, politics, and usage into a formal atlas conclusion. A soft dissolve preserves the investigative tone while the slow zoom into the grand atlas and globe gives weight to the established geographic reference."
+    },
+    {
+      "from_beat_id": 11,
+      "to_beat_id": 12,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The transition moves from a formal atlas conclusion to a quiet human reflection. A soft dissolve preserves the warm papyrus visual language while shifting from geographic authority to personal memory, and a slow zoom-in on the gardener's closing scene reinforces the reflective ending."
+    }
+  ],
+  "created_at": "2026-09-08T15:54:02Z"
+}

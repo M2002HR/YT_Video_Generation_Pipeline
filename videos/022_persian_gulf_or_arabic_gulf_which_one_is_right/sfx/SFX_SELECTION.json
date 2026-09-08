@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "fdcb00f24fb409a2c3cf0386fa352677a39c5769a39f4435a864f0eaf5a244fc",
+  "events": [
+    {
+      "event_id": "sfx_01",
+      "at": 4.8,
+      "intent": "support the gardener opening and examining the history book",
+      "query": "old book pages",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_726518",
+      "provider": "freesound",
+      "provider_id": "726518",
+      "source_url": "https://freesound.org/people/supaluci/sounds/726518/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_726518_ad2917291459.mp3",
+      "duration_seconds": 1.253878,
+      "gain_db": -8.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_02",
+      "at": 9.8,
+      "intent": "add subtle historical map-room atmosphere",
+      "query": "quiet archive ambience",
+      "selection_mode": "SKIPPED_NO_GOOD_MATCH",
+      "gain_db": -8.0
+    },
+    {
+      "event_id": "sfx_03",
+      "at": 40.0,
+      "intent": "support the maritime geography of the Strait of Hormuz",
+      "query": "calm ocean water",
+      "selection_mode": "SKIPPED_NO_GOOD_MATCH",
+      "gain_db": -8.0
+    },
+    {
+      "event_id": "sfx_04",
+      "at": 54.8,
+      "intent": "support the closing historical reflection as the book closes",
+      "query": "book closing soft",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_552895",
+      "provider": "freesound",
+      "provider_id": "552895",
+      "source_url": "https://freesound.org/people/Joao_Janz/sounds/552895/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_552895_32f2ef360f61.mp3",
+      "duration_seconds": 1.776,
+      "gain_db": -8.0,
+      "score": 1.0
+    }
+  ]
+}

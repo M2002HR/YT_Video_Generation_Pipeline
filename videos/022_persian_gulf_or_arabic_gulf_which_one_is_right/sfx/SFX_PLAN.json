@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "episode_duration_seconds": 62.72,
+  "planner": {
+    "provider": "chatgpt_ordak",
+    "style": "restrained"
+  },
+  "events": [
+    {
+      "event_id": "sfx_01",
+      "at": 4.8,
+      "window_start": 4.6,
+      "window_end": 7.0,
+      "category": "foley",
+      "intent": "support the gardener opening and examining the history book",
+      "search_query": "old book pages",
+      "alternate_queries": [
+        "ancient paper rustle",
+        "book opening foley"
+      ],
+      "desired_duration_seconds": 2.0,
+      "max_duration_seconds": 2.5,
+      "priority": "medium",
+      "suggested_gain_db": -24.0,
+      "speech_overlap": true,
+      "reason": "A quiet page movement reinforces the investigation setup while staying beneath narration."
+    },
+    {
+      "event_id": "sfx_02",
+      "at": 9.8,
+      "window_start": 9.5,
+      "window_end": 12.2,
+      "category": "ambience",
+      "intent": "add subtle historical map-room atmosphere",
+      "search_query": "quiet archive ambience",
+      "alternate_queries": [
+        "museum room tone",
+        "library ambience"
+      ],
+      "desired_duration_seconds": 2.5,
+      "max_duration_seconds": 3.0,
+      "priority": "low",
+      "suggested_gain_db": -30.0,
+      "speech_overlap": true,
+      "reason": "A restrained room tone gives the ancient maps visual weight without creating a distraction."
+    },
+    {
+      "event_id": "sfx_03",
+      "at": 40.0,
+      "window_start": 39.9,
+      "window_end": 42.8,
+      "category": "water",
+      "intent": "support the maritime geography of the Strait of Hormuz",
+      "search_query": "calm ocean water",
+      "alternate_queries": [
+        "gentle sea ambience",
+        "harbor water"
+      ],
+      "desired_duration_seconds": 2.5,
+      "max_duration_seconds": 3.0,
+      "priority": "medium",
+      "suggested_gain_db": -26.0,
+      "speech_overlap": true,
+      "reason": "A soft water layer connects the geographic explanation to the visual of the strait."
+    },
+    {
+      "event_id": "sfx_04",
+      "at": 54.8,
+      "window_start": 54.6,
+      "window_end": 57.8,
+      "category": "foley",
+      "intent": "support the closing historical reflection as the book closes",
+      "search_query": "book closing soft",
+      "alternate_queries": [
+        "leather book close",
+        "old manuscript foley"
+      ],
+      "desired_duration_seconds": 2.0,
+      "max_duration_seconds": 2.5,
+      "priority": "medium",
+      "suggested_gain_db": -25.0,
+      "speech_overlap": true,
+      "reason": "A gentle closing-book sound provides a natural ending cue while preserving the reflective tone."
+    }
+  ],
+  "timeline_context_sha256": "fdcb00f24fb409a2c3cf0386fa352677a39c5769a39f4435a864f0eaf5a244fc",
+  "event_count": 4,
+  "updated_at": "2026-09-08T17:33:31.125791+00:00",
+  "status": "DONE"
+}

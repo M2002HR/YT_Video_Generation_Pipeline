@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-08T17:32:52.625387+00:00",
+  "status": "DONE",
+  "narration_seconds": 62.72,
+  "segment_count": 1,
+  "segments": [
+    {
+      "segment_id": "bed_001",
+      "start_seconds": 0.0,
+      "end_seconds": 62.72,
+      "duration_seconds": 62.72,
+      "role": "bed",
+      "provider": "freesound",
+      "query_prompt": "documentary instrumental",
+      "source_url": "https://freesound.org/people/city11/sounds/735080/",
+      "file": "assets/music/freesound_background.mp3",
+      "gain_db": -20.0,
+      "fade_in_seconds": 0.8,
+      "fade_out_seconds": 1.4,
+      "notes": []
+    }
+  ]
+}

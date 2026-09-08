@@ -1,0 +1,60 @@
+{
+  "provider": "gemini",
+  "job_id": "9df2584c-efba-4908-9480-eaf444c4bf65",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a57187eed4eb22c9",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=9df2584c-efba-4908-9480-eaf444c4bf65_output_1.png 1536x2752 sha256=1d2484cca71f548520f0293abc83915ccb189a9ed4d34dd1770db440117be385"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/references/world_style_anchor.png",
+      "sha256": "032434d0d4401429900215c79029ac27cb877db1e8d7e08353ca805a870eeda8"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/references/world_keyframe.png",
+      "sha256": "814a44bab0f001c25de4320aeb3b71f666e4aee0bd42c92307cba4f38f7422a0"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/raw_beats/beat_010.png",
+      "sha256": "313cd93aceaf5807463ec19718a9957bd9e83cc06070f8e93b47e564e58edbac"
+    }
+  ],
+  "prompt_sha256": "f38535261361d46cead9555dd40971413bb4ffeb0341b4d579837b4ab5945908",
+  "output_path": "assets/raw_beats/beat_011.png",
+  "output_sha256": "1d2484cca71f548520f0293abc83915ccb189a9ed4d34dd1770db440117be385",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.181,
+  "completed_at": "2026-09-08T15:43:58Z"
+}

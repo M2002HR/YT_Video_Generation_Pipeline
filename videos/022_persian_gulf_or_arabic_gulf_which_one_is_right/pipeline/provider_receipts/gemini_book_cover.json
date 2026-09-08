@@ -1,0 +1,48 @@
+{
+  "provider": "gemini",
+  "job_id": "558e7653-eb93-4b9c-b733-12c779fd740b",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a20fa483b6472271",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=558e7653-eb93-4b9c-b733-12c779fd740b_output_1.png 1536x2752 sha256=1798c5583215584937c65492c4a3c4659240735f21d87ece24ba008194e00bbb"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/references/world_style_anchor.png",
+      "sha256": "032434d0d4401429900215c79029ac27cb877db1e8d7e08353ca805a870eeda8"
+    }
+  ],
+  "prompt_sha256": "bdde55d10bd40449c26ba7a1327c611ba06039371776a47c99edc27878b5c73d",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "1798c5583215584937c65492c4a3c4659240735f21d87ece24ba008194e00bbb",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 51.2,
+  "completed_at": "2026-09-08T15:23:31Z"
+}

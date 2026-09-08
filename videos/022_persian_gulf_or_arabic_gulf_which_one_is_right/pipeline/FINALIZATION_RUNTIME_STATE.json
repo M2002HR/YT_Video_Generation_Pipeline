@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "video": "022_persian_gulf_or_arabic_gulf_which_one_is_right",
+  "started_at": "2026-09-08T18:13:33.476566+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-08T18:13:33.485104+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:13:35.405583+00:00",
+      "elapsed_seconds": 1.92,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 27166
+    },
+    {
+      "stage": "sfx_plan",
+      "started_at": "2026-09-08T18:13:37.393911+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_sfx_planner.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--style",
+        "restrained",
+        "--max-events-per-minute",
+        "4.0",
+        "--minimum-gap-seconds",
+        "2.0"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:13:38.762275+00:00",
+      "elapsed_seconds": 1.368,
+      "artifact": "sfx/SFX_PLAN.json",
+      "artifact_bytes": 2852
+    },
+    {
+      "stage": "render_baseline",
+      "status": "REUSED",
+      "ended_at": "2026-09-08T18:13:39.941692+00:00",
+      "artifact": "assets/renders/final.mp4"
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-08T18:13:39.942005+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:13:57.342382+00:00",
+      "elapsed_seconds": 17.4,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1556
+    },
+    {
+      "stage": "sfx_acquire",
+      "started_at": "2026-09-08T18:13:58.811230+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_sfx_acquire.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--local-threshold",
+        "0.35",
+        "--license-policy",
+        "cc0",
+        "--candidate-count",
+        "12",
+        "--max-queries-per-event",
+        "2",
+        "--default-gain-db",
+        "-8.0",
+        "--min-gain-db",
+        "-20",
+        "--max-gain-db",
+        "-3"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:14:03.376254+00:00",
+      "elapsed_seconds": 4.565,
+      "artifact": "sfx/SFX_SELECTION.json",
+      "artifact_bytes": 1938
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-08T18:14:04.837126+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:14:09.502764+00:00",
+      "elapsed_seconds": 4.666,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 127194262
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-08T18:14:10.787849+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:14:27.964692+00:00",
+      "elapsed_seconds": 17.177,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1559
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-08T18:14:29.337394+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:14:58.731533+00:00",
+      "elapsed_seconds": 29.394,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 4103444
+    }
+  ]
+}

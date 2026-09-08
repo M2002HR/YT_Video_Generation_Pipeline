@@ -1,0 +1,149 @@
+{
+  "body_duration_seconds": 49.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Ancient maps show the waterway between Iran and the Arabian Peninsula.",
+      "visual": "An engraved papyrus map spread across a wooden table, showing a stylized ancient waterway between two landmasses with ships and compass markings, without readable labels.",
+      "purpose": "show the historical geography of the gulf region through ancient cartography",
+      "visual_fingerprint": "top-down parchment map composition with tiny sailing ships, carved coastline lines, and archival table setting",
+      "type": "literal",
+      "continuity": "moves from the opened history book into the first historical map discovery",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Greek and Roman writers recorded names connected to Persia.",
+      "visual": "Ancient scrolls and a carved writing tablet beside a classical ink pot, with a small illustrated Mediterranean scholar silhouette studying records.",
+      "purpose": "show ancient written records connecting names to Persia",
+      "visual_fingerprint": "side-angle scroll archive scene with classical tablet, ink tools, and scholar silhouette under warm candlelight",
+      "type": "literal",
+      "continuity": "same archival world but shifts from maps to written evidence",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Many historical maps label it the Persian Gulf.",
+      "visual": "A layered collection of aged maps from different centuries stacked together, with repeated highlighted coastline shapes and decorative historical cartography marks.",
+      "purpose": "show the long tradition of historical map naming",
+      "visual_fingerprint": "angled stack of antique maps with layered edges, highlighted water shape, and engraved border details",
+      "type": "literal",
+      "continuity": "continues the map theme while expanding from one map to many eras",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Arab communities often use the name Arabian Gulf today.",
+      "visual": "A symbolic modern Gulf coastal scene in engraving style showing regional boats, ports, and community silhouettes around the same waterway, with no political signs or text.",
+      "purpose": "show present-day regional usage of another name",
+      "visual_fingerprint": "coastal harbor illustration with traditional boats, community figures, and blue water framed by papyrus edges",
+      "type": "subject_world",
+      "continuity": "moves from historical maps into a present-day human perspective",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "The naming debate reflects modern regional identity.",
+      "visual": "Two groups of symbolic coastal objects from different traditions placed around the same engraved gulf map, showing shared geography and different perspectives.",
+      "purpose": "explain that names can represent identity and memory",
+      "visual_fingerprint": "balanced overhead composition with divided cultural artifacts surrounding one central waterway illustration",
+      "type": "metaphor",
+      "continuity": "connects community usage to the idea of identity",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Countries around the gulf choose different names publicly.",
+      "visual": "An engraved globe beside several small coastline markers around the gulf region, each marker showing different symbolic emblems rather than text.",
+      "purpose": "show different official choices around the same location",
+      "visual_fingerprint": "wide desk composition with globe, regional markers, and scattered diplomatic-style parchment pieces",
+      "type": "diagram",
+      "continuity": "expands from identity to national perspectives",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Iran officially uses Persian Gulf in geography.",
+      "visual": "A historical geography book page showing an engraved coastline illustration being examined by a hand in gardening gloves, with no readable words.",
+      "purpose": "show Iran's geographic naming convention through a geography reference",
+      "visual_fingerprint": "close-up book page with gloved hand, engraved coastline, and garden shelf background",
+      "type": "literal",
+      "continuity": "returns to the gardener investigating through books",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Several Arab states publicly use Arabian Gulf.",
+      "visual": "A second open reference book with coastal illustrations and regional maritime symbols, viewed from above in the same engraved style.",
+      "purpose": "show another public naming convention through regional references",
+      "visual_fingerprint": "top-down open book scene with different maritime symbols, darker papyrus tones, and no visible labels",
+      "type": "literal",
+      "continuity": "keeps the investigation format while presenting another perspective",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "The Strait of Hormuz links the gulf to open waters.",
+      "visual": "An engraved maritime route illustration showing ships passing through a narrow strait between landforms toward a wider sea.",
+      "purpose": "explain the geographic connection of the Strait of Hormuz",
+      "visual_fingerprint": "bird's-eye nautical illustration with narrow passage, sailing ships, and expanding ocean composition",
+      "type": "diagram",
+      "continuity": "shifts from names back to physical geography",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "The answer depends on history, politics, and usage.",
+      "visual": "The gardener places three engraved objects beside the map: an old scroll, a compass, and community artifacts, forming a balanced triangle.",
+      "purpose": "show the three factors that shape the naming answer",
+      "visual_fingerprint": "garden table still life with scroll, compass, artifacts, and central map under golden daylight",
+      "type": "metaphor",
+      "continuity": "brings the investigation together around the gardener",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "International geography commonly recognizes Persian Gulf as the established name.",
+      "visual": "A grand engraved atlas resting open with a globe and historical cartography tools around it, emphasizing a broad geographic reference.",
+      "purpose": "show the commonly recognized geographic naming tradition",
+      "visual_fingerprint": "formal atlas display with globe, ruler, and aged map tools in a museum-like papyrus setting",
+      "type": "literal",
+      "continuity": "moves from factors to the broader geographic conclusion",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "These names show how places carry memory and meaning.",
+      "visual": "The gardener closes the history book beside the weathered map leaf marker, with the gulf illustration softly glowing on the final page.",
+      "purpose": "show that place names preserve stories and memories",
+      "visual_fingerprint": "quiet garden shelf closing scene with gardener, worn book, map marker, and warm evening papyrus light",
+      "type": "metaphor",
+      "continuity": "returns to the opening garden discovery for a reflective ending",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    }
+  ]
+}

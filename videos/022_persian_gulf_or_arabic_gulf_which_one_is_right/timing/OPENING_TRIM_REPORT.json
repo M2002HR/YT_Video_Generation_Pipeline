@@ -1,0 +1,21 @@
+{
+  "spark_end": 3.56,
+  "transition_end": 7.34,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/opening/question_spark_trimmed.mp4",
+      "target": 3.56,
+      "actual": 3.583
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/opening/book_transition_trimmed.mp4",
+      "target": 3.78,
+      "actual": 3.792
+    }
+  ],
+  "opening_total_seconds": 7.375,
+  "opening_total_target_seconds": 7.34,
+  "opening_total_drift_seconds": 0.035
+}
