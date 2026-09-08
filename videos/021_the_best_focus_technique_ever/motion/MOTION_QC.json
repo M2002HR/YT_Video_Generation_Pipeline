@@ -1,0 +1,247 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "beats": 9,
+  "micro_shots": 26,
+  "motion_distribution": {
+    "drift": 2,
+    "push_in": 8,
+    "pan_push": 2,
+    "pan_pull": 1,
+    "hold": 5,
+    "settle": 4,
+    "pan": 2,
+    "reveal_move": 1,
+    "pull_out": 1
+  },
+  "edit_distribution": {
+    "cut": 14,
+    "continue": 9,
+    "match_position_cut": 3
+  },
+  "transition_distribution": {
+    "dissolve": 1,
+    "cut": 7
+  },
+  "average_micro_shot_duration": 1.412,
+  "min_micro_shot_duration": 0.8,
+  "max_micro_shot_duration": 2.438,
+  "average_visual_event_interval": 1.412,
+  "still_hold_percentage": 17.66,
+  "synced_event_count": 19,
+  "sync_coverage_percent": 73.1,
+  "repeated_motion_streak": 1,
+  "decorative_transition_fraction": 0.125,
+  "average_camera_distance": 0.038,
+  "maximum_camera_distance": 0.1132,
+  "average_zoom_range": 0.0832,
+  "maximum_zoom": 1.32,
+  "non_hold_noop_count": 3,
+  "input_fingerprint": "ed426b24f2a70a3954121a373f020dd3c9ce5eac5eff09aa8a93bff8cc3e7d2f",
+  "target_correction_count": 20,
+  "unsafe_target_count": 0,
+  "target_corrections": [
+    {
+      "beat_id": 1,
+      "shot_id": "b01_s02",
+      "corrections": [
+        "continuous_start_matched_previous_end",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 1,
+      "shot_id": "b01_s03",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 2,
+      "shot_id": "b02_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 2,
+      "shot_id": "b02_s02",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end",
+        "viewport_clamped_to_artwork",
+        "minimum_pull_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 3,
+      "shot_id": "b03_s02",
+      "corrections": [
+        "continuous_start_matched_previous_end",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s01",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s02",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s03",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 5,
+      "shot_id": "b05_s02",
+      "corrections": [
+        "continuous_start_matched_previous_end",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 5,
+      "shot_id": "b05_s03",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 6,
+      "shot_id": "b06_s02",
+      "corrections": [
+        "continuous_start_matched_previous_end",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 6,
+      "shot_id": "b06_s03",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end",
+        "viewport_clamped_to_artwork",
+        "minimum_pull_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 7,
+      "shot_id": "b07_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 7,
+      "shot_id": "b07_s02",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 7,
+      "shot_id": "b07_s03",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 8,
+      "shot_id": "b08_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 8,
+      "shot_id": "b08_s02",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "continuous_start_matched_previous_end",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 8,
+      "shot_id": "b08_s03",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 9,
+      "shot_id": "b09_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 9,
+      "shot_id": "b09_s02",
+      "corrections": [
+        "zoom_limited"
+      ]
+    }
+  ],
+  "visual_events_per_minute": 36.57,
+  "hard_cut_count": 15,
+  "transition_count": 1,
+  "face_detector": {
+    "provider": "mediapipe",
+    "available": false,
+    "required": false
+  },
+  "critic_approved": true,
+  "critic_original_approved": false,
+  "critic_issues": [
+    {
+      "severity": "error",
+      "beat_id": 4,
+      "shot_id": "b04_s02",
+      "code": "bad_sync",
+      "message": "Movement is triggered on word w_0042 ('reset') at 18.38s, but this micro-shot begins at 19.0s, so the claimed word-synchronized attention move cannot occur."
+    },
+    {
+      "severity": "error",
+      "beat_id": 9,
+      "shot_id": "b09_s03",
+      "code": "unmotivated_cut",
+      "message": "The final shot starts on b09_target_tomato_objects and ends on b09_target_writer_person without a visible transition or editorial reason, creating an unsupported target jump inside a settle movement. The ending should hold the broader verified collage rather than narrowing to one unrelated zone."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 9,
+      "shot_id": "b09_s02",
+      "code": "bad_sync",
+      "message": "The match_position_cut between two separate lower scenes is not supported by matching visual positions or a clear continuity cue; a clean cut is safer for the calm documentary ending."
+    }
+  ],
+  "speech_end": 42.4,
+  "visual_tail_seconds": 0.258,
+  "tail_has_meaningful_motion": true
+}

@@ -1,0 +1,36 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+Style: Karaoke,DejaVu Sans,56,&H0000D7FF,&H00F5F5F5,&H00130D09,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.02,0:00:01.70,Karaoke,,0,0,0,,{\kf18}Can {\kf12}a {\kf22}simple {\kf30}timer {\kf42}turn {\kf44}scattered
+Dialogue: 0,0:00:01.70,0:00:02.94,Karaoke,,0,0,0,,{\kf30}work {\kf24}into {\kf70}focus?
+Dialogue: 0,0:00:03.82,0:00:05.48,Karaoke,,0,0,0,,{\kf18}She {\kf28}reaches {\kf20}for {\kf12}the {\kf44}book, {\kf44}opening
+Dialogue: 0,0:00:05.48,0:00:05.92,Karaoke,,0,0,0,,{\kf44}it.
+Dialogue: 0,0:00:06.48,0:00:09.00,Karaoke,,0,0,0,,{\kf14}The {\kf30}pages {\kf42}reveal {\kf86}Francesco {\kf52}Tirillo\N{\kf28}and
+Dialogue: 0,0:00:09.00,0:00:10.06,Karaoke,,0,0,0,,{\kf12}the {\kf56}Pomodoro {\kf38}technique.
+Dialogue: 0,0:00:11.22,0:00:13.08,Karaoke,,0,0,0,,{\kf18}He {\kf26}studied {\kf20}with {\kf6}a {\kf66}tomato-shaped\N{\kf50}timer.
+Dialogue: 0,0:00:14.20,0:00:15.86,Karaoke,,0,0,0,,{\kf14}The {\kf24}method {\kf32}breaks {\kf24}work {\kf24}into\N{\kf48}focused
+Dialogue: 0,0:00:15.86,0:00:16.46,Karaoke,,0,0,0,,{\kf60}sessions.
+Dialogue: 0,0:00:17.50,0:00:19.88,Karaoke,,0,0,0,,{\kf26}Short {\kf30}breaks {\kf32}help {\kf54}reset {\kf58}attention\N{\kf38}between
+Dialogue: 0,0:00:19.88,0:00:20.36,Karaoke,,0,0,0,,{\kf48}sessions.
+Dialogue: 0,0:00:21.56,0:00:24.12,Karaoke,,0,0,0,,{\kf68}Distractions {\kf36}fade {\kf22}when {\kf34}goals\N{\kf50}receive {\kf46}protected
+Dialogue: 0,0:00:24.12,0:00:24.62,Karaoke,,0,0,0,,{\kf52}time.
+Dialogue: 0,0:00:24.62,0:00:27.26,Karaoke,,0,0,0,,{\kf118}The {\kf30}technique {\kf44}creates {\kf20}a {\kf22}steady\N{\kf32}rhythm
+Dialogue: 0,0:00:27.26,0:00:29.04,Karaoke,,0,0,0,,{\kf24}for {\kf40}completing {\kf114}tasks.
+Dialogue: 0,0:00:29.68,0:00:31.22,Karaoke,,0,0,0,,{\kf2}A {\kf24}small {\kf42}timer {\kf44}signals {\kf28}when {\kf14}to
+Dialogue: 0,0:00:31.22,0:00:32.50,Karaoke,,0,0,0,,{\kf26}start {\kf16}and {\kf86}stop.
+Dialogue: 0,0:00:33.14,0:00:34.80,Karaoke,,0,0,0,,{\kf22}The {\kf22}simple {\kf34}idea {\kf36}grew {\kf22}from {\kf30}one
+Dialogue: 0,0:00:34.80,0:00:35.96,Karaoke,,0,0,0,,{\kf56}student's {\kf24}study {\kf36}habit.
+Dialogue: 0,0:00:37.06,0:00:38.56,Karaoke,,0,0,0,,{\kf24}Today, {\kf36}people {\kf30}use {\kf10}it {\kf12}to {\kf38}structure
+Dialogue: 0,0:00:38.56,0:00:39.86,Karaoke,,0,0,0,,{\kf54}focused {\kf76}work.
+Dialogue: 0,0:00:40.22,0:00:42.40,Karaoke,,0,0,0,,{\kf24}Like {\kf20}and {\kf38}subscribe {\kf44}for {\kf14}more\N{\kf78}questions.

@@ -1,0 +1,2400 @@
+{
+  "schema_version": 2,
+  "duration_seconds": 42.658,
+  "settings_snapshot": {
+    "enabled": true,
+    "planning_quality": "professional",
+    "pace": "calm",
+    "style": "dynamic",
+    "intensity": "subtle",
+    "max_micro_shots_per_beat": 3,
+    "min_micro_shot_duration": 0.55,
+    "max_micro_shot_duration": 3.2,
+    "target_interval_min": 0.8,
+    "target_interval_max": 1.8,
+    "allow_hold": true,
+    "allow_push": true,
+    "allow_pull": true,
+    "allow_pan": true,
+    "allow_tilt": true,
+    "allow_pan_push": true,
+    "allow_pan_pull": true,
+    "allow_drift": true,
+    "allow_settle": true,
+    "allow_reveal_move": true,
+    "allow_punch_cuts": false,
+    "allow_hard_reframes": false,
+    "allow_match_position_cuts": true,
+    "allow_decorative_transitions": true,
+    "allow_directional_transitions": true,
+    "allow_reveal_transitions": true,
+    "transition_preference": "expressive",
+    "max_decorative_transition_fraction": 0.25,
+    "transition_duration_min": 0.1,
+    "transition_duration_max": 0.4,
+    "normal_max_zoom": 1.32,
+    "punch_max_zoom": 1.48,
+    "max_pan_distance": 0.32,
+    "max_pan_velocity": 0.42,
+    "max_zoom_velocity": 0.34,
+    "face_protection": true,
+    "face_padding": 0.18,
+    "subtitle_avoidance": true,
+    "blank_region_avoidance": true,
+    "word_sync": true,
+    "word_sync_tolerance_ms": 50,
+    "observation_batch_size": 3,
+    "planning_batch_size": 1,
+    "critic_batch_size": 2,
+    "neighbor_context": 1,
+    "editorial_critic": true,
+    "correction_attempts": 4,
+    "debug_preview": false,
+    "supersample": 2
+  },
+  "global_direction": {
+    "schema_version": 2,
+    "pace": "calm",
+    "sections": [
+      {
+        "name": "hook",
+        "start": 0,
+        "end": 0.14,
+        "energy": "0.72",
+        "attention_velocity": "0.78"
+      },
+      {
+        "name": "setup",
+        "start": 0.14,
+        "end": 0.28,
+        "energy": "0.58",
+        "attention_velocity": "0.55"
+      },
+      {
+        "name": "body",
+        "start": 0.28,
+        "end": 0.7,
+        "energy": "0.48",
+        "attention_velocity": "0.42"
+      },
+      {
+        "name": "climax",
+        "start": 0.7,
+        "end": 0.87,
+        "energy": "0.62",
+        "attention_velocity": "0.58"
+      },
+      {
+        "name": "ending",
+        "start": 0.87,
+        "end": 0.94,
+        "energy": "0.5",
+        "attention_velocity": "0.4"
+      },
+      {
+        "name": "cta",
+        "start": 0.94,
+        "end": 1,
+        "energy": "0.38",
+        "attention_velocity": "0.35"
+      }
+    ],
+    "emphasis_words": [
+      {
+        "word_id": "w_0004",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0006",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0019",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0024",
+        "reason": "name"
+      },
+      {
+        "word_id": "w_0030",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0037",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0042",
+        "reason": "action"
+      },
+      {
+        "word_id": "w_0058",
+        "reason": "concept"
+      },
+      {
+        "word_id": "w_0064",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0077",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0080",
+        "reason": "contrast"
+      }
+    ],
+    "rhythm_notes": [
+      "Open with faster attention shifts around the question and the timer concept, then settle into longer holds as the history and method are explained.",
+      "Use subtle push, drift, and settle motions to guide attention toward verified objects rather than adding constant movement.",
+      "Allow the middle explanation beats to breathe with calm compositions and occasional holds on meaningful desk scenes.",
+      "Increase visual focus near the timer and habit progression moments before easing into the broader modern-use conclusion.",
+      "Keep subtitle-safe areas clear and avoid motion that competes with spoken information."
+    ],
+    "transition_philosophy": [
+      "Prefer clean editorial cuts and gentle continuity between related desk, timer, and study imagery.",
+      "Use match-position transitions when moving between timer objects or centered desk compositions.",
+      "Reserve expressive reveals for moments where the narration introduces a new idea or historical detail.",
+      "Avoid decorative transitions that interrupt the calm documentary flow."
+    ],
+    "motion_contrast_plan": [
+      "Hook: use quicker reframing and attention movement around the timer question, then pause on the focus reveal.",
+      "Setup: use gentle movement following the hand and book interaction to establish curiosity.",
+      "Body: favor slow pushes, subtle pans, and holds across study environments and method explanations.",
+      "Climax: tighten attention on the timer as the practical signal for starting and stopping work.",
+      "Ending: broaden the frame to show the technique's growth from a personal habit to widespread use.",
+      "CTA: reduce motion and finish with a stable, confident final composition."
+    ],
+    "ending_strategy": "End with a calm hold on the broader modern-use collage, emphasizing the transition from a simple personal habit to a widely used focus practice before the call to action.",
+    "prohibited_patterns": [
+      "constant zooming without narrative purpose",
+      "rapid effects between every beat",
+      "invented objects or actions not present in the visual inventory",
+      "camera movement that crosses blank card or caption regions",
+      "decorative transitions during explanatory moments",
+      "repetitive motion patterns across consecutive shots"
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": 1,
+      "start": 5.958,
+      "end": 11.22,
+      "attention_story": [
+        "Begin with the opened book as the continuation of the previous action, then guide attention to the portrait reveal and finish on the tomato timer concept named in narration."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b01_s01",
+          "role": "establish",
+          "start": 5.958,
+          "end": 7.34,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b01_open_book",
+              "coverage": 0.55,
+              "anchor_x": 0.52,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b01_open_book",
+              "coverage": 0.6,
+              "anchor_x": 0.52,
+              "anchor_y": 0.53
+            }
+          },
+          "motion": {
+            "type": "drift",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "A subtle drift keeps attention on the newly opened book without distracting from the illustration reveal."
+          },
+          "sync": {
+            "mode": "reveal_complete_on_word",
+            "word_id": "w_0019",
+            "word": "reveal",
+            "authoritative_start": 6.92,
+            "authoritative_end": 7.34
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b01_open_book",
+              "target_label": "open green book",
+              "center_x": 0.5025455,
+              "center_y": 0.5040211,
+              "width": 0.8727273,
+              "height": 0.8659619,
+              "zoom": 1.1458333,
+              "anchor_x": 0.52,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.53,
+                "w": 0.48,
+                "h": 0.34
+              }
+            },
+            "end": {
+              "target_id": "b01_open_book",
+              "target_label": "open green book",
+              "center_x": 0.504,
+              "center_y": 0.506186,
+              "width": 0.8,
+              "height": 0.7937984,
+              "zoom": 1.25,
+              "anchor_x": 0.52,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.53,
+                "w": 0.48,
+                "h": 0.34
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        },
+        {
+          "shot_id": "b01_s02",
+          "role": "primary",
+          "start": 7.34,
+          "end": 9.12,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b01_open_book",
+              "coverage": 0.6,
+              "anchor_x": 0.52,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b01_portrait_person",
+              "coverage": 0.38,
+              "anchor_x": 0.36,
+              "anchor_y": 0.52
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "A gentle push emphasizes the portrait as the named historical figure appears in the narration."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0020",
+            "word": "Francesco",
+            "authoritative_start": 7.34,
+            "authoritative_end": 8.2
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b01_open_book",
+              "target_label": "open green book",
+              "center_x": 0.504,
+              "center_y": 0.506186,
+              "width": 0.8,
+              "height": 0.7937984,
+              "zoom": 1.25,
+              "anchor_x": 0.52,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.53,
+                "w": 0.48,
+                "h": 0.34
+              }
+            },
+            "end": {
+              "target_id": "b01_portrait_person",
+              "target_label": "illustrated person portrait in book",
+              "center_x": 0.4660606,
+              "center_y": 0.5049659,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.36,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.36,
+                "y": 0.52,
+                "w": 0.22,
+                "h": 0.28
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b01_s03",
+          "role": "detail",
+          "start": 9.12,
+          "end": 11.22,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b01_portrait_person",
+              "coverage": 0.38,
+              "anchor_x": 0.36,
+              "anchor_y": 0.52
+            },
+            "end": {
+              "target_id": "b01_tomato_timer",
+              "coverage": 0.28,
+              "anchor_x": 0.76,
+              "anchor_y": 0.41
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.25,
+            "reason": "A controlled move connects the historical portrait to the defining tomato timer symbol."
+          },
+          "sync": {
+            "mode": "impact_apex_on_word",
+            "word_id": "w_0024",
+            "word": "Pomodoro",
+            "authoritative_start": 9.12,
+            "authoritative_end": 9.68
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b01_portrait_person",
+              "target_label": "illustrated person portrait in book",
+              "center_x": 0.4660606,
+              "center_y": 0.5049659,
+              "width": 0.78125,
+              "height": 0.7751938,
+              "zoom": 1.28,
+              "anchor_x": 0.36,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.36,
+                "y": 0.52,
+                "w": 0.22,
+                "h": 0.28
+              }
+            },
+            "end": {
+              "target_id": "b01_tomato_timer",
+              "target_label": "tomato-shaped timer illustration",
+              "center_x": 0.5512121,
+              "center_y": 0.4776533,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.76,
+              "anchor_y": 0.41,
+              "target_bbox": {
+                "x": 0.76,
+                "y": 0.41,
+                "w": 0.18,
+                "h": 0.14
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b01_tomato_timer",
+        "coverage": 0.28,
+        "anchor_x": 0.76,
+        "anchor_y": 0.41,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "dissolve",
+        "duration": 0.4,
+        "reason_code": "continuity",
+        "reason": "The timer illustration provides a visual bridge into the following historical study scene."
+      }
+    },
+    {
+      "beat_id": 2,
+      "start": 11.22,
+      "end": 14.2,
+      "attention_story": [
+        "Start on the historical study context, then draw focus to the tomato-shaped timer as the narration names the defining object.",
+        "Finish by returning attention to the student and desk context so the transition into the method explanation feels continuous."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b02_s01",
+          "role": "detail",
+          "start": 11.22,
+          "end": 12.9,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b02_tomato_timer",
+              "coverage": 0.18,
+              "anchor_x": 0.56,
+              "anchor_y": 0.59
+            },
+            "end": {
+              "target_id": "b02_tomato_timer",
+              "coverage": 0.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.59
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "Focus attention on the visible tomato-shaped timer when the narration identifies the key object."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0030",
+            "word": "tomato-shaped",
+            "authoritative_start": 11.92,
+            "authoritative_end": 12.58
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b02_tomato_timer",
+              "target_label": "red tomato-shaped timer on desk",
+              "center_x": 0.460625,
+              "center_y": 0.5123467,
+              "width": 0.78125,
+              "height": 0.7751938,
+              "zoom": 1.28,
+              "anchor_x": 0.56,
+              "anchor_y": 0.59,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.58,
+                "w": 0.12,
+                "h": 0.1
+              }
+            },
+            "end": {
+              "target_id": "b02_tomato_timer",
+              "target_label": "red tomato-shaped timer on desk",
+              "center_x": 0.4545455,
+              "center_y": 0.5123467,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.59,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.58,
+                "w": 0.12,
+                "h": 0.1
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b02_s02",
+          "role": "primary",
+          "start": 12.9,
+          "end": 14.2,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b02_tomato_timer",
+              "coverage": 0.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.59
+            },
+            "end": {
+              "target_id": "b02_student_person",
+              "coverage": 0.52,
+              "anchor_x": 0.72,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "pan_pull",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "Place the timer back into the wider study scene by revealing the seated student and surrounding desk."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b02_tomato_timer",
+              "target_label": "red tomato-shaped timer on desk",
+              "center_x": 0.4545455,
+              "center_y": 0.5123467,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.59,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.58,
+                "w": 0.12,
+                "h": 0.1
+              }
+            },
+            "end": {
+              "target_id": "b02_student_person",
+              "target_label": "seated student silhouette at desk",
+              "center_x": 0.539375,
+              "center_y": 0.4450341,
+              "width": 0.78125,
+              "height": 0.7751938,
+              "zoom": 1.28,
+              "anchor_x": 0.72,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.74,
+                "y": 0.43,
+                "w": 0.24,
+                "h": 0.38
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end",
+            "viewport_clamped_to_artwork",
+            "minimum_pull_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b02_student_person",
+        "coverage": 0.52,
+        "anchor_x": 0.72,
+        "anchor_y": 0.48,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "Transitions from the historical example into the next explanation of how the method divides work."
+      }
+    },
+    {
+      "beat_id": 3,
+      "start": 14.2,
+      "end": 17.5,
+      "attention_story": [
+        "Open with the complete organized desk to establish the method as a structured system.",
+        "Guide attention to the central timer as the cue for focused sessions when the focus concept is spoken.",
+        "Return to the wider arrangement to visually summarize repeated work periods before the next beat."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b03_s01",
+          "role": "establish",
+          "start": 14.2,
+          "end": 15.0,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_desk_arrangement",
+              "coverage": 0.68,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b03_desk_arrangement",
+              "coverage": 0.68,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The balanced desk composition already communicates the organized system without unnecessary movement."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_desk_arrangement",
+              "target_label": "organized study desk scene",
+              "center_x": 0.5,
+              "center_y": 0.5015458,
+              "width": 0.9558824,
+              "height": 0.9484724,
+              "zoom": 1.0461538,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.53,
+                "w": 0.65,
+                "h": 0.42
+              }
+            },
+            "end": {
+              "target_id": "b03_desk_arrangement",
+              "target_label": "organized study desk scene",
+              "center_x": 0.5,
+              "center_y": 0.5015458,
+              "width": 0.9558824,
+              "height": 0.9484724,
+              "zoom": 1.0461538,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.53,
+                "w": 0.65,
+                "h": 0.42
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        },
+        {
+          "shot_id": "b03_s02",
+          "role": "primary",
+          "start": 15.0,
+          "end": 16.46,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_desk_arrangement",
+              "coverage": 0.68,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b03_center_timer",
+              "coverage": 0.3,
+              "anchor_x": 0.5,
+              "anchor_y": 0.52
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "Gently narrows attention onto the timer as the visual signal for focused sessions."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0037",
+            "word": "focused",
+            "authoritative_start": 15.38,
+            "authoritative_end": 15.86
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_desk_arrangement",
+              "target_label": "organized study desk scene",
+              "center_x": 0.5,
+              "center_y": 0.5015458,
+              "width": 0.9558824,
+              "height": 0.9484724,
+              "zoom": 1.0461538,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.53,
+                "w": 0.65,
+                "h": 0.42
+              }
+            },
+            "end": {
+              "target_id": "b03_center_timer",
+              "target_label": "small round desk timer",
+              "center_x": 0.5,
+              "center_y": 0.5049659,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.52,
+                "w": 0.1,
+                "h": 0.09
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b03_s03",
+          "role": "context",
+          "start": 16.46,
+          "end": 17.5,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_desk_arrangement",
+              "coverage": 0.6,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b03_desk_arrangement",
+              "coverage": 0.6,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            }
+          },
+          "motion": {
+            "type": "settle",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Allows the grouped materials and workspace structure to remain readable before the transition."
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0038",
+            "word": "sessions.",
+            "authoritative_start": 15.86,
+            "authoritative_end": 16.46
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_desk_arrangement",
+              "target_label": "organized study desk scene",
+              "center_x": 0.5,
+              "center_y": 0.5002326,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.53,
+                "w": 0.65,
+                "h": 0.42
+              }
+            },
+            "end": {
+              "target_id": "b03_desk_arrangement",
+              "target_label": "organized study desk scene",
+              "center_x": 0.5,
+              "center_y": 0.5002326,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.53,
+                "w": 0.65,
+                "h": 0.42
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b03_desk_arrangement",
+        "coverage": 0.6,
+        "anchor_x": 0.5,
+        "anchor_y": 0.53,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Moves cleanly from focused work structure into the following break and reset moment."
+      }
+    },
+    {
+      "beat_id": 4,
+      "start": 17.5,
+      "end": 21.56,
+      "attention_story": [
+        "Open on the quiet recovery space rather than active work, using the warm window nook to signal a mental reset.",
+        "Shift attention from the resting tea to the timer and notebook relationship as the narration explains resetting attention.",
+        "End with a calm full composition that lets the pause between sessions breathe."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b04_s01",
+          "role": "primary",
+          "start": 17.5,
+          "end": 19.0,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b004_target_teacup",
+              "coverage": 0.42,
+              "anchor_x": 0.62,
+              "anchor_y": 0.55
+            },
+            "end": {
+              "target_id": "b004_target_teacup",
+              "coverage": 0.42,
+              "anchor_x": 0.62,
+              "anchor_y": 0.55
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The steaming cup is the clearest visual cue for a short restorative break, so keep attention on the peaceful pause."
+          },
+          "sync": {
+            "mode": "cut_on_word_start",
+            "word_id": "w_0039",
+            "word": "Short",
+            "authoritative_start": 17.5,
+            "authoritative_end": 17.76
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b004_target_teacup",
+              "target_label": "steaming tea cup",
+              "center_x": 0.5290909,
+              "center_y": 0.4624148,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.62,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.62,
+                "y": 0.5,
+                "w": 0.16,
+                "h": 0.13
+              }
+            },
+            "end": {
+              "target_id": "b004_target_teacup",
+              "target_label": "steaming tea cup",
+              "center_x": 0.5290909,
+              "center_y": 0.4624148,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.62,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.62,
+                "y": 0.5,
+                "w": 0.16,
+                "h": 0.13
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b04_s02",
+          "role": "detail",
+          "start": 19.0,
+          "end": 20.36,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b004_target_teacup",
+              "coverage": 0.34,
+              "anchor_x": 0.62,
+              "anchor_y": 0.55
+            },
+            "end": {
+              "target_id": "b004_target_timer",
+              "coverage": 0.4,
+              "anchor_x": 0.79,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "A subtle attention move connects the calming break object to the timer, reinforcing the reset between focused sessions."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0043",
+            "word": "attention",
+            "authoritative_start": 18.92,
+            "authoritative_end": 19.5
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b004_target_teacup",
+              "target_label": "steaming tea cup",
+              "center_x": 0.5290909,
+              "center_y": 0.4624148,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.62,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.62,
+                "y": 0.5,
+                "w": 0.16,
+                "h": 0.13
+              }
+            },
+            "end": {
+              "target_id": "b004_target_timer",
+              "target_label": "small hourglass timer",
+              "center_x": 0.5612121,
+              "center_y": 0.4350341,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.79,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.79,
+                "y": 0.42,
+                "w": 0.11,
+                "h": 0.16
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        },
+        {
+          "shot_id": "b04_s03",
+          "role": "release",
+          "start": 20.36,
+          "end": 21.56,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b004_target_timer",
+              "coverage": 0.4,
+              "anchor_x": 0.79,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b004_target_window",
+              "coverage": 0.55,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4
+            }
+          },
+          "motion": {
+            "type": "settle",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.3,
+            "reason": "Broaden the view to leave the viewer with the calm environment that represents restored attention."
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0045",
+            "word": "sessions.",
+            "authoritative_start": 19.88,
+            "authoritative_end": 20.36
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b004_target_timer",
+              "target_label": "small hourglass timer",
+              "center_x": 0.5612121,
+              "center_y": 0.4350341,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.79,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.79,
+                "y": 0.42,
+                "w": 0.11,
+                "h": 0.16
+              }
+            },
+            "end": {
+              "target_id": "b004_target_window",
+              "target_label": "window and outdoor view",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.78,
+                "h": 0.35
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b004_target_window",
+        "coverage": 0.55,
+        "anchor_x": 0.5,
+        "anchor_y": 0.4,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Cleanly returns from the break metaphor into the next focus scene without decorative interruption."
+      }
+    },
+    {
+      "beat_id": 5,
+      "start": 21.56,
+      "end": 24.62,
+      "attention_story": [
+        "Begin with the full desk metaphor to establish distractions surrounding the protected focus area.",
+        "Shift attention toward the central notebook as the protected goal while the surrounding papers lose visual priority.",
+        "Finish by settling on the relationship between the notebook and timer as the visual symbol of dedicated time."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b05_s01",
+          "role": "establish",
+          "start": 21.56,
+          "end": 22.62,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b005_target_desk",
+              "coverage": 0.78,
+              "anchor_x": 0.5,
+              "anchor_y": 0.55
+            },
+            "end": {
+              "target_id": "b005_target_desk",
+              "coverage": 0.78,
+              "anchor_x": 0.5,
+              "anchor_y": 0.55
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The complete desk composition clearly shows the contrast between scattered distractions and the protected central workspace."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b005_target_desk",
+              "target_label": "wooden desk surface",
+              "center_x": 0.5,
+              "center_y": 0.5003876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.55,
+                "w": 0.8,
+                "h": 0.4
+              }
+            },
+            "end": {
+              "target_id": "b005_target_desk",
+              "target_label": "wooden desk surface",
+              "center_x": 0.5,
+              "center_y": 0.5003876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.55,
+                "w": 0.8,
+                "h": 0.4
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        },
+        {
+          "shot_id": "b05_s02",
+          "role": "primary",
+          "start": 22.62,
+          "end": 23.66,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b005_target_desk",
+              "coverage": 0.78,
+              "anchor_x": 0.5,
+              "anchor_y": 0.55
+            },
+            "end": {
+              "target_id": "b005_target_notebook",
+              "coverage": 0.48,
+              "anchor_x": 0.5,
+              "anchor_y": 0.56
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "A subtle push gives the central notebook visual priority as goals become the focus."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0049",
+            "word": "goals",
+            "authoritative_start": 22.82,
+            "authoritative_end": 23.16
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b005_target_desk",
+              "target_label": "wooden desk surface",
+              "center_x": 0.5,
+              "center_y": 0.5003876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.55,
+                "w": 0.8,
+                "h": 0.4
+              }
+            },
+            "end": {
+              "target_id": "b005_target_notebook",
+              "target_label": "central green notebook",
+              "center_x": 0.45,
+              "center_y": 0.4348978,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.56,
+              "target_bbox": {
+                "x": 0.45,
+                "y": 0.48,
+                "w": 0.3,
+                "h": 0.18
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b05_s03",
+          "role": "detail",
+          "start": 23.66,
+          "end": 24.62,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b005_target_notebook",
+              "coverage": 0.48,
+              "anchor_x": 0.5,
+              "anchor_y": 0.56
+            },
+            "end": {
+              "target_id": "b005_target_clock",
+              "coverage": 0.3,
+              "anchor_x": 0.63,
+              "anchor_y": 0.35
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "The gentle move connects the protected goal with the timer that represents dedicated time."
+          },
+          "sync": {
+            "mode": "reveal_complete_on_word",
+            "word_id": "w_0052",
+            "word": "time.",
+            "authoritative_start": 24.12,
+            "authoritative_end": 24.64
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b005_target_notebook",
+              "target_label": "central green notebook",
+              "center_x": 0.45,
+              "center_y": 0.4348978,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.56,
+              "target_bbox": {
+                "x": 0.45,
+                "y": 0.48,
+                "w": 0.3,
+                "h": 0.18
+              }
+            },
+            "end": {
+              "target_id": "b005_target_clock",
+              "target_label": "small round timer clock",
+              "center_x": 0.5315152,
+              "center_y": 0.4227555,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.63,
+              "anchor_y": 0.35,
+              "target_bbox": {
+                "x": 0.63,
+                "y": 0.31,
+                "w": 0.12,
+                "h": 0.12
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b005_target_clock",
+        "coverage": 0.3,
+        "anchor_x": 0.63,
+        "anchor_y": 0.35,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Clean cut continues from the focused timer detail into the next progress-oriented scene."
+      }
+    },
+    {
+      "beat_id": 6,
+      "start": 24.62,
+      "end": 29.68,
+      "attention_story": [
+        "Begin with the organized desk scene to extend the previous focus metaphor into a broader completion rhythm.",
+        "Shift attention to the tomato timer as the visual anchor for a repeatable work cycle when rhythm is emphasized.",
+        "End on the completed materials to reinforce progress and prepare the transition back to the timer concept."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b06_s01",
+          "role": "context",
+          "start": 24.62,
+          "end": 26.6,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b006_target_desk_scene",
+              "coverage": 0.72,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b006_target_desk_scene",
+              "coverage": 0.78,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Slowly draws attention into the arranged workspace to represent a steady completion rhythm."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b006_target_desk_scene",
+              "target_label": "wooden desk with arranged objects",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 0.78,
+                "h": 0.55
+              }
+            },
+            "end": {
+              "target_id": "b006_target_desk_scene",
+              "target_label": "wooden desk with arranged objects",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 0.78,
+                "h": 0.55
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        },
+        {
+          "shot_id": "b06_s02",
+          "role": "primary",
+          "start": 26.6,
+          "end": 27.9,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b006_target_desk_scene",
+              "coverage": 0.78,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b006_target_tomato_timer",
+              "coverage": 0.3,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54
+            }
+          },
+          "motion": {
+            "type": "reveal_move",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "Moves focus onto the timer as the concrete symbol of the steady rhythm being described."
+          },
+          "sync": {
+            "mode": "reveal_complete_on_word",
+            "word_id": "w_0058",
+            "word": "rhythm",
+            "authoritative_start": 26.94,
+            "authoritative_end": 27.26
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b006_target_desk_scene",
+              "target_label": "wooden desk with arranged objects",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 0.78,
+                "h": 0.55
+              }
+            },
+            "end": {
+              "target_id": "b006_target_tomato_timer",
+              "target_label": "tomato-shaped timer",
+              "center_x": 0.5,
+              "center_y": 0.5099319,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.54,
+                "w": 0.12,
+                "h": 0.09
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b06_s03",
+          "role": "release",
+          "start": 27.9,
+          "end": 29.68,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b006_target_tomato_timer",
+              "coverage": 0.3,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54
+            },
+            "end": {
+              "target_id": "b006_target_books",
+              "coverage": 0.45,
+              "anchor_x": 0.42,
+              "anchor_y": 0.66
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Broadens attention from the timer to completed books and materials that represent finished tasks."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b006_target_tomato_timer",
+              "target_label": "tomato-shaped timer",
+              "center_x": 0.5,
+              "center_y": 0.5099319,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.54,
+                "w": 0.12,
+                "h": 0.09
+              }
+            },
+            "end": {
+              "target_id": "b006_target_books",
+              "target_label": "stack of books",
+              "center_x": 0.450625,
+              "center_y": 0.5597275,
+              "width": 0.78125,
+              "height": 0.7751938,
+              "zoom": 1.28,
+              "anchor_x": 0.42,
+              "anchor_y": 0.66,
+              "target_bbox": {
+                "x": 0.36,
+                "y": 0.68,
+                "w": 0.18,
+                "h": 0.14
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end",
+            "viewport_clamped_to_artwork",
+            "minimum_pull_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b006_target_books",
+        "coverage": 0.45,
+        "anchor_x": 0.42,
+        "anchor_y": 0.66,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Clean handoff into the next timer-focused scene while maintaining the focus workflow progression."
+      }
+    },
+    {
+      "beat_id": 7,
+      "start": 29.68,
+      "end": 33.14,
+      "attention_story": [
+        "Bring focus back to the pocket timer as the key object that controls the work interval.",
+        "Use the visible hand interaction to connect the timer with the action of starting and stopping.",
+        "End on the prepared notebook context to bridge into the next beat about the origin of the habit."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b07_s01",
+          "role": "primary",
+          "start": 29.68,
+          "end": 30.9,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b07_target_timer",
+              "coverage": 0.22,
+              "anchor_x": 0.48,
+              "anchor_y": 0.42
+            },
+            "end": {
+              "target_id": "b07_target_timer",
+              "coverage": 0.3,
+              "anchor_x": 0.48,
+              "anchor_y": 0.42
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "Move attention into the timer when it is named, making the object the clear signal for focused work."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0064",
+            "word": "timer",
+            "authoritative_start": 29.94,
+            "authoritative_end": 30.36
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b07_target_timer",
+              "target_label": "small pocket timer on table",
+              "center_x": 0.4090909,
+              "center_y": 0.4149471,
+              "width": 0.8181818,
+              "height": 0.8118393,
+              "zoom": 1.2222222,
+              "anchor_x": 0.48,
+              "anchor_y": 0.42,
+              "target_bbox": {
+                "x": 0.39,
+                "y": 0.35,
+                "w": 0.18,
+                "h": 0.12
+              }
+            },
+            "end": {
+              "target_id": "b07_target_timer",
+              "target_label": "small pocket timer on table",
+              "center_x": 0.4051515,
+              "center_y": 0.4101362,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.48,
+              "anchor_y": 0.42,
+              "target_bbox": {
+                "x": 0.39,
+                "y": 0.35,
+                "w": 0.18,
+                "h": 0.12
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b07_s02",
+          "role": "detail",
+          "start": 30.9,
+          "end": 32.1,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b07_target_timer",
+              "coverage": 0.3,
+              "anchor_x": 0.48,
+              "anchor_y": 0.42
+            },
+            "end": {
+              "target_id": "b07_target_hand",
+              "coverage": 0.34,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "Shift attention from the timer face to the reaching hand to show the physical start and stop action."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0068",
+            "word": "start",
+            "authoritative_start": 31.22,
+            "authoritative_end": 31.48
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b07_target_timer",
+              "target_label": "small pocket timer on table",
+              "center_x": 0.4051515,
+              "center_y": 0.4101362,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.48,
+              "anchor_y": 0.42,
+              "target_bbox": {
+                "x": 0.39,
+                "y": 0.35,
+                "w": 0.18,
+                "h": 0.12
+              }
+            },
+            "end": {
+              "target_id": "b07_target_hand",
+              "target_label": "reaching hand touching timer area",
+              "center_x": 0.4893939,
+              "center_y": 0.4050341,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.55,
+                "y": 0.39,
+                "w": 0.24,
+                "h": 0.24
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b07_s03",
+          "role": "release",
+          "start": 32.1,
+          "end": 33.14,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b07_target_hand",
+              "coverage": 0.34,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b07_target_notebook",
+              "coverage": 0.42,
+              "anchor_x": 0.66,
+              "anchor_y": 0.42
+            }
+          },
+          "motion": {
+            "type": "settle",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.25,
+            "reason": "Settle on the notebook as the surrounding work context before moving into the personal history of the technique."
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0070",
+            "word": "stop.",
+            "authoritative_start": 31.64,
+            "authoritative_end": 32.5
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b07_target_hand",
+              "target_label": "reaching hand touching timer area",
+              "center_x": 0.4893939,
+              "center_y": 0.4050341,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.55,
+                "y": 0.39,
+                "w": 0.24,
+                "h": 0.24
+              }
+            },
+            "end": {
+              "target_id": "b07_target_notebook",
+              "target_label": "open notebook with floral drawing",
+              "center_x": 0.5987879,
+              "center_y": 0.3758515,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.66,
+              "anchor_y": 0.42,
+              "target_bbox": {
+                "x": 0.72,
+                "y": 0.28,
+                "w": 0.25,
+                "h": 0.22
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b07_target_notebook",
+        "coverage": 0.42,
+        "anchor_x": 0.66,
+        "anchor_y": 0.42,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "memory",
+        "reason": "Move from the timer tool to the next beat's story of the habit's origin."
+      }
+    },
+    {
+      "beat_id": 8,
+      "start": 33.14,
+      "end": 37.06,
+      "attention_story": [
+        "Move from the timer as a tool to the quiet personal origin behind the habit.",
+        "Reveal the study corner first, then guide focus from the student's workspace to the handwritten notes representing the routine.",
+        "Allow the humble scene to settle before transitioning into the wider modern-use conclusion."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b08_s01",
+          "role": "context",
+          "start": 33.14,
+          "end": 34.5,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b08_target_chair",
+              "coverage": 0.55,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b08_target_desk",
+              "coverage": 0.6,
+              "anchor_x": 0.55,
+              "anchor_y": 0.38
+            }
+          },
+          "motion": {
+            "type": "drift",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Establishes the empty student chair and surrounding desk as the personal study environment where the idea began."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b08_target_chair",
+              "target_label": "empty wooden student chair",
+              "center_x": 0.3787879,
+              "center_y": 0.43,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.27,
+                "y": 0.43,
+                "w": 0.25,
+                "h": 0.3
+              }
+            },
+            "end": {
+              "target_id": "b08_target_desk",
+              "target_label": "wooden study desk surface",
+              "center_x": 0.4741667,
+              "center_y": 0.4547804,
+              "width": 0.9166667,
+              "height": 0.9095607,
+              "zoom": 1.0909091,
+              "anchor_x": 0.55,
+              "anchor_y": 0.38,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.3,
+                "w": 0.55,
+                "h": 0.22
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        },
+        {
+          "shot_id": "b08_s02",
+          "role": "detail",
+          "start": 34.5,
+          "end": 35.6,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b08_target_desk",
+              "coverage": 0.6,
+              "anchor_x": 0.55,
+              "anchor_y": 0.38
+            },
+            "end": {
+              "target_id": "b08_target_notes",
+              "coverage": 0.5,
+              "anchor_x": 0.52,
+              "anchor_y": 0.38
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "Draws attention to the handwritten notes as the narration identifies the student's personal study habit."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0077",
+            "word": "student's",
+            "authoritative_start": 34.8,
+            "authoritative_end": 35.36
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b08_target_desk",
+              "target_label": "wooden study desk surface",
+              "center_x": 0.4741667,
+              "center_y": 0.4547804,
+              "width": 0.9166667,
+              "height": 0.9095607,
+              "zoom": 1.0909091,
+              "anchor_x": 0.55,
+              "anchor_y": 0.38,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.3,
+                "w": 0.55,
+                "h": 0.22
+              }
+            },
+            "end": {
+              "target_id": "b08_target_notes",
+              "target_label": "handwritten papers on desk",
+              "center_x": 0.4848485,
+              "center_y": 0.3902044,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.52,
+              "anchor_y": 0.38,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.3,
+                "w": 0.35,
+                "h": 0.18
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "continuous_start_matched_previous_end",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b08_s03",
+          "role": "hold",
+          "start": 35.6,
+          "end": 37.06,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b08_target_notes",
+              "coverage": 0.5,
+              "anchor_x": 0.52,
+              "anchor_y": 0.38
+            },
+            "end": {
+              "target_id": "b08_target_notes",
+              "coverage": 0.5,
+              "anchor_x": 0.52,
+              "anchor_y": 0.38
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "Lets the origin story land on the quiet evidence of the student's routine before the broader adoption scene."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b08_target_notes",
+              "target_label": "handwritten papers on desk",
+              "center_x": 0.4848485,
+              "center_y": 0.3902044,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.52,
+              "anchor_y": 0.38,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.3,
+                "w": 0.35,
+                "h": 0.18
+              }
+            },
+            "end": {
+              "target_id": "b08_target_notes",
+              "target_label": "handwritten papers on desk",
+              "center_x": 0.4848485,
+              "center_y": 0.3902044,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.52,
+              "anchor_y": 0.38,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.3,
+                "w": 0.35,
+                "h": 0.18
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b08_target_notes",
+        "coverage": 0.5,
+        "anchor_x": 0.52,
+        "anchor_y": 0.38,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Moves cleanly from the personal origin scene into the broader modern-use scene."
+      }
+    },
+    {
+      "beat_id": 9,
+      "start": 37.06,
+      "end": 42.658,
+      "attention_story": [
+        "Begin with the full visible collage to communicate that the method has spread beyond its original personal use.",
+        "Shift attention between the visible people working in different environments to support the idea of structured focused work.",
+        "End with a calm representative overview that leaves space for the call to action."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b09_s01",
+          "role": "establish",
+          "start": 37.06,
+          "end": 38.56,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b09_target_writer_person",
+              "coverage": 0.48,
+              "anchor_x": 0.6,
+              "anchor_y": 0.28
+            },
+            "end": {
+              "target_id": "b09_target_writer_person",
+              "coverage": 0.58,
+              "anchor_x": 0.6,
+              "anchor_y": 0.28
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Focus the viewer on the visible writing scene as a clear example of structured work."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0080",
+            "word": "Today,",
+            "authoritative_start": 37.06,
+            "authoritative_end": 37.3
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b09_target_writer_person",
+              "target_label": "person writing at desk in upper scene",
+              "center_x": 0.5242424,
+              "center_y": 0.4453747,
+              "width": 0.78125,
+              "height": 0.7751938,
+              "zoom": 1.28,
+              "anchor_x": 0.6,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.6,
+                "y": 0.28,
+                "w": 0.2,
+                "h": 0.22
+              }
+            },
+            "end": {
+              "target_id": "b09_target_writer_person",
+              "target_label": "person writing at desk in upper scene",
+              "center_x": 0.5242424,
+              "center_y": 0.4453747,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.6,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.6,
+                "y": 0.28,
+                "w": 0.2,
+                "h": 0.22
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b09_s02",
+          "role": "context",
+          "start": 38.56,
+          "end": 40.22,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b09_target_workshop_person",
+              "coverage": 0.42,
+              "anchor_x": 0.74,
+              "anchor_y": 0.69
+            },
+            "end": {
+              "target_id": "b09_target_workshop_person",
+              "coverage": 0.42,
+              "anchor_x": 0.74,
+              "anchor_y": 0.69
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "Show the other visible work scenes with a clean editorial transition and avoid unsupported camera travel."
+          },
+          "sync": {
+            "mode": "cut_on_word_start",
+            "word_id": "w_0086",
+            "word": "focused",
+            "authoritative_start": 38.56,
+            "authoritative_end": 39.1
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b09_target_workshop_person",
+              "target_label": "person working at table in lower right scene",
+              "center_x": 0.5581818,
+              "center_y": 0.5471764,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.74,
+              "anchor_y": 0.69,
+              "target_bbox": {
+                "x": 0.74,
+                "y": 0.69,
+                "w": 0.18,
+                "h": 0.2
+              }
+            },
+            "end": {
+              "target_id": "b09_target_workshop_person",
+              "target_label": "person working at table in lower right scene",
+              "center_x": 0.5581818,
+              "center_y": 0.5471764,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.74,
+              "anchor_y": 0.69,
+              "target_bbox": {
+                "x": 0.74,
+                "y": 0.69,
+                "w": 0.18,
+                "h": 0.2
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b09_s03",
+          "role": "release",
+          "start": 40.22,
+          "end": 42.658,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b09_target_tomato_objects",
+              "coverage": 0.65,
+              "anchor_x": 0.5,
+              "anchor_y": 0.58
+            },
+            "end": {
+              "target_id": "b09_target_tomato_objects",
+              "coverage": 0.65,
+              "anchor_x": 0.5,
+              "anchor_y": 0.58
+            }
+          },
+          "motion": {
+            "type": "settle",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.6,
+            "reason": "Hold the verified collage context as the closing image, emphasizing the broader spread of the practice without introducing unsupported target changes."
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0093",
+            "word": "questions.",
+            "authoritative_start": 41.62,
+            "authoritative_end": 42.4
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b09_target_tomato_objects",
+              "target_label": "multiple red tomato-shaped objects",
+              "center_x": 0.47,
+              "center_y": 0.4828324,
+              "width": 0.8461538,
+              "height": 0.8395945,
+              "zoom": 1.1818182,
+              "anchor_x": 0.5,
+              "anchor_y": 0.58,
+              "target_bbox": {
+                "x": 0.47,
+                "y": 0.55,
+                "w": 0.55,
+                "h": 0.38
+              }
+            },
+            "end": {
+              "target_id": "b09_target_tomato_objects",
+              "target_label": "multiple red tomato-shaped objects",
+              "center_x": 0.47,
+              "center_y": 0.4828324,
+              "width": 0.8461538,
+              "height": 0.8395945,
+              "zoom": 1.1818182,
+              "anchor_x": 0.5,
+              "anchor_y": 0.58,
+              "target_bbox": {
+                "x": 0.47,
+                "y": 0.55,
+                "w": 0.55,
+                "h": 0.38
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b09_target_tomato_objects",
+        "coverage": 0.65,
+        "anchor_x": 0.5,
+        "anchor_y": 0.58,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "cta",
+        "reason": "Finish with a stable editorial frame as the call to action completes."
+      }
+    }
+  ],
+  "input_fingerprint": "ed426b24f2a70a3954121a373f020dd3c9ce5eac5eff09aa8a93bff8cc3e7d2f",
+  "prompt_version": "motion-director-v2.0",
+  "created_at": "2026-09-08T15:08:25.639022+00:00",
+  "normalization_corrections": [
+    {
+      "shot_id": "b09_s02",
+      "code": "moving_hold_became_static_hold"
+    }
+  ],
+  "compiled": true,
+  "compiler_version": 2
+}

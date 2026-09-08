@@ -1,0 +1,200 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "f480131bbf94b49c0bf3b2d31da0f02248849373d86942bbea40a7d910288033",
+  "job_ids": [
+    "31ab8054-bafd-4f00-a5c5-41db625f21d2"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 1,
+        "start": 5.958,
+        "end": 11.22,
+        "attention_story": [
+          "Begin with the opened book as the continuation of the previous action, then guide attention to the portrait reveal and finish on the tomato timer concept named in narration."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b01_s01",
+            "role": "establish",
+            "start": 5.958,
+            "end": 7.34,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b01_open_book",
+                "coverage": 0.55,
+                "anchor_x": 0.52,
+                "anchor_y": 0.53
+              },
+              "end": {
+                "target_id": "b01_open_book",
+                "coverage": 0.6,
+                "anchor_x": 0.52,
+                "anchor_y": 0.53
+              }
+            },
+            "motion": {
+              "type": "drift",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "A subtle drift keeps attention on the newly opened book without distracting from the illustration reveal."
+            },
+            "sync": {
+              "mode": "reveal_complete_on_word",
+              "word_id": "w_0019",
+              "word": "reveal",
+              "authoritative_start": 6.92,
+              "authoritative_end": 7.34
+            }
+          },
+          {
+            "shot_id": "b01_s02",
+            "role": "primary",
+            "start": 7.34,
+            "end": 9.12,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b01_open_book",
+                "coverage": 0.6,
+                "anchor_x": 0.52,
+                "anchor_y": 0.53
+              },
+              "end": {
+                "target_id": "b01_portrait_person",
+                "coverage": 0.38,
+                "anchor_x": 0.36,
+                "anchor_y": 0.52
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "A gentle push emphasizes the portrait as the named historical figure appears in the narration."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0020",
+              "word": "Francesco",
+              "authoritative_start": 7.34,
+              "authoritative_end": 8.2
+            }
+          },
+          {
+            "shot_id": "b01_s03",
+            "role": "detail",
+            "start": 9.12,
+            "end": 11.22,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b01_portrait_person",
+                "coverage": 0.38,
+                "anchor_x": 0.36,
+                "anchor_y": 0.52
+              },
+              "end": {
+                "target_id": "b01_tomato_timer",
+                "coverage": 0.28,
+                "anchor_x": 0.76,
+                "anchor_y": 0.41
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.25,
+              "reason": "A controlled move connects the historical portrait to the defining tomato timer symbol."
+            },
+            "sync": {
+              "mode": "impact_apex_on_word",
+              "word_id": "w_0024",
+              "word": "Pomodoro",
+              "authoritative_start": 9.12,
+              "authoritative_end": 9.68
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b01_tomato_timer",
+          "coverage": 0.28,
+          "anchor_x": 0.76,
+          "anchor_y": 0.41,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "dissolve",
+          "duration": 0.4,
+          "reason_code": "continuity",
+          "reason": "The timer illustration provides a visual bridge into the following historical study scene."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

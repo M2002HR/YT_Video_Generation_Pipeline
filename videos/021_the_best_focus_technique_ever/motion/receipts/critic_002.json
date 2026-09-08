@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "d43f8daaf9e695941b1046b93777f1359bfeb536e9b9bf81ed3c894ba3088d45",
+  "job_ids": [
+    "1810bfe5-6cf1-4cf5-9573-557ab88400bb"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 4,
+        "shot_id": "b04_s02",
+        "code": "bad_sync",
+        "message": "Movement is triggered on word w_0042 ('reset') at 18.38s, but this micro-shot begins at 19.0s, so the claimed word-synchronized attention move cannot occur."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 4,
+        "start": 17.5,
+        "end": 21.56,
+        "attention_story": [
+          "Open on the quiet recovery space rather than active work, using the warm window nook to signal a mental reset.",
+          "Shift attention from the resting tea to the timer and notebook relationship as the narration explains resetting attention.",
+          "End with a calm full composition that lets the pause between sessions breathe."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b04_s01",
+            "role": "primary",
+            "start": 17.5,
+            "end": 19.0,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b004_target_teacup",
+                "coverage": 0.42,
+                "anchor_x": 0.62,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b004_target_teacup",
+                "coverage": 0.42,
+                "anchor_x": 0.62,
+                "anchor_y": 0.55
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The steaming cup is the clearest visual cue for a short restorative break, so keep attention on the peaceful pause."
+            },
+            "sync": {
+              "mode": "cut_on_word_start",
+              "word_id": "w_0039",
+              "word": "Short",
+              "authoritative_start": 17.5,
+              "authoritative_end": 17.76
+            }
+          },
+          {
+            "shot_id": "b04_s02",
+            "role": "detail",
+            "start": 19.0,
+            "end": 20.36,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b004_target_teacup",
+                "coverage": 0.34,
+                "anchor_x": 0.62,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b004_target_timer",
+                "coverage": 0.4,
+                "anchor_x": 0.79,
+                "anchor_y": 0.48
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "A subtle attention move connects the calming break object to the timer, reinforcing the reset between focused sessions."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0043",
+              "word": "attention",
+              "authoritative_start": 19.0,
+              "authoritative_end": 19.45
+            }
+          },
+          {
+            "shot_id": "b04_s03",
+            "role": "release",
+            "start": 20.36,
+            "end": 21.56,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b004_target_timer",
+                "coverage": 0.4,
+                "anchor_x": 0.79,
+                "anchor_y": 0.48
+              },
+              "end": {
+                "target_id": "b004_target_window",
+                "coverage": 0.55,
+                "anchor_x": 0.5,
+                "anchor_y": 0.4
+              }
+            },
+            "motion": {
+              "type": "settle",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.3,
+              "reason": "Broaden the view to leave the viewer with the calm environment that represents restored attention."
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0045",
+              "word": "sessions.",
+              "authoritative_start": 19.88,
+              "authoritative_end": 20.36
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b004_target_window",
+          "coverage": 0.55,
+          "anchor_x": 0.5,
+          "anchor_y": 0.4,
+          "movement_direction": "out"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Cleanly returns from the break metaphor into the next focus scene without decorative interruption."
+        }
+      }
+    ]
+  }
+}

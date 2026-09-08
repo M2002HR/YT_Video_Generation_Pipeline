@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 42.658,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 93,
+  "words": [
+    {
+      "text": "Can",
+      "token": "can",
+      "start": 0.02,
+      "end": 0.2
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 0.2,
+      "end": 0.32
+    },
+    {
+      "text": "simple",
+      "token": "simple",
+      "start": 0.32,
+      "end": 0.54
+    },
+    {
+      "text": "timer",
+      "token": "timer",
+      "start": 0.54,
+      "end": 0.84
+    },
+    {
+      "text": "turn",
+      "token": "turn",
+      "start": 0.84,
+      "end": 1.26
+    },
+    {
+      "text": "scattered",
+      "token": "scattered",
+      "start": 1.26,
+      "end": 1.7
+    },
+    {
+      "text": "work",
+      "token": "work",
+      "start": 1.7,
+      "end": 2.0
+    },
+    {
+      "text": "into",
+      "token": "into",
+      "start": 2.0,
+      "end": 2.24
+    },
+    {
+      "text": "focus?",
+      "token": "focus",
+      "start": 2.24,
+      "end": 2.94
+    },
+    {
+      "text": "She",
+      "token": "she",
+      "start": 3.82,
+      "end": 4.0
+    },
+    {
+      "text": "reaches",
+      "token": "reaches",
+      "start": 4.0,
+      "end": 4.28
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 4.28,
+      "end": 4.48
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 4.48,
+      "end": 4.6
+    },
+    {
+      "text": "book,",
+      "token": "book",
+      "start": 4.6,
+      "end": 5.04
+    },
+    {
+      "text": "opening",
+      "token": "opening",
+      "start": 5.04,
+      "end": 5.48
+    },
+    {
+      "text": "it.",
+      "token": "it",
+      "start": 5.48,
+      "end": 5.92
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 6.48,
+      "end": 6.62
+    },
+    {
+      "text": "pages",
+      "token": "pages",
+      "start": 6.62,
+      "end": 6.92
+    },
+    {
+      "text": "reveal",
+      "token": "reveal",
+      "start": 6.92,
+      "end": 7.34
+    },
+    {
+      "text": "Francesco",
+      "token": "francesco",
+      "start": 7.34,
+      "end": 8.2
+    },
+    {
+      "text": "Tirillo",
+      "token": "tirillo",
+      "start": 8.2,
+      "end": 8.72
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 8.72,
+      "end": 9.0
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 9.0,
+      "end": 9.12
+    },
+    {
+      "text": "Pomodoro",
+      "token": "pomodoro",
+      "start": 9.12,
+      "end": 9.68
+    },
+    {
+      "text": "technique.",
+      "token": "technique",
+      "start": 9.68,
+      "end": 10.06
+    },
+    {
+      "text": "He",
+      "token": "he",
+      "start": 11.22,
+      "end": 11.4
+    },
+    {
+      "text": "studied",
+      "token": "studied",
+      "start": 11.4,
+      "end": 11.66
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 11.66,
+      "end": 11.86
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 11.86,
+      "end": 11.92
+    },
+    {
+      "text": "tomato-shaped",
+      "token": "tomatoshaped",
+      "start": 11.92,
+      "end": 12.58
+    },
+    {
+      "text": "timer.",
+      "token": "timer",
+      "start": 12.58,
+      "end": 13.08
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 14.2,
+      "end": 14.34
+    },
+    {
+      "text": "method",
+      "token": "method",
+      "start": 14.34,
+      "end": 14.58
+    },
+    {
+      "text": "breaks",
+      "token": "breaks",
+      "start": 14.58,
+      "end": 14.9
+    },
+    {
+      "text": "work",
+      "token": "work",
+      "start": 14.9,
+      "end": 15.14
+    },
+    {
+      "text": "into",
+      "token": "into",
+      "start": 15.14,
+      "end": 15.38
+    },
+    {
+      "text": "focused",
+      "token": "focused",
+      "start": 15.38,
+      "end": 15.86
+    },
+    {
+      "text": "sessions.",
+      "token": "sessions",
+      "start": 15.86,
+      "end": 16.46
+    },
+    {
+      "text": "Short",
+      "token": "short",
+      "start": 17.5,
+      "end": 17.76
+    },
+    {
+      "text": "breaks",
+      "token": "breaks",
+      "start": 17.76,
+      "end": 18.06
+    },
+    {
+      "text": "help",
+      "token": "help",
+      "start": 18.06,
+      "end": 18.38
+    },
+    {
+      "text": "reset",
+      "token": "reset",
+      "start": 18.38,
+      "end": 18.92
+    },
+    {
+      "text": "attention",
+      "token": "attention",
+      "start": 18.92,
+      "end": 19.5
+    },
+    {
+      "text": "between",
+      "token": "between",
+      "start": 19.5,
+      "end": 19.88
+    },
+    {
+      "text": "sessions.",
+      "token": "sessions",
+      "start": 19.88,
+      "end": 20.36
+    },
+    {
+      "text": "Distractions",
+      "token": "distractions",
+      "start": 21.56,
+      "end": 22.24
+    },
+    {
+      "text": "fade",
+      "token": "fade",
+      "start": 22.24,
+      "end": 22.6
+    },
+    {
+      "text": "when",
+      "token": "when",
+      "start": 22.6,
+      "end": 22.82
+    },
+    {
+      "text": "goals",
+      "token": "goals",
+      "start": 22.82,
+      "end": 23.16
+    },
+    {
+      "text": "receive",
+      "token": "receive",
+      "start": 23.16,
+      "end": 23.66
+    },
+    {
+      "text": "protected",
+      "token": "protected",
+      "start": 23.66,
+      "end": 24.12
+    },
+    {
+      "text": "time.",
+      "token": "time",
+      "start": 24.12,
+      "end": 24.64
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 24.6,
+      "end": 25.78
+    },
+    {
+      "text": "technique",
+      "token": "technique",
+      "start": 25.78,
+      "end": 26.08
+    },
+    {
+      "text": "creates",
+      "token": "creates",
+      "start": 26.08,
+      "end": 26.52
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 26.52,
+      "end": 26.72
+    },
+    {
+      "text": "steady",
+      "token": "steady",
+      "start": 26.72,
+      "end": 26.94
+    },
+    {
+      "text": "rhythm",
+      "token": "rhythm",
+      "start": 26.94,
+      "end": 27.26
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 27.26,
+      "end": 27.5
+    },
+    {
+      "text": "completing",
+      "token": "completing",
+      "start": 27.5,
+      "end": 27.9
+    },
+    {
+      "text": "tasks.",
+      "token": "tasks",
+      "start": 27.9,
+      "end": 29.04
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 29.68,
+      "end": 29.7
+    },
+    {
+      "text": "small",
+      "token": "small",
+      "start": 29.7,
+      "end": 29.94
+    },
+    {
+      "text": "timer",
+      "token": "timer",
+      "start": 29.94,
+      "end": 30.36
+    },
+    {
+      "text": "signals",
+      "token": "signals",
+      "start": 30.36,
+      "end": 30.8
+    },
+    {
+      "text": "when",
+      "token": "when",
+      "start": 30.8,
+      "end": 31.08
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 31.08,
+      "end": 31.22
+    },
+    {
+      "text": "start",
+      "token": "start",
+      "start": 31.22,
+      "end": 31.48
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 31.48,
+      "end": 31.64
+    },
+    {
+      "text": "stop.",
+      "token": "stop",
+      "start": 31.64,
+      "end": 32.5
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 33.14,
+      "end": 33.36
+    },
+    {
+      "text": "simple",
+      "token": "simple",
+      "start": 33.36,
+      "end": 33.58
+    },
+    {
+      "text": "idea",
+      "token": "idea",
+      "start": 33.58,
+      "end": 33.92
+    },
+    {
+      "text": "grew",
+      "token": "grew",
+      "start": 33.92,
+      "end": 34.28
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 34.28,
+      "end": 34.5
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 34.5,
+      "end": 34.8
+    },
+    {
+      "text": "student's",
+      "token": "student's",
+      "start": 34.8,
+      "end": 35.36
+    },
+    {
+      "text": "study",
+      "token": "study",
+      "start": 35.36,
+      "end": 35.6
+    },
+    {
+      "text": "habit.",
+      "token": "habit",
+      "start": 35.6,
+      "end": 35.96
+    },
+    {
+      "text": "Today,",
+      "token": "today",
+      "start": 37.06,
+      "end": 37.3
+    },
+    {
+      "text": "people",
+      "token": "people",
+      "start": 37.3,
+      "end": 37.66
+    },
+    {
+      "text": "use",
+      "token": "use",
+      "start": 37.66,
+      "end": 37.96
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 37.96,
+      "end": 38.06
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 38.06,
+      "end": 38.18
+    },
+    {
+      "text": "structure",
+      "token": "structure",
+      "start": 38.18,
+      "end": 38.56
+    },
+    {
+      "text": "focused",
+      "token": "focused",
+      "start": 38.56,
+      "end": 39.1
+    },
+    {
+      "text": "work.",
+      "token": "work",
+      "start": 39.1,
+      "end": 39.86
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 40.22,
+      "end": 40.46
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 40.46,
+      "end": 40.66
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 40.66,
+      "end": 41.04
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 41.04,
+      "end": 41.48
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 41.48,
+      "end": 41.62
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 41.62,
+      "end": 42.4
+    }
+  ]
+}

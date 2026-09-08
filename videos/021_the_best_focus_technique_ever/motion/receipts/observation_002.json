@@ -1,0 +1,326 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "c2dd15dd645e75bfdb625d54ca49fac0f83f24d5eb842e992a7afc893af73a98",
+  "job_ids": [
+    "b9da1ce5-24fa-4721-bdb2-9d7575f4c026"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 4,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.42,
+          "w": 0.88,
+          "h": 0.62
+        },
+        "composition_summary": "A quiet window nook with a closed green notebook on a wooden sill, a steaming tea cup, and a small hourglass timer. Soft outdoor scenery is visible through the window. Large handwritten card area occupies the lower portion.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b004_target_notebook",
+            "label": "closed green notebook",
+            "kind": "object",
+            "bbox": {
+              "x": 0.31,
+              "y": 0.53,
+              "w": 0.25,
+              "h": 0.12
+            },
+            "importance": "primary",
+            "confidence": 0.96,
+            "visible_evidence": "closed green book resting on the wooden surface"
+          },
+          {
+            "target_id": "b004_target_teacup",
+            "label": "steaming tea cup",
+            "kind": "object",
+            "bbox": {
+              "x": 0.62,
+              "y": 0.5,
+              "w": 0.16,
+              "h": 0.13
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "cup with visible steam rising from it beside the notebook"
+          },
+          {
+            "target_id": "b004_target_timer",
+            "label": "small hourglass timer",
+            "kind": "object",
+            "bbox": {
+              "x": 0.79,
+              "y": 0.42,
+              "w": 0.11,
+              "h": 0.16
+            },
+            "importance": "secondary",
+            "confidence": 0.94,
+            "visible_evidence": "small glass hourglass standing on the right side of the sill"
+          },
+          {
+            "target_id": "b004_target_window",
+            "label": "window and outdoor view",
+            "kind": "place",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.28,
+              "w": 0.78,
+              "h": 0.35
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "large window with trees and a house visible outside"
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.86,
+              "w": 0.75,
+              "h": 0.18
+            }
+          },
+          {
+            "type": "embedded_text",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.86,
+              "w": 0.7,
+              "h": 0.15
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.95,
+              "h": 0.9
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.88",
+            "w": "0.75",
+            "h": "0.18"
+          }
+        ],
+        "notes": "Avoid the lower handwritten card area. Focus motion attention on the tea, timer, and notebook inside the artwork.",
+        "media_sha256": "e5cfdb4acde081e5a335b67aeca442dbf534bedb717089c0c1bd61d893b26def"
+      },
+      {
+        "beat_id": 5,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.4,
+          "w": 0.88,
+          "h": 0.55
+        },
+        "composition_summary": "A warm desk scene with a central closed green notebook and small clock timer surrounded by scattered papers and writing materials. Large blank paper area occupies the bottom.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b005_target_notebook",
+            "label": "central green notebook",
+            "kind": "object",
+            "bbox": {
+              "x": 0.45,
+              "y": 0.48,
+              "w": 0.3,
+              "h": 0.18
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "large green closed notebook placed near the center of the desk"
+          },
+          {
+            "target_id": "b005_target_clock",
+            "label": "small round timer clock",
+            "kind": "object",
+            "bbox": {
+              "x": 0.63,
+              "y": 0.31,
+              "w": 0.12,
+              "h": 0.12
+            },
+            "importance": "primary",
+            "confidence": 0.95,
+            "visible_evidence": "small round clock-like timer sitting above the notebook"
+          },
+          {
+            "target_id": "b005_target_papers",
+            "label": "scattered papers around desk",
+            "kind": "group",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.52,
+              "w": 0.75,
+              "h": 0.3
+            },
+            "importance": "secondary",
+            "confidence": 0.9,
+            "visible_evidence": "loose papers appear around the central notebook"
+          },
+          {
+            "target_id": "b005_target_desk",
+            "label": "wooden desk surface",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.55,
+              "w": 0.8,
+              "h": 0.4
+            },
+            "importance": "context",
+            "confidence": 0.95,
+            "visible_evidence": "wooden tabletop supporting the objects"
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.86,
+              "w": 0.75,
+              "h": 0.22
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.95,
+              "h": 0.9
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.87",
+            "w": "0.75",
+            "h": "0.2"
+          }
+        ],
+        "notes": "Keep emphasis on the central notebook and timer. Do not animate the blank lower card region.",
+        "media_sha256": "312dee7b59a2b6fe6aeae15a1193833300ae85a3f464ce5e4831fe84906563b2"
+      },
+      {
+        "beat_id": 6,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.42,
+          "w": 0.88,
+          "h": 0.62
+        },
+        "composition_summary": "A wide wooden desk illustration containing repeating study and craft objects, including books, an open journal, pens, pottery, tools, and a tomato-shaped timer. Bottom area contains mostly blank card space.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b006_target_tomato_timer",
+            "label": "tomato-shaped timer",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.54,
+              "w": 0.12,
+              "h": 0.09
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "red tomato-shaped timer visible near the center of the desk"
+          },
+          {
+            "target_id": "b006_target_books",
+            "label": "stack of books",
+            "kind": "object",
+            "bbox": {
+              "x": 0.36,
+              "y": 0.68,
+              "w": 0.18,
+              "h": 0.14
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "stacked books placed in the lower center area"
+          },
+          {
+            "target_id": "b006_target_open_journal",
+            "label": "open notebook with writing and feather pen",
+            "kind": "object",
+            "bbox": {
+              "x": 0.58,
+              "y": 0.36,
+              "w": 0.22,
+              "h": 0.14
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "open pages with drawings and a feather-like pen"
+          },
+          {
+            "target_id": "b006_target_desk_scene",
+            "label": "wooden desk with arranged objects",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.78,
+              "h": 0.55
+            },
+            "importance": "context",
+            "confidence": 0.96,
+            "visible_evidence": "wide tabletop filled with repeated books, tools, and craft items"
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.88,
+              "w": 0.75,
+              "h": 0.18
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.95,
+              "h": 0.9
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.9",
+            "w": "0.75",
+            "h": "0.16"
+          }
+        ],
+        "notes": "Use the visible desk objects for attention. The lower blank paper/card area should not receive motion focus.",
+        "media_sha256": "299e843b567edbed71b8e72f84572b145c3f11021e9d64259289bfa78c54a5fa"
+      }
+    ]
+  }
+}

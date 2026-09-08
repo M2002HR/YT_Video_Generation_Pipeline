@@ -1,0 +1,218 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "2da2c6c83c27ca40ed835cbd975de4041cbba64ba750143eab4fbe129402bd20",
+  "job_ids": [
+    "40e1207d-b9b3-45e2-9ea8-9653f7f0510b",
+    "b775c758-3cd6-4059-ab0d-40d25eec63ad",
+    "14443531-08c6-4f31-8e01-0c12a0a08fc1"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 7,
+        "start": 29.68,
+        "end": 33.14,
+        "attention_story": [
+          "Bring focus back to the pocket timer as the key object that controls the work interval.",
+          "Use the visible hand interaction to connect the timer with the action of starting and stopping.",
+          "End on the prepared notebook context to bridge into the next beat about the origin of the habit."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b07_s01",
+            "role": "primary",
+            "start": 29.68,
+            "end": 30.9,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b07_target_timer",
+                "coverage": 0.22,
+                "anchor_x": 0.48,
+                "anchor_y": 0.42
+              },
+              "end": {
+                "target_id": "b07_target_timer",
+                "coverage": 0.3,
+                "anchor_x": 0.48,
+                "anchor_y": 0.42
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "Move attention into the timer when it is named, making the object the clear signal for focused work."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0064",
+              "word": "timer",
+              "authoritative_start": 29.94,
+              "authoritative_end": 30.36
+            }
+          },
+          {
+            "shot_id": "b07_s02",
+            "role": "detail",
+            "start": 30.9,
+            "end": 32.1,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b07_target_timer",
+                "coverage": 0.3,
+                "anchor_x": 0.48,
+                "anchor_y": 0.42
+              },
+              "end": {
+                "target_id": "b07_target_hand",
+                "coverage": 0.34,
+                "anchor_x": 0.58,
+                "anchor_y": 0.48
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "Shift attention from the timer face to the reaching hand to show the physical start and stop action."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0068",
+              "word": "start",
+              "authoritative_start": 31.22,
+              "authoritative_end": 31.48
+            }
+          },
+          {
+            "shot_id": "b07_s03",
+            "role": "release",
+            "start": 32.1,
+            "end": 33.14,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b07_target_hand",
+                "coverage": 0.34,
+                "anchor_x": 0.58,
+                "anchor_y": 0.48
+              },
+              "end": {
+                "target_id": "b07_target_notebook",
+                "coverage": 0.42,
+                "anchor_x": 0.66,
+                "anchor_y": 0.42
+              }
+            },
+            "motion": {
+              "type": "settle",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.25,
+              "reason": "Settle on the notebook as the surrounding work context before moving into the personal history of the technique."
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0070",
+              "word": "stop.",
+              "authoritative_start": 31.64,
+              "authoritative_end": 32.5
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b07_target_notebook",
+          "coverage": 0.42,
+          "anchor_x": 0.66,
+          "anchor_y": 0.42,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "memory",
+          "reason": "Move from the timer tool to the next beat's story of the habit's origin."
+        }
+      }
+    ],
+    "normalization_corrections": [
+      {
+        "shot_id": "b07_s01",
+        "code": "detail_cut_became_cut_hard_reframes_disabled"
+      },
+      {
+        "shot_id": "b07_s02",
+        "code": "word_cut_requires_cut_edit"
+      },
+      {
+        "shot_id": "b07_s02",
+        "code": "impossible_cut_became_word_synced_move"
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

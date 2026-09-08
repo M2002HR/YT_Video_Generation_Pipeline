@@ -1,0 +1,195 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "72152d801dd68009d339cccf01231d94af76cd06abbd1704cf8b64776c3f2661",
+  "job_ids": [
+    "c0000d53-16a3-4700-bde0-f5c492c64440",
+    "66d041a0-5001-4ed3-82a3-84c52b45843b"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 6,
+        "start": 24.62,
+        "end": 29.68,
+        "attention_story": [
+          "Begin with the organized desk scene to extend the previous focus metaphor into a broader completion rhythm.",
+          "Shift attention to the tomato timer as the visual anchor for a repeatable work cycle when rhythm is emphasized.",
+          "End on the completed materials to reinforce progress and prepare the transition back to the timer concept."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b06_s01",
+            "role": "context",
+            "start": 24.62,
+            "end": 26.6,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b006_target_desk_scene",
+                "coverage": 0.72,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b006_target_desk_scene",
+                "coverage": 0.78,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Slowly draws attention into the arranged workspace to represent a steady completion rhythm."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          },
+          {
+            "shot_id": "b06_s02",
+            "role": "primary",
+            "start": 26.6,
+            "end": 27.9,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b006_target_desk_scene",
+                "coverage": 0.78,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b006_target_tomato_timer",
+                "coverage": 0.3,
+                "anchor_x": 0.5,
+                "anchor_y": 0.54
+              }
+            },
+            "motion": {
+              "type": "reveal_move",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "Moves focus onto the timer as the concrete symbol of the steady rhythm being described."
+            },
+            "sync": {
+              "mode": "reveal_complete_on_word",
+              "word_id": "w_0058",
+              "word": "rhythm",
+              "authoritative_start": 26.94,
+              "authoritative_end": 27.26
+            }
+          },
+          {
+            "shot_id": "b06_s03",
+            "role": "release",
+            "start": 27.9,
+            "end": 29.68,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b006_target_tomato_timer",
+                "coverage": 0.3,
+                "anchor_x": 0.5,
+                "anchor_y": 0.54
+              },
+              "end": {
+                "target_id": "b006_target_books",
+                "coverage": 0.45,
+                "anchor_x": 0.42,
+                "anchor_y": 0.66
+              }
+            },
+            "motion": {
+              "type": "pull_out",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Broadens attention from the timer to completed books and materials that represent finished tasks."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b006_target_books",
+          "coverage": 0.45,
+          "anchor_x": 0.42,
+          "anchor_y": 0.66,
+          "movement_direction": "out"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Clean handoff into the next timer-focused scene while maintaining the focus workflow progression."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

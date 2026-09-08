@@ -1,0 +1,106 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 42.658,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Can a simple timer turn scattered work into focus? She reaches for the book, opening it. The pages reveal Francesco Tirillo and the Pomodoro technique. He studied with a tomato-shaped timer. The method breaks work into focused sessions. Short breaks help reset attention between sessions. Distractions fade when goals receive protected time. The technique creates a steady rhythm for completing tasks. A small timer signals when to start and stop. The simple idea grew from one student's study habit. Today, people use it to structure focused work. Like and subscribe for more questions.",
+  "word_count": 93,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "The pages reveal Francesco Cirillo and the Pomodoro Technique.",
+      "speech_start": 6.48,
+      "speech_end": 10.06,
+      "match_confidence": 0.889,
+      "display_start": 0.0,
+      "display_end": 11.22,
+      "display_duration": 11.22
+    },
+    {
+      "beat_id": 2,
+      "narration": "He studied with a tomato-shaped timer.",
+      "speech_start": 11.22,
+      "speech_end": 13.08,
+      "match_confidence": 0.714,
+      "display_start": 11.22,
+      "display_end": 14.2,
+      "display_duration": 2.98
+    },
+    {
+      "beat_id": 3,
+      "narration": "The method breaks work into focused sessions.",
+      "speech_start": 14.2,
+      "speech_end": 16.46,
+      "match_confidence": 1.0,
+      "display_start": 14.2,
+      "display_end": 17.5,
+      "display_duration": 3.3
+    },
+    {
+      "beat_id": 4,
+      "narration": "Short breaks help reset attention between sessions.",
+      "speech_start": 17.5,
+      "speech_end": 20.36,
+      "match_confidence": 1.0,
+      "display_start": 17.5,
+      "display_end": 21.56,
+      "display_duration": 4.06
+    },
+    {
+      "beat_id": 5,
+      "narration": "Distractions fade when goals receive protected time.",
+      "speech_start": 21.56,
+      "speech_end": 24.64,
+      "match_confidence": 1.0,
+      "display_start": 21.56,
+      "display_end": 24.6,
+      "display_duration": 3.04
+    },
+    {
+      "beat_id": 6,
+      "narration": "The technique creates a steady rhythm for completing tasks.",
+      "speech_start": 24.6,
+      "speech_end": 29.04,
+      "match_confidence": 1.0,
+      "display_start": 24.6,
+      "display_end": 29.68,
+      "display_duration": 5.08
+    },
+    {
+      "beat_id": 7,
+      "narration": "A small timer signals when to start and stop.",
+      "speech_start": 29.68,
+      "speech_end": 32.5,
+      "match_confidence": 1.0,
+      "display_start": 29.68,
+      "display_end": 33.14,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 8,
+      "narration": "The simple idea grew from one student's study habit.",
+      "speech_start": 33.14,
+      "speech_end": 35.96,
+      "match_confidence": 1.0,
+      "display_start": 33.14,
+      "display_end": 37.06,
+      "display_duration": 3.92
+    },
+    {
+      "beat_id": 9,
+      "narration": "Today, people use it to structure focused work.",
+      "speech_start": 37.06,
+      "speech_end": 39.86,
+      "match_confidence": 1.0,
+      "display_start": 37.06,
+      "display_end": 42.658,
+      "display_duration": 5.598
+    }
+  ]
+}

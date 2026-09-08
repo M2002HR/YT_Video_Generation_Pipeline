@@ -1,0 +1,195 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "0736f87ce7254bc0e1552264a032c3ec6bf205f6f72c0b76118fa0676405b4ef",
+  "job_ids": [
+    "46c1fb9e-5ec8-4343-9ef4-4ec0bb7b912a",
+    "28ba9b31-5a16-4b23-8b00-748691b1e259"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 8,
+        "start": 33.14,
+        "end": 37.06,
+        "attention_story": [
+          "Move from the timer as a tool to the quiet personal origin behind the habit.",
+          "Reveal the study corner first, then guide focus from the student's workspace to the handwritten notes representing the routine.",
+          "Allow the humble scene to settle before transitioning into the wider modern-use conclusion."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b08_s01",
+            "role": "context",
+            "start": 33.14,
+            "end": 34.5,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b08_target_chair",
+                "coverage": 0.55,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b08_target_desk",
+                "coverage": 0.6,
+                "anchor_x": 0.55,
+                "anchor_y": 0.38
+              }
+            },
+            "motion": {
+              "type": "drift",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Establishes the empty student chair and surrounding desk as the personal study environment where the idea began."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          },
+          {
+            "shot_id": "b08_s02",
+            "role": "detail",
+            "start": 34.5,
+            "end": 35.6,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b08_target_desk",
+                "coverage": 0.6,
+                "anchor_x": 0.55,
+                "anchor_y": 0.38
+              },
+              "end": {
+                "target_id": "b08_target_notes",
+                "coverage": 0.5,
+                "anchor_x": 0.52,
+                "anchor_y": 0.38
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "Draws attention to the handwritten notes as the narration identifies the student's personal study habit."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0077",
+              "word": "student's",
+              "authoritative_start": 34.8,
+              "authoritative_end": 35.36
+            }
+          },
+          {
+            "shot_id": "b08_s03",
+            "role": "hold",
+            "start": 35.6,
+            "end": 37.06,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b08_target_notes",
+                "coverage": 0.5,
+                "anchor_x": 0.52,
+                "anchor_y": 0.38
+              },
+              "end": {
+                "target_id": "b08_target_notes",
+                "coverage": 0.5,
+                "anchor_x": 0.52,
+                "anchor_y": 0.38
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Lets the origin story land on the quiet evidence of the student's routine before the broader adoption scene."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b08_target_notes",
+          "coverage": 0.5,
+          "anchor_x": 0.52,
+          "anchor_y": 0.38,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Moves cleanly from the personal origin scene into the broader modern-use scene."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

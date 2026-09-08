@@ -1,0 +1,48 @@
+{
+  "provider": "gemini",
+  "job_id": "7af46eec-1476-4e42-b148-4c257c743e33",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/79dda0fe37c2b79c",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=7af46eec-1476-4e42-b148-4c257c743e33_output_1.png 1536x2752 sha256=78e9eff9eab322e7ee29127baf459c4713fa6446af1d0af3667a8c7d85b81693"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/021_the_best_focus_technique_ever/references/world_style_anchor.png",
+      "sha256": "a06d570811e984028ba86b18f5b39f5ce7f4d405cf0a840ff95955391c21738a"
+    }
+  ],
+  "prompt_sha256": "46cf464d2e1a9e0738cefe912abd779541ac41ad8edad27f9e1fbe6b18810041",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "78e9eff9eab322e7ee29127baf459c4713fa6446af1d0af3667a8c7d85b81693",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 51.164,
+  "completed_at": "2026-09-08T11:15:49Z"
+}

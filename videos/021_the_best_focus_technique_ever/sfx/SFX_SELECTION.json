@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "d8fcb1413a387ac4a906019c5dc330d5d0380cdf044b41d49f3fb1a7347d9042",
+  "events": [
+    {
+      "event_id": "sfx_01",
+      "at": 4.9,
+      "intent": "Support the visible action of opening the book with a quiet tactile page movement.",
+      "query": "soft old book page turn foley",
+      "selection_mode": "SKIPPED_NO_GOOD_MATCH",
+      "gain_db": -9.0
+    },
+    {
+      "event_id": "sfx_02",
+      "at": 30.25,
+      "intent": "Add a subtle confirmation of the timer signaling start and stop.",
+      "query": "small mechanical timer click foley",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_209698",
+      "provider": "freesound",
+      "provider_id": "209698",
+      "source_url": "https://freesound.org/people/EagleStealthTeam/sounds/209698/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_209698_4edff88edb83.mp3",
+      "duration_seconds": 0.8,
+      "gain_db": -9.0,
+      "score": 1.0
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "style_id": "farmstead_ink_timer_storybook_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "painted storybook",
+  "secondary_treatment": "subtle ink wash",
+  "texture_family": "hand-painted fibrous paper grain",
+  "palette_summary": "warm morning cream, soft sage greens, muted terracotta, faded teal accents, gentle honey sunlight, and restrained charcoal details",
+  "line_treatment": "clean dark storybook outlines with soft ink-wash edges and hand-drawn imperfections",
+  "lighting": "soft morning daylight with warm farmyard glow",
+  "frame_language": "a recurring hand-painted storybook card frame made from textured cream paper with softly worn edges, a thin ink border, and a consistent inner illustration window that feels like a page from a quiet illustrated journal",
+  "subtitle_reserve": "a calm textured paper field occupying only the bottom 8–10% of the vertical frame, free of faces, hands, the timer, books, and important actions while blending naturally with the page border",
+  "subject_constraints": "Allowed vocabulary includes rustic farm tools, wooden shelves, handmade objects, study materials, simple timers, gardens, and cozy rural interiors. Keep objects tactile and organized, using visual metaphors of rhythm, order, and attention rather than modern technology.",
+  "historical_accuracy_note": "For Francesco Cirillo and the Pomodoro Technique, depict a late 20th-century study context and the original tomato-shaped kitchen timer influence accurately; avoid medievalizing or placing the invention in the farm world as historical fact.",
+  "hero_rendering_in_world": "If the protagonist appears, preserve the established hair silhouette, beard, and overalls silhouette while translating them into softly painted storybook forms with ink outlines and natural fabric textures.",
+  "negative_constraints": "no photorealism, no 3D CGI, no anime, no glossy digital rendering, no futuristic interfaces, no excessive fantasy elements, no mixed visual styles between scenes",
+  "reason": "A new style is required by the operator directive. The episode needs a warm, approachable world where sorting tools, timers, and study routines feel connected through visual order. Existing catalog styles have recent usage across similar paper and historical treatments, so this new painted storybook farm language creates episode-level diversity while supporting the focus and habit theme."
+}

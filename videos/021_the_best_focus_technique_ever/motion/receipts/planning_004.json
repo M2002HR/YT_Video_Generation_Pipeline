@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "34e411109b7975d9a3b006f2906a198b2d3051c4f5fdc9cdb0d036567c16cd5e",
+  "job_ids": [
+    "10cd0366-dbfd-48b2-8f90-52c1f270d929"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 4,
+        "start": 17.5,
+        "end": 21.56,
+        "attention_story": [
+          "Open on the quiet recovery space rather than active work, using the warm window nook to signal a mental reset.",
+          "Shift attention from the resting tea to the timer and notebook relationship as the narration explains resetting attention.",
+          "End with a calm full composition that lets the pause between sessions breathe."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b04_s01",
+            "role": "primary",
+            "start": 17.5,
+            "end": 19.0,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b004_target_teacup",
+                "coverage": 0.42,
+                "anchor_x": 0.62,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b004_target_teacup",
+                "coverage": 0.34,
+                "anchor_x": 0.62,
+                "anchor_y": 0.55
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The steaming cup is the clearest visual cue for a short restorative break, so keep attention on the peaceful pause."
+            },
+            "sync": {
+              "mode": "cut_on_word_start",
+              "word_id": "w_0039",
+              "word": "Short",
+              "authoritative_start": 17.5,
+              "authoritative_end": 17.76
+            }
+          },
+          {
+            "shot_id": "b04_s02",
+            "role": "detail",
+            "start": 19.0,
+            "end": 20.36,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b004_target_teacup",
+                "coverage": 0.34,
+                "anchor_x": 0.62,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b004_target_timer",
+                "coverage": 0.4,
+                "anchor_x": 0.79,
+                "anchor_y": 0.48
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "A subtle attention move connects the calming break object to the timer, reinforcing the reset between focused sessions."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0042",
+              "word": "reset",
+              "authoritative_start": 18.38,
+              "authoritative_end": 18.92
+            }
+          },
+          {
+            "shot_id": "b04_s03",
+            "role": "release",
+            "start": 20.36,
+            "end": 21.56,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b004_target_timer",
+                "coverage": 0.4,
+                "anchor_x": 0.79,
+                "anchor_y": 0.48
+              },
+              "end": {
+                "target_id": "b004_target_window",
+                "coverage": 0.55,
+                "anchor_x": 0.5,
+                "anchor_y": 0.4
+              }
+            },
+            "motion": {
+              "type": "settle",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.3,
+              "reason": "Broaden the view to leave the viewer with the calm environment that represents restored attention."
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0045",
+              "word": "sessions.",
+              "authoritative_start": 19.88,
+              "authoritative_end": 20.36
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b004_target_window",
+          "coverage": 0.55,
+          "anchor_x": 0.5,
+          "anchor_y": 0.4,
+          "movement_direction": "out"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Cleanly returns from the break metaphor into the next focus scene without decorative interruption."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

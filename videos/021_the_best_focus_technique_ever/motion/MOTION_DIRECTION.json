@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "ed426b24f2a70a3954121a373f020dd3c9ce5eac5eff09aa8a93bff8cc3e7d2f",
+  "direction": {
+    "schema_version": 2,
+    "pace": "calm",
+    "sections": [
+      {
+        "name": "hook",
+        "start": 0,
+        "end": 0.14,
+        "energy": "0.72",
+        "attention_velocity": "0.78"
+      },
+      {
+        "name": "setup",
+        "start": 0.14,
+        "end": 0.28,
+        "energy": "0.58",
+        "attention_velocity": "0.55"
+      },
+      {
+        "name": "body",
+        "start": 0.28,
+        "end": 0.7,
+        "energy": "0.48",
+        "attention_velocity": "0.42"
+      },
+      {
+        "name": "climax",
+        "start": 0.7,
+        "end": 0.87,
+        "energy": "0.62",
+        "attention_velocity": "0.58"
+      },
+      {
+        "name": "ending",
+        "start": 0.87,
+        "end": 0.94,
+        "energy": "0.5",
+        "attention_velocity": "0.4"
+      },
+      {
+        "name": "cta",
+        "start": 0.94,
+        "end": 1,
+        "energy": "0.38",
+        "attention_velocity": "0.35"
+      }
+    ],
+    "emphasis_words": [
+      {
+        "word_id": "w_0004",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0006",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0019",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0024",
+        "reason": "name"
+      },
+      {
+        "word_id": "w_0030",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0037",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0042",
+        "reason": "action"
+      },
+      {
+        "word_id": "w_0058",
+        "reason": "concept"
+      },
+      {
+        "word_id": "w_0064",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0077",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0080",
+        "reason": "contrast"
+      }
+    ],
+    "rhythm_notes": [
+      "Open with faster attention shifts around the question and the timer concept, then settle into longer holds as the history and method are explained.",
+      "Use subtle push, drift, and settle motions to guide attention toward verified objects rather than adding constant movement.",
+      "Allow the middle explanation beats to breathe with calm compositions and occasional holds on meaningful desk scenes.",
+      "Increase visual focus near the timer and habit progression moments before easing into the broader modern-use conclusion.",
+      "Keep subtitle-safe areas clear and avoid motion that competes with spoken information."
+    ],
+    "transition_philosophy": [
+      "Prefer clean editorial cuts and gentle continuity between related desk, timer, and study imagery.",
+      "Use match-position transitions when moving between timer objects or centered desk compositions.",
+      "Reserve expressive reveals for moments where the narration introduces a new idea or historical detail.",
+      "Avoid decorative transitions that interrupt the calm documentary flow."
+    ],
+    "motion_contrast_plan": [
+      "Hook: use quicker reframing and attention movement around the timer question, then pause on the focus reveal.",
+      "Setup: use gentle movement following the hand and book interaction to establish curiosity.",
+      "Body: favor slow pushes, subtle pans, and holds across study environments and method explanations.",
+      "Climax: tighten attention on the timer as the practical signal for starting and stopping work.",
+      "Ending: broaden the frame to show the technique's growth from a personal habit to widespread use.",
+      "CTA: reduce motion and finish with a stable, confident final composition."
+    ],
+    "ending_strategy": "End with a calm hold on the broader modern-use collage, emphasizing the transition from a simple personal habit to a widely used focus practice before the call to action.",
+    "prohibited_patterns": [
+      "constant zooming without narrative purpose",
+      "rapid effects between every beat",
+      "invented objects or actions not present in the visual inventory",
+      "camera movement that crosses blank card or caption regions",
+      "decorative transitions during explanatory moments",
+      "repetitive motion patterns across consecutive shots"
+    ]
+  }
+}

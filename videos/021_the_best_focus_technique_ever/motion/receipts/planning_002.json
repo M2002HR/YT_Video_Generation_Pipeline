@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "25b4b21ac3d1261f8c786142edc0b6c6dcfb963ff8fce63c6a8753dae986da3f",
+  "job_ids": [
+    "fe7f699e-c528-4148-a125-23261ea1081e",
+    "ec58adad-be5c-46be-b7d4-3331d3155118"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 2,
+        "start": 11.22,
+        "end": 14.2,
+        "attention_story": [
+          "Start on the historical study context, then draw focus to the tomato-shaped timer as the narration names the defining object.",
+          "Finish by returning attention to the student and desk context so the transition into the method explanation feels continuous."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b02_s01",
+            "role": "detail",
+            "start": 11.22,
+            "end": 12.9,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b02_tomato_timer",
+                "coverage": 0.18,
+                "anchor_x": 0.56,
+                "anchor_y": 0.59
+              },
+              "end": {
+                "target_id": "b02_tomato_timer",
+                "coverage": 0.32,
+                "anchor_x": 0.56,
+                "anchor_y": 0.59
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "Focus attention on the visible tomato-shaped timer when the narration identifies the key object."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0030",
+              "word": "tomato-shaped",
+              "authoritative_start": 11.92,
+              "authoritative_end": 12.58
+            }
+          },
+          {
+            "shot_id": "b02_s02",
+            "role": "primary",
+            "start": 12.9,
+            "end": 14.2,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b02_tomato_timer",
+                "coverage": 0.32,
+                "anchor_x": 0.56,
+                "anchor_y": 0.59
+              },
+              "end": {
+                "target_id": "b02_student_person",
+                "coverage": 0.52,
+                "anchor_x": 0.72,
+                "anchor_y": 0.48
+              }
+            },
+            "motion": {
+              "type": "pan_pull",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "Place the timer back into the wider study scene by revealing the seated student and surrounding desk."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b02_student_person",
+          "coverage": 0.52,
+          "anchor_x": 0.72,
+          "anchor_y": 0.48,
+          "movement_direction": "out"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "new_fact",
+          "reason": "Transitions from the historical example into the next explanation of how the method divides work."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

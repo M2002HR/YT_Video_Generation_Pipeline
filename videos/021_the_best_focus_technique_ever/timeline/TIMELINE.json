@@ -1,0 +1,876 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 42.658,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 2.958,
+      "duration": 2.958,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 2.958,
+      "end": 5.958,
+      "duration": 3.0,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 5.958,
+      "end": 11.22,
+      "duration": 5.262,
+      "speech_start": 6.48,
+      "speech_end": 10.06,
+      "match_confidence": 0.889,
+      "motion": "zoom_in",
+      "narration": "The pages reveal Francesco Cirillo and the Pomodoro Technique.",
+      "transition_in": "radial",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 11.22,
+      "end": 14.2,
+      "duration": 2.98,
+      "speech_start": 11.22,
+      "speech_end": 13.08,
+      "match_confidence": 0.714,
+      "motion": "slow_zoom_in",
+      "narration": "He studied with a tomato-shaped timer.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 14.2,
+      "end": 17.5,
+      "duration": 3.3,
+      "speech_start": 14.2,
+      "speech_end": 16.46,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The method breaks work into focused sessions.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 17.5,
+      "end": 21.56,
+      "duration": 4.06,
+      "speech_start": 17.5,
+      "speech_end": 20.36,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Short breaks help reset attention between sessions.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 21.56,
+      "end": 24.62,
+      "duration": 3.06,
+      "speech_start": 21.56,
+      "speech_end": 24.64,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Distractions fade when goals receive protected time.",
+      "transition_in": "wiperight",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 24.62,
+      "end": 29.68,
+      "duration": 5.06,
+      "speech_start": 24.6,
+      "speech_end": 29.04,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The technique creates a steady rhythm for completing tasks.",
+      "transition_in": "slideleft",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 29.68,
+      "end": 33.14,
+      "duration": 3.46,
+      "speech_start": 29.68,
+      "speech_end": 32.5,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "A small timer signals when to start and stop.",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 33.14,
+      "end": 37.06,
+      "duration": 3.92,
+      "speech_start": 33.14,
+      "speech_end": 35.96,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The simple idea grew from one student's study habit.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 37.06,
+      "end": 42.658,
+      "duration": 5.598,
+      "speech_start": 37.06,
+      "speech_end": 39.86,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Today, people use it to structure focused work.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 1.7,
+      "text": "Can a simple timer turn scattered",
+      "ass_text": "Can a simple timer turn scattered",
+      "words": [
+        {
+          "text": "Can",
+          "start": 0.02,
+          "end": 0.2
+        },
+        {
+          "text": "a",
+          "start": 0.2,
+          "end": 0.32
+        },
+        {
+          "text": "simple",
+          "start": 0.32,
+          "end": 0.54
+        },
+        {
+          "text": "timer",
+          "start": 0.54,
+          "end": 0.84
+        },
+        {
+          "text": "turn",
+          "start": 0.84,
+          "end": 1.26
+        },
+        {
+          "text": "scattered",
+          "start": 1.26,
+          "end": 1.7
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 1.7,
+      "end": 2.94,
+      "text": "work into focus?",
+      "ass_text": "work into focus?",
+      "words": [
+        {
+          "text": "work",
+          "start": 1.7,
+          "end": 2.0
+        },
+        {
+          "text": "into",
+          "start": 2.0,
+          "end": 2.24
+        },
+        {
+          "text": "focus?",
+          "start": 2.24,
+          "end": 2.94
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 3.82,
+      "end": 5.48,
+      "text": "She reaches for the book, opening",
+      "ass_text": "She reaches for the book, opening",
+      "words": [
+        {
+          "text": "She",
+          "start": 3.82,
+          "end": 4.0
+        },
+        {
+          "text": "reaches",
+          "start": 4.0,
+          "end": 4.28
+        },
+        {
+          "text": "for",
+          "start": 4.28,
+          "end": 4.48
+        },
+        {
+          "text": "the",
+          "start": 4.48,
+          "end": 4.6
+        },
+        {
+          "text": "book,",
+          "start": 4.6,
+          "end": 5.04
+        },
+        {
+          "text": "opening",
+          "start": 5.04,
+          "end": 5.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 5.48,
+      "end": 5.92,
+      "text": "it.",
+      "ass_text": "it.",
+      "words": [
+        {
+          "text": "it.",
+          "start": 5.48,
+          "end": 5.92
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 6.48,
+      "end": 9.0,
+      "text": "The pages reveal Francesco Tirillo and",
+      "ass_text": "The pages reveal Francesco Tirillo\\Nand",
+      "words": [
+        {
+          "text": "The",
+          "start": 6.48,
+          "end": 6.62
+        },
+        {
+          "text": "pages",
+          "start": 6.62,
+          "end": 6.92
+        },
+        {
+          "text": "reveal",
+          "start": 6.92,
+          "end": 7.34
+        },
+        {
+          "text": "Francesco",
+          "start": 7.34,
+          "end": 8.2
+        },
+        {
+          "text": "Tirillo",
+          "start": 8.2,
+          "end": 8.72
+        },
+        {
+          "text": "and",
+          "start": 8.72,
+          "end": 9.0
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 9.0,
+      "end": 10.06,
+      "text": "the Pomodoro technique.",
+      "ass_text": "the Pomodoro technique.",
+      "words": [
+        {
+          "text": "the",
+          "start": 9.0,
+          "end": 9.12
+        },
+        {
+          "text": "Pomodoro",
+          "start": 9.12,
+          "end": 9.68
+        },
+        {
+          "text": "technique.",
+          "start": 9.68,
+          "end": 10.06
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 11.22,
+      "end": 13.08,
+      "text": "He studied with a tomato-shaped timer.",
+      "ass_text": "He studied with a tomato-shaped\\Ntimer.",
+      "words": [
+        {
+          "text": "He",
+          "start": 11.22,
+          "end": 11.4
+        },
+        {
+          "text": "studied",
+          "start": 11.4,
+          "end": 11.66
+        },
+        {
+          "text": "with",
+          "start": 11.66,
+          "end": 11.86
+        },
+        {
+          "text": "a",
+          "start": 11.86,
+          "end": 11.92
+        },
+        {
+          "text": "tomato-shaped",
+          "start": 11.92,
+          "end": 12.58
+        },
+        {
+          "text": "timer.",
+          "start": 12.58,
+          "end": 13.08
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 14.2,
+      "end": 15.86,
+      "text": "The method breaks work into focused",
+      "ass_text": "The method breaks work into\\Nfocused",
+      "words": [
+        {
+          "text": "The",
+          "start": 14.2,
+          "end": 14.34
+        },
+        {
+          "text": "method",
+          "start": 14.34,
+          "end": 14.58
+        },
+        {
+          "text": "breaks",
+          "start": 14.58,
+          "end": 14.9
+        },
+        {
+          "text": "work",
+          "start": 14.9,
+          "end": 15.14
+        },
+        {
+          "text": "into",
+          "start": 15.14,
+          "end": 15.38
+        },
+        {
+          "text": "focused",
+          "start": 15.38,
+          "end": 15.86
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 15.86,
+      "end": 16.46,
+      "text": "sessions.",
+      "ass_text": "sessions.",
+      "words": [
+        {
+          "text": "sessions.",
+          "start": 15.86,
+          "end": 16.46
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 17.5,
+      "end": 19.88,
+      "text": "Short breaks help reset attention between",
+      "ass_text": "Short breaks help reset attention\\Nbetween",
+      "words": [
+        {
+          "text": "Short",
+          "start": 17.5,
+          "end": 17.76
+        },
+        {
+          "text": "breaks",
+          "start": 17.76,
+          "end": 18.06
+        },
+        {
+          "text": "help",
+          "start": 18.06,
+          "end": 18.38
+        },
+        {
+          "text": "reset",
+          "start": 18.38,
+          "end": 18.92
+        },
+        {
+          "text": "attention",
+          "start": 18.92,
+          "end": 19.5
+        },
+        {
+          "text": "between",
+          "start": 19.5,
+          "end": 19.88
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 19.88,
+      "end": 20.36,
+      "text": "sessions.",
+      "ass_text": "sessions.",
+      "words": [
+        {
+          "text": "sessions.",
+          "start": 19.88,
+          "end": 20.36
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 21.56,
+      "end": 24.12,
+      "text": "Distractions fade when goals receive protected",
+      "ass_text": "Distractions fade when goals\\Nreceive protected",
+      "words": [
+        {
+          "text": "Distractions",
+          "start": 21.56,
+          "end": 22.24
+        },
+        {
+          "text": "fade",
+          "start": 22.24,
+          "end": 22.6
+        },
+        {
+          "text": "when",
+          "start": 22.6,
+          "end": 22.82
+        },
+        {
+          "text": "goals",
+          "start": 22.82,
+          "end": 23.16
+        },
+        {
+          "text": "receive",
+          "start": 23.16,
+          "end": 23.66
+        },
+        {
+          "text": "protected",
+          "start": 23.66,
+          "end": 24.12
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 24.12,
+      "end": 24.62,
+      "text": "time.",
+      "ass_text": "time.",
+      "words": [
+        {
+          "text": "time.",
+          "start": 24.12,
+          "end": 24.64
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 24.62,
+      "end": 27.26,
+      "text": "The technique creates a steady rhythm",
+      "ass_text": "The technique creates a steady\\Nrhythm",
+      "words": [
+        {
+          "text": "The",
+          "start": 24.6,
+          "end": 25.78
+        },
+        {
+          "text": "technique",
+          "start": 25.78,
+          "end": 26.08
+        },
+        {
+          "text": "creates",
+          "start": 26.08,
+          "end": 26.52
+        },
+        {
+          "text": "a",
+          "start": 26.52,
+          "end": 26.72
+        },
+        {
+          "text": "steady",
+          "start": 26.72,
+          "end": 26.94
+        },
+        {
+          "text": "rhythm",
+          "start": 26.94,
+          "end": 27.26
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 27.26,
+      "end": 29.04,
+      "text": "for completing tasks.",
+      "ass_text": "for completing tasks.",
+      "words": [
+        {
+          "text": "for",
+          "start": 27.26,
+          "end": 27.5
+        },
+        {
+          "text": "completing",
+          "start": 27.5,
+          "end": 27.9
+        },
+        {
+          "text": "tasks.",
+          "start": 27.9,
+          "end": 29.04
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 29.68,
+      "end": 31.22,
+      "text": "A small timer signals when to",
+      "ass_text": "A small timer signals when to",
+      "words": [
+        {
+          "text": "A",
+          "start": 29.68,
+          "end": 29.7
+        },
+        {
+          "text": "small",
+          "start": 29.7,
+          "end": 29.94
+        },
+        {
+          "text": "timer",
+          "start": 29.94,
+          "end": 30.36
+        },
+        {
+          "text": "signals",
+          "start": 30.36,
+          "end": 30.8
+        },
+        {
+          "text": "when",
+          "start": 30.8,
+          "end": 31.08
+        },
+        {
+          "text": "to",
+          "start": 31.08,
+          "end": 31.22
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 31.22,
+      "end": 32.5,
+      "text": "start and stop.",
+      "ass_text": "start and stop.",
+      "words": [
+        {
+          "text": "start",
+          "start": 31.22,
+          "end": 31.48
+        },
+        {
+          "text": "and",
+          "start": 31.48,
+          "end": 31.64
+        },
+        {
+          "text": "stop.",
+          "start": 31.64,
+          "end": 32.5
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 33.14,
+      "end": 34.8,
+      "text": "The simple idea grew from one",
+      "ass_text": "The simple idea grew from one",
+      "words": [
+        {
+          "text": "The",
+          "start": 33.14,
+          "end": 33.36
+        },
+        {
+          "text": "simple",
+          "start": 33.36,
+          "end": 33.58
+        },
+        {
+          "text": "idea",
+          "start": 33.58,
+          "end": 33.92
+        },
+        {
+          "text": "grew",
+          "start": 33.92,
+          "end": 34.28
+        },
+        {
+          "text": "from",
+          "start": 34.28,
+          "end": 34.5
+        },
+        {
+          "text": "one",
+          "start": 34.5,
+          "end": 34.8
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 34.8,
+      "end": 35.96,
+      "text": "student's study habit.",
+      "ass_text": "student's study habit.",
+      "words": [
+        {
+          "text": "student's",
+          "start": 34.8,
+          "end": 35.36
+        },
+        {
+          "text": "study",
+          "start": 35.36,
+          "end": 35.6
+        },
+        {
+          "text": "habit.",
+          "start": 35.6,
+          "end": 35.96
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 37.06,
+      "end": 38.56,
+      "text": "Today, people use it to structure",
+      "ass_text": "Today, people use it to structure",
+      "words": [
+        {
+          "text": "Today,",
+          "start": 37.06,
+          "end": 37.3
+        },
+        {
+          "text": "people",
+          "start": 37.3,
+          "end": 37.66
+        },
+        {
+          "text": "use",
+          "start": 37.66,
+          "end": 37.96
+        },
+        {
+          "text": "it",
+          "start": 37.96,
+          "end": 38.06
+        },
+        {
+          "text": "to",
+          "start": 38.06,
+          "end": 38.18
+        },
+        {
+          "text": "structure",
+          "start": 38.18,
+          "end": 38.56
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 38.56,
+      "end": 39.86,
+      "text": "focused work.",
+      "ass_text": "focused work.",
+      "words": [
+        {
+          "text": "focused",
+          "start": 38.56,
+          "end": 39.1
+        },
+        {
+          "text": "work.",
+          "start": 39.1,
+          "end": 39.86
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 40.22,
+      "end": 42.4,
+      "text": "Like and subscribe for more questions.",
+      "ass_text": "Like and subscribe for more\\Nquestions.",
+      "words": [
+        {
+          "text": "Like",
+          "start": 40.22,
+          "end": 40.46
+        },
+        {
+          "text": "and",
+          "start": 40.46,
+          "end": 40.66
+        },
+        {
+          "text": "subscribe",
+          "start": 40.66,
+          "end": 41.04
+        },
+        {
+          "text": "for",
+          "start": 41.04,
+          "end": 41.48
+        },
+        {
+          "text": "more",
+          "start": 41.48,
+          "end": 41.62
+        },
+        {
+          "text": "questions.",
+          "start": 41.62,
+          "end": 42.4
+        }
+      ],
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 11,
+    "low_confidence_beats": [
+      2
+    ],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 5,
+        "before_beat": 6,
+        "current_speech_end": 24.64,
+        "next_speech_start": 24.6,
+        "overlap_seconds": 0.04,
+        "chosen_boundary": 24.62
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 12,
+        "current_cue": 13,
+        "previous_end": 24.64,
+        "current_start": 24.6,
+        "overlap_seconds": 0.04,
+        "chosen_boundary": 24.62
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 22,
+    "subtitle_cues_estimated": 0
+  }
+}

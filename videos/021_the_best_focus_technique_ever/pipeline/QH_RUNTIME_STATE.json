@@ -1,0 +1,533 @@
+{
+  "schema_version": 2,
+  "video_id": "021",
+  "topic": "The Best Focus Technique Ever",
+  "created_at": "2026-09-08T11:09:26Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:54Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:54Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:54Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:54Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:54Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T15:07:56Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T11:14:55Z",
+      "prompt_sha256": "59e9892b8a02916883a776f02f1071c34ebf71fd5ca1ee554988eee48c8a3772"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:57Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T15:08:10Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:07:59Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:00Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:02Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:03Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:04Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:05Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:06Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:07Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:09Z",
+      "artifact": "beat_009.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:11Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:11Z",
+      "artifact": "question_spark_source.mp4 (6.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-08T15:08:11Z",
+      "artifact": "book_transition_source.mp4 (4.00s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-08T15:08:11Z",
+      "body_images": 9
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 73.079,
+      "at": "2026-09-08T11:10:41Z",
+      "words": 99
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 27.227,
+      "at": "2026-09-08T11:11:11Z",
+      "words": 94
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.049,
+      "at": "2026-09-08T11:11:32Z",
+      "activity": "sorting tools"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 18.757,
+      "at": "2026-09-08T11:11:53Z",
+      "style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 36.104,
+      "at": "2026-09-08T11:12:32Z",
+      "sha256": "a06d570811e984028ba86b18f5b39f5ce7f4d405cf0a840ff95955391c21738a",
+      "model": "nano_banana_2",
+      "catalog_path": "012_farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-08T11:12:35Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 24.055,
+      "at": "2026-09-08T11:13:01Z",
+      "beats": 9
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 27.07,
+      "at": "2026-09-08T11:13:31Z",
+      "prompt_sha256": "1cd4f0ece8a19d66284da9c4db5b2794ae74f2d74d7d9e50c69db6e870aa6963"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 60.208,
+      "at": "2026-09-08T11:14:33Z",
+      "sha256": "715c631860621e3063241c0fd8be3ce87ec17ba9d9382214145d82e74bad0ecb",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 18.036,
+      "at": "2026-09-08T11:14:55Z",
+      "prompt_sha256": "59e9892b8a02916883a776f02f1071c34ebf71fd5ca1ee554988eee48c8a3772"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 51.221,
+      "at": "2026-09-08T11:15:49Z",
+      "sha256": "78e9eff9eab322e7ee29127baf459c4713fa6446af1d0af3667a8c7d85b81693",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 15.049,
+      "at": "2026-09-08T11:16:07Z",
+      "prompt_sha256": "0e8a039e9b1b6038b395ee7a9011c4008bb24138589be4c8afb1a04a043f49eb"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 18.056,
+      "at": "2026-09-08T11:16:27Z",
+      "prompt_sha256": "421b126658780d4b1d8561b7bfe7feca7b7112b576e65c0324e4b4a643049e13"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 90.316,
+      "at": "2026-09-08T11:18:00Z",
+      "sha256": "c5df61260ea0d098fb7497c6b5f4d8c4370ad84cdd145a6150913aacfe99bdb8",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 91.31,
+      "at": "2026-09-08T11:19:33Z",
+      "sha256": "78ee0d4adfb903deff2b4a13e61e71b6e10998deb3c752dc19d7032ef2a7bc3d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 103.275,
+      "at": "2026-09-08T11:21:17Z",
+      "sha256": "fa9afbd0afa89e5da55e9787664b33f931554bdf12cb460f756c105f4aa9252b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 109.209,
+      "at": "2026-09-08T11:23:08Z",
+      "sha256": "e5cfdb4acde081e5a335b67aeca442dbf534bedb717089c0c1bd61d893b26def",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 130.328,
+      "at": "2026-09-08T11:25:20Z",
+      "sha256": "312dee7b59a2b6fe6aeae15a1193833300ae85a3f464ce5e4831fe84906563b2",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 100.727,
+      "at": "2026-09-08T11:27:02Z",
+      "sha256": "299e843b567edbed71b8e72f84572b145c3f11021e9d64259289bfa78c54a5fa",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 97.613,
+      "at": "2026-09-08T11:28:41Z",
+      "sha256": "ee6890fa4b1f11676586ee068c7be4924ad8bbd61e1505a0d54b748467684e98",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 97.455,
+      "at": "2026-09-08T11:30:20Z",
+      "sha256": "9724e67732326312e668d63a1825681922d5fc44f5eb5076320097c6ce5a31f9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 102.317,
+      "at": "2026-09-08T11:32:03Z",
+      "sha256": "34ebcd8c7bbfae3e7d2641f15d015dcaebaed0ce067d3c17093a4e791fa53cbf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 935.138,
+      "at": "2026-09-08T11:32:05Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 290.87,
+      "at": "2026-09-08T11:36:58Z",
+      "boundaries": 8
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T12:00:47Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 11.809,
+      "at": "2026-09-08T12:01:03Z"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 133.867,
+      "at": "2026-09-08T12:03:21Z",
+      "duration_seconds": 6.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "06a86084afc97324627e18e582c0990de08401a9425facb4a0bd35e5a316a5f2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T12:13:35Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 11.415,
+      "at": "2026-09-08T12:13:51Z"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 472.738,
+      "at": "2026-09-08T12:21:47Z",
+      "duration_seconds": 4.0,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "d3ac5f93197d6e226a31ccb5e3fcabe2ca22b119fd4908a5c48cefe827522d32"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T12:23:41Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 11.934,
+      "at": "2026-09-08T12:23:57Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T14:45:03Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 11.787,
+      "at": "2026-09-08T14:45:19Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T14:46:51Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 11.702,
+      "at": "2026-09-08T14:47:07Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T14:54:13Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 11.562,
+      "at": "2026-09-08T14:54:29Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T15:06:17Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 10.949,
+      "at": "2026-09-08T15:06:32Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T15:07:56Z",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 10.606,
+      "at": "2026-09-08T15:08:10Z"
+    }
+  ],
+  "updated_at": "2026-09-08T15:08:11Z"
+}

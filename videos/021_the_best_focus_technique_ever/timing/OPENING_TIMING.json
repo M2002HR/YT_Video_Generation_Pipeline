@@ -1,0 +1,98 @@
+{
+  "audio_duration_seconds": 42.658,
+  "spark_start": 0.02,
+  "spark_end": 2.94,
+  "spark_duration": 2.92,
+  "transition_start": 3.82,
+  "transition_end": 5.92,
+  "transition_duration": 2.1,
+  "clip_a_target_seconds": 2.94,
+  "clip_b_target_seconds": 2.98,
+  "body_start": 6.48,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Can a simple timer turn scattered work into focus?",
+      "speech_start": 0.02,
+      "speech_end": 2.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "She reaches for the book, opening it.",
+      "speech_start": 3.82,
+      "speech_end": 5.92,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "The pages reveal Francesco Cirillo and the Pomodoro Technique.",
+      "speech_start": 6.48,
+      "speech_end": 10.06,
+      "match_confidence": 0.889
+    },
+    {
+      "segment": "body_02",
+      "narration": "He studied with a tomato-shaped timer.",
+      "speech_start": 11.22,
+      "speech_end": 13.08,
+      "match_confidence": 0.714
+    },
+    {
+      "segment": "body_03",
+      "narration": "The method breaks work into focused sessions.",
+      "speech_start": 14.2,
+      "speech_end": 16.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Short breaks help reset attention between sessions.",
+      "speech_start": 17.5,
+      "speech_end": 20.36,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Distractions fade when goals receive protected time.",
+      "speech_start": 21.56,
+      "speech_end": 24.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "The technique creates a steady rhythm for completing tasks.",
+      "speech_start": 24.6,
+      "speech_end": 29.04,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "A small timer signals when to start and stop.",
+      "speech_start": 29.68,
+      "speech_end": 32.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "The simple idea grew from one student's study habit.",
+      "speech_start": 33.14,
+      "speech_end": 35.96,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Today, people use it to structure focused work.",
+      "speech_start": 37.06,
+      "speech_end": 39.86,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more questions.",
+      "speech_start": 40.22,
+      "speech_end": 42.4,
+      "match_confidence": 1.0
+    }
+  ]
+}

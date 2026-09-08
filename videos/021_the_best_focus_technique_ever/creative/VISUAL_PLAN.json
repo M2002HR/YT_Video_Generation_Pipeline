@@ -1,0 +1,113 @@
+{
+  "body_duration_seconds": 29.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "The pages reveal Francesco Cirillo and the Pomodoro Technique.",
+      "visual": "A worn green book lies open on a rustic wooden desk, revealing an illustrated portrait of Francesco Cirillo beside a tomato-shaped timer drawing in a painted storybook style.",
+      "purpose": "show the discovery of Francesco Cirillo and the Pomodoro Technique through the book reveal",
+      "visual_fingerprint": "open worn green book with historical portrait and tomato timer illustration on farmhouse study desk, overhead close composition",
+      "type": "literal",
+      "continuity": "continues from the book retrieval with the same green book now opened indoors",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "He studied with a tomato-shaped timer.",
+      "visual": "A late 20th-century study corner shows a young Francesco-inspired student figure working beside a small red tomato-shaped kitchen timer on a wooden desk, with notebooks and papers around him.",
+      "purpose": "show the original tomato-shaped timer influence in a study setting",
+      "visual_fingerprint": "young student silhouette at vintage desk using red tomato kitchen timer, warm interior side view composition",
+      "type": "literal",
+      "continuity": "moves from the book illustration into a historical study scene while preserving the timer focus",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "The method breaks work into focused sessions.",
+      "visual": "A tidy wooden desk displays a single timer beside neatly grouped study materials, with three separated piles visually arranged in a rhythm from start to finish.",
+      "purpose": "show how the technique divides work into organized focus periods",
+      "visual_fingerprint": "organized study desk with three material clusters and timer centerpiece, top-down balanced composition",
+      "type": "diagram",
+      "continuity": "same study world but shifts from historical person to a clear method explanation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Short breaks help reset attention between sessions.",
+      "visual": "A cozy rural window nook shows a closed notebook, steaming tea cup, and timer resting during a peaceful pause with morning light entering.",
+      "purpose": "show the reset moment created by short breaks",
+      "visual_fingerprint": "quiet window nook with resting timer and tea beside closed notebook, soft morning pause composition",
+      "type": "metaphor",
+      "continuity": "continues the focused desk theme by showing the recovery space between sessions",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Distractions fade when goals receive protected time.",
+      "visual": "A farmhouse desk scene shows scattered papers being visually pushed to the edges while one central notebook and timer remain illuminated in the middle.",
+      "purpose": "show distractions losing importance when focus time is protected",
+      "visual_fingerprint": "central glowing notebook and timer surrounded by faded scattered papers, diagonal desk composition",
+      "type": "metaphor",
+      "continuity": "returns from the break scene to active work with a stronger focus metaphor",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "The technique creates a steady rhythm for completing tasks.",
+      "visual": "A wooden shelf holds completed small projects, notebooks, and tools arranged in a repeating pattern beside a ticking timer, creating a visual sense of progress.",
+      "purpose": "show the steady rhythm and completion cycle created by the technique",
+      "visual_fingerprint": "rustic shelf with repeating completed tasks and timer, horizontal progression composition",
+      "type": "metaphor",
+      "continuity": "expands the focus idea from a single desk to a larger pattern of accomplishment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "A small timer signals when to start and stop.",
+      "visual": "Close view of a small pocket timer on a wooden table with one hand reaching to begin it and a notebook ready nearby.",
+      "purpose": "show the timer as the physical signal for beginning and ending work",
+      "visual_fingerprint": "pocket timer with reaching hand and prepared notebook, intimate close-up table composition",
+      "type": "literal",
+      "continuity": "returns attention to the key object after showing the broader rhythm",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "The simple idea grew from one student's study habit.",
+      "visual": "A humble old study corner with handwritten notes, a small timer, and a single student's chair shows the origin of a personal routine.",
+      "purpose": "show the humble personal beginning of the idea",
+      "visual_fingerprint": "empty wooden student chair with notes and timer in vintage study corner, quiet wide composition",
+      "type": "subject_world",
+      "continuity": "shifts from the tool itself to the human habit behind its creation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Today, people use it to structure focused work.",
+      "visual": "A modernized storybook montage inside the same warm world shows different people using simple timers at desks, gardens, and workshops while maintaining the hand-painted farm aesthetic.",
+      "purpose": "show the technique spreading to many people and environments today",
+      "visual_fingerprint": "multiple small storybook scenes of diverse users with timers across desk garden workshop settings, vertical collage composition",
+      "type": "subject_world",
+      "continuity": "connects the original study habit to its wider modern use while preserving the illustrated world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ]
+}

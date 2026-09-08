@@ -1,0 +1,340 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "1fbe8ee14fa1d7a5b5317cd6baabb489e1856ab37529dc9af8d50337e8a307a2",
+  "job_ids": [
+    "71fb8236-bdbb-4dcc-965d-661426125b2c"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 1,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.36,
+          "w": 0.86,
+          "h": 0.48
+        },
+        "composition_summary": "Open worn green book on a rustic wooden desk. The left page contains an illustrated male portrait and the right page area contains a tomato-shaped timer illustration. Large blank parchment-like card area surrounds the artwork.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b01_portrait_face",
+            "label": "illustrated male portrait face on book page",
+            "kind": "face",
+            "bbox": {
+              "x": 0.35,
+              "y": 0.42,
+              "w": 0.16,
+              "h": 0.12
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A drawn face with hair and facial features appears on the open book page."
+          },
+          {
+            "target_id": "b01_portrait_person",
+            "label": "illustrated person portrait in book",
+            "kind": "person",
+            "bbox": {
+              "x": 0.36,
+              "y": 0.52,
+              "w": 0.22,
+              "h": 0.28
+            },
+            "importance": "primary",
+            "confidence": 0.95,
+            "visible_evidence": "A bust-length illustrated figure is visible inside the book illustration."
+          },
+          {
+            "target_id": "b01_tomato_timer",
+            "label": "tomato-shaped timer illustration",
+            "kind": "object",
+            "bbox": {
+              "x": 0.76,
+              "y": 0.41,
+              "w": 0.18,
+              "h": 0.14
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A red tomato-shaped timer drawing with number markings is visible on the page."
+          },
+          {
+            "target_id": "b01_open_book",
+            "label": "open green book",
+            "kind": "object",
+            "bbox": {
+              "x": 0.52,
+              "y": 0.53,
+              "w": 0.48,
+              "h": 0.34
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Large open book with green cover and illustrated pages occupies the center."
+          }
+        ],
+        "faces": [
+          "b01_portrait_face"
+        ],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.82,
+              "w": 0.7,
+              "h": 0.3
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.9,
+              "h": 0.9
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.1,
+              "w": 0.8,
+              "h": 0.15
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.82",
+            "w": "0.7",
+            "h": "0.3"
+          }
+        ],
+        "notes": "Keep attention on the book artwork; avoid the large blank lower card area.",
+        "media_sha256": "c5df61260ea0d098fb7497c6b5f4d8c4370ad84cdd145a6150913aacfe99bdb8"
+      },
+      {
+        "beat_id": 2,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.36,
+          "w": 0.86,
+          "h": 0.48
+        },
+        "composition_summary": "Warm study corner with a silhouetted seated person at a wooden desk. A red tomato-shaped timer sits prominently on the desk among notebooks and papers. Blank parchment-like area surrounds the artwork.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b02_student_person",
+            "label": "seated student silhouette at desk",
+            "kind": "person",
+            "bbox": {
+              "x": 0.74,
+              "y": 0.43,
+              "w": 0.24,
+              "h": 0.38
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A dark human silhouette is seated on the right side working at the desk."
+          },
+          {
+            "target_id": "b02_tomato_timer",
+            "label": "red tomato-shaped timer on desk",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.58,
+              "w": 0.12,
+              "h": 0.1
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A small red tomato-shaped timer is visible on the desk surface."
+          },
+          {
+            "target_id": "b02_desk_materials",
+            "label": "notebooks and papers on wooden desk",
+            "kind": "context",
+            "bbox": {
+              "x": 0.45,
+              "y": 0.55,
+              "w": 0.5,
+              "h": 0.22
+            },
+            "importance": "secondary",
+            "confidence": 0.94,
+            "visible_evidence": "Several books, papers, and writing materials are spread across the desk."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b02_student_person"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.82,
+              "w": 0.7,
+              "h": 0.3
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.9,
+              "h": 0.9
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.12,
+              "y": 0.25,
+              "w": 0.2,
+              "h": 0.2
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.2",
+            "y": "0.4",
+            "w": "0.2",
+            "h": "0.25"
+          },
+          {
+            "x": "0.5",
+            "y": "0.82",
+            "w": "0.7",
+            "h": "0.3"
+          }
+        ],
+        "notes": "The silhouette and tomato timer are the strongest attention anchors; avoid cropping out the timer.",
+        "media_sha256": "78ee0d4adfb903deff2b4a13e61e71b6e10998deb3c752dc19d7032ef2a7bc3d"
+      },
+      {
+        "beat_id": 3,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.36,
+          "w": 0.86,
+          "h": 0.48
+        },
+        "composition_summary": "Top-down view of a wooden desk with an open notebook, pencil, paint palette, clock timer, books, and organized study objects arranged around the center. Blank parchment-like card area surrounds the artwork.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b03_center_timer",
+            "label": "small round desk timer",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.52,
+              "w": 0.1,
+              "h": 0.09
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A round clock-like timer sits at the center of the desk."
+          },
+          {
+            "target_id": "b03_open_notebook",
+            "label": "open notebook with pencil",
+            "kind": "object",
+            "bbox": {
+              "x": 0.48,
+              "y": 0.38,
+              "w": 0.22,
+              "h": 0.13
+            },
+            "importance": "primary",
+            "confidence": 0.96,
+            "visible_evidence": "An open notebook and pencil are visible near the upper center."
+          },
+          {
+            "target_id": "b03_green_books",
+            "label": "green books and journals",
+            "kind": "object",
+            "bbox": {
+              "x": 0.25,
+              "y": 0.62,
+              "w": 0.2,
+              "h": 0.18
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "Green covered books are arranged on the left side of the desk."
+          },
+          {
+            "target_id": "b03_desk_arrangement",
+            "label": "organized study desk scene",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.53,
+              "w": 0.65,
+              "h": 0.42
+            },
+            "importance": "context",
+            "confidence": 0.95,
+            "visible_evidence": "Multiple study objects are arranged in a balanced top-down composition."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.82,
+              "w": 0.7,
+              "h": 0.3
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.9,
+              "h": 0.9
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.15,
+              "w": 0.8,
+              "h": 0.12
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.82",
+            "w": "0.7",
+            "h": "0.3"
+          }
+        ],
+        "notes": "Use the centered timer and organized desk layout as visual anchors; avoid blank lower card area.",
+        "media_sha256": "fa9afbd0afa89e5da55e9787664b33f931554bdf12cb460f756c105f4aa9252b"
+      }
+    ]
+  }
+}

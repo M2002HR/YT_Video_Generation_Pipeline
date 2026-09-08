@@ -1,0 +1,60 @@
+{
+  "provider": "gemini",
+  "job_id": "85766b74-7e74-4f42-b833-2f5d0775b821",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/5d9e560d97485cc5",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=85766b74-7e74-4f42-b833-2f5d0775b821_output_1.png 1536x2752 sha256=ee6890fa4b1f11676586ee068c7be4924ad8bbd61e1505a0d54b748467684e98"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/021_the_best_focus_technique_ever/references/world_style_anchor.png",
+      "sha256": "a06d570811e984028ba86b18f5b39f5ce7f4d405cf0a840ff95955391c21738a"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/021_the_best_focus_technique_ever/references/world_keyframe.png",
+      "sha256": "715c631860621e3063241c0fd8be3ce87ec17ba9d9382214145d82e74bad0ecb"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/021_the_best_focus_technique_ever/assets/raw_beats/beat_006.png",
+      "sha256": "299e843b567edbed71b8e72f84572b145c3f11021e9d64259289bfa78c54a5fa"
+    }
+  ],
+  "prompt_sha256": "f5e2a7607ba35b069bbf4f7144d4713ade1437a520f723e058893851db530f05",
+  "output_path": "assets/raw_beats/beat_007.png",
+  "output_sha256": "ee6890fa4b1f11676586ee068c7be4924ad8bbd61e1505a0d54b748467684e98",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 79.012,
+  "completed_at": "2026-09-08T11:28:41Z"
+}

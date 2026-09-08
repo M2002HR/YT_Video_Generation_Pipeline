@@ -1,0 +1,21 @@
+{
+  "spark_end": 2.94,
+  "transition_end": 5.92,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/021_the_best_focus_technique_ever/assets/opening/question_spark_trimmed.mp4",
+      "target": 2.94,
+      "actual": 2.958
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/021_the_best_focus_technique_ever/assets/opening/book_transition_trimmed.mp4",
+      "target": 2.98,
+      "actual": 3.0
+    }
+  ],
+  "opening_total_seconds": 5.958,
+  "opening_total_target_seconds": 5.92,
+  "opening_total_drift_seconds": 0.038
+}

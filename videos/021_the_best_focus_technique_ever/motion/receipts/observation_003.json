@@ -1,0 +1,321 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "988ecd3b23706c041a4f901f2d0139b3296245e5323731ff9de9387e1ec722e4",
+  "job_ids": [
+    "6f58c12e-e21b-4dd4-a53c-20679d1856eb"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 7,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Close view of a wooden tabletop with a pocket timer near the lower left-center, a hand reaching toward it, and notebooks in the upper and right areas.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b07_target_timer",
+            "label": "small pocket timer on table",
+            "kind": "object",
+            "bbox": {
+              "x": 0.39,
+              "y": 0.35,
+              "w": 0.18,
+              "h": 0.12
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Round analog timer with numbered face is visibly placed on the wooden surface."
+          },
+          {
+            "target_id": "b07_target_hand",
+            "label": "reaching hand touching timer area",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.39,
+              "w": 0.24,
+              "h": 0.24
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "A hand extends from the lower right toward the timer."
+          },
+          {
+            "target_id": "b07_target_notebook",
+            "label": "open notebook with floral drawing",
+            "kind": "object",
+            "bbox": {
+              "x": 0.72,
+              "y": 0.28,
+              "w": 0.25,
+              "h": 0.22
+            },
+            "importance": "secondary",
+            "confidence": 0.94,
+            "visible_evidence": "Open notebook with visible page lines and flower sketch on the right side."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b07_target_hand"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.72,
+              "w": 0.65,
+              "h": 0.42
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.98,
+              "h": 0.98
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.78",
+            "w": "0.6",
+            "h": "0.3"
+          }
+        ],
+        "notes": "Keep attention on the timer and hand interaction; avoid the large blank lower card area.",
+        "media_sha256": "ee6890fa4b1f11676586ee068c7be4924ad8bbd61e1505a0d54b748467684e98"
+      },
+      {
+        "beat_id": 8,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Warm illustrated study corner with a wooden chair, desk, scattered handwritten papers, pencils, and a tomato-shaped object on the desk near a window.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b08_target_chair",
+            "label": "empty wooden student chair",
+            "kind": "object",
+            "bbox": {
+              "x": 0.27,
+              "y": 0.43,
+              "w": 0.25,
+              "h": 0.3
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "Wooden chair is clearly visible in front of the desk."
+          },
+          {
+            "target_id": "b08_target_desk",
+            "label": "wooden study desk surface",
+            "kind": "place",
+            "bbox": {
+              "x": 0.52,
+              "y": 0.3,
+              "w": 0.55,
+              "h": 0.22
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "Desk surface contains papers, pencils, and a tomato-shaped item."
+          },
+          {
+            "target_id": "b08_target_tomato",
+            "label": "red tomato-shaped object on desk",
+            "kind": "object",
+            "bbox": {
+              "x": 0.68,
+              "y": 0.24,
+              "w": 0.1,
+              "h": 0.08
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "Red rounded tomato-like object is visible beside the window."
+          },
+          {
+            "target_id": "b08_target_notes",
+            "label": "handwritten papers on desk",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.3,
+              "w": 0.35,
+              "h": 0.18
+            },
+            "importance": "secondary",
+            "confidence": 0.94,
+            "visible_evidence": "Several paper sheets with visible handwritten marks are spread across the desk."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.75,
+              "w": 0.65,
+              "h": 0.35
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.98,
+              "h": 0.98
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.8",
+            "w": "0.6",
+            "h": "0.25"
+          }
+        ],
+        "notes": "Primary visual interest is in the upper illustrated study scene; avoid lower blank panel.",
+        "media_sha256": "9724e67732326312e668d63a1825681922d5fc44f5eb5076320097c6ce5a31f9"
+      },
+      {
+        "beat_id": 9,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Vertical storybook collage showing multiple scenes: a person writing at a desk above, a person gardening below left, and a person working at a table below right, with tomato-shaped objects repeated across scenes.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b09_target_writer_person",
+            "label": "person writing at desk in upper scene",
+            "kind": "person",
+            "bbox": {
+              "x": 0.6,
+              "y": 0.28,
+              "w": 0.2,
+              "h": 0.22
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "A seated person with braided hair is writing in a notebook at a desk."
+          },
+          {
+            "target_id": "b09_target_writer_hand",
+            "label": "hand holding pen while writing",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.58,
+              "y": 0.31,
+              "w": 0.08,
+              "h": 0.07
+            },
+            "importance": "secondary",
+            "confidence": 0.9,
+            "visible_evidence": "Visible hand is positioned with a pen over the notebook."
+          },
+          {
+            "target_id": "b09_target_gardener_person",
+            "label": "person tending plants in lower scene",
+            "kind": "person",
+            "bbox": {
+              "x": 0.34,
+              "y": 0.62,
+              "w": 0.15,
+              "h": 0.16
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "Person kneels among plants in the garden area."
+          },
+          {
+            "target_id": "b09_target_workshop_person",
+            "label": "person working at table in lower right scene",
+            "kind": "person",
+            "bbox": {
+              "x": 0.74,
+              "y": 0.69,
+              "w": 0.18,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "Person sits at a small table handling material."
+          },
+          {
+            "target_id": "b09_target_tomato_objects",
+            "label": "multiple red tomato-shaped objects",
+            "kind": "group",
+            "bbox": {
+              "x": 0.47,
+              "y": 0.55,
+              "w": 0.55,
+              "h": 0.38
+            },
+            "importance": "context",
+            "confidence": 0.91,
+            "visible_evidence": "Several red tomato-like objects appear in the separate scenes."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b09_target_writer_hand"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.78,
+              "w": 0.65,
+              "h": 0.34
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.98,
+              "h": 0.98
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.5",
+            "y": "0.8",
+            "w": "0.6",
+            "h": "0.25"
+          }
+        ],
+        "notes": "Use the illustrated scenes as separate attention zones; avoid the large empty lower card region.",
+        "media_sha256": "34ebcd8c7bbfae3e7d2641f15d015dcaebaed0ce067d3c17093a4e791fa53cbf"
+      }
+    ]
+  }
+}

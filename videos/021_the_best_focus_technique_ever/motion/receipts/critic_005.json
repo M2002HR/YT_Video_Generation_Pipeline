@@ -1,0 +1,167 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "f9cbaaa538ac3dba216aa78a3c0bac59b91c0adbc98d0532e0a5d8a90fa49e5e",
+  "job_ids": [
+    "f3c1b14a-e0c1-47fa-ba41-d59ed5445b51"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 9,
+        "shot_id": "b09_s03",
+        "code": "unmotivated_cut",
+        "message": "The final shot starts on b09_target_tomato_objects and ends on b09_target_writer_person without a visible transition or editorial reason, creating an unsupported target jump inside a settle movement. The ending should hold the broader verified collage rather than narrowing to one unrelated zone."
+      },
+      {
+        "severity": "warning",
+        "beat_id": 9,
+        "shot_id": "b09_s02",
+        "code": "bad_sync",
+        "message": "The match_position_cut between two separate lower scenes is not supported by matching visual positions or a clear continuity cue; a clean cut is safer for the calm documentary ending."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 9,
+        "start": 37.06,
+        "end": 42.658,
+        "attention_story": [
+          "Begin with the full visible collage to communicate that the method has spread beyond its original personal use.",
+          "Shift attention between the visible people working in different environments to support the idea of structured focused work.",
+          "End with a calm representative overview that leaves space for the call to action."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b09_s01",
+            "role": "establish",
+            "start": 37.06,
+            "end": 38.56,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b09_target_writer_person",
+                "coverage": 0.48,
+                "anchor_x": 0.6,
+                "anchor_y": 0.28
+              },
+              "end": {
+                "target_id": "b09_target_writer_person",
+                "coverage": 0.58,
+                "anchor_x": 0.6,
+                "anchor_y": 0.28
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Focus the viewer on the visible writing scene as a clear example of structured work."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0080",
+              "word": "Today,",
+              "authoritative_start": 37.06,
+              "authoritative_end": 37.3
+            }
+          },
+          {
+            "shot_id": "b09_s02",
+            "role": "context",
+            "start": 38.56,
+            "end": 40.22,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b09_target_workshop_person",
+                "coverage": 0.42,
+                "anchor_x": 0.74,
+                "anchor_y": 0.69
+              },
+              "end": {
+                "target_id": "b09_target_gardener_person",
+                "coverage": 0.42,
+                "anchor_x": 0.34,
+                "anchor_y": 0.62
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "Show the other visible work scenes with a clean editorial transition and avoid unsupported camera travel."
+            },
+            "sync": {
+              "mode": "cut_on_word_start",
+              "word_id": "w_0086",
+              "word": "focused",
+              "authoritative_start": 38.56,
+              "authoritative_end": 39.1
+            }
+          },
+          {
+            "shot_id": "b09_s03",
+            "role": "release",
+            "start": 40.22,
+            "end": 42.658,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b09_target_tomato_objects",
+                "coverage": 0.65,
+                "anchor_x": 0.5,
+                "anchor_y": 0.58
+              },
+              "end": {
+                "target_id": "b09_target_tomato_objects",
+                "coverage": 0.65,
+                "anchor_x": 0.5,
+                "anchor_y": 0.58
+              }
+            },
+            "motion": {
+              "type": "settle",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.6,
+              "reason": "Hold the verified collage context as the closing image, emphasizing the broader spread of the practice without introducing unsupported target changes."
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0093",
+              "word": "questions.",
+              "authoritative_start": 41.62,
+              "authoritative_end": 42.4
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b09_target_tomato_objects",
+          "coverage": 0.65,
+          "anchor_x": 0.5,
+          "anchor_y": 0.58,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "cta",
+          "reason": "Finish with a stable editorial frame as the call to action completes."
+        }
+      }
+    ]
+  }
+}

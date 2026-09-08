@@ -1,0 +1,14 @@
+{
+  "opening_activity": "sorting tools",
+  "opening_location": "farmyard",
+  "curiosity_trigger": "noticing a row of tools arranged in a perfect timed order",
+  "trigger_object": "small pocket timer",
+  "reaction": "pauses, picks up the timer, studies its steady ticking",
+  "book_retrieval": "sets the timer down, walks inside, and pulls a worn green book from the shelf",
+  "camera_pattern": "gentle_pan_left",
+  "book_template_id": "002",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "warm hand-drawn farm world with ink textures and soft morning light",
+  "reason": "Sorting tools naturally connects to organizing attention and creating focused routines without forcing the topic into the farm setting."
+}

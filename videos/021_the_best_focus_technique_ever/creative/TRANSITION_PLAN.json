@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3,
+      "next_motion": "slow_zoom_in",
+      "reason": "The open book illustration naturally dissolves into the historical study scene, signaling a shift from discovery to the origin story while preserving the warm documentary tone. A subtle zoom-in draws attention toward the student, desk, and tomato timer without adding unnecessary motion."
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing study scene and incoming top-down method diagram share the same warm desk world and timer motif. A subtle rightward handoff preserves continuity while shifting from the person using the timer to the organized explanation of the technique, with a gentle zoom emphasizing the instructional layout."
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The organized top-down work system transitions into a quiet recovery scene within the same study world. A gentle dissolve preserves the reflective shift from focused sessions to breaks, while a slow zoom-in draws attention to the calming tea, notebook, and resting timer."
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "wiperight",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The calm break scene shifts back into purposeful work through a rightward handoff, matching the move from pause to protected focus. A gentle zoom into the central notebook and timer reinforces the narrowing of attention."
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "slideleft",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The outgoing image centers on a focused workspace while the incoming image expands that idea into a broader shelf of completed tasks. A gentle leftward handoff preserves the sense of progression from one focus session into a repeating achievement rhythm, with a subtle zoom-in emphasizing the accumulated results."
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.24,
+      "next_motion": "slow_zoom_in",
+      "reason": "The broad shelf of completed work shifts naturally into an intimate timer close-up through a leftward handoff, returning focus from the overall rhythm of progress to the key starting signal. A subtle zoom-in emphasizes the tactile timer action without adding unnecessary movement."
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_in",
+      "reason": "The close timer action gently shifts into the wider origin scene, changing from the tool's function to the personal habit behind it. A soft dissolve preserves the reflective documentary tone, while a subtle zoom emphasizes the quiet study corner discovery."
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32,
+      "next_motion": "slow_zoom_out",
+      "reason": "The quiet empty study corner reflects an origin story, while the incoming collage expands the idea into many settings. A gentle dissolve preserves the reflective time shift, and a slow zoom out emphasizes the technique spreading beyond its first personal use."
+    }
+  ],
+  "created_at": "2026-09-08T11:36:58Z"
+}

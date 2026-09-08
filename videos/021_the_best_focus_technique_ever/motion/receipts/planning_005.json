@@ -1,0 +1,198 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "3f7889f8da72002bdacdffc8f544d6a7bab608400eca6086f6f033a86396e560",
+  "job_ids": [
+    "c37024fc-4699-4f20-ad2c-bfe54def726e"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 42.658,
+    "beats": [
+      {
+        "beat_id": 5,
+        "start": 21.56,
+        "end": 24.62,
+        "attention_story": [
+          "Begin with the full desk metaphor to establish distractions surrounding the protected focus area.",
+          "Shift attention toward the central notebook as the protected goal while the surrounding papers lose visual priority.",
+          "Finish by settling on the relationship between the notebook and timer as the visual symbol of dedicated time."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b05_s01",
+            "role": "establish",
+            "start": 21.56,
+            "end": 22.62,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b005_target_desk",
+                "coverage": 0.78,
+                "anchor_x": 0.5,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b005_target_desk",
+                "coverage": 0.78,
+                "anchor_x": 0.5,
+                "anchor_y": 0.55
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The complete desk composition clearly shows the contrast between scattered distractions and the protected central workspace."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          },
+          {
+            "shot_id": "b05_s02",
+            "role": "primary",
+            "start": 22.62,
+            "end": 23.66,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b005_target_desk",
+                "coverage": 0.78,
+                "anchor_x": 0.5,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b005_target_notebook",
+                "coverage": 0.48,
+                "anchor_x": 0.5,
+                "anchor_y": 0.56
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "A subtle push gives the central notebook visual priority as goals become the focus."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0049",
+              "word": "goals",
+              "authoritative_start": 22.82,
+              "authoritative_end": 23.16
+            }
+          },
+          {
+            "shot_id": "b05_s03",
+            "role": "detail",
+            "start": 23.66,
+            "end": 24.62,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b005_target_notebook",
+                "coverage": 0.48,
+                "anchor_x": 0.5,
+                "anchor_y": 0.56
+              },
+              "end": {
+                "target_id": "b005_target_clock",
+                "coverage": 0.3,
+                "anchor_x": 0.63,
+                "anchor_y": 0.35
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "The gentle move connects the protected goal with the timer that represents dedicated time."
+            },
+            "sync": {
+              "mode": "reveal_complete_on_word",
+              "word_id": "w_0052",
+              "word": "time.",
+              "authoritative_start": 24.12,
+              "authoritative_end": 24.64
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b005_target_clock",
+          "coverage": 0.3,
+          "anchor_x": 0.63,
+          "anchor_y": 0.35,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Clean cut continues from the focused timer detail into the next progress-oriented scene."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "calm",
+      "style": "dynamic",
+      "intensity": "subtle",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": false,
+      "allow_hard_reframes": false,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "expressive",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}
