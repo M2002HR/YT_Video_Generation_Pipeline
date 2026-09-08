@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "0a0e63ee45b8f14afb97fed139c2bd120b103427",
+  "started_at": "2026-09-08T18:13:33.476566+00:00",
+  "completed_at": "2026-09-08T18:15:09.256241+00:00",
+  "elapsed_seconds": 95.78,
+  "scope": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right"
+}
