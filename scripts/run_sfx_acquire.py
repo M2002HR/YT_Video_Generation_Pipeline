@@ -70,15 +70,19 @@ def main():
        if rows:
         break
      remote.extend(rows)
-    remote=[x for x in remote if license_ok(str(x.get('license','')),a.license_policy) and int(x.get('filesize') or 0) <= 8 * 1024 * 1024]
-    # deterministic text/duration/rating rank; no download before a candidate wins.
-    remote.sort(key=lambda x:(sum(w in (' '.join(x.get('tags') or [])+' '+str(x.get('name',''))).lower() for w in query.lower().split()),-abs(float(x.get('duration') or 0)-event['desired_duration_seconds']),float(x.get('avg_rating') or 0),int(x.get('num_downloads') or 0)),reverse=True)
-    if remote:
-     winner=remote[0]; fd,tmp=tempfile.mkstemp(suffix='.'+str(winner.get('type') or 'mp3'),dir=lib.root);os.close(fd);temp=Path(tmp)
-     try:
-      provider.download(winner,temp); technical=probe(temp,event['max_duration_seconds']); meta={'provider':'freesound','provider_id':winner['id'],'name':winner.get('name'),'description':winner.get('description'),'tags':winner.get('tags') or [],'aliases':[query],'category':event['category'],'creator':winner.get('username'),'source_url':winner.get('url'),'api_url':f"https://freesound.org/apiv2/sounds/{winner['id']}/",'license':winner.get('license'),'quality':winner.get('avg_rating') or 0,**technical};chosen=lib.install(meta,temp);mode='FREESOUND_DOWNLOAD'
-     except Exception:
-      temp.unlink(missing_ok=True);raise
+     remote=[x for x in remote if license_ok(str(x.get('license','')),a.license_policy) and int(x.get('filesize') or 0) <= 8 * 1024 * 1024]
+     # Drop candidates whose declared duration is already absurd vs the probe threshold
+     # (max 35s or 5x max_duration). This avoids downloading a 90s podcast for a 2s window.
+     remote=[x for x in remote if 0 < float(x.get('duration') or 0) <= max(35, event['max_duration_seconds']*5)]
+     # deterministic text/duration/rating rank; no download before a candidate wins.
+     remote.sort(key=lambda x:(sum(w in (' '.join(x.get('tags') or [])+' '+str(x.get('name',''))).lower() for w in query.lower().split()),-abs(float(x.get('duration') or 0)-event['desired_duration_seconds']),float(x.get('avg_rating') or 0),int(x.get('num_downloads') or 0)),reverse=True)
+     if remote:
+      for winner in remote:
+       fd,tmp=tempfile.mkstemp(suffix='.'+str(winner.get('type') or 'mp3'),dir=lib.root);os.close(fd);temp=Path(tmp)
+       try:
+        provider.download(winner,temp); technical=probe(temp,event['max_duration_seconds']); meta={'provider':'freesound','provider_id':winner['id'],'name':winner.get('name'),'description':winner.get('description'),'tags':winner.get('tags') or [],'aliases':[query],'category':event['category'],'creator':winner.get('username'),'source_url':winner.get('url'),'api_url':f"https://freesound.org/apiv2/sounds/{winner['id']}/",'license':winner.get('license'),'quality':winner.get('avg_rating') or 0,**technical};chosen=lib.install(meta,temp);mode='FREESOUND_DOWNLOAD';break
+       except Exception as e:
+        temp.unlink(missing_ok=True); print(f"warn: freesound candidate {winner.get('id')} failed ({e}); trying next", file=sys.stderr); continue
    if chosen:
     # The panel's default is a narration-safe loudness floor, not merely a fallback
     # for missing planner fields. A planner may request a louder accent, never quietly
