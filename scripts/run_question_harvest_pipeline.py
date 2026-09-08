@@ -87,7 +87,7 @@ def episode_frame_contract(world_style_plan: dict[str, Any]) -> str:
         f"image: {frame}. Preserve its material/edge grammar and inner illustration window while "
         "changing only the scene inside it. Keep "
         f"{reserve}; keep faces, hands, focal action and critical details above it. "
-        "It may contain subdued texture, never an oversized empty banner or a UI panel."
+        "The reserve must stay completely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture/atmosphere only, never an oversized empty banner or a UI panel."
     )
 
 

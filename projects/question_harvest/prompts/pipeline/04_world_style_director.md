@@ -27,7 +27,7 @@ woodcut, historical engraving, charcoal, ink wash, clay / stop-motion-like, pape
   "line_treatment": "clean dark outlines / sketchy charcoal / crisp engraving etc",
   "lighting": "soft daylight|warm lamp|overcast etc",
   "frame_language": "the recurring outer material, edge treatment and inner illustration-window grammar for this episode; it may be a deckled page, painted card, manuscript border, textile frame, etc., but must be visibly repeatable across every body image",
-  "subtitle_reserve": "a style-appropriate quiet lower field inside only the bottom 8–10% of the 9:16 frame, enough for two subtitle lines; keep it free of faces, hands, focal objects and fine detail",
+  "subtitle_reserve": "a style-appropriate quiet lower field inside only the bottom 8–10% of the 9:16 frame, enough for two subtitle lines; keep it free of faces, hands, focal objects, fine detail and absolutely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture only",
   "subject_constraints": "what world vocabulary is allowed (e.g., medieval tools, cell diagrams)",
   "historical_accuracy_note": "if historical topic, constraints to stay accurate or null",
   "hero_rendering_in_world": "how protagonist should be drawn if he appears in world (e.g., same silhouette rendered in charcoal)",
@@ -51,7 +51,7 @@ woodcut, historical engraving, charcoal, ink wash, clay / stop-motion-like, pape
   inner illustration window must persist from the world keyframe through every body image.
 - Every image must reserve a calm, compositionally intentional lower caption field of only
   8–10% of the frame (two subtitle lines). It may contain low-detail texture or atmosphere, but never the face,
-  hands, key action, critical diagram labels, or the focal object. Do not make it an oversized
+  hands, key action, critical diagram labels, focal object or any text, letters, numbers, captions, labels, words or UI — leave the reserve as calm texture only. Do not make it an oversized
   empty void; it must feel like a balanced part of the frame.
 - Ensure protagonist adaptation preserves hair silhouette + beard + overalls silhouette translated into this medium (face proportions/clothing identity per §45).
 

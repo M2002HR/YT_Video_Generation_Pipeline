@@ -21,7 +21,7 @@ Return plain text prompt (no JSON, no headings) — exactly one line of instruct
 - establish the episode's recurring frame language: outer material/edge treatment plus an
   inner illustration window appropriate to the chosen medium
 - reserve a calm lower caption field inside only the bottom 8–10% of the frame (two subtitle lines); it must be free
-  of the focal subject and readable detail, but not an oversized blank strip
+  of the focal subject, readable detail and absolutely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture only, but not an oversized blank strip
 - narrative moment (the world as frozen keyframe, before animation)
 - no readable text, no UI, no grid, no farm leakage unless relevant
 - if protagonist present, same identity but rendered in this world's medium (hair/beard/overalls silhouette preserved)

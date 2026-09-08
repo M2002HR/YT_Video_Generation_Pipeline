@@ -21,7 +21,7 @@ Return plain text prompt for Gemini — single paragraph.
   world keyframe and previous accepted beat (outer material, edge treatment, inner illustration
   window). The interior scene may change freely, but do not drop the framing system.
 - reserve a calm, low-detail caption field inside only the bottom 8–10% of the image (two subtitle lines). Keep faces,
-  hands, key action, focal objects and critical diagram details above it. This is balanced
+  hands, key action, focal objects and critical diagram details above it. This lower reserve must remain completely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture/atmosphere only. This is balanced
   negative space, not a large empty banner and not a hard rectangular UI panel.
 - narrative moment + reference hierarchy (character_sheet prevents identity drift; style/world
   references establish medium). When present, `previous_beat` is binding for the recurring
@@ -29,7 +29,7 @@ Return plain text prompt for Gemini — single paragraph.
   it may also inform texture, palette and lighting. It must never be copied as a crop, camera
   angle, pose, subject placement, or focal object.
 - if hero present: same identity (chestnut hair, beard, moss sweater, blue overalls, orange boots) rendered in current world medium — world changes, character identity does not
-- no unwanted readable text, no UI
+- absolutely no readable text, letters, numbers, captions, labels, words or UI anywhere in the image, especially in the lower caption reserve
 
 ## Reference Hierarchy (§30) to mention:
 - If protagonist absent: world style anchor, world keyframe, recurring world reference if needed,
