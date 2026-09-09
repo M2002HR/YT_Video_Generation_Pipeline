@@ -98,7 +98,7 @@ STATE_PENDING = "PENDING"
 STATE_RUNNING = "RUNNING"
 STATE_DONE = "DONE"
 STATE_REUSED = "REUSED"
-PAUSE_STATES = ("PAUSED_LOGIN_REQUIRED", "PAUSED_MANUAL_VERIFICATION", "PAUSED_CREDITS")
+PAUSE_STATES = ("PAUSED_LOGIN_REQUIRED", "PAUSED_MANUAL_VERIFICATION", "PAUSED_CREDITS", "ACTION_REQUIRED")
 
 
 class StageFailure(RuntimeError):
@@ -298,11 +298,52 @@ class Runner:
     site is allowed to catch a provider failure and substitute something it made up.
     """
 
-    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QHState) -> None:
+    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QHState, *, chatgpt_fallback_mode: str = "approval") -> None:
         self.jobs = jobs
         self.notifier = notifier
         self.state = state
         self.stage_messages: dict[str, Any] = {}
+        self.chatgpt_fallback_mode = chatgpt_fallback_mode if chatgpt_fallback_mode in {"auto", "approval"} else "approval"
+
+    @staticmethod
+    def _fallback_stage(stage: str) -> str:
+        """Map internal JSON-attempt labels back to the visible pipeline node."""
+        stage = re.sub(r"_json\d+(?:_repair)?$", "", stage)
+        stage = re.sub(r"_try\d+$", "", stage)
+        return re.sub(r"_\d{3}(?:_repair)?$", "", stage)
+
+    def _consume_fallback_approval(self, stage: str) -> bool:
+        path = self.state.project / "pipeline" / "FALLBACK_APPROVAL.json"
+        try:
+            approved = load_json(path)
+        except (OSError, ValueError):
+            return False
+        if not isinstance(approved, dict) or str(approved.get("stage") or "") != stage:
+            return False
+        path.unlink(missing_ok=True)
+        return True
+
+    def _require_fallback_approval(self, stage: str, failure: StageFailure) -> None:
+        visible = self._fallback_stage(stage)
+        request = {
+            "schema_version": 1,
+            "status": "ACTION_REQUIRED",
+            "stage": stage,
+            "visible_stage": visible,
+            "from_provider": "chatgpt",
+            "to_provider": "gemini",
+            "error_code": failure.error_code,
+            "reason": failure.message[:1000],
+            "created_at": utcnow(),
+        }
+        save_json(self.state.project / "pipeline" / "FALLBACK_ACTION_REQUIRED.json", request)
+        self.state.mark(visible, "ACTION_REQUIRED", **{key: value for key, value in request.items() if key not in {"status", "stage"}})
+        raise StageFailure(
+            stage,
+            "ACTION_REQUIRED",
+            f"ChatGPT failed at {visible}; Gemini fallback is ready but requires approval.",
+            error_code=failure.error_code,
+        ) from failure
 
     # -- stage bookkeeping and Telegram log (§9.3) -----------------------
 
@@ -403,11 +444,18 @@ class Runner:
             ) from exc
 
     def text(self, stage: str, prompt: str, *, references: list[Reference] = ()) -> str:
-        """One ChatGPT call. An empty answer is a failure, not something to invent around."""
-        result = self._run(stage, prompt, provider="chatgpt", mode="chat", references=references)
+        """ChatGPT text with an auditable, operator-controlled Gemini fallback."""
+        try:
+            result = self._run(stage, prompt, provider="chatgpt", mode="chat", references=references)
+        except StageFailure as failure:
+            if self.chatgpt_fallback_mode != "auto" and not self._consume_fallback_approval(stage):
+                self._require_fallback_approval(stage, failure)
+            print(f"    [fallback] ChatGPT failed; continuing {stage} with approved Gemini fallback.", flush=True)
+            result = self._run(stage, prompt, provider="gemini", mode="chat", references=references)
+            self.state.mark(self._fallback_stage(stage), STATE_RUNNING, fallback_from="chatgpt", fallback_to="gemini", fallback_reason=failure.message[:500])
         answer = (result.answer or "").strip()
         if not answer:
-            raise StageFailure(stage, "FAILED", f"ChatGPT returned an empty answer for {stage}.")
+            raise StageFailure(stage, "FAILED", f"Provider returned an empty answer for {stage}.")
         return answer
 
     def json(
@@ -1892,10 +1940,12 @@ def stage_body_images(
     world_style_anchor: Path,
     world_keyframe: Path,
     regenerate_beats: set[int] | None = None,
+    revision_feedback: dict[int, str] | None = None,
 ) -> list[Path]:
     """One Gemini image per body beat, sequential because each uses the previous for continuity."""
     beats = list(visual_plan.get("beats") or [])
     requested_regenerations = regenerate_beats or set()
+    revision_feedback = revision_feedback or {}
     unknown_regenerations = requested_regenerations - {int(beat["beat_id"]) for beat in beats}
     if unknown_regenerations:
         raise StageFailure(
@@ -1930,6 +1980,11 @@ def stage_body_images(
             print(f"▶ {stage}", flush=True)
             references = _beat_reference_stack(content_project, beat, world_style_anchor, world_keyframe, previous)
             prompt = stage_beat_prompt(runner, project, content_project, beat, world_style_plan, references)
+            # The operator's wording is intentionally part of the exact provider request,
+            # rather than hidden in state.  This makes a manual revision reproducible.
+            if revision_feedback.get(beat_id):
+                prompt = f"{prompt.rstrip()}\n\nADMIN REVISION REQUEST (binding): {revision_feedback[beat_id].strip()}"
+                (project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.revision.md").write_text(prompt + "\n", encoding="utf-8")
             result = runner.image(stage, prompt, references, model=model, destination=target)
             _write_image_receipt(project, f"gemini_beat_{beat_id:03d}", result, prompt, references, target, model)
             elapsed = time.perf_counter() - started
@@ -2137,6 +2192,7 @@ def main() -> int:
             "MODEL_NOT_AVAILABLE rather than running on a model nobody asked for."
         ),
     )
+    parser.add_argument("--beat-feedback-json", type=Path, help="Revision feedback keyed by numeric beat id.")
     parser.add_argument("--flow-model", default="gemini_omni_1_1_flash")
     parser.add_argument("--flow-resolution", default="720p")
     parser.add_argument("--aspect-ratio", default="9:16")
@@ -2179,6 +2235,12 @@ def main() -> int:
         help="Free-text steer for a new style, e.g. 'charcoal warm paper'.",
     )
     parser.add_argument(
+        "--chatgpt-fallback-mode",
+        choices=("approval", "auto"),
+        default="approval",
+        help="Use Gemini after a ChatGPT/Ordak failure automatically, or pause for panel approval.",
+    )
+    parser.add_argument(
         "--regenerate-beats",
         default="",
         help="Comma-separated body beat IDs to regenerate even when their existing files are valid (for example: 1,9,13).",
@@ -2194,6 +2256,13 @@ def main() -> int:
         parser.error("--regenerate-beats must contain only comma-separated positive integer beat IDs")
     if any(beat_id < 1 for beat_id in regenerate_beats):
         parser.error("--regenerate-beats must contain only positive beat IDs")
+    revision_feedback: dict[int, str] = {}
+    if args.beat_feedback_json:
+        try:
+            raw_feedback = load_json(args.beat_feedback_json)
+            revision_feedback = {int(key): str(value).strip() for key, value in raw_feedback.items() if str(value).strip()}
+        except (OSError, ValueError, TypeError):
+            parser.error("--beat-feedback-json must be a JSON object keyed by beat number")
 
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
 
@@ -2263,7 +2332,7 @@ def main() -> int:
     opening_b_seconds = int(video_generation.get("opening_b_source_seconds") or args.opening_b_seconds)
 
     with OrdakJobs() as jobs:
-        runner = Runner(jobs, notifier, state)
+        runner = Runner(jobs, notifier, state, chatgpt_fallback_mode=args.chatgpt_fallback_mode)
         current_stage = "preflight"
         try:
             # Fail before spending anything if the browser stack is not usable (§65).
@@ -2322,6 +2391,7 @@ def main() -> int:
             body_images = stage_body_images(
                 runner, project, content_project, visual_plan, world_style_plan,
                 world_style_anchor, world_keyframe, regenerate_beats,
+                revision_feedback,
             )
             stage_transition_direction(
                 runner,

@@ -296,9 +296,12 @@ class OrdakClient:
 
 
 class Pipeline:
-    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool, creative_brief: dict[str, str] | None = None) -> None:
+    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool, creative_brief: dict[str, str] | None = None, regenerate_beats: set[int] | None = None, revision_feedback: dict[int, str] | None = None, config_revision: bool = False) -> None:
         self.root, self.topic, self.video_id, self.preset, self.duration_min_seconds, self.duration_max_seconds, self.aspect_ratio, self.content_project, self.client, self.force = root, topic, video_id, preset, duration_min_seconds, duration_max_seconds, aspect_ratio, content_project, client, force
         self.creative_brief = creative_brief or {}
+        self.regenerate_beats = regenerate_beats or set()
+        self.revision_feedback = revision_feedback or {}
+        self.config_revision = config_revision
         self.creative_brief_sha256 = hashlib.sha256(json.dumps(self.creative_brief, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
         self.project = root / "videos" / f"{video_id}_{video_slug(topic)}"
         self.state_dir = self.project / "visual_pipeline"
@@ -342,8 +345,13 @@ class Pipeline:
             state_content_project = self.state.get("content_project", DEFAULT_CONTENT_PROJECT)
             state_creative_hash = self.state.get("creative_brief_sha256")
             legacy_empty_brief = state_creative_hash is None and not self.creative_brief
-            if self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or state_content_project != self.content_project.project_id or state_min != self.duration_min_seconds or state_max != self.duration_max_seconds or state_ratio != self.aspect_ratio or (not legacy_empty_brief and state_creative_hash != self.creative_brief_sha256):
+            identity_changed = self.state.get("topic") != self.topic or self.state.get("preset") != self.preset or state_content_project != self.content_project.project_id
+            configuration_changed = state_min != self.duration_min_seconds or state_max != self.duration_max_seconds or state_ratio != self.aspect_ratio or (not legacy_empty_brief and state_creative_hash != self.creative_brief_sha256)
+            if identity_changed or (configuration_changed and not self.config_revision):
                 raise RuntimeError("Existing video state has different content project, topic, preset, duration, frame format, or creative brief; choose another video ID.")
+            if configuration_changed:
+                self.state.update({"duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "aspect_ratio": self.aspect_ratio, "creative_brief_sha256": self.creative_brief_sha256})
+                self.save()
             return
         self.state = {"version": 7, "content_project": self.content_project.project_id, "topic": self.topic, "preset": self.preset, "duration_min_seconds": self.duration_min_seconds, "duration_max_seconds": self.duration_max_seconds, "aspect_ratio": self.aspect_ratio, "creative_brief_sha256": self.creative_brief_sha256, "created_at": utcnow(), "stages": {}, "beats": {}, "timing_events": []}
         self.save()
@@ -506,6 +514,9 @@ Constraints: {constraints}
                 world_design = self._stage_text("world_design", replace_tokens(load_template(world_design_prompt, self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script), "WORLD_DESIGN.md", self.validate_world_design)
             beats_text = self._stage_text("visual_beats", replace_tokens(load_template("03_visual_beats.md", self.content_project), VIDEO_BRIEF=brief, FINAL_SCRIPT=script, WORLD_DESIGN=world_design), "VISUAL_BEATS.md", self.parse_beats)
             beats = self.parse_beats(beats_text)
+            unknown_regenerations = self.regenerate_beats - {int(beat["id"]) for beat in beats}
+            if unknown_regenerations:
+                raise RuntimeError(f"Requested regeneration for unknown beat IDs: {sorted(unknown_regenerations)}")
             self.write_once("VISUAL_PRESET.md", f"# Visual Preset\n\nContent project: `{self.content_project.project_id}`\n\nSelected preset: `{self.preset}`\n")
             preset_root = resolve_visual_preset(self.content_project, self.preset)
             style, character = preset_root / "style_anchor.png", preset_root / "character_anchor.png"
@@ -515,14 +526,20 @@ Constraints: {constraints}
             for beat in beats:
                 beat_id = beat["id"]
                 prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
-                if not prompt_path.exists() or self.force:
+                if not prompt_path.exists() or self.force or beat_id in self.regenerate_beats:
                     started_at, started = utcnow(), time.perf_counter()
                     prompt_request = replace_tokens(load_template("04_single_beat_image_prompt_writer.md", self.content_project), STYLE_RULES=style_rules, WORLD_DESIGN=world_design, VISUAL_BEAT=json.dumps(beat, ensure_ascii=False), REFERENCE_IMAGES="style anchor, character anchor, and previous accepted beat where applicable", PREVIOUS_BEAT="No previous beat for Beat 001." if beat_id == 1 else "Use the supplied previous accepted beat only for short-range continuity.", ASPECT_RATIO=self.aspect_ratio, FRAME_GUIDANCE="Use a tall mobile-first composition: keep the protagonist and key action in the center column, preserve comfortable headroom and lower-screen safe space, and use vertical depth rather than wide lateral detail." if self.aspect_ratio == "9:16" else "Use a cinematic widescreen composition: use left/right depth and balanced horizontal staging while keeping the main action readable.")
                     prompt_result = self.client.text(prompt_request, stage=f"beat_{beat_id:03d}_prompt")
                     prompt = clean_model_text(str(prompt_result["answer"]))
                     if "exactly one" not in prompt.lower() or self.aspect_ratio not in prompt:
                         raise RuntimeError(f"Beat {beat_id:03d} prompt validation failed.")
-                    self.write_once(str(prompt_path.relative_to(self.project)), prompt)
+                    if self.revision_feedback.get(beat_id):
+                        prompt = f"{prompt.rstrip()}\n\nADMIN REVISION REQUEST (binding): {self.revision_feedback[beat_id].strip()}"
+                    if beat_id in self.regenerate_beats:
+                        prompt_path.parent.mkdir(parents=True, exist_ok=True)
+                        prompt_path.write_text(prompt.strip() + "\n", encoding="utf-8")
+                    else:
+                        self.write_once(str(prompt_path.relative_to(self.project)), prompt)
                     self.record_timing("beat_prompt", started_at, started, beat_id=beat_id, artifact=str(prompt_path.relative_to(self.project)), ordak_job_id=prompt_result["job_id"], request_timing=prompt_result.get("_client_timing"))
                     self.notifier.prompt_complete(beat_id, len(beats), time.perf_counter() - started)
                 self.state["beats"].setdefault(f"{beat_id:03d}", {"status": "PROMPT_READY", "attempts": 0})["prompt_path"] = str(prompt_path.relative_to(self.project))
@@ -568,7 +585,7 @@ Constraints: {constraints}
             key = f"{beat_id:03d}"
             record = self.state["beats"].setdefault(key, {})
             target = output_dir / f"beat_{beat_id:03d}.png"
-            if target.exists() and not self.force:
+            if target.exists() and not self.force and beat_id not in self.regenerate_beats:
                 try:
                     metadata = self.valid_image(target, previous_sha)
                     record.update({"status": "DONE", "output": metadata})
@@ -678,6 +695,9 @@ def main() -> None:
     parser.add_argument("--aspect-ratio", choices=("16:9", "9:16"), default="16:9")
     parser.add_argument("--creative-brief", type=Path, default=None, help="Optional JSON created by the launch panel with project-specific editorial inputs.")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs selected for revision.")
+    parser.add_argument("--beat-feedback-json", type=Path, help="Optional operator feedback keyed by beat ID.")
+    parser.add_argument("--config-revision", action="store_true", help="Accept a panel-versioned mutable configuration for this video ID.")
     args = parser.parse_args()
     content_project = load_content_project(args.content_project)
     preset = args.preset or content_project.default_visual_preset
@@ -696,11 +716,24 @@ def main() -> None:
         if not isinstance(loaded, dict):
             raise RuntimeError("Creative brief must be a JSON object.")
         creative_brief = {str(key): str(value).strip() for key, value in loaded.items() if isinstance(value, str) and value.strip()}
+    try:
+        regenerate_beats = {int(value.strip()) for value in args.regenerate_beats.split(",") if value.strip()}
+    except ValueError as exc:
+        raise RuntimeError("--regenerate-beats must contain comma-separated integers.") from exc
+    revision_feedback: dict[int, str] = {}
+    if args.beat_feedback_json:
+        try:
+            raw_feedback = json.loads(args.beat_feedback_json.read_text(encoding="utf-8"))
+            if not isinstance(raw_feedback, dict):
+                raise ValueError("feedback must be an object")
+            revision_feedback = {int(key): str(value).strip() for key, value in raw_feedback.items() if str(value).strip()}
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Beat feedback is unreadable: {args.beat_feedback_json}") from exc
     env_file = ROOT / os.getenv("YT_ENV_FILE", ".env")
     load_dotenv(env_file, override=False)
     client = OrdakClient(Settings(os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/"), int(os.getenv("YT_ORDAK_JOB_WAIT_TIMEOUT_SECONDS", "900")), float(os.getenv("YT_ORDAK_JOB_POLL_INTERVAL_SECONDS", "2"))))
     try:
-        report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force, creative_brief).run()
+        report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force, creative_brief, regenerate_beats, revision_feedback, args.config_revision).run()
     except ImageGenerationLimitReached:
         print("VISUAL PIPELINE: PAUSED_FOR_IMAGE_LIMIT", flush=True)
         raise SystemExit(75)

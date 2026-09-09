@@ -23,6 +23,7 @@ import os
 import subprocess
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,6 +31,33 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 #: STT results are only usable for sync when they carry real per-word timestamps.
 ACCEPTED_STT_BACKENDS = ("ajil", "local")
+MUSIC_SUFFIXES = {".mp3", ".wav", ".m4a", ".ogg", ".flac"}
+
+
+def mark_wrapper_stage(project: Path, stage: str, status: str, **details: object) -> None:
+    """Persist wrapper-owned stages so the Studio can observe them in real time."""
+    path = project / "pipeline" / "WRAPPER_RUNTIME_STATE.json"
+    try:
+        state = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        state = {"schema_version": 1, "events": []}
+    now = datetime.now(timezone.utc).isoformat()
+    events = state.setdefault("events", [])
+    if status != "RUNNING" and events and events[-1].get("stage") == stage and events[-1].get("status") == "RUNNING":
+        events[-1].update({"status": status, "ended_at": now, **details})
+    else:
+        events.append({"stage": stage, "status": status, "started_at": now, **details})
+    state.update({"status": status, "updated_at": now})
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def music_is_usable(directory: Path) -> bool:
+    return directory.is_dir() and any(path.is_file() and path.suffix.lower() in MUSIC_SUFFIXES and path.stat().st_size >= 64 * 1024 for path in directory.iterdir())
+
+
+def file_is_usable(path: Path) -> bool:
+    return path.is_file() and path.stat().st_size > 0
 
 
 def run(command: list[str]) -> None:
@@ -102,6 +130,7 @@ def qh_overrides(creative_brief: Path) -> list[str]:
         "world_style_policy": "--world-style-policy",
         "world_style_id": "--world-style-id",
         "world_style_hint": "--world-style-hint",
+        "chatgpt_fallback_mode": "--chatgpt-fallback-mode",
         "min_duration_seconds": "--min-duration-seconds",
         "max_duration_seconds": "--max-duration-seconds",
     }
@@ -168,6 +197,8 @@ def main() -> int:
     parser.add_argument("--creative-brief", type=Path, required=True)
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--aspect-ratio", default="9:16")
+    parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs to revise, including their continuity downstream.")
+    parser.add_argument("--beat-feedback-json", type=Path, help="Operator feedback JSON passed into revised beat prompts.")
     parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
@@ -212,6 +243,8 @@ def main() -> int:
                 "--aspect-ratio", args.aspect_ratio,
             ]
             + qh_overrides(args.creative_brief)
+            + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
+            + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
         )
     except subprocess.CalledProcessError:
         only_flow, reason = blocked_only_on_flow(project)
@@ -227,44 +260,57 @@ def main() -> int:
 
     # 2. One continuous narration track (§66).
     narration = project / "assets" / "audio" / "narration.mp3"
-    if narration.is_file():
+    if file_is_usable(narration):
         print(f"narration reuse: {narration}", flush=True)
+        mark_wrapper_stage(project, "elevenlabs_voiceover", "REUSED", artifact=str(narration.relative_to(project)))
         report_reused(notifier, "elevenlabs_voiceover", str(narration.relative_to(project)))
     else:
-        run(
-            [
-                python, "scripts/run_elevenlabs_voiceover.py",
-                "--video-id", args.video_id,
-                "--project", str(project),
-                "--profile", str(args.voice_profile),
-            ]
-        )
+        mark_wrapper_stage(project, "elevenlabs_voiceover", "RUNNING")
+        try:
+            run([python, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)])
+        except subprocess.CalledProcessError as exc:
+            mark_wrapper_stage(project, "elevenlabs_voiceover", "FAILED", returncode=exc.returncode)
+            raise
+        if not file_is_usable(narration):
+            mark_wrapper_stage(project, "elevenlabs_voiceover", "FAILED_VALIDATION", message="Narration command returned without a usable artifact.")
+            raise RuntimeError(f"Narration is missing or empty: {narration}")
+        mark_wrapper_stage(project, "elevenlabs_voiceover", "DONE", artifact=str(narration.relative_to(project)))
 
     # 3. Background music. It needs only the narration and the brief, so it runs before the
     #    timing: when alignment is blocked by its STT provider, the episode should still gain
     #    its music instead of every resume stopping at the same step with nothing to show.
     music_dir = project / "assets" / "music"
-    if music_dir.is_dir() and any(music_dir.iterdir()):
+    if music_is_usable(music_dir):
         print("music reuse", flush=True)
+        mark_wrapper_stage(project, "background_music", "REUSED", artifact=str(music_dir.relative_to(project)))
         report_reused(notifier, "background_music", str(music_dir.relative_to(project)))
     else:
-        run(
-            [
-                python, "scripts/run_pixabay_music.py",
-                "--video-id", args.video_id,
-                "--project", str(project),
-                "--providers", args.music_providers or args.music_provider or "mixkit",
-            ]
-        )
+        mark_wrapper_stage(project, "background_music", "RUNNING")
+        try:
+            run([python, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--providers", args.music_providers or args.music_provider or "mixkit"])
+        except subprocess.CalledProcessError as exc:
+            mark_wrapper_stage(project, "background_music", "FAILED", returncode=exc.returncode)
+            raise
+        if not music_is_usable(music_dir):
+            mark_wrapper_stage(project, "background_music", "FAILED_VALIDATION", message="Music command returned without a usable audio file.")
+            raise RuntimeError(f"Background music is missing or unusable: {music_dir}")
+        mark_wrapper_stage(project, "background_music", "DONE")
 
     # 4. Real word timestamps, and the measured opening boundaries derived from them. Both
     #    accepted backends measure real words; only invented timing is refused (§67).
     if word_timing_is_usable(project):
         print("timing reuse: word-level timestamps already present", flush=True)
+        mark_wrapper_stage(project, "ajil_alignment", "REUSED", artifact="timing/BEAT_TIMINGS.json")
         report_reused(notifier, "ajil_alignment", "timing/BEAT_TIMINGS.json")
     else:
-        run_owned_stage([python, "scripts/align_beats.py", str(project), "--fallback-backend", "none"], notifier, "ajil_alignment", project / "timing" / "BEAT_TIMINGS.json", project)
+        mark_wrapper_stage(project, "ajil_alignment", "RUNNING")
+        try:
+            run_owned_stage([python, "scripts/align_beats.py", str(project), "--fallback-backend", "none"], notifier, "ajil_alignment", project / "timing" / "BEAT_TIMINGS.json", project)
+        except subprocess.CalledProcessError as exc:
+            mark_wrapper_stage(project, "ajil_alignment", "FAILED", returncode=exc.returncode)
+            raise
         if not word_timing_is_usable(project):
+            mark_wrapper_stage(project, "ajil_alignment", "FAILED_VALIDATION", message="Alignment produced no accepted word-level timestamps.")
             print(
                 "FAILED_VALIDATION: alignment did not produce word-level timestamps plus "
                 "OPENING_TIMING.json, so the opening clips cannot be trimmed truthfully.",
@@ -272,6 +318,7 @@ def main() -> int:
                 flush=True,
             )
             return 2
+        mark_wrapper_stage(project, "ajil_alignment", "DONE", artifact="timing/BEAT_TIMINGS.json")
 
     # 5. Everything past here needs the Flow sources. Park the run rather than render an
     #    episode without its opening, and let the watcher resume when Flow answers again.
@@ -288,7 +335,22 @@ def main() -> int:
 
     # 6. Cut the Flow sources to the measured narration boundaries (§67).
     clear_pending_state(project)
-    run_owned_stage([python, "scripts/trim_opening_clips.py", str(project)], notifier, "opening_trim", project / "timing" / "OPENING_TIMING.json", project)
+    trim_outputs = [project / "assets/opening/question_spark_trimmed.mp4", project / "assets/opening/book_transition_trimmed.mp4", project / "timing/OPENING_TRIM_REPORT.json"]
+    if all(path.is_file() and path.stat().st_size > 0 for path in trim_outputs):
+        print("opening trim reuse", flush=True)
+        mark_wrapper_stage(project, "opening_trim", "REUSED", artifact="timing/OPENING_TRIM_REPORT.json")
+        report_reused(notifier, "opening_trim", "timing/OPENING_TRIM_REPORT.json")
+    else:
+        mark_wrapper_stage(project, "opening_trim", "RUNNING")
+        try:
+            run_owned_stage([python, "scripts/trim_opening_clips.py", str(project)], notifier, "opening_trim", project / "timing/OPENING_TRIM_REPORT.json", project)
+        except subprocess.CalledProcessError as exc:
+            mark_wrapper_stage(project, "opening_trim", "FAILED", returncode=exc.returncode)
+            raise
+        if not all(file_is_usable(path) for path in trim_outputs):
+            mark_wrapper_stage(project, "opening_trim", "FAILED_VALIDATION", message="Trim command returned without every required output.")
+            raise RuntimeError("Opening trim did not produce both clips and its report.")
+        mark_wrapper_stage(project, "opening_trim", "DONE", artifact="timing/OPENING_TRIM_REPORT.json")
 
     # 7. Render profiles, then timeline → render → QC → publish.
     from run_full_video_pipeline import ensure_audio_mix_profile, ensure_render_profile
@@ -308,6 +370,7 @@ def main() -> int:
         sfx_enabled = False
     if sfx_enabled:
         completion += ["--sfx-config", str(args.creative_brief)]
+    completion += ["--motion-config", str(args.creative_brief)]
     if args.publish:
         completion.append("--publish")
         completion.append("--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size")

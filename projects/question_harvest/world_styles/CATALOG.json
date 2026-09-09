@@ -43,7 +43,7 @@
       "status": "ready",
       "path": "004_archaeological_engraving_papyrus_001",
       "anchor": "004_archaeological_engraving_papyrus_001/style_anchor.png",
-      "usage_count": 1
+      "usage_count": 2
     },
     {
       "style_id": "luminous_technical_network_001",
@@ -120,6 +120,28 @@
       "status": "ready",
       "path": "011_sketch_painting_wrestling_memory_001",
       "anchor": "011_sketch_painting_wrestling_memory_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "farmstead_ink_timer_storybook_001",
+      "display_name": "Farmstead Ink Timer Storybook 001",
+      "medium_family": "painted storybook",
+      "texture_family": "hand-painted fibrous paper grain",
+      "palette_summary": "warm morning cream, soft sage greens, muted terracotta, faded teal accents, gentle honey sunlight, and restrained charcoal details",
+      "status": "ready",
+      "path": "012_farmstead_ink_timer_storybook_001",
+      "anchor": "012_farmstead_ink_timer_storybook_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "editorial_lipstick_economics_inkwash_001",
+      "display_name": "Editorial Lipstick Economics Inkwash 001",
+      "medium_family": "ink wash",
+      "texture_family": "warm lightly toothy paper grain with faint dry-brush pooling and restrained print wear",
+      "palette_summary": "warm cream and faded ivory paper, muted taupe and recession-gray browns, dusty sage and desaturated teal, soft charcoal ink, restrained ochre, with selective lipstick-red accents reserved for cosmetics, emotional emphasis, and tiny compositional echoes",
+      "status": "ready",
+      "path": "013_editorial_lipstick_economics_inkwash_001",
+      "anchor": "013_editorial_lipstick_economics_inkwash_001/style_anchor.png",
       "usage_count": 1
     }
   ]

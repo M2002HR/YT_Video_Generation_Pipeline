@@ -100,6 +100,33 @@
       "book_template_id": "003",
       "world_style_id": "sketch_painting_wrestling_memory_001",
       "updated_at": "2026-09-07T08:18:14.437815+00:00"
+    },
+    {
+      "video_id": "021",
+      "opening_activity": "sorting tools",
+      "opening_location": "farmyard",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "002",
+      "world_style_id": "farmstead_ink_timer_storybook_001",
+      "updated_at": "2026-09-08T15:07:56.148948+00:00"
+    },
+    {
+      "video_id": "022",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001",
+      "updated_at": "2026-09-08T19:54:59.997415+00:00"
+    },
+    {
+      "video_id": "023",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001",
+      "updated_at": "2026-09-09T10:40:05.256960+00:00"
     }
   ]
 }
