@@ -16,6 +16,10 @@ videos/**/assets/audio/*
 videos/**/assets/renders/*
 !videos/**/assets/renders/.gitkeep
 
+# Optional Motion Director inspection media can be regenerated from the JSON plan.
+videos/**/motion/debug/*
+!videos/**/motion/debug/.gitkeep
+
 # Canonical preset/reference images are intentionally tracked.
 # Do NOT ignore visual_presets/** or videos/**/references/**
 
@@ -26,6 +30,18 @@ __pycache__/
 *.pyc
 .venv/
 control_panel/
+# The React Studio is deployable source and its locally-built bundle. Runtime jobs, logs and
+# dependencies remain machine-local.
+!control_panel/
+control_panel/*
+!control_panel/ui/
+!control_panel/ui/**
+!control_panel/dist/
+!control_panel/dist/**
+control_panel/ui/node_modules/
+control_panel/jobs/
+control_panel/services/
+control_panel/*.log
 
 # Root runtime secrets/config
 .env

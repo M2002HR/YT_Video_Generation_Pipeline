@@ -1,0 +1,15 @@
+[Unit]
+Description=Ajil Unified AI Gateway for video narration alignment
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/YT_Video_Generation_Pipeline
+ExecStart=/opt/YT_Video_Generation_Pipeline/.venv/bin/python -u /opt/YT_Video_Generation_Pipeline/scripts/run_ajil.py --host 127.0.0.1 --port 18080
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

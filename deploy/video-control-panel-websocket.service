@@ -1,0 +1,14 @@
+[Unit]
+Description=YT Video Generation Pipeline read-only websocket bridge
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/YT_Video_Generation_Pipeline
+ExecStart=/opt/YT_Video_Generation_Pipeline/.venv/bin/python scripts/panel_websocket_bridge.py --host 127.0.0.1 --port 4145
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

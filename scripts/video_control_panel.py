@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
-"""Single-page launch and monitoring panel for the video pipeline (§§62-64, T9.1/T9.2).
+"""HTTP API and process lifecycle for the Video Pipeline Studio.
 
-Official address: **http://<host>:4141/** behind nginx basic auth (4144 is kept as a
-legacy alias). Everything happens on one page: launch, provider health, a live log tail,
-and resume — no navigation, so a long run can be watched from where it was started.
-
-Locked choices (text=ChatGPT, image=Gemini, video=Flow) are rendered as disabled controls
-rather than editable ones, so the UI cannot suggest a combination the pipeline would reject.
+The React client provides launch, provider health, run workspaces, artifact previews, live
+activity, and dependency-aware regeneration. This loopback service owns validation and all
+filesystem/process mutations; nginx exposes it with authentication on the public ports.
 """
 from __future__ import annotations
 
 import argparse
+import base64
 import html
+import hashlib
 import json
 import os
 import re
+import mimetypes
+import shutil
 import subprocess
 import sys
 import threading
@@ -24,9 +25,13 @@ from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from typing import Any
+from urllib.parse import parse_qs, unquote, urlparse
 
 import panel_page
+from panel_contract import defaults as launch_defaults
+from panel_contract import launch_schema
+from run_graph import graph_for, invalidation_paths, regeneration_plan
 from content_projects import (
     DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project,
     validate_content_project, validate_provider_locks, normalize_gemini_model, normalize_flow_model, video_slug
@@ -34,6 +39,8 @@ from content_projects import (
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
+PROVIDER_STATUS_LOCK = threading.Lock()
+PROVIDER_STATUS_CACHE: dict[str, object] = {"at": 0.0, "base": "", "value": {}}
 PREFERRED_CONTENT_PROJECT = "question_harvest"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
 
@@ -42,6 +49,88 @@ ORDAK_BASE_URL = os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip(
 PROVIDERS = ("chatgpt", "gemini", "flow")
 MUSIC_PROVIDERS = ("freesound", "mixkit", "pixabay")
 JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
+STYLE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,119}$", re.IGNORECASE)
+
+
+def studio_schema() -> dict:
+    """Current launch form contract, including live project and style choices."""
+    projects = [
+        {"value": project.project_id, "label": project.display_name}
+        for project in list_content_projects()
+    ]
+    return launch_schema(projects, catalogued_style_ids(PREFERRED_CONTENT_PROJECT))
+
+
+def activity_for(record: dict, project: Path) -> list[dict]:
+    """Normalize durable runner state into stable, de-duplicatable UI events."""
+    events: list[dict] = []
+    try:
+        qh = json.loads((project / "pipeline/QH_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        qh = {}
+    for stage, entry in (qh.get("stages") or {}).items():
+        if not isinstance(entry, dict):
+            continue
+        at = entry.get("updated_at") or qh.get("updated_at") or record.get("created_at")
+        status = str(entry.get("status") or "PENDING")
+        events.append({"id": f"qh:{stage}:{status}:{at}", "stage": stage, "status": status, "at": at, "message": entry.get("message"), "elapsed_seconds": entry.get("elapsed_seconds")})
+    try:
+        visual = json.loads((project / "visual_pipeline/RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        visual = {}
+    for stage, entry in (visual.get("stages") or {}).items():
+        if not isinstance(entry, dict):
+            continue
+        shown = {"visual_beats": "visual_plan", "world_design": "episode_world_design"}.get(str(stage), str(stage))
+        at = entry.get("completed_at") or visual.get("updated_at") or record.get("created_at")
+        status = str(entry.get("status") or "PENDING")
+        events.append({"id": f"visual:{shown}:{status}:{at}", "stage": shown, "status": status, "at": at, "message": entry.get("last_error"), "elapsed_seconds": entry.get("elapsed_seconds")})
+    for number, entry in (visual.get("beats") or {}).items():
+        if not isinstance(entry, dict) or not str(number).isdigit():
+            continue
+        stage, status = f"beat_image_{int(number):03d}", str(entry.get("status") or "PENDING")
+        at = entry.get("completed_at") or visual.get("updated_at") or record.get("created_at")
+        events.append({"id": f"visual:{stage}:{status}:{at}", "stage": stage, "status": status, "at": at, "message": entry.get("last_error"), "elapsed_seconds": entry.get("elapsed_seconds")})
+    try:
+        generic = json.loads((project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        generic = {}
+    aliases = {"visuals": "visual_qc", "voiceover": "elevenlabs_voiceover", "timing": "ajil_alignment", "music": "background_music", "completion": "finalization"}
+    for index, entry in enumerate(generic.get("events") or []):
+        if not isinstance(entry, dict) or not entry.get("stage"):
+            continue
+        stage = aliases.get(str(entry["stage"]), str(entry["stage"]))
+        at = entry.get("ended_at") or entry.get("started_at")
+        status = str(entry.get("status") or "RUNNING")
+        events.append({"id": f"generic:{index}:{stage}:{status}:{at}", "stage": stage, "status": status, "at": at, "message": entry.get("error"), "elapsed_seconds": entry.get("elapsed_seconds")})
+    try:
+        wrapper = json.loads((project / "pipeline/WRAPPER_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        wrapper = {}
+    for index, entry in enumerate(wrapper.get("events") or []):
+        if not isinstance(entry, dict) or not entry.get("stage"):
+            continue
+        at = entry.get("ended_at") or entry.get("started_at")
+        status = str(entry.get("status") or "RUNNING")
+        events.append({"id": f"wrapper:{index}:{entry['stage']}:{status}:{at}", "stage": entry["stage"], "status": status, "at": at, "message": entry.get("message"), "elapsed_seconds": entry.get("elapsed_seconds")})
+    try:
+        final = json.loads((project / "pipeline/FINALIZATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        final = {}
+    for index, entry in enumerate(final.get("events") or []):
+        if not isinstance(entry, dict) or not entry.get("stage"):
+            continue
+        at = entry.get("ended_at") or entry.get("started_at")
+        status = str(entry.get("status") or "RUNNING")
+        events.append({"id": f"final:{index}:{entry['stage']}:{status}:{at}", "stage": entry["stage"], "status": status, "at": at, "message": entry.get("error") or (f"exit code {entry.get('returncode')}" if entry.get("returncode") is not None else None), "elapsed_seconds": entry.get("elapsed_seconds")})
+    revisions = project / "pipeline/revisions"
+    for path in revisions.glob("*/REVISION.json") if revisions.is_dir() else []:
+        try:
+            revision = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        events.append({"id": f"revision:{revision.get('revision_id', path.parent.name)}:{revision.get('status', 'QUEUED')}", "stage": ", ".join(revision.get("roots") or [revision.get("target") or "revision"]), "status": revision.get("status", "QUEUED"), "at": revision.get("completed_at") or revision.get("created_at"), "message": "Revision"})
+    return sorted(events, key=lambda item: str(item.get("at") or ""))
 
 
 def catalogued_style_ids(content_project: str) -> list[str]:
@@ -52,6 +141,59 @@ def catalogued_style_ids(content_project: str) -> list[str]:
     except (OSError, ValueError):
         return []
     return [str(entry.get("style_id")) for entry in entries if entry.get("style_id")]
+
+
+def style_catalog_entries(content_project: str) -> list[dict[str, object]]:
+    """Return safe, presentation-ready catalog metadata without exposing source files."""
+    if content_project not in {project.project_id for project in list_content_projects()}:
+        return []
+    catalog_root = ROOT / "projects" / content_project / "world_styles"
+    try:
+        styles = json.loads((catalog_root / "CATALOG.json").read_text(encoding="utf-8")).get("styles") or []
+    except (OSError, ValueError):
+        return []
+    result: list[dict[str, object]] = []
+    for entry in styles:
+        if not isinstance(entry, dict):
+            continue
+        style_id = str(entry.get("style_id") or "")
+        if not STYLE_ID_RE.fullmatch(style_id):
+            continue
+        anchor = catalog_root / str(entry.get("anchor") or "")
+        try:
+            anchor.resolve().relative_to(catalog_root.resolve())
+        except ValueError:
+            continue
+        result.append({
+            "style_id": style_id,
+            "display_name": str(entry.get("display_name") or style_id.replace("_", " ").title()),
+            "medium_family": entry.get("medium_family"),
+            "texture_family": entry.get("texture_family"),
+            "palette_summary": entry.get("palette_summary"),
+            "usage_count": int(entry.get("usage_count") or 0),
+            "anchor_available": anchor.is_file() and anchor.stat().st_size > 0,
+            "anchor_url": f"/api/styles/{content_project}/{style_id}/anchor",
+            "sample_url": f"/api/styles/{content_project}/{style_id}/sample",
+            "sample_available": bool(style_sample_for(style_id)),
+        })
+    return result
+
+
+def style_sample_for(style_id: str) -> Path | None:
+    """Newest available beat for a catalogued style, if an episode has produced one."""
+    candidates: list[Path] = []
+    videos = ROOT / "videos"
+    for project in videos.iterdir() if videos.is_dir() else []:
+        if not project.is_dir():
+            continue
+        try:
+            plan = json.loads((project / "creative/WORLD_STYLE_PLAN.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if str(plan.get("style_id") or "") != style_id:
+            continue
+        candidates.extend(path for path in (project / "assets/raw_beats").glob("beat_*.png") if path.is_file() and path.stat().st_size)
+    return max(candidates, key=lambda path: path.stat().st_mtime_ns, default=None)
 
 
 def style_options_html(content_project: str) -> str:
@@ -139,6 +281,24 @@ def terminate_job(job: dict) -> bool:
                 return True
             time.sleep(0.1)
     return True
+
+
+def monitor_process(job_id: str, process: subprocess.Popen) -> None:
+    """Persist the real child exit code immediately, then reconcile its durable outputs."""
+    if not hasattr(process, "wait"):
+        return
+    def wait_for_exit() -> None:
+        returncode = process.wait()
+        path = ROOT / "control_panel/jobs" / f"{job_id}.json"
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            if record.get("pid") == process.pid:
+                record.update({"exit_code": returncode, "process_exited_at": utcnow()})
+                write_json(path, record)
+        except (OSError, ValueError):
+            return
+        reconcile_stuck_jobs_once()
+    threading.Thread(target=wait_for_exit, daemon=True, name=f"job-{job_id[:8]}").start()
 
 
 def watchers_for(jobs_dir: Path, video_id: object) -> list[dict]:
@@ -250,6 +410,7 @@ def ensure_flow_watcher(jobs_dir: Path, episode: dict) -> dict | None:
             handle.close()
     record.update({"pid": process.pid, "command": command, "started_at": utcnow()})
     write_json(jobs_dir / f"{job_id}.json", record)
+    monitor_process(job_id, process)
     return record
 
 
@@ -268,7 +429,7 @@ def reconcile_stuck_jobs_once() -> None:
             # A Flow outage is Google's, not this episode's. The run parks with everything
             # else finished, so it becomes WAITING_FOR_FLOW and a watcher job is started to
             # continue it when Flow answers again — not FAILED.
-            if "FLOW_CLIPS_PENDING" in text:
+            if job.get("exit_code") == 4 or "FLOW_CLIPS_PENDING" in text:
                 job["status"] = "WAITING_FOR_FLOW"
                 job["completed_at"] = utcnow()
                 write_json(path, job)
@@ -278,13 +439,26 @@ def reconcile_stuck_jobs_once() -> None:
                     job["watcher_error"] = f"{type(exc).__name__}: {exc}"
                     write_json(path, job)
                 continue
+            if job.get("exit_code") not in (None, 0):
+                job["status"] = "FAILED"
             # consider success only if pipeline explicitly reported PASS
-            if "FULL VIDEO PIPELINE: PASS" in text or "QH CORE STAGES DONE" in text or "FULL QH PIPELINE: PASS" in text or "COMPLETION PIPELINE: PASS" in text or "QH PIPELINE BODY IMAGES" in text:
+            elif "FULL VIDEO PIPELINE: PASS" in text or "QH CORE STAGES DONE" in text or "FULL QH PIPELINE: PASS" in text or "COMPLETION PIPELINE: PASS" in text or "QH PIPELINE BODY IMAGES" in text:
                 # body images done but wrapper may have failed later — still mark DONE only if final reports exist
                 # check for final.mp4 QC pass
                 try:
                     proj = ROOT / str(job.get("project", ""))
-                    if (proj / "assets" / "renders" / "final.mp4").is_file() and (proj / "render" / "QC_REPORT.json").is_file():
+                    final_state = {}
+                    try:
+                        final_state = json.loads((proj / "pipeline/FINALIZATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+                    except (OSError, ValueError):
+                        pass
+                    final_ready = (
+                        final_state.get("status") == "DONE"
+                        and (proj / "assets/renders/polished.mp4").is_file()
+                        and (proj / "render/QC_REPORT_polished.json").is_file()
+                    )
+                    legacy_ready = (proj / "assets/renders/final.mp4").is_file() and (proj / "render/QC_REPORT.json").is_file()
+                    if final_ready or ("FULL VIDEO PIPELINE: PASS" in text and legacy_ready):
                         job["status"] = "DONE"
                     else:
                         job["status"] = "FAILED"
@@ -293,6 +467,19 @@ def reconcile_stuck_jobs_once() -> None:
             else:
                 job["status"] = "FAILED"
             job["completed_at"] = utcnow()
+            pending = job.get("pending_revision") if isinstance(job.get("pending_revision"), dict) else None
+            if pending:
+                revision_path = ROOT / str(job.get("project") or "") / "pipeline" / "revisions" / str(pending.get("revision_id")) / "REVISION.json"
+                revision = dict(pending)
+                revision.update({"status": job["status"], "completed_at": job["completed_at"]})
+                try:
+                    write_json(revision_path, revision)
+                except OSError:
+                    pass
+                if job["status"] == "DONE":
+                    job.pop("pending_revision", None)
+                else:
+                    job["pending_revision"] = revision
             # preserve original pid for audit but mark completed
             write_json(path, job)
             # also update launch request
@@ -328,7 +515,7 @@ def pipeline_command(record: dict) -> list[str]:
     voice_profile = ROOT / str(record["voice_profile"])
     music_providers = ",".join(music_provider_priority(record.get("music_providers") or record.get("music_provider") or "mixkit"))
     if content_project == "question_harvest":
-        return [
+        command = [
             sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
             "--topic", str(record["topic"]),
             "--video-id", str(record["video_id"]),
@@ -341,7 +528,13 @@ def pipeline_command(record: dict) -> list[str]:
         ] + (["--commit"] if record.get("commit_artifacts") else []) \
           + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
           + (["--telegram-original"] if record.get("telegram_original") else [])
-    return [
+        revision = record.get("pending_revision") or {}
+        if revision.get("regenerate_beats"):
+            command += ["--regenerate-beats", ",".join(str(x) for x in revision["regenerate_beats"])]
+        if revision.get("feedback_path"):
+            command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
+        return command
+    command = [
         sys.executable, "-u", "scripts/run_full_video_pipeline.py",
         "--content-project", content_project,
         "--topic", str(record["topic"]),
@@ -353,7 +546,16 @@ def pipeline_command(record: dict) -> list[str]:
         "--creative-brief", str(creative_brief),
         "--music-providers", music_providers,
     ] + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
-      + (["--telegram-original"] if record.get("telegram_original") else [])
+      + (["--telegram-original"] if record.get("telegram_original") else []) \
+      + (["--commit"] if record.get("commit_artifacts") else ["--no-commit"])
+    revision = record.get("pending_revision") or {}
+    if revision.get("regenerate_beats"):
+        command += ["--regenerate-beats", ",".join(str(x) for x in revision["regenerate_beats"])]
+    if revision.get("feedback_path"):
+        command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
+    if revision.get("kind") == "config":
+        command.append("--config-revision")
+    return command
 
 
 def provider_status() -> dict:
@@ -362,67 +564,102 @@ def provider_status() -> dict:
     An unreachable Ordak is reported as unreachable rather than as "all fine": the panel
     must never imply a provider is ready when nothing confirmed it.
     """
-    try:
-        import httpx
+    with PROVIDER_STATUS_LOCK:
+        age = time.monotonic() - float(PROVIDER_STATUS_CACHE["at"])
+        if PROVIDER_STATUS_CACHE["base"] == ORDAK_BASE_URL and age < 4:
+            return dict(PROVIDER_STATUS_CACHE["value"])
+        try:
+            import httpx
 
-        response = httpx.get(f"{ORDAK_BASE_URL}/api/diagnostics", timeout=6, trust_env=False)
-        data = response.json() if response.status_code == 200 else {}
-    except Exception as exc:
-        return {
-            "reachable": False,
-            "error": f"{type(exc).__name__}: {exc}"[:160],
-            "chrome_running": None,
-            "providers": {name: {"state": "unknown", "logged_in": None} for name in PROVIDERS},
-        }
-    sessions = data.get("provider_sessions") or {}
-    return {
-        "reachable": True,
-        "error": "",
-        "chrome_running": bool(data.get("chrome_running")),
-        "providers": {
-            name: {
-                "state": str((sessions.get(name) or {}).get("login_state") or "unknown"),
-                "logged_in": (sessions.get(name) or {}).get("logged_in"),
-                "tabs": len((sessions.get(name) or {}).get("open_tabs") or []),
+            response = httpx.get(f"{ORDAK_BASE_URL}/api/diagnostics", timeout=6, trust_env=False)
+            data = response.json() if response.status_code == 200 else {}
+            if response.status_code != 200:
+                raise RuntimeError(f"Ordak diagnostics returned HTTP {response.status_code}")
+        except Exception as exc:
+            result = {
+                "reachable": False,
+                "error": f"{type(exc).__name__}: {exc}"[:160],
+                "chrome_running": None,
+                "providers": {name: {"state": "unknown", "logged_in": None, "tabs": 0} for name in PROVIDERS},
             }
-            for name in PROVIDERS
-        },
-    }
+        else:
+            sessions = data.get("provider_sessions") or {}
+            result = {
+                "reachable": True,
+                "error": "",
+                "chrome_running": bool(data.get("chrome_running")),
+                "providers": {
+                    name: {
+                        "state": str((sessions.get(name) or {}).get("login_state") or "unknown"),
+                        "logged_in": (sessions.get(name) or {}).get("logged_in"),
+                        "tabs": len((sessions.get(name) or {}).get("open_tabs") or []),
+                    }
+                    for name in PROVIDERS
+                },
+            }
+        PROVIDER_STATUS_CACHE.update({"at": time.monotonic(), "base": ORDAK_BASE_URL, "value": result})
+        return dict(result)
 
 
 def pipeline_state_of(record: dict) -> dict:
     """The orchestrator's own state for a job, when it has written one (§81)."""
-    try:
-        path = ROOT / str(record.get("project") or "") / "pipeline" / "QH_RUNTIME_STATE.json"
-        state = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError, TypeError):
+    project = ROOT / str(record.get("project") or "")
+    state: dict = {}
+    for path in (
+        project / "pipeline/QH_RUNTIME_STATE.json",
+        project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
+    ):
+        try:
+            state = json.loads(path.read_text(encoding="utf-8"))
+            break
+        except (OSError, ValueError, TypeError):
+            continue
+    if not state:
         return {}
-    stages = state.get("stages") or {}
-    running = [name for name, entry in stages.items() if entry.get("status") == "RUNNING"]
-    # Body-image stages are added to QH_RUNTIME_STATE one at a time, so counting
-    # only keys already present makes the total jump from 21 to 38 during a normal
-    # run. Once the visual plan exists we know the complete, stable QH stage total:
-    # 18 fixed visual stages plus one stage per planned beat.
-    stage_count = len(stages)
-    try:
-        visual_plan = json.loads(
-            (ROOT / str(record.get("project") or "") / "creative" / "VISUAL_PLAN.json").read_text(encoding="utf-8")
-        )
-        planned_beats = len(visual_plan.get("beats") or [])
-        if planned_beats:
-            stage_count = max(stage_count, 18 + planned_beats)
-    except (OSError, ValueError, TypeError):
-        pass
+    graph_nodes = graph_for(project).get("nodes") or []
+    excluded: set[str] = set()
+    if not bool((record.get("motion") or {}).get("enabled", True)): excluded.add("motion_director")
+    if not bool((record.get("sfx") or {}).get("enabled", False)): excluded.update(("sfx_plan", "sfx_acquire"))
+    if not record.get("commit_artifacts"): excluded.add("git_commit_push")
+    if not record.get("telegram_low_size", True): excluded.add("telegram_compress")
+    visible = [node for node in graph_nodes if node.get("id") not in excluded]
+    running = [str(node["id"]) for node in visible if node.get("status") == "RUNNING"]
     is_live = bool(record.get("_live")) or bool(running)
     return {
         # The PID is the source of truth during a direct resume: QH's durable
         # state is intentionally only checkpointed at stage boundaries and can
         # still contain the prior failure for a short time.
-        "pipeline_state": "RUNNING" if is_live else state.get("pipeline_state"),
-        "stage_count": stage_count,
-        "done": sum(1 for entry in stages.values() if entry.get("status") in ("DONE", "REUSED")),
+        "pipeline_state": "RUNNING" if is_live else record.get("status") or state.get("pipeline_state"),
+        "stage_count": len(visible),
+        "done": sum(1 for node in visible if node.get("status") in ("DONE", "REUSED")),
         "running": running[0] if running else None,
     }
+
+
+def motion_status_of(record: dict) -> dict:
+    """Concise run-view status derived from committed machine-readable artifacts."""
+    project = ROOT / str(record.get("project") or "")
+    configured = record.get("motion") if isinstance(record.get("motion"), dict) else {}
+    result: dict[str, Any] = {
+        "enabled": bool(configured.get("enabled", True)),
+        "style": str(configured.get("style", "dynamic")),
+        "pace": str(configured.get("pace", "fast")),
+        "plan_status": "pending",
+    }
+    if not result["enabled"]:
+        result["plan_status"] = "disabled"; return result
+    try:
+        plan = json.loads((project / "motion" / "MOTION_PLAN.json").read_text(encoding="utf-8"))
+        result["plan_status"] = "ready"
+        result["micro_shots"] = sum(len(beat.get("micro_shots") or []) for beat in plan.get("beats") or [])
+    except (OSError, ValueError, TypeError):
+        return result
+    try:
+        qc = json.loads((project / "motion" / "MOTION_QC.json").read_text(encoding="utf-8"))
+        result["qc"] = "PASS" if qc.get("passed") else "WARN"
+    except (OSError, ValueError, TypeError):
+        result["qc"] = "pending"
+    return result
 
 
 def external_pipeline_pid(project: Path) -> int | None:
@@ -436,7 +673,7 @@ def external_pipeline_pid(project: Path) -> int | None:
         except OSError:
             continue
         if (
-            ("run_question_harvest_pipeline.py" in command or "run_full_video_pipeline_qh_wrapper.py" in command)
+            ("run_question_harvest_pipeline.py" in command or "run_full_video_pipeline_qh_wrapper.py" in command or "run_full_video_pipeline.py" in command)
             and needle in command
         ):
             return int(proc.name)
@@ -461,10 +698,17 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
         relative_project = str(project.relative_to(ROOT))
         if relative_project in known_projects:
             continue
-        state_path = project / "pipeline" / "QH_RUNTIME_STATE.json"
-        try:
-            state = json.loads(state_path.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        state = {}
+        for state_path in (
+            project / "pipeline/QH_RUNTIME_STATE.json",
+            project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
+        ):
+            try:
+                state = json.loads(state_path.read_text(encoding="utf-8"))
+                break
+            except (OSError, ValueError):
+                continue
+        if not state:
             continue
         pipeline_state = str(state.get("pipeline_state") or "").upper()
         live_pid = external_pipeline_pid(project)
@@ -482,7 +726,7 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
                 "job_id": str(uuid.uuid5(uuid.NAMESPACE_URL, f"external-panel:{relative_project}")),
                 "kind": "external_episode",
                 "video_id": video_id,
-                "content_project": "question_harvest",
+                "content_project": str(state.get("content_project") or ("question_harvest" if (project / "pipeline/QH_RUNTIME_STATE.json").is_file() else DEFAULT_CONTENT_PROJECT)),
                 "topic": str(state.get("topic") or project.name),
                 # A resumed direct runner may retain the prior terminal state until it
                 # reaches its next durable checkpoint. The live PID is authoritative.
@@ -506,6 +750,15 @@ def job_records(jobs_dir: Path, limit: int = 20) -> list[dict]:
     records: list[dict] = []
     paths = sorted(jobs_dir.glob("*.json"), key=lambda item: item.stat().st_mtime, reverse=True)
     known_projects: set[str] = set()
+    # Archived rows remain hidden even when their project has a failed runtime state that
+    # would otherwise be rediscovered as an external run.
+    for path in (jobs_dir / "archived").glob("*.json"):
+        try:
+            archived = json.loads(path.read_text(encoding="utf-8"))
+            if archived.get("project"):
+                known_projects.add(str(archived["project"]))
+        except (OSError, ValueError):
+            continue
     for path in paths:
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
@@ -562,6 +815,9 @@ def start_stuck_job_reconciler(interval: int = 30) -> None:
 class Handler(BaseHTTPRequestHandler):
     server_version = "VideoControlPanel/2.0"
 
+    def version_string(self) -> str:
+        return self.server_version
+
     @property
     def jobs_dir(self) -> Path:
         return ROOT / "control_panel" / "jobs"
@@ -570,16 +826,562 @@ class Handler(BaseHTTPRequestHandler):
         encoded = body.encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Content-Length", str(len(encoded)))
-        self.end_headers(); self.wfile.write(encoded)
+        self.end_headers()
+        if getattr(self, "command", "GET") != "HEAD":
+            self.wfile.write(encoded)
 
     def send_json(self, status: int, payload: dict) -> None:
         encoded = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Content-Length", str(len(encoded)))
-        self.end_headers(); self.wfile.write(encoded)
+        try:
+            self.end_headers()
+            if getattr(self, "command", "GET") != "HEAD":
+                self.wfile.write(encoded)
+        except (BrokenPipeError, ConnectionResetError):
+            return
+
+    def send_notice(self, status: int, message: str, **payload: object) -> None:
+        """Return compact JSON to the Studio while retaining HTML form compatibility."""
+        headers = getattr(self, "headers", None)
+        if headers and "application/json" in str(headers.get("Accept") or ""):
+            key = "message" if status < 400 else "error"
+            self.send_json(status, {key: message, **payload})
+        else:
+            self.send_html(status, self.page(message))
+
+    def websocket_signature(self, job_id: str | None = None) -> str:
+        """A cheap, read-only fingerprint of state visible in one Studio workspace.
+
+        The websocket deliberately observes durable runner files rather than subscribing to
+        or controlling runner processes.  That keeps a browser connection incapable of
+        pausing, restarting, or otherwise affecting an active pipeline.
+        """
+        if job_id:
+            resolved = self.project_for_job(job_id)
+            if not resolved:
+                return "missing"
+            record, project = resolved
+            files = [
+                project / "pipeline/QH_RUNTIME_STATE.json",
+                project / "visual_pipeline/RUNTIME_STATE.json",
+                project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
+                project / "pipeline/FINALIZATION_RUNTIME_STATE.json",
+                project / "pipeline/WRAPPER_RUNTIME_STATE.json",
+                self.jobs_dir / f"{job_id}.json",
+                self.jobs_dir / f"{job_id}.log",
+            ]
+            state = [(str(path), path.stat().st_mtime_ns, path.stat().st_size) for path in files if path.is_file()]
+            graph = graph_for(project)
+            state.extend(
+                (node.get("id"), node.get("status"), tuple((artifact.get("path"), artifact.get("updated_at")) for artifact in node.get("artifacts") or []))
+                for node in graph.get("nodes") or []
+            )
+            state.append(("live", pid_is_live(record.get("pid"))))
+        else:
+            state = []
+            for path in sorted(self.jobs_dir.glob("*.json")):
+                try:
+                    state.append((path.name, path.stat().st_mtime_ns, path.stat().st_size))
+                    record = json.loads(path.read_text(encoding="utf-8"))
+                    project = ROOT / str(record.get("project") or "")
+                    state.append((path.name, pipeline_state_of(record)))
+                    for relative in ("pipeline/QH_RUNTIME_STATE.json", "visual_pipeline/RUNTIME_STATE.json", "pipeline/FULL_PIPELINE_RUNTIME_STATE.json"):
+                        runtime = project / relative
+                        if runtime.is_file():
+                            state.append((path.name, relative, runtime.stat().st_mtime_ns, runtime.stat().st_size))
+                except OSError:
+                    continue
+                except (ValueError, TypeError):
+                    continue
+        return hashlib.sha256(repr(state).encode("utf-8")).hexdigest()
+
+    def handle_websocket(self, query: dict[str, list[str]]) -> None:
+        """Send small change notifications; clients fetch their normal JSON snapshots.
+
+        This is intentionally dependency-free so the service can be upgraded in place.
+        It implements the server-to-client half of RFC 6455 and accepts no commands.
+        """
+        key = self.headers.get("Sec-WebSocket-Key", "")
+        upgrade = self.headers.get("Upgrade", "").lower()
+        try:
+            valid_key = len(base64.b64decode(key.encode("ascii"), validate=True)) == 16
+        except (ValueError, UnicodeEncodeError):
+            valid_key = False
+        if upgrade != "websocket" or not valid_key:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "WebSocket upgrade required"})
+            return
+        requested_job = (query.get("job_id") or [""])[0]
+        job_id = requested_job if JOB_ID_RE.fullmatch(requested_job) else None
+        if requested_job and not job_id:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid job id"})
+            return
+        accept = base64.b64encode(
+            hashlib.sha1(f"{key}258EAFA5-E914-47DA-95CA-C5AB0DC85B11".encode("ascii")).digest()
+        ).decode("ascii")
+        self.send_response(HTTPStatus.SWITCHING_PROTOCOLS)
+        self.send_header("Upgrade", "websocket")
+        self.send_header("Connection", "Upgrade")
+        self.send_header("Sec-WebSocket-Accept", accept)
+        self.end_headers()
+        self.close_connection = True
+
+        def send_event(event: dict) -> None:
+            encoded = json.dumps(event, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+            # Server frames are never masked. Snapshot notifications are deliberately tiny.
+            header = bytes([0x81])
+            if len(encoded) < 126:
+                header += bytes([len(encoded)])
+            else:  # The current payload is tiny; retain correct framing if it grows.
+                header += bytes([126]) + len(encoded).to_bytes(2, "big")
+            self.wfile.write(header + encoded)
+            self.wfile.flush()
+
+        signature = self.websocket_signature(job_id)
+        last_heartbeat = time.monotonic()
+        try:
+            send_event({"type": "connected", "scope": "run" if job_id else "dashboard", "at": utcnow()})
+            while True:
+                time.sleep(1)
+                latest = self.websocket_signature(job_id)
+                if latest != signature:
+                    signature = latest
+                    send_event({"type": "changed", "scope": "run" if job_id else "dashboard", "at": utcnow()})
+                    last_heartbeat = time.monotonic()
+                elif time.monotonic() - last_heartbeat >= 20:
+                    send_event({"type": "heartbeat", "at": utcnow()})
+                    last_heartbeat = time.monotonic()
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            return
+
+    def project_for_job(self, job_id: str) -> tuple[dict, Path] | None:
+        """Resolve a panel job or a deterministic read-only external run."""
+        path = self.jobs_dir / f"{job_id}.json"
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            project = (ROOT / str(record.get("project") or "")).resolve()
+            videos_root = (ROOT / "videos").resolve()
+            project.relative_to(videos_root)
+            if project == videos_root or not project.is_dir():
+                raise ValueError("Job project is not an episode directory.")
+            return record, project
+        except (OSError, ValueError, TypeError):
+            pass
+        # Read-only terminal/manual runs use a deterministic id and do not have a panel job
+        # record. They should still open from the dashboard instead of leading to a 404.
+        videos = ROOT / "videos"
+        for project in videos.iterdir() if videos.is_dir() else []:
+            if not project.is_dir():
+                continue
+            relative_project = str(project.relative_to(ROOT))
+            external_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"external-panel:{relative_project}"))
+            if external_id != job_id:
+                continue
+            state = {}
+            try: state = json.loads((project / "pipeline/QH_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+            except (OSError, ValueError): pass
+            return ({"job_id": job_id, "video_id": state.get("video_id") or project.name.split("_", 1)[0], "topic": state.get("topic") or project.name, "status": state.get("pipeline_state") or "UNKNOWN", "project": relative_project, "external": True}, project.resolve())
+        return None
+
+    def serve_style_preview(self, content_project: str, style_id: str, kind: str) -> None:
+        """Serve a small JPEG thumbnail for a style anchor or a representative beat."""
+        if kind not in {"anchor", "sample"} or not STYLE_ID_RE.fullmatch(style_id):
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        catalog_root = ROOT / "projects" / content_project / "world_styles"
+        if content_project not in {project.project_id for project in list_content_projects()}:
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        try:
+            catalog = json.loads((catalog_root / "CATALOG.json").read_text(encoding="utf-8"))
+            entry = next(item for item in catalog.get("styles") or [] if isinstance(item, dict) and item.get("style_id") == style_id)
+            target = (catalog_root / str(entry.get("anchor") or "")).resolve() if kind == "anchor" else style_sample_for(style_id)
+            if target is None:
+                raise ValueError("No sample")
+            if kind == "anchor":
+                target.relative_to(catalog_root.resolve())
+            if not target.is_file() or target.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
+                raise ValueError("Unsafe preview target")
+        except (OSError, ValueError, StopIteration):
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        cache = ROOT / "control_panel" / "style_previews"
+        try:
+            cache.mkdir(parents=True, exist_ok=True)
+            key = hashlib.sha256(f"{target}:{target.stat().st_mtime_ns}:{target.stat().st_size}".encode()).hexdigest()[:24]
+            thumbnail = cache / f"{key}.jpg"
+            if not thumbnail.is_file():
+                from PIL import Image
+                with Image.open(target) as image:
+                    image.thumbnail((420, 300), Image.Resampling.LANCZOS)
+                    image.convert("RGB").save(thumbnail, "JPEG", quality=52, optimize=True)
+            payload = thumbnail.read_bytes()
+        except (OSError, ValueError):
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "image/jpeg")
+        self.send_header("Content-Length", str(len(payload)))
+        self.send_header("Cache-Control", "private, max-age=86400")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.end_headers()
+        try:
+            if getattr(self, "command", "GET") != "HEAD":
+                self.wfile.write(payload)
+        except (BrokenPipeError, ConnectionResetError):
+            return
+
+    def preview_artifact(self, project: Path, target: Path) -> tuple[Path, str]:
+        """Return a deliberately low-bandwidth derivative; masters never leave the host.
+
+        Previews are cached per source mtime/size.  A 720p master therefore cannot be inferred
+        from the UI endpoint even when an operator opens the media element in a new tab.
+        """
+        suffix = target.suffix.lower()
+        key = hashlib.sha256(f"{target.relative_to(project)}:{target.stat().st_mtime_ns}:{target.stat().st_size}".encode()).hexdigest()[:20]
+        cache = project / ".panel_previews"
+        cache.mkdir(exist_ok=True)
+        cache = cache.resolve()
+        cache.relative_to(project.resolve())
+        if suffix in {".png", ".jpg", ".jpeg", ".webp"}:
+            output = cache / f"{key}.jpg"
+            if not output.is_file():
+                from PIL import Image
+                with Image.open(target) as image:
+                    image.thumbnail((480, 480), Image.Resampling.LANCZOS)
+                    image.convert("RGB").save(output, "JPEG", quality=48, optimize=True)
+            return output, "image/jpeg"
+        if suffix in {".mp4", ".mov", ".webm"}:
+            output = cache / f"{key}.mp4"
+            if not output.is_file():
+                subprocess.run(["ffmpeg", "-y", "-i", str(target), "-vf", "scale=min(360\\,iw):-2", "-c:v", "libx264", "-crf", "35", "-preset", "veryfast", "-an", str(output)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=180)
+            return output, "video/mp4"
+        if suffix in {".mp3", ".wav", ".m4a", ".ogg", ".flac"}:
+            output = cache / f"{key}.ogg"
+            if not output.is_file():
+                subprocess.run(["ffmpeg", "-y", "-i", str(target), "-c:a", "libopus", "-b:a", "32k", "-ac", "1", str(output)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=120)
+            return output, "audio/ogg"
+        # Metadata is safe to display directly; binary/unrecognised input is never exposed.
+        if suffix in {".json", ".txt", ".md", ".ass"}:
+            return target, "text/plain; charset=utf-8"
+        raise ValueError("This artifact has no safe panel preview.")
+
+    def serve_artifact(self, project: Path, relative: str) -> None:
+        """Serve only a low-quality derivative or text metadata, never the original media."""
+        try:
+            target = (project / relative).resolve()
+            target.relative_to(project)
+        except ValueError:
+            self.send_error(HTTPStatus.FORBIDDEN); return
+        if not target.is_file():
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        try:
+            target, content_type = self.preview_artifact(project, target)
+        except (ValueError, OSError, subprocess.SubprocessError):
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        size = target.stat().st_size
+        start, end, status = 0, max(0, size - 1), HTTPStatus.OK
+        requested = self.headers.get("Range", "")
+        match = re.fullmatch(r"bytes=(\d*)-(\d*)", requested.strip()) if requested else None
+        if match and size:
+            if match.group(1):
+                start = int(match.group(1)); end = int(match.group(2)) if match.group(2) else end
+            elif match.group(2):
+                start = max(0, size - int(match.group(2)))
+            if start >= size or end < start:
+                self.send_response(HTTPStatus.REQUESTED_RANGE_NOT_SATISFIABLE)
+                self.send_header("Content-Range", f"bytes */{size}"); self.end_headers(); return
+            end, status = min(end, size - 1), HTTPStatus.PARTIAL_CONTENT
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Length", str(end - start + 1 if size else 0))
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
+        if status == HTTPStatus.PARTIAL_CONTENT:
+            self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+        self.send_header("Cache-Control", "private, max-age=86400")
+        try:
+            self.end_headers()
+            if getattr(self, "command", "GET") == "HEAD":
+                return
+            with target.open("rb") as handle:
+                handle.seek(start)
+                remaining = end - start + 1
+                while remaining > 0:
+                    chunk = handle.read(min(64 * 1024, remaining))
+                    if not chunk: break
+                    self.wfile.write(chunk); remaining -= len(chunk)
+        except (BrokenPipeError, ConnectionResetError):
+            return
+
+    def serve_studio(self, route: str) -> None:
+        """Serve the locally-built React application; history routes fall back to index."""
+        dist = ROOT / "control_panel" / "dist"
+        candidate = (dist / route.lstrip("/")).resolve() if route not in ("/", "") else dist / "index.html"
+        try:
+            candidate.relative_to(dist.resolve())
+        except ValueError:
+            candidate = dist / "index.html"
+        if not candidate.is_file():
+            candidate = dist / "index.html"
+        if not candidate.is_file():
+            self.send_html(HTTPStatus.SERVICE_UNAVAILABLE, "<p>Studio UI is not built. Run <code>npm run build</code> in control_panel/ui.</p>"); return
+        content = candidate.read_bytes(); kind = mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"
+        self.send_response(HTTPStatus.OK); self.send_header("Content-Type", kind); self.send_header("Content-Length", str(len(content)))
+        self.send_header("Cache-Control", "no-store" if candidate.name == "index.html" else "public, max-age=31536000, immutable")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
+        self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+        self.send_header("Content-Security-Policy", "default-src 'self'; img-src 'self' data:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
+        try:
+            self.end_headers()
+            if getattr(self, "command", "GET") != "HEAD":
+                self.wfile.write(content)
+        except (BrokenPipeError, ConnectionResetError):
+            return
+
+    def read_json_payload(self, limit: int = 100_000) -> dict:
+        size = int(self.headers.get("Content-Length", "0"))
+        if size <= 0 or size > limit:
+            raise ValueError("Request body is empty or too large.")
+        value = json.loads(self.rfile.read(size).decode("utf-8"))
+        if not isinstance(value, dict):
+            raise ValueError("Request body must be a JSON object.")
+        return value
+
+    def handle_regeneration_preview(self) -> None:
+        try:
+            payload = self.read_json_payload()
+            job_id = str(payload.get("job_id") or "")
+            roots = payload.get("node_ids") or [payload.get("node_id")]
+            if not JOB_ID_RE.fullmatch(job_id) or not isinstance(roots, list) or not all(isinstance(item, str) and item for item in roots):
+                raise ValueError("Choose at least one valid node.")
+            resolved = self.project_for_job(job_id)
+            if not resolved:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
+            record, project = resolved
+            plan = regeneration_plan(project, roots)
+            graph = graph_for(project)
+            summary = {node["id"]: {key: node.get(key) for key in ("title", "kind", "phase", "status")} for node in graph["nodes"]}
+            self.send_json(HTTPStatus.OK, {**plan, "nodes": summary, "can_start": not record.get("external") and active_job(self.jobs_dir) is None, "read_only": bool(record.get("external")), "run_status": record.get("status")})
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Invalid regeneration request."})
+
+    def start_regeneration(self, record: dict, project: Path, roots: list[str], feedback: str = "", kind: str = "node") -> tuple[dict, subprocess.Popen]:
+        """Archive an exact DAG branch and start it, rolling back if spawn fails."""
+        plan = regeneration_plan(
+            project,
+            roots,
+            include_disabled=kind == "config",
+            settings=record if kind == "config" else None,
+            skip_disabled_descendants=kind == "config",
+        )
+        revision_id = str(uuid.uuid4())
+        folder = project / "pipeline" / "revisions" / revision_id
+        folder.mkdir(parents=True, exist_ok=False)
+        feedback_path = folder / "feedback.json"
+        beat_feedback = {str(int(root[-3:])): feedback for root in roots if root.startswith("beat_image_") and feedback}
+        if beat_feedback:
+            write_json(feedback_path, beat_feedback)
+        archived: list[str] = []
+        state_before: dict[Path, dict] = {}
+        state_paths = [project / "pipeline/QH_RUNTIME_STATE.json", project / "visual_pipeline/RUNTIME_STATE.json"]
+        try:
+            for relative in invalidation_paths(project, plan["affected_nodes"]):
+                source, destination = project / relative, folder / "previous" / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(source, destination)
+                archived.append(relative)
+            for state_path in state_paths:
+                state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.is_file() else {}
+                if not state:
+                    continue
+                state_before[state_path] = json.loads(json.dumps(state))
+                for node_id in plan["affected_nodes"]:
+                    stage_id = {
+                        "visual_plan": "visual_beats",
+                        "episode_world_design": "world_design",
+                    }.get(node_id, node_id)
+                    (state.get("stages") or {}).pop(stage_id, None)
+                    if node_id.startswith("beat_image_"):
+                        (state.get("beats") or {}).pop(str(int(node_id[-3:])), None)
+                        (state.get("beats") or {}).pop(node_id[-3:], None)
+                write_json(state_path, state)
+            # Explicit beat IDs are only needed for provider-prompt feedback. Continuity
+            # descendants have already had their artifacts archived and therefore rebuild
+            # naturally. Passing every old descendant after a visual-plan rewrite could name
+            # beats that no longer exist in the newly generated plan.
+            regenerate_beats = [int(node[-3:]) for node in roots if node.startswith("beat_image_")]
+            revision = {
+                "schema_version": 2, "revision_id": revision_id, "kind": kind,
+                "created_at": utcnow(), "roots": roots, "affected_nodes": plan["affected_nodes"],
+                "reused_nodes": plan["reused_nodes"], "skipped_nodes": plan.get("skipped_nodes", []), "archived_artifacts": archived,
+                "regenerate_beats": regenerate_beats, "feedback": feedback, "status": "QUEUED",
+            }
+            if beat_feedback:
+                revision["feedback_path"] = str(feedback_path.relative_to(ROOT))
+            write_json(folder / "REVISION.json", revision)
+            record["pending_revision"] = revision
+            command = pipeline_command(record)
+            log = self.jobs_dir / f"{record['job_id']}.log"
+            handle = log.open("a", encoding="utf-8")
+            handle.write(f"\n=== {kind} revision {revision_id[:8]} roots={','.join(roots)} at {utcnow()} ===\n")
+            handle.flush()
+            try:
+                process = subprocess.Popen(command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True)
+            finally:
+                handle.close()
+        except Exception as exc:
+            for relative in reversed(archived):
+                archived_path, original = folder / "previous" / relative, project / relative
+                if archived_path.is_file() and not original.exists():
+                    original.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.move(archived_path, original)
+            for state_path, state in state_before.items():
+                write_json(state_path, state)
+            failed = {"schema_version": 2, "revision_id": revision_id, "kind": kind, "created_at": utcnow(), "roots": roots, "status": "FAILED_TO_START", "error": f"{type(exc).__name__}: {exc}"}
+            write_json(folder / "REVISION.json", failed)
+            raise
+        revision.update({"status": "RUNNING", "started_at": utcnow(), "pid": process.pid})
+        write_json(folder / "REVISION.json", revision)
+        record["pending_revision"] = revision
+        record.update({"status": "RUNNING", "pid": process.pid, "command": command, "resumed_at": utcnow()})
+        record.pop("completed_at", None)
+        write_json(self.jobs_dir / f"{record['job_id']}.json", record)
+        monitor_process(str(record["job_id"]), process)
+        return revision, process
+
+    def handle_regeneration(self) -> None:
+        try:
+            payload = self.read_json_payload()
+            job_id = str(payload.get("job_id") or "")
+            roots = payload.get("node_ids") or [payload.get("node_id")]
+            feedback = str(payload.get("feedback") or "").strip()
+            if len(feedback) > 4_000 or not JOB_ID_RE.fullmatch(job_id) or not isinstance(roots, list) or not all(isinstance(item, str) and item for item in roots):
+                raise ValueError("Choose valid nodes and keep feedback below 4,000 characters.")
+            resolved = self.project_for_job(job_id)
+            if not resolved:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
+            if resolved[0].get("external"):
+                self.send_json(HTTPStatus.CONFLICT, {"error": "Externally started runs are read-only in Studio."}); return
+            with LAUNCH_LOCK:
+                if active_job(self.jobs_dir) is not None:
+                    self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."}); return
+                revision, _ = self.start_regeneration(*resolved, roots, feedback)
+            self.send_json(HTTPStatus.ACCEPTED, {"revision": revision, "status": "RUNNING"})
+        except (ValueError, KeyError, TypeError, OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Invalid regeneration request."})
+
+    def handle_revision(self) -> None:
+        """Compatibility alias for the original beat-only endpoint."""
+        self.handle_regeneration()
+
+    def handle_config_revision(self) -> None:
+        """Re-run an episode with a versioned configuration delta and DAG invalidation."""
+        try:
+            size = int(self.headers.get("Content-Length", "0"))
+            payload = json.loads(self.rfile.read(size).decode("utf-8")) if 0 < size <= 100_000 else {}
+            job_id = str(payload.get("job_id") or "")
+            config = payload.get("config") or {}
+            brief, voice, launch = config.get("creative_brief"), config.get("voice_profile"), config.get("launch")
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Configuration payload is invalid."}); return
+        if not JOB_ID_RE.fullmatch(job_id) or not all(isinstance(x, dict) for x in (brief, voice, launch)):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "All configuration sections must be JSON objects."}); return
+        if any(key in brief and not isinstance(brief[key], dict) for key in ("_qh", "_motion", "_sfx", "_subtitle")):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Nested _qh, _motion, _sfx, and _subtitle settings must be JSON objects."}); return
+        try:
+            if "music_providers" in launch or "music_provider" in launch:
+                music_provider_priority(launch.get("music_providers") or launch.get("music_provider"))
+            if launch.get("aspect_ratio") not in (None, "9:16", "16:9"):
+                raise ValueError("Aspect ratio must be 9:16 or 16:9.")
+            for key in ("commit_artifacts", "telegram_low_size", "telegram_original"):
+                if key in launch and not isinstance(launch[key], bool):
+                    raise ValueError(f"{key} must be a JSON boolean.")
+        except (TypeError, ValueError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+        resolved = self.project_for_job(job_id)
+        if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
+        record, project = resolved
+        if record.get("external"):
+            self.send_json(HTTPStatus.CONFLICT, {"error": "Externally started runs are read-only in Studio."}); return
+        try:
+            previous_brief = json.loads((ROOT / str(record["creative_brief"])).read_text(encoding="utf-8"))
+            previous_voice = json.loads((ROOT / str(record["voice_profile"])).read_text(encoding="utf-8"))
+        except (OSError, ValueError, KeyError) as exc:
+            self.send_json(HTTPStatus.CONFLICT, {"error": f"This run's frozen configuration is unavailable: {exc}"}); return
+        revision_id = str(uuid.uuid4()); folder = project / "launch" / "config_revisions" / revision_id; folder.mkdir(parents=True, exist_ok=True)
+        write_json(folder / "CREATIVE_BRIEF.json", brief); write_json(folder / "VOICE_PROFILE.json", voice)
+        # Derive the narrowest safe root(s). Any unknown editorial launch change begins at
+        # the script; this errs toward correct output rather than reusing stale media.
+        roots: set[str] = set()
+        is_qh = str(record.get("content_project") or DEFAULT_CONTENT_PROJECT) == "question_harvest"
+        changed = lambda a, b: json.dumps(a, sort_keys=True) != json.dumps(b, sort_keys=True)
+        if changed({k:v for k,v in previous_brief.items() if not k.startswith("_")}, {k:v for k,v in brief.items() if not k.startswith("_")}): roots.add("script_draft")
+        old_qh, new_qh = previous_brief.get("_qh", {}), brief.get("_qh", {})
+        if changed(old_qh, new_qh):
+            if is_qh:
+                known_qh: set[str] = set()
+                if any(old_qh.get(k) != new_qh.get(k) for k in ("world_style_policy", "world_style_id", "world_style_hint")): roots.add("world_style_director")
+                known_qh.update(("world_style_policy", "world_style_id", "world_style_hint"))
+                if any(old_qh.get(k) != new_qh.get(k) for k in ("gemini_image_model",)): roots.add("world_style_anchor")
+                known_qh.add("gemini_image_model")
+                if any(old_qh.get(k) != new_qh.get(k) for k in ("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds")): roots.update(("flow_clip_a", "flow_clip_b"))
+                known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds"))
+                if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("retention_edit")
+                known_qh.update(("min_duration_seconds", "max_duration_seconds"))
+                if old_qh.get("show_subtitles") != new_qh.get("show_subtitles"): roots.add("render_profile")
+                known_qh.add("show_subtitles")
+                if old_qh.get("hero_presence_mode") != new_qh.get("hero_presence_mode"): roots.add("episode_director")
+                known_qh.add("hero_presence_mode")
+                if any(old_qh.get(key) != new_qh.get(key) for key in set(old_qh) | set(new_qh) if key not in known_qh): roots.add("script_draft")
+            elif old_qh.get("show_subtitles") != new_qh.get("show_subtitles"):
+                roots.add("render_profile")
+        if changed(previous_brief.get("_motion", {}), brief.get("_motion", {})): roots.add("motion_director")
+        if changed(previous_brief.get("_sfx", {}), brief.get("_sfx", {})): roots.update(("sfx_plan", "sfx_acquire"))
+        if changed(previous_brief.get("_subtitle", {}), brief.get("_subtitle", {})): roots.add("render_profile")
+        if changed(previous_voice, voice): roots.add("elevenlabs_voiceover")
+        for key in ("music_providers", "music_provider"):
+            if launch.get(key) != record.get(key): roots.add("background_music")
+        if launch.get("aspect_ratio") != record.get("aspect_ratio"):
+            roots.update(("flow_clip_a", "flow_clip_b", "render_profile") if is_qh else ("visual_plan", "render_profile"))
+        if launch.get("commit_artifacts") != record.get("commit_artifacts"): roots.add("git_commit_push")
+        if launch.get("telegram_low_size") != record.get("telegram_low_size"): roots.update(("telegram_compress", "publish_telegram"))
+        if launch.get("telegram_original") != record.get("telegram_original"): roots.add("publish_telegram")
+        if not roots: self.send_json(HTTPStatus.BAD_REQUEST, {"error": "No effective configuration change was found."}); return
+        record.update({k:v for k,v in launch.items() if k in {"music_provider", "music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original"}})
+        record.update({
+            "qh": brief.get("_qh") if isinstance(brief.get("_qh"), dict) else record.get("qh", {}),
+            "motion": brief.get("_motion") if isinstance(brief.get("_motion"), dict) else record.get("motion", {}),
+            "sfx": brief.get("_sfx") if isinstance(brief.get("_sfx"), dict) else record.get("sfx", {}),
+            "word_highlight": bool((brief.get("_subtitle") or {}).get("word_highlight", record.get("word_highlight", True))),
+            "subtitles": bool((brief.get("_qh") or {}).get("show_subtitles", record.get("subtitles", False))),
+            "creative_brief": str((folder / "CREATIVE_BRIEF.json").relative_to(ROOT)),
+            "voice_profile": str((folder / "VOICE_PROFILE.json").relative_to(ROOT)),
+        })
+        try:
+            with LAUNCH_LOCK:
+                if active_job(self.jobs_dir) is not None: self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."}); return
+                revision, _ = self.start_regeneration(record, project, sorted(roots), kind="config")
+        except (ValueError, KeyError, TypeError, OSError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not start configuration revision."}); return
+        record["last_config_revision"] = revision
+        write_json(self.jobs_dir / f"{job_id}.json", record)
+        write_json(project / "launch/LAUNCH_REQUEST.json", record)
+        self.send_json(HTTPStatus.ACCEPTED, {"revision": revision, "status":"RUNNING"})
 
     def log_tail(self, job_id: str, offset: int) -> dict:
         """Incremental log bytes, so the page can tail without refetching megabytes."""
@@ -621,13 +1423,13 @@ class Handler(BaseHTTPRequestHandler):
         try:
             length = int(self.headers.get("Content-Length", "0"))
         except ValueError:
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Invalid Content-Length")); return None
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Invalid Content-Length"); return None
         if length <= 0 or length > limit:
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Invalid request")); return None
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Invalid request"); return None
         values = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
         job_id = (values.get("job_id") or [""])[0].strip()
         if not JOB_ID_RE.fullmatch(job_id):
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Unknown job id")); return None
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Unknown job id"); return None
         return job_id
 
     def handle_stop(self) -> None:
@@ -642,40 +1444,50 @@ class Handler(BaseHTTPRequestHandler):
             return
         record_path = self.jobs_dir / f"{job_id}.json"
         if not record_path.is_file():
-            self.send_html(HTTPStatus.NOT_FOUND, self.page("That job no longer exists")); return
+            self.send_notice(HTTPStatus.NOT_FOUND, "That job no longer exists"); return
         try:
             job = json.loads(record_path.read_text(encoding="utf-8"))
         except ValueError:
-            self.send_html(HTTPStatus.CONFLICT, self.page("That job record is unreadable")); return
+            self.send_notice(HTTPStatus.CONFLICT, "That job record is unreadable"); return
 
         stopped = terminate_job(job)
         job["status"] = "STOPPED"
         job["completed_at"] = utcnow()
         job["stopped_by"] = "panel"
+        pending = job.get("pending_revision") if isinstance(job.get("pending_revision"), dict) else None
+        if pending:
+            pending = {**pending, "status": "STOPPED", "completed_at": job["completed_at"]}
+            job["pending_revision"] = pending
+            revision_path = ROOT / str(job.get("project") or "") / "pipeline/revisions" / str(pending.get("revision_id")) / "REVISION.json"
+            try:
+                write_json(revision_path, pending)
+            except OSError:
+                pass
         write_json(record_path, job)
+        request = ROOT / str(job.get("project") or "") / "launch/LAUNCH_REQUEST.json"
+        if request.is_file():
+            write_json(request, job)
         for watcher in watchers_for(self.jobs_dir, job.get("video_id")):
             terminate_job(watcher)
             watcher["status"] = "STOPPED"
             watcher["completed_at"] = utcnow()
             write_json(self.jobs_dir / f"{watcher['job_id']}.json", watcher)
         note = "stopped" if stopped else "was not running; marked stopped"
-        self.send_html(
-            HTTPStatus.ACCEPTED,
-            self.page(f"Job {job_id[:8]} ({job.get('video_id') or '—'}) {note}."),
-        )
+        self.send_notice(HTTPStatus.ACCEPTED, f"Job {job_id[:8]} ({job.get('video_id') or '—'}) {note}.")
 
     def handle_delete(self) -> None:
-        """Remove a job's record and log. A running job is stopped first.
+        """Archive a job's record and log. A running job is stopped first.
 
-        Only the panel's own bookkeeping is removed. The episode directory under videos/ is
-        left alone: deleting a row must never throw away generated media.
+        Only the panel's own bookkeeping moves. The episode directory under videos/ is left
+        alone, and the archived record prevents failed projects from reappearing as external
+        runs. The operation is recoverable by moving the files back into ``jobs_dir``.
         """
         job_id = self.read_job_id()
         if job_id is None:
             return
         record_path = self.jobs_dir / f"{job_id}.json"
         if not record_path.is_file():
-            self.send_html(HTTPStatus.NOT_FOUND, self.page("That job no longer exists")); return
+            self.send_notice(HTTPStatus.NOT_FOUND, "That job no longer exists"); return
         try:
             job = json.loads(record_path.read_text(encoding="utf-8"))
         except ValueError:
@@ -683,14 +1495,15 @@ class Handler(BaseHTTPRequestHandler):
         if job.get("status") == "RUNNING" and pid_is_live(job.get("pid")):
             terminate_job(job)
         video_id = job.get("video_id")
-        record_path.unlink(missing_ok=True)
-        (self.jobs_dir / f"{job_id}.log").unlink(missing_ok=True)
-        self.send_html(
+        archive = self.jobs_dir / "archived"
+        archive.mkdir(parents=True, exist_ok=True)
+        record_path.replace(archive / record_path.name)
+        log = self.jobs_dir / f"{job_id}.log"
+        if log.is_file():
+            log.replace(archive / log.name)
+        self.send_notice(
             HTTPStatus.ACCEPTED,
-            self.page(
-                f"Removed job {job_id[:8]} ({video_id or '—'}) from the panel. "
-                "Its files under videos/ were kept."
-            ),
+            f"Archived job {job_id[:8]} ({video_id or '—'}). Its files under videos/ were kept.",
         )
 
     def handle_resume(self) -> None:
@@ -698,29 +1511,43 @@ class Handler(BaseHTTPRequestHandler):
         try:
             length = int(self.headers.get("Content-Length", "0"))
         except ValueError:
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Invalid Content-Length")); return
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Invalid Content-Length"); return
         if length <= 0 or length > 4_000:
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Invalid resume request")); return
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Invalid resume request"); return
         values = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
         job_id = (values.get("job_id") or [""])[0].strip()
         if not JOB_ID_RE.fullmatch(job_id):
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page("Unknown job id")); return
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Unknown job id"); return
         record_path = self.jobs_dir / f"{job_id}.json"
         if not record_path.is_file():
-            self.send_html(HTTPStatus.NOT_FOUND, self.page("That job no longer exists")); return
+            self.send_notice(HTTPStatus.NOT_FOUND, "That job no longer exists"); return
 
         with LAUNCH_LOCK:
             active = active_job(self.jobs_dir)
             if active is not None:
-                self.send_html(
-                    HTTPStatus.CONFLICT,
-                    self.page(f"Video {active.get('video_id')} is still running; resume after it finishes."),
-                ); return
+                self.send_notice(HTTPStatus.CONFLICT, f"Video {active.get('video_id')} is still running; resume after it finishes."); return
             record = json.loads(record_path.read_text(encoding="utf-8"))
+            fallback_action = (values.get("fallback_action") or [""])[0]
+            if fallback_action:
+                project = ROOT / str(record.get("project") or "")
+                request_path = project / "pipeline" / "FALLBACK_ACTION_REQUIRED.json"
+                try:
+                    pending = json.loads(request_path.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    self.send_notice(HTTPStatus.CONFLICT, "There is no pending Gemini fallback decision for this run."); return
+                if fallback_action == "approve":
+                    write_json(project / "pipeline" / "FALLBACK_APPROVAL.json", {
+                        "stage": pending.get("stage"), "approved_at": utcnow(), "approved_by": "panel",
+                    })
+                elif fallback_action == "retry_primary":
+                    (project / "pipeline" / "FALLBACK_APPROVAL.json").unlink(missing_ok=True)
+                else:
+                    self.send_notice(HTTPStatus.BAD_REQUEST, "Unknown fallback action."); return
+                request_path.unlink(missing_ok=True)
             try:
                 command = pipeline_command(record)
             except (KeyError, TypeError) as exc:
-                self.send_html(HTTPStatus.CONFLICT, self.page(f"That job cannot be resumed: {exc}")); return
+                self.send_notice(HTTPStatus.CONFLICT, f"That job cannot be resumed: {exc}"); return
             log = self.jobs_dir / f"{job_id}.log"
             handle = log.open("a", encoding="utf-8")
             handle.write(f"\n=== resume requested at {utcnow()} ===\n")
@@ -731,7 +1558,7 @@ class Handler(BaseHTTPRequestHandler):
                 )
             except OSError as exc:
                 handle.close()
-                self.send_html(HTTPStatus.INTERNAL_SERVER_ERROR, self.page(f"Could not resume: {exc}")); return
+                self.send_notice(HTTPStatus.INTERNAL_SERVER_ERROR, f"Could not resume: {exc}"); return
             finally:
                 if not handle.closed:
                     handle.close()
@@ -744,21 +1571,78 @@ class Handler(BaseHTTPRequestHandler):
             })
             record.pop("completed_at", None)
             write_json(record_path, record)
+            monitor_process(job_id, process)
             request = ROOT / str(record.get("project") or "") / "launch" / "LAUNCH_REQUEST.json"
             if request.is_file():
                 write_json(request, record)
-        self.send_html(
-            HTTPStatus.ACCEPTED,
-            self.page(f"Resumed {record.get('video_id')} — completed stages are reused, not regenerated."),
-        )
+        self.send_notice(HTTPStatus.ACCEPTED, f"Resumed {record.get('video_id')} — completed stages are reused, not regenerated.")
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         route = parsed.path
         query = parse_qs(parsed.query)
 
-        if route == "/":
-            self.send_html(HTTPStatus.OK, self.page()); return
+        if route == "/api/ws":
+            self.handle_websocket(query)
+            return
+
+        if route == "/api/launch-schema":
+            schema = studio_schema()
+            self.send_json(HTTPStatus.OK, {"schema": schema, "defaults": launch_defaults(schema)})
+            return
+
+        if route == "/api/style-catalog":
+            content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
+            self.send_json(HTTPStatus.OK, {"content_project": content_project, "styles": style_catalog_entries(content_project)})
+            return
+
+        if route.startswith("/api/styles/"):
+            parts = route.split("/")
+            if len(parts) == 6:
+                self.serve_style_preview(unquote(parts[3]), unquote(parts[4]), parts[5])
+                return
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+
+        if route.startswith("/api/run/") and route.endswith("/graph"):
+            job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
+            if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
+            record, project = resolved
+            live = pid_is_live(record.get("pid"))
+            read_only = bool(record.get("external"))
+            try:
+                fallback_action = json.loads((project / "pipeline" / "FALLBACK_ACTION_REQUIRED.json").read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                fallback_action = None
+            self.send_json(HTTPStatus.OK, {"job": {**{key: record.get(key) for key in ("job_id", "video_id", "topic", "status", "created_at", "completed_at", "resumed_at", "external")}, "live": live, "read_only": read_only, "resumable": not read_only and not live and record.get("status") not in {"DONE"}, "stoppable": not read_only and live}, "graph": graph_for(project), "activity": activity_for(record, project), "fallback_action": fallback_action}); return
+
+        if route.startswith("/api/run/") and route.endswith("/activity"):
+            job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
+            if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
+            record, project = resolved
+            self.send_json(HTTPStatus.OK, {"events": activity_for(record, project), "status": record.get("status"), "live": pid_is_live(record.get("pid"))}); return
+
+        if route.startswith("/api/run/") and route.endswith("/config"):
+            job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
+            if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
+            record, _project = resolved
+            try:
+                brief = json.loads((ROOT / str(record["creative_brief"])).read_text(encoding="utf-8"))
+                voice = json.loads((ROOT / str(record["voice_profile"])).read_text(encoding="utf-8"))
+            except (OSError, ValueError, KeyError):
+                self.send_json(HTTPStatus.CONFLICT, {"error": "This run's frozen configuration is unavailable."}); return
+            launch = {key: record.get(key) for key in ("music_provider", "music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
+            self.send_json(HTTPStatus.OK, {"creative_brief": brief, "voice_profile": voice, "launch": launch}); return
+
+        if route.startswith("/api/run/") and "/artifact/" in route:
+            parts = route.split("/", 5)
+            if len(parts) != 6: self.send_error(HTTPStatus.NOT_FOUND); return
+            resolved = self.project_for_job(parts[3])
+            if not resolved: self.send_error(HTTPStatus.NOT_FOUND); return
+            self.serve_artifact(resolved[1], unquote(parts[5])); return
+
+        if route in {"/", "/favicon.svg"} or route.startswith("/runs/") or route.startswith("/assets/"):
+            self.serve_studio(route); return
 
         if route == "/api/status":
             jobs = job_records(self.jobs_dir)
@@ -777,6 +1661,7 @@ class Handler(BaseHTTPRequestHandler):
                         "status": job.get("status", "QUEUED"),
                         "created_at": job.get("created_at"),
                         "pipeline": job.get("_pipeline") or {},
+                        "motion": motion_status_of(job),
                         "resumable": bool(job.get("_resumable")),
                         "stoppable": bool(job.get("_stoppable")),
                         "live": bool(job.get("_live")),
@@ -807,21 +1692,37 @@ class Handler(BaseHTTPRequestHandler):
 
         self.send_error(HTTPStatus.NOT_FOUND)
 
+    def do_HEAD(self) -> None:
+        """Expose correct metadata for static assets and range-capable previews."""
+        route = urlparse(self.path).path
+        if route in {"/", "/favicon.svg"} or route.startswith("/runs/") or route.startswith("/assets/"):
+            self.serve_studio(route); return
+        if route.startswith("/api/run/") and "/artifact/" in route:
+            parts = route.split("/", 5)
+            resolved = self.project_for_job(parts[3]) if len(parts) == 6 else None
+            if resolved:
+                self.serve_artifact(resolved[1], unquote(parts[5])); return
+        self.send_error(HTTPStatus.NOT_FOUND)
+
     def do_POST(self) -> None:
-        if self.path == "/resume": self.handle_resume(); return
+        if self.path == "/api/regenerations/preview": self.handle_regeneration_preview(); return
+        if self.path == "/api/regenerations": self.handle_regeneration(); return
+        if self.path == "/api/revisions": self.handle_revision(); return
+        if self.path == "/api/config-revisions": self.handle_config_revision(); return
+        if self.path in {"/resume", "/api/fallback-action"}: self.handle_resume(); return
         if self.path == "/stop": self.handle_stop(); return
         if self.path == "/delete": self.handle_delete(); return
         if self.path != "/launch": self.send_error(HTTPStatus.NOT_FOUND); return
         try:
             length = int(self.headers.get("Content-Length", "0"))
         except ValueError:
-            self.send_error(HTTPStatus.BAD_REQUEST, "Invalid Content-Length"); return
-        if length <= 0 or length > 32_000:
-            self.send_error(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "Launch form is too large"); return
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Invalid Content-Length"); return
+        if length <= 0 or length > 100_000:
+            self.send_notice(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "Launch form is too large"); return
         try:
             values = parse_qs(self.rfile.read(length).decode("utf-8"))
         except UnicodeDecodeError:
-            self.send_error(HTTPStatus.BAD_REQUEST, "Launch form must be UTF-8"); return
+            self.send_notice(HTTPStatus.BAD_REQUEST, "Launch form must be UTF-8"); return
         try:
             topic = form_text(values, "topic", 220)
             content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()
@@ -845,10 +1746,38 @@ class Handler(BaseHTTPRequestHandler):
             sfx_candidates = int(values.get("sfx_candidate_count", ["12"])[0])
             sfx_queries = int(values.get("sfx_max_queries_per_event", ["2"])[0])
             sfx_gain = float(values.get("sfx_default_gain_db", ["-9"])[0])
+            motion_enabled = "motion_enabled" in values
+            motion_pace = values.get("motion_pace", ["fast"])[0]
+            motion_intensity = values.get("motion_intensity", ["normal"])[0]
+            motion_style = values.get("motion_style", ["dynamic"])[0]
+            motion_transition = values.get("motion_transition_preference", ["minimal"])[0]
+            motion_max_shots = int(values.get("motion_max_micro_shots", ["3"])[0])
+            motion_planning_quality = values.get("motion_planning_quality", ["professional"])[0]
+            motion_min_shot = float(values.get("motion_min_shot_duration", [".55"])[0])
+            motion_max_shot = float(values.get("motion_max_shot_duration", ["3.2"])[0])
+            motion_interval_min = float(values.get("motion_interval_min", [".8"])[0])
+            motion_interval_max = float(values.get("motion_interval_max", ["1.8"])[0])
+            motion_normal_zoom = float(values.get("motion_normal_max_zoom", ["1.32"])[0])
+            motion_punch_zoom = float(values.get("motion_punch_max_zoom", ["1.48"])[0])
+            motion_pan_distance = float(values.get("motion_max_pan_distance", [".32"])[0])
+            motion_pan_velocity = float(values.get("motion_max_pan_velocity", [".42"])[0])
+            motion_zoom_velocity = float(values.get("motion_max_zoom_velocity", [".34"])[0])
+            motion_transition_fraction = float(values.get("motion_transition_fraction", [".25"])[0])
+            motion_transition_min = float(values.get("motion_transition_min", [".10"])[0])
+            motion_transition_max = float(values.get("motion_transition_max", [".40"])[0])
+            motion_observation_batch = int(values.get("motion_observation_batch", ["3"])[0])
+            motion_planning_batch = int(values.get("motion_planning_batch", ["1"])[0])
+            motion_critic_batch = int(values.get("motion_critic_batch", ["2"])[0])
+            motion_corrections = int(values.get("motion_correction_attempts", ["4"])[0])
+            motion_neighbor_context = int(values.get("motion_neighbor_context", ["1"])[0])
+            motion_word_sync_tolerance = int(values.get("motion_word_sync_tolerance", ["50"])[0])
+            motion_face_padding = float(values.get("motion_face_padding", [".18"])[0])
+            motion_supersample = int(values.get("motion_supersample", ["2"])[0])
             # QH advanced
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
             world_style_hint = form_text(values, "world_style_hint", 500) if values.get("world_style_hint") else ""
+            chatgpt_fallback_auto = "chatgpt_fallback_auto" in values
             world_style_id = values.get("world_style_id", [""])[0].strip()
             if world_style_id and world_style_id not in catalogued_style_ids(content_project):
                 raise ValueError(f"Unknown world style: {world_style_id}")
@@ -861,6 +1790,8 @@ class Handler(BaseHTTPRequestHandler):
                or not voice or len(voice) > 220 or model not in {"Eleven Multilingual v2", "Eleven v3"} \
                or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
+            if not telegram_low_size and not telegram_original:
+                raise ValueError("Choose at least one Telegram delivery output.")
             if hero_presence_mode not in {"auto", "opener_only", "limited_in_world", "in_world"}:
                 raise ValueError("Invalid hero_presence_mode")
             if world_style_policy not in {"auto", "reuse", "new"}:
@@ -881,6 +1812,28 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid opening durations")
             if sfx_style not in {"restrained", "balanced", "expressive"} or not 0 <= sfx_max_events <= 20 or not 0 <= sfx_min_gap <= 30 or not 0 <= sfx_threshold <= 1 or sfx_license not in {"cc0", "cc0_by"} or not 1 <= sfx_candidates <= 50 or not 1 <= sfx_queries <= 5 or not -40 <= sfx_gain <= -3:
                 raise ValueError("Invalid SFX settings")
+            if motion_enabled and (motion_pace not in {"calm", "balanced", "fast", "very_fast"} or motion_intensity not in {"subtle", "normal", "strong"} or motion_style not in {"clean", "dynamic", "cinematic"} or motion_transition not in {"minimal", "balanced", "expressive"} or not 1 <= motion_max_shots <= 4):
+                raise ValueError("Invalid Motion settings")
+            if motion_enabled and (motion_planning_quality not in {"draft", "standard", "professional"} \
+               or not .35 <= motion_min_shot <= motion_max_shot <= 8 \
+               or not .4 <= motion_interval_min <= motion_interval_max <= 8 \
+               or not 1 <= motion_normal_zoom <= motion_punch_zoom <= 1.8 \
+               or not .02 <= motion_pan_distance <= .7 \
+               or not .02 <= motion_pan_velocity <= 1 or not .02 <= motion_zoom_velocity <= 1 \
+               or not 0 <= motion_transition_fraction <= 1 \
+               or not .08 <= motion_transition_min <= motion_transition_max <= .8 \
+               or not 1 <= motion_observation_batch <= 6 or not 1 <= motion_planning_batch <= 6 or not 1 <= motion_critic_batch <= 4 \
+               or not 0 <= motion_corrections <= 4 or not 1 <= motion_neighbor_context <= 3 \
+               or not 0 <= motion_word_sync_tolerance <= 250 or not 0 <= motion_face_padding <= .5 \
+               or not 1 <= motion_supersample <= 4):
+                raise ValueError("Invalid advanced Motion settings")
+            motion_primitives = (
+                "motion_allow_hold", "motion_allow_push", "motion_allow_pull", "motion_allow_directional_pans",
+                "motion_allow_tilt", "motion_allow_pan_push", "motion_allow_pan_pull", "motion_allow_drift",
+                "motion_allow_settle", "motion_allow_reveal_move",
+            )
+            if motion_enabled and not any(name in values for name in motion_primitives):
+                raise ValueError("Enable at least one Motion primitive (use intentional holds for cut-only editing)")
             cp = load_content_project(content_project)
             # provider locks (§60)
             validate_provider_locks(cp)
@@ -902,19 +1855,62 @@ class Handler(BaseHTTPRequestHandler):
                 "opening_a_source_seconds": opening_a_seconds,
                 "opening_b_source_seconds": opening_b_seconds,
                 "show_subtitles": show_subtitles,
+                "chatgpt_fallback_mode": "auto" if chatgpt_fallback_auto else "approval",
             }
             # Kept outside the QH-only settings so legacy content projects use the same
             # visible panel choice when their render profile is created.
             creative_brief["_subtitle"] = {"word_highlight": word_highlight}
             creative_brief["_sfx"] = {"enabled": sfx_enabled, "planner_enabled": sfx_enabled, "planner_style": sfx_style, "max_events_per_minute": sfx_max_events, "minimum_gap_seconds": sfx_min_gap, "local_match_threshold": sfx_threshold, "freesound_enabled": sfx_freesound_enabled, "license_policy": sfx_license, "candidate_count": sfx_candidates, "max_queries_per_event": sfx_queries, "default_gain_db": sfx_gain, "min_gain_db": -20, "max_gain_db": -3}
+            creative_brief["_motion"] = {
+                "enabled": motion_enabled, "planning_quality": motion_planning_quality,
+                "pace": motion_pace, "intensity": motion_intensity, "style": motion_style,
+                "transition_preference": motion_transition,
+                "max_micro_shots_per_beat": motion_max_shots,
+                "min_micro_shot_duration": motion_min_shot, "max_micro_shot_duration": motion_max_shot,
+                "target_interval_min": motion_interval_min, "target_interval_max": motion_interval_max,
+                "allow_hold": "motion_allow_hold" in values,
+                "allow_push": "motion_allow_push" in values, "allow_pull": "motion_allow_pull" in values,
+                "allow_pan": "motion_allow_directional_pans" in values,
+                "allow_tilt": "motion_allow_tilt" in values,
+                "allow_pan_push": "motion_allow_pan_push" in values,
+                "allow_pan_pull": "motion_allow_pan_pull" in values,
+                "allow_drift": "motion_allow_drift" in values,
+                "allow_settle": "motion_allow_settle" in values,
+                "allow_reveal_move": "motion_allow_reveal_move" in values,
+                "allow_punch_cuts": "motion_allow_punch_ins" in values,
+                "allow_hard_reframes": "motion_allow_hard_reframe_cuts" in values,
+                "allow_match_position_cuts": "motion_allow_match_position_cuts" in values,
+                "allow_decorative_transitions": "motion_allow_decorative_transitions" in values,
+                "allow_directional_transitions": "motion_allow_directional_transitions" in values,
+                "allow_reveal_transitions": "motion_allow_reveal_transitions" in values,
+                "max_decorative_transition_fraction": motion_transition_fraction,
+                "transition_duration_min": motion_transition_min, "transition_duration_max": motion_transition_max,
+                "normal_max_zoom": motion_normal_zoom, "punch_max_zoom": motion_punch_zoom,
+                "max_pan_distance": motion_pan_distance, "max_pan_velocity": motion_pan_velocity,
+                "max_zoom_velocity": motion_zoom_velocity,
+                "face_protection": "motion_face_protection" in values,
+                "subtitle_avoidance": "motion_subtitle_avoidance" in values,
+                "blank_region_avoidance": "motion_blank_avoidance" in values,
+                "word_sync": "motion_word_sync" in values,
+                "observation_batch_size": motion_observation_batch,
+                "planning_batch_size": motion_planning_batch,
+                "critic_batch_size": motion_critic_batch,
+                "editorial_critic": "motion_editorial_critic" in values,
+                "correction_attempts": motion_corrections,
+                "neighbor_context": motion_neighbor_context,
+                "word_sync_tolerance_ms": motion_word_sync_tolerance,
+                "face_padding": motion_face_padding,
+                "debug_preview": "motion_debug_preview" in values,
+                "supersample": motion_supersample,
+            }
         except (KeyError, ValueError) as exc:
-            self.send_html(HTTPStatus.BAD_REQUEST, self.page(str(exc))); return
+            self.send_notice(HTTPStatus.BAD_REQUEST, str(exc)); return
         except RuntimeError as exc:
-            self.send_html(HTTPStatus.CONFLICT, self.page(str(exc))); return
+            self.send_notice(HTTPStatus.CONFLICT, str(exc)); return
         with LAUNCH_LOCK:
             active = active_job(self.jobs_dir)
             if active is not None:
-                self.send_html(HTTPStatus.CONFLICT, self.page(f"Video {active.get('video_id')} is already running. Wait for it to finish before launching another.")); return
+                self.send_notice(HTTPStatus.CONFLICT, f"Video {active.get('video_id')} is already running. Wait for it to finish before launching another."); return
             video_id = next_video_id()
             project = ROOT / "videos" / f"{video_id}_{video_slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
@@ -935,6 +1931,7 @@ class Handler(BaseHTTPRequestHandler):
                 "subtitles": subtitles_enabled,
                 "word_highlight": word_highlight,
                 "sfx": creative_brief["_sfx"],
+                "motion": creative_brief["_motion"],
                 # Recorded so a resume rebuilds exactly this command (§78).
                 "music_provider": providers[0],  # legacy readers retain the first choice
                 "music_providers": providers,
@@ -953,12 +1950,18 @@ class Handler(BaseHTTPRequestHandler):
                 handle.close()
                 record.update({"status": "FAILED", "completed_at": utcnow(), "error": f"Could not start pipeline: {exc}"})
                 write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
-                self.send_html(HTTPStatus.INTERNAL_SERVER_ERROR, self.page(record["error"])); return
+                self.send_notice(HTTPStatus.INTERNAL_SERVER_ERROR, record["error"]); return
             finally:
                 if not handle.closed:
                     handle.close()
             record.update({"pid": process.pid, "command": command, "started_at": utcnow()}); write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
-        self.send_html(HTTPStatus.ACCEPTED, self.page(f"Launched {video_id} ({content_project}); live log is available in the table. QH: {gemini_image_model} + {flow_video_model} {flow_resolution} 9:16"))
+            monitor_process(job_id, process)
+        self.send_notice(
+            HTTPStatus.ACCEPTED,
+            f"Launched {video_id} ({content_project}); live log is available in the run workspace.",
+            job_id=job_id,
+            video_id=video_id,
+        )
 
 
 def main() -> None:

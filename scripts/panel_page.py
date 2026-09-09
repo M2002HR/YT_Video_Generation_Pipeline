@@ -60,6 +60,7 @@ input,select,textarea{display:block;width:100%;margin-top:5px;padding:8px 10px;
   border-radius:var(--radius-sm);font:inherit;font-size:14px}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
 input:disabled{color:var(--ink-dim);background:#10141d}
+.feature-off{opacity:.52}
 textarea{min-height:64px;resize:vertical}
 input[type=checkbox]{display:inline-block;width:auto;margin:0 8px 0 0;vertical-align:-2px}
 label.check{color:var(--ink);font-size:14px}
@@ -190,6 +191,12 @@ function renderJobs(jobs){
       ? '<b>Flow watcher</b><div class="stage">every ' +
         Math.round((job.interval_seconds || 1200) / 60) + ' min · video ' + esc(job.video_id) + '</div>'
       : '<b>' + esc(job.video_id || '—') + '</b><div class="stage">' + esc(job.topic || '') + '</div>';
+    if (job.kind !== 'flow_watcher' && job.motion) {
+      var m = job.motion;
+      what += '<div class="stage">Motion: ' + (m.enabled ? esc(m.style) + ' / ' + esc(m.pace) : 'disabled') +
+        (m.micro_shots != null ? ' · ' + esc(m.micro_shots) + ' micro-shots' : '') +
+        (m.qc ? ' · QC ' + esc(m.qc) : '') + '</div>';
+    }
     var acts = ['<button class="ghost" onclick="tail(\'' + job.job_id + '\')">Log</button>'];
     if (job.resumable) acts.push('<button class="ghost" onclick="post(\'/resume\',\'' + job.job_id + '\')">Resume</button>');
     if (job.stoppable) acts.push('<button class="ghost danger" onclick="post(\'/stop\',\'' + job.job_id + '\')">Stop</button>');
@@ -261,10 +268,20 @@ document.addEventListener('DOMContentLoaded', function(){
     follow = pre.scrollTop + pre.clientHeight >= pre.scrollHeight - 24;
   });
   onProjectChange();
+  syncMotionControls();
   pollStatus();
   setInterval(pollStatus, 5000);
   setInterval(pollLog, 2000);
 });
+
+function syncMotionControls(){
+  var master = document.getElementById('motion_enabled');
+  var controls = document.getElementById('motion_controls');
+  if (!master || !controls) return;
+  var active = master.checked;
+  controls.classList.toggle('feature-off', !active);
+  controls.querySelectorAll('input,select,textarea,button').forEach(function(control){ control.disabled = !active; });
+}
 
 function onProjectChange(){
   var sel = document.querySelector('select[name=content_project]');
@@ -401,6 +418,68 @@ def launch_form(project_options: str, style_options: str) -> str:
   </div>
   <label class=check><input name=sfx_freesound_enabled type=checkbox checked> Use Freesound only after a local-library miss</label>
   <small>Freesound credentials remain server-side. CC0 is the production default; API use must comply with Freesound terms.</small>
+ </fieldset>
+
+ <fieldset><legend>Motion / Editing</legend>
+  <label class=check><input id=motion_enabled name=motion_enabled type=checkbox checked onchange="syncMotionControls()"> Enable Dynamic Motion Director</label>
+  <small>Off: skips the Motion Director/Ordak stage and renders with the existing legacy timeline behavior. Existing Motion Plan artifacts are ignored, never deleted.</small>
+  <div id=motion_controls>
+  <div class=grid2>
+   <label>Editing pace <select name=motion_pace><option value=calm>Calm</option><option value=balanced>Balanced</option><option value=fast selected>Fast</option><option value=very_fast>Very Fast</option></select></label>
+   <label>Motion intensity <select name=motion_intensity><option value=subtle>Subtle</option><option value=normal selected>Normal</option><option value=strong>Strong</option></select></label>
+   <label>Editing style <select name=motion_style><option value=clean>Clean</option><option value=dynamic selected>Dynamic</option><option value=cinematic>Cinematic</option></select></label>
+   <label>Transition preference <select name=motion_transition_preference><option value=minimal selected>Minimal</option><option value=balanced>Balanced</option><option value=expressive>Expressive</option></select></label>
+   <label>Maximum micro-shots/image <input name=motion_max_micro_shots type=number min=1 max=4 value=3></label>
+  </div>
+  <label class=check><input name=motion_allow_punch_ins type=checkbox checked> Allow punch-ins</label>
+  <label class=check><input name=motion_allow_directional_pans type=checkbox checked> Allow directional pans</label>
+  <label class=check><input name=motion_allow_hard_reframe_cuts type=checkbox checked> Allow hard reframe cuts</label>
+  <label class=check><input name=motion_face_protection type=checkbox checked> Face protection</label>
+  <details><summary>Advanced motion safety and planning</summary>
+   <div class=grid2>
+    <label>Planning quality <select name=motion_planning_quality><option value=draft>Draft</option><option value=standard>Standard</option><option value=professional selected>Professional</option></select></label>
+    <label>Min micro-shot (sec) <input name=motion_min_shot_duration type=number min=.35 max=3 step=.05 value=.55></label>
+    <label>Max micro-shot (sec) <input name=motion_max_shot_duration type=number min=.6 max=8 step=.1 value=3.2></label>
+    <label>Target interval min (sec) <input name=motion_interval_min type=number min=.4 max=5 step=.1 value=.8></label>
+    <label>Target interval max (sec) <input name=motion_interval_max type=number min=.6 max=8 step=.1 value=1.8></label>
+    <label>Normal max zoom <input name=motion_normal_max_zoom type=number min=1 max=1.6 step=.01 value=1.32></label>
+    <label>Punch max zoom <input name=motion_punch_max_zoom type=number min=1 max=1.8 step=.01 value=1.48></label>
+    <label>Max pan distance <input name=motion_max_pan_distance type=number min=.02 max=.7 step=.01 value=.32></label>
+    <label>Max pan/sec <input name=motion_max_pan_velocity type=number min=.02 max=1 step=.01 value=.42></label>
+    <label>Max zoom/sec <input name=motion_max_zoom_velocity type=number min=.02 max=1 step=.01 value=.34></label>
+    <label>Transition budget <input name=motion_transition_fraction type=number min=0 max=1 step=.05 value=.25></label>
+    <label>Transition min (sec) <input name=motion_transition_min type=number min=.08 max=.6 step=.01 value=.10></label>
+    <label>Transition max (sec) <input name=motion_transition_max type=number min=.08 max=.8 step=.01 value=.40></label>
+    <label>Observation batch size <input name=motion_observation_batch type=number min=1 max=6 value=3></label>
+    <label>Planning batch size <input name=motion_planning_batch type=number min=1 max=6 value=1></label>
+    <label>Critic batch size <input name=motion_critic_batch type=number min=1 max=4 value=2></label>
+    <label>JSON correction attempts <input name=motion_correction_attempts type=number min=0 max=4 value=4></label>
+    <label>Neighbor beats/context <input name=motion_neighbor_context type=number min=1 max=3 value=1></label>
+    <label>Word-sync tolerance (ms) <input name=motion_word_sync_tolerance type=number min=0 max=250 step=5 value=50></label>
+    <label>Face safety padding <input name=motion_face_padding type=number min=0 max=.5 step=.01 value=.18></label>
+   <label>Supersample <select name=motion_supersample><option value=1>1×</option><option value=2 selected>2×</option><option value=3>3×</option><option value=4>4×</option></select></label>
+   </div>
+   <label class=check><input name=motion_allow_hold type=checkbox checked> Allow intentional holds</label>
+   <label class=check><input name=motion_allow_push type=checkbox checked> Allow pushes</label>
+   <label class=check><input name=motion_allow_pull type=checkbox checked> Allow pull-outs</label>
+   <label class=check><input name=motion_allow_tilt type=checkbox checked> Allow vertical tilts</label>
+   <label class=check><input name=motion_allow_pan_push type=checkbox checked> Allow combined pan + push</label>
+   <label class=check><input name=motion_allow_pan_pull type=checkbox checked> Allow combined pan + pull</label>
+   <label class=check><input name=motion_allow_drift type=checkbox checked> Allow subtle drift</label>
+   <label class=check><input name=motion_allow_settle type=checkbox checked> Allow settle moves</label>
+   <label class=check><input name=motion_allow_reveal_move type=checkbox checked> Allow reveal moves</label>
+   <label class=check><input name=motion_allow_match_position_cuts type=checkbox checked> Allow match-position cuts</label>
+   <label class=check><input name=motion_allow_decorative_transitions type=checkbox checked> Allow non-cut transitions</label>
+   <label class=check><input name=motion_allow_directional_transitions type=checkbox checked> Allow directional transitions</label>
+   <label class=check><input name=motion_allow_reveal_transitions type=checkbox checked> Allow reveal transitions</label>
+   <label class=check><input name=motion_subtitle_avoidance type=checkbox checked> Protect subtitle region</label>
+   <label class=check><input name=motion_blank_avoidance type=checkbox checked> Avoid blank/low-detail regions</label>
+   <label class=check><input name=motion_word_sync type=checkbox checked> Synchronize events to Ajil words</label>
+   <label class=check><input name=motion_editorial_critic type=checkbox checked> Run senior editorial critic</label>
+   <label class=check><input name=motion_debug_preview type=checkbox> Generate debug preview assets</label>
+  </details>
+  </div>
+  <small>ChatGPT via Ordak sees the accepted beat images and produces an audited semantic plan; local FFmpeg compilation remains deterministic.</small>
  </fieldset>
 
  <fieldset><legend>Locked by project design</legend>
