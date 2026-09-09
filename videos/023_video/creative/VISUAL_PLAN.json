@@ -1,0 +1,173 @@
+{
+  "body_duration_seconds": 40.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "It's called the lipstick effect.",
+      "visual": "In the ink-wash editorial world, a single lipstick tube stands beside a nearly empty coin purse on a modest home table, with the protagonist leaning in from the opposite side as if recognizing the connection.",
+      "purpose": "introduce the lipstick effect as a link between limited money and a small cosmetic purchase",
+      "visual_fingerprint": "medium three-quarter home-table shot; hero leaning toward an upright lipstick and open coin purse; warm lamp-lit domestic setting; asymmetrical composition with lipstick-red focal accent on the right",
+      "type": "subject_world",
+      "continuity": "moves from the book-retrieval opening into the first concrete example, keeping the same domestic economic world but introducing lipstick as the new focal object",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Some call it lipstick syndrome.",
+      "visual": "A close overhead ink-wash still life shows a lipstick tube casting a soft shadow shaped like a small recurring ripple beside scattered coins, suggesting the alternate name without any lettering.",
+      "purpose": "show that lipstick syndrome is another name for the same recurring consumer phenomenon",
+      "visual_fingerprint": "tight overhead still life; no hero; lipstick centered over a ripple-like wash shadow with three loose coins; cool overcast tabletop light; circular composition",
+      "type": "metaphor",
+      "continuity": "shifts away from the protagonist to an abstract object-focused interpretation of the same concept",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "The theory starts with tighter budgets.",
+      "visual": "The protagonist sits at a small kitchen table tightening the drawstring of a coin purse while a few coins and a blank-lined shopping slip sit nearby.",
+      "purpose": "show household spending becoming constrained",
+      "visual_fingerprint": "wide side-angle kitchen-table scene; hero seated and pulling a coin-purse cord tight; sparse coins and abstract shopping slip; gray daylight through a window; horizontal left-heavy composition",
+      "type": "literal",
+      "continuity": "returns to the protagonist and turns the abstract idea into a physical household budgeting action",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Big luxuries get cut.",
+      "visual": "An unlabeled balance-like economic diagram shows several large luxury silhouettes sinking out of the illustration window while one tiny lipstick remains above the cutoff line.",
+      "purpose": "explain that expensive discretionary purchases are removed first",
+      "visual_fingerprint": "centered simplified economic diagram; no hero; oversized handbag, appliance, and leisure-object silhouettes dropping downward; tiny lipstick isolated above; flat cream background with charcoal geometry",
+      "type": "diagram",
+      "continuity": "converts the tighter-budget action into a simplified visual rule about which purchases disappear",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipedown"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "That new car waits.",
+      "visual": "Through a modest home window, the protagonist looks toward a distant muted car parked behind a closed gate, while the coin purse rests untouched on the interior sill.",
+      "purpose": "show a major purchase being postponed",
+      "visual_fingerprint": "over-the-shoulder interior-to-exterior shot; hero seen from behind at window; distant parked car beyond closed gate; cool daylight; strong depth composition with purse in foreground",
+      "type": "literal",
+      "continuity": "takes one large luxury from the prior diagram and turns it into a specific postponed real-world purchase",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "The holiday gets postponed.",
+      "visual": "A closed travel suitcase sits pushed beneath a hallway bench, gathering a faint wash of dust while the protagonist walks past carrying groceries instead.",
+      "purpose": "show discretionary travel being delayed when money is tight",
+      "visual_fingerprint": "low-angle hallway shot; hero legs passing with a modest grocery bag; dormant suitcase tucked under bench; warmer late-afternoon domestic light; diagonal movement across frame",
+      "type": "literal",
+      "continuity": "continues the sequence of postponed large expenses but changes from an exterior car view to an indoor travel symbol and active everyday spending",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "But lipstick may still feel affordable.",
+      "visual": "At a modest cosmetics counter, a hand holds one small lipstick above a few remaining coins, with larger blurred products receding into muted gray wash behind it.",
+      "purpose": "show lipstick remaining within reach despite a reduced budget",
+      "visual_fingerprint": "tight hand-level counter shot; cropped hand but no full hero; lipstick held above a tiny coin cluster; subdued shop setting; shallow layered composition with restrained red focal point",
+      "type": "literal",
+      "continuity": "pivots from what is postponed to the small purchase that can still fit within the remaining budget",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "It's a small, feel-good purchase.",
+      "visual": "The protagonist stands before a small mirror at home, holding the newly purchased lipstick near the chest and showing a subtle relieved smile rather than a glamorous pose.",
+      "purpose": "show the emotional comfort attached to a modest affordable purchase",
+      "visual_fingerprint": "intimate mirror-side medium close-up; hero softly smiling with lipstick held near chest; warm evening lamp glow; curved mirror edge framing the face; no coins visible",
+      "type": "subject_world",
+      "continuity": "moves from affordability at the counter to the quiet emotional payoff of the purchase at home",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "After the 2001 downturn, Leonard Lauder noticed stronger lipstick sales.",
+      "visual": "A restrained recession-era cosmetics counter is shown from above with many lipstick tubes being gathered into a sales tray while other product spaces remain sparse, using quantity alone to imply stronger sales.",
+      "purpose": "illustrate the historical observation that lipstick sales appeared stronger after the 2001 downturn",
+      "visual_fingerprint": "high overhead retail-counter scene; no hero; clustered lipstick tubes filling a shallow tray while surrounding shelves stay sparse; cool commercial daylight; dense red-accent cluster in lower center",
+      "type": "literal",
+      "continuity": "expands from one person's small purchase to a broader retail pattern without introducing readable historical labels",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "He called it the lipstick index.",
+      "visual": "A simple ink-wash economic metaphor shows a single lipstick tube acting like the needle of an unlabeled gauge, angled upward over a semicircular charcoal scale with no marks or numbers.",
+      "purpose": "explain the idea of treating lipstick sales as an economic indicator",
+      "visual_fingerprint": "minimal centered gauge metaphor; no hero; lipstick used as upward-pointing indicator needle; ivory paper field; semicircular charcoal arc with no labels or ticks",
+      "type": "diagram",
+      "continuity": "turns the observed retail pattern into the indicator concept associated with the lipstick index",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "Later research found mixed results.",
+      "visual": "Two uneven pools of ink spread in opposite directions around a lipstick placed between them, one wash rising and the other fading, conveying conflicting findings without charts or labels.",
+      "purpose": "show that later evidence did not point consistently in one direction",
+      "visual_fingerprint": "abstract top-down paper composition; no hero; lipstick horizontal at center dividing one expanding dark wash from one receding pale wash; neutral daylight; bilateral but deliberately uneven balance",
+      "type": "metaphor",
+      "continuity": "softens the apparent certainty of the previous indicator image by replacing the clean upward signal with visibly conflicting outcomes",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "Some found higher cosmetics spending among certain groups during recessions.",
+      "visual": "A small group of differently styled shoppers at an understated cosmetics counter each reaches toward modest beauty items while muted recession-gray storefront shapes sit beyond the window.",
+      "purpose": "show that some research observed increased cosmetics spending among particular consumer groups during recessions",
+      "visual_fingerprint": "wide oblique shop-interior scene; three distinct shoppers reaching toward small cosmetics; no protagonist; gray storefront visible outside; staggered triangular composition with several restrained red accents",
+      "type": "literal",
+      "continuity": "takes one side of the mixed-results idea and depicts the specific finding of increased cosmetics spending among some groups",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 13,
+      "narration_slice": "Others found lipstick wasn't a reliable economic signal.",
+      "visual": "A lipstick stands beside a wavering, broken charcoal trend line that changes direction repeatedly, while a steady household coin stack sits separately in the foreground.",
+      "purpose": "show that lipstick sales do not consistently track the wider economy",
+      "visual_fingerprint": "angled tabletop diagram-scene hybrid; no hero; lipstick at rear beside erratic broken trend stroke; stable coin stack isolated in foreground; muted cool lighting; strong near-far separation",
+      "type": "diagram",
+      "continuity": "presents the opposing research conclusion by contrasting an unstable lipstick signal with a separate grounded money reference",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 14,
+      "narration_slice": "It's a theory about consumer psychology.",
+      "visual": "The protagonist sits quietly at the home table between a closed coin purse and a lipstick, one hand near each, looking thoughtfully from necessity to comfort as soft ink-wash shadows merge beneath the objects.",
+      "purpose": "sum up the lipstick effect as a theory about how people emotionally choose between restraint and small comforts",
+      "visual_fingerprint": "balanced frontal medium-wide home scene; hero centered in reflective pose between coin purse and lipstick; warm evening lamp light; two object shadows merging beneath the hands; calm symmetrical composition",
+      "type": "subject_world",
+      "continuity": "returns from competing research findings to the protagonist and reframes the whole sequence as a question of consumer psychology",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

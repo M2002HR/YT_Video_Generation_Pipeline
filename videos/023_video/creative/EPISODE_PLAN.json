@@ -1,0 +1,14 @@
+{
+  "opening_activity": "market preparation",
+  "opening_location": "home interior",
+  "curiosity_trigger": "counting a smaller pile of coins while one tiny treat still fits the budget",
+  "trigger_object": "coin purse",
+  "reaction": "pauses, compares the coins to the short shopping list, raises an eyebrow",
+  "book_retrieval": "sets the purse down, crosses to a nearby shelf, and pulls out a worn economics book",
+  "camera_pattern": "pan_right",
+  "book_template_id": "001",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "hand-drawn editorial watercolor with warm paper grain, muted recession-era shop tones, and selective lipstick-red accents",
+  "reason": "Market preparation naturally connects tighter household budgets to the question of why small affordable luxuries can survive when larger purchases are postponed."
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "ACTION_REQUIRED",
+  "stage": "transition_direction_001_json1",
+  "visible_stage": "transition_direction",
+  "from_provider": "chatgpt",
+  "to_provider": "gemini",
+  "error_code": "provider_ui_changed",
+  "reason": "chatgpt/chat failed: ChatGPT's upload menu is not available in the current tab.",
+  "created_at": "2026-09-09T10:25:22Z"
+}

@@ -1,0 +1,670 @@
+{
+  "schema_version": 2,
+  "video_id": "023",
+  "topic": "تئوری و سندروم رژ لب",
+  "created_at": "2026-09-09T04:05:14Z",
+  "pipeline_state": "RUNNING",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:03Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "script_draft_fix2_json1": {
+      "status": "FAILED",
+      "updated_at": "2026-09-09T04:17:53Z",
+      "message": "chatgpt/chat failed: Could not find ChatGPT input box in the current Chrome tab.",
+      "error_code": null
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:03Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "retention_edit_fix2_json1": {
+      "status": "FAILED",
+      "updated_at": "2026-09-09T06:59:43Z",
+      "message": "chatgpt/chat failed: Could not find ChatGPT input box in the current Chrome tab.",
+      "error_code": null
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:03Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "episode_director_json1": {
+      "status": "FAILED_UI_CHANGED",
+      "updated_at": "2026-09-09T08:17:50Z",
+      "message": "chatgpt/chat failed: ChatGPT Power effort control is unavailable after waiting.",
+      "error_code": "provider_ui_changed"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:03Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:03Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T10:40:05Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T08:26:37Z",
+      "prompt_sha256": "32ffe9a2a9b5c15cdaa42ea002a4dac5105adec4bfcdcbc9ee66078507bad9f6"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:06Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T10:40:26Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:09Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:10Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:11Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:12Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:13Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:15Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:16Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:17Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:19Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:20Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:21Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:23Z",
+      "artifact": "beat_012.png"
+    },
+    "beat_image_013": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:24Z",
+      "artifact": "beat_013.png"
+    },
+    "beat_image_014": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T10:40:25Z",
+      "artifact": "beat_014.png"
+    },
+    "transition_direction": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-09T10:40:28Z"
+    },
+    "transition_direction_001_json1": {
+      "status": "ACTION_REQUIRED",
+      "updated_at": "2026-09-09T10:25:22Z",
+      "message": "ChatGPT failed at transition_direction; Gemini fallback is ready but requires approval.",
+      "error_code": "provider_ui_changed"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 183.795,
+      "at": "2026-09-09T05:06:18Z",
+      "words": 149
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 145.463,
+      "at": "2026-09-09T07:52:29Z",
+      "words": 119
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 35.252,
+      "at": "2026-09-09T08:20:04Z",
+      "activity": "market preparation"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 57.393,
+      "at": "2026-09-09T08:21:04Z",
+      "style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 108.536,
+      "at": "2026-09-09T08:22:55Z",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf",
+      "model": "nano_banana_2",
+      "catalog_path": "013_editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T08:22:57Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 81.694,
+      "at": "2026-09-09T08:24:21Z",
+      "beats": 14
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 24.321,
+      "at": "2026-09-09T08:24:48Z",
+      "prompt_sha256": "16de2f53f06a5d7f6d21d411a1e2544222f5aeaf137576c2789e3fa4ab318939"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 72.801,
+      "at": "2026-09-09T08:26:03Z",
+      "sha256": "2080a28197b8701893d48d3b67690cc87895ee92ffb9364c4a2144065c662821",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 30.057,
+      "at": "2026-09-09T08:26:37Z",
+      "prompt_sha256": "32ffe9a2a9b5c15cdaa42ea002a4dac5105adec4bfcdcbc9ee66078507bad9f6"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 82.423,
+      "at": "2026-09-09T08:28:02Z",
+      "sha256": "b86d01e795fe94189c7c4e2c340759027fcc900beec80efabb6bf473b4eb54f4",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 57.726,
+      "at": "2026-09-09T08:29:02Z",
+      "prompt_sha256": "1b952c0f350ce0981c4df3823ceadd264e29809db5e367ca30cdeb87284a726b"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 40.364,
+      "at": "2026-09-09T08:29:45Z",
+      "prompt_sha256": "5fd1b04ad5f4d2215e35f0f21fa2293b9a7ab32397057c40b6bc4078a3db68e0"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 112.056,
+      "at": "2026-09-09T08:31:40Z",
+      "sha256": "191013b29024833bf25ac8b92ca39cb9278ffa989cebdc4cb83b82d030f2d816",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 181.701,
+      "at": "2026-09-09T08:34:42Z",
+      "sha256": "8e6924a1a85a95b06d6e137db4fd0e099450786e87c0d83809f8401f4e264e7f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 121.602,
+      "at": "2026-09-09T08:36:45Z",
+      "sha256": "382b2fc951c65dfde17fec5570104f818c1bd2130d19b57914b78c9ddac0c3eb",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 247.477,
+      "at": "2026-09-09T08:40:54Z",
+      "sha256": "e0e1ae9f7b66f9b31b39ca9913d193c1091442ea02488ce56347eacada11bac3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 576.388,
+      "at": "2026-09-09T08:50:32Z",
+      "sha256": "bd238d4a3997cf6a59882e3f18e9f6d952b6dc01d0436df8d2c995abd5089d21",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 109.073,
+      "at": "2026-09-09T08:52:22Z",
+      "sha256": "08a1b42de0d37825874931f001483051ef7c681510af50f11d97056c46f36216",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 107.417,
+      "at": "2026-09-09T08:54:11Z",
+      "sha256": "0970cf96d6da19e257e7d3c2e0e4d0a011128fbed08291cc2347d3da66dedbe8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 108.785,
+      "at": "2026-09-09T08:56:01Z",
+      "sha256": "7c80b039f660dbdfc7122b1b090e03248ed6a341ecec8c1328d2d0fd09a44ea6",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 160.831,
+      "at": "2026-09-09T08:58:43Z",
+      "sha256": "926e11ebce12ef8964637a0dea66977cd04a9435a0bf9564e5f9f10d7e432593",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 247.203,
+      "at": "2026-09-09T09:02:51Z",
+      "sha256": "be39fd47d6c9bac6739b9e975479dfd2c2a056dfbc3980b070b1dc2d61c3429a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 308.72,
+      "at": "2026-09-09T09:08:01Z",
+      "sha256": "10e125803966b4d590c34d35ba6a3f3b58a3cec1a97a34e537145f0fc89e6bcf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 112.584,
+      "at": "2026-09-09T09:09:55Z",
+      "sha256": "d8e50c9edb273084dff22f7ba09c8fe5c07d077e862c0f08a8b9fa084cce48bc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 193.556,
+      "at": "2026-09-09T09:13:10Z",
+      "sha256": "83d6888cb5f9733c46babdea82f103a69ec7a8cfa93fd521ed4f4d59802e62ba",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 631.524,
+      "at": "2026-09-09T09:23:43Z",
+      "sha256": "176e5d2faad261b66717c415977a9785eb90375d66e8042ea6713da58b5b3373",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3236.669,
+      "at": "2026-09-09T09:23:44Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T09:40:10Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.433,
+      "at": "2026-09-09T09:40:33Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T09:51:46Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.647,
+      "at": "2026-09-09T09:52:07Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:04:04Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.154,
+      "at": "2026-09-09T10:04:25Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:08:17Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.653,
+      "at": "2026-09-09T10:08:38Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:10:51Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.673,
+      "at": "2026-09-09T10:11:13Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:12:43Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.514,
+      "at": "2026-09-09T10:13:04Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:14:52Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 16.514,
+      "at": "2026-09-09T10:15:13Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:16:03Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.379,
+      "at": "2026-09-09T10:16:25Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:18:35Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.733,
+      "at": "2026-09-09T10:18:57Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:20:52Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.946,
+      "at": "2026-09-09T10:21:15Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:24:53Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.527,
+      "at": "2026-09-09T10:25:16Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T10:40:05Z",
+      "opening_activity": "market preparation",
+      "opening_location": "home interior",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 17.774,
+      "at": "2026-09-09T10:40:26Z"
+    }
+  ],
+  "updated_at": "2026-09-09T10:40:28Z"
+}

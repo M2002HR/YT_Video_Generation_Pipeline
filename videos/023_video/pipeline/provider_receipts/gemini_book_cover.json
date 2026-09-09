@@ -1,0 +1,48 @@
+{
+  "provider": "gemini",
+  "job_id": "a804ceef-9f14-4dc0-9eae-d892b72cf9dc",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/322fc12ac87ebff2",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=a804ceef-9f14-4dc0-9eae-d892b72cf9dc_output_1.png 1536x2752 sha256=b86d01e795fe94189c7c4e2c340759027fcc900beec80efabb6bf473b4eb54f4"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/023_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    }
+  ],
+  "prompt_sha256": "7c28971ffda3501c0b223c895e32f773fc416e8da72bacc5065c7aab84ec96c0",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "b86d01e795fe94189c7c4e2c340759027fcc900beec80efabb6bf473b4eb54f4",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 61.288,
+  "completed_at": "2026-09-09T08:28:02Z"
+}
