@@ -142,15 +142,82 @@
     },
     {
       "stage": "git_commit_push",
+      "started_at": "2026-09-08T18:15:00.070710+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-08T18:13:33.476566+00:00"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-08T18:13:33.476566+00:00",
-      "ended_at": "2026-09-08T18:15:09.256241+00:00",
-      "elapsed_seconds": 95.78,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "0a0e63ee45b8f14afb97fed139c2bd120b103427"
+      "ended_at": "2026-09-08T18:15:11.141671+00:00",
+      "elapsed_seconds": 11.071,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 360
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-08T18:15:12.387984+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T18:15:21.802955+00:00",
+      "elapsed_seconds": 9.415,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2046
     }
   ],
-  "completed_at": "2026-09-08T18:15:09.256241+00:00",
-  "total_elapsed_seconds": 172.27
+  "completed_at": "2026-09-08T18:15:23.047299+00:00",
+  "total_elapsed_seconds": 96.976,
+  "summary": {
+    "video": "022_persian_gulf_or_arabic_gulf_which_one_is_right",
+    "duration_seconds": 62.72,
+    "beat_count": 14,
+    "video_beat_count": 2,
+    "image_beat_count": 12,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.56,
+      "transition_end": 7.34
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 228.326,
+      "realtime_factor": 3.64,
+      "peak_child_rss_mb": 1497.6,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

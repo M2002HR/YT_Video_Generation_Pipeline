@@ -1,0 +1,68 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-08T15:12:37.228331+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-08T15:12:37.228183+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25260,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 1701958,
+      "sha256": "2afec8dfe92e0aa49c3372bf1f8c80822e17380f02f1ce1475f6f5b20e781786",
+      "duration_seconds": 42.666,
+      "elapsed_seconds": 4.029,
+      "qc_report": null,
+      "summary": {
+        "video": "021_the_best_focus_technique_ever",
+        "duration_seconds": 42.658,
+        "beat_count": 11,
+        "video_beat_count": 2,
+        "image_beat_count": 9,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 2.94,
+          "transition_end": 5.92
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Create with Nano Banana 2."
+          ]
+        },
+        "qc": {
+          "report": null,
+          "passed": null
+        },
+        "motion": {
+          "enabled": true,
+          "style": "dynamic",
+          "pace": "calm",
+          "micro_shots": 26,
+          "hard_cuts": 15,
+          "events_per_minute": 36.57,
+          "passed": true
+        },
+        "resources": {
+          "wall_seconds": 71.026,
+          "realtime_factor": 1.665,
+          "peak_child_rss_mb": 1756.8,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 021_the_best_focus_technique_ever\n⏱ Duration: 0:43\n🎞 Beats: 11 (2 video · 9 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🎥 Motion: Dynamic / Calm · 26 micro-shots · QC passed\n🧮 Render: 1:11 wall (1.665x realtime) · 2 thread(s) · peak 1756.8 MB\nArtifact: 2afec8dfe92e · Delivery: compressed"
+    }
+  }
+}

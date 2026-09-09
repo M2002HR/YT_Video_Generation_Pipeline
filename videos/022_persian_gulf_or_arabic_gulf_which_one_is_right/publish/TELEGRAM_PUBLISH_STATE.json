@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-08T18:15:21.735369+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-08T18:15:21.735204+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25318,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 4103444,
+      "sha256": "373b84489cb0b45eb8aaa2d7c0a60b2ca3ed4104fb37ca38a759cd0eaa7ac8c5",
+      "duration_seconds": 62.725,
+      "elapsed_seconds": 7.857,
+      "qc_report": null,
+      "summary": {
+        "video": "022_persian_gulf_or_arabic_gulf_which_one_is_right",
+        "duration_seconds": 62.72,
+        "beat_count": 14,
+        "video_beat_count": 2,
+        "image_beat_count": 12,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.56,
+          "transition_end": 7.34
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Create with Nano Banana 2."
+          ]
+        },
+        "qc": {
+          "report": null,
+          "passed": null
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 228.326,
+          "realtime_factor": 3.64,
+          "peak_child_rss_mb": 1497.6,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 022_persian_gulf_or_arabic_gulf_which_one_is_right\n⏱ Duration: 1:03\n🎞 Beats: 14 (2 video · 12 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🧮 Render: 3:48 wall (3.64x realtime) · 2 thread(s) · peak 1497.6 MB\nArtifact: 373b84489cb0 · Delivery: compressed"
+    }
+  }
+}

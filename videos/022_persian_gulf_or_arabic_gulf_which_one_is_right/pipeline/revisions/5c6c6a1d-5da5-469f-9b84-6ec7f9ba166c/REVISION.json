@@ -1,0 +1,36 @@
+{
+  "revision_id": "5c6c6a1d-5da5-469f-9b84-6ec7f9ba166c",
+  "created_at": "2026-09-08T19:50:44.774851+00:00",
+  "target": "beat_image_003",
+  "feedback": "زیرش متن نباشه",
+  "cascade_continuity": false,
+  "affected_nodes": [
+    "beat_image_003",
+    "beat_image_004",
+    "beat_image_005",
+    "beat_image_006",
+    "beat_image_007",
+    "beat_image_008",
+    "beat_image_009",
+    "beat_image_010",
+    "beat_image_011",
+    "beat_image_012",
+    "build_timeline",
+    "git_commit_push",
+    "motion_director",
+    "polish_audio",
+    "publish_telegram",
+    "qc_baseline",
+    "qc_polished",
+    "render_baseline",
+    "sfx_acquire",
+    "sfx_plan",
+    "telegram_compress",
+    "transition_direction"
+  ],
+  "regenerate_beats": [
+    3
+  ],
+  "feedback_path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/pipeline/revisions/5c6c6a1d-5da5-469f-9b84-6ec7f9ba166c/feedback.json",
+  "status": "QUEUED"
+}

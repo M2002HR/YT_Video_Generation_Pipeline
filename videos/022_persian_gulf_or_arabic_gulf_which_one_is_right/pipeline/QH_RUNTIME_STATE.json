@@ -3,36 +3,36 @@
   "video_id": "022",
   "topic": "Persian Gulf or Arabic Gulf, which one is right",
   "created_at": "2026-09-08T15:18:15Z",
-  "pipeline_state": "DONE",
+  "pipeline_state": "RUNNING",
   "stages": {
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:26Z",
+      "updated_at": "2026-09-08T19:54:58Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:26Z",
+      "updated_at": "2026-09-08T19:54:58Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:26Z",
+      "updated_at": "2026-09-08T19:54:58Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:26Z",
+      "updated_at": "2026-09-08T19:54:58Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:26Z",
+      "updated_at": "2026-09-08T19:54:58Z",
       "artifact": "world_style_anchor.png"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-08T17:56:27Z",
+      "updated_at": "2026-09-08T19:54:59Z",
       "opening_activity": "gardening",
       "opening_location": "garden",
       "camera_pattern": "over_shoulder",
@@ -41,22 +41,22 @@
     },
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "book_design_sheet_v2.png"
     },
     "book_cover_design": {
@@ -66,87 +66,91 @@
     },
     "book_cover": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "book_cover_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "flow_prompt_opening_a.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:28Z",
+      "updated_at": "2026-09-08T19:55:01Z",
       "artifact": "flow_prompt_book_transition.txt"
     },
     "body_images": {
-      "status": "DONE",
-      "updated_at": "2026-09-08T17:56:46Z"
+      "status": "RUNNING",
+      "updated_at": "2026-09-08T19:55:01Z"
     },
     "beat_image_001": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:31Z",
+      "updated_at": "2026-09-08T19:50:50Z",
       "artifact": "beat_001.png"
     },
     "beat_image_002": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:32Z",
+      "updated_at": "2026-09-08T19:50:52Z",
       "artifact": "beat_002.png"
     },
     "beat_image_003": {
-      "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:33Z",
-      "artifact": "beat_003.png"
+      "status": "DONE",
+      "updated_at": "2026-09-08T19:52:09Z",
+      "sha256": "a907d3af667a1f953498f9c786f23cb4c63a90bf58cc70905a31d08c206c9d27",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_004": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:34Z",
+      "updated_at": "2026-09-08T19:52:10Z",
       "artifact": "beat_004.png"
     },
     "beat_image_005": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:36Z",
+      "updated_at": "2026-09-08T19:52:13Z",
       "artifact": "beat_005.png"
     },
     "beat_image_006": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:37Z",
+      "updated_at": "2026-09-08T19:52:14Z",
       "artifact": "beat_006.png"
     },
     "beat_image_007": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:38Z",
+      "updated_at": "2026-09-08T19:52:15Z",
       "artifact": "beat_007.png"
     },
     "beat_image_008": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:40Z",
+      "updated_at": "2026-09-08T19:52:16Z",
       "artifact": "beat_008.png"
     },
     "beat_image_009": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:41Z",
+      "updated_at": "2026-09-08T19:52:18Z",
       "artifact": "beat_009.png"
     },
     "beat_image_010": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:42Z",
+      "updated_at": "2026-09-08T19:52:19Z",
       "artifact": "beat_010.png"
     },
     "beat_image_011": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:43Z",
+      "updated_at": "2026-09-08T19:52:20Z",
       "artifact": "beat_011.png"
     },
     "beat_image_012": {
       "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:45Z",
+      "updated_at": "2026-09-08T19:52:21Z",
       "artifact": "beat_012.png"
     },
     "transition_direction": {
-      "status": "REUSED",
-      "updated_at": "2026-09-08T17:56:47Z",
-      "artifact": "TRANSITION_PLAN.json"
+      "status": "RUNNING",
+      "updated_at": "2026-09-08T19:52:24Z"
     },
     "flow_clip_a": {
       "status": "REUSED",
@@ -162,6 +166,12 @@
       "status": "DONE",
       "updated_at": "2026-09-08T17:56:48Z",
       "body_images": 12
+    },
+    "transition_direction_001_json1": {
+      "status": "FAILED",
+      "updated_at": "2026-09-08T19:54:34Z",
+      "message": "chatgpt/chat failed: Could not find ChatGPT input box in the current Chrome tab.",
+      "error_code": null
     }
   },
   "events": [
@@ -496,7 +506,131 @@
       "status": "DONE",
       "elapsed_seconds": 15.065,
       "at": "2026-09-08T17:56:46Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T19:33:51Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 87.625,
+      "at": "2026-09-08T19:35:23Z",
+      "sha256": "7227ff7432746cbd12b43e0e38d18da7505f0ea37a6f47b34ff9944f4e65e3c8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 78.284,
+      "at": "2026-09-08T19:36:43Z",
+      "sha256": "20f940e05268a0997310b579f4622f4054e9a41dec2080f7f1b04921703da5ff",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 69.259,
+      "at": "2026-09-08T19:37:53Z",
+      "sha256": "746c9e94df1e8cf4e09ae64740fa8b5ad71886a72e4e8244b92feca48bbb3813",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 78.234,
+      "at": "2026-09-08T19:39:13Z",
+      "sha256": "6f52056f2001de31d7adeb81010d14ca97bcbf6d417b2c15a9954ab78d90389d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 69.235,
+      "at": "2026-09-08T19:40:23Z",
+      "sha256": "cc65fa0bd4ab4816a83cb1a040af491fafc281a998747974e56a407655754e1d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 87.382,
+      "at": "2026-09-08T19:41:52Z",
+      "sha256": "d5125f3982d036149cf0d181442d345089ef5f6602d1c427dc10399dccef1230",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T19:50:47Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 75.253,
+      "at": "2026-09-08T19:52:09Z",
+      "sha256": "a907d3af667a1f953498f9c786f23cb4c63a90bf58cc70905a31d08c206c9d27",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 92.062,
+      "at": "2026-09-08T19:52:22Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-08T19:54:59Z",
+      "opening_activity": "gardening",
+      "opening_location": "garden",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "003",
+      "world_style_id": "archaeological_engraving_papyrus_001"
     }
   ],
-  "updated_at": "2026-09-08T17:56:48Z"
+  "updated_at": "2026-09-08T19:55:01Z"
 }

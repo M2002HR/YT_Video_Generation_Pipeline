@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "cfc088b9-62e3-4c3a-899b-bda743035a15",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-08T11:09:26.484137+00:00",
   "topic": "The Best Focus Technique Ever",
   "video_id": "021",
@@ -128,5 +128,6 @@
   "started_at": "2026-09-08T11:09:26.485581+00:00",
   "resumed_at": "2026-09-08T15:07:54.016839+00:00",
   "resume_count": 8,
-  "stopped_by": "panel"
+  "stopped_by": "panel",
+  "completed_at": "2026-09-08T15:12:57.340712+00:00"
 }

@@ -1,6 +1,6 @@
 {
   "provider": "gemini",
-  "job_id": "b5632cdd-bb11-4947-9259-887c7b061453",
+  "job_id": "6ca25b40-8f18-431a-9da7-a40a2a715975",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Create with Nano Banana 2.",
   "model_verified": true,
@@ -18,7 +18,7 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/04ce9ba5db386421",
+    "workspace_url": "https://gemini.google.com/app/0659844d047f3fcf",
     "submission_fingerprint": null,
     "reference_roles": [
       "style_reference",
@@ -28,7 +28,7 @@
     "notes": [
       "model_label_source=composer-attribution",
       "artifact_source=download",
-      "image=b5632cdd-bb11-4947-9259-887c7b061453_output_1.png 1536x2752 sha256=4764c84cc70a7645f91eeea700584759be69b707427be554da004c8ee7e8f2fc"
+      "image=6ca25b40-8f18-431a-9da7-a40a2a715975_output_1.png 1536x2752 sha256=6f52056f2001de31d7adeb81010d14ca97bcbf6d417b2c15a9954ab78d90389d"
     ]
   },
   "references": [
@@ -45,16 +45,16 @@
     {
       "role": "previous_beat",
       "path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/assets/raw_beats/beat_004.png",
-      "sha256": "52e5f909513260095db89833524db855a5fc18b7d0a6a45a887297cba2321677"
+      "sha256": "746c9e94df1e8cf4e09ae64740fa8b5ad71886a72e4e8244b92feca48bbb3813"
     }
   ],
-  "prompt_sha256": "a95dd2bf6422aa47b5f0172155e45afb82d22a7500185ab1ead5f766c24805df",
+  "prompt_sha256": "0f5177e5c470d54ca554fd2a7e8b6b4923b0de52da18d608431bd9c225543f86",
   "output_path": "assets/raw_beats/beat_005.png",
-  "output_sha256": "4764c84cc70a7645f91eeea700584759be69b707427be554da004c8ee7e8f2fc",
+  "output_sha256": "6f52056f2001de31d7adeb81010d14ca97bcbf6d417b2c15a9954ab78d90389d",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 96.81,
-  "completed_at": "2026-09-08T15:32:59Z"
+  "elapsed_seconds": 78.157,
+  "completed_at": "2026-09-08T19:39:13Z"
 }

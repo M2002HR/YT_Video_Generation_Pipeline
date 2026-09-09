@@ -170,15 +170,88 @@
     },
     {
       "stage": "git_commit_push",
+      "started_at": "2026-09-08T15:12:19.396557+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/021_the_best_focus_technique_ever",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/021_the_best_focus_technique_ever/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-08T15:08:20.762156+00:00"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-08T15:08:20.762156+00:00",
-      "ended_at": "2026-09-08T15:12:28.010305+00:00",
-      "elapsed_seconds": 247.248,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "9ce33440199d6c39aab590f79719fdef6539f7de"
+      "ended_at": "2026-09-08T15:12:30.298785+00:00",
+      "elapsed_seconds": 10.902,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 345
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-08T15:12:31.678677+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/021_the_best_focus_technique_ever",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/021_the_best_focus_technique_ever/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-08T15:12:37.274607+00:00",
+      "elapsed_seconds": 5.596,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2247
     }
   ],
-  "completed_at": "2026-09-08T15:12:28.010305+00:00",
-  "total_elapsed_seconds": 475.736
+  "completed_at": "2026-09-08T15:12:38.542333+00:00",
+  "total_elapsed_seconds": 244.986,
+  "summary": {
+    "video": "021_the_best_focus_technique_ever",
+    "duration_seconds": 42.658,
+    "beat_count": 11,
+    "video_beat_count": 2,
+    "image_beat_count": 9,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 2.94,
+      "transition_end": 5.92
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Create with Nano Banana 2."
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": true,
+      "style": "dynamic",
+      "pace": "calm",
+      "micro_shots": 26,
+      "hard_cuts": 15,
+      "events_per_minute": 36.57,
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 71.026,
+      "realtime_factor": 1.665,
+      "peak_child_rss_mb": 1756.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

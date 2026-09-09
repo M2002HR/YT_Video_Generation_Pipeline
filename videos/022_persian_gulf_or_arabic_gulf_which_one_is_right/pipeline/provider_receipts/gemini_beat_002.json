@@ -1,6 +1,6 @@
 {
   "provider": "gemini",
-  "job_id": "2c0a37af-a1e7-4ab1-af7c-ff3227e2a0d5",
+  "job_id": "7f80bd68-5448-4716-8eaa-14282e84116d",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Create with Nano Banana 2.",
   "model_verified": true,
@@ -18,7 +18,7 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/ad8c65fa214f395f",
+    "workspace_url": "https://gemini.google.com/app/0f788cd2d06e6c2f",
     "submission_fingerprint": null,
     "reference_roles": [
       "style_reference",
@@ -28,7 +28,7 @@
     "notes": [
       "model_label_source=composer-attribution",
       "artifact_source=download",
-      "image=2c0a37af-a1e7-4ab1-af7c-ff3227e2a0d5_output_1.png 1536x2752 sha256=3ad4be3904e1933ec8cd6e2ddd3f7eaf2d2a3b03b5529668c71ce33a79517b69"
+      "image=7f80bd68-5448-4716-8eaa-14282e84116d_output_1.png 1536x2752 sha256=7227ff7432746cbd12b43e0e38d18da7505f0ea37a6f47b34ff9944f4e65e3c8"
     ]
   },
   "references": [
@@ -48,13 +48,13 @@
       "sha256": "7921368a52ee409132fc255ea69c900a098fba3026c957ca049bd82cca399f36"
     }
   ],
-  "prompt_sha256": "137090831072d3b2805731d39bf10ba4a2de95819c63499ec1080cb0b4f18ea7",
+  "prompt_sha256": "2ce62f63490b4077270f7af08a8555271a4a3febeb80d5e59960b186a37fb458",
   "output_path": "assets/raw_beats/beat_002.png",
-  "output_sha256": "3ad4be3904e1933ec8cd6e2ddd3f7eaf2d2a3b03b5529668c71ce33a79517b69",
+  "output_sha256": "7227ff7432746cbd12b43e0e38d18da7505f0ea37a6f47b34ff9944f4e65e3c8",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 90.298,
-  "completed_at": "2026-09-08T15:27:47Z"
+  "elapsed_seconds": 87.56,
+  "completed_at": "2026-09-08T19:35:23Z"
 }

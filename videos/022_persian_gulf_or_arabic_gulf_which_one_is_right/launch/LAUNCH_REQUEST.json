@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "question_harvest",
   "job_id": "2b01a0d4-cb8d-4096-8bb7-73b8927d07d0",
-  "status": "FAILED",
+  "status": "RUNNING",
   "created_at": "2026-09-08T15:18:15.467295+00:00",
   "topic": "Persian Gulf or Arabic Gulf, which one is right",
   "video_id": "022",
@@ -103,7 +103,7 @@
   "commit_artifacts": true,
   "telegram_low_size": true,
   "telegram_original": false,
-  "pid": 793491,
+  "pid": 813013,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -123,10 +123,49 @@
     "--music-providers",
     "freesound,mixkit,pixabay",
     "--publish",
-    "--commit"
+    "--commit",
+    "--regenerate-beats",
+    "3",
+    "--beat-feedback-json",
+    "/opt/YT_Video_Generation_Pipeline/videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/pipeline/revisions/5c6c6a1d-5da5-469f-9b84-6ec7f9ba166c/feedback.json"
   ],
   "started_at": "2026-09-08T15:18:15.468173+00:00",
-  "resumed_at": "2026-09-08T17:56:25.568664+00:00",
-  "resume_count": 3,
-  "completed_at": "2026-09-08T18:01:57.626567+00:00"
+  "resumed_at": "2026-09-08T19:54:57.883926+00:00",
+  "resume_count": 4,
+  "pending_revision": {
+    "revision_id": "5c6c6a1d-5da5-469f-9b84-6ec7f9ba166c",
+    "created_at": "2026-09-08T19:50:44.774851+00:00",
+    "target": "beat_image_003",
+    "feedback": "زیرش متن نباشه",
+    "cascade_continuity": false,
+    "affected_nodes": [
+      "beat_image_003",
+      "beat_image_004",
+      "beat_image_005",
+      "beat_image_006",
+      "beat_image_007",
+      "beat_image_008",
+      "beat_image_009",
+      "beat_image_010",
+      "beat_image_011",
+      "beat_image_012",
+      "build_timeline",
+      "git_commit_push",
+      "motion_director",
+      "polish_audio",
+      "publish_telegram",
+      "qc_baseline",
+      "qc_polished",
+      "render_baseline",
+      "sfx_acquire",
+      "sfx_plan",
+      "telegram_compress",
+      "transition_direction"
+    ],
+    "regenerate_beats": [
+      3
+    ],
+    "feedback_path": "videos/022_persian_gulf_or_arabic_gulf_which_one_is_right/pipeline/revisions/5c6c6a1d-5da5-469f-9b84-6ec7f9ba166c/feedback.json",
+    "status": "QUEUED"
+  }
 }
