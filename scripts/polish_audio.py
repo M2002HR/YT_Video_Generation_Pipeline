@@ -157,6 +157,12 @@ def main() -> None:
         help="Defaults to <video>/audio_mix/AUDIO_MIX_PROFILE.json",
     )
     parser.add_argument(
+        "--input",
+        type=Path,
+        default=None,
+        help="Override profile.baseline_video without modifying the accepted mix profile.",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=None,
@@ -180,7 +186,11 @@ def main() -> None:
     )
     profile = load_json(profile_path)
 
-    baseline = resolve_video_path(video_dir, str(profile["baseline_video"]))
+    baseline = (
+        args.input.expanduser().resolve()
+        if args.input
+        else resolve_video_path(video_dir, str(profile["baseline_video"]))
+    )
     if not baseline.exists():
         raise FileNotFoundError(f"Baseline video not found: {baseline}")
 

@@ -36,7 +36,11 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
             "attempt": attempt,
             "started_at": stamp(),
             "command": command,
+            "status": "RUNNING",
         }
+        state["events"].append(event)
+        state["status"] = "RUNNING"
+        path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
         try:
             subprocess.run(command, cwd=ROOT, check=True)
         except subprocess.CalledProcessError as exc:
@@ -47,12 +51,10 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
                     pause = {}
                 if exc.returncode == 75 and pause.get("status") == "SCHEDULED" and pause.get("reason") == "chatgpt_image_generation_limit":
                     event.update({"status": "PAUSED_FOR_IMAGE_LIMIT", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode, "resume_at": pause.get("resume_at")})
-                    state["events"].append(event)
                     state["status"] = "SCHEDULED"
                     path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
                     raise PipelinePausedForImageLimit(str(pause.get("resume_at") or "image-limit pause")) from exc
             event.update({"status": "FAILED", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3), "returncode": exc.returncode})
-            state["events"].append(event)
             if attempt > retries:
                 state["status"] = "FAILED"
                 path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
@@ -66,7 +68,6 @@ def run(stage: str, command: list[str], state: dict[str, Any], path: Path, *, re
             time.sleep(delay)
             continue
         event.update({"status": "DONE", "ended_at": stamp(), "elapsed_seconds": round(time.perf_counter() - started, 3)})
-        state["events"].append(event)
         path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
         if notifier is not None:
             notifier.stage_complete(stage.replace("_", " ").title(), float(event["elapsed_seconds"]))
@@ -250,14 +251,17 @@ def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
     return profile
 
 
-def apply_word_highlight_preference(profile_path: Path, creative_brief: dict[str, Any]) -> None:
-    """Apply the panel's per-episode highlight choice without altering subtitle timing.
+def apply_subtitle_preferences(profile_path: Path, creative_brief: dict[str, Any]) -> None:
+    """Apply the panel's per-episode subtitle and highlight choices.
 
     Older briefs simply omit ``_subtitle`` and retain the new, safe default (enabled).
     """
     requested = (creative_brief.get("_subtitle") or {}).get("word_highlight", True)
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
     subtitles = profile.setdefault("subtitles", {})
+    qh_settings = creative_brief.get("_qh") or {}
+    if "show_subtitles" in qh_settings:
+        subtitles["enabled"] = bool(qh_settings["show_subtitles"])
     if not isinstance(subtitles.get("word_highlight"), dict):
         subtitles["word_highlight"] = {}
     subtitles["word_highlight"]["enabled"] = bool(requested)
@@ -281,6 +285,10 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
     parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Send a compressed Telegram copy (default: enabled).")
     parser.add_argument("--telegram-original", action="store_true", help="Also send the polished original to Telegram.")
+    parser.add_argument("--commit", action=argparse.BooleanOptionalAction, default=True, help="Commit and push finished artifacts (default for direct legacy runs: enabled).")
+    parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs selected for revision.")
+    parser.add_argument("--beat-feedback-json", type=Path, help="Optional operator feedback for selected beat prompts.")
+    parser.add_argument("--config-revision", action="store_true", help="Accept a panel-versioned creative configuration for this existing video ID.")
     args = parser.parse_args()
     content_project = load_content_project(args.content_project)
     preset = args.preset or content_project.default_visual_preset
@@ -304,6 +312,7 @@ def main() -> None:
         raise SystemExit("Voice profile missing: " + ", ".join(missing_voice_fields))
     creative_brief = args.creative_brief.expanduser().resolve() if args.creative_brief else None
     creative_payload: dict[str, Any] = {}
+    frozen_brief: dict[str, Any] = {}
     sfx_settings: dict[str, Any] = {}
     if creative_brief is not None:
         try:
@@ -312,6 +321,7 @@ def main() -> None:
             raise SystemExit(f"Creative brief is unreadable: {creative_brief}") from exc
         if not isinstance(payload, dict):
             raise SystemExit("Creative brief must be a JSON object.")
+        frozen_brief = payload
         sfx_settings = dict(payload.get("_sfx") or {}) if isinstance(payload.get("_sfx"), dict) else {}
         creative_payload = {str(key): str(value).strip() for key, value in payload.items() if isinstance(value, str) and value.strip()}
     creative_brief_sha256 = hashlib.sha256(json.dumps(creative_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
@@ -341,6 +351,12 @@ def main() -> None:
         visual_command = [py, "scripts/run_visual_pipeline.py", "--content-project", content_project.project_id, "--topic", args.topic, "--video-id", args.video_id, "--preset", preset, "--min-duration-seconds", str(duration_min), "--max-duration-seconds", str(duration_max), "--aspect-ratio", args.aspect_ratio]
         if creative_brief is not None:
             visual_command.extend(["--creative-brief", str(creative_brief)])
+        if args.regenerate_beats:
+            visual_command.extend(["--regenerate-beats", args.regenerate_beats])
+        if args.beat_feedback_json:
+            visual_command.extend(["--beat-feedback-json", str(args.beat_feedback_json)])
+        if args.config_revision:
+            visual_command.append("--config-revision")
         try:
             run("visuals", visual_command, state, state_path, retries=3, notifier=notifier, image_limit_pause_path=project / "pipeline" / "IMAGE_LIMIT_SCHEDULE.json")
         except PipelinePausedForImageLimit:
@@ -367,15 +383,18 @@ def main() -> None:
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)
-    apply_word_highlight_preference(render_profile, creative_payload)
+    apply_subtitle_preferences(render_profile, frozen_brief)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     completion = [py, "scripts/run_completion_pipeline.py", str(project), "--publish", "--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size"]
+    if creative_brief is not None:
+        completion.extend(["--motion-config", str(creative_brief)])
     if bool(sfx_settings.get("enabled")) and creative_brief is not None:
         completion.extend(["--sfx-config", str(creative_brief)])
     if args.telegram_original:
         completion.append("--telegram-original")
     run("completion", completion, state, state_path, notifier=notifier)
-    publish_git_artifacts(project, state_path, state, notifier=notifier)
+    if args.commit:
+        publish_git_artifacts(project, state_path, state, notifier=notifier)
     notifier.send("Full pipeline complete", ["🏁 All requested stages passed", f"⏱ Total: {state['total_elapsed_seconds']:.1f}s"])
     print("FULL VIDEO PIPELINE: PASS")
 

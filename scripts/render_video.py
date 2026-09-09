@@ -16,6 +16,7 @@ Example:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import os
@@ -30,6 +31,10 @@ from typing import Any, Callable
 
 from pipeline_notifier import EditableMessage, PipelineNotifier, format_duration
 from pipeline_stages import stage_title
+from motion_compiler import dynamic_motion_filter, dynamic_motion_filter_v2, plan_render_units, plan_render_units_v2
+from motion_context import build_motion_context
+from motion_schema import MotionPlanError, validate_plan
+from motion_v2_schema import settings as motion_v2_settings, validate_inventory, validate_plan as validate_plan_v2
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,6 +46,12 @@ DEFAULT_RESOURCE_BUDGET = 0.8
 #: Above this many megapixels of intermediate frame the factor is reduced rather than
 #: letting the render get OOM-killed halfway through.
 MAX_SUPERSAMPLED_MEGAPIXELS = 12.0
+# A V2 episode has many camera branches in one filter graph.  Limiting only one frame
+# misses their aggregate queues/buffers and can still OOM a 7 GB production host.  The
+# value below keeps a 1080x1920 episode with 29 micro-shots at 1x (~60 MP aggregate),
+# while allowing 2x for short previews with at most eight simultaneous branches.
+MAX_GRAPH_WORKING_MEGAPIXELS = 72.0
+V2_SEGMENT_RENDER_THRESHOLD = 8
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -93,18 +104,91 @@ def budgeted_threads(budget: float, *, cpus: int | None = None) -> int:
     return max(1, min(total, round(total * share)))
 
 
-def capped_supersample(requested: int, width: int, height: int) -> tuple[int, str]:
-    """Reduce the supersample factor until the intermediate frame fits the memory budget."""
+def capped_supersample(requested: int, width: int, height: int, *, parallel_filters: int = 1) -> tuple[int, str]:
+    """Reduce supersampling until per-frame and aggregate graph budgets both fit."""
     factor = max(1, int(requested))
     pixels = width * height
-    while factor > 1 and (pixels * factor * factor) / 1_000_000 > MAX_SUPERSAMPLED_MEGAPIXELS:
+    branches = max(1, int(parallel_filters))
+    while factor > 1 and (
+        (pixels * factor * factor) / 1_000_000 > MAX_SUPERSAMPLED_MEGAPIXELS
+        or (pixels * factor * factor * branches) / 1_000_000 > MAX_GRAPH_WORKING_MEGAPIXELS
+    ):
         factor -= 1
     if factor != max(1, int(requested)):
+        aggregate = (pixels * factor * factor * branches) / 1_000_000
         return factor, (
-            f"supersample reduced {requested}->{factor} to stay under "
-            f"{MAX_SUPERSAMPLED_MEGAPIXELS:.0f} MP of intermediate frame"
+            f"supersample reduced {requested}->{factor} for {branches} camera branches "
+            f"({aggregate:.1f} MP aggregate; limits {MAX_SUPERSAMPLED_MEGAPIXELS:.0f} MP/frame, "
+            f"{MAX_GRAPH_WORKING_MEGAPIXELS:.0f} MP/graph)"
         )
     return factor, ""
+
+
+def render_v2_segments(
+    *, beats: list[dict[str, Any]], video_dir: Path, ffmpeg: str, ffprobe: str,
+    width: int, height: int, fps: int, supersample: int, thread_cap: int,
+    filter_threads: int, filter_complex_threads: int, nice_level: int,
+    plan_fingerprint: str,
+) -> tuple[list[dict[str, Any]], int, int]:
+    """Render V2 still micro-shots serially, bounding memory regardless of shot count.
+
+    A monolithic graph fed by many looped images can queue future raw frames behind concat
+    and grow to several gigabytes.  These cacheable, visually lossless-ish intermediates
+    leave the final graph with finite video inputs, so FFmpeg pulls frames on demand.
+    """
+    key = hashlib.sha256(
+        f"{plan_fingerprint}|{width}x{height}|{fps}|ss={supersample}|segments-v1".encode()
+    ).hexdigest()[:16]
+    cache_dir = video_dir / "assets" / "renders" / ".motion_segments" / key
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    output: list[dict[str, Any]] = []
+    rendered = reused = 0
+    image_units = [beat for beat in beats if str(beat.get("media_type") or "image") == "image" and beat.get("motion_shot_v2")]
+    for sequence, beat in enumerate(beats, start=1):
+        shot = beat.get("motion_shot_v2")
+        if str(beat.get("media_type") or "image") != "image" or not isinstance(shot, dict):
+            output.append(beat)
+            continue
+        duration = float(beat["duration"])
+        segment = cache_dir / f"{sequence:03d}_{shot['shot_id']}.mp4"
+        valid = False
+        if segment.is_file():
+            try:
+                probe = probe_video(ffprobe, segment)
+                stream = next(item for item in probe.get("streams", []) if item.get("codec_type") == "video")
+                actual = float((probe.get("format") or {}).get("duration") or 0)
+                valid = int(stream.get("width") or 0) == width and int(stream.get("height") or 0) == height and abs(actual - duration) <= .08
+            except (OSError, ValueError, StopIteration):
+                valid = False
+        if valid:
+            reused += 1
+        else:
+            source = resolve_video_path(video_dir, str(beat.get("image") or beat.get("source") or ""))
+            label = "motion_segment"
+            graph = dynamic_motion_filter_v2(
+                input_index=0, label=label, width=width, height=height, fps=fps,
+                duration=duration, motion_duration=duration, shot=shot, supersample=supersample,
+            )
+            command = [
+                ffmpeg, "-hide_banner", "-loglevel", "warning", "-y",
+                "-threads", str(thread_cap), "-filter_threads", str(filter_threads),
+                "-filter_complex_threads", str(filter_complex_threads),
+                "-loop", "1", "-framerate", str(fps), "-t", f"{duration:.6f}", "-i", str(source),
+                "-filter_complex", graph, "-map", f"[{label}]", "-an", "-t", f"{duration:.6f}",
+                "-c:v", "libx264", "-threads", str(thread_cap), "-preset", "veryfast", "-crf", "14",
+                "-pix_fmt", "yuv420p", "-x264-params", f"threads={thread_cap}:lookahead-threads=1",
+                "-movflags", "+faststart", str(segment),
+            ]
+            launcher = ionice_prefix()
+            if nice_level:
+                launcher = [*launcher, "nice", "-n", str(nice_level)]
+            result = subprocess.run([*launcher, *command], text=True, capture_output=True, check=False)
+            if result.returncode:
+                raise RuntimeError(f"Motion segment {shot['shot_id']} failed: {(result.stderr or result.stdout)[-2000:]}")
+            rendered += 1
+            print(f"motion segment {rendered + reused}/{len(image_units)}: {shot['shot_id']}", flush=True)
+        output.append({**beat, "media_type": "video", "source": str(segment), "motion_segment": True})
+    return output, rendered, reused
 
 
 def child_peak_rss_mb() -> float:
@@ -171,7 +255,7 @@ def motion_filter(
             "setsar=1,"
             f"fps={fps},"
             f"trim=duration={duration:.6f},"
-            "setpts=PTS-STARTPTS"
+            "setpts=PTS-STARTPTS,settb=AVTB"
             f"[{label}]"
         )
 
@@ -208,7 +292,7 @@ def motion_filter(
         f"d=1:s={work_width}x{work_height}:fps={fps},"
         f"scale={width}:{height}:flags=lanczos,"
         f"trim=duration={duration:.6f},"
-        "setpts=PTS-STARTPTS"
+        "setpts=PTS-STARTPTS,settb=AVTB"
         f"[{label}]"
     )
 
@@ -573,6 +657,45 @@ def main() -> None:
     if len(beats) != len(beats_value):
         raise ValueError("Timeline contains an invalid beat entry.")
 
+    # Dynamic plans are deliberately optional: old episodes retain their exact legacy
+    # center-motion path. A plan is semantic data validated before any FFmpeg is built.
+    dynamic_plan = None
+    dynamic_plan_version = 0
+    plan_path = video_dir / "motion" / "MOTION_PLAN.json"
+    launch_brief = load_json(video_dir / "launch" / "CREATIVE_BRIEF.json") if (video_dir / "launch" / "CREATIVE_BRIEF.json").is_file() else {}
+    launch_motion = launch_brief.get("_motion") if isinstance(launch_brief.get("_motion"), dict) else {}
+    plan_enabled = bool(launch_motion.get("enabled", True))
+    if plan_path.is_file() and plan_enabled:
+        try:
+            semantic = load_json(plan_path)
+            dynamic_plan_version = int(semantic.get("schema_version", 0))
+            if dynamic_plan_version == 2:
+                cfg = motion_v2_settings(semantic.get("settings_snapshot") if isinstance(semantic.get("settings_snapshot"), dict) else launch_motion)
+                motion_context = build_motion_context(video_dir, timeline, cfg)
+                inventory = validate_inventory(load_json(video_dir / "motion" / "VISUAL_INVENTORY.json"), motion_context["beats"])
+                semantic = validate_plan_v2(semantic, motion_context, inventory, cfg)
+                compiled_path = video_dir / "motion" / "COMPILED_MOTION_PLAN.json"
+                if not compiled_path.is_file():
+                    raise MotionPlanError("V2 plan requires COMPILED_MOTION_PLAN.json")
+                dynamic_plan = load_json(compiled_path)
+                if not dynamic_plan.get("compiled") or dynamic_plan.get("input_fingerprint") != semantic.get("input_fingerprint"):
+                    raise MotionPlanError("compiled plan is missing or stale")
+                # Compilation is data-only, but verify that its semantic identifiers and
+                # timings still match the validated plan before FFmpeg sees it.
+                semantic_shots = [s["shot_id"] for b in semantic["beats"] for s in b["micro_shots"]]
+                compiled_shots = [s.get("shot_id") for b in dynamic_plan.get("beats", []) for s in b.get("micro_shots", [])]
+                if semantic_shots != compiled_shots or any("compiled_camera" not in s for b in dynamic_plan["beats"] for s in b["micro_shots"]):
+                    raise MotionPlanError("compiled camera data does not match semantic plan")
+                beats = plan_render_units_v2(dynamic_plan, beats)
+            elif dynamic_plan_version == 1:
+                dynamic_plan = validate_plan(semantic, timeline)
+                beats = plan_render_units(dynamic_plan, beats)
+            else:
+                raise MotionPlanError("unsupported motion plan schema version")
+            print(f"Dynamic motion V{dynamic_plan_version}: {sum(1 for b in beats if b.get('motion_shot') or b.get('motion_shot_v2'))} micro-shots")
+        except (MotionPlanError, ValueError) as exc:
+            raise ValueError(f"Invalid MOTION_PLAN.json; refusing unsafe dynamic render: {exc}") from exc
+
     audio_path = resolve_video_path(video_dir, str(timeline["audio"]))
     if not audio_path.exists():
         raise FileNotFoundError(f"Narration audio not found: {audio_path}")
@@ -619,9 +742,20 @@ def main() -> None:
     motion_cfg = profile.get("motion") if isinstance(profile.get("motion"), dict) else {}
     motion_enabled = bool(motion_cfg.get("enabled", True))
     motion_strength = float(motion_cfg.get("strength", 0.035))
+    motion_branches = sum(
+        1 for beat in beats
+        if str(beat.get("media_type") or "image") == "image" and beat.get("motion_shot_v2")
+    ) if dynamic_plan_version == 2 else 1
+    segmented_dynamic = dynamic_plan_version == 2 and motion_branches > V2_SEGMENT_RENDER_THRESHOLD and not args.dry_run
     motion_supersample, supersample_note = capped_supersample(
-        int(motion_cfg.get("supersample", 2)), width, height
+        int((dynamic_plan.get("settings_snapshot") or {}).get("supersample", motion_cfg.get("supersample", 2))) if dynamic_plan_version == 2 else int(motion_cfg.get("supersample", 2)),
+        width, height, parallel_filters=1 if segmented_dynamic else motion_branches,
     )
+    if segmented_dynamic:
+        supersample_note = (
+            f"resource-safe segmented V2 backend for {motion_branches} camera branches; "
+            f"micro-shots render serially at {motion_supersample}x"
+        )
     if supersample_note:
         print(f"Resource budget: {supersample_note}")
 
@@ -676,6 +810,18 @@ def main() -> None:
         1, int(resource_cfg.get("filter_complex_threads", filter_threads))
     )
 
+    segment_rendered = segment_reused = 0
+    if segmented_dynamic:
+        beats, segment_rendered, segment_reused = render_v2_segments(
+            beats=beats, video_dir=video_dir, ffmpeg=ffmpeg, ffprobe=ffprobe,
+            width=width, height=height, fps=fps, supersample=motion_supersample,
+            thread_cap=thread_cap, filter_threads=filter_threads,
+            filter_complex_threads=filter_complex_threads,
+            nice_level=max(0, min(19, int(args.nice))),
+            plan_fingerprint=str((dynamic_plan or {}).get("input_fingerprint") or "unfingerprinted"),
+        )
+        print(f"Motion segment cache: rendered={segment_rendered}, reused={segment_reused}")
+
     # These are deliberately global options. Without explicit caps, FFmpeg can
     # schedule filters and x264 across every vCPU, starving SSH/VNC on small
     # Ordak servers during a long render.
@@ -699,6 +845,9 @@ def main() -> None:
     # Build input list and remember which indices are video
     media_types: list[str] = []
     input_paths: list[Path] = []
+    source_media_types: list[str] = []
+    unit_input_indices: list[int] = []
+    reusable_images: dict[str, int] = {}
     for beat in beats:
         mt = str(beat.get("media_type") or "image").lower()
         # legacy beats without media_type -> image
@@ -712,12 +861,22 @@ def main() -> None:
             path = resolve_video_path(video_dir, str(src))
             # Flow sources may contain audio — we strip it, so mark as video
             media_types.append("video")
-            input_paths.append(path)
+            unit_input_indices.append(len(input_paths)); input_paths.append(path); source_media_types.append("video")
         else:
             src = beat.get("image") or beat.get("source")
             path = resolve_video_path(video_dir, str(src))
             media_types.append("image")
-            input_paths.append(path)
+            # V2 micro-shots from one still share a single looped decoder. The filter
+            # graph splits it into independent camera branches, reducing descriptors,
+            # decode work, and memory pressure without duplicating image files.
+            key = str(path.resolve())
+            if dynamic_plan_version == 2 and key in reusable_images:
+                unit_input_indices.append(reusable_images[key])
+            else:
+                source_index = len(input_paths)
+                unit_input_indices.append(source_index); input_paths.append(path); source_media_types.append("image")
+                if dynamic_plan_version == 2:
+                    reusable_images[key] = source_index
 
     allowed_transitions = {
         "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft", "smoothright", "smoothup", "smoothdown",
@@ -729,6 +888,9 @@ def main() -> None:
     incoming_transitions: list[tuple[str, float]] = [("cut", 0.0)]
     for index, beat in enumerate(beats[1:], start=1):
         name = str(beat.get("transition_in") or "fade").strip().lower()
+        if name == "cut":
+            incoming_transitions.append(("cut", 0.0))
+            continue
         if name not in allowed_transitions:
             name = "fade"
         requested = float(beat.get("transition_seconds") or 0.24)
@@ -739,10 +901,16 @@ def main() -> None:
         for index in range(len(beats))
     ]
 
-    for idx, (beat, path, mt) in enumerate(zip(beats, input_paths, media_types)):
+    required_source_durations = [0.0 for _ in input_paths]
+    for unit_index, beat in enumerate(beats):
+        required_source_durations[unit_input_indices[unit_index]] = max(
+            required_source_durations[unit_input_indices[unit_index]],
+            float(beat["duration"]) + outgoing_holds[unit_index],
+        )
+    for idx, (path, mt) in enumerate(zip(input_paths, source_media_types)):
         if not path.exists():
-            raise FileNotFoundError(f"Beat {beat.get('beat_id')} {mt} not found: {path}")
-        dur = float(beat["duration"]) + outgoing_holds[idx]
+            raise FileNotFoundError(f"Render {mt} input not found: {path}")
+        dur = required_source_durations[idx]
         if mt == "image":
             command.extend(["-loop", "1", "-framerate", str(fps), "-t", f"{dur:.6f}", "-i", str(path)])
         else:
@@ -756,6 +924,20 @@ def main() -> None:
     filter_parts: list[str] = []
     labels: list[str] = []
 
+    # One source pad cannot feed several filters directly. Split only reused stills;
+    # single-use and video inputs stay on the simplest possible path.
+    source_use_counts = {index: unit_input_indices.count(index) for index in set(unit_input_indices)}
+    unit_input_refs: list[int | str] = list(unit_input_indices)
+    for source_index, count in source_use_counts.items():
+        if count <= 1:
+            continue
+        names = [f"motion_src_{source_index}_{branch}" for branch in range(count)]
+        filter_parts.append(f"[{source_index}:v]split={count}" + "".join(f"[{name}]" for name in names))
+        cursor = 0
+        for unit_index, value in enumerate(unit_input_indices):
+            if value == source_index:
+                unit_input_refs[unit_index] = names[cursor]; cursor += 1
+
     for index, (beat, mt) in enumerate(zip(beats, media_types)):
         label = f"v{index}"
         labels.append(f"[{label}]")
@@ -767,24 +949,29 @@ def main() -> None:
             # We trim to dur via -t on input already, but ensure filter outputs exactly dur
             # Use fps and scale filters
             filter_parts.append(
-                f"[{index}:v]scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},setsar=1,fps={fps},format={pixel_format},trim=duration={base_dur:.6f},setpts=PTS-STARTPTS,tpad=stop_mode=clone:stop_duration={outgoing_holds[index]:.6f},trim=duration={dur:.6f},setpts=PTS-STARTPTS[{label}]"
+                f"[{unit_input_refs[index]}:v]scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},setsar=1,fps={fps},format={pixel_format},trim=duration={base_dur:.6f},setpts=PTS-STARTPTS,tpad=stop_mode=clone:stop_duration={outgoing_holds[index]:.6f},trim=duration={dur:.6f},setpts=PTS-STARTPTS,settb=AVTB[{label}]"
             )
         else:
-            motion = str(beat.get("motion") or "still") if motion_enabled else "still"
-            strength = motion_strength if motion_enabled else 0.0
-            filter_parts.append(
-                motion_filter(
-                    input_index=index,
-                    label=label,
-                    width=width,
-                    height=height,
-                    fps=fps,
-                    duration=dur,
-                    motion=motion,
-                    strength=strength,
+            if dynamic_plan_version == 2 and isinstance(beat.get("motion_shot_v2"), dict):
+                filter_parts.append(dynamic_motion_filter_v2(
+                    input_index=unit_input_refs[index], label=label, width=width, height=height, fps=fps,
+                    duration=dur, motion_duration=base_dur, shot=beat["motion_shot_v2"],
                     supersample=motion_supersample,
+                ))
+            elif dynamic_plan_version == 1 and isinstance(beat.get("motion_shot"), dict):
+                compiled, corrections = dynamic_motion_filter(
+                    input_index=index, label=label, width=width, height=height, fps=fps,
+                    duration=dur, shot=beat["motion_shot"], supersample=motion_supersample,
+                    subtitle_top=float((subtitle_cfg.get("safe_region") or {}).get("top", .78)),
                 )
-            )
+                if corrections:
+                    beat["motion_shot"]["target_corrected"] = True
+                    beat["motion_shot"]["target_corrections"] = corrections
+                filter_parts.append(compiled)
+            else:
+                motion = str(beat.get("motion") or "still") if motion_enabled else "still"
+                strength = motion_strength if motion_enabled else 0.0
+                filter_parts.append(motion_filter(input_index=index, label=label, width=width, height=height, fps=fps, duration=dur, motion=motion, strength=strength, supersample=motion_supersample))
 
     concat_output = "vcat"
     current_label = "v0"
@@ -792,9 +979,11 @@ def main() -> None:
     for index in range(1, len(beats)):
         transition, overlap = incoming_transitions[index]
         next_label = f"x{index}"
-        filter_parts.append(
-            f"[{current_label}][v{index}]xfade=transition={transition}:duration={overlap:.3f}:offset={planned_duration:.6f}[{next_label}]"
-        )
+        if transition == "cut":
+            # A real cut is a concat, not a tiny disguised crossfade.
+            filter_parts.append(f"[{current_label}][v{index}]concat=n=2:v=1:a=0[{next_label}]")
+        else:
+            filter_parts.append(f"[{current_label}][v{index}]xfade=transition={transition}:duration={overlap:.3f}:offset={planned_duration:.6f}[{next_label}]")
         current_label = next_label
         planned_duration += float(beats[index]["duration"])
     filter_parts.append(f"[{current_label}]null[{concat_output}]")
@@ -925,6 +1114,9 @@ def main() -> None:
         "ionice": bool(ionice_prefix()),
         "supersample": motion_supersample,
         "supersample_note": supersample_note,
+        "motion_render_backend": "segmented_v2" if segmented_dynamic else "single_graph",
+        "motion_segments_rendered": segment_rendered,
+        "motion_segments_reused": segment_reused,
         "peak_child_rss_mb": child_peak_rss_mb(),
     }
     stats_path = video_dir / "render" / "RENDER_STATS.json"

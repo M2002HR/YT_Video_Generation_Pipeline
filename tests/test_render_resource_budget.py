@@ -16,6 +16,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 from render_video import (
+    MAX_GRAPH_WORKING_MEGAPIXELS,
     MAX_SUPERSAMPLED_MEGAPIXELS,
     budgeted_threads,
     capped_supersample,
@@ -50,6 +51,13 @@ def test_the_supersample_factor_is_reduced_until_the_frame_fits() -> None:
 
 def test_a_normal_short_keeps_its_requested_supersample() -> None:
     assert capped_supersample(2, 1080, 1920) == (2, "")
+
+
+def test_many_dynamic_camera_branches_reduce_aggregate_memory_pressure() -> None:
+    factor, note = capped_supersample(2, 1080, 1920, parallel_filters=29)
+    assert factor == 1
+    assert "29 camera branches" in note
+    assert (1080 * 1920 * factor * factor * 29) / 1_000_000 <= MAX_GRAPH_WORKING_MEGAPIXELS
 
 
 def test_cpu_count_reflects_what_this_process_may_schedule_on() -> None:

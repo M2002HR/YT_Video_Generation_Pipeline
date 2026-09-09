@@ -68,11 +68,14 @@ def build_summary(video_dir: Path, *, artifact: Path | None = None) -> dict[str,
     if artifact is not None and Path(artifact).name != "final.mp4":
         qc_name = f"QC_REPORT_{Path(artifact).stem}.json"
     qc = _load(video_dir / "render" / qc_name)
+    motion = _load(video_dir / "motion" / "MOTION_QC.json")
+    motion_plan = _load(video_dir / "motion" / "MOTION_PLAN.json")
 
     beats = timeline.get("beats") or []
     video_beats = [beat for beat in beats if str(beat.get("media_type") or "image") == "video"]
     resolution = timeline.get("resolution") or {}
 
+    motion_settings = motion_plan.get("settings_snapshot") or motion_plan.get("settings") or {}
     return {
         "video": video_dir.name,
         "duration_seconds": round(float(timeline.get("duration") or 0.0), 3),
@@ -97,6 +100,15 @@ def build_summary(video_dir: Path, *, artifact: Path | None = None) -> dict[str,
             "report": qc_name if qc else None,
             "passed": qc.get("passed") if qc else None,
         },
+        "motion": {
+            "enabled": bool(motion_plan),
+            "style": motion_settings.get("style"),
+            "pace": motion_settings.get("pace"),
+            "micro_shots": motion.get("micro_shots"),
+            "hard_cuts": motion.get("hard_cut_count"),
+            "events_per_minute": motion.get("visual_events_per_minute"),
+            "passed": motion.get("passed"),
+        } if motion_plan or motion else {"enabled": False},
         "resources": {
             "wall_seconds": stats.get("wall_seconds"),
             "realtime_factor": stats.get("realtime_factor"),
@@ -141,6 +153,15 @@ def format_caption(summary: dict[str, Any], *, artifact_marker: str = "") -> str
     qc = summary.get("qc") or {}
     if qc.get("passed") is not None:
         lines.append(f"🔍 QC: {'passed' if qc['passed'] else 'FAILED'}")
+
+    motion = summary.get("motion") or {}
+    if motion.get("enabled"):
+        lines.append(
+            f"🎥 Motion: {str(motion.get('style') or 'dynamic').title()} / "
+            f"{str(motion.get('pace') or 'fast').replace('_', ' ').title()} · "
+            f"{motion.get('micro_shots', 0)} micro-shots · "
+            f"QC {'passed' if motion.get('passed') else 'FAILED'}"
+        )
 
     resources = summary.get("resources") or {}
     if resources.get("wall_seconds"):
