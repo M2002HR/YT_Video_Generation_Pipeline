@@ -9,6 +9,7 @@ Convert ONE visual beat (from body plan) into ONE precise standalone 9:16 image 
 - CURRENT VISUAL BEAT (JSON): {{VISUAL_BEAT}}
 - REFERENCE LIST: {{REFERENCE_IMAGES}}
 - PREVIOUS BEAT NOTE: {{PREVIOUS_BEAT}}
+- CAPTION LAYOUT: {{CAPTION_LAYOUT_RULE}}
 - ASPECT RATIO: {{ASPECT_RATIO}}
 
 ## Output
@@ -20,16 +21,15 @@ Return plain text prompt for Gemini — single paragraph.
 - composition for vertical 9:16: preserve the episode's recurring frame language from the
   world keyframe and previous accepted beat (outer material, edge treatment, inner illustration
   window). The interior scene may change freely, but do not drop the framing system.
-- reserve a calm, low-detail caption field inside only the bottom 8–10% of the image (two subtitle lines). Keep faces,
-  hands, key action, focal objects and critical diagram details above it. This lower reserve must remain completely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture/atmosphere only. This is balanced
-  negative space, not a large empty banner and not a hard rectangular UI panel.
+- caption layout: {{CAPTION_LAYOUT_RULE}}
 - narrative moment + reference hierarchy (character_sheet prevents identity drift; style/world
   references establish medium). When present, `previous_beat` is binding for the recurring
-  frame language, material/edge treatment, inner illustration window and lower caption reserve;
-  it may also inform texture, palette and lighting. It must never be copied as a crop, camera
+  frame language, material/edge treatment, inner illustration window, texture, palette and
+  lighting. Follow the explicit caption-layout rule even if the reference contains a different
+  lower layout. It must never be copied as a crop, camera
   angle, pose, subject placement, or focal object.
 - if hero present: same identity (chestnut hair, beard, moss sweater, blue overalls, orange boots) rendered in current world medium — world changes, character identity does not
-- absolutely no readable text, letters, numbers, captions, labels, words or UI anywhere in the image, especially in the lower caption reserve
+- absolutely no readable text, letters, numbers, captions, labels, words or UI anywhere in the image
 
 ## Reference Hierarchy (§30) to mention:
 - If protagonist absent: world style anchor, world keyframe, recurring world reference if needed,
@@ -37,4 +37,9 @@ Return plain text prompt for Gemini — single paragraph.
 - If present: canonical character_sheet, world style anchor, world keyframe, recurring ref,
   previous_beat if applicable, prompt
 
-Return ONLY prompt (under 600 chars).
+The reference hierarchy applies ONLY to identity and visual medium. The requested scene,
+subject and composition are authoritative. Never write "references > prompt". Character
+and style sheets must never be reproduced as sheets, grids, panels or swatches in the output.
+Name the purpose of each supplied reference explicitly. Do not invent an absent reference.
+
+Return ONLY prompt (under 1800 chars; preserve the constraints instead of over-compressing).

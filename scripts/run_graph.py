@@ -10,6 +10,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
+from image_artifacts import receipt_status
 
 
 @dataclass(frozen=True)
@@ -146,7 +147,7 @@ def artifacts_for(project: Path, node_id: str, spec: NodeSpec | None = None) -> 
         paths = music_files(project) + ["music/MUSIC_SELECTION.json", "music/MUSIC_PLAN.json"]
     elif node_id.startswith("beat_image_"):
         number = int(node_id.rsplit("_", 1)[1])
-        paths = [f"assets/raw_beats/beat_{number:03d}.png", f"beats/BEAT_{number:03d}_PROMPT.md", f"beats/BEAT_{number:03d}_PROMPT.revision.md", f"pipeline/provider_receipts/gemini_beat_{number:03d}.json"]
+        paths = [f"assets/raw_beats/beat_{number:03d}.png", f"beats/BEAT_{number:03d}_PROMPT.md", f"beats/BEAT_{number:03d}_PROMPT.inputs.json", f"beats/BEAT_{number:03d}_PROMPT.revision.md", f"pipeline/provider_receipts/gemini_beat_{number:03d}.json"]
     else:
         spec = spec or NODE_SPECS[node_id]
         paths = list(spec.artifacts) + list(spec.optional_artifacts)
@@ -243,7 +244,6 @@ def _generic_graph_for(
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
         nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": True})
-
     edges = [{"source": dependency, "target": node_id} for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
     if not include_disabled:
         disabled = disabled_nodes(project, settings)
@@ -320,7 +320,17 @@ def graph_for(
         status = str(entry.get("status") or ("DONE" if required_ok else "PENDING"))
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
-        nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": True})
+        validation = None
+        if kind == "image":
+            receipt = next((item for item in artifacts if "provider_receipts/gemini_" in item["path"]), None)
+            if receipt:
+                validation = receipt_status(project, project / required[0], project / receipt["path"])
+                if status in {"DONE", "REUSED"} and validation["status"] != "verified":
+                    status = validation["status"].upper()
+            elif node_id == "world_style_anchor" and entry.get("reuse_of"):
+                validation = {"status": "catalog", "reason": "Reused catalog style anchor"}
+        nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": True, "validation": validation})
+
     edges = [{"source": dependency, "target": node_id} for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
     if not include_disabled:
         disabled = disabled_nodes(project, settings)

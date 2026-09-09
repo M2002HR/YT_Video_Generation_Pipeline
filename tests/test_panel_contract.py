@@ -24,6 +24,7 @@ def test_schema_defaults_match_the_server_launch_contract() -> None:
     assert values["max_duration_seconds"] == 60
     assert values["music_providers"] == ["freesound", "mixkit", "pixabay"]
     assert values["word_highlight"] is True
+    assert values["reserve_subtitle_space"] is True
     assert values["motion_enabled"] is True
     assert "locked_text" not in values
 

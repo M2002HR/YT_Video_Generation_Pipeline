@@ -91,7 +91,7 @@ def test_a_verified_pro_receipt_passes() -> None:
         "nano_banana_pro",
         {
             "model_verified": True,
-            "actual_model_label": "Nano Banana Pro",
+            "actual_model_label": "Nano Banana Pro", "requested_model": "nano_banana_pro",
             "pro_regeneration_used": True,
         },
     )
@@ -105,7 +105,7 @@ def test_a_verified_label_without_the_pro_path_is_still_refused_for_pro() -> Non
             "nano_banana_pro",
             {
                 "model_verified": True,
-                "actual_model_label": "Nano Banana Pro",
+                "actual_model_label": "Nano Banana Pro", "requested_model": "nano_banana_pro",
                 "pro_regeneration_used": False,
             },
         )
@@ -116,7 +116,7 @@ def test_nano_banana_2_does_not_need_a_pro_regeneration() -> None:
     require_verified_image_model(
         "beat_03",
         "nano_banana_2",
-        {"model_verified": True, "actual_model_label": "Nano Banana 2", "pro_regeneration_used": False},
+        {"model_verified": True, "actual_model_label": "Nano Banana 2", "requested_model": "nano_banana_2", "pro_regeneration_used": False},
     )
 
 

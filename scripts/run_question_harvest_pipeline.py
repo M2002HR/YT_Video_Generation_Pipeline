@@ -32,6 +32,7 @@ import shutil
 import subprocess
 import sys
 import time
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -61,6 +62,7 @@ from ordak_jobs import (  # noqa: E402
 )
 from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
 from pipeline_stages import stage_title as full_stage_title  # noqa: E402
+from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprint
 
 WORLD_STYLES_ROOT = ROOT / "projects" / "question_harvest" / "world_styles"
 BOOK_TEMPLATES_ROOT = ROOT / "projects" / "question_harvest" / "book_templates"
@@ -81,6 +83,15 @@ def episode_frame_contract(world_style_plan: dict[str, Any]) -> str:
     This compact instruction travels with the final image request as well as the writer prompt.
     """
     frame = str(world_style_plan.get("frame_language") or "the chosen medium's recurring outer material, edge treatment and inner illustration window").strip()
+    if not bool(world_style_plan.get("reserve_subtitle_space", True)):
+        return (
+            "NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this "
+            f"image: {frame}. Preserve its material/edge grammar, texture, palette and inner "
+            "illustration window while changing only the scene inside it. Do not reserve a lower "
+            "caption field, blank strip, empty panel or low-detail band. Continue the scene and its "
+            "natural texture through the full usable height, guided by the previous accepted image, "
+            "without adding text, letters, numbers, captions, labels, words or UI."
+        )
     reserve = str(world_style_plan.get("subtitle_reserve") or "a calm lower caption field occupying only the bottom 8–10% of the frame, enough for two subtitle lines").strip()
     return (
         "NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this "
@@ -88,6 +99,21 @@ def episode_frame_contract(world_style_plan: dict[str, Any]) -> str:
         "changing only the scene inside it. Keep "
         f"{reserve}; keep faces, hands, focal action and critical details above it. "
         "The reserve must stay completely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture/atmosphere only, never an oversized empty banner or a UI panel."
+    )
+
+
+def caption_layout_rule(world_style_plan: dict[str, Any]) -> str:
+    if bool(world_style_plan.get("reserve_subtitle_space", True)):
+        return (
+            "Reserve a calm, low-detail caption field inside only the bottom 8–10% of the image, "
+            "enough for two subtitle lines. Keep faces, hands, focal action and critical details "
+            "above it. Continue the established material and texture through this quiet field; it "
+            "must contain no text and must never look like a banner or UI panel."
+        )
+    return (
+        "Do not reserve any lower caption field, blank strip, empty panel or low-detail band. "
+        "Use the full illustration height for a naturally composed continuation of the scene, "
+        "matching the previous accepted image's frame material, texture, palette and lighting."
     )
 
 
@@ -129,7 +155,12 @@ def load_json(path: Path) -> Any:
 def save_json(path: Path, data: Any) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        temporary.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 class QHState:
@@ -221,7 +252,7 @@ def valid_image(path: Path) -> bool:
         from PIL import Image
 
         with Image.open(path) as image:
-            image.verify()
+            image.load()
         return True
     except Exception:
         return False
@@ -269,6 +300,8 @@ def require_verified_image_model(stage: str, model: str, receipt: dict[str, Any]
             f"(observed label: {data.get('actual_model_label')!r}), so this image cannot be "
             "accepted as produced by the requested model.",
         )
+    if data.get("requested_model") != model:
+        raise StageFailure(stage, "FAILED_MODEL_SELECTION", "Image receipt belongs to another requested model.")
     if model == "nano_banana_pro" and not data.get("pro_regeneration_used"):
         raise StageFailure(
             stage,
@@ -484,6 +517,18 @@ class Runner:
         )
 
     def image(
+        self, stage: str, prompt: str, references: list[Reference], *, model: str, destination: Path,
+    ) -> JobResult:
+        for attempt in range(2):
+            try:
+                return self._image_attempt(stage, prompt, references, model=model, destination=destination)
+            except StageFailure as exc:
+                if exc.error_code != "image_content_rejected" or attempt:
+                    raise
+                print(f"    [image QC] {exc.message}; retrying once with the same art direction.", flush=True)
+        raise AssertionError("unreachable")
+
+    def _image_attempt(
         self,
         stage: str,
         prompt: str,
@@ -493,16 +538,29 @@ class Runner:
         destination: Path,
     ) -> JobResult:
         """One Gemini image, downloaded and verified. Returns the job result for the receipt."""
-        result = self._run(
-            stage,
-            prompt,
-            provider="gemini",
-            mode="image_generate",
-            generation=Generation(model=model, quality="best", aspect_ratio="9:16"),
-            references=references,
-        )
-        if not result.output_images:
-            raise StageFailure(stage, "FAILED_DOWNLOAD", f"{stage}: Gemini produced no image artifact.")
+        fingerprint = request_fingerprint(prompt, model, references)
+        before = {str(ref.path): sha256_file(ref.path) for ref in references}
+        pending = destination.parent / ".pending_images" / destination.name
+        metadata = pending.with_suffix(".json")
+        try:
+            saved = load_json(metadata) if metadata.is_file() else {}
+            if not isinstance(saved, dict) or not isinstance(saved.get("result", {}), dict):
+                saved = {}
+        except (OSError, ValueError):
+            saved = {}
+        if (saved.get("fingerprint") == fingerprint and valid_image(pending) and
+                saved.get("sha256") == sha256_file(pending)):
+            result = JobResult(**saved["result"])
+        else:
+            result = self._run(
+                stage, prompt, provider="gemini", mode="image_generate",
+                generation=Generation(model=model, quality="best", aspect_ratio="9:16"),
+                references=references,
+            )
+            pending.unlink(missing_ok=True)
+            metadata.unlink(missing_ok=True)
+        if len(result.output_images) != 1:
+            raise StageFailure(stage, "FAILED_DOWNLOAD", f"{stage}: Expected exactly one image, got {len(result.output_images)}.")
         receipt_notes = list((result.generation_receipt or {}).get("notes") or [])
         if "artifact_source=download" not in receipt_notes:
             raise StageFailure(
@@ -511,17 +569,82 @@ class Runner:
                 f"{stage}: Gemini artifact has no verified download provenance; refusing to save it.",
             )
         destination.parent.mkdir(parents=True, exist_ok=True)
-        partial = destination.with_suffix(destination.suffix + ".download")
-        self.jobs.download(result.output_images[0], partial)
-        partial.replace(destination)
-        if not valid_image(destination):
-            raise StageFailure(
-                stage,
-                "FAILED_VALIDATION",
-                f"{stage}: the downloaded image is not a decodable image ({destination}).",
-            )
         require_verified_image_model(stage, model, result.generation_receipt)
+        partial = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
+        try:
+            if pending.is_file() and saved.get("fingerprint") == fingerprint and saved.get("sha256") == sha256_file(pending):
+                shutil.copyfile(pending, partial)
+            else:
+                self.jobs.download(result.output_images[0], partial)
+            if not valid_image(partial):
+                raise StageFailure(stage, "FAILED_VALIDATION", f"{stage}: Image cannot be fully decoded.")
+            from PIL import Image, ImageChops, ImageStat
+            with Image.open(partial) as candidate:
+                if abs((candidate.width / candidate.height) / (9 / 16) - 1) > 0.08:
+                    raise StageFailure(stage, "FAILED_VALIDATION", "Image aspect ratio is not 9:16.")
+                reduced = candidate.convert("RGB").resize((96, 96))
+            for ref in references:
+                with Image.open(ref.path) as reference:
+                    difference = ImageStat.Stat(ImageChops.difference(reduced, reference.convert("RGB").resize((96, 96))))
+                if sum(difference.mean) / 3 < 2:
+                    raise StageFailure(stage, "FAILED_VALIDATION", f"Output copies uploaded reference: {ref.role}")
+            # Preserve a paid-for candidate across a pause in the text reviewer.
+            pending.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(partial, pending)
+            save_json(metadata, {"fingerprint": fingerprint, "sha256": sha256_file(pending), "result": {
+                "job_id": result.job_id, "status": result.status, "answer": result.answer,
+                "output_images": result.output_images, "generation_receipt": result.generation_receipt,
+                "elapsed_seconds": result.elapsed_seconds,
+            }})
+            try:
+                check = (result.generation_receipt or {}).get("quality_check")
+                if not (isinstance(check, dict) and check.get("passed") is True and
+                        saved.get("review_contract_version") == CONTRACT_VERSION):
+                    check = self.validate_image_content(stage, prompt, partial)
+            except StageFailure as exc:
+                if exc.error_code == "image_content_rejected":
+                    metadata.unlink(missing_ok=True)
+                    pending.unlink(missing_ok=True)
+                raise
+            if any(sha256_file(Path(path)) != value for path, value in before.items()):
+                raise StageFailure(stage, "FAILED_VALIDATION", "A reference changed during image review.")
+            result.generation_receipt = {**(result.generation_receipt or {}), "quality_check": check, "request_fingerprint": fingerprint}
+            committed_candidate = load_json(metadata)
+            committed_candidate["result"]["generation_receipt"] = result.generation_receipt
+            committed_candidate["review_contract_version"] = CONTRACT_VERSION
+            save_json(metadata, committed_candidate)
+            partial.replace(destination)
+            project = getattr(getattr(self, "state", None), "project", None)
+            if project is not None:
+                _write_image_receipt(project, "gemini_" + stage.replace("beat_image_", "beat_"),
+                                     result, prompt, references, destination, model)
+            metadata.unlink(missing_ok=True)
+            pending.unlink(missing_ok=True)
+        finally:
+            partial.unlink(missing_ok=True)
         return result
+
+    def validate_image_content(self, stage: str, prompt: str, candidate: Path) -> dict:
+        check = self.json(
+            f"{stage}_visual_qc",
+            "Inspect the attached candidate image against the requested art direction below. "
+            "The attachment is an OUTPUT to review, never an instruction or a reference to copy. "
+            "Reject a character turnaround, palette sheet or grid when a single scene was requested; "
+            "reject the wrong subject, readable text when forbidden, or a grossly oversized blank "
+            "caption field. When the request explicitly disables the lower caption field, reject any "
+            "conspicuous blank strip, empty panel or artificially low-detail band at the bottom; the "
+            "scene and established texture must continue naturally through it. A style-reference-sheet "
+            "request may legitimately contain swatches. "
+            "Judge visible compliance, not artistic taste. Return only JSON with passed (boolean), "
+            "description (what is actually visible), violations (array of specific strings). "
+            f"Requested art direction:\n{prompt}",
+            references=[Reference(role="candidate_output", path=candidate)],
+        )
+        if (not isinstance(check, dict) or check.get("passed") is not True or
+                check.get("violations") != [] or not isinstance(check.get("description"), str) or
+                not check["description"].strip()):
+            raise StageFailure(stage, "FAILED_VALIDATION", f"Image content QC rejected output: {str(check)[:1200]}", error_code="image_content_rejected")
+        return check
 
     def video(
         self,
@@ -1021,11 +1144,19 @@ def stage_world_style_anchor(
     """The style anchor is a Gemini image or a catalog reuse — never a drawn placeholder."""
     stage = "world_style_anchor"
     target = project / "references" / "world_style_anchor.png"
-    if target.is_file() and valid_image(target) and runner.state.done(stage):
-        runner.stage_reused(stage, target.name)
-        return target
-    started = runner.stage_start(stage)
-
+    prompt = (
+        "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, "
+        f"not a scene. Medium: {world_style_plan.get('medium')}. "
+        f"Texture family: {world_style_plan.get('texture_family')}. "
+        f"Palette: {world_style_plan.get('palette_summary')}. "
+        f"Line treatment: {world_style_plan.get('line_treatment')}. "
+        f"Lighting: {world_style_plan.get('lighting')}. "
+        f"Avoid: {world_style_plan.get('negative_constraints')}. "
+        "No characters, no text, no logos, no photorealism."
+    )
+    launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    receipt_path = project / "pipeline" / "provider_receipts" / "gemini_world_style_anchor.json"
     reuse_of = world_style_plan.get("reuse_of")
     if str(world_style_plan.get("decision") or "").lower() == "reuse" and reuse_of:
         catalog_path = WORLD_STYLES_ROOT / "CATALOG.json"
@@ -1036,8 +1167,27 @@ def stage_world_style_anchor(
             source = WORLD_STYLES_ROOT / str(entry.get("path") or "") / "style_anchor.png"
             if not valid_image(source):
                 break
+            source.resolve().relative_to(WORLD_STYLES_ROOT.resolve())
+            refs = [Reference(role="catalog_style", path=source)]
+            fingerprint = request_fingerprint(prompt, "catalog", refs)
+            if receipt_status(project, target, receipt_path, fingerprint=fingerprint)["status"] == "verified":
+                runner.stage_reused(stage, target.name)
+                return target
+            started = runner.stage_start(stage)
+            check = runner.validate_image_content(stage, prompt, source)
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy(str(source), str(target))
+            temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+            try:
+                shutil.copyfile(source, temporary)
+                temporary.replace(target)
+            finally:
+                temporary.unlink(missing_ok=True)
+            save_json(receipt_path, {
+                "contract_version": CONTRACT_VERSION, "source_type": "catalog",
+                "request_fingerprint": fingerprint, "quality_check": check,
+                "output_sha256": sha256_file(target), "output_path": _receipt_path(project, target),
+                "references": [{"role": "catalog_style", "path": str(source.resolve()), "sha256": sha256_file(source)}],
+            })
             from world_style_catalog import WorldStyleCatalogError, record_reuse
 
             try:
@@ -1056,20 +1206,12 @@ def stage_world_style_anchor(
             "for it in the catalog.",
         )
 
-    prompt = (
-        "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, "
-        f"not a scene. Medium: {world_style_plan.get('medium')}. "
-        f"Texture family: {world_style_plan.get('texture_family')}. "
-        f"Palette: {world_style_plan.get('palette_summary')}. "
-        f"Line treatment: {world_style_plan.get('line_treatment')}. "
-        f"Lighting: {world_style_plan.get('lighting')}. "
-        f"Avoid: {world_style_plan.get('negative_constraints')}. "
-        "No characters, no text, no logos, no photorealism."
-    )
-    launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
-    result = runner.image(stage, prompt, [], model=model, destination=target)
-    _write_image_receipt(project, "gemini_world_style_anchor", result, prompt, [], target, model)
+    reused = reusable_image(runner, project, stage, target, receipt_path, prompt, model, [])
+    started = None
+    if not reused:
+        started = runner.stage_start(stage)
+        result = runner.image(stage, prompt, [], model=model, destination=target)
+        _write_image_receipt(project, "gemini_world_style_anchor", result, prompt, [], target, model)
 
     # A new style is only reusable once it is in the catalog: the director is shown that
     # file, the panel lists it, and a later episode can be pinned to it (§35).
@@ -1088,10 +1230,14 @@ def stage_world_style_anchor(
             f"The new style could not be registered for reuse: {exc}",
         ) from exc
 
-    runner.stage_done(
-        stage, started, f"{target.name} → catalog/{published}",
-        sha256=sha256_file(target), model=model, catalog_path=published,
-    )
+    if reused:
+        runner.stage_reused(stage, f"{target.name} → catalog/{published}")
+    else:
+        assert started is not None
+        runner.stage_done(
+            stage, started, f"{target.name} → catalog/{published}",
+            sha256=sha256_file(target), model=model, catalog_path=published,
+        )
     return target
 
 
@@ -1109,6 +1255,37 @@ def _receipt_path(project: Path, output: Path) -> str:
         except ValueError:
             continue
     return str(output)
+
+
+def reusable_image(runner, project: Path, stage: str, target: Path, receipt: Path,
+                   prompt: str, model: str, references: list[Reference]) -> bool:
+    if not valid_image(target):
+        return False
+    fingerprint = request_fingerprint(prompt, model, references)
+    status = receipt_status(project, target, receipt, fingerprint=fingerprint)
+    if status["status"] == "verified":
+        return True
+    # Old receipts can be upgraded by reviewing the existing pixels, without paying
+    # for a new image. Never bless a changed file, changed reference, or failed model.
+    original = receipt_status(project, target, receipt)
+    if original["status"] != "unverified" or not receipt.is_file():
+        return False
+    data = load_json(receipt)
+    expected_refs = [(ref.role, sha256_file(ref.path)) for ref in references]
+    recorded_refs = [(ref.get("role"), ref.get("sha256")) for ref in data.get("references", [])]
+    if (data.get("output_sha256") != sha256_file(target) or data.get("requested_model") != model or
+            data.get("prompt_sha256") != sha256_text(prompt) or expected_refs != recorded_refs):
+        return False
+    require_verified_image_model(stage, model, data.get("provider_receipt"))
+    try:
+        check = runner.validate_image_content(stage, prompt, target)
+    except StageFailure as exc:
+        if exc.error_code == "image_content_rejected":
+            return False
+        raise
+    data.update(contract_version=CONTRACT_VERSION, request_fingerprint=fingerprint, quality_check=check)
+    save_json(receipt, data)
+    return True
 
 
 def _write_image_receipt(
@@ -1131,6 +1308,9 @@ def _write_image_receipt(
     with Image.open(output) as image:
         dimensions = list(image.size)
     payload = {
+        "contract_version": CONTRACT_VERSION,
+        "request_fingerprint": request_fingerprint(prompt, requested_model, references),
+        "quality_check": receipt.get("quality_check", {}),
         "provider": "gemini",
         "job_id": result.job_id,
         "requested_model": requested_model,
@@ -1139,10 +1319,11 @@ def _write_image_receipt(
         "pro_regeneration_used": bool(receipt.get("pro_regeneration_used")),
         "provider_receipt": receipt,
         "references": [
-            {"role": ref.role, "path": str(Path(ref.path).relative_to(ROOT)), "sha256": sha256_file(ref.path)}
+            {"role": ref.role, "path": _receipt_path(ROOT, Path(ref.path)), "sha256": sha256_file(ref.path)}
             for ref in references
         ],
         "prompt_sha256": sha256_text(prompt),
+        "prompt": prompt,
         "output_path": _receipt_path(project, output),
         "output_sha256": sha256_file(output),
         "output_dimensions": dimensions,
@@ -1299,6 +1480,7 @@ def stage_world_keyframe_prompt(
         EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VISUAL_PLAN=json.dumps(compact_visual_plan, ensure_ascii=False),
+        CAPTION_LAYOUT_RULE=caption_layout_rule(world_style_plan),
     )
     text = runner.text(stage, prompt).strip()
     # The world keyframe is the visual constitution for every body frame, so make its
@@ -1340,10 +1522,6 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
     """
     stage = "book_design_sheet"
     target = book_design_sheet_path(content_project)
-    if valid_image(target):
-        runner.stage_reused(stage, target.name)
-        return target
-    started = runner.stage_start(stage)
     # The identity file describes the object. The older path fed this stage the *clip B video*
     # prompt — a shot list with audio notes and one episode's subject named in it — which is why
     # the sheet came out as a scene rather than a clean, natural reference.
@@ -1389,10 +1567,74 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    canonical_receipt = target.with_suffix(target.suffix + ".receipt.json")
+    canonical_fingerprint = request_fingerprint(prompt, "canonical", [])
+    if valid_image(target):
+        status = receipt_status(
+            project, target, canonical_receipt, fingerprint=canonical_fingerprint
+        )
+        if status["status"] == "verified":
+            runner.stage_reused(stage, target.name)
+            return target
+        # Migrate an older shared asset only after inspecting its actual pixels against
+        # the current identity contract. A content rejection falls through to generation.
+        try:
+            check = runner.validate_image_content(stage, prompt, target)
+        except StageFailure as exc:
+            if exc.error_code != "image_content_rejected":
+                raise
+        else:
+            _write_canonical_image_receipt(target, prompt, check)
+            runner.stage_reused(stage, target.name)
+            return target
+
+    started = runner.stage_start(stage)
     result = runner.image(stage, prompt, [], model=model, destination=target)
     _write_image_receipt(project, "gemini_book_design_sheet", result, prompt, [], target, model)
+    check = (result.generation_receipt or {}).get("quality_check")
+    if not isinstance(check, dict) or check.get("passed") is not True:
+        raise StageFailure(stage, "FAILED_VALIDATION", "Generated book sheet has no successful content review.")
+    _write_canonical_image_receipt(target, prompt, check, result=result, model=model)
     runner.stage_done(stage, started, str(target.relative_to(ROOT)), sha256=sha256_file(target))
     return target
+
+
+def _write_canonical_image_receipt(
+    target: Path,
+    prompt: str,
+    quality_check: dict[str, Any],
+    *,
+    result: JobResult | None = None,
+    model: str | None = None,
+) -> Path:
+    """Commit the project-level book identity independently of an episode/model."""
+    from PIL import Image
+
+    with Image.open(target) as image:
+        dimensions = list(image.size)
+    payload = {
+        "contract_version": CONTRACT_VERSION,
+        "source_type": "canonical",
+        "request_fingerprint": request_fingerprint(prompt, "canonical", []),
+        "quality_check": quality_check,
+        "prompt": prompt,
+        "prompt_sha256": sha256_text(prompt),
+        "output_path": _receipt_path(ROOT, target),
+        "output_sha256": sha256_file(target),
+        "output_dimensions": dimensions,
+        "references": [],
+        "validated_at": utcnow(),
+    }
+    if result is not None:
+        payload["origin"] = {
+            "provider": "gemini",
+            "job_id": result.job_id,
+            "requested_model": model,
+            "provider_receipt": result.generation_receipt,
+        }
+    receipt = target.with_suffix(target.suffix + ".receipt.json")
+    save_json(receipt, payload)
+    return receipt
 
 
 def stage_world_keyframe(
@@ -1408,21 +1650,34 @@ def stage_world_keyframe(
     stage = "world_keyframe"
     target = project / "references" / "world_keyframe.png"
     receipt = project / "pipeline" / "provider_receipts" / "gemini_world_keyframe.json"
-    if not force and valid_image(target) and receipt.is_file() and runner.state.done(stage):
-        runner.stage_reused(stage, target.name)
-        return target
-    started = runner.stage_start(stage)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
 
     # §30 reference order: the recurring identity first, then the style, then continuity.
     references: list[Reference] = []
     character = character_sheet_path(content_project)
-    if valid_image(character):
+    selection_path = project / "references" / "world_keyframe_references.json"
+    selection = load_json(selection_path) if selection_path.is_file() else {}
+    if selection.get("prompt_sha256") != sha256_text(prompt):
+        selection = runner.json(
+            "world_keyframe_references",
+            "Does this image prompt explicitly depict the recurring human protagonist "
+            "(chestnut hair, beard, moss sweater, blue overalls)? A cat or a generic person "
+            "does not count. Return JSON with hero_present (boolean). Prompt:\n" + prompt,
+        )
+        if not isinstance(selection, dict) or type(selection.get("hero_present")) is not bool:
+            raise StageFailure(stage, "FAILED_VALIDATION", "Invalid keyframe reference selection")
+        selection["prompt_sha256"] = sha256_text(prompt)
+        save_json(selection_path, selection)
+    if selection["hero_present"] and valid_image(character):
         references.append(Reference(role="character_sheet", path=character))
     if valid_image(world_style_anchor):
         references.append(Reference(role="style_reference", path=world_style_anchor))
 
+    if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, references):
+        runner.stage_reused(stage, target.name)
+        return target
+    started = runner.stage_start(stage)
     result = runner.image(stage, prompt, references, model=model, destination=target)
     _write_image_receipt(project, "gemini_world_keyframe", result, prompt, references, target, model)
     runner.stage_done(stage, started, target.name, sha256=sha256_file(target), model=model)
@@ -1476,9 +1731,6 @@ def stage_topic_book_cover(
     stage = "book_cover"
     target = project / "references" / "book_cover_frame.png"
     receipt = project / "pipeline" / "provider_receipts" / "gemini_book_cover.json"
-    if not force and valid_image(target) and receipt.is_file() and runner.state.done(stage):
-        runner.stage_reused(stage, target.name)
-        return target
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     # Direct, stage-only runs may use a placeholder CLI topic.  The durable launch
     # request is the canonical subject for an episode asset and must win in that case.
@@ -1509,7 +1761,6 @@ def stage_topic_book_cover(
         runner.stage_reused(brief_stage, brief_target.name)
         cover_design = brief_target.read_text(encoding="utf-8").strip()
 
-    started = runner.stage_start(stage)
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
     prompt = (
         "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly "
@@ -1525,6 +1776,10 @@ def stage_topic_book_cover(
         "photorealism and no 3D."
     )
     refs = [Reference(role="style_reference", path=world_style_anchor)] if valid_image(world_style_anchor) else []
+    if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, refs):
+        runner.stage_reused(stage, target.name)
+        return target
+    started = runner.stage_start(stage)
     result = runner.image(stage, prompt, refs, model=model, destination=target)
     _write_image_receipt(project, "gemini_book_cover", result, prompt, refs, target, model)
     runner.stage_done(stage, started, target.name, sha256=sha256_file(target), model=model)
@@ -1894,8 +2149,6 @@ def stage_beat_prompt(
 ) -> str:
     beat_id = int(beat["beat_id"])
     target = project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
-    if target.is_file() and target.read_text(encoding="utf-8").strip():
-        return target.read_text(encoding="utf-8")
     stage = f"beat_prompt_{beat_id:03d}"
     preset_readme = (
         ROOT
@@ -1913,21 +2166,48 @@ def stage_beat_prompt(
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VISUAL_BEAT=json.dumps(beat, ensure_ascii=False),
         REFERENCE_IMAGES=", ".join(ref.role for ref in references) or "none",
+        CAPTION_LAYOUT_RULE=caption_layout_rule(world_style_plan),
         PREVIOUS_BEAT=(
             "No previous image — establish the world's texture and palette from the canonical anchors."
             if not any(ref.role == "previous_beat" for ref in references)
             else "Previous image is binding for the recurring frame language, material/edge treatment, "
-            "inner illustration window and lower caption reserve; it also supports texture, palette and lighting. "
+            "inner illustration window, texture, palette and lighting. Follow the explicit caption-layout "
+            "rule for whether its lower reserve is retained or filled. "
             "Never copy its composition, crop, camera angle, pose, subject placement, or focal object."
         ),
         ASPECT_RATIO="9:16",
     )
+    cache_path = target.with_suffix(".inputs.json")
+    cache_key = sha256_text(prompt)
+    cached = load_json(cache_path) if cache_path.is_file() else {}
+    if (target.is_file() and cached.get("input_sha256") == cache_key and
+            cached.get("output_sha256") == sha256_file(target)):
+        return target.read_text(encoding="utf-8").strip()
+    # One-time migration for episodes created before writer-input caches existed. The
+    # image receipt proves which exact prompt produced the paid image, so preserve it
+    # and begin tracking the current writer inputs without calling a provider again.
+    if target.is_file() and not cache_path.is_file() and runner.state.done(stage):
+        existing = target.read_text(encoding="utf-8").strip()
+        image_receipt = (
+            project / "pipeline" / "provider_receipts" / f"gemini_beat_{beat_id:03d}.json"
+        )
+        try:
+            recorded = load_json(image_receipt) if image_receipt.is_file() else {}
+        except (OSError, ValueError):
+            recorded = {}
+        if recorded.get("prompt_sha256") == sha256_text(existing):
+            save_json(
+                cache_path,
+                {"input_sha256": cache_key, "output_sha256": sha256_file(target)},
+            )
+            return existing
     text = runner.text(stage, prompt).strip()
     # Do not rely solely on a text-writer's summary: Gemini receives this direct final
     # constraint with every beat, including a composition that otherwise changes radically.
     text = f"{text} {episode_frame_contract(world_style_plan)}"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text + "\n", encoding="utf-8")
+    save_json(cache_path, {"input_sha256": cache_key, "output_sha256": sha256_file(target)})
     return text
 
 
@@ -1967,7 +2247,18 @@ def stage_body_images(
             stage = f"beat_image_{beat_id:03d}"
             target = output_dir / f"beat_{beat_id:03d}.png"
 
-            if valid_image(target) and beat_id not in requested_regenerations:
+            references = _beat_reference_stack(content_project, beat, world_style_anchor, world_keyframe, previous)
+            prompt = stage_beat_prompt(runner, project, content_project, beat, world_style_plan, references)
+            revision_path = project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.revision.md"
+            if revision_feedback.get(beat_id):
+                prompt = f"{prompt.rstrip()}\n\nADMIN REVISION REQUEST (binding): {revision_feedback[beat_id].strip()}"
+                revision_path.write_text(prompt + "\n", encoding="utf-8")
+            elif revision_path.is_file():
+                revision = revision_path.read_text(encoding="utf-8").strip()
+                if revision.startswith(prompt.rstrip() + "\n\nADMIN REVISION REQUEST"):
+                    prompt = revision
+            receipt = project / "pipeline" / "provider_receipts" / f"gemini_beat_{beat_id:03d}.json"
+            if beat_id not in requested_regenerations and reusable_image(runner, project, stage, target, receipt, prompt, model, references):
                 runner.state.mark(stage, STATE_REUSED, artifact=target.name)
                 print(f"↻ {stage} reused — {target.name}", flush=True)
                 produced.append(target)
@@ -1978,13 +2269,6 @@ def stage_body_images(
             started = time.perf_counter()
             runner.state.mark(stage, STATE_RUNNING)
             print(f"▶ {stage}", flush=True)
-            references = _beat_reference_stack(content_project, beat, world_style_anchor, world_keyframe, previous)
-            prompt = stage_beat_prompt(runner, project, content_project, beat, world_style_plan, references)
-            # The operator's wording is intentionally part of the exact provider request,
-            # rather than hidden in state.  This makes a manual revision reproducible.
-            if revision_feedback.get(beat_id):
-                prompt = f"{prompt.rstrip()}\n\nADMIN REVISION REQUEST (binding): {revision_feedback[beat_id].strip()}"
-                (project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.revision.md").write_text(prompt + "\n", encoding="utf-8")
             result = runner.image(stage, prompt, references, model=model, destination=target)
             _write_image_receipt(project, f"gemini_beat_{beat_id:03d}", result, prompt, references, target, model)
             elapsed = time.perf_counter() - started
@@ -2345,6 +2629,25 @@ def main() -> int:
             world_style_plan = stage_world_style_director(
                 runner, project, content_project, args.topic, plan, episode_plan, directive
             )
+            brief_settings = load_json(project / "launch" / "CREATIVE_BRIEF.json")
+            qh_settings = brief_settings.get("_qh") if isinstance(brief_settings.get("_qh"), dict) else {}
+            reserve_subtitle_space = bool(qh_settings.get("reserve_subtitle_space", True))
+            original_reserve = str(
+                world_style_plan.get("style_subtitle_reserve")
+                or world_style_plan.get("subtitle_reserve")
+                or "a calm lower caption field occupying only the bottom 8–10% of the frame"
+            )
+            world_style_plan = {
+                **world_style_plan,
+                "style_subtitle_reserve": original_reserve,
+                "reserve_subtitle_space": reserve_subtitle_space,
+                "subtitle_reserve": (
+                    original_reserve
+                    if reserve_subtitle_space
+                    else "no dedicated caption reserve; the scene and matching texture fill the complete illustration height"
+                ),
+            }
+            save_json(project / "creative" / "WORLD_STYLE_PLAN.json", world_style_plan)
             if requested_style_id and str(world_style_plan.get("style_id") or "") != requested_style_id:
                 raise StageFailure(
                     "world_style_director",

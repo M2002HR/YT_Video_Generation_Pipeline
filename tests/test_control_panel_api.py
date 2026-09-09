@@ -58,6 +58,7 @@ def test_launch_form_exposes_the_word_highlight_choice() -> None:
     assert "Highlight the spoken word" in form
     assert 'name=telegram_low_size checked' in form
     assert 'name=telegram_original' in form
+    assert 'name=reserve_subtitle_space checked' in form
     assert 'name=sfx_enabled' in form
     assert 'name=sfx_license_policy' in form
     assert 'name=motion_enabled' in form
@@ -145,7 +146,7 @@ def test_pipeline_state_is_read_from_the_orchestrator_state(tmp_path: Path, monk
     state = panel.pipeline_state_of({"project": "videos/901_panel"})
     assert state["pipeline_state"] == "RUNNING"
     assert state["running"] == "flow_clip_a"
-    assert state["done"] == 1
+    assert state["done"] == 0  # A file without a receipt is visible, but not validated.
     assert state["stage_count"] > 20, "progress uses the canonical whole-pipeline graph, not only keys emitted so far"
 
 
@@ -559,6 +560,38 @@ def test_config_revision_updates_the_frozen_runtime_settings(
     assert frozen["pending_revision"]["revision_id"] == revision["revision_id"]
 
 
+def test_structured_config_revision_maps_caption_layout_to_body_images() -> None:
+    record = _record(
+        music_providers=["pixabay"], telegram_low_size=True, telegram_original=False,
+        commit_artifacts=False, motion={"enabled": False}, sfx={"enabled": False},
+    )
+    brief = {
+        "_qh": {"reserve_subtitle_space": True, "show_subtitles": False},
+        "_motion": {"enabled": False}, "_sfx": {"enabled": False},
+        "_subtitle": {"word_highlight": True},
+    }
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+    values["reserve_subtitle_space"] = False
+
+    roots, revised_brief, _voice, _launch, changed = panel.config_roots(
+        record, brief, voice, values
+    )
+
+    assert roots == {"beat_image_001"}
+    assert revised_brief["_qh"]["reserve_subtitle_space"] is False
+    assert changed == ["reserve_subtitle_space"]
+
+
+def test_structured_config_rejects_unknown_and_invalid_values() -> None:
+    values = panel.launch_defaults(panel.studio_schema())
+    values["topic"] = "validation test"
+    with pytest.raises(ValueError, match="Unknown configuration"):
+        panel.validate_config_values({**values, "raw_json_escape": True})
+    with pytest.raises(ValueError, match="Minimum duration"):
+        panel.validate_config_values({**values, "min_duration_seconds": 90, "max_duration_seconds": 40})
+
+
 def test_declarative_form_defaults_are_accepted_by_the_launch_endpoint(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(panel, "ROOT", tmp_path)
     (tmp_path / "videos").mkdir()
@@ -599,3 +632,4 @@ def test_declarative_form_defaults_are_accepted_by_the_launch_endpoint(tmp_path:
     assert record["topic"] == "A complete schema launch"
     assert record["music_providers"] == ["freesound", "mixkit", "pixabay"]
     assert record["motion"]["enabled"] is True
+    assert record["qh"]["reserve_subtitle_space"] is True

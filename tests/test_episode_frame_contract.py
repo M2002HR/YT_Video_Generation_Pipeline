@@ -30,3 +30,19 @@ def test_episode_frame_contract_has_safe_defaults_for_older_style_plans() -> Non
     contract = qh.episode_frame_contract({})
     assert "8–10%" in contract
     assert "recurring outer material" in contract
+
+
+def test_episode_frame_contract_can_fill_the_lower_area() -> None:
+    contract = qh.episode_frame_contract({
+        "reserve_subtitle_space": False,
+        "frame_language": "fibrous paper edges around a painted window",
+    })
+    assert "Do not reserve a lower caption field" in contract
+    assert "full usable height" in contract
+    assert "texture" in contract
+    assert "8–10%" not in contract
+
+
+def test_caption_layout_rule_preserves_legacy_default() -> None:
+    assert "bottom 8–10%" in qh.caption_layout_rule({})
+    assert "full illustration height" in qh.caption_layout_rule({"reserve_subtitle_space": False})

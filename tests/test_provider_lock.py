@@ -67,12 +67,13 @@ def _resume_workspace(tmp_path):
     return project
 
 
-def test_a_gemini_failure_never_reaches_another_image_provider(tmp_path):
+def test_a_gemini_failure_never_reaches_another_image_provider(tmp_path, monkeypatch):
     """§93: no provider fallback — the stage fails, it does not shop around."""
     import run_question_harvest_pipeline as qh
 
     project = _resume_workspace(tmp_path)
     spy = ProviderSpy(fail_provider="gemini")
+    monkeypatch.setattr(qh.Runner, "json", lambda *a, **k: {"hero_present": False})
     runner = qh.Runner(spy, None, qh.QHState(project, "902_lock", "topic"))
 
     with pytest.raises(qh.StageFailure) as excinfo:

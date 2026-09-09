@@ -99,9 +99,39 @@ def _mark_done(runner: Runner, stage: str) -> None:
     runner.state.mark(stage, qh.STATE_DONE)
 
 
-def test_world_keyframe_is_reused_after_a_restart(runner: Runner, project: Path) -> None:
+def image_receipt(project, target, prompt, references=(), model="nano_banana_pro"):
+    from image_artifacts import CONTRACT_VERSION, request_fingerprint
+    payload = {
+        "contract_version": CONTRACT_VERSION, "model_verified": True,
+        "requested_model": model, "quality_check": {"passed": True},
+        "output_sha256": qh.sha256_file(target), "prompt_sha256": qh.sha256_text(prompt),
+        "request_fingerprint": request_fingerprint(prompt,model,references),
+        "references": [{"role":r.role,"path":str(r.path),"sha256":qh.sha256_file(r.path)} for r in references],
+    }
+    name = 'gemini_' + ('world_keyframe' if target.stem=='world_keyframe' else target.stem)
+    qh.save_json(project / 'pipeline/provider_receipts' / (name+'.json'),payload)
+
+
+def prepare_beat_cache(runner, project, count):
+    previous=None
+    original=runner.text
+    runner.text=lambda *a,**k:'One vertical scene.'
+    try:
+        for number in range(1,count+1):
+            beat={'beat_id':number}
+            refs=qh._beat_reference_stack(_content_project(),beat,
+                project/'references/world_style_anchor.png',project/'references/world_keyframe.png',previous)
+            prompt=qh.stage_beat_prompt(runner,project,_content_project(),beat,{'medium':'woodcut'},refs)
+            target=project/f'assets/raw_beats/beat_{number:03d}.png'
+            image_receipt(project,target,prompt,refs)
+            previous=target
+    finally:runner.text=original
+
+
+def test_world_keyframe_is_reused_after_a_restart(runner: Runner, project: Path, monkeypatch) -> None:
     target = _png(project / "references" / "world_keyframe.png")
-    _receipt(project / "pipeline" / "provider_receipts" / "gemini_world_keyframe.json")
+    image_receipt(project, target, "a prompt")
+    qh.save_json(project/'references/world_keyframe_references.json',{'prompt_sha256':qh.sha256_text('a prompt'),'hero_present':False})
     _mark_done(runner, "world_keyframe")
 
     result = qh.stage_world_keyframe(
@@ -112,8 +142,9 @@ def test_world_keyframe_is_reused_after_a_restart(runner: Runner, project: Path)
 
 
 def test_world_keyframe_without_its_receipt_is_not_treated_as_done(
-    runner: Runner, project: Path
+    runner: Runner, project: Path, monkeypatch
 ) -> None:
+    monkeypatch.setattr(runner, "json", lambda *a, **k: {"hero_present": False})
     """An image with no receipt cannot be shown to have come from the right model."""
     _png(project / "references" / "world_keyframe.png")
     _mark_done(runner, "world_keyframe")
@@ -124,14 +155,11 @@ def test_world_keyframe_without_its_receipt_is_not_treated_as_done(
         )
 
 
-def test_world_style_anchor_is_reused_after_a_restart(runner: Runner, project: Path) -> None:
-    target = _png(project / "references" / "world_style_anchor.png", seed=2)
+def test_unverified_style_anchor_is_not_silently_reused(runner: Runner, project: Path) -> None:
+    _png(project / "references/world_style_anchor.png", seed=2)
     _mark_done(runner, "world_style_anchor")
-
-    result = qh.stage_world_style_anchor(
-        runner, project, _content_project(), {"decision": "new", "medium": "woodcut"}
-    )
-    assert result == target
+    with pytest.raises(AssertionError,match="called gemini"):
+        qh.stage_world_style_anchor(runner,project,_content_project(),{"decision":"new","medium":"woodcut"})
 
 
 def test_book_design_sheet_is_reused_when_the_canonical_asset_exists(
@@ -139,10 +167,25 @@ def test_book_design_sheet_is_reused_when_the_canonical_asset_exists(
 ) -> None:
     sheet = _png(tmp_path / "presets" / "book_design_sheet.png", seed=3)
     monkeypatch.setattr(qh, "book_design_sheet_path", lambda content_project: sheet)
+    reviews = []
+    monkeypatch.setattr(
+        runner,
+        "validate_image_content",
+        lambda *args, **kwargs: reviews.append(args) or {
+            "passed": True, "description": "two-view antique book sheet", "violations": []
+        },
+    )
 
     result = qh.stage_book_design_sheet(runner, project, _content_project())
     assert result == sheet
     assert runner.state.done("book_design_sheet")
+    assert len(reviews) == 1
+    assert sheet.with_suffix(sheet.suffix + ".receipt.json").is_file()
+
+    monkeypatch.setattr(
+        runner, "validate_image_content", lambda *a, **k: pytest.fail("canonical receipt was ignored")
+    )
+    assert qh.stage_book_design_sheet(runner, project, _content_project()) == sheet
 
 
 def test_book_spread_is_reused_after_a_restart(runner: Runner, project: Path) -> None:
@@ -199,9 +242,10 @@ def test_a_flow_clip_without_its_receipt_is_not_treated_as_done(
         )
 
 
-def test_body_images_already_on_disk_are_reused(runner: Runner, project: Path) -> None:
+def test_validated_body_images_are_reused(runner: Runner, project: Path) -> None:
     for beat_id in (1, 2, 3):
         _png(project / "assets" / "raw_beats" / f"beat_{beat_id:03d}.png", seed=beat_id)
+    prepare_beat_cache(runner,project,3)
     visual_plan = {"beats": [{"beat_id": index} for index in (1, 2, 3)]}
 
     produced = qh.stage_body_images(
@@ -219,7 +263,10 @@ def test_a_missing_body_image_is_regenerated_and_the_rest_are_not(
     runner: Runner, project: Path
 ) -> None:
     _png(project / "assets" / "raw_beats" / "beat_001.png", seed=1)
+    _png(project / "assets" / "raw_beats" / "beat_002.png", seed=2)
     _png(project / "assets" / "raw_beats" / "beat_003.png", seed=3)
+    prepare_beat_cache(runner,project,3)
+    (project / "assets/raw_beats/beat_002.png").unlink()
     visual_plan = {"beats": [{"beat_id": index} for index in (1, 2, 3)]}
 
     with pytest.raises(AssertionError, match="called chatgpt|called gemini"):

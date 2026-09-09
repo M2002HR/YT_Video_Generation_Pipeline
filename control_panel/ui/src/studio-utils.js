@@ -11,6 +11,8 @@ export const statusClass = (value) => {
   if (
     status === "FAILED" ||
     status === "MISSING" ||
+    status === "STALE" ||
+    status === "UNVERIFIED" ||
     status.startsWith("FAILED") ||
     status.startsWith("PAUSED")
   )

@@ -933,6 +933,15 @@ function NodeDetail({ run, node, close, regenerate, fallbackAction, resolveFallb
       <h2>{node.title}</h2>
       <StatusPill status={node.status} />
       {node.description && <p className="description">{node.description}</p>}
+      {node.validation && <p className="description" role="status">
+        Image: {label(node.validation.status)} — {node.validation.reason}
+      </p>}
+      {node.validation?.references?.length > 0 && <section>
+        <h3>References used</h3>
+        <ol>{node.validation.references.map((ref, index) => <li key={`${index}-${ref.role}`}>
+          {label(ref.role)} · {ref.path.split("/").pop()}
+        </li>)}</ol>
+      </section>}
       {media.length > 0 && (
         <div className="media-gallery">
           {media.map((item) => {
@@ -1145,14 +1154,58 @@ function RegenerationModal({ run, node, close, started }) {
 }
 
 function ConfigModal({ run, close, done }) {
-  const [text, setText] = useState(""),
+  const [schema, setSchema] = useState(null),
+    [values, setValues] = useState(null),
+    [plan, setPlan] = useState(null),
+    [styles, setStyles] = useState([]),
+    [stylesLoading, setStylesLoading] = useState(false),
+    [openGroups, setOpenGroups] = useState(new Set(["visual"])),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
   useEffect(() => {
-    request(`/api/run/${run.job.job_id}/config`)
-      .then((data) => setText(JSON.stringify(data, null, 2)))
+    Promise.all([
+      request(`/api/run/${run.job.job_id}/config`),
+      request("/api/launch-schema"),
+    ])
+      .then(([data, contract]) => {
+        setValues(data.values);
+        setSchema(contract.schema);
+      })
       .catch((failure) => setError(failure.message));
   }, [run.job.job_id]);
+  useEffect(() => {
+    if (!values?.content_project) return;
+    let cancelled = false;
+    setStylesLoading(true);
+    request(`/api/style-catalog?content_project=${encodeURIComponent(values.content_project)}`)
+      .then((data) => !cancelled && setStyles(data.styles || []))
+      .catch((failure) => !cancelled && setError(failure.message))
+      .finally(() => !cancelled && setStylesLoading(false));
+    return () => { cancelled = true; };
+  }, [values?.content_project]);
+  useEffect(() => {
+    if (!values) return;
+    let cancelled = false;
+    setPlan(null);
+    const timer = setTimeout(() => {
+      request("/api/config-revisions/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ job_id: run.job.job_id, values }),
+      })
+        .then((data) => {
+          if (!cancelled) {
+            setPlan(data);
+            setError("");
+          }
+        })
+        .catch((failure) => !cancelled && setError(failure.message));
+    }, 250);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [run.job.job_id, values]);
   useEffect(() => {
     const escape = (event) => event.key === "Escape" && close();
     addEventListener("keydown", escape);
@@ -1163,12 +1216,13 @@ function ConfigModal({ run, close, done }) {
     setBusy(true);
     setError("");
     try {
+      validateLaunchValues(values);
       await request("/api/config-revisions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           job_id: run.job.job_id,
-          config: JSON.parse(text),
+          config: { values },
         }),
       });
       done();
@@ -1195,21 +1249,74 @@ function ConfigModal({ run, close, done }) {
         >
           ×
         </button>
-        <span className="eyebrow">ADVANCED CONFIG REVISION</span>
-        <h2 id="config-title">Frozen run inputs</h2>
+        <span className="eyebrow">VERSIONED RUN SETTINGS</span>
+        <h2 id="config-title">Revise this run safely</h2>
         <p>
-          Edit the versioned JSON only when you need to change an existing run.
-          The dependency planner determines the smallest safe rebuild.
+          Edit the same controls used at launch. The impact preview identifies exactly
+          which stages rebuild before any files are changed.
         </p>
-        <textarea
-          className="config-json"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          spellCheck="false"
-        />
-        {error && <div className="inline-error">{error}</div>}
-        <button className="primary" disabled={busy || !text}>
-          {busy ? "Applying changes…" : "Save and rebuild affected stages"}
+        <div className="frozen-project">
+          <span>Content project</span>
+          <b>{label(values?.content_project || run.job.content_project)}</b>
+          <small>Fixed for this run</small>
+        </div>
+        {schema && values ? (
+          <div className="config-fields">
+            {schema.groups
+              .filter((group) => !group.projects || group.projects.includes(values.content_project))
+              .map((group) => ({
+                ...group,
+                fields: group.fields.filter(
+                  (field) => field.type !== "readonly" && field.name !== "content_project",
+                ),
+              }))
+              .filter((group) => group.fields.length)
+              .map((group) => (
+                <SettingsGroup
+                  key={group.id}
+                  group={group}
+                  values={values}
+                  change={(name, value) => setValues((current) => ({ ...current, [name]: value }))}
+                  styles={styles}
+                  stylesLoading={stylesLoading}
+                  open={openGroups.has(group.id)}
+                  toggle={() => setOpenGroups((current) => {
+                    const next = new Set(current);
+                    next.has(group.id) ? next.delete(group.id) : next.add(group.id);
+                    return next;
+                  })}
+                />
+              ))}
+          </div>
+        ) : !error && <div className="loading-line">Loading frozen settings…</div>}
+        {plan && (
+          <div className="config-review">
+            <div className="change-summary">
+              <span>{plan.changed_fields.length} changed setting(s)</span>
+              {plan.changed_fields.map((name) => <b key={name}>{label(name)}</b>)}
+            </div>
+            <div className="impact-grid config-impact">
+              <section>
+                <h3>Rebuild · {plan.affected_nodes.length}</h3>
+                <div>{plan.affected_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
+              </section>
+              <section>
+                <h3>Reuse · {plan.reused_nodes.length}</h3>
+                <div>{plan.reused_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
+              </section>
+            </div>
+          </div>
+        )}
+        {error && <div className="inline-error" role="alert">{error}</div>}
+        <button
+          className="primary"
+          disabled={busy || !values || !plan || !plan.changed_fields.length || !plan.can_start}
+        >
+          {busy
+            ? "Applying changes…"
+            : plan?.can_start === false
+              ? plan?.read_only ? "External run · inspection only" : "Another run is active"
+              : `Apply ${plan?.changed_fields?.length || 0} change(s) safely`}
         </button>
       </form>
     </div>
@@ -1563,6 +1670,7 @@ function App() {
       />
       {match ? (
         <RunPage
+          key={match[1]}
           jobId={match[1]}
           goHome={() => navigate("/")}
           notify={notify}

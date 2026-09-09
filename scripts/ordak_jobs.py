@@ -316,7 +316,10 @@ class OrdakJobs:
                 if not path.is_file():
                     raise OrdakJobError(f"Reference {ref.role} missing on disk: {path}")
                 roles.append(ref.role)
-                files.append(("image", (path.name, path.read_bytes(), "image/png")))
+                from PIL import Image
+                with Image.open(path) as source:
+                    mime = Image.MIME.get(source.format, "application/octet-stream")
+                files.append(("image", (path.name, path.read_bytes(), mime)))
             form["role"] = roles
             response = self._request("POST", "/api/jobs", data=form, files=files)
         else:

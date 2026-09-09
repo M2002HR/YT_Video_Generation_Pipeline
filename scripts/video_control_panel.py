@@ -29,6 +29,8 @@ from typing import Any
 from urllib.parse import parse_qs, unquote, urlparse
 
 import panel_page
+from panel_previews import preview as build_preview
+from image_artifacts import receipt_status
 from panel_contract import defaults as launch_defaults
 from panel_contract import launch_schema
 from run_graph import graph_for, invalidation_paths, regeneration_plan
@@ -43,6 +45,201 @@ PROVIDER_STATUS_LOCK = threading.Lock()
 PROVIDER_STATUS_CACHE: dict[str, object] = {"at": 0.0, "base": "", "value": {}}
 PREFERRED_CONTENT_PROJECT = "question_harvest"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
+
+QH_ROOTS = {
+    "world_style_policy": ("world_style_director",),
+    "world_style_id": ("world_style_director",),
+    "world_style_hint": ("world_style_director",),
+    "gemini_image_model": ("world_style_anchor",),
+    "flow_video_model": ("flow_clip_a", "flow_clip_b"),
+    "flow_resolution": ("flow_clip_a", "flow_clip_b"),
+    "opening_a_seconds": ("flow_clip_a",),
+    "opening_b_seconds": ("flow_clip_b",),
+    "min_duration_seconds": ("retention_edit",),
+    "max_duration_seconds": ("retention_edit",),
+    "show_subtitles": ("render_profile",),
+    "hero_presence_mode": ("episode_director",),
+    # This layout choice changes the paid body-image continuity chain only. Existing
+    # opening clips and the world keyframe remain stable during a revision.
+    "reserve_subtitle_space": ("beat_image_001",),
+    "chatgpt_fallback_auto": (),
+}
+QH_FIELDS = tuple(QH_ROOTS)
+QH_STORED_FIELDS = {
+    **{key: key for key in QH_FIELDS},
+    "opening_a_seconds": "opening_a_source_seconds",
+    "opening_b_seconds": "opening_b_source_seconds",
+    "chatgpt_fallback_auto": "chatgpt_fallback_mode",
+}
+VOICE_FIELDS = ("voice", "model", "speed", "stability", "similarity", "style")
+MOTION_FIELDS = {
+    "motion_transition_preference": "transition_preference",
+    "motion_max_micro_shots": "max_micro_shots_per_beat",
+    "motion_interval_min": "target_interval_min",
+    "motion_interval_max": "target_interval_max",
+    "motion_allow_punch_ins": "allow_punch_cuts",
+    "motion_allow_directional_pans": "allow_pan",
+    "motion_allow_hard_reframe_cuts": "allow_hard_reframes",
+    "motion_transition_fraction": "max_decorative_transition_fraction",
+    "motion_transition_min": "transition_duration_min",
+    "motion_transition_max": "transition_duration_max",
+    "motion_observation_batch": "observation_batch_size",
+    "motion_planning_batch": "planning_batch_size",
+    "motion_critic_batch": "critic_batch_size",
+    "motion_correction_attempts": "correction_attempts",
+    "motion_neighbor_context": "neighbor_context",
+    "motion_word_sync_tolerance": "word_sync_tolerance_ms",
+}
+
+
+def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
+    """Flatten a run's versioned files into the launch form's typed field names."""
+    values = dict(launch_defaults(studio_schema()))
+    values.update({key: brief.get(key, values.get(key, "")) for key in CREATIVE_FIELDS})
+    values.update({
+        "topic": record.get("topic", ""),
+        "content_project": record.get("content_project", DEFAULT_CONTENT_PROJECT),
+    })
+    qh = brief.get("_qh") if isinstance(brief.get("_qh"), dict) else {}
+    values.update({
+        field: qh[stored]
+        for field, stored in QH_STORED_FIELDS.items()
+        if field != "chatgpt_fallback_auto" and stored in qh
+    })
+    values["chatgpt_fallback_auto"] = qh.get("chatgpt_fallback_mode", "approval") == "auto"
+    values["reserve_subtitle_space"] = bool(qh.get("reserve_subtitle_space", True))
+    values["word_highlight"] = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
+    values.update({key: voice[key] for key in VOICE_FIELDS if key in voice})
+    inverse_motion = {stored: field for field, stored in MOTION_FIELDS.items()}
+    for key, value in (brief.get("_motion") or {}).items():
+        field = inverse_motion.get(key, f"motion_{key}")
+        if field in values:
+            values[field] = value
+    for key, value in (brief.get("_sfx") or {}).items():
+        field = f"sfx_{key}"
+        if field in values:
+            values[field] = value
+    values.update({
+        key: record.get(key, values.get(key))
+        for key in ("aspect_ratio", "music_providers", "commit_artifacts", "telegram_low_size", "telegram_original")
+    })
+    return values
+
+
+def validate_config_values(values: dict) -> dict:
+    """Validate and normalize the structured revision payload against the public schema."""
+    schema = studio_schema()
+    fields = {
+        field["name"]: field
+        for group in schema["groups"]
+        for field in group["fields"]
+        if field["type"] != "readonly"
+    }
+    unknown = set(values) - set(fields)
+    if unknown:
+        raise ValueError(f"Unknown configuration field(s): {', '.join(sorted(unknown))}")
+    normalized: dict[str, Any] = {}
+    for name, field in fields.items():
+        value = values.get(name, field.get("default", False if field["type"] == "toggle" else ""))
+        kind = field["type"]
+        if kind == "toggle":
+            if not isinstance(value, bool):
+                raise ValueError(f"{field['label']} must be on or off.")
+        elif kind == "number":
+            if isinstance(value, bool):
+                raise ValueError(f"{field['label']} must be a number.")
+            try:
+                number = float(value)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{field['label']} must be a number.") from exc
+            if field.get("min") is not None and number < float(field["min"]):
+                raise ValueError(f"{field['label']} is below its minimum.")
+            if field.get("max") is not None and number > float(field["max"]):
+                raise ValueError(f"{field['label']} is above its maximum.")
+            value = int(number) if number.is_integer() and float(field.get("step", 1)).is_integer() else number
+        elif kind == "select":
+            value = str(value)
+            allowed = {str(option["value"]) for option in field.get("options", [])}
+            if value not in allowed:
+                raise ValueError(f"Invalid value for {field['label']}.")
+        elif kind == "priority":
+            allowed = {str(option["value"]) for option in field.get("options", [])}
+            if not isinstance(value, list) or not value or len(value) != len(set(value)) or any(item not in allowed for item in value):
+                raise ValueError(f"Choose a valid, non-duplicated priority for {field['label']}.")
+        else:
+            value = str(value or "").strip()
+            if field.get("required") and not value:
+                raise ValueError(f"{field['label']} is required.")
+            if field.get("maxLength") and len(value) > int(field["maxLength"]):
+                raise ValueError(f"{field['label']} is too long.")
+        normalized[name] = value
+    if float(normalized["min_duration_seconds"]) > float(normalized["max_duration_seconds"]):
+        raise ValueError("Minimum duration cannot be greater than maximum duration.")
+    if not normalized["telegram_low_size"] and not normalized["telegram_original"]:
+        raise ValueError("Choose at least one Telegram delivery output.")
+    motion_primitives = (
+        "motion_allow_hold", "motion_allow_push", "motion_allow_pull",
+        "motion_allow_directional_pans", "motion_allow_tilt", "motion_allow_pan_push",
+        "motion_allow_pan_pull", "motion_allow_drift", "motion_allow_settle",
+        "motion_allow_reveal_move",
+    )
+    if normalized["motion_enabled"] and not any(normalized[name] for name in motion_primitives):
+        raise ValueError("Enable at least one Motion primitive.")
+    return normalized
+
+
+def config_roots(record: dict, previous: dict, voice_before: dict, values: dict) -> tuple[set[str], dict, dict, dict, list[str]]:
+    """Build revised frozen files and exact graph roots from panel-shaped values."""
+    before = validate_config_values(frozen_values(record, previous, voice_before))
+    merged = validate_config_values({**before, **values})
+    if merged["content_project"] != str(record.get("content_project")):
+        raise ValueError("Content project cannot change inside an existing run.")
+    changed_fields = [key for key in merged if before.get(key) != merged.get(key)]
+    roots: set[str] = set()
+    brief = {**previous, **{key: merged[key] for key in CREATIVE_FIELDS}}
+    qh = dict(previous.get("_qh") or {})
+    for key in QH_FIELDS:
+        if key == "chatgpt_fallback_auto":
+            continue
+        qh[QH_STORED_FIELDS[key]] = merged[key]
+        if before.get(key) != merged.get(key):
+            roots.update(QH_ROOTS[key])
+    qh["chatgpt_fallback_mode"] = "auto" if merged["chatgpt_fallback_auto"] else "approval"
+    if before.get("chatgpt_fallback_auto") != merged.get("chatgpt_fallback_auto"):
+        roots.update(QH_ROOTS["chatgpt_fallback_auto"])
+    brief["_qh"] = qh
+    brief["_subtitle"] = {**dict(previous.get("_subtitle") or {}), "word_highlight": merged["word_highlight"]}
+    if before.get("word_highlight") != merged.get("word_highlight"):
+        roots.add("render_profile")
+    motion = {
+        MOTION_FIELDS.get(key, key.removeprefix("motion_")): merged[key]
+        for key in merged if key.startswith("motion_")
+    }
+    brief["_motion"] = {**dict(previous.get("_motion") or {}), **motion}
+    if any(before.get(key) != merged.get(key) for key in merged if key.startswith("motion_")):
+        roots.add("motion_director")
+    sfx = {key.removeprefix("sfx_"): merged[key] for key in merged if key.startswith("sfx_")}
+    brief["_sfx"] = {**dict(previous.get("_sfx") or {}), **sfx}
+    if any(before.get(key) != merged.get(key) for key in merged if key.startswith("sfx_")):
+        roots.update(("sfx_plan", "sfx_acquire"))
+    voice = {**voice_before, **{key: merged[key] for key in VOICE_FIELDS}}
+    if any(before.get(key) != merged.get(key) for key in VOICE_FIELDS):
+        roots.add("elevenlabs_voiceover")
+    launch = {key: merged[key] for key in ("music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
+    launch["_topic"] = merged["topic"]
+    if before.get("music_providers") != merged.get("music_providers"):
+        roots.add("background_music")
+    if before.get("aspect_ratio") != merged.get("aspect_ratio"):
+        roots.update(("flow_clip_a", "flow_clip_b", "render_profile"))
+    if before.get("commit_artifacts") != merged.get("commit_artifacts"):
+        roots.add("git_commit_push")
+    if before.get("telegram_low_size") != merged.get("telegram_low_size"):
+        roots.update(("telegram_compress", "publish_telegram"))
+    if before.get("telegram_original") != merged.get("telegram_original"):
+        roots.add("publish_telegram")
+    if before.get("topic") != merged.get("topic") or any(before.get(key) != merged.get(key) for key in CREATIVE_FIELDS):
+        roots.add("script_draft")
+    return roots, brief, voice, launch, changed_fields
 
 #: Where Ordak answers, for the provider badges.
 ORDAK_BASE_URL = os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
@@ -174,26 +371,45 @@ def style_catalog_entries(content_project: str) -> list[dict[str, object]]:
             "anchor_available": anchor.is_file() and anchor.stat().st_size > 0,
             "anchor_url": f"/api/styles/{content_project}/{style_id}/anchor",
             "sample_url": f"/api/styles/{content_project}/{style_id}/sample",
-            "sample_available": bool(style_sample_for(style_id)),
+            "sample_available": bool(style_sample_for(style_id, content_project)),
         })
     return result
 
 
-def style_sample_for(style_id: str) -> Path | None:
-    """Newest available beat for a catalogued style, if an episode has produced one."""
-    candidates: list[Path] = []
-    videos = ROOT / "videos"
-    for project in videos.iterdir() if videos.is_dir() else []:
-        if not project.is_dir():
-            continue
-        try:
-            plan = json.loads((project / "creative/WORLD_STYLE_PLAN.json").read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            continue
-        if str(plan.get("style_id") or "") != style_id:
-            continue
-        candidates.extend(path for path in (project / "assets/raw_beats").glob("beat_*.png") if path.is_file() and path.stat().st_size)
-    return max(candidates, key=lambda path: path.stat().st_mtime_ns, default=None)
+_STYLE_SAMPLE_LOCK = threading.Lock()
+_STYLE_SAMPLE_CACHE: dict = {}
+
+
+def style_sample_for(style_id: str, content_project: str = "question_harvest") -> Path | None:
+    """Choose only validated samples; scan once per short cache window, not per style."""
+    key = (str(ROOT), content_project)
+    with _STYLE_SAMPLE_LOCK:
+        cached = _STYLE_SAMPLE_CACHE.get(key)
+        if cached and time.monotonic() - cached[0] < 3:
+            return cached[1].get(style_id)
+        samples: dict[str, Path] = {}
+        videos = ROOT / "videos"
+        for project in videos.iterdir() if videos.is_dir() else []:
+            if not project.is_dir():
+                continue
+            try:
+                plan = json.loads((project / "creative/WORLD_STYLE_PLAN.json").read_text())
+                launch_path = project / "launch/LAUNCH_REQUEST.json"
+                launch = json.loads(launch_path.read_text()) if launch_path.is_file() else {}
+                if launch.get("content_project", "question_harvest") != content_project:
+                    continue
+                chosen = str(plan.get("style_id") or "")
+                for candidate in (project / "assets/raw_beats").glob("beat_*.png"):
+                    receipt = project / "pipeline/provider_receipts" / f"gemini_{candidate.stem}.json"
+                    if receipt_status(project, candidate, receipt)["status"] != "verified":
+                        continue
+                    if chosen not in samples or candidate.stat().st_mtime_ns > samples[chosen].stat().st_mtime_ns:
+                        samples[chosen] = candidate
+            except (OSError, ValueError, TypeError):
+                continue
+        _STYLE_SAMPLE_CACHE.clear()
+        _STYLE_SAMPLE_CACHE[key] = (time.monotonic(), samples)
+        return samples.get(style_id)
 
 
 def style_options_html(content_project: str) -> str:
@@ -1004,7 +1220,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             catalog = json.loads((catalog_root / "CATALOG.json").read_text(encoding="utf-8"))
             entry = next(item for item in catalog.get("styles") or [] if isinstance(item, dict) and item.get("style_id") == style_id)
-            target = (catalog_root / str(entry.get("anchor") or "")).resolve() if kind == "anchor" else style_sample_for(style_id)
+            target = (catalog_root / str(entry.get("anchor") or "")).resolve() if kind == "anchor" else style_sample_for(style_id, content_project)
             if target is None:
                 raise ValueError("No sample")
             if kind == "anchor":
@@ -1017,13 +1233,7 @@ class Handler(BaseHTTPRequestHandler):
         cache = ROOT / "control_panel" / "style_previews"
         try:
             cache.mkdir(parents=True, exist_ok=True)
-            key = hashlib.sha256(f"{target}:{target.stat().st_mtime_ns}:{target.stat().st_size}".encode()).hexdigest()[:24]
-            thumbnail = cache / f"{key}.jpg"
-            if not thumbnail.is_file():
-                from PIL import Image
-                with Image.open(target) as image:
-                    image.thumbnail((420, 300), Image.Resampling.LANCZOS)
-                    image.convert("RGB").save(thumbnail, "JPEG", quality=52, optimize=True)
+            thumbnail, _ = build_preview(target, cache, style=True)
             payload = thumbnail.read_bytes()
         except (OSError, ValueError):
             self.send_error(HTTPStatus.NOT_FOUND)
@@ -1031,7 +1241,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", "image/jpeg")
         self.send_header("Content-Length", str(len(payload)))
-        self.send_header("Cache-Control", "private, max-age=86400")
+        self.send_header("Cache-Control", "private, no-cache")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Frame-Options", "DENY")
         self.end_headers()
@@ -1047,34 +1257,9 @@ class Handler(BaseHTTPRequestHandler):
         Previews are cached per source mtime/size.  A 720p master therefore cannot be inferred
         from the UI endpoint even when an operator opens the media element in a new tab.
         """
-        suffix = target.suffix.lower()
-        key = hashlib.sha256(f"{target.relative_to(project)}:{target.stat().st_mtime_ns}:{target.stat().st_size}".encode()).hexdigest()[:20]
         cache = project / ".panel_previews"
-        cache.mkdir(exist_ok=True)
-        cache = cache.resolve()
-        cache.relative_to(project.resolve())
-        if suffix in {".png", ".jpg", ".jpeg", ".webp"}:
-            output = cache / f"{key}.jpg"
-            if not output.is_file():
-                from PIL import Image
-                with Image.open(target) as image:
-                    image.thumbnail((480, 480), Image.Resampling.LANCZOS)
-                    image.convert("RGB").save(output, "JPEG", quality=48, optimize=True)
-            return output, "image/jpeg"
-        if suffix in {".mp4", ".mov", ".webm"}:
-            output = cache / f"{key}.mp4"
-            if not output.is_file():
-                subprocess.run(["ffmpeg", "-y", "-i", str(target), "-vf", "scale=min(360\\,iw):-2", "-c:v", "libx264", "-crf", "35", "-preset", "veryfast", "-an", str(output)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=180)
-            return output, "video/mp4"
-        if suffix in {".mp3", ".wav", ".m4a", ".ogg", ".flac"}:
-            output = cache / f"{key}.ogg"
-            if not output.is_file():
-                subprocess.run(["ffmpeg", "-y", "-i", str(target), "-c:a", "libopus", "-b:a", "32k", "-ac", "1", str(output)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=120)
-            return output, "audio/ogg"
-        # Metadata is safe to display directly; binary/unrecognised input is never exposed.
-        if suffix in {".json", ".txt", ".md", ".ass"}:
-            return target, "text/plain; charset=utf-8"
-        raise ValueError("This artifact has no safe panel preview.")
+        cache.resolve().relative_to(project.resolve())
+        return build_preview(target, cache)
 
     def serve_artifact(self, project: Path, relative: str) -> None:
         """Serve only a low-quality derivative or text metadata, never the original media."""
@@ -1111,7 +1296,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Referrer-Policy", "no-referrer")
         if status == HTTPStatus.PARTIAL_CONTENT:
             self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
-        self.send_header("Cache-Control", "private, max-age=86400")
+        self.send_header("Cache-Control", "private, no-cache")
         try:
             self.end_headers()
             if getattr(self, "command", "GET") == "HEAD":
@@ -1297,20 +1482,24 @@ class Handler(BaseHTTPRequestHandler):
             job_id = str(payload.get("job_id") or "")
             config = payload.get("config") or {}
             brief, voice, launch = config.get("creative_brief"), config.get("voice_profile"), config.get("launch")
+            values = config.get("values")
         except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Configuration payload is invalid."}); return
-        if not JOB_ID_RE.fullmatch(job_id) or not all(isinstance(x, dict) for x in (brief, voice, launch)):
+        if not JOB_ID_RE.fullmatch(job_id) or (
+            not isinstance(values, dict) and not all(isinstance(x, dict) for x in (brief, voice, launch))
+        ):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "All configuration sections must be JSON objects."}); return
-        if any(key in brief and not isinstance(brief[key], dict) for key in ("_qh", "_motion", "_sfx", "_subtitle")):
+        if not isinstance(values, dict) and any(key in brief and not isinstance(brief[key], dict) for key in ("_qh", "_motion", "_sfx", "_subtitle")):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Nested _qh, _motion, _sfx, and _subtitle settings must be JSON objects."}); return
         try:
-            if "music_providers" in launch or "music_provider" in launch:
+            if not isinstance(values, dict) and ("music_providers" in launch or "music_provider" in launch):
                 music_provider_priority(launch.get("music_providers") or launch.get("music_provider"))
-            if launch.get("aspect_ratio") not in (None, "9:16", "16:9"):
+            if not isinstance(values, dict) and launch.get("aspect_ratio") not in (None, "9:16", "16:9"):
                 raise ValueError("Aspect ratio must be 9:16 or 16:9.")
-            for key in ("commit_artifacts", "telegram_low_size", "telegram_original"):
-                if key in launch and not isinstance(launch[key], bool):
-                    raise ValueError(f"{key} must be a JSON boolean.")
+            if not isinstance(values, dict):
+                for key in ("commit_artifacts", "telegram_low_size", "telegram_original"):
+                    if key in launch and not isinstance(launch[key], bool):
+                        raise ValueError(f"{key} must be a JSON boolean.")
         except (TypeError, ValueError) as exc:
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
         resolved = self.project_for_job(job_id)
@@ -1323,6 +1512,17 @@ class Handler(BaseHTTPRequestHandler):
             previous_voice = json.loads((ROOT / str(record["voice_profile"])).read_text(encoding="utf-8"))
         except (OSError, ValueError, KeyError) as exc:
             self.send_json(HTTPStatus.CONFLICT, {"error": f"This run's frozen configuration is unavailable: {exc}"}); return
+        if isinstance(values, dict):
+            try:
+                roots, brief, voice, launch, changed_fields = config_roots(
+                    record, previous_brief, previous_voice, values
+                )
+            except ValueError as exc:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+            self.commit_config_revision(
+                record, project, roots, brief, voice, launch, changed_fields
+            )
+            return
         revision_id = str(uuid.uuid4()); folder = project / "launch" / "config_revisions" / revision_id; folder.mkdir(parents=True, exist_ok=True)
         write_json(folder / "CREATIVE_BRIEF.json", brief); write_json(folder / "VOICE_PROFILE.json", voice)
         # Derive the narrowest safe root(s). Any unknown editorial launch change begins at
@@ -1345,6 +1545,8 @@ class Handler(BaseHTTPRequestHandler):
                 known_qh.update(("min_duration_seconds", "max_duration_seconds"))
                 if old_qh.get("show_subtitles") != new_qh.get("show_subtitles"): roots.add("render_profile")
                 known_qh.add("show_subtitles")
+                if old_qh.get("reserve_subtitle_space", True) != new_qh.get("reserve_subtitle_space", True): roots.add("beat_image_001")
+                known_qh.add("reserve_subtitle_space")
                 if old_qh.get("hero_presence_mode") != new_qh.get("hero_presence_mode"): roots.add("episode_director")
                 known_qh.add("hero_presence_mode")
                 if any(old_qh.get(key) != new_qh.get(key) for key in set(old_qh) | set(new_qh) if key not in known_qh): roots.add("script_draft")
@@ -1382,6 +1584,138 @@ class Handler(BaseHTTPRequestHandler):
         write_json(self.jobs_dir / f"{job_id}.json", record)
         write_json(project / "launch/LAUNCH_REQUEST.json", record)
         self.send_json(HTTPStatus.ACCEPTED, {"revision": revision, "status":"RUNNING"})
+
+    def commit_config_revision(
+        self,
+        record: dict,
+        project: Path,
+        roots: set[str],
+        brief: dict,
+        voice: dict,
+        launch: dict,
+        changed_fields: list[str],
+    ) -> None:
+        """Commit the exact typed configuration that the preview endpoint evaluates."""
+        if not changed_fields:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "No effective configuration change was found."})
+            return
+        if record.get("external"):
+            self.send_json(HTTPStatus.CONFLICT, {"error": "Externally started runs are read-only in Studio."})
+            return
+        revision_id = str(uuid.uuid4())
+        folder = project / "launch" / "config_revisions" / revision_id
+        old_record = json.loads(json.dumps(record))
+        job_path = self.jobs_dir / f"{record['job_id']}.json"
+        launch_path = project / "launch" / "LAUNCH_REQUEST.json"
+        try:
+            with LAUNCH_LOCK:
+                if active_job(self.jobs_dir) is not None:
+                    self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."})
+                    return
+                folder.mkdir(parents=True, exist_ok=False)
+                write_json(folder / "CREATIVE_BRIEF.json", brief)
+                write_json(folder / "VOICE_PROFILE.json", voice)
+                record.update({key: value for key, value in launch.items() if not key.startswith("_")})
+                record.update({
+                    "topic": str(launch.get("_topic") or record.get("topic")),
+                    "qh": brief.get("_qh", {}),
+                    "motion": brief.get("_motion", {}),
+                    "sfx": brief.get("_sfx", {}),
+                    "word_highlight": bool((brief.get("_subtitle") or {}).get("word_highlight", True)),
+                    "subtitles": bool((brief.get("_qh") or {}).get("show_subtitles", False)),
+                    "creative_brief": str((folder / "CREATIVE_BRIEF.json").relative_to(ROOT)),
+                    "voice_profile": str((folder / "VOICE_PROFILE.json").relative_to(ROOT)),
+                })
+                # Publish the frozen inputs before spawning so the child cannot race and
+                # observe the previous launch contract.
+                write_json(job_path, record)
+                write_json(launch_path, record)
+                if roots:
+                    revision, _ = self.start_regeneration(
+                        record, project, sorted(roots), kind="config"
+                    )
+                else:
+                    revision = {
+                        "schema_version": 2,
+                        "revision_id": revision_id,
+                        "kind": "config",
+                        "status": "DONE",
+                        "created_at": utcnow(),
+                        "completed_at": utcnow(),
+                        "roots": [],
+                        "affected_nodes": [],
+                        "reused_nodes": [node["id"] for node in graph_for(project).get("nodes", [])],
+                        "skipped_nodes": [],
+                    }
+                    revision_path = project / "pipeline" / "revisions" / revision_id / "REVISION.json"
+                    revision_path.parent.mkdir(parents=True, exist_ok=True)
+                    write_json(revision_path, revision)
+        except (ValueError, KeyError, TypeError, OSError) as exc:
+            record.clear()
+            record.update(old_record)
+            write_json(job_path, old_record)
+            write_json(launch_path, old_record)
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not apply configuration revision."})
+            return
+        revision["changed_fields"] = changed_fields
+        revision["config_revision_id"] = revision_id
+        revision_path = project / "pipeline" / "revisions" / revision["revision_id"] / "REVISION.json"
+        write_json(revision_path, revision)
+        record["last_config_revision"] = revision
+        write_json(job_path, record)
+        write_json(launch_path, record)
+        self.send_json(
+            HTTPStatus.ACCEPTED if roots else HTTPStatus.OK,
+            {"revision": revision, "status": revision["status"]},
+        )
+
+    def handle_config_preview(self) -> None:
+        try:
+            payload = self.read_json_payload()
+            job_id = str(payload.get("job_id") or "")
+            values = payload.get("values")
+            if not JOB_ID_RE.fullmatch(job_id) or not isinstance(values, dict):
+                raise ValueError("A valid run and settings form are required.")
+            resolved = self.project_for_job(job_id)
+            if not resolved:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
+            record, project = resolved
+            old_brief = json.loads((ROOT / str(record["creative_brief"])).read_text(encoding="utf-8"))
+            old_voice = json.loads((ROOT / str(record["voice_profile"])).read_text(encoding="utf-8"))
+            roots, brief, _voice, launch, changed_fields = config_roots(
+                record, old_brief, old_voice, values
+            )
+            candidate = {
+                **record,
+                **launch,
+                "qh": brief.get("_qh", {}),
+                "motion": brief.get("_motion", {}),
+                "sfx": brief.get("_sfx", {}),
+            }
+            plan = (
+                regeneration_plan(
+                    project,
+                    sorted(roots),
+                    include_disabled=True,
+                    settings=candidate,
+                    skip_disabled_descendants=True,
+                )
+                if roots
+                else {
+                    "affected_nodes": [],
+                    "reused_nodes": [node["id"] for node in graph_for(project).get("nodes", [])],
+                    "skipped_nodes": [],
+                }
+            )
+            self.send_json(HTTPStatus.OK, {
+                **plan,
+                "roots": sorted(roots),
+                "changed_fields": changed_fields,
+                "can_start": not record.get("external") and active_job(self.jobs_dir) is None,
+                "read_only": bool(record.get("external")),
+            })
+        except (ValueError, OSError, KeyError, json.JSONDecodeError, TypeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not preview this revision."})
 
     def log_tail(self, job_id: str, offset: int) -> dict:
         """Incremental log bytes, so the page can tail without refetching megabytes."""
@@ -1632,7 +1966,12 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError, KeyError):
                 self.send_json(HTTPStatus.CONFLICT, {"error": "This run's frozen configuration is unavailable."}); return
             launch = {key: record.get(key) for key in ("music_provider", "music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
-            self.send_json(HTTPStatus.OK, {"creative_brief": brief, "voice_profile": voice, "launch": launch}); return
+            self.send_json(HTTPStatus.OK, {
+                "creative_brief": brief,
+                "voice_profile": voice,
+                "launch": launch,
+                "values": frozen_values(record, brief, voice),
+            }); return
 
         if route.startswith("/api/run/") and "/artifact/" in route:
             parts = route.split("/", 5)
@@ -1708,6 +2047,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/regenerations/preview": self.handle_regeneration_preview(); return
         if self.path == "/api/regenerations": self.handle_regeneration(); return
         if self.path == "/api/revisions": self.handle_revision(); return
+        if self.path == "/api/config-revisions/preview": self.handle_config_preview(); return
         if self.path == "/api/config-revisions": self.handle_config_revision(); return
         if self.path in {"/resume", "/api/fallback-action"}: self.handle_resume(); return
         if self.path == "/stop": self.handle_stop(); return
@@ -1777,6 +2117,7 @@ class Handler(BaseHTTPRequestHandler):
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
             world_style_hint = form_text(values, "world_style_hint", 500) if values.get("world_style_hint") else ""
+            reserve_subtitle_space = "reserve_subtitle_space" in values
             chatgpt_fallback_auto = "chatgpt_fallback_auto" in values
             world_style_id = values.get("world_style_id", [""])[0].strip()
             if world_style_id and world_style_id not in catalogued_style_ids(content_project):
@@ -1855,6 +2196,7 @@ class Handler(BaseHTTPRequestHandler):
                 "opening_a_source_seconds": opening_a_seconds,
                 "opening_b_source_seconds": opening_b_seconds,
                 "show_subtitles": show_subtitles,
+                "reserve_subtitle_space": reserve_subtitle_space,
                 "chatgpt_fallback_mode": "auto" if chatgpt_fallback_auto else "approval",
             }
             # Kept outside the QH-only settings so legacy content projects use the same
