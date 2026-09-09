@@ -1,0 +1,1301 @@
+{
+  "schema_version": 2,
+  "beats": [
+    {
+      "beat_id": 1,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.483,
+        "w": 0.84,
+        "h": 0.555
+      },
+      "composition_summary": "A hand-painted street scene showing an old narrow neighborhood alley with simple buildings, a distant minaret, a doorway, a lit window, and a wooden cradle on the right side. No people are visible.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b01_target_alley",
+          "label": "narrow cobbled street alley",
+          "kind": "place",
+          "bbox": {
+            "x": 0.47,
+            "y": 0.49,
+            "w": 0.7,
+            "h": 0.5
+          },
+          "importance": "primary",
+          "confidence": 0.95,
+          "visible_evidence": "Visible paved alley extending between old buildings."
+        },
+        {
+          "target_id": "b01_target_cradle",
+          "label": "wooden cradle near doorway",
+          "kind": "object",
+          "bbox": {
+            "x": 0.73,
+            "y": 0.65,
+            "w": 0.2,
+            "h": 0.16
+          },
+          "importance": "secondary",
+          "confidence": 0.94,
+          "visible_evidence": "Carved wooden cradle is visible outside the doorway."
+        },
+        {
+          "target_id": "b01_target_minaret",
+          "label": "distant minaret silhouette",
+          "kind": "context",
+          "bbox": {
+            "x": 0.29,
+            "y": 0.4,
+            "w": 0.08,
+            "h": 0.15
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "Tower-like minaret visible in the background."
+        },
+        {
+          "target_id": "b01_target_window_lamp",
+          "label": "lit window with lamp",
+          "kind": "object",
+          "bbox": {
+            "x": 0.74,
+            "y": 0.2,
+            "w": 0.12,
+            "h": 0.12
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "Small glowing lamp visible inside upper window."
+        }
+      ],
+      "faces": [],
+      "hands_or_actions": [],
+      "forbidden_regions": [
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.88,
+            "h": 0.68
+          }
+        },
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.83,
+            "w": 0.8,
+            "h": 0.18
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.45,
+          "y": 0.15,
+          "w": 0.45,
+          "h": 0.15
+        }
+      ],
+      "notes": "Keep the artwork frame intact. Avoid using the blank caption panel below as visual content.",
+      "media_sha256": "6a1fd2bfe1c795f07643d1ffde0cebff1f63bdbee418e74a8f88597976735f18"
+    },
+    {
+      "beat_id": 2,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.483,
+        "w": 0.84,
+        "h": 0.555
+      },
+      "composition_summary": "A hand-painted indoor wrestling hall scene showing a young male wrestler tying or handling a rope around a wooden post. Training equipment is visible in the background.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b02_target_wrestler_face",
+          "label": "young wrestler face",
+          "kind": "face",
+          "bbox": {
+            "x": 0.61,
+            "y": 0.28,
+            "w": 0.12,
+            "h": 0.1
+          },
+          "importance": "primary",
+          "confidence": 0.95,
+          "visible_evidence": "Visible male face looking downward toward the rope."
+        },
+        {
+          "target_id": "b02_target_wrestler_body",
+          "label": "young wrestler standing in training clothes",
+          "kind": "person",
+          "bbox": {
+            "x": 0.61,
+            "y": 0.47,
+            "w": 0.27,
+            "h": 0.42
+          },
+          "importance": "primary",
+          "confidence": 0.96,
+          "visible_evidence": "Person standing indoors wearing athletic clothing."
+        },
+        {
+          "target_id": "b02_target_rope_hands",
+          "label": "hands tying rope on wooden post",
+          "kind": "hand",
+          "bbox": {
+            "x": 0.43,
+            "y": 0.34,
+            "w": 0.18,
+            "h": 0.15
+          },
+          "importance": "secondary",
+          "confidence": 0.93,
+          "visible_evidence": "Hands are visibly engaged with a rope wrapped around a post."
+        },
+        {
+          "target_id": "b02_target_rope",
+          "label": "large hanging training rope",
+          "kind": "object",
+          "bbox": {
+            "x": 0.32,
+            "y": 0.43,
+            "w": 0.18,
+            "h": 0.34
+          },
+          "importance": "secondary",
+          "confidence": 0.95,
+          "visible_evidence": "Looped rope hanging beside the post."
+        },
+        {
+          "target_id": "b02_target_training_hall",
+          "label": "old wrestling hall interior",
+          "kind": "place",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.45,
+            "w": 0.7,
+            "h": 0.5
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "Indoor room with wooden beams and training objects."
+        }
+      ],
+      "faces": [
+        "b02_target_wrestler_face"
+      ],
+      "hands_or_actions": [
+        "b02_target_rope_hands"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.88,
+            "h": 0.68
+          }
+        },
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.83,
+            "w": 0.8,
+            "h": 0.18
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.2,
+          "y": 0.25,
+          "w": 0.18,
+          "h": 0.25
+        }
+      ],
+      "notes": "Prioritize the wrestler and rope interaction. Avoid caption area and paper border.",
+      "media_sha256": "331eb63f0361a48236c6a4564a45ae5de491ebfc155245f45fb3c98d90472521"
+    },
+    {
+      "beat_id": 3,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.483,
+        "w": 0.84,
+        "h": 0.555
+      },
+      "composition_summary": "A hand-painted Olympic podium memory showing a male athlete receiving a medal. A second person reaches toward the athlete's neck while arena lights appear in the background.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b03_target_athlete_face",
+          "label": "athlete face",
+          "kind": "face",
+          "bbox": {
+            "x": 0.57,
+            "y": 0.27,
+            "w": 0.18,
+            "h": 0.12
+          },
+          "importance": "primary",
+          "confidence": 0.95,
+          "visible_evidence": "Visible male face looking downward during medal ceremony."
+        },
+        {
+          "target_id": "b03_target_athlete",
+          "label": "athlete wearing green jacket with medal",
+          "kind": "person",
+          "bbox": {
+            "x": 0.61,
+            "y": 0.45,
+            "w": 0.35,
+            "h": 0.45
+          },
+          "importance": "primary",
+          "confidence": 0.96,
+          "visible_evidence": "Central figure wearing sports clothing with medal around neck."
+        },
+        {
+          "target_id": "b03_target_medal_hands",
+          "label": "hands placing medal on athlete",
+          "kind": "hand",
+          "bbox": {
+            "x": 0.47,
+            "y": 0.38,
+            "w": 0.2,
+            "h": 0.16
+          },
+          "importance": "secondary",
+          "confidence": 0.94,
+          "visible_evidence": "Two hands visibly hold the medal ribbon near the athlete."
+        },
+        {
+          "target_id": "b03_target_medal",
+          "label": "gold medal on ribbon",
+          "kind": "object",
+          "bbox": {
+            "x": 0.58,
+            "y": 0.48,
+            "w": 0.09,
+            "h": 0.12
+          },
+          "importance": "secondary",
+          "confidence": 0.95,
+          "visible_evidence": "Round medal visible on athlete's chest."
+        },
+        {
+          "target_id": "b03_target_arena_background",
+          "label": "softly lit arena background",
+          "kind": "context",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.22,
+            "w": 0.65,
+            "h": 0.25
+          },
+          "importance": "context",
+          "confidence": 0.88,
+          "visible_evidence": "Blurred stadium-like lights visible behind figures."
+        }
+      ],
+      "faces": [
+        "b03_target_athlete_face"
+      ],
+      "hands_or_actions": [
+        "b03_target_medal_hands"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.88,
+            "h": 0.68
+          }
+        },
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.83,
+            "w": 0.8,
+            "h": 0.18
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.15,
+          "y": 0.3,
+          "w": 0.2,
+          "h": 0.25
+        }
+      ],
+      "notes": "Keep focus on medal ceremony interaction and athlete face. Do not crop away medal or hands.",
+      "media_sha256": "1e9add692b6e562a41611dac43f7d75e36321e8e73d496dcd1b56751793a9b1f"
+    },
+    {
+      "beat_id": 4,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.474,
+        "w": 0.82,
+        "h": 0.61
+      },
+      "composition_summary": "Overhead archival-style still life showing two silver medals, wrestling shoes, straps, a vintage sports bag, and faint architectural travel markings on the bag and paper.",
+      "visual_direction": "mixed",
+      "targets": [
+        {
+          "target_id": "b04_target_medals",
+          "label": "paired silver medals with ribbons",
+          "kind": "object",
+          "bbox": {
+            "x": 0.285,
+            "y": 0.402,
+            "w": 0.22,
+            "h": 0.18
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "Two round silver medals with green ribbons are visible on the wooden surface."
+        },
+        {
+          "target_id": "b04_target_wrestling_bag",
+          "label": "green vintage sports bag",
+          "kind": "object",
+          "bbox": {
+            "x": 0.62,
+            "y": 0.58,
+            "w": 0.42,
+            "h": 0.32
+          },
+          "importance": "primary",
+          "confidence": 0.97,
+          "visible_evidence": "Large green bag with brown straps and painted landmark-style symbols is visible."
+        },
+        {
+          "target_id": "b04_target_shoes",
+          "label": "wrestling shoes",
+          "kind": "object",
+          "bbox": {
+            "x": 0.73,
+            "y": 0.18,
+            "w": 0.22,
+            "h": 0.16
+          },
+          "importance": "secondary",
+          "confidence": 0.95,
+          "visible_evidence": "Pair of laced athletic shoes visible at upper right."
+        },
+        {
+          "target_id": "b04_target_travel_marks",
+          "label": "faint architectural travel drawings on paper and bag",
+          "kind": "detail",
+          "bbox": {
+            "x": 0.67,
+            "y": 0.54,
+            "w": 0.2,
+            "h": 0.2
+          },
+          "importance": "secondary",
+          "confidence": 0.82,
+          "visible_evidence": "Small outlined building illustrations are visible on the bag and nearby paper."
+        }
+      ],
+      "faces": [],
+      "hands_or_actions": [],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.9,
+            "w": 0.8,
+            "h": 0.15
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 1.0,
+            "h": 1.0
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.9,
+          "w": 0.8,
+          "h": 0.15
+        }
+      ],
+      "notes": "Keep focus on the medals and sports objects. Avoid movement into the blank lower caption area.",
+      "media_sha256": "510e08a04755ba7eef61dea9a9b0900c8473331f2f3a15993882ab39fd4d26ad"
+    },
+    {
+      "beat_id": 5,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.475,
+        "w": 0.82,
+        "h": 0.61
+      },
+      "composition_summary": "Indoor hall scene with a central wrestler bowing respectfully while surrounded by a group of spectators and supporters.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b05_target_bowing_wrestler",
+          "label": "central wrestler bowing with lowered head",
+          "kind": "person",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.49,
+            "w": 0.22,
+            "h": 0.34
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "Central muscular person in wrestling attire bends forward with hands together."
+        },
+        {
+          "target_id": "b05_target_crowd",
+          "label": "surrounding spectators",
+          "kind": "group",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.4,
+            "w": 0.62,
+            "h": 0.24
+          },
+          "importance": "secondary",
+          "confidence": 0.95,
+          "visible_evidence": "Multiple people stand around the wrestler in the hall."
+        },
+        {
+          "target_id": "b05_target_left_foreground_person",
+          "label": "foreground spectator on left",
+          "kind": "person",
+          "bbox": {
+            "x": 0.16,
+            "y": 0.61,
+            "w": 0.2,
+            "h": 0.25
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "Partial person visible from the side in the lower left foreground."
+        },
+        {
+          "target_id": "b05_target_right_foreground_person",
+          "label": "foreground spectator on right",
+          "kind": "person",
+          "bbox": {
+            "x": 0.84,
+            "y": 0.61,
+            "w": 0.2,
+            "h": 0.25
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "Partial person visible from the side in the lower right foreground."
+        }
+      ],
+      "faces": [
+        "b05_target_bowing_wrestler",
+        "b05_target_left_foreground_person",
+        "b05_target_right_foreground_person"
+      ],
+      "hands_or_actions": [
+        "b05_target_bowing_wrestler"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.9,
+            "w": 0.8,
+            "h": 0.15
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 1.0,
+            "h": 1.0
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.88,
+          "w": 0.8,
+          "h": 0.16
+        }
+      ],
+      "notes": "Center attention on the bowing figure and respectful crowd reaction. Avoid the lower blank caption panel.",
+      "media_sha256": "14e2aa1331b8ba110f48e694b64c72c9b08b249729559890cda469b85041f449"
+    },
+    {
+      "beat_id": 6,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.475,
+        "w": 0.82,
+        "h": 0.61
+      },
+      "composition_summary": "Wrestling scene inside a hall showing two athletes on a mat, with one wrestler supporting the other by holding his hand.",
+      "visual_direction": "mixed",
+      "targets": [
+        {
+          "target_id": "b06_target_helping_wrestler",
+          "label": "standing kneeling wrestler offering hand",
+          "kind": "person",
+          "bbox": {
+            "x": 0.35,
+            "y": 0.53,
+            "w": 0.3,
+            "h": 0.38
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "Wrestler in green singlet kneels and grips the other wrestler's hand."
+        },
+        {
+          "target_id": "b06_target_supported_wrestler",
+          "label": "seated tired wrestler being helped",
+          "kind": "person",
+          "bbox": {
+            "x": 0.62,
+            "y": 0.62,
+            "w": 0.34,
+            "h": 0.3
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "Wrestler in dark singlet sits on the mat while holding the other person's hand."
+        },
+        {
+          "target_id": "b06_target_handshake",
+          "label": "grasped hands between wrestlers",
+          "kind": "hand",
+          "bbox": {
+            "x": 0.49,
+            "y": 0.52,
+            "w": 0.14,
+            "h": 0.1
+          },
+          "importance": "primary",
+          "confidence": 0.97,
+          "visible_evidence": "Two hands are visibly clasped in the center of the scene."
+        },
+        {
+          "target_id": "b06_target_background_observers",
+          "label": "background observers",
+          "kind": "group",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.33,
+            "w": 0.55,
+            "h": 0.18
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "Several people watch from behind the wrestlers."
+        }
+      ],
+      "faces": [
+        "b06_target_helping_wrestler",
+        "b06_target_supported_wrestler"
+      ],
+      "hands_or_actions": [
+        "b06_target_handshake"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.9,
+            "w": 0.8,
+            "h": 0.15
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 1.0,
+            "h": 1.0
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.88,
+          "w": 0.8,
+          "h": 0.16
+        }
+      ],
+      "notes": "Prioritize the central hand gesture as the emotional action. Avoid cropping either wrestler or the blank lower panel.",
+      "media_sha256": "d90cf8cc5a47e536bffe35da5035390eb3bf3343d371ab7925b39312c33ea475"
+    },
+    {
+      "beat_id": 7,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.38,
+        "w": 0.8,
+        "h": 0.58
+      },
+      "composition_summary": "A symbolic painted scene shows a kneeling traditional wrestler figure centered beneath a large globe map motif, with a long patterned cloth draped across the body and extending onto the floor.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b07_target_wrestler_figure",
+          "label": "central kneeling wrestler figure",
+          "kind": "person",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.57,
+            "w": 0.38,
+            "h": 0.39
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "single muscular human figure kneeling in the center of the artwork"
+        },
+        {
+          "target_id": "b07_target_globe_map",
+          "label": "world map globe motif",
+          "kind": "context",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.23,
+            "w": 0.72,
+            "h": 0.2
+          },
+          "importance": "secondary",
+          "confidence": 0.97,
+          "visible_evidence": "large outlined world map shape behind the figure"
+        },
+        {
+          "target_id": "b07_target_patterned_cloth",
+          "label": "patterned wrestling cloth draped over figure and floor",
+          "kind": "object",
+          "bbox": {
+            "x": 0.62,
+            "y": 0.65,
+            "w": 0.35,
+            "h": 0.4
+          },
+          "importance": "secondary",
+          "confidence": 0.96,
+          "visible_evidence": "decorated fabric with fringe visible across the body and ground"
+        }
+      ],
+      "faces": [
+        "b07_target_wrestler_figure"
+      ],
+      "hands_or_actions": [
+        "b07_target_wrestler_figure"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.8,
+            "h": 0.18
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.9,
+            "h": 0.95
+          }
+        },
+        {
+          "type": "low_detail",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.9,
+            "w": 0.8,
+            "h": 0.08
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.27,
+          "w": 0.7,
+          "h": 0.15
+        }
+      ],
+      "notes": "Keep the central figure and globe motif visible; avoid cropping the patterned cloth extension.",
+      "media_sha256": "40cb086672a70f36fcde7a9460bcb492f80450cb42ae0a7ff11577a2eb9af506"
+    },
+    {
+      "beat_id": 8,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.38,
+        "w": 0.8,
+        "h": 0.58
+      },
+      "composition_summary": "An old wrestling hall scene shows a central standing wrestler surrounded by several athletes in a circular gathering, with some touching shoulders and others watching respectfully.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b08_target_center_wrestler",
+          "label": "standing wrestler in center of group",
+          "kind": "person",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.54,
+            "w": 0.22,
+            "h": 0.32
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "central standing athlete facing forward inside the group"
+        },
+        {
+          "target_id": "b08_target_surrounding_athletes",
+          "label": "group of surrounding wrestlers",
+          "kind": "group",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.56,
+            "w": 0.6,
+            "h": 0.38
+          },
+          "importance": "secondary",
+          "confidence": 0.97,
+          "visible_evidence": "multiple shirtless athletes forming a circle around the center figure"
+        },
+        {
+          "target_id": "b08_target_training_hall",
+          "label": "wrestling hall interior",
+          "kind": "place",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.32,
+            "w": 0.72,
+            "h": 0.4
+          },
+          "importance": "context",
+          "confidence": 0.95,
+          "visible_evidence": "indoor room with hanging training equipment and walls"
+        }
+      ],
+      "faces": [
+        "b08_target_center_wrestler",
+        "b08_target_surrounding_athletes"
+      ],
+      "hands_or_actions": [
+        "b08_target_surrounding_athletes"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.8,
+            "h": 0.18
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.9,
+            "h": 0.95
+          }
+        },
+        {
+          "type": "low_detail",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.92,
+            "w": 0.8,
+            "h": 0.06
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.17,
+          "w": 0.35,
+          "h": 0.08
+        }
+      ],
+      "notes": "Maintain the circular relationship between the central wrestler and surrounding athletes.",
+      "media_sha256": "1446c51d3a35f96ae3cd20152f7ec21472972d9ba30fdcff9d230f37fa13cf2b"
+    },
+    {
+      "beat_id": 9,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.38,
+        "w": 0.8,
+        "h": 0.58
+      },
+      "composition_summary": "A painted wrestling hall scene shows a prominent standing athlete with hand over chest, while seated and standing athletes observe respectfully around him.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b09_target_standing_wrestler",
+          "label": "standing wrestler with hand on chest",
+          "kind": "person",
+          "bbox": {
+            "x": 0.4,
+            "y": 0.57,
+            "w": 0.25,
+            "h": 0.4
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "large foreground figure standing with one hand placed on chest"
+        },
+        {
+          "target_id": "b09_target_observing_athletes",
+          "label": "seated and standing athletes watching",
+          "kind": "group",
+          "bbox": {
+            "x": 0.7,
+            "y": 0.58,
+            "w": 0.35,
+            "h": 0.3
+          },
+          "importance": "secondary",
+          "confidence": 0.96,
+          "visible_evidence": "several athletes seated and standing on the right side observing the main figure"
+        },
+        {
+          "target_id": "b09_target_wrestling_mat",
+          "label": "decorated wrestling mat or carpet",
+          "kind": "object",
+          "bbox": {
+            "x": 0.55,
+            "y": 0.74,
+            "w": 0.5,
+            "h": 0.18
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "ornamental floor covering visible in foreground"
+        }
+      ],
+      "faces": [
+        "b09_target_standing_wrestler",
+        "b09_target_observing_athletes"
+      ],
+      "hands_or_actions": [
+        "b09_target_standing_wrestler"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.8,
+            "h": 0.18
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.9,
+            "h": 0.95
+          }
+        },
+        {
+          "type": "low_detail",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.9,
+            "w": 0.8,
+            "h": 0.06
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.2,
+          "y": 0.3,
+          "w": 0.18,
+          "h": 0.12
+        }
+      ],
+      "notes": "Prioritize the foreground wrestler and his respectful gesture; avoid losing the observing group.",
+      "media_sha256": "7fa532f978584c5bbe406e2e6e031d4189d7b05d32267141d26d22b68e82dee6"
+    },
+    {
+      "beat_id": 10,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.49,
+        "w": 0.83,
+        "h": 0.71
+      },
+      "composition_summary": "Vertical archival-style gym scene showing several wrestlers practicing beneath a framed portrait on the wall. A blank caption panel occupies the lower part of the image.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b10_target_portrait",
+          "label": "framed wall portrait",
+          "kind": "object",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.22,
+            "w": 0.22,
+            "h": 0.16
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "A framed portrait is visibly mounted high on the gym wall."
+        },
+        {
+          "target_id": "b10_target_wrestler_left_back",
+          "label": "standing wrestler seen from behind",
+          "kind": "person",
+          "bbox": {
+            "x": 0.33,
+            "y": 0.59,
+            "w": 0.2,
+            "h": 0.29
+          },
+          "importance": "secondary",
+          "confidence": 0.95,
+          "visible_evidence": "A wrestler in a singlet stands facing away from the viewer."
+        },
+        {
+          "target_id": "b10_target_wrestling_pair",
+          "label": "two wrestlers grappling",
+          "kind": "group",
+          "bbox": {
+            "x": 0.68,
+            "y": 0.61,
+            "w": 0.24,
+            "h": 0.22
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "Two athletes are visibly locked in a wrestling hold on the mat."
+        },
+        {
+          "target_id": "b10_target_mirror_wrestler",
+          "label": "partial reflected wrestler",
+          "kind": "person",
+          "bbox": {
+            "x": 0.11,
+            "y": 0.56,
+            "w": 0.09,
+            "h": 0.2
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "A partial figure is visible in the left mirror area."
+        }
+      ],
+      "faces": [
+        "b10_target_portrait"
+      ],
+      "hands_or_actions": [
+        "b10_target_wrestling_pair"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.7,
+            "h": 0.16
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.88,
+            "h": 0.96
+          }
+        },
+        {
+          "type": "low_detail",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.05,
+            "w": 0.82,
+            "h": 0.05
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.7,
+          "h": 0.16
+        }
+      ],
+      "notes": "Keep attention on portrait and wrestlers; avoid the blank lower caption area and outer paper border.",
+      "media_sha256": "47be3ac01e2b6f05f5771288b31a83bc84c44fe9d227d30564197d8afb79af96"
+    },
+    {
+      "beat_id": 11,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.49,
+        "w": 0.83,
+        "h": 0.71
+      },
+      "composition_summary": "Vertical public square scene with a large wrestler statue on a pedestal, surrounding architecture, and pedestrians nearby. A blank caption panel occupies the lower part of the image.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b11_target_statue",
+          "label": "wrestler statue on pedestal",
+          "kind": "object",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.39,
+            "w": 0.2,
+            "h": 0.3
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "A large standing athletic statue is centered on a pedestal."
+        },
+        {
+          "target_id": "b11_target_old_man",
+          "label": "older person looking toward statue",
+          "kind": "person",
+          "bbox": {
+            "x": 0.29,
+            "y": 0.61,
+            "w": 0.14,
+            "h": 0.22
+          },
+          "importance": "secondary",
+          "confidence": 0.94,
+          "visible_evidence": "A person stands at left foreground facing the statue."
+        },
+        {
+          "target_id": "b11_target_woman",
+          "label": "person in dark clothing near statue",
+          "kind": "person",
+          "bbox": {
+            "x": 0.65,
+            "y": 0.66,
+            "w": 0.14,
+            "h": 0.22
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "A person in dark clothing is walking beside the pedestal."
+        },
+        {
+          "target_id": "b11_target_man",
+          "label": "person walking at right foreground",
+          "kind": "person",
+          "bbox": {
+            "x": 0.8,
+            "y": 0.65,
+            "w": 0.12,
+            "h": 0.2
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "A standing/walking figure is visible on the right side."
+        }
+      ],
+      "faces": [],
+      "hands_or_actions": [
+        "b11_target_old_man",
+        "b11_target_man"
+      ],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.7,
+            "h": 0.16
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.88,
+            "h": 0.96
+          }
+        },
+        {
+          "type": "low_detail",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.05,
+            "w": 0.82,
+            "h": 0.05
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.7,
+          "h": 0.16
+        }
+      ],
+      "notes": "Prioritize statue silhouette and respectful pedestrian context; avoid cropping the pedestal.",
+      "media_sha256": "dea126128ab3e643d8f27280f018b8b207b936dacf707f7ccd602bc17c2e418b"
+    },
+    {
+      "beat_id": 12,
+      "artwork_region": {
+        "x": 0.5,
+        "y": 0.49,
+        "w": 0.83,
+        "h": 0.71
+      },
+      "composition_summary": "Close-up archival-style portrait scene showing a man's face above a table with a coiled rope and open book. A blank caption panel occupies the lower part of the image.",
+      "visual_direction": "center",
+      "targets": [
+        {
+          "target_id": "b12_target_face_portrait",
+          "label": "close-up male portrait face",
+          "kind": "face",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.28,
+            "w": 0.38,
+            "h": 0.27
+          },
+          "importance": "primary",
+          "confidence": 0.98,
+          "visible_evidence": "A large face fills the upper central image area."
+        },
+        {
+          "target_id": "b12_target_rope",
+          "label": "coiled wrestling rope",
+          "kind": "object",
+          "bbox": {
+            "x": 0.28,
+            "y": 0.63,
+            "w": 0.25,
+            "h": 0.13
+          },
+          "importance": "secondary",
+          "confidence": 0.96,
+          "visible_evidence": "A thick rope coil is visible on the table at lower left."
+        },
+        {
+          "target_id": "b12_target_open_book",
+          "label": "open book on table",
+          "kind": "object",
+          "bbox": {
+            "x": 0.68,
+            "y": 0.63,
+            "w": 0.22,
+            "h": 0.13
+          },
+          "importance": "secondary",
+          "confidence": 0.96,
+          "visible_evidence": "An open book is visible on the table at lower right."
+        },
+        {
+          "target_id": "b12_target_table",
+          "label": "wooden tabletop",
+          "kind": "object",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.67,
+            "w": 0.8,
+            "h": 0.12
+          },
+          "importance": "context",
+          "confidence": 0.9,
+          "visible_evidence": "A tabletop supports the rope and book."
+        }
+      ],
+      "faces": [
+        "b12_target_face_portrait"
+      ],
+      "hands_or_actions": [],
+      "forbidden_regions": [
+        {
+          "type": "blank",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.7,
+            "h": 0.16
+          }
+        },
+        {
+          "type": "frame_border",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.88,
+            "h": 0.96
+          }
+        },
+        {
+          "type": "low_detail",
+          "bbox": {
+            "x": 0.5,
+            "y": 0.05,
+            "w": 0.82,
+            "h": 0.05
+          }
+        }
+      ],
+      "negative_space": [
+        {
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.7,
+          "h": 0.16
+        }
+      ],
+      "notes": "Keep the face, rope, and book visible together; avoid using the blank caption area as a focal target.",
+      "media_sha256": "26204710a44ebc59cb51767e7937d66ef06d6a7496d0ad82cf32eb70de40b79b"
+    }
+  ],
+  "input_fingerprint": "04a2ad1870bce2291e8fe186af38d915fcec70cf9a128dc2ec2f446bbcda8838",
+  "prompt_version": "motion-director-v2.0"
+}

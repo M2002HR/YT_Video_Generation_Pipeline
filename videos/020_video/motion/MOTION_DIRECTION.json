@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "04a2ad1870bce2291e8fe186af38d915fcec70cf9a128dc2ec2f446bbcda8838",
+  "direction": {
+    "schema_version": 2,
+    "pace": "fast",
+    "sections": [
+      {
+        "name": "hook",
+        "start": 0.0,
+        "end": 0.164,
+        "energy": 0.85,
+        "attention_velocity": 0.9
+      },
+      {
+        "name": "setup",
+        "start": 0.164,
+        "end": 0.246,
+        "energy": 0.72,
+        "attention_velocity": 0.7
+      },
+      {
+        "name": "body",
+        "start": 0.246,
+        "end": 0.685,
+        "energy": 0.7,
+        "attention_velocity": 0.65
+      },
+      {
+        "name": "climax",
+        "start": 0.685,
+        "end": 0.86,
+        "energy": 0.82,
+        "attention_velocity": 0.78
+      },
+      {
+        "name": "ending",
+        "start": 0.86,
+        "end": 0.958,
+        "energy": 0.55,
+        "attention_velocity": 0.4
+      },
+      {
+        "name": "cta",
+        "start": 0.958,
+        "end": 1.0,
+        "energy": 0.65,
+        "attention_velocity": 0.75
+      }
+    ],
+    "emphasis_words": [
+      {
+        "word_id": "w_0012",
+        "reason": "name"
+      },
+      {
+        "word_id": "w_0015",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0030",
+        "reason": "number"
+      },
+      {
+        "word_id": "w_0040",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0057",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0062",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0075",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0087",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0094",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0111",
+        "reason": "emotion"
+      }
+    ],
+    "rhythm_notes": [
+      "Open with quick attention shifts between the garden action setup and the historical question, then allow longer holds once Takhti's story begins.",
+      "Use stronger visual accents on names, achievements, and character moments while avoiding constant motion on every image.",
+      "Mid-episode pacing should breathe around sportsmanship themes, with shorter emphasis beats around medals and titles.",
+      "End with a slower reflective cadence before a brief energetic CTA."
+    ],
+    "transition_philosophy": [
+      "Prefer clean hard cuts aligned with narrative changes and spoken emphasis words.",
+      "Use simple continuity between archival-style images by preserving central subject focus.",
+      "Avoid decorative transitions; let image changes carry historical progression.",
+      "Use occasional reframes only when shifting attention to verified faces, medals, hands, or symbolic objects."
+    ],
+    "motion_contrast_plan": [
+      "Use faster opening reframes during the question hook, especially around w_0012 and w_0015.",
+      "Use controlled pushes on important historical details such as Tehran, 1930, Olympic gold, and medals.",
+      "Reduce motion during humility, respect, and legacy sections to emphasize character over achievement.",
+      "Increase attention velocity briefly for the final honor and CTA beats, then finish cleanly."
+    ],
+    "ending_strategy": "Hold on the final portrait and honor theme long enough for emotional closure, then transition into a concise CTA without adding extra visual effects.",
+    "prohibited_patterns": [
+      "Do not add invented garden, book, or character actions beyond visible inventory.",
+      "Do not use constant zooms or pans on every shot.",
+      "Do not obscure faces, hands, medals, statues, or books with effects.",
+      "Do not animate forbidden blank caption regions.",
+      "Do not use decorative transitions exceeding the minimal style preference."
+    ]
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "prompt_version": "motion-director-v1",
+  "input_fingerprint": "be42f9be6daca741b76d7443ca6cf290e3c31a5ed491739d8596eabd057383a2",
+  "job_id": "e631c6e1-9f8b-44f6-b3e6-9ad2ec2b6c9e",
+  "response": {
+    "beats": [
+      {
+        "beat_id": 6,
+        "start": 29.24,
+        "end": 33.04,
+        "primary_subject": "athlete helping opponent after match",
+        "secondary_subjects": [
+          "two wrestlers on mat",
+          "supporting spectators"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "6a",
+            "start": 29.24,
+            "end": 31.0,
+            "motion": "push_in",
+            "target": {
+              "label": "wrestlers clasping hands after match",
+              "x": 0.48,
+              "y": 0.58,
+              "w": 0.5,
+              "h": 0.36
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.12,
+            "easing": "ease_in_out",
+            "trigger_word": "helped",
+            "reason": "Focus on the physical gesture of respect rather than the competition itself."
+          },
+          {
+            "shot_id": "6b",
+            "start": 31.0,
+            "end": 33.04,
+            "motion": "pan_pull",
+            "target": {
+              "label": "both wrestlers and surrounding hall",
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.78,
+              "h": 0.62
+            },
+            "zoom_start": 1.1,
+            "zoom_end": 1,
+            "easing": "ease_out",
+            "trigger_word": "matches",
+            "reason": "Reveal the wider scene to show sportsmanship witnessed by others."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.15,
+          "reason": "Move from the action of kindness into the meaning of his title."
+        }
+      },
+      {
+        "beat_id": 7,
+        "start": 33.04,
+        "end": 36.3,
+        "primary_subject": "wrestler representing Jahan Pahlavan title",
+        "secondary_subjects": [
+          "world map background",
+          "traditional sash"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "7a",
+            "start": 33.04,
+            "end": 34.5,
+            "motion": "push_in",
+            "target": {
+              "label": "kneeling champion silhouette with sash",
+              "x": 0.5,
+              "y": 0.55,
+              "w": 0.5,
+              "h": 0.62
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.12,
+            "easing": "gentle",
+            "trigger_word": "Jahan",
+            "reason": "Introduce the symbolic identity behind the title with a deliberate focal move."
+          },
+          {
+            "shot_id": "7b",
+            "start": 34.5,
+            "end": 36.3,
+            "motion": "pan",
+            "target": {
+              "label": "world map behind athlete",
+              "x": 0.5,
+              "y": 0.38,
+              "w": 0.78,
+              "h": 0.42
+            },
+            "zoom_start": 1.08,
+            "zoom_end": 1.02,
+            "easing": "ease_out",
+            "trigger_word": "world",
+            "reason": "Connect the title to its broader cultural meaning."
+          }
+        ],
+        "transition_out": {
+          "type": "dissolve",
+          "duration": 0.2,
+          "reason": "Blend from symbolic status into the values behind the title."
+        }
+      },
+      {
+        "beat_id": 8,
+        "start": 36.3,
+        "end": 40.08,
+        "primary_subject": "athlete honored for respect",
+        "secondary_subjects": [
+          "training partners",
+          "portrait on wall",
+          "wrestling room"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "8a",
+            "start": 36.3,
+            "end": 38.0,
+            "motion": "reframe_cut",
+            "target": {
+              "label": "athlete bowing with hand on chest",
+              "x": 0.48,
+              "y": 0.55,
+              "w": 0.42,
+              "h": 0.48
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.05,
+            "easing": "snappy",
+            "trigger_word": "respect",
+            "reason": "Hard reframe emphasizes that honor comes from character."
+          },
+          {
+            "shot_id": "8b",
+            "start": 38.0,
+            "end": 40.08,
+            "motion": "pull_out",
+            "target": {
+              "label": "wrestling room with teammates observing",
+              "x": 0.52,
+              "y": 0.52,
+              "w": 0.75,
+              "h": 0.58
+            },
+            "zoom_start": 1.08,
+            "zoom_end": 1,
+            "easing": "ease_out",
+            "trigger_word": "victories",
+            "reason": "Expand from individual gesture to the community that remembers him."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.15,
+          "reason": "Continue into the legacy and national symbolism."
+        }
+      },
+      {
+        "beat_id": 9,
+        "start": 40.08,
+        "end": 43.16,
+        "primary_subject": "wrestling legacy and sportsmanship",
+        "secondary_subjects": [
+          "training partners",
+          "Takhti portrait"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "9a",
+            "start": 40.08,
+            "end": 41.5,
+            "motion": "pan_push",
+            "target": {
+              "label": "wrestlers training beneath portrait",
+              "x": 0.55,
+              "y": 0.48,
+              "w": 0.62,
+              "h": 0.48
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.1,
+            "easing": "ease_in_out",
+            "trigger_word": "symbol",
+            "reason": "Link the present training scene to the lasting example above them."
+          },
+          {
+            "shot_id": "9b",
+            "start": 41.5,
+            "end": 43.16,
+            "motion": "hold",
+            "target": {
+              "label": "framed portrait of athlete",
+              "x": 0.5,
+              "y": 0.3,
+              "w": 0.28,
+              "h": 0.22
+            },
+            "zoom_start": 1.1,
+            "zoom_end": 1.1,
+            "easing": "hold_then_move",
+            "trigger_word": "sportsmanship",
+            "reason": "Hold on the memorial image to let the emotional point land."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.15,
+          "reason": "Shift from remembrance to inspiration across generations."
+        }
+      },
+      {
+        "beat_id": 10,
+        "start": 43.16,
+        "end": 46.84,
+        "primary_subject": "legacy inspiring future athletes",
+        "secondary_subjects": [
+          "wrestlers practicing",
+          "portrait",
+          "training space"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "10a",
+            "start": 43.16,
+            "end": 44.9,
+            "motion": "drift",
+            "target": {
+              "label": "young wrestlers practicing in foreground",
+              "x": 0.55,
+              "y": 0.58,
+              "w": 0.55,
+              "h": 0.4
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.06,
+            "easing": "gentle",
+            "trigger_word": "inspires",
+            "reason": "Show the continuation of values through new athletes."
+          },
+          {
+            "shot_id": "10b",
+            "start": 44.9,
+            "end": 46.84,
+            "motion": "pull_out",
+            "target": {
+              "label": "full training hall with portrait above",
+              "x": 0.5,
+              "y": 0.48,
+              "w": 0.82,
+              "h": 0.65
+            },
+            "zoom_start": 1.06,
+            "zoom_end": 0.98,
+            "easing": "ease_out",
+            "trigger_word": "today",
+            "reason": "End the batch with a broader legacy image instead of a close crop."
+          }
+        ],
+        "transition_out": {
+          "type": "dissolve",
+          "duration": 0.25,
+          "reason": "Prepare a calmer transition toward the final memory and tribute sequence."
+        }
+      }
+    ]
+  }
+}

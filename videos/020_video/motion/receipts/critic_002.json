@@ -1,0 +1,290 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "49ca4bc466cd62586ff25f00a6d1ecc3b1bdfca3714f9ceade26763f5eb8d9b8",
+  "job_ids": [
+    "0735d5f8-264a-4c05-9f4f-6067f37d269d"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 4,
+        "shot_id": "b04_s02",
+        "code": "bad_sync",
+        "message": "Shot movement is synced to w_0051 (Rome), but the provided beat emphasis list and word sync constraints do not verify this word. Use only verified spoken word timestamps; this creates an unsupported synchronization claim."
+      },
+      {
+        "severity": "warning",
+        "beat_id": 3,
+        "shot_id": "b03_s02",
+        "code": "bad_sync",
+        "message": "The medal push is aligned to w_0040 (gold), but the authoritative timing places the word before the shot begins, exceeding the intended word-sync tolerance."
+      },
+      {
+        "severity": "warning",
+        "beat_id": 4,
+        "shot_id": "b04_s03",
+        "code": "hallucinated_target",
+        "message": "The transition reason implies a broader character section reveal, but the selected wrestling bag target only supports visible gear context; avoid implying unseen narrative content from the object."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 3,
+        "start": 18.28,
+        "end": 22.42,
+        "attention_story": [
+          "Reveal the Olympic achievement through the medal ceremony.",
+          "Emphasize the visible medal and athlete without forcing unsupported word timing."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b03_s01",
+            "role": "primary",
+            "start": 18.28,
+            "end": 19.62,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b03_target_athlete",
+                "coverage": 0.58,
+                "anchor_x": 0.61,
+                "anchor_y": 0.45
+              },
+              "end": {
+                "target_id": "b03_target_athlete_face",
+                "coverage": 0.32,
+                "anchor_x": 0.57,
+                "anchor_y": 0.27
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "Bring attention from the medal ceremony context to the athlete's visible expression."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          },
+          {
+            "shot_id": "b03_s02",
+            "role": "detail",
+            "start": 19.62,
+            "end": 20.82,
+            "edit_in": {
+              "type": "detail_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b03_target_medal",
+                "coverage": 0.22,
+                "anchor_x": 0.58,
+                "anchor_y": 0.48
+              },
+              "end": {
+                "target_id": "b03_target_medal",
+                "coverage": 0.28,
+                "anchor_x": 0.58,
+                "anchor_y": 0.48
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.15,
+              "reason": "Emphasize the visible medal as the achievement symbol."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          },
+          {
+            "shot_id": "b03_s03",
+            "role": "release",
+            "start": 20.82,
+            "end": 22.42,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b03_target_athlete",
+                "coverage": 0.5,
+                "anchor_x": 0.61,
+                "anchor_y": 0.45
+              },
+              "end": {
+                "target_id": "b03_target_athlete",
+                "coverage": 0.5,
+                "anchor_x": 0.61,
+                "anchor_y": 0.45
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.4,
+              "reason": "Let the ceremony image breathe before moving on."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b03_target_athlete",
+          "coverage": 0.5,
+          "anchor_x": 0.61,
+          "anchor_y": 0.45,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "new_fact",
+          "reason": "Continue the achievement sequence."
+        }
+      },
+      {
+        "beat_id": 4,
+        "start": 22.42,
+        "end": 25.78,
+        "attention_story": [
+          "Begin with the medal objects as the visible achievement evidence.",
+          "Move across the archival objects without unsupported spoken-word triggers.",
+          "End on the sports bag as a contextual still-life detail."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b04_s01",
+            "role": "primary",
+            "start": 22.42,
+            "end": 23.42,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_medals",
+                "coverage": 0.32,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b04_target_medals",
+                "coverage": 0.32,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Hold on the visible medals."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          },
+          {
+            "shot_id": "b04_s02",
+            "role": "detail",
+            "start": 23.42,
+            "end": 24.54,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_medals",
+                "coverage": 0.32,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b04_target_travel_marks",
+                "coverage": 0.24,
+                "anchor_x": 0.67,
+                "anchor_y": 0.54
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Shift attention from medals to visible archival markings."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          },
+          {
+            "shot_id": "b04_s03",
+            "role": "release",
+            "start": 24.54,
+            "end": 25.78,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_travel_marks",
+                "coverage": 0.24,
+                "anchor_x": 0.67,
+                "anchor_y": 0.54
+              },
+              "end": {
+                "target_id": "b04_target_wrestling_bag",
+                "coverage": 0.5,
+                "anchor_x": 0.62,
+                "anchor_y": 0.58
+              }
+            },
+            "motion": {
+              "type": "drift",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.3,
+              "reason": "Reveal the surrounding sports equipment context before transition."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b04_target_wrestling_bag",
+          "coverage": 0.5,
+          "anchor_x": 0.62,
+          "anchor_y": 0.58,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "emotional_continuity",
+          "reason": "Continue with the archival sequence."
+        }
+      }
+    ]
+  }
+}

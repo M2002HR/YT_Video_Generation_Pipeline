@@ -1,0 +1,316 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "8900dfef8395b3e0f55b0208b47a519c4c20d2ef66fb754acc80fef377d4edce",
+  "job_ids": [
+    "e38386fa-536d-4ebe-b694-4bd749ff6098"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 7,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.38,
+          "w": 0.8,
+          "h": 0.58
+        },
+        "composition_summary": "A symbolic painted scene shows a kneeling traditional wrestler figure centered beneath a large globe map motif, with a long patterned cloth draped across the body and extending onto the floor.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b07_target_wrestler_figure",
+            "label": "central kneeling wrestler figure",
+            "kind": "person",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.57,
+              "w": 0.38,
+              "h": 0.39
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "single muscular human figure kneeling in the center of the artwork"
+          },
+          {
+            "target_id": "b07_target_globe_map",
+            "label": "world map globe motif",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.23,
+              "w": 0.72,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "large outlined world map shape behind the figure"
+          },
+          {
+            "target_id": "b07_target_patterned_cloth",
+            "label": "patterned wrestling cloth draped over figure and floor",
+            "kind": "object",
+            "bbox": {
+              "x": 0.62,
+              "y": 0.65,
+              "w": 0.35,
+              "h": 0.4
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "decorated fabric with fringe visible across the body and ground"
+          }
+        ],
+        "faces": [
+          "b07_target_wrestler_figure"
+        ],
+        "hands_or_actions": [
+          "b07_target_wrestler_figure"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.84,
+              "w": 0.8,
+              "h": 0.18
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.9,
+              "h": 0.95
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.9,
+              "w": 0.8,
+              "h": 0.08
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.27,
+            "w": 0.7,
+            "h": 0.15
+          }
+        ],
+        "notes": "Keep the central figure and globe motif visible; avoid cropping the patterned cloth extension.",
+        "media_sha256": "40cb086672a70f36fcde7a9460bcb492f80450cb42ae0a7ff11577a2eb9af506"
+      },
+      {
+        "beat_id": 8,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.38,
+          "w": 0.8,
+          "h": 0.58
+        },
+        "composition_summary": "An old wrestling hall scene shows a central standing wrestler surrounded by several athletes in a circular gathering, with some touching shoulders and others watching respectfully.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b08_target_center_wrestler",
+            "label": "standing wrestler in center of group",
+            "kind": "person",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.54,
+              "w": 0.22,
+              "h": 0.32
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "central standing athlete facing forward inside the group"
+          },
+          {
+            "target_id": "b08_target_surrounding_athletes",
+            "label": "group of surrounding wrestlers",
+            "kind": "group",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.56,
+              "w": 0.6,
+              "h": 0.38
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "multiple shirtless athletes forming a circle around the center figure"
+          },
+          {
+            "target_id": "b08_target_training_hall",
+            "label": "wrestling hall interior",
+            "kind": "place",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.32,
+              "w": 0.72,
+              "h": 0.4
+            },
+            "importance": "context",
+            "confidence": 0.95,
+            "visible_evidence": "indoor room with hanging training equipment and walls"
+          }
+        ],
+        "faces": [
+          "b08_target_center_wrestler",
+          "b08_target_surrounding_athletes"
+        ],
+        "hands_or_actions": [
+          "b08_target_surrounding_athletes"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.84,
+              "w": 0.8,
+              "h": 0.18
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.9,
+              "h": 0.95
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.92,
+              "w": 0.8,
+              "h": 0.06
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.17,
+            "w": 0.35,
+            "h": 0.08
+          }
+        ],
+        "notes": "Maintain the circular relationship between the central wrestler and surrounding athletes.",
+        "media_sha256": "1446c51d3a35f96ae3cd20152f7ec21472972d9ba30fdcff9d230f37fa13cf2b"
+      },
+      {
+        "beat_id": 9,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.38,
+          "w": 0.8,
+          "h": 0.58
+        },
+        "composition_summary": "A painted wrestling hall scene shows a prominent standing athlete with hand over chest, while seated and standing athletes observe respectfully around him.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b09_target_standing_wrestler",
+            "label": "standing wrestler with hand on chest",
+            "kind": "person",
+            "bbox": {
+              "x": 0.4,
+              "y": 0.57,
+              "w": 0.25,
+              "h": 0.4
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "large foreground figure standing with one hand placed on chest"
+          },
+          {
+            "target_id": "b09_target_observing_athletes",
+            "label": "seated and standing athletes watching",
+            "kind": "group",
+            "bbox": {
+              "x": 0.7,
+              "y": 0.58,
+              "w": 0.35,
+              "h": 0.3
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "several athletes seated and standing on the right side observing the main figure"
+          },
+          {
+            "target_id": "b09_target_wrestling_mat",
+            "label": "decorated wrestling mat or carpet",
+            "kind": "object",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.74,
+              "w": 0.5,
+              "h": 0.18
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "ornamental floor covering visible in foreground"
+          }
+        ],
+        "faces": [
+          "b09_target_standing_wrestler",
+          "b09_target_observing_athletes"
+        ],
+        "hands_or_actions": [
+          "b09_target_standing_wrestler"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.84,
+              "w": 0.8,
+              "h": 0.18
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.9,
+              "h": 0.95
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.9,
+              "w": 0.8,
+              "h": 0.06
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.2,
+            "y": 0.3,
+            "w": 0.18,
+            "h": 0.12
+          }
+        ],
+        "notes": "Prioritize the foreground wrestler and his respectful gesture; avoid losing the observing group.",
+        "media_sha256": "7fa532f978584c5bbe406e2e6e031d4189d7b05d32267141d26d22b68e82dee6"
+      }
+    ]
+  }
+}

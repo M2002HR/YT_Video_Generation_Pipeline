@@ -1,19 +1,19 @@
 {
   "schema_version": 3,
   "status": "DONE",
-  "published_at": "2026-09-07T14:18:00.725844+00:00",
+  "published_at": "2026-09-08T10:46:25.641698+00:00",
   "recipient": "we_are_waiting_for_him",
   "deliveries": {
     "compressed": {
       "status": "DONE",
-      "published_at": "2026-09-07T14:18:00.725691+00:00",
+      "published_at": "2026-09-08T10:46:25.641554+00:00",
       "recipient": "we_are_waiting_for_him",
-      "message_id": 25169,
-      "file": "assets/renders/telegram_low.mp4",
-      "bytes": 2373760,
-      "sha256": "afc846d4e3d60150c59ff08d794f6ae3dcd6098bcaa9bfdb7f8032972fed043f",
-      "duration_seconds": 58.505,
-      "elapsed_seconds": 6.242,
+      "message_id": 25183,
+      "file": "assets/renders/dynamic_v2_telegram_low.mp4",
+      "bytes": 2031982,
+      "sha256": "06d0dd48c348a345349f6b16b0727279c35627d66a319af73d8603d973c667f5",
+      "duration_seconds": 58.518,
+      "elapsed_seconds": 5.66,
       "qc_report": null,
       "summary": {
         "video": "020_video",
@@ -44,16 +44,25 @@
           "report": null,
           "passed": null
         },
+        "motion": {
+          "enabled": true,
+          "style": "dynamic",
+          "pace": "fast",
+          "micro_shots": 29,
+          "hard_cuts": 19,
+          "events_per_minute": 29.74,
+          "passed": true
+        },
         "resources": {
-          "wall_seconds": 202.122,
-          "realtime_factor": 3.454,
-          "peak_child_rss_mb": 1415.4,
+          "wall_seconds": 95.68,
+          "realtime_factor": 1.635,
+          "peak_child_rss_mb": 1864.1,
           "threads": 2,
           "resource_budget": 0.8,
           "cpus_available": 2
         }
       },
-      "caption": "✅ Video pipeline complete\n🎬 020_video\n⏱ Duration: 0:59\n🎞 Beats: 14 (2 video · 12 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🧮 Render: 3:22 wall (3.454x realtime) · 2 thread(s) · peak 1415.4 MB\nArtifact: afc846d4e3d6 · Delivery: compressed"
+      "caption": "✅ Video pipeline complete\n🎬 020_video\n⏱ Duration: 0:59\n🎞 Beats: 14 (2 video · 12 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Create with Nano Banana 2.\n🗣 Timing: ajil / word\n🎥 Motion: Dynamic / Fast · 29 micro-shots · QC passed\n🧮 Render: 1:36 wall (1.635x realtime) · 2 thread(s) · peak 1864.1 MB\nArtifact: 06d0dd48c348 · Delivery: compressed"
     }
   }
 }

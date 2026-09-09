@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "6a16f6229b515a6774a31434e28bfd109588655ae98b98427d3db270e6bb4377",
+  "job_ids": [
+    "ca3defad-8e92-445b-a7dd-124652e8a7a4"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": true,
+    "issues": [
+      {
+        "severity": "warning",
+        "beat_id": 7,
+        "shot_id": "b07_s01",
+        "code": "bad_sync",
+        "message": "The shot syncs movement start to w_0067 'Jahan', which is not listed as an episode emphasis word; the visual shift is acceptable but should only use word emphasis timing when the spoken word is an intentional editorial accent."
+      },
+      {
+        "severity": "warning",
+        "beat_id": 8,
+        "shot_id": "b08_s01",
+        "code": "unmotivated_cut",
+        "message": "The push from the training hall context to the center wrestler is acceptable, but the very short duration leaves limited time for the environment-to-subject transition to register; avoid compressing similar contextual reveals repeatedly."
+      }
+    ],
+    "replacement_beats": []
+  }
+}

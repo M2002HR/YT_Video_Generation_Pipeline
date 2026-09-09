@@ -1,0 +1,409 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "6379e3ae45694a5fcfd30dfd130496dfa32bc1e3b2efed9f7b74a70a60cb5121",
+  "job_ids": [
+    "f53d8550-d8c9-4efd-ad8c-6a75e470349a",
+    "cd9f866a-019d-4023-9fca-f5946686a523"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 58.514,
+    "beats": [
+      {
+        "beat_id": 10,
+        "start": 43.16,
+        "end": 46.84,
+        "attention_story": [
+          "Shift from the historical sportsmanship image into present-day influence by introducing the training hall.",
+          "Emphasize legacy by briefly anchoring attention on the wall portrait before returning to athletes.",
+          "End with the active wrestlers to show inspiration continuing through practice."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b10_s01",
+            "role": "primary",
+            "start": 43.16,
+            "end": 44.54,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b10_target_portrait",
+                "coverage": 0.38,
+                "anchor_x": 0.5,
+                "anchor_y": 0.3
+              },
+              "end": {
+                "target_id": "b10_target_portrait",
+                "coverage": 0.48,
+                "anchor_x": 0.5,
+                "anchor_y": 0.3
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "Focus on the portrait as the visual source of the legacy being carried forward."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0087",
+              "word": "legacy",
+              "authoritative_start": 43.38,
+              "authoritative_end": 43.66
+            }
+          },
+          {
+            "shot_id": "b10_s02",
+            "role": "context",
+            "start": 44.54,
+            "end": 46.84,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b10_target_wrestling_pair",
+                "coverage": 0.42,
+                "anchor_x": 0.68,
+                "anchor_y": 0.61
+              },
+              "end": {
+                "target_id": "b10_target_wrestler_left_back",
+                "coverage": 0.55,
+                "anchor_x": 0.33,
+                "anchor_y": 0.59
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Reveal the athletes practicing beneath the portrait to connect memory with current action."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b10_target_wrestler_left_back",
+          "coverage": 0.55,
+          "anchor_x": 0.33,
+          "anchor_y": 0.59,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "location_shift",
+          "reason": "Move from the training hall to the public memorial setting."
+        }
+      },
+      {
+        "beat_id": 11,
+        "start": 46.84,
+        "end": 50.3,
+        "attention_story": [
+          "Introduce the statue as a public symbol of remembrance.",
+          "Align the statue reveal with the named object for narrative emphasis.",
+          "Hold on the memorial atmosphere rather than adding unnecessary movement."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b11_s01",
+            "role": "establish",
+            "start": 46.84,
+            "end": 48.24,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b11_target_statue",
+                "coverage": 0.42,
+                "anchor_x": 0.5,
+                "anchor_y": 0.39
+              },
+              "end": {
+                "target_id": "b11_target_statue",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.39
+              }
+            },
+            "motion": {
+              "type": "reveal_move",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Bring the central statue into attention as the memorial object."
+            },
+            "sync": {
+              "mode": "reveal_complete_on_word",
+              "word_id": "w_0094",
+              "word": "statue",
+              "authoritative_start": 47.38,
+              "authoritative_end": 47.88
+            }
+          },
+          {
+            "shot_id": "b11_s02",
+            "role": "reaction",
+            "start": 48.24,
+            "end": 50.3,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b11_target_statue",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.39
+              },
+              "end": {
+                "target_id": "b11_target_old_man",
+                "coverage": 0.48,
+                "anchor_x": 0.29,
+                "anchor_y": 0.61
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.3,
+              "reason": "Shift attention from the monument to the respectful viewer presence around it."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b11_target_old_man",
+          "coverage": 0.48,
+          "anchor_x": 0.29,
+          "anchor_y": 0.61,
+          "movement_direction": "left"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "emotional_continuity",
+          "reason": "Move from public honor to personal character reflection."
+        }
+      },
+      {
+        "beat_id": 12,
+        "start": 50.3,
+        "end": 58.514,
+        "attention_story": [
+          "Return to Takhti's face as the emotional anchor of character and courage.",
+          "Use rope and book details as symbolic reminders of wrestling and memory.",
+          "Hold on the portrait through the honor statement, then cleanly end for the CTA."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b12_s01",
+            "role": "primary",
+            "start": 50.3,
+            "end": 52.72,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b12_target_face_portrait",
+                "coverage": 0.42,
+                "anchor_x": 0.5,
+                "anchor_y": 0.28
+              },
+              "end": {
+                "target_id": "b12_target_face_portrait",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.28
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.4,
+              "reason": "Emphasize the calm face as the representation of character and courage."
+            },
+            "sync": {
+              "mode": "impact_apex_on_word",
+              "word_id": "w_0105",
+              "word": "courage.",
+              "authoritative_start": 52.36,
+              "authoritative_end": 52.72
+            }
+          },
+          {
+            "shot_id": "b12_s02",
+            "role": "detail",
+            "start": 52.72,
+            "end": 55.82,
+            "edit_in": {
+              "type": "detail_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b12_target_rope",
+                "coverage": 0.35,
+                "anchor_x": 0.28,
+                "anchor_y": 0.63
+              },
+              "end": {
+                "target_id": "b12_target_open_book",
+                "coverage": 0.35,
+                "anchor_x": 0.68,
+                "anchor_y": 0.63
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.3,
+              "reason": "Connect physical wrestling heritage and written memory during the honor reflection."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          },
+          {
+            "shot_id": "b12_s03",
+            "role": "release",
+            "start": 55.82,
+            "end": 58.514,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b12_target_face_portrait",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.28
+              },
+              "end": {
+                "target_id": "b12_target_face_portrait",
+                "coverage": 0.42,
+                "anchor_x": 0.5,
+                "anchor_y": 0.28
+              }
+            },
+            "motion": {
+              "type": "pull_out",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.5,
+              "reason": "Create reflective closure while leaving room for the final call to action."
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0111",
+              "word": "honor.",
+              "authoritative_start": 54.92,
+              "authoritative_end": 55.82
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b12_target_face_portrait",
+          "coverage": 0.42,
+          "anchor_x": 0.5,
+          "anchor_y": 0.28,
+          "movement_direction": "out"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "cta",
+          "reason": "Finish the historical portrait cleanly before the call to action."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.6,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 3,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2,
+      "working_title": "",
+      "audience": "",
+      "narrative_angle": "",
+      "must_include": "",
+      "must_avoid": "",
+      "source_notes": "",
+      "_qh": {
+        "hero_presence_mode": "opener_only",
+        "world_style_policy": "new",
+        "world_style_id": "",
+        "world_style_hint": "Sketch painting",
+        "min_duration_seconds": 40.0,
+        "max_duration_seconds": 60.0,
+        "gemini_image_model": "nano_banana_2",
+        "flow_video_model": "gemini_omni_1_1_flash",
+        "flow_resolution": "720p",
+        "opening_a_source_seconds": 8,
+        "opening_b_source_seconds": 4,
+        "show_subtitles": true
+      },
+      "_subtitle": {
+        "word_highlight": true
+      }
+    }
+  }
+}

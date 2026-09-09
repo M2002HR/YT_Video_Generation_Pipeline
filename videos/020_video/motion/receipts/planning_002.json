@@ -1,0 +1,481 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "6a21fa23fdc6ffc534ac20b370599e0cbbe30189b8670e630efddd8df7beb668",
+  "job_ids": [
+    "2c67de12-b70d-497a-bbdf-f8f8597b3d45"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 58.514,
+    "beats": [
+      {
+        "beat_id": 4,
+        "start": 22.42,
+        "end": 25.78,
+        "attention_story": [
+          "Begin on the medal achievement object to bridge from Olympic victory into broader success.",
+          "Shift focus from the medals to travel markings when Rome and Tokyo are named.",
+          "End with the full archival still life to reinforce the collection of achievements."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b04_s01",
+            "role": "primary",
+            "start": 22.42,
+            "end": 23.42,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_medals",
+                "coverage": 0.32,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b04_target_medals",
+                "coverage": 0.32,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Hold on the silver medals because the spoken achievement is the main visual fact."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          },
+          {
+            "shot_id": "b04_s02",
+            "role": "detail",
+            "start": 23.42,
+            "end": 24.54,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_medals",
+                "coverage": 0.32,
+                "anchor_x": 0.4,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b04_target_travel_marks",
+                "coverage": 0.24,
+                "anchor_x": 0.67,
+                "anchor_y": 0.54
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Move from medals toward travel symbols as the locations are spoken."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0051",
+              "word": "Rome",
+              "authoritative_start": 23.64,
+              "authoritative_end": 23.94
+            }
+          },
+          {
+            "shot_id": "b04_s03",
+            "role": "release",
+            "start": 24.54,
+            "end": 25.78,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_travel_marks",
+                "coverage": 0.24,
+                "anchor_x": 0.67,
+                "anchor_y": 0.54
+              },
+              "end": {
+                "target_id": "b04_target_wrestling_bag",
+                "coverage": 0.5,
+                "anchor_x": 0.62,
+                "anchor_y": 0.58
+              }
+            },
+            "motion": {
+              "type": "drift",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.3,
+              "reason": "Reveal the surrounding gear context before transitioning to the character section."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "w_0053"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b04_target_wrestling_bag",
+          "coverage": 0.5,
+          "anchor_x": 0.62,
+          "anchor_y": 0.58,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "emotional_continuity",
+          "reason": "Move from achievements into the human qualities behind them."
+        }
+      },
+      {
+        "beat_id": 5,
+        "start": 25.78,
+        "end": 29.24,
+        "attention_story": [
+          "Cut to the bowing figure to shift from medals to character.",
+          "Hold on humility during the emotional emphasis word.",
+          "Use the crowd as context for the respect surrounding him."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b05_s01",
+            "role": "primary",
+            "start": 25.78,
+            "end": 27.12,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b05_target_bowing_wrestler",
+                "coverage": 0.42,
+                "anchor_x": 0.5,
+                "anchor_y": 0.49
+              },
+              "end": {
+                "target_id": "b05_target_bowing_wrestler",
+                "coverage": 0.42,
+                "anchor_x": 0.5,
+                "anchor_y": 0.49
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The bowed posture visually communicates humility without needing movement."
+            },
+            "sync": {
+              "mode": "impact_apex_on_word",
+              "word_id": "w_0057",
+              "word": "humility",
+              "authoritative_start": 26.72,
+              "authoritative_end": 27.12
+            }
+          },
+          {
+            "shot_id": "b05_s02",
+            "role": "context",
+            "start": 27.12,
+            "end": 28.16,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b05_target_bowing_wrestler",
+                "coverage": 0.42,
+                "anchor_x": 0.5,
+                "anchor_y": 0.49
+              },
+              "end": {
+                "target_id": "b05_target_crowd",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.4
+              }
+            },
+            "motion": {
+              "type": "pull_out",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Expand to show the fans whose admiration gives the moment meaning."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "w_0059"
+            }
+          },
+          {
+            "shot_id": "b05_s03",
+            "role": "reaction",
+            "start": 28.16,
+            "end": 29.24,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b05_target_crowd",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.4
+              },
+              "end": {
+                "target_id": "b05_target_crowd",
+                "coverage": 0.5,
+                "anchor_x": 0.5,
+                "anchor_y": 0.4
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Let the respectful crowd reaction settle before the next example of sportsmanship."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "w_0060"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b05_target_crowd",
+          "coverage": 0.5,
+          "anchor_x": 0.5,
+          "anchor_y": 0.4,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "new_fact",
+          "reason": "Introduce a specific example of fair play."
+        }
+      },
+      {
+        "beat_id": 6,
+        "start": 29.24,
+        "end": 33.04,
+        "attention_story": [
+          "Reveal the helping gesture as the clearest proof of sportsmanship.",
+          "Emphasize the hands because the action carries the meaning.",
+          "Return to both wrestlers for emotional closure of the moment."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b06_s01",
+            "role": "primary",
+            "start": 29.24,
+            "end": 30.32,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b06_target_helping_wrestler",
+                "coverage": 0.45,
+                "anchor_x": 0.35,
+                "anchor_y": 0.53
+              },
+              "end": {
+                "target_id": "b06_target_handshake",
+                "coverage": 0.22,
+                "anchor_x": 0.49,
+                "anchor_y": 0.52
+              }
+            },
+            "motion": {
+              "type": "reveal_move",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "Move attention from the athlete to the helping action as the gesture is described."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0062",
+              "word": "helped",
+              "authoritative_start": 29.62,
+              "authoritative_end": 29.92
+            }
+          },
+          {
+            "shot_id": "b06_s02",
+            "role": "detail",
+            "start": 30.32,
+            "end": 31.98,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b06_target_handshake",
+                "coverage": 0.22,
+                "anchor_x": 0.49,
+                "anchor_y": 0.52
+              },
+              "end": {
+                "target_id": "b06_target_handshake",
+                "coverage": 0.22,
+                "anchor_x": 0.49,
+                "anchor_y": 0.52
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The clasped hands are the emotional symbol of respect after competition."
+            },
+            "sync": {
+              "mode": "impact_apex_on_word",
+              "word_id": "w_0063",
+              "word": "opponents",
+              "authoritative_start": 29.92,
+              "authoritative_end": 30.32
+            }
+          },
+          {
+            "shot_id": "b06_s03",
+            "role": "context",
+            "start": 31.98,
+            "end": 33.04,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b06_target_handshake",
+                "coverage": 0.22,
+                "anchor_x": 0.49,
+                "anchor_y": 0.52
+              },
+              "end": {
+                "target_id": "b06_target_supported_wrestler",
+                "coverage": 0.4,
+                "anchor_x": 0.62,
+                "anchor_y": 0.62
+              }
+            },
+            "motion": {
+              "type": "pull_out",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Restore the full human interaction before moving into the title and legacy section."
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "w_0066"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b06_target_supported_wrestler",
+          "coverage": 0.4,
+          "anchor_x": 0.62,
+          "anchor_y": 0.62,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "reveal",
+          "reason": "Shift from the action example into the meaning of his title."
+        }
+      }
+    ],
+    "normalization_corrections": [
+      {
+        "shot_id": "b04_s01",
+        "code": "impossible_cut_sync_removed"
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.6,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 3,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2,
+      "working_title": "",
+      "audience": "",
+      "narrative_angle": "",
+      "must_include": "",
+      "must_avoid": "",
+      "source_notes": "",
+      "_qh": {
+        "hero_presence_mode": "opener_only",
+        "world_style_policy": "new",
+        "world_style_id": "",
+        "world_style_hint": "Sketch painting",
+        "min_duration_seconds": 40.0,
+        "max_duration_seconds": 60.0,
+        "gemini_image_model": "nano_banana_2",
+        "flow_video_model": "gemini_omni_1_1_flash",
+        "flow_resolution": "720p",
+        "opening_a_source_seconds": 8,
+        "opening_b_source_seconds": 4,
+        "show_subtitles": true
+      },
+      "_subtitle": {
+        "word_highlight": true
+      }
+    }
+  }
+}

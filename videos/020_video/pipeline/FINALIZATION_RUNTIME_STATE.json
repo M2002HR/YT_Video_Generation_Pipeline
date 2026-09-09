@@ -1,52 +1,60 @@
 {
   "schema_version": 1,
   "video": "020_video",
-  "started_at": "2026-09-07T14:16:51.208974+00:00",
+  "started_at": "2026-09-07T15:12:12.047718+00:00",
   "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-07T14:16:51.217234+00:00",
+      "started_at": "2026-09-07T15:12:12.055528+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/020_video"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:16:52.609450+00:00",
-      "elapsed_seconds": 1.392,
+      "ended_at": "2026-09-07T15:12:13.707475+00:00",
+      "elapsed_seconds": 1.652,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 24116
     },
     {
-      "stage": "sfx_plan",
-      "started_at": "2026-09-07T14:16:53.802652+00:00",
+      "stage": "motion_director",
+      "started_at": "2026-09-07T15:12:14.933201+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
-        "scripts/run_sfx_planner.py",
+        "scripts/run_motion_director.py",
         "/opt/YT_Video_Generation_Pipeline/videos/020_video",
-        "--style",
-        "balanced",
-        "--max-events-per-minute",
-        "4",
-        "--minimum-gap-seconds",
-        "2"
+        "--settings",
+        "videos/020_video/launch/CREATIVE_BRIEF.json"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:16:55.112561+00:00",
-      "elapsed_seconds": 1.31,
-      "artifact": "sfx/SFX_PLAN.json",
-      "artifact_bytes": 2755
+      "ended_at": "2026-09-07T15:12:16.394149+00:00",
+      "elapsed_seconds": 1.461,
+      "artifact": "motion/MOTION_PLAN.json",
+      "artifact_bytes": 21337
     },
     {
       "stage": "render_baseline",
-      "status": "REUSED",
-      "ended_at": "2026-09-07T14:16:56.957550+00:00",
-      "artifact": "assets/renders/final.mp4"
+      "started_at": "2026-09-07T15:12:17.943354+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/020_video",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/020_video/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-07T15:15:19.256320+00:00",
+      "elapsed_seconds": 181.313,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 49875435
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-07T14:16:56.957857+00:00",
+      "started_at": "2026-09-07T15:15:19.256792+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -56,42 +64,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:17:08.359252+00:00",
-      "elapsed_seconds": 11.401,
+      "ended_at": "2026-09-07T15:15:28.022238+00:00",
+      "elapsed_seconds": 8.765,
       "artifact": "render/QC_REPORT.json",
-      "artifact_bytes": 1555
-    },
-    {
-      "stage": "sfx_acquire",
-      "started_at": "2026-09-07T14:17:09.724703+00:00",
-      "command": [
-        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
-        "scripts/run_sfx_acquire.py",
-        "/opt/YT_Video_Generation_Pipeline/videos/020_video",
-        "--local-threshold",
-        "0.35",
-        "--license-policy",
-        "cc0",
-        "--candidate-count",
-        "12",
-        "--max-queries-per-event",
-        "2",
-        "--default-gain-db",
-        "-14",
-        "--min-gain-db",
-        "-28",
-        "--max-gain-db",
-        "-6"
-      ],
-      "status": "DONE",
-      "ended_at": "2026-09-07T14:17:12.796365+00:00",
-      "elapsed_seconds": 3.072,
-      "artifact": "sfx/SFX_SELECTION.json",
-      "artifact_bytes": 1823
+      "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-07T14:17:14.027895+00:00",
+      "started_at": "2026-09-07T15:15:29.175578+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -100,14 +80,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/020_video/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:17:18.131806+00:00",
-      "elapsed_seconds": 4.104,
+      "ended_at": "2026-09-07T15:15:33.170805+00:00",
+      "elapsed_seconds": 3.995,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 83547968
+      "artifact_bytes": 50066564
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-07T14:17:19.344049+00:00",
+      "started_at": "2026-09-07T15:15:34.436945+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -117,14 +97,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:17:29.822888+00:00",
-      "elapsed_seconds": 10.479,
+      "ended_at": "2026-09-07T15:15:43.706043+00:00",
+      "elapsed_seconds": 9.269,
       "artifact": "render/QC_REPORT_polished.json",
-      "artifact_bytes": 1558
+      "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-07T14:17:31.251990+00:00",
+      "started_at": "2026-09-07T15:15:45.256186+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -135,14 +115,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/020_video/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:17:51.744008+00:00",
-      "elapsed_seconds": 20.492,
+      "ended_at": "2026-09-07T15:16:03.918105+00:00",
+      "elapsed_seconds": 18.662,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 2373760
+      "artifact_bytes": 2127581
     },
     {
       "stage": "publish_telegram",
-      "started_at": "2026-09-07T14:17:52.972980+00:00",
+      "started_at": "2026-09-07T15:16:06.383356+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/publish_to_telegram.py",
@@ -153,14 +133,14 @@
         "compressed"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-07T14:18:00.775471+00:00",
-      "elapsed_seconds": 7.802,
+      "ended_at": "2026-09-07T15:16:13.517292+00:00",
+      "elapsed_seconds": 7.134,
       "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
       "artifact_bytes": 1908
     }
   ],
-  "completed_at": "2026-09-07T14:18:01.954631+00:00",
-  "total_elapsed_seconds": 60.052,
+  "completed_at": "2026-09-07T15:16:14.780810+00:00",
+  "total_elapsed_seconds": 232.251,
   "summary": {
     "video": "020_video",
     "duration_seconds": 58.514,
@@ -191,9 +171,9 @@
       "passed": true
     },
     "resources": {
-      "wall_seconds": 202.122,
-      "realtime_factor": 3.454,
-      "peak_child_rss_mb": 1415.4,
+      "wall_seconds": 180.977,
+      "realtime_factor": 3.093,
+      "peak_child_rss_mb": 2346.5,
       "threads": 2,
       "resource_budget": 0.8,
       "cpus_available": 2

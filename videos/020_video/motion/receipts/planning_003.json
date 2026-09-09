@@ -1,0 +1,375 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "798cc6f2892b72bd0dba7266ae4e7da1d0e0177b21fba9afaeea481791d0df12",
+  "job_ids": [
+    "6d9cd729-58c0-4b36-a10f-464c69ca6a22",
+    "8f25465c-596a-4592-a21b-6cbbb62a503a"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 58.514,
+    "beats": [
+      {
+        "beat_id": 7,
+        "start": 33.04,
+        "end": 36.3,
+        "attention_story": [
+          "Establish the symbolic meaning of the title through the globe motif",
+          "Move attention to the wrestler figure as the phrase 'world champion' is defined"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b07_s01",
+            "role": "establish",
+            "start": 33.04,
+            "end": 34.24,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b07_target_globe_map",
+                "coverage": 0.62,
+                "anchor_x": 0.5,
+                "anchor_y": 0.28
+              },
+              "end": {
+                "target_id": "b07_target_wrestler_figure",
+                "coverage": 0.58,
+                "anchor_x": 0.5,
+                "anchor_y": 0.57
+              }
+            },
+            "motion": {
+              "type": "reveal_move",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Shift attention from the global symbol toward the human figure representing the title"
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0067",
+              "word": "Jahan",
+              "authoritative_start": 33.04,
+              "authoritative_end": 33.48
+            }
+          },
+          {
+            "shot_id": "b07_s02",
+            "role": "primary",
+            "start": 34.24,
+            "end": 36.3,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b07_target_wrestler_figure",
+                "coverage": 0.58,
+                "anchor_x": 0.5,
+                "anchor_y": 0.57
+              },
+              "end": {
+                "target_id": "b07_target_wrestler_figure",
+                "coverage": 0.58,
+                "anchor_x": 0.5,
+                "anchor_y": 0.57
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.4,
+              "reason": "Keep the symbolic champion figure stable while the meaning lands"
+            },
+            "sync": {
+              "mode": "impact_apex_on_word",
+              "word_id": "w_0071",
+              "word": "champion.",
+              "authoritative_start": 34.68,
+              "authoritative_end": 35.54
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b07_target_wrestler_figure",
+          "coverage": 0.58,
+          "anchor_x": 0.5,
+          "anchor_y": 0.57,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "new_fact",
+          "reason": "Move from the title definition into its deeper meaning of respect"
+        }
+      },
+      {
+        "beat_id": 8,
+        "start": 36.3,
+        "end": 40.08,
+        "attention_story": [
+          "Shift from the title itself to the respect surrounding the champion",
+          "Emphasize the contrast between honor and victories through the group"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b08_s01",
+            "role": "establish",
+            "start": 36.3,
+            "end": 37.28,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b08_target_training_hall",
+                "coverage": 0.7,
+                "anchor_x": 0.5,
+                "anchor_y": 0.4
+              },
+              "end": {
+                "target_id": "b08_target_center_wrestler",
+                "coverage": 0.52,
+                "anchor_x": 0.5,
+                "anchor_y": 0.54
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Guide attention from the hall environment to the respected central wrestler"
+            },
+            "sync": {
+              "mode": "none",
+              "word_id": "none"
+            }
+          },
+          {
+            "shot_id": "b08_s02",
+            "role": "reaction",
+            "start": 37.28,
+            "end": 40.08,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b08_target_center_wrestler",
+                "coverage": 0.52,
+                "anchor_x": 0.5,
+                "anchor_y": 0.54
+              },
+              "end": {
+                "target_id": "b08_target_surrounding_athletes",
+                "coverage": 0.62,
+                "anchor_x": 0.5,
+                "anchor_y": 0.56
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.5,
+              "reason": "Reveal the surrounding athletes to show respect beyond winning"
+            },
+            "sync": {
+              "mode": "cut_on_word_start",
+              "word_id": "w_0075",
+              "word": "respect,",
+              "authoritative_start": 37.28,
+              "authoritative_end": 38.2
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b08_target_surrounding_athletes",
+          "coverage": 0.62,
+          "anchor_x": 0.5,
+          "anchor_y": 0.56,
+          "movement_direction": "right"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "emotional_continuity",
+          "reason": "Continue from respect among peers into broader cultural symbolism"
+        }
+      },
+      {
+        "beat_id": 9,
+        "start": 40.08,
+        "end": 43.16,
+        "attention_story": [
+          "Introduce the broader legacy of sportsmanship",
+          "Center the athlete's respectful gesture as the symbol of character"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b09_s01",
+            "role": "establish",
+            "start": 40.08,
+            "end": 41.14,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b09_target_wrestling_mat",
+                "coverage": 0.65,
+                "anchor_x": 0.55,
+                "anchor_y": 0.74
+              },
+              "end": {
+                "target_id": "b09_target_standing_wrestler",
+                "coverage": 0.55,
+                "anchor_x": 0.4,
+                "anchor_y": 0.57
+              }
+            },
+            "motion": {
+              "type": "reveal_move",
+              "easing": "ease_in_out",
+              "start_delay": 0.0,
+              "end_hold": 0.2,
+              "reason": "Move from the wrestling setting to the central figure representing sportsmanship"
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0082",
+              "word": "symbol",
+              "authoritative_start": 40.7,
+              "authoritative_end": 40.94
+            }
+          },
+          {
+            "shot_id": "b09_s02",
+            "role": "primary",
+            "start": 41.14,
+            "end": 43.16,
+            "edit_in": {
+              "type": "continue"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b09_target_standing_wrestler",
+                "coverage": 0.55,
+                "anchor_x": 0.4,
+                "anchor_y": 0.57
+              },
+              "end": {
+                "target_id": "b09_target_standing_wrestler",
+                "coverage": 0.55,
+                "anchor_x": 0.4,
+                "anchor_y": 0.57
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.5,
+              "reason": "Let the hand-over-chest gesture communicate symbolic respect without distraction"
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0085",
+              "word": "sportsmanship.",
+              "authoritative_start": 41.54,
+              "authoritative_end": 42.7
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b09_target_standing_wrestler",
+          "coverage": 0.55,
+          "anchor_x": 0.4,
+          "anchor_y": 0.57,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "time_shift",
+          "reason": "Move from historical symbol to modern-day legacy"
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.6,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 3,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2,
+      "working_title": "",
+      "audience": "",
+      "narrative_angle": "",
+      "must_include": "",
+      "must_avoid": "",
+      "source_notes": "",
+      "_qh": {
+        "hero_presence_mode": "opener_only",
+        "world_style_policy": "new",
+        "world_style_id": "",
+        "world_style_hint": "Sketch painting",
+        "min_duration_seconds": 40.0,
+        "max_duration_seconds": 60.0,
+        "gemini_image_model": "nano_banana_2",
+        "flow_video_model": "gemini_omni_1_1_flash",
+        "flow_resolution": "720p",
+        "opening_a_source_seconds": 8,
+        "opening_b_source_seconds": 4,
+        "show_subtitles": true
+      },
+      "_subtitle": {
+        "word_highlight": true
+      }
+    }
+  }
+}

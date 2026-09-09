@@ -1,0 +1,308 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "beats": 12,
+  "micro_shots": 29,
+  "motion_distribution": {
+    "hold": 9,
+    "push_in": 7,
+    "pan": 5,
+    "drift": 1,
+    "pull_out": 3,
+    "reveal_move": 4
+  },
+  "edit_distribution": {
+    "cut": 12,
+    "detail_cut": 4,
+    "reframe_cut": 3,
+    "continue": 9,
+    "match_position_cut": 1
+  },
+  "transition_distribution": {
+    "cut": 11
+  },
+  "average_micro_shot_duration": 1.686,
+  "min_micro_shot_duration": 0.98,
+  "max_micro_shot_duration": 3.1,
+  "average_visual_event_interval": 1.686,
+  "still_hold_percentage": 31.69,
+  "synced_event_count": 9,
+  "sync_coverage_percent": 31.0,
+  "repeated_motion_streak": 2,
+  "decorative_transition_fraction": 0.0,
+  "average_camera_distance": 0.0231,
+  "maximum_camera_distance": 0.1199,
+  "average_zoom_range": 0.0844,
+  "maximum_zoom": 1.32,
+  "non_hold_noop_count": 0,
+  "input_fingerprint": "04a2ad1870bce2291e8fe186af38d915fcec70cf9a128dc2ec2f446bbcda8838",
+  "target_correction_count": 25,
+  "unsafe_target_count": 0,
+  "target_corrections": [
+    {
+      "beat_id": 1,
+      "shot_id": "b01_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 1,
+      "shot_id": "b01_s02",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 2,
+      "shot_id": "b02_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 2,
+      "shot_id": "b02_s02",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 3,
+      "shot_id": "b03_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 3,
+      "shot_id": "b03_s02",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s02",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s03",
+      "corrections": [
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 5,
+      "shot_id": "b05_s02",
+      "corrections": [
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 5,
+      "shot_id": "b05_s03",
+      "corrections": [
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 6,
+      "shot_id": "b06_s01",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 6,
+      "shot_id": "b06_s02",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 6,
+      "shot_id": "b06_s03",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 7,
+      "shot_id": "b07_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 7,
+      "shot_id": "b07_s02",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 8,
+      "shot_id": "b08_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 8,
+      "shot_id": "b08_s02",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 9,
+      "shot_id": "b09_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 9,
+      "shot_id": "b09_s02",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "continuous_start_matched_previous_end"
+      ]
+    },
+    {
+      "beat_id": 10,
+      "shot_id": "b10_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 10,
+      "shot_id": "b10_s02",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 11,
+      "shot_id": "b11_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 11,
+      "shot_id": "b11_s02",
+      "corrections": [
+        "zoom_limited",
+        "continuous_start_matched_previous_end",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 12,
+      "shot_id": "b12_s02",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    }
+  ],
+  "visual_events_per_minute": 29.74,
+  "hard_cut_count": 19,
+  "transition_count": 0,
+  "face_detector": {
+    "provider": "mediapipe",
+    "available": false,
+    "required": false
+  },
+  "critic_approved": true,
+  "critic_original_approved": false,
+  "critic_issues": [
+    {
+      "severity": "error",
+      "beat_id": 4,
+      "shot_id": "b04_s02",
+      "code": "bad_sync",
+      "message": "Shot movement is synced to w_0051 (Rome), but the provided beat emphasis list and word sync constraints do not verify this word. Use only verified spoken word timestamps; this creates an unsupported synchronization claim."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 3,
+      "shot_id": "b03_s02",
+      "code": "bad_sync",
+      "message": "The medal push is aligned to w_0040 (gold), but the authoritative timing places the word before the shot begins, exceeding the intended word-sync tolerance."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 4,
+      "shot_id": "b04_s03",
+      "code": "hallucinated_target",
+      "message": "The transition reason implies a broader character section reveal, but the selected wrestling bag target only supports visible gear context; avoid implying unseen narrative content from the object."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 7,
+      "shot_id": "b07_s01",
+      "code": "bad_sync",
+      "message": "The shot syncs movement start to w_0067 'Jahan', which is not listed as an episode emphasis word; the visual shift is acceptable but should only use word emphasis timing when the spoken word is an intentional editorial accent."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 8,
+      "shot_id": "b08_s01",
+      "code": "unmotivated_cut",
+      "message": "The push from the training hall context to the center wrestler is acceptable, but the very short duration leaves limited time for the environment-to-subject transition to register; avoid compressing similar contextual reveals repeatedly."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 12,
+      "shot_id": "b12_s02",
+      "code": "bad_crop",
+      "message": "Detail cut isolates rope and book while the inventory notes that face, rope, and book should remain visible together for the symbolic reflection; consider a wider crop if maintaining the full character connection is preferred."
+    },
+    {
+      "severity": "warning",
+      "beat_id": 12,
+      "shot_id": "b12_s03",
+      "code": "bad_sync",
+      "message": "The settle_on_word_end sync is anchored to w_0111 ending at the exact shot start time, leaving no visible settling action during the emphasized honor word."
+    }
+  ],
+  "speech_end": 58.58,
+  "visual_tail_seconds": 0.0,
+  "tail_has_meaningful_motion": true
+}

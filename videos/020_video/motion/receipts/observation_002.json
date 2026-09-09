@@ -1,0 +1,328 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "a5491d9134a8a3d7d8296463aaa07dc5a26336a8265f2abaeede1d2288809a92",
+  "job_ids": [
+    "4dfcc1b5-e6e8-4d48-b8d7-aca3672ceedc"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 4,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.474,
+          "w": 0.82,
+          "h": 0.61
+        },
+        "composition_summary": "Overhead archival-style still life showing two silver medals, wrestling shoes, straps, a vintage sports bag, and faint architectural travel markings on the bag and paper.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b04_target_medals",
+            "label": "paired silver medals with ribbons",
+            "kind": "object",
+            "bbox": {
+              "x": 0.285,
+              "y": 0.402,
+              "w": 0.22,
+              "h": 0.18
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Two round silver medals with green ribbons are visible on the wooden surface."
+          },
+          {
+            "target_id": "b04_target_wrestling_bag",
+            "label": "green vintage sports bag",
+            "kind": "object",
+            "bbox": {
+              "x": 0.62,
+              "y": 0.58,
+              "w": 0.42,
+              "h": 0.32
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "Large green bag with brown straps and painted landmark-style symbols is visible."
+          },
+          {
+            "target_id": "b04_target_shoes",
+            "label": "wrestling shoes",
+            "kind": "object",
+            "bbox": {
+              "x": 0.73,
+              "y": 0.18,
+              "w": 0.22,
+              "h": 0.16
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "Pair of laced athletic shoes visible at upper right."
+          },
+          {
+            "target_id": "b04_target_travel_marks",
+            "label": "faint architectural travel drawings on paper and bag",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.67,
+              "y": 0.54,
+              "w": 0.2,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.82,
+            "visible_evidence": "Small outlined building illustrations are visible on the bag and nearby paper."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.9,
+              "w": 0.8,
+              "h": 0.15
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.9,
+            "w": 0.8,
+            "h": 0.15
+          }
+        ],
+        "notes": "Keep focus on the medals and sports objects. Avoid movement into the blank lower caption area.",
+        "media_sha256": "510e08a04755ba7eef61dea9a9b0900c8473331f2f3a15993882ab39fd4d26ad"
+      },
+      {
+        "beat_id": 5,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.475,
+          "w": 0.82,
+          "h": 0.61
+        },
+        "composition_summary": "Indoor hall scene with a central wrestler bowing respectfully while surrounded by a group of spectators and supporters.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b05_target_bowing_wrestler",
+            "label": "central wrestler bowing with lowered head",
+            "kind": "person",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.49,
+              "w": 0.22,
+              "h": 0.34
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Central muscular person in wrestling attire bends forward with hands together."
+          },
+          {
+            "target_id": "b05_target_crowd",
+            "label": "surrounding spectators",
+            "kind": "group",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.4,
+              "w": 0.62,
+              "h": 0.24
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "Multiple people stand around the wrestler in the hall."
+          },
+          {
+            "target_id": "b05_target_left_foreground_person",
+            "label": "foreground spectator on left",
+            "kind": "person",
+            "bbox": {
+              "x": 0.16,
+              "y": 0.61,
+              "w": 0.2,
+              "h": 0.25
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "Partial person visible from the side in the lower left foreground."
+          },
+          {
+            "target_id": "b05_target_right_foreground_person",
+            "label": "foreground spectator on right",
+            "kind": "person",
+            "bbox": {
+              "x": 0.84,
+              "y": 0.61,
+              "w": 0.2,
+              "h": 0.25
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "Partial person visible from the side in the lower right foreground."
+          }
+        ],
+        "faces": [
+          "b05_target_bowing_wrestler",
+          "b05_target_left_foreground_person",
+          "b05_target_right_foreground_person"
+        ],
+        "hands_or_actions": [
+          "b05_target_bowing_wrestler"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.9,
+              "w": 0.8,
+              "h": 0.15
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.88,
+            "w": 0.8,
+            "h": 0.16
+          }
+        ],
+        "notes": "Center attention on the bowing figure and respectful crowd reaction. Avoid the lower blank caption panel.",
+        "media_sha256": "14e2aa1331b8ba110f48e694b64c72c9b08b249729559890cda469b85041f449"
+      },
+      {
+        "beat_id": 6,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.475,
+          "w": 0.82,
+          "h": 0.61
+        },
+        "composition_summary": "Wrestling scene inside a hall showing two athletes on a mat, with one wrestler supporting the other by holding his hand.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b06_target_helping_wrestler",
+            "label": "standing kneeling wrestler offering hand",
+            "kind": "person",
+            "bbox": {
+              "x": 0.35,
+              "y": 0.53,
+              "w": 0.3,
+              "h": 0.38
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Wrestler in green singlet kneels and grips the other wrestler's hand."
+          },
+          {
+            "target_id": "b06_target_supported_wrestler",
+            "label": "seated tired wrestler being helped",
+            "kind": "person",
+            "bbox": {
+              "x": 0.62,
+              "y": 0.62,
+              "w": 0.34,
+              "h": 0.3
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Wrestler in dark singlet sits on the mat while holding the other person's hand."
+          },
+          {
+            "target_id": "b06_target_handshake",
+            "label": "grasped hands between wrestlers",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.49,
+              "y": 0.52,
+              "w": 0.14,
+              "h": 0.1
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "Two hands are visibly clasped in the center of the scene."
+          },
+          {
+            "target_id": "b06_target_background_observers",
+            "label": "background observers",
+            "kind": "group",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.33,
+              "w": 0.55,
+              "h": 0.18
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "Several people watch from behind the wrestlers."
+          }
+        ],
+        "faces": [
+          "b06_target_helping_wrestler",
+          "b06_target_supported_wrestler"
+        ],
+        "hands_or_actions": [
+          "b06_target_handshake"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.9,
+              "w": 0.8,
+              "h": 0.15
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.88,
+            "w": 0.8,
+            "h": 0.16
+          }
+        ],
+        "notes": "Prioritize the central hand gesture as the emotional action. Avoid cropping either wrestler or the blank lower panel.",
+        "media_sha256": "d90cf8cc5a47e536bffe35da5035390eb3bf3343d371ab7925b39312c33ea475"
+      }
+    ]
+  }
+}

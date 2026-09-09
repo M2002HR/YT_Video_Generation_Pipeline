@@ -1,0 +1,2663 @@
+{
+  "schema_version": 2,
+  "duration_seconds": 58.514,
+  "settings_snapshot": {
+    "enabled": true,
+    "planning_quality": "professional",
+    "pace": "fast",
+    "style": "dynamic",
+    "intensity": "normal",
+    "max_micro_shots_per_beat": 3,
+    "min_micro_shot_duration": 0.55,
+    "max_micro_shot_duration": 3.2,
+    "target_interval_min": 0.8,
+    "target_interval_max": 1.6,
+    "allow_hold": true,
+    "allow_push": true,
+    "allow_pull": true,
+    "allow_pan": true,
+    "allow_tilt": true,
+    "allow_pan_push": true,
+    "allow_pan_pull": true,
+    "allow_punch_cuts": true,
+    "allow_hard_reframes": true,
+    "allow_directional_transitions": true,
+    "allow_reveal_transitions": true,
+    "transition_preference": "minimal",
+    "max_decorative_transition_fraction": 0.25,
+    "transition_duration_min": 0.1,
+    "transition_duration_max": 0.4,
+    "normal_max_zoom": 1.32,
+    "punch_max_zoom": 1.48,
+    "max_pan_distance": 0.32,
+    "max_pan_velocity": 0.42,
+    "max_zoom_velocity": 0.34,
+    "face_protection": true,
+    "face_padding": 0.18,
+    "subtitle_avoidance": true,
+    "blank_region_avoidance": true,
+    "word_sync": true,
+    "word_sync_tolerance_ms": 50,
+    "observation_batch_size": 3,
+    "planning_batch_size": 1,
+    "critic_batch_size": 2,
+    "neighbor_context": 1,
+    "editorial_critic": true,
+    "correction_attempts": 4,
+    "debug_preview": false,
+    "supersample": 2
+  },
+  "global_direction": {
+    "schema_version": 2,
+    "pace": "fast",
+    "sections": [
+      {
+        "name": "hook",
+        "start": 0.0,
+        "end": 0.164,
+        "energy": 0.85,
+        "attention_velocity": 0.9
+      },
+      {
+        "name": "setup",
+        "start": 0.164,
+        "end": 0.246,
+        "energy": 0.72,
+        "attention_velocity": 0.7
+      },
+      {
+        "name": "body",
+        "start": 0.246,
+        "end": 0.685,
+        "energy": 0.7,
+        "attention_velocity": 0.65
+      },
+      {
+        "name": "climax",
+        "start": 0.685,
+        "end": 0.86,
+        "energy": 0.82,
+        "attention_velocity": 0.78
+      },
+      {
+        "name": "ending",
+        "start": 0.86,
+        "end": 0.958,
+        "energy": 0.55,
+        "attention_velocity": 0.4
+      },
+      {
+        "name": "cta",
+        "start": 0.958,
+        "end": 1.0,
+        "energy": 0.65,
+        "attention_velocity": 0.75
+      }
+    ],
+    "emphasis_words": [
+      {
+        "word_id": "w_0012",
+        "reason": "name"
+      },
+      {
+        "word_id": "w_0015",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0030",
+        "reason": "number"
+      },
+      {
+        "word_id": "w_0040",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0057",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0062",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0075",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0087",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0094",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0111",
+        "reason": "emotion"
+      }
+    ],
+    "rhythm_notes": [
+      "Open with quick attention shifts between the garden action setup and the historical question, then allow longer holds once Takhti's story begins.",
+      "Use stronger visual accents on names, achievements, and character moments while avoiding constant motion on every image.",
+      "Mid-episode pacing should breathe around sportsmanship themes, with shorter emphasis beats around medals and titles.",
+      "End with a slower reflective cadence before a brief energetic CTA."
+    ],
+    "transition_philosophy": [
+      "Prefer clean hard cuts aligned with narrative changes and spoken emphasis words.",
+      "Use simple continuity between archival-style images by preserving central subject focus.",
+      "Avoid decorative transitions; let image changes carry historical progression.",
+      "Use occasional reframes only when shifting attention to verified faces, medals, hands, or symbolic objects."
+    ],
+    "motion_contrast_plan": [
+      "Use faster opening reframes during the question hook, especially around w_0012 and w_0015.",
+      "Use controlled pushes on important historical details such as Tehran, 1930, Olympic gold, and medals.",
+      "Reduce motion during humility, respect, and legacy sections to emphasize character over achievement.",
+      "Increase attention velocity briefly for the final honor and CTA beats, then finish cleanly."
+    ],
+    "ending_strategy": "Hold on the final portrait and honor theme long enough for emotional closure, then transition into a concise CTA without adding extra visual effects.",
+    "prohibited_patterns": [
+      "Do not add invented garden, book, or character actions beyond visible inventory.",
+      "Do not use constant zooms or pans on every shot.",
+      "Do not obscure faces, hands, medals, statues, or books with effects.",
+      "Do not animate forbidden blank caption regions.",
+      "Do not use decorative transitions exceeding the minimal style preference."
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": 1,
+      "start": 9.625,
+      "end": 14.4,
+      "attention_story": [
+        "Establish Takhti's origin through the quiet Tehran street memory.",
+        "Shift attention to the cradle detail as the spoken birth year lands."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b01_s01",
+          "role": "establish",
+          "start": 9.625,
+          "end": 12.28,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b01_target_alley",
+              "coverage": 0.72,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b01_target_alley",
+              "coverage": 0.72,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Allow the historical Tehran environment to establish the birthplace setting."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b01_target_alley",
+              "target_label": "narrow cobbled street alley",
+              "center_x": 0.4861111,
+              "center_y": 0.49,
+              "width": 0.9722222,
+              "height": 0.9646856,
+              "zoom": 1.0285714,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.47,
+                "y": 0.49,
+                "w": 0.7,
+                "h": 0.5
+              }
+            },
+            "end": {
+              "target_id": "b01_target_alley",
+              "target_label": "narrow cobbled street alley",
+              "center_x": 0.4861111,
+              "center_y": 0.49,
+              "width": 0.9722222,
+              "height": 0.9646856,
+              "zoom": 1.0285714,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.47,
+                "y": 0.49,
+                "w": 0.7,
+                "h": 0.5
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork"
+          ]
+        },
+        {
+          "shot_id": "b01_s02",
+          "role": "detail",
+          "start": 12.28,
+          "end": 14.4,
+          "edit_in": {
+            "type": "detail_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b01_target_cradle",
+              "coverage": 0.32,
+              "anchor_x": 0.73,
+              "anchor_y": 0.65
+            },
+            "end": {
+              "target_id": "b01_target_cradle",
+              "coverage": 0.4,
+              "anchor_x": 0.73,
+              "anchor_y": 0.65
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.3,
+            "reason": "Emphasize the cradle as the symbolic birth image when the year is spoken."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0030",
+            "word": "1930.",
+            "authoritative_start": 12.86,
+            "authoritative_end": 13.6
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b01_target_cradle",
+              "target_label": "wooden cradle near doorway",
+              "center_x": 0.5215936,
+              "center_y": 0.5372445,
+              "width": 0.7968128,
+              "height": 0.7906359,
+              "zoom": 1.255,
+              "anchor_x": 0.73,
+              "anchor_y": 0.65,
+              "target_bbox": {
+                "x": 0.73,
+                "y": 0.65,
+                "w": 0.2,
+                "h": 0.16
+              }
+            },
+            "end": {
+              "target_id": "b01_target_cradle",
+              "target_label": "wooden cradle near doorway",
+              "center_x": 0.5412121,
+              "center_y": 0.5372445,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.73,
+              "anchor_y": 0.65,
+              "target_bbox": {
+                "x": 0.73,
+                "y": 0.65,
+                "w": 0.2,
+                "h": 0.16
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b01_target_cradle",
+        "coverage": 0.4,
+        "anchor_x": 0.73,
+        "anchor_y": 0.65,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "time_shift",
+        "reason": "Move from birthplace memory into athletic development."
+      }
+    },
+    {
+      "beat_id": 2,
+      "start": 14.4,
+      "end": 18.28,
+      "attention_story": [
+        "Introduce Takhti's athletic identity through the wrestler portrait.",
+        "Direct focus to the visible rope work as the symbol of preparation."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b02_s01",
+          "role": "primary",
+          "start": 14.4,
+          "end": 16.2,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b02_target_wrestler_body",
+              "coverage": 0.55,
+              "anchor_x": 0.61,
+              "anchor_y": 0.47
+            },
+            "end": {
+              "target_id": "b02_target_wrestler_face",
+              "coverage": 0.3,
+              "anchor_x": 0.61,
+              "anchor_y": 0.28
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Move from the athlete's stance toward his focused expression to establish the rising wrestling figure."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b02_target_wrestler_body",
+              "target_label": "young wrestler standing in training clothes",
+              "center_x": 0.5215936,
+              "center_y": 0.4929091,
+              "width": 0.7968128,
+              "height": 0.790636,
+              "zoom": 1.255,
+              "anchor_x": 0.61,
+              "anchor_y": 0.47,
+              "target_bbox": {
+                "x": 0.61,
+                "y": 0.47,
+                "w": 0.27,
+                "h": 0.42
+              }
+            },
+            "end": {
+              "target_id": "b02_target_wrestler_face",
+              "target_label": "young wrestler face",
+              "center_x": 0.5266667,
+              "center_y": 0.4453747,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.61,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.61,
+                "y": 0.28,
+                "w": 0.12,
+                "h": 0.1
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b02_s02",
+          "role": "detail",
+          "start": 16.2,
+          "end": 18.28,
+          "edit_in": {
+            "type": "detail_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b02_target_rope_hands",
+              "coverage": 0.25,
+              "anchor_x": 0.43,
+              "anchor_y": 0.34
+            },
+            "end": {
+              "target_id": "b02_target_rope_hands",
+              "coverage": 0.25,
+              "anchor_x": 0.43,
+              "anchor_y": 0.34
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.4,
+            "reason": "Hold on the visible rope action to connect wrestling skill with disciplined training."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b02_target_rope_hands",
+              "target_label": "hands tying rope on wooden post",
+              "center_x": 0.4830303,
+              "center_y": 0.4602725,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.43,
+              "anchor_y": 0.34,
+              "target_bbox": {
+                "x": 0.43,
+                "y": 0.34,
+                "w": 0.18,
+                "h": 0.15
+              }
+            },
+            "end": {
+              "target_id": "b02_target_rope_hands",
+              "target_label": "hands tying rope on wooden post",
+              "center_x": 0.4830303,
+              "center_y": 0.4602725,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.43,
+              "anchor_y": 0.34,
+              "target_bbox": {
+                "x": 0.43,
+                "y": 0.34,
+                "w": 0.18,
+                "h": 0.15
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b02_target_rope_hands",
+        "coverage": 0.25,
+        "anchor_x": 0.43,
+        "anchor_y": 0.34,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "Transition from preparation into Olympic achievement."
+      }
+    },
+    {
+      "beat_id": 3,
+      "start": 18.28,
+      "end": 22.42,
+      "attention_story": [
+        "Reveal the Olympic achievement through the medal ceremony.",
+        "Emphasize the visible medal and athlete without forcing unsupported word timing."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b03_s01",
+          "role": "primary",
+          "start": 18.28,
+          "end": 19.62,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_target_athlete",
+              "coverage": 0.58,
+              "anchor_x": 0.61,
+              "anchor_y": 0.45
+            },
+            "end": {
+              "target_id": "b03_target_athlete_face",
+              "coverage": 0.32,
+              "anchor_x": 0.57,
+              "anchor_y": 0.27
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "Bring attention from the medal ceremony context to the athlete's visible expression."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_target_athlete",
+              "target_label": "athlete wearing green jacket with medal",
+              "center_x": 0.5215936,
+              "center_y": 0.4887931,
+              "width": 0.7968128,
+              "height": 0.7906359,
+              "zoom": 1.255,
+              "anchor_x": 0.61,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.61,
+                "y": 0.45,
+                "w": 0.35,
+                "h": 0.45
+              }
+            },
+            "end": {
+              "target_id": "b03_target_athlete_face",
+              "target_label": "athlete face",
+              "center_x": 0.5169697,
+              "center_y": 0.4428917,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.57,
+              "anchor_y": 0.27,
+              "target_bbox": {
+                "x": 0.57,
+                "y": 0.27,
+                "w": 0.18,
+                "h": 0.12
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b03_s02",
+          "role": "detail",
+          "start": 19.62,
+          "end": 20.82,
+          "edit_in": {
+            "type": "detail_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_target_medal",
+              "coverage": 0.22,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b03_target_medal",
+              "coverage": 0.28,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.15,
+            "reason": "Emphasize the visible medal as the achievement symbol."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_target_medal",
+              "target_label": "gold medal on ribbon",
+              "center_x": 0.5193939,
+              "center_y": 0.4950341,
+              "width": 0.7968128,
+              "height": 0.7906359,
+              "zoom": 1.255,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.58,
+                "y": 0.48,
+                "w": 0.09,
+                "h": 0.12
+              }
+            },
+            "end": {
+              "target_id": "b03_target_medal",
+              "target_label": "gold medal on ribbon",
+              "center_x": 0.5193939,
+              "center_y": 0.4950341,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.58,
+                "y": 0.48,
+                "w": 0.09,
+                "h": 0.12
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b03_s03",
+          "role": "release",
+          "start": 20.82,
+          "end": 22.42,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_target_athlete",
+              "coverage": 0.5,
+              "anchor_x": 0.61,
+              "anchor_y": 0.45
+            },
+            "end": {
+              "target_id": "b03_target_athlete",
+              "coverage": 0.5,
+              "anchor_x": 0.61,
+              "anchor_y": 0.45
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.4,
+            "reason": "Let the ceremony image breathe before moving on."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_target_athlete",
+              "target_label": "athlete wearing green jacket with medal",
+              "center_x": 0.5102266,
+              "center_y": 0.495,
+              "width": 0.9070313,
+              "height": 0.9,
+              "zoom": 1.1024978,
+              "anchor_x": 0.61,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.61,
+                "y": 0.45,
+                "w": 0.35,
+                "h": 0.45
+              }
+            },
+            "end": {
+              "target_id": "b03_target_athlete",
+              "target_label": "athlete wearing green jacket with medal",
+              "center_x": 0.5102266,
+              "center_y": 0.495,
+              "width": 0.9070313,
+              "height": 0.9,
+              "zoom": 1.1024978,
+              "anchor_x": 0.61,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.61,
+                "y": 0.45,
+                "w": 0.35,
+                "h": 0.45
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b03_target_athlete",
+        "coverage": 0.5,
+        "anchor_x": 0.61,
+        "anchor_y": 0.45,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "Continue the achievement sequence."
+      }
+    },
+    {
+      "beat_id": 4,
+      "start": 22.42,
+      "end": 25.78,
+      "attention_story": [
+        "Begin with the medal objects as the visible achievement evidence.",
+        "Move across the archival objects without unsupported spoken-word triggers.",
+        "End on the sports bag as a contextual still-life detail."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b04_s01",
+          "role": "primary",
+          "start": 22.42,
+          "end": 23.42,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b04_target_medals",
+              "coverage": 0.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b04_target_medals",
+              "coverage": 0.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "Hold on the visible medals."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b04_target_medals",
+              "target_label": "paired silver medals with ribbons",
+              "center_x": 0.4687879,
+              "center_y": 0.402,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.285,
+                "y": 0.402,
+                "w": 0.22,
+                "h": 0.18
+              }
+            },
+            "end": {
+              "target_id": "b04_target_medals",
+              "target_label": "paired silver medals with ribbons",
+              "center_x": 0.4687879,
+              "center_y": 0.402,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.285,
+                "y": 0.402,
+                "w": 0.22,
+                "h": 0.18
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        },
+        {
+          "shot_id": "b04_s02",
+          "role": "detail",
+          "start": 23.42,
+          "end": 24.54,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b04_target_medals",
+              "coverage": 0.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b04_target_travel_marks",
+              "coverage": 0.24,
+              "anchor_x": 0.67,
+              "anchor_y": 0.54
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "Shift attention from medals to visible archival markings."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b04_target_medals",
+              "target_label": "paired silver medals with ribbons",
+              "center_x": 0.4687879,
+              "center_y": 0.402,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.285,
+                "y": 0.402,
+                "w": 0.22,
+                "h": 0.18
+              }
+            },
+            "end": {
+              "target_id": "b04_target_travel_marks",
+              "target_label": "faint architectural travel drawings on paper and bag",
+              "center_x": 0.5272266,
+              "center_y": 0.5066667,
+              "width": 0.8398438,
+              "height": 0.8333333,
+              "zoom": 1.1906977,
+              "anchor_x": 0.67,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.67,
+                "y": 0.54,
+                "w": 0.2,
+                "h": 0.2
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "continuous_start_matched_previous_end"
+          ]
+        },
+        {
+          "shot_id": "b04_s03",
+          "role": "release",
+          "start": 24.54,
+          "end": 25.78,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b04_target_travel_marks",
+              "coverage": 0.24,
+              "anchor_x": 0.67,
+              "anchor_y": 0.54
+            },
+            "end": {
+              "target_id": "b04_target_wrestling_bag",
+              "coverage": 0.5,
+              "anchor_x": 0.62,
+              "anchor_y": 0.58
+            }
+          },
+          "motion": {
+            "type": "drift",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.3,
+            "reason": "Reveal the surrounding sports equipment context before transition."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b04_target_travel_marks",
+              "target_label": "faint architectural travel drawings on paper and bag",
+              "center_x": 0.5272266,
+              "center_y": 0.5066667,
+              "width": 0.8398438,
+              "height": 0.8333333,
+              "zoom": 1.1906977,
+              "anchor_x": 0.67,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.67,
+                "y": 0.54,
+                "w": 0.2,
+                "h": 0.2
+              }
+            },
+            "end": {
+              "target_id": "b04_target_wrestling_bag",
+              "target_label": "green vintage sports bag",
+              "center_x": 0.5192,
+              "center_y": 0.5133209,
+              "width": 0.84,
+              "height": 0.8334884,
+              "zoom": 1.1904762,
+              "anchor_x": 0.62,
+              "anchor_y": 0.58,
+              "target_bbox": {
+                "x": 0.62,
+                "y": 0.58,
+                "w": 0.42,
+                "h": 0.32
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b04_target_wrestling_bag",
+        "coverage": 0.5,
+        "anchor_x": 0.62,
+        "anchor_y": 0.58,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "emotional_continuity",
+        "reason": "Continue with the archival sequence."
+      }
+    },
+    {
+      "beat_id": 5,
+      "start": 25.78,
+      "end": 29.24,
+      "attention_story": [
+        "Cut to the bowing figure to shift from medals to character.",
+        "Hold on humility during the emotional emphasis word.",
+        "Use the crowd as context for the respect surrounding him."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b05_s01",
+          "role": "primary",
+          "start": 25.78,
+          "end": 27.12,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b05_target_bowing_wrestler",
+              "coverage": 0.42,
+              "anchor_x": 0.5,
+              "anchor_y": 0.49
+            },
+            "end": {
+              "target_id": "b05_target_bowing_wrestler",
+              "coverage": 0.42,
+              "anchor_x": 0.5,
+              "anchor_y": 0.49
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The bowed posture visually communicates humility without needing movement."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b05_target_bowing_wrestler",
+              "target_label": "central wrestler bowing with lowered head",
+              "center_x": 0.5,
+              "center_y": 0.4980952,
+              "width": 0.8158482,
+              "height": 0.8095238,
+              "zoom": 1.2257182,
+              "anchor_x": 0.5,
+              "anchor_y": 0.49,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.49,
+                "w": 0.22,
+                "h": 0.34
+              }
+            },
+            "end": {
+              "target_id": "b05_target_bowing_wrestler",
+              "target_label": "central wrestler bowing with lowered head",
+              "center_x": 0.5,
+              "center_y": 0.4980952,
+              "width": 0.8158482,
+              "height": 0.8095238,
+              "zoom": 1.2257182,
+              "anchor_x": 0.5,
+              "anchor_y": 0.49,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.49,
+                "w": 0.22,
+                "h": 0.34
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        },
+        {
+          "shot_id": "b05_s02",
+          "role": "context",
+          "start": 27.12,
+          "end": 28.16,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b05_target_bowing_wrestler",
+              "coverage": 0.42,
+              "anchor_x": 0.5,
+              "anchor_y": 0.49
+            },
+            "end": {
+              "target_id": "b05_target_crowd",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "Expand to show the fans whose admiration gives the moment meaning."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b05_target_bowing_wrestler",
+              "target_label": "central wrestler bowing with lowered head",
+              "center_x": 0.5,
+              "center_y": 0.4980952,
+              "width": 0.8158482,
+              "height": 0.8095238,
+              "zoom": 1.2257182,
+              "anchor_x": 0.5,
+              "anchor_y": 0.49,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.49,
+                "w": 0.22,
+                "h": 0.34
+              }
+            },
+            "end": {
+              "target_id": "b05_target_crowd",
+              "target_label": "surrounding spectators",
+              "center_x": 0.5,
+              "center_y": 0.4992248,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.4,
+                "w": 0.62,
+                "h": 0.24
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end"
+          ]
+        },
+        {
+          "shot_id": "b05_s03",
+          "role": "reaction",
+          "start": 28.16,
+          "end": 29.24,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b05_target_crowd",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4
+            },
+            "end": {
+              "target_id": "b05_target_crowd",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Let the respectful crowd reaction settle before the next example of sportsmanship."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b05_target_crowd",
+              "target_label": "surrounding spectators",
+              "center_x": 0.5,
+              "center_y": 0.4992248,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.4,
+                "w": 0.62,
+                "h": 0.24
+              }
+            },
+            "end": {
+              "target_id": "b05_target_crowd",
+              "target_label": "surrounding spectators",
+              "center_x": 0.5,
+              "center_y": 0.4992248,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.4,
+                "w": 0.62,
+                "h": 0.24
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "continuous_start_matched_previous_end"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b05_target_crowd",
+        "coverage": 0.5,
+        "anchor_x": 0.5,
+        "anchor_y": 0.4,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "Introduce a specific example of fair play."
+      }
+    },
+    {
+      "beat_id": 6,
+      "start": 29.24,
+      "end": 33.04,
+      "attention_story": [
+        "Reveal the helping gesture as the clearest proof of sportsmanship.",
+        "Emphasize the hands because the action carries the meaning.",
+        "Return to both wrestlers for emotional closure of the moment."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b06_s01",
+          "role": "primary",
+          "start": 29.24,
+          "end": 30.32,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b06_target_helping_wrestler",
+              "coverage": 0.45,
+              "anchor_x": 0.35,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b06_target_handshake",
+              "coverage": 0.22,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52
+            }
+          },
+          "motion": {
+            "type": "reveal_move",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "Move attention from the athlete to the helping action as the gesture is described."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0062",
+            "word": "helped",
+            "authoritative_start": 29.62,
+            "authoritative_end": 29.92
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b06_target_helping_wrestler",
+              "target_label": "standing kneeling wrestler offering hand",
+              "center_x": 0.4776563,
+              "center_y": 0.5046667,
+              "width": 0.8510417,
+              "height": 0.8444444,
+              "zoom": 1.1750306,
+              "anchor_x": 0.35,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.35,
+                "y": 0.53,
+                "w": 0.3,
+                "h": 0.38
+              }
+            },
+            "end": {
+              "target_id": "b06_target_handshake",
+              "target_label": "grasped hands between wrestlers",
+              "center_x": 0.4975758,
+              "center_y": 0.5049659,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.49,
+                "y": 0.52,
+                "w": 0.14,
+                "h": 0.1
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b06_s02",
+          "role": "detail",
+          "start": 30.32,
+          "end": 31.98,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b06_target_handshake",
+              "coverage": 0.22,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52
+            },
+            "end": {
+              "target_id": "b06_target_handshake",
+              "coverage": 0.22,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The clasped hands are the emotional symbol of respect after competition."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b06_target_handshake",
+              "target_label": "grasped hands between wrestlers",
+              "center_x": 0.4975758,
+              "center_y": 0.5049659,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.49,
+                "y": 0.52,
+                "w": 0.14,
+                "h": 0.1
+              }
+            },
+            "end": {
+              "target_id": "b06_target_handshake",
+              "target_label": "grasped hands between wrestlers",
+              "center_x": 0.4975758,
+              "center_y": 0.5049659,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.49,
+                "y": 0.52,
+                "w": 0.14,
+                "h": 0.1
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end"
+          ]
+        },
+        {
+          "shot_id": "b06_s03",
+          "role": "context",
+          "start": 31.98,
+          "end": 33.04,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b06_target_handshake",
+              "coverage": 0.22,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52
+            },
+            "end": {
+              "target_id": "b06_target_supported_wrestler",
+              "coverage": 0.4,
+              "anchor_x": 0.62,
+              "anchor_y": 0.62
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Restore the full human interaction before moving into the title and legacy section."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b06_target_handshake",
+              "target_label": "grasped hands between wrestlers",
+              "center_x": 0.4975758,
+              "center_y": 0.5049659,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.49,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.49,
+                "y": 0.52,
+                "w": 0.14,
+                "h": 0.1
+              }
+            },
+            "end": {
+              "target_id": "b06_target_supported_wrestler",
+              "target_label": "seated tired wrestler being helped",
+              "center_x": 0.518,
+              "center_y": 0.5187907,
+              "width": 0.85,
+              "height": 0.8434109,
+              "zoom": 1.1764706,
+              "anchor_x": 0.62,
+              "anchor_y": 0.62,
+              "target_bbox": {
+                "x": 0.62,
+                "y": 0.62,
+                "w": 0.34,
+                "h": 0.3
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b06_target_supported_wrestler",
+        "coverage": 0.4,
+        "anchor_x": 0.62,
+        "anchor_y": 0.62,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "reveal",
+        "reason": "Shift from the action example into the meaning of his title."
+      }
+    },
+    {
+      "beat_id": 7,
+      "start": 33.04,
+      "end": 36.3,
+      "attention_story": [
+        "Establish the symbolic meaning of the title through the globe motif",
+        "Move attention to the wrestler figure as the phrase 'world champion' is defined"
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b07_s01",
+          "role": "establish",
+          "start": 33.04,
+          "end": 34.24,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b07_target_globe_map",
+              "coverage": 0.62,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28
+            },
+            "end": {
+              "target_id": "b07_target_wrestler_figure",
+              "coverage": 0.58,
+              "anchor_x": 0.5,
+              "anchor_y": 0.57
+            }
+          },
+          "motion": {
+            "type": "reveal_move",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Shift attention from the global symbol toward the human figure representing the title"
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0067",
+            "word": "Jahan",
+            "authoritative_start": 33.04,
+            "authoritative_end": 33.48
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b07_target_globe_map",
+              "target_label": "world map globe motif",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.23,
+                "w": 0.72,
+                "h": 0.2
+              }
+            },
+            "end": {
+              "target_id": "b07_target_wrestler_figure",
+              "target_label": "central kneeling wrestler figure",
+              "center_x": 0.5,
+              "center_y": 0.5173808,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.57,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.57,
+                "w": 0.38,
+                "h": 0.39
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b07_s02",
+          "role": "primary",
+          "start": 34.24,
+          "end": 36.3,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b07_target_wrestler_figure",
+              "coverage": 0.58,
+              "anchor_x": 0.5,
+              "anchor_y": 0.57
+            },
+            "end": {
+              "target_id": "b07_target_wrestler_figure",
+              "coverage": 0.58,
+              "anchor_x": 0.5,
+              "anchor_y": 0.57
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.4,
+            "reason": "Keep the symbolic champion figure stable while the meaning lands"
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b07_target_wrestler_figure",
+              "target_label": "central kneeling wrestler figure",
+              "center_x": 0.5,
+              "center_y": 0.5173808,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.57,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.57,
+                "w": 0.38,
+                "h": 0.39
+              }
+            },
+            "end": {
+              "target_id": "b07_target_wrestler_figure",
+              "target_label": "central kneeling wrestler figure",
+              "center_x": 0.5,
+              "center_y": 0.5173808,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.57,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.57,
+                "w": 0.38,
+                "h": 0.39
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b07_target_wrestler_figure",
+        "coverage": 0.58,
+        "anchor_x": 0.5,
+        "anchor_y": 0.57,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "Move from the title definition into its deeper meaning of respect"
+      }
+    },
+    {
+      "beat_id": 8,
+      "start": 36.3,
+      "end": 40.08,
+      "attention_story": [
+        "Shift from the title itself to the respect surrounding the champion",
+        "Emphasize the contrast between honor and victories through the group"
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b08_s01",
+          "role": "establish",
+          "start": 36.3,
+          "end": 37.28,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b08_target_training_hall",
+              "coverage": 0.7,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4
+            },
+            "end": {
+              "target_id": "b08_target_center_wrestler",
+              "coverage": 0.52,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Guide attention from the hall environment to the respected central wrestler"
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b08_target_training_hall",
+              "target_label": "wrestling hall interior",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.32,
+                "w": 0.72,
+                "h": 0.4
+              }
+            },
+            "end": {
+              "target_id": "b08_target_center_wrestler",
+              "target_label": "standing wrestler in center of group",
+              "center_x": 0.5,
+              "center_y": 0.5099319,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.54,
+                "w": 0.22,
+                "h": 0.32
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "zoom_limited"
+          ]
+        },
+        {
+          "shot_id": "b08_s02",
+          "role": "reaction",
+          "start": 37.28,
+          "end": 40.08,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b08_target_center_wrestler",
+              "coverage": 0.52,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54
+            },
+            "end": {
+              "target_id": "b08_target_surrounding_athletes",
+              "coverage": 0.62,
+              "anchor_x": 0.5,
+              "anchor_y": 0.56
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.5,
+            "reason": "Reveal the surrounding athletes to show respect beyond winning"
+          },
+          "sync": {
+            "mode": "cut_on_word_start",
+            "word_id": "w_0075",
+            "word": "respect,",
+            "authoritative_start": 37.28,
+            "authoritative_end": 38.2
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b08_target_center_wrestler",
+              "target_label": "standing wrestler in center of group",
+              "center_x": 0.5,
+              "center_y": 0.5099319,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.54,
+                "w": 0.22,
+                "h": 0.32
+              }
+            },
+            "end": {
+              "target_id": "b08_target_surrounding_athletes",
+              "target_label": "group of surrounding wrestlers",
+              "center_x": 0.5,
+              "center_y": 0.5023856,
+              "width": 0.9677419,
+              "height": 0.9602401,
+              "zoom": 1.0333333,
+              "anchor_x": 0.5,
+              "anchor_y": 0.56,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.56,
+                "w": 0.6,
+                "h": 0.38
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b08_target_surrounding_athletes",
+        "coverage": 0.62,
+        "anchor_x": 0.5,
+        "anchor_y": 0.56,
+        "movement_direction": "right"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "emotional_continuity",
+        "reason": "Continue from respect among peers into broader cultural symbolism"
+      }
+    },
+    {
+      "beat_id": 9,
+      "start": 40.08,
+      "end": 43.16,
+      "attention_story": [
+        "Introduce the broader legacy of sportsmanship",
+        "Center the athlete's respectful gesture as the symbol of character"
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b09_s01",
+          "role": "establish",
+          "start": 40.08,
+          "end": 41.14,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b09_target_wrestling_mat",
+              "coverage": 0.65,
+              "anchor_x": 0.55,
+              "anchor_y": 0.74
+            },
+            "end": {
+              "target_id": "b09_target_standing_wrestler",
+              "coverage": 0.55,
+              "anchor_x": 0.4,
+              "anchor_y": 0.57
+            }
+          },
+          "motion": {
+            "type": "reveal_move",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Move from the wrestling setting to the central figure representing sportsmanship"
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0082",
+            "word": "symbol",
+            "authoritative_start": 40.7,
+            "authoritative_end": 40.94
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b09_target_wrestling_mat",
+              "target_label": "decorated wrestling mat or carpet",
+              "center_x": 0.5015936,
+              "center_y": 0.5568157,
+              "width": 0.7968128,
+              "height": 0.7906359,
+              "zoom": 1.255,
+              "anchor_x": 0.55,
+              "anchor_y": 0.74,
+              "target_bbox": {
+                "x": 0.55,
+                "y": 0.74,
+                "w": 0.5,
+                "h": 0.18
+              }
+            },
+            "end": {
+              "target_id": "b09_target_standing_wrestler",
+              "target_label": "standing wrestler with hand on chest",
+              "center_x": 0.4787879,
+              "center_y": 0.5173808,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.57,
+              "target_bbox": {
+                "x": 0.4,
+                "y": 0.57,
+                "w": 0.25,
+                "h": 0.4
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b09_s02",
+          "role": "primary",
+          "start": 41.14,
+          "end": 43.16,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b09_target_standing_wrestler",
+              "coverage": 0.55,
+              "anchor_x": 0.4,
+              "anchor_y": 0.57
+            },
+            "end": {
+              "target_id": "b09_target_standing_wrestler",
+              "coverage": 0.55,
+              "anchor_x": 0.4,
+              "anchor_y": 0.57
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.5,
+            "reason": "Let the hand-over-chest gesture communicate symbolic respect without distraction"
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b09_target_standing_wrestler",
+              "target_label": "standing wrestler with hand on chest",
+              "center_x": 0.4787879,
+              "center_y": 0.5173808,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.57,
+              "target_bbox": {
+                "x": 0.4,
+                "y": 0.57,
+                "w": 0.25,
+                "h": 0.4
+              }
+            },
+            "end": {
+              "target_id": "b09_target_standing_wrestler",
+              "target_label": "standing wrestler with hand on chest",
+              "center_x": 0.4787879,
+              "center_y": 0.5173808,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.4,
+              "anchor_y": 0.57,
+              "target_bbox": {
+                "x": 0.4,
+                "y": 0.57,
+                "w": 0.25,
+                "h": 0.4
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "continuous_start_matched_previous_end"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b09_target_standing_wrestler",
+        "coverage": 0.55,
+        "anchor_x": 0.4,
+        "anchor_y": 0.57,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "time_shift",
+        "reason": "Move from historical symbol to modern-day legacy"
+      }
+    },
+    {
+      "beat_id": 10,
+      "start": 43.16,
+      "end": 46.84,
+      "attention_story": [
+        "Shift from the historical sportsmanship image into present-day influence by introducing the training hall.",
+        "Emphasize legacy by briefly anchoring attention on the wall portrait before returning to athletes.",
+        "End with the active wrestlers to show inspiration continuing through practice."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b10_s01",
+          "role": "primary",
+          "start": 43.16,
+          "end": 44.54,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b10_target_portrait",
+              "coverage": 0.38,
+              "anchor_x": 0.5,
+              "anchor_y": 0.3
+            },
+            "end": {
+              "target_id": "b10_target_portrait",
+              "coverage": 0.48,
+              "anchor_x": 0.5,
+              "anchor_y": 0.3
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "Focus on the portrait as the visual source of the legacy being carried forward."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0087",
+            "word": "legacy",
+            "authoritative_start": 43.38,
+            "authoritative_end": 43.66
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b10_target_portrait",
+              "target_label": "framed wall portrait",
+              "center_x": 0.5,
+              "center_y": 0.3953179,
+              "width": 0.7968128,
+              "height": 0.7906359,
+              "zoom": 1.255,
+              "anchor_x": 0.5,
+              "anchor_y": 0.3,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.22,
+                "w": 0.22,
+                "h": 0.16
+              }
+            },
+            "end": {
+              "target_id": "b10_target_portrait",
+              "target_label": "framed wall portrait",
+              "center_x": 0.5,
+              "center_y": 0.3758515,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.3,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.22,
+                "w": 0.22,
+                "h": 0.16
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b10_s02",
+          "role": "context",
+          "start": 44.54,
+          "end": 46.84,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b10_target_wrestling_pair",
+              "coverage": 0.42,
+              "anchor_x": 0.68,
+              "anchor_y": 0.61
+            },
+            "end": {
+              "target_id": "b10_target_wrestler_left_back",
+              "coverage": 0.55,
+              "anchor_x": 0.33,
+              "anchor_y": 0.59
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Reveal the athletes practicing beneath the portrait to connect memory with current action."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b10_target_wrestling_pair",
+              "target_label": "two wrestlers grappling",
+              "center_x": 0.5362121,
+              "center_y": 0.5273127,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.68,
+              "anchor_y": 0.61,
+              "target_bbox": {
+                "x": 0.68,
+                "y": 0.61,
+                "w": 0.24,
+                "h": 0.22
+              }
+            },
+            "end": {
+              "target_id": "b10_target_wrestler_left_back",
+              "target_label": "standing wrestler seen from behind",
+              "center_x": 0.4637879,
+              "center_y": 0.5223467,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.33,
+              "anchor_y": 0.59,
+              "target_bbox": {
+                "x": 0.33,
+                "y": 0.59,
+                "w": 0.2,
+                "h": 0.29
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b10_target_wrestler_left_back",
+        "coverage": 0.55,
+        "anchor_x": 0.33,
+        "anchor_y": 0.59,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "location_shift",
+        "reason": "Move from the training hall to the public memorial setting."
+      }
+    },
+    {
+      "beat_id": 11,
+      "start": 46.84,
+      "end": 50.3,
+      "attention_story": [
+        "Introduce the statue as a public symbol of remembrance.",
+        "Align the statue reveal with the named object for narrative emphasis.",
+        "Hold on the memorial atmosphere rather than adding unnecessary movement."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b11_s01",
+          "role": "establish",
+          "start": 46.84,
+          "end": 48.24,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b11_target_statue",
+              "coverage": 0.42,
+              "anchor_x": 0.5,
+              "anchor_y": 0.39
+            },
+            "end": {
+              "target_id": "b11_target_statue",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.39
+            }
+          },
+          "motion": {
+            "type": "reveal_move",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.2,
+            "reason": "Bring the central statue into attention as the memorial object."
+          },
+          "sync": {
+            "mode": "reveal_complete_on_word",
+            "word_id": "w_0094",
+            "word": "statue",
+            "authoritative_start": 47.38,
+            "authoritative_end": 47.88
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b11_target_statue",
+              "target_label": "wrestler statue on pedestal",
+              "center_x": 0.5,
+              "center_y": 0.4726873,
+              "width": 0.7968128,
+              "height": 0.7906359,
+              "zoom": 1.255,
+              "anchor_x": 0.5,
+              "anchor_y": 0.39,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.39,
+                "w": 0.2,
+                "h": 0.3
+              }
+            },
+            "end": {
+              "target_id": "b11_target_statue",
+              "target_label": "wrestler statue on pedestal",
+              "center_x": 0.5,
+              "center_y": 0.4726873,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.39,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.39,
+                "w": 0.2,
+                "h": 0.3
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        },
+        {
+          "shot_id": "b11_s02",
+          "role": "reaction",
+          "start": 48.24,
+          "end": 50.3,
+          "edit_in": {
+            "type": "continue"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b11_target_statue",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.39
+            },
+            "end": {
+              "target_id": "b11_target_old_man",
+              "coverage": 0.48,
+              "anchor_x": 0.29,
+              "anchor_y": 0.61
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.3,
+            "reason": "Shift attention from the monument to the respectful viewer presence around it."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b11_target_statue",
+              "target_label": "wrestler statue on pedestal",
+              "center_x": 0.5,
+              "center_y": 0.4726873,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.39,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.39,
+                "w": 0.2,
+                "h": 0.3
+              }
+            },
+            "end": {
+              "target_id": "b11_target_old_man",
+              "target_label": "older person looking toward statue",
+              "center_x": 0.4637879,
+              "center_y": 0.5273127,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.29,
+              "anchor_y": 0.61,
+              "target_bbox": {
+                "x": 0.29,
+                "y": 0.61,
+                "w": 0.14,
+                "h": 0.22
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "continuous_start_matched_previous_end",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b11_target_old_man",
+        "coverage": 0.48,
+        "anchor_x": 0.29,
+        "anchor_y": 0.61,
+        "movement_direction": "left"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "emotional_continuity",
+        "reason": "Move from public honor to personal character reflection."
+      }
+    },
+    {
+      "beat_id": 12,
+      "start": 50.3,
+      "end": 58.514,
+      "attention_story": [
+        "Return to Takhti's face as the emotional anchor of character and courage.",
+        "Use rope and book details as symbolic reminders of wrestling and memory.",
+        "Hold on the portrait through the honor statement, then cleanly end for the CTA."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b12_s01",
+          "role": "primary",
+          "start": 50.3,
+          "end": 52.72,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b12_target_face_portrait",
+              "coverage": 0.42,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28
+            },
+            "end": {
+              "target_id": "b12_target_face_portrait",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.4,
+            "reason": "Emphasize the calm face as the representation of character and courage."
+          },
+          "sync": {
+            "mode": "impact_apex_on_word",
+            "word_id": "w_0105",
+            "word": "courage.",
+            "authoritative_start": 52.36,
+            "authoritative_end": 52.72
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b12_target_face_portrait",
+              "target_label": "close-up male portrait face",
+              "center_x": 0.5,
+              "center_y": 0.4775046,
+              "width": 0.9047619,
+              "height": 0.8977482,
+              "zoom": 1.1052632,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.38,
+                "h": 0.27
+              }
+            },
+            "end": {
+              "target_id": "b12_target_face_portrait",
+              "target_label": "close-up male portrait face",
+              "center_x": 0.5,
+              "center_y": 0.4459039,
+              "width": 0.76,
+              "height": 0.7541085,
+              "zoom": 1.3157895,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.38,
+                "h": 0.27
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        },
+        {
+          "shot_id": "b12_s02",
+          "role": "detail",
+          "start": 52.72,
+          "end": 55.82,
+          "edit_in": {
+            "type": "detail_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b12_target_rope",
+              "coverage": 0.35,
+              "anchor_x": 0.28,
+              "anchor_y": 0.63
+            },
+            "end": {
+              "target_id": "b12_target_open_book",
+              "coverage": 0.35,
+              "anchor_x": 0.68,
+              "anchor_y": 0.63
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "ease_in_out",
+            "start_delay": 0.0,
+            "end_hold": 0.3,
+            "reason": "Connect physical wrestling heritage and written memory during the honor reflection."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b12_target_rope",
+              "target_label": "coiled wrestling rope",
+              "center_x": 0.4637879,
+              "center_y": 0.5322786,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.28,
+              "anchor_y": 0.63,
+              "target_bbox": {
+                "x": 0.28,
+                "y": 0.63,
+                "w": 0.25,
+                "h": 0.13
+              }
+            },
+            "end": {
+              "target_id": "b12_target_open_book",
+              "target_label": "open book on table",
+              "center_x": 0.5362121,
+              "center_y": 0.5322786,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.68,
+              "anchor_y": 0.63,
+              "target_bbox": {
+                "x": 0.68,
+                "y": 0.63,
+                "w": 0.22,
+                "h": 0.13
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        },
+        {
+          "shot_id": "b12_s03",
+          "role": "release",
+          "start": 55.82,
+          "end": 58.514,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b12_target_face_portrait",
+              "coverage": 0.5,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28
+            },
+            "end": {
+              "target_id": "b12_target_face_portrait",
+              "coverage": 0.42,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.5,
+            "reason": "Create reflective closure while leaving room for the final call to action."
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0111",
+            "word": "honor.",
+            "authoritative_start": 54.92,
+            "authoritative_end": 55.82
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b12_target_face_portrait",
+              "target_label": "close-up male portrait face",
+              "center_x": 0.5,
+              "center_y": 0.4459039,
+              "width": 0.76,
+              "height": 0.7541085,
+              "zoom": 1.3157895,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.38,
+                "h": 0.27
+              }
+            },
+            "end": {
+              "target_id": "b12_target_face_portrait",
+              "target_label": "close-up male portrait face",
+              "center_x": 0.5,
+              "center_y": 0.4775046,
+              "width": 0.9047619,
+              "height": 0.8977482,
+              "zoom": 1.1052632,
+              "anchor_x": 0.5,
+              "anchor_y": 0.28,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.38,
+                "h": 0.27
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b12_target_face_portrait",
+        "coverage": 0.42,
+        "anchor_x": 0.5,
+        "anchor_y": 0.28,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "cta",
+        "reason": "Finish the historical portrait cleanly before the call to action."
+      }
+    }
+  ],
+  "input_fingerprint": "04a2ad1870bce2291e8fe186af38d915fcec70cf9a128dc2ec2f446bbcda8838",
+  "prompt_version": "motion-director-v2.0",
+  "created_at": "2026-09-07T17:04:12.565680+00:00",
+  "normalization_corrections": [
+    {
+      "shot_id": "b02_s02",
+      "code": "nonvisual_hold_sync_removed"
+    },
+    {
+      "shot_id": "b05_s01",
+      "code": "nonvisual_hold_sync_removed"
+    },
+    {
+      "shot_id": "b06_s02",
+      "code": "nonvisual_hold_sync_removed"
+    },
+    {
+      "shot_id": "b07_s02",
+      "code": "nonvisual_hold_sync_removed"
+    },
+    {
+      "shot_id": "b08_s02",
+      "code": "word_cut_requires_cut_edit"
+    },
+    {
+      "shot_id": "b09_s02",
+      "code": "nonvisual_hold_sync_removed"
+    }
+  ],
+  "recompiled_at": "2026-09-08T10:40:07.973064+00:00",
+  "compiled": true,
+  "compiler_version": 2
+}

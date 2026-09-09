@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "prompt_version": "motion-director-v1",
+  "input_fingerprint": "be42f9be6daca741b76d7443ca6cf290e3c31a5ed491739d8596eabd057383a2",
+  "job_id": "5c40156f-c427-4476-9bc0-8dad2606302c",
+  "response": {
+    "beats": [
+      {
+        "beat_id": 11,
+        "start": 46.84,
+        "end": 50.3,
+        "primary_subject": "Tehran statue honoring Takhti",
+        "secondary_subjects": [
+          "visitors in courtyard",
+          "historic architecture",
+          "statue pedestal"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "11a",
+            "start": 46.84,
+            "end": 48.2,
+            "motion": "push_in",
+            "target": {
+              "label": "full statue of wrestler in courtyard",
+              "x": 0.5,
+              "y": 0.42,
+              "w": 0.62,
+              "h": 0.55
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.08,
+            "easing": "ease_in_out",
+            "trigger_word": "Tehran",
+            "reason": "Establish the memorial location and immediately connect the narration to the central tribute image."
+          },
+          {
+            "shot_id": "11b",
+            "start": 48.2,
+            "end": 49.5,
+            "motion": "pan",
+            "target": {
+              "label": "statue and surrounding visitors looking up",
+              "x": 0.52,
+              "y": 0.56,
+              "w": 0.72,
+              "h": 0.42
+            },
+            "zoom_start": 1.08,
+            "zoom_end": 1.05,
+            "easing": "gentle",
+            "trigger_word": "honors",
+            "reason": "Shift attention from the object alone to the public respect surrounding it."
+          },
+          {
+            "shot_id": "11c",
+            "start": 49.5,
+            "end": 50.3,
+            "motion": "hold",
+            "target": {
+              "label": "statue upper body and face",
+              "x": 0.5,
+              "y": 0.34,
+              "w": 0.35,
+              "h": 0.3
+            },
+            "zoom_start": 1.05,
+            "zoom_end": 1.05,
+            "easing": "hold_then_move",
+            "trigger_word": "memory",
+            "reason": "Let the symbolic image land before moving into the final reflection."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.2,
+          "reason": "Move directly into the intimate portrait and legacy message."
+        }
+      },
+      {
+        "beat_id": 12,
+        "start": 50.3,
+        "end": 58.514,
+        "primary_subject": "Takhti portrait and legacy",
+        "secondary_subjects": [
+          "open book",
+          "wrestling rope",
+          "memory imagery"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "12a",
+            "start": 50.3,
+            "end": 52.72,
+            "motion": "push_in",
+            "target": {
+              "label": "portrait face above open book",
+              "x": 0.5,
+              "y": 0.43,
+              "w": 0.62,
+              "h": 0.42
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.09,
+            "easing": "gentle",
+            "trigger_word": "character",
+            "reason": "Prioritize the human qualities behind the legacy with a focused portrait move."
+          },
+          {
+            "shot_id": "12b",
+            "start": 52.72,
+            "end": 55.82,
+            "motion": "pan_pull",
+            "target": {
+              "label": "portrait, rope, and open book composition",
+              "x": 0.5,
+              "y": 0.58,
+              "w": 0.82,
+              "h": 0.42
+            },
+            "zoom_start": 1.09,
+            "zoom_end": 0.98,
+            "easing": "ease_out",
+            "trigger_word": "honor",
+            "reason": "Reveal the symbolic objects to reinforce that remembrance comes from values, not only achievements."
+          },
+          {
+            "shot_id": "12c",
+            "start": 56.12,
+            "end": 58.514,
+            "motion": "hold",
+            "target": {
+              "label": "portrait eyes and book foreground",
+              "x": 0.5,
+              "y": 0.44,
+              "w": 0.55,
+              "h": 0.45
+            },
+            "zoom_start": 0.98,
+            "zoom_end": 1,
+            "easing": "hold_then_move",
+            "trigger_word": "subscribe",
+            "reason": "Maintain emotional focus during the closing call to action without distracting motion."
+          }
+        ],
+        "transition_out": {
+          "type": "fade",
+          "duration": 0.35,
+          "reason": "Close the story with a calm final image and completed tribute arc."
+        }
+      }
+    ]
+  }
+}

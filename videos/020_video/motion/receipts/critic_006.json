@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "832a7571074cfeca52ac08ec411c07f7d49bdc50bce933769cd5bba7ce48092f",
+  "job_ids": [
+    "2c880ccb-cdf9-4734-a439-7e9821ba75fd"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": true,
+    "issues": [
+      {
+        "severity": "warning",
+        "beat_id": 12,
+        "shot_id": "b12_s02",
+        "code": "bad_crop",
+        "message": "Detail cut isolates rope and book while the inventory notes that face, rope, and book should remain visible together for the symbolic reflection; consider a wider crop if maintaining the full character connection is preferred."
+      },
+      {
+        "severity": "warning",
+        "beat_id": 12,
+        "shot_id": "b12_s03",
+        "code": "bad_sync",
+        "message": "The settle_on_word_end sync is anchored to w_0111 ending at the exact shot start time, leaving no visible settling action during the emphasized honor word."
+      }
+    ],
+    "replacement_beats": []
+  }
+}

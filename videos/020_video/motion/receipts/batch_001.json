@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "prompt_version": "motion-director-v1",
+  "input_fingerprint": "be42f9be6daca741b76d7443ca6cf290e3c31a5ed491739d8596eabd057383a2",
+  "job_id": "6efa1da7-bada-4377-b73e-de87554fa348",
+  "response": {
+    "beats": [
+      {
+        "beat_id": 1,
+        "start": 9.625,
+        "end": 14.4,
+        "primary_subject": "Tehran street and historical birthplace atmosphere",
+        "secondary_subjects": [
+          "traditional buildings",
+          "distant minaret",
+          "empty alley"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "1a",
+            "start": 9.625,
+            "end": 12.0,
+            "motion": "push_in",
+            "target": {
+              "label": "old Tehran alley leading toward minaret",
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.72,
+              "h": 0.7
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.08,
+            "easing": "gentle",
+            "trigger_word": "born",
+            "reason": "Introduce the origin story by drawing attention into the historical setting before the birth detail."
+          },
+          {
+            "shot_id": "1b",
+            "start": 12.0,
+            "end": 14.4,
+            "motion": "pan",
+            "target": {
+              "label": "traditional house facade and doorway",
+              "x": 0.68,
+              "y": 0.42,
+              "w": 0.42,
+              "h": 0.48
+            },
+            "zoom_start": 1.08,
+            "zoom_end": 1.04,
+            "easing": "ease_out",
+            "trigger_word": "Tehran",
+            "reason": "Shift focus to the neighborhood details to anchor the location and era."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.15,
+          "reason": "Move quickly from birthplace context into athletic development."
+        }
+      },
+      {
+        "beat_id": 2,
+        "start": 14.4,
+        "end": 18.28,
+        "primary_subject": "wrestling training figure",
+        "secondary_subjects": [
+          "training rope",
+          "gym interior",
+          "traditional wrestling equipment"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "2a",
+            "start": 14.4,
+            "end": 16.2,
+            "motion": "reframe_cut",
+            "target": {
+              "label": "athlete tying training rope",
+              "x": 0.55,
+              "y": 0.48,
+              "w": 0.5,
+              "h": 0.62
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.06,
+            "easing": "snappy",
+            "trigger_word": "Olympic",
+            "reason": "Hard transition into action imagery to signal the rise from childhood to athletic achievement."
+          },
+          {
+            "shot_id": "2b",
+            "start": 16.2,
+            "end": 18.28,
+            "motion": "push_in",
+            "target": {
+              "label": "hands gripping rope and training tools",
+              "x": 0.38,
+              "y": 0.5,
+              "w": 0.32,
+              "h": 0.35
+            },
+            "zoom_start": 1.06,
+            "zoom_end": 1.12,
+            "easing": "ease_in",
+            "trigger_word": "wrestling",
+            "reason": "Emphasize discipline and preparation rather than only the athlete figure."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.12,
+          "reason": "Escalate from training to Olympic success."
+        }
+      },
+      {
+        "beat_id": 3,
+        "start": 18.28,
+        "end": 22.42,
+        "primary_subject": "Olympic medal moment",
+        "secondary_subjects": [
+          "medal",
+          "athlete jacket",
+          "stadium lights"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "3a",
+            "start": 18.28,
+            "end": 20.0,
+            "motion": "punch_in",
+            "target": {
+              "label": "gold medal at chest",
+              "x": 0.55,
+              "y": 0.5,
+              "w": 0.3,
+              "h": 0.3
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.18,
+            "easing": "snappy",
+            "trigger_word": "gold",
+            "reason": "Directly emphasize the key achievement with a controlled detail shot."
+          },
+          {
+            "shot_id": "3b",
+            "start": 20.0,
+            "end": 22.42,
+            "motion": "pull_out",
+            "target": {
+              "label": "full medal ceremony scene",
+              "x": 0.52,
+              "y": 0.5,
+              "w": 0.7,
+              "h": 0.7
+            },
+            "zoom_start": 1.12,
+            "zoom_end": 1,
+            "easing": "ease_out",
+            "trigger_word": "Melbourne",
+            "reason": "Reveal the larger Olympic context after highlighting the medal."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.15,
+          "reason": "Separate individual victory from broader career achievements."
+        }
+      },
+      {
+        "beat_id": 4,
+        "start": 22.42,
+        "end": 25.78,
+        "primary_subject": "wrestling legacy objects and medals",
+        "secondary_subjects": [
+          "sports bag",
+          "shoes",
+          "silver medals"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "4a",
+            "start": 22.42,
+            "end": 24.0,
+            "motion": "pan",
+            "target": {
+              "label": "medals beside wrestling equipment",
+              "x": 0.42,
+              "y": 0.42,
+              "w": 0.55,
+              "h": 0.45
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.06,
+            "easing": "gentle",
+            "trigger_word": "silver",
+            "reason": "Use objects as visual proof of repeated international success."
+          },
+          {
+            "shot_id": "4b",
+            "start": 24.0,
+            "end": 25.78,
+            "motion": "drift",
+            "target": {
+              "label": "travel bag and wrestling shoes",
+              "x": 0.58,
+              "y": 0.58,
+              "w": 0.5,
+              "h": 0.38
+            },
+            "zoom_start": 1.06,
+            "zoom_end": 1.03,
+            "easing": "gentle",
+            "trigger_word": "Tokyo",
+            "reason": "Suggest global competition through travel and sporting artifacts."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.12,
+          "reason": "Shift from awards toward character and values."
+        }
+      },
+      {
+        "beat_id": 5,
+        "start": 25.78,
+        "end": 29.24,
+        "primary_subject": "respected athlete receiving recognition",
+        "secondary_subjects": [
+          "supporting crowd",
+          "humble gesture",
+          "wrestling hall"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "5a",
+            "start": 25.78,
+            "end": 27.3,
+            "motion": "push_in",
+            "target": {
+              "label": "athlete bowing respectfully",
+              "x": 0.5,
+              "y": 0.52,
+              "w": 0.42,
+              "h": 0.5
+            },
+            "zoom_start": 1,
+            "zoom_end": 1.1,
+            "easing": "ease_in_out",
+            "trigger_word": "humility",
+            "reason": "Hold on the respectful gesture to communicate character beyond medals."
+          },
+          {
+            "shot_id": "5b",
+            "start": 27.3,
+            "end": 29.24,
+            "motion": "pan_pull",
+            "target": {
+              "label": "people surrounding athlete in support",
+              "x": 0.5,
+              "y": 0.45,
+              "w": 0.72,
+              "h": 0.6
+            },
+            "zoom_start": 1.08,
+            "zoom_end": 1,
+            "easing": "ease_out",
+            "trigger_word": "fair",
+            "reason": "Expand to the community reaction and reinforce the legacy of sportsmanship."
+          }
+        ],
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.15,
+          "reason": "Continue into examples of respect and lasting influence."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "12d115b4670e77225d8d6540d8b9d396313ef46643808964ab82bf4f20e593e9",
+  "job_ids": [
+    "dbf9a5d9-9295-4ec6-9862-7dfbcb4f6e0d"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 10,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.49,
+          "w": 0.83,
+          "h": 0.71
+        },
+        "composition_summary": "Vertical archival-style gym scene showing several wrestlers practicing beneath a framed portrait on the wall. A blank caption panel occupies the lower part of the image.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b10_target_portrait",
+            "label": "framed wall portrait",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.22,
+              "w": 0.22,
+              "h": 0.16
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A framed portrait is visibly mounted high on the gym wall."
+          },
+          {
+            "target_id": "b10_target_wrestler_left_back",
+            "label": "standing wrestler seen from behind",
+            "kind": "person",
+            "bbox": {
+              "x": 0.33,
+              "y": 0.59,
+              "w": 0.2,
+              "h": 0.29
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "A wrestler in a singlet stands facing away from the viewer."
+          },
+          {
+            "target_id": "b10_target_wrestling_pair",
+            "label": "two wrestlers grappling",
+            "kind": "group",
+            "bbox": {
+              "x": 0.68,
+              "y": 0.61,
+              "w": 0.24,
+              "h": 0.22
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Two athletes are visibly locked in a wrestling hold on the mat."
+          },
+          {
+            "target_id": "b10_target_mirror_wrestler",
+            "label": "partial reflected wrestler",
+            "kind": "person",
+            "bbox": {
+              "x": 0.11,
+              "y": 0.56,
+              "w": 0.09,
+              "h": 0.2
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "A partial figure is visible in the left mirror area."
+          }
+        ],
+        "faces": [
+          "b10_target_portrait"
+        ],
+        "hands_or_actions": [
+          "b10_target_wrestling_pair"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.84,
+              "w": 0.7,
+              "h": 0.16
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.88,
+              "h": 0.96
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.05,
+              "w": 0.82,
+              "h": 0.05
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.7,
+            "h": 0.16
+          }
+        ],
+        "notes": "Keep attention on portrait and wrestlers; avoid the blank lower caption area and outer paper border.",
+        "media_sha256": "47be3ac01e2b6f05f5771288b31a83bc84c44fe9d227d30564197d8afb79af96"
+      },
+      {
+        "beat_id": 11,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.49,
+          "w": 0.83,
+          "h": 0.71
+        },
+        "composition_summary": "Vertical public square scene with a large wrestler statue on a pedestal, surrounding architecture, and pedestrians nearby. A blank caption panel occupies the lower part of the image.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b11_target_statue",
+            "label": "wrestler statue on pedestal",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.39,
+              "w": 0.2,
+              "h": 0.3
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A large standing athletic statue is centered on a pedestal."
+          },
+          {
+            "target_id": "b11_target_old_man",
+            "label": "older person looking toward statue",
+            "kind": "person",
+            "bbox": {
+              "x": 0.29,
+              "y": 0.61,
+              "w": 0.14,
+              "h": 0.22
+            },
+            "importance": "secondary",
+            "confidence": 0.94,
+            "visible_evidence": "A person stands at left foreground facing the statue."
+          },
+          {
+            "target_id": "b11_target_woman",
+            "label": "person in dark clothing near statue",
+            "kind": "person",
+            "bbox": {
+              "x": 0.65,
+              "y": 0.66,
+              "w": 0.14,
+              "h": 0.22
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "A person in dark clothing is walking beside the pedestal."
+          },
+          {
+            "target_id": "b11_target_man",
+            "label": "person walking at right foreground",
+            "kind": "person",
+            "bbox": {
+              "x": 0.8,
+              "y": 0.65,
+              "w": 0.12,
+              "h": 0.2
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "A standing/walking figure is visible on the right side."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b11_target_old_man",
+          "b11_target_man"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.84,
+              "w": 0.7,
+              "h": 0.16
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.88,
+              "h": 0.96
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.05,
+              "w": 0.82,
+              "h": 0.05
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.7,
+            "h": 0.16
+          }
+        ],
+        "notes": "Prioritize statue silhouette and respectful pedestrian context; avoid cropping the pedestal.",
+        "media_sha256": "dea126128ab3e643d8f27280f018b8b207b936dacf707f7ccd602bc17c2e418b"
+      },
+      {
+        "beat_id": 12,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.49,
+          "w": 0.83,
+          "h": 0.71
+        },
+        "composition_summary": "Close-up archival-style portrait scene showing a man's face above a table with a coiled rope and open book. A blank caption panel occupies the lower part of the image.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b12_target_face_portrait",
+            "label": "close-up male portrait face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.28,
+              "w": 0.38,
+              "h": 0.27
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A large face fills the upper central image area."
+          },
+          {
+            "target_id": "b12_target_rope",
+            "label": "coiled wrestling rope",
+            "kind": "object",
+            "bbox": {
+              "x": 0.28,
+              "y": 0.63,
+              "w": 0.25,
+              "h": 0.13
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "A thick rope coil is visible on the table at lower left."
+          },
+          {
+            "target_id": "b12_target_open_book",
+            "label": "open book on table",
+            "kind": "object",
+            "bbox": {
+              "x": 0.68,
+              "y": 0.63,
+              "w": 0.22,
+              "h": 0.13
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "An open book is visible on the table at lower right."
+          },
+          {
+            "target_id": "b12_target_table",
+            "label": "wooden tabletop",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.67,
+              "w": 0.8,
+              "h": 0.12
+            },
+            "importance": "context",
+            "confidence": 0.9,
+            "visible_evidence": "A tabletop supports the rope and book."
+          }
+        ],
+        "faces": [
+          "b12_target_face_portrait"
+        ],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.84,
+              "w": 0.7,
+              "h": 0.16
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 0.88,
+              "h": 0.96
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.05,
+              "w": 0.82,
+              "h": 0.05
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.84,
+            "w": 0.7,
+            "h": 0.16
+          }
+        ],
+        "notes": "Keep the face, rope, and book visible together; avoid using the blank caption area as a focal target.",
+        "media_sha256": "26204710a44ebc59cb51767e7937d66ef06d6a7496d0ad82cf32eb70de40b79b"
+      }
+    ]
+  }
+}

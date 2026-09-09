@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "input": "assets/renders/polished.mp4",
+  "input": "assets/renders/dynamic_v2_validation.mp4",
   "timeline": "timeline/TIMELINE.json",
   "render_profile": "render/RENDER_PROFILE.json",
   "passed": true,
@@ -38,7 +38,7 @@
       "ok": true,
       "expected": 58.514,
       "actual": 58.514,
-      "detail": "drift=+0.000s"
+      "detail": "drift=-0.000s"
     },
     {
       "name": "video_codec",
@@ -65,7 +65,7 @@
       "name": "file_nonempty",
       "ok": true,
       "expected": ">0 bytes",
-      "actual": 50066564,
+      "actual": 37782794,
       "detail": ""
     },
     {
