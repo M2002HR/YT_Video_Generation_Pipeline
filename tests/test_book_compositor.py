@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw
 
 from compose_book_spread import compose, fit_world_into_page, page_boxes
 
-TEMPLATES = ROOT / "projects" / "question_harvest" / "book_templates"
+TEMPLATES = ROOT / "projects" / "q_station" / "book_templates"
 
 
 def sha(path: Path) -> str:

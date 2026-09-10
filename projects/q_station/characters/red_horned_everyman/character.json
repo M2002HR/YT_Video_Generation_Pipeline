@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "red_horned_everyman",
+  "display_name": "Red Horned Everyman",
+  "enabled": true,
+  "version": 1,
+  "environment_policy": "dynamic",
+  "selection_profile": {
+    "archetype": "serious skeptical everyday explainer",
+    "strong_topics": [
+      "psychology",
+      "human behavior",
+      "technology",
+      "economics",
+      "money",
+      "society",
+      "everyday systems",
+      "science",
+      "philosophy",
+      "decision making",
+      "strange questions",
+      "general knowledge"
+    ],
+    "tone": [
+      "serious",
+      "dry",
+      "skeptical",
+      "observant",
+      "slightly weary"
+    ],
+    "environment_affinities": []
+  },
+  "references": {
+    "canonical_sheet": "refs/character_sheet.png",
+    "reference_mode": "IDENTITY_ONLY",
+    "required": true
+  },
+  "prompt_files": {
+    "appearance": "appearance.md",
+    "behavior": "behavior.md",
+    "negative": "negative.md"
+  }
+}

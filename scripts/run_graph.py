@@ -29,16 +29,17 @@ class NodeSpec:
 NODE_SPECS: dict[str, NodeSpec] = {
     "script_draft": NodeSpec("Script draft", "text", artifacts=("creative/SCRIPT_DRAFT.json",), description="Initial researched script response.", phase="creative"),
     "retention_edit": NodeSpec("Final script", "text", ("script_draft",), ("creative/SCRIPT_PLAN.json", "SCRIPT_FINAL.md"), description="Retention-edited narration and beat plan.", phase="creative"),
-    "episode_director": NodeSpec("Episode direction", "data", ("retention_edit",), ("creative/EPISODE_PLAN.json",), phase="creative"),
-    "world_style_director": NodeSpec("World style", "data", ("retention_edit", "episode_director"), ("creative/WORLD_STYLE_PLAN.json",), phase="creative"),
+    "character_resolution": NodeSpec("Character resolution", "data", ("retention_edit",), ("creative/CHARACTER_RESOLUTION.json",), description="One-time Auto/manual host resolution between Stages 02 and 03.", phase="creative"),
+    "episode_director": NodeSpec("Episode direction", "data", ("character_resolution",), ("creative/EPISODE_PLAN.json",), phase="creative"),
+    "world_style_director": NodeSpec("World style", "data", ("retention_edit",), ("creative/WORLD_STYLE_PLAN.json",), phase="creative"),
     "world_style_anchor": NodeSpec("Style anchor", "image", ("world_style_director",), ("references/world_style_anchor.png",), ("pipeline/provider_receipts/gemini_world_style_anchor.json",), phase="visual"),
     "visual_plan": NodeSpec("Visual plan", "data", ("retention_edit", "episode_director", "world_style_director"), ("creative/VISUAL_PLAN.json", "VISUAL_BEATS.md"), phase="creative"),
-    "world_keyframe_prompt": NodeSpec("Keyframe prompt", "text", ("visual_plan", "episode_director", "world_style_director"), ("references/world_keyframe_prompt.txt",), phase="visual"),
+    "world_keyframe_prompt": NodeSpec("Keyframe prompt", "text", ("retention_edit", "world_style_director"), ("references/world_keyframe_prompt.txt",), phase="visual"),
     "world_keyframe": NodeSpec("World keyframe", "image", ("world_keyframe_prompt", "world_style_anchor"), ("references/world_keyframe.png",), ("pipeline/provider_receipts/gemini_world_keyframe.json",), phase="visual"),
     "book_cover_design": NodeSpec("Book-cover direction", "text", artifacts=("creative/BOOK_COVER_DESIGN.txt",), description="Topic-specific motifs; independent of the narration draft.", phase="visual"),
     "book_cover": NodeSpec("Book cover", "image", ("book_cover_design", "world_style_anchor"), ("references/book_cover_frame.png",), ("pipeline/provider_receipts/gemini_book_cover.json",), phase="visual"),
-    "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "world_style_director", "retention_edit"), ("references/flow_prompt_opening_a.txt",), phase="opening"),
-    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("episode_director", "world_style_director", "world_keyframe_prompt", "retention_edit"), ("references/flow_prompt_book_transition.txt",), phase="opening"),
+    "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "character_resolution", "retention_edit"), ("references/flow_prompt_opening_a.txt",), phase="opening"),
+    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit"), ("references/flow_prompt_book_transition.txt",), phase="opening"),
     "flow_clip_a": NodeSpec("Opening A", "video", ("flow_prompt_a",), ("assets/opening/question_spark_source.mp4",), ("pipeline/provider_receipts/flow_opening_a.json",), phase="opening"),
     "flow_clip_b": NodeSpec("Opening B", "video", ("flow_prompt_b", "book_cover", "world_keyframe"), ("assets/opening/book_transition_source.mp4",), ("pipeline/provider_receipts/flow_opening_b.json",), phase="opening"),
     "elevenlabs_voiceover": NodeSpec("Narration", "audio", ("retention_edit",), ("assets/audio/narration.mp3",), ("voiceover/ELEVENLABS_RUNTIME_STATE.json",), phase="audio"),
@@ -99,8 +100,13 @@ def load(path: Path) -> dict[str, Any]:
 def project_mode(project: Path) -> str:
     launch = load(project / "launch/LAUNCH_REQUEST.json")
     content_project = str(launch.get("content_project") or "")
-    if content_project and content_project != "question_harvest":
-        return "generic"
+    if content_project:
+        try:
+            from content_projects import load_content_project
+            if not load_content_project(content_project).is_question_harvest:
+                return "generic"
+        except RuntimeError:
+            return "generic"
     if (project / "visual_pipeline/RUNTIME_STATE.json").is_file() and not (
         project / "pipeline/QH_RUNTIME_STATE.json"
     ).is_file():

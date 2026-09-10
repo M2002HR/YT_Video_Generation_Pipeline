@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "default_selection_mode": "auto",
+  "auto_fallback_character_id": "red_horned_everyman",
+  "legacy_default_character_id": "farmer_host",
+  "characters": [
+    {
+      "id": "farmer_host",
+      "config": "farmer_host/character.json"
+    },
+    {
+      "id": "red_horned_everyman",
+      "config": "red_horned_everyman/character.json"
+    }
+  ]
+}

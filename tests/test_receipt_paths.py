@@ -24,9 +24,9 @@ def test_an_episode_asset_is_relative_to_the_episode() -> None:
 
 def test_a_shared_asset_is_relative_to_the_repository() -> None:
     project = ROOT / "videos" / "010_demo"
-    shared = ROOT / "projects" / "question_harvest" / "visual_presets" / "001_home_world" / "book_design_sheet.png"
+    shared = ROOT / "projects" / "q_station" / "visual_presets" / "001_home_world" / "book_design_sheet.png"
     assert _receipt_path(project, shared) == (
-        "projects/question_harvest/visual_presets/001_home_world/book_design_sheet.png"
+        "projects/q_station/visual_presets/001_home_world/book_design_sheet.png"
     )
 
 

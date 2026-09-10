@@ -1,4 +1,4 @@
-"""One canonical, user-visible stage taxonomy for Question Harvest episodes."""
+"""One canonical, user-visible stage taxonomy for Q Station episodes."""
 from __future__ import annotations
 
 PIPELINE_STAGE_SEQUENCE = (

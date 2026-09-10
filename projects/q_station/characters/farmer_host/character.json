@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "farmer_host",
+  "display_name": "Farmer Host",
+  "enabled": true,
+  "version": 1,
+  "environment_policy": "dynamic_with_soft_affinity",
+  "selection_profile": {
+    "archetype": "warm practical hands-on explainer",
+    "strong_topics": [
+      "agriculture",
+      "gardening",
+      "plants",
+      "food growing",
+      "rural life",
+      "craftsmanship",
+      "hands-on physical processes",
+      "nature",
+      "practical mechanisms"
+    ],
+    "tone": [
+      "warm",
+      "curious",
+      "practical",
+      "approachable"
+    ],
+    "environment_affinities": [
+      "garden",
+      "workshop",
+      "rural outdoors",
+      "home maintenance",
+      "hands-on work"
+    ]
+  },
+  "references": {
+    "canonical_sheet": "refs/character_sheet.png",
+    "reference_mode": "IDENTITY_ONLY",
+    "required": true
+  },
+  "prompt_files": {
+    "appearance": "appearance.md",
+    "behavior": "behavior.md",
+    "negative": "negative.md"
+  }
+}

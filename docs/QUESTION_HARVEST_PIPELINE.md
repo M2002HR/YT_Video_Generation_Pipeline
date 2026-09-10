@@ -1,4 +1,7 @@
-# Question Harvest — the pipeline, end to end
+# Q Station — the pipeline, end to end
+
+Canonical id: `q_station`. The filename is retained as a documentation compatibility path;
+`question_harvest` is now only a legacy alias for resuming historical runs.
 
 One launch on the panel produces one episode: a vertical Short whose narration, images and
 opening clips all come from real provider UIs driven through Ordak. This document is the
@@ -13,6 +16,8 @@ These are not preferences. Code enforces each one, and tests assert the refusal.
 | text = ChatGPT, image = Gemini, video = Flow — all through Ordak | `validate_provider_locks`, `tests/test_provider_lock.py` |
 | No synthetic media, no provider fallback, no placeholder frame | no fallback path exists; `check_full_stack.py` greps `scripts/` |
 | Flow never receives a style sheet | `flow_reference_policy`, re-checked at the upload boundary |
+| Character identity is registry-driven and independent of visual/world style | `character_runtime`, `characters/registry.json` |
+| WORLD_KEYFRAME and Clip B are host-free | Stage 06/09 prompts and frames-only Flow policy |
 | Frames and Ingredients are exclusive | one Flow tablist, one active mode |
 | `outputs=x1` always | `flow_settings` verifies the control after setting it |
 | Zero blind duplicate Generate | credit guard fingerprint + `_reconcile_pending` |
@@ -25,7 +30,7 @@ These are not preferences. Code enforces each one, and tests assert the refusal.
 the visual half, then narration and timing, then the completion half.
 
 ```
-panel /launch
+panel /launch (Auto or manual Character)
   └─ run_full_video_pipeline_qh_wrapper.py
        ├─ run_question_harvest_pipeline.py     17 stages: script → Flow clips → body images
        ├─ run_elevenlabs_voiceover.py          one continuous narration track (§66)
@@ -45,6 +50,7 @@ the same command, and paid work is never bought twice.
 |---|---|---|---|
 | 1 | `script_draft` | ChatGPT | `creative/SCRIPT_DRAFT.json` |
 | 2 | `retention_edit` | ChatGPT | `creative/SCRIPT_PLAN.json`, `SCRIPT_FINAL.md` |
+| — | `character_resolution` | ChatGPT for Auto; local for manual/resume | `creative/CHARACTER_RESOLUTION.json`, launch manifest |
 | 3 | `episode_director` | ChatGPT | `creative/EPISODE_PLAN.json` |
 | 4 | `world_style_director` | ChatGPT | `creative/WORLD_STYLE_PLAN.json` |
 | 5 | `world_style_anchor` | Gemini *or* catalog copy | `references/world_style_anchor.png` |
@@ -70,6 +76,7 @@ turns those into CLI flags. Nothing is inferred from the topic text.
 
 | Panel field | Flag | Effect |
 |---|---|---|
+| Character | `--character-mode`, `--character-id` | Auto resolves once after Stage 02; manual validates an enabled registry id |
 | Min/Max duration | `--min-duration-seconds/--max-duration-seconds` | fills `{{DURATION_RANGE}}`, `{{WORD_RANGE}}`, `{{WORD_TARGET}}` in prompts 01 and 02 |
 | World style | `--world-style-id` | binding reuse of a catalogued `style_id`; validated against the catalog before anything runs |
 | World style policy | `--world-style-policy` | `auto` / `reuse` / `new` |
@@ -81,6 +88,12 @@ turns those into CLI flags. Nothing is inferred from the topic text.
 The duration is binding rather than advisory: `DurationTarget` derives the word range from
 it at 2.3-2.5 words per second, which is the same ratio the format's own 40-60s => 92-150
 word rule encodes.
+
+Farmer Host and Red Horned Everyman are the current packs. Environments are dynamic per
+episode; Farmer's rural affinities are soft and Red has none. Character sheets are
+identity-only. Host-present body beats may receive the selected sheet; host-absent beats do
+not. Clip A uses Ingredients with only that sheet. Clip B uses only first/last Frames and is
+independent of the selected host and opening environment.
 
 ## Length, and why the word range is derived
 

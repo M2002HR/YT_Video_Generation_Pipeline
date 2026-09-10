@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from content_projects import resolve_project_id
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,9 +53,14 @@ def commit_paths(paths: list[Path], message: str) -> str | None:
 
 def register_content_project_video(project: Path, state: dict[str, Any]) -> Path:
     """Add a completed video to its durable content-project registry."""
-    content_project = str(state.get("content_project") or "default").strip()
-    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", content_project):
-        raise RuntimeError(f"Invalid content project in pipeline state: {content_project!r}")
+    requested_project = str(state.get("content_project") or "default").strip()
+    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", requested_project):
+        raise RuntimeError(f"Invalid content project in pipeline state: {requested_project!r}")
+    content_project = resolve_project_id(requested_project)
+    # Isolated callers/tests can supply their own ROOT with a standalone project that is
+    # not in the repository catalog. Production aliases always take the canonical branch.
+    if not (ROOT / "projects" / content_project / "PROJECT.json").is_file():
+        content_project = requested_project
     project_root = ROOT / "projects" / content_project
     config = project_root / "PROJECT.json"
     registry = project_root / "VIDEOS.json"

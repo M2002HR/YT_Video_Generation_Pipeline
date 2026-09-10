@@ -76,4 +76,8 @@ test("launch validation catches cross-field constraints", () => {
     () => validateLaunchValues({ ...valid, motion_allow_hold: false }),
     /motion primitive/,
   );
+  assert.throws(
+    () => validateLaunchValues({ ...valid, character_mode: "manual", character_id: "" }),
+    /manual character/,
+  );
 });

@@ -688,8 +688,11 @@ def detect_mixed_media(video_dir: Path) -> bool:
     # also check PROJECT.md content project
     try:
         pm = (video_dir / "PROJECT.md").read_text(encoding="utf-8")
-        if "question_harvest" in pm:
-            return True
+        match = re.search(r"Project:\s*`([^`]+)`", pm)
+        if match:
+            from content_projects import load_content_project
+            if load_content_project(match.group(1)).is_question_harvest:
+                return True
     except Exception:
         pass
     return False

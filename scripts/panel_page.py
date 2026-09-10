@@ -285,7 +285,7 @@ function syncMotionControls(){
 
 function onProjectChange(){
   var sel = document.querySelector('select[name=content_project]');
-  var qh = sel && sel.value === 'question_harvest';
+  var qh = sel && sel.value === 'q_station';
   var box = document.getElementById('qh_advanced');
   if (box) box.style.display = qh ? '' : 'none';
   if (!qh) return;
@@ -297,7 +297,7 @@ function onProjectChange(){
 """
 
 
-def launch_form(project_options: str, style_options: str) -> str:
+def launch_form(project_options: str, style_options: str, character_options: str = "") -> str:
     """The launch form. Locked choices render disabled so the UI cannot suggest a
     combination the pipeline would reject (§62-63)."""
     return f"""
@@ -336,7 +336,7 @@ def launch_form(project_options: str, style_options: str) -> str:
     <option value="9:16" selected>9:16 — Shorts / Reels vertical</option>
     <option value="16:9">16:9 — YouTube landscape</option></select></label>
   <label class="check"><input type=checkbox name=show_subtitles> Burn in subtitles
-   <small>Question Harvest default: off (§71)</small></label>
+   <small>Q Station default: off (§71)</small></label>
   <label class="check"><input type=checkbox name=word_highlight checked> Highlight the spoken word
    <small>Warm-gold sweep follows each measured word; requires burned subtitles and real word timing.</small></label>
   <label class="check"><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC
@@ -347,7 +347,11 @@ def launch_form(project_options: str, style_options: str) -> str:
    <small>Optional: sends the full-quality polished file in addition to the compact copy.</small></label>
  </fieldset>
 
- <fieldset id="qh_advanced"><legend>Question Harvest</legend>
+ <fieldset id="qh_advanced"><legend>Q Station</legend>
+  <label>Character <select name=character_mode onchange="document.getElementById('manual_character').disabled=this.value!=='manual'">
+    <option value=auto selected>Auto — choose after the final script</option>
+    <option value=manual>Manual character</option></select></label>
+  <label>Manual character <select id=manual_character name=character_id disabled>{character_options}</select></label>
   <label>Hero presence <select name=hero_presence_mode>
     <option value=auto selected>auto — decide from the topic (§44)</option>
     <option value=opener_only>opener_only</option>
@@ -497,7 +501,7 @@ def launch_form(project_options: str, style_options: str) -> str:
 """
 
 
-def render(*, message: str, project_options: str, style_options: str, address: str) -> str:
+def render(*, message: str, project_options: str, style_options: str, address: str, character_options: str = "") -> str:
     """The whole page. Job rows and provider badges arrive from /api/status, so the served
     HTML is the same for every request and the live parts update in place."""
     import html as _html
@@ -505,13 +509,13 @@ def render(*, message: str, project_options: str, style_options: str, address: s
     return f"""<!doctype html>
 <html lang=en><head><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Video Studio — Question Harvest</title>
+<title>Video Studio — Q Station</title>
 <style>{CSS}</style></head>
 <body><div class=wrap>
 
 <header class=top>
   <h1>Video Studio</h1>
-  <span class=sub>Question Harvest · ChatGPT → Gemini → Flow → ElevenLabs → render</span>
+  <span class=sub>Q Station · ChatGPT → Gemini → Flow → ElevenLabs → render</span>
   <span class=spacer></span>
   <span class=addr>{_html.escape(address)}</span>
 </header>
@@ -523,7 +527,7 @@ def render(*, message: str, project_options: str, style_options: str, address: s
   <section>
     <div class=card>
       <h2>New episode</h2>
-      <div class=body>{launch_form(project_options, style_options)}</div>
+      <div class=body>{launch_form(project_options, style_options, character_options)}</div>
     </div>
   </section>
 

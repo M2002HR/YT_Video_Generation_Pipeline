@@ -117,14 +117,13 @@ def test_episode_direction_regenerates_its_world_style_and_visual_descendants(tm
     affected = set(regeneration_plan(project, ["episode_director"])["affected_nodes"])
     assert {
         "episode_director",
-        "world_style_director",
-        "world_style_anchor",
         "visual_plan",
         "flow_prompt_a",
-        "flow_prompt_b",
         "beat_image_001",
         "render_baseline",
     } <= affected
+    assert "world_style_director" not in affected
+    assert "flow_prompt_b" not in affected
 
 
 def test_graph_hides_stages_disabled_by_the_frozen_run(tmp_path: Path) -> None:

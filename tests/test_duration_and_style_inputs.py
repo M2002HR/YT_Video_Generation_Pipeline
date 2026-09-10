@@ -73,7 +73,7 @@ def test_the_beat_gate_follows_the_requested_length() -> None:
 
 def test_the_script_prompts_ask_for_the_requested_length() -> None:
     for name in ("01_script_writer.md", "02_retention_editor.md"):
-        text = (ROOT / "projects" / "question_harvest" / "prompts" / "pipeline" / name).read_text()
+        text = (ROOT / "projects" / "q_station" / "prompts" / "pipeline" / name).read_text()
         assert "{{DURATION_RANGE}}" in text or "{{WORD_RANGE}}" in text, name
         assert "40–60s" not in text and "92–150" not in text, f"{name} still hard-codes the default"
         assert "8 and 15" not in text, f"{name} still hard-codes the default beat count"

@@ -38,7 +38,6 @@ def call_recovery(runner: qh.Runner, project: Path) -> Path:
         world_keyframe=project / "references" / "world_keyframe.png",
         world_keyframe_prompt="original keyframe prompt",
         world_style_anchor=project / "references" / "world_style_anchor.png",
-        episode_plan={"book_template_id": "003"},
         model="gemini_omni_1_1_flash", resolution="720p", aspect_ratio="9:16", source_seconds=4,
     )
 

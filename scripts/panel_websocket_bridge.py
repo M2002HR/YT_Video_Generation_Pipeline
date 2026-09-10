@@ -12,7 +12,8 @@ from http import HTTPStatus
 from http.server import ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
-from video_control_panel import Handler, style_catalog_entries
+from content_projects import resolve_project_id
+from video_control_panel import Handler, character_catalog_entries, style_catalog_entries
 
 
 class WebsocketBridge(Handler):
@@ -24,8 +25,15 @@ class WebsocketBridge(Handler):
             self.handle_websocket(parse_qs(parsed.query))
             return
         if parsed.path == "/api/style-catalog":
-            content_project = str((parse_qs(parsed.query).get("content_project") or ["question_harvest"])[0])
+            content_project = resolve_project_id(str((parse_qs(parsed.query).get("content_project") or ["q_station"])[0]))
             self.send_json(HTTPStatus.OK, {"content_project": content_project, "styles": style_catalog_entries(content_project)})
+            return
+        if parsed.path == "/api/character-catalog":
+            content_project = resolve_project_id(str((parse_qs(parsed.query).get("content_project") or ["q_station"])[0]))
+            self.send_json(
+                HTTPStatus.OK,
+                {"content_project": content_project, "characters": character_catalog_entries(content_project)},
+            )
             return
         if parsed.path.startswith("/api/styles/"):
             parts = parsed.path.split("/")

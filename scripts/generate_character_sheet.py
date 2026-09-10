@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Generate the canonical Question Harvest character sheet with Gemini (§13, §47).
+"""Regenerate the canonical Q Station Farmer Host sheet with Gemini (§13, §47).
 
 There is no synthetic fallback. This sheet is the recurring identity every episode is built
 against, so a hand-drawn placeholder would silently redefine the character for every future
 video. If Gemini cannot produce it, the right outcome is a non-zero exit and a real retry.
 
 Output:
-    projects/question_harvest/visual_presets/001_home_world/character_sheet.png
+    projects/q_station/characters/farmer_host/refs/character_sheet.png
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from ordak_jobs import Generation, OrdakJobError, OrdakJobs, sha256_file  # noqa: E402
 
 DEFAULT_OUTPUT = (
-    ROOT / "projects" / "question_harvest" / "visual_presets" / "001_home_world" / "character_sheet.png"
+    ROOT / "projects" / "q_station" / "characters" / "farmer_host" / "refs" / "character_sheet.png"
 )
 
 CHARACTER_PROMPT = """Create a canonical character reference sheet for a YouTube educational cartoon.

@@ -26,9 +26,9 @@ def test_question_project_is_complete_and_has_world_design_stage() -> None:
 def test_panel_exposes_project_and_editorial_inputs() -> None:
     page = Handler.page(Handler.__new__(Handler))
     assert "world_behind_the_question" in page
-    assert "question_harvest" in page
-    # preferred is now question_harvest per §64 (§62 panel defaults)
-    assert "value='question_harvest' selected" in page or "value='world_behind_the_question' selected" in page
+    assert "q_station" in page
+    assert "value='question_harvest'" not in page, "legacy alias must not be a duplicate UI project"
+    assert "value='q_station' selected" in page
     for field in ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes"):
         assert f"name={field}" in page
     # QH advanced fields must be present per §62

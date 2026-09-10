@@ -66,6 +66,8 @@ export function dependentNodeIds(edges, rootId) {
 }
 
 export function validateLaunchValues(values) {
+  if (values.character_mode === "manual" && !values.character_id)
+    throw new Error("Choose a manual character or switch Character to Auto.");
   if (Number(values.min_duration_seconds) > Number(values.max_duration_seconds))
     throw new Error(
       "Minimum duration cannot be greater than maximum duration.",

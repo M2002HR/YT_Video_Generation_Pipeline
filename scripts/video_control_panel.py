@@ -36,17 +36,21 @@ from panel_contract import launch_schema
 from run_graph import graph_for, invalidation_paths, regeneration_plan
 from content_projects import (
     DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project,
-    validate_content_project, validate_provider_locks, normalize_gemini_model, normalize_flow_model, video_slug
+    resolve_project_id, validate_content_project, validate_provider_locks,
+    normalize_gemini_model, normalize_flow_model, video_slug, character_registry_path,
 )
+from character_runtime import CharacterSelectionError, load_character_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
 PROVIDER_STATUS_LOCK = threading.Lock()
 PROVIDER_STATUS_CACHE: dict[str, object] = {"at": 0.0, "base": "", "value": {}}
-PREFERRED_CONTENT_PROJECT = "question_harvest"
+PREFERRED_CONTENT_PROJECT = "q_station"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
 
 QH_ROOTS = {
+    "character_mode": ("character_resolution",),
+    "character_id": ("character_resolution",),
     "world_style_policy": ("world_style_director",),
     "world_style_id": ("world_style_director",),
     "world_style_hint": ("world_style_director",),
@@ -66,7 +70,7 @@ QH_ROOTS = {
 }
 QH_FIELDS = tuple(QH_ROOTS)
 QH_STORED_FIELDS = {
-    **{key: key for key in QH_FIELDS},
+    **{key: key for key in QH_FIELDS if key not in {"character_mode", "character_id"}},
     "opening_a_seconds": "opening_a_source_seconds",
     "opening_b_seconds": "opening_b_source_seconds",
     "chatgpt_fallback_auto": "chatgpt_fallback_mode",
@@ -98,7 +102,7 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
     values.update({key: brief.get(key, values.get(key, "")) for key in CREATIVE_FIELDS})
     values.update({
         "topic": record.get("topic", ""),
-        "content_project": record.get("content_project", DEFAULT_CONTENT_PROJECT),
+        "content_project": resolve_project_id(str(record.get("content_project", DEFAULT_CONTENT_PROJECT))),
     })
     qh = brief.get("_qh") if isinstance(brief.get("_qh"), dict) else {}
     values.update({
@@ -107,6 +111,9 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         if field != "chatgpt_fallback_auto" and stored in qh
     })
     values["chatgpt_fallback_auto"] = qh.get("chatgpt_fallback_mode", "approval") == "auto"
+    character = qh.get("character") if isinstance(qh.get("character"), dict) else record.get("character") or {}
+    values["character_mode"] = str(character.get("mode") or "auto")
+    values["character_id"] = str(character.get("character_id") or "")
     values["reserve_subtitle_space"] = bool(qh.get("reserve_subtitle_space", True))
     values["word_highlight"] = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
     values.update({key: voice[key] for key in VOICE_FIELDS if key in voice})
@@ -192,19 +199,25 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     """Build revised frozen files and exact graph roots from panel-shaped values."""
     before = validate_config_values(frozen_values(record, previous, voice_before))
     merged = validate_config_values({**before, **values})
-    if merged["content_project"] != str(record.get("content_project")):
+    if resolve_project_id(merged["content_project"]) != resolve_project_id(str(record.get("content_project"))):
         raise ValueError("Content project cannot change inside an existing run.")
     changed_fields = [key for key in merged if before.get(key) != merged.get(key)]
+    if any(key in changed_fields for key in ("character_mode", "character_id")):
+        raise ValueError("Resolved character cannot be changed inside an existing run; start a new run instead.")
     roots: set[str] = set()
     brief = {**previous, **{key: merged[key] for key in CREATIVE_FIELDS}}
     qh = dict(previous.get("_qh") or {})
     for key in QH_FIELDS:
-        if key == "chatgpt_fallback_auto":
+        if key in {"chatgpt_fallback_auto", "character_mode", "character_id"}:
             continue
         qh[QH_STORED_FIELDS[key]] = merged[key]
         if before.get(key) != merged.get(key):
             roots.update(QH_ROOTS[key])
     qh["chatgpt_fallback_mode"] = "auto" if merged["chatgpt_fallback_auto"] else "approval"
+    qh["character"] = {
+        "mode": merged["character_mode"],
+        **({"character_id": merged["character_id"]} if merged["character_mode"] == "manual" else {}),
+    }
     if before.get("chatgpt_fallback_auto") != merged.get("chatgpt_fallback_auto"):
         roots.update(QH_ROOTS["chatgpt_fallback_auto"])
     brief["_qh"] = qh
@@ -255,7 +268,15 @@ def studio_schema() -> dict:
         {"value": project.project_id, "label": project.display_name}
         for project in list_content_projects()
     ]
-    return launch_schema(projects, catalogued_style_ids(PREFERRED_CONTENT_PROJECT))
+    schema = launch_schema(projects, catalogued_style_ids(PREFERRED_CONTENT_PROJECT))
+    characters = character_catalog_entries(PREFERRED_CONTENT_PROJECT)
+    for group in schema["groups"]:
+        for field in group["fields"]:
+            if field["name"] == "character_id":
+                field["options"] = [{"value": "", "label": "Choose a character"}] + [
+                    {"value": item["id"], "label": item["display_name"]} for item in characters
+                ]
+    return schema
 
 
 def activity_for(record: dict, project: Path) -> list[dict]:
@@ -332,7 +353,11 @@ def activity_for(record: dict, project: Path) -> list[dict]:
 
 def catalogued_style_ids(content_project: str) -> list[str]:
     """The world styles this content project can reuse, newest catalog order kept."""
-    catalog = ROOT / "projects" / content_project / "world_styles" / "CATALOG.json"
+    try:
+        project = load_content_project(content_project)
+    except RuntimeError:
+        return []
+    catalog = project.root / "world_styles" / "CATALOG.json"
     try:
         entries = json.loads(catalog.read_text(encoding="utf-8")).get("styles") or []
     except (OSError, ValueError):
@@ -342,9 +367,12 @@ def catalogued_style_ids(content_project: str) -> list[str]:
 
 def style_catalog_entries(content_project: str) -> list[dict[str, object]]:
     """Return safe, presentation-ready catalog metadata without exposing source files."""
-    if content_project not in {project.project_id for project in list_content_projects()}:
+    try:
+        project = load_content_project(content_project)
+    except RuntimeError:
         return []
-    catalog_root = ROOT / "projects" / content_project / "world_styles"
+    content_project = project.project_id
+    catalog_root = project.root / "world_styles"
     try:
         styles = json.loads((catalog_root / "CATALOG.json").read_text(encoding="utf-8")).get("styles") or []
     except (OSError, ValueError):
@@ -376,11 +404,23 @@ def style_catalog_entries(content_project: str) -> list[dict[str, object]]:
     return result
 
 
+def character_catalog_entries(content_project: str) -> list[dict[str, object]]:
+    """Enabled server-side character catalog; never exposes reference paths."""
+    try:
+        project = load_content_project(content_project)
+        path = character_registry_path(project)
+        if path is None:
+            return []
+        return load_character_registry(path).catalog()
+    except RuntimeError:
+        return []
+
+
 _STYLE_SAMPLE_LOCK = threading.Lock()
 _STYLE_SAMPLE_CACHE: dict = {}
 
 
-def style_sample_for(style_id: str, content_project: str = "question_harvest") -> Path | None:
+def style_sample_for(style_id: str, content_project: str = "q_station") -> Path | None:
     """Choose only validated samples; scan once per short cache window, not per style."""
     key = (str(ROOT), content_project)
     with _STYLE_SAMPLE_LOCK:
@@ -396,7 +436,7 @@ def style_sample_for(style_id: str, content_project: str = "question_harvest") -
                 plan = json.loads((project / "creative/WORLD_STYLE_PLAN.json").read_text())
                 launch_path = project / "launch/LAUNCH_REQUEST.json"
                 launch = json.loads(launch_path.read_text()) if launch_path.is_file() else {}
-                if launch.get("content_project", "question_harvest") != content_project:
+                if resolve_project_id(str(launch.get("content_project") or "question_harvest")) != resolve_project_id(content_project):
                     continue
                 chosen = str(plan.get("style_id") or "")
                 for candidate in (project / "assets/raw_beats").glob("beat_*.png"):
@@ -730,7 +770,11 @@ def pipeline_command(record: dict) -> list[str]:
     creative_brief = ROOT / str(record["creative_brief"])
     voice_profile = ROOT / str(record["voice_profile"])
     music_providers = ",".join(music_provider_priority(record.get("music_providers") or record.get("music_provider") or "mixkit"))
-    if content_project == "question_harvest":
+    try:
+        is_bookworld = load_content_project(content_project).is_question_harvest
+    except RuntimeError:
+        is_bookworld = False
+    if is_bookworld:
         command = [
             sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
             "--topic", str(record["topic"]),
@@ -942,7 +986,7 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
                 "job_id": str(uuid.uuid5(uuid.NAMESPACE_URL, f"external-panel:{relative_project}")),
                 "kind": "external_episode",
                 "video_id": video_id,
-                "content_project": str(state.get("content_project") or ("question_harvest" if (project / "pipeline/QH_RUNTIME_STATE.json").is_file() else DEFAULT_CONTENT_PROJECT)),
+                "content_project": str(state.get("content_project") or ("q_station" if (project / "pipeline/QH_RUNTIME_STATE.json").is_file() else DEFAULT_CONTENT_PROJECT)),
                 "topic": str(state.get("topic") or project.name),
                 # A resumed direct runner may retain the prior terminal state until it
                 # reaches its next durable checkpoint. The live PID is authoritative.
@@ -1213,10 +1257,13 @@ class Handler(BaseHTTPRequestHandler):
         if kind not in {"anchor", "sample"} or not STYLE_ID_RE.fullmatch(style_id):
             self.send_error(HTTPStatus.NOT_FOUND)
             return
-        catalog_root = ROOT / "projects" / content_project / "world_styles"
-        if content_project not in {project.project_id for project in list_content_projects()}:
+        try:
+            resolved_project = load_content_project(content_project)
+        except RuntimeError:
             self.send_error(HTTPStatus.NOT_FOUND)
             return
+        content_project = resolved_project.project_id
+        catalog_root = resolved_project.root / "world_styles"
         try:
             catalog = json.loads((catalog_root / "CATALOG.json").read_text(encoding="utf-8"))
             entry = next(item for item in catalog.get("styles") or [] if isinstance(item, dict) and item.get("style_id") == style_id)
@@ -1528,7 +1575,10 @@ class Handler(BaseHTTPRequestHandler):
         # Derive the narrowest safe root(s). Any unknown editorial launch change begins at
         # the script; this errs toward correct output rather than reusing stale media.
         roots: set[str] = set()
-        is_qh = str(record.get("content_project") or DEFAULT_CONTENT_PROJECT) == "question_harvest"
+        try:
+            is_qh = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)).is_question_harvest
+        except RuntimeError:
+            is_qh = False
         changed = lambda a, b: json.dumps(a, sort_keys=True) != json.dumps(b, sort_keys=True)
         if changed({k:v for k,v in previous_brief.items() if not k.startswith("_")}, {k:v for k,v in brief.items() if not k.startswith("_")}): roots.add("script_draft")
         old_qh, new_qh = previous_brief.get("_qh", {}), brief.get("_qh", {})
@@ -1749,6 +1799,10 @@ class Handler(BaseHTTPRequestHandler):
             message=message,
             project_options=project_options,
             style_options=style_options_html(PREFERRED_CONTENT_PROJECT),
+            character_options="".join(
+                f'<option value="{html.escape(str(item["id"]), quote=True)}">{html.escape(str(item["display_name"]))}</option>'
+                for item in character_catalog_entries(PREFERRED_CONTENT_PROJECT)
+            ),
             address=f"http://{host}/",
         )
 
@@ -1927,7 +1981,21 @@ class Handler(BaseHTTPRequestHandler):
 
         if route == "/api/style-catalog":
             content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
-            self.send_json(HTTPStatus.OK, {"content_project": content_project, "styles": style_catalog_entries(content_project)})
+            try:
+                canonical = resolve_project_id(content_project)
+            except RuntimeError as exc:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                return
+            self.send_json(HTTPStatus.OK, {"content_project": canonical, "styles": style_catalog_entries(canonical)})
+            return
+        if route == "/api/character-catalog":
+            content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
+            try:
+                canonical = resolve_project_id(content_project)
+            except RuntimeError as exc:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                return
+            self.send_json(HTTPStatus.OK, {"content_project": canonical, "characters": character_catalog_entries(canonical)})
             return
 
         if route.startswith("/api/styles/"):
@@ -2065,7 +2133,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send_notice(HTTPStatus.BAD_REQUEST, "Launch form must be UTF-8"); return
         try:
             topic = form_text(values, "topic", 220)
-            content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()
+            requested_content_project = values.get("content_project", [DEFAULT_CONTENT_PROJECT])[0].strip()
+            content_project = resolve_project_id(requested_content_project)
             available_projects = {project.project_id for project in list_content_projects()}
             duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0])
             aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
@@ -2114,6 +2183,8 @@ class Handler(BaseHTTPRequestHandler):
             motion_face_padding = float(values.get("motion_face_padding", [".18"])[0])
             motion_supersample = int(values.get("motion_supersample", ["2"])[0])
             # QH advanced
+            character_mode = values.get("character_mode", ["auto"])[0].strip() or "auto"
+            character_id = values.get("character_id", [""])[0].strip()
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
             world_style_hint = form_text(values, "world_style_hint", 500) if values.get("world_style_hint") else ""
@@ -2178,12 +2249,29 @@ class Handler(BaseHTTPRequestHandler):
             cp = load_content_project(content_project)
             # provider locks (§60)
             validate_provider_locks(cp)
-            # also validate subtitle default: QH default off but user can enable
-            # validate preset (will fail if QH preset missing character_sheet)
+            # Validate project assets, including the Q Station character registry.
             validate_content_project(cp)
+            if cp.is_question_harvest:
+                if character_mode not in {"auto", "manual"}:
+                    raise ValueError("Invalid character mode.")
+                registry_path = character_registry_path(cp)
+                registry = load_character_registry(registry_path) if registry_path else None
+                if character_mode == "manual":
+                    if registry is None or not character_id:
+                        raise ValueError("Manual character selection requires a character.")
+                    try:
+                        registry.get(character_id)
+                    except CharacterSelectionError as exc:
+                        raise ValueError(str(exc)) from exc
+                elif character_id:
+                    raise ValueError("Auto character selection must not include a manual character id.")
             creative_brief = {key: form_text(values, key) for key in CREATIVE_FIELDS}
-            # also store QH advanced as part of creative brief for downstream pipeline
+            # Store bookworld/Q Station settings for the downstream pipeline.
             creative_brief["_qh"] = {
+                "character": {
+                    "mode": character_mode,
+                    **({"character_id": character_id} if character_mode == "manual" else {}),
+                },
                 "hero_presence_mode": hero_presence_mode,
                 "world_style_policy": world_style_policy,
                 "world_style_id": world_style_id,
@@ -2257,19 +2345,16 @@ class Handler(BaseHTTPRequestHandler):
             project = ROOT / "videos" / f"{video_id}_{video_slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
             creative_brief_path = project / "launch" / "CREATIVE_BRIEF.json"; write_json(creative_brief_path, creative_brief)
-            # also store QH launch request with frozen settings §59
+            # Store the launch request with frozen settings §59.
             job_id = str(uuid.uuid4())
-            subtitles_enabled = show_subtitles  # QH default off; others default on but panel now explicit
-            # legacy default for non-QH was true; QH default false
-            if not show_subtitles and content_project != "question_harvest":
-                # for legacy, subtitles on by default — but panel now controls it, so respect user choice
-                pass
+            subtitles_enabled = show_subtitles
             record = {
                 "schema_version": 5, "content_project": content_project, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(),
                 "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max,
                 "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)),
                 "voice_profile": str(profile.relative_to(ROOT)), "creative_brief": str(creative_brief_path.relative_to(ROOT)),
                 "qh": creative_brief["_qh"],
+                "character": creative_brief["_qh"]["character"],
                 "subtitles": subtitles_enabled,
                 "word_highlight": word_highlight,
                 "sfx": creative_brief["_sfx"],

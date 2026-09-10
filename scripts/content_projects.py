@@ -18,7 +18,7 @@ PIPELINE_PROMPTS = (
     "04_single_beat_image_prompt_writer.md",
 )
 
-# Question Harvest (bookworld_mixed_media) uses 9 prompts per §46
+# Q Station / legacy Question Harvest (bookworld_mixed_media) uses 9 prompts per §46
 QH_PIPELINE_PROMPTS = (
     "01_script_writer.md",
     "02_retention_editor.md",
@@ -80,12 +80,23 @@ class ContentProject:
         return str(self.config.get("display_name") or self.project_id)
 
     @property
+    def aliases(self) -> tuple[str, ...]:
+        raw = self.config.get("aliases")
+        if not isinstance(raw, list):
+            return ()
+        return tuple(str(item).strip() for item in raw if str(item).strip())
+
+    @property
     def pipeline_profile(self) -> str:
         return str(self.config.get("pipeline_profile") or "default").strip().lower()
 
     @property
     def is_question_harvest(self) -> bool:
-        return self.project_id == "question_harvest" or self.pipeline_profile == "bookworld_mixed_media"
+        # Capability, not identity: the bookworld mixed-media profile is what makes a
+        # project drive the Q Station / question-harvest runtime. Keyed on the profile
+        # (not a hardcoded id) so the canonical q_station project and its legacy
+        # question_harvest alias both qualify without scattered id checks.
+        return self.pipeline_profile == "bookworld_mixed_media"
 
     @property
     def default_visual_preset(self) -> str:
@@ -126,23 +137,69 @@ def video_slug(value: str) -> str:
     result = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
     return result or "video"
 
-def load_content_project(project_id: str) -> ContentProject:
+def _load_project_dir(dir_name: str) -> ContentProject | None:
+    """Load the project whose directory is ``dir_name`` if it is well-formed."""
+    root = PROJECTS_ROOT / dir_name
+    config_path = root / "PROJECT.json"
+    if not config_path.is_file():
+        return None
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    if config.get("project_id") != dir_name:
+        raise RuntimeError(f"{config_path.relative_to(ROOT)} project_id does not match its directory.")
+    return ContentProject(dir_name, root, config)
+
+
+def resolve_project_id(project_id: str) -> str:
+    """Map any requested id (canonical or legacy alias) to its canonical project id.
+
+    This is the single place aliases are resolved. A directory whose config declares
+    its own id wins; a compatibility symlink/config that declares the request as an
+    alias resolves to the declared canonical id. Otherwise declared aliases are scanned.
+    """
     project_id = project_id.strip()
     if not PROJECT_ID_RE.fullmatch(project_id):
         raise RuntimeError(f"Invalid content-project id: {project_id!r}")
-    root = PROJECTS_ROOT / project_id
-    config_path = root / "PROJECT.json"
-    if not config_path.is_file():
-        raise RuntimeError(f"Unknown content project {project_id!r}; missing {config_path.relative_to(ROOT)}")
-    config = json.loads(config_path.read_text(encoding="utf-8"))
-    if config.get("project_id") != project_id:
-        raise RuntimeError(f"{config_path.relative_to(ROOT)} project_id does not match its directory.")
-    return ContentProject(project_id, root, config)
+    direct_config = PROJECTS_ROOT / project_id / "PROJECT.json"
+    if direct_config.is_file():
+        try:
+            direct_payload = json.loads(direct_config.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(f"Malformed content project config: {direct_config.relative_to(ROOT)}") from exc
+        declared_id = str(direct_payload.get("project_id") or "")
+        if declared_id == project_id:
+            return project_id
+        aliases = direct_payload.get("aliases") if isinstance(direct_payload.get("aliases"), list) else []
+        if project_id in aliases and PROJECT_ID_RE.fullmatch(declared_id):
+            return declared_id
+    if PROJECTS_ROOT.is_dir():
+        for path in sorted(PROJECTS_ROOT.iterdir()):
+            if not (path.is_dir() and not path.is_symlink() and (path / "PROJECT.json").is_file()):
+                continue
+            project = _load_project_dir(path.name)
+            if project is not None and project_id in project.aliases:
+                return project.project_id
+    return project_id
+
+
+def load_content_project(project_id: str) -> ContentProject:
+    canonical = resolve_project_id(project_id)
+    project = _load_project_dir(canonical)
+    if project is None:
+        requested = project_id.strip()
+        hint = f" (requested via alias {requested!r})" if requested != canonical else ""
+        raise RuntimeError(
+            f"Unknown content project {canonical!r}{hint}; missing projects/{canonical}/PROJECT.json"
+        )
+    return project
 
 def list_content_projects() -> list[ContentProject]:
     if not PROJECTS_ROOT.is_dir():
         return []
-    return [load_content_project(path.name) for path in sorted(PROJECTS_ROOT.iterdir()) if path.is_dir() and (path / "PROJECT.json").is_file()]
+    return [
+        load_content_project(path.name)
+        for path in sorted(PROJECTS_ROOT.iterdir())
+        if path.is_dir() and not path.is_symlink() and (path / "PROJECT.json").is_file()
+    ]
 
 def resolve_pipeline_prompt(project: ContentProject, name: str) -> Path:
     path = project.root / "prompts" / "pipeline" / name
@@ -153,6 +210,24 @@ def resolve_pipeline_prompt(project: ContentProject, name: str) -> Path:
         if legacy.is_file():
             return legacy
     raise RuntimeError(f"Content project {project.project_id!r} is missing pipeline prompt {name!r}: expected {path.relative_to(ROOT)}")
+
+def character_registry_path(project: ContentProject) -> Path | None:
+    """Absolute path to a project's character registry, or None if it declares none."""
+    characters = project.config.get("characters")
+    rel = ""
+    if isinstance(characters, dict):
+        rel = str(characters.get("registry") or "").strip()
+    if not rel:
+        return None
+    target = (project.root / rel).resolve()
+    try:
+        target.relative_to(project.root.resolve())
+    except ValueError as exc:
+        raise RuntimeError(
+            f"Character registry path escapes content project {project.project_id!r}: {rel!r}"
+        ) from exc
+    return target
+
 
 def resolve_visual_preset(project: ContentProject, preset: str) -> Path:
     path = project.root / "visual_presets" / preset
@@ -182,8 +257,9 @@ def validate_content_project(project: ContentProject, preset: str | None = None)
     preset_root = resolve_visual_preset(project, selected_preset)
     # profile-aware preset validation (§46-47)
     if project.is_question_harvest:
-        # QH visual preset requires README + character_sheet.png (canonical flow reference)
-        missing = [name for name in ("README.md", "character_sheet.png") if not (preset_root / name).is_file()]
+        # The preset is rendering style only. Character identity is validated from the
+        # registry below; the old preset sheet may remain solely for historical runs.
+        missing = [name for name in ("README.md",) if not (preset_root / name).is_file()]
         # allow placeholder check to give clearer message
         if missing:
             # also show if placeholder exists
@@ -195,6 +271,14 @@ def validate_content_project(project: ContentProject, preset: str | None = None)
                 f"missing: {', '.join(missing)}"
                 + (f" ({'; '.join(hints)})" if hints else "")
             )
+        registry_path = character_registry_path(project)
+        if registry_path is None:
+            raise RuntimeError(f"Content project {project.project_id!r} has no character registry configured.")
+        from character_runtime import CharacterRegistryError, load_character_registry
+        try:
+            load_character_registry(registry_path)
+        except CharacterRegistryError as exc:
+            raise RuntimeError(f"Invalid character registry for {project.display_name}: {exc}") from exc
     else:
         missing = [name for name in ("README.md", "style_anchor.png", "character_anchor.png") if not (preset_root / name).is_file()]
         if missing:
@@ -212,9 +296,9 @@ def validate_provider_locks(project: ContentProject, image_provider: str | None 
     locked_image = "gemini"
     locked_video = "flow"
     if image_provider is not None and image_provider.strip().lower() != locked_image:
-        raise RuntimeError(f"Question Harvest image provider is LOCKED to {locked_image!r}; got {image_provider!r} (§60)")
+        raise RuntimeError(f"Q Station image provider is LOCKED to {locked_image!r}; got {image_provider!r} (§60)")
     if video_provider is not None and video_provider.strip().lower() != locked_video:
-        raise RuntimeError(f"Question Harvest video provider is LOCKED to {locked_video!r}; got {video_provider!r} (§60)")
+        raise RuntimeError(f"Q Station video provider is LOCKED to {locked_video!r}; got {video_provider!r} (§60)")
     # also validate config itself
     cfg_image = project.get_provider("image")
     cfg_video = project.get_provider("video")
@@ -267,4 +351,3 @@ def build_flow_clip_references(
             has_last_frame=has_last_frame,
         )
     raise FlowReferencePolicyError(f"clip must be 'A' or 'B', got {clip!r}")
-

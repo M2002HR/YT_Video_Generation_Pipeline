@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Question Harvest — the bookworld mixed-media pipeline (§57), production path only.
+"""Q Station — the bookworld mixed-media pipeline (§57), production path only.
 
 Stage order:
 
@@ -43,12 +43,20 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from content_projects import (  # noqa: E402
+    character_registry_path,
     load_content_project,
     normalize_flow_model,
     normalize_gemini_model,
     validate_content_project,
     validate_provider_locks,
     video_slug,
+)
+from character_runtime import (  # noqa: E402
+    CharacterContext,
+    CharacterResolution,
+    load_character_registry,
+    parse_character_request,
+    resolve_character,
 )
 from flow_reference_policy import build_flow_uploads  # noqa: E402
 from ordak_jobs import (  # noqa: E402
@@ -64,8 +72,10 @@ from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
 from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprint
 
-WORLD_STYLES_ROOT = ROOT / "projects" / "question_harvest" / "world_styles"
-BOOK_TEMPLATES_ROOT = ROOT / "projects" / "question_harvest" / "book_templates"
+# Initialized from the resolved project in main. Kept as module globals for compatibility
+# with existing helpers/tests that monkeypatch catalog roots.
+WORLD_STYLES_ROOT = ROOT / "projects" / "q_station" / "world_styles"
+BOOK_TEMPLATES_ROOT = ROOT / "projects" / "q_station" / "book_templates"
 # Ordak's typed request schema permits 20,000 characters. Keep a small safety
 # margin so a future prompt expansion cannot become an opaque HTTP 500 before a
 # job is even recorded.
@@ -972,7 +982,108 @@ def stage_retention(
     return plan
 
 
-def _recent_history(project_id: str = "question_harvest", limit: int = 4) -> list[dict[str, Any]]:
+def _character_prompt_context(character: CharacterContext) -> str:
+    return json.dumps(
+        {
+            "id": character.id,
+            "display_name": character.display_name,
+            "appearance": character.appearance_full,
+            "behavior": character.behavior,
+            "negative_constraints": character.negative_constraints,
+            "environment_policy": character.environment_policy,
+            "environment_affinities": list(character.environment_affinities),
+            "reference_mode": character.reference_mode,
+        },
+        ensure_ascii=False,
+    )
+
+
+def _coerce_character_context(value: Any) -> CharacterContext:
+    """Compatibility for old direct helper callers; identity still comes from registry."""
+    if isinstance(value, CharacterContext):
+        return value
+    registry_file = character_registry_path(value)
+    if registry_file is None:
+        raise CharacterSelectionError("This content project has no character registry.")
+    registry = load_character_registry(registry_file)
+    return registry.get(registry.legacy_default_character_id)
+
+
+def stage_character_resolution(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    topic: str,
+    brief: str,
+    plan: dict[str, Any],
+    launch: dict[str, Any],
+    *,
+    is_legacy_run: bool,
+) -> tuple[CharacterResolution, CharacterContext]:
+    """Resolve WHO once, after final script and before Episode Director, then persist it."""
+    registry_file = character_registry_path(content_project)
+    if registry_file is None:
+        raise StageFailure("character_resolution", "FAILED_VALIDATION", "Q Station character registry is not configured.")
+    registry = load_character_registry(registry_file)
+    request = launch.get("character") if isinstance(launch.get("character"), dict) else None
+    resolution_path = project / "creative" / "CHARACTER_RESOLUTION.json"
+    persisted = launch.get("character_resolution") if isinstance(launch.get("character_resolution"), dict) else None
+    if persisted is None and resolution_path.is_file():
+        candidate = load_json(resolution_path)
+        persisted = candidate if isinstance(candidate, dict) else None
+    mode, requested_id = parse_character_request(request)
+
+    def auto_selector() -> Any:
+        selector = content_project.root / "prompts" / "characters" / "AUTO_CHARACTER_SELECTOR.md"
+        template = selector.read_text(encoding="utf-8")
+        prompt = fill(
+            template,
+            TOPIC=topic,
+            USER_REQUEST=topic,
+            CREATIVE_BRIEF=brief,
+            FINAL_SCRIPT=plan["full_narration"],
+            CHARACTER_PROFILES=json.dumps(
+                [registry.get(char_id).selection_summary() for char_id in registry.enabled_ids()],
+                ensure_ascii=False,
+            ),
+            RECENT_CHARACTERS="[]",
+        )
+        return runner.json("character_auto_selector", prompt)
+
+    resolution = resolve_character(
+        registry,
+        persisted=persisted,
+        requested_mode=mode,
+        requested_character_id=requested_id,
+        is_legacy_run=is_legacy_run,
+        run_auto_selector=auto_selector,
+    )
+    context = registry.get(resolution.resolved_character_id)
+    payload = resolution.to_state()
+    if persisted is None and not is_legacy_run:
+        launch["character"] = {
+            "mode": resolution.requested_mode,
+            **({"character_id": resolution.requested_character_id} if resolution.requested_character_id else {}),
+        }
+        launch["character_resolution"] = payload
+        save_json(project / "launch" / "LAUNCH_REQUEST.json", launch)
+    save_json(resolution_path, payload)
+    runner.state.mark(
+        "character_resolution",
+        STATE_REUSED if persisted else STATE_DONE,
+        **payload,
+    )
+    print(
+        f"Character requested: {'Auto' if resolution.requested_mode == 'auto' else context.display_name}\n"
+        f"Character resolved: {context.display_name}\n"
+        f"Resolution: {resolution.source}"
+        + (f"\nReason: {resolution.reason}" if resolution.reason else ""),
+        flush=True,
+    )
+    return resolution, context
+
+
+def _recent_history(project_id: str = "q_station", limit: int = 4) -> list[dict[str, Any]]:
     """The last few episodes' traits, for the anti-repetition heuristics (§35)."""
     from episode_history import recent
 
@@ -980,8 +1091,10 @@ def _recent_history(project_id: str = "question_harvest", limit: int = 4) -> lis
 
 
 def stage_episode_director(
-    runner: Runner, project: Path, content_project: Any, topic: str, brief: str, plan: dict[str, Any]
+    runner: Runner, project: Path, content_project: Any, topic: str, brief: str,
+    plan: dict[str, Any], character: CharacterContext | None = None,
 ) -> dict[str, Any]:
+    character = _coerce_character_context(character or content_project)
     stage = "episode_director"
     target = project / "creative" / "EPISODE_PLAN.json"
     if runner.state.done(stage) and target.is_file():
@@ -990,12 +1103,13 @@ def stage_episode_director(
     started = runner.stage_start(stage)
     from episode_history import avoidance_note, repeated_traits
 
-    history = _recent_history(getattr(content_project, "project_id", "question_harvest"))
+    history = _recent_history(getattr(content_project, "project_id", "q_station"))
     base_prompt = fill(
         resolve_prompt(content_project, "03_episode_director.md"),
         TOPIC=topic,
         CREATIVE_BRIEF=brief,
         FINAL_SCRIPT=plan["full_narration"],
+        CHARACTER_CONTEXT=_character_prompt_context(character),
         RECENT_HISTORY=json.dumps(history, ensure_ascii=False),
     )
     prompt = base_prompt
@@ -1065,7 +1179,6 @@ def stage_world_style_director(
     content_project: Any,
     topic: str,
     plan: dict[str, Any],
-    episode_plan: dict[str, Any],
     directive: str,
 ) -> dict[str, Any]:
     stage = "world_style_director"
@@ -1082,9 +1195,11 @@ def stage_world_style_director(
         resolve_prompt(content_project, "04_world_style_director.md"),
         TOPIC=topic,
         FINAL_SCRIPT=plan["full_narration"],
-        EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
         STYLE_CATALOG=json.dumps(catalog, ensure_ascii=False),
-        RECENT_STYLES=json.dumps([item.get("world_style_id") for item in _recent_history()], ensure_ascii=False),
+        RECENT_STYLES=json.dumps(
+            [item.get("world_style_id") for item in _recent_history(getattr(content_project, "project_id", "q_station"))],
+            ensure_ascii=False,
+        ),
         STYLE_DIRECTIVE=directive,
     )
     def check_style(data: Any) -> dict[str, Any]:
@@ -1120,7 +1235,7 @@ def stage_record_history(
     from episode_history import EpisodeHistoryError, record_traits, traits_from_plans
 
     started = runner.stage_start(stage)
-    project_id = getattr(content_project, "project_id", "question_harvest")
+    project_id = getattr(content_project, "project_id", "q_station")
     traits = traits_from_plans(episode_plan, world_style_plan)
     try:
         path = record_traits(project_id, video_id, traits)
@@ -1191,7 +1306,7 @@ def stage_world_style_anchor(
             from world_style_catalog import WorldStyleCatalogError, record_reuse
 
             try:
-                uses = record_reuse(getattr(content_project, "project_id", "question_harvest"), reuse_of)
+                uses = record_reuse(getattr(content_project, "project_id", "q_station"), reuse_of)
             except WorldStyleCatalogError:
                 uses = None
             runner.stage_done(
@@ -1220,7 +1335,7 @@ def stage_world_style_anchor(
     published = ""
     try:
         entry = publish_style(
-            getattr(content_project, "project_id", "question_harvest"), world_style_plan, target
+            getattr(content_project, "project_id", "q_station"), world_style_plan, target
         )
         published = str(entry.get("path") or "")
     except WorldStyleCatalogError as exc:
@@ -1383,6 +1498,7 @@ def stage_visual_plan(
     episode_plan: dict[str, Any],
     world_style_plan: dict[str, Any],
     body_seconds: float,
+    character: CharacterContext,
 ) -> dict[str, Any]:
     stage = "visual_plan"
     target = project / "creative" / "VISUAL_PLAN.json"
@@ -1390,6 +1506,11 @@ def stage_visual_plan(
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
+    body_episode_context = {
+        key: episode_plan.get(key)
+        for key in ("hero_presence_mode", "closing_mode")
+        if episode_plan.get(key) is not None
+    }
     prompt = fill(
         resolve_prompt(content_project, "05_visual_beat_planner.md"),
         FINAL_SCRIPT=json.dumps(
@@ -1401,10 +1522,14 @@ def stage_visual_plan(
             ensure_ascii=False,
             indent=2,
         ),
-        EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
+        EPISODE_PLAN=json.dumps(body_episode_context, ensure_ascii=False),
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VIDEO_BRIEF="aspect 9:16 vertical Short",
         BODY_DURATION_SECONDS=f"{body_seconds:.0f}",
+        CHARACTER_CONTEXT=json.dumps(
+            {"id": character.id, "display_name": character.display_name, "behavior": character.behavior},
+            ensure_ascii=False,
+        ),
     )
     def check(data: Any) -> dict[str, Any]:
         beats = data.get("beats") if isinstance(data, dict) else None
@@ -1445,9 +1570,7 @@ def stage_world_keyframe_prompt(
     project: Path,
     content_project: Any,
     plan: dict[str, Any],
-    episode_plan: dict[str, Any],
     world_style_plan: dict[str, Any],
-    visual_plan: dict[str, Any],
 ) -> str:
     stage = "world_keyframe_prompt"
     target = project / "references" / "world_keyframe_prompt.txt"
@@ -1455,52 +1578,25 @@ def stage_world_keyframe_prompt(
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8")
     started = runner.stage_start(stage)
-    # The keyframe writer needs the visual world's representative motifs, not the
-    # full prose of every fast-cut body beat. Passing the complete 20–30 beat plan
-    # exceeded Ordak's 20k request schema and failed before a job existed.
-    keyframe_beats = list(visual_plan.get("beats") or [])
-    representative = keyframe_beats[:3]
-    if len(keyframe_beats) > 3:
-        representative.append(keyframe_beats[len(keyframe_beats) // 2])
-        representative.append(keyframe_beats[-1])
-    compact_visual_plan = {
-        "beat_count": len(keyframe_beats),
-        "representative_beats": [
-            {
-                key: beat.get(key)
-                for key in ("beat_id", "narration_slice", "visual", "purpose", "visual_fingerprint", "type")
-            }
-            for beat in representative
-            if isinstance(beat, dict)
-        ],
-    }
+    # Deliberately ignore episode direction and character-aware body planning. Clip B's
+    # last frame depends only on the factual script and inside-book world style.
     prompt = fill(
         resolve_prompt(content_project, "06_world_keyframe_prompt_writer.md"),
         FINAL_SCRIPT=plan["full_narration"],
-        EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
-        VISUAL_PLAN=json.dumps(compact_visual_plan, ensure_ascii=False),
         CAPTION_LAYOUT_RULE=caption_layout_rule(world_style_plan),
     )
     text = runner.text(stage, prompt).strip()
     # The world keyframe is the visual constitution for every body frame, so make its
     # repeatable material border and caption reserve explicit in the actual Gemini prompt.
-    text = f"{text} {episode_frame_contract(world_style_plan)}"
+    text = (
+        f"{text} {episode_frame_contract(world_style_plan)} "
+        "Binding isolation: no recurring host, no selected host, and no foreground person or character."
+    )
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text + "\n", encoding="utf-8")
     runner.stage_done(stage, started, target.name, prompt_sha256=sha256_text(text))
     return text
-
-
-def character_sheet_path(content_project: Any) -> Path:
-    return (
-        ROOT
-        / "projects"
-        / content_project.project_id
-        / "visual_presets"
-        / content_project.default_visual_preset
-        / "character_sheet.png"
-    )
 
 
 def book_design_sheet_path(content_project: Any) -> Path:
@@ -1517,8 +1613,8 @@ def book_design_sheet_path(content_project: Any) -> Path:
 def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any) -> Path:
     """The canonical book identity, generated once and then reused forever (§2, §47).
 
-    Clip B sends this instead of the character sheet, because the book-transition shot is
-    explicitly people-free — see the deviation recorded in IMPLEMENTATION_PLAN §3.5.
+    Gemini uses it to construct the episode-specific book frame. Flow Clip B stays in
+    frames-only mode and therefore receives neither this sheet nor a character sheet.
     """
     stage = "book_design_sheet"
     target = book_design_sheet_path(content_project)
@@ -1653,24 +1749,9 @@ def stage_world_keyframe(
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
 
-    # §30 reference order: the recurring identity first, then the style, then continuity.
+    # WORLD_KEYFRAME is deliberately host-free: it is Clip B's last frame and must not
+    # know which recurring host was selected. Only the subject-world style is referenced.
     references: list[Reference] = []
-    character = character_sheet_path(content_project)
-    selection_path = project / "references" / "world_keyframe_references.json"
-    selection = load_json(selection_path) if selection_path.is_file() else {}
-    if selection.get("prompt_sha256") != sha256_text(prompt):
-        selection = runner.json(
-            "world_keyframe_references",
-            "Does this image prompt explicitly depict the recurring human protagonist "
-            "(chestnut hair, beard, moss sweater, blue overalls)? A cat or a generic person "
-            "does not count. Return JSON with hero_present (boolean). Prompt:\n" + prompt,
-        )
-        if not isinstance(selection, dict) or type(selection.get("hero_present")) is not bool:
-            raise StageFailure(stage, "FAILED_VALIDATION", "Invalid keyframe reference selection")
-        selection["prompt_sha256"] = sha256_text(prompt)
-        save_json(selection_path, selection)
-    if selection["hero_present"] and valid_image(character):
-        references.append(Reference(role="character_sheet", path=character))
     if valid_image(world_style_anchor):
         references.append(Reference(role="style_reference", path=world_style_anchor))
 
@@ -1792,11 +1873,12 @@ def stage_flow_prompt(
     content_project: Any,
     clip: str,
     narration: str,
-    episode_plan: dict[str, Any],
+    episode_plan: dict[str, Any] | None,
     world_style_plan: dict[str, Any],
     world_keyframe_description: str,
     topic: str,
     source_seconds: int, *, force: bool = False,
+    character: CharacterContext | None = None,
 ) -> str:
     """Every Flow prompt comes from ChatGPT; none of them is hardcoded (§194)."""
     stage = f"flow_prompt_{'a' if clip == 'A' else 'b'}"
@@ -1806,17 +1888,24 @@ def stage_flow_prompt(
         return target.read_text(encoding="utf-8")
     started = runner.stage_start(stage)
     if clip == "A":
+        if character is None:
+            raise StageFailure(stage, "FAILED_VALIDATION", "Clip A requires resolved CharacterContext.")
+        if episode_plan is None:
+            raise StageFailure(stage, "FAILED_VALIDATION", "Clip A requires episode direction.")
+        preset_rules = (
+            content_project.root / "visual_presets" / content_project.default_visual_preset / "README.md"
+        ).read_text(encoding="utf-8")
         prompt = fill(
             resolve_prompt(content_project, "08_opening_video_prompt_writer.md"),
             OPENING_A_NARRATION=narration,
             EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
-            WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
+            VISUAL_PRESET_RULES=preset_rules,
+            CHARACTER_CONTEXT=_character_prompt_context(character),
         )
     else:
         prompt = fill(
             resolve_prompt(content_project, "09_book_transition_video_prompt_writer.md"),
             BOOK_TRANSITION_NARRATION=narration,
-            EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
             TOPIC=topic,
             WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
             WORLD_KEYFRAME_DESC=world_keyframe_description,
@@ -1843,6 +1932,7 @@ def stage_flow_clip(
     aspect_ratio: str,
     source_seconds: int,
     force: bool = False,
+    character: CharacterContext | None = None,
 ) -> Path:
     """Generate one Flow clip with the references its role contract allows.
 
@@ -1878,7 +1968,8 @@ def stage_flow_clip(
     started = runner.stage_start(stage)
 
     if clip == "A":
-        uploads = build_flow_uploads(clip="A", character_sheet=character_sheet_path(content_project))
+        character = _coerce_character_context(character or content_project)
+        uploads = build_flow_uploads(clip="A", character_sheet=character.sheet_path)
     else:
         uploads = build_flow_uploads(
             clip="B",
@@ -1983,9 +2074,8 @@ def policy_safe_frame_prompt(original: str, flow_evidence: str, attempt: int) ->
     """
     return (
         f"{original.strip()}\n\n"
-        "FLOW POLICY-SAFE FRAME REVISION: This endpoint must be a fictional hand-drawn scene. "
-        "If it includes a person, use an anonymous adult illustrated subject with no real-person "
-        "name, likeness, biography, uniform, logo or identifying marks. Depict no combat, injury, "
+        "FLOW POLICY-SAFE FRAME REVISION: This endpoint must be a host-free hand-drawn subject-world scene. "
+        "Include no recurring host, selected host, foreground person or character. Depict no combat, injury, "
         "weapons, threats, political/extremist symbols, readable text or brand marks. Keep the action "
         "calm, educational and non-violent while preserving the requested medium, composition and 9:16 frame. "
         f"This is revision {attempt}, prompted by Flow UI evidence: {flow_evidence[:300]}"
@@ -2023,11 +2113,11 @@ def stage_flow_clip_with_policy_recovery(
     world_keyframe: Path | None,
     world_keyframe_prompt: str | None,
     world_style_anchor: Path | None,
-    episode_plan: dict[str, Any],
     model: str,
     resolution: str,
     aspect_ratio: str,
     source_seconds: int,
+    character: CharacterContext | None = None,
 ) -> Path:
     """Run a Flow clip and perform up to three audited policy-only rewinds.
 
@@ -2071,6 +2161,7 @@ def stage_flow_clip_with_policy_recovery(
                 book_spread=active_book_spread, world_keyframe=active_world_keyframe,
                 model=model, resolution=resolution, aspect_ratio=aspect_ratio,
                 source_seconds=source_seconds,
+                character=character,
             )
         except StageFailure as failure:
             if not is_flow_policy_rejection(failure) or attempt == FLOW_POLICY_RETRY_LIMIT:
@@ -2115,7 +2206,7 @@ def stage_flow_clip_with_policy_recovery(
 
 
 def _beat_reference_stack(
-    content_project: Any,
+    character: Any | None,
     beat: dict[str, Any],
     world_style_anchor: Path,
     world_keyframe: Path,
@@ -2127,9 +2218,12 @@ def _beat_reference_stack(
     hero-free beat is how a character drifts into scenes that should not contain one.
     """
     references: list[Reference] = []
-    character = character_sheet_path(content_project)
-    if beat.get("hero_present", True) and valid_image(character):
-        references.append(Reference(role="character_sheet", path=character))
+    if beat.get("hero_present", False):
+        if character is None:
+            raise CharacterSelectionError("A host-present beat requires CharacterContext.")
+        character = _coerce_character_context(character)
+        if valid_image(character.sheet_path):
+            references.append(Reference(role="character_sheet", path=character.sheet_path))
     if valid_image(world_style_anchor):
         references.append(Reference(role="style_reference", path=world_style_anchor))
     if valid_image(world_keyframe):
@@ -2146,7 +2240,10 @@ def stage_beat_prompt(
     beat: dict[str, Any],
     world_style_plan: dict[str, Any],
     references: list[Reference],
+    character: CharacterContext | None = None,
 ) -> str:
+    if beat.get("hero_present", False):
+        character = _coerce_character_context(character or content_project)
     beat_id = int(beat["beat_id"])
     target = project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
     stage = f"beat_prompt_{beat_id:03d}"
@@ -2176,6 +2273,11 @@ def stage_beat_prompt(
             "Never copy its composition, crop, camera angle, pose, subject placement, or focal object."
         ),
         ASPECT_RATIO="9:16",
+        CHARACTER_CONTEXT=(
+            _character_prompt_context(character)
+            if beat.get("hero_present", False)
+            else "HOST ABSENT. Do not depict or mention the selected recurring host."
+        ),
     )
     cache_path = target.with_suffix(".inputs.json")
     cache_key = sha256_text(prompt)
@@ -2221,8 +2323,10 @@ def stage_body_images(
     world_keyframe: Path,
     regenerate_beats: set[int] | None = None,
     revision_feedback: dict[int, str] | None = None,
+    character: CharacterContext | None = None,
 ) -> list[Path]:
     """One Gemini image per body beat, sequential because each uses the previous for continuity."""
+    character = _coerce_character_context(character or content_project)
     beats = list(visual_plan.get("beats") or [])
     requested_regenerations = regenerate_beats or set()
     revision_feedback = revision_feedback or {}
@@ -2247,8 +2351,11 @@ def stage_body_images(
             stage = f"beat_image_{beat_id:03d}"
             target = output_dir / f"beat_{beat_id:03d}.png"
 
-            references = _beat_reference_stack(content_project, beat, world_style_anchor, world_keyframe, previous)
-            prompt = stage_beat_prompt(runner, project, content_project, beat, world_style_plan, references)
+            beat_character = character if beat.get("hero_present", False) else None
+            references = _beat_reference_stack(beat_character, beat, world_style_anchor, world_keyframe, previous)
+            prompt = stage_beat_prompt(
+                runner, project, content_project, beat, world_style_plan, references, beat_character
+            )
             revision_path = project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.revision.md"
             if revision_feedback.get(beat_id):
                 prompt = f"{prompt.rstrip()}\n\nADMIN REVISION REQUEST (binding): {revision_feedback[beat_id].strip()}"
@@ -2391,6 +2498,8 @@ def ensure_launch_request(
     style_policy: str,
     style_id: str,
     style_hint: str,
+    character_mode: str = "auto",
+    character_id: str | None = None,
 ) -> dict[str, Any]:
     """The immutable launch contract (§59, §79). An existing file is never rewritten."""
     path = project / "launch" / "LAUNCH_REQUEST.json"
@@ -2399,6 +2508,10 @@ def ensure_launch_request(
     data = {
         "schema_version": 3,
         "content_project": content_project_id,
+        "character": {
+            "mode": character_mode,
+            **({"character_id": character_id} if character_id else {}),
+        },
         "created_at": utcnow(),
         "providers": {"text": "chatgpt", "image": "gemini", "video": "flow", "voice": "elevenlabs_web"},
         "image_generation": {"model": normalize_gemini_model(gemini_model), "quality": "best"},
@@ -2461,10 +2574,13 @@ def build_brief(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Question Harvest pipeline (production path)")
+    global WORLD_STYLES_ROOT, BOOK_TEMPLATES_ROOT
+    parser = argparse.ArgumentParser(description="Q Station pipeline (production path)")
     parser.add_argument("--topic", required=True)
     parser.add_argument("--video-id", required=True)
-    parser.add_argument("--content-project", default="question_harvest")
+    parser.add_argument("--content-project", default="q_station")
+    parser.add_argument("--character-mode", choices=("auto", "manual"), default="auto")
+    parser.add_argument("--character-id", default="")
     parser.add_argument("--creative-brief", type=Path, default=None)
     parser.add_argument("--voice-profile", type=Path, default=None)
     parser.add_argument(
@@ -2551,14 +2667,18 @@ def main() -> int:
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
 
     content_project = load_content_project(args.content_project)
+    WORLD_STYLES_ROOT = content_project.root / "world_styles"
+    BOOK_TEMPLATES_ROOT = content_project.root / "book_templates"
     validate_provider_locks(content_project)
     validate_content_project(content_project)
 
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     project.mkdir(parents=True, exist_ok=True)
-    (project / "PROJECT.md").write_text(
-        f"# Content Project\n\nProject: `{content_project.project_id}`\n", encoding="utf-8"
-    )
+    project_marker = project / "PROJECT.md"
+    if not project_marker.is_file():
+        project_marker.write_text(
+            f"# Content Project\n\nProject: `{content_project.project_id}`\n", encoding="utf-8"
+        )
 
     brief_target = project / "launch" / "CREATIVE_BRIEF.json"
     brief_target.parent.mkdir(parents=True, exist_ok=True)
@@ -2593,9 +2713,22 @@ def main() -> int:
             )
             return 2
 
+    launch_path = project / "launch" / "LAUNCH_REQUEST.json"
+    existed_before_launch = launch_path.is_file()
+    existing_launch = load_json(launch_path) if existed_before_launch else {}
+    is_legacy_run = bool(
+        existed_before_launch
+        and existing_launch.get("content_project") == "question_harvest"
+        and "character" not in existing_launch
+        and "character_resolution" not in existing_launch
+    )
+    requested_mode = args.character_mode
+    requested_character_id = str(args.character_id or "").strip() or None
+    if requested_mode == "manual" and not requested_character_id:
+        parser.error("--character-id is required when --character-mode=manual")
     launch = ensure_launch_request(
         project,
-        args.content_project,
+        content_project.project_id,
         args.gemini_model,
         args.flow_model,
         args.flow_resolution,
@@ -2605,7 +2738,23 @@ def main() -> int:
         style_policy,
         requested_style_id,
         args.world_style_hint,
+        requested_mode,
+        requested_character_id,
     )
+    registry_file = character_registry_path(content_project)
+    if registry_file is None:
+        raise RuntimeError("Q Station character registry is not configured.")
+    preflight_registry = load_character_registry(registry_file)
+    launch_mode, launch_character_id = parse_character_request(launch.get("character"))
+    if launch_mode == "manual":
+        preflight_registry.get(str(launch_character_id))
+    persisted_character = launch.get("character_resolution")
+    persisted_file = project / "creative" / "CHARACTER_RESOLUTION.json"
+    if not isinstance(persisted_character, dict) and persisted_file.is_file():
+        candidate = load_json(persisted_file)
+        persisted_character = candidate if isinstance(candidate, dict) else None
+    if isinstance(persisted_character, dict) and persisted_character.get("resolved_character_id"):
+        preflight_registry.get(str(persisted_character["resolved_character_id"]))
     state = QHState(project, args.video_id, args.topic)
     notifier = PipelineNotifier(video_id=args.video_id, topic=args.topic)
 
@@ -2625,9 +2774,15 @@ def main() -> int:
 
             draft = stage_script(runner, project, content_project, brief, duration)
             plan = stage_retention(runner, project, content_project, brief, draft, duration)
-            episode_plan = stage_episode_director(runner, project, content_project, args.topic, brief, plan)
+            _resolution, character = stage_character_resolution(
+                runner, project, content_project, args.topic, brief, plan, launch,
+                is_legacy_run=is_legacy_run,
+            )
+            episode_plan = stage_episode_director(
+                runner, project, content_project, args.topic, brief, plan, character
+            )
             world_style_plan = stage_world_style_director(
-                runner, project, content_project, args.topic, plan, episode_plan, directive
+                runner, project, content_project, args.topic, plan, directive
             )
             brief_settings = load_json(project / "launch" / "CREATIVE_BRIEF.json")
             qh_settings = brief_settings.get("_qh") if isinstance(brief_settings.get("_qh"), dict) else {}
@@ -2660,12 +2815,12 @@ def main() -> int:
 
             body_seconds = max(20.0, plan["word_count"] * 0.42 - (opening_a_seconds + opening_b_seconds))
             visual_plan = stage_visual_plan(
-                runner, project, content_project, plan, episode_plan, world_style_plan, body_seconds
+                runner, project, content_project, plan, episode_plan, world_style_plan, body_seconds, character
             )
             write_visual_beats_markdown(project, plan, visual_plan)
 
             keyframe_prompt = stage_world_keyframe_prompt(
-                runner, project, content_project, plan, episode_plan, world_style_plan, visual_plan
+                runner, project, content_project, plan, world_style_plan
             )
             world_keyframe = stage_world_keyframe(
                 runner, project, content_project, keyframe_prompt, world_style_anchor
@@ -2680,10 +2835,11 @@ def main() -> int:
             clip_a_prompt = stage_flow_prompt(
                 runner, project, content_project, "A", plan["opening_question_spark"],
                 episode_plan, world_style_plan, keyframe_prompt, args.topic, opening_a_seconds,
+                character=character,
             )
             clip_b_prompt = stage_flow_prompt(
                 runner, project, content_project, "B", plan["book_transition"],
-                episode_plan, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
+                None, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
             )
 
             # The body images depend only on the plan, the style anchor and the world
@@ -2695,6 +2851,7 @@ def main() -> int:
                 runner, project, content_project, visual_plan, world_style_plan,
                 world_style_anchor, world_keyframe, regenerate_beats,
                 revision_feedback,
+                character,
             )
             stage_transition_direction(
                 runner,
@@ -2708,15 +2865,15 @@ def main() -> int:
             clip_a = stage_flow_clip_with_policy_recovery(
                 runner, project, content_project, "A", clip_a_prompt,
                 book_spread=None, world_keyframe=None,
-                world_keyframe_prompt=None, world_style_anchor=None, episode_plan=episode_plan,
+                world_keyframe_prompt=None, world_style_anchor=None,
                 model=flow_model, resolution=flow_resolution, aspect_ratio=args.aspect_ratio,
                 source_seconds=opening_a_seconds,
+                character=character,
             )
             clip_b = stage_flow_clip_with_policy_recovery(
                 runner, project, content_project, "B", clip_b_prompt,
                 book_spread=book_cover, world_keyframe=world_keyframe,
                 world_keyframe_prompt=keyframe_prompt, world_style_anchor=world_style_anchor,
-                episode_plan=episode_plan,
                 model=flow_model, resolution=flow_resolution, aspect_ratio=args.aspect_ratio,
                 source_seconds=opening_b_seconds,
             )

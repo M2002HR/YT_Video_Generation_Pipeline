@@ -17,7 +17,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
     select = lambda values: [{"value": value, "label": label} for value, label in values]
     groups = [
         {"id": "episode", "title": "Episode", "description": "Topic, audience and editorial constraints.", "fields": [
-            _field("content_project", "Content project", "select", required=True, default="question_harvest", options=projects),
+            _field("content_project", "Content project", "select", required=True, default="q_station", options=projects),
             _field("topic", "Question or topic", required=True, maxLength=220, placeholder="What should this video explain?"),
             _field("working_title", "Working title", maxLength=220, placeholder="Optional title direction"),
             _field("audience", "Audience", maxLength=500, placeholder="Curious adults who enjoy thoughtful explainers"),
@@ -33,7 +33,9 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("show_subtitles", "Burn in subtitles", "toggle", default=False),
             _field("word_highlight", "Highlight the spoken word", "toggle", default=True, help="Used only when subtitles are enabled."),
         ]},
-        {"id": "visual", "title": "Visual direction", "description": "Question Harvest style, image model and opening clips.", "projects": ["question_harvest"], "fields": [
+        {"id": "visual", "title": "Visual direction", "description": "Q Station character, style, image model and opening clips.", "projects": ["q_station"], "fields": [
+            _field("character_mode", "Character", "select", default="auto", options=select([("auto", "Auto"), ("manual", "Manual character")])),
+            _field("character_id", "Manual character", "select", default="", options=[{"value": "", "label": "Choose a character"}]),
             _field("hero_presence_mode", "Hero presence", "select", default="auto", options=select([("auto", "Auto"), ("opener_only", "Opener only"), ("limited_in_world", "Limited in world"), ("in_world", "In world")])),
             _field("world_style_id", "World style", "select", default="", options=[{"value": "", "label": "Auto — let the director decide"}] + [{"value": value, "label": value} for value in styles]),
             _field("world_style_policy", "Style policy", "select", default="auto", options=select([("auto", "Auto — reuse or create"), ("reuse", "Reuse an existing style"), ("new", "Create a new style")])),
@@ -96,7 +98,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("telegram_original", "Send original to Telegram", "toggle", default=False),
             _field("commit_artifacts", "Commit and push artifacts", "toggle", default=False),
         ]},
-        {"id": "providers", "title": "Locked provider contract", "description": "Fixed by Question Harvest project design.", "projects": ["question_harvest"], "collapsed": True, "fields": [
+        {"id": "providers", "title": "Locked provider contract", "description": "Fixed by Q Station project design.", "projects": ["q_station"], "collapsed": True, "fields": [
             _field("locked_text", "Text", "readonly", default="ChatGPT · via Ordak"),
             _field("locked_image", "Image", "readonly", default="Gemini · via Ordak"),
             _field("locked_video", "Video", "readonly", default="Google Flow · via Ordak"),

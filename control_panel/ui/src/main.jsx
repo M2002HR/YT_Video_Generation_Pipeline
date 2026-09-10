@@ -367,7 +367,7 @@ function StyleLibrary({ styles, loading, values, change }) {
   );
 }
 
-function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading }) {
+function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [] }) {
   const [advanced, setAdvanced] = useState(false);
   const advancedCount = group.fields.filter((field) => field.advanced).length;
   return (
@@ -390,10 +390,16 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
           {group.fields
             .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy"].includes(field.name))
             .filter((field) => advanced || !field.advanced)
+            .filter((field) => field.name !== "character_id" || values.character_mode === "manual")
             .map((field) => (
               <Field
                 key={field.name}
-                field={field}
+                field={field.name === "character_id" ? {
+                  ...field,
+                  options: characters.length
+                    ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({ value: item.id, label: item.display_name }))]
+                    : field.options,
+                } : field}
                 value={values[field.name]}
                 onChange={change}
               />
@@ -421,21 +427,26 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
   const [error, setError] = useState("");
   const [styles, setStyles] = useState([]);
   const [stylesLoading, setStylesLoading] = useState(false);
+  const [characters, setCharacters] = useState([]);
   const [openGroups, setOpenGroups] = useState(
     () => new Set(schema.groups.filter((group) => !group.collapsed).map((group) => group.id)),
   );
   useEffect(() => setValues(initial || {}), [initial]);
   useEffect(() => {
     const project = values.content_project;
-    if (project !== "question_harvest") {
-      setStyles([]);
-      return;
-    }
     let cancelled = false;
     setStylesLoading(true);
-    request(`/api/style-catalog?content_project=${encodeURIComponent(project)}`)
-      .then((data) => !cancelled && setStyles(data.styles || []))
-      .catch((failure) => !cancelled && notify("Style previews unavailable", failure.message, "warn"))
+    Promise.all([
+      request(`/api/style-catalog?content_project=${encodeURIComponent(project)}`),
+      request(`/api/character-catalog?content_project=${encodeURIComponent(project)}`),
+    ])
+      .then(([styleData, characterData]) => {
+        if (cancelled) return;
+        setStyles(styleData.styles || []);
+        setCharacters(characterData.characters || []);
+        setValues((current) => ({ ...current, character_mode: "auto", character_id: "" }));
+      })
+      .catch((failure) => !cancelled && notify("Project catalogs unavailable", failure.message, "warn"))
       .finally(() => !cancelled && setStylesLoading(false));
     return () => { cancelled = true; };
   }, [values.content_project]);
@@ -516,6 +527,7 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
           change={change}
           styles={styles}
           stylesLoading={stylesLoading}
+          characters={characters}
           open={openGroups.has(group.id)}
           toggle={() =>
             setOpenGroups((current) => {
@@ -1267,7 +1279,7 @@ function ConfigModal({ run, close, done }) {
               .map((group) => ({
                 ...group,
                 fields: group.fields.filter(
-                  (field) => field.type !== "readonly" && field.name !== "content_project",
+                  (field) => field.type !== "readonly" && !["content_project", "character_mode", "character_id"].includes(field.name),
                 ),
               }))
               .filter((group) => group.fields.length)

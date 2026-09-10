@@ -243,13 +243,13 @@ def check_flow_reference_guard(report: Report) -> None:
         report.check("Flow refuses a style-sheet filename", False, "path guard did not fire")
 
 
-def check_question_harvest_assets(report: Report) -> None:
+def check_q_station_assets(report: Report) -> None:
     try:
         from content_projects import load_content_project
 
-        project = load_content_project("question_harvest")
+        project = load_content_project("q_station")
     except Exception as exc:
-        report.check("question_harvest project loads", False, f"{type(exc).__name__}: {exc}")
+        report.check("Q Station project loads", False, f"{type(exc).__name__}: {exc}")
         return
     report.check(
         "QH image provider is gemini", project.get_provider("image") == "gemini",
@@ -260,14 +260,11 @@ def check_question_harvest_assets(report: Report) -> None:
         str(project.get_provider("video")),
     )
 
-    character = ROOT / "projects" / "question_harvest" / "visual_presets" / "001_home_world" / "character_sheet.png"
-    report.check(
-        "QH character_sheet.png usable",
-        character.is_file() and character.stat().st_size > 5_000,
-        f"{character.stat().st_size} bytes" if character.is_file() else "missing",
-    )
+    from character_runtime import load_character_registry
+    registry = load_character_registry(project.root / "characters" / "registry.json")
+    report.check("Q Station character registry usable", len(registry.enabled_ids()) >= 2, str(registry.enabled_ids()))
 
-    templates_root = ROOT / "projects" / "question_harvest" / "book_templates"
+    templates_root = project.root / "book_templates"
     catalog = templates_root / "CATALOG.json"
     try:
         entries = json.loads(catalog.read_text(encoding="utf-8")).get("templates") or []
@@ -285,7 +282,7 @@ def check_question_harvest_assets(report: Report) -> None:
         f"{len(entries)} template(s)" if not missing else f"missing: {missing}",
     )
 
-    identity = ROOT / "projects" / "question_harvest" / "prompts" / "reference" / "book_transition_reference_prompt.txt"
+    identity = project.root / "prompts" / "reference" / "book_transition_reference_prompt.txt"
     report.check("locked book identity present", identity.is_file(), str(identity.name))
 
 
@@ -294,7 +291,7 @@ def check_no_synthetic_path(report: Report) -> None:
     # This file is excluded because it has to name the patterns in order to search for them.
     ok, hits = run(
         [
-            "grep", "-rnE", "--exclude=check_full_stack.py",
+            "grep", "-rnE", "--exclude=check_full_stack.py", "--exclude-dir=__pycache__",
             r"allow_synthetic|synthetic_fallback|_dummy_|\[MODEL:", "scripts/",
         ],
     )
@@ -337,8 +334,8 @@ def main() -> int:
     check_units(report)
     print("\n== Flow reference policy ==")
     check_flow_reference_guard(report)
-    print("\n== Question Harvest assets ==")
-    check_question_harvest_assets(report)
+    print("\n== Q Station assets ==")
+    check_q_station_assets(report)
     print("\n== production path ==")
     check_no_synthetic_path(report)
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Question Harvest end to end: visual stages, then narration → timing → trim → mix → render.
+"""Q Station end to end: visual stages, then narration → timing → trim → mix → render.
 
 This wrapper only sequences real stages. Every step either produces its real artifact or the
 run stops with a non-zero exit code — there is no synthetic narration, no proportional
@@ -138,6 +138,12 @@ def qh_overrides(creative_brief: Path) -> list[str]:
     for key, flag in mapping.items():
         if advanced.get(key):
             flags += [flag, str(advanced[key])]
+    character = advanced.get("character")
+    if isinstance(character, dict):
+        mode = str(character.get("mode") or "auto")
+        flags += ["--character-mode", mode]
+        if mode == "manual" and character.get("character_id"):
+            flags += ["--character-id", str(character["character_id"])]
     return flags
 
 
@@ -190,10 +196,10 @@ def clear_pending_state(project: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Question Harvest end-to-end pipeline")
+    parser = argparse.ArgumentParser(description="Q Station end-to-end pipeline")
     parser.add_argument("--topic", required=True)
     parser.add_argument("--video-id", required=True)
-    parser.add_argument("--content-project", default="question_harvest")
+    parser.add_argument("--content-project", default="q_station")
     parser.add_argument("--creative-brief", type=Path, required=True)
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--aspect-ratio", default="9:16")
