@@ -52,6 +52,48 @@ def test_failed_content_does_not_publish_candidate(tmp_path):
     assert list(tmp_path.glob('.*.png'))==[]
 
 
+def test_minor_visual_qc_findings_are_accepted_and_preserved(tmp_path):
+    candidate=picture(tmp_path/'candidate.png')
+    runner=object.__new__(qh.Runner)
+    runner.json=lambda *a,**k:{
+        'passed':False,
+        'description':'book sheet with labels and an imperfect empty page',
+        'violations':['Readable labels are present.', 'The ribbon slightly overlaps the empty page.'],
+    }
+    check=runner.validate_image_content('book_design_sheet','book sheet',candidate)
+    assert check['passed'] is True
+    assert check['review_status']=='passed_with_warnings'
+    assert check['raw_passed'] is False
+    assert check['blocking_violations']==[]
+    assert len(check['observations'])==2
+
+
+def test_fundamental_visual_qc_failure_still_rejects(tmp_path):
+    candidate=picture(tmp_path/'candidate.png')
+    runner=object.__new__(qh.Runner)
+    runner.json=lambda *a,**k:{
+        'passed':False,
+        'description':'a character turnaround sheet instead of the requested scene',
+        'violations':['A character turnaround was generated instead of a requested scene.'],
+    }
+    with pytest.raises(qh.StageFailure,match='content QC rejected'):
+        runner.validate_image_content('world_keyframe','single host-free scene',candidate)
+
+
+def test_reviewer_cannot_escalate_a_minor_finding_to_blocking(tmp_path):
+    candidate=picture(tmp_path/'candidate.png')
+    runner=object.__new__(qh.Runner)
+    runner.json=lambda *a,**k:{
+        'passed':False,
+        'description':'a usable scene with readable text',
+        'violations':['Readable label is present.'],
+        'blocking_violations':['Readable label is present.'],
+    }
+    check=runner.validate_image_content('beat_image_001','scene',candidate)
+    assert check['passed'] is True
+    assert check['blocking_violations']==[]
+
+
 def test_receipt_reuse_rejects_changed_reference_and_prompt(tmp_path):
     output=picture(tmp_path/'beat.png');ref=picture(tmp_path/'style.png',2)
     references=[Reference('style_reference',ref)];model='nano_banana_2'
