@@ -23,18 +23,14 @@
   },
   "motion": {
     "enabled": true,
-    "strength": 0.18,
+    "strength": 0.085,
     "supersample": 2,
     "cycle": [
-      "zoom_in"
-    ],
-    "image_zoom_policy": "push_in_except_final_pull_out"
-  },
-  "transitions": {
-    "image_beat_style": "cut_fade_dissolve",
-    "image_beat_seconds": 0.28,
-    "opening_to_image_type": "fade",
-    "opening_to_image_seconds": 0.52
+      "zoom_in",
+      "zoom_out",
+      "slow_zoom_in",
+      "slow_zoom_out"
+    ]
   },
   "subtitles": {
     "enabled": true,

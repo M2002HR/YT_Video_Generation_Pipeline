@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "input": "assets/renders/final.mp4",
+  "input": "assets/renders/polished.mp4",
   "timeline": "timeline/TIMELINE.json",
   "render_profile": "render/RENDER_PROFILE.json",
   "passed": true,
@@ -65,7 +65,7 @@
       "name": "file_nonempty",
       "ok": true,
       "expected": ">0 bytes",
-      "actual": 71570278,
+      "actual": 59793140,
       "detail": ""
     },
     {

@@ -10,8 +10,8 @@
   "duration_max_seconds": 60.0,
   "aspect_ratio": "9:16",
   "project": "videos/026_black_swan_meaning_by_nassim_talib",
-  "voice_profile": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/VOICE_PROFILE.json",
-  "creative_brief": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/30ada09b-a6ea-44a1-986a-dd7a4efa9a9e/VOICE_PROFILE.json",
+  "creative_brief": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/30ada09b-a6ea-44a1-986a-dd7a4efa9a9e/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -105,7 +105,12 @@
     "supersample": "2",
     "blank_avoidance": true,
     "min_shot_duration": 0.55,
-    "max_shot_duration": 3.2
+    "max_shot_duration": 3.2,
+    "image_zoom_strength": 0.18,
+    "image_transition_style": "cut_fade_dissolve",
+    "image_transition_seconds": 0.28,
+    "opening_to_image_seconds": 0.52,
+    "enforce_image_zoom_policy": true
   },
   "music_provider": "freesound",
   "music_providers": [
@@ -116,7 +121,7 @@
   "commit_artifacts": true,
   "telegram_low_size": true,
   "telegram_original": false,
-  "pid": 1172485,
+  "pid": 1186983,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -128,9 +133,9 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/30ada09b-a6ea-44a1-986a-dd7a4efa9a9e/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/30ada09b-a6ea-44a1-986a-dd7a4efa9a9e/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -140,13 +145,13 @@
   ],
   "started_at": "2026-09-10T11:10:24.317373+00:00",
   "exit_code": 0,
-  "process_exited_at": "2026-09-10T18:26:03.709110+00:00",
-  "resumed_at": "2026-09-10T18:52:26.413247+00:00",
+  "process_exited_at": "2026-09-10T18:57:35.029151+00:00",
+  "resumed_at": "2026-09-10T19:51:14.593515+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "4090145b-8df3-4936-8976-aa510de58c00",
+    "revision_id": "53d747dd-a611-4d9c-9329-7e00350ad041",
     "kind": "config",
-    "created_at": "2026-09-10T18:52:26.412397+00:00",
+    "created_at": "2026-09-10T19:51:14.592003+00:00",
     "roots": [
       "render_profile"
     ],
@@ -220,19 +225,19 @@
     "regenerate_beats": [],
     "feedback": "",
     "status": "RUNNING",
-    "started_at": "2026-09-10T18:52:26.413076+00:00",
-    "pid": 1172485,
+    "started_at": "2026-09-10T19:51:14.593336+00:00",
+    "pid": 1186983,
     "changed_fields": [
-      "subtitle_font_size"
+      "motion_image_zoom_strength"
     ],
-    "config_revision_id": "5a9a1d49-3063-44f7-8e5d-4f1db1953ab2"
+    "config_revision_id": "30ada09b-a6ea-44a1-986a-dd7a4efa9a9e"
   },
   "resume_count": 7,
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "4090145b-8df3-4936-8976-aa510de58c00",
+    "revision_id": "53d747dd-a611-4d9c-9329-7e00350ad041",
     "kind": "config",
-    "created_at": "2026-09-10T18:52:26.412397+00:00",
+    "created_at": "2026-09-10T19:51:14.592003+00:00",
     "roots": [
       "render_profile"
     ],
@@ -306,11 +311,11 @@
     "regenerate_beats": [],
     "feedback": "",
     "status": "RUNNING",
-    "started_at": "2026-09-10T18:52:26.413076+00:00",
-    "pid": 1172485,
+    "started_at": "2026-09-10T19:51:14.593336+00:00",
+    "pid": 1186983,
     "changed_fields": [
-      "subtitle_font_size"
+      "motion_image_zoom_strength"
     ],
-    "config_revision_id": "5a9a1d49-3063-44f7-8e5d-4f1db1953ab2"
+    "config_revision_id": "30ada09b-a6ea-44a1-986a-dd7a4efa9a9e"
   }
 }
