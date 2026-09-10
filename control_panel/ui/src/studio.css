@@ -1670,3 +1670,37 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+/* Live connection status: reuses the provider pill, amber covers "connecting". */
+.provider.warn {
+  color: var(--amber);
+  border-color: #6b5326;
+  background: #241b0e;
+}
+.provider.warn i {
+  background: var(--amber);
+}
+.conn-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.conn-toggle {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font:
+    600 10px ui-monospace,
+    monospace;
+}
+.conn-toggle:hover {
+  color: var(--text);
+  border-color: var(--blue);
+}
+.brand-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}

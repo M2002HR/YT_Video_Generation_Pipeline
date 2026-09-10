@@ -56,25 +56,57 @@ async function request(url, options) {
   return body;
 }
 
-function useWebSocketUpdates({ jobId, onChange, notify }) {
+const AUTO_UPDATE_KEY = "studio.autoUpdate";
+const STALE_SOCKET_MS = 35000;
+
+function readAutoUpdate() {
+  try {
+    const stored = localStorage.getItem(AUTO_UPDATE_KEY);
+    return stored === null ? true : stored !== "0";
+  } catch {
+    return true;
+  }
+}
+
+function useWebSocketUpdates({ jobId, onChange, notify, enabled = true, onStatus }) {
   const change = useRef(onChange);
   const announce = useRef(notify);
+  const report = useRef(onStatus);
   useEffect(() => {
     change.current = onChange;
     announce.current = notify;
+    report.current = onStatus;
   });
   useEffect(() => {
-    let socket, retry, closed = false, opened = false;
+    if (!enabled) {
+      try {
+        report.current?.("off");
+      } catch {}
+      return;
+    }
+    let socket, retry, watchdog, closed = false, opened = false;
+    let lastMessage = 0, connectingSince = 0;
+    const setStatus = (value) => {
+      try {
+        report.current?.(value);
+      } catch {}
+    };
     const protocol = location.protocol === "https:" ? "wss:" : "ws:";
     const endpoint = `${protocol}//${location.host}/api/ws${jobId ? `?job_id=${encodeURIComponent(jobId)}` : ""}`;
     const connect = () => {
       if (closed) return;
+      setStatus(opened ? "reconnecting" : "connecting");
+      connectingSince = Date.now();
       socket = new WebSocket(endpoint);
       socket.onopen = () => {
+        connectingSince = 0;
+        lastMessage = Date.now();
         if (opened) announce.current("Live updates restored", "Updates are arriving without refresh.");
         opened = true;
+        setStatus("live");
       };
       socket.onmessage = (event) => {
+        lastMessage = Date.now();
         try {
           if (JSON.parse(event.data).type === "changed") change.current();
         } catch {
@@ -83,18 +115,87 @@ function useWebSocketUpdates({ jobId, onChange, notify }) {
       };
       socket.onclose = () => {
         if (closed) return;
+        setStatus("reconnecting");
         announce.current("Live updates reconnecting", "The workspace will reconnect automatically.", "warn");
         retry = setTimeout(connect, 3000);
       };
       socket.onerror = () => socket.close();
     };
     connect();
+    // A socket that stays silent past the server heartbeats is half-dead:
+    // recycle it so updates resume without a manual refresh.
+    watchdog = setInterval(() => {
+      if (closed || !socket) return;
+      if (socket.readyState === WebSocket.OPEN && Date.now() - lastMessage > STALE_SOCKET_MS) {
+        try {
+          socket.close();
+        } catch {}
+      } else if (socket.readyState === WebSocket.CONNECTING && connectingSince && Date.now() - connectingSince > 15000) {
+        try {
+          socket.close();
+        } catch {}
+      }
+    }, 5000);
     return () => {
       closed = true;
       clearTimeout(retry);
-      socket?.close();
+      clearInterval(watchdog);
+      try {
+        socket?.close();
+      } catch {}
     };
-  }, [jobId]);
+  }, [jobId, enabled]);
+}
+
+function ConnectionStatus({ status, autoUpdate, onToggle, onRefresh }) {
+  const text =
+    !autoUpdate || status === "off"
+      ? "Paused"
+      : status === "live"
+        ? "Live"
+        : status === "connecting"
+          ? "Connecting…"
+          : "Reconnecting…";
+  const tone =
+    !autoUpdate || status === "off"
+      ? ""
+      : status === "live"
+        ? "ready"
+        : status === "connecting"
+          ? "warn"
+          : "bad";
+  return (
+    <span className="conn-status">
+      <span
+        className={`provider ${tone}`}
+        title={
+          autoUpdate
+            ? "Auto-update is on: instant events plus a refresh every 3s"
+            : "Auto-update is paused"
+        }
+      >
+        <i />
+        {text}
+      </span>
+      <button
+        type="button"
+        className="conn-toggle"
+        onClick={onToggle}
+        title={autoUpdate ? "Pause automatic updates" : "Resume automatic updates"}
+      >
+        {autoUpdate ? "Pause" : "Resume"}
+      </button>
+      <button
+        type="button"
+        className="conn-toggle"
+        onClick={onRefresh}
+        title="Refresh now"
+        aria-label="Refresh now"
+      >
+        ⟳
+      </button>
+    </span>
+  );
 }
 
 function Toasts({ items, dismiss }) {
@@ -602,6 +703,8 @@ function Home({ open, notify }) {
     [contract, setContract] = useState(null),
     [query, setQuery] = useState(""),
     [status, setStatus] = useState("all"),
+    [autoUpdate, setAutoUpdate] = useState(readAutoUpdate),
+    [connStatus, setConnStatus] = useState("connecting"),
     dashboardDisconnected = useRef(false),
     contractReady = useRef(false),
     contractFailed = useRef(false),
@@ -642,11 +745,28 @@ function Home({ open, notify }) {
         contractFailed.current = true;
       });
   };
-  useWebSocketUpdates({ onChange: load, notify });
+  useWebSocketUpdates({ onChange: load, notify, enabled: autoUpdate, onStatus: setConnStatus });
+  const loadRef = useRef(load);
+  loadRef.current = load;
   useEffect(() => {
     load();
     loadContract();
   }, []);
+  useEffect(() => {
+    if (!autoUpdate) return;
+    const timer = setInterval(() => loadRef.current(), 3000);
+    return () => clearInterval(timer);
+  }, [autoUpdate]);
+  const toggleAutoUpdate = () => {
+    setAutoUpdate((current) => {
+      const next = !current;
+      try {
+        localStorage.setItem(AUTO_UPDATE_KEY, next ? "1" : "0");
+      } catch {}
+      if (next) setTimeout(() => loadRef.current(), 50);
+      return next;
+    });
+  };
   const shown = jobs.filter(
     (job) =>
       (status === "all" || statusClass(job.status) === status) &&
@@ -662,7 +782,15 @@ function Home({ open, notify }) {
           <span className="eyebrow">VIDEO GENERATION PIPELINE</span>
           <h1>Studio</h1>
         </div>
-        <ProviderHealth health={health} />
+        <div className="brand-side">
+          <ConnectionStatus
+            status={connStatus}
+            autoUpdate={autoUpdate}
+            onToggle={toggleAutoUpdate}
+            onRefresh={load}
+          />
+          <ProviderHealth health={health} />
+        </div>
       </header>
       <section className="dashboard-hero">
         <div>
@@ -1386,6 +1514,8 @@ function RunPage({ jobId, goHome, notify }) {
     [configOpen, setConfigOpen] = useState(false),
     [drawer, setDrawer] = useState(true),
     [log, setLog] = useState(""),
+    [autoUpdate, setAutoUpdate] = useState(readAutoUpdate),
+    [connStatus, setConnStatus] = useState("connecting"),
     [error, setError] = useState("");
   const seen = useRef(new Set()),
     offset = useRef(0),
@@ -1443,10 +1573,29 @@ function RunPage({ jobId, goHome, notify }) {
       loading.current = false;
     }
   };
-  useWebSocketUpdates({ jobId, onChange: load, notify });
+  useWebSocketUpdates({ jobId, onChange: load, notify, enabled: autoUpdate, onStatus: setConnStatus });
+  const loadRef = useRef(load);
+  loadRef.current = load;
   useEffect(() => {
+    offset.current = 0;
+    setLog("");
     load();
   }, [jobId]);
+  useEffect(() => {
+    if (!autoUpdate) return;
+    const timer = setInterval(() => loadRef.current(), 3000);
+    return () => clearInterval(timer);
+  }, [jobId, autoUpdate]);
+  const toggleAutoUpdate = () => {
+    setAutoUpdate((current) => {
+      const next = !current;
+      try {
+        localStorage.setItem(AUTO_UPDATE_KEY, next ? "1" : "0");
+      } catch {}
+      if (next) setTimeout(() => loadRef.current(), 50);
+      return next;
+    });
+  };
   async function control(path, title) {
     try {
       const body = new URLSearchParams({ job_id: jobId });
@@ -1562,6 +1711,12 @@ function RunPage({ jobId, goHome, notify }) {
           {run.job.read_only && (
             <span className="state waiting">read only</span>
           )}
+          <ConnectionStatus
+            status={connStatus}
+            autoUpdate={autoUpdate}
+            onToggle={toggleAutoUpdate}
+            onRefresh={load}
+          />
           <StatusPill status={run.job.status} />
         </div>
       </header>
