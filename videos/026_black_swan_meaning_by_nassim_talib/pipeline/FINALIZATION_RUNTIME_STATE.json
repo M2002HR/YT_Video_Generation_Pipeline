@@ -30,6 +30,92 @@
         "--resource-budget",
         "0.800"
       ],
+      "status": "DONE",
+      "ended_at": "2026-09-10T18:24:56.402589+00:00",
+      "elapsed_seconds": 209.56,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 59284574
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-10T18:24:56.403025+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-10T18:25:06.679560+00:00",
+      "elapsed_seconds": 10.276,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-10T18:25:07.867494+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-10T18:25:12.658675+00:00",
+      "elapsed_seconds": 4.791,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 59704127
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-10T18:25:13.685129+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-10T18:25:23.431026+00:00",
+      "elapsed_seconds": 9.746,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-10T18:25:24.658264+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-10T18:25:46.992078+00:00",
+      "elapsed_seconds": 22.334,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2745398
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-10T18:25:48.206273+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-10T18:21:24.153244+00:00"
+      ],
       "status": "RUNNING"
     }
   ]
