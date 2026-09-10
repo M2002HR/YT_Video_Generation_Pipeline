@@ -287,6 +287,75 @@ def strip_fences(text: str) -> str:
     return body.strip()
 
 
+def repair_unescaped_json_string_quotes(text: str) -> str:
+    """Conservatively escape prose quotes that make an otherwise JSON response invalid.
+
+    Image-review models occasionally return a valid JSON shape except for a quoted visible
+    label inside a string, for example ``"labels: "CLOSED COVER""``.  This function only
+    changes a quote that cannot legally terminate the current JSON string according to its
+    immediate structural follow-up.  It is deliberately *not* a general JSON repairer:
+    missing commas, brackets, values, or other malformed structures still fail normally.
+    """
+    output: list[str] = []
+    inside_string = False
+    index = 0
+
+    def next_nonspace(start: int) -> tuple[str, int]:
+        while start < len(text) and text[start].isspace():
+            start += 1
+        return (text[start] if start < len(text) else ""), start
+
+    def can_terminate_string(quote_index: int) -> bool:
+        following, following_index = next_nonspace(quote_index + 1)
+        if following in {":", "}", "]"}:
+            return True
+        if following != ",":
+            return False
+        # A comma after a real JSON string is followed by another JSON value/key or a
+        # container close.  Prose such as `"CLOSED COVER", and ...` is not.
+        after_comma, _ = next_nonspace(following_index + 1)
+        if after_comma in {'"', "{", "[", "}", "]", "-"} or after_comma.isdigit():
+            return True
+        return after_comma in {"t", "f", "n"}  # true, false, null
+
+    while index < len(text):
+        char = text[index]
+        if inside_string and char == "\\":
+            output.append(char)
+            if index + 1 < len(text):
+                output.append(text[index + 1])
+                index += 2
+                continue
+        elif char == '"':
+            if not inside_string:
+                inside_string = True
+            elif can_terminate_string(index):
+                inside_string = False
+            else:
+                output.append("\\")
+            output.append(char)
+            index += 1
+            continue
+        output.append(char)
+        index += 1
+    return "".join(output)
+
+
+def parse_structured_json(text: str) -> tuple[Any, bool]:
+    """Parse a provider's JSON, recovering only unescaped prose quotes when safe."""
+    raw = strip_fences(text)
+    try:
+        return json.loads(raw), False
+    except json.JSONDecodeError as original_error:
+        repaired = repair_unescaped_json_string_quotes(raw)
+        if repaired == raw:
+            raise original_error
+        try:
+            return json.loads(repaired), True
+        except json.JSONDecodeError:
+            raise original_error
+
+
 def word_count(text: str) -> int:
     return len(re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?", text))
 
@@ -511,7 +580,13 @@ class Runner:
         for attempt in range(retries + 1):
             last_raw = self.text(f"{stage}_json{attempt + 1}", current, references=references)
             try:
-                return json.loads(strip_fences(last_raw))
+                parsed, repaired = parse_structured_json(last_raw)
+                if repaired:
+                    print(
+                        f"    [{stage}] recovered unescaped quotes in provider JSON; preserving the raw response for audit.",
+                        flush=True,
+                    )
+                return parsed
             except ValueError as exc:
                 last_error = str(exc)
                 current = (
@@ -646,7 +721,9 @@ class Runner:
             "scene and established texture must continue naturally through it. A style-reference-sheet "
             "request may legitimately contain swatches. "
             "Judge visible compliance, not artistic taste. Return only JSON with passed (boolean), "
-            "description (what is actually visible), violations (array of specific strings). "
+            "description (what is actually visible), violations (array of specific strings). Do not use "
+            "literal double-quote characters inside description or violation strings; use single quotes "
+            "for visible labels instead. "
             f"Requested art direction:\n{prompt}",
             references=[Reference(role="candidate_output", path=candidate)],
         )

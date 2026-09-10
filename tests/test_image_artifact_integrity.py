@@ -131,3 +131,29 @@ def test_wrong_requested_model_is_rejected_before_download(tmp_path):
     runner.jobs=SimpleNamespace(download=lambda *a:pytest.fail('download should not occur'))
     with pytest.raises(qh.StageFailure,match='another requested model'):
         runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=tmp_path/'out.png')
+
+
+def test_structured_json_recovers_unescaped_visible_label_quotes():
+    raw = (
+        '{"passed":false,"description":"book sheet",'
+        '"violations":["Readable labels are present: "CLOSED FRONT COVER" and '
+        '"WIDE-OPEN TWO-PAGE SPREAD"."]}'
+    )
+    parsed, repaired = qh.parse_structured_json(raw)
+    assert repaired is True
+    assert parsed == {
+        "passed": False,
+        "description": "book sheet",
+        "violations": ['Readable labels are present: "CLOSED FRONT COVER" and "WIDE-OPEN TWO-PAGE SPREAD".'],
+    }
+
+
+def test_structured_json_keeps_valid_json_unchanged():
+    parsed, repaired = qh.parse_structured_json('{"passed":true,"description":"scene","violations":[]}')
+    assert repaired is False
+    assert parsed == {"passed": True, "description": "scene", "violations": []}
+
+
+def test_structured_json_does_not_accept_unrelated_malformed_json():
+    with pytest.raises(json.JSONDecodeError):
+        qh.parse_structured_json('{"passed": false "violations": []}')
