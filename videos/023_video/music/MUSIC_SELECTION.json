@@ -1,0 +1,27 @@
+{
+  "schema_version": 4,
+  "provider": "freesound",
+  "provider_priority": [
+    "freesound",
+    "mixkit",
+    "pixabay"
+  ],
+  "provider_attempts": [],
+  "selection_prompt": "light instrumental",
+  "alternate_queries": [
+    "playful instrumental",
+    "calm instrumental",
+    "upbeat instrumental"
+  ],
+  "status": "DONE",
+  "selection_mode": "LOCAL_REUSE",
+  "query": "light instrumental",
+  "library_id": "freesound_735080",
+  "provider_id": "735080",
+  "source_url": "https://freesound.org/people/city11/sounds/735080/",
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "file": "assets/music/freesound_background.mp3",
+  "library_file": "/opt/YT_Video_Generation_Pipeline/runtime/freesound_music_library/assets/freesound_735080_52c7aca5827d.mp3",
+  "duration_seconds": 65.592,
+  "bytes": 1499232
+}

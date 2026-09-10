@@ -1,0 +1,14 @@
+{
+  "opening_activity": "home maintenance",
+  "opening_location": "home interior",
+  "curiosity_trigger": "hearing the repaired latch click before checking whether it actually caught",
+  "trigger_object": "small brass latch",
+  "reaction": "pauses with screwdriver raised, tests the latch, then looks thoughtfully at it",
+  "book_retrieval": "sets down the screwdriver, reaches to a nearby shelf, and pulls out the worn book",
+  "camera_pattern": "gentle_pan_left",
+  "book_template_id": "001",
+  "hero_presence_mode": "limited_in_world",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "hand-drawn 1930s physics notebook world with warm paper, ink diagrams, sealed-box cutaways, and translucent overlapping probability states",
+  "reason": "Repairing an ordinary latch naturally introduces the idea of an unseen state before checking it, giving the episode a grounded bridge into Schrödinger’s conceptual paradox without pretending the household object itself is quantum."
+}

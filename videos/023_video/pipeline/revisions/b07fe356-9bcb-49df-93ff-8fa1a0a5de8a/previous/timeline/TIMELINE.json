@@ -1,0 +1,1116 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 56.869,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.5,
+      "duration": 4.5,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 4.5,
+      "end": 7.542,
+      "duration": 3.042,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.542,
+      "end": 9.64,
+      "duration": 2.098,
+      "speech_start": 7.54,
+      "speech_end": 9.64,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "It's called the lipstick effect.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.262
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 9.64,
+      "end": 12.62,
+      "duration": 2.98,
+      "speech_start": 9.64,
+      "speech_end": 12.62,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Some call it lipstick syndrome.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 12.62,
+      "end": 15.58,
+      "duration": 2.96,
+      "speech_start": 12.62,
+      "speech_end": 15.58,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The theory starts with tighter budgets.",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.26
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 15.58,
+      "end": 17.24,
+      "duration": 1.66,
+      "speech_start": 15.58,
+      "speech_end": 17.24,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Big luxuries get cut.",
+      "transition_in": "wipedown",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 17.24,
+      "end": 18.7,
+      "duration": 1.46,
+      "speech_start": 17.24,
+      "speech_end": 18.7,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "That new car waits.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 18.7,
+      "end": 20.88,
+      "duration": 2.18,
+      "speech_start": 18.7,
+      "speech_end": 20.88,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The holiday gets postponed.",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 20.88,
+      "end": 24.14,
+      "duration": 3.26,
+      "speech_start": 20.88,
+      "speech_end": 24.14,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "But lipstick may still feel affordable.",
+      "transition_in": "wipeleft",
+      "transition_seconds": 0.22
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 24.14,
+      "end": 27.94,
+      "duration": 3.8,
+      "speech_start": 24.14,
+      "speech_end": 26.6,
+      "match_confidence": 0.667,
+      "motion": "slow_zoom_in",
+      "narration": "It's a small, feel-good purchase.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 27.94,
+      "end": 33.38,
+      "duration": 5.44,
+      "speech_start": 27.94,
+      "speech_end": 32.66,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "After the 2001 downturn, Leonard Lauder noticed stronger lipstick sales.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 33.38,
+      "end": 36.24,
+      "duration": 2.86,
+      "speech_start": 33.38,
+      "speech_end": 35.64,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "He called it the lipstick index.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 36.24,
+      "end": 39.26,
+      "duration": 3.02,
+      "speech_start": 36.24,
+      "speech_end": 38.28,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Later research found mixed results.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 39.26,
+      "end": 44.22,
+      "duration": 4.96,
+      "speech_start": 39.26,
+      "speech_end": 43.14,
+      "match_confidence": 0.9,
+      "motion": "slow_zoom_in",
+      "narration": "Some found higher cosmetics spending among certain groups during recessions.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 44.22,
+      "end": 48.24,
+      "duration": 4.02,
+      "speech_start": 44.22,
+      "speech_end": 47.26,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Others found lipstick wasn't a reliable economic signal.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 48.24,
+      "end": 56.869,
+      "duration": 8.629,
+      "speech_start": 48.24,
+      "speech_end": 50.2,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "It's a theory about consumer psychology.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.34
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 1.72,
+      "text": "Less money, more lipstick?",
+      "ass_text": "Less money, more lipstick?",
+      "words": [
+        {
+          "text": "Less",
+          "start": 0.0,
+          "end": 0.28
+        },
+        {
+          "text": "money,",
+          "start": 0.28,
+          "end": 0.88
+        },
+        {
+          "text": "more",
+          "start": 0.88,
+          "end": 1.02
+        },
+        {
+          "text": "lipstick?",
+          "start": 1.02,
+          "end": 1.72
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 1.72,
+      "end": 3.88,
+      "text": "That's my question as I count",
+      "ass_text": "That's my question as I count",
+      "words": [
+        {
+          "text": "That's",
+          "start": 1.72,
+          "end": 2.8
+        },
+        {
+          "text": "my",
+          "start": 2.8,
+          "end": 2.96
+        },
+        {
+          "text": "question",
+          "start": 2.96,
+          "end": 3.34
+        },
+        {
+          "text": "as",
+          "start": 3.34,
+          "end": 3.56
+        },
+        {
+          "text": "I",
+          "start": 3.56,
+          "end": 3.68
+        },
+        {
+          "text": "count",
+          "start": 3.68,
+          "end": 3.88
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 3.88,
+      "end": 4.48,
+      "text": "market money.",
+      "ass_text": "market money.",
+      "words": [
+        {
+          "text": "market",
+          "start": 3.88,
+          "end": 4.16
+        },
+        {
+          "text": "money.",
+          "start": 4.16,
+          "end": 4.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 5.68,
+      "end": 7.0,
+      "text": "I reach for an economics book",
+      "ass_text": "I reach for an economics book",
+      "words": [
+        {
+          "text": "I",
+          "start": 5.68,
+          "end": 5.78
+        },
+        {
+          "text": "reach",
+          "start": 5.78,
+          "end": 6.0
+        },
+        {
+          "text": "for",
+          "start": 6.0,
+          "end": 6.14
+        },
+        {
+          "text": "an",
+          "start": 6.14,
+          "end": 6.24
+        },
+        {
+          "text": "economics",
+          "start": 6.24,
+          "end": 6.76
+        },
+        {
+          "text": "book",
+          "start": 6.76,
+          "end": 7.0
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 7.0,
+      "end": 7.54,
+      "text": "for answers.",
+      "ass_text": "for answers.",
+      "words": [
+        {
+          "text": "for",
+          "start": 7.0,
+          "end": 7.18
+        },
+        {
+          "text": "answers.",
+          "start": 7.18,
+          "end": 7.54
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 7.54,
+      "end": 9.64,
+      "text": "It's called The Lipstick Effect.",
+      "ass_text": "It's called The Lipstick Effect.",
+      "words": [
+        {
+          "text": "It's",
+          "start": 7.54,
+          "end": 8.34
+        },
+        {
+          "text": "called",
+          "start": 8.34,
+          "end": 8.52
+        },
+        {
+          "text": "The",
+          "start": 8.52,
+          "end": 8.82
+        },
+        {
+          "text": "Lipstick",
+          "start": 8.82,
+          "end": 9.34
+        },
+        {
+          "text": "Effect.",
+          "start": 9.34,
+          "end": 9.64
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 9.64,
+      "end": 12.62,
+      "text": "Some call it lipstick syndrome.",
+      "ass_text": "Some call it lipstick syndrome.",
+      "words": [
+        {
+          "text": "Some",
+          "start": 9.64,
+          "end": 10.72
+        },
+        {
+          "text": "call",
+          "start": 10.72,
+          "end": 10.96
+        },
+        {
+          "text": "it",
+          "start": 10.96,
+          "end": 11.1
+        },
+        {
+          "text": "lipstick",
+          "start": 11.1,
+          "end": 11.44
+        },
+        {
+          "text": "syndrome.",
+          "start": 11.02,
+          "end": 12.62
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 12.62,
+      "end": 15.58,
+      "text": "The theory starts with tighter budgets.",
+      "ass_text": "The theory starts with tighter\\Nbudgets.",
+      "words": [
+        {
+          "text": "The",
+          "start": 12.62,
+          "end": 13.34
+        },
+        {
+          "text": "theory",
+          "start": 13.34,
+          "end": 13.7
+        },
+        {
+          "text": "starts",
+          "start": 13.7,
+          "end": 14.06
+        },
+        {
+          "text": "with",
+          "start": 14.06,
+          "end": 14.24
+        },
+        {
+          "text": "tighter",
+          "start": 14.24,
+          "end": 14.72
+        },
+        {
+          "text": "budgets.",
+          "start": 14.72,
+          "end": 15.58
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 15.58,
+      "end": 17.24,
+      "text": "Big luxuries get cut.",
+      "ass_text": "Big luxuries get cut.",
+      "words": [
+        {
+          "text": "Big",
+          "start": 15.58,
+          "end": 15.94
+        },
+        {
+          "text": "luxuries",
+          "start": 15.94,
+          "end": 16.44
+        },
+        {
+          "text": "get",
+          "start": 16.44,
+          "end": 16.68
+        },
+        {
+          "text": "cut.",
+          "start": 16.68,
+          "end": 17.24
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 17.24,
+      "end": 18.7,
+      "text": "That new car waits.",
+      "ass_text": "That new car waits.",
+      "words": [
+        {
+          "text": "That",
+          "start": 17.24,
+          "end": 17.9
+        },
+        {
+          "text": "new",
+          "start": 17.9,
+          "end": 18.06
+        },
+        {
+          "text": "car",
+          "start": 18.06,
+          "end": 18.3
+        },
+        {
+          "text": "waits.",
+          "start": 18.3,
+          "end": 18.7
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 18.7,
+      "end": 20.88,
+      "text": "The holiday gets postponed.",
+      "ass_text": "The holiday gets postponed.",
+      "words": [
+        {
+          "text": "The",
+          "start": 18.7,
+          "end": 19.92
+        },
+        {
+          "text": "holiday",
+          "start": 19.8,
+          "end": 20.24
+        },
+        {
+          "text": "gets",
+          "start": 20.24,
+          "end": 20.46
+        },
+        {
+          "text": "postponed.",
+          "start": 20.46,
+          "end": 20.88
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 20.88,
+      "end": 24.14,
+      "text": "But lipstick may still feel affordable.",
+      "ass_text": "But lipstick may still feel\\Naffordable.",
+      "words": [
+        {
+          "text": "But",
+          "start": 20.88,
+          "end": 22.34
+        },
+        {
+          "text": "lipstick",
+          "start": 22.34,
+          "end": 22.64
+        },
+        {
+          "text": "may",
+          "start": 22.64,
+          "end": 22.86
+        },
+        {
+          "text": "still",
+          "start": 22.86,
+          "end": 23.1
+        },
+        {
+          "text": "feel",
+          "start": 23.1,
+          "end": 23.32
+        },
+        {
+          "text": "affordable.",
+          "start": 23.32,
+          "end": 24.14
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 24.14,
+      "end": 26.6,
+      "text": "It's a small, feel-good purchase.",
+      "ass_text": "It's a small, feel-good purchase.",
+      "words": [
+        {
+          "text": "It's",
+          "start": 24.14,
+          "end": 24.94
+        },
+        {
+          "text": "a",
+          "start": 24.94,
+          "end": 25.04
+        },
+        {
+          "text": "small,",
+          "start": 25.04,
+          "end": 25.42
+        },
+        {
+          "text": "feel-good",
+          "start": 25.42,
+          "end": 26.1
+        },
+        {
+          "text": "purchase.",
+          "start": 26.1,
+          "end": 26.6
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 27.94,
+      "end": 30.46,
+      "text": "After the 2001 downturn, Leonard Lauder",
+      "ass_text": "After the 2001 downturn, Leonard\\NLauder",
+      "words": [
+        {
+          "text": "After",
+          "start": 27.94,
+          "end": 28.08
+        },
+        {
+          "text": "the",
+          "start": 28.08,
+          "end": 28.24
+        },
+        {
+          "text": "2001",
+          "start": 28.24,
+          "end": 28.72
+        },
+        {
+          "text": "downturn,",
+          "start": 28.72,
+          "end": 30.06
+        },
+        {
+          "text": "Leonard",
+          "start": 30.06,
+          "end": 30.18
+        },
+        {
+          "text": "Lauder",
+          "start": 30.18,
+          "end": 30.46
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 30.46,
+      "end": 32.66,
+      "text": "noticed stronger lipstick sales.",
+      "ass_text": "noticed stronger lipstick sales.",
+      "words": [
+        {
+          "text": "noticed",
+          "start": 30.46,
+          "end": 30.84
+        },
+        {
+          "text": "stronger",
+          "start": 30.84,
+          "end": 31.52
+        },
+        {
+          "text": "lipstick",
+          "start": 31.52,
+          "end": 31.9
+        },
+        {
+          "text": "sales.",
+          "start": 31.9,
+          "end": 32.66
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 33.38,
+      "end": 35.64,
+      "text": "He called it the Lipstick Index.",
+      "ass_text": "He called it the Lipstick Index.",
+      "words": [
+        {
+          "text": "He",
+          "start": 33.38,
+          "end": 33.54
+        },
+        {
+          "text": "called",
+          "start": 33.54,
+          "end": 33.8
+        },
+        {
+          "text": "it",
+          "start": 33.8,
+          "end": 33.94
+        },
+        {
+          "text": "the",
+          "start": 33.94,
+          "end": 34.22
+        },
+        {
+          "text": "Lipstick",
+          "start": 34.22,
+          "end": 34.72
+        },
+        {
+          "text": "Index.",
+          "start": 34.72,
+          "end": 35.64
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 36.24,
+      "end": 38.28,
+      "text": "Later research found mixed results.",
+      "ass_text": "Later research found mixed\\Nresults.",
+      "words": [
+        {
+          "text": "Later",
+          "start": 36.24,
+          "end": 36.48
+        },
+        {
+          "text": "research",
+          "start": 36.48,
+          "end": 36.88
+        },
+        {
+          "text": "found",
+          "start": 36.88,
+          "end": 37.32
+        },
+        {
+          "text": "mixed",
+          "start": 37.32,
+          "end": 37.8
+        },
+        {
+          "text": "results.",
+          "start": 37.8,
+          "end": 38.28
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 39.26,
+      "end": 41.56,
+      "text": "Some found higher cosmetic spending among",
+      "ass_text": "Some found higher cosmetic\\Nspending among",
+      "words": [
+        {
+          "text": "Some",
+          "start": 39.26,
+          "end": 39.42
+        },
+        {
+          "text": "found",
+          "start": 39.42,
+          "end": 39.74
+        },
+        {
+          "text": "higher",
+          "start": 39.74,
+          "end": 40.26
+        },
+        {
+          "text": "cosmetic",
+          "start": 40.26,
+          "end": 40.88
+        },
+        {
+          "text": "spending",
+          "start": 40.88,
+          "end": 41.24
+        },
+        {
+          "text": "among",
+          "start": 41.24,
+          "end": 41.56
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 41.56,
+      "end": 43.14,
+      "text": "certain groups during recessions.",
+      "ass_text": "certain groups during recessions.",
+      "words": [
+        {
+          "text": "certain",
+          "start": 41.56,
+          "end": 41.92
+        },
+        {
+          "text": "groups",
+          "start": 41.92,
+          "end": 42.18
+        },
+        {
+          "text": "during",
+          "start": 42.18,
+          "end": 42.5
+        },
+        {
+          "text": "recessions.",
+          "start": 42.5,
+          "end": 43.14
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 44.22,
+      "end": 46.2,
+      "text": "Others found lipstick wasn't a reliable",
+      "ass_text": "Others found lipstick wasn't a\\Nreliable",
+      "words": [
+        {
+          "text": "Others",
+          "start": 44.22,
+          "end": 44.42
+        },
+        {
+          "text": "found",
+          "start": 44.42,
+          "end": 44.7
+        },
+        {
+          "text": "lipstick",
+          "start": 44.7,
+          "end": 45.06
+        },
+        {
+          "text": "wasn't",
+          "start": 45.06,
+          "end": 45.6
+        },
+        {
+          "text": "a",
+          "start": 45.6,
+          "end": 45.76
+        },
+        {
+          "text": "reliable",
+          "start": 45.76,
+          "end": 46.2
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 46.2,
+      "end": 47.26,
+      "text": "economic signal.",
+      "ass_text": "economic signal.",
+      "words": [
+        {
+          "text": "economic",
+          "start": 46.2,
+          "end": 46.82
+        },
+        {
+          "text": "signal.",
+          "start": 46.82,
+          "end": 47.26
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 48.24,
+      "end": 50.2,
+      "text": "It's a theory about consumer psychology.",
+      "ass_text": "It's a theory about consumer\\Npsychology.",
+      "words": [
+        {
+          "text": "It's",
+          "start": 48.24,
+          "end": 48.48
+        },
+        {
+          "text": "a",
+          "start": 48.48,
+          "end": 48.56
+        },
+        {
+          "text": "theory",
+          "start": 48.56,
+          "end": 48.84
+        },
+        {
+          "text": "about",
+          "start": 48.84,
+          "end": 49.1
+        },
+        {
+          "text": "consumer",
+          "start": 49.1,
+          "end": 49.6
+        },
+        {
+          "text": "psychology.",
+          "start": 49.6,
+          "end": 50.2
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 51.98,
+      "end": 53.18,
+      "text": "Maybe the real purchase is a",
+      "ass_text": "Maybe the real purchase is a",
+      "words": [
+        {
+          "text": "Maybe",
+          "start": 51.98,
+          "end": 52.2
+        },
+        {
+          "text": "the",
+          "start": 52.2,
+          "end": 52.38
+        },
+        {
+          "text": "real",
+          "start": 52.38,
+          "end": 52.56
+        },
+        {
+          "text": "purchase",
+          "start": 52.56,
+          "end": 52.88
+        },
+        {
+          "text": "is",
+          "start": 52.88,
+          "end": 53.08
+        },
+        {
+          "text": "a",
+          "start": 53.08,
+          "end": 53.18
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 53.18,
+      "end": 53.7,
+      "text": "little comfort.",
+      "ass_text": "little comfort.",
+      "words": [
+        {
+          "text": "little",
+          "start": 53.18,
+          "end": 53.28
+        },
+        {
+          "text": "comfort.",
+          "start": 53.28,
+          "end": 53.7
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 54.36,
+      "end": 55.84,
+      "text": "Like and subscribe to grow more",
+      "ass_text": "Like and subscribe to grow more",
+      "words": [
+        {
+          "text": "Like",
+          "start": 54.36,
+          "end": 54.5
+        },
+        {
+          "text": "and",
+          "start": 54.5,
+          "end": 54.66
+        },
+        {
+          "text": "subscribe",
+          "start": 54.66,
+          "end": 55.02
+        },
+        {
+          "text": "to",
+          "start": 55.02,
+          "end": 55.36
+        },
+        {
+          "text": "grow",
+          "start": 55.36,
+          "end": 55.6
+        },
+        {
+          "text": "more",
+          "start": 55.6,
+          "end": 55.84
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 55.84,
+      "end": 56.62,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "words": [
+        {
+          "text": "questions.",
+          "start": 55.84,
+          "end": 56.62
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 56.66,
+      "end": 57.64,
+      "text": "you",
+      "ass_text": "you",
+      "words": [
+        {
+          "text": "you",
+          "start": 56.66,
+          "end": 57.64
+        }
+      ],
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 16,
+    "low_confidence_beats": [
+      8
+    ],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 27,
+    "subtitle_cues_estimated": 0
+  }
+}

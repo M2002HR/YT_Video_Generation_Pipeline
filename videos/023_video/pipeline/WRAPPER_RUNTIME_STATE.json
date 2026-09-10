@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "DONE",
+      "started_at": "2026-09-09T11:31:49.051389+00:00",
+      "ended_at": "2026-09-09T11:32:36.159937+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "DONE",
+      "started_at": "2026-09-09T11:32:36.160224+00:00",
+      "ended_at": "2026-09-09T11:33:03.224839+00:00"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "DONE",
+      "started_at": "2026-09-09T11:33:03.225155+00:00",
+      "ended_at": "2026-09-09T11:33:07.266240+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_trim",
+      "status": "DONE",
+      "started_at": "2026-09-09T11:33:07.266638+00:00",
+      "ended_at": "2026-09-09T11:33:15.125847+00:00",
+      "artifact": "timing/OPENING_TRIM_REPORT.json"
+    }
+  ],
+  "status": "DONE",
+  "updated_at": "2026-09-09T11:33:15.125847+00:00"
+}

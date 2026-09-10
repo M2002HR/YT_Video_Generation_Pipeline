@@ -164,19 +164,72 @@
         "--started-at",
         "2026-09-10T14:10:47.045302+00:00"
       ],
-      "status": "RUNNING"
+      "status": "DONE",
+      "ended_at": "2026-09-10T14:17:41.443684+00:00",
+      "elapsed_seconds": 10.081,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 350
     },
     {
-      "stage": "git_commit_push",
+      "stage": "publish_telegram",
+      "started_at": "2026-09-10T14:17:42.657730+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-10T14:10:47.045302+00:00",
-      "ended_at": "2026-09-10T14:17:39.553133+00:00",
-      "elapsed_seconds": 412.508,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "2febea7fc592a9e0a7113f1449d6f6a57ee43dc5"
+      "ended_at": "2026-09-10T14:17:49.510931+00:00",
+      "elapsed_seconds": 6.853,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2038
     }
   ],
-  "completed_at": "2026-09-10T14:17:39.553133+00:00",
-  "total_elapsed_seconds": 808.232
+  "completed_at": "2026-09-10T14:17:50.789837+00:00",
+  "total_elapsed_seconds": 412.658,
+  "summary": {
+    "video": "026_black_swan_meaning_by_nassim_talib",
+    "duration_seconds": 77.087,
+    "beat_count": 16,
+    "video_beat_count": 2,
+    "image_beat_count": 14,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 6.44,
+      "transition_end": 9.34
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Open mode picker, currently Flash"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 239.395,
+      "realtime_factor": 3.106,
+      "peak_child_rss_mb": 1368.6,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

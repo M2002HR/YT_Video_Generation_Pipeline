@@ -1,0 +1,730 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 56.869,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 120,
+  "words": [
+    {
+      "text": "Less",
+      "token": "less",
+      "start": 0.0,
+      "end": 0.28
+    },
+    {
+      "text": "money,",
+      "token": "money",
+      "start": 0.28,
+      "end": 0.88
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 0.88,
+      "end": 1.02
+    },
+    {
+      "text": "lipstick?",
+      "token": "lipstick",
+      "start": 1.02,
+      "end": 1.72
+    },
+    {
+      "text": "That's",
+      "token": "that's",
+      "start": 1.72,
+      "end": 2.8
+    },
+    {
+      "text": "my",
+      "token": "my",
+      "start": 2.8,
+      "end": 2.96
+    },
+    {
+      "text": "question",
+      "token": "question",
+      "start": 2.96,
+      "end": 3.34
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 3.34,
+      "end": 3.56
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 3.56,
+      "end": 3.68
+    },
+    {
+      "text": "count",
+      "token": "count",
+      "start": 3.68,
+      "end": 3.88
+    },
+    {
+      "text": "market",
+      "token": "market",
+      "start": 3.88,
+      "end": 4.16
+    },
+    {
+      "text": "money.",
+      "token": "money",
+      "start": 4.16,
+      "end": 4.48
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 5.68,
+      "end": 5.78
+    },
+    {
+      "text": "reach",
+      "token": "reach",
+      "start": 5.78,
+      "end": 6.0
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 6.0,
+      "end": 6.14
+    },
+    {
+      "text": "an",
+      "token": "an",
+      "start": 6.14,
+      "end": 6.24
+    },
+    {
+      "text": "economics",
+      "token": "economics",
+      "start": 6.24,
+      "end": 6.76
+    },
+    {
+      "text": "book",
+      "token": "book",
+      "start": 6.76,
+      "end": 7.0
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 7.0,
+      "end": 7.18
+    },
+    {
+      "text": "answers.",
+      "token": "answers",
+      "start": 7.18,
+      "end": 7.54
+    },
+    {
+      "text": "It's",
+      "token": "it's",
+      "start": 7.54,
+      "end": 8.34
+    },
+    {
+      "text": "called",
+      "token": "called",
+      "start": 8.34,
+      "end": 8.52
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 8.52,
+      "end": 8.82
+    },
+    {
+      "text": "Lipstick",
+      "token": "lipstick",
+      "start": 8.82,
+      "end": 9.34
+    },
+    {
+      "text": "Effect.",
+      "token": "effect",
+      "start": 9.34,
+      "end": 9.64
+    },
+    {
+      "text": "Some",
+      "token": "some",
+      "start": 9.64,
+      "end": 10.72
+    },
+    {
+      "text": "call",
+      "token": "call",
+      "start": 10.72,
+      "end": 10.96
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 10.96,
+      "end": 11.1
+    },
+    {
+      "text": "lipstick",
+      "token": "lipstick",
+      "start": 11.1,
+      "end": 11.44
+    },
+    {
+      "text": "syndrome.",
+      "token": "syndrome",
+      "start": 11.02,
+      "end": 12.62
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 12.62,
+      "end": 13.34
+    },
+    {
+      "text": "theory",
+      "token": "theory",
+      "start": 13.34,
+      "end": 13.7
+    },
+    {
+      "text": "starts",
+      "token": "starts",
+      "start": 13.7,
+      "end": 14.06
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 14.06,
+      "end": 14.24
+    },
+    {
+      "text": "tighter",
+      "token": "tighter",
+      "start": 14.24,
+      "end": 14.72
+    },
+    {
+      "text": "budgets.",
+      "token": "budgets",
+      "start": 14.72,
+      "end": 15.58
+    },
+    {
+      "text": "Big",
+      "token": "big",
+      "start": 15.58,
+      "end": 15.94
+    },
+    {
+      "text": "luxuries",
+      "token": "luxuries",
+      "start": 15.94,
+      "end": 16.44
+    },
+    {
+      "text": "get",
+      "token": "get",
+      "start": 16.44,
+      "end": 16.68
+    },
+    {
+      "text": "cut.",
+      "token": "cut",
+      "start": 16.68,
+      "end": 17.24
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 17.24,
+      "end": 17.9
+    },
+    {
+      "text": "new",
+      "token": "new",
+      "start": 17.9,
+      "end": 18.06
+    },
+    {
+      "text": "car",
+      "token": "car",
+      "start": 18.06,
+      "end": 18.3
+    },
+    {
+      "text": "waits.",
+      "token": "waits",
+      "start": 18.3,
+      "end": 18.7
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 18.7,
+      "end": 19.92
+    },
+    {
+      "text": "holiday",
+      "token": "holiday",
+      "start": 19.8,
+      "end": 20.24
+    },
+    {
+      "text": "gets",
+      "token": "gets",
+      "start": 20.24,
+      "end": 20.46
+    },
+    {
+      "text": "postponed.",
+      "token": "postponed",
+      "start": 20.46,
+      "end": 20.88
+    },
+    {
+      "text": "But",
+      "token": "but",
+      "start": 20.88,
+      "end": 22.34
+    },
+    {
+      "text": "lipstick",
+      "token": "lipstick",
+      "start": 22.34,
+      "end": 22.64
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 22.64,
+      "end": 22.86
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 22.86,
+      "end": 23.1
+    },
+    {
+      "text": "feel",
+      "token": "feel",
+      "start": 23.1,
+      "end": 23.32
+    },
+    {
+      "text": "affordable.",
+      "token": "affordable",
+      "start": 23.32,
+      "end": 24.14
+    },
+    {
+      "text": "It's",
+      "token": "it's",
+      "start": 24.14,
+      "end": 24.94
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 24.94,
+      "end": 25.04
+    },
+    {
+      "text": "small,",
+      "token": "small",
+      "start": 25.04,
+      "end": 25.42
+    },
+    {
+      "text": "feel-good",
+      "token": "feelgood",
+      "start": 25.42,
+      "end": 26.1
+    },
+    {
+      "text": "purchase.",
+      "token": "purchase",
+      "start": 26.1,
+      "end": 26.6
+    },
+    {
+      "text": "After",
+      "token": "after",
+      "start": 27.94,
+      "end": 28.08
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 28.08,
+      "end": 28.24
+    },
+    {
+      "text": "2001",
+      "token": "2001",
+      "start": 28.24,
+      "end": 28.72
+    },
+    {
+      "text": "downturn,",
+      "token": "downturn",
+      "start": 28.72,
+      "end": 30.06
+    },
+    {
+      "text": "Leonard",
+      "token": "leonard",
+      "start": 30.06,
+      "end": 30.18
+    },
+    {
+      "text": "Lauder",
+      "token": "lauder",
+      "start": 30.18,
+      "end": 30.46
+    },
+    {
+      "text": "noticed",
+      "token": "noticed",
+      "start": 30.46,
+      "end": 30.84
+    },
+    {
+      "text": "stronger",
+      "token": "stronger",
+      "start": 30.84,
+      "end": 31.52
+    },
+    {
+      "text": "lipstick",
+      "token": "lipstick",
+      "start": 31.52,
+      "end": 31.9
+    },
+    {
+      "text": "sales.",
+      "token": "sales",
+      "start": 31.9,
+      "end": 32.66
+    },
+    {
+      "text": "He",
+      "token": "he",
+      "start": 33.38,
+      "end": 33.54
+    },
+    {
+      "text": "called",
+      "token": "called",
+      "start": 33.54,
+      "end": 33.8
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 33.8,
+      "end": 33.94
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 33.94,
+      "end": 34.22
+    },
+    {
+      "text": "Lipstick",
+      "token": "lipstick",
+      "start": 34.22,
+      "end": 34.72
+    },
+    {
+      "text": "Index.",
+      "token": "index",
+      "start": 34.72,
+      "end": 35.64
+    },
+    {
+      "text": "Later",
+      "token": "later",
+      "start": 36.24,
+      "end": 36.48
+    },
+    {
+      "text": "research",
+      "token": "research",
+      "start": 36.48,
+      "end": 36.88
+    },
+    {
+      "text": "found",
+      "token": "found",
+      "start": 36.88,
+      "end": 37.32
+    },
+    {
+      "text": "mixed",
+      "token": "mixed",
+      "start": 37.32,
+      "end": 37.8
+    },
+    {
+      "text": "results.",
+      "token": "results",
+      "start": 37.8,
+      "end": 38.28
+    },
+    {
+      "text": "Some",
+      "token": "some",
+      "start": 39.26,
+      "end": 39.42
+    },
+    {
+      "text": "found",
+      "token": "found",
+      "start": 39.42,
+      "end": 39.74
+    },
+    {
+      "text": "higher",
+      "token": "higher",
+      "start": 39.74,
+      "end": 40.26
+    },
+    {
+      "text": "cosmetic",
+      "token": "cosmetic",
+      "start": 40.26,
+      "end": 40.88
+    },
+    {
+      "text": "spending",
+      "token": "spending",
+      "start": 40.88,
+      "end": 41.24
+    },
+    {
+      "text": "among",
+      "token": "among",
+      "start": 41.24,
+      "end": 41.56
+    },
+    {
+      "text": "certain",
+      "token": "certain",
+      "start": 41.56,
+      "end": 41.92
+    },
+    {
+      "text": "groups",
+      "token": "groups",
+      "start": 41.92,
+      "end": 42.18
+    },
+    {
+      "text": "during",
+      "token": "during",
+      "start": 42.18,
+      "end": 42.5
+    },
+    {
+      "text": "recessions.",
+      "token": "recessions",
+      "start": 42.5,
+      "end": 43.14
+    },
+    {
+      "text": "Others",
+      "token": "others",
+      "start": 44.22,
+      "end": 44.42
+    },
+    {
+      "text": "found",
+      "token": "found",
+      "start": 44.42,
+      "end": 44.7
+    },
+    {
+      "text": "lipstick",
+      "token": "lipstick",
+      "start": 44.7,
+      "end": 45.06
+    },
+    {
+      "text": "wasn't",
+      "token": "wasn't",
+      "start": 45.06,
+      "end": 45.6
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 45.6,
+      "end": 45.76
+    },
+    {
+      "text": "reliable",
+      "token": "reliable",
+      "start": 45.76,
+      "end": 46.2
+    },
+    {
+      "text": "economic",
+      "token": "economic",
+      "start": 46.2,
+      "end": 46.82
+    },
+    {
+      "text": "signal.",
+      "token": "signal",
+      "start": 46.82,
+      "end": 47.26
+    },
+    {
+      "text": "It's",
+      "token": "it's",
+      "start": 48.24,
+      "end": 48.48
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 48.48,
+      "end": 48.56
+    },
+    {
+      "text": "theory",
+      "token": "theory",
+      "start": 48.56,
+      "end": 48.84
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 48.84,
+      "end": 49.1
+    },
+    {
+      "text": "consumer",
+      "token": "consumer",
+      "start": 49.1,
+      "end": 49.6
+    },
+    {
+      "text": "psychology.",
+      "token": "psychology",
+      "start": 49.6,
+      "end": 50.2
+    },
+    {
+      "text": "Maybe",
+      "token": "maybe",
+      "start": 51.98,
+      "end": 52.2
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 52.2,
+      "end": 52.38
+    },
+    {
+      "text": "real",
+      "token": "real",
+      "start": 52.38,
+      "end": 52.56
+    },
+    {
+      "text": "purchase",
+      "token": "purchase",
+      "start": 52.56,
+      "end": 52.88
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 52.88,
+      "end": 53.08
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 53.08,
+      "end": 53.18
+    },
+    {
+      "text": "little",
+      "token": "little",
+      "start": 53.18,
+      "end": 53.28
+    },
+    {
+      "text": "comfort.",
+      "token": "comfort",
+      "start": 53.28,
+      "end": 53.7
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 54.36,
+      "end": 54.5
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 54.5,
+      "end": 54.66
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 54.66,
+      "end": 55.02
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 55.02,
+      "end": 55.36
+    },
+    {
+      "text": "grow",
+      "token": "grow",
+      "start": 55.36,
+      "end": 55.6
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 55.6,
+      "end": 55.84
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 55.84,
+      "end": 56.62
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 56.66,
+      "end": 57.64
+    }
+  ]
+}

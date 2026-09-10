@@ -1,0 +1,241 @@
+{
+  "schema_version": 2,
+  "video_id": "024",
+  "topic": "گربه شرودینگر",
+  "created_at": "2026-09-09T13:54:07Z",
+  "pipeline_state": "FAILED_DOWNLOAD",
+  "stages": {
+    "script_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T13:55:44Z",
+      "words": 96
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T13:56:32Z",
+      "words": 99
+    },
+    "episode_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T13:57:14Z",
+      "activity": "feeding chickens"
+    },
+    "world_style_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T13:58:08Z",
+      "style_id": "quantum_shadowbox_collage_001"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T13:58:57Z",
+      "sha256": "47e9000dcd406956610a67041479705b8b7f435b89cb6c1fcc324fc8444e5b6e",
+      "model": "nano_banana_2",
+      "catalog_path": "014_quantum_shadowbox_collage_001"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T13:58:59Z",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "quantum_shadowbox_collage_001"
+    },
+    "visual_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:00:11Z",
+      "beats": 7
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:02:47Z",
+      "prompt_sha256": "1c2ae9b08d050df42ff9334a1776a28fad758b49d8fa780cf7dff318825dbd80"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:03:53Z",
+      "sha256": "6148ad244cf35a2512b26a82e39b724051d3af443117ec69f403c95cee4fa264",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T14:03:55Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:04:27Z",
+      "prompt_sha256": "e88dea4ff5d05be00f2b7fcca85274a2938247e7a841f363e02c41255ea3d08f"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:05:24Z",
+      "sha256": "478bdee185a45c6be89e408a55432434d712f6cda462cd3a0f959e379acfbbdf",
+      "model": "nano_banana_2"
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:05:51Z",
+      "prompt_sha256": "a675d1407ded81a6572c71de40339236634c459b88cc5e1ca7bceb4399c8b644"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:06:28Z",
+      "prompt_sha256": "3a966616338fbb4a5e79d5400964e4f9ef5a992cd1be6bd268e8f7af284d15f4"
+    },
+    "body_images": {
+      "status": "FAILED_DOWNLOAD",
+      "updated_at": "2026-09-09T14:18:29Z",
+      "message": "Body image batch stopped: gemini/image_generate failed: Gemini did not return a generated image artifact; the provider response was text-only.",
+      "error_code": "result_not_extractable"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:09:44Z",
+      "sha256": "2375fd9105058089c9c44e1bd78a3f15ad8a5862406dc12808e05449aa4aaf53",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T14:13:44Z",
+      "sha256": "fb85e3d47b65f92775f24b152f510be3a4c189d41c5794563d8cebc9fbc7de96",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-09T14:13:46Z"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 94.491,
+      "at": "2026-09-09T13:55:44Z",
+      "words": 96
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 45.492,
+      "at": "2026-09-09T13:56:32Z",
+      "words": 99
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 39.604,
+      "at": "2026-09-09T13:57:14Z",
+      "activity": "feeding chickens"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 51.626,
+      "at": "2026-09-09T13:58:08Z",
+      "style_id": "quantum_shadowbox_collage_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 46.276,
+      "at": "2026-09-09T13:58:57Z",
+      "sha256": "47e9000dcd406956610a67041479705b8b7f435b89cb6c1fcc324fc8444e5b6e",
+      "model": "nano_banana_2",
+      "catalog_path": "014_quantum_shadowbox_collage_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T13:58:59Z",
+      "opening_activity": "feeding chickens",
+      "opening_location": "barn",
+      "camera_pattern": "static_wide",
+      "book_template_id": "002",
+      "world_style_id": "quantum_shadowbox_collage_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 69.128,
+      "at": "2026-09-09T14:00:11Z",
+      "beats": 7
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 153.569,
+      "at": "2026-09-09T14:02:47Z",
+      "prompt_sha256": "1c2ae9b08d050df42ff9334a1776a28fad758b49d8fa780cf7dff318825dbd80"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 63.477,
+      "at": "2026-09-09T14:03:53Z",
+      "sha256": "6148ad244cf35a2512b26a82e39b724051d3af443117ec69f403c95cee4fa264",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 30.33,
+      "at": "2026-09-09T14:04:27Z",
+      "prompt_sha256": "e88dea4ff5d05be00f2b7fcca85274a2938247e7a841f363e02c41255ea3d08f"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 54.642,
+      "at": "2026-09-09T14:05:24Z",
+      "sha256": "478bdee185a45c6be89e408a55432434d712f6cda462cd3a0f959e379acfbbdf",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 24.054,
+      "at": "2026-09-09T14:05:51Z",
+      "prompt_sha256": "a675d1407ded81a6572c71de40339236634c459b88cc5e1ca7bceb4399c8b644"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 33.669,
+      "at": "2026-09-09T14:06:28Z",
+      "prompt_sha256": "3a966616338fbb4a5e79d5400964e4f9ef5a992cd1be6bd268e8f7af284d15f4"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 193.528,
+      "at": "2026-09-09T14:09:44Z",
+      "sha256": "2375fd9105058089c9c44e1bd78a3f15ad8a5862406dc12808e05449aa4aaf53",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 238.671,
+      "at": "2026-09-09T14:13:44Z",
+      "sha256": "fb85e3d47b65f92775f24b152f510be3a4c189d41c5794563d8cebc9fbc7de96",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    }
+  ],
+  "updated_at": "2026-09-09T14:18:29Z"
+}

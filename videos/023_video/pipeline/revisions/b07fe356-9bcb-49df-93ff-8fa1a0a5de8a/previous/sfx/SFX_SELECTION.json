@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "bfca9251690a20c95e37188477ef86685e83f58da2598c26b30ad7cd4673bef2",
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 4.62,
+      "intent": "Quietly resolve the opening money-counting action before the economics-book beat begins.",
+      "query": "small coins gently settling on wooden table subtle close foley",
+      "selection_mode": "SKIPPED_NO_GOOD_MATCH",
+      "gain_db": -9.0
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 26.82,
+      "intent": "Give the small feel-good purchase a modest physical payoff without making the lipstick feel luxurious or comedic.",
+      "query": "lipstick cap soft click cosmetic tube close foley subtle",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_846422",
+      "provider": "freesound",
+      "provider_id": "846422",
+      "source_url": "https://freesound.org/people/NikoletB/sounds/846422/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_846422_86154720948d.mp3",
+      "duration_seconds": 0.6,
+      "gain_db": -9.0,
+      "score": 1.0
+    }
+  ]
+}

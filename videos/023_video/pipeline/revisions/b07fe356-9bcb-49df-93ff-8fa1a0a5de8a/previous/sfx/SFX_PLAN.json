@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "episode_duration_seconds": 56.869,
+  "planner": {
+    "approach": "Restrained and tactile. Use only two quiet, motivated foley accents in narration gaps; leave transitions, research beats, and conclusion dry.",
+    "event_count": 2,
+    "events_per_minute": 2.11,
+    "max_events_per_minute": 4.0,
+    "minimum_gap_seconds": 2.0,
+    "avoid": [
+      "whooshes on cuts or wipes",
+      "meme sounds",
+      "dramatic impacts",
+      "continuous ambience",
+      "sounds competing with narration"
+    ],
+    "provider": "chatgpt_ordak",
+    "style": "expressive"
+  },
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 4.62,
+      "window_start": 4.48,
+      "window_end": 5.35,
+      "category": "foley",
+      "intent": "Quietly resolve the opening money-counting action before the economics-book beat begins.",
+      "search_query": "small coins gently settling on wooden table subtle close foley",
+      "alternate_queries": [
+        "few coins soft clink tabletop realistic",
+        "coins lightly placed on table quiet foley"
+      ],
+      "desired_duration_seconds": 0.4,
+      "max_duration_seconds": 0.65,
+      "priority": "medium",
+      "suggested_gain_db": -18.0,
+      "speech_overlap": false,
+      "reason": "The brief narration gap after 'money' gives one natural place for tactile punctuation without emphasizing the visual transition."
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 26.82,
+      "window_start": 26.6,
+      "window_end": 27.55,
+      "category": "foley",
+      "intent": "Give the small feel-good purchase a modest physical payoff without making the lipstick feel luxurious or comedic.",
+      "search_query": "lipstick cap soft click cosmetic tube close foley subtle",
+      "alternate_queries": [
+        "lipstick tube gentle cap click realistic",
+        "cosmetic tube softly placed on vanity foley"
+      ],
+      "desired_duration_seconds": 0.35,
+      "max_duration_seconds": 0.6,
+      "priority": "high",
+      "suggested_gain_db": -20.0,
+      "speech_overlap": false,
+      "reason": "The silence after 'purchase' supports one restrained object sound; the surrounding historical and research section is stronger left clean."
+    }
+  ],
+  "timeline_context_sha256": "bfca9251690a20c95e37188477ef86685e83f58da2598c26b30ad7cd4673bef2",
+  "event_count": 2,
+  "updated_at": "2026-09-09T11:34:07.864349+00:00",
+  "status": "DONE"
+}

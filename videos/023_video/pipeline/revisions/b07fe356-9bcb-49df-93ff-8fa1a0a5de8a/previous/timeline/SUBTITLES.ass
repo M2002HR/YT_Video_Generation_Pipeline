@@ -1,0 +1,41 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+Style: Karaoke,DejaVu Sans,56,&H0000D7FF,&H00F5F5F5,&H00130D09,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:01.72,Karaoke,,0,0,0,,{\kf28}Less {\kf60}money, {\kf14}more {\kf70}lipstick?
+Dialogue: 0,0:00:01.72,0:00:03.88,Karaoke,,0,0,0,,{\kf108}That's {\kf16}my {\kf38}question {\kf22}as {\kf12}I {\kf20}count
+Dialogue: 0,0:00:03.88,0:00:04.48,Karaoke,,0,0,0,,{\kf28}market {\kf32}money.
+Dialogue: 0,0:00:05.68,0:00:07.00,Karaoke,,0,0,0,,{\kf10}I {\kf22}reach {\kf14}for {\kf10}an {\kf52}economics {\kf24}book
+Dialogue: 0,0:00:07.00,0:00:07.54,Karaoke,,0,0,0,,{\kf18}for {\kf36}answers.
+Dialogue: 0,0:00:07.54,0:00:09.64,Karaoke,,0,0,0,,{\kf80}It's {\kf18}called {\kf30}The {\kf52}Lipstick {\kf30}Effect.
+Dialogue: 0,0:00:09.64,0:00:12.62,Karaoke,,0,0,0,,{\kf108}Some {\kf24}call {\kf14}it {\kf1}lipstick {\kf160}syndrome.
+Dialogue: 0,0:00:12.62,0:00:15.58,Karaoke,,0,0,0,,{\kf72}The {\kf36}theory {\kf36}starts {\kf18}with {\kf48}tighter\N{\kf86}budgets.
+Dialogue: 0,0:00:15.58,0:00:17.24,Karaoke,,0,0,0,,{\kf36}Big {\kf50}luxuries {\kf24}get {\kf56}cut.
+Dialogue: 0,0:00:17.24,0:00:18.70,Karaoke,,0,0,0,,{\kf66}That {\kf16}new {\kf24}car {\kf40}waits.
+Dialogue: 0,0:00:18.70,0:00:20.88,Karaoke,,0,0,0,,{\kf110}The {\kf44}holiday {\kf22}gets {\kf42}postponed.
+Dialogue: 0,0:00:20.88,0:00:24.14,Karaoke,,0,0,0,,{\kf146}But {\kf30}lipstick {\kf22}may {\kf24}still {\kf22}feel\N{\kf82}affordable.
+Dialogue: 0,0:00:24.14,0:00:26.60,Karaoke,,0,0,0,,{\kf80}It's {\kf10}a {\kf38}small, {\kf68}feel-good {\kf50}purchase.
+Dialogue: 0,0:00:27.94,0:00:30.46,Karaoke,,0,0,0,,{\kf14}After {\kf16}the {\kf48}2001 {\kf134}downturn, {\kf12}Leonard\N{\kf28}Lauder
+Dialogue: 0,0:00:30.46,0:00:32.66,Karaoke,,0,0,0,,{\kf38}noticed {\kf68}stronger {\kf38}lipstick {\kf76}sales.
+Dialogue: 0,0:00:33.38,0:00:35.64,Karaoke,,0,0,0,,{\kf16}He {\kf26}called {\kf14}it {\kf28}the {\kf50}Lipstick {\kf92}Index.
+Dialogue: 0,0:00:36.24,0:00:38.28,Karaoke,,0,0,0,,{\kf24}Later {\kf40}research {\kf44}found {\kf48}mixed\N{\kf48}results.
+Dialogue: 0,0:00:39.26,0:00:41.56,Karaoke,,0,0,0,,{\kf16}Some {\kf32}found {\kf52}higher {\kf62}cosmetic\N{\kf36}spending {\kf32}among
+Dialogue: 0,0:00:41.56,0:00:43.14,Karaoke,,0,0,0,,{\kf36}certain {\kf26}groups {\kf32}during {\kf64}recessions.
+Dialogue: 0,0:00:44.22,0:00:46.20,Karaoke,,0,0,0,,{\kf20}Others {\kf28}found {\kf36}lipstick {\kf54}wasn't {\kf16}a\N{\kf44}reliable
+Dialogue: 0,0:00:46.20,0:00:47.26,Karaoke,,0,0,0,,{\kf62}economic {\kf44}signal.
+Dialogue: 0,0:00:48.24,0:00:50.20,Karaoke,,0,0,0,,{\kf24}It's {\kf8}a {\kf28}theory {\kf26}about {\kf50}consumer\N{\kf60}psychology.
+Dialogue: 0,0:00:51.98,0:00:53.18,Karaoke,,0,0,0,,{\kf22}Maybe {\kf18}the {\kf18}real {\kf32}purchase {\kf20}is {\kf10}a
+Dialogue: 0,0:00:53.18,0:00:53.70,Karaoke,,0,0,0,,{\kf10}little {\kf42}comfort.
+Dialogue: 0,0:00:54.36,0:00:55.84,Karaoke,,0,0,0,,{\kf14}Like {\kf16}and {\kf36}subscribe {\kf34}to {\kf24}grow {\kf24}more
+Dialogue: 0,0:00:55.84,0:00:56.62,Karaoke,,0,0,0,,{\kf78}questions.
+Dialogue: 0,0:00:56.66,0:00:57.64,Karaoke,,0,0,0,,{\kf98}you

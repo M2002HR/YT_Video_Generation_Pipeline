@@ -1,0 +1,14 @@
+{
+  "opening_activity": "feeding chickens",
+  "opening_location": "barn",
+  "curiosity_trigger": "hearing a chicken rustle behind a closed nesting-box door before seeing what is inside",
+  "trigger_object": "nesting-box latch",
+  "reaction": "pauses mid-scatter, tilts his head toward the sound, then studies the closed door",
+  "book_retrieval": "sets down the feed scoop, dusts his hands, and pulls a worn physics book from a small barn shelf",
+  "camera_pattern": "static_wide",
+  "book_template_id": "002",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "warm graphite-and-watercolor farm textures blending into surreal 1930s physics diagrams, shadowed boxes, and luminous quantum motifs",
+  "reason": "Feeding chickens naturally supplies a closed-box moment that sparks the question of an unseen animal's state without introducing an artificial quantum-themed object into the farm."
+}

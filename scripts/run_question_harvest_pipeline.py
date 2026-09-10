@@ -2634,6 +2634,7 @@ def ensure_launch_request(
     flow_resolution: str,
     opening_a_seconds: int,
     opening_b_seconds: int,
+    opening_speed_tolerance: float,
     duration: "DurationTarget",
     style_policy: str,
     style_id: str,
@@ -2660,6 +2661,7 @@ def ensure_launch_request(
             "resolution": flow_resolution,
             "opening_a_source_seconds": opening_a_seconds,
             "opening_b_source_seconds": opening_b_seconds,
+            "opening_speed_tolerance": opening_speed_tolerance,
             "outputs": "x1",
             "flow_style_sheet_upload": False,
         },
@@ -2743,6 +2745,12 @@ def main() -> int:
         help="Flow source length for Clip A; one second of headroom over the planned segment.",
     )
     parser.add_argument("--opening-b-seconds", type=int, default=4)
+    parser.add_argument(
+        "--opening-speed-tolerance",
+        type=float,
+        default=None,
+        help="Max fraction a silent opening clip may be slowed to meet narration (default 0.1).",
+    )
     parser.add_argument(
         "--min-duration-seconds",
         type=float,
@@ -2856,6 +2864,25 @@ def main() -> int:
     launch_path = project / "launch" / "LAUNCH_REQUEST.json"
     existed_before_launch = launch_path.is_file()
     existing_launch = load_json(launch_path) if existed_before_launch else {}
+    if args.opening_speed_tolerance is not None:
+        speed_tolerance = float(args.opening_speed_tolerance)
+    else:
+        speed_tolerance = 0.1
+        try:
+            brief_candidate = (load_json(brief_target).get("_qh") or {}).get("opening_speed_tolerance")
+            if brief_candidate is not None and str(brief_candidate) != "":
+                speed_tolerance = float(brief_candidate)
+        except (OSError, ValueError, TypeError):
+            pass
+        if speed_tolerance == 0.1:
+            try:
+                defaults = (content_project.config.get("defaults") or {})
+                if defaults.get("opening_speed_tolerance") is not None:
+                    speed_tolerance = float(defaults["opening_speed_tolerance"])
+            except (TypeError, ValueError):
+                pass
+    if not 0 <= speed_tolerance <= 0.5:
+        parser.error("--opening-speed-tolerance must be within 0..0.5")
     is_legacy_run = bool(
         existed_before_launch
         and existing_launch.get("content_project") == "question_harvest"
@@ -2874,6 +2901,7 @@ def main() -> int:
         args.flow_resolution,
         args.opening_a_seconds,
         args.opening_b_seconds,
+        speed_tolerance,
         duration,
         style_policy,
         requested_style_id,

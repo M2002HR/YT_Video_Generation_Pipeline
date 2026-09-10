@@ -1,0 +1,89 @@
+{
+  "body_duration_seconds": 32.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "In 1935, Schrödinger imagined a cat in a sealed box.",
+      "visual": "A mid-1930s study rendered as an aged physics-notebook illustration, with a sealed wooden box centered on a desk and a calm stylized cat silhouette visible only through a conceptual ink cutaway.",
+      "purpose": "introduce Schrödinger's imagined sealed-box cat thought experiment",
+      "visual_fingerprint": "sealed wooden box with calm cat cutaway on a 1930s study desk, medium three-quarter view, warm diffuse window light, sparse notebook ornaments around the inset",
+      "type": "subject_world",
+      "continuity": "establishes the imagined notebook world and sealed-box setup",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "A radioactive atom could release poison if it decayed.",
+      "visual": "Close cutaway inside the box showing a tiny radioactive-source motif beside a detector linkage and sealed poison vial, with a single decay-like ink burst poised to trigger the mechanism.",
+      "purpose": "show how radioactive decay could activate the poison mechanism",
+      "visual_fingerprint": "tight mechanical cutaway from slightly above, tiny atom motif at upper left, detector linkage crossing diagonally toward a sealed vial at lower right, cat absent from frame",
+      "type": "diagram",
+      "continuity": "moves from the whole sealed box into its imagined internal mechanism",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Quantum theory can represent decay and no decay together.",
+      "visual": "An abstract notebook diagram of the radioactive source appearing as two translucent overlapping possibilities: one quiet intact state and one softly radiating decay state, both occupying the same position.",
+      "purpose": "visualize decay and no-decay as simultaneous quantum possibilities",
+      "visual_fingerprint": "isolated atom-like source floating on cream paper, extreme close-up, doubled teal-sepia contours with one calm form and one radiating form overlapping concentrically, no box or cat visible",
+      "type": "diagram",
+      "continuity": "abstracts the mechanism into the quantum alternatives controlling it",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "So the cat seems alive and dead before observation.",
+      "visual": "Inside a softly drawn box cutaway, two pale translucent cat states overlap in the same space: one alert and upright, the other peacefully still and reclining, with neither presented as the single settled outcome.",
+      "purpose": "show the paradoxical implication of overlapping alive and dead cat possibilities before observation",
+      "visual_fingerprint": "wide frontal box interior cutaway, overlapping upright and reclining cat silhouettes centered together, doubled soft contours, restrained pale teal-sepia wash, mechanism pushed faintly into the background",
+      "type": "metaphor",
+      "continuity": "transfers the overlapping quantum alternatives from the atom to the cat",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "It was a challenge, not a real experiment.",
+      "visual": "A worn notebook lies open on an otherwise ordinary 1930s desk, where the cat-box apparatus exists only as a loose conceptual ink sketch hovering within the page while the surrounding room remains plainly real and empty.",
+      "purpose": "clarify that the cat scenario was a conceptual challenge rather than a performed laboratory experiment",
+      "visual_fingerprint": "high-angle view of an empty domestic writing desk, open worn notebook centered, imagined box apparatus confined to faint ink imagery on the page, no real cat and no laboratory setup",
+      "type": "subject_world",
+      "continuity": "pulls away from the imagined box to reveal it as a notebook thought experiment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Schrödinger was challenging superposition at everyday scale.",
+      "visual": "A familiar domestic room is drawn at a wide scale with a chair, table, lamp, and sealed box, while the box and nearby cat form carry subtle doubled translucent contours that clash visually with the solid ordinary furniture.",
+      "purpose": "show Schrödinger applying quantum superposition to an everyday macroscopic situation",
+      "visual_fingerprint": "wide low-angle domestic-room composition, solid chair and table anchoring foreground, sealed box farther back with doubled translucent cat-and-box contours, everyday objects crisp while quantum forms softly overlap",
+      "type": "metaphor",
+      "continuity": "expands from the notebook concept into the ordinary-scale world the paradox is meant to challenge",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "The paradox asks when quantum possibilities become one ordinary outcome.",
+      "visual": "Several pale overlapping probability paths curve toward a sealed box from above, then converge at the moment its lid is opened into one crisp, ordinary cat silhouette beside the box.",
+      "purpose": "show the central question of when multiple quantum possibilities resolve into one observed outcome",
+      "visual_fingerprint": "top-down oblique composition with translucent branching probability curves in the upper frame narrowing toward an opened box below, ending in one sharply inked calm cat silhouette as the sole solid outcome",
+      "type": "diagram",
+      "continuity": "resolves the everyday-scale overlap into the paradox's final question about a single observed result",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    }
+  ]
+}

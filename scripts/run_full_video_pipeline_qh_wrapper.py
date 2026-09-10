@@ -113,6 +113,32 @@ def word_timing_is_usable(project: Path) -> bool:
     return stt.get("backend") in ACCEPTED_STT_BACKENDS and stt.get("timestamp_source") == "word"
 
 
+def opening_speed_tolerance(project: Path, creative_brief: Path) -> float:
+    """Standing trim rule default: silent opening clips may slow up to 10% to sync."""
+    for source in (Path(creative_brief), project / "launch" / "CREATIVE_BRIEF.json"):
+        try:
+            candidate = (json.loads(source.read_text(encoding="utf-8")).get("_qh") or {}).get("opening_speed_tolerance")
+        except (OSError, ValueError):
+            continue
+        if candidate is not None and str(candidate) != "":
+            try:
+                value = float(candidate)
+            except (TypeError, ValueError):
+                continue
+            if 0 <= value <= 0.5:
+                return value
+    try:
+        defaults = json.loads((ROOT / "projects" / "q_station" / "PROJECT.json").read_text(encoding="utf-8")).get("defaults") or {}
+        if defaults.get("opening_speed_tolerance") is not None:
+            return float(defaults["opening_speed_tolerance"])
+    except (OSError, ValueError):
+        pass
+    try:
+        return float(os.getenv("YT_QUESTION_HARVEST_OPENING_SPEED_TOLERANCE", "0.1"))
+    except ValueError:
+        return 0.1
+
+
 def qh_overrides(creative_brief: Path) -> list[str]:
     """Model/duration overrides the panel stored in the brief, as CLI flags."""
     try:
@@ -133,6 +159,7 @@ def qh_overrides(creative_brief: Path) -> list[str]:
         "chatgpt_fallback_mode": "--chatgpt-fallback-mode",
         "min_duration_seconds": "--min-duration-seconds",
         "max_duration_seconds": "--max-duration-seconds",
+        "opening_speed_tolerance": "--opening-speed-tolerance",
     }
     flags: list[str] = []
     for key, flag in mapping.items():
@@ -349,7 +376,8 @@ def main() -> int:
     else:
         mark_wrapper_stage(project, "opening_trim", "RUNNING")
         try:
-            run_owned_stage([python, "scripts/trim_opening_clips.py", str(project)], notifier, "opening_trim", project / "timing/OPENING_TRIM_REPORT.json", project)
+            tolerance = opening_speed_tolerance(project, args.creative_brief)
+            run_owned_stage([python, "scripts/trim_opening_clips.py", str(project), "--max-rate-adjust", f"{tolerance:.4f}"], notifier, "opening_trim", project / "timing/OPENING_TRIM_REPORT.json", project)
         except subprocess.CalledProcessError as exc:
             mark_wrapper_stage(project, "opening_trim", "FAILED", returncode=exc.returncode)
             raise

@@ -1,0 +1,54 @@
+{
+  "provider": "gemini",
+  "job_id": "e17fb7aa-89de-4628-8498-63cf3042d08d",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Pro Extended",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Pro Extended",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/ae1aecaf03a19c23",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=e17fb7aa-89de-4628-8498-63cf3042d08d_output_1.png 1536x2752 sha256=33b30fdea387834f08d886adc56a613b2e6f7298e2fa55af664db4f6c088fb8b"
+    ]
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/025_video/references/world_style_anchor.png",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/025_video/references/world_keyframe.png",
+      "sha256": "d61ece07dbf93e311bf34f57b9259302c4b49abbb6e9cb489236c781b13cb3c2"
+    }
+  ],
+  "prompt_sha256": "a47b25b8d9bb986b27e87822d69e81ebd28e41befb48fc1f4236bacd1e7688db",
+  "output_path": "assets/raw_beats/beat_001.png",
+  "output_sha256": "33b30fdea387834f08d886adc56a613b2e6f7298e2fa55af664db4f6c088fb8b",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.831,
+  "completed_at": "2026-09-09T15:20:48Z"
+}

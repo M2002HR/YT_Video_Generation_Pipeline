@@ -1591,6 +1591,9 @@ class Handler(BaseHTTPRequestHandler):
                 known_qh.add("gemini_image_model")
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds")): roots.update(("flow_clip_a", "flow_clip_b"))
                 known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds"))
+                # Trim-only rule: changing the 10% sync tolerance never invalidates Flow
+                # clips or images; the wrapper simply re-runs the trim on resume.
+                known_qh.add("opening_speed_tolerance")
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("retention_edit")
                 known_qh.update(("min_duration_seconds", "max_duration_seconds"))
                 if old_qh.get("show_subtitles") != new_qh.get("show_subtitles"): roots.add("render_profile")
@@ -2198,6 +2201,11 @@ class Handler(BaseHTTPRequestHandler):
             flow_resolution = values.get("flow_resolution", ["720p"])[0].strip() or "720p"
             opening_a_seconds = int(values.get("opening_a_seconds", ["6"])[0])
             opening_b_seconds = int(values.get("opening_b_seconds", ["4"])[0])
+            try:
+                raw_tol = values.get("opening_speed_tolerance", ["0.1"])[0]
+                opening_speed_tolerance = float(str(raw_tol).strip() or "0.1")
+            except (TypeError, ValueError):
+                raise ValueError("Invalid opening_speed_tolerance")
             if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} \
                or not voice or len(voice) > 220 or model not in {"Eleven Multilingual v2", "Eleven v3"} \
                or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
@@ -2222,6 +2230,8 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid flow_resolution")
             if opening_a_seconds not in {4,5,6,8} or opening_b_seconds not in {3,4,6,8}:
                 raise ValueError("Invalid opening durations")
+            if not 0 <= opening_speed_tolerance <= 0.5:
+                raise ValueError("Invalid opening_speed_tolerance")
             if sfx_style not in {"restrained", "balanced", "expressive"} or not 0 <= sfx_max_events <= 20 or not 0 <= sfx_min_gap <= 30 or not 0 <= sfx_threshold <= 1 or sfx_license not in {"cc0", "cc0_by"} or not 1 <= sfx_candidates <= 50 or not 1 <= sfx_queries <= 5 or not -40 <= sfx_gain <= -3:
                 raise ValueError("Invalid SFX settings")
             if motion_enabled and (motion_pace not in {"calm", "balanced", "fast", "very_fast"} or motion_intensity not in {"subtle", "normal", "strong"} or motion_style not in {"clean", "dynamic", "cinematic"} or motion_transition not in {"minimal", "balanced", "expressive"} or not 1 <= motion_max_shots <= 4):
@@ -2283,6 +2293,7 @@ class Handler(BaseHTTPRequestHandler):
                 "flow_resolution": flow_resolution,
                 "opening_a_source_seconds": opening_a_seconds,
                 "opening_b_source_seconds": opening_b_seconds,
+                "opening_speed_tolerance": opening_speed_tolerance,
                 "show_subtitles": show_subtitles,
                 "reserve_subtitle_space": reserve_subtitle_space,
                 "chatgpt_fallback_mode": "auto" if chatgpt_fallback_auto else "approval",

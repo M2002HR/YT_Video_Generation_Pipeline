@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "revision_id": "b134d58a-5472-43e2-9149-433318cafeee",
+  "kind": "node",
+  "created_at": "2026-09-09T12:50:58.489396+00:00",
+  "roots": [
+    "beat_image_001"
+  ],
+  "affected_nodes": [
+    "transition_direction",
+    "build_timeline",
+    "sfx_plan",
+    "render_baseline",
+    "qc_baseline",
+    "sfx_acquire",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "publish_telegram",
+    "beat_image_001",
+    "beat_image_002",
+    "beat_image_003",
+    "beat_image_004",
+    "beat_image_005",
+    "beat_image_006",
+    "beat_image_007",
+    "beat_image_008",
+    "beat_image_009",
+    "beat_image_010",
+    "beat_image_011",
+    "beat_image_012",
+    "beat_image_013",
+    "beat_image_014"
+  ],
+  "reused_nodes": [
+    "script_draft",
+    "retention_edit",
+    "episode_director",
+    "world_style_director",
+    "world_style_anchor",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_cover_design",
+    "book_cover",
+    "flow_prompt_a",
+    "flow_prompt_b",
+    "flow_clip_a",
+    "flow_clip_b",
+    "elevenlabs_voiceover",
+    "background_music",
+    "ajil_alignment",
+    "opening_trim",
+    "render_profile",
+    "audio_mix_profile"
+  ],
+  "skipped_nodes": [],
+  "archived_artifacts": [
+    "assets/raw_beats/beat_001.png",
+    "beats/BEAT_001_PROMPT.md",
+    "pipeline/provider_receipts/gemini_beat_001.json"
+  ],
+  "regenerate_beats": [
+    1
+  ],
+  "feedback": "",
+  "status": "STOPPED",
+  "started_at": "2026-09-09T12:50:58.489900+00:00",
+  "pid": 955832,
+  "completed_at": "2026-09-09T13:03:20.526573+00:00"
+}

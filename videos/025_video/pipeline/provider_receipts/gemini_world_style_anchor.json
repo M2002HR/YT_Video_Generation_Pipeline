@@ -1,0 +1,19 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "request_fingerprint": "ac969b0e5dce86b49bb0899a15bd8ebb6e7f3a11f512b3ead9e6462065ab18db",
+  "quality_check": {
+    "passed": true,
+    "description": "A single 9:16 vertical retro educational-style reference sheet on visibly aged warm-cream paper. It contains a large parchment-grain texture sample, a smaller paper texture swatch, restrained black cross-hatching, muted ochre and faded teal palette swatches, moss-gray sample squares, small hand-inked construction marks, pale overlapping geometric forms, and decorative hand-drawn diagram-like motifs in sepia/soft black with teal and ochre accents. The rendering is flat, analog, lightly imperfect, and warmly diffuse, with no characters, readable text, logos, photorealism, CGI, anime, neon styling, or interface UI.",
+    "violations": []
+  },
+  "output_sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/question_harvest/world_styles/003_retro_1920s_animation_ink_001/style_anchor.png",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f"
+    }
+  ]
+}

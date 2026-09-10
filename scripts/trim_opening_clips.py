@@ -8,9 +8,11 @@ from real word timestamps:
     Clip B (book transition) -> spark_end .. transition_end
 
 Flow is asked for clips one second longer than the planned segment so there is headroom for
-a narration that runs slightly long. If the narration still overruns the source, that is a
-planning failure, not something to paper over: the script refuses to stretch, refuses to
-clamp, and exits non-zero so the pipeline can replan.
+a narration that runs slightly long. If the narration overruns the source by more than the
+configured rate tolerance, that is a planning failure: the script refuses to clamp and
+exits non-zero so the pipeline can replan. Within the tolerance (default 10%), the silent
+opening video is rate-adjusted (slowed down) to land exactly on the measured boundary —
+Flow audio is discarded here (§68), so this changes no voice, only the silent picture.
 
 Sources : assets/opening/question_spark_source.mp4, assets/opening/book_transition_source.mp4
 Outputs : assets/opening/question_spark_trimmed.mp4, assets/opening/book_transition_trimmed.mp4
@@ -21,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -37,6 +40,11 @@ MAX_OPENING_TOTAL_DRIFT_SECONDS = 0.04
 
 #: A trim shorter than this cannot be a real shot.
 MIN_TARGET_SECONDS = 0.5
+
+#: Standing rule: a silent opening clip may be rate-adjusted (slowed down) by up to this
+#: fraction so its duration lands on the measured narration boundary. Beyond it the run
+#: fails and the pipeline replans (longer Flow clip or shorter narration segment).
+DEFAULT_MAX_RATE_ADJUST = 0.10
 
 
 class TrimError(RuntimeError):
@@ -87,41 +95,134 @@ def read_targets(video_dir: Path) -> tuple[float, float, dict]:
     return clip_a, clip_b, timing
 
 
-def trim(source: Path, destination: Path, target: float) -> float:
-    """Cut ``source`` down to ``target`` seconds without audio. Returns the real duration."""
+def resolve_max_rate_adjust(cli_value: float | None, video_dir: Path) -> float:
+    """Set precedence: CLI flag > launch brief > project defaults > env > built-in 0.10."""
+    if cli_value is not None:
+        value = float(cli_value)
+        if not 0 <= value <= 0.5:
+            raise TrimError(f"--max-rate-adjust {value} is outside the accepted 0..0.5 range.")
+        return value
+    brief_path = video_dir / "launch" / "CREATIVE_BRIEF.json"
+    try:
+        brief = json.loads(brief_path.read_text(encoding="utf-8"))
+        candidate = (brief.get("_qh") or {}).get("opening_speed_tolerance")
+        if candidate is not None and str(candidate) != "":
+            value = float(candidate)
+            if not 0 <= value <= 0.5:
+                raise TrimError(f"opening_speed_tolerance {candidate!r} is outside 0..0.5.")
+            return value
+    except (OSError, ValueError) as exc:
+        if isinstance(exc, TrimError):
+            raise
+    launch_path = video_dir / "launch" / "LAUNCH_REQUEST.json"
+    try:
+        launch = json.loads(launch_path.read_text(encoding="utf-8"))
+        candidate = (launch.get("video_generation") or {}).get("opening_speed_tolerance")
+        if candidate is not None and str(candidate) != "":
+            value = float(candidate)
+            if not 0 <= value <= 0.5:
+                raise TrimError(f"opening_speed_tolerance {candidate!r} is outside 0..0.5.")
+            return value
+    except (OSError, ValueError) as exc:
+        if isinstance(exc, TrimError):
+            raise
+    try:
+        root = Path(__file__).resolve().parents[1]
+        project_id: str | None = None
+        try:
+            launch = json.loads((video_dir / "launch" / "LAUNCH_REQUEST.json").read_text(encoding="utf-8"))
+            project_id = str(launch.get("content_project") or "")
+        except (OSError, ValueError):
+            project_id = None
+        candidates = []
+        if project_id:
+            candidates.append(root / "projects" / project_id / "PROJECT.json")
+        candidates.append(root / "projects" / "q_station" / "PROJECT.json")
+        for candidate_path in candidates:
+            try:
+                defaults = json.loads(candidate_path.read_text(encoding="utf-8")).get("defaults") or {}
+            except (OSError, ValueError):
+                continue
+            if defaults.get("opening_speed_tolerance") is not None:
+                return float(defaults["opening_speed_tolerance"])
+    except (OSError, ValueError):
+        pass
+    env_candidate = os.getenv("YT_QUESTION_HARVEST_OPENING_SPEED_TOLERANCE")
+    if env_candidate is not None and str(env_candidate).strip() != "":
+        try:
+            return float(env_candidate)
+        except ValueError:
+            pass
+    return DEFAULT_MAX_RATE_ADJUST
+
+
+def trim(source: Path, destination: Path, target: float, max_rate_adjust: float) -> tuple[float, float, bool]:
+    """Cut ``source`` to ``target`` seconds without audio.
+
+    Returns ``(actual_duration, speed_factor, rate_adjusted)``. When the narration needs
+    up to ``max_rate_adjust`` more than the source holds, the silent video is slowed down
+    (``setpts``) instead of failing; anything beyond that is still a planning failure.
+    """
     if not source.is_file():
         raise TrimError(f"Source clip missing: {source}")
     source_duration = ffprobe_duration(source)
-    if target > source_duration + 0.05:
-        raise TrimError(
-            f"{source.name} is {source_duration:.3f}s but the narration needs "
-            f"{target:.3f}s. Refusing to stretch or clamp (§67) — regenerate a longer clip or "
-            "shorten that narration segment."
+    if target <= source_duration + 0.05:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(source),
+                "-t",
+                f"{target:.3f}",
+                "-an",
+                "-c:v",
+                "libx264",
+                "-preset",
+                "veryfast",
+                "-crf",
+                "18",
+                "-pix_fmt",
+                "yuv420p",
+                str(destination),
+            ],
+            check=True,
+            capture_output=True,
         )
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        [
-            "ffmpeg",
-            "-y",
-            "-i",
-            str(source),
-            "-t",
-            f"{target:.3f}",
-            "-an",
-            "-c:v",
-            "libx264",
-            "-preset",
-            "veryfast",
-            "-crf",
-            "18",
-            "-pix_fmt",
-            "yuv420p",
-            str(destination),
-        ],
-        check=True,
-        capture_output=True,
+        return ffprobe_duration(destination), 1.0, False
+    if target <= source_duration * (1 + max_rate_adjust) + 1e-9:
+        factor = target / source_duration
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(source),
+                "-vf",
+                f"setpts={factor:.6f}*PTS,fps=24",
+                "-an",
+                "-c:v",
+                "libx264",
+                "-preset",
+                "veryfast",
+                "-crf",
+                "18",
+                "-pix_fmt",
+                "yuv420p",
+                str(destination),
+            ],
+            check=True,
+            capture_output=True,
+        )
+        return ffprobe_duration(destination), round(factor, 6), True
+    raise TrimError(
+        f"{source.name} is {source_duration:.3f}s but the narration needs "
+        f"{target:.3f}s (overrun {(target - source_duration):.3f}s > "
+        f"allowed {max_rate_adjust * 100:.1f}%). Regenerate a longer clip or "
+        "shorten that narration segment."
     )
-    return ffprobe_duration(destination)
 
 
 def main() -> int:
@@ -129,9 +230,16 @@ def main() -> int:
         description="Trim Flow opening clips to measured narration boundaries."
     )
     parser.add_argument("video_dir", type=Path)
+    parser.add_argument(
+        "--max-rate-adjust",
+        type=float,
+        default=None,
+        help="Max fraction a silent opening clip may be slowed to meet narration (default 0.10).",
+    )
     args = parser.parse_args()
 
     video_dir = Path(args.video_dir).resolve()
+    max_rate_adjust = resolve_max_rate_adjust(args.max_rate_adjust, video_dir)
     clip_a_target, clip_b_target, timing = read_targets(video_dir)
 
     opening = video_dir / "assets" / "opening"
@@ -148,11 +256,12 @@ def main() -> int:
     )
 
     def cut(label: str, source: Path, destination: Path, target: float) -> dict:
-        actual = trim(source, destination, target)
+        actual, speed_factor, rate_adjusted = trim(source, destination, target, max_rate_adjust)
         drift = actual - target
+        extra = f", rate x{speed_factor:.4f}" if rate_adjusted else ""
         print(
             f"  {label}: {destination.name} {actual:.3f}s "
-            f"(target {target:.3f}s, drift {drift:+.3f}s)",
+            f"(target {target:.3f}s, drift {drift:+.3f}s{extra})",
             flush=True,
         )
         if abs(drift) > MAX_TRIM_DRIFT_SECONDS:
@@ -166,6 +275,8 @@ def main() -> int:
             "path": str(destination),
             "target": round(target, 3),
             "actual": round(actual, 3),
+            "speed_factor": speed_factor,
+            "rate_adjusted": rate_adjusted,
         }
 
     results = [cut(label, source, destination, target) for label, source, destination, target in jobs]
@@ -198,6 +309,7 @@ def main() -> int:
     report = {
         "spark_end": timing.get("spark_end"),
         "transition_end": timing.get("transition_end"),
+        "max_rate_adjust": max_rate_adjust,
         "clips": results,
         "opening_total_seconds": round(sum(item["actual"] for item in results), 3),
         "opening_total_target_seconds": round(clip_a_target + clip_b_target, 3),

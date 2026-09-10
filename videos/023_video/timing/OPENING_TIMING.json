@@ -1,0 +1,140 @@
+{
+  "audio_duration_seconds": 56.869,
+  "spark_start": 0.0,
+  "spark_end": 4.48,
+  "spark_duration": 4.48,
+  "transition_start": 5.68,
+  "transition_end": 7.54,
+  "transition_duration": 1.86,
+  "clip_a_target_seconds": 4.48,
+  "clip_b_target_seconds": 3.06,
+  "body_start": 7.54,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Less money, more lipstick? That's my question as I count market money.",
+      "speech_start": 0.0,
+      "speech_end": 4.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I reach for an economics book for answers.",
+      "speech_start": 5.68,
+      "speech_end": 7.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "It's called the lipstick effect.",
+      "speech_start": 7.54,
+      "speech_end": 9.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Some call it lipstick syndrome.",
+      "speech_start": 9.64,
+      "speech_end": 12.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "The theory starts with tighter budgets.",
+      "speech_start": 12.62,
+      "speech_end": 15.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Big luxuries get cut.",
+      "speech_start": 15.58,
+      "speech_end": 17.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "That new car waits.",
+      "speech_start": 17.24,
+      "speech_end": 18.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "The holiday gets postponed.",
+      "speech_start": 18.7,
+      "speech_end": 20.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "But lipstick may still feel affordable.",
+      "speech_start": 20.88,
+      "speech_end": 24.14,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "It's a small, feel-good purchase.",
+      "speech_start": 24.14,
+      "speech_end": 26.6,
+      "match_confidence": 0.667
+    },
+    {
+      "segment": "body_09",
+      "narration": "After the 2001 downturn, Leonard Lauder noticed stronger lipstick sales.",
+      "speech_start": 27.94,
+      "speech_end": 32.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "He called it the lipstick index.",
+      "speech_start": 33.38,
+      "speech_end": 35.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "Later research found mixed results.",
+      "speech_start": 36.24,
+      "speech_end": 38.28,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "Some found higher cosmetics spending among certain groups during recessions.",
+      "speech_start": 39.26,
+      "speech_end": 43.14,
+      "match_confidence": 0.9
+    },
+    {
+      "segment": "body_13",
+      "narration": "Others found lipstick wasn't a reliable economic signal.",
+      "speech_start": 44.22,
+      "speech_end": 47.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_14",
+      "narration": "It's a theory about consumer psychology.",
+      "speech_start": 48.24,
+      "speech_end": 50.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Maybe the real purchase is a little comfort.",
+      "speech_start": 51.98,
+      "speech_end": 53.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 54.36,
+      "speech_end": 56.62,
+      "match_confidence": 1.0
+    }
+  ]
+}

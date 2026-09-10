@@ -1,0 +1,156 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 56.869,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Less money, more lipstick? That's my question as I count market money. I reach for an economics book for answers. It's called The Lipstick Effect. Some call it lipstick syndrome. The theory starts with tighter budgets. Big luxuries get cut. That new car waits. The holiday gets postponed. But lipstick may still feel affordable. It's a small, feel-good purchase. After the 2001 downturn, Leonard Lauder noticed stronger lipstick sales. He called it the Lipstick Index. Later research found mixed results. Some found higher cosmetic spending among certain groups during recessions. Others found lipstick wasn't a reliable economic signal. It's a theory about consumer psychology. Maybe the real purchase is a little comfort. Like and subscribe to grow more questions. you",
+  "word_count": 120,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "It's called the lipstick effect.",
+      "speech_start": 7.54,
+      "speech_end": 9.64,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 9.64,
+      "display_duration": 9.64
+    },
+    {
+      "beat_id": 2,
+      "narration": "Some call it lipstick syndrome.",
+      "speech_start": 9.64,
+      "speech_end": 12.62,
+      "match_confidence": 1.0,
+      "display_start": 9.64,
+      "display_end": 12.62,
+      "display_duration": 2.98
+    },
+    {
+      "beat_id": 3,
+      "narration": "The theory starts with tighter budgets.",
+      "speech_start": 12.62,
+      "speech_end": 15.58,
+      "match_confidence": 1.0,
+      "display_start": 12.62,
+      "display_end": 15.58,
+      "display_duration": 2.96
+    },
+    {
+      "beat_id": 4,
+      "narration": "Big luxuries get cut.",
+      "speech_start": 15.58,
+      "speech_end": 17.24,
+      "match_confidence": 1.0,
+      "display_start": 15.58,
+      "display_end": 17.24,
+      "display_duration": 1.66
+    },
+    {
+      "beat_id": 5,
+      "narration": "That new car waits.",
+      "speech_start": 17.24,
+      "speech_end": 18.7,
+      "match_confidence": 1.0,
+      "display_start": 17.24,
+      "display_end": 18.7,
+      "display_duration": 1.46
+    },
+    {
+      "beat_id": 6,
+      "narration": "The holiday gets postponed.",
+      "speech_start": 18.7,
+      "speech_end": 20.88,
+      "match_confidence": 1.0,
+      "display_start": 18.7,
+      "display_end": 20.88,
+      "display_duration": 2.18
+    },
+    {
+      "beat_id": 7,
+      "narration": "But lipstick may still feel affordable.",
+      "speech_start": 20.88,
+      "speech_end": 24.14,
+      "match_confidence": 1.0,
+      "display_start": 20.88,
+      "display_end": 24.14,
+      "display_duration": 3.26
+    },
+    {
+      "beat_id": 8,
+      "narration": "It's a small, feel-good purchase.",
+      "speech_start": 24.14,
+      "speech_end": 26.6,
+      "match_confidence": 0.667,
+      "display_start": 24.14,
+      "display_end": 27.94,
+      "display_duration": 3.8
+    },
+    {
+      "beat_id": 9,
+      "narration": "After the 2001 downturn, Leonard Lauder noticed stronger lipstick sales.",
+      "speech_start": 27.94,
+      "speech_end": 32.66,
+      "match_confidence": 1.0,
+      "display_start": 27.94,
+      "display_end": 33.38,
+      "display_duration": 5.44
+    },
+    {
+      "beat_id": 10,
+      "narration": "He called it the lipstick index.",
+      "speech_start": 33.38,
+      "speech_end": 35.64,
+      "match_confidence": 1.0,
+      "display_start": 33.38,
+      "display_end": 36.24,
+      "display_duration": 2.86
+    },
+    {
+      "beat_id": 11,
+      "narration": "Later research found mixed results.",
+      "speech_start": 36.24,
+      "speech_end": 38.28,
+      "match_confidence": 1.0,
+      "display_start": 36.24,
+      "display_end": 39.26,
+      "display_duration": 3.02
+    },
+    {
+      "beat_id": 12,
+      "narration": "Some found higher cosmetics spending among certain groups during recessions.",
+      "speech_start": 39.26,
+      "speech_end": 43.14,
+      "match_confidence": 0.9,
+      "display_start": 39.26,
+      "display_end": 44.22,
+      "display_duration": 4.96
+    },
+    {
+      "beat_id": 13,
+      "narration": "Others found lipstick wasn't a reliable economic signal.",
+      "speech_start": 44.22,
+      "speech_end": 47.26,
+      "match_confidence": 1.0,
+      "display_start": 44.22,
+      "display_end": 48.24,
+      "display_duration": 4.02
+    },
+    {
+      "beat_id": 14,
+      "narration": "It's a theory about consumer psychology.",
+      "speech_start": 48.24,
+      "speech_end": 50.2,
+      "match_confidence": 1.0,
+      "display_start": 48.24,
+      "display_end": 56.869,
+      "display_duration": 8.629
+    }
+  ]
+}

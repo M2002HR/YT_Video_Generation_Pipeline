@@ -1,0 +1,60 @@
+{
+  "provider": "gemini",
+  "job_id": "30bb8368-8854-4507-9e33-ad35c45cf439",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create image (provider-selected)",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create image (provider-selected)",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/19a0d83abb32141e",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=image-tool-enabled",
+      "artifact_source=download",
+      "image=30bb8368-8854-4507-9e33-ad35c45cf439_output_1.png 1536x2752 sha256=f3c014544f4425e0648dd671e0533fd3138b8930cdfb05666d61d149cec03738"
+    ]
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
+      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/023_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/023_video/references/world_keyframe.png",
+      "sha256": "2080a28197b8701893d48d3b67690cc87895ee92ffb9364c4a2144065c662821"
+    }
+  ],
+  "prompt_sha256": "64fe73de41f087a217f5a335c5c10b9085b78c39f8ffb80fab7edf879ed7dc7c",
+  "output_path": "assets/raw_beats/beat_001.png",
+  "output_sha256": "f3c014544f4425e0648dd671e0533fd3138b8930cdfb05666d61d149cec03738",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 69.583,
+  "completed_at": "2026-09-09T12:46:26Z"
+}

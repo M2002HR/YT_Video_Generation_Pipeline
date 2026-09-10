@@ -47,6 +47,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("flow_resolution", "Flow resolution", "select", default="720p", options=select([("720p", "720p"), ("360p", "360p draft")]), width="half"),
             _field("opening_a_seconds", "Clip A source seconds", "select", default="6", options=select([("4", "4s"), ("5", "5s"), ("6", "6s"), ("8", "8s")]), width="half"),
             _field("opening_b_seconds", "Clip B source seconds", "select", default="4", options=select([("3", "3s"), ("4", "4s"), ("6", "6s"), ("8", "8s")]), width="half"),
+            _field("opening_speed_tolerance", "Opening sync tolerance", "number", default=0.1, min=0, max=0.5, step=0.01, help="Max fraction a silent opening clip may be slowed to meet narration."),
         ]},
         {"id": "audio", "title": "Voice & music", "description": "Narration character and ordered music fallback.", "fields": [
             _field("voice", "Voice", required=True, default="Mark - Natural Conversations"),

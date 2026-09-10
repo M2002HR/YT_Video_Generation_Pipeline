@@ -1,0 +1,216 @@
+{
+  "schema_version": 2,
+  "video_id": "025",
+  "topic": "گربه شرودینگر",
+  "created_at": "2026-09-09T15:05:22Z",
+  "pipeline_state": "RUNNING",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T17:04:02Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T17:04:02Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T17:04:02Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T17:04:02Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T17:04:49Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "home interior",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "001",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T17:04:50Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T17:04:50Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-09T15:15:23Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T15:15:58Z",
+      "prompt_sha256": "73ce28b7faa1ef5c09f04e720e9273530750d4a9e523366a3003da08c92a9330"
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T15:17:23Z",
+      "prompt_sha256": "82395f1d3927563cc3ef9e4cfb4bda7e1d59db663a219654758a506dbf2a5bec"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T15:17:58Z",
+      "prompt_sha256": "5bae8601e9f70b3f4c7920ab5363d336e8eed71abaddd32c813d57d5b0cc4d99"
+    },
+    "body_images": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-09T15:18:00Z"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-09T17:04:46Z",
+      "reuse_of": "retro_1920s_animation_ink_001",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f",
+      "usage_count": 2
+    },
+    "world_keyframe": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-09T17:05:11Z"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 163.374,
+      "at": "2026-09-09T15:08:07Z",
+      "words": 97
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 92.127,
+      "at": "2026-09-09T15:09:42Z",
+      "words": 99
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 39.324,
+      "at": "2026-09-09T15:10:24Z",
+      "activity": "home maintenance"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 51.743,
+      "at": "2026-09-09T15:11:18Z",
+      "style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 0.014,
+      "at": "2026-09-09T15:11:21Z",
+      "reuse_of": "retro_1920s_animation_ink_001",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f",
+      "usage_count": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T15:11:23Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "home interior",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "001",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 103.62,
+      "at": "2026-09-09T15:13:09Z",
+      "beats": 7
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 63.41,
+      "at": "2026-09-09T15:14:15Z",
+      "prompt_sha256": "1eb5fe5d754c5ed7d8d88bc2d7e58eb44b24e95a752e75442d7aa15c87324744"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 63.286,
+      "at": "2026-09-09T15:15:21Z",
+      "sha256": "d61ece07dbf93e311bf34f57b9259302c4b49abbb6e9cb489236c781b13cb3c2",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 33.064,
+      "at": "2026-09-09T15:15:58Z",
+      "prompt_sha256": "73ce28b7faa1ef5c09f04e720e9273530750d4a9e523366a3003da08c92a9330"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 54.836,
+      "at": "2026-09-09T15:16:55Z",
+      "sha256": "b8f8091feb56e50dc15f1d889da115cd921377604f2cc9ef49b40d847d847759",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 24.311,
+      "at": "2026-09-09T15:17:23Z",
+      "prompt_sha256": "82395f1d3927563cc3ef9e4cfb4bda7e1d59db663a219654758a506dbf2a5bec"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 33.066,
+      "at": "2026-09-09T15:17:58Z",
+      "prompt_sha256": "5bae8601e9f70b3f4c7920ab5363d336e8eed71abaddd32c813d57d5b0cc4d99"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 167.263,
+      "at": "2026-09-09T15:20:48Z",
+      "sha256": "33b30fdea387834f08d886adc56a613b2e6f7298e2fa55af664db4f6c088fb8b",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 42.562,
+      "at": "2026-09-09T17:04:46Z",
+      "reuse_of": "retro_1920s_animation_ink_001",
+      "sha256": "3e9c33f8b345bbf7d85bb55e6333d34bf3ac82db2fe013bec3b48c468bed232f",
+      "usage_count": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-09T17:04:49Z",
+      "opening_activity": "home maintenance",
+      "opening_location": "home interior",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "001",
+      "world_style_id": "retro_1920s_animation_ink_001"
+    }
+  ],
+  "updated_at": "2026-09-09T17:05:11Z"
+}

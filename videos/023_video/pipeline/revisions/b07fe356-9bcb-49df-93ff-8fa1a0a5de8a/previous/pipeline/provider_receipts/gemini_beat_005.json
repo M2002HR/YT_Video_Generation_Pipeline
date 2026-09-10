@@ -1,0 +1,66 @@
+{
+  "provider": "gemini",
+  "job_id": "ae4cd6b0-9db2-429a-8dfc-d9d7298de0fc",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Create with Nano Banana 2.",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Create with Nano Banana 2.",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/92353d8f90183866",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=composer-attribution",
+      "artifact_source=download",
+      "image=ae4cd6b0-9db2-429a-8dfc-d9d7298de0fc_output_1.png 1536x2752 sha256=bd238d4a3997cf6a59882e3f18e9f6d952b6dc01d0436df8d2c995abd5089d21"
+    ]
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/question_harvest/visual_presets/001_home_world/character_sheet.png",
+      "sha256": "acf3fc99e94a86da50542e5cd8147cc8732508384bfe122ef4157cc3ca9f88c7"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/023_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/023_video/references/world_keyframe.png",
+      "sha256": "2080a28197b8701893d48d3b67690cc87895ee92ffb9364c4a2144065c662821"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/023_video/assets/raw_beats/beat_004.png",
+      "sha256": "e0e1ae9f7b66f9b31b39ca9913d193c1091442ea02488ce56347eacada11bac3"
+    }
+  ],
+  "prompt_sha256": "e516c42858279043f5229315bbb3628aedadc7d5b505a635577aae645fd791ff",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "bd238d4a3997cf6a59882e3f18e9f6d952b6dc01d0436df8d2c995abd5089d21",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.98,
+  "completed_at": "2026-09-09T08:50:32Z"
+}

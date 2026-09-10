@@ -1,0 +1,37 @@
+{
+  "fingerprint": "bba67b9ef2ca798a8223ade04b0d68ec8c4d858749bc5167b375930d5f34f336",
+  "sha256": "83e94bf40da3de0b97e5bb6f86e00b0cff8b9c1f6680a1a61b2c56fa339d6032",
+  "result": {
+    "job_id": "d06954ed-3d35-4cae-af16-04a7c32a7b86",
+    "status": "completed",
+    "answer": "Gemini generated image output in the current Chrome tab. Saved images: 1.",
+    "output_images": [
+      "storage/outputs/d06954ed-3d35-4cae-af16-04a7c32a7b86_output_1.png"
+    ],
+    "generation_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/0464421d64aff19c",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "style_reference"
+      ],
+      "notes": [
+        "model_label_source=mode-picker",
+        "artifact_source=download",
+        "image=d06954ed-3d35-4cae-af16-04a7c32a7b86_output_1.png 1536x2752 sha256=83e94bf40da3de0b97e5bb6f86e00b0cff8b9c1f6680a1a61b2c56fa339d6032"
+      ]
+    },
+    "elapsed_seconds": 54.122
+  }
+}

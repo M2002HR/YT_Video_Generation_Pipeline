@@ -386,10 +386,12 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <label>Clip A source <small>trimmed to the measured spark</small>
     <select name=opening_a_seconds><option value=4>4s</option><option value=5>5s</option>
      <option value=6 selected>6s</option><option value=8>8s</option></select></label>
-   <label>Clip B source <small>trimmed to the measured hinge</small>
-    <select name=opening_b_seconds><option value=3>3s</option><option value=4 selected>4s</option>
-     <option value=6>6s</option><option value=8>8s</option></select></label>
-  </div>
+    <label>Clip B source <small>trimmed to the measured hinge</small>
+     <select name=opening_b_seconds><option value=3>3s</option><option value=4 selected>4s</option>
+      <option value=6>6s</option><option value=8>8s</option></select></label>
+   </div>
+   <label>Opening sync tolerance <small>silent clip may slow up to this to meet narration</small>
+    <input name=opening_speed_tolerance type=number min=0 max=0.5 step=0.01 value=0.1></label>
   <small>Each Flow generation costs 7 credits.</small>
  </fieldset>
 
