@@ -13,6 +13,67 @@ def _field(name: str, label: str, kind: str = "text", **values: Any) -> dict[str
     return {"name": name, "label": label, "type": kind, **values}
 
 
+#: Curated subtitle families. Every entry must resolve through fontconfig on the render
+#: host AND have a file in SUBTITLE_FONT_FILES (video_control_panel.py) so the Studio
+#: preview renders the exact same face that libass will burn in. Starred families are
+#: the research-backed subtitle recommendations and sort first in the Studio picker.
+SUBTITLE_FONTS = (
+    "DejaVu Sans",
+    "DejaVu Serif",
+    "Liberation Sans",
+    "Liberation Serif",
+    "Liberation Sans Narrow",
+    "Nimbus Sans",
+    "Noto Sans Mono",
+)
+
+#: Research-backed subtitle faces (YouTube/Netflix defaults and editor favourites).
+#: Rendered first in the picker with a star; values stay plain family names.
+RECOMMENDED_SUBTITLE_FONTS = (
+    "Roboto",
+    "Open Sans",
+    "Lato",
+    "Montserrat",
+    "Poppins",
+    "Noto Sans",
+    "Source Sans 3",
+    "Rubik",
+    "Atkinson Hyperlegible",
+    "Bebas Neue",
+    "Oswald",
+    "Zilla Slab",
+    "Roboto Slab",
+    "Bitter",
+    "Titillium Web",
+    "Exo 2",
+    "Encode Sans",
+)
+
+#: All selectable families: recommended first, then the server-fallback faces.
+ALL_SUBTITLE_FONTS = RECOMMENDED_SUBTITLE_FONTS + tuple(
+    name for name in SUBTITLE_FONTS if name not in RECOMMENDED_SUBTITLE_FONTS
+)
+
+#: Vertical caption presets. Pixels are derived from the frame height by
+#: build_timeline.SUBTITLE_POSITION_FRACTIONS; the preview mirrors those fractions.
+#: ``custom`` additionally reads subtitle_offset_value/unit.
+SUBTITLE_POSITIONS = (
+    ("low", "Low — near the bottom edge"),
+    ("standard", "Standard — clears the app UI"),
+    ("high", "High — raised lower-third"),
+    ("custom", "Custom — offset from the bottom"),
+)
+
+#: Quick colour shortcuts shown beside the colour picker (pure frontend sugar).
+SUBTITLE_COLOUR_PRESETS = (
+    ("#FFFFFF", "White"),
+    ("#FFD700", "Gold"),
+    ("#FFFF00", "Yellow"),
+    ("#00E5FF", "Cyan"),
+    ("#000000", "Black"),
+)
+
+
 def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str, Any]:
     select = lambda values: [{"value": value, "label": label} for value, label in values]
     groups = [
@@ -32,6 +93,24 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("aspect_ratio", "Frame format", "select", default="9:16", options=select([("9:16", "9:16 — Shorts / Reels"), ("16:9", "16:9 — YouTube landscape")])),
             _field("show_subtitles", "Burn in subtitles", "toggle", default=False),
             _field("word_highlight", "Highlight the spoken word", "toggle", default=True, help="Used only when subtitles are enabled."),
+        ]},
+        {"id": "subtitles", "title": "Subtitle style", "description": "Burned-in caption look. Changes rebuild only the timeline and renders.", "fields": [
+            _field("subtitle_font", "Font", "select", default="Roboto", options=[
+                {"value": name, "label": name, "recommended": True}
+                for name in RECOMMENDED_SUBTITLE_FONTS
+            ] + [
+                {"value": name, "label": name} for name in SUBTITLE_FONTS
+            ], searchable=True, help="Highlighted faces are the research-backed subtitle picks."),
+            _field("subtitle_font_size", "Font size", "number", default=56, min=24, max=120, step=1, width="half"),
+            _field("subtitle_max_words", "Max words per caption", "number", default=6, min=1, max=12, step=1, width="half"),
+            _field("subtitle_bold", "Bold", "toggle", default=True),
+            _field("subtitle_italic", "Italic", "toggle", default=False),
+            _field("subtitle_position", "Position", "select", default="standard", options=select(list(SUBTITLE_POSITIONS))),
+            _field("subtitle_offset_value", "Custom offset", "number", default=10, min=0, max=800, step=0.5, width="half", help="Used only when Position is Custom.", requires={"field": "subtitle_position", "value": "custom"}),
+            _field("subtitle_offset_unit", "Offset unit", "select", default="percent", options=select([("percent", "Percent of height"), ("px", "Pixels")]), width="half", requires={"field": "subtitle_position", "value": "custom"}),
+            _field("subtitle_font_colour", "Text colour", "color", default="#FFFFFF", width="half", presets=list(SUBTITLE_COLOUR_PRESETS)),
+            _field("subtitle_outline_colour", "Outline colour", "color", default="#000000", width="half", presets=list(SUBTITLE_COLOUR_PRESETS)),
+            _field("subtitle_outline", "Outline width", "number", default=3, min=0, max=8, step=0.5, help="0 switches the outline off."),
         ]},
         {"id": "visual", "title": "Visual direction", "description": "Q Station character, style, image model and opening clips.", "projects": ["q_station"], "fields": [
             _field("character_mode", "Character", "select", default="auto", options=select([("auto", "Auto"), ("manual", "Manual character")])),

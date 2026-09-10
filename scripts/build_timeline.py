@@ -453,6 +453,41 @@ def build_cues_from_words(
     return cues
 
 
+def associate_subtitle_cues_with_beats(
+    cues: list[dict[str, Any]],
+    timeline_beats: list[dict[str, Any]],
+) -> None:
+    """Attach each caption to the media beat that owns most of its visible span.
+
+    Word-timed captions deliberately cover the whole narration, including the two
+    opening clips, so they cannot inherit a body ``beat_id`` while being created.
+    The timeline is available only afterwards.  Persisting this association makes
+    the Studio preview truthful and remains useful to other timeline consumers.
+    """
+    for cue in cues:
+        try:
+            cue_start, cue_end = float(cue["start"]), float(cue["end"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        midpoint = (cue_start + cue_end) / 2
+        candidates: list[tuple[float, float, dict[str, Any]]] = []
+        for beat in timeline_beats:
+            try:
+                beat_start, beat_end = float(beat["start"]), float(beat["end"])
+            except (KeyError, TypeError, ValueError):
+                continue
+            overlap = max(0.0, min(cue_end, beat_end) - max(cue_start, beat_start))
+            contains_midpoint = 1.0 if beat_start <= midpoint <= beat_end else 0.0
+            candidates.append((overlap, contains_midpoint, beat))
+        if not candidates:
+            continue
+        # A cue straddling a cut normally belongs to the beat where most of it is
+        # spoken.  At an exact tie, prefer the beat containing its midpoint.
+        _, _, owner = max(candidates, key=lambda item: (item[0], item[1]))
+        if owner.get("beat_id") is not None:
+            cue["beat_id"] = owner["beat_id"]
+
+
 def normalize_subtitle_cue_boundaries(
     cues: list[dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -526,6 +561,15 @@ def ass_colour(value: Any, default: str) -> str:
     return default
 
 
+def css_hex_to_ass(value: Any, default: str) -> str:
+    """Convert a panel ``#RRGGBB`` colour to an opaque ASS ``&HAABBGGRR`` literal."""
+    candidate = str(value or "").strip()
+    if re.fullmatch(r"#[0-9A-Fa-f]{6}", candidate):
+        red, green, blue = candidate[1:3], candidate[3:5], candidate[5:7]
+        return f"&H00{blue}{green}{red}".upper()
+    return ass_colour(value, default)
+
+
 def karaoke_ass_text(cue: dict[str, Any], subtitle_cfg: dict[str, Any]) -> str | None:
     """Build a libass karaoke line from real word timings.
 
@@ -597,16 +641,36 @@ def karaoke_ass_text(cue: dict[str, Any], subtitle_cfg: dict[str, Any]) -> str |
 PORTRAIT_BOTTOM_SAFE_FRACTION = 0.075
 LANDSCAPE_BOTTOM_SAFE_FRACTION = 0.08
 
+#: Panel position presets for burned-in subtitles, as fractions of the frame height.
+#: ``standard`` is None on purpose: it keeps the derived safe-area default above.
+#: The Studio preview mirrors these exact fractions (see SubtitlePreview).
+SUBTITLE_POSITION_FRACTIONS = {"low": 0.045, "standard": None, "high": 0.13}
+
 
 def subtitle_margin_v(subtitle_cfg: dict[str, Any], height: int) -> int:
     """Bottom margin in pixels, respecting an explicit value and the safe area otherwise.
 
     The inset balances the Shorts UI clearance against a natural lower-third caption
-    position.  An explicit profile value still wins for a channel-specific layout.
+    position.  An explicit profile value still wins for a channel-specific layout,
+    followed by the panel position preset (or a custom percent/pixel offset),
+    followed by the derived safe-area default.
     """
     configured = subtitle_cfg.get("margin_v")
     if configured is not None:
         return max(0, int(configured))
+    preset = str(subtitle_cfg.get("position", "standard") or "standard").strip().lower()
+    if preset == "custom":
+        try:
+            offset = float(subtitle_cfg.get("custom_offset_value", 10))
+        except (TypeError, ValueError):
+            offset = 10.0
+        unit = str(subtitle_cfg.get("custom_offset_unit", "percent") or "percent").strip().lower()
+        if unit == "px":
+            return max(0, min(int(round(offset)), int(round(height * 0.5))))
+        return max(0, min(int(round(height * offset / 100)), int(round(height * 0.4))))
+    fraction = SUBTITLE_POSITION_FRACTIONS.get(preset)
+    if fraction is not None:
+        return max(48, round(height * fraction))
     fraction = (
         PORTRAIT_BOTTOM_SAFE_FRACTION if height >= 1.2 * 1080 else LANDSCAPE_BOTTOM_SAFE_FRACTION
     )
@@ -624,16 +688,22 @@ def write_ass(
     font_name = str(subtitle_cfg.get("font_name", "DejaVu Sans"))
     font_size = int(subtitle_cfg.get("font_size", 56))
     bold = -1 if bool(subtitle_cfg.get("bold", True)) else 0
+    italic = -1 if bool(subtitle_cfg.get("italic", False)) else 0
+    font_colour = css_hex_to_ass(subtitle_cfg.get("font_colour"), "&H00FFFFFF")
+    custom_outline = css_hex_to_ass(subtitle_cfg.get("outline_colour"), "")
     margin_v = subtitle_margin_v(subtitle_cfg, height)
     outline = float(subtitle_cfg.get("outline", 3))
     shadow = float(subtitle_cfg.get("shadow", 0))
     highlight_cfg = subtitle_cfg.get("word_highlight")
     highlight_cfg = highlight_cfg if isinstance(highlight_cfg, dict) else {}
-    # Warm gold reads clearly against the white phrase without the visual noise of a
-    # glow or blur.  The dark outline retains contrast over both bright and dark footage.
+    # The panel's Text colour is the normal (not-yet-spoken) caption colour.  Karaoke
+    # uses SecondaryColour for those words, so leaving the historical hard-coded
+    # near-white here made a selected text colour appear to have been ignored whenever
+    # word highlighting was on.
     active_colour = ass_colour(highlight_cfg.get("active_colour"), "&H0000D7FF")
-    inactive_colour = ass_colour(highlight_cfg.get("inactive_colour"), "&H00F5F5F5")
-    outline_colour = ass_colour(highlight_cfg.get("outline_colour"), "&H00130D09")
+    inactive_colour = font_colour
+    outline_colour = custom_outline or "&H00130D09"
+    default_outline_colour = custom_outline or "&H00000000"
 
     lines = [
         "[Script Info]",
@@ -650,12 +720,12 @@ def write_ass(
         "Alignment, MarginL, MarginR, MarginV, Encoding",
         "Style: Default,"
         f"{font_name},{font_size},"
-        "&H00FFFFFF,&H000000FF,&H00000000,&H80000000,"
-        f"{bold},0,0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
+        f"{font_colour},&H000000FF,{default_outline_colour},&H80000000,"
+        f"{bold},{italic},0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
         "Style: Karaoke,"
         f"{font_name},{font_size},"
         f"{active_colour},{inactive_colour},{outline_colour},&H80000000,"
-        f"{bold},0,0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
+        f"{bold},{italic},0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
@@ -905,6 +975,7 @@ def main() -> None:
         else build_subtitle_cues(beats, subtitle_cfg, word_timings)
     )
     cues, subtitle_adjustments = normalize_subtitle_cue_boundaries(cues)
+    associate_subtitle_cues_with_beats(cues, timeline_beats)
     proportional_cues = [
         index for index, cue in enumerate(cues) if cue.get("timing_source") != "word"
     ]

@@ -255,7 +255,13 @@ def test_reconciler_completes_and_clears_a_successful_revision(
     jobs = tmp_path / "control_panel/jobs"; jobs.mkdir(parents=True)
     revision_id = "aaaaaaaa-bbbb-cccc-dddd-111111111111"
     pending = {"revision_id": revision_id, "status": "RUNNING", "roots": ["background_music"]}
-    record = _record(status="RUNNING", pid=999_999_999, exit_code=0, pending_revision=pending)
+    record = _record(
+        status="RUNNING",
+        pid=999_999_999,
+        exit_code=0,
+        pending_revision=pending,
+        last_config_revision={**pending, "config_revision_id": "config-input-id"},
+    )
     record_path = jobs / f"{record['job_id']}.json"
     record_path.write_text(json.dumps(record), encoding="utf-8")
     (jobs / f"{record['job_id']}.log").write_text("FULL QH PIPELINE: PASS\n", encoding="utf-8")
@@ -277,6 +283,8 @@ def test_reconciler_completes_and_clears_a_successful_revision(
     assert saved["status"] == "DONE"
     assert "pending_revision" not in saved
     assert json.loads(revision_path.read_text())["status"] == "DONE"
+    assert saved["last_config_revision"]["status"] == "DONE"
+    assert saved["last_config_revision"]["completed_at"] == saved["completed_at"]
 
 
 class _Handler(panel.Handler):

@@ -6,7 +6,12 @@ import {
   dependentNodeIds,
   formatBytes,
   label,
+  previewCaptionLines,
+  previewCuesFromWords,
   statusClass,
+  subtitleMarginPx,
+  SUBTITLE_FONT_SUPPORTS_PERSIAN,
+  SUBTITLE_POSITION_OFFSETS,
   validateLaunchValues,
 } from "./studio-utils.js";
 
@@ -80,4 +85,54 @@ test("launch validation catches cross-field constraints", () => {
     () => validateLaunchValues({ ...valid, character_mode: "manual", character_id: "" }),
     /manual character/,
   );
+});
+
+test("subtitle preview wraps the first caption like the ASS writer", () => {
+  assert.deepEqual(
+    previewCaptionLines("This a subtitle preview for test, thank you for attention", 6),
+    ["This a subtitle preview for test,"],
+  );
+  assert.deepEqual(previewCaptionLines("one two three four five", 3), [
+    "one two three",
+  ]);
+  const long = previewCaptionLines(
+    "alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu",
+    12,
+  );
+  assert.ok(long.length <= 2);
+  assert.equal(long.join(" ").split(" ").length, 12);
+  assert.deepEqual(Object.keys(SUBTITLE_POSITION_OFFSETS).sort(), [
+    "high",
+    "low",
+    "standard",
+  ]);
+});
+
+test("subtitle revision preview re-chunks measured words before render", () => {
+  const cues = previewCuesFromWords([
+    { text: "One", start: 0, end: 0.2 },
+    { text: "two", start: 0.2, end: 0.4 },
+    { text: "three", start: 0.4, end: 0.6 },
+    { text: "four.", start: 0.6, end: 0.8 },
+    { text: "Five", start: 1, end: 1.2 },
+  ], 2);
+  assert.deepEqual(cues.map((cue) => cue.text), ["One two", "three four.", "Five"]);
+  assert.deepEqual(cues[1].lines, ["three four."]);
+  assert.equal(cues[1].start, 0.4);
+  assert.equal(cues[1].end, 0.8);
+});
+
+test("subtitle custom offsets mirror the ASS margin math", () => {
+  assert.equal(subtitleMarginPx("standard", 0, "percent"), 144);
+  assert.equal(subtitleMarginPx("low", 0, "percent"), 86);
+  assert.equal(subtitleMarginPx("custom", 10, "percent"), 192);
+  assert.equal(subtitleMarginPx("custom", 200, "px"), 200);
+  assert.equal(subtitleMarginPx("custom", 99, "percent"), 768);
+  assert.equal(subtitleMarginPx("custom", -5, "percent"), 0);
+});
+
+test("subtitle font coverage makes Persian fallback explicit", () => {
+  assert.equal(SUBTITLE_FONT_SUPPORTS_PERSIAN.has("Rubik"), true);
+  assert.equal(SUBTITLE_FONT_SUPPORTS_PERSIAN.has("DejaVu Sans"), true);
+  assert.equal(SUBTITLE_FONT_SUPPORTS_PERSIAN.has("Oswald"), false);
 });

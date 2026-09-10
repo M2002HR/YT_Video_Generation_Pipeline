@@ -17,7 +17,13 @@ import {
   formatDate,
   label,
   dependentNodeIds,
+  previewCaptionLines,
+  previewCuesFromWords,
   statusClass,
+  subtitleMarginPx,
+  SUBTITLE_FONT_SLUGS,
+  SUBTITLE_FONT_SUPPORTS_PERSIAN,
+  SUBTITLE_PREVIEW_TEXT,
   validateLaunchValues,
 } from "./studio-utils.js";
 
@@ -147,8 +153,260 @@ function useWebSocketUpdates({ jobId, onChange, notify, enabled = true, onStatus
   }, [jobId, enabled]);
 }
 
-function ConnectionStatus({ status, autoUpdate, onToggle, onRefresh }) {
-  const text =
+let subtitleFontsInjected = false;
+function ensureSubtitleFonts() {
+  if (subtitleFontsInjected) return;
+  subtitleFontsInjected = true;
+  const css = Object.entries(SUBTITLE_FONT_SLUGS)
+    .map(
+      ([family, slug]) =>
+        `@font-face{font-family:"${family}";src:url("/api/fonts/${slug}");font-display:swap;}`,
+    )
+    .join("\n");
+  const el = document.createElement("style");
+  el.textContent = css;
+  document.head.appendChild(el);
+}
+
+function useSubtitleFont(font) {
+  const [status, setStatus] = useState("loading");
+  useEffect(() => {
+    const family = SUBTITLE_FONT_SLUGS[font] != null ? font : "DejaVu Sans";
+    let cancelled = false;
+    try {
+      ensureSubtitleFonts();
+      if (!document.fonts) {
+        setStatus("ready");
+        return undefined;
+      }
+      setStatus("loading");
+      document.fonts
+        .load(`700 20px "${family}"`, SUBTITLE_PREVIEW_TEXT)
+        .then((faces) => {
+          if (!cancelled) setStatus(faces.length ? "ready" : "fallback");
+        })
+        .catch(() => !cancelled && setStatus("fallback"));
+    } catch {
+      setStatus("fallback");
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [font]);
+  return status;
+}
+
+function SubtitleFontSpecimen({ values }) {
+  const font = SUBTITLE_FONT_SLUGS[values.subtitle_font] != null
+    ? values.subtitle_font
+    : "DejaVu Sans";
+  return (
+    <div
+      className="subtitle-font-specimen"
+      style={{
+        fontFamily: `"${font}", sans-serif`,
+        fontWeight: values.subtitle_bold === false ? 400 : 700,
+        fontStyle: values.subtitle_italic ? "italic" : "normal",
+      }}
+    >
+      <span>Ag</span>
+      <small>{font}</small>
+    </div>
+  );
+}
+
+// Live caption preview on a fixed 270x480 frame (480/1920 of the ASS PlayRes
+// height, so sizes and bottom offsets match the burn-in math). Backdrops are
+// tried in order: the run's own keyframe, the selected style anchor, gradient.
+function SubtitlePreview({ values, backdrops, backdropLabel, note = "" }) {
+  const fontStatus = useSubtitleFont(values.subtitle_font);
+  const keys = (backdrops || []).filter(Boolean).join("|");
+  const [bgIndex, setBgIndex] = useState(0);
+  useEffect(() => {
+    setBgIndex(0);
+  }, [keys]);
+  const list = (backdrops || []).filter(Boolean);
+  const src = bgIndex < list.length ? list[bgIndex] : null;
+  const maxWords = Math.min(12, Math.max(1, Number(values.subtitle_max_words) || 6));
+  const lines = previewCaptionLines(SUBTITLE_PREVIEW_TEXT, maxWords);
+  return (
+    <div className="subtitle-preview">
+      <div className="subtitle-preview-frame">
+        {src ? (
+          <img
+            src={src}
+            alt={backdropLabel || "Subtitle preview backdrop"}
+            onError={() => setBgIndex((index) => index + 1)}
+          />
+        ) : (
+          <div className="subtitle-preview-fallback" />
+        )}
+        <CaptionOverlay
+          values={values}
+          lines={lines}
+          highlightFirst={Boolean(values.word_highlight)}
+        />
+      </div>
+      <SubtitleFontSpecimen values={values} />
+      <small>
+        {backdropLabel || "Sample backdrop"} · first {maxWords}-word caption ·{" "}
+        {SUBTITLE_FONT_SLUGS[values.subtitle_font] != null
+          ? values.subtitle_font
+          : "DejaVu Sans"}{" "}
+        {Math.min(120, Math.max(24, Number(values.subtitle_font_size) || 56))}px
+        {values.subtitle_position ? ` · ${values.subtitle_position}` : ""}
+        {fontStatus === "loading" ? " · loading font…" : ""}
+        {fontStatus === "fallback" ? " · font unavailable; using fallback" : ""}
+        {note ? ` · ${note}` : ""}
+      </small>
+    </div>
+  );
+}
+
+// Cue-by-cue browser for revisions.  Each item is an actual timeline cue, on its
+// owning media beat, rather than a narration excerpt rewrapped in the browser.
+function SubtitleCuePreview({ values, cues }) {
+  const [index, setIndex] = useState(0);
+  const [mediaFailed, setMediaFailed] = useState(false);
+  const fontStatus = useSubtitleFont(values.subtitle_font);
+  const safe = cues.length ? Math.min(index, cues.length - 1) : 0;
+  const cue = cues.length ? cues[safe] : null;
+  const mediaKey = cue ? `${cue.kind}:${cue.src}:${cue.start}` : "none";
+  useEffect(() => {
+    setIndex(0);
+  }, [cues.length]);
+  useEffect(() => {
+    setMediaFailed(false);
+  }, [mediaKey]);
+  if (!cue) return null;
+  const beatLabel = /^video_opening_(.+)$/.exec(String(cue.beat_id || ""))
+    ? `Opening · ${RegExp.$1.toUpperCase()}`
+    : `Beat ${cue.beat_id}`;
+  return (
+    <div className="subtitle-preview">
+      <div className="subtitle-preview-frame">
+        {!mediaFailed && cue.kind === "video" && (
+          <video
+            key={mediaKey}
+            src={`${cue.src}#t=${Math.max(0, cue.mediaStart || 0).toFixed(2)}`}
+            muted
+            playsInline
+            preload="metadata"
+            onLoadedMetadata={(event) => {
+              event.currentTarget.currentTime = Math.max(0, cue.mediaStart || 0);
+            }}
+            onError={() => setMediaFailed(true)}
+          />
+        )}
+        {!mediaFailed && cue.kind !== "video" && (
+          <img
+            key={mediaKey}
+            src={cue.src}
+            alt={`${beatLabel} backdrop`}
+            onError={() => setMediaFailed(true)}
+          />
+        )}
+        {mediaFailed && <div className="subtitle-preview-fallback" />}
+        <CaptionOverlay
+          values={values}
+          lines={cue.lines.length ? cue.lines : ["…"]}
+          highlightFirst={Boolean(values.word_highlight)}
+        />
+      </div>
+      <SubtitleFontSpecimen values={values} />
+      <div className="beat-nav">
+        <button
+          type="button"
+          disabled={safe <= 0}
+          onClick={() => setIndex(safe - 1)}
+          aria-label="Previous beat"
+        >
+          ←
+        </button>
+        <small>
+          {beatLabel} · caption {safe + 1}/{cues.length}
+        </small>
+        <button
+          type="button"
+          disabled={safe >= cues.length - 1}
+          onClick={() => setIndex(safe + 1)}
+          aria-label="Next beat"
+        >
+          →
+        </button>
+      </div>
+      <small>
+        Caption projected from the recorded word timings in the current style —
+        the first word represents the active karaoke word.
+        {fontStatus === "loading" ? " Loading font…" : ""}
+        {fontStatus === "fallback" ? " Font unavailable; using fallback." : ""}
+      </small>
+    </div>
+  );
+}
+
+// Caption overlay shared by the static preview and the beat browser. Geometry
+// mirrors build_timeline on a 270x480 frame (480/1920 of the ASS PlayRes).
+function CaptionOverlay({ values, lines, highlightFirst = false }) {
+  const font =
+    SUBTITLE_FONT_SLUGS[values.subtitle_font] != null
+      ? values.subtitle_font
+      : "DejaVu Sans";
+  const size = Math.min(120, Math.max(24, Number(values.subtitle_font_size) || 56));
+  const margin = subtitleMarginPx(
+    values.subtitle_position,
+    values.subtitle_offset_value,
+    values.subtitle_offset_unit,
+  );
+  const colour = /^#[0-9a-fA-F]{6}$/.test(values.subtitle_font_colour || "")
+    ? values.subtitle_font_colour
+    : "#FFFFFF";
+  const outlineColour = /^#[0-9a-fA-F]{6}$/.test(values.subtitle_outline_colour || "")
+    ? values.subtitle_outline_colour
+    : "#000000";
+  const outline = Math.min(8, Math.max(0, Number(values.subtitle_outline) ?? 3));
+  const outlinePx = outline > 0 ? Math.max(0.25, outline * 0.25) : 0;
+  return (
+    <div
+      className="subtitle-preview-caption"
+      style={{
+        bottom: `${Math.round(margin * 0.25)}px`,
+        fontFamily: `"${font}", sans-serif`,
+        fontSize: `${Math.round(size * 0.25)}px`,
+        fontWeight: values.subtitle_bold === false ? 400 : 700,
+        fontStyle: values.subtitle_italic ? "italic" : "normal",
+        color: colour,
+        WebkitTextStroke: outlinePx ? `${outlinePx}px ${outlineColour}` : "0 transparent",
+        paintOrder: "stroke fill",
+        textShadow: "none",
+      }}
+    >
+      {lines.map((line, index) => (
+        <span key={index}>
+          {line.split(" ").map((word, wordIndex, words) => (
+            <span
+              key={wordIndex}
+              className={
+                highlightFirst && index === 0 && wordIndex === 0 ? "active-word" : ""
+              }
+              style={
+                highlightFirst && index === 0 && wordIndex === 0
+                  ? { color: "#FFD700" }
+                  : undefined
+              }
+            >
+              {word}
+              {wordIndex < words.length - 1 ? " " : ""}
+            </span>
+          ))}
+          {index < lines.length - 1 && <br />}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ConnectionStatus({ status, autoUpdate, onToggle, onRefresh }) {  const text =
     !autoUpdate || status === "off"
       ? "Paused"
       : status === "live"
@@ -267,8 +525,160 @@ function ProviderHealth({ health }) {
   );
 }
 
-function Field({ field, value, onChange }) {
+function SearchableSelect({ field, value, onChange, disabled = false }) {
   const id = `field-${field.name}`;
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const options = field.options || [];
+  const selected = options.find((option) => option.value === value);
+  const needle = query.trim().toLowerCase();
+  const filtered = needle
+    ? options.filter((option) =>
+        `${option.label} ${option.value}`.toLowerCase().includes(needle),
+      )
+    : options;
+  const pick = (option) => {
+    if (!option) return;
+    onChange(field.name, option.value);
+    setQuery("");
+    setOpen(false);
+    setActive(0);
+  };
+  return (
+    <label
+      className={`field ${field.width === "half" ? "half" : ""} ${field.advanced ? "advanced-field" : ""} ${disabled ? "field-off" : ""}`}
+      htmlFor={id}
+    >
+      <span>
+        {field.label}
+        {field.required && <i>required</i>}
+      </span>
+      <div className="search-select">
+        <input
+          id={id}
+          value={open ? query : selected?.label || ""}
+          placeholder="Type to search…"
+          disabled={disabled}
+          autoComplete="off"
+          onFocus={() => {
+            setQuery("");
+            setActive(0);
+            setOpen(true);
+          }}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setActive(0);
+            setOpen(true);
+          }}
+          onBlur={() => setTimeout(() => setOpen(false), 200)}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowDown") {
+              event.preventDefault();
+              setOpen(true);
+              setActive((index) => Math.min(index + 1, Math.max(0, filtered.length - 1)));
+            } else if (event.key === "ArrowUp") {
+              event.preventDefault();
+              setActive((index) => Math.max(index - 1, 0));
+            } else if (event.key === "Enter") {
+              if (open && filtered.length) {
+                event.preventDefault();
+                pick(filtered[Math.min(active, filtered.length - 1)]);
+              }
+            } else if (event.key === "Escape") {
+              setQuery("");
+              setOpen(false);
+            }
+          }}
+        />
+        {open && (
+          <div className="search-options" role="listbox">
+            <span className="search-count">
+              {filtered.length}/{options.length} shown — ↑↓ to move, Enter to pick
+            </span>
+            {filtered.map((option, index) => (
+              <button
+                type="button"
+                key={option.value}
+                className={`${option.value === value ? "selected" : ""} ${index === active ? "active" : ""} ${option.recommended ? "recommended" : ""}`}
+                onMouseDown={(event) => event.preventDefault()}
+                onMouseEnter={() => setActive(index)}
+                onClick={() => pick(option)}
+              >
+                <i>{option.value === value ? "✓" : ""}</i>
+                {option.label}
+                {field.name === "subtitle_font" && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
+                  ? " · Latin only"
+                  : ""}
+              </button>
+            ))}
+            {!filtered.length && (
+              <span className="no-match">No matches — clear the search.</span>
+            )}
+          </div>
+        )}
+      </div>
+      {field.help && <small>{field.help}</small>}
+    </label>
+  );
+}
+
+function ColourField({ field, value, onChange, gated = false }) {
+  const id = `field-${field.name}`;
+  const safe = /^#[0-9a-fA-F]{6}$/.test(value || "") ? value : "#FFFFFF";
+  return (
+    <label
+      className={`field ${field.width === "half" ? "half" : ""} ${field.advanced ? "advanced-field" : ""} ${gated ? "field-off" : ""}`}
+      htmlFor={id}
+    >
+      <span>
+        {field.label}
+        {field.required && <i>required</i>}
+      </span>
+      <div className="color-row">
+        <input
+          id={id}
+          type="color"
+          value={safe}
+          disabled={gated || undefined}
+          onChange={(event) => onChange(field.name, event.target.value.toUpperCase())}
+        />
+        <input
+          type="text"
+          value={value ?? ""}
+          maxLength={7}
+          spellCheck={false}
+          disabled={gated || undefined}
+          onChange={(event) => onChange(field.name, event.target.value)}
+          aria-label={`${field.label} hex value`}
+        />
+      </div>
+      {(field.presets || []).length > 0 && (
+        <div className="color-swatches">
+          {(field.presets || []).map(([hex, name]) => (
+            <button
+              type="button"
+              key={hex}
+              className="swatch"
+              style={{ background: hex }}
+              title={name || hex}
+              aria-label={`Use ${name || hex}`}
+              disabled={gated || undefined}
+              onClick={() => onChange(field.name, String(hex).toUpperCase())}
+            />
+          ))}
+        </div>
+      )}
+      {field.help && <small>{field.help}</small>}
+    </label>
+  );
+}
+
+function Field({ field, value, onChange, allValues = {} }) {
+  const id = `field-${field.name}`;
+  const gated =
+    Boolean(field.requires) &&
+    (allValues == null || allValues[field.requires.field] !== field.requires.value);
   const common = {
     id,
     name: field.name,
@@ -279,6 +689,7 @@ function Field({ field, value, onChange }) {
     step: field.step ?? undefined,
     maxLength: field.maxLength,
     placeholder: field.placeholder,
+    disabled: gated || undefined,
     onChange: (e) => onChange(field.name, e.target.value),
   };
   if (field.type === "toggle")
@@ -306,6 +717,19 @@ function Field({ field, value, onChange }) {
         <span>{field.label}</span>
         <input id={id} value={field.default || ""} disabled />
       </label>
+    );
+  if (field.type === "color")
+    return <ColourField field={field} value={value} onChange={onChange} gated={gated} />;
+  if (field.type === "select" && field.searchable)
+    return (
+      <>
+        <SearchableSelect field={field} value={value} onChange={onChange} disabled={gated} />
+        {field.name === "subtitle_font" && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
+          <small className="font-language-warning">
+            This face is Latin-only. Persian/Arabic captions will fall back to DejaVu Sans; use Rubik or DejaVu Sans for a deliberate Persian look.
+          </small>
+        )}
+      </>
     );
   if (field.type === "priority") {
     const selected = Array.isArray(value) ? value : [];
@@ -379,7 +803,7 @@ function Field({ field, value, onChange }) {
   }
   return (
     <label
-      className={`field ${field.width === "half" ? "half" : ""} ${field.advanced ? "advanced-field" : ""}`}
+      className={`field ${field.width === "half" ? "half" : ""} ${field.advanced ? "advanced-field" : ""} ${gated ? "field-off" : ""}`}
       htmlFor={id}
     >
       <span>
@@ -468,7 +892,7 @@ function StyleLibrary({ styles, loading, values, change }) {
   );
 }
 
-function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [] }) {
+function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1 }) {
   const [advanced, setAdvanced] = useState(false);
   const advancedCount = group.fields.filter((field) => field.advanced).length;
   return (
@@ -488,6 +912,26 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
       {open && (
         <div className="field-grid">
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
+          {group.id === "subtitles" && subtitleBeats?.length > 0 && (
+            <SubtitleCuePreview values={values} cues={subtitleBeats} />
+          )}
+          {group.id === "subtitles" && (
+            <small className="timeline-info">
+              {timelineBeats < 0
+                ? "timeline: loading…"
+                : timelineBeats === 0
+                  ? "timeline: not built yet for this run"
+                  : `timeline: ${timelineBeats} beats · ${subtitleBeats?.length || 0} previewable`}
+            </small>
+          )}
+          {group.id === "subtitles" && !(subtitleBeats?.length > 0) && (
+            <SubtitlePreview
+              values={values}
+              backdrops={subtitleBackdrops}
+              backdropLabel={subtitleBackdropLabel}
+              note={subtitleNote}
+            />
+          )}
           {group.fields
             .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy"].includes(field.name))
             .filter((field) => advanced || !field.advanced)
@@ -503,6 +947,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
                 } : field}
                 value={values[field.name]}
                 onChange={change}
+                allValues={values}
               />
             ))}
           {advancedCount > 0 && (
@@ -557,6 +1002,12 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
     (group) =>
       !group.projects || group.projects.includes(values.content_project),
   );
+  const styleAnchorFor = (styleId) =>
+    styles.find((item) => item.style_id === styleId)?.anchor_url || "";
+  const subtitleBackdrops = [
+    styleAnchorFor(values.world_style_id),
+    ...styles.map((item) => item.anchor_url),
+  ].filter((url, index, all) => url && all.indexOf(url) === index);
   const enabled = applicableGroups
     .flatMap((group) => group.fields)
     .filter((field) => field.type !== "readonly").length;
@@ -621,24 +1072,30 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
         </div>
       </div>
       {applicableGroups.map((group) => (
-        <SettingsGroup
-          key={group.id}
-          group={group}
-          values={values}
-          change={change}
-          styles={styles}
-          stylesLoading={stylesLoading}
-          characters={characters}
-          open={openGroups.has(group.id)}
-          toggle={() =>
-            setOpenGroups((current) => {
-              const next = new Set(current);
-              if (next.has(group.id)) next.delete(group.id);
-              else next.add(group.id);
-              return next;
-            })
-          }
-        />
+          <SettingsGroup
+            key={group.id}
+            group={group}
+            values={values}
+            change={change}
+            styles={styles}
+            stylesLoading={stylesLoading}
+            characters={characters}
+            open={openGroups.has(group.id)}
+            toggle={() =>
+              setOpenGroups((current) => {
+                const next = new Set(current);
+                if (next.has(group.id)) next.delete(group.id);
+                else next.add(group.id);
+                return next;
+              })
+            }
+            subtitleBackdrops={subtitleBackdrops}
+            subtitleBackdropLabel={
+              values.world_style_id
+                ? "Style anchor backdrop"
+                : "Sample style backdrop"
+            }
+          />
       ))}
       {error && (
         <div className="inline-error" role="alert">
@@ -1299,6 +1756,8 @@ function ConfigModal({ run, close, done }) {
     [plan, setPlan] = useState(null),
     [styles, setStyles] = useState([]),
     [stylesLoading, setStylesLoading] = useState(false),
+    [timeline, setTimeline] = useState(null),
+    [timelineTried, setTimelineTried] = useState(false),
     [openGroups, setOpenGroups] = useState(new Set(["visual"])),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
@@ -1323,6 +1782,79 @@ function ConfigModal({ run, close, done }) {
       .finally(() => !cancelled && setStylesLoading(false));
     return () => { cancelled = true; };
   }, [values?.content_project]);
+  useEffect(() => {
+    let cancelled = false;
+    setTimeline(null);
+    setTimelineTried(false);
+    const loadTimeline = (retry) =>
+      request(`/api/run/${run.job.job_id}/timeline`)
+        .then((data) => {
+          if (cancelled) return;
+          const parsed = data && typeof data === "object" ? data.timeline : null;
+          setTimeline(parsed && typeof parsed === "object" ? parsed : null);
+          setTimelineTried(true);
+        })
+        .catch(() => {
+          if (cancelled) return;
+          if (retry) setTimeout(() => !cancelled && loadTimeline(false), 2500);
+          else {
+            setTimeline(null);
+            setTimelineTried(true);
+          }
+        });
+    loadTimeline(true);
+    return () => {
+      cancelled = true;
+    };
+  }, [run.job.job_id]);
+  const subtitleBeats = useMemo(() => {
+    const beats = timeline?.beats;
+    if (!Array.isArray(beats) || !beats.length) return [];
+    const cues = Array.isArray(timeline?.subtitles) ? timeline.subtitles : [];
+    const recordedWords = cues.flatMap((cue) => Array.isArray(cue?.words) ? cue.words : []);
+    const projectedCues = recordedWords.length
+      ? previewCuesFromWords(recordedWords, values?.subtitle_max_words)
+      : cues;
+    const base = `/api/run/${run.job.job_id}/artifact`;
+    const beatById = new Map(beats.filter(Boolean).map((beat) => [String(beat.beat_id), beat]));
+    const ownerFor = (cue) => {
+      const direct = beatById.get(String(cue?.beat_id));
+      if (direct) return direct;
+      const start = Number(cue?.start);
+      const end = Number(cue?.end);
+      if (!Number.isFinite(start) || !Number.isFinite(end)) return null;
+      const midpoint = (start + end) / 2;
+      return beats.reduce((best, beat) => {
+        if (!beat) return best;
+        const beatStart = Number(beat.start) || 0;
+        const beatEnd = Number(beat.end) || beatStart;
+        const overlap = Math.max(0, Math.min(end, beatEnd) - Math.max(start, beatStart));
+        const contains = midpoint >= beatStart && midpoint <= beatEnd ? 1 : 0;
+        const distance = midpoint < beatStart ? beatStart - midpoint : midpoint > beatEnd ? midpoint - beatEnd : 0;
+        const candidate = { beat, overlap, contains, distance };
+        if (!best) return candidate;
+        if (candidate.overlap !== best.overlap) return candidate.overlap > best.overlap ? candidate : best;
+        if (candidate.contains !== best.contains) return candidate.contains > best.contains ? candidate : best;
+        return candidate.distance < best.distance ? candidate : best;
+      }, null)?.beat || null;
+    };
+    return projectedCues
+      .filter((cue) => cue && (cue.ass_text || cue.text))
+      .map((cue) => {
+        const beat = ownerFor(cue);
+        if (!beat || !(beat.image || beat.source)) return null;
+        const raw = String(cue.ass_text || cue.text).replace(/\\N/g, "\n");
+        return {
+          beat_id: beat.beat_id,
+          kind: beat.media_type === "video" ? "video" : "image",
+          src: `${base}/${beat.image || beat.source}`,
+          mediaStart: Math.max(0, (Number(cue.start) || 0) - (Number(beat.start) || 0)),
+          start: Number(cue.start) || 0,
+          lines: raw.split("\n").filter(Boolean),
+        };
+      })
+      .filter(Boolean);
+  }, [timeline, values?.subtitle_max_words, run.job.job_id]);
   useEffect(() => {
     if (!values) return;
     let cancelled = false;
@@ -1425,6 +1957,24 @@ function ConfigModal({ run, close, done }) {
                     next.has(group.id) ? next.delete(group.id) : next.add(group.id);
                     return next;
                   })}
+                  subtitleBackdrops={[
+                    `/api/run/${run.job.job_id}/artifact/references/world_keyframe.png`,
+                    ...styles.map((item) => item.anchor_url),
+                  ].filter((url, index, all) => url && all.indexOf(url) === index)}
+                  subtitleBackdropLabel="This run's world keyframe"
+                  subtitleBeats={subtitleBeats}
+                  timelineBeats={
+                    timelineTried
+                      ? Array.isArray(timeline?.beats)
+                        ? timeline.beats.length
+                        : 0
+                      : -1
+                  }
+                  subtitleNote={
+                    timelineTried && !subtitleBeats.length
+                      ? "static sample — this run has no timeline yet"
+                      : ""
+                  }
                 />
               ))}
           </div>

@@ -25,6 +25,7 @@ from build_timeline import (
     build_cues_from_words,
     build_subtitle_cues,
     caption_token,
+    associate_subtitle_cues_with_beats,
     load_word_timings,
     normalize_subtitle_cue_boundaries,
     subtitle_margin_v,
@@ -158,6 +159,20 @@ def test_overlapping_whole_narration_word_cues_do_not_require_beat_ids() -> None
     }]
 
 
+def test_whole_narration_word_cues_are_associated_with_their_media_beat() -> None:
+    cues = [
+        {"start": 0.2, "end": 1.1, "text": "opening"},
+        {"start": 2.8, "end": 4.2, "text": "body"},
+        # This cue straddles a cut; most of its spoken duration is in beat 2.
+        {"start": 1.7, "end": 3.1, "text": "boundary"},
+    ]
+    associate_subtitle_cues_with_beats(cues, [
+        {"beat_id": "video_opening_a", "start": 0.0, "end": 2.0},
+        {"beat_id": 1, "start": 2.0, "end": 5.0},
+    ])
+    assert [cue["beat_id"] for cue in cues] == ["video_opening_a", 1, 1]
+
+
 def test_the_bottom_margin_clears_the_shorts_ui_band() -> None:
     assert subtitle_margin_v({}, 1920) == round(1920 * PORTRAIT_BOTTOM_SAFE_FRACTION)
     assert subtitle_margin_v({}, 1080) == round(1080 * LANDSCAPE_BOTTOM_SAFE_FRACTION)
@@ -231,3 +246,102 @@ def test_libass_accepts_the_generated_file(tmp_path: Path) -> None:
     )
     assert result.returncode == 0, result.stderr
     assert output.stat().st_size > 0
+
+
+def test_position_presets_move_the_margin_without_touching_explicit_values() -> None:
+    from build_timeline import SUBTITLE_POSITION_FRACTIONS
+
+    assert SUBTITLE_POSITION_FRACTIONS["low"] == 0.045
+    assert SUBTITLE_POSITION_FRACTIONS["standard"] is None
+    assert SUBTITLE_POSITION_FRACTIONS["high"] == 0.13
+    assert subtitle_margin_v({"position": "low"}, 1920) == round(1920 * 0.045)
+    assert subtitle_margin_v({"position": "high"}, 1920) == round(1920 * 0.13)
+    assert subtitle_margin_v({"position": "standard"}, 1920) == subtitle_margin_v({}, 1920)
+    assert subtitle_margin_v({"position": "low", "margin_v": 10}, 1920) == 10
+
+
+def test_italic_and_panel_style_land_in_the_ass(tmp_path: Path) -> None:
+    words = _words(NARRATION)
+    cues = build_subtitle_cues([_beat(NARRATION, words)], SUBTITLE_CFG, words)
+    cfg = {
+        **SUBTITLE_CFG,
+        "font_name": "Liberation Serif",
+        "font_size": 64,
+        "bold": False,
+        "italic": True,
+        "position": "high",
+        "max_words_per_cue": 4,
+    }
+    path = tmp_path / "STYLED.ass"
+    write_ass(path, width=1080, height=1920, subtitle_cfg=cfg, cues=cues)
+
+    text = path.read_text(encoding="utf-8")
+    style = next(line for line in text.splitlines() if line.startswith("Style: Default,"))
+    parts = style.split(",")
+    assert parts[1] == "Liberation Serif"
+    assert parts[2] == "64"
+    assert parts[7] == "0", "bold off must clear the Bold flag"
+    assert parts[8] == "-1", "italic on must set the Italic flag"
+    assert parts[-2] == str(subtitle_margin_v(cfg, 1920))
+
+
+def test_apply_subtitle_style_copies_panel_keys_and_rejects_garbage() -> None:
+    from run_full_video_pipeline import apply_subtitle_style
+
+    subtitles: dict = {}
+    apply_subtitle_style(subtitles, {
+        "font_name": "Nimbus Sans", "font_size": 64, "bold": False, "italic": True,
+        "position": "low", "max_words_per_cue": 4,
+    })
+    assert subtitles == {
+        "font_name": "Nimbus Sans", "font_size": 64, "bold": False, "italic": True,
+        "position": "low", "max_words_per_cue": 4,
+    }
+    apply_subtitle_style(subtitles, {})
+    assert subtitles["font_name"] == "Nimbus Sans", "empty style must not clobber"
+    with pytest.raises(ValueError):
+        apply_subtitle_style({}, {"font_size": 200})
+    with pytest.raises(ValueError):
+        apply_subtitle_style({}, {"max_words_per_cue": 0})
+    with pytest.raises(ValueError):
+        apply_subtitle_style({}, {"position": "top"})
+
+
+def test_custom_offsets_become_pixel_margins_with_clamps() -> None:
+    assert subtitle_margin_v({"position": "custom", "custom_offset_value": 10, "custom_offset_unit": "percent"}, 1920) == 192
+    assert subtitle_margin_v({"position": "custom", "custom_offset_value": 200, "custom_offset_unit": "px"}, 1920) == 200
+    assert subtitle_margin_v({"position": "custom", "custom_offset_value": 99, "custom_offset_unit": "percent"}, 1920) == round(1920 * 0.4)
+    assert subtitle_margin_v({"position": "custom", "custom_offset_value": 5000, "custom_offset_unit": "px"}, 1920) == round(1920 * 0.5)
+    assert subtitle_margin_v({"position": "custom", "custom_offset_value": "bogus", "custom_offset_unit": "percent"}, 1920) == 192
+
+
+def test_css_hex_colours_land_in_both_ass_styles(tmp_path: Path) -> None:
+    from build_timeline import css_hex_to_ass
+
+    assert css_hex_to_ass("#FFD700", "dflt") == "&H0000D7FF"
+    assert css_hex_to_ass("#000000", "dflt") == "&H00000000"
+    assert css_hex_to_ass("bogus", "dflt") == "dflt"
+    words = _words(NARRATION)
+    cues = build_subtitle_cues([_beat(NARRATION, words)], SUBTITLE_CFG, words)
+    cfg = {**SUBTITLE_CFG, "font_colour": "#00E5FF", "outline": 0, "outline_colour": "#123456"}
+    path = tmp_path / "COLOURED.ass"
+    write_ass(path, width=1080, height=1920, subtitle_cfg=cfg, cues=cues)
+
+    text = path.read_text(encoding="utf-8")
+    default = next(line for line in text.splitlines() if line.startswith("Style: Default,"))
+    karaoke = next(line for line in text.splitlines() if line.startswith("Style: Karaoke,"))
+    assert ",&H00FFE500," in default, "text colour must reach the Default primary"
+    assert ",&H00FFE500," in karaoke, "text colour must remain visible with word highlight"
+    assert ",0.0," in default, "outline 0 must switch the outline off"
+    assert ",&H00563412," in default and ",&H00563412," in karaoke
+
+
+def test_apply_subtitle_style_validates_colours_and_outline() -> None:
+    from run_full_video_pipeline import apply_subtitle_style
+
+    subtitles: dict = {}
+    apply_subtitle_style(subtitles, {"font_colour": "#ffd700", "outline": 0, "outline_colour": "#123456"})
+    assert subtitles == {"font_colour": "#FFD700", "outline": 0.0, "outline_colour": "#123456"}
+    for bad in ({"font_colour": "gold"}, {"outline_colour": "#12345"}, {"outline": 9}, {"custom_offset_unit": "em"}):
+        with pytest.raises(ValueError):
+            apply_subtitle_style({}, bad)

@@ -179,14 +179,18 @@ def apply_subtitle_preference(profile_path: Path, creative_brief: Path) -> None:
         brief = json.loads(Path(creative_brief).read_text(encoding="utf-8"))
         wanted = bool((brief.get("_qh") or {}).get("show_subtitles", False))
         word_highlight = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
+        style = brief.get("_subtitle") if isinstance(brief.get("_subtitle"), dict) else {}
     except (OSError, ValueError):
-        wanted, word_highlight = False, True
+        wanted, word_highlight, style = False, True, {}
+    from run_full_video_pipeline import apply_subtitle_style
+
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
     subtitles = profile.setdefault("subtitles", {})
     subtitles["enabled"] = wanted
     if not isinstance(subtitles.get("word_highlight"), dict):
         subtitles["word_highlight"] = {}
     subtitles["word_highlight"]["enabled"] = word_highlight
+    apply_subtitle_style(subtitles, style)
     profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
 
 

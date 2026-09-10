@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   onProjectChange();
   syncMotionControls();
+  syncSubtitleOffset();
   pollStatus();
   setInterval(pollStatus, 5000);
   setInterval(pollLog, 2000);
@@ -281,6 +282,15 @@ function syncMotionControls(){
   var active = master.checked;
   controls.classList.toggle('feature-off', !active);
   controls.querySelectorAll('input,select,textarea,button').forEach(function(control){ control.disabled = !active; });
+}
+
+function syncSubtitleOffset(){
+  var pos = document.querySelector('select[name=subtitle_position]');
+  var custom = pos && pos.value === 'custom';
+  ['subtitle_offset_value', 'subtitle_offset_unit'].forEach(function(name){
+    var el = document.querySelector('[name=' + name + ']');
+    if (el) el.disabled = !custom;
+  });
 }
 
 function onProjectChange(){
@@ -339,6 +349,45 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <small>Q Station default: off (§71)</small></label>
   <label class="check"><input type=checkbox name=word_highlight checked> Highlight the spoken word
    <small>Warm-gold sweep follows each measured word; requires burned subtitles and real word timing.</small></label>
+  <label>Subtitle font <select name=subtitle_font>
+    <option selected>Roboto</option><option>Open Sans</option>
+    <option>Lato</option><option>Montserrat</option>
+    <option>Poppins</option><option>Noto Sans</option>
+    <option>Source Sans 3</option><option>Rubik</option>
+    <option>Atkinson Hyperlegible</option><option>Bebas Neue</option>
+    <option>Oswald</option><option>DejaVu Sans</option><option>DejaVu Serif</option>
+    <option>Liberation Sans</option><option>Liberation Serif</option>
+    <option>Liberation Sans Narrow</option><option>Nimbus Sans</option>
+    <option>Noto Sans Mono</option></select>
+   <small>Starred picks and search are in Studio; the burn-in face is identical.</small></label>
+  <div class="grid2">
+   <label>Subtitle font size <input name=subtitle_font_size type=number min=24 max=120 step=1 value=56></label>
+   <label>Max words per caption <input name=subtitle_max_words type=number min=1 max=12 step=1 value=6></label>
+  </div>
+  <div class="grid2">
+   <label>Subtitle position <select name=subtitle_position onchange="syncSubtitleOffset()">
+     <option value=low>Low — near the bottom edge</option>
+     <option value=standard selected>Standard — clears the app UI</option>
+     <option value=high>High — raised lower-third</option>
+     <option value=custom>Custom — offset from the bottom</option></select></label>
+   <label class="check"><input type=checkbox name=subtitle_bold checked> Subtitle bold</label>
+  </div>
+  <div class="grid2">
+   <label>Custom offset <input name=subtitle_offset_value type=number min=0 max=800 step=0.5 value=10>
+    <small>Used only with Custom position.</small></label>
+   <label>Offset unit <select name=subtitle_offset_unit>
+     <option value=percent selected>Percent of height (0–40)</option>
+     <option value=px>Pixels (0–800)</option></select></label>
+  </div>
+  <div class="grid2">
+   <label>Text colour <input name=subtitle_font_colour type=color value=#FFFFFF></label>
+   <label>Outline colour <input name=subtitle_outline_colour type=color value=#000000></label>
+  </div>
+  <div class="grid2">
+   <label>Outline width <input name=subtitle_outline type=number min=0 max=8 step=0.5 value=3>
+    <small>0 switches the outline off.</small></label>
+   <label class="check"><input type=checkbox name=subtitle_italic> Subtitle italic</label>
+  </div>
   <label class="check"><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC
    <small>needs a remote with write access</small></label>
   <label class="check"><input type=checkbox name=telegram_low_size checked> Send low-size copy to Telegram

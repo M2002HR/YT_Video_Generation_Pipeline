@@ -1,20 +1,16 @@
 {
   "schema_version": 2,
-  "revision_id": "48c9950a-8293-47f4-ae8c-0255e2575742",
+  "revision_id": "73ce3e6d-c160-4f0c-ae2c-f0d0584de4a8",
   "kind": "config",
-  "created_at": "2026-09-10T17:48:33.995841+00:00",
+  "created_at": "2026-09-10T18:20:57.484864+00:00",
   "roots": [
-    "render_profile",
-    "sfx_acquire",
-    "sfx_plan"
+    "render_profile"
   ],
   "affected_nodes": [
     "build_timeline",
     "render_profile",
-    "sfx_plan",
     "render_baseline",
     "qc_baseline",
-    "sfx_acquire",
     "polish_audio",
     "qc_polished",
     "telegram_compress",
@@ -59,18 +55,17 @@
     "beat_image_014"
   ],
   "skipped_nodes": [
-    "motion_director"
+    "motion_director",
+    "sfx_plan",
+    "sfx_acquire"
   ],
   "archived_artifacts": [
     "timeline/TIMELINE.json",
     "timeline/SUBTITLES.ass",
     "render/RENDER_PROFILE.json",
-    "sfx/SFX_PLAN.json",
-    "sfx/SFX_PLAN_RECEIPT.json",
     "assets/renders/final.mp4",
     "render/RENDER_STATS.json",
     "render/QC_REPORT.json",
-    "sfx/SFX_SELECTION.json",
     "assets/renders/polished.mp4",
     "render/QC_REPORT_polished.json",
     "assets/renders/telegram_low.mp4",
@@ -80,18 +75,16 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
-  "started_at": "2026-09-10T17:48:33.996749+00:00",
-  "pid": 1159844,
+  "status": "RUNNING",
+  "started_at": "2026-09-10T18:20:57.485451+00:00",
+  "pid": 1165387,
   "changed_fields": [
+    "word_highlight",
     "subtitle_font",
     "subtitle_font_size",
-    "subtitle_max_words",
-    "subtitle_position",
     "subtitle_offset_value",
     "subtitle_font_colour",
-    "sfx_enabled"
+    "subtitle_outline"
   ],
-  "config_revision_id": "424453f1-5913-483b-bb30-b2b9be6a8a83",
-  "completed_at": "2026-09-10T17:53:44.524201+00:00"
+  "config_revision_id": "4c55ac65-b66b-4035-9067-69742ba8c863"
 }

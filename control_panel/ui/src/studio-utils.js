@@ -45,6 +45,127 @@ export const artifactUrl = (base, path, version = "") => {
   return `${base}/${encoded}${version ? `?v=${version}` : ""}`;
 };
 
+export const SUBTITLE_PREVIEW_TEXT =
+  "This a subtitle preview for test, thank you for your attention to this matter!";
+
+// Bottom offsets mirroring build_timeline.SUBTITLE_POSITION_FRACTIONS (of frame height).
+export const SUBTITLE_POSITION_OFFSETS = { low: 0.045, standard: 0.075, high: 0.13 };
+
+// Pixel margin mirroring build_timeline.subtitle_margin_v (custom percent/px included).
+export function subtitleMarginPx(position, offsetValue, offsetUnit, height = 1920) {
+  if (position === "custom") {
+    const raw = Number(offsetValue);
+    const value = Number.isFinite(raw) ? raw : 10;
+    if (offsetUnit === "px")
+      return Math.max(0, Math.min(Math.round(value), Math.round(height * 0.5)));
+    return Math.max(
+      0,
+      Math.min(Math.round((height * value) / 100), Math.round(height * 0.4)),
+    );
+  }
+  return Math.round(
+    (SUBTITLE_POSITION_OFFSETS[position] ?? SUBTITLE_POSITION_OFFSETS.standard) *
+      height,
+  );
+}
+
+export const SUBTITLE_FONT_SLUGS = {
+  Roboto: "roboto",
+  "Open Sans": "open-sans",
+  Lato: "lato",
+  Montserrat: "montserrat",
+  Poppins: "poppins",
+  "Noto Sans": "noto-sans",
+  "Source Sans 3": "source-sans-3",
+  Rubik: "rubik",
+  "Atkinson Hyperlegible": "atkinson-hyperlegible",
+  "Bebas Neue": "bebas-neue",
+  Oswald: "oswald",
+  "Zilla Slab": "zilla-slab",
+  "Roboto Slab": "roboto-slab",
+  Bitter: "bitter",
+  "Titillium Web": "titillium-web",
+  "Exo 2": "exo-2",
+  "Encode Sans": "encode-sans",
+  "DejaVu Sans": "dejavu-sans",
+  "DejaVu Serif": "dejavu-serif",
+  "Liberation Sans": "liberation-sans",
+  "Liberation Serif": "liberation-serif",
+  "Liberation Sans Narrow": "liberation-sans-narrow",
+  "Nimbus Sans": "nimbus-sans",
+  "Noto Sans Mono": "noto-sans-mono",
+};
+
+// Verified against the exact font files served by the panel.  A Latin-only face
+// can still be selected for an English episode, but Persian/Arabic glyphs would
+// silently fall back to another family without this warning.
+export const SUBTITLE_FONT_SUPPORTS_PERSIAN = new Set([
+  "DejaVu Sans",
+  "Rubik",
+]);
+
+// First-caption word wrap mirroring build_timeline.wrap_caption: word-wrapped at
+// maxChars, overflow folded into the last of maxLines lines (never dropped).
+export function previewCaptionLines(text, maxWords, maxChars = 34, maxLines = 2) {
+  const words = String(text || "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, Math.max(1, Number(maxWords) || 6));
+  const lines = [];
+  let current = "";
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length > maxChars && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = next;
+    }
+  }
+  if (current) lines.push(current);
+  if (lines.length > maxLines) {
+    const kept = lines.slice(0, maxLines - 1);
+    kept.push(lines.slice(maxLines - 1).join(" "));
+    return kept;
+  }
+  return lines;
+}
+
+// Browser-side projection of build_timeline.build_cues_from_words.  The revision
+// modal uses recorded word timings, so a Max words edit can be previewed before
+// it rebuilds the timeline without pretending an old cue already has the new cuts.
+export function previewCuesFromWords(words, maxWords, maxChars = 34, maxLines = 2) {
+  const wordLimit = Math.max(1, Number(maxWords) || 6);
+  const charLimit = Math.max(8, Number(maxChars) || 34) * Math.max(1, Number(maxLines) || 2);
+  const cues = [];
+  let chunk = [];
+  const flush = () => {
+    if (!chunk.length) return;
+    const text = chunk.map((word) => word.text).join(" ").trim();
+    if (text) {
+      cues.push({
+        start: chunk[0].start,
+        end: chunk[chunk.length - 1].end,
+        text,
+        lines: previewCaptionLines(text, wordLimit, maxChars, maxLines),
+      });
+    }
+    chunk = [];
+  };
+  for (const raw of words || []) {
+    const text = String(raw?.text || "").trim();
+    const start = Number(raw?.start);
+    const end = Number(raw?.end);
+    if (!text || !Number.isFinite(start) || !Number.isFinite(end)) continue;
+    const candidate = [...chunk.map((word) => word.text), text].join(" ");
+    if (chunk.length && (chunk.length >= wordLimit || candidate.length > charLimit)) flush();
+    chunk.push({ text, start, end });
+    if (/[.!?…]$/.test(text)) flush();
+  }
+  flush();
+  return cues;
+}
+
 // Edges point from an input stage to the stage that consumes it.  Walk outward so a
 // selection answers the useful operational question: "what will change if I change this?"
 export function dependentNodeIds(edges, rootId) {

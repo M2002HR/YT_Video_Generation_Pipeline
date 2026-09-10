@@ -275,8 +275,7 @@
           "end": 1.1
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 1.1,
@@ -295,8 +294,7 @@
           "end": 1.84
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 1.84,
@@ -315,8 +313,7 @@
           "end": 2.68
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 2.68,
@@ -335,8 +332,7 @@
           "end": 3.36
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 3.36,
@@ -355,8 +351,7 @@
           "end": 4.22
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 4.22,
@@ -375,8 +370,7 @@
           "end": 5.02
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 5.02,
@@ -395,8 +389,7 @@
           "end": 5.48
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 5.48,
@@ -415,8 +408,7 @@
           "end": 6.44
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
+      "timing_source": "word"
     },
     {
       "start": 6.17,
@@ -435,8 +427,7 @@
           "end": 7.34
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
+      "timing_source": "word"
     },
     {
       "start": 7.34,
@@ -455,8 +446,7 @@
           "end": 8.12
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
+      "timing_source": "word"
     },
     {
       "start": 8.12,
@@ -475,8 +465,7 @@
           "end": 8.74
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
+      "timing_source": "word"
     },
     {
       "start": 8.74,
@@ -495,8 +484,7 @@
           "end": 9.34
         }
       ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
+      "timing_source": "word"
     },
     {
       "start": 9.34,
@@ -515,8 +503,7 @@
           "end": 10.42
         }
       ],
-      "timing_source": "word",
-      "beat_id": 1
+      "timing_source": "word"
     },
     {
       "start": 10.42,
@@ -535,8 +522,7 @@
           "end": 11.2
         }
       ],
-      "timing_source": "word",
-      "beat_id": 1
+      "timing_source": "word"
     },
     {
       "start": 11.2,
@@ -555,8 +541,7 @@
           "end": 11.72
         }
       ],
-      "timing_source": "word",
-      "beat_id": 1
+      "timing_source": "word"
     },
     {
       "start": 11.72,
@@ -575,8 +560,7 @@
           "end": 12.98
         }
       ],
-      "timing_source": "word",
-      "beat_id": 1
+      "timing_source": "word"
     },
     {
       "start": 12.98,
@@ -590,8 +574,7 @@
           "end": 14.36
         }
       ],
-      "timing_source": "word",
-      "beat_id": 1
+      "timing_source": "word"
     },
     {
       "start": 14.72,
@@ -610,8 +593,7 @@
           "end": 15.32
         }
       ],
-      "timing_source": "word",
-      "beat_id": 2
+      "timing_source": "word"
     },
     {
       "start": 15.32,
@@ -630,8 +612,7 @@
           "end": 16.22
         }
       ],
-      "timing_source": "word",
-      "beat_id": 2
+      "timing_source": "word"
     },
     {
       "start": 16.22,
@@ -650,8 +631,7 @@
           "end": 18.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 3
+      "timing_source": "word"
     },
     {
       "start": 18.38,
@@ -670,8 +650,7 @@
           "end": 19.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 3
+      "timing_source": "word"
     },
     {
       "start": 19.38,
@@ -690,8 +669,7 @@
           "end": 20.26
         }
       ],
-      "timing_source": "word",
-      "beat_id": 3
+      "timing_source": "word"
     },
     {
       "start": 20.26,
@@ -710,8 +688,7 @@
           "end": 20.56
         }
       ],
-      "timing_source": "word",
-      "beat_id": 3
+      "timing_source": "word"
     },
     {
       "start": 20.56,
@@ -725,8 +702,7 @@
           "end": 21.58
         }
       ],
-      "timing_source": "word",
-      "beat_id": 3
+      "timing_source": "word"
     },
     {
       "start": 21.94,
@@ -745,8 +721,7 @@
           "end": 22.82
         }
       ],
-      "timing_source": "word",
-      "beat_id": 4
+      "timing_source": "word"
     },
     {
       "start": 22.82,
@@ -765,8 +740,7 @@
           "end": 23.74
         }
       ],
-      "timing_source": "word",
-      "beat_id": 4
+      "timing_source": "word"
     },
     {
       "start": 23.74,
@@ -785,8 +759,7 @@
           "end": 24.48
         }
       ],
-      "timing_source": "word",
-      "beat_id": 4
+      "timing_source": "word"
     },
     {
       "start": 24.48,
@@ -800,8 +773,7 @@
           "end": 25.08
         }
       ],
-      "timing_source": "word",
-      "beat_id": 4
+      "timing_source": "word"
     },
     {
       "start": 25.08,
@@ -820,8 +792,7 @@
           "end": 25.94
         }
       ],
-      "timing_source": "word",
-      "beat_id": 5
+      "timing_source": "word"
     },
     {
       "start": 25.94,
@@ -840,8 +811,7 @@
           "end": 26.46
         }
       ],
-      "timing_source": "word",
-      "beat_id": 5
+      "timing_source": "word"
     },
     {
       "start": 26.46,
@@ -860,8 +830,7 @@
           "end": 27.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 5
+      "timing_source": "word"
     },
     {
       "start": 27.38,
@@ -880,8 +849,7 @@
           "end": 28.26
         }
       ],
-      "timing_source": "word",
-      "beat_id": 5
+      "timing_source": "word"
     },
     {
       "start": 28.32,
@@ -900,8 +868,7 @@
           "end": 29.3
         }
       ],
-      "timing_source": "word",
-      "beat_id": 5
+      "timing_source": "word"
     },
     {
       "start": 29.3,
@@ -920,8 +887,7 @@
           "end": 30.18
         }
       ],
-      "timing_source": "word",
-      "beat_id": 5
+      "timing_source": "word"
     },
     {
       "start": 30.18,
@@ -940,8 +906,7 @@
           "end": 31.32
         }
       ],
-      "timing_source": "word",
-      "beat_id": 6
+      "timing_source": "word"
     },
     {
       "start": 31.32,
@@ -960,8 +925,7 @@
           "end": 32.46
         }
       ],
-      "timing_source": "word",
-      "beat_id": 6
+      "timing_source": "word"
     },
     {
       "start": 32.46,
@@ -980,8 +944,7 @@
           "end": 33.08
         }
       ],
-      "timing_source": "word",
-      "beat_id": 6
+      "timing_source": "word"
     },
     {
       "start": 33.08,
@@ -995,8 +958,7 @@
           "end": 33.62
         }
       ],
-      "timing_source": "word",
-      "beat_id": 6
+      "timing_source": "word"
     },
     {
       "start": 33.62,
@@ -1015,8 +977,7 @@
           "end": 35.18
         }
       ],
-      "timing_source": "word",
-      "beat_id": 7
+      "timing_source": "word"
     },
     {
       "start": 35.05,
@@ -1035,8 +996,7 @@
           "end": 36.2
         }
       ],
-      "timing_source": "word",
-      "beat_id": 7
+      "timing_source": "word"
     },
     {
       "start": 36.2,
@@ -1055,8 +1015,7 @@
           "end": 36.98
         }
       ],
-      "timing_source": "word",
-      "beat_id": 7
+      "timing_source": "word"
     },
     {
       "start": 36.98,
@@ -1075,8 +1034,7 @@
           "end": 37.48
         }
       ],
-      "timing_source": "word",
-      "beat_id": 7
+      "timing_source": "word"
     },
     {
       "start": 37.48,
@@ -1090,8 +1048,7 @@
           "end": 38.72
         }
       ],
-      "timing_source": "word",
-      "beat_id": 7
+      "timing_source": "word"
     },
     {
       "start": 38.72,
@@ -1110,8 +1067,7 @@
           "end": 39.42
         }
       ],
-      "timing_source": "word",
-      "beat_id": 8
+      "timing_source": "word"
     },
     {
       "start": 39.42,
@@ -1130,8 +1086,7 @@
           "end": 40.32
         }
       ],
-      "timing_source": "word",
-      "beat_id": 8
+      "timing_source": "word"
     },
     {
       "start": 40.32,
@@ -1150,8 +1105,7 @@
           "end": 41.04
         }
       ],
-      "timing_source": "word",
-      "beat_id": 8
+      "timing_source": "word"
     },
     {
       "start": 41.04,
@@ -1170,8 +1124,7 @@
           "end": 42.08
         }
       ],
-      "timing_source": "word",
-      "beat_id": 8
+      "timing_source": "word"
     },
     {
       "start": 42.54,
@@ -1190,8 +1143,7 @@
           "end": 43.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 9
+      "timing_source": "word"
     },
     {
       "start": 43.38,
@@ -1210,8 +1162,7 @@
           "end": 44.36
         }
       ],
-      "timing_source": "word",
-      "beat_id": 9
+      "timing_source": "word"
     },
     {
       "start": 44.36,
@@ -1230,8 +1181,7 @@
           "end": 44.76
         }
       ],
-      "timing_source": "word",
-      "beat_id": 9
+      "timing_source": "word"
     },
     {
       "start": 44.76,
@@ -1250,8 +1200,7 @@
           "end": 45.46
         }
       ],
-      "timing_source": "word",
-      "beat_id": 9
+      "timing_source": "word"
     },
     {
       "start": 45.46,
@@ -1265,8 +1214,7 @@
           "end": 45.88
         }
       ],
-      "timing_source": "word",
-      "beat_id": 9
+      "timing_source": "word"
     },
     {
       "start": 45.88,
@@ -1285,8 +1233,7 @@
           "end": 47.58
         }
       ],
-      "timing_source": "word",
-      "beat_id": 10
+      "timing_source": "word"
     },
     {
       "start": 47.58,
@@ -1305,8 +1252,7 @@
           "end": 48.74
         }
       ],
-      "timing_source": "word",
-      "beat_id": 10
+      "timing_source": "word"
     },
     {
       "start": 48.74,
@@ -1325,8 +1271,7 @@
           "end": 49.68
         }
       ],
-      "timing_source": "word",
-      "beat_id": 10
+      "timing_source": "word"
     },
     {
       "start": 49.46,
@@ -1345,8 +1290,7 @@
           "end": 50.86
         }
       ],
-      "timing_source": "word",
-      "beat_id": 10
+      "timing_source": "word"
     },
     {
       "start": 50.86,
@@ -1360,8 +1304,7 @@
           "end": 52.14
         }
       ],
-      "timing_source": "word",
-      "beat_id": 10
+      "timing_source": "word"
     },
     {
       "start": 52.14,
@@ -1380,8 +1323,7 @@
           "end": 53.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 11
+      "timing_source": "word"
     },
     {
       "start": 53.38,
@@ -1400,8 +1342,7 @@
           "end": 54.46
         }
       ],
-      "timing_source": "word",
-      "beat_id": 11
+      "timing_source": "word"
     },
     {
       "start": 54.46,
@@ -1420,8 +1361,7 @@
           "end": 55.28
         }
       ],
-      "timing_source": "word",
-      "beat_id": 11
+      "timing_source": "word"
     },
     {
       "start": 55.28,
@@ -1435,8 +1375,7 @@
           "end": 55.66
         }
       ],
-      "timing_source": "word",
-      "beat_id": 11
+      "timing_source": "word"
     },
     {
       "start": 56.78,
@@ -1455,8 +1394,7 @@
           "end": 57.4
         }
       ],
-      "timing_source": "word",
-      "beat_id": 12
+      "timing_source": "word"
     },
     {
       "start": 57.4,
@@ -1475,8 +1413,7 @@
           "end": 58.8
         }
       ],
-      "timing_source": "word",
-      "beat_id": 12
+      "timing_source": "word"
     },
     {
       "start": 58.8,
@@ -1495,8 +1432,7 @@
           "end": 59.86
         }
       ],
-      "timing_source": "word",
-      "beat_id": 12
+      "timing_source": "word"
     },
     {
       "start": 59.86,
@@ -1510,8 +1446,7 @@
           "end": 60.68
         }
       ],
-      "timing_source": "word",
-      "beat_id": 12
+      "timing_source": "word"
     },
     {
       "start": 61.2,
@@ -1530,8 +1465,7 @@
           "end": 61.8
         }
       ],
-      "timing_source": "word",
-      "beat_id": 13
+      "timing_source": "word"
     },
     {
       "start": 61.8,
@@ -1550,8 +1484,7 @@
           "end": 62.84
         }
       ],
-      "timing_source": "word",
-      "beat_id": 13
+      "timing_source": "word"
     },
     {
       "start": 62.84,
@@ -1570,8 +1503,7 @@
           "end": 64.46
         }
       ],
-      "timing_source": "word",
-      "beat_id": 13
+      "timing_source": "word"
     },
     {
       "start": 64.8,
@@ -1590,8 +1522,7 @@
           "end": 65.5
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 65.5,
@@ -1610,8 +1541,7 @@
           "end": 66.28
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 66.28,
@@ -1630,8 +1560,7 @@
           "end": 67.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 67.38,
@@ -1645,8 +1574,7 @@
           "end": 68.38
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 68.94,
@@ -1665,8 +1593,7 @@
           "end": 70.98
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 70.98,
@@ -1685,8 +1612,7 @@
           "end": 71.74
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 71.74,
@@ -1700,8 +1626,7 @@
           "end": 72.72
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 73.22,
@@ -1720,8 +1645,7 @@
           "end": 74.08
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 74.08,
@@ -1740,8 +1664,7 @@
           "end": 75.0
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 75.0,
@@ -1760,8 +1683,7 @@
           "end": 75.76
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     },
     {
       "start": 75.76,
@@ -1775,8 +1697,7 @@
           "end": 76.28
         }
       ],
-      "timing_source": "word",
-      "beat_id": 14
+      "timing_source": "word"
     }
   ],
   "qc": {

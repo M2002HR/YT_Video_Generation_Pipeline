@@ -257,6 +257,7 @@ def apply_subtitle_preferences(profile_path: Path, creative_brief: dict[str, Any
     Older briefs simply omit ``_subtitle`` and retain the new, safe default (enabled).
     """
     requested = (creative_brief.get("_subtitle") or {}).get("word_highlight", True)
+    style = creative_brief.get("_subtitle") if isinstance(creative_brief.get("_subtitle"), dict) else {}
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
     subtitles = profile.setdefault("subtitles", {})
     qh_settings = creative_brief.get("_qh") or {}
@@ -265,7 +266,64 @@ def apply_subtitle_preferences(profile_path: Path, creative_brief: dict[str, Any
     if not isinstance(subtitles.get("word_highlight"), dict):
         subtitles["word_highlight"] = {}
     subtitles["word_highlight"]["enabled"] = bool(requested)
+    apply_subtitle_style(subtitles, style)
     profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
+
+
+#: Strict ``#RRGGBB`` panel colours; anything else raises instead of burning wrong.
+def _subtitle_colour(value: Any) -> str:
+    import re as _re
+
+    candidate = str(value or "").strip()
+    if _re.fullmatch(r"#[0-9A-Fa-f]{6}", candidate):
+        return candidate.upper()
+    raise ValueError(f"Subtitle colour {value!r} must be #RRGGBB.")
+
+
+def apply_subtitle_style(subtitles: dict[str, Any], style: dict[str, Any]) -> None:
+    """Copy validated panel subtitle styling into a render-profile ``subtitles`` dict."""
+    if not isinstance(style, dict):
+        return
+    if style.get("font_name") is not None and str(style["font_name"]).strip():
+        subtitles["font_name"] = str(style["font_name"]).strip()
+    if style.get("font_size") is not None and str(style["font_size"]).strip() != "":
+        size = int(float(style["font_size"]))
+        if not 24 <= size <= 120:
+            raise ValueError(f"Subtitle font size {style['font_size']!r} is outside 24..120.")
+        subtitles["font_size"] = size
+    if "bold" in style:
+        subtitles["bold"] = bool(style["bold"])
+    if "italic" in style:
+        subtitles["italic"] = bool(style["italic"])
+    if style.get("position") is not None and str(style["position"]).strip():
+        position = str(style["position"]).strip().lower()
+        if position not in {"low", "standard", "high", "custom"}:
+            raise ValueError(f"Subtitle position {style['position']!r} is not one of low/standard/high/custom.")
+        subtitles["position"] = position
+    if style.get("custom_offset_value") is not None and str(style["custom_offset_value"]).strip() != "":
+        try:
+            subtitles["custom_offset_value"] = float(style["custom_offset_value"])
+        except (TypeError, ValueError):
+            raise ValueError(f"Subtitle offset {style['custom_offset_value']!r} must be a number.")
+    if style.get("custom_offset_unit") is not None and str(style["custom_offset_unit"]).strip():
+        unit = str(style["custom_offset_unit"]).strip().lower()
+        if unit not in {"percent", "px"}:
+            raise ValueError(f"Subtitle offset unit {style['custom_offset_unit']!r} must be percent or px.")
+        subtitles["custom_offset_unit"] = unit
+    if style.get("font_colour") is not None and str(style["font_colour"]).strip():
+        subtitles["font_colour"] = _subtitle_colour(style["font_colour"])
+    if style.get("outline") is not None and str(style["outline"]).strip() != "":
+        width = float(style["outline"])
+        if not 0 <= width <= 8:
+            raise ValueError(f"Subtitle outline {style['outline']!r} is outside 0..8.")
+        subtitles["outline"] = width
+    if style.get("outline_colour") is not None and str(style["outline_colour"]).strip():
+        subtitles["outline_colour"] = _subtitle_colour(style["outline_colour"])
+    if style.get("max_words_per_cue") is not None and str(style["max_words_per_cue"]).strip() != "":
+        words = int(float(style["max_words_per_cue"]))
+        if not 1 <= words <= 12:
+            raise ValueError(f"Subtitle words per caption {style['max_words_per_cue']!r} is outside 1..12.")
+        subtitles["max_words_per_cue"] = words
 
 
 def main() -> None:

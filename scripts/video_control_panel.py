@@ -33,6 +33,7 @@ from panel_previews import preview as build_preview
 from image_artifacts import receipt_status
 from panel_contract import defaults as launch_defaults
 from panel_contract import launch_schema
+from panel_contract import ALL_SUBTITLE_FONTS
 from run_graph import graph_for, invalidation_paths, regeneration_plan
 from content_projects import (
     DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project,
@@ -116,6 +117,36 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
     values["character_id"] = str(character.get("character_id") or "")
     values["reserve_subtitle_space"] = bool(qh.get("reserve_subtitle_space", True))
     values["word_highlight"] = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
+    _subtitle = brief.get("_subtitle") if isinstance(brief.get("_subtitle"), dict) else {}
+    values["subtitle_font"] = str(_subtitle.get("font_name", SUBTITLE_STYLE_DEFAULTS["font_name"]))
+    if values["subtitle_font"] not in ALL_SUBTITLE_FONTS:
+        values["subtitle_font"] = SUBTITLE_STYLE_DEFAULTS["font_name"]
+    for key, default in (("subtitle_font_size", "font_size"), ("subtitle_max_words", "max_words_per_cue")):
+        try:
+            values[key] = float(_subtitle.get(default, SUBTITLE_STYLE_DEFAULTS[default]))
+        except (TypeError, ValueError):
+            values[key] = SUBTITLE_STYLE_DEFAULTS[default]
+    values["subtitle_bold"] = bool(_subtitle.get("bold", SUBTITLE_STYLE_DEFAULTS["bold"]))
+    values["subtitle_italic"] = bool(_subtitle.get("italic", SUBTITLE_STYLE_DEFAULTS["italic"]))
+    values["subtitle_position"] = str(_subtitle.get("position", SUBTITLE_STYLE_DEFAULTS["position"]))
+    if values["subtitle_position"] not in {"low", "standard", "high", "custom"}:
+        values["subtitle_position"] = SUBTITLE_STYLE_DEFAULTS["position"]
+    try:
+        values["subtitle_offset_value"] = float(_subtitle.get("custom_offset_value", 10))
+    except (TypeError, ValueError):
+        values["subtitle_offset_value"] = 10
+    values["subtitle_offset_unit"] = str(_subtitle.get("custom_offset_unit", "percent"))
+    if values["subtitle_offset_unit"] not in {"percent", "px"}:
+        values["subtitle_offset_unit"] = "percent"
+    for key, default in (("subtitle_font_colour", "#FFFFFF"), ("subtitle_outline_colour", "#000000")):
+        stored = _subtitle.get("font_colour" if key == "subtitle_font_colour" else "outline_colour", default)
+        values[key] = str(stored or default).upper()
+        if not re.fullmatch(r"#[0-9A-Fa-f]{6}", values[key]):
+            values[key] = default
+    try:
+        values["subtitle_outline"] = float(_subtitle.get("outline", 3))
+    except (TypeError, ValueError):
+        values["subtitle_outline"] = 3
     values.update({key: voice[key] for key in VOICE_FIELDS if key in voice})
     inverse_motion = {stored: field for field, stored in MOTION_FIELDS.items()}
     for key, value in (brief.get("_motion") or {}).items():
@@ -169,6 +200,11 @@ def validate_config_values(values: dict) -> dict:
             allowed = {str(option["value"]) for option in field.get("options", [])}
             if value not in allowed:
                 raise ValueError(f"Invalid value for {field['label']}.")
+        elif kind == "color":
+            value = str(value or "").strip()
+            if not re.fullmatch(r"#[0-9A-Fa-f]{6}", value):
+                raise ValueError(f"{field['label']} must be a #RRGGBB colour.")
+            value = value.upper()
         elif kind == "priority":
             allowed = {str(option["value"]) for option in field.get("options", [])}
             if not isinstance(value, list) or not value or len(value) != len(set(value)) or any(item not in allowed for item in value):
@@ -221,8 +257,27 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     if before.get("chatgpt_fallback_auto") != merged.get("chatgpt_fallback_auto"):
         roots.update(QH_ROOTS["chatgpt_fallback_auto"])
     brief["_qh"] = qh
-    brief["_subtitle"] = {**dict(previous.get("_subtitle") or {}), "word_highlight": merged["word_highlight"]}
-    if before.get("word_highlight") != merged.get("word_highlight"):
+    new_subtitle = {
+        "word_highlight": merged["word_highlight"],
+        "font_name": merged["subtitle_font"],
+        "font_size": merged["subtitle_font_size"],
+        "bold": merged["subtitle_bold"],
+        "italic": merged["subtitle_italic"],
+        "position": merged["subtitle_position"],
+        "custom_offset_value": merged["subtitle_offset_value"],
+        "custom_offset_unit": merged["subtitle_offset_unit"],
+        "max_words_per_cue": merged["subtitle_max_words"],
+        "font_colour": merged["subtitle_font_colour"],
+        "outline": merged["subtitle_outline"],
+        "outline_colour": merged["subtitle_outline_colour"],
+    }
+    brief["_subtitle"] = {**dict(previous.get("_subtitle") or {}), **new_subtitle}
+    # Normalized before/merged comparison, so merely opening an old brief (which
+    # omits the new keys) never fakes a style change and a useless re-render.
+    if before.get("word_highlight") != merged.get("word_highlight") or any(
+        before.get(key) != merged.get(key)
+        for key in ("subtitle_font", "subtitle_font_size", "subtitle_bold", "subtitle_italic", "subtitle_position", "subtitle_offset_value", "subtitle_offset_unit", "subtitle_max_words", "subtitle_font_colour", "subtitle_outline", "subtitle_outline_colour")
+    ):
         roots.add("render_profile")
     motion = {
         MOTION_FIELDS.get(key, key.removeprefix("motion_")): merged[key]
@@ -260,6 +315,47 @@ PROVIDERS = ("chatgpt", "gemini", "flow")
 MUSIC_PROVIDERS = ("freesound", "mixkit", "pixabay")
 JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
 STYLE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,119}$", re.IGNORECASE)
+
+#: Subtitle preview fonts. Slugs are URL-safe; files are the exact faces fontconfig
+#: resolves for the ASS ``font_name`` so the Studio preview matches the burn-in.
+SUBTITLE_FONT_FILES = {
+    "dejavu-sans": ("DejaVu Sans", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "font/ttf"),
+    "dejavu-serif": ("DejaVu Serif", "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf", "font/ttf"),
+    "liberation-sans": ("Liberation Sans", "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", "font/ttf"),
+    "liberation-serif": ("Liberation Serif", "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf", "font/ttf"),
+    "liberation-sans-narrow": ("Liberation Sans Narrow", "/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf", "font/ttf"),
+    "nimbus-sans": ("Nimbus Sans", "/usr/share/fonts/opentype/urw-base35/NimbusSans-Regular.otf", "font/otf"),
+    "noto-sans-mono": ("Noto Sans Mono", "/usr/share/fonts/truetype/noto/NotoSansMono-Regular.ttf", "font/ttf"),
+    "roboto": ("Roboto", "/usr/share/fonts/subtitle/roboto-v51-latin-regular.ttf", "font/ttf"),
+    "open-sans": ("Open Sans", "/usr/share/fonts/subtitle/open-sans-v44-latin-regular.ttf", "font/ttf"),
+    "lato": ("Lato", "/usr/share/fonts/subtitle/lato-v25-latin-regular.ttf", "font/ttf"),
+    "montserrat": ("Montserrat", "/usr/share/fonts/subtitle/Montserrat-Regular.ttf", "font/ttf"),
+    "poppins": ("Poppins", "/usr/share/fonts/subtitle/poppins-v24-latin-regular.ttf", "font/ttf"),
+    "noto-sans": ("Noto Sans", "/usr/share/fonts/subtitle/noto-sans-v42-latin-regular.ttf", "font/ttf"),
+    "source-sans-3": ("Source Sans 3", "/usr/share/fonts/subtitle/SourceSans3-Regular.ttf", "font/ttf"),
+    "rubik": ("Rubik", "/usr/share/fonts/subtitle/Rubik-Regular.ttf", "font/ttf"),
+    "atkinson-hyperlegible": ("Atkinson Hyperlegible", "/usr/share/fonts/subtitle/atkinson-hyperlegible-v12-latin-regular.ttf", "font/ttf"),
+    "bebas-neue": ("Bebas Neue", "/usr/share/fonts/subtitle/bebas-neue-v16-latin-regular.ttf", "font/ttf"),
+    "oswald": ("Oswald", "/usr/share/fonts/subtitle/oswald-v57-latin-regular.ttf", "font/ttf"),
+    "zilla-slab": ("Zilla Slab", "/usr/share/fonts/subtitle/zilla-slab-v12-latin-regular.ttf", "font/ttf"),
+    "roboto-slab": ("Roboto Slab", "/usr/share/fonts/subtitle/roboto-slab-v36-latin-regular.ttf", "font/ttf"),
+    "bitter": ("Bitter", "/usr/share/fonts/subtitle/Bitter-Regular.ttf", "font/ttf"),
+    "titillium-web": ("Titillium Web", "/usr/share/fonts/subtitle/titillium-web-v19-latin-regular.ttf", "font/ttf"),
+    "exo-2": ("Exo 2", "/usr/share/fonts/subtitle/exo-2-v26-latin-regular.ttf", "font/ttf"),
+    "encode-sans": ("Encode Sans", "/usr/share/fonts/subtitle/EncodeSans-Regular.ttf", "font/ttf"),
+}
+SUBTITLE_FONT_SLUGS = {family: slug for slug, (family, _, _) in SUBTITLE_FONT_FILES.items()}
+assert set(ALL_SUBTITLE_FONTS) == set(SUBTITLE_FONT_SLUGS), "panel contract fonts and font files disagree"
+
+#: Defaults for the subtitle style form, applied when an older brief omits ``_subtitle``.
+SUBTITLE_STYLE_DEFAULTS = {
+    "font_name": "DejaVu Sans",
+    "font_size": 56,
+    "bold": True,
+    "italic": False,
+    "position": "standard",
+    "max_words_per_cue": 6,
+}
 
 
 def studio_schema() -> dict:
@@ -732,6 +828,12 @@ def reconcile_stuck_jobs_once() -> None:
                     write_json(revision_path, revision)
                 except OSError:
                     pass
+                # ``last_config_revision`` is a denormalized copy used by the run
+                # record.  Keep it terminal too; otherwise a successfully finished
+                # revision is shown as RUNNING after a page refresh.
+                current = job.get("last_config_revision")
+                if isinstance(current, dict) and current.get("revision_id") == revision.get("revision_id"):
+                    job["last_config_revision"] = revision
                 if job["status"] == "DONE":
                     job.pop("pending_revision", None)
                 else:
@@ -1251,6 +1353,33 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError): pass
             return ({"job_id": job_id, "video_id": state.get("video_id") or project.name.split("_", 1)[0], "topic": state.get("topic") or project.name, "status": state.get("pipeline_state") or "UNKNOWN", "project": relative_project, "external": True}, project.resolve())
         return None
+
+    def serve_subtitle_font(self, slug: str) -> None:
+        """Serve one curated subtitle face so the Studio preview uses the burn-in font.
+
+        Read-only and allowlisted: only the exact files in SUBTITLE_FONT_FILES resolve.
+        """
+        entry = SUBTITLE_FONT_FILES.get(slug)
+        if entry is None:
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        _, path, mime = entry
+        target = Path(path)
+        try:
+            data = target.read_bytes()
+        except OSError:
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        if not data or len(data) > 8 * 1024 * 1024:
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        self.send_response(HTTPStatus.OK); self.send_header("Content-Type", mime); self.send_header("Content-Length", str(len(data)))
+        self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        try:
+            if getattr(self, "command", "GET") != "HEAD":
+                self.wfile.write(data)
+        except (BrokenPipeError, ConnectionResetError):
+            return
 
     def serve_style_preview(self, content_project: str, style_id: str, kind: str) -> None:
         """Serve a small JPEG thumbnail for a style anchor or a representative beat."""
@@ -2009,6 +2138,14 @@ class Handler(BaseHTTPRequestHandler):
             self.send_error(HTTPStatus.NOT_FOUND)
             return
 
+        if route.startswith("/api/fonts/"):
+            slug = unquote(route.rsplit("/", 1)[-1]).strip().lower()
+            if slug and re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", slug):
+                self.serve_subtitle_font(slug)
+                return
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+
         if route.startswith("/api/run/") and route.endswith("/graph"):
             job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
             if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
@@ -2026,6 +2163,24 @@ class Handler(BaseHTTPRequestHandler):
             if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
             record, project = resolved
             self.send_json(HTTPStatus.OK, {"events": activity_for(record, project), "status": record.get("status"), "live": pid_is_live(record.get("pid"))}); return
+
+        if route.startswith("/api/run/") and route.endswith("/timeline"):
+            # Parsed timeline for the subtitle beat browser (read-only).
+            job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
+            if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
+            _, project = resolved
+            try:
+                timeline = json.loads((project / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))
+                if not isinstance(timeline, dict):
+                    timeline = None
+            except (OSError, ValueError):
+                timeline = None
+            beats = timeline.get("beats") if isinstance(timeline, dict) else None
+            self.send_json(HTTPStatus.OK, {
+                "timeline": timeline,
+                "beat_count": len(beats) if isinstance(beats, list) else 0,
+                "beats_with_images": sum(1 for beat in beats if isinstance(beat, dict) and beat.get("image")) if isinstance(beats, list) else 0,
+            }); return
 
         if route.startswith("/api/run/") and route.endswith("/config"):
             job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
@@ -2145,6 +2300,26 @@ class Handler(BaseHTTPRequestHandler):
             providers = music_provider_priority(values.get("music_providers", values.get("music_provider", ["mixkit"]))[0])
             show_subtitles = "show_subtitles" in values
             word_highlight = "word_highlight" in values
+            subtitle_font = values.get("subtitle_font", ["DejaVu Sans"])[0].strip() or "DejaVu Sans"
+            try:
+                subtitle_font_size = int(float(values.get("subtitle_font_size", ["56"])[0]))
+                subtitle_max_words = int(float(values.get("subtitle_max_words", ["6"])[0]))
+            except (TypeError, ValueError):
+                raise ValueError("Invalid subtitle style values.")
+            subtitle_bold = "subtitle_bold" in values
+            subtitle_italic = "subtitle_italic" in values
+            subtitle_position = values.get("subtitle_position", ["standard"])[0].strip().lower() or "standard"
+            try:
+                subtitle_offset_value = float(values.get("subtitle_offset_value", ["10"])[0])
+            except (TypeError, ValueError):
+                raise ValueError("Invalid subtitle offset.")
+            subtitle_offset_unit = values.get("subtitle_offset_unit", ["percent"])[0].strip().lower() or "percent"
+            subtitle_font_colour = values.get("subtitle_font_colour", ["#FFFFFF"])[0].strip().upper() or "#FFFFFF"
+            subtitle_outline_colour = values.get("subtitle_outline_colour", ["#000000"])[0].strip().upper() or "#000000"
+            try:
+                subtitle_outline = float(values.get("subtitle_outline", ["3"])[0])
+            except (TypeError, ValueError):
+                raise ValueError("Invalid subtitle outline.")
             commit_artifacts = "commit_artifacts" in values
             telegram_low_size = "telegram_low_size" in values
             telegram_original = "telegram_original" in values
@@ -2230,6 +2405,25 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid flow_resolution")
             if opening_a_seconds not in {4,5,6,8} or opening_b_seconds not in {3,4,6,8}:
                 raise ValueError("Invalid opening durations")
+            if subtitle_font not in ALL_SUBTITLE_FONTS:
+                raise ValueError("Invalid subtitle font.")
+            if not 24 <= subtitle_font_size <= 120:
+                raise ValueError("Subtitle font size is outside 24..120.")
+            if not 1 <= subtitle_max_words <= 12:
+                raise ValueError("Subtitle words per caption is outside 1..12.")
+            if subtitle_position not in {"low", "standard", "high", "custom"}:
+                raise ValueError("Invalid subtitle position.")
+            if subtitle_offset_unit not in {"percent", "px"}:
+                raise ValueError("Invalid subtitle offset unit.")
+            if subtitle_offset_unit == "percent" and not 0 <= subtitle_offset_value <= 40:
+                raise ValueError("Subtitle offset percent is outside 0..40.")
+            if subtitle_offset_unit == "px" and not 0 <= subtitle_offset_value <= 800:
+                raise ValueError("Subtitle offset pixels are outside 0..800.")
+            for colour, label in ((subtitle_font_colour, "Subtitle text"), (subtitle_outline_colour, "Subtitle outline")):
+                if not re.fullmatch(r"#[0-9A-Fa-f]{6}", colour):
+                    raise ValueError(f"{label} colour must be #RRGGBB.")
+            if not 0 <= subtitle_outline <= 8:
+                raise ValueError("Subtitle outline is outside 0..8.")
             if not 0 <= opening_speed_tolerance <= 0.5:
                 raise ValueError("Invalid opening_speed_tolerance")
             if sfx_style not in {"restrained", "balanced", "expressive"} or not 0 <= sfx_max_events <= 20 or not 0 <= sfx_min_gap <= 30 or not 0 <= sfx_threshold <= 1 or sfx_license not in {"cc0", "cc0_by"} or not 1 <= sfx_candidates <= 50 or not 1 <= sfx_queries <= 5 or not -40 <= sfx_gain <= -3:
@@ -2300,7 +2494,20 @@ class Handler(BaseHTTPRequestHandler):
             }
             # Kept outside the QH-only settings so legacy content projects use the same
             # visible panel choice when their render profile is created.
-            creative_brief["_subtitle"] = {"word_highlight": word_highlight}
+            creative_brief["_subtitle"] = {
+                "word_highlight": word_highlight,
+                "font_name": subtitle_font,
+                "font_size": subtitle_font_size,
+                "bold": subtitle_bold,
+                "italic": subtitle_italic,
+                "position": subtitle_position,
+                "custom_offset_value": subtitle_offset_value,
+                "custom_offset_unit": subtitle_offset_unit,
+                "max_words_per_cue": subtitle_max_words,
+                "font_colour": subtitle_font_colour,
+                "outline": subtitle_outline,
+                "outline_colour": subtitle_outline_colour,
+            }
             creative_brief["_sfx"] = {"enabled": sfx_enabled, "planner_enabled": sfx_enabled, "planner_style": sfx_style, "max_events_per_minute": sfx_max_events, "minimum_gap_seconds": sfx_min_gap, "local_match_threshold": sfx_threshold, "freesound_enabled": sfx_freesound_enabled, "license_policy": sfx_license, "candidate_count": sfx_candidates, "max_queries_per_event": sfx_queries, "default_gain_db": sfx_gain, "min_gain_db": -20, "max_gain_db": -3}
             creative_brief["_motion"] = {
                 "enabled": motion_enabled, "planning_quality": motion_planning_quality,

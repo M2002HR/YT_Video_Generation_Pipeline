@@ -34,25 +34,25 @@
   },
   "subtitles": {
     "enabled": true,
-    "font_name": "Rubik",
-    "font_size": 90,
+    "font_name": "Oswald",
+    "font_size": 80,
     "bold": true,
-    "outline": 8.0,
+    "outline": 3.0,
     "shadow": 0,
     "max_words_per_cue": 2,
     "max_chars_per_line": 34,
     "max_lines": 2,
     "word_highlight": {
-      "enabled": false,
+      "enabled": true,
       "active_colour": "&H0000D7FF",
       "inactive_colour": "&H00F5F5F5",
       "outline_colour": "&H00130D09"
     },
     "italic": false,
     "position": "custom",
-    "custom_offset_value": 14.0,
+    "custom_offset_value": 24.0,
     "custom_offset_unit": "percent",
-    "font_colour": "#FEFEB4",
+    "font_colour": "#FFFFAD",
     "outline_colour": "#000000"
   }
 }
