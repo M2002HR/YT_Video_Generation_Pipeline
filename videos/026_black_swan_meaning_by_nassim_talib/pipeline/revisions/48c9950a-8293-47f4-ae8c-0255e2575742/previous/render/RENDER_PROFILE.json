@@ -34,12 +34,12 @@
   },
   "subtitles": {
     "enabled": true,
-    "font_name": "Oswald",
-    "font_size": 80,
+    "font_name": "DejaVu Sans",
+    "font_size": 56,
     "bold": true,
-    "outline": 3.0,
+    "outline": 3,
     "shadow": 0,
-    "max_words_per_cue": 2,
+    "max_words_per_cue": 6,
     "max_chars_per_line": 34,
     "max_lines": 2,
     "word_highlight": {
@@ -47,12 +47,6 @@
       "active_colour": "&H0000D7FF",
       "inactive_colour": "&H00F5F5F5",
       "outline_colour": "&H00130D09"
-    },
-    "italic": false,
-    "position": "custom",
-    "custom_offset_value": 24.0,
-    "custom_offset_unit": "percent",
-    "font_colour": "#FFFFAD",
-    "outline_colour": "#000000"
+    }
   }
 }

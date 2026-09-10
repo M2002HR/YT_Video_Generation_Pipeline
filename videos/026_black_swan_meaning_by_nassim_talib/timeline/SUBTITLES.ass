@@ -7,43 +7,87 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,DejaVu Sans,56,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
-Style: Karaoke,DejaVu Sans,56,&H0000D7FF,&H00F5F5F5,&H00130D09,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,144,1
+Style: Default,Oswald,80,&H00ADFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,461,1
+Style: Karaoke,Oswald,80,&H0000D7FF,&H00F5F5F5,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.0,0.0,2,60,60,461,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:00:01.10,Karaoke,,0,0,0,,{\kf44}Sorting {\kf66}tools.
-Dialogue: 0,0:00:01.10,0:00:03.36,Karaoke,,0,0,0,,{\kf38}A {\kf36}missing {\kf52}wrench {\kf32}makes {\kf22}me {\kf46}ask,
-Dialogue: 0,0:00:03.36,0:00:05.48,Karaoke,,0,0,0,,{\kf58}what {\kf28}does {\kf32}Taleb {\kf48}mean {\kf28}by {\kf18}a
+Dialogue: 0,0:00:01.10,0:00:01.84,Karaoke,,0,0,0,,{\kf38}A {\kf36}missing
+Dialogue: 0,0:00:01.84,0:00:02.68,Karaoke,,0,0,0,,{\kf52}wrench {\kf32}makes
+Dialogue: 0,0:00:02.68,0:00:03.36,Karaoke,,0,0,0,,{\kf22}me {\kf46}ask,
+Dialogue: 0,0:00:03.36,0:00:04.22,Karaoke,,0,0,0,,{\kf58}what {\kf28}does
+Dialogue: 0,0:00:04.22,0:00:05.02,Karaoke,,0,0,0,,{\kf32}Taleb {\kf48}mean
+Dialogue: 0,0:00:05.02,0:00:05.48,Karaoke,,0,0,0,,{\kf28}by {\kf18}a
 Dialogue: 0,0:00:05.48,0:00:06.17,Karaoke,,0,0,0,,{\kf30}black {\kf66}swan?
-Dialogue: 0,0:00:06.17,0:00:08.74,Karaoke,,0,0,0,,{\kf114}I {\kf30}grab {\kf46}Taleb's {\kf32}book {\kf24}and {\kf38}follow
+Dialogue: 0,0:00:06.17,0:00:07.34,Karaoke,,0,0,0,,{\kf114}I {\kf30}grab
+Dialogue: 0,0:00:07.34,0:00:08.12,Karaoke,,0,0,0,,{\kf46}Taleb's {\kf32}book
+Dialogue: 0,0:00:08.12,0:00:08.74,Karaoke,,0,0,0,,{\kf24}and {\kf38}follow
 Dialogue: 0,0:00:08.74,0:00:09.34,Karaoke,,0,0,0,,{\kf22}the {\kf38}answer.
-Dialogue: 0,0:00:09.34,0:00:11.72,Karaoke,,0,0,0,,{\kf72}A {\kf36}black {\kf56}swan {\kf22}is {\kf14}an {\kf38}event
-Dialogue: 0,0:00:11.72,0:00:14.36,Karaoke,,0,0,0,,{\kf60}outside {\kf66}normal {\kf138}expectations.
-Dialogue: 0,0:00:14.72,0:00:16.22,Karaoke,,0,0,0,,{\kf20}Its {\kf40}impact {\kf36}is {\kf54}enormous.
-Dialogue: 0,0:00:16.22,0:00:20.26,Karaoke,,0,0,0,,{\kf152}Afterward, {\kf64}people {\kf46}build\N{\kf54}explanations {\kf64}that {\kf24}make
-Dialogue: 0,0:00:20.26,0:00:21.58,Karaoke,,0,0,0,,{\kf14}it {\kf16}look {\kf102}predictable.
-Dialogue: 0,0:00:21.94,0:00:24.48,Karaoke,,0,0,0,,{\kf50}Hindsight {\kf38}hides {\kf28}how {\kf64}surprising {\kf34}it\N{\kf40}really
+Dialogue: 0,0:00:09.34,0:00:10.42,Karaoke,,0,0,0,,{\kf72}A {\kf36}black
+Dialogue: 0,0:00:10.42,0:00:11.20,Karaoke,,0,0,0,,{\kf56}swan {\kf22}is
+Dialogue: 0,0:00:11.20,0:00:11.72,Karaoke,,0,0,0,,{\kf14}an {\kf38}event
+Dialogue: 0,0:00:11.72,0:00:12.98,Karaoke,,0,0,0,,{\kf60}outside {\kf66}normal
+Dialogue: 0,0:00:12.98,0:00:14.36,Karaoke,,0,0,0,,{\kf138}expectations.
+Dialogue: 0,0:00:14.72,0:00:15.32,Karaoke,,0,0,0,,{\kf20}Its {\kf40}impact
+Dialogue: 0,0:00:15.32,0:00:16.22,Karaoke,,0,0,0,,{\kf36}is {\kf54}enormous.
+Dialogue: 0,0:00:16.22,0:00:18.38,Karaoke,,0,0,0,,{\kf152}Afterward, {\kf64}people
+Dialogue: 0,0:00:18.38,0:00:19.38,Karaoke,,0,0,0,,{\kf46}build {\kf54}explanations
+Dialogue: 0,0:00:19.38,0:00:20.26,Karaoke,,0,0,0,,{\kf64}that {\kf24}make
+Dialogue: 0,0:00:20.26,0:00:20.56,Karaoke,,0,0,0,,{\kf14}it {\kf16}look
+Dialogue: 0,0:00:20.56,0:00:21.58,Karaoke,,0,0,0,,{\kf102}predictable.
+Dialogue: 0,0:00:21.94,0:00:22.82,Karaoke,,0,0,0,,{\kf50}Hindsight {\kf38}hides
+Dialogue: 0,0:00:22.82,0:00:23.74,Karaoke,,0,0,0,,{\kf28}how {\kf64}surprising
+Dialogue: 0,0:00:23.74,0:00:24.48,Karaoke,,0,0,0,,{\kf34}it {\kf40}really
 Dialogue: 0,0:00:24.48,0:00:25.08,Karaoke,,0,0,0,,{\kf60}was.
-Dialogue: 0,0:00:25.08,0:00:27.38,Karaoke,,0,0,0,,{\kf54}The {\kf32}name {\kf34}comes {\kf18}from {\kf52}Europe's {\kf40}old
-Dialogue: 0,0:00:27.38,0:00:30.18,Karaoke,,0,0,0,,{\kf40}belief {\kf54}that {\kf34}all {\kf64}swans {\kf24}were {\kf64}white.
-Dialogue: 0,0:00:30.18,0:00:33.08,Karaoke,,0,0,0,,{\kf62}Then {\kf52}Europeans {\kf76}encountered {\kf38}black\N{\kf42}swans {\kf20}in
+Dialogue: 0,0:00:25.08,0:00:25.94,Karaoke,,0,0,0,,{\kf54}The {\kf32}name
+Dialogue: 0,0:00:25.94,0:00:26.46,Karaoke,,0,0,0,,{\kf34}comes {\kf18}from
+Dialogue: 0,0:00:26.46,0:00:27.38,Karaoke,,0,0,0,,{\kf52}Europe's {\kf40}old
+Dialogue: 0,0:00:27.38,0:00:28.26,Karaoke,,0,0,0,,{\kf40}belief {\kf48}that
+Dialogue: 0,0:00:28.32,0:00:29.30,Karaoke,,0,0,0,,{\kf34}all {\kf64}swans
+Dialogue: 0,0:00:29.30,0:00:30.18,Karaoke,,0,0,0,,{\kf24}were {\kf64}white.
+Dialogue: 0,0:00:30.18,0:00:31.32,Karaoke,,0,0,0,,{\kf62}Then {\kf52}Europeans
+Dialogue: 0,0:00:31.32,0:00:32.46,Karaoke,,0,0,0,,{\kf76}encountered {\kf38}black
+Dialogue: 0,0:00:32.46,0:00:33.08,Karaoke,,0,0,0,,{\kf42}swans {\kf20}in
 Dialogue: 0,0:00:33.08,0:00:33.62,Karaoke,,0,0,0,,{\kf54}Australia.
-Dialogue: 0,0:00:33.62,0:00:36.98,Karaoke,,0,0,0,,{\kf102}One {\kf28}observation {\kf106}shattered {\kf22}a {\kf38}rule\N{\kf40}that
-Dialogue: 0,0:00:36.98,0:00:38.72,Karaoke,,0,0,0,,{\kf12}had {\kf38}seemed {\kf124}certain.
-Dialogue: 0,0:00:38.72,0:00:41.04,Karaoke,,0,0,0,,{\kf28}Taleb {\kf42}says {\kf70}forecasts {\kf20}can {\kf46}fail {\kf26}the
+Dialogue: 0,0:00:33.62,0:00:35.05,Karaoke,,0,0,0,,{\kf102}One {\kf54}observation
+Dialogue: 0,0:00:35.05,0:00:36.20,Karaoke,,0,0,0,,{\kf106}shattered {\kf22}a
+Dialogue: 0,0:00:36.20,0:00:36.98,Karaoke,,0,0,0,,{\kf38}rule {\kf40}that
+Dialogue: 0,0:00:36.98,0:00:37.48,Karaoke,,0,0,0,,{\kf12}had {\kf38}seemed
+Dialogue: 0,0:00:37.48,0:00:38.72,Karaoke,,0,0,0,,{\kf124}certain.
+Dialogue: 0,0:00:38.72,0:00:39.42,Karaoke,,0,0,0,,{\kf28}Taleb {\kf42}says
+Dialogue: 0,0:00:39.42,0:00:40.32,Karaoke,,0,0,0,,{\kf70}forecasts {\kf20}can
+Dialogue: 0,0:00:40.32,0:00:41.04,Karaoke,,0,0,0,,{\kf46}fail {\kf26}the
 Dialogue: 0,0:00:41.04,0:00:42.08,Karaoke,,0,0,0,,{\kf38}same {\kf66}way.
-Dialogue: 0,0:00:42.54,0:00:44.76,Karaoke,,0,0,0,,{\kf44}Models {\kf40}usually {\kf56}depend {\kf42}on {\kf24}what {\kf16}has
-Dialogue: 0,0:00:44.76,0:00:45.88,Karaoke,,0,0,0,,{\kf40}already {\kf30}been {\kf42}observed.
-Dialogue: 0,0:00:45.88,0:00:49.46,Karaoke,,0,0,0,,{\kf148}Markets {\kf22}can {\kf56}change {\kf60}through {\kf54}events\N{\kf40}those
-Dialogue: 0,0:00:49.46,0:00:52.14,Karaoke,,0,0,0,,{\kf100}models {\kf62}barely {\kf128}considered.
-Dialogue: 0,0:00:52.14,0:00:55.28,Karaoke,,0,0,0,,{\kf78}Technologies {\kf46}can {\kf44}overturn\N{\kf64}assumptions {\kf54}just {\kf28}as
+Dialogue: 0,0:00:42.54,0:00:43.38,Karaoke,,0,0,0,,{\kf44}Models {\kf40}usually
+Dialogue: 0,0:00:43.38,0:00:44.36,Karaoke,,0,0,0,,{\kf56}depend {\kf42}on
+Dialogue: 0,0:00:44.36,0:00:44.76,Karaoke,,0,0,0,,{\kf24}what {\kf16}has
+Dialogue: 0,0:00:44.76,0:00:45.46,Karaoke,,0,0,0,,{\kf40}already {\kf30}been
+Dialogue: 0,0:00:45.46,0:00:45.88,Karaoke,,0,0,0,,{\kf42}observed.
+Dialogue: 0,0:00:45.88,0:00:47.58,Karaoke,,0,0,0,,{\kf148}Markets {\kf22}can
+Dialogue: 0,0:00:47.58,0:00:48.74,Karaoke,,0,0,0,,{\kf56}change {\kf60}through
+Dialogue: 0,0:00:48.74,0:00:49.46,Karaoke,,0,0,0,,{\kf54}events {\kf40}those
+Dialogue: 0,0:00:49.46,0:00:50.86,Karaoke,,0,0,0,,{\kf100}models {\kf62}barely
+Dialogue: 0,0:00:50.86,0:00:52.14,Karaoke,,0,0,0,,{\kf128}considered.
+Dialogue: 0,0:00:52.14,0:00:53.38,Karaoke,,0,0,0,,{\kf78}Technologies {\kf46}can
+Dialogue: 0,0:00:53.38,0:00:54.46,Karaoke,,0,0,0,,{\kf44}overturn {\kf64}assumptions
+Dialogue: 0,0:00:54.46,0:00:55.28,Karaoke,,0,0,0,,{\kf54}just {\kf28}as
 Dialogue: 0,0:00:55.28,0:00:55.66,Karaoke,,0,0,0,,{\kf38}suddenly.
-Dialogue: 0,0:00:56.78,0:00:59.86,Karaoke,,0,0,0,,{\kf10}You {\kf52}cannot {\kf60}reliably {\kf80}predict {\kf74}every\N{\kf32}black
+Dialogue: 0,0:00:56.78,0:00:57.40,Karaoke,,0,0,0,,{\kf10}You {\kf52}cannot
+Dialogue: 0,0:00:57.40,0:00:58.80,Karaoke,,0,0,0,,{\kf60}reliably {\kf80}predict
+Dialogue: 0,0:00:58.80,0:00:59.86,Karaoke,,0,0,0,,{\kf74}every {\kf32}black
 Dialogue: 0,0:00:59.86,0:01:00.68,Karaoke,,0,0,0,,{\kf82}swan.
-Dialogue: 0,0:01:01.20,0:01:04.46,Karaoke,,0,0,0,,{\kf16}So {\kf44}reduce {\kf64}dependence {\kf40}on {\kf54}fragile\N{\kf108}forecasts.
-Dialogue: 0,0:01:04.80,0:01:07.38,Karaoke,,0,0,0,,{\kf32}Leave {\kf38}room {\kf30}for {\kf48}error {\kf42}before\N{\kf68}surprise
+Dialogue: 0,0:01:01.20,0:01:01.80,Karaoke,,0,0,0,,{\kf16}So {\kf44}reduce
+Dialogue: 0,0:01:01.80,0:01:02.84,Karaoke,,0,0,0,,{\kf64}dependence {\kf40}on
+Dialogue: 0,0:01:02.84,0:01:04.46,Karaoke,,0,0,0,,{\kf54}fragile {\kf108}forecasts.
+Dialogue: 0,0:01:04.80,0:01:05.50,Karaoke,,0,0,0,,{\kf32}Leave {\kf38}room
+Dialogue: 0,0:01:05.50,0:01:06.28,Karaoke,,0,0,0,,{\kf30}for {\kf48}error
+Dialogue: 0,0:01:06.28,0:01:07.38,Karaoke,,0,0,0,,{\kf42}before {\kf68}surprise
 Dialogue: 0,0:01:07.38,0:01:08.38,Karaoke,,0,0,0,,{\kf100}arrives.
-Dialogue: 0,0:01:08.94,0:01:12.72,Karaoke,,0,0,0,,{\kf46}Expect {\kf158}uncertainty, {\kf20}not {\kf56}perfect\N{\kf98}prediction.
-Dialogue: 0,0:01:13.22,0:01:15.76,Karaoke,,0,0,0,,{\kf26}Like {\kf60}and {\kf48}subscribe {\kf44}to {\kf40}grow {\kf36}more
+Dialogue: 0,0:01:08.94,0:01:10.98,Karaoke,,0,0,0,,{\kf46}Expect {\kf158}uncertainty,
+Dialogue: 0,0:01:10.98,0:01:11.74,Karaoke,,0,0,0,,{\kf20}not {\kf56}perfect
+Dialogue: 0,0:01:11.74,0:01:12.72,Karaoke,,0,0,0,,{\kf98}prediction.
+Dialogue: 0,0:01:13.22,0:01:14.08,Karaoke,,0,0,0,,{\kf26}Like {\kf60}and
+Dialogue: 0,0:01:14.08,0:01:15.00,Karaoke,,0,0,0,,{\kf48}subscribe {\kf44}to
+Dialogue: 0,0:01:15.00,0:01:15.76,Karaoke,,0,0,0,,{\kf40}grow {\kf36}more
 Dialogue: 0,0:01:15.76,0:01:16.28,Karaoke,,0,0,0,,{\kf52}questions.

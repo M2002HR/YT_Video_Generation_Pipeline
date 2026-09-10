@@ -29,27 +29,8 @@
     }
   },
   "sfx": {
-    "enabled": true,
-    "events": [
-      {
-        "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_319153_08e4e1a69602.mp3",
-        "at": 7.9,
-        "gain_db": -9.0,
-        "trim_sec": 0.7
-      },
-      {
-        "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_799424_7ab53318f138.mp3",
-        "at": 14.53,
-        "gain_db": -9.0,
-        "trim_sec": 0.3
-      },
-      {
-        "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_574797_c73826b9ccdd.mp3",
-        "at": 56.04,
-        "gain_db": -9.0,
-        "trim_sec": 0.7
-      }
-    ]
+    "enabled": false,
+    "events": []
   },
   "loudness": {
     "enabled": true,

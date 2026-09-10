@@ -279,9 +279,9 @@
     },
     {
       "start": 1.1,
-      "end": 1.84,
-      "text": "A missing",
-      "ass_text": "A missing",
+      "end": 3.36,
+      "text": "A missing wrench makes me ask,",
+      "ass_text": "A missing wrench makes me ask,",
       "words": [
         {
           "text": "A",
@@ -292,16 +292,7 @@
           "text": "missing",
           "start": 1.48,
           "end": 1.84
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 1.84,
-      "end": 2.68,
-      "text": "wrench makes",
-      "ass_text": "wrench makes",
-      "words": [
+        },
         {
           "text": "wrench",
           "start": 1.84,
@@ -311,16 +302,7 @@
           "text": "makes",
           "start": 2.36,
           "end": 2.68
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 2.68,
-      "end": 3.36,
-      "text": "me ask,",
-      "ass_text": "me ask,",
-      "words": [
+        },
         {
           "text": "me",
           "start": 2.68,
@@ -336,9 +318,9 @@
     },
     {
       "start": 3.36,
-      "end": 4.22,
-      "text": "what does",
-      "ass_text": "what does",
+      "end": 5.48,
+      "text": "what does Taleb mean by a",
+      "ass_text": "what does Taleb mean by a",
       "words": [
         {
           "text": "what",
@@ -349,16 +331,7 @@
           "text": "does",
           "start": 3.94,
           "end": 4.22
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 4.22,
-      "end": 5.02,
-      "text": "Taleb mean",
-      "ass_text": "Taleb mean",
-      "words": [
+        },
         {
           "text": "Taleb",
           "start": 4.22,
@@ -368,16 +341,7 @@
           "text": "mean",
           "start": 4.54,
           "end": 5.02
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 5.02,
-      "end": 5.48,
-      "text": "by a",
-      "ass_text": "by a",
-      "words": [
+        },
         {
           "text": "by",
           "start": 5.02,
@@ -412,9 +376,9 @@
     },
     {
       "start": 6.17,
-      "end": 7.34,
-      "text": "I grab",
-      "ass_text": "I grab",
+      "end": 8.74,
+      "text": "I grab Taleb's book and follow",
+      "ass_text": "I grab Taleb's book and follow",
       "words": [
         {
           "text": "I",
@@ -425,16 +389,7 @@
           "text": "grab",
           "start": 7.04,
           "end": 7.34
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 7.34,
-      "end": 8.12,
-      "text": "Taleb's book",
-      "ass_text": "Taleb's book",
-      "words": [
+        },
         {
           "text": "Taleb's",
           "start": 7.34,
@@ -444,16 +399,7 @@
           "text": "book",
           "start": 7.8,
           "end": 8.12
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 8.12,
-      "end": 8.74,
-      "text": "and follow",
-      "ass_text": "and follow",
-      "words": [
+        },
         {
           "text": "and",
           "start": 8.12,
@@ -488,9 +434,9 @@
     },
     {
       "start": 9.34,
-      "end": 10.42,
-      "text": "A black",
-      "ass_text": "A black",
+      "end": 11.72,
+      "text": "A black swan is an event",
+      "ass_text": "A black swan is an event",
       "words": [
         {
           "text": "A",
@@ -501,16 +447,7 @@
           "text": "black",
           "start": 10.06,
           "end": 10.42
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 10.42,
-      "end": 11.2,
-      "text": "swan is",
-      "ass_text": "swan is",
-      "words": [
+        },
         {
           "text": "swan",
           "start": 10.42,
@@ -520,16 +457,7 @@
           "text": "is",
           "start": 10.98,
           "end": 11.2
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 11.2,
-      "end": 11.72,
-      "text": "an event",
-      "ass_text": "an event",
-      "words": [
+        },
         {
           "text": "an",
           "start": 11.2,
@@ -545,9 +473,9 @@
     },
     {
       "start": 11.72,
-      "end": 12.98,
-      "text": "outside normal",
-      "ass_text": "outside normal",
+      "end": 14.36,
+      "text": "outside normal expectations.",
+      "ass_text": "outside normal expectations.",
       "words": [
         {
           "text": "outside",
@@ -558,16 +486,7 @@
           "text": "normal",
           "start": 12.32,
           "end": 12.98
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 12.98,
-      "end": 14.36,
-      "text": "expectations.",
-      "ass_text": "expectations.",
-      "words": [
+        },
         {
           "text": "expectations.",
           "start": 12.98,
@@ -578,9 +497,9 @@
     },
     {
       "start": 14.72,
-      "end": 15.32,
-      "text": "Its impact",
-      "ass_text": "Its impact",
+      "end": 16.22,
+      "text": "Its impact is enormous.",
+      "ass_text": "Its impact is enormous.",
       "words": [
         {
           "text": "Its",
@@ -591,16 +510,7 @@
           "text": "impact",
           "start": 14.92,
           "end": 15.32
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 15.32,
-      "end": 16.22,
-      "text": "is enormous.",
-      "ass_text": "is enormous.",
-      "words": [
+        },
         {
           "text": "is",
           "start": 15.32,
@@ -616,9 +526,9 @@
     },
     {
       "start": 16.22,
-      "end": 18.38,
-      "text": "Afterward, people",
-      "ass_text": "Afterward, people",
+      "end": 20.26,
+      "text": "Afterward, people build explanations that make",
+      "ass_text": "Afterward, people build\\Nexplanations that make",
       "words": [
         {
           "text": "Afterward,",
@@ -629,16 +539,7 @@
           "text": "people",
           "start": 17.74,
           "end": 18.38
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 18.38,
-      "end": 19.38,
-      "text": "build explanations",
-      "ass_text": "build explanations",
-      "words": [
+        },
         {
           "text": "build",
           "start": 18.38,
@@ -648,16 +549,7 @@
           "text": "explanations",
           "start": 18.84,
           "end": 19.38
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 19.38,
-      "end": 20.26,
-      "text": "that make",
-      "ass_text": "that make",
-      "words": [
+        },
         {
           "text": "that",
           "start": 19.38,
@@ -673,9 +565,9 @@
     },
     {
       "start": 20.26,
-      "end": 20.56,
-      "text": "it look",
-      "ass_text": "it look",
+      "end": 21.58,
+      "text": "it look predictable.",
+      "ass_text": "it look predictable.",
       "words": [
         {
           "text": "it",
@@ -686,16 +578,7 @@
           "text": "look",
           "start": 20.4,
           "end": 20.56
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 20.56,
-      "end": 21.58,
-      "text": "predictable.",
-      "ass_text": "predictable.",
-      "words": [
+        },
         {
           "text": "predictable.",
           "start": 20.56,
@@ -706,9 +589,9 @@
     },
     {
       "start": 21.94,
-      "end": 22.82,
-      "text": "Hindsight hides",
-      "ass_text": "Hindsight hides",
+      "end": 24.48,
+      "text": "Hindsight hides how surprising it really",
+      "ass_text": "Hindsight hides how surprising it\\Nreally",
       "words": [
         {
           "text": "Hindsight",
@@ -719,16 +602,7 @@
           "text": "hides",
           "start": 22.44,
           "end": 22.82
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 22.82,
-      "end": 23.74,
-      "text": "how surprising",
-      "ass_text": "how surprising",
-      "words": [
+        },
         {
           "text": "how",
           "start": 22.82,
@@ -738,16 +612,7 @@
           "text": "surprising",
           "start": 23.1,
           "end": 23.74
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 23.74,
-      "end": 24.48,
-      "text": "it really",
-      "ass_text": "it really",
-      "words": [
+        },
         {
           "text": "it",
           "start": 23.74,
@@ -777,9 +642,9 @@
     },
     {
       "start": 25.08,
-      "end": 25.94,
-      "text": "The name",
-      "ass_text": "The name",
+      "end": 27.38,
+      "text": "The name comes from Europe's old",
+      "ass_text": "The name comes from Europe's old",
       "words": [
         {
           "text": "The",
@@ -790,16 +655,7 @@
           "text": "name",
           "start": 25.62,
           "end": 25.94
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 25.94,
-      "end": 26.46,
-      "text": "comes from",
-      "ass_text": "comes from",
-      "words": [
+        },
         {
           "text": "comes",
           "start": 25.94,
@@ -809,16 +665,7 @@
           "text": "from",
           "start": 26.28,
           "end": 26.46
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 26.46,
-      "end": 27.38,
-      "text": "Europe's old",
-      "ass_text": "Europe's old",
-      "words": [
+        },
         {
           "text": "Europe's",
           "start": 26.46,
@@ -834,9 +681,9 @@
     },
     {
       "start": 27.38,
-      "end": 28.26,
-      "text": "belief that",
-      "ass_text": "belief that",
+      "end": 30.18,
+      "text": "belief that all swans were white.",
+      "ass_text": "belief that all swans were white.",
       "words": [
         {
           "text": "belief",
@@ -847,16 +694,7 @@
           "text": "that",
           "start": 27.78,
           "end": 28.26
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 28.32,
-      "end": 29.3,
-      "text": "all swans",
-      "ass_text": "all swans",
-      "words": [
+        },
         {
           "text": "all",
           "start": 28.32,
@@ -866,16 +704,7 @@
           "text": "swans",
           "start": 28.66,
           "end": 29.3
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 29.3,
-      "end": 30.18,
-      "text": "were white.",
-      "ass_text": "were white.",
-      "words": [
+        },
         {
           "text": "were",
           "start": 29.3,
@@ -891,9 +720,9 @@
     },
     {
       "start": 30.18,
-      "end": 31.32,
-      "text": "Then Europeans",
-      "ass_text": "Then Europeans",
+      "end": 33.08,
+      "text": "Then Europeans encountered black swans in",
+      "ass_text": "Then Europeans encountered black\\Nswans in",
       "words": [
         {
           "text": "Then",
@@ -904,16 +733,7 @@
           "text": "Europeans",
           "start": 30.8,
           "end": 31.32
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 31.32,
-      "end": 32.46,
-      "text": "encountered black",
-      "ass_text": "encountered black",
-      "words": [
+        },
         {
           "text": "encountered",
           "start": 31.32,
@@ -923,16 +743,7 @@
           "text": "black",
           "start": 32.08,
           "end": 32.46
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 32.46,
-      "end": 33.08,
-      "text": "swans in",
-      "ass_text": "swans in",
-      "words": [
+        },
         {
           "text": "swans",
           "start": 32.46,
@@ -962,9 +773,9 @@
     },
     {
       "start": 33.62,
-      "end": 35.05,
-      "text": "One observation",
-      "ass_text": "One observation",
+      "end": 36.98,
+      "text": "One observation shattered a rule that",
+      "ass_text": "One observation shattered a rule\\Nthat",
       "words": [
         {
           "text": "One",
@@ -975,16 +786,7 @@
           "text": "observation",
           "start": 34.64,
           "end": 35.18
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 35.05,
-      "end": 36.2,
-      "text": "shattered a",
-      "ass_text": "shattered a",
-      "words": [
+        },
         {
           "text": "shattered",
           "start": 34.92,
@@ -994,16 +796,7 @@
           "text": "a",
           "start": 35.98,
           "end": 36.2
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 36.2,
-      "end": 36.98,
-      "text": "rule that",
-      "ass_text": "rule that",
-      "words": [
+        },
         {
           "text": "rule",
           "start": 36.2,
@@ -1019,9 +812,9 @@
     },
     {
       "start": 36.98,
-      "end": 37.48,
-      "text": "had seemed",
-      "ass_text": "had seemed",
+      "end": 38.72,
+      "text": "had seemed certain.",
+      "ass_text": "had seemed certain.",
       "words": [
         {
           "text": "had",
@@ -1032,16 +825,7 @@
           "text": "seemed",
           "start": 37.1,
           "end": 37.48
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 37.48,
-      "end": 38.72,
-      "text": "certain.",
-      "ass_text": "certain.",
-      "words": [
+        },
         {
           "text": "certain.",
           "start": 37.48,
@@ -1052,9 +836,9 @@
     },
     {
       "start": 38.72,
-      "end": 39.42,
-      "text": "Taleb says",
-      "ass_text": "Taleb says",
+      "end": 41.04,
+      "text": "Taleb says forecasts can fail the",
+      "ass_text": "Taleb says forecasts can fail the",
       "words": [
         {
           "text": "Taleb",
@@ -1065,16 +849,7 @@
           "text": "says",
           "start": 39.0,
           "end": 39.42
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 39.42,
-      "end": 40.32,
-      "text": "forecasts can",
-      "ass_text": "forecasts can",
-      "words": [
+        },
         {
           "text": "forecasts",
           "start": 39.42,
@@ -1084,16 +859,7 @@
           "text": "can",
           "start": 40.12,
           "end": 40.32
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 40.32,
-      "end": 41.04,
-      "text": "fail the",
-      "ass_text": "fail the",
-      "words": [
+        },
         {
           "text": "fail",
           "start": 40.32,
@@ -1128,9 +894,9 @@
     },
     {
       "start": 42.54,
-      "end": 43.38,
-      "text": "Models usually",
-      "ass_text": "Models usually",
+      "end": 44.76,
+      "text": "Models usually depend on what has",
+      "ass_text": "Models usually depend on what has",
       "words": [
         {
           "text": "Models",
@@ -1141,16 +907,7 @@
           "text": "usually",
           "start": 42.98,
           "end": 43.38
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 43.38,
-      "end": 44.36,
-      "text": "depend on",
-      "ass_text": "depend on",
-      "words": [
+        },
         {
           "text": "depend",
           "start": 43.38,
@@ -1160,16 +917,7 @@
           "text": "on",
           "start": 43.94,
           "end": 44.36
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 44.36,
-      "end": 44.76,
-      "text": "what has",
-      "ass_text": "what has",
-      "words": [
+        },
         {
           "text": "what",
           "start": 44.36,
@@ -1185,9 +933,9 @@
     },
     {
       "start": 44.76,
-      "end": 45.46,
-      "text": "already been",
-      "ass_text": "already been",
+      "end": 45.88,
+      "text": "already been observed.",
+      "ass_text": "already been observed.",
       "words": [
         {
           "text": "already",
@@ -1198,16 +946,7 @@
           "text": "been",
           "start": 45.16,
           "end": 45.46
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 45.46,
-      "end": 45.88,
-      "text": "observed.",
-      "ass_text": "observed.",
-      "words": [
+        },
         {
           "text": "observed.",
           "start": 45.46,
@@ -1218,9 +957,9 @@
     },
     {
       "start": 45.88,
-      "end": 47.58,
-      "text": "Markets can",
-      "ass_text": "Markets can",
+      "end": 49.46,
+      "text": "Markets can change through events those",
+      "ass_text": "Markets can change through events\\Nthose",
       "words": [
         {
           "text": "Markets",
@@ -1231,16 +970,7 @@
           "text": "can",
           "start": 47.36,
           "end": 47.58
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 47.58,
-      "end": 48.74,
-      "text": "change through",
-      "ass_text": "change through",
-      "words": [
+        },
         {
           "text": "change",
           "start": 47.58,
@@ -1250,16 +980,7 @@
           "text": "through",
           "start": 48.14,
           "end": 48.74
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 48.74,
-      "end": 49.46,
-      "text": "events those",
-      "ass_text": "events those",
-      "words": [
+        },
         {
           "text": "events",
           "start": 48.74,
@@ -1275,9 +996,9 @@
     },
     {
       "start": 49.46,
-      "end": 50.86,
-      "text": "models barely",
-      "ass_text": "models barely",
+      "end": 52.14,
+      "text": "models barely considered.",
+      "ass_text": "models barely considered.",
       "words": [
         {
           "text": "models",
@@ -1288,16 +1009,7 @@
           "text": "barely",
           "start": 50.24,
           "end": 50.86
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 50.86,
-      "end": 52.14,
-      "text": "considered.",
-      "ass_text": "considered.",
-      "words": [
+        },
         {
           "text": "considered.",
           "start": 50.86,
@@ -1308,9 +1020,9 @@
     },
     {
       "start": 52.14,
-      "end": 53.38,
-      "text": "Technologies can",
-      "ass_text": "Technologies can",
+      "end": 55.28,
+      "text": "Technologies can overturn assumptions just as",
+      "ass_text": "Technologies can overturn\\Nassumptions just as",
       "words": [
         {
           "text": "Technologies",
@@ -1321,16 +1033,7 @@
           "text": "can",
           "start": 52.92,
           "end": 53.38
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 53.38,
-      "end": 54.46,
-      "text": "overturn assumptions",
-      "ass_text": "overturn assumptions",
-      "words": [
+        },
         {
           "text": "overturn",
           "start": 53.38,
@@ -1340,16 +1043,7 @@
           "text": "assumptions",
           "start": 53.82,
           "end": 54.46
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 54.46,
-      "end": 55.28,
-      "text": "just as",
-      "ass_text": "just as",
-      "words": [
+        },
         {
           "text": "just",
           "start": 54.46,
@@ -1379,9 +1073,9 @@
     },
     {
       "start": 56.78,
-      "end": 57.4,
-      "text": "You cannot",
-      "ass_text": "You cannot",
+      "end": 59.86,
+      "text": "You cannot reliably predict every black",
+      "ass_text": "You cannot reliably predict every\\Nblack",
       "words": [
         {
           "text": "You",
@@ -1392,16 +1086,7 @@
           "text": "cannot",
           "start": 56.88,
           "end": 57.4
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 57.4,
-      "end": 58.8,
-      "text": "reliably predict",
-      "ass_text": "reliably predict",
-      "words": [
+        },
         {
           "text": "reliably",
           "start": 57.4,
@@ -1411,16 +1096,7 @@
           "text": "predict",
           "start": 58.0,
           "end": 58.8
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 58.8,
-      "end": 59.86,
-      "text": "every black",
-      "ass_text": "every black",
-      "words": [
+        },
         {
           "text": "every",
           "start": 58.8,
@@ -1450,9 +1126,9 @@
     },
     {
       "start": 61.2,
-      "end": 61.8,
-      "text": "So reduce",
-      "ass_text": "So reduce",
+      "end": 64.46,
+      "text": "So reduce dependence on fragile forecasts.",
+      "ass_text": "So reduce dependence on fragile\\Nforecasts.",
       "words": [
         {
           "text": "So",
@@ -1463,16 +1139,7 @@
           "text": "reduce",
           "start": 61.36,
           "end": 61.8
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 61.8,
-      "end": 62.84,
-      "text": "dependence on",
-      "ass_text": "dependence on",
-      "words": [
+        },
         {
           "text": "dependence",
           "start": 61.8,
@@ -1482,16 +1149,7 @@
           "text": "on",
           "start": 62.44,
           "end": 62.84
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 62.84,
-      "end": 64.46,
-      "text": "fragile forecasts.",
-      "ass_text": "fragile forecasts.",
-      "words": [
+        },
         {
           "text": "fragile",
           "start": 62.84,
@@ -1507,9 +1165,9 @@
     },
     {
       "start": 64.8,
-      "end": 65.5,
-      "text": "Leave room",
-      "ass_text": "Leave room",
+      "end": 67.38,
+      "text": "Leave room for error before surprise",
+      "ass_text": "Leave room for error before\\Nsurprise",
       "words": [
         {
           "text": "Leave",
@@ -1520,16 +1178,7 @@
           "text": "room",
           "start": 65.12,
           "end": 65.5
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 65.5,
-      "end": 66.28,
-      "text": "for error",
-      "ass_text": "for error",
-      "words": [
+        },
         {
           "text": "for",
           "start": 65.5,
@@ -1539,16 +1188,7 @@
           "text": "error",
           "start": 65.8,
           "end": 66.28
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 66.28,
-      "end": 67.38,
-      "text": "before surprise",
-      "ass_text": "before surprise",
-      "words": [
+        },
         {
           "text": "before",
           "start": 66.28,
@@ -1578,9 +1218,9 @@
     },
     {
       "start": 68.94,
-      "end": 70.98,
-      "text": "Expect uncertainty,",
-      "ass_text": "Expect uncertainty,",
+      "end": 72.72,
+      "text": "Expect uncertainty, not perfect prediction.",
+      "ass_text": "Expect uncertainty, not perfect\\Nprediction.",
       "words": [
         {
           "text": "Expect",
@@ -1591,16 +1231,7 @@
           "text": "uncertainty,",
           "start": 69.4,
           "end": 70.98
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 70.98,
-      "end": 71.74,
-      "text": "not perfect",
-      "ass_text": "not perfect",
-      "words": [
+        },
         {
           "text": "not",
           "start": 70.98,
@@ -1610,16 +1241,7 @@
           "text": "perfect",
           "start": 71.18,
           "end": 71.74
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 71.74,
-      "end": 72.72,
-      "text": "prediction.",
-      "ass_text": "prediction.",
-      "words": [
+        },
         {
           "text": "prediction.",
           "start": 71.74,
@@ -1630,9 +1252,9 @@
     },
     {
       "start": 73.22,
-      "end": 74.08,
-      "text": "Like and",
-      "ass_text": "Like and",
+      "end": 75.76,
+      "text": "Like and subscribe to grow more",
+      "ass_text": "Like and subscribe to grow more",
       "words": [
         {
           "text": "Like",
@@ -1643,16 +1265,7 @@
           "text": "and",
           "start": 73.48,
           "end": 74.08
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 74.08,
-      "end": 75.0,
-      "text": "subscribe to",
-      "ass_text": "subscribe to",
-      "words": [
+        },
         {
           "text": "subscribe",
           "start": 74.08,
@@ -1662,16 +1275,7 @@
           "text": "to",
           "start": 74.56,
           "end": 75.0
-        }
-      ],
-      "timing_source": "word"
-    },
-    {
-      "start": 75.0,
-      "end": 75.76,
-      "text": "grow more",
-      "ass_text": "grow more",
-      "words": [
+        },
         {
           "text": "grow",
           "start": 75.0,
@@ -1708,8 +1312,8 @@
       {
         "previous_beat": null,
         "current_beat": null,
-        "previous_cue": 7,
-        "current_cue": 8,
+        "previous_cue": 3,
+        "current_cue": 4,
         "previous_end": 6.44,
         "current_start": 5.9,
         "overlap_seconds": 0.54,
@@ -1718,18 +1322,8 @@
       {
         "previous_beat": null,
         "current_beat": null,
-        "previous_cue": 38,
-        "current_cue": 39,
-        "previous_end": 35.18,
-        "current_start": 34.92,
-        "overlap_seconds": 0.26,
-        "chosen_boundary": 35.05
-      },
-      {
-        "previous_beat": null,
-        "current_beat": null,
-        "previous_cue": 54,
-        "current_cue": 55,
+        "previous_cue": 23,
+        "current_cue": 24,
         "previous_end": 49.68,
         "current_start": 49.24,
         "overlap_seconds": 0.44,
@@ -1737,7 +1331,7 @@
       }
     ],
     "subtitle_word_timings_available": true,
-    "subtitle_cues_from_measured_words": 79,
+    "subtitle_cues_from_measured_words": 35,
     "subtitle_cues_estimated": 0
   }
 }
