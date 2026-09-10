@@ -10,8 +10,8 @@
   "duration_max_seconds": 60.0,
   "aspect_ratio": "9:16",
   "project": "videos/026_black_swan_meaning_by_nassim_talib",
-  "voice_profile": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/4c55ac65-b66b-4035-9067-69742ba8c863/VOICE_PROFILE.json",
-  "creative_brief": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/4c55ac65-b66b-4035-9067-69742ba8c863/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/VOICE_PROFILE.json",
+  "creative_brief": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -116,7 +116,7 @@
   "commit_artifacts": true,
   "telegram_low_size": true,
   "telegram_original": false,
-  "pid": 1165387,
+  "pid": 1172485,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -128,9 +128,9 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/4c55ac65-b66b-4035-9067-69742ba8c863/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/4c55ac65-b66b-4035-9067-69742ba8c863/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/5a9a1d49-3063-44f7-8e5d-4f1db1953ab2/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -140,13 +140,13 @@
   ],
   "started_at": "2026-09-10T11:10:24.317373+00:00",
   "exit_code": 0,
-  "process_exited_at": "2026-09-10T17:53:44.521150+00:00",
-  "resumed_at": "2026-09-10T18:20:57.485599+00:00",
+  "process_exited_at": "2026-09-10T18:26:03.709110+00:00",
+  "resumed_at": "2026-09-10T18:52:26.413247+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "73ce3e6d-c160-4f0c-ae2c-f0d0584de4a8",
+    "revision_id": "4090145b-8df3-4936-8976-aa510de58c00",
     "kind": "config",
-    "created_at": "2026-09-10T18:20:57.484864+00:00",
+    "created_at": "2026-09-10T18:52:26.412397+00:00",
     "roots": [
       "render_profile"
     ],
@@ -220,24 +220,19 @@
     "regenerate_beats": [],
     "feedback": "",
     "status": "RUNNING",
-    "started_at": "2026-09-10T18:20:57.485451+00:00",
-    "pid": 1165387,
+    "started_at": "2026-09-10T18:52:26.413076+00:00",
+    "pid": 1172485,
     "changed_fields": [
-      "word_highlight",
-      "subtitle_font",
-      "subtitle_font_size",
-      "subtitle_offset_value",
-      "subtitle_font_colour",
-      "subtitle_outline"
+      "subtitle_font_size"
     ],
-    "config_revision_id": "4c55ac65-b66b-4035-9067-69742ba8c863"
+    "config_revision_id": "5a9a1d49-3063-44f7-8e5d-4f1db1953ab2"
   },
   "resume_count": 7,
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "73ce3e6d-c160-4f0c-ae2c-f0d0584de4a8",
+    "revision_id": "4090145b-8df3-4936-8976-aa510de58c00",
     "kind": "config",
-    "created_at": "2026-09-10T18:20:57.484864+00:00",
+    "created_at": "2026-09-10T18:52:26.412397+00:00",
     "roots": [
       "render_profile"
     ],
@@ -311,16 +306,11 @@
     "regenerate_beats": [],
     "feedback": "",
     "status": "RUNNING",
-    "started_at": "2026-09-10T18:20:57.485451+00:00",
-    "pid": 1165387,
+    "started_at": "2026-09-10T18:52:26.413076+00:00",
+    "pid": 1172485,
     "changed_fields": [
-      "word_highlight",
-      "subtitle_font",
-      "subtitle_font_size",
-      "subtitle_offset_value",
-      "subtitle_font_colour",
-      "subtitle_outline"
+      "subtitle_font_size"
     ],
-    "config_revision_id": "4c55ac65-b66b-4035-9067-69742ba8c863"
+    "config_revision_id": "5a9a1d49-3063-44f7-8e5d-4f1db1953ab2"
   }
 }

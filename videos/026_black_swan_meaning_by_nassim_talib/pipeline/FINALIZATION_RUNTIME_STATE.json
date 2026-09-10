@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "026_black_swan_meaning_by_nassim_talib",
-  "started_at": "2026-09-10T18:21:24.153244+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-10T18:52:54.858115+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-10T18:21:24.172913+00:00",
+      "started_at": "2026-09-10T18:52:54.878205+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-10T18:21:25.752379+00:00",
-      "elapsed_seconds": 1.579,
+      "ended_at": "2026-09-10T18:52:56.560831+00:00",
+      "elapsed_seconds": 1.683,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 38147
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-10T18:21:26.842875+00:00",
+      "started_at": "2026-09-10T18:52:57.622962+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -31,14 +31,14 @@
         "0.800"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-10T18:24:56.402589+00:00",
-      "elapsed_seconds": 209.56,
+      "ended_at": "2026-09-10T18:56:26.482017+00:00",
+      "elapsed_seconds": 208.859,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 59284574
+      "artifact_bytes": 59373587
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-10T18:24:56.403025+00:00",
+      "started_at": "2026-09-10T18:56:26.482492+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -48,14 +48,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-10T18:25:06.679560+00:00",
-      "elapsed_seconds": 10.276,
+      "ended_at": "2026-09-10T18:56:36.269018+00:00",
+      "elapsed_seconds": 9.786,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-10T18:25:07.867494+00:00",
+      "started_at": "2026-09-10T18:56:37.530987+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -64,14 +64,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-10T18:25:12.658675+00:00",
-      "elapsed_seconds": 4.791,
+      "ended_at": "2026-09-10T18:56:42.340258+00:00",
+      "elapsed_seconds": 4.809,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 59704127
+      "artifact_bytes": 59793140
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-10T18:25:13.685129+00:00",
+      "started_at": "2026-09-10T18:56:44.191762+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -81,14 +81,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-10T18:25:23.431026+00:00",
-      "elapsed_seconds": 9.746,
+      "ended_at": "2026-09-10T18:56:53.662006+00:00",
+      "elapsed_seconds": 9.47,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-10T18:25:24.658264+00:00",
+      "started_at": "2026-09-10T18:56:54.811377+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -99,14 +99,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-10T18:25:46.992078+00:00",
-      "elapsed_seconds": 22.334,
+      "ended_at": "2026-09-10T18:57:17.718369+00:00",
+      "elapsed_seconds": 22.907,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 2745398
+      "artifact_bytes": 2787473
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-10T18:25:48.206273+00:00",
+      "started_at": "2026-09-10T18:57:19.148310+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -114,21 +114,9 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-10T18:21:24.153244+00:00"
+        "2026-09-10T18:52:54.858115+00:00"
       ],
       "status": "RUNNING"
-    },
-    {
-      "stage": "git_commit_push",
-      "status": "DONE",
-      "started_at": "2026-09-10T18:21:24.153244+00:00",
-      "ended_at": "2026-09-10T18:25:51.223559+00:00",
-      "elapsed_seconds": 267.07,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "30ccdc80d7d7ed1c19801d8780ffda8f2947da1f"
     }
-  ],
-  "completed_at": "2026-09-10T18:25:51.223559+00:00",
-  "total_elapsed_seconds": 525.356
+  ]
 }

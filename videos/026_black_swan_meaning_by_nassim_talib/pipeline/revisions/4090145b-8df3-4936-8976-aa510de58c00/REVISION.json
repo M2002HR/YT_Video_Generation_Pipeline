@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "revision_id": "73ce3e6d-c160-4f0c-ae2c-f0d0584de4a8",
+  "revision_id": "4090145b-8df3-4936-8976-aa510de58c00",
   "kind": "config",
-  "created_at": "2026-09-10T18:20:57.484864+00:00",
+  "created_at": "2026-09-10T18:52:26.412397+00:00",
   "roots": [
     "render_profile"
   ],
@@ -75,17 +75,11 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
-  "started_at": "2026-09-10T18:20:57.485451+00:00",
-  "pid": 1165387,
+  "status": "RUNNING",
+  "started_at": "2026-09-10T18:52:26.413076+00:00",
+  "pid": 1172485,
   "changed_fields": [
-    "word_highlight",
-    "subtitle_font",
-    "subtitle_font_size",
-    "subtitle_offset_value",
-    "subtitle_font_colour",
-    "subtitle_outline"
+    "subtitle_font_size"
   ],
-  "config_revision_id": "4c55ac65-b66b-4035-9067-69742ba8c863",
-  "completed_at": "2026-09-10T18:26:03.711585+00:00"
+  "config_revision_id": "5a9a1d49-3063-44f7-8e5d-4f1db1953ab2"
 }

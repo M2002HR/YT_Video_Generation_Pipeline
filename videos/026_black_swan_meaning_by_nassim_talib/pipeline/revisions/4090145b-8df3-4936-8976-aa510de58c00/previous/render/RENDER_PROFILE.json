@@ -35,7 +35,7 @@
   "subtitles": {
     "enabled": true,
     "font_name": "Rubik",
-    "font_size": 120,
+    "font_size": 90,
     "bold": true,
     "outline": 8.0,
     "shadow": 0,

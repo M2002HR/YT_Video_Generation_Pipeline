@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-10T18:26:02.386682+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-10T18:26:02.386505+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25557,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2745398,
+      "sha256": "4f799c8ea99f11f2fbe4bff9183a2ae13d306fb5b6ff8d9b8ab2af7efc43cd39",
+      "duration_seconds": 77.09,
+      "elapsed_seconds": 6.225,
+      "qc_report": null,
+      "summary": {
+        "video": "026_black_swan_meaning_by_nassim_talib",
+        "duration_seconds": 77.087,
+        "beat_count": 16,
+        "video_beat_count": 2,
+        "image_beat_count": 14,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 6.44,
+          "transition_end": 9.34
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Open mode picker, currently Flash"
+          ]
+        },
+        "qc": {
+          "report": null,
+          "passed": null
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 209.174,
+          "realtime_factor": 2.713,
+          "peak_child_rss_mb": 1375.3,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 026_black_swan_meaning_by_nassim_talib\n⏱ Duration: 1:17\n🎞 Beats: 16 (2 video · 14 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Open mode picker, currently Flash\n🗣 Timing: ajil / word\n🧮 Render: 3:29 wall (2.713x realtime) · 2 thread(s) · peak 1375.3 MB\nArtifact: 4f799c8ea99f · Delivery: compressed"
+    }
+  }
+}
