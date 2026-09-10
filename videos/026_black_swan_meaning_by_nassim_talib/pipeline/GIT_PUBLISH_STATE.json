@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "30ccdc80d7d7ed1c19801d8780ffda8f2947da1f",
+  "started_at": "2026-09-10T18:21:24.153244+00:00",
+  "completed_at": "2026-09-10T18:25:51.223559+00:00",
+  "elapsed_seconds": 267.07,
+  "scope": "videos/026_black_swan_meaning_by_nassim_talib"
+}
