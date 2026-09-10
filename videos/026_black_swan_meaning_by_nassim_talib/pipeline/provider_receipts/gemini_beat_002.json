@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "a5d26a5d5e193ed5367e28eda66f538297d6b8199186dbf2d94a8db51d70f1ce",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertically oriented screen-printed atlas-card image with a thick distressed soot-black outer edge, narrow bone-white margin, inset illustration window, worn corners, matte grain, and slight print irregularity. A large black swan dominates the center as it strikes a compact geometric landscape. Vermilion fracture lines and a circular impact pattern radiate from beneath the bird, cutting across and displacing bridges, towers, grids, and architectural forms. The palette is primarily soot-black, bone-white, pale gray, storm blue-gray, oxidized teal, and vermilion. Thin technical arcs and construction lines cross the scene and visibly break or diverge around the disruption. No readable text, captions, labels, interfaces, collage structure, or multiple panels are visible.",
+    "violations": [
+      "The canvas measures 1143 by 2048 pixels, which is very close to but not exactly a 9:16 aspect ratio.",
+      "The camera reads somewhat elevated because substantial roof surfaces, ground grids, and the impact ring are viewed from above, so the requested strongly low-angle viewpoint is only partially achieved.",
+      "The upper portion contains a relatively broad pale sky and horizon field with sparse technical linework, making that area less visually dense than the central and lower sections, though it still reads as continuous scenery rather than a reserved blank panel."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The canvas measures 1143 by 2048 pixels, which is very close to but not exactly a 9:16 aspect ratio.",
+      "The camera reads somewhat elevated because substantial roof surfaces, ground grids, and the impact ring are viewed from above, so the requested strongly low-angle viewpoint is only partially achieved.",
+      "The upper portion contains a relatively broad pale sky and horizon field with sparse technical linework, making that area less visually dense than the central and lower sections, though it still reads as continuous scenery rather than a reserved blank panel."
+    ],
+    "observations": [
+      "The canvas measures 1143 by 2048 pixels, which is very close to but not exactly a 9:16 aspect ratio.",
+      "The camera reads somewhat elevated because substantial roof surfaces, ground grids, and the impact ring are viewed from above, so the requested strongly low-angle viewpoint is only partially achieved.",
+      "The upper portion contains a relatively broad pale sky and horizon field with sparse technical linework, making that area less visually dense than the central and lower sections, though it still reads as continuous scenery rather than a reserved blank panel."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "a58d76c3-6bd9-420e-b33a-521985f2800f",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/eac56e27af010e59",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=a58d76c3-6bd9-420e-b33a-521985f2800f_output_1.png 1536x2752 sha256=02e722fc4fd4f7466f5bf2ca5ed4478eee6abacadede56d7419f319c5d69d1d1"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertically oriented screen-printed atlas-card image with a thick distressed soot-black outer edge, narrow bone-white margin, inset illustration window, worn corners, matte grain, and slight print irregularity. A large black swan dominates the center as it strikes a compact geometric landscape. Vermilion fracture lines and a circular impact pattern radiate from beneath the bird, cutting across and displacing bridges, towers, grids, and architectural forms. The palette is primarily soot-black, bone-white, pale gray, storm blue-gray, oxidized teal, and vermilion. Thin technical arcs and construction lines cross the scene and visibly break or diverge around the disruption. No readable text, captions, labels, interfaces, collage structure, or multiple panels are visible.",
+      "violations": [
+        "The canvas measures 1143 by 2048 pixels, which is very close to but not exactly a 9:16 aspect ratio.",
+        "The camera reads somewhat elevated because substantial roof surfaces, ground grids, and the impact ring are viewed from above, so the requested strongly low-angle viewpoint is only partially achieved.",
+        "The upper portion contains a relatively broad pale sky and horizon field with sparse technical linework, making that area less visually dense than the central and lower sections, though it still reads as continuous scenery rather than a reserved blank panel."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The canvas measures 1143 by 2048 pixels, which is very close to but not exactly a 9:16 aspect ratio.",
+        "The camera reads somewhat elevated because substantial roof surfaces, ground grids, and the impact ring are viewed from above, so the requested strongly low-angle viewpoint is only partially achieved.",
+        "The upper portion contains a relatively broad pale sky and horizon field with sparse technical linework, making that area less visually dense than the central and lower sections, though it still reads as continuous scenery rather than a reserved blank panel."
+      ],
+      "observations": [
+        "The canvas measures 1143 by 2048 pixels, which is very close to but not exactly a 9:16 aspect ratio.",
+        "The camera reads somewhat elevated because substantial roof surfaces, ground grids, and the impact ring are viewed from above, so the requested strongly low-angle viewpoint is only partially achieved.",
+        "The upper portion contains a relatively broad pale sky and horizon field with sparse technical linework, making that area less visually dense than the central and lower sections, though it still reads as continuous scenery rather than a reserved blank panel."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "a5d26a5d5e193ed5367e28eda66f538297d6b8199186dbf2d94a8db51d70f1ce"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_keyframe.png",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/assets/raw_beats/beat_001.png",
+      "sha256": "d550400a05e83b89f82cb4430f1e6e11a54266d44c96e7a6e96bf13d59e94f88"
+    }
+  ],
+  "prompt_sha256": "6c23ae49aa7d08069efd3511c8d0924ee856bb8e98c3e9b9fa70afba5696370e",
+  "prompt": "Edit\n\nCreate exactly one 9:16 image: a low-angle metaphorical impact scene inside the established vertically oriented screen-printed atlas card, with its thick imperfect soot-black outer print edge, narrow bone-white margin, inset illustration window, slight registration offsets, worn corners, dry matte ink grain, and full-height naturally composed artwork with no caption reserve, blank strip, empty panel, or low-detail lower band. At the center, a single large black swan lands with immense visual force in a compact miniature landscape; from the point of impact, a sparse vermilion fracture ring radiates outward, cracking and displacing simplified bridges, towers, model grids, and precise geometric structures, making the consequences feel vastly larger than the initiating event. Emphasize scale and disruption through the low viewpoint, bold soot-black silhouettes, restrained storm blue-gray and oxidized teal, bone-white and pale-stone fields, crisp screen-printed contours with occasional dry-ink breaks, and graphic high-contrast matte lighting. Thin technical-drawing lines should visibly split, diverge, or fail as the shock passes through them. Use style_reference only to preserve the established rendering vocabulary and material treatment; use world_keyframe only to maintain the recurring world palette, print-window grammar, texture, and lighting; use previous_beat as binding continuity for frame material, edge treatment, palette, texture, and lighting while creating a completely new composition, camera angle, subject placement, and focal action. No photorealism, glossy CGI, anime, watercolor, sepia engraving, neon palette, readable interfaces, text, letters, numbers, captions, labels, storyboard, grid, collage, or multiple panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_002.png",
+  "output_sha256": "02e722fc4fd4f7466f5bf2ca5ed4478eee6abacadede56d7419f319c5d69d1d1",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.288,
+  "completed_at": "2026-09-10T12:20:17Z"
+}

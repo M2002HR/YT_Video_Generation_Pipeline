@@ -1,0 +1,15 @@
+{
+  "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+  "opening_location": "community workshop maintenance bay",
+  "opening_environment": "A practical shared workshop with a metal workbench, pegboard tools, and a wheeled repair cart staged near the entrance.",
+  "curiosity_trigger": "He notices one wrench-shaped slot on the cart is conspicuously empty while every other tool is accounted for.",
+  "trigger_object": "the empty labeled slot where a wrench should be",
+  "reaction": "He pauses, studies the empty slot with a tired skeptical look, then glances toward the bench as the question clicks.",
+  "book_retrieval": "He reaches beneath a clipboard on the nearby workbench and pulls out Taleb's book, already kept with his reference materials.",
+  "camera_pattern": "slow_push_in",
+  "book_template_id": "002",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "Editorial natural-history-to-modern-risk world moving from European swan certainty to Australian black swans, forecasting models, markets, and disruptive technology.",
+  "reason": "A missing expected tool creates a small, grounded violation of expectation that naturally motivates Taleb's idea of consequential surprises without forcing the host into a repeated setting."
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "efa5086e9de43b236d3e4a551c7b57b579be5f1142334c9676af4d643d4697d0",
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 0.72,
+      "intent": "Ground the opening tool-sorting footage with one small, natural metal contact.",
+      "query": "single small hand tool gently placed on workbench light metal clink dry close",
+      "selection_mode": "SKIPPED_NO_GOOD_MATCH",
+      "gain_db": -9.0
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 7.9,
+      "intent": "Support the visible moment of grabbing Taleb's book with a soft, close handling sound.",
+      "query": "hardcover book picked up from table soft cover thump paper movement close foley",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_319153",
+      "provider": "freesound",
+      "provider_id": "319153",
+      "source_url": "https://freesound.org/people/cmorris035/sounds/319153/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_319153_08e4e1a69602.mp3",
+      "duration_seconds": 0.7,
+      "gain_db": -9.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_003",
+      "at": 14.53,
+      "intent": "Give the shift from unexpected event to enormous impact one restrained physical punctuation.",
+      "query": "short dry heavy impact muted crack no boom no trailer hit",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_799424",
+      "provider": "freesound",
+      "provider_id": "799424",
+      "source_url": "https://freesound.org/people/Logicogonist/sounds/799424/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_799424_7ab53318f138.mp3",
+      "duration_seconds": 0.3,
+      "gain_db": -9.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_004",
+      "at": 56.04,
+      "intent": "Let the disrupted technology mechanism settle with one subdued mechanical stop.",
+      "query": "small mechanical gear train stop single restrained clack metal mechanism",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_574797",
+      "provider": "freesound",
+      "provider_id": "574797",
+      "source_url": "https://freesound.org/people/bitlab_coop/sounds/574797/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_574797_c73826b9ccdd.mp3",
+      "duration_seconds": 0.7,
+      "gain_db": -9.0,
+      "score": 1.0
+    }
+  ]
+}

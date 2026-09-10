@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "episode_duration_seconds": 77.087,
+  "planner": {
+    "approach": "restrained_diegetic_and_semantic_accents",
+    "event_count": 4,
+    "events_per_minute": 3.11,
+    "max_events_per_minute": 4.0,
+    "minimum_gap_seconds": 2.0,
+    "principles": [
+      "Leave most of the episode without added SFX.",
+      "Prefer sounds justified by visible actions or major conceptual changes.",
+      "Use narration-free gaps for stronger accents when possible.",
+      "Keep any speech-overlapping foley very quiet and brief.",
+      "Do not accent routine cuts or transitions.",
+      "Avoid whooshes, meme sounds, cinematic booms, and sustained effects competing with narration."
+    ],
+    "provider": "chatgpt_ordak",
+    "style": "expressive"
+  },
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 0.72,
+      "window_start": 0.45,
+      "window_end": 1.05,
+      "category": "foley",
+      "intent": "Ground the opening tool-sorting footage with one small, natural metal contact.",
+      "search_query": "single small hand tool gently placed on workbench light metal clink dry close",
+      "alternate_queries": [
+        "quiet wrench set down on wooden bench single clink",
+        "subtle metal hand tool contact workshop close foley"
+      ],
+      "desired_duration_seconds": 0.35,
+      "max_duration_seconds": 0.6,
+      "priority": 2,
+      "suggested_gain_db": -25.0,
+      "speech_overlap": true,
+      "reason": "The opening is physical footage, so one understated diegetic contact adds tactility without turning the entire sorting sequence into continuous foley."
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 7.9,
+      "window_start": 7.62,
+      "window_end": 8.28,
+      "category": "foley",
+      "intent": "Support the visible moment of grabbing Taleb's book with a soft, close handling sound.",
+      "search_query": "hardcover book picked up from table soft cover thump paper movement close foley",
+      "alternate_queries": [
+        "book lifted from desk subtle paper cover rustle",
+        "quiet hardcover book handling single soft thump"
+      ],
+      "desired_duration_seconds": 0.45,
+      "max_duration_seconds": 0.7,
+      "priority": 2,
+      "suggested_gain_db": -26.0,
+      "speech_overlap": true,
+      "reason": "This is a concrete on-screen action worth lightly reinforcing, but the narration remains dominant."
+    },
+    {
+      "event_id": "sfx_003",
+      "at": 14.53,
+      "window_start": 14.4,
+      "window_end": 14.7,
+      "category": "impact",
+      "intent": "Give the shift from unexpected event to enormous impact one restrained physical punctuation.",
+      "search_query": "short dry heavy impact muted crack no boom no trailer hit",
+      "alternate_queries": [
+        "subtle low thud with brief fracture crack dry",
+        "restrained structural impact short muted hit"
+      ],
+      "desired_duration_seconds": 0.28,
+      "max_duration_seconds": 0.3,
+      "priority": 3,
+      "suggested_gain_db": -20.0,
+      "speech_overlap": false,
+      "reason": "A brief narration gap from roughly 14.36 to 14.72 allows a meaningful accent before the impact visual without masking words."
+    },
+    {
+      "event_id": "sfx_004",
+      "at": 56.04,
+      "window_start": 55.78,
+      "window_end": 56.5,
+      "category": "mechanical",
+      "intent": "Let the disrupted technology mechanism settle with one subdued mechanical stop.",
+      "search_query": "small mechanical gear train stop single restrained clack metal mechanism",
+      "alternate_queries": [
+        "quiet machinery halt one dry gear clack",
+        "subtle industrial mechanism stop short metal click"
+      ],
+      "desired_duration_seconds": 0.5,
+      "max_duration_seconds": 0.7,
+      "priority": 2,
+      "suggested_gain_db": -23.0,
+      "speech_overlap": false,
+      "reason": "The technology narration ends around 55.66 and the next line begins at 56.78, leaving enough silence for a visually motivated mechanical accent rather than a transition effect."
+    }
+  ],
+  "timeline_context_sha256": "efa5086e9de43b236d3e4a551c7b57b579be5f1142334c9676af4d643d4697d0",
+  "event_count": 4,
+  "updated_at": "2026-09-10T14:12:03.598340+00:00",
+  "status": "DONE"
+}

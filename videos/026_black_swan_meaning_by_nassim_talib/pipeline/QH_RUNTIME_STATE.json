@@ -1,0 +1,627 @@
+{
+  "schema_version": 2,
+  "video_id": "026",
+  "topic": "Black Swan Meaning, by Nassim talib",
+  "created_at": "2026-09-10T11:10:24Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:15Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:15Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:15Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:15Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:15Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:15Z",
+      "artifact": "world_style_anchor.png → catalog/015_fractured_probability_screenprint_001"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-10T14:10:16Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:17Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:17Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:18Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:18Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_design_sheet_visual_qc": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-10T11:54:29Z",
+      "fallback_from": "chatgpt",
+      "fallback_to": "gemini",
+      "fallback_reason": "chatgpt/chat failed: Reference 1/1 is not ready for submission (provider reports 1 attachments)."
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:18Z",
+      "artifact": "BOOK_COVER_DESIGN.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:18Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:18Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:18Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-10T14:10:38Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:20Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:21Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:23Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:24Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:25Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:27Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:28Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:30Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:31Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:32Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:33Z",
+      "artifact": "beat_011.png"
+    },
+    "beat_image_012": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:35Z",
+      "artifact": "beat_012.png"
+    },
+    "beat_image_013": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:36Z",
+      "artifact": "beat_013.png"
+    },
+    "beat_image_014": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:37Z",
+      "artifact": "beat_014.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:39Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:39Z",
+      "artifact": "question_spark_source.mp4 (6.02s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-10T14:10:39Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-10T14:10:39Z",
+      "body_images": 14
+    },
+    "preflight": {
+      "status": "PAUSED_LOGIN_REQUIRED",
+      "updated_at": "2026-09-10T13:31:40Z",
+      "message": "Provider session needs a human: chatgpt=login_required",
+      "error_code": "login_required"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 132.391,
+      "at": "2026-09-10T11:12:38Z",
+      "words": 128
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 51.17,
+      "at": "2026-09-10T11:13:32Z",
+      "words": 146
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 36.138,
+      "at": "2026-09-10T11:14:10Z",
+      "activity": "preparing a rolling repair cart for a job and checking its labeled tool slots"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 42.13,
+      "at": "2026-09-10T11:14:55Z",
+      "style_id": "luminous_technical_network_001"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 51.221,
+      "at": "2026-09-10T11:26:29Z",
+      "style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 75.509,
+      "at": "2026-09-10T11:27:47Z",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65",
+      "model": "nano_banana_2",
+      "catalog_path": "015_fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-10T11:27:50Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 69.209,
+      "at": "2026-09-10T11:29:01Z",
+      "beats": 14
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 30.104,
+      "at": "2026-09-10T11:29:34Z",
+      "prompt_sha256": "6c985dc1b9476d88c0df05ee3797b68a03f2a9da971ec371b1e8ab81b6c97e6c"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 153.716,
+      "at": "2026-09-10T11:32:10Z",
+      "sha256": "9de7982ce0ccca87fbb7329eab4b07d16ead958b8dc1e2ec34024621744c7f0d",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-10T11:50:21Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 117.717,
+      "at": "2026-09-10T11:52:23Z",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-10T12:09:06Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 30.065,
+      "at": "2026-09-10T12:10:22Z",
+      "prompt_sha256": "4098e570a2cd6b970a60653a8a134211a33948bef031fedf2c27fb2caf647a9b"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 132.658,
+      "at": "2026-09-10T12:12:37Z",
+      "sha256": "cdfa853a1a99f22b03ac87ff5762ea53ddc65ae53ee115b930a46d9fafb183c8",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 63.156,
+      "at": "2026-09-10T12:13:43Z",
+      "prompt_sha256": "1606665f484689d4292233c8ca84309d9e29dd594a4f68b19ff88f548ec21d51"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 33.098,
+      "at": "2026-09-10T12:14:19Z",
+      "prompt_sha256": "454d91ba0ca37480ed73be8f7fc23bbcbbd7c305cdaaaad4beeeece7c39537f4"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 120.882,
+      "at": "2026-09-10T12:16:56Z",
+      "sha256": "d550400a05e83b89f82cb4430f1e6e11a54266d44c96e7a6e96bf13d59e94f88",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 166.218,
+      "at": "2026-09-10T12:20:17Z",
+      "sha256": "02e722fc4fd4f7466f5bf2ca5ed4478eee6abacadede56d7419f319c5d69d1d1",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 141.995,
+      "at": "2026-09-10T12:23:19Z",
+      "sha256": "400a51967233934fd2d45f1df0c79a3b7ecc8d795984ca2386991ce42cec184e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 108.861,
+      "at": "2026-09-10T12:25:40Z",
+      "sha256": "fd13b90eace8b9cd90c173c07a739002fc64041cc90372fdc55bb46bb60fe8ec",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 129.859,
+      "at": "2026-09-10T12:28:24Z",
+      "sha256": "9f212c695ea1c5561db1223f6fb6d46ca43c7a2bc0a4c5f17e7722a966d3a710",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 108.792,
+      "at": "2026-09-10T12:30:47Z",
+      "sha256": "b810816072439d369414c119ede0b2ff8898820df450bd4457385be99cac9edb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 123.948,
+      "at": "2026-09-10T12:33:26Z",
+      "sha256": "8fff8c7fb49dd4367512fa6c431baee179480229809eb362ab449f01ec0118ea",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 118.056,
+      "at": "2026-09-10T12:36:01Z",
+      "sha256": "8cc580ae4085678b3eeaa0f5c38539f61b5e57286a18d1250dd17e6bbb9cc196",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 156.87,
+      "at": "2026-09-10T12:39:10Z",
+      "sha256": "9c4d8570bdcb791d26c641c66a01d65339b2da6c0097b72edd6ab9109255da76",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 136.03,
+      "at": "2026-09-10T12:41:57Z",
+      "sha256": "1dd357cb5e8f9712fb7038ea8333cca2e3506cab4d67cf3e4d8244a2818d32a1",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 120.949,
+      "at": "2026-09-10T12:44:32Z",
+      "sha256": "3d1ec23dcbda3c3214b964f34b5b9891a1c334f3b03c8b9c240a738f5d73afe3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 111.901,
+      "at": "2026-09-10T12:46:59Z",
+      "sha256": "e95c2747119af0ae2447d1cfa0d366a10975887242f80a56dd45fc77401b1fba",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 129.9,
+      "at": "2026-09-10T12:49:52Z",
+      "sha256": "de0f9b3a5ef6e39c7636442eac0c44332bffb4ebcd20e7f69dbeb2c156914456",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 139.077,
+      "at": "2026-09-10T12:52:55Z",
+      "sha256": "2a2dd6856e5667a76a48d62e344af8aa239dec6230f185dfc23a70fd3242c61e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 2314.114,
+      "at": "2026-09-10T12:52:56Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 864.997,
+      "at": "2026-09-10T13:07:24Z",
+      "boundaries": 13
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-10T13:16:10Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.492,
+      "at": "2026-09-10T13:16:32Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.002,
+      "at": "2026-09-10T13:17:48Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.722,
+      "at": "2026-09-10T13:18:10Z"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 105.401,
+      "at": "2026-09-10T13:19:59Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "6f526b2f841792f7037b4c01f2ad9ceb37acbf1b170f659869f44de3ba0efb99"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 126.564,
+      "at": "2026-09-10T13:22:07Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "fdc31f1e66d714bf8842fe287da9b438527630c53db2dbb9f07ff036487bfb70"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.0,
+      "at": "2026-09-10T13:23:13Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 19.016,
+      "at": "2026-09-10T13:23:35Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-10T13:33:41Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.451,
+      "at": "2026-09-10T13:34:04Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.001,
+      "at": "2026-09-10T14:10:16Z",
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "world_style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 18.091,
+      "at": "2026-09-10T14:10:38Z"
+    }
+  ],
+  "updated_at": "2026-09-10T14:10:39Z"
+}

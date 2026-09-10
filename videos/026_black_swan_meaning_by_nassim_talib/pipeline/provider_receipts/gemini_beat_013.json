@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "1fb49377340337de349751d3f08380575b16a5191512acad46202d65252b11c8",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertically oriented screen-printed atlas card shows a tall narrow lattice tower on the left balanced on an extremely thin bent line that visibly fractures at a sparse vermilion stress point, contrasted with a lower, broader structure on the right supported by multiple legs. The scene uses soot-black silhouettes, muted blue-gray and teal, bone-white and pale-stone grounds, dry-print texture, registration wear, worn corners, and the recurring thick imperfect outer border with inset illustration window. No readable text, labels, charts, panels, or foreground person are visible.",
+    "violations": [
+      "The image measures 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio.",
+      "A very large low-detail pale field occupies much of the upper and central illustration window, so the scene does not fully exploit the complete illustration height as strongly as requested.",
+      "The right-hand structure reads as sturdier and multi-supported, but its supports are visually connected as one building framework, making the idea of several truly independent supports somewhat less explicit."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The image measures 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio.",
+      "A very large low-detail pale field occupies much of the upper and central illustration window, so the scene does not fully exploit the complete illustration height as strongly as requested.",
+      "The right-hand structure reads as sturdier and multi-supported, but its supports are visually connected as one building framework, making the idea of several truly independent supports somewhat less explicit."
+    ],
+    "observations": [
+      "The image measures 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio.",
+      "A very large low-detail pale field occupies much of the upper and central illustration window, so the scene does not fully exploit the complete illustration height as strongly as requested.",
+      "The right-hand structure reads as sturdier and multi-supported, but its supports are visually connected as one building framework, making the idea of several truly independent supports somewhat less explicit."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "f5201b67-e550-42ad-b5ac-99427846efad",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/e8c0104096678e6f",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=f5201b67-e550-42ad-b5ac-99427846efad_output_1.png 1536x2752 sha256=de0f9b3a5ef6e39c7636442eac0c44332bffb4ebcd20e7f69dbeb2c156914456"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertically oriented screen-printed atlas card shows a tall narrow lattice tower on the left balanced on an extremely thin bent line that visibly fractures at a sparse vermilion stress point, contrasted with a lower, broader structure on the right supported by multiple legs. The scene uses soot-black silhouettes, muted blue-gray and teal, bone-white and pale-stone grounds, dry-print texture, registration wear, worn corners, and the recurring thick imperfect outer border with inset illustration window. No readable text, labels, charts, panels, or foreground person are visible.",
+      "violations": [
+        "The image measures 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio.",
+        "A very large low-detail pale field occupies much of the upper and central illustration window, so the scene does not fully exploit the complete illustration height as strongly as requested.",
+        "The right-hand structure reads as sturdier and multi-supported, but its supports are visually connected as one building framework, making the idea of several truly independent supports somewhat less explicit."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The image measures 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio.",
+        "A very large low-detail pale field occupies much of the upper and central illustration window, so the scene does not fully exploit the complete illustration height as strongly as requested.",
+        "The right-hand structure reads as sturdier and multi-supported, but its supports are visually connected as one building framework, making the idea of several truly independent supports somewhat less explicit."
+      ],
+      "observations": [
+        "The image measures 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio.",
+        "A very large low-detail pale field occupies much of the upper and central illustration window, so the scene does not fully exploit the complete illustration height as strongly as requested.",
+        "The right-hand structure reads as sturdier and multi-supported, but its supports are visually connected as one building framework, making the idea of several truly independent supports somewhat less explicit."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "1fb49377340337de349751d3f08380575b16a5191512acad46202d65252b11c8"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_keyframe.png",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/assets/raw_beats/beat_012.png",
+      "sha256": "e95c2747119af0ae2447d1cfa0d366a10975887242f80a56dd45fc77401b1fba"
+    }
+  ],
+  "prompt_sha256": "487290823c8dd25a8675162cc37d37db788e7b8573ee8d93135c90021535c37f",
+  "prompt": "Edit\n\nGenerate exactly one 9:16 image: a flat architectural metaphor showing the danger of dependence on a single fragile forecast. Inside the established vertically oriented screen-printed atlas card, place a tall, delicate narrow tower on the left, precariously balanced on one impossibly thin forecast line that bends and begins to fracture beneath its weight; on the right, contrast it with a lower, wider, sturdier structure resting securely on several independent supports, with no single support carrying the whole load. Keep the composition visually unified rather than divided into panels. Render in the subject world’s screen-print language: bold soot-black silhouettes and crisp contours with occasional dry-ink breaks, subtle technical-drawing geometry, coarse matte archival print grain, slight registration wear, bone-white and pale-stone grounds, muted storm blue-gray and oxidized teal, with only sparse vermilion accents at the stressed fracture point. Use graphic high-contrast matte illumination and deep ink shadows, not naturalistic shading. Maintain the recurring thick imperfect soot-black outer print edge, narrow bone-white margin, inset illustration window, tiny registration offsets, and worn corners. Fill the complete illustration height naturally; do not reserve any caption strip, blank lower field, empty panel, or low-detail subtitle band. Reference roles: use style_reference only to reinforce clean, readable 2D educational silhouettes and disciplined visual clarity; use world_keyframe to preserve the established screen-print world, atlas-card frame grammar, palette, texture, and lighting; use previous_beat as binding continuity for frame material, edge treatment, inner window, texture, palette, and lighting only, never its composition, crop, camera angle, subject placement, or focal object. No photorealism, glossy 3D, anime, watercolor, sepia engraving, neon cyberpunk, realistic financial UI, labels, charts with readable data, letters, numbers, captions, or readable text. No storyboard, grid, collage, split panels, or multiple images.\n\nClarify the reference roles\nRemove conflicting style instructions NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_013.png",
+  "output_sha256": "de0f9b3a5ef6e39c7636442eac0c44332bffb4ebcd20e7f69dbeb2c156914456",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.178,
+  "completed_at": "2026-09-10T12:49:52Z"
+}

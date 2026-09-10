@@ -1,0 +1,26 @@
+{
+  "spark_end": 6.44,
+  "transition_end": 9.34,
+  "max_rate_adjust": 0.1,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/opening/question_spark_trimmed.mp4",
+      "target": 6.44,
+      "actual": 6.417,
+      "speed_factor": 1.070479,
+      "rate_adjusted": true
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/opening/book_transition_trimmed.mp4",
+      "target": 2.9,
+      "actual": 2.917,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    }
+  ],
+  "opening_total_seconds": 9.334,
+  "opening_total_target_seconds": 9.34,
+  "opening_total_drift_seconds": -0.006
+}

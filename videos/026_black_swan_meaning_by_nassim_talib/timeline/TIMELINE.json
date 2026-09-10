@@ -1,0 +1,1337 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 77.087,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 6.417,
+      "duration": 6.417,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 6.417,
+      "end": 9.333,
+      "duration": 2.917,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.34,
+      "end": 14.72,
+      "duration": 5.38,
+      "speech_start": 9.34,
+      "speech_end": 14.36,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A Black Swan is an event outside normal expectations.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 14.72,
+      "end": 16.22,
+      "duration": 1.5,
+      "speech_start": 14.72,
+      "speech_end": 16.22,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Its impact is enormous.",
+      "transition_in": "circleopen",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 16.22,
+      "end": 21.94,
+      "duration": 5.72,
+      "speech_start": 16.22,
+      "speech_end": 21.58,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Afterward, people build explanations that make it look predictable.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.32
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 21.94,
+      "end": 25.08,
+      "duration": 3.14,
+      "speech_start": 21.94,
+      "speech_end": 25.08,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Hindsight hides how surprising it really was.",
+      "transition_in": "coverright",
+      "transition_seconds": 0.26
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 25.08,
+      "end": 30.18,
+      "duration": 5.1,
+      "speech_start": 25.08,
+      "speech_end": 30.18,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "The name comes from Europe's old belief that all swans were white.",
+      "transition_in": "fade",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 30.18,
+      "end": 33.62,
+      "duration": 3.44,
+      "speech_start": 30.18,
+      "speech_end": 33.62,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_in",
+      "narration": "Then Europeans encountered black swans in Australia.",
+      "transition_in": "slideright",
+      "transition_seconds": 0.24
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 33.62,
+      "end": 38.72,
+      "duration": 5.1,
+      "speech_start": 33.62,
+      "speech_end": 38.72,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "One observation shattered a rule that had seemed certain.",
+      "transition_in": "fadewhite",
+      "transition_seconds": 0.2
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 38.72,
+      "end": 42.54,
+      "duration": 3.82,
+      "speech_start": 38.72,
+      "speech_end": 42.08,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Taleb says forecasts can fail the same way.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 42.54,
+      "end": 45.88,
+      "duration": 3.34,
+      "speech_start": 42.54,
+      "speech_end": 45.88,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "Models usually depend on what has already been observed.",
+      "transition_in": "smoothright",
+      "transition_seconds": 0.26
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 45.88,
+      "end": 52.14,
+      "duration": 6.26,
+      "speech_start": 45.88,
+      "speech_end": 52.14,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Markets can change through events those models barely considered.",
+      "transition_in": "wiperight",
+      "transition_seconds": 0.2
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 52.14,
+      "end": 56.78,
+      "duration": 4.64,
+      "speech_start": 52.14,
+      "speech_end": 55.66,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Technologies can overturn assumptions just as suddenly.",
+      "transition_in": "wipedown",
+      "transition_seconds": 0.18
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 56.78,
+      "end": 61.2,
+      "duration": 4.42,
+      "speech_start": 56.78,
+      "speech_end": 60.68,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "You cannot reliably predict every Black Swan.",
+      "transition_in": "dissolve",
+      "transition_seconds": 0.3
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 61.2,
+      "end": 64.8,
+      "duration": 3.6,
+      "speech_start": 61.2,
+      "speech_end": 64.46,
+      "match_confidence": 1.0,
+      "motion": "still",
+      "narration": "So reduce dependence on fragile forecasts.",
+      "transition_in": "smoothleft",
+      "transition_seconds": 0.26
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 64.8,
+      "end": 77.087,
+      "duration": 12.287,
+      "speech_start": 64.8,
+      "speech_end": 68.38,
+      "match_confidence": 1.0,
+      "motion": "slow_zoom_out",
+      "narration": "Leave room for error before surprise arrives.",
+      "transition_in": "smoothup",
+      "transition_seconds": 0.28
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 1.1,
+      "text": "Sorting tools.",
+      "ass_text": "Sorting tools.",
+      "words": [
+        {
+          "text": "Sorting",
+          "start": 0.0,
+          "end": 0.44
+        },
+        {
+          "text": "tools.",
+          "start": 0.44,
+          "end": 1.1
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 1.1,
+      "end": 3.36,
+      "text": "A missing wrench makes me ask,",
+      "ass_text": "A missing wrench makes me ask,",
+      "words": [
+        {
+          "text": "A",
+          "start": 1.1,
+          "end": 1.48
+        },
+        {
+          "text": "missing",
+          "start": 1.48,
+          "end": 1.84
+        },
+        {
+          "text": "wrench",
+          "start": 1.84,
+          "end": 2.36
+        },
+        {
+          "text": "makes",
+          "start": 2.36,
+          "end": 2.68
+        },
+        {
+          "text": "me",
+          "start": 2.68,
+          "end": 2.9
+        },
+        {
+          "text": "ask,",
+          "start": 2.9,
+          "end": 3.36
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 3.36,
+      "end": 5.48,
+      "text": "what does Taleb mean by a",
+      "ass_text": "what does Taleb mean by a",
+      "words": [
+        {
+          "text": "what",
+          "start": 3.36,
+          "end": 3.94
+        },
+        {
+          "text": "does",
+          "start": 3.94,
+          "end": 4.22
+        },
+        {
+          "text": "Taleb",
+          "start": 4.22,
+          "end": 4.54
+        },
+        {
+          "text": "mean",
+          "start": 4.54,
+          "end": 5.02
+        },
+        {
+          "text": "by",
+          "start": 5.02,
+          "end": 5.3
+        },
+        {
+          "text": "a",
+          "start": 5.3,
+          "end": 5.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 5.48,
+      "end": 6.17,
+      "text": "black swan?",
+      "ass_text": "black swan?",
+      "words": [
+        {
+          "text": "black",
+          "start": 5.48,
+          "end": 5.78
+        },
+        {
+          "text": "swan?",
+          "start": 5.78,
+          "end": 6.44
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 6.17,
+      "end": 8.74,
+      "text": "I grab Taleb's book and follow",
+      "ass_text": "I grab Taleb's book and follow",
+      "words": [
+        {
+          "text": "I",
+          "start": 5.9,
+          "end": 7.04
+        },
+        {
+          "text": "grab",
+          "start": 7.04,
+          "end": 7.34
+        },
+        {
+          "text": "Taleb's",
+          "start": 7.34,
+          "end": 7.8
+        },
+        {
+          "text": "book",
+          "start": 7.8,
+          "end": 8.12
+        },
+        {
+          "text": "and",
+          "start": 8.12,
+          "end": 8.36
+        },
+        {
+          "text": "follow",
+          "start": 8.36,
+          "end": 8.74
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 8.74,
+      "end": 9.34,
+      "text": "the answer.",
+      "ass_text": "the answer.",
+      "words": [
+        {
+          "text": "the",
+          "start": 8.74,
+          "end": 8.96
+        },
+        {
+          "text": "answer.",
+          "start": 8.96,
+          "end": 9.34
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 9.34,
+      "end": 11.72,
+      "text": "A black swan is an event",
+      "ass_text": "A black swan is an event",
+      "words": [
+        {
+          "text": "A",
+          "start": 9.34,
+          "end": 10.06
+        },
+        {
+          "text": "black",
+          "start": 10.06,
+          "end": 10.42
+        },
+        {
+          "text": "swan",
+          "start": 10.42,
+          "end": 10.98
+        },
+        {
+          "text": "is",
+          "start": 10.98,
+          "end": 11.2
+        },
+        {
+          "text": "an",
+          "start": 11.2,
+          "end": 11.34
+        },
+        {
+          "text": "event",
+          "start": 11.34,
+          "end": 11.72
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 11.72,
+      "end": 14.36,
+      "text": "outside normal expectations.",
+      "ass_text": "outside normal expectations.",
+      "words": [
+        {
+          "text": "outside",
+          "start": 11.72,
+          "end": 12.32
+        },
+        {
+          "text": "normal",
+          "start": 12.32,
+          "end": 12.98
+        },
+        {
+          "text": "expectations.",
+          "start": 12.98,
+          "end": 14.36
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 14.72,
+      "end": 16.22,
+      "text": "Its impact is enormous.",
+      "ass_text": "Its impact is enormous.",
+      "words": [
+        {
+          "text": "Its",
+          "start": 14.72,
+          "end": 14.92
+        },
+        {
+          "text": "impact",
+          "start": 14.92,
+          "end": 15.32
+        },
+        {
+          "text": "is",
+          "start": 15.32,
+          "end": 15.68
+        },
+        {
+          "text": "enormous.",
+          "start": 15.68,
+          "end": 16.22
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 16.22,
+      "end": 20.26,
+      "text": "Afterward, people build explanations that make",
+      "ass_text": "Afterward, people build\\Nexplanations that make",
+      "words": [
+        {
+          "text": "Afterward,",
+          "start": 16.22,
+          "end": 17.74
+        },
+        {
+          "text": "people",
+          "start": 17.74,
+          "end": 18.38
+        },
+        {
+          "text": "build",
+          "start": 18.38,
+          "end": 18.84
+        },
+        {
+          "text": "explanations",
+          "start": 18.84,
+          "end": 19.38
+        },
+        {
+          "text": "that",
+          "start": 19.38,
+          "end": 20.02
+        },
+        {
+          "text": "make",
+          "start": 20.02,
+          "end": 20.26
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 20.26,
+      "end": 21.58,
+      "text": "it look predictable.",
+      "ass_text": "it look predictable.",
+      "words": [
+        {
+          "text": "it",
+          "start": 20.26,
+          "end": 20.4
+        },
+        {
+          "text": "look",
+          "start": 20.4,
+          "end": 20.56
+        },
+        {
+          "text": "predictable.",
+          "start": 20.56,
+          "end": 21.58
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 21.94,
+      "end": 24.48,
+      "text": "Hindsight hides how surprising it really",
+      "ass_text": "Hindsight hides how surprising it\\Nreally",
+      "words": [
+        {
+          "text": "Hindsight",
+          "start": 21.94,
+          "end": 22.44
+        },
+        {
+          "text": "hides",
+          "start": 22.44,
+          "end": 22.82
+        },
+        {
+          "text": "how",
+          "start": 22.82,
+          "end": 23.1
+        },
+        {
+          "text": "surprising",
+          "start": 23.1,
+          "end": 23.74
+        },
+        {
+          "text": "it",
+          "start": 23.74,
+          "end": 24.08
+        },
+        {
+          "text": "really",
+          "start": 24.08,
+          "end": 24.48
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 24.48,
+      "end": 25.08,
+      "text": "was.",
+      "ass_text": "was.",
+      "words": [
+        {
+          "text": "was.",
+          "start": 24.48,
+          "end": 25.08
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 25.08,
+      "end": 27.38,
+      "text": "The name comes from Europe's old",
+      "ass_text": "The name comes from Europe's old",
+      "words": [
+        {
+          "text": "The",
+          "start": 25.08,
+          "end": 25.62
+        },
+        {
+          "text": "name",
+          "start": 25.62,
+          "end": 25.94
+        },
+        {
+          "text": "comes",
+          "start": 25.94,
+          "end": 26.28
+        },
+        {
+          "text": "from",
+          "start": 26.28,
+          "end": 26.46
+        },
+        {
+          "text": "Europe's",
+          "start": 26.46,
+          "end": 26.98
+        },
+        {
+          "text": "old",
+          "start": 26.98,
+          "end": 27.38
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 27.38,
+      "end": 30.18,
+      "text": "belief that all swans were white.",
+      "ass_text": "belief that all swans were white.",
+      "words": [
+        {
+          "text": "belief",
+          "start": 27.38,
+          "end": 27.78
+        },
+        {
+          "text": "that",
+          "start": 27.78,
+          "end": 28.26
+        },
+        {
+          "text": "all",
+          "start": 28.32,
+          "end": 28.66
+        },
+        {
+          "text": "swans",
+          "start": 28.66,
+          "end": 29.3
+        },
+        {
+          "text": "were",
+          "start": 29.3,
+          "end": 29.54
+        },
+        {
+          "text": "white.",
+          "start": 29.54,
+          "end": 30.18
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 30.18,
+      "end": 33.08,
+      "text": "Then Europeans encountered black swans in",
+      "ass_text": "Then Europeans encountered black\\Nswans in",
+      "words": [
+        {
+          "text": "Then",
+          "start": 30.18,
+          "end": 30.8
+        },
+        {
+          "text": "Europeans",
+          "start": 30.8,
+          "end": 31.32
+        },
+        {
+          "text": "encountered",
+          "start": 31.32,
+          "end": 32.08
+        },
+        {
+          "text": "black",
+          "start": 32.08,
+          "end": 32.46
+        },
+        {
+          "text": "swans",
+          "start": 32.46,
+          "end": 32.88
+        },
+        {
+          "text": "in",
+          "start": 32.88,
+          "end": 33.08
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 33.08,
+      "end": 33.62,
+      "text": "Australia.",
+      "ass_text": "Australia.",
+      "words": [
+        {
+          "text": "Australia.",
+          "start": 33.08,
+          "end": 33.62
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 33.62,
+      "end": 36.98,
+      "text": "One observation shattered a rule that",
+      "ass_text": "One observation shattered a rule\\Nthat",
+      "words": [
+        {
+          "text": "One",
+          "start": 33.62,
+          "end": 34.64
+        },
+        {
+          "text": "observation",
+          "start": 34.64,
+          "end": 35.18
+        },
+        {
+          "text": "shattered",
+          "start": 34.92,
+          "end": 35.98
+        },
+        {
+          "text": "a",
+          "start": 35.98,
+          "end": 36.2
+        },
+        {
+          "text": "rule",
+          "start": 36.2,
+          "end": 36.58
+        },
+        {
+          "text": "that",
+          "start": 36.58,
+          "end": 36.98
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 36.98,
+      "end": 38.72,
+      "text": "had seemed certain.",
+      "ass_text": "had seemed certain.",
+      "words": [
+        {
+          "text": "had",
+          "start": 36.98,
+          "end": 37.1
+        },
+        {
+          "text": "seemed",
+          "start": 37.1,
+          "end": 37.48
+        },
+        {
+          "text": "certain.",
+          "start": 37.48,
+          "end": 38.72
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 38.72,
+      "end": 41.04,
+      "text": "Taleb says forecasts can fail the",
+      "ass_text": "Taleb says forecasts can fail the",
+      "words": [
+        {
+          "text": "Taleb",
+          "start": 38.72,
+          "end": 39.0
+        },
+        {
+          "text": "says",
+          "start": 39.0,
+          "end": 39.42
+        },
+        {
+          "text": "forecasts",
+          "start": 39.42,
+          "end": 40.12
+        },
+        {
+          "text": "can",
+          "start": 40.12,
+          "end": 40.32
+        },
+        {
+          "text": "fail",
+          "start": 40.32,
+          "end": 40.78
+        },
+        {
+          "text": "the",
+          "start": 40.78,
+          "end": 41.04
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 41.04,
+      "end": 42.08,
+      "text": "same way.",
+      "ass_text": "same way.",
+      "words": [
+        {
+          "text": "same",
+          "start": 41.04,
+          "end": 41.42
+        },
+        {
+          "text": "way.",
+          "start": 41.42,
+          "end": 42.08
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 42.54,
+      "end": 44.76,
+      "text": "Models usually depend on what has",
+      "ass_text": "Models usually depend on what has",
+      "words": [
+        {
+          "text": "Models",
+          "start": 42.54,
+          "end": 42.98
+        },
+        {
+          "text": "usually",
+          "start": 42.98,
+          "end": 43.38
+        },
+        {
+          "text": "depend",
+          "start": 43.38,
+          "end": 43.94
+        },
+        {
+          "text": "on",
+          "start": 43.94,
+          "end": 44.36
+        },
+        {
+          "text": "what",
+          "start": 44.36,
+          "end": 44.6
+        },
+        {
+          "text": "has",
+          "start": 44.6,
+          "end": 44.76
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 44.76,
+      "end": 45.88,
+      "text": "already been observed.",
+      "ass_text": "already been observed.",
+      "words": [
+        {
+          "text": "already",
+          "start": 44.76,
+          "end": 45.16
+        },
+        {
+          "text": "been",
+          "start": 45.16,
+          "end": 45.46
+        },
+        {
+          "text": "observed.",
+          "start": 45.46,
+          "end": 45.88
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 45.88,
+      "end": 49.46,
+      "text": "Markets can change through events those",
+      "ass_text": "Markets can change through events\\Nthose",
+      "words": [
+        {
+          "text": "Markets",
+          "start": 45.88,
+          "end": 47.36
+        },
+        {
+          "text": "can",
+          "start": 47.36,
+          "end": 47.58
+        },
+        {
+          "text": "change",
+          "start": 47.58,
+          "end": 48.14
+        },
+        {
+          "text": "through",
+          "start": 48.14,
+          "end": 48.74
+        },
+        {
+          "text": "events",
+          "start": 48.74,
+          "end": 49.28
+        },
+        {
+          "text": "those",
+          "start": 49.28,
+          "end": 49.68
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 49.46,
+      "end": 52.14,
+      "text": "models barely considered.",
+      "ass_text": "models barely considered.",
+      "words": [
+        {
+          "text": "models",
+          "start": 49.24,
+          "end": 50.24
+        },
+        {
+          "text": "barely",
+          "start": 50.24,
+          "end": 50.86
+        },
+        {
+          "text": "considered.",
+          "start": 50.86,
+          "end": 52.14
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 52.14,
+      "end": 55.28,
+      "text": "Technologies can overturn assumptions just as",
+      "ass_text": "Technologies can overturn\\Nassumptions just as",
+      "words": [
+        {
+          "text": "Technologies",
+          "start": 52.14,
+          "end": 52.92
+        },
+        {
+          "text": "can",
+          "start": 52.92,
+          "end": 53.38
+        },
+        {
+          "text": "overturn",
+          "start": 53.38,
+          "end": 53.82
+        },
+        {
+          "text": "assumptions",
+          "start": 53.82,
+          "end": 54.46
+        },
+        {
+          "text": "just",
+          "start": 54.46,
+          "end": 55.0
+        },
+        {
+          "text": "as",
+          "start": 55.0,
+          "end": 55.28
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 55.28,
+      "end": 55.66,
+      "text": "suddenly.",
+      "ass_text": "suddenly.",
+      "words": [
+        {
+          "text": "suddenly.",
+          "start": 55.28,
+          "end": 55.66
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 56.78,
+      "end": 59.86,
+      "text": "You cannot reliably predict every black",
+      "ass_text": "You cannot reliably predict every\\Nblack",
+      "words": [
+        {
+          "text": "You",
+          "start": 56.78,
+          "end": 56.88
+        },
+        {
+          "text": "cannot",
+          "start": 56.88,
+          "end": 57.4
+        },
+        {
+          "text": "reliably",
+          "start": 57.4,
+          "end": 58.0
+        },
+        {
+          "text": "predict",
+          "start": 58.0,
+          "end": 58.8
+        },
+        {
+          "text": "every",
+          "start": 58.8,
+          "end": 59.54
+        },
+        {
+          "text": "black",
+          "start": 59.54,
+          "end": 59.86
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 59.86,
+      "end": 60.68,
+      "text": "swan.",
+      "ass_text": "swan.",
+      "words": [
+        {
+          "text": "swan.",
+          "start": 59.86,
+          "end": 60.68
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 61.2,
+      "end": 64.46,
+      "text": "So reduce dependence on fragile forecasts.",
+      "ass_text": "So reduce dependence on fragile\\Nforecasts.",
+      "words": [
+        {
+          "text": "So",
+          "start": 61.2,
+          "end": 61.36
+        },
+        {
+          "text": "reduce",
+          "start": 61.36,
+          "end": 61.8
+        },
+        {
+          "text": "dependence",
+          "start": 61.8,
+          "end": 62.44
+        },
+        {
+          "text": "on",
+          "start": 62.44,
+          "end": 62.84
+        },
+        {
+          "text": "fragile",
+          "start": 62.84,
+          "end": 63.38
+        },
+        {
+          "text": "forecasts.",
+          "start": 63.38,
+          "end": 64.46
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 64.8,
+      "end": 67.38,
+      "text": "Leave room for error before surprise",
+      "ass_text": "Leave room for error before\\Nsurprise",
+      "words": [
+        {
+          "text": "Leave",
+          "start": 64.8,
+          "end": 65.12
+        },
+        {
+          "text": "room",
+          "start": 65.12,
+          "end": 65.5
+        },
+        {
+          "text": "for",
+          "start": 65.5,
+          "end": 65.8
+        },
+        {
+          "text": "error",
+          "start": 65.8,
+          "end": 66.28
+        },
+        {
+          "text": "before",
+          "start": 66.28,
+          "end": 66.7
+        },
+        {
+          "text": "surprise",
+          "start": 66.7,
+          "end": 67.38
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 67.38,
+      "end": 68.38,
+      "text": "arrives.",
+      "ass_text": "arrives.",
+      "words": [
+        {
+          "text": "arrives.",
+          "start": 67.38,
+          "end": 68.38
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 68.94,
+      "end": 72.72,
+      "text": "Expect uncertainty, not perfect prediction.",
+      "ass_text": "Expect uncertainty, not perfect\\Nprediction.",
+      "words": [
+        {
+          "text": "Expect",
+          "start": 68.94,
+          "end": 69.4
+        },
+        {
+          "text": "uncertainty,",
+          "start": 69.4,
+          "end": 70.98
+        },
+        {
+          "text": "not",
+          "start": 70.98,
+          "end": 71.18
+        },
+        {
+          "text": "perfect",
+          "start": 71.18,
+          "end": 71.74
+        },
+        {
+          "text": "prediction.",
+          "start": 71.74,
+          "end": 72.72
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 73.22,
+      "end": 75.76,
+      "text": "Like and subscribe to grow more",
+      "ass_text": "Like and subscribe to grow more",
+      "words": [
+        {
+          "text": "Like",
+          "start": 73.22,
+          "end": 73.48
+        },
+        {
+          "text": "and",
+          "start": 73.48,
+          "end": 74.08
+        },
+        {
+          "text": "subscribe",
+          "start": 74.08,
+          "end": 74.56
+        },
+        {
+          "text": "to",
+          "start": 74.56,
+          "end": 75.0
+        },
+        {
+          "text": "grow",
+          "start": 75.0,
+          "end": 75.4
+        },
+        {
+          "text": "more",
+          "start": 75.4,
+          "end": 75.76
+        }
+      ],
+      "timing_source": "word"
+    },
+    {
+      "start": 75.76,
+      "end": 76.28,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "words": [
+        {
+          "text": "questions.",
+          "start": 75.76,
+          "end": 76.28
+        }
+      ],
+      "timing_source": "word"
+    }
+  ],
+  "qc": {
+    "beat_count": 16,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 3,
+        "current_cue": 4,
+        "previous_end": 6.44,
+        "current_start": 5.9,
+        "overlap_seconds": 0.54,
+        "chosen_boundary": 6.17
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 23,
+        "current_cue": 24,
+        "previous_end": 49.68,
+        "current_start": 49.24,
+        "overlap_seconds": 0.44,
+        "chosen_boundary": 49.46
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 35,
+    "subtitle_cues_estimated": 0
+  }
+}

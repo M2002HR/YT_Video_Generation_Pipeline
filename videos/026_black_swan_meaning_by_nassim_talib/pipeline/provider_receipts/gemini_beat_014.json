@@ -1,0 +1,120 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "833921e42c69c9f3ac162f6883b5c35d63142d5233c9856e767126040fdf5bec",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical atlas-card illustration shows a frontal bridge-like structural system made from heavy soot-black, storm blue-gray, and oxidized teal blocks and trusses. The structure spans across the upper portion of the illustration and descends into two large support towers, with conspicuous open gaps, redundant-looking braces, and a fine technical-drawing web stretched through the central buffer space. Sparse vermilion marks appear around several joints and stress points. A small black swan is visible high in the pale upper background. The image uses matte screen-print-like flat shapes, coarse grain, worn edges, pale bone-white fields, deep black shadows, and an imperfect black outer border with a narrow light margin and inset illustration window. No people, captions, labels, UI, or multiple panels are visible.",
+    "violations": [
+      "The bridge-like system does not read as one continuous sturdy span across the full illustration window as strongly as requested; the composition is dominated by two separated tower masses and an upper truss assembly.",
+      "A large proportion of the lower and central illustration area is very pale and low-detail, so the scene does not use the full usable height as actively as the art direction requests.",
+      "The central technical-line web is quite delicate and visually resembles a suspended net or wireframe rather than clearly communicating robust redundant spare supports.",
+      "The vermilion stress treatment includes noticeable splatter and drips, making some stress marks feel more decorative or damage-like than restrained structural stress indicators.",
+      "The tiny swan is present in the upper background but appears already floating calmly rather than clearly approaching the system as an impending unexpected shock."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The bridge-like system does not read as one continuous sturdy span across the full illustration window as strongly as requested; the composition is dominated by two separated tower masses and an upper truss assembly.",
+      "A large proportion of the lower and central illustration area is very pale and low-detail, so the scene does not use the full usable height as actively as the art direction requests.",
+      "The central technical-line web is quite delicate and visually resembles a suspended net or wireframe rather than clearly communicating robust redundant spare supports.",
+      "The vermilion stress treatment includes noticeable splatter and drips, making some stress marks feel more decorative or damage-like than restrained structural stress indicators.",
+      "The tiny swan is present in the upper background but appears already floating calmly rather than clearly approaching the system as an impending unexpected shock."
+    ],
+    "observations": [
+      "The bridge-like system does not read as one continuous sturdy span across the full illustration window as strongly as requested; the composition is dominated by two separated tower masses and an upper truss assembly.",
+      "A large proportion of the lower and central illustration area is very pale and low-detail, so the scene does not use the full usable height as actively as the art direction requests.",
+      "The central technical-line web is quite delicate and visually resembles a suspended net or wireframe rather than clearly communicating robust redundant spare supports.",
+      "The vermilion stress treatment includes noticeable splatter and drips, making some stress marks feel more decorative or damage-like than restrained structural stress indicators.",
+      "The tiny swan is present in the upper background but appears already floating calmly rather than clearly approaching the system as an impending unexpected shock."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "7b00747d-626d-4f15-b4a7-da0165530ec4",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/ca2588d3350009ca",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=7b00747d-626d-4f15-b4a7-da0165530ec4_output_1.png 1536x2752 sha256=2a2dd6856e5667a76a48d62e344af8aa239dec6230f185dfc23a70fd3242c61e"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical atlas-card illustration shows a frontal bridge-like structural system made from heavy soot-black, storm blue-gray, and oxidized teal blocks and trusses. The structure spans across the upper portion of the illustration and descends into two large support towers, with conspicuous open gaps, redundant-looking braces, and a fine technical-drawing web stretched through the central buffer space. Sparse vermilion marks appear around several joints and stress points. A small black swan is visible high in the pale upper background. The image uses matte screen-print-like flat shapes, coarse grain, worn edges, pale bone-white fields, deep black shadows, and an imperfect black outer border with a narrow light margin and inset illustration window. No people, captions, labels, UI, or multiple panels are visible.",
+      "violations": [
+        "The bridge-like system does not read as one continuous sturdy span across the full illustration window as strongly as requested; the composition is dominated by two separated tower masses and an upper truss assembly.",
+        "A large proportion of the lower and central illustration area is very pale and low-detail, so the scene does not use the full usable height as actively as the art direction requests.",
+        "The central technical-line web is quite delicate and visually resembles a suspended net or wireframe rather than clearly communicating robust redundant spare supports.",
+        "The vermilion stress treatment includes noticeable splatter and drips, making some stress marks feel more decorative or damage-like than restrained structural stress indicators.",
+        "The tiny swan is present in the upper background but appears already floating calmly rather than clearly approaching the system as an impending unexpected shock."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The bridge-like system does not read as one continuous sturdy span across the full illustration window as strongly as requested; the composition is dominated by two separated tower masses and an upper truss assembly.",
+        "A large proportion of the lower and central illustration area is very pale and low-detail, so the scene does not use the full usable height as actively as the art direction requests.",
+        "The central technical-line web is quite delicate and visually resembles a suspended net or wireframe rather than clearly communicating robust redundant spare supports.",
+        "The vermilion stress treatment includes noticeable splatter and drips, making some stress marks feel more decorative or damage-like than restrained structural stress indicators.",
+        "The tiny swan is present in the upper background but appears already floating calmly rather than clearly approaching the system as an impending unexpected shock."
+      ],
+      "observations": [
+        "The bridge-like system does not read as one continuous sturdy span across the full illustration window as strongly as requested; the composition is dominated by two separated tower masses and an upper truss assembly.",
+        "A large proportion of the lower and central illustration area is very pale and low-detail, so the scene does not use the full usable height as actively as the art direction requests.",
+        "The central technical-line web is quite delicate and visually resembles a suspended net or wireframe rather than clearly communicating robust redundant spare supports.",
+        "The vermilion stress treatment includes noticeable splatter and drips, making some stress marks feel more decorative or damage-like than restrained structural stress indicators.",
+        "The tiny swan is present in the upper background but appears already floating calmly rather than clearly approaching the system as an impending unexpected shock."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "833921e42c69c9f3ac162f6883b5c35d63142d5233c9856e767126040fdf5bec"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_keyframe.png",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/assets/raw_beats/beat_013.png",
+      "sha256": "de0f9b3a5ef6e39c7636442eac0c44332bffb4ebcd20e7f69dbeb2c156914456"
+    }
+  ],
+  "prompt_sha256": "fef68141469d81bb2c759a354d2bb0b9dd47f664678732907c6064496a40dc9d",
+  "prompt": "Edit\n\nCreate exactly one vertical 9:16 image: a wide frontal metaphor of a sturdy bridge-like resilient system spanning the illustration window, built from bold structural blocks with deliberate unused gaps, redundant spare supports, and clearly visible open buffer space that allows the structure to flex rather than fail; far in the upper background, a tiny black swan approaches as an understated unexpected shock. Render entirely in the established fractured_probability_screenprint_001 world: dry matte screen-print ink, coarse archival grain, slight registration wear, bone-white/pale-stone ground, dense soot black, muted storm blue-gray, restrained oxidized teal, and only sparse vermilion at points of stress; use broad graphic light fields, deep ink shadows, crisp flat silhouettes, and subtle technical-drawing geometry that bends or fractures near uncertainty. Keep everything inside the recurring vertical atlas-card frame with thick imperfect soot-black outer edge, narrow bone-white margin, inset rectangular illustration window, worn corners, and consistent border proportions. Use the full illustration height naturally—no lower caption reserve, blank strip, empty panel, or low-detail band. Use style_reference only to reinforce clean educational readability and restrained silhouette clarity without overriding this screen-print medium; use world_keyframe for the canonical world palette, atlas-card frame grammar, texture, and lighting; use previous_beat as binding reference for those same recurring material and edge qualities only, never its composition, crop, camera angle, subject placement, or focal object. No host or person. No photorealism, glossy 3D, anime, watercolor, readable charts, UI, captions, letters, numbers, or text. No storyboard, grid, collage, or multiple panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_014.png",
+  "output_sha256": "2a2dd6856e5667a76a48d62e344af8aa239dec6230f185dfc23a70fd3242c61e",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 66.197,
+  "completed_at": "2026-09-10T12:52:55Z"
+}

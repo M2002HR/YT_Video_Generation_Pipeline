@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "f19f575d9e23aa349589cb7548d8e331585ee82bb443d7c34f2a6c5057769a4d",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical storybook frame shows one closed dark hardback book centered on a textured slate-gray ground with an ivory outer margin. The cover features a large matte-black swan, a thin ivory probability curve, a tall muted-crimson extreme spike, red toppled dominoes near the bottom, and fine black crack-like fractures across the dark bookcloth. The spine and cream page block are visible, with cast shadows giving the book dimensional depth. No title, letters, numbers, logos, people, hands, UI, or real-person likeness are visible.",
+    "violations": [
+      "The book occupies substantially less than the requested 82–88% of the canvas height, leaving broad surrounding margins.",
+      "The visible right and bottom page-block depth, projected spine thickness, and cast shadows create a three-dimensional presentation rather than a perfectly flat orthographic treatment.",
+      "The book presentation has slight perspective/depth cues instead of reading as strictly top-down and dimensionless.",
+      "The probability event is expressed as a separate filled crimson spike behind the ivory curve rather than the thin ivory curve itself visibly erupting into the extreme spike.",
+      "The surrounding ground includes a large slate-gray inset field with a broad ivory perimeter, so the requested narrow even margins around the book are not achieved."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The book occupies substantially less than the requested 82–88% of the canvas height, leaving broad surrounding margins.",
+      "The visible right and bottom page-block depth, projected spine thickness, and cast shadows create a three-dimensional presentation rather than a perfectly flat orthographic treatment.",
+      "The book presentation has slight perspective/depth cues instead of reading as strictly top-down and dimensionless.",
+      "The probability event is expressed as a separate filled crimson spike behind the ivory curve rather than the thin ivory curve itself visibly erupting into the extreme spike.",
+      "The surrounding ground includes a large slate-gray inset field with a broad ivory perimeter, so the requested narrow even margins around the book are not achieved."
+    ],
+    "observations": [
+      "The book occupies substantially less than the requested 82–88% of the canvas height, leaving broad surrounding margins.",
+      "The visible right and bottom page-block depth, projected spine thickness, and cast shadows create a three-dimensional presentation rather than a perfectly flat orthographic treatment.",
+      "The book presentation has slight perspective/depth cues instead of reading as strictly top-down and dimensionless.",
+      "The probability event is expressed as a separate filled crimson spike behind the ivory curve rather than the thin ivory curve itself visibly erupting into the extreme spike.",
+      "The surrounding ground includes a large slate-gray inset field with a broad ivory perimeter, so the requested narrow even margins around the book are not achieved."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "394a41a5-1a17-4537-a0fc-fdf5fd666f02",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/67f8e213395025c1",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=394a41a5-1a17-4537-a0fc-fdf5fd666f02_output_1.png 1536x2752 sha256=cdfa853a1a99f22b03ac87ff5762ea53ddc65ae53ee115b930a46d9fafb183c8"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical storybook frame shows one closed dark hardback book centered on a textured slate-gray ground with an ivory outer margin. The cover features a large matte-black swan, a thin ivory probability curve, a tall muted-crimson extreme spike, red toppled dominoes near the bottom, and fine black crack-like fractures across the dark bookcloth. The spine and cream page block are visible, with cast shadows giving the book dimensional depth. No title, letters, numbers, logos, people, hands, UI, or real-person likeness are visible.",
+      "violations": [
+        "The book occupies substantially less than the requested 82–88% of the canvas height, leaving broad surrounding margins.",
+        "The visible right and bottom page-block depth, projected spine thickness, and cast shadows create a three-dimensional presentation rather than a perfectly flat orthographic treatment.",
+        "The book presentation has slight perspective/depth cues instead of reading as strictly top-down and dimensionless.",
+        "The probability event is expressed as a separate filled crimson spike behind the ivory curve rather than the thin ivory curve itself visibly erupting into the extreme spike.",
+        "The surrounding ground includes a large slate-gray inset field with a broad ivory perimeter, so the requested narrow even margins around the book are not achieved."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The book occupies substantially less than the requested 82–88% of the canvas height, leaving broad surrounding margins.",
+        "The visible right and bottom page-block depth, projected spine thickness, and cast shadows create a three-dimensional presentation rather than a perfectly flat orthographic treatment.",
+        "The book presentation has slight perspective/depth cues instead of reading as strictly top-down and dimensionless.",
+        "The probability event is expressed as a separate filled crimson spike behind the ivory curve rather than the thin ivory curve itself visibly erupting into the extreme spike.",
+        "The surrounding ground includes a large slate-gray inset field with a broad ivory perimeter, so the requested narrow even margins around the book are not achieved."
+      ],
+      "observations": [
+        "The book occupies substantially less than the requested 82–88% of the canvas height, leaving broad surrounding margins.",
+        "The visible right and bottom page-block depth, projected spine thickness, and cast shadows create a three-dimensional presentation rather than a perfectly flat orthographic treatment.",
+        "The book presentation has slight perspective/depth cues instead of reading as strictly top-down and dimensionless.",
+        "The probability event is expressed as a separate filled crimson spike behind the ivory curve rather than the thin ivory curve itself visibly erupting into the extreme spike.",
+        "The surrounding ground includes a large slate-gray inset field with a broad ivory perimeter, so the requested narrow even margins around the book are not achieved."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "f19f575d9e23aa349589cb7548d8e331585ee82bb443d7c34f2a6c5057769a4d"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    }
+  ],
+  "prompt_sha256": "8d4f5bbcc5b6f709dcd49f5ef098467f5e10af69029a77fc684ae9c0e4ae3af9",
+  "prompt": "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and occupies about 82–88% of the canvas height with narrow even margins. The entire cover and page block are visible. The surrounding tabletop/paper/ground uses ONLY the supplied episode style reference's texture, palette and frame language; it must not borrow the book-cover subject matter. The cover itself is uniquely and richly crafted for this topic: Black Swan Meaning, by Nassim talib. The authoritative COVER DESIGN BRIEF is: A closed illustrated cover in severe black, ivory, and muted crimson: a central matte-black swan silhouette floats against deep bookcloth; behind it, a thin ivory probability curve runs calmly before erupting into one extreme spike; along the lower edge, a short chain of toppled dominoes breaks outward; fine crackle fractures spread subtly through the dark cloth, suggesting hidden fragility. Keep generous negative space, stark asymmetry, and restrained printmaking texture for intellectual unease and rare-event impact. Render every named motif as visible cover craftsmanship — central emblem, border, binding, corners or page edges — rather than as tiny incidental decoration. Use ONLY motifs justified by that brief; do not substitute generic book imagery. No title, letters, numbers, readable marks, logos or real-person likeness. This is a closed cover only: no open pages, no two-page spread, no hands, no people, no UI, no photorealism and no 3D.",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "cdfa853a1a99f22b03ac87ff5762ea53ddc65ae53ee115b930a46d9fafb183c8",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.128,
+  "completed_at": "2026-09-10T12:12:37Z"
+}

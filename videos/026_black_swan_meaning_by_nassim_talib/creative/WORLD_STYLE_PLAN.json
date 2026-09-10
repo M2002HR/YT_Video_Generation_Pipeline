@@ -1,0 +1,20 @@
+{
+  "style_id": "fractured_probability_screenprint_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "screen print",
+  "secondary_treatment": "subtle technical-drawing geometry for forecasts, models, and probability structures",
+  "texture_family": "dry matte screen-print ink with coarse archival print grain and slight registration wear",
+  "palette_summary": "bone white and pale stone grounds, dense soot black, muted storm blue-gray, restrained oxidized teal, with sparse vermilion accents reserved for ruptures, anomalies, and failed assumptions",
+  "line_treatment": "bold flat silhouettes and crisp screen-printed contours, interrupted by occasional dry-ink breaks; technical elements use thin precise geometric lines that visibly fracture or diverge around unexpected events",
+  "lighting": "graphic high-contrast illumination with broad matte light fields and deep ink shadows rather than naturalistic shading",
+  "frame_language": "every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "allowed vocabulary includes workshop tools and the missing-wrench motif, Taleb's book as an unlabeled physical volume, white-versus-black swan imagery, simplified European natural-history assumptions, Australian landscape or shoreline cues, observation-versus-rule visual metaphors, probability distributions, forecast lines, model grids, market structures, technological disruption, fragile systems, buffers, spare capacity, and visualized uncertainty. Forecast and market imagery must remain symbolic and label-free, using shapes, lines, grids, and silhouettes rather than readable interfaces or financial text",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved protagonist appears later, translate the existing silhouette and proportions into the same flat screen-printed figure language, using soot-black contour masses, minimal storm-blue or teal interior shapes, slight dry-ink edge wear, and no added identity details",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime or manga styling, no painterly watercolor softness, no vintage sepia engraving look, no medieval manuscript ornament, no neon cyberpunk palette, no realistic trading-terminal UI, no readable charts, no text embedded in imagery, no random medium changes between beats",
+  "reason": "The Black Swan concept is fundamentally about a clean model being broken by an observation it failed to anticipate, so a high-contrast screen-print world with precise technical structures that visibly fracture around anomalies makes the idea legible without over-explaining it. The new style also creates strong between-episode diversity: the four most recent styles already lean on painted-storybook, archaeological engraving, editorial ink wash, and retro ink animation with recurring warm paper-grain aesthetics. A cooler, harder-edged screen-print system with matte registration wear avoids repeating the last two episodes' ink-and-aged-paper language and satisfies the operator directive requiring a new style.",
+  "style_subtitle_reserve": "inside only the bottom 8–10% of the 9:16 frame, preserve a calm bone-white or very pale stone print field carrying only faint coarse ink grain or a soft low-detail wash. Keep it free of faces, hands, focal tools, swans, chart peaks, key actions, fine diagram detail, and absolutely free of any text, letters, numbers, captions, labels, words or UI; it must feel integrated with the printed card rather than like a large empty band",
+  "reserve_subtitle_space": false
+}

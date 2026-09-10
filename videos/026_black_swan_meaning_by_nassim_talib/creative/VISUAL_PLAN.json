@@ -1,0 +1,173 @@
+{
+  "body_duration_seconds": 51.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "A Black Swan is an event outside normal expectations.",
+      "visual": "Inside the vertical screen-printed atlas card, a neat field of small white swan silhouettes follows a calm diagonal path while one oversized soot-black swan abruptly enters from the opposite corner, breaking the expected pattern; bone-white ground, storm-blue accents, coarse matte ink grain.",
+      "purpose": "show an unexpected event appearing outside the established pattern",
+      "visual_fingerprint": "wide symbolic composition of orderly white swans crossed diagonally by one large black swan entering from upper right, minimal bone-white field",
+      "type": "metaphor",
+      "continuity": "Begins the subject world directly with the core Black Swan contrast, independent of the opener setting.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Its impact is enormous.",
+      "visual": "A single black swan lands at the center of a compact screen-printed landscape, its impact sending a vermilion fracture ring through bridges, towers, and geometric structures arranged around it; low-angle composition emphasizes scale and disruption.",
+      "purpose": "show that a Black Swan can have outsized consequences",
+      "visual_fingerprint": "low-angle impact scene with black swan centered over a vermilion shock fracture spreading through miniature infrastructure",
+      "type": "metaphor",
+      "continuity": "Transforms the anomalous swan from the prior beat into a force whose consequences radiate outward.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Afterward, people build explanations that make it look predictable.",
+      "visual": "A tabletop-like pale stone field shows a completed jagged path ending at a black swan; behind the event, precise soot-black arrows and technical construction lines are being retroactively drawn backward to form an apparently tidy route, with one restrained vermilion endpoint.",
+      "purpose": "show people constructing a neat explanation after the event has already happened",
+      "visual_fingerprint": "top-down diagrammatic scene of a finished irregular path with backward-added arrows converging neatly on a black swan endpoint",
+      "type": "diagram",
+      "continuity": "Moves from the event's impact to the retrospective story people construct around it.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Hindsight hides how surprising it really was.",
+      "visual": "A torn screen-print veil of orderly forecast lines slides over a chaotic burst beneath it, concealing most of the original vermilion rupture while leaving only one jagged edge visible; close cropped composition with broad matte shadows.",
+      "purpose": "show hindsight covering up the original surprise",
+      "visual_fingerprint": "close-up layered composition where a smooth sheet of orderly lines masks a chaotic vermilion burst underneath",
+      "type": "metaphor",
+      "continuity": "Takes the retrospective explanation from the previous beat and shows it visually obscuring the earlier uncertainty.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "The name comes from Europe's old belief that all swans were white.",
+      "visual": "A simplified old European lakeshore rendered as a flat natural-history scene: several white swans float beneath dark cypress-like silhouettes and pale classical shoreline shapes, arranged symmetrically as if the observed world contains only one kind of swan.",
+      "purpose": "show the historical assumption that all known swans were white",
+      "visual_fingerprint": "symmetrical European lakeshore scene with only white swans, distant classical silhouettes, calm frontal viewpoint",
+      "type": "subject_world",
+      "continuity": "Shifts from abstract hindsight into the historical origin of the Black Swan name.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Then Europeans encountered black swans in Australia.",
+      "visual": "An Australian shoreline cue with flat eucalyptus silhouettes and a broad water inlet; a black swan stands prominently in shallow water while two tiny soot-black observer silhouettes on the far bank face it in surprise, viewed from a wide side angle.",
+      "purpose": "show the discovery of black swans in Australia",
+      "visual_fingerprint": "wide Australian wetland with one black swan foreground right, eucalyptus forms, two distant human observers on opposite bank",
+      "type": "literal",
+      "continuity": "Travels from the European white-swan assumption to the contrasting Australian observation.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "One observation shattered a rule that had seemed certain.",
+      "visual": "A large white circular rule-symbol made from repeated white swan silhouettes occupies the center; one black swan punches through its edge, splitting the circle into angular fragments with a sparse vermilion crack.",
+      "purpose": "show a single contrary observation destroying a supposedly universal rule",
+      "visual_fingerprint": "centered circular ring built from white swan silhouettes shattered open by one black swan breaking through the lower-left edge",
+      "type": "metaphor",
+      "continuity": "Abstracts the Australian discovery into the logical consequence of one counterexample.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Taleb says forecasts can fail the same way.",
+      "visual": "A thin storm-blue forecast curve advances cleanly across a pale field toward a narrow expected corridor, then a black anomaly shape appears far outside it and the projected line fractures sharply before reaching the edge.",
+      "purpose": "show a forecast failing when reality falls outside its expected range",
+      "visual_fingerprint": "minimal horizontal forecast corridor with one smooth line abruptly snapping toward an isolated black anomaly above it",
+      "type": "diagram",
+      "continuity": "Carries the shattered-rule idea into the modern domain of prediction and forecasting.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Models usually depend on what has already been observed.",
+      "visual": "A stack of observed pebble-like data marks sits along the bottom of a technical drawing; precise geometric arcs rise only from those existing marks, forming a model whose entire structure is visibly anchored to the recorded past.",
+      "purpose": "show models being built from previously observed data",
+      "visual_fingerprint": "bottom-weighted technical composition with clustered observation marks supporting a fan of precise arcs and geometric projections above",
+      "type": "diagram",
+      "continuity": "Explains why the forecast in the previous beat was limited: its structure came from prior observations.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Markets can change through events those models barely considered.",
+      "visual": "A symbolic market skyline of stacked blocks and bridge-like price structures fills the lower half; an unforeseen soot-black wedge enters from the side and causes several structures to tilt and cascade, while faint model curves remain intact in a distant corner.",
+      "purpose": "show markets being disrupted by events outside the assumptions of a model",
+      "visual_fingerprint": "oblique city-market structure collapsing from a black lateral wedge, with faint untouched model curves receding in upper background",
+      "type": "subject_world",
+      "continuity": "Applies the model limitation from the prior beat to a concrete market system.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "Technologies can overturn assumptions just as suddenly.",
+      "visual": "A row of sturdy mechanical gears and familiar industrial tools occupies one side of the frame while a compact abstract teal device-form drops in from above, abruptly redirecting the entire mechanism so the old gear train breaks apart along a vermilion fault.",
+      "purpose": "show a new technology suddenly overturning established assumptions",
+      "visual_fingerprint": "vertical industrial mechanism with old gears on lower left disrupted by a compact teal technological form descending from upper right",
+      "type": "metaphor",
+      "continuity": "Moves from market disruption to a different domain where unexpected change can overturn established systems.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "You cannot reliably predict every Black Swan.",
+      "visual": "A sparse field of thin probability paths spreads upward like branching tracks, but several terminate at blank edges while a lone black swan silhouette appears in an untouched region beyond all drawn paths; high overhead composition with ample pale stone space.",
+      "purpose": "show that some consequential possibilities remain outside reliable prediction",
+      "visual_fingerprint": "high-overhead branching probability paths confined to left side while an isolated black swan sits in uncharted empty space on the far right",
+      "type": "diagram",
+      "continuity": "Generalizes the market and technology examples into the limit of prediction itself.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 13,
+      "narration_slice": "So reduce dependence on fragile forecasts.",
+      "visual": "A delicate tower balanced on one thin forecast line leans precariously on the left, while on the right a lower, wider structure rests on several independent supports with no single line carrying the whole load; flat architectural screen-print metaphor.",
+      "purpose": "show the value of not relying on one fragile prediction",
+      "visual_fingerprint": "split-weight composition contrasting a tall narrow structure balanced on one line with a squat multi-supported structure opposite it",
+      "type": "metaphor",
+      "continuity": "Turns the limit of prediction into a practical design principle: reduce reliance on any single forecast.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 14,
+      "narration_slice": "Leave room for error before surprise arrives.",
+      "visual": "A sturdy bridge-like system spans the frame with visibly unused gaps, spare supports, and open buffer space between structural blocks; in the distance a small black swan approaches, but the system has room to flex without breaking.",
+      "purpose": "show building buffers and spare capacity before an unexpected shock occurs",
+      "visual_fingerprint": "wide frontal resilient structure with deliberate empty buffer gaps and redundant supports, tiny approaching black swan in distant upper background",
+      "type": "metaphor",
+      "continuity": "Completes the practical response by replacing fragile dependence with visible slack and resilience before the next surprise.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ]
+}

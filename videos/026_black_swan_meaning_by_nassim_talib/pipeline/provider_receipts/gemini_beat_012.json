@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "bd04705a0ae0eb7494d74004e0acc6d5cf7a841aa6a57186b70e7354c2b3db18",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical screen-printed atlas-card image is visible, with a thick imperfect soot-black outer edge, bone-white margin, inset illustration window, worn corners, pale stone ground, muted blue-gray linework, sparse vermilion rupture marks, and a crisp black swan silhouette isolated far to the right. The left and central-left area contains a branching network of black and blue-gray paths, while the right side remains largely untouched pale space. No text, labels, numbers, captions, UI, storyboard panels, or collage structure are visible.",
+    "violations": [
+      "The probability-path network reads partly as organic tree or trunk-like branching, with several relatively thick contours, rather than consistently as thin precise forecast-style tracks.",
+      "The requested restrained oxidized teal presence is not strongly distinguishable; the secondary path color reads predominantly as storm blue-gray.",
+      "Several paths form long continuous sweeps through much of the frame, so abrupt fractures and terminations at blank edges are present less emphatically than the direction suggests."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The probability-path network reads partly as organic tree or trunk-like branching, with several relatively thick contours, rather than consistently as thin precise forecast-style tracks.",
+      "The requested restrained oxidized teal presence is not strongly distinguishable; the secondary path color reads predominantly as storm blue-gray.",
+      "Several paths form long continuous sweeps through much of the frame, so abrupt fractures and terminations at blank edges are present less emphatically than the direction suggests."
+    ],
+    "observations": [
+      "The probability-path network reads partly as organic tree or trunk-like branching, with several relatively thick contours, rather than consistently as thin precise forecast-style tracks.",
+      "The requested restrained oxidized teal presence is not strongly distinguishable; the secondary path color reads predominantly as storm blue-gray.",
+      "Several paths form long continuous sweeps through much of the frame, so abrupt fractures and terminations at blank edges are present less emphatically than the direction suggests."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "c4c1a910-0efb-43f1-be95-36c665dcb8fb",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a8a9247f0e1801c2",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=c4c1a910-0efb-43f1-be95-36c665dcb8fb_output_1.png 1536x2752 sha256=e95c2747119af0ae2447d1cfa0d366a10975887242f80a56dd45fc77401b1fba"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical screen-printed atlas-card image is visible, with a thick imperfect soot-black outer edge, bone-white margin, inset illustration window, worn corners, pale stone ground, muted blue-gray linework, sparse vermilion rupture marks, and a crisp black swan silhouette isolated far to the right. The left and central-left area contains a branching network of black and blue-gray paths, while the right side remains largely untouched pale space. No text, labels, numbers, captions, UI, storyboard panels, or collage structure are visible.",
+      "violations": [
+        "The probability-path network reads partly as organic tree or trunk-like branching, with several relatively thick contours, rather than consistently as thin precise forecast-style tracks.",
+        "The requested restrained oxidized teal presence is not strongly distinguishable; the secondary path color reads predominantly as storm blue-gray.",
+        "Several paths form long continuous sweeps through much of the frame, so abrupt fractures and terminations at blank edges are present less emphatically than the direction suggests."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The probability-path network reads partly as organic tree or trunk-like branching, with several relatively thick contours, rather than consistently as thin precise forecast-style tracks.",
+        "The requested restrained oxidized teal presence is not strongly distinguishable; the secondary path color reads predominantly as storm blue-gray.",
+        "Several paths form long continuous sweeps through much of the frame, so abrupt fractures and terminations at blank edges are present less emphatically than the direction suggests."
+      ],
+      "observations": [
+        "The probability-path network reads partly as organic tree or trunk-like branching, with several relatively thick contours, rather than consistently as thin precise forecast-style tracks.",
+        "The requested restrained oxidized teal presence is not strongly distinguishable; the secondary path color reads predominantly as storm blue-gray.",
+        "Several paths form long continuous sweeps through much of the frame, so abrupt fractures and terminations at blank edges are present less emphatically than the direction suggests."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "bd04705a0ae0eb7494d74004e0acc6d5cf7a841aa6a57186b70e7354c2b3db18"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_keyframe.png",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/assets/raw_beats/beat_011.png",
+      "sha256": "3d1ec23dcbda3c3214b964f34b5b9891a1c334f3b03c8b9c240a738f5d73afe3"
+    }
+  ],
+  "prompt_sha256": "7e217fe55897da1bf6d437da58c8fa985ea160b7d167407225d925cd55fd795f",
+  "prompt": "Edit\n\nCreate exactly one vertical 9:16 image, not a storyboard, grid, collage, split panel, or multi-image layout. Render a high-overhead diagrammatic composition inside the established vertically oriented screen-printed atlas card: thick imperfect soot-black outer print edge, narrow bone-white breathing margin, slightly inset illustration window, tiny registration offsets, worn ink corners, dry matte screen-print ink, coarse archival grain, bold flat contours, crisp silhouettes, and graphic high-contrast matte lighting. Use a pale stone ground with dense soot black, muted storm blue-gray, restrained oxidized teal, and only sparse vermilion for ruptures or anomalies. On the left side, let a sparse network of thin precise probability paths branch upward like forecast tracks; several paths should fracture, diverge, or terminate abruptly at blank edges, leaving most of the right side genuinely uncharted. Far to the right, isolated beyond every drawn path, place one unmistakable black swan silhouette in untouched pale space, making the visual idea clear: consequential possibilities can exist outside reliable prediction. Use the full illustration height naturally; do not reserve any caption strip, blank lower panel, or low-detail subtitle band. No text, letters, numbers, labels, readable charts, captions, UI, photorealism, glossy CGI, anime, watercolor, sepia engraving, or neon styling. Reference roles: style_reference governs the simplified graphic rendering language only; world_keyframe governs the recurring screen-print world, palette, border grammar, texture, and lighting; previous_beat is binding only for recurring frame material, edge treatment, inner window, texture, palette, and lighting—do not copy its composition, crop, camera angle, subject placement, or focal object.\n\nClarify the screen-print style priority\nKeep the full frame visually active NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_012.png",
+  "output_sha256": "e95c2747119af0ae2447d1cfa0d366a10975887242f80a56dd45fc77401b1fba",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 69.243,
+  "completed_at": "2026-09-10T12:46:59Z"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "revision_id": "6cc0f11d-2526-4031-9299-e18e2e2166e4",
+  "kind": "config",
+  "created_at": "2026-09-10T11:25:36.119822+00:00",
+  "roots": [
+    "world_style_director"
+  ],
+  "affected_nodes": [
+    "world_style_director",
+    "world_style_anchor",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_cover",
+    "flow_prompt_b",
+    "flow_clip_b",
+    "opening_trim",
+    "transition_direction",
+    "build_timeline",
+    "sfx_plan",
+    "render_baseline",
+    "qc_baseline",
+    "sfx_acquire",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "git_commit_push",
+    "publish_telegram"
+  ],
+  "reused_nodes": [
+    "script_draft",
+    "retention_edit",
+    "character_resolution",
+    "episode_director",
+    "book_cover_design",
+    "flow_prompt_a",
+    "flow_clip_a",
+    "elevenlabs_voiceover",
+    "background_music",
+    "ajil_alignment",
+    "render_profile",
+    "audio_mix_profile"
+  ],
+  "skipped_nodes": [
+    "motion_director"
+  ],
+  "archived_artifacts": [
+    "creative/WORLD_STYLE_PLAN.json"
+  ],
+  "regenerate_beats": [],
+  "feedback": "",
+  "status": "FAILED",
+  "started_at": "2026-09-10T11:25:36.120391+00:00",
+  "pid": 1065535,
+  "changed_fields": [
+    "world_style_policy"
+  ],
+  "config_revision_id": "96c0d6df-601e-4b6e-a136-30b718c12fd7",
+  "completed_at": "2026-09-10T11:36:54.714914+00:00"
+}

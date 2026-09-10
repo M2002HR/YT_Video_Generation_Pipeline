@@ -1,0 +1,886 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 77.087,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 146,
+  "words": [
+    {
+      "text": "Sorting",
+      "token": "sorting",
+      "start": 0.0,
+      "end": 0.44
+    },
+    {
+      "text": "tools.",
+      "token": "tools",
+      "start": 0.44,
+      "end": 1.1
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 1.1,
+      "end": 1.48
+    },
+    {
+      "text": "missing",
+      "token": "missing",
+      "start": 1.48,
+      "end": 1.84
+    },
+    {
+      "text": "wrench",
+      "token": "wrench",
+      "start": 1.84,
+      "end": 2.36
+    },
+    {
+      "text": "makes",
+      "token": "makes",
+      "start": 2.36,
+      "end": 2.68
+    },
+    {
+      "text": "me",
+      "token": "me",
+      "start": 2.68,
+      "end": 2.9
+    },
+    {
+      "text": "ask,",
+      "token": "ask",
+      "start": 2.9,
+      "end": 3.36
+    },
+    {
+      "text": "what",
+      "token": "what",
+      "start": 3.36,
+      "end": 3.94
+    },
+    {
+      "text": "does",
+      "token": "does",
+      "start": 3.94,
+      "end": 4.22
+    },
+    {
+      "text": "Taleb",
+      "token": "taleb",
+      "start": 4.22,
+      "end": 4.54
+    },
+    {
+      "text": "mean",
+      "token": "mean",
+      "start": 4.54,
+      "end": 5.02
+    },
+    {
+      "text": "by",
+      "token": "by",
+      "start": 5.02,
+      "end": 5.3
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 5.3,
+      "end": 5.48
+    },
+    {
+      "text": "black",
+      "token": "black",
+      "start": 5.48,
+      "end": 5.78
+    },
+    {
+      "text": "swan?",
+      "token": "swan",
+      "start": 5.78,
+      "end": 6.44
+    },
+    {
+      "text": "I",
+      "token": "i",
+      "start": 5.9,
+      "end": 7.04
+    },
+    {
+      "text": "grab",
+      "token": "grab",
+      "start": 7.04,
+      "end": 7.34
+    },
+    {
+      "text": "Taleb's",
+      "token": "taleb's",
+      "start": 7.34,
+      "end": 7.8
+    },
+    {
+      "text": "book",
+      "token": "book",
+      "start": 7.8,
+      "end": 8.12
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 8.12,
+      "end": 8.36
+    },
+    {
+      "text": "follow",
+      "token": "follow",
+      "start": 8.36,
+      "end": 8.74
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 8.74,
+      "end": 8.96
+    },
+    {
+      "text": "answer.",
+      "token": "answer",
+      "start": 8.96,
+      "end": 9.34
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 9.34,
+      "end": 10.06
+    },
+    {
+      "text": "black",
+      "token": "black",
+      "start": 10.06,
+      "end": 10.42
+    },
+    {
+      "text": "swan",
+      "token": "swan",
+      "start": 10.42,
+      "end": 10.98
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 10.98,
+      "end": 11.2
+    },
+    {
+      "text": "an",
+      "token": "an",
+      "start": 11.2,
+      "end": 11.34
+    },
+    {
+      "text": "event",
+      "token": "event",
+      "start": 11.34,
+      "end": 11.72
+    },
+    {
+      "text": "outside",
+      "token": "outside",
+      "start": 11.72,
+      "end": 12.32
+    },
+    {
+      "text": "normal",
+      "token": "normal",
+      "start": 12.32,
+      "end": 12.98
+    },
+    {
+      "text": "expectations.",
+      "token": "expectations",
+      "start": 12.98,
+      "end": 14.36
+    },
+    {
+      "text": "Its",
+      "token": "its",
+      "start": 14.72,
+      "end": 14.92
+    },
+    {
+      "text": "impact",
+      "token": "impact",
+      "start": 14.92,
+      "end": 15.32
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 15.32,
+      "end": 15.68
+    },
+    {
+      "text": "enormous.",
+      "token": "enormous",
+      "start": 15.68,
+      "end": 16.22
+    },
+    {
+      "text": "Afterward,",
+      "token": "afterward",
+      "start": 16.22,
+      "end": 17.74
+    },
+    {
+      "text": "people",
+      "token": "people",
+      "start": 17.74,
+      "end": 18.38
+    },
+    {
+      "text": "build",
+      "token": "build",
+      "start": 18.38,
+      "end": 18.84
+    },
+    {
+      "text": "explanations",
+      "token": "explanations",
+      "start": 18.84,
+      "end": 19.38
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 19.38,
+      "end": 20.02
+    },
+    {
+      "text": "make",
+      "token": "make",
+      "start": 20.02,
+      "end": 20.26
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 20.26,
+      "end": 20.4
+    },
+    {
+      "text": "look",
+      "token": "look",
+      "start": 20.4,
+      "end": 20.56
+    },
+    {
+      "text": "predictable.",
+      "token": "predictable",
+      "start": 20.56,
+      "end": 21.58
+    },
+    {
+      "text": "Hindsight",
+      "token": "hindsight",
+      "start": 21.94,
+      "end": 22.44
+    },
+    {
+      "text": "hides",
+      "token": "hides",
+      "start": 22.44,
+      "end": 22.82
+    },
+    {
+      "text": "how",
+      "token": "how",
+      "start": 22.82,
+      "end": 23.1
+    },
+    {
+      "text": "surprising",
+      "token": "surprising",
+      "start": 23.1,
+      "end": 23.74
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 23.74,
+      "end": 24.08
+    },
+    {
+      "text": "really",
+      "token": "really",
+      "start": 24.08,
+      "end": 24.48
+    },
+    {
+      "text": "was.",
+      "token": "was",
+      "start": 24.48,
+      "end": 25.08
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 25.08,
+      "end": 25.62
+    },
+    {
+      "text": "name",
+      "token": "name",
+      "start": 25.62,
+      "end": 25.94
+    },
+    {
+      "text": "comes",
+      "token": "comes",
+      "start": 25.94,
+      "end": 26.28
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 26.28,
+      "end": 26.46
+    },
+    {
+      "text": "Europe's",
+      "token": "europe's",
+      "start": 26.46,
+      "end": 26.98
+    },
+    {
+      "text": "old",
+      "token": "old",
+      "start": 26.98,
+      "end": 27.38
+    },
+    {
+      "text": "belief",
+      "token": "belief",
+      "start": 27.38,
+      "end": 27.78
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 27.78,
+      "end": 28.26
+    },
+    {
+      "text": "all",
+      "token": "all",
+      "start": 28.32,
+      "end": 28.66
+    },
+    {
+      "text": "swans",
+      "token": "swans",
+      "start": 28.66,
+      "end": 29.3
+    },
+    {
+      "text": "were",
+      "token": "were",
+      "start": 29.3,
+      "end": 29.54
+    },
+    {
+      "text": "white.",
+      "token": "white",
+      "start": 29.54,
+      "end": 30.18
+    },
+    {
+      "text": "Then",
+      "token": "then",
+      "start": 30.18,
+      "end": 30.8
+    },
+    {
+      "text": "Europeans",
+      "token": "europeans",
+      "start": 30.8,
+      "end": 31.32
+    },
+    {
+      "text": "encountered",
+      "token": "encountered",
+      "start": 31.32,
+      "end": 32.08
+    },
+    {
+      "text": "black",
+      "token": "black",
+      "start": 32.08,
+      "end": 32.46
+    },
+    {
+      "text": "swans",
+      "token": "swans",
+      "start": 32.46,
+      "end": 32.88
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 32.88,
+      "end": 33.08
+    },
+    {
+      "text": "Australia.",
+      "token": "australia",
+      "start": 33.08,
+      "end": 33.62
+    },
+    {
+      "text": "One",
+      "token": "one",
+      "start": 33.62,
+      "end": 34.64
+    },
+    {
+      "text": "observation",
+      "token": "observation",
+      "start": 34.64,
+      "end": 35.18
+    },
+    {
+      "text": "shattered",
+      "token": "shattered",
+      "start": 34.92,
+      "end": 35.98
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 35.98,
+      "end": 36.2
+    },
+    {
+      "text": "rule",
+      "token": "rule",
+      "start": 36.2,
+      "end": 36.58
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 36.58,
+      "end": 36.98
+    },
+    {
+      "text": "had",
+      "token": "had",
+      "start": 36.98,
+      "end": 37.1
+    },
+    {
+      "text": "seemed",
+      "token": "seemed",
+      "start": 37.1,
+      "end": 37.48
+    },
+    {
+      "text": "certain.",
+      "token": "certain",
+      "start": 37.48,
+      "end": 38.72
+    },
+    {
+      "text": "Taleb",
+      "token": "taleb",
+      "start": 38.72,
+      "end": 39.0
+    },
+    {
+      "text": "says",
+      "token": "says",
+      "start": 39.0,
+      "end": 39.42
+    },
+    {
+      "text": "forecasts",
+      "token": "forecasts",
+      "start": 39.42,
+      "end": 40.12
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 40.12,
+      "end": 40.32
+    },
+    {
+      "text": "fail",
+      "token": "fail",
+      "start": 40.32,
+      "end": 40.78
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 40.78,
+      "end": 41.04
+    },
+    {
+      "text": "same",
+      "token": "same",
+      "start": 41.04,
+      "end": 41.42
+    },
+    {
+      "text": "way.",
+      "token": "way",
+      "start": 41.42,
+      "end": 42.08
+    },
+    {
+      "text": "Models",
+      "token": "models",
+      "start": 42.54,
+      "end": 42.98
+    },
+    {
+      "text": "usually",
+      "token": "usually",
+      "start": 42.98,
+      "end": 43.38
+    },
+    {
+      "text": "depend",
+      "token": "depend",
+      "start": 43.38,
+      "end": 43.94
+    },
+    {
+      "text": "on",
+      "token": "on",
+      "start": 43.94,
+      "end": 44.36
+    },
+    {
+      "text": "what",
+      "token": "what",
+      "start": 44.36,
+      "end": 44.6
+    },
+    {
+      "text": "has",
+      "token": "has",
+      "start": 44.6,
+      "end": 44.76
+    },
+    {
+      "text": "already",
+      "token": "already",
+      "start": 44.76,
+      "end": 45.16
+    },
+    {
+      "text": "been",
+      "token": "been",
+      "start": 45.16,
+      "end": 45.46
+    },
+    {
+      "text": "observed.",
+      "token": "observed",
+      "start": 45.46,
+      "end": 45.88
+    },
+    {
+      "text": "Markets",
+      "token": "markets",
+      "start": 45.88,
+      "end": 47.36
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 47.36,
+      "end": 47.58
+    },
+    {
+      "text": "change",
+      "token": "change",
+      "start": 47.58,
+      "end": 48.14
+    },
+    {
+      "text": "through",
+      "token": "through",
+      "start": 48.14,
+      "end": 48.74
+    },
+    {
+      "text": "events",
+      "token": "events",
+      "start": 48.74,
+      "end": 49.28
+    },
+    {
+      "text": "those",
+      "token": "those",
+      "start": 49.28,
+      "end": 49.68
+    },
+    {
+      "text": "models",
+      "token": "models",
+      "start": 49.24,
+      "end": 50.24
+    },
+    {
+      "text": "barely",
+      "token": "barely",
+      "start": 50.24,
+      "end": 50.86
+    },
+    {
+      "text": "considered.",
+      "token": "considered",
+      "start": 50.86,
+      "end": 52.14
+    },
+    {
+      "text": "Technologies",
+      "token": "technologies",
+      "start": 52.14,
+      "end": 52.92
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 52.92,
+      "end": 53.38
+    },
+    {
+      "text": "overturn",
+      "token": "overturn",
+      "start": 53.38,
+      "end": 53.82
+    },
+    {
+      "text": "assumptions",
+      "token": "assumptions",
+      "start": 53.82,
+      "end": 54.46
+    },
+    {
+      "text": "just",
+      "token": "just",
+      "start": 54.46,
+      "end": 55.0
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 55.0,
+      "end": 55.28
+    },
+    {
+      "text": "suddenly.",
+      "token": "suddenly",
+      "start": 55.28,
+      "end": 55.66
+    },
+    {
+      "text": "You",
+      "token": "you",
+      "start": 56.78,
+      "end": 56.88
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 56.88,
+      "end": 57.4
+    },
+    {
+      "text": "reliably",
+      "token": "reliably",
+      "start": 57.4,
+      "end": 58.0
+    },
+    {
+      "text": "predict",
+      "token": "predict",
+      "start": 58.0,
+      "end": 58.8
+    },
+    {
+      "text": "every",
+      "token": "every",
+      "start": 58.8,
+      "end": 59.54
+    },
+    {
+      "text": "black",
+      "token": "black",
+      "start": 59.54,
+      "end": 59.86
+    },
+    {
+      "text": "swan.",
+      "token": "swan",
+      "start": 59.86,
+      "end": 60.68
+    },
+    {
+      "text": "So",
+      "token": "so",
+      "start": 61.2,
+      "end": 61.36
+    },
+    {
+      "text": "reduce",
+      "token": "reduce",
+      "start": 61.36,
+      "end": 61.8
+    },
+    {
+      "text": "dependence",
+      "token": "dependence",
+      "start": 61.8,
+      "end": 62.44
+    },
+    {
+      "text": "on",
+      "token": "on",
+      "start": 62.44,
+      "end": 62.84
+    },
+    {
+      "text": "fragile",
+      "token": "fragile",
+      "start": 62.84,
+      "end": 63.38
+    },
+    {
+      "text": "forecasts.",
+      "token": "forecasts",
+      "start": 63.38,
+      "end": 64.46
+    },
+    {
+      "text": "Leave",
+      "token": "leave",
+      "start": 64.8,
+      "end": 65.12
+    },
+    {
+      "text": "room",
+      "token": "room",
+      "start": 65.12,
+      "end": 65.5
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 65.5,
+      "end": 65.8
+    },
+    {
+      "text": "error",
+      "token": "error",
+      "start": 65.8,
+      "end": 66.28
+    },
+    {
+      "text": "before",
+      "token": "before",
+      "start": 66.28,
+      "end": 66.7
+    },
+    {
+      "text": "surprise",
+      "token": "surprise",
+      "start": 66.7,
+      "end": 67.38
+    },
+    {
+      "text": "arrives.",
+      "token": "arrives",
+      "start": 67.38,
+      "end": 68.38
+    },
+    {
+      "text": "Expect",
+      "token": "expect",
+      "start": 68.94,
+      "end": 69.4
+    },
+    {
+      "text": "uncertainty,",
+      "token": "uncertainty",
+      "start": 69.4,
+      "end": 70.98
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 70.98,
+      "end": 71.18
+    },
+    {
+      "text": "perfect",
+      "token": "perfect",
+      "start": 71.18,
+      "end": 71.74
+    },
+    {
+      "text": "prediction.",
+      "token": "prediction",
+      "start": 71.74,
+      "end": 72.72
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 73.22,
+      "end": 73.48
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 73.48,
+      "end": 74.08
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 74.08,
+      "end": 74.56
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 74.56,
+      "end": 75.0
+    },
+    {
+      "text": "grow",
+      "token": "grow",
+      "start": 75.0,
+      "end": 75.4
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 75.4,
+      "end": 75.76
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 75.76,
+      "end": 76.28
+    }
+  ]
+}

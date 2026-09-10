@@ -1,0 +1,156 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 77.087,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Sorting tools. A missing wrench makes me ask, what does Taleb mean by a black swan? I grab Taleb's book and follow the answer. A black swan is an event outside normal expectations. Its impact is enormous. Afterward, people build explanations that make it look predictable. Hindsight hides how surprising it really was. The name comes from Europe's old belief that all swans were white. Then Europeans encountered black swans in Australia. One observation shattered a rule that had seemed certain. Taleb says forecasts can fail the same way. Models usually depend on what has already been observed. Markets can change through events those models barely considered. Technologies can overturn assumptions just as suddenly. You cannot reliably predict every black swan. So reduce dependence on fragile forecasts. Leave room for error before surprise arrives. Expect uncertainty, not perfect prediction. Like and subscribe to grow more questions.",
+  "word_count": 146,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "A Black Swan is an event outside normal expectations.",
+      "speech_start": 9.34,
+      "speech_end": 14.36,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 14.72,
+      "display_duration": 14.72
+    },
+    {
+      "beat_id": 2,
+      "narration": "Its impact is enormous.",
+      "speech_start": 14.72,
+      "speech_end": 16.22,
+      "match_confidence": 1.0,
+      "display_start": 14.72,
+      "display_end": 16.22,
+      "display_duration": 1.5
+    },
+    {
+      "beat_id": 3,
+      "narration": "Afterward, people build explanations that make it look predictable.",
+      "speech_start": 16.22,
+      "speech_end": 21.58,
+      "match_confidence": 1.0,
+      "display_start": 16.22,
+      "display_end": 21.94,
+      "display_duration": 5.72
+    },
+    {
+      "beat_id": 4,
+      "narration": "Hindsight hides how surprising it really was.",
+      "speech_start": 21.94,
+      "speech_end": 25.08,
+      "match_confidence": 1.0,
+      "display_start": 21.94,
+      "display_end": 25.08,
+      "display_duration": 3.14
+    },
+    {
+      "beat_id": 5,
+      "narration": "The name comes from Europe's old belief that all swans were white.",
+      "speech_start": 25.08,
+      "speech_end": 30.18,
+      "match_confidence": 1.0,
+      "display_start": 25.08,
+      "display_end": 30.18,
+      "display_duration": 5.1
+    },
+    {
+      "beat_id": 6,
+      "narration": "Then Europeans encountered black swans in Australia.",
+      "speech_start": 30.18,
+      "speech_end": 33.62,
+      "match_confidence": 1.0,
+      "display_start": 30.18,
+      "display_end": 33.62,
+      "display_duration": 3.44
+    },
+    {
+      "beat_id": 7,
+      "narration": "One observation shattered a rule that had seemed certain.",
+      "speech_start": 33.62,
+      "speech_end": 38.72,
+      "match_confidence": 1.0,
+      "display_start": 33.62,
+      "display_end": 38.72,
+      "display_duration": 5.1
+    },
+    {
+      "beat_id": 8,
+      "narration": "Taleb says forecasts can fail the same way.",
+      "speech_start": 38.72,
+      "speech_end": 42.08,
+      "match_confidence": 1.0,
+      "display_start": 38.72,
+      "display_end": 42.54,
+      "display_duration": 3.82
+    },
+    {
+      "beat_id": 9,
+      "narration": "Models usually depend on what has already been observed.",
+      "speech_start": 42.54,
+      "speech_end": 45.88,
+      "match_confidence": 1.0,
+      "display_start": 42.54,
+      "display_end": 45.88,
+      "display_duration": 3.34
+    },
+    {
+      "beat_id": 10,
+      "narration": "Markets can change through events those models barely considered.",
+      "speech_start": 45.88,
+      "speech_end": 52.14,
+      "match_confidence": 1.0,
+      "display_start": 45.88,
+      "display_end": 52.14,
+      "display_duration": 6.26
+    },
+    {
+      "beat_id": 11,
+      "narration": "Technologies can overturn assumptions just as suddenly.",
+      "speech_start": 52.14,
+      "speech_end": 55.66,
+      "match_confidence": 1.0,
+      "display_start": 52.14,
+      "display_end": 56.78,
+      "display_duration": 4.64
+    },
+    {
+      "beat_id": 12,
+      "narration": "You cannot reliably predict every Black Swan.",
+      "speech_start": 56.78,
+      "speech_end": 60.68,
+      "match_confidence": 1.0,
+      "display_start": 56.78,
+      "display_end": 61.2,
+      "display_duration": 4.42
+    },
+    {
+      "beat_id": 13,
+      "narration": "So reduce dependence on fragile forecasts.",
+      "speech_start": 61.2,
+      "speech_end": 64.46,
+      "match_confidence": 1.0,
+      "display_start": 61.2,
+      "display_end": 64.8,
+      "display_duration": 3.6
+    },
+    {
+      "beat_id": 14,
+      "narration": "Leave room for error before surprise arrives.",
+      "speech_start": 64.8,
+      "speech_end": 68.38,
+      "match_confidence": 1.0,
+      "display_start": 64.8,
+      "display_end": 77.087,
+      "display_duration": 12.287
+    }
+  ]
+}

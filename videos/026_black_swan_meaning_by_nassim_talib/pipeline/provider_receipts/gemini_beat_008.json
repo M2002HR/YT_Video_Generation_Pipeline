@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "0a3c9fdb0de072c699d655018e1feaccdcc67e5ed5d045b873c31cdfbe3edb86",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical screen-printed atlas card is visible with a thick imperfect soot-black outer edge, narrow pale margin, inset rectangular illustration window, bone-white field, muted storm-blue forecast geometry, sparse geometric corridor lines, one isolated dense black anomaly above the corridor, a sharp rupture with tiny vermilion accents, and an additional heavy black form extending toward the right edge. The surface shows matte archival grain, worn ink edges, slight registration character, and no text, labels, UI, collage, or human figure.",
+    "violations": [
+      "The forecast curve does not unmistakably snap upward toward the isolated black anomaly; the rupture instead appears to redirect into the separate heavy black form on the right, weakening the intended cause-and-effect relationship.",
+      "A large additional soot-black mass occupies the right side of the rupture and competes with the isolated anomaly as the focal object.",
+      "The lower portion of the illustration window is extremely low-detail and reads as a broad empty band, contrary to the request to fill the usable height naturally without a blank or deliberately sparse lower area.",
+      "The expected corridor is defined by comparatively large diagonal boundaries and extra radiating construction lines, making it less narrow and disciplined than requested."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The forecast curve does not unmistakably snap upward toward the isolated black anomaly; the rupture instead appears to redirect into the separate heavy black form on the right, weakening the intended cause-and-effect relationship.",
+      "A large additional soot-black mass occupies the right side of the rupture and competes with the isolated anomaly as the focal object.",
+      "The lower portion of the illustration window is extremely low-detail and reads as a broad empty band, contrary to the request to fill the usable height naturally without a blank or deliberately sparse lower area.",
+      "The expected corridor is defined by comparatively large diagonal boundaries and extra radiating construction lines, making it less narrow and disciplined than requested."
+    ],
+    "observations": [
+      "The forecast curve does not unmistakably snap upward toward the isolated black anomaly; the rupture instead appears to redirect into the separate heavy black form on the right, weakening the intended cause-and-effect relationship.",
+      "A large additional soot-black mass occupies the right side of the rupture and competes with the isolated anomaly as the focal object.",
+      "The lower portion of the illustration window is extremely low-detail and reads as a broad empty band, contrary to the request to fill the usable height naturally without a blank or deliberately sparse lower area.",
+      "The expected corridor is defined by comparatively large diagonal boundaries and extra radiating construction lines, making it less narrow and disciplined than requested."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "06f72c2e-e8c6-41f8-bb7e-da6be9e3c494",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/c1bcab156877cd4c",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=06f72c2e-e8c6-41f8-bb7e-da6be9e3c494_output_1.png 1536x2752 sha256=8cc580ae4085678b3eeaa0f5c38539f61b5e57286a18d1250dd17e6bbb9cc196"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical screen-printed atlas card is visible with a thick imperfect soot-black outer edge, narrow pale margin, inset rectangular illustration window, bone-white field, muted storm-blue forecast geometry, sparse geometric corridor lines, one isolated dense black anomaly above the corridor, a sharp rupture with tiny vermilion accents, and an additional heavy black form extending toward the right edge. The surface shows matte archival grain, worn ink edges, slight registration character, and no text, labels, UI, collage, or human figure.",
+      "violations": [
+        "The forecast curve does not unmistakably snap upward toward the isolated black anomaly; the rupture instead appears to redirect into the separate heavy black form on the right, weakening the intended cause-and-effect relationship.",
+        "A large additional soot-black mass occupies the right side of the rupture and competes with the isolated anomaly as the focal object.",
+        "The lower portion of the illustration window is extremely low-detail and reads as a broad empty band, contrary to the request to fill the usable height naturally without a blank or deliberately sparse lower area.",
+        "The expected corridor is defined by comparatively large diagonal boundaries and extra radiating construction lines, making it less narrow and disciplined than requested."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The forecast curve does not unmistakably snap upward toward the isolated black anomaly; the rupture instead appears to redirect into the separate heavy black form on the right, weakening the intended cause-and-effect relationship.",
+        "A large additional soot-black mass occupies the right side of the rupture and competes with the isolated anomaly as the focal object.",
+        "The lower portion of the illustration window is extremely low-detail and reads as a broad empty band, contrary to the request to fill the usable height naturally without a blank or deliberately sparse lower area.",
+        "The expected corridor is defined by comparatively large diagonal boundaries and extra radiating construction lines, making it less narrow and disciplined than requested."
+      ],
+      "observations": [
+        "The forecast curve does not unmistakably snap upward toward the isolated black anomaly; the rupture instead appears to redirect into the separate heavy black form on the right, weakening the intended cause-and-effect relationship.",
+        "A large additional soot-black mass occupies the right side of the rupture and competes with the isolated anomaly as the focal object.",
+        "The lower portion of the illustration window is extremely low-detail and reads as a broad empty band, contrary to the request to fill the usable height naturally without a blank or deliberately sparse lower area.",
+        "The expected corridor is defined by comparatively large diagonal boundaries and extra radiating construction lines, making it less narrow and disciplined than requested."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "0a3c9fdb0de072c699d655018e1feaccdcc67e5ed5d045b873c31cdfbe3edb86"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_keyframe.png",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/assets/raw_beats/beat_007.png",
+      "sha256": "8fff8c7fb49dd4367512fa6c431baee179480229809eb362ab449f01ec0118ea"
+    }
+  ],
+  "prompt_sha256": "c047dd551ac95e41b937898ad57402814cb738703bb4ec50f1fc26959ea4c02b",
+  "prompt": "Edit\n\nCreate exactly one 9:16 image: a vertically oriented screen-printed atlas card showing a minimalist forecast failure diagram. Inside the consistent slightly inset rectangular illustration window, a thin muted storm-blue forecast curve travels cleanly across a pale bone-white/stone field through a narrow expected corridor suggested only by precise, label-free geometric lines; high above that corridor, introduce one isolated dense soot-black anomaly shape, causing the projected line to fracture sharply and snap toward it before reaching the right edge. Make the contrast instantly communicate reality escaping the model’s expected range. Render everything as dry matte screen-print ink with coarse archival grain, slight registration wear, crisp flat contours, occasional dry-ink breaks, broad graphic light fields and deep ink shadows; use soot black, storm blue-gray, restrained oxidized teal, and only a tiny vermilion accent if useful at the rupture. Maintain the established thick imperfect soot-black outer print edge, narrow bone-white margin, worn corners, and matching inner-window proportions. Fill the full illustration height naturally—no caption reserve, blank lower strip, empty panel, or deliberately low-detail band. Use style_reference only for compatibility-level clarity, simplified readable silhouettes and disciplined educational legibility, not for composition or a competing medium. Use world_keyframe to preserve this episode’s screen-print medium, frame grammar, palette, texture and lighting. Use previous_beat as binding continuity for frame material, edge wear, inner window, texture, palette and lighting only; do not copy its composition, crop, camera angle, subject placement or focal object. No host or human figure. No readable text, letters, numbers, labels, UI, captions, storyboard, grid, collage, or multiple panels.\n\nMake the forecast geometry unmistakable NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_008.png",
+  "output_sha256": "8cc580ae4085678b3eeaa0f5c38539f61b5e57286a18d1250dd17e6bbb9cc196",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 66.295,
+  "completed_at": "2026-09-10T12:36:01Z"
+}

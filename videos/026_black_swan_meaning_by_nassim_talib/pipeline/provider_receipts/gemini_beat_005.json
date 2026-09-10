@@ -1,0 +1,102 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "22cb821e6998d74a5f44f432287c1a51f7ff3731b23824519191a933e9c2cf23",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical atlas-card scene shows fourteen clearly white swans arranged in orderly mirrored groupings across calm blue-gray water. Dark cypress-like silhouettes and pale classical European architectural forms line the distant shore, with muted teal shrubs, bone-white and pale-stone grounds, crisp soot-black contours, visible print grain, worn edges, and an imperfect framed screen-print treatment. The full illustration window remains active from top to bottom with water, swans, ripples, and texture; there is no caption field, text, human figure, black swan, grid, collage, or separate panel.",
+    "violations": [
+      "The delivered raster is 1143 by 2048 pixels, which is very close to but not exactly 9:16; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+      "The registration offsets and dry-ink break effects are present only subtly compared with the strongly stated distressed screen-print direction."
+    ],
+    "blocking_violations": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The delivered raster is 1143 by 2048 pixels, which is very close to but not exactly 9:16; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+      "The registration offsets and dry-ink break effects are present only subtly compared with the strongly stated distressed screen-print direction."
+    ],
+    "observations": [
+      "The delivered raster is 1143 by 2048 pixels, which is very close to but not exactly 9:16; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+      "The registration offsets and dry-ink break effects are present only subtly compared with the strongly stated distressed screen-print direction."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "2dffd630-c0aa-4f3a-b6d0-05ef37dc0ed4",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/4a97836ac00b9207",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "artifact_source=download",
+      "image=2dffd630-c0aa-4f3a-b6d0-05ef37dc0ed4_output_1.png 1536x2752 sha256=9f212c695ea1c5561db1223f6fb6d46ca43c7a2bc0a4c5f17e7722a966d3a710"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical atlas-card scene shows fourteen clearly white swans arranged in orderly mirrored groupings across calm blue-gray water. Dark cypress-like silhouettes and pale classical European architectural forms line the distant shore, with muted teal shrubs, bone-white and pale-stone grounds, crisp soot-black contours, visible print grain, worn edges, and an imperfect framed screen-print treatment. The full illustration window remains active from top to bottom with water, swans, ripples, and texture; there is no caption field, text, human figure, black swan, grid, collage, or separate panel.",
+      "violations": [
+        "The delivered raster is 1143 by 2048 pixels, which is very close to but not exactly 9:16; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+        "The registration offsets and dry-ink break effects are present only subtly compared with the strongly stated distressed screen-print direction."
+      ],
+      "blocking_violations": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The delivered raster is 1143 by 2048 pixels, which is very close to but not exactly 9:16; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+        "The registration offsets and dry-ink break effects are present only subtly compared with the strongly stated distressed screen-print direction."
+      ],
+      "observations": [
+        "The delivered raster is 1143 by 2048 pixels, which is very close to but not exactly 9:16; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+        "The registration offsets and dry-ink break effects are present only subtly compared with the strongly stated distressed screen-print direction."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "22cb821e6998d74a5f44f432287c1a51f7ff3731b23824519191a933e9c2cf23"
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/references/world_keyframe.png",
+      "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/026_black_swan_meaning_by_nassim_talib/assets/raw_beats/beat_004.png",
+      "sha256": "fd13b90eace8b9cd90c173c07a739002fc64041cc90372fdc55bb46bb60fe8ec"
+    }
+  ],
+  "prompt_sha256": "f6f37a734b3f6c9187c4f7a866928aeff1e3f22b20388cae4dfccbc56436cf0c",
+  "prompt": "Edit\n\nCreate exactly one vertical 9:16 image: a calm, simplified old European lakeshore presented as a symmetrical natural-history observation in the established fractured_probability_screenprint_001 world. Show several clearly white swans floating across still water, with dark cypress-like tree silhouettes and pale, restrained classical European shoreline forms in the distance; the frontal, orderly composition should imply that every observed swan belongs to the same white type, making the old assumption feel visually complete and unquestioned. Render as dry matte screen print with bold soot-black silhouettes and crisp contours, coarse archival print grain, slight registration wear and occasional dry-ink breaks; use bone white and pale stone grounds, muted storm blue-gray and restrained oxidized teal, with broad graphic light fields and deep flat ink shadows. Keep all scenery inside the recurring vertical atlas-card frame: thick imperfect soot-black outer print edge, narrow bone-white margin, inset rectangular illustration window, tiny registration offsets and worn corners. Use the full illustration height naturally—no caption reserve, blank strip, empty panel, or low-detail lower band. Reference roles: use style_reference only for simplified educational readability, clean dark contours, clear silhouettes and restrained shading; use world_keyframe to preserve this subject world's established screen-print medium, palette and visual grammar; use previous_beat as binding reference only for recurring frame construction, material/edge treatment, texture, palette and lighting, never its composition, crop, camera angle, subject placement or focal object. No host or human figure. No black swan yet. No text, letters, numbers, labels, captions, readable interfaces, storyboard, grid, collage, or multiple panels; no photorealism, glossy CGI, anime, watercolor, sepia engraving, or neon styling.\n\nClarify the white swan arrangement\nTrim redundant negative constraints NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every image appears inside the same vertically oriented screen-printed atlas card: a thick imperfect soot-black outer print edge, narrow bone-white breathing margin, and a slightly inset rectangular illustration window with tiny registration offsets and worn ink corners. Diagrams, environments, swans, tools, markets, and technology scenes all remain inside this repeated print-window grammar, with the border thickness and inner margins held consistent throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "9f212c695ea1c5561db1223f6fb6d46ca43c7a2bc0a4c5f17e7722a966d3a710",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 66.136,
+  "completed_at": "2026-09-10T12:28:24Z"
+}

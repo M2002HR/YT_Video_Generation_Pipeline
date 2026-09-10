@@ -1,0 +1,36 @@
+{
+  "schema_version": 3,
+  "provider": "Mixkit verified local fallback",
+  "provider_priority": [
+    "freesound",
+    "mixkit",
+    "pixabay"
+  ],
+  "provider_attempts": [
+    {
+      "provider": "freesound",
+      "error": "OrdakJobError: ChatGPT login required in your regular Google Chrome session.",
+      "failed_at": "2026-09-10T13:24:17.543015+00:00"
+    },
+    {
+      "provider": "mixkit",
+      "error": "RuntimeError: ChatGPT project composer did not become ready.",
+      "failed_at": "2026-09-10T13:25:03.640018+00:00"
+    },
+    {
+      "provider": "pixabay",
+      "error": "RuntimeError: ChatGPT project composer did not become ready.",
+      "failed_at": "2026-09-10T13:25:49.781089+00:00"
+    }
+  ],
+  "source_url": "https://mixkit.co/free-stock-music/item/684/",
+  "status": "DONE",
+  "selection_mode": "CACHE_FALLBACK",
+  "cached_from": "videos/011_what_was_the_very_first_disney_animation/assets/music/background.mp3",
+  "installed_at": "2026-09-10T13:25:50.426538+00:00",
+  "file": "assets/music/background.mp3",
+  "bytes": 4390542,
+  "sha256": "45f5275e91f05dfa5bd8b7451955596566ef02419570b8888dda2ef20a401515",
+  "duration_seconds": 137.169,
+  "license": "Mixkit source license; verify current source page before publication."
+}

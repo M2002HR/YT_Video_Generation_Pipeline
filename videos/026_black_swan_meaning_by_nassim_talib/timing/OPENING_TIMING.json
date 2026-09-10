@@ -1,0 +1,140 @@
+{
+  "audio_duration_seconds": 77.087,
+  "spark_start": 0.0,
+  "spark_end": 6.44,
+  "spark_duration": 6.44,
+  "transition_start": 5.9,
+  "transition_end": 9.34,
+  "transition_duration": 3.44,
+  "clip_a_target_seconds": 6.44,
+  "clip_b_target_seconds": 2.9,
+  "body_start": 9.34,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Sorting tools, a missing wrench makes me ask: what does Taleb mean by a Black Swan?",
+      "speech_start": 0.0,
+      "speech_end": 6.44,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "I grab Taleb's book and follow the answer.",
+      "speech_start": 5.9,
+      "speech_end": 9.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "A Black Swan is an event outside normal expectations.",
+      "speech_start": 9.34,
+      "speech_end": 14.36,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Its impact is enormous.",
+      "speech_start": 14.72,
+      "speech_end": 16.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Afterward, people build explanations that make it look predictable.",
+      "speech_start": 16.22,
+      "speech_end": 21.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Hindsight hides how surprising it really was.",
+      "speech_start": 21.94,
+      "speech_end": 25.08,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "The name comes from Europe's old belief that all swans were white.",
+      "speech_start": 25.08,
+      "speech_end": 30.18,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Then Europeans encountered black swans in Australia.",
+      "speech_start": 30.18,
+      "speech_end": 33.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "One observation shattered a rule that had seemed certain.",
+      "speech_start": 33.62,
+      "speech_end": 38.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Taleb says forecasts can fail the same way.",
+      "speech_start": 38.72,
+      "speech_end": 42.08,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Models usually depend on what has already been observed.",
+      "speech_start": 42.54,
+      "speech_end": 45.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "Markets can change through events those models barely considered.",
+      "speech_start": 45.88,
+      "speech_end": 52.14,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "Technologies can overturn assumptions just as suddenly.",
+      "speech_start": 52.14,
+      "speech_end": 55.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_12",
+      "narration": "You cannot reliably predict every Black Swan.",
+      "speech_start": 56.78,
+      "speech_end": 60.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_13",
+      "narration": "So reduce dependence on fragile forecasts.",
+      "speech_start": 61.2,
+      "speech_end": 64.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_14",
+      "narration": "Leave room for error before surprise arrives.",
+      "speech_start": 64.8,
+      "speech_end": 68.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Expect uncertainty, not perfect prediction.",
+      "speech_start": 68.94,
+      "speech_end": 72.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to grow more questions.",
+      "speech_start": 73.22,
+      "speech_end": 76.28,
+      "match_confidence": 1.0
+    }
+  ]
+}
