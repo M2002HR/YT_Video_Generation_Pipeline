@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "026_black_swan_meaning_by_nassim_talib",
-  "started_at": "2026-09-11T10:54:13.401307+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-11T12:12:44.843936+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-11T10:54:13.423091+00:00",
+      "started_at": "2026-09-11T12:12:44.862950+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-11T10:54:14.942881+00:00",
-      "elapsed_seconds": 1.52,
+      "ended_at": "2026-09-11T12:12:46.394119+00:00",
+      "elapsed_seconds": 1.531,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 38643
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-11T10:54:16.049552+00:00",
+      "started_at": "2026-09-11T12:12:47.646721+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -31,14 +31,14 @@
         "0.800"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-11T11:00:02.438514+00:00",
-      "elapsed_seconds": 346.389,
+      "ended_at": "2026-09-11T12:17:14.557997+00:00",
+      "elapsed_seconds": 266.911,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 63793448
+      "artifact_bytes": 64012760
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-11T11:00:02.439073+00:00",
+      "started_at": "2026-09-11T12:17:14.558475+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -48,14 +48,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-11T11:00:21.441467+00:00",
-      "elapsed_seconds": 19.002,
+      "ended_at": "2026-09-11T12:17:26.380702+00:00",
+      "elapsed_seconds": 11.822,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-11T11:00:22.534473+00:00",
+      "started_at": "2026-09-11T12:17:27.652458+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -64,14 +64,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-11T11:00:27.583956+00:00",
-      "elapsed_seconds": 5.049,
+      "ended_at": "2026-09-11T12:17:32.755598+00:00",
+      "elapsed_seconds": 5.103,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 64213001
+      "artifact_bytes": 64432313
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-11T11:00:28.830696+00:00",
+      "started_at": "2026-09-11T12:17:33.904821+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -81,14 +81,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-11T11:00:43.130902+00:00",
-      "elapsed_seconds": 14.3,
+      "ended_at": "2026-09-11T12:17:45.755724+00:00",
+      "elapsed_seconds": 11.851,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-11T11:00:44.654248+00:00",
+      "started_at": "2026-09-11T12:17:47.068798+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -99,14 +99,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-11T11:01:18.508833+00:00",
-      "elapsed_seconds": 33.855,
+      "ended_at": "2026-09-11T12:18:13.603886+00:00",
+      "elapsed_seconds": 26.535,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 3620570
+      "artifact_bytes": 3625349
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-11T11:01:19.884868+00:00",
+      "started_at": "2026-09-11T12:18:14.766812+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -114,74 +114,9 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-11T10:54:13.401307+00:00"
+        "2026-09-11T12:12:44.843936+00:00"
       ],
-      "status": "DONE",
-      "ended_at": "2026-09-11T11:01:25.703615+00:00",
-      "elapsed_seconds": 5.819,
-      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
-      "artifact_bytes": 350
-    },
-    {
-      "stage": "publish_telegram",
-      "started_at": "2026-09-11T11:01:27.189480+00:00",
-      "command": [
-        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
-        "scripts/publish_to_telegram.py",
-        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
-        "--input",
-        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/telegram_low.mp4",
-        "--kind",
-        "compressed"
-      ],
-      "status": "DONE",
-      "ended_at": "2026-09-11T11:01:36.904788+00:00",
-      "elapsed_seconds": 9.715,
-      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
-      "artifact_bytes": 2037
+      "status": "RUNNING"
     }
-  ],
-  "completed_at": "2026-09-11T11:01:38.293500+00:00",
-  "total_elapsed_seconds": 435.649,
-  "summary": {
-    "video": "026_black_swan_meaning_by_nassim_talib",
-    "duration_seconds": 77.087,
-    "beat_count": 16,
-    "video_beat_count": 2,
-    "image_beat_count": 14,
-    "resolution": "1080x1920",
-    "fps": 30,
-    "subtitles": true,
-    "opening": {
-      "spark_end": 6.44,
-      "transition_end": 9.34
-    },
-    "stt": {
-      "backend": "ajil",
-      "timestamp_source": "word"
-    },
-    "verified_models": {
-      "flow": [
-        "Omni 1.1 Flash"
-      ],
-      "gemini": [
-        "Open mode picker, currently Flash"
-      ]
-    },
-    "qc": {
-      "report": "QC_REPORT_polished.json",
-      "passed": true
-    },
-    "motion": {
-      "enabled": false
-    },
-    "resources": {
-      "wall_seconds": 345.97,
-      "realtime_factor": 4.488,
-      "peak_child_rss_mb": 1518.9,
-      "threads": 2,
-      "resource_budget": 0.8,
-      "cpus_available": 2
-    }
-  }
+  ]
 }
