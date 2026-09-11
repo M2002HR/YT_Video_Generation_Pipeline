@@ -19,7 +19,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from pipeline_notifier import NotifierSettings, format_duration
+from pipeline_notifier import EditableMessage, NotifierSettings, PipelineNotifier, format_duration
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,21 +44,63 @@ def write_json(path: Path, value: dict[str, Any]) -> None:
     temp.replace(path)
 
 
-async def send_video(settings: NotifierSettings, video: Path, caption: str, artifact_marker: str) -> int:
+def upload_progress_body(video_id: str, kind: str, current: int, total: int) -> str:
+    share = min(1.0, max(0.0, current / total)) if total else 0.0
+    percent = round(share * 100)
+    filled = round(percent / 10)
+    bar = "▓" * filled + "░" * (10 - filled)
+    return "\n".join([
+        f"<b>Video {video_id} · Telegram upload</b>",
+        f"<code>{bar}</code> <b>{percent}%</b>",
+        f"📦 {kind.title()}: {current / 1_048_576:.1f}/{total / 1_048_576:.1f} MB",
+        "↻ Live update every 15 seconds",
+    ])
+
+
+async def send_video(
+    settings: NotifierSettings,
+    video: Path,
+    caption: str,
+    artifact_marker: str,
+    *,
+    video_id: str = "",
+    kind: str = "video",
+    progress_message: EditableMessage | None = None,
+) -> int:
     from telethon import TelegramClient
     from telethon.sessions import StringSession
 
-    client = TelegramClient(StringSession(settings.string_session), settings.api_id, settings.api_hash, proxy=settings.proxy)
+    client = TelegramClient(StringSession(settings.string_session), settings.api_id, settings.api_hash, proxy=settings.proxy, timeout=15, connection_retries=2, request_retries=2, flood_sleep_threshold=0)
     await client.connect()
     try:
         if not await client.is_user_authorized():
             raise RuntimeError("Configured Telegram user session is not authorized.")
+        last_progress = 0.0
+
+        async def progress(current: int, total: int) -> None:
+            nonlocal last_progress
+            now = time.monotonic()
+            if progress_message is None or (current < total and now - last_progress < 15):
+                return
+            last_progress = now
+            try:
+                await client.edit_message(
+                    settings.recipient,
+                    progress_message.message_id,
+                    upload_progress_body(video_id, kind, current, total),
+                    parse_mode="html",
+                    link_preview=False,
+                )
+            except Exception:
+                pass
+
         try:
             message = await client.send_file(
                 settings.recipient,
                 file=str(video),
                 caption=caption,
                 supports_streaming=True,
+                progress_callback=progress,
             )
             return int(message.id)
         except Exception:
@@ -84,10 +126,18 @@ def main() -> None:
 
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
     settings = NotifierSettings.from_environment()
-    if not settings.configured:
+    if not settings.delivery_configured:
         raise RuntimeError("Telegram publishing is not configured. Set the YT_PIPELINE_TELEGRAM_* variables in the root .env.")
 
     video_dir = args.video_dir.expanduser().resolve()
+    video_id = video_dir.name.split("_", 1)[0]
+    progress_notifier = PipelineNotifier(
+        video_id,
+        video_dir.name,
+        settings=settings,
+        state_path=video_dir / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+    )
+    progress_message = progress_notifier.message_for("publish_telegram")
     receipt = video_dir / "publish" / "TELEGRAM_PUBLISH_STATE.json"
     inputs = [path.expanduser().resolve() for path in args.input] or [video_dir / "assets" / "renders" / "polished.mp4"]
     if args.kind and len(args.kind) != len(inputs):
@@ -105,10 +155,15 @@ def main() -> None:
     for video, kind in zip(inputs, kinds):
         if not video.is_file() or video.stat().st_size == 0:
             raise FileNotFoundError(f"Publish input is missing or empty: {video}")
-        # Compressed copies are validated by their creation stage; original files retain the
-        # existing mandatory polished-render QC gate.
-        report = video_dir / "render" / ("QC_REPORT.json" if video.name == "final.mp4" else f"QC_REPORT_{video.stem}.json")
-        if kind == "original" and (not report.is_file() or not bool(json.loads(report.read_text(encoding="utf-8")).get("passed"))):
+        # Every delivery inherits a real QC gate. The compact copy is a validated transcode
+        # of polished.mp4, so it uses the polished report rather than a fictional compact QC.
+        report_name = {
+            "final.mp4": "QC_REPORT.json",
+            "polished.mp4": "QC_REPORT_polished.json",
+            "telegram_low.mp4": "QC_REPORT_polished.json",
+        }.get(video.name, f"QC_REPORT_{video.stem}.json")
+        report = video_dir / "render" / report_name
+        if not report.is_file() or not bool(json.loads(report.read_text(encoding="utf-8")).get("passed")):
             raise RuntimeError(f"A passing QC report is required before publishing: {report}")
         digest = sha256(video)
         prior = deliveries.get(kind) if isinstance(deliveries.get(kind), dict) else {}
@@ -128,7 +183,15 @@ def main() -> None:
         caption = format_caption(summary, artifact_marker=marker)
         started = time.perf_counter()
         try:
-            message_id = asyncio.run(send_video(settings, video, caption, marker))
+            message_id = asyncio.run(send_video(
+                settings,
+                video,
+                caption,
+                marker,
+                video_id=video_id,
+                kind=kind,
+                progress_message=progress_message,
+            ))
         except Exception as exc:
             deliveries[kind] = {"status": "FAILED", "updated_at": utcnow(), "file": str(video.relative_to(video_dir)), "sha256": digest, "error": f"{type(exc).__name__}: {exc}", "elapsed_seconds": round(time.perf_counter() - started, 3)}
             write_json(receipt, {"schema_version": 3, "status": "FAILED", "updated_at": utcnow(), "deliveries": deliveries})

@@ -387,6 +387,7 @@ def apply_subtitle_style(subtitles: dict[str, Any], style: dict[str, Any]) -> No
 
 
 def main() -> None:
+    pipeline_started = time.perf_counter()
     parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
     parser.add_argument("--topic", required=True)
     parser.add_argument("--video-id", required=True)
@@ -405,6 +406,7 @@ def main() -> None:
     parser.add_argument("--telegram-original", action="store_true", help="Also send the polished original to Telegram.")
     parser.add_argument("--commit", action=argparse.BooleanOptionalAction, default=True, help="Commit and push finished artifacts (default for direct legacy runs: enabled).")
     parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs selected for revision.")
+    parser.add_argument("--preserve-downstream-beats", action="store_true", help="Keep unselected beat images unchanged during an isolated revision.")
     parser.add_argument("--beat-feedback-json", type=Path, help="Optional operator feedback for selected beat prompts.")
     parser.add_argument("--config-revision", action="store_true", help="Accept a panel-versioned creative configuration for this existing video ID.")
     args = parser.parse_args()
@@ -456,8 +458,18 @@ def main() -> None:
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state: dict[str, Any] = {"schema_version": 5, "content_project": content_project.project_id, "preset": preset, "topic": args.topic, "video_id": args.video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max, "aspect_ratio": args.aspect_ratio, "creative_brief_sha256": creative_brief_sha256, "started_at": stamp(), "status": "RUNNING", "events": []}
     state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
-    notifier = PipelineNotifier(args.video_id, args.topic)
-    notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target range: {duration_min:g}–{duration_max:g}s"])
+    notifier = PipelineNotifier(
+        args.video_id, args.topic,
+        state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+    )
+    if args.regenerate_beats:
+        notifier.send("Revision started", [
+            f"🛠 Beat image(s): {args.regenerate_beats}",
+            f"🧭 Policy: {'isolated — other beat images preserved' if args.preserve_downstream_beats else 'continuity cascade'}",
+            "↻ Valid unaffected stages will be reused",
+        ])
+    else:
+        notifier.send("Full pipeline started", ["🚀 Resumable workflow active", f"⏱ Target range: {duration_min:g}–{duration_max:g}s"])
     py = sys.executable
     # Visual generation persists each accepted prompt/image, so rerunning the
     # stage is safe and resumes at the first incomplete beat after a transient
@@ -471,17 +483,23 @@ def main() -> None:
             visual_command.extend(["--creative-brief", str(creative_brief)])
         if args.regenerate_beats:
             visual_command.extend(["--regenerate-beats", args.regenerate_beats])
+        if args.preserve_downstream_beats:
+            visual_command.append("--preserve-downstream-beats")
         if args.beat_feedback_json:
             visual_command.extend(["--beat-feedback-json", str(args.beat_feedback_json)])
         if args.config_revision:
             visual_command.append("--config-revision")
         try:
-            run("visuals", visual_command, state, state_path, retries=3, notifier=notifier, image_limit_pause_path=project / "pipeline" / "IMAGE_LIMIT_SCHEDULE.json")
+            run("visuals", visual_command, state, state_path, retries=3, notifier=None, image_limit_pause_path=project / "pipeline" / "IMAGE_LIMIT_SCHEDULE.json")
         except PipelinePausedForImageLimit:
             subprocess.run([py, "scripts/schedule_image_limit_resume.py", str(project)], cwd=ROOT, check=True)
             print("FULL VIDEO PIPELINE: PAUSED_FOR_IMAGE_LIMIT", flush=True)
             return
-    run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path, notifier=notifier)
+    narration = project / "assets" / "audio" / "narration.mp3"
+    if narration.is_file() and narration.stat().st_size > 0:
+        reuse("voiceover", narration, state, state_path, notifier=notifier)
+    else:
+        run("voiceover", [py, "scripts/run_elevenlabs_voiceover.py", "--video-id", args.video_id, "--project", str(project), "--profile", str(args.voice_profile)], state, state_path, notifier=None)
     timing_file = project / "timing" / "BEAT_TIMINGS.json"
     if valid_timing_artifact(timing_file):
         reuse("timing", timing_file, state, state_path, notifier=notifier)
@@ -497,7 +515,7 @@ def main() -> None:
         # The music runner has its own bounded UI timeouts, durable selected-URL
         # resume, audio validation, and verified local fallback. One outer retry
         # still covers process-level failures such as an interrupted interpreter.
-        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--providers", args.music_providers or args.music_provider or "mixkit"], state, state_path, retries=1, notifier=notifier)
+        run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--providers", args.music_providers or args.music_provider or "mixkit"], state, state_path, retries=1, notifier=None)
     mix_profile = ensure_audio_mix_profile(project)
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)
@@ -511,10 +529,15 @@ def main() -> None:
         completion.extend(["--sfx-config", str(creative_brief)])
     if args.telegram_original:
         completion.append("--telegram-original")
-    run("completion", completion, state, state_path, notifier=notifier)
+    run("completion", completion, state, state_path, notifier=None)
     if args.commit:
         publish_git_artifacts(project, state_path, state, notifier=notifier)
-    notifier.send("Full pipeline complete", ["🏁 All requested stages passed", f"⏱ Total: {state['total_elapsed_seconds']:.1f}s"])
+    total_elapsed = time.perf_counter() - pipeline_started
+    state["total_elapsed_seconds"] = round(total_elapsed, 3)
+    state["status"] = "DONE"
+    state["completed_at"] = stamp()
+    state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+    notifier.send("Full pipeline complete", ["🏁 All requested stages passed", f"⏱ Total: {total_elapsed:.1f}s"])
     print("FULL VIDEO PIPELINE: PASS")
 
 

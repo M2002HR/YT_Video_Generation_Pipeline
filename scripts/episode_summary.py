@@ -46,6 +46,12 @@ def verified_models(video_dir: Path) -> dict[str, list[str]]:
             or payload.get("requested_model")
             or ""
         ).strip()
+        if label.lower().startswith("open mode picker"):
+            requested = str(payload.get("requested_model") or "").strip()
+            label = {
+                "nano_banana_2": "Nano Banana 2",
+                "nano_banana_pro": "Nano Banana Pro",
+            }.get(requested, requested.replace("_", " ").title()) or label
         if payload.get("model_verified") and label:
             verified.setdefault(provider, set()).add(label)
         else:
@@ -64,9 +70,14 @@ def build_summary(video_dir: Path, *, artifact: Path | None = None) -> dict[str,
     timings = _load(video_dir / "timing" / "BEAT_TIMINGS.json")
     stt = timings.get("stt") or {}
 
-    qc_name = "QC_REPORT.json"
-    if artifact is not None and Path(artifact).name != "final.mp4":
-        qc_name = f"QC_REPORT_{Path(artifact).stem}.json"
+    artifact_name = Path(artifact).name if artifact is not None else "final.mp4"
+    qc_name = {
+        "final.mp4": "QC_REPORT.json",
+        "polished.mp4": "QC_REPORT_polished.json",
+        # The compact delivery is a validated transcode of polished.mp4 and inherits
+        # the mandatory polished QC gate rather than pretending a nonexistent report exists.
+        "telegram_low.mp4": "QC_REPORT_polished.json",
+    }.get(artifact_name, f"QC_REPORT_{Path(artifact_name).stem}.json")
     qc = _load(video_dir / "render" / qc_name)
     motion = _load(video_dir / "motion" / "MOTION_QC.json")
     motion_plan = _load(video_dir / "motion" / "MOTION_PLAN.json")

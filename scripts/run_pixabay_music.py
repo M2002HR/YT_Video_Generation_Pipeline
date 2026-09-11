@@ -787,8 +787,8 @@ def main() -> None:
     if args.track_url and (len(providers) != 1 or not valid_track_url(args.track_url, providers[0])):
         raise RuntimeError("--track-url requires exactly one provider and a valid direct track URL.")
     music_dir, meta_path = project / "assets" / "music", project / "music" / "MUSIC_SELECTION.json"
-    notifier = PipelineNotifier(args.video_id, project.name)
-    stage_message = notifier.stage_started(stage_title("background_music"))
+    notifier = PipelineNotifier(args.video_id, project.name, state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json")
+    stage_message = notifier.stage_started(stage_title("background_music"), key="background_music")
     started = time.perf_counter()
     context, duration = video_context(project)
     attempts: list[dict[str, Any]] = []
@@ -834,6 +834,15 @@ def main() -> None:
             failure = {"provider": provider, "error": f"{type(exc).__name__}: {exc}"[:1000], "failed_at": utcnow()}
             attempts.append(failure)
             print(f"MUSIC PROVIDER FAILED ({provider_name(provider)}): {failure['error']}; trying next provider.", flush=True)
+            notifier.stage_update(
+                stage_message,
+                stage_title("background_music"),
+                [
+                    f"↻ {provider_name(provider)} unavailable",
+                    f"📍 Attempt {len(attempts)}/{len(providers)}",
+                    "▶ Trying the next configured provider" if len(attempts) < len(providers) else "⚠️ Checking the verified local cache",
+                ],
+            )
     # Keep the complete failure evidence even when there is no cache candidate
     # and the caller must surface a hard music-stage failure.
     dump(meta_path, {
@@ -846,7 +855,7 @@ def main() -> None:
     try:
         install_cached_fallback(project, providers, meta_path, attempts, started, notifier, stage_message)
     except Exception as exc:
-        notifier.failure(stage_title("background_music"), time.perf_counter() - started, str(exc))
+        notifier.stage_failure(stage_message, stage_title("background_music"), time.perf_counter() - started, str(exc))
         raise
 
 

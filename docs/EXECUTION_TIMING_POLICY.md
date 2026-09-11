@@ -49,10 +49,11 @@ receipts are committed.
 
 ## Human progress notifications
 
-When `YT_PIPELINE_TELEGRAM_NOTIFICATIONS_ENABLED=true`, pipeline execution
-also sends concise English-only Telegram progress messages through the
-configured Telethon user session. Notify completion of each durable stage,
-every accepted image and all actionable warnings or failures. A completed
-multi-image stage must report both its total elapsed time and average accepted
-image duration. Notifications are best-effort only: a Telegram outage must be
-recorded locally as a warning and must never interrupt artifact production.
+When `YT_PIPELINE_TELEGRAM_NOTIFICATIONS_ENABLED=true`, pipeline execution sends concise
+English-only progress through the configured Telethon user session. One mutable message is
+owned by each long-running stage; batch images, retries, rendering and uploading update that
+message rather than flooding the chat. Reuse is summarized. Action-required waits and
+failures remain prominent and resumable. Notification delivery is best-effort, bounded, and
+recorded in `pipeline/TELEGRAM_NOTIFICATION_STATE.json`; it must never interrupt artifact
+production. Final media delivery depends on credentials and the frozen delivery choice, not
+on whether progress notifications are enabled.

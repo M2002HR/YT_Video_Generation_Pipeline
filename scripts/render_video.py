@@ -425,14 +425,14 @@ def render_progress_message(
 class TelegramRenderProgress:
     """One durable, in-place Telegram monitor for one render lifecycle."""
 
-    def __init__(self, video_id: str, total_seconds: float, state_path: Path) -> None:
+    def __init__(self, video_id: str, total_seconds: float, state_path: Path, title: str | None = None) -> None:
         self.notifier = PipelineNotifier(video_id=video_id, topic="render")
         self.total_seconds = total_seconds
         self.state_path = state_path
         self.message: EditableMessage | None = None
         self.pid = 0
         self.started_cpu_seconds = 0.0
-        self.title = stage_title("render_baseline")
+        self.title = title or stage_title("render_baseline")
 
     def _save_state(self, status: str) -> None:
         if self.message is None:
@@ -623,6 +623,7 @@ def main() -> None:
         action="store_true",
         help="Disable the editable Telegram render-progress message for this invocation.",
     )
+    parser.add_argument("--telegram-title", default="", help="Exact active-plan title for the mutable Telegram render message.")
     args = parser.parse_args()
 
     ffmpeg = require_binary("ffmpeg")
@@ -1072,7 +1073,8 @@ def main() -> None:
 
     started = time.perf_counter()
     reporter = None if args.no_telegram_progress or not is_production_episode(video_dir) else TelegramRenderProgress(
-        video_dir.name.split("_", 1)[0], duration, video_dir / "render" / "TELEGRAM_RENDER_PROGRESS.json"
+        video_dir.name.split("_", 1)[0], duration, video_dir / "render" / "TELEGRAM_RENDER_PROGRESS.json",
+        title=args.telegram_title or None,
     )
 
     def report_render_progress(progress: dict[str, Any]) -> None:

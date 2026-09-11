@@ -8,12 +8,16 @@ Telegram or network problem cannot discard a completed artifact.
 from __future__ import annotations
 
 import asyncio
+import fcntl
 import html
+import json
 import os
+import re
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 
@@ -27,6 +31,18 @@ def format_duration(seconds: float | int | None) -> str:
     hours, remainder = divmod(total, 3600)
     minutes, seconds = divmod(remainder, 60)
     return f"{hours:d}:{minutes:02d}:{seconds:02d}" if hours else f"{minutes:02d}:{seconds:02d}"
+
+
+def safe_detail(value: object, limit: int = 500) -> str:
+    """Keep actionable errors while removing common URL/token credential forms."""
+    text = str(value or "")
+    text = re.sub(r"(https?://[^\s?]+)\?[^\s]+", r"\1?[redacted]", text)
+    text = re.sub(
+        r"(?i)\b(token|api[_-]?key|authorization|cookie|session)\s*[:=]\s*[^\s,;]+",
+        r"\1=[redacted]",
+        text,
+    )
+    return text[:limit]
 
 
 @dataclass(frozen=True)
@@ -82,8 +98,18 @@ class NotifierSettings:
         )
 
     @property
+    def delivery_configured(self) -> bool:
+        """Credentials required for final media delivery, independent of progress logs."""
+        return bool(self.recipient and self.api_id > 0 and self.api_hash and self.string_session)
+
+    @property
+    def notifications_configured(self) -> bool:
+        return self.enabled and self.delivery_configured
+
+    @property
     def configured(self) -> bool:
-        return self.enabled and bool(self.recipient and self.api_id > 0 and self.api_hash and self.string_session)
+        """Compatibility alias for progress-notification callers."""
+        return self.notifications_configured
 
 
 @dataclass(frozen=True)
@@ -98,6 +124,8 @@ class PipelineNotifier:
     video_id: str
     topic: str
     settings: NotifierSettings = field(default_factory=NotifierSettings.from_environment)
+    state_path: Path | None = None
+    run_context: str = ""
     image_durations: list[float] = field(default_factory=list)
     # The most recent pipeline entry is deliberately retained so resume-only
     # work can extend it instead of flooding the chat with one message per
@@ -105,8 +133,90 @@ class PipelineNotifier:
     last_message: EditableMessage | None = field(default=None, init=False)
     last_body: str = field(default="", init=False)
     pending_reuse_bodies: list[str] = field(default_factory=list, init=False)
+    pending_reuse_count: int = field(default=0, init=False)
     stage_prefixes: dict[int, str] = field(default_factory=dict, init=False)
     reuse_edit_pending: bool = field(default=False, init=False)
+    stage_messages: dict[str, EditableMessage] = field(default_factory=dict, init=False)
+
+    def __post_init__(self) -> None:
+        if self.state_path is None:
+            return
+        if not self.run_context:
+            revisions = Path(self.state_path).parent / "revisions"
+            active: list[tuple[int, str]] = []
+            for manifest in revisions.glob("*/REVISION.json"):
+                try:
+                    payload = json.loads(manifest.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    continue
+                if payload.get("status") in {"QUEUED", "RUNNING"}:
+                    active.append((manifest.stat().st_mtime_ns, str(payload.get("revision_id") or manifest.parent.name)))
+            self.run_context = f"revision:{max(active)[1]}" if active else "run"
+        try:
+            payload = json.loads(Path(self.state_path).read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return
+        for key, value in (payload.get("messages") or {}).items():
+            try:
+                self.stage_messages[str(key)] = EditableMessage(int(value))
+            except (TypeError, ValueError):
+                continue
+
+    def _save_message_state(self) -> None:
+        if self.state_path is None:
+            return
+        path = Path(self.state_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        lock_path = path.with_suffix(path.suffix + ".lock")
+        with lock_path.open("a+", encoding="utf-8") as lock:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+            try:
+                existing = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+            except (OSError, ValueError):
+                existing = {}
+            messages = dict(existing.get("messages") or {})
+            messages.update({key: value.message_id for key, value in self.stage_messages.items()})
+            temp = path.with_suffix(f"{path.suffix}.{os.getpid()}.tmp")
+            temp.write_text(json.dumps({
+                "schema_version": 1,
+                "video_id": self.video_id,
+                "messages": messages,
+                "errors": list(existing.get("errors") or [])[-20:],
+            }, indent=2) + "\n", encoding="utf-8")
+            temp.replace(path)
+            fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+
+    def _message_key(self, key: str) -> str:
+        return f"{self.run_context}:{key}"
+
+    def message_for(self, key: str) -> EditableMessage | None:
+        """Return a durable stage message owned by this run/revision context."""
+        return self.stage_messages.get(self._message_key(key))
+
+    def _record_error(self, exc: Exception) -> None:
+        """Keep notification outages auditable without changing pipeline outcome."""
+        if self.state_path is None:
+            return
+        path = Path(self.state_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        lock_path = path.with_suffix(path.suffix + ".lock")
+        with lock_path.open("a+", encoding="utf-8") as lock:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+            except (OSError, ValueError):
+                payload = {}
+            errors = list(payload.get("errors") or [])[-19:]
+            errors.append({
+                "at": datetime.now(timezone.utc).isoformat(),
+                "context": self.run_context,
+                "error": safe_detail(f"{type(exc).__name__}: {exc}"),
+            })
+            payload.update({"schema_version": 1, "video_id": self.video_id, "errors": errors})
+            temp = path.with_suffix(f"{path.suffix}.{os.getpid()}.tmp")
+            temp.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+            temp.replace(path)
+            fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
 
     def restore_image_progress(self, durations: list[float]) -> None:
         """Hydrate accepted-image progress after a resumable runner restart."""
@@ -115,6 +225,14 @@ class PipelineNotifier:
     def _title(self, title: str) -> str:
         return f"<b>Video {html.escape(self.video_id)} · {html.escape(title)}</b>"
 
+    @staticmethod
+    def _bounded(body: str, limit: int = 3900) -> str:
+        """Stay below Telegram's limit without leaving an unterminated HTML tag."""
+        if len(body) <= limit:
+            return body
+        plain = html.unescape(body.replace("<b>", "").replace("</b>", "").replace("<code>", "").replace("</code>", ""))
+        return html.escape(plain[: limit - 24].rstrip()) + "\n… details truncated"
+
     def _run_telegram(self, operation: Any) -> Any:
         """Retry Telegram's explicit, bounded flood wait once instead of dropping a log."""
         for attempt in range(2):
@@ -122,8 +240,7 @@ class PipelineNotifier:
                 return asyncio.run(operation())
             except Exception as exc:
                 wait_seconds = int(getattr(exc, "seconds", 0) or 0)
-                if attempt == 0 and 0 < wait_seconds <= 60:
-                    print(f"NOTIFICATION INFO: Telegram rate limit; retrying in {wait_seconds}s", flush=True)
+                if attempt == 0 and 0 < wait_seconds <= 2:
                     time.sleep(wait_seconds)
                     continue
                 raise
@@ -134,9 +251,10 @@ class PipelineNotifier:
         if not self.settings.configured:
             return None
         try:
-            message_id = self._run_telegram(lambda: self._send_editable_async(body))
+            message_id = self._run_telegram(lambda: self._send_editable_async(self._bounded(body)))
         except Exception as exc:  # notifications must never stop the render
             print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
+            self._record_error(exc)
             return None
         return EditableMessage(message_id=message_id)
 
@@ -145,9 +263,10 @@ class PipelineNotifier:
         if message is None or not self.settings.configured:
             return False
         try:
-            self._run_telegram(lambda: self._edit_async(message.message_id, body))
+            self._run_telegram(lambda: self._edit_async(message.message_id, self._bounded(body)))
         except Exception as exc:
             print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
+            self._record_error(exc)
             return False
         return True
 
@@ -155,7 +274,7 @@ class PipelineNotifier:
         from telethon import TelegramClient
         from telethon.sessions import StringSession
 
-        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy)
+        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy, timeout=10, connection_retries=1, request_retries=1, flood_sleep_threshold=0)
         await client.connect()
         try:
             if not await client.is_user_authorized():
@@ -169,7 +288,7 @@ class PipelineNotifier:
         from telethon import TelegramClient
         from telethon.sessions import StringSession
 
-        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy)
+        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy, timeout=10, connection_retries=1, request_retries=1, flood_sleep_threshold=0)
         await client.connect()
         try:
             if not await client.is_user_authorized():
@@ -180,23 +299,38 @@ class PipelineNotifier:
 
     def send(self, title: str, lines: list[str]) -> bool:
         """Send a compact HTML message; return False without raising on failure."""
-        body = "\n".join([self._title(title), *[html.escape(line) for line in lines if line]])
+        self._flush_reuse_edit()
+        prefix = "\n".join(self.pending_reuse_bodies)
+        body = "\n".join(part for part in (
+            prefix,
+            "\n".join([self._title(title), *[html.escape(line) for line in lines if line]]),
+        ) if part)
         message = self.send_editable(body)
         if message is None:
             return False
+        self.pending_reuse_bodies.clear()
+        self.pending_reuse_count = 0
         self.last_message, self.last_body = message, body
         return True
 
-    def stage_started(self, title: str) -> EditableMessage | None:
+    def stage_started(self, title: str, *, key: str | None = None) -> EditableMessage | None:
         """Start a new work phase and create its one mutable log entry."""
         self._flush_reuse_edit()
         prefix = "\n".join(self.pending_reuse_bodies)
         body = "\n".join(part for part in (prefix, self._title(title), "▶ Stage started") if part)
-        message = self.send_editable(body)
+        stored_key = self._message_key(key) if key else ""
+        message = self.stage_messages.get(stored_key)
+        if message is not None and not self.edit(message, body):
+            message = None
+        message = message or self.send_editable(body)
         if message is not None:
             self.pending_reuse_bodies.clear()
+            self.pending_reuse_count = 0
             self.last_message, self.last_body = message, body
             self.stage_prefixes[message.message_id] = prefix
+            if key:
+                self.stage_messages[stored_key] = message
+                self._save_message_state()
         return message
 
     def stage_update(
@@ -210,6 +344,16 @@ class PipelineNotifier:
         prefix = self.stage_prefixes.get(message.message_id, "") if message is not None else ""
         body = "\n".join(part for part in (prefix, stage_body) if part)
         edited = self.edit(message, body)
+        if not edited:
+            replacement = self.send_editable(body)
+            if replacement is not None:
+                if message is not None:
+                    for key, current in list(self.stage_messages.items()):
+                        if current.message_id == message.message_id:
+                            self.stage_messages[key] = replacement
+                    self._save_message_state()
+                message = replacement
+                edited = True
         if edited and message is not None:
             self.last_message, self.last_body = message, body
         return edited
@@ -217,8 +361,12 @@ class PipelineNotifier:
     def _flush_reuse_edit(self) -> bool:
         if not self.reuse_edit_pending or self.last_message is None:
             return True
-        if not self.edit(self.last_message, self.last_body):
+        combined = "\n".join([self.last_body, *self.pending_reuse_bodies])
+        if not self.edit(self.last_message, combined):
             return False
+        self.last_body = combined
+        self.pending_reuse_bodies.clear()
+        self.pending_reuse_count = 0
         self.reuse_edit_pending = False
         return True
 
@@ -232,11 +380,15 @@ class PipelineNotifier:
         reuse message.
         """
         body = "\n".join([self._title(title), *[html.escape(line) for line in lines if line]])
-        if self.last_message is None:
+        self.pending_reuse_count += 1
+        if len(self.pending_reuse_bodies) < 8:
             self.pending_reuse_bodies.append(body)
+        elif len(self.pending_reuse_bodies) == 8:
+            self.pending_reuse_bodies.append("↻ Additional reused stages are summarized")
+        else:
+            self.pending_reuse_bodies[-1] = f"↻ {self.pending_reuse_count - 8} additional reused stage(s)"
+        if self.last_message is None:
             return False
-        combined = "\n".join(part for part in (self.last_body, body) if part)
-        self.last_body = combined
         self.reuse_edit_pending = True
         # A resumed run commonly discovers dozens of completed artifacts in a
         # few seconds.  Do not edit Telegram for each discovery: flush the
@@ -244,18 +396,29 @@ class PipelineNotifier:
         # phase starts.
         return True
 
-    async def _send_async(self, body: str) -> None:
-        from telethon import TelegramClient
-        from telethon.sessions import StringSession
+    def stage_failure(
+        self,
+        message: EditableMessage | None,
+        title: str,
+        elapsed_seconds: float,
+        detail: str,
+    ) -> bool:
+        """Close the active stage entry as failed; fall back to a fresh alert."""
+        lines = ["❌ Failed", f"⏱ Elapsed: {format_duration(elapsed_seconds)}", safe_detail(detail), "↻ Fix the issue, then resume from saved state."]
+        if message is not None and self.stage_update(message, title, lines):
+            return True
+        return self.send(title, lines)
 
-        client = TelegramClient(StringSession(self.settings.string_session), self.settings.api_id, self.settings.api_hash, proxy=self.settings.proxy)
-        await client.connect()
-        try:
-            if not await client.is_user_authorized():
-                raise RuntimeError("configured Telegram session is not authorized")
-            await client.send_message(self.settings.recipient, body, parse_mode="html", link_preview=False)
-        finally:
-            await client.disconnect()
+    def stage_waiting(
+        self,
+        message: EditableMessage | None,
+        title: str,
+        detail: str,
+    ) -> bool:
+        lines = ["⏸️ Action required", safe_detail(detail), "↻ Completed artifacts remain reusable."]
+        if message is not None and self.stage_update(message, title, lines):
+            return True
+        return self.send(title, lines)
 
     def stage_complete(self, stage: str, elapsed_seconds: float, *, artifact: str = "") -> bool:
         lines = ["✅ Stage complete", f"⏱ Duration: {format_duration(elapsed_seconds)}"]
@@ -293,10 +456,10 @@ class PipelineNotifier:
         )
 
     def warning(self, title: str, detail: str) -> bool:
-        return self.send(title, ["⚠️ Warning", detail[:500]])
+        return self.send(title, ["⚠️ Warning", safe_detail(detail)])
 
     def failure(self, title: str, elapsed_seconds: float, detail: str) -> bool:
-        return self.send(title, ["❌ Failed", f"⏱ Elapsed: {format_duration(elapsed_seconds)}", detail[:500], "↻ The saved state can be resumed after the issue is fixed."])
+        return self.stage_failure(None, title, elapsed_seconds, detail)
 
     def monitoring_started(self, completed: int, total: int, generating: int | None = None) -> bool:
         detail = f"📍 Current progress: {completed}/{total} images accepted"

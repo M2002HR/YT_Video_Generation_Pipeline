@@ -79,7 +79,9 @@ def execute(
     manages_own_progress: bool = False,
 ) -> None:
     """Run one stage, persist the transition, and report both ends of it to Telegram."""
-    title = stage_title(name)
+    canonical_title = stage_title(name)
+    human_title = canonical_title.split(" · ", 1)[-1]
+    title = f"{position} · {human_title}" if position else canonical_title
     started_wall, started = now(), time.perf_counter()
     event: dict[str, Any] = {"stage": name, "started_at": started_wall, "command": command, "status": "RUNNING"}
     state["events"].append(event)
@@ -88,7 +90,7 @@ def execute(
     print(f"▶ {name}", flush=True)
     stage_message = None
     if notifier is not None and not manages_own_progress:
-        stage_message = notifier.stage_started(title)
+        stage_message = notifier.stage_started(title, key=name)
     try:
         subprocess.run(command, cwd=ROOT, check=True)
     except subprocess.CalledProcessError as exc:
@@ -98,7 +100,7 @@ def execute(
         save(path, state)
         print(f"✘ {name} exited {exc.returncode}", flush=True)
         if notifier is not None:
-            notifier.failure(title, elapsed, f"{name} exited with code {exc.returncode}")
+            notifier.stage_failure(stage_message, title, elapsed, f"{name} exited with code {exc.returncode}")
         raise
     elapsed = round(time.perf_counter() - started, 3)
     if artifact is not None and (not artifact.is_file() or artifact.stat().st_size <= 0):
@@ -108,7 +110,7 @@ def execute(
         save(path, state)
         print(f"✘ {message}", flush=True)
         if notifier is not None:
-            notifier.failure(title, elapsed, message)
+            notifier.stage_failure(stage_message, title, elapsed, message)
         raise RuntimeError(message)
     event.update({"status": "DONE", "ended_at": now(), "elapsed_seconds": elapsed})
     if artifact is not None and artifact.is_file():
@@ -190,7 +192,11 @@ def main() -> None:
         topic = str(json.loads((video / "launch" / "LAUNCH_REQUEST.json").read_text(encoding="utf-8")).get("topic") or "")
     except (OSError, ValueError):
         pass
-    notifier = None if args.no_notify else PipelineNotifier(video_id=video.name, topic=topic)
+    notifier = None if args.no_notify else PipelineNotifier(
+        video_id=video.name.split("_", 1)[0],
+        topic=topic,
+        state_path=video / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+    )
     #: The completion half, in order, so each notification says where the run is.
     motion_config: dict[str, Any] = {}
     motion_config_path = args.motion_config or (video / "launch" / "CREATIVE_BRIEF.json")
@@ -218,12 +224,17 @@ def main() -> None:
             save(state_path, state)
             print(f"↻ {name} reused — {event['artifact']}", flush=True)
             if notifier is not None:
-                notifier.stage_reused(stage_title(name), ["↻ Reused existing artifact", f"📄 {event['artifact']}"])
+                notifier.stage_reused(active_title(name), ["↻ Reused existing artifact", f"📄 {event['artifact']}"])
             return
         execute(
             name, command, state, state_path,
             notifier=notifier, video=video, position=position, **kw,
         )
+
+    def active_title(name: str) -> str:
+        position = f"step {sequence.index(name) + 1}/{len(sequence)}" if name in sequence else ""
+        human = stage_title(name).split(" · ", 1)[-1]
+        return f"{position} · {human}" if position else human
 
     managed_python = ROOT / ".venv" / "bin" / "python"
     py = str(managed_python) if managed_python.is_file() else sys.executable
@@ -241,7 +252,7 @@ def main() -> None:
         save(state_path, state)
         if notifier is not None:
             notifier.stage_reused(
-                stage_title("render_baseline"),
+                active_title("render_baseline"),
                 ["↻ Reused existing baseline render", baseline.name],
             )
     else:
@@ -250,7 +261,8 @@ def main() -> None:
         step(
             "render_baseline",
             [py, "scripts/render_video.py", str(video), "--output", str(baseline),
-             "--resource-budget", f"{args.resource_budget:.3f}"],
+             "--resource-budget", f"{args.resource_budget:.3f}",
+             "--telegram-title", active_title("render_baseline")],
             artifact=baseline,
             manages_own_progress=True,
         )

@@ -720,10 +720,10 @@ def main() -> None:
         json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(existing.relative_to(project)), "generated_at": utcnow(), "recovered_from_existing_download": True})
         print(f"ELEVENLABS VOICEOVER: PASS (reused {existing})")
         return
-    notifier = PipelineNotifier(args.video_id, project.name)
+    notifier = PipelineNotifier(args.video_id, project.name, state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json")
     started = time.perf_counter()
     title = stage_title("elevenlabs_voiceover")
-    stage_message = notifier.stage_started(title)
+    stage_message = notifier.stage_started(title, key="elevenlabs_voiceover")
     ui = ElevenLabsUI(poll_seconds=float(os.getenv("YT_ELEVENLABS_POLL_SECONDS", "5")), stall_seconds=float(os.getenv("YT_ELEVENLABS_STALL_REFRESH_SECONDS", "90")), max_refreshes=int(os.getenv("YT_ELEVENLABS_MAX_STALL_REFRESHES", "3")))
     try:
         ui.open_and_verify()
@@ -798,7 +798,7 @@ def main() -> None:
         raise RuntimeError("ElevenLabs generation exceeded the configured timeout.")
     except Exception as exc:
         state.data.update({"status": "FAILED", "error": str(exc), "failed_at": utcnow()}); state.save()
-        notifier.failure(title, time.perf_counter() - started, str(exc))
+        notifier.stage_failure(stage_message, title, time.perf_counter() - started, str(exc))
         raise
 
 
