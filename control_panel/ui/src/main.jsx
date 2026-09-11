@@ -36,6 +36,14 @@ const PHASE_LABELS = {
   render: "Render & QC",
   publish: "Publishing",
 };
+
+const TRANSITION_OPTIONS = [
+  ["fade", "Fade"], ["dissolve", "Dissolve"], ["fadeblack", "Fade to black"],
+  ["fadewhite", "Fade to white"], ["smoothleft", "Smooth left"],
+  ["smoothright", "Smooth right"], ["wipeleft", "Wipe left"],
+  ["wiperight", "Wipe right"], ["slideleft", "Slide left"],
+  ["slideright", "Slide right"], ["cut", "Cut"],
+];
 async function request(url, options) {
   const headers = new Headers(options?.headers || {});
   headers.set("Accept", "application/json");
@@ -831,10 +839,27 @@ function Field({ field, value, onChange, allValues = {} }) {
 function StyleLibrary({ styles, loading, values, change }) {
   const selectedId = values.world_style_id || "";
   const policy = values.world_style_policy || "auto";
+  const [preview, setPreview] = useState(null);
+  const [deleted, setDeleted] = useState(() => new Set());
+  const [deleting, setDeleting] = useState("");
   const select = (styleId, nextPolicy) => {
     change("world_style_id", styleId);
     change("world_style_policy", nextPolicy);
   };
+  const remove = async (style) => {
+    if (!window.confirm(`Delete “${style.display_name}” permanently? Its catalog entry and style files will be removed from disk.`)) return;
+    setDeleting(style.style_id);
+    try {
+      await request(`/api/styles/${encodeURIComponent(values.content_project)}/${encodeURIComponent(style.style_id)}`, { method: "DELETE" });
+      setDeleted((current) => new Set([...current, style.style_id]));
+      if (selectedId === style.style_id) select("", "auto");
+    } catch (failure) {
+      window.alert(`Style was not deleted: ${failure.message}`);
+    } finally {
+      setDeleting("");
+    }
+  };
+  const visibleStyles = styles.filter((style) => !deleted.has(style.style_id));
   return (
     <section className="style-library" aria-label="World style library">
       <div className="style-library-head">
@@ -864,30 +889,41 @@ function StyleLibrary({ styles, loading, values, change }) {
         </button>
       </div>
       <div className="style-card-grid" aria-live="polite">
-        {styles.map((style) => {
+        {visibleStyles.map((style) => {
           const active = selectedId === style.style_id && policy === "reuse";
           return (
-            <button
-              type="button"
+            <article
               key={style.style_id}
               className={`style-card ${active ? "selected" : ""}`}
-              aria-pressed={active}
-              onClick={() => select(style.style_id, "reuse")}
             >
-              <div className="style-images">
-                {style.anchor_available ? <img loading="lazy" src={style.anchor_url} alt={`${style.display_name} style anchor`} /> : <span className="style-image-empty">Preview unavailable</span>}
-                {style.sample_available && <div className="style-sample"><img loading="lazy" src={style.sample_url} alt={`${style.display_name} generated beat`} /><span>Generated beat</span></div>}
-              </div>
-              <div className="style-card-copy">
-                <b>{style.display_name}</b>
-                <span>{style.medium_family || "Visual style"}{style.texture_family ? ` · ${style.texture_family}` : ""}</span>
-                {style.palette_summary && <small>{style.palette_summary}</small>}
+              <button type="button" className="style-card-main" aria-pressed={active} onClick={() => select(style.style_id, "reuse")}>
+                <div className="style-images">
+                  {style.anchor_available ? <img loading="lazy" src={style.anchor_url} alt={`${style.display_name} style anchor`} /> : <span className="style-image-empty">Preview unavailable</span>}
+                  {style.sample_available && <div className="style-sample"><img loading="lazy" src={style.sample_url} alt={`${style.display_name} generated beat`} /><span>Generated beat</span></div>}
+                </div>
+                <div className="style-card-copy">
+                  <b>{style.display_name}</b>
+                  <span>{style.medium_family || "Visual style"}{style.texture_family ? ` · ${style.texture_family}` : ""}</span>
+                  {style.palette_summary && <small>{style.palette_summary}</small>}
+                </div>
+              </button>
+              <div className="style-card-actions">
+                <button type="button" title={`Preview ${style.display_name}`} aria-label={`Preview ${style.display_name}`} onClick={() => setPreview(style)}>◉</button>
+                <button type="button" className="danger" title={`Delete ${style.display_name}`} aria-label={`Delete ${style.display_name}`} disabled={deleting === style.style_id} onClick={() => remove(style)}>{deleting === style.style_id ? "…" : "⌫"}</button>
               </div>
               {active && <i className="style-selected-mark">✓ Selected</i>}
-            </button>
+            </article>
           );
         })}
       </div>
+      {preview && <div className="modal-back style-preview-back" role="dialog" aria-modal="true" aria-label={`${preview.display_name} preview`} onMouseDown={(event) => event.target === event.currentTarget && setPreview(null)}>
+        <section className="modal style-preview-modal">
+          <button type="button" className="icon close" onClick={() => setPreview(null)} aria-label="Close style preview">×</button>
+          <span className="eyebrow">STYLE PREVIEW</span><h2>{preview.display_name}</h2>
+          <img src={preview.preview_url || preview.anchor_url} alt={`${preview.display_name} large preview`} />
+          {preview.palette_summary && <p>{preview.palette_summary}</p>}
+        </section>
+      </div>}
     </section>
   );
 }
@@ -1154,6 +1190,80 @@ function RunRow({ job, open }) {
   );
 }
 
+function creditValue(value) {
+  if (value === null || value === undefined || value === "") return "—";
+  return new Intl.NumberFormat().format(value);
+}
+
+function CreditServiceCard({ service }) {
+  const credits = service.credits;
+  const state = service.status || "queued";
+  const identity = service.email || service.plan || "Account details are loading…";
+  const creditLine = credits
+    ? credits.total != null
+      ? `${creditValue(credits.remaining)} remaining of ${creditValue(credits.total)} ${credits.unit || "credits"}`
+      : `${creditValue(credits.remaining)} ${credits.unit || "credits"} remaining`
+    : state === "checking" || state === "queued"
+      ? "Reading the visible account balance…"
+      : "No readable balance was shown by the provider.";
+  return (
+    <article className={`credit-service ${state}`}>
+      <div className="credit-service-top">
+        <div>
+          <span className="eyebrow">{service.label}</span>
+          <strong>{identity}</strong>
+        </div>
+        <span className={`credit-state ${state}`}>{state === "checking" ? "Checking" : state.replaceAll("_", " ")}</span>
+      </div>
+      <b className="credit-balance">{creditLine}</b>
+      {credits?.used != null && <small>Used: {creditValue(credits.used)} {credits.unit || "credits"}</small>}
+      {service.message && <p>{service.message}</p>}
+    </article>
+  );
+}
+
+function CreditCheckModal({ value, close, retry }) {
+  const running = value?.status === "running" || value?.status === "starting";
+  const profiles = value?.profiles || [];
+  const completedAt = value?.completed_at || value?.updated_at;
+  return (
+    <div className="modal-back" role="dialog" aria-modal="true" aria-labelledby="credit-check-title" onMouseDown={(event) => event.target === event.currentTarget && close()}>
+      <section className="modal credit-modal">
+        <button className="icon close" onClick={close} aria-label="Close credit check">×</button>
+        <span className="eyebrow">BROWSER ACCOUNT CHECK</span>
+        <h2 id="credit-check-title">Credits</h2>
+        <p>
+          {running
+            ? "Opening the signed-in Chrome profile and checking each provider. Results appear as soon as they are ready."
+            : value?.status === "failed"
+              ? value.error || "The credit check could not start."
+              : "All configured providers have finished checking."}
+        </p>
+        {profiles.length ? profiles.map((profile) => (
+          <section className="credit-profile" key={profile.id}>
+            <header>
+              <div>
+                <h3>{profile.label}</h3>
+                <small>Chrome profile: {profile.id}{profile.vnc_port ? ` · VNC ${profile.vnc_port}` : ""}</small>
+              </div>
+              <span className={`credit-state ${profile.status || "queued"}`}>{profile.status || "queued"}</span>
+            </header>
+            <div className="credit-services">
+              {(profile.services || []).map((service) => <CreditServiceCard key={service.key} service={service} />)}
+            </div>
+          </section>
+        )) : (
+          <div className="loading-line">{running ? "Preparing Chrome profile…" : "No configured profiles returned a result."}</div>
+        )}
+        <footer className="credit-modal-footer">
+          <small>{completedAt ? `Last updated: ${formatDate(completedAt)}` : "Last updated: just now"}</small>
+          {!running && <button className="secondary" onClick={retry}>Check again</button>}
+        </footer>
+      </section>
+    </div>
+  );
+}
+
 function Home({ open, notify }) {
   const [jobs, setJobs] = useState([]),
     [health, setHealth] = useState(null),
@@ -1162,6 +1272,8 @@ function Home({ open, notify }) {
     [status, setStatus] = useState("all"),
     [autoUpdate, setAutoUpdate] = useState(readAutoUpdate),
     [connStatus, setConnStatus] = useState("connecting"),
+    [creditCheck, setCreditCheck] = useState(null),
+    [creditModalOpen, setCreditModalOpen] = useState(false),
     dashboardDisconnected = useRef(false),
     contractReady = useRef(false),
     contractFailed = useRef(false),
@@ -1224,6 +1336,29 @@ function Home({ open, notify }) {
       return next;
     });
   };
+  const startCreditCheck = () => {
+    setCreditModalOpen(true);
+    setCreditCheck({ status: "starting", profiles: [] });
+    request("/api/credits/check", { method: "POST" })
+      .then((result) => setCreditCheck(result))
+      .catch((error) => {
+        setCreditCheck({ status: "failed", error: error.message, profiles: [] });
+        notify("Credit check unavailable", error.message, "bad");
+      });
+  };
+  useEffect(() => {
+    const checkId = creditCheck?.check_id;
+    if (!creditModalOpen || !checkId || creditCheck?.status !== "running") return undefined;
+    let cancelled = false;
+    const refresh = () => request(`/api/credits/check/${encodeURIComponent(checkId)}`)
+      .then((result) => !cancelled && setCreditCheck(result))
+      .catch((error) => {
+        if (!cancelled) setCreditCheck((current) => ({ ...current, status: "failed", error: error.message }));
+      });
+    const timer = setInterval(refresh, 900);
+    refresh();
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [creditModalOpen, creditCheck?.check_id, creditCheck?.status]);
   const shown = jobs.filter(
     (job) =>
       (status === "all" || statusClass(job.status) === status) &&
@@ -1240,6 +1375,7 @@ function Home({ open, notify }) {
           <h1>Studio</h1>
         </div>
         <div className="brand-side">
+          <button className="credit-check-button" onClick={startCreditCheck}>Check credits</button>
           <ConnectionStatus
             status={connStatus}
             autoUpdate={autoUpdate}
@@ -1333,6 +1469,13 @@ function Home({ open, notify }) {
           <div className="no-runs">No runs match this view.</div>
         )}
       </section>
+      {creditModalOpen && (
+        <CreditCheckModal
+          value={creditCheck}
+          close={() => setCreditModalOpen(false)}
+          retry={startCreditCheck}
+        />
+      )}
     </main>
   );
 }
@@ -1750,6 +1893,45 @@ function RegenerationModal({ run, node, close, started }) {
   );
 }
 
+function TransitionOverrides({ timeline, values, overrides, onChange }) {
+  const beats = Array.isArray(timeline?.beats) ? timeline.beats : [];
+  const byBoundary = new Map((overrides || []).map((item) => [`${item.from_beat_id}→${item.to_beat_id}`, item]));
+  const defaultType = values.motion_transition_default_type || "fade";
+  const defaultSeconds = Number(values.motion_transition_seconds) || .28;
+  const replace = (boundary, next) => {
+    const key = `${boundary.from_beat_id}→${boundary.to_beat_id}`;
+    const remainder = (overrides || []).filter((item) => `${item.from_beat_id}→${item.to_beat_id}` !== key);
+    onChange([...remainder, next]);
+  };
+  if (!beats.length) {
+    return <section className="transition-overrides empty"><b>Exact boundary overrides</b><small>Available after the timeline is built for this run.</small></section>;
+  }
+  return (
+    <section className="transition-overrides">
+      <header>
+        <div><b>Exact boundary overrides</b><small>Manual rows always win over AI and the global default.</small></div>
+        <span>{beats.length - 1} boundaries</span>
+      </header>
+      {beats.slice(1).map((to, index) => {
+        const from = beats[index];
+        const id = `${from.beat_id}→${to.beat_id}`;
+        const saved = byBoundary.get(id);
+        const type = saved?.type || defaultType;
+        const seconds = saved?.duration ?? (type === "cut" ? 0 : defaultSeconds);
+        const name = (beat) => `${beat.media_type === "video" ? "Video" : "Image"} ${String(beat.beat_id).replace(/^video_/, "")}`;
+        return <div className="transition-row" key={id}>
+          <span className="transition-boundary">{name(from)} <i>→</i> {name(to)}</span>
+          <select value={type} onChange={(event) => replace({ from_beat_id: String(from.beat_id), to_beat_id: String(to.beat_id) }, { from_beat_id: String(from.beat_id), to_beat_id: String(to.beat_id), type: event.target.value, duration: event.target.value === "cut" ? 0 : seconds })}>
+            {TRANSITION_OPTIONS.map(([value, title]) => <option value={value} key={value}>{title}</option>)}
+          </select>
+          <input aria-label={`Transition seconds ${id}`} type="number" min="0.08" max="0.45" step="0.01" disabled={type === "cut"} value={type === "cut" ? 0 : seconds} onChange={(event) => replace({ from_beat_id: String(from.beat_id), to_beat_id: String(to.beat_id) }, { from_beat_id: String(from.beat_id), to_beat_id: String(to.beat_id), type, duration: Number(event.target.value) })} />
+          {saved ? <button type="button" onClick={() => onChange((overrides || []).filter((item) => `${item.from_beat_id}→${item.to_beat_id}` !== id))}>Reset</button> : <small>Default</small>}
+        </div>;
+      })}
+    </section>
+  );
+}
+
 function ConfigModal({ run, close, done }) {
   const [schema, setSchema] = useState(null),
     [values, setValues] = useState(null),
@@ -1760,7 +1942,8 @@ function ConfigModal({ run, close, done }) {
     [timelineTried, setTimelineTried] = useState(false),
     [openGroups, setOpenGroups] = useState(new Set(["visual"])),
     [error, setError] = useState(""),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(false),
+    [transitionOverrides, setTransitionOverrides] = useState([]);
   useEffect(() => {
     Promise.all([
       request(`/api/run/${run.job.job_id}/config`),
@@ -1768,6 +1951,7 @@ function ConfigModal({ run, close, done }) {
     ])
       .then(([data, contract]) => {
         setValues(data.values);
+        setTransitionOverrides(Array.isArray(data.transition_overrides) ? data.transition_overrides : []);
         setSchema(contract.schema);
       })
       .catch((failure) => setError(failure.message));
@@ -1863,7 +2047,7 @@ function ConfigModal({ run, close, done }) {
       request("/api/config-revisions/preview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ job_id: run.job.job_id, values }),
+        body: JSON.stringify({ job_id: run.job.job_id, values, transition_overrides: transitionOverrides }),
       })
         .then((data) => {
           if (!cancelled) {
@@ -1877,7 +2061,7 @@ function ConfigModal({ run, close, done }) {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [run.job.job_id, values]);
+  }, [run.job.job_id, values, transitionOverrides]);
   useEffect(() => {
     const escape = (event) => event.key === "Escape" && close();
     addEventListener("keydown", escape);
@@ -1889,15 +2073,15 @@ function ConfigModal({ run, close, done }) {
     setError("");
     try {
       validateLaunchValues(values);
-      await request("/api/config-revisions", {
+      const response = await request("/api/config-revisions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           job_id: run.job.job_id,
-          config: { values },
+          config: { values, transition_overrides: transitionOverrides },
         }),
       });
-      done();
+      done(response);
     } catch (failure) {
       setError(failure.message);
     } finally {
@@ -1925,7 +2109,8 @@ function ConfigModal({ run, close, done }) {
         <h2 id="config-title">Revise this run safely</h2>
         <p>
           Edit the same controls used at launch. The impact preview identifies exactly
-          which stages rebuild before any files are changed.
+          which stages rebuild before any files are changed. Changing the topic launches
+          a separate run and keeps this one intact.
         </p>
         <div className="frozen-project">
           <span>Content project</span>
@@ -1977,6 +2162,7 @@ function ConfigModal({ run, close, done }) {
                   }
                 />
               ))}
+            <TransitionOverrides timeline={timeline} values={values} overrides={transitionOverrides} onChange={setTransitionOverrides} />
           </div>
         ) : !error && <div className="loading-line">Loading frozen settings…</div>}
         {plan && (
@@ -1985,16 +2171,23 @@ function ConfigModal({ run, close, done }) {
               <span>{plan.changed_fields.length} changed setting(s)</span>
               {plan.changed_fields.map((name) => <b key={name}>{label(name)}</b>)}
             </div>
-            <div className="impact-grid config-impact">
-              <section>
-                <h3>Rebuild · {plan.affected_nodes.length}</h3>
-                <div>{plan.affected_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
-              </section>
-              <section>
-                <h3>Reuse · {plan.reused_nodes.length}</h3>
-                <div>{plan.reused_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
-              </section>
-            </div>
+            {plan.new_run ? (
+              <div className="topic-change-notice">
+                Topic changed: this will launch a new, independent run. No files or
+                stages from the current run will be reused.
+              </div>
+            ) : (
+              <div className="impact-grid config-impact">
+                <section>
+                  <h3>Rebuild · {plan.affected_nodes.length}</h3>
+                  <div>{plan.affected_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
+                </section>
+                <section>
+                  <h3>Reuse · {plan.reused_nodes.length}</h3>
+                  <div>{plan.reused_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
+                </section>
+              </div>
+            )}
           </div>
         )}
         {error && <div className="inline-error" role="alert">{error}</div>}
@@ -2006,7 +2199,9 @@ function ConfigModal({ run, close, done }) {
             ? "Applying changes…"
             : plan?.can_start === false
               ? plan?.read_only ? "External run · inspection only" : "Another run is active"
-              : `Apply ${plan?.changed_fields?.length || 0} change(s) safely`}
+              : plan?.new_run
+                ? "Launch separate run →"
+                : `Apply ${plan?.changed_fields?.length || 0} change(s) safely`}
         </button>
       </form>
     </div>
@@ -2056,7 +2251,7 @@ function ActivityPanel({ events, log, open, toggle }) {
   );
 }
 
-function RunPage({ jobId, goHome, notify }) {
+function RunPage({ jobId, goHome, goRun, notify }) {
   const [run, setRun] = useState(null),
     [selected, setSelected] = useState(null),
     [view, setView] = useState("board"),
@@ -2341,13 +2536,21 @@ function RunPage({ jobId, goHome, notify }) {
         <ConfigModal
           run={run}
           close={() => setConfigOpen(false)}
-          done={() => {
+          done={(response) => {
             setConfigOpen(false);
-            notify(
-              "Configuration revision started",
-              "Only the affected graph branch will rebuild.",
-            );
-            load();
+            if (response?.new_run && response?.job_id) {
+              notify(
+                "New pipeline run launched",
+                "The topic changed, so the previous run and its artifacts were kept separate.",
+              );
+              goRun(response.job_id);
+            } else {
+              notify(
+                "Configuration revision started",
+                "Only the affected graph branch will rebuild.",
+              );
+              load();
+            }
           }}
         />
       )}
@@ -2390,6 +2593,7 @@ function App() {
           key={match[1]}
           jobId={match[1]}
           goHome={() => navigate("/")}
+          goRun={(id) => navigate(`/runs/${id}`)}
           notify={notify}
         />
       ) : (

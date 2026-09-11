@@ -478,9 +478,17 @@ def launch_form(project_options: str, style_options: str, character_options: str
  </fieldset>
 
  <fieldset><legend>Motion / Editing</legend>
-  <label class=check><input id=motion_enabled name=motion_enabled type=checkbox checked onchange="syncMotionControls()"> Enable Dynamic Motion Director</label>
-  <small>Off: skips the Motion Director/Ordak stage and renders with the existing legacy timeline behavior. Existing Motion Plan artifacts are ignored, never deleted.</small>
-  <div id=motion_controls>
+ <label class=check><input id=motion_enabled name=motion_enabled type=checkbox checked onchange="syncMotionControls()"> Enable Dynamic Motion Director</label>
+ <small>Off: skips the Motion Director/Ordak stage and renders with the existing legacy timeline behavior. Existing Motion Plan artifacts are ignored, never deleted.</small>
+ <div class=grid2>
+  <label>Image zoom strength <input name=motion_image_zoom_strength type=number min=.04 max=.24 step=.01 value=.14></label>
+  <label>Default transition <select name=motion_transition_default_type><option value=fade selected>Fade</option><option value=dissolve>Dissolve</option><option value=fadeblack>Fade to black</option><option value=fadewhite>Fade to white</option><option value=smoothleft>Smooth left</option><option value=smoothright>Smooth right</option><option value=wipeleft>Wipe left</option><option value=wiperight>Wipe right</option><option value=slideleft>Slide left</option><option value=slideright>Slide right</option><option value=cut>Cut</option></select></label>
+  <label>Transition intensity / seconds <input name=motion_transition_seconds type=number min=.08 max=.45 step=.01 value=.28></label>
+  <label class=check><input name=motion_transition_ai_enabled type=checkbox> Let ChatGPT choose image-pair transitions</label>
+  <input name=motion_image_transition_style type=hidden value=cut_fade_dissolve><input name=motion_image_transition_seconds type=hidden value=.28><input name=motion_opening_to_image_seconds type=hidden value=.28>
+ </div>
+ <small>Fade at 0.28 seconds is the default for every media boundary. Per-boundary overrides are available in the React Studio Revise view.</small>
+ <div id=motion_controls>
   <div class=grid2>
    <label>Editing pace <select name=motion_pace><option value=calm>Calm</option><option value=balanced>Balanced</option><option value=fast selected>Fast</option><option value=very_fast>Very Fast</option></select></label>
    <label>Motion intensity <select name=motion_intensity><option value=subtle>Subtle</option><option value=normal selected>Normal</option><option value=strong>Strong</option></select></label>
@@ -504,7 +512,6 @@ def launch_form(project_options: str, style_options: str, character_options: str
     <label>Max pan distance <input name=motion_max_pan_distance type=number min=.02 max=.7 step=.01 value=.32></label>
     <label>Max pan/sec <input name=motion_max_pan_velocity type=number min=.02 max=1 step=.01 value=.42></label>
     <label>Max zoom/sec <input name=motion_max_zoom_velocity type=number min=.02 max=1 step=.01 value=.34></label>
-    <label>Transition budget <input name=motion_transition_fraction type=number min=0 max=1 step=.05 value=.25></label>
     <label>Transition min (sec) <input name=motion_transition_min type=number min=.08 max=.6 step=.01 value=.10></label>
     <label>Transition max (sec) <input name=motion_transition_max type=number min=.08 max=.8 step=.01 value=.40></label>
     <label>Observation batch size <input name=motion_observation_batch type=number min=1 max=6 value=3></label>

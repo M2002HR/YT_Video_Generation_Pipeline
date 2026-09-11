@@ -46,6 +46,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
 PROVIDER_STATUS_LOCK = threading.Lock()
 PROVIDER_STATUS_CACHE: dict[str, object] = {"at": 0.0, "base": "", "value": {}}
+CREDIT_CHECK_LOCK = threading.Lock()
+CREDIT_CHECK_ACTIVE_ID: str | None = None
 PREFERRED_CONTENT_PROJECT = "q_station"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
 
@@ -95,6 +97,82 @@ MOTION_FIELDS = {
     "motion_neighbor_context": "neighbor_context",
     "motion_word_sync_tolerance": "word_sync_tolerance_ms",
 }
+IMAGE_RENDER_MOTION_FIELDS = {
+    "motion_image_zoom_strength",
+    "motion_image_transition_style",
+    "motion_image_transition_seconds",
+    "motion_opening_to_image_seconds",
+    "motion_transition_default_type",
+    "motion_transition_seconds",
+    "motion_transition_ai_enabled",
+}
+IMAGE_TRANSITION_MOTION_FIELDS = {
+    "motion_image_transition_style",
+    "motion_image_transition_seconds",
+    "motion_opening_to_image_seconds",
+    "motion_transition_default_type",
+    "motion_transition_seconds",
+    "motion_transition_ai_enabled",
+}
+
+# This is intentionally a smaller, named subset of FFmpeg xfade's vocabulary.  Every
+# value is supported by render_video.py and is safe across image/video boundaries.
+TIMELINE_TRANSITIONS = {
+    "cut", "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft",
+    "smoothright", "wipeleft", "wiperight", "slideleft", "slideright",
+}
+
+
+def transition_boundaries(project: Path) -> set[tuple[str, str]]:
+    """Return only real adjacent timeline pairs; overrides can never target arbitrary files."""
+    try:
+        timeline = json.loads((project / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))
+        beats = timeline.get("beats") if isinstance(timeline, dict) else []
+    except (OSError, ValueError):
+        return set()
+    if not isinstance(beats, list):
+        return set()
+    return {
+        (str(left.get("beat_id")), str(right.get("beat_id")))
+        for left, right in zip(beats, beats[1:])
+        if isinstance(left, dict) and isinstance(right, dict) and left.get("beat_id") is not None and right.get("beat_id") is not None
+    }
+
+
+def normalize_transition_overrides(value: Any, project: Path) -> list[dict[str, Any]]:
+    """Validate exact Revise-boundary overrides against the run's current timeline."""
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        raise ValueError("Transition overrides must be a list.")
+    boundaries = transition_boundaries(project)
+    if value and not boundaries:
+        raise ValueError("Transitions can be edited after this run has a timeline.")
+    normalized: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for item in value:
+        if not isinstance(item, dict):
+            raise ValueError("Each transition override must be an object.")
+        left, right = str(item.get("from_beat_id") or ""), str(item.get("to_beat_id") or "")
+        key = (left, right)
+        kind = str(item.get("type") or "").strip().lower()
+        try:
+            duration = float(item.get("duration"))
+        except (TypeError, ValueError) as exc:
+            raise ValueError("Transition intensity must be a number.") from exc
+        if key not in boundaries or key in seen:
+            raise ValueError("A transition override must target one unique adjacent timeline boundary.")
+        if kind not in TIMELINE_TRANSITIONS:
+            raise ValueError("Unsupported transition type.")
+        if kind == "cut":
+            if abs(duration) > .001:
+                raise ValueError("A cut must have zero transition seconds.")
+            duration = 0.0
+        elif not .08 <= duration <= .45:
+            raise ValueError("Transition intensity must be between 0.08 and 0.45 seconds.")
+        seen.add(key)
+        normalized.append({"from_beat_id": left, "to_beat_id": right, "type": kind, "duration": round(duration, 3)})
+    return normalized
 
 
 def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
@@ -153,6 +231,17 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         field = inverse_motion.get(key, f"motion_{key}")
         if field in values:
             values[field] = value
+    # Older frozen briefs stored a dedicated opening fade up to .80 seconds.  It is
+    # now an AI-only compatibility control capped by the renderer's all-media .45s
+    # overlap limit; clamp on read so opening Revise never fails validation.
+    for key, low, high, default in (
+        ("motion_opening_to_image_seconds", .08, .45, .28),
+        ("motion_image_transition_seconds", .14, .42, .28),
+    ):
+        try:
+            values[key] = min(high, max(low, float(values.get(key, default))))
+        except (TypeError, ValueError):
+            values[key] = default
     for key, value in (brief.get("_sfx") or {}).items():
         field = f"sfx_{key}"
         if field in values:
@@ -283,8 +372,21 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         MOTION_FIELDS.get(key, key.removeprefix("motion_")): merged[key]
         for key in merged if key.startswith("motion_")
     }
-    brief["_motion"] = {**dict(previous.get("_motion") or {}), **motion}
-    if any(before.get(key) != merged.get(key) for key in merged if key.startswith("motion_")):
+    brief["_motion"] = {
+        **dict(previous.get("_motion") or {}), **motion,
+        # The user-visible image policy is a stronger invariant than optional semantic
+        # camera variety. Existing untouched projects retain their historical plans.
+        "enforce_image_zoom_policy": True,
+    }
+    changed_motion = {key for key in merged if key.startswith("motion_") and before.get(key) != merged.get(key)}
+    # These controls own render/timeline policy rather than paid source media. A transition
+    # policy additionally owns its small ChatGPT edit-decision artifact; a zoom-strength
+    # change reaches Motion Director only when it is enabled through the graph.
+    if changed_motion & IMAGE_RENDER_MOTION_FIELDS:
+        roots.add("render_profile")
+    if changed_motion & IMAGE_TRANSITION_MOTION_FIELDS:
+        roots.add("transition_direction")
+    if changed_motion - IMAGE_RENDER_MOTION_FIELDS:
         roots.add("motion_director")
     sfx = {key.removeprefix("sfx_"): merged[key] for key in merged if key.startswith("sfx_")}
     brief["_sfx"] = {**dict(previous.get("_sfx") or {}), **sfx}
@@ -494,6 +596,7 @@ def style_catalog_entries(content_project: str) -> list[dict[str, object]]:
             "usage_count": int(entry.get("usage_count") or 0),
             "anchor_available": anchor.is_file() and anchor.stat().st_size > 0,
             "anchor_url": f"/api/styles/{content_project}/{style_id}/anchor",
+            "preview_url": f"/api/styles/{content_project}/{style_id}/large",
             "sample_url": f"/api/styles/{content_project}/{style_id}/sample",
             "sample_available": bool(style_sample_for(style_id, content_project)),
         })
@@ -514,6 +617,7 @@ def character_catalog_entries(content_project: str) -> list[dict[str, object]]:
 
 _STYLE_SAMPLE_LOCK = threading.Lock()
 _STYLE_SAMPLE_CACHE: dict = {}
+_STYLE_CATALOG_LOCK = threading.Lock()
 
 
 def style_sample_for(style_id: str, content_project: str = "q_station") -> Path | None:
@@ -548,6 +652,46 @@ def style_sample_for(style_id: str, content_project: str = "q_station") -> Path 
         return samples.get(style_id)
 
 
+def delete_catalogued_style(content_project: str, style_id: str) -> list[dict[str, object]]:
+    """Permanently remove one explicitly catalogued style and its owned directory.
+
+    The caller has already obtained an explicit UI confirmation.  Never accept a path from
+    the browser: the target is resolved solely from the catalog, must be a direct child of
+    ``world_styles``, and deletion is blocked while a pipeline can still consume it.
+    """
+    if active_job(ROOT / "control_panel" / "jobs") is not None:
+        raise RuntimeError("Wait for the active pipeline to finish before deleting a style.")
+    project = load_content_project(content_project)
+    catalog_root = (project.root / "world_styles").resolve()
+    catalog_path = catalog_root / "CATALOG.json"
+    with _STYLE_CATALOG_LOCK:
+        try:
+            catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+            styles = catalog.get("styles") or []
+        except (OSError, ValueError) as exc:
+            raise ValueError("Style catalog is unreadable.") from exc
+        entry = next((item for item in styles if isinstance(item, dict) and item.get("style_id") == style_id), None)
+        if entry is None:
+            raise ValueError("This style no longer exists.")
+        relative = str(entry.get("path") or "").strip()
+        target = (catalog_root / relative).resolve()
+        if not relative or target.parent != catalog_root or not target.is_dir():
+            raise ValueError("The style directory is invalid; refusing deletion.")
+        remaining = [item for item in styles if item is not entry]
+        replacement = {**catalog, "styles": remaining}
+        temporary = catalog_path.with_suffix(".json.delete.tmp")
+        temporary.write_text(json.dumps(replacement, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        try:
+            shutil.rmtree(target)
+            temporary.replace(catalog_path)
+        except OSError:
+            temporary.unlink(missing_ok=True)
+            raise
+        with _STYLE_SAMPLE_LOCK:
+            _STYLE_SAMPLE_CACHE.clear()
+    return style_catalog_entries(project.project_id)
+
+
 def style_options_html(content_project: str) -> str:
     """<option> list for the style picker: Auto first, then every catalogued style."""
     options = ['<option value="" selected>Auto — let the director decide (reuse or new)</option>']
@@ -580,6 +724,12 @@ def form_text(values: dict[str, list[str]], key: str, limit: int = 4_000) -> str
     if len(value) > limit:
         raise ValueError(f"{key} is too long (maximum {limit} characters).")
     return value
+
+
+def same_topic(left: object, right: object) -> bool:
+    """Compare episode subjects without treating harmless whitespace/case edits as new work."""
+    normalize = lambda value: " ".join(str(value or "").split()).casefold()
+    return normalize(left) == normalize(right)
 
 
 def music_provider_priority(value: object) -> list[str]:
@@ -961,6 +1111,90 @@ def provider_status() -> dict:
             }
         PROVIDER_STATUS_CACHE.update({"at": time.monotonic(), "base": ORDAK_BASE_URL, "value": result})
         return dict(result)
+
+
+def credit_check_dir() -> Path:
+    return ROOT / "control_panel" / "credit_checks"
+
+
+def credit_check_path(check_id: str) -> Path:
+    if not re.fullmatch(r"[a-f0-9]{32}", check_id):
+        raise ValueError("Unknown credit-check id.")
+    return credit_check_dir() / f"{check_id}.json"
+
+
+def read_credit_check(check_id: str) -> dict | None:
+    try:
+        path = credit_check_path(check_id)
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError, json.JSONDecodeError):
+        return None
+    return value if isinstance(value, dict) else None
+
+
+def start_credit_check() -> dict:
+    """Launch the visible, browser-only account check and return its initial durable state.
+
+    Chrome is a single persistent provider session.  A check deliberately refuses to run
+    while an episode is live, rather than stealing its foreground browser tab mid-submit.
+    """
+    global CREDIT_CHECK_ACTIVE_ID
+    with CREDIT_CHECK_LOCK:
+        if CREDIT_CHECK_ACTIVE_ID:
+            active = read_credit_check(CREDIT_CHECK_ACTIVE_ID)
+            if active and active.get("status") == "running":
+                return active
+            CREDIT_CHECK_ACTIVE_ID = None
+        check_id = uuid.uuid4().hex
+        state = {
+            "check_id": check_id,
+            "status": "running",
+            "started_at": utcnow(),
+            "updated_at": utcnow(),
+            "completed_at": None,
+            "profiles": [],
+        }
+        path = credit_check_path(check_id)
+        write_json(path, state)
+        command = [
+            sys.executable,
+            "scripts/check_browser_credits.py",
+            "--state-path", str(path),
+            "--check-id", check_id,
+        ]
+        try:
+            process = subprocess.Popen(
+                command,
+                cwd=ROOT,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+        except OSError as exc:
+            state.update({"status": "failed", "completed_at": utcnow(), "error": f"Could not start credit check: {exc}"})
+            write_json(path, state)
+            return state
+        CREDIT_CHECK_ACTIVE_ID = check_id
+
+    def monitor() -> None:
+        global CREDIT_CHECK_ACTIVE_ID
+        return_code = process.wait()
+        with CREDIT_CHECK_LOCK:
+            current = read_credit_check(check_id) or state
+            # The child normally owns completion.  This guard still produces a useful
+            # result if the interpreter or CDP runtime exits before its first write.
+            if current.get("status") == "running":
+                current.update({
+                    "status": "failed",
+                    "completed_at": utcnow(),
+                    "error": f"Credit-check worker exited unexpectedly (code {return_code}).",
+                })
+                write_json(path, current)
+            if CREDIT_CHECK_ACTIVE_ID == check_id:
+                CREDIT_CHECK_ACTIVE_ID = None
+
+    threading.Thread(target=monitor, daemon=True, name=f"credit-check-{check_id[:8]}").start()
+    return state
 
 
 def pipeline_state_of(record: dict) -> dict:
@@ -1383,7 +1617,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def serve_style_preview(self, content_project: str, style_id: str, kind: str) -> None:
         """Serve a small JPEG thumbnail for a style anchor or a representative beat."""
-        if kind not in {"anchor", "sample"} or not STYLE_ID_RE.fullmatch(style_id):
+        if kind not in {"anchor", "large", "sample"} or not STYLE_ID_RE.fullmatch(style_id):
             self.send_error(HTTPStatus.NOT_FOUND)
             return
         try:
@@ -1396,10 +1630,10 @@ class Handler(BaseHTTPRequestHandler):
         try:
             catalog = json.loads((catalog_root / "CATALOG.json").read_text(encoding="utf-8"))
             entry = next(item for item in catalog.get("styles") or [] if isinstance(item, dict) and item.get("style_id") == style_id)
-            target = (catalog_root / str(entry.get("anchor") or "")).resolve() if kind == "anchor" else style_sample_for(style_id, content_project)
+            target = (catalog_root / str(entry.get("anchor") or "")).resolve() if kind in {"anchor", "large"} else style_sample_for(style_id, content_project)
             if target is None:
                 raise ValueError("No sample")
-            if kind == "anchor":
+            if kind in {"anchor", "large"}:
                 target.relative_to(catalog_root.resolve())
             if not target.is_file() or target.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
                 raise ValueError("Unsafe preview target")
@@ -1409,7 +1643,7 @@ class Handler(BaseHTTPRequestHandler):
         cache = ROOT / "control_panel" / "style_previews"
         try:
             cache.mkdir(parents=True, exist_ok=True)
-            thumbnail, _ = build_preview(target, cache, style=True)
+            thumbnail, _ = build_preview(target, cache, style="large" if kind == "large" else True)
             payload = thumbnail.read_bytes()
         except (OSError, ValueError):
             self.send_error(HTTPStatus.NOT_FOUND)
@@ -1650,6 +1884,89 @@ class Handler(BaseHTTPRequestHandler):
         """Compatibility alias for the original beat-only endpoint."""
         self.handle_regeneration()
 
+    def launch_topic_change_run(
+        self,
+        source: dict,
+        values: dict,
+        brief: dict,
+        voice: dict,
+        launch: dict,
+    ) -> dict:
+        """Start a clean episode when a revision changes the episode subject.
+
+        A topic owns every generated artifact, so it cannot safely share a revision
+        directory or runtime state with the source episode.  Only the user's frozen
+        settings are copied; generated files are deliberately never reused.
+        """
+        topic = str(values["topic"])
+        content_project = resolve_project_id(str(values["content_project"]))
+        video_id = next_video_id()
+        project = ROOT / "videos" / f"{video_id}_{video_slug(topic)}"
+        job_id = str(uuid.uuid4())
+        profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
+        creative_brief_path = project / "launch" / "CREATIVE_BRIEF.json"
+        qh = dict(brief.get("_qh") or {})
+        subtitle = dict(brief.get("_subtitle") or {})
+        record = {
+            "schema_version": 5,
+            "content_project": content_project,
+            "job_id": job_id,
+            "status": "RUNNING",
+            "created_at": utcnow(),
+            "topic": topic,
+            "video_id": video_id,
+            "duration_min_seconds": values["min_duration_seconds"],
+            "duration_max_seconds": values["max_duration_seconds"],
+            "aspect_ratio": launch["aspect_ratio"],
+            "project": str(project.relative_to(ROOT)),
+            "voice_profile": str(profile.relative_to(ROOT)),
+            "creative_brief": str(creative_brief_path.relative_to(ROOT)),
+            "qh": qh,
+            "character": dict(qh.get("character") or {}),
+            "subtitles": bool(qh.get("show_subtitles", False)),
+            "word_highlight": bool(subtitle.get("word_highlight", True)),
+            "sfx": dict(brief.get("_sfx") or {}),
+            "motion": dict(brief.get("_motion") or {}),
+            "music_provider": launch["music_providers"][0],
+            "music_providers": list(launch["music_providers"]),
+            "commit_artifacts": bool(launch["commit_artifacts"]),
+            "telegram_low_size": bool(launch["telegram_low_size"]),
+            "telegram_original": bool(launch["telegram_original"]),
+            # This is lineage only: it must never be used to reuse the source run's output.
+            "launched_from_job_id": source["job_id"],
+            "launched_from_video_id": source.get("video_id"),
+            "launch_reason": "topic_change",
+        }
+        request = project / "launch" / "LAUNCH_REQUEST.json"
+        write_json(profile, voice)
+        write_json(creative_brief_path, brief)
+        write_json(request, record)
+        write_json(self.jobs_dir / f"{job_id}.json", record)
+        log = self.jobs_dir / f"{job_id}.log"
+        handle = log.open("w", encoding="utf-8")
+        command = pipeline_command(record)
+        try:
+            process = subprocess.Popen(
+                command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT,
+                start_new_session=True,
+            )
+        except OSError as exc:
+            record.update({
+                "status": "FAILED",
+                "completed_at": utcnow(),
+                "error": f"Could not start pipeline: {exc}",
+            })
+            write_json(request, record)
+            write_json(self.jobs_dir / f"{job_id}.json", record)
+            raise
+        finally:
+            handle.close()
+        record.update({"pid": process.pid, "command": command, "started_at": utcnow()})
+        write_json(request, record)
+        write_json(self.jobs_dir / f"{job_id}.json", record)
+        monitor_process(job_id, process)
+        return record
+
     def handle_config_revision(self) -> None:
         """Re-run an episode with a versioned configuration delta and DAG invalidation."""
         try:
@@ -1659,6 +1976,7 @@ class Handler(BaseHTTPRequestHandler):
             config = payload.get("config") or {}
             brief, voice, launch = config.get("creative_brief"), config.get("voice_profile"), config.get("launch")
             values = config.get("values")
+            transition_overrides = config.get("transition_overrides")
         except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Configuration payload is invalid."}); return
         if not JOB_ID_RE.fullmatch(job_id) or (
@@ -1693,8 +2011,36 @@ class Handler(BaseHTTPRequestHandler):
                 roots, brief, voice, launch, changed_fields = config_roots(
                     record, previous_brief, previous_voice, values
                 )
+                if transition_overrides is not None:
+                    overrides = normalize_transition_overrides(transition_overrides, project)
+                    old_overrides = (previous_brief.get("_motion") or {}).get("transition_overrides", [])
+                    brief.setdefault("_motion", {})["transition_overrides"] = overrides
+                    if json.dumps(old_overrides, sort_keys=True) != json.dumps(overrides, sort_keys=True):
+                        roots.add("render_profile")
+                        changed_fields.append("motion_transition_overrides")
             except ValueError as exc:
                 self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+            # A different subject is a different episode, never a partial rebuild of
+            # this run.  Keep the source record and every one of its artifacts intact.
+            if not same_topic(record.get("topic"), launch.get("_topic")):
+                try:
+                    with LAUNCH_LOCK:
+                        if active_job(self.jobs_dir) is not None:
+                            self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."})
+                            return
+                        new_record = self.launch_topic_change_run(
+                            record, values, brief, voice, launch
+                        )
+                except (KeyError, OSError, RuntimeError, ValueError) as exc:
+                    self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not launch the new topic."})
+                    return
+                self.send_json(HTTPStatus.ACCEPTED, {
+                    "status": "RUNNING",
+                    "new_run": True,
+                    "job_id": new_record["job_id"],
+                    "video_id": new_record["video_id"],
+                })
+                return
             self.commit_config_revision(
                 record, project, roots, brief, voice, launch, changed_fields
             )
@@ -1856,6 +2202,7 @@ class Handler(BaseHTTPRequestHandler):
             payload = self.read_json_payload()
             job_id = str(payload.get("job_id") or "")
             values = payload.get("values")
+            transition_overrides = payload.get("transition_overrides")
             if not JOB_ID_RE.fullmatch(job_id) or not isinstance(values, dict):
                 raise ValueError("A valid run and settings form are required.")
             resolved = self.project_for_job(job_id)
@@ -1867,6 +2214,14 @@ class Handler(BaseHTTPRequestHandler):
             roots, brief, _voice, launch, changed_fields = config_roots(
                 record, old_brief, old_voice, values
             )
+            if transition_overrides is not None:
+                overrides = normalize_transition_overrides(transition_overrides, project)
+                old_overrides = (old_brief.get("_motion") or {}).get("transition_overrides", [])
+                brief.setdefault("_motion", {})["transition_overrides"] = overrides
+                if json.dumps(old_overrides, sort_keys=True) != json.dumps(overrides, sort_keys=True):
+                    roots.add("render_profile")
+                    changed_fields.append("motion_transition_overrides")
+            topic_changed = not same_topic(record.get("topic"), launch.get("_topic"))
             candidate = {
                 **record,
                 **launch,
@@ -1893,6 +2248,7 @@ class Handler(BaseHTTPRequestHandler):
                 **plan,
                 "roots": sorted(roots),
                 "changed_fields": changed_fields,
+                "new_run": topic_changed,
                 "can_start": not record.get("external") and active_job(self.jobs_dir) is None,
                 "read_only": bool(record.get("external")),
             })
@@ -2111,6 +2467,15 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(HTTPStatus.OK, {"schema": schema, "defaults": launch_defaults(schema)})
             return
 
+        if route.startswith("/api/credits/check/"):
+            check_id = route.rsplit("/", 1)[-1]
+            result = read_credit_check(check_id)
+            if result is None:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown credit check."})
+            else:
+                self.send_json(HTTPStatus.OK, result)
+            return
+
         if route == "/api/style-catalog":
             content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
             try:
@@ -2197,6 +2562,7 @@ class Handler(BaseHTTPRequestHandler):
                 "voice_profile": voice,
                 "launch": launch,
                 "values": frozen_values(record, brief, voice),
+                "transition_overrides": list((brief.get("_motion") or {}).get("transition_overrides", []) or []),
             }); return
 
         if route.startswith("/api/run/") and "/artifact/" in route:
@@ -2262,6 +2628,10 @@ class Handler(BaseHTTPRequestHandler):
         route = urlparse(self.path).path
         if route in {"/", "/favicon.svg"} or route.startswith("/runs/") or route.startswith("/assets/"):
             self.serve_studio(route); return
+        if route.startswith("/api/styles/"):
+            parts = route.split("/")
+            if len(parts) == 6:
+                self.serve_style_preview(unquote(parts[3]), unquote(parts[4]), parts[5]); return
         if route.startswith("/api/run/") and "/artifact/" in route:
             parts = route.split("/", 5)
             resolved = self.project_for_job(parts[3]) if len(parts) == 6 else None
@@ -2270,6 +2640,15 @@ class Handler(BaseHTTPRequestHandler):
         self.send_error(HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:
+        if self.path == "/api/credits/check":
+            active = active_job(self.jobs_dir)
+            if active is not None:
+                self.send_json(HTTPStatus.CONFLICT, {
+                    "error": "A video pipeline is using the shared Chrome profile. Check credits after it finishes so its browser tab is not interrupted."
+                })
+                return
+            self.send_json(HTTPStatus.ACCEPTED, start_credit_check())
+            return
         if self.path == "/api/regenerations/preview": self.handle_regeneration_preview(); return
         if self.path == "/api/regenerations": self.handle_regeneration(); return
         if self.path == "/api/revisions": self.handle_revision(); return
@@ -2338,6 +2717,13 @@ class Handler(BaseHTTPRequestHandler):
             motion_intensity = values.get("motion_intensity", ["normal"])[0]
             motion_style = values.get("motion_style", ["dynamic"])[0]
             motion_transition = values.get("motion_transition_preference", ["minimal"])[0]
+            motion_image_zoom_strength = float(values.get("motion_image_zoom_strength", [".14"])[0])
+            motion_image_transition_style = values.get("motion_image_transition_style", ["cut_fade_dissolve"])[0]
+            motion_image_transition_seconds = float(values.get("motion_image_transition_seconds", [".28"])[0])
+            motion_opening_to_image_seconds = float(values.get("motion_opening_to_image_seconds", [".28"])[0])
+            motion_transition_default_type = values.get("motion_transition_default_type", ["fade"])[0].strip().lower()
+            motion_transition_seconds = float(values.get("motion_transition_seconds", [".28"])[0])
+            motion_transition_ai_enabled = "motion_transition_ai_enabled" in values
             motion_max_shots = int(values.get("motion_max_micro_shots", ["3"])[0])
             motion_planning_quality = values.get("motion_planning_quality", ["professional"])[0]
             motion_min_shot = float(values.get("motion_min_shot_duration", [".55"])[0])
@@ -2428,6 +2814,13 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid opening_speed_tolerance")
             if sfx_style not in {"restrained", "balanced", "expressive"} or not 0 <= sfx_max_events <= 20 or not 0 <= sfx_min_gap <= 30 or not 0 <= sfx_threshold <= 1 or sfx_license not in {"cc0", "cc0_by"} or not 1 <= sfx_candidates <= 50 or not 1 <= sfx_queries <= 5 or not -40 <= sfx_gain <= -3:
                 raise ValueError("Invalid SFX settings")
+            if not .04 <= motion_image_zoom_strength <= .24 \
+               or motion_image_transition_style not in {"cuts", "cut_fade", "cut_fade_dissolve"} \
+               or not .14 <= motion_image_transition_seconds <= .42 \
+               or not .08 <= motion_opening_to_image_seconds <= .45 \
+               or motion_transition_default_type not in TIMELINE_TRANSITIONS \
+               or not .08 <= motion_transition_seconds <= .45:
+                raise ValueError("Invalid image motion or transition settings")
             if motion_enabled and (motion_pace not in {"calm", "balanced", "fast", "very_fast"} or motion_intensity not in {"subtle", "normal", "strong"} or motion_style not in {"clean", "dynamic", "cinematic"} or motion_transition not in {"minimal", "balanced", "expressive"} or not 1 <= motion_max_shots <= 4):
                 raise ValueError("Invalid Motion settings")
             if motion_enabled and (motion_planning_quality not in {"draft", "standard", "professional"} \
@@ -2513,6 +2906,14 @@ class Handler(BaseHTTPRequestHandler):
                 "enabled": motion_enabled, "planning_quality": motion_planning_quality,
                 "pace": motion_pace, "intensity": motion_intensity, "style": motion_style,
                 "transition_preference": motion_transition,
+                "image_zoom_strength": motion_image_zoom_strength,
+                "image_transition_style": motion_image_transition_style,
+                "image_transition_seconds": motion_image_transition_seconds,
+                "opening_to_image_seconds": motion_opening_to_image_seconds,
+                "transition_default_type": motion_transition_default_type,
+                "transition_seconds": motion_transition_seconds,
+                "transition_ai_enabled": motion_transition_ai_enabled,
+                "enforce_image_zoom_policy": True,
                 "max_micro_shots_per_beat": motion_max_shots,
                 "min_micro_shot_duration": motion_min_shot, "max_micro_shot_duration": motion_max_shot,
                 "target_interval_min": motion_interval_min, "target_interval_max": motion_interval_max,
@@ -2607,6 +3008,30 @@ class Handler(BaseHTTPRequestHandler):
             job_id=job_id,
             video_id=video_id,
         )
+
+    def do_DELETE(self) -> None:
+        """Delete only an explicitly catalogued world style after client confirmation."""
+        route = urlparse(self.path).path
+        if not route.startswith("/api/styles/"):
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        parts = route.split("/")
+        if len(parts) != 5:
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        content_project, style_id = unquote(parts[3]), unquote(parts[4])
+        if not STYLE_ID_RE.fullmatch(style_id):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Invalid style id."})
+            return
+        try:
+            styles = delete_catalogued_style(content_project, style_id)
+        except RuntimeError as exc:
+            self.send_json(HTTPStatus.CONFLICT, {"error": str(exc)})
+            return
+        except (ValueError, OSError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not delete the style."})
+            return
+        self.send_json(HTTPStatus.OK, {"deleted_style_id": style_id, "styles": styles})
 
 
 def main() -> None:

@@ -17,7 +17,7 @@ from video_control_panel import Handler, character_catalog_entries, style_catalo
 
 
 class WebsocketBridge(Handler):
-    """Expose only the passive websocket endpoint; no pipeline control routes exist here."""
+    """Expose passive routes plus the explicitly confirmed style deletion endpoint."""
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -41,6 +41,12 @@ class WebsocketBridge(Handler):
                 self.serve_style_preview(parts[3], parts[4], parts[5])
                 return
         self.send_json(HTTPStatus.NOT_FOUND, {"error": "not found"})
+
+    def do_DELETE(self) -> None:
+        # Nginx deliberately sends /api/styles/* through this sidecar so previews keep
+        # working during a panel restart.  Delegate the single destructive route to the
+        # hardened allowlist/confirmation-aware handler instead of returning HTTP 501.
+        Handler.do_DELETE(self)
 
 
 def main() -> None:

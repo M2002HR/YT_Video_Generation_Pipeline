@@ -149,6 +149,18 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("sfx_default_gain_db", "Default gain dB", "number", default=-9, min=-20, max=-3, step=1, width="half"),
             _field("sfx_freesound_enabled", "Use Freesound after a local miss", "toggle", default=True),
         ]},
+        {"id": "image_motion", "title": "Image motion & transitions", "description": "The default applies to every media boundary. In Revise, each existing boundary can be overridden exactly.", "fields": [
+            _field("motion_image_zoom_strength", "Image zoom strength", "number", default=.14, min=.04, max=.24, step=.01, help="Every body image pushes in continuously; the final image pulls out. 0.14 is the stronger production default.", width="half"),
+            _field("motion_transition_default_type", "Default transition", "select", default="fade", options=select([("fade", "Fade"), ("dissolve", "Dissolve"), ("fadeblack", "Fade to black"), ("fadewhite", "Fade to white"), ("smoothleft", "Smooth left"), ("smoothright", "Smooth right"), ("wipeleft", "Wipe left"), ("wiperight", "Wipe right"), ("slideleft", "Slide left"), ("slideright", "Slide right"), ("cut", "Cut")]), help="Used at every boundary unless AI or a per-boundary Revise override changes it."),
+            _field("motion_transition_seconds", "Transition intensity / seconds", "number", default=.28, min=.08, max=.45, step=.01, help="Intensity maps to overlap duration. 0.28s is the balanced default.", width="half"),
+            _field("motion_transition_ai_enabled", "Let ChatGPT choose image-pair transitions", "toggle", default=False, help="Off by default: no transition-selection requests are sent to ChatGPT; all unedited boundaries use the default above."),
+            # These legacy fields remain frozen for old runs and keep the Motion Director's
+            # internal image-plan contract compatible. Timeline boundaries are now owned by
+            # the explicit default/override policy above.
+            _field("motion_image_transition_style", "AI image transition palette", "select", default="cut_fade_dissolve", options=select([("cuts", "Cuts only"), ("cut_fade", "Cut + soft fade"), ("cut_fade_dissolve", "Cut + fade + dissolve")]), advanced=True, requires={"field": "motion_transition_ai_enabled", "value": True}),
+            _field("motion_image_transition_seconds", "AI image transition seconds", "number", default=.28, min=.14, max=.42, step=.01, advanced=True, width="half", requires={"field": "motion_transition_ai_enabled", "value": True}),
+            _field("motion_opening_to_image_seconds", "AI opening fade seconds", "number", default=.28, min=.08, max=.45, step=.01, advanced=True, width="half", requires={"field": "motion_transition_ai_enabled", "value": True}),
+        ]},
         {"id": "motion", "title": "Motion & editing", "description": "Semantic camera direction and deterministic compilation.", "collapsed": True, "fields": [
             _field("motion_enabled", "Enable Dynamic Motion Director", "toggle", default=True),
             _field("motion_pace", "Editing pace", "select", default="fast", options=select([("calm", "Calm"), ("balanced", "Balanced"), ("fast", "Fast"), ("very_fast", "Very fast")]), width="half"),
@@ -167,7 +179,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
                 ("motion_interval_min", "Target interval min", "number", .8, .4, 5, .1, {}), ("motion_interval_max", "Target interval max", "number", 1.8, .6, 8, .1, {}),
                 ("motion_normal_max_zoom", "Normal max zoom", "number", 1.32, 1, 1.6, .01, {}), ("motion_punch_max_zoom", "Punch max zoom", "number", 1.48, 1, 1.8, .01, {}),
                 ("motion_max_pan_distance", "Max pan distance", "number", .32, .02, .7, .01, {}), ("motion_max_pan_velocity", "Max pan / sec", "number", .42, .02, 1, .01, {}), ("motion_max_zoom_velocity", "Max zoom / sec", "number", .34, .02, 1, .01, {}),
-                ("motion_transition_fraction", "Transition budget", "number", .25, 0, 1, .05, {}), ("motion_transition_min", "Transition min", "number", .1, .08, .6, .01, {}), ("motion_transition_max", "Transition max", "number", .4, .08, .8, .01, {}),
+                ("motion_transition_min", "Transition min", "number", .1, .08, .6, .01, {}), ("motion_transition_max", "Transition max", "number", .4, .08, .8, .01, {}),
                 ("motion_observation_batch", "Observation batch", "number", 3, 1, 6, 1, {}), ("motion_planning_batch", "Planning batch", "number", 1, 1, 6, 1, {}), ("motion_critic_batch", "Critic batch", "number", 2, 1, 4, 1, {}),
                 ("motion_correction_attempts", "JSON correction attempts", "number", 4, 0, 4, 1, {}), ("motion_neighbor_context", "Neighbor beats", "number", 1, 1, 3, 1, {}), ("motion_word_sync_tolerance", "Word-sync tolerance ms", "number", 50, 0, 250, 5, {}), ("motion_face_padding", "Face safety padding", "number", .18, 0, .5, .01, {}),
                 ("motion_supersample", "Supersample", "select", "2", None, None, None, {"options": select([("1", "1×"), ("2", "2×"), ("3", "3×"), ("4", "4×")])}),

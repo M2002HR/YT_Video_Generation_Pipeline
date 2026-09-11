@@ -11,7 +11,7 @@ _LOCKS = [threading.Lock() for _ in range(64)]
 _WORKERS = threading.BoundedSemaphore(2)
 
 
-def preview(source: Path, cache: Path, *, style: bool = False) -> tuple[Path, str]:
+def preview(source: Path, cache: Path, *, style: bool | str = False) -> tuple[Path, str]:
     suffix = source.suffix.lower()
     if suffix in {".json", ".txt", ".md", ".ass"}:
         return source, "text/plain; charset=utf-8"
@@ -37,8 +37,9 @@ def preview(source: Path, cache: Path, *, style: bool = False) -> tuple[Path, st
                     from PIL import Image, ImageOps
                     with Image.open(source) as image:
                         image = ImageOps.exif_transpose(image)
-                        image.thumbnail((420, 300) if style else (480, 480), Image.Resampling.LANCZOS)
-                        image.convert("RGB").save(temporary, "JPEG", quality=52 if style else 48, optimize=True)
+                        large_style = style == "large"
+                        image.thumbnail((1200, 900) if large_style else ((420, 300) if style else (480, 480)), Image.Resampling.LANCZOS)
+                        image.convert("RGB").save(temporary, "JPEG", quality=76 if large_style else (52 if style else 48), optimize=True)
                 else:
                     options = (["-vf", "scale=min(360\\,iw):-2", "-c:v", "libx264", "-crf", "35", "-preset", "veryfast", "-an", "-movflags", "+faststart"]
                                if mime.startswith("video") else ["-c:a", "libopus", "-b:a", "32k", "-ac", "1"])

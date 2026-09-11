@@ -62,6 +62,10 @@ def test_launch_form_exposes_the_word_highlight_choice() -> None:
     assert 'name=sfx_enabled' in form
     assert 'name=sfx_license_policy' in form
     assert 'name=motion_enabled' in form
+    assert 'name=motion_image_zoom_strength' in form
+    assert 'name=motion_image_transition_style' in form
+    assert 'name=motion_image_transition_seconds' in form
+    assert 'name=motion_opening_to_image_seconds' in form
     assert 'name=motion_pace' in form
     assert 'name=motion_max_micro_shots' in form
     assert 'name=motion_planning_quality' in form
@@ -589,6 +593,92 @@ def test_structured_config_revision_maps_caption_layout_to_body_images() -> None
     assert roots == {"beat_image_001"}
     assert revised_brief["_qh"]["reserve_subtitle_space"] is False
     assert changed == ["reserve_subtitle_space"]
+
+
+def test_topic_change_from_revision_launches_a_separate_clean_run(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A new subject must not inherit the source run's project or runtime state."""
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    (tmp_path / "videos").mkdir()
+    jobs = tmp_path / "control_panel/jobs"; jobs.mkdir(parents=True)
+    project = tmp_path / "videos/901_panel"
+    brief = {
+        "_qh": {"show_subtitles": False, "character": {"mode": "auto"}},
+        "_motion": {"enabled": False}, "_sfx": {"enabled": False},
+        "_subtitle": {"word_highlight": True},
+    }
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    brief_path = project / "launch/CREATIVE_BRIEF.json"; brief_path.parent.mkdir(parents=True)
+    brief_path.write_text(json.dumps(brief), encoding="utf-8")
+    voice_path = project / "voiceover/REQUESTED_VOICE_PROFILE.json"; voice_path.parent.mkdir(parents=True)
+    voice_path.write_text(json.dumps(voice), encoding="utf-8")
+    # A source artifact makes it explicit that the new workspace must not reuse it.
+    source_artifact = project / "pipeline/QH_RUNTIME_STATE.json"; source_artifact.parent.mkdir(parents=True)
+    source_artifact.write_text(json.dumps({"topic": "why panels matter"}), encoding="utf-8")
+    record = _record(
+        status="FAILED", music_providers=["pixabay"], commit_artifacts=False,
+        telegram_low_size=True, telegram_original=False, motion={"enabled": False},
+        sfx={"enabled": False}, qh=brief["_qh"],
+    )
+    (jobs / f"{record['job_id']}.json").write_text(json.dumps(record), encoding="utf-8")
+    (project / "launch/LAUNCH_REQUEST.json").write_text(json.dumps(record), encoding="utf-8")
+    values = panel.frozen_values(record, brief, voice)
+    values["topic"] = "A completely different episode"
+    payload = json.dumps({"job_id": record["job_id"], "config": {"values": values}}).encode()
+
+    class Process:
+        pid = 7171
+
+    monkeypatch.setattr(panel.subprocess, "Popen", lambda *args, **kwargs: Process())
+
+    class ConfigHandler(_Handler):
+        def __init__(self):
+            super().__init__(jobs)
+            self.headers = {"Content-Length": str(len(payload))}
+            self.rfile = io.BytesIO(payload)
+            self.response = None
+
+        def send_json(self, status, value):
+            self.response = (status, value)
+
+    handler = ConfigHandler()
+    handler.handle_config_revision()
+
+    assert handler.response[0] == 202
+    response = handler.response[1]
+    assert response["new_run"] is True
+    saved_source = json.loads((jobs / f"{record['job_id']}.json").read_text())
+    assert saved_source["topic"] == "why panels matter"
+    assert not (project / "launch/config_revisions").exists()
+    new_record = json.loads((jobs / f"{response['job_id']}.json").read_text())
+    new_project = tmp_path / new_record["project"]
+    assert new_record["topic"] == "A completely different episode"
+    assert new_record["launched_from_job_id"] == record["job_id"]
+    assert new_project != project
+    assert (new_project / "launch/LAUNCH_REQUEST.json").is_file()
+    assert not (new_project / "pipeline/QH_RUNTIME_STATE.json").exists()
+    assert source_artifact.is_file()
+
+
+def test_structured_image_edit_settings_use_only_their_render_and_transition_roots() -> None:
+    record = _record(motion={"enabled": False}, sfx={"enabled": False})
+    brief = {"_qh": {}, "_motion": {"enabled": False}, "_sfx": {}, "_subtitle": {}}
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+
+    values["motion_image_zoom_strength"] = .18
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {"render_profile"}
+    assert revised["_motion"]["image_zoom_strength"] == .18
+    assert "motion_image_zoom_strength" in changed
+
+    values = panel.frozen_values(record, brief, voice)
+    values["motion_image_transition_style"] = "cut_fade"
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {"render_profile", "transition_direction"}
+    assert revised["_motion"]["image_transition_style"] == "cut_fade"
+    assert "motion_image_transition_style" in changed
 
 
 def test_structured_config_rejects_unknown_and_invalid_values() -> None:
