@@ -934,6 +934,22 @@ p {
   font-style: normal;
   color: var(--blue);
 }
+.beat-node-group {
+  margin-top: 8px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 7px;
+}
+.beat-node-group summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 7px 5px;
+  color: var(--text);
+}
+.beat-node-group summary::-webkit-details-marker { display: none; }
+.beat-node-group summary b,
+.beat-node-group summary small { display: block; }
+.beat-node-group summary b { font-size: 10px; }
+.beat-node-group summary small { color: var(--muted); font-size: 9px; margin-top: 3px; }
 .graph-shell {
   min-width: 0;
   position: relative;
@@ -1322,6 +1338,13 @@ p {
 }
 .impact-modal {
   width: min(800px, 100%);
+}
+.regeneration-mode {
+  margin: 16px 0 4px;
+  padding: 12px;
+  border: 1px solid #405473;
+  border-radius: 9px;
+  background: #101a28;
 }
 .impact-grid {
   display: grid;

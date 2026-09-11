@@ -88,7 +88,11 @@ def main() -> None:
     write_json(launch_path, launch)
     load_dotenv(ROOT / ".env", override=False)
     if not args.no_notify:
-        PipelineNotifier(str(launch.get("video_id") or pause.get("video_id") or "?"), str(launch.get("topic") or "")).send("Image-limit resume scheduled", ["⏸️ ChatGPT image-generation limit reached.", f"🕐 Reset: {parse_time(str(pause['reset_at'])).astimezone().strftime('%Y-%m-%d %H:%M %Z')}", f"▶️ Resume: {resume_at.astimezone().strftime('%Y-%m-%d %H:%M %Z')} (5-minute buffer).", f"📍 Paused at beat {int(pause['beat_id']):03d}."])
+        PipelineNotifier(
+            str(launch.get("video_id") or pause.get("video_id") or "?"),
+            str(launch.get("topic") or ""),
+            state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+        ).send("Image-limit resume scheduled", ["⏸️ ChatGPT image-generation limit reached.", f"🕐 Reset: {parse_time(str(pause['reset_at'])).astimezone().strftime('%Y-%m-%d %H:%M %Z')}", f"▶️ Resume: {resume_at.astimezone().strftime('%Y-%m-%d %H:%M %Z')} (5-minute buffer).", f"📍 Paused at beat {int(pause['beat_id']):03d}."])
     print(json.dumps({"status": "SCHEDULED", "unit": unit, "resume_at": resume_at.isoformat()}))
 
 

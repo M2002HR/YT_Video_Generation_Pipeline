@@ -421,6 +421,12 @@ def launch_form(project_options: str, style_options: str, character_options: str
   <label>Gemini image model <select name=gemini_image_model>
     <option value=nano_banana_2 selected>Nano Banana 2 — what Gemini offers today</option>
     <option value=nano_banana_pro>Nano Banana Pro — fails until Gemini exposes it</option></select></label>
+  <label>Non-critical image QC corrections <select name=image_qc_correction_policy>
+    <option value=0 selected>0 — report only (current behaviour)</option>
+    <option value=1>1 corrective regeneration</option>
+    <option value=2>2 corrective regenerations, then use best</option>
+    <option value=strict>Strict — 3 attempts, then fail if not clean</option></select>
+   <small>Blocking identity, style-continuity and wrong-output failures are never accepted.</small></label>
   <div class="grid2">
    <label>Flow video model <select name=flow_video_model>
      <option value=gemini_omni_1_1_flash selected>Gemini Omni 1.1 Flash</option>

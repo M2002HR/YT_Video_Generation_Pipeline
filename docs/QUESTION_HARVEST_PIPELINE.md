@@ -82,12 +82,19 @@ turns those into CLI flags. Nothing is inferred from the topic text.
 | World style policy | `--world-style-policy` | `auto` / `reuse` / `new` |
 | World style hint | `--world-style-hint` | free-text steer for a new style |
 | Gemini image model | `--gemini-model` | verified against the UI, see below |
+| Non-critical image QC corrections | `--image-qc-correction-policy` | `0`, `1`, `2`, or `strict` (three total attempts and then fail unless fully clean) |
 | Flow model / resolution | `--flow-model`, `--flow-resolution` | verified against the Flow settings menu |
 | Opening A/B seconds | `--opening-a-seconds/-b-` | Flow source length, one second of headroom over the planned segment |
 
 The duration is binding rather than advisory: `DurationTarget` derives the word range from
 it at 2.3-2.5 words per second, which is the same ratio the format's own 40-60s => 92-150
 word rule encodes.
+
+Every Gemini request verifies Extended Thinking from the live mode picker after model/tool
+selection and immediately before submission. Image QC corrections attach the previous
+candidate as a quality floor, target only the reported findings, and atomically publish the
+best non-blocking candidate. A retry with new regressions cannot displace a better earlier
+candidate; blocking identity, continuity, or wrong-output failures are never accepted.
 
 Farmer Host and Red Horned Everyman are the current packs. Environments are dynamic per
 episode; Farmer's rural affinities are soft and Red has none. Character sheets are
@@ -117,8 +124,14 @@ retention editor tightens to that range instead of the 40-60s default.
 
 ## Telegram
 
-Every stage start, completion, reuse and failure is sent through the Telethon user session
-to `YT_PIPELINE_TELEGRAM_RECIPIENT`. Titles carry the position in the run, so the thread
-reads as `step 4/17 · World Style Director`. The finished polished video is sent as a file
-with a caption built only from artifacts — durations, beat counts, verified model labels,
-QC verdicts. See `docs/RECOVERY_RUNBOOK.md` for what to do when a stage stops.
+Progress notifications and final media delivery share Telegram credentials but have separate
+enablement policies: disabling progress logs never disables a requested final upload. Each
+long-running stage owns one editable message keyed by run/revision and stage ID; resumes edit
+that message instead of creating a duplicate. Fast reuse results are summarized, body images
+use one aggregate counter, and render/upload messages use measured progress. Static global
+step counts are omitted when optional stages make them untrue; completion uses its frozen,
+enabled stage list for exact local positions. Failures and waits close the active message.
+
+Message IDs and notification errors are recorded in
+`pipeline/TELEGRAM_NOTIFICATION_STATE.json`. The finished video caption is artifact-grounded
+and includes the correct QC gate for original or compact delivery.

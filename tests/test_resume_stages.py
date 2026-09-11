@@ -280,6 +280,53 @@ def test_a_missing_body_image_is_regenerated_and_the_rest_are_not(
     assert not runner.state.done("beat_image_002")
 
 
+def test_isolated_body_image_revision_preserves_every_other_image_byte_for_byte(
+    runner: Runner, project: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    targets = {
+        beat_id: _png(project / "assets" / "raw_beats" / f"beat_{beat_id:03d}.png", seed=beat_id)
+        for beat_id in (1, 2, 3)
+    }
+    prepare_beat_cache(runner, project, 3)
+    before = {beat_id: qh.sha256_file(target) for beat_id, target in targets.items()}
+    calls: list[str] = []
+
+    def regenerate(stage, prompt, references, *, model, destination):  # noqa: ANN001
+        calls.append(stage)
+        _png(destination, seed=17)
+        return qh.JobResult(
+            job_id="isolated-test",
+            status="DONE",
+            answer=None,
+            generation_receipt={
+                "model_verified": True,
+                "actual_model_label": model,
+                "quality_check": {"passed": True},
+            },
+        )
+
+    monkeypatch.setattr(runner, "image", regenerate)
+    produced = qh.stage_body_images(
+        runner,
+        project,
+        _content_project(),
+        {"beats": [{"beat_id": index} for index in (1, 2, 3)]},
+        {"medium": "woodcut"},
+        project / "references" / "world_style_anchor.png",
+        project / "references" / "world_keyframe.png",
+        regenerate_beats={2},
+        revision_feedback={2: "Make the focal object larger."},
+        preserve_downstream_beats=True,
+    )
+
+    assert calls == ["beat_image_002"]
+    assert [path.name for path in produced] == ["beat_001.png", "beat_002.png", "beat_003.png"]
+    assert qh.sha256_file(targets[1]) == before[1]
+    assert qh.sha256_file(targets[2]) != before[2]
+    assert qh.sha256_file(targets[3]) == before[3]
+    assert runner.state.state["stages"]["beat_image_003"]["isolated_revision"] is True
+
+
 def test_stage_state_survives_a_fresh_state_object(project: Path) -> None:
     """Resume works across processes because every transition is written to disk (§81)."""
     first = QHState(project, "901_resume", "topic")

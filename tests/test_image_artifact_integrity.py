@@ -52,6 +52,77 @@ def test_failed_content_does_not_publish_candidate(tmp_path):
     assert list(tmp_path.glob('.*.png'))==[]
 
 
+def qc_result(check):
+    item = result()
+    item.generation_receipt['quality_check'] = check
+    return item
+
+
+def test_zero_qc_policy_reports_noncritical_findings_without_regeneration(tmp_path):
+    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='0';calls=[]
+    def attempt(_stage,_prompt,_references,*,model,destination):
+        calls.append(destination);picture(destination,1)
+        return qc_result({'passed':True,'review_status':'passed_with_warnings',
+                          'observations':['minor framing issue'],'blocking_violations':[]})
+    runner._image_attempt=attempt
+    target=tmp_path/'out.png'
+    selected=runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
+    assert len(calls)==1 and target.is_file()
+    assert selected.generation_receipt['qc_policy']=='0'
+    assert selected.generation_receipt['qc_selected_attempt']==1
+
+
+def test_one_qc_correction_uses_previous_candidate_as_a_quality_floor(tmp_path):
+    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='1';calls=[]
+    checks=[
+        {'passed':True,'review_status':'passed_with_warnings','observations':['cropping is tight'],'blocking_violations':[]},
+        {'passed':True,'review_status':'passed','observations':[],'blocking_violations':[]},
+    ]
+    def attempt(_stage,prompt,references,*,model,destination):
+        calls.append((prompt,references));picture(destination,len(calls))
+        return qc_result(checks[len(calls)-1])
+    runner._image_attempt=attempt
+    target=tmp_path/'out.png'
+    selected=runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
+    assert len(calls)==2
+    assert [ref.role for ref in calls[1][1]]==['qc_previous_candidate']
+    assert 'smallest targeted changes' in calls[1][0]
+    assert 'cropping is tight' in calls[1][0]
+    assert selected.generation_receipt['qc_selected_attempt']==2
+
+
+def test_two_qc_corrections_keep_the_best_candidate_when_retries_regress(tmp_path):
+    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='2';calls=[]
+    checks=[
+        {'passed':True,'observations':['minor issue'],'blocking_violations':[]},
+        {'passed':True,'observations':['minor issue','new defect'],'blocking_violations':[]},
+        {'passed':False,'observations':[],'blocking_violations':['style continuity drift: wrong medium']},
+    ]
+    expected_first=picture(tmp_path/'expected.png',1).read_bytes()
+    def attempt(_stage,_prompt,_references,*,model,destination):
+        calls.append(destination);picture(destination,len(calls))
+        return qc_result(checks[len(calls)-1])
+    runner._image_attempt=attempt
+    target=tmp_path/'out.png'
+    selected=runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
+    assert len(calls)==3
+    assert target.read_bytes()==expected_first
+    assert selected.generation_receipt['qc_selected_attempt']==1
+    assert [item['selected'] for item in selected.generation_receipt['quality_iterations']]==[True,False,False]
+
+
+def test_strict_qc_fails_after_three_unresolved_attempts_without_overwriting(tmp_path):
+    target=picture(tmp_path/'out.png',9);before=target.read_bytes()
+    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='strict';calls=[]
+    def attempt(_stage,_prompt,_references,*,model,destination):
+        calls.append(destination);picture(destination,len(calls))
+        return qc_result({'passed':True,'observations':['unresolved polish issue'],'blocking_violations':[]})
+    runner._image_attempt=attempt
+    with pytest.raises(qh.StageFailure,match='after 3 attempts'):
+        runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=target)
+    assert len(calls)==3 and target.read_bytes()==before
+
+
 def test_minor_visual_qc_findings_are_accepted_and_preserved(tmp_path):
     candidate=picture(tmp_path/'candidate.png')
     runner=object.__new__(qh.Runner)

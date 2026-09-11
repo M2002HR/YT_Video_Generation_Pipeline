@@ -27,10 +27,12 @@ artifacts are exposed only for a small allowlist (`json`, `txt`, `md`, and `ass`
 
 ### Launch
 
-The home page obtains its form from `GET /api/launch-schema`. It currently exposes all 91
-editable inputs from the previous panel, grouped into Episode, Length & output, Visual,
-Voice & music, Sound effects, Motion & editing, Publishing, and locked providers. Collapsed
-and advanced controls still retain and submit their defaults.
+The home page obtains its form from `GET /api/launch-schema`. Fields are grouped by the
+pipeline concern they actually control: Episode, Format, Character, World style & still
+images, Opening videos, Voice, Music, Subtitles & safe areas, Transitions, Camera motion,
+Sound effects, Delivery, and Providers. Dependent fields are disabled when their owning
+feature is off. Q Station is locked to its supported 9:16 format in both the browser and
+backend. Collapsed and advanced controls still retain and submit their defaults.
 
 The form posts the complete configuration to `POST /launch`. The backend validates ranges
 and supported provider/model choices, freezes the request into the project, creates the job
@@ -46,6 +48,9 @@ Frozen input files:
 
 The locked provider contract remains ChatGPT for text, Gemini for images, and Flow for video.
 Music has an ordered fallback list: Freesound, Mixkit, then Pixabay by default.
+The Visual group also controls non-critical image-QC correction loops: zero preserves the
+legacy report-only behavior, one/two run that many targeted corrections and keep the best
+candidate, while Strict requires a completely clean result within three total attempts.
 
 ### Observe
 
@@ -59,6 +64,12 @@ toasts; user actions also produce success/error toasts. The activity drawer comb
 - finalization events from `pipeline/FINALIZATION_RUNTIME_STATE.json`;
 - revision lifecycle events from `pipeline/revisions/*/REVISION.json`;
 - incremental bytes from the panel job log.
+
+Telegram reporting uses the same canonical stage IDs with a compact presentation policy.
+Long provider/render/upload work owns one resumable editable message; small stages and reuse
+are compacted, while waits and failures remain actionable. Message ownership is keyed by
+run/revision plus stage, so parallel branches cannot overwrite one another. Final media
+delivery is independent from the optional progress-notification switch.
 
 The process monitor stores the subprocess exit code immediately. A background reconciler
 also checks dead PIDs every 30 seconds. A run becomes `DONE` only when the finalization state
@@ -93,9 +104,13 @@ not pipeline artifacts.
 ## Dependency-aware regeneration
 
 `scripts/run_graph.py` is the canonical data DAG. Regular stages are declared in
-`NODE_SPECS`; beat-image nodes are expanded from the episode's visual plan. Beat images form
-a continuity chain, so regenerating beat 2 also regenerates later beats, while independent
-audio/voice branches can be reused.
+`NODE_SPECS`; beat-image nodes are expanded from the episode's visual plan. Edges identify
+data, continuity, and gate dependencies. In the default cascade policy, regenerating beat 2
+also regenerates later beat images. In isolated mode, exactly one beat image is regenerated
+from required operator feedback and every other accepted beat image is preserved byte-for-
+byte; the body-image milestone, transitions, timeline, render, and QC descendants still
+rebuild so the replacement reaches delivery. Other stages use cascade policy only, while
+managed/project-level milestones are not directly regeneratable.
 
 The operator graph contains only stages enabled by that run's frozen settings. For example,
 a run with SFX, Motion, compact Telegram output, or Git publishing disabled does not show a

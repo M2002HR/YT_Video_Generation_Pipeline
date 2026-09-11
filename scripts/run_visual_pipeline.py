@@ -296,19 +296,24 @@ class OrdakClient:
 
 
 class Pipeline:
-    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool, creative_brief: dict[str, str] | None = None, regenerate_beats: set[int] | None = None, revision_feedback: dict[int, str] | None = None, config_revision: bool = False) -> None:
+    def __init__(self, root: Path, topic: str, video_id: str, preset: str, duration_min_seconds: float, duration_max_seconds: float, aspect_ratio: str, content_project: ContentProject, client: OrdakClient, force: bool, creative_brief: dict[str, str] | None = None, regenerate_beats: set[int] | None = None, revision_feedback: dict[int, str] | None = None, config_revision: bool = False, preserve_downstream_beats: bool = False) -> None:
         self.root, self.topic, self.video_id, self.preset, self.duration_min_seconds, self.duration_max_seconds, self.aspect_ratio, self.content_project, self.client, self.force = root, topic, video_id, preset, duration_min_seconds, duration_max_seconds, aspect_ratio, content_project, client, force
         self.creative_brief = creative_brief or {}
         self.regenerate_beats = regenerate_beats or set()
         self.revision_feedback = revision_feedback or {}
         self.config_revision = config_revision
+        self.preserve_downstream_beats = preserve_downstream_beats
         self.creative_brief_sha256 = hashlib.sha256(json.dumps(self.creative_brief, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
         self.project = root / "videos" / f"{video_id}_{video_slug(topic)}"
         self.state_dir = self.project / "visual_pipeline"
         self.state_path = self.state_dir / "RUNTIME_STATE.json"
         self.timing_path = self.state_dir / "EXECUTION_TIMINGS.json"
         self.state: dict[str, Any] = {}
-        self.notifier = PipelineNotifier(video_id, topic)
+        self.notifier = PipelineNotifier(
+            video_id, topic,
+            state_path=self.project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+        )
+        self.image_stage_message = None
 
     def save(self) -> None:
         self.state["updated_at"] = utcnow()
@@ -523,6 +528,7 @@ Constraints: {constraints}
             if not style.is_file() or not character.is_file():
                 raise RuntimeError("Selected visual preset is missing canonical style or character anchors.")
             style_rules = (preset_root / "README.md").read_text(encoding="utf-8")
+            self.image_stage_message = self.notifier.stage_started("Visual beats & images", key="body_images")
             for beat in beats:
                 beat_id = beat["id"]
                 prompt_path = self.project / "beats" / f"BEAT_{beat_id:03d}_PROMPT.md"
@@ -541,22 +547,29 @@ Constraints: {constraints}
                     else:
                         self.write_once(str(prompt_path.relative_to(self.project)), prompt)
                     self.record_timing("beat_prompt", started_at, started, beat_id=beat_id, artifact=str(prompt_path.relative_to(self.project)), ordak_job_id=prompt_result["job_id"], request_timing=prompt_result.get("_client_timing"))
-                    self.notifier.prompt_complete(beat_id, len(beats), time.perf_counter() - started)
+                    self.notifier.stage_update(
+                        self.image_stage_message,
+                        "Visual beats & images",
+                        ["📝 Beat prompts in progress", f"📍 Prompt {beat_id}/{len(beats)} ready"],
+                    )
                 self.state["beats"].setdefault(f"{beat_id:03d}", {"status": "PROMPT_READY", "attempts": 0})["prompt_path"] = str(prompt_path.relative_to(self.project))
                 self.save()
             images_timer = StageTimer()
             self.generate_images(beats, style, character)
             completed = sum(1 for value in self.state["beats"].values() if value.get("status") == "DONE")
-            self.notifier.images_complete(len(beats), images_timer.elapsed, completed=completed)
             report = self.write_report(beats)
-            self.notifier.send("Visual pipeline complete", ["🏁 Quality checks passed", f"📍 Images: {completed}/{len(beats)}", f"⏱ Total runtime: {format_duration(total_timer.elapsed)}"])
+            self.notifier.stage_update(
+                self.image_stage_message,
+                "Visual beats & images",
+                ["✅ Visual phase complete", f"🖼 Images: {completed}/{len(beats)}", f"⏱ Total: {format_duration(total_timer.elapsed)}"],
+            )
             return report
         except ImageGenerationLimitReached:
             # A deliberate pause is notified at detection and scheduled by the
             # full runner; never misreport it as a generic pipeline failure.
             raise
         except Exception as exc:
-            self.notifier.failure("Visual pipeline", total_timer.elapsed, str(exc))
+            self.notifier.stage_failure(self.image_stage_message, "Visual beats & images", total_timer.elapsed, str(exc))
             raise
 
     def valid_image(self, path: Path, previous_sha: str | None = None) -> dict[str, Any]:
@@ -585,6 +598,14 @@ Constraints: {constraints}
             key = f"{beat_id:03d}"
             record = self.state["beats"].setdefault(key, {})
             target = output_dir / f"beat_{beat_id:03d}.png"
+            if self.preserve_downstream_beats and beat_id not in self.regenerate_beats:
+                # Isolated mode is an explicit operator promise: validate the accepted
+                # file in place, but never replace it because its new predecessor changed.
+                metadata = self.valid_image(target)
+                record.update({"status": "DONE", "output": metadata, "isolated_revision": True})
+                previous, previous_sha = target, metadata["sha256"]
+                self.save()
+                continue
             if target.exists() and not self.force and beat_id not in self.regenerate_beats:
                 try:
                     metadata = self.valid_image(target, previous_sha)
@@ -658,7 +679,6 @@ Constraints: {constraints}
                 target.unlink(missing_ok=True)
                 record.update({"status": "FAILED", "last_error": str(exc)})
                 self.save()
-                self.notifier.failure(f"Beat {beat_id:03d} image", time.perf_counter() - started, str(exc))
                 raise
             record.update({
                 "status": "DONE",
@@ -671,7 +691,18 @@ Constraints: {constraints}
             self.record_timing("beat_image", started_at, started, beat_id=beat_id, ordak_job_id=job["job_id"], references=[str(path.relative_to(self.root)) for path in references], request_timing=job.get("_client_timing"), download_timing=download_timing, output=metadata)
             previous, previous_sha = target, metadata["sha256"]
             self.save()
-            self.notifier.image_complete(beat_id, len(beats), time.perf_counter() - started)
+            elapsed = time.perf_counter() - started
+            self.notifier.image_durations.append(elapsed)
+            average = sum(self.notifier.image_durations) / len(self.notifier.image_durations)
+            self.notifier.stage_update(
+                self.image_stage_message,
+                "Visual beats & images",
+                [
+                    "🖼️ Image accepted",
+                    f"📍 Progress: {len(self.notifier.image_durations)}/{len(beats)} images",
+                    f"⏱ Latest: {format_duration(elapsed)} · Avg: {format_duration(average)}",
+                ],
+            )
 
     def write_report(self, beats: list[dict[str, str]]) -> Path:
         results = [self.state["beats"].get(f"{int(beat['id']):03d}", {}) for beat in beats]
@@ -696,6 +727,7 @@ def main() -> None:
     parser.add_argument("--creative-brief", type=Path, default=None, help="Optional JSON created by the launch panel with project-specific editorial inputs.")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs selected for revision.")
+    parser.add_argument("--preserve-downstream-beats", action="store_true", help="Keep unselected beat images unchanged during an isolated revision.")
     parser.add_argument("--beat-feedback-json", type=Path, help="Optional operator feedback keyed by beat ID.")
     parser.add_argument("--config-revision", action="store_true", help="Accept a panel-versioned mutable configuration for this video ID.")
     args = parser.parse_args()
@@ -720,6 +752,8 @@ def main() -> None:
         regenerate_beats = {int(value.strip()) for value in args.regenerate_beats.split(",") if value.strip()}
     except ValueError as exc:
         raise RuntimeError("--regenerate-beats must contain comma-separated integers.") from exc
+    if args.preserve_downstream_beats and len(regenerate_beats) != 1:
+        raise RuntimeError("--preserve-downstream-beats requires exactly one selected beat.")
     revision_feedback: dict[int, str] = {}
     if args.beat_feedback_json:
         try:
@@ -733,7 +767,12 @@ def main() -> None:
     load_dotenv(env_file, override=False)
     client = OrdakClient(Settings(os.getenv("YT_ORDAK_BASE_URL", "http://127.0.0.1:8000").rstrip("/"), int(os.getenv("YT_ORDAK_JOB_WAIT_TIMEOUT_SECONDS", "900")), float(os.getenv("YT_ORDAK_JOB_POLL_INTERVAL_SECONDS", "2"))))
     try:
-        report = Pipeline(ROOT, args.topic, args.video_id, preset, duration_min, duration_max, args.aspect_ratio, content_project, client, args.force, creative_brief, regenerate_beats, revision_feedback, args.config_revision).run()
+        report = Pipeline(
+            ROOT, args.topic, args.video_id, preset, duration_min, duration_max,
+            args.aspect_ratio, content_project, client, args.force, creative_brief,
+            regenerate_beats, revision_feedback, args.config_revision,
+            preserve_downstream_beats=args.preserve_downstream_beats,
+        ).run()
     except ImageGenerationLimitReached:
         print("VISUAL PIPELINE: PAUSED_FOR_IMAGE_LIMIT", flush=True)
         raise SystemExit(75)

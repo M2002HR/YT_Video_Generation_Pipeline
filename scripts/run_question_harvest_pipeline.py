@@ -125,6 +125,11 @@ def assess_image_content_qc(check: Any) -> tuple[dict[str, Any], list[str]]:
         declared = []
     if not isinstance(declared, list) or not all(isinstance(item, str) and item.strip() for item in declared):
         raise ValueError("Image content QC blocking_violations must be an array of non-empty strings.")
+    regressions = check.get("regressions", [])
+    if regressions is None:
+        regressions = []
+    if not isinstance(regressions, list) or not all(isinstance(item, str) and item.strip() for item in regressions):
+        raise ValueError("Image content QC regressions must be an array of non-empty strings.")
     # The reviewer can suggest a severity, but the pipeline owns the stop decision.
     # This prevents an over-cautious model from turning a label or a minor composition
     # issue into a blocking finding merely by placing it in blocking_violations.
@@ -133,12 +138,16 @@ def assess_image_content_qc(check: Any) -> tuple[dict[str, Any], list[str]]:
     if check["passed"] is False and not violations:
         raise ValueError("Image content QC rejected the image without explaining why.")
 
-    warnings = [item for item in violations if item not in blocking]
+    warnings = list(dict.fromkeys([
+        *(item for item in violations if item not in blocking),
+        *(item for item in regressions if item not in blocking),
+    ]))
     normalized = dict(check)
     normalized["raw_passed"] = check["passed"]
     normalized["raw_violations"] = list(violations)
     normalized["blocking_violations"] = blocking
     normalized["observations"] = warnings
+    normalized["regressions"] = list(regressions)
     normalized["passed"] = not blocking
     normalized["review_status"] = "passed" if not warnings else "passed_with_warnings"
     return normalized, warnings
@@ -469,12 +478,14 @@ class Runner:
     site is allowed to catch a provider failure and substitute something it made up.
     """
 
-    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QHState, *, chatgpt_fallback_mode: str = "approval") -> None:
+    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QHState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0") -> None:
         self.jobs = jobs
         self.notifier = notifier
         self.state = state
         self.stage_messages: dict[str, Any] = {}
+        self.stage_started_at: dict[str, float] = {}
         self.chatgpt_fallback_mode = chatgpt_fallback_mode if chatgpt_fallback_mode in {"auto", "approval"} else "approval"
+        self.image_qc_correction_policy = image_qc_correction_policy if image_qc_correction_policy in {"0", "1", "2", "strict"} else "0"
 
     @staticmethod
     def _fallback_stage(stage: str) -> str:
@@ -533,9 +544,11 @@ class Runner:
     def stage_start(self, stage: str) -> float:
         self.state.mark(stage, STATE_RUNNING)
         print(f"▶ {stage}", flush=True)
+        started = time.perf_counter()
+        self.stage_started_at[stage] = started
         if self.notifier is not None:
-            self.stage_messages[stage] = self.notifier.stage_started(self._stage_title(stage))
-        return time.perf_counter()
+            self.stage_messages[stage] = self.notifier.stage_started(self._stage_title(stage), key=stage)
+        return started
 
     def stage_done(self, stage: str, started: float, summary: str = "", **meta: Any) -> None:
         elapsed = time.perf_counter() - started
@@ -554,7 +567,7 @@ class Runner:
     def stage_reused(self, stage: str, summary: str = "") -> None:
         self.state.mark(stage, STATE_REUSED, artifact=summary or None)
         print(f"↻ {stage} reused{(' — ' + summary) if summary else ''}", flush=True)
-        if self.notifier is not None:
+        if self.notifier is not None and not stage.startswith("beat_image_"):
             self.notifier.stage_reused(self._stage_title(stage), ["↻ Reused existing artifact", summary])
 
     def stage_progress(self, stage: str, lines: list[str]) -> None:
@@ -564,14 +577,16 @@ class Runner:
 
     def stage_failed(self, stage: str, failure: StageFailure, started: float) -> None:
         self.state.fail(stage, failure)
-        elapsed = time.perf_counter() - started
+        elapsed = time.perf_counter() - self.stage_started_at.get(stage, started)
         print(f"✘ {stage} [{failure.state}] {failure.message}", flush=True)
         if self.notifier is not None:
             try:
-                # Failure is intentionally a separate alert. The last normal-stage entry stays
-                # intact, so one new message always means the pipeline needs attention.
-                self.stage_messages.pop(stage, None)
-                self.notifier.failure(self._stage_title(stage), elapsed, f"{failure.state}: {failure.message}")
+                message = self.stage_messages.pop(stage, None)
+                detail = f"{failure.state}: {failure.message}"
+                if failure.needs_human or failure.state.startswith(("PAUSED", "WAITING")):
+                    self.notifier.stage_waiting(message, self._stage_title(stage), detail)
+                else:
+                    self.notifier.stage_failure(message, self._stage_title(stage), elapsed, detail)
             except Exception as exc:  # pragma: no cover
                 print(f"notify failed: {exc}", flush=True)
 
@@ -663,14 +678,143 @@ class Runner:
     def image(
         self, stage: str, prompt: str, references: list[Reference], *, model: str, destination: Path,
     ) -> JobResult:
-        for attempt in range(2):
+        """Generate, review and commit the best acceptable candidate atomically.
+
+        Non-blocking findings use the operator's stage-wide correction budget. Blocking
+        failures always consume another available attempt and can never be selected. The
+        previous candidate is supplied as a quality-floor reference on corrections, and
+        the final file is replaced only after the best reviewed candidate is known.
+        """
+        policy = getattr(self, "image_qc_correction_policy", "0")
+        policy = policy if policy in {"0", "1", "2", "strict"} else "0"
+        max_attempts = {"0": 2, "1": 2, "2": 3, "strict": 3}[policy]
+        correction_budget = {"0": 0, "1": 1, "2": 2, "strict": 2}[policy]
+        request_id = request_fingerprint(prompt, model, references)[:16]
+        candidates_dir = destination.parent / ".qc_candidates"
+        iterations: list[dict[str, Any]] = []
+        accepted: list[tuple[tuple[int, int, int, int], Path, JobResult, int]] = []
+        prior_candidate: Path | None = None
+        current_prompt = prompt
+        current_references = list(references)
+
+        try:
+            for attempt in range(max_attempts):
+                candidate = candidates_dir / f"{destination.stem}.{request_id}.attempt-{attempt + 1}.png"
+                result = self._image_attempt(
+                    stage,
+                    current_prompt,
+                    current_references,
+                    model=model,
+                    destination=candidate,
+                )
+                check = dict((result.generation_receipt or {}).get("quality_check") or {})
+                blocking = list(check.get("blocking_violations") or [])
+                observations = list(check.get("observations") or check.get("violations") or [])
+                regressions = list(check.get("regressions") or [])
+                fully_clean = not blocking and not observations and not regressions
+                record = {
+                    "attempt": attempt + 1,
+                    "job_id": result.job_id,
+                    "prompt_sha256": sha256_text(current_prompt),
+                    "output_sha256": sha256_file(candidate),
+                    "quality_check": check,
+                    "fully_clean": fully_clean,
+                }
+                iterations.append(record)
+                if not blocking:
+                    # A candidate with a newly introduced regression can never displace a
+                    # regression-free one. Then lower risk/count wins; earlier wins ties.
+                    risk = sum(
+                        3 if re.search(r"\b(?:major|severe|distort|anatom|identity|continuity|unreadable|missing)\b", finding, re.I) else 1
+                        for finding in observations
+                    )
+                    accepted.append(((int(bool(regressions)), risk, len(observations), attempt), candidate, result, attempt + 1))
+
+                if fully_clean:
+                    break
+                if not blocking and attempt >= correction_budget:
+                    break
+                if attempt + 1 >= max_attempts:
+                    break
+
+                prior_candidate = candidate
+                findings = blocking or observations
+                current_prompt = self._image_qc_correction_prompt(stage, prompt, findings)
+                current_references = [
+                    *references,
+                    Reference(role="qc_previous_candidate", path=prior_candidate),
+                ]
+                print(
+                    f"    [image QC] {stage}: correction {attempt + 1}/{max_attempts - 1} "
+                    f"for {len(findings)} finding(s).",
+                    flush=True,
+                )
+
+            if policy == "strict" and not any(item["fully_clean"] for item in iterations):
+                raise StageFailure(
+                    stage,
+                    "FAILED_VALIDATION",
+                    f"{stage}: strict image QC found no fully clean candidate after 3 attempts.",
+                    error_code="image_content_rejected",
+                )
+            if not accepted:
+                raise StageFailure(
+                    stage,
+                    "FAILED_VALIDATION",
+                    f"{stage}: image content QC rejected every candidate with a blocking violation.",
+                    error_code="image_content_rejected",
+                )
+
+            _score, selected_path, selected_result, selected_attempt = min(accepted, key=lambda item: item[0])
+            for item in iterations:
+                item["selected"] = item["attempt"] == selected_attempt
+            receipt = dict(selected_result.generation_receipt or {})
+            receipt.update({
+                "quality_check": iterations[selected_attempt - 1]["quality_check"],
+                "quality_iterations": iterations,
+                "qc_policy": policy,
+                "qc_selected_attempt": selected_attempt,
+                "request_fingerprint": request_fingerprint(prompt, model, references),
+            })
+            selected_result.generation_receipt = receipt
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            committed = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
             try:
-                return self._image_attempt(stage, prompt, references, model=model, destination=destination)
-            except StageFailure as exc:
-                if exc.error_code != "image_content_rejected" or attempt:
-                    raise
-                print(f"    [image QC] {exc.message}; retrying once with the same art direction.", flush=True)
-        raise AssertionError("unreachable")
+                shutil.copyfile(selected_path, committed)
+                committed.replace(destination)
+            finally:
+                committed.unlink(missing_ok=True)
+            return selected_result
+        finally:
+            for item in candidates_dir.glob(f"{destination.stem}.{request_id}.attempt-*.png") if candidates_dir.is_dir() else ():
+                item.unlink(missing_ok=True)
+            try:
+                candidates_dir.rmdir()
+            except OSError:
+                pass
+
+    @staticmethod
+    def _image_qc_correction_prompt(stage: str, original_prompt: str, findings: list[str]) -> str:
+        stage_guard = (
+            "Preserve the established character identity, story moment, composition, camera, palette, medium, and frame language."
+            if stage.startswith("beat_image_") else
+            "Preserve the world composition, camera, palette, medium, texture, and host-free intent."
+            if stage == "world_keyframe" else
+            "Preserve the book identity, view, layout, materials, motifs, and usable blank areas."
+            if "book" in stage else
+            "Preserve the established medium, palette, texture family, line treatment, lighting, and layout."
+        )
+        numbered = "\n".join(f"{index}. {finding}" for index, finding in enumerate(findings, 1))
+        return (
+            "Create exactly one corrected 9:16 replacement image. The attachment with role "
+            "qc_previous_candidate is the previous output and the minimum quality floor, not a new "
+            "scene request. Make the smallest targeted changes needed to fix ONLY the QC findings "
+            "below. Do not redesign, simplify, crop, restyle, or replace elements that already work. "
+            f"{stage_guard} Introduce no new text, logos, objects, anatomy problems, identity drift, "
+            "style drift, or continuity errors. The replacement must be equal or better in every "
+            "unmentioned respect.\n\nQC findings to correct:\n"
+            f"{numbered}\n\nOriginal art direction remains authoritative:\n{original_prompt}"
+        )
 
     def _image_attempt(
         self,
@@ -728,6 +872,11 @@ class Runner:
                     raise StageFailure(stage, "FAILED_VALIDATION", "Image aspect ratio is not 9:16.")
                 reduced = candidate.convert("RGB").resize((96, 96))
             for ref in references:
+                if ref.role == "qc_previous_candidate":
+                    # Corrective edits are intentionally close to their quality-floor
+                    # candidate; content QC, not a pixel-distance heuristic, decides
+                    # whether the listed defect was actually improved.
+                    continue
                 with Image.open(ref.path) as reference:
                     difference = ImageStat.Stat(ImageChops.difference(reduced, reference.convert("RGB").resize((96, 96))))
                 if sum(difference.mean) / 3 < 2:
@@ -744,7 +893,9 @@ class Runner:
                 check = (result.generation_receipt or {}).get("quality_check")
                 if not (isinstance(check, dict) and check.get("passed") is True and
                         saved.get("review_contract_version") == CONTRACT_VERSION):
-                    check = self.validate_image_content(stage, prompt, partial, references=references)
+                    check = self.validate_image_content(
+                        stage, prompt, partial, references=references, reject_blocking=False
+                    )
             except StageFailure as exc:
                 if exc.error_code == "image_content_rejected":
                     metadata.unlink(missing_ok=True)
@@ -758,10 +909,6 @@ class Runner:
             committed_candidate["review_contract_version"] = CONTRACT_VERSION
             save_json(metadata, committed_candidate)
             partial.replace(destination)
-            project = getattr(getattr(self, "state", None), "project", None)
-            if project is not None:
-                _write_image_receipt(project, "gemini_" + stage.replace("beat_image_", "beat_"),
-                                     result, prompt, references, destination, model)
             metadata.unlink(missing_ok=True)
             pending.unlink(missing_ok=True)
         finally:
@@ -775,6 +922,7 @@ class Runner:
         candidate: Path,
         *,
         references: list[Reference] = (),
+        reject_blocking: bool = True,
     ) -> dict:
         """Review a candidate against its actual character/style continuity references."""
         reference_roles = [reference.role for reference in references]
@@ -799,9 +947,11 @@ class Runner:
             "frame language, or established visual world is a fundamental failure: set passed=false and include "
             "'style continuity drift: <specific mismatch>' in blocking_violations. Do not reject minor natural "
             "scene variation or a small presentational imperfection as continuity drift. "
-            "Judge visible compliance, not artistic taste. Return only JSON with passed (boolean), "
+            "If qc_previous_candidate is attached, compare the candidate against it and list every "
+            "newly introduced defect or lost already-correct quality in regressions; otherwise return "
+            "regressions as an empty array. Judge visible compliance, not artistic taste. Return only JSON with passed (boolean), "
             "description (what is actually visible), violations (array of specific strings), and "
-            "blocking_violations (array of only fundamental failures). Do not use "
+            "blocking_violations (array of only fundamental failures), and regressions (array). Do not use "
             "literal double-quote characters inside description or violation strings; use single quotes "
             "for visible labels instead. "
             f"Attached continuity-reference roles: {reference_roles or ['none']}.\n"
@@ -812,7 +962,7 @@ class Runner:
             accepted, warnings = assess_image_content_qc(check)
         except ValueError as exc:
             raise StageFailure(stage, "FAILED_VALIDATION", f"Image content QC returned an invalid review: {exc}") from exc
-        if accepted["passed"] is not True:
+        if accepted["passed"] is not True and reject_blocking:
             raise StageFailure(stage, "FAILED_VALIDATION", f"Image content QC rejected output: {str(accepted)[:1200]}", error_code="image_content_rejected")
         if warnings:
             print(f"    [image QC] accepted with {len(warnings)} non-blocking observation(s): {warnings[:2]}", flush=True)
@@ -2527,6 +2677,7 @@ def stage_body_images(
     regenerate_beats: set[int] | None = None,
     revision_feedback: dict[int, str] | None = None,
     character: CharacterContext | None = None,
+    preserve_downstream_beats: bool = False,
 ) -> list[Path]:
     """One Gemini image per body beat, sequential because each uses the previous for continuity."""
     character = _coerce_character_context(character or content_project)
@@ -2568,12 +2719,24 @@ def stage_body_images(
                 if revision.startswith(prompt.rstrip() + "\n\nADMIN REVISION REQUEST"):
                     prompt = revision
             receipt = project / "pipeline" / "provider_receipts" / f"gemini_beat_{beat_id:03d}.json"
+            # Isolated revision is an explicit operator override of the normal continuity
+            # cascade. Keep every unselected accepted image byte-for-byte, even when the
+            # selected predecessor now has a different hash. Timeline/render descendants
+            # still rebuild so the revised image reaches the delivered video.
+            if (
+                preserve_downstream_beats
+                and beat_id not in requested_regenerations
+                and valid_image(target)
+            ):
+                runner.state.mark(stage, STATE_REUSED, artifact=target.name, isolated_revision=True)
+                produced.append(target)
+                previous = target
+                continue
             if beat_id not in requested_regenerations and reusable_image(runner, project, stage, target, receipt, prompt, model, references):
                 runner.state.mark(stage, STATE_REUSED, artifact=target.name)
                 print(f"↻ {stage} reused — {target.name}", flush=True)
                 produced.append(target)
                 previous = target
-                runner.stage_progress("body_images", ["🖼️ Image batch in progress", f"📍 Progress: {len(produced)}/{len(beats)} images", "↻ Existing image reused"])
                 continue
 
             started = time.perf_counter()
@@ -2739,6 +2902,7 @@ def ensure_launch_request(
     style_policy: str,
     style_id: str,
     style_hint: str,
+    image_qc_correction_policy: str = "0",
     character_mode: str = "auto",
     character_id: str | None = None,
 ) -> dict[str, Any]:
@@ -2755,7 +2919,12 @@ def ensure_launch_request(
         },
         "created_at": utcnow(),
         "providers": {"text": "chatgpt", "image": "gemini", "video": "flow", "voice": "elevenlabs_web"},
-        "image_generation": {"model": normalize_gemini_model(gemini_model), "quality": "best"},
+        "image_generation": {
+            "model": normalize_gemini_model(gemini_model),
+            "quality": "best",
+            "qc_correction_policy": image_qc_correction_policy,
+            "extended_thinking_required": True,
+        },
         "video_generation": {
             "model": normalize_flow_model(flow_model),
             "resolution": flow_resolution,
@@ -2889,9 +3058,23 @@ def main() -> int:
         help="Use Gemini after a ChatGPT/Ordak failure automatically, or pause for panel approval.",
     )
     parser.add_argument(
+        "--image-qc-correction-policy",
+        choices=("0", "1", "2", "strict"),
+        default="0",
+        help=(
+            "Correct non-blocking image-QC findings 0, 1 or 2 times; strict makes "
+            "three total attempts and fails unless one candidate is fully clean."
+        ),
+    )
+    parser.add_argument(
         "--regenerate-beats",
         default="",
         help="Comma-separated body beat IDs to regenerate even when their existing files are valid (for example: 1,9,13).",
+    )
+    parser.add_argument(
+        "--preserve-downstream-beats",
+        action="store_true",
+        help="Keep every unselected beat image unchanged during an isolated beat revision.",
     )
     args = parser.parse_args()
     if args.min_duration_seconds > args.max_duration_seconds:
@@ -2904,6 +3087,8 @@ def main() -> int:
         parser.error("--regenerate-beats must contain only comma-separated positive integer beat IDs")
     if any(beat_id < 1 for beat_id in regenerate_beats):
         parser.error("--regenerate-beats must contain only positive beat IDs")
+    if args.preserve_downstream_beats and len(regenerate_beats) != 1:
+        parser.error("--preserve-downstream-beats requires exactly one --regenerate-beats ID")
     revision_feedback: dict[int, str] = {}
     if args.beat_feedback_json:
         try:
@@ -3006,6 +3191,7 @@ def main() -> int:
         style_policy,
         requested_style_id,
         args.world_style_hint,
+        args.image_qc_correction_policy,
         requested_mode,
         requested_character_id,
     )
@@ -3024,7 +3210,11 @@ def main() -> int:
     if isinstance(persisted_character, dict) and persisted_character.get("resolved_character_id"):
         preflight_registry.get(str(persisted_character["resolved_character_id"]))
     state = QHState(project, args.video_id, args.topic)
-    notifier = PipelineNotifier(video_id=args.video_id, topic=args.topic)
+    notifier = PipelineNotifier(
+        video_id=args.video_id,
+        topic=args.topic,
+        state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+    )
 
     video_generation = launch.get("video_generation", {})
     flow_model = normalize_flow_model(video_generation.get("model") or args.flow_model)
@@ -3033,7 +3223,13 @@ def main() -> int:
     opening_b_seconds = int(video_generation.get("opening_b_source_seconds") or args.opening_b_seconds)
 
     with OrdakJobs() as jobs:
-        runner = Runner(jobs, notifier, state, chatgpt_fallback_mode=args.chatgpt_fallback_mode)
+        runner = Runner(
+            jobs,
+            notifier,
+            state,
+            chatgpt_fallback_mode=args.chatgpt_fallback_mode,
+            image_qc_correction_policy=args.image_qc_correction_policy,
+        )
         current_stage = "preflight"
         try:
             # Fail before spending anything if the browser stack is not usable (§65).
@@ -3120,6 +3316,7 @@ def main() -> int:
                 world_style_anchor, world_keyframe, regenerate_beats,
                 revision_feedback,
                 character,
+                preserve_downstream_beats=args.preserve_downstream_beats,
             )
             stage_transition_direction(
                 runner,
@@ -3175,12 +3372,12 @@ def main() -> int:
             return 0
         except StageFailure as failure:
             current_stage = failure.stage or current_stage
-            runner.stage_failed(current_stage, failure, time.perf_counter())
+            runner.stage_failed(current_stage, failure, runner.stage_started_at.get(current_stage, time.perf_counter()))
             print(f"PIPELINE {failure.state}: {failure.message}", file=sys.stderr, flush=True)
             return 3 if failure.needs_human else 2
         except OrdakJobError as exc:
             failure = StageFailure(current_stage, exc.pipeline_state, exc.message, error_code=exc.error_code)
-            runner.stage_failed(current_stage, failure, time.perf_counter())
+            runner.stage_failed(current_stage, failure, runner.stage_started_at.get(current_stage, time.perf_counter()))
             print(f"PIPELINE {failure.state}: {failure.message}", file=sys.stderr, flush=True)
             return 3 if failure.needs_human else 2
 

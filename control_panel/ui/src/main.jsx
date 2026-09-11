@@ -684,9 +684,14 @@ function ColourField({ field, value, onChange, gated = false }) {
 
 function Field({ field, value, onChange, allValues = {} }) {
   const id = `field-${field.name}`;
-  const gated =
-    Boolean(field.requires) &&
-    (allValues == null || allValues[field.requires.field] !== field.requires.value);
+  const requirements = Array.isArray(field.requires)
+    ? field.requires
+    : field.requires
+      ? [field.requires]
+      : [];
+  const gated = requirements.some(
+    (requirement) => allValues == null || allValues[requirement.field] !== requirement.value,
+  );
   const common = {
     id,
     name: field.name,
@@ -703,13 +708,14 @@ function Field({ field, value, onChange, allValues = {} }) {
   if (field.type === "toggle")
     return (
       <label
-        className={`toggle-field ${field.advanced ? "advanced-field" : ""}`}
+        className={`toggle-field ${field.advanced ? "advanced-field" : ""} ${gated ? "field-off" : ""}`}
         htmlFor={id}
       >
         <input
           id={id}
           type="checkbox"
           checked={Boolean(value)}
+          disabled={gated || undefined}
           onChange={(e) => onChange(field.name, e.target.checked)}
         />
         <span className="switch" />
@@ -823,7 +829,11 @@ function Field({ field, value, onChange, allValues = {} }) {
       ) : field.type === "select" ? (
         <select {...common}>
           {(field.options || []).map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.value}
+              value={option.value}
+              disabled={(option.disabledProjects || []).includes(allValues.content_project)}
+            >
               {option.label}
             </option>
           ))}
@@ -972,20 +982,27 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
             .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy"].includes(field.name))
             .filter((field) => advanced || !field.advanced)
             .filter((field) => field.name !== "character_id" || values.character_mode === "manual")
-            .map((field) => (
-              <Field
-                key={field.name}
-                field={field.name === "character_id" ? {
+            .map((field) => {
+              let displayField = field.name === "character_id" ? {
                   ...field,
                   options: characters.length
                     ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({ value: item.id, label: item.display_name }))]
                     : field.options,
-                } : field}
+                } : field;
+              if (group.id === "sfx" && field.name !== "sfx_enabled") {
+                displayField = { ...displayField, requires: { field: "sfx_enabled", value: true } };
+              }
+              if (group.id === "motion" && !["motion_enabled", "motion_image_zoom_strength"].includes(field.name)) {
+                displayField = { ...displayField, requires: { field: "motion_enabled", value: true } };
+              }
+              return <Field
+                key={field.name}
+                field={displayField}
                 value={values[field.name]}
                 onChange={change}
                 allValues={values}
-              />
-            ))}
+              />;
+            })}
           {advancedCount > 0 && (
             <button
               type="button"
@@ -993,8 +1010,8 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
               onClick={() => setAdvanced((value) => !value)}
             >
               {advanced
-                ? "Hide advanced motion settings"
-                : `Show ${advancedCount} advanced motion settings`}
+                ? "Hide advanced settings"
+                : `Show ${advancedCount} advanced settings`}
             </button>
           )}
         </div>
@@ -1032,6 +1049,11 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
       .finally(() => !cancelled && setStylesLoading(false));
     return () => { cancelled = true; };
   }, [values.content_project]);
+  useEffect(() => {
+    if (values.content_project === "q_station" && values.aspect_ratio !== "9:16") {
+      setValues((current) => ({ ...current, aspect_ratio: "9:16" }));
+    }
+  }, [values.content_project, values.aspect_ratio]);
   const change = (name, value) =>
     setValues((current) => ({ ...current, [name]: value }));
   const applicableGroups = schema.groups.filter(
@@ -1514,6 +1536,8 @@ function PipelineBoard({ graph, selected, dependents, choose }) {
     <div className="pipeline-board">
       {graph.phases.map((phase) => {
         const nodes = graph.nodes.filter((node) => node.phase === phase);
+        const beatNodes = nodes.filter((node) => node.id.startsWith("beat_image_"));
+        const visibleNodes = nodes.filter((node) => !node.id.startsWith("beat_image_"));
         return (
           <section key={phase} className="phase-column">
             <header>
@@ -1523,7 +1547,7 @@ function PipelineBoard({ graph, selected, dependents, choose }) {
                 {nodes.length}
               </b>
             </header>
-            {nodes.map((node) => (
+            {visibleNodes.map((node) => (
               <button
                 key={node.id}
                 className={`stage-card ${statusClass(node.status)} ${selected?.id === node.id ? "selected" : ""} ${dependents.has(node.id) ? "dependent" : ""}`}
@@ -1537,6 +1561,23 @@ function PipelineBoard({ graph, selected, dependents, choose }) {
                 <em>→</em>
               </button>
             ))}
+            {beatNodes.length > 0 && (
+              <details className="beat-node-group">
+                <summary>
+                  <b>Individual beat images</b>
+                  <small>{beatNodes.filter((node) => READY.has(node.status)).length}/{beatNodes.length} ready</small>
+                </summary>
+                {beatNodes.map((node) => (
+                  <button
+                    key={node.id}
+                    className={`stage-card ${statusClass(node.status)} ${selected?.id === node.id ? "selected" : ""} ${dependents.has(node.id) ? "dependent" : ""}`}
+                    onClick={() => choose(node)}
+                  >
+                    <i /><span><b>{node.title}</b><small>{label(node.status)}</small></span><em>→</em>
+                  </button>
+                ))}
+              </details>
+            )}
           </section>
         );
       })}
@@ -1576,8 +1617,15 @@ function DependencyGraph({ run, selected, choose }) {
           run.graph.nodes.find((node) => node.id === edge.target)?.status ===
           "RUNNING",
         style: {
-          stroke: selected?.id === edge.source && dependents.has(edge.target) ? "#b58cff" : "#53647d",
+          stroke: selected?.id === edge.source && dependents.has(edge.target)
+            ? "#b58cff"
+            : edge.kind === "continuity"
+              ? "#4f8fc9"
+              : edge.kind === "gate"
+                ? "#b58b4c"
+                : "#53647d",
           strokeWidth: selected?.id === edge.source ? 2 : 1.2,
+          strokeDasharray: edge.kind === "gate" ? "6 4" : undefined,
         },
       })),
     };
@@ -1763,10 +1811,12 @@ function NodeDetail({ run, node, close, regenerate, fallbackAction, resolveFallb
       )}
       <button
         className="primary"
-        disabled={run.job.live || run.job.read_only}
+        disabled={run.job.live || run.job.read_only || node.regeneratable === false}
         onClick={() => regenerate(node)}
       >
-        {run.job.read_only
+        {node.regeneratable === false
+          ? "Managed automatically by the pipeline"
+          : run.job.read_only
           ? "External run · inspection only"
           : run.job.live
             ? "Wait for the active run to finish"
@@ -1779,17 +1829,25 @@ function NodeDetail({ run, node, close, regenerate, fallbackAction, resolveFallb
 function RegenerationModal({ run, node, close, started }) {
   const [plan, setPlan] = useState(null),
     [feedback, setFeedback] = useState(""),
+    [isolated, setIsolated] = useState(false),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
+  const supportsIsolated = (node.regeneration?.modes || []).includes("isolated");
   useEffect(() => {
+    setPlan(null);
+    setError("");
     request("/api/regenerations/preview", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ job_id: run.job.job_id, node_ids: [node.id] }),
+      body: JSON.stringify({
+        job_id: run.job.job_id,
+        node_ids: [node.id],
+        regeneration_mode: isolated ? "isolated" : "cascade",
+      }),
     })
       .then(setPlan)
       .catch((failure) => setError(failure.message));
-  }, [run.job.job_id, node.id]);
+  }, [run.job.job_id, node.id, isolated]);
   useEffect(() => {
     const escape = (event) => event.key === "Escape" && close();
     addEventListener("keydown", escape);
@@ -1807,6 +1865,7 @@ function RegenerationModal({ run, node, close, started }) {
           job_id: run.job.job_id,
           node_ids: [node.id],
           feedback,
+          regeneration_mode: isolated ? "isolated" : "cascade",
         }),
       });
       started(response);
@@ -1835,10 +1894,24 @@ function RegenerationModal({ run, node, close, started }) {
         </button>
         <span className="eyebrow">SAFE REGENERATION</span>
         <h2 id="regeneration-title">{node.title}</h2>
-        <p>
-          The selected stage and every data-dependent descendant will be
-          versioned and rebuilt. Everything else stays reusable.
-        </p>
+        <p>{isolated
+          ? "Only this source image will be regenerated. Later beat images stay byte-for-byte unchanged; transition metadata and final renders still rebuild to use the new image."
+          : "The selected stage and every data-dependent descendant will be versioned and rebuilt. Everything else stays reusable."
+        }</p>
+        {supportsIsolated && (
+          <label className="toggle-field regeneration-mode">
+            <input
+              type="checkbox"
+              checked={isolated}
+              onChange={(event) => setIsolated(event.target.checked)}
+            />
+            <span className="switch" />
+            <span>
+              <b>Keep all other beat images unchanged</b>
+              <small>Overrides the normal continuity cascade. Use this for a precise one-image correction.</small>
+            </span>
+          </label>
+        )}
         {plan ? (
           <div className="impact-grid">
             <section>
@@ -1865,13 +1938,14 @@ function RegenerationModal({ run, node, close, started }) {
         )}
         <label className="field">
           <span>
-            Revision note <i>optional</i>
+            Revision note <i>{isolated ? "required" : "optional"}</i>
           </span>
           <textarea
             value={feedback}
             onChange={(event) => setFeedback(event.target.value)}
             maxLength={4000}
-            placeholder="Describe what should change. For image beats this is added to the provider prompt."
+            required={isolated}
+            placeholder="Describe exactly what should change in this image. This is added to the provider prompt."
           />
         </label>
         {error && (
@@ -1879,7 +1953,7 @@ function RegenerationModal({ run, node, close, started }) {
             {error}
           </div>
         )}
-        <button className="primary" disabled={busy || !plan || !plan.can_start}>
+        <button className="primary" disabled={busy || !plan || !plan.can_start || (isolated && !feedback.trim())}>
           {busy
             ? "Preparing revision…"
             : plan?.can_start === false

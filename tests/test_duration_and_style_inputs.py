@@ -135,6 +135,7 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
         "world_style_policy": "reuse",
         "world_style_hint": "warm paper",
         "gemini_image_model": "nano_banana_2",
+        "image_qc_correction_policy": "2",
     }}), encoding="utf-8")
     flags = qh_overrides(brief)
     for expected in (
@@ -144,6 +145,7 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
         "--world-style-policy", "reuse",
         "--world-style-hint", "warm paper",
         "--gemini-model", "nano_banana_2",
+        "--image-qc-correction-policy", "2",
     ):
         assert expected in flags, expected
 

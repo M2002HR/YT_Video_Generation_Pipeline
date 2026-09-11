@@ -405,6 +405,42 @@ def test_regeneration_archives_only_the_affected_branch_and_records_reuse(tmp_pa
     assert json.loads((revision_dir / "feedback.json").read_text())["2"] == "make it calmer"
 
 
+def test_isolated_beat_revision_keeps_other_images_and_sets_runtime_flag(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    jobs = tmp_path / "control_panel/jobs"; jobs.mkdir(parents=True)
+    project = tmp_path / "videos/901_panel"
+    (project / "creative").mkdir(parents=True)
+    (project / "creative/VISUAL_PLAN.json").write_text(
+        json.dumps({"beats": [{"beat_id": 1}, {"beat_id": 2}, {"beat_id": 3}]}),
+        encoding="utf-8",
+    )
+    for number in range(1, 4):
+        image = project / f"assets/raw_beats/beat_{number:03d}.png"
+        image.parent.mkdir(parents=True, exist_ok=True); image.write_bytes(b"image")
+    (project / "creative/TRANSITION_PLAN.json").write_text("{}", encoding="utf-8")
+    brief = project / "launch/CREATIVE_BRIEF.json"; brief.parent.mkdir(parents=True); brief.write_text("{}", encoding="utf-8")
+    voice = project / "voiceover/REQUESTED_VOICE_PROFILE.json"; voice.parent.mkdir(parents=True); voice.write_text("{}", encoding="utf-8")
+    record = _record(project="videos/901_panel", creative_brief="videos/901_panel/launch/CREATIVE_BRIEF.json", voice_profile="videos/901_panel/voiceover/REQUESTED_VOICE_PROFILE.json")
+
+    class Process:
+        pid = 4343
+    monkeypatch.setattr(panel.subprocess, "Popen", lambda *args, **kwargs: Process())
+    revision, _ = _Handler(jobs).start_regeneration(
+        record, project, ["beat_image_002"], "make the subject face left",
+        regeneration_mode="isolated",
+    )
+
+    assert (project / "assets/raw_beats/beat_001.png").is_file()
+    assert not (project / "assets/raw_beats/beat_002.png").exists()
+    assert (project / "assets/raw_beats/beat_003.png").is_file()
+    assert revision["regeneration_mode"] == "isolated"
+    assert "beat_image_003" in revision["reused_nodes"]
+    command = json.loads((jobs / f"{record['job_id']}.json").read_text())["command"]
+    assert "--preserve-downstream-beats" in command
+
+
 def test_regeneration_rolls_back_artifacts_and_state_when_spawn_fails(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

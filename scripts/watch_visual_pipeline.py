@@ -44,11 +44,20 @@ def main() -> None:
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
     state_path = args.project / "visual_pipeline" / "RUNTIME_STATE.json"
     initial = read_state(state_path)
-    notifier = PipelineNotifier(str(args.project.name.split("_", 1)[0]), str(initial.get("topic", "Visual pipeline")))
+    notifier = PipelineNotifier(
+        str(args.project.name.split("_", 1)[0]),
+        str(initial.get("topic", "Visual pipeline")),
+        state_path=args.project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+    )
     beats = initial.get("beats", {})
     total = len(beats)
     generating = next((int(key) for key, value in beats.items() if value.get("status") == "GENERATING"), None)
-    notifier.monitoring_started(done_count(initial), total, generating)
+    monitor_message = notifier.stage_started("Visual monitoring", key="visual_monitor")
+    notifier.stage_update(
+        monitor_message,
+        "Visual monitoring",
+        ["👀 Live watcher attached", f"📍 {done_count(initial)}/{total} images accepted"],
+    )
     seen_stages = {key for key, value in initial.get("stages", {}).items() if value.get("status") == "DONE"}
     seen_done = {key for key, value in beats.items() if value.get("status") == "DONE"}
     generating_started = {
@@ -68,26 +77,35 @@ def main() -> None:
                 generating_started[key] = timestamp_seconds(state.get("updated_at")) or time.time()
         for key, value in state.get("stages", {}).items():
             if value.get("status") == "DONE" and key not in seen_stages:
-                notifier.stage_complete(key, 0, artifact="saved artifact")
                 seen_stages.add(key)
         for key, value in sorted(beats.items()):
             if value.get("status") == "DONE" and key not in seen_done:
                 finished = timestamp_seconds(value.get("completed_at")) or time.time()
                 elapsed = max(0, finished - generating_started.get(key, finished))
-                notifier.image_complete(int(key), total, elapsed)
+                notifier.image_durations.append(elapsed)
+                notifier.stage_update(
+                    monitor_message,
+                    "Visual monitoring",
+                    ["🖼️ Image accepted", f"📍 {len(seen_done & set(beats)) + 1}/{total} images observed", f"⏱ Latest: {elapsed:.0f}s"],
+                )
                 seen_done.add(key)
             if value.get("status") in {"FAILED", "INVALID"}:
                 marker = f"{key}:{value.get('status')}:{value.get('last_error', '')}"
                 if marker not in seen_done:
-                    notifier.warning(f"Beat {key} needs attention", str(value.get("last_error") or value.get("status")))
+                    notifier.stage_update(
+                        monitor_message,
+                        "Visual monitoring",
+                        ["⚠️ Image needs attention", f"📍 Beat {key}", str(value.get("last_error") or value.get("status"))[:500]],
+                    )
                     seen_done.add(marker)
         if total and len(seen_done & set(beats)) >= total:
             observed_count = len(notifier.image_durations)
             observed_total = sum(notifier.image_durations)
-            notifier.send(
-                "Live monitoring complete",
+            notifier.stage_update(
+                monitor_message,
+                "Visual monitoring",
                 [
-                    "👀 The active runner finished",
+                    "✅ Monitoring complete",
                     f"📍 Accepted while monitored: {observed_count}/{total} images",
                     f"⏱ Observed image total: {observed_total:.0f} seconds",
                 ],

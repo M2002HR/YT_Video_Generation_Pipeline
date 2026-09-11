@@ -79,12 +79,12 @@ def run_owned_stage(command: list[str], notifier, stage: str, artifact: Path | N
     from pipeline_stages import stage_title
 
     title = stage_title(stage)
-    message = notifier.stage_started(title)
+    message = notifier.stage_started(title, key=stage)
     started = time.perf_counter()
     try:
         run(command)
     except subprocess.CalledProcessError as exc:
-        notifier.failure(title, time.perf_counter() - started, f"{stage} exited with code {exc.returncode}")
+        notifier.stage_failure(message, title, time.perf_counter() - started, f"{stage} exited with code {exc.returncode}")
         raise
     lines = ["✅ Stage complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}"]
     if artifact is not None and artifact.exists():
@@ -149,6 +149,7 @@ def qh_overrides(creative_brief: Path) -> list[str]:
     advanced = brief.get("_qh") or {}
     mapping = {
         "gemini_image_model": "--gemini-model",
+        "image_qc_correction_policy": "--image-qc-correction-policy",
         "flow_video_model": "--flow-model",
         "flow_resolution": "--flow-resolution",
         "opening_a_source_seconds": "--opening-a-seconds",
@@ -237,6 +238,7 @@ def main() -> int:
     parser.add_argument("--voice-profile", type=Path, required=True)
     parser.add_argument("--aspect-ratio", default="9:16")
     parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs to revise, including their continuity downstream.")
+    parser.add_argument("--preserve-downstream-beats", action="store_true", help="Regenerate only the explicitly selected beat images; keep later continuity images unchanged.")
     parser.add_argument("--beat-feedback-json", type=Path, help="Operator feedback JSON passed into revised beat prompts.")
     parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
@@ -261,7 +263,22 @@ def main() -> int:
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     python = sys.executable
     from pipeline_notifier import PipelineNotifier
-    notifier = PipelineNotifier(args.video_id, args.topic)
+    from pipeline_stages import stage_title
+    notifier = PipelineNotifier(
+        args.video_id, args.topic,
+        state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+    )
+    if args.regenerate_beats:
+        notifier.send(
+            "Revision started",
+            [
+                f"🛠 Beat image(s): {args.regenerate_beats}",
+                f"🧭 Policy: {'isolated — other beat images preserved' if args.preserve_downstream_beats else 'continuity cascade'}",
+                "↻ Valid unaffected stages will be reused",
+            ],
+        )
+    else:
+        notifier.send("Pipeline started", ["🚀 Q Station workflow active", f"🎯 {args.topic}"])
 
     from flow_gate import blocked_only_on_flow, clips_ready, missing_clips
 
@@ -283,6 +300,7 @@ def main() -> int:
             ]
             + qh_overrides(args.creative_brief)
             + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
+            + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
             + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
         )
     except subprocess.CalledProcessError:
@@ -312,6 +330,7 @@ def main() -> int:
             raise
         if not file_is_usable(narration):
             mark_wrapper_stage(project, "elevenlabs_voiceover", "FAILED_VALIDATION", message="Narration command returned without a usable artifact.")
+            notifier.failure(stage_title("elevenlabs_voiceover"), 0, "Narration command returned without a usable artifact.")
             raise RuntimeError(f"Narration is missing or empty: {narration}")
         mark_wrapper_stage(project, "elevenlabs_voiceover", "DONE", artifact=str(narration.relative_to(project)))
 
@@ -332,6 +351,7 @@ def main() -> int:
             raise
         if not music_is_usable(music_dir):
             mark_wrapper_stage(project, "background_music", "FAILED_VALIDATION", message="Music command returned without a usable audio file.")
+            notifier.failure(stage_title("background_music"), 0, "Music command returned without a usable audio file.")
             raise RuntimeError(f"Background music is missing or unusable: {music_dir}")
         mark_wrapper_stage(project, "background_music", "DONE")
 
@@ -350,6 +370,7 @@ def main() -> int:
             raise
         if not word_timing_is_usable(project):
             mark_wrapper_stage(project, "ajil_alignment", "FAILED_VALIDATION", message="Alignment produced no accepted word-level timestamps.")
+            notifier.failure(stage_title("ajil_alignment"), 0, "Alignment produced no accepted word-level timestamps plus OPENING_TIMING.json.")
             print(
                 "FAILED_VALIDATION: alignment did not produce word-level timestamps plus "
                 "OPENING_TIMING.json, so the opening clips cannot be trimmed truthfully.",
@@ -370,6 +391,14 @@ def main() -> int:
             flush=True,
         )
         print("FLOW_CLIPS_PENDING", flush=True)
+        notifier.send(
+            "Waiting for Flow",
+            [
+                "⏸️ Render is parked; completed work remains reusable",
+                f"🎬 Missing: {absent}",
+                "▶ Resume after Flow produces the required clips",
+            ],
+        )
         return 4
 
     # 6. Cut the Flow sources to the measured narration boundaries (§67).
@@ -420,6 +449,10 @@ def main() -> int:
         completion.append("--commit")
     run(completion)
 
+    notifier.send(
+        "Pipeline complete",
+        ["✅ All enabled stages passed", "📦 Final Telegram delivery completed" if args.publish else "📦 Delivery was not requested"],
+    )
     print("FULL QH PIPELINE: PASS", flush=True)
     return 0
 

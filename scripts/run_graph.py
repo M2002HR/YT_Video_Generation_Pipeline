@@ -22,6 +22,7 @@ class NodeSpec:
     optional_artifacts: tuple[str, ...] = ()
     description: str = ""
     phase: str = "pipeline"
+    regeneratable: bool = True
 
 
 # Adding a regular stage should require one entry here, not coordinated edits in the API,
@@ -33,9 +34,11 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "episode_director": NodeSpec("Episode direction", "data", ("character_resolution",), ("creative/EPISODE_PLAN.json",), phase="creative"),
     "world_style_director": NodeSpec("World style", "data", ("retention_edit",), ("creative/WORLD_STYLE_PLAN.json",), phase="creative"),
     "world_style_anchor": NodeSpec("Style anchor", "image", ("world_style_director",), ("references/world_style_anchor.png",), ("pipeline/provider_receipts/gemini_world_style_anchor.json",), phase="visual"),
-    "visual_plan": NodeSpec("Visual plan", "data", ("retention_edit", "episode_director", "world_style_director"), ("creative/VISUAL_PLAN.json", "VISUAL_BEATS.md"), phase="creative"),
+    "episode_history": NodeSpec("Episode history", "data", ("episode_director", "world_style_director"), description="Records anti-repetition traits for future episodes.", phase="creative", regeneratable=False),
+    "visual_plan": NodeSpec("Visual plan", "data", ("retention_edit", "episode_director", "world_style_director", "character_resolution"), ("creative/VISUAL_PLAN.json", "VISUAL_BEATS.md"), phase="creative"),
     "world_keyframe_prompt": NodeSpec("Keyframe prompt", "text", ("retention_edit", "world_style_director"), ("references/world_keyframe_prompt.txt",), phase="visual"),
     "world_keyframe": NodeSpec("World keyframe", "image", ("world_keyframe_prompt", "world_style_anchor"), ("references/world_keyframe.png",), ("pipeline/provider_receipts/gemini_world_keyframe.json",), phase="visual"),
+    "book_design_sheet": NodeSpec("Canonical book design", "image", description="Shared project-level book identity; inspected here but not owned by this episode.", phase="visual", regeneratable=False),
     "book_cover_design": NodeSpec("Book-cover direction", "text", artifacts=("creative/BOOK_COVER_DESIGN.txt",), description="Topic-specific motifs; independent of the narration draft.", phase="visual"),
     "book_cover": NodeSpec("Book cover", "image", ("book_cover_design", "world_style_anchor"), ("references/book_cover_frame.png",), ("pipeline/provider_receipts/gemini_book_cover.json",), phase="visual"),
     "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "character_resolution", "retention_edit"), ("references/flow_prompt_opening_a.txt",), phase="opening"),
@@ -44,15 +47,16 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "flow_clip_b": NodeSpec("Opening B", "video", ("flow_prompt_b", "book_cover", "world_keyframe"), ("assets/opening/book_transition_source.mp4",), ("pipeline/provider_receipts/flow_opening_b.json",), phase="opening"),
     "elevenlabs_voiceover": NodeSpec("Narration", "audio", ("retention_edit",), ("assets/audio/narration.mp3",), ("voiceover/ELEVENLABS_RUNTIME_STATE.json",), phase="audio"),
     "background_music": NodeSpec("Music", "audio", ("elevenlabs_voiceover",), ("music/MUSIC_SELECTION.json",), ("music/MUSIC_PLAN.json",), "Selected music and every segment used by the mix.", "audio"),
-    "ajil_alignment": NodeSpec("Voice alignment", "data", ("elevenlabs_voiceover",), ("timing/BEAT_TIMINGS.json", "timing/OPENING_TIMING.json"), ("timing/WORD_TIMINGS.json", "timing/BEAT_TIMINGS.md"), phase="audio"),
+    "ajil_alignment": NodeSpec("Voice alignment", "data", ("elevenlabs_voiceover", "retention_edit", "visual_plan"), ("timing/BEAT_TIMINGS.json", "timing/OPENING_TIMING.json"), ("timing/WORD_TIMINGS.json", "timing/BEAT_TIMINGS.md"), phase="audio"),
     "opening_trim": NodeSpec("Opening trims", "video", ("flow_clip_a", "flow_clip_b", "ajil_alignment"), ("assets/opening/question_spark_trimmed.mp4", "assets/opening/book_transition_trimmed.mp4"), ("timing/OPENING_TRIM_REPORT.json",), phase="opening"),
-    "transition_direction": NodeSpec("Transition direction", "data", ("visual_plan",), ("creative/TRANSITION_PLAN.json",), phase="visual"),
+    "body_images": NodeSpec("Body images", "data", ("visual_plan",), description="Expandable milestone for the complete sequential beat-image chain.", phase="visual", regeneratable=False),
+    "transition_direction": NodeSpec("Transition direction", "data", ("visual_plan", "body_images"), ("creative/TRANSITION_PLAN.json",), phase="edit"),
     "build_timeline": NodeSpec("Timeline", "data", ("opening_trim", "ajil_alignment", "transition_direction", "render_profile"), ("timeline/TIMELINE.json",), ("timeline/SUBTITLES.ass",), phase="edit"),
     "render_profile": NodeSpec("Render profile", "data", (), ("render/RENDER_PROFILE.json",), phase="edit"),
     "audio_mix_profile": NodeSpec("Audio mix", "data", ("background_music", "elevenlabs_voiceover"), ("audio_mix/AUDIO_MIX_PROFILE.json",), phase="audio"),
     "motion_director": NodeSpec("Motion direction", "data", ("build_timeline",), ("motion/MOTION_PLAN.json",), ("motion/MOTION_QC.json", "motion/COMPILED_MOTION_PLAN.json", "motion/MOTION_DIRECTION.json"), phase="edit"),
     "sfx_plan": NodeSpec("SFX plan", "data", ("build_timeline",), ("sfx/SFX_PLAN.json",), ("sfx/SFX_PLAN_RECEIPT.json",), phase="audio"),
-    "render_baseline": NodeSpec("Baseline render", "video", ("build_timeline", "motion_director", "render_profile", "audio_mix_profile"), ("assets/renders/final.mp4",), ("render/RENDER_STATS.json",), phase="render"),
+    "render_baseline": NodeSpec("Baseline render", "video", ("build_timeline", "motion_director", "render_profile"), ("assets/renders/final.mp4",), ("render/RENDER_STATS.json",), phase="render"),
     "qc_baseline": NodeSpec("Baseline QC", "data", ("render_baseline",), ("render/QC_REPORT.json",), phase="render"),
     "sfx_acquire": NodeSpec("SFX selection", "audio", ("sfx_plan", "qc_baseline"), ("sfx/SFX_SELECTION.json",), phase="audio"),
     "polish_audio": NodeSpec("Polished render", "video", ("render_baseline", "sfx_acquire", "audio_mix_profile"), ("assets/renders/polished.mp4",), phase="render"),
@@ -69,14 +73,14 @@ GENERIC_NODE_SPECS: dict[str, NodeSpec] = {
     "visual_plan": NodeSpec("Visual beats", "text", ("retention_edit",), ("VISUAL_BEATS.md",), phase="creative"),
     "visual_qc": NodeSpec("Visual QC", "data", (), ("visual_pipeline/VISUAL_QC_REPORT.json",), ("visual_pipeline/RUN_SUMMARY.md", "visual_pipeline/EXECUTION_TIMINGS.json"), phase="visual"),
     "elevenlabs_voiceover": NodeSpec("Narration", "audio", ("retention_edit",), ("assets/audio/narration.mp3",), ("voiceover/ELEVENLABS_RUNTIME_STATE.json",), phase="audio"),
-    "ajil_alignment": NodeSpec("Voice alignment", "data", ("elevenlabs_voiceover",), ("timing/BEAT_TIMINGS.json",), ("timing/BEAT_TIMINGS.md", "timing/WORD_TIMINGS.json"), phase="audio"),
+    "ajil_alignment": NodeSpec("Voice alignment", "data", ("elevenlabs_voiceover", "retention_edit", "visual_plan"), ("timing/BEAT_TIMINGS.json",), ("timing/BEAT_TIMINGS.md", "timing/WORD_TIMINGS.json"), phase="audio"),
     "background_music": NodeSpec("Music", "audio", ("elevenlabs_voiceover",), ("music/MUSIC_SELECTION.json",), ("music/MUSIC_PLAN.json",), phase="audio"),
     "audio_mix_profile": NodeSpec("Audio mix", "data", ("background_music", "elevenlabs_voiceover"), ("audio_mix/AUDIO_MIX_PROFILE.json",), phase="audio"),
     "render_profile": NodeSpec("Render profile", "data", artifacts=("render/RENDER_PROFILE.json",), phase="edit"),
     "build_timeline": NodeSpec("Timeline", "data", ("visual_qc", "ajil_alignment", "render_profile"), ("timeline/TIMELINE.json",), ("timeline/SUBTITLES.ass",), phase="edit"),
     "motion_director": NodeSpec("Motion direction", "data", ("build_timeline",), ("motion/MOTION_PLAN.json",), ("motion/MOTION_QC.json", "motion/COMPILED_MOTION_PLAN.json"), phase="edit"),
     "sfx_plan": NodeSpec("SFX plan", "data", ("build_timeline",), ("sfx/SFX_PLAN.json",), phase="audio"),
-    "render_baseline": NodeSpec("Baseline render", "video", ("build_timeline", "motion_director", "render_profile", "audio_mix_profile"), ("assets/renders/final.mp4",), ("render/RENDER_STATS.json",), phase="render"),
+    "render_baseline": NodeSpec("Baseline render", "video", ("build_timeline", "motion_director", "render_profile"), ("assets/renders/final.mp4",), ("render/RENDER_STATS.json",), phase="render"),
     "qc_baseline": NodeSpec("Baseline QC", "data", ("render_baseline",), ("render/QC_REPORT.json",), phase="render"),
     "sfx_acquire": NodeSpec("SFX selection", "audio", ("sfx_plan", "qc_baseline"), ("sfx/SFX_SELECTION.json",), phase="audio"),
     "polish_audio": NodeSpec("Polished render", "video", ("render_baseline", "sfx_acquire", "audio_mix_profile"), ("assets/renders/polished.mp4",), phase="render"),
@@ -87,6 +91,30 @@ GENERIC_NODE_SPECS: dict[str, NodeSpec] = {
 }
 
 MEDIA_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".mp4", ".mov", ".webm", ".mp3", ".wav", ".m4a", ".ogg", ".flac"}
+
+
+def _edge(source: str, target: str) -> dict[str, str]:
+    """Describe why an edge exists so scheduling and regeneration can treat it safely."""
+    if source.startswith("beat_image_") and target.startswith("beat_image_"):
+        kind = "continuity"
+    elif source == "qc_baseline" and target == "sfx_acquire":
+        kind = "gate"
+    else:
+        kind = "data"
+    return {"source": source, "target": target, "kind": kind}
+
+
+def _regeneration_metadata(node_id: str, regeneratable: bool = True) -> dict[str, Any]:
+    if not regeneratable:
+        return {"policy": "managed", "modes": [], "feedback": False}
+    if node_id.startswith("beat_image_"):
+        return {
+            "policy": "continuity_cascade",
+            "modes": ["cascade", "isolated"],
+            "default_mode": "cascade",
+            "feedback": True,
+        }
+    return {"policy": "cascade", "modes": ["cascade"], "default_mode": "cascade", "feedback": False}
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -249,8 +277,9 @@ def _generic_graph_for(
         status = str(entry.get("status") or ("DONE" if required_ok else "PENDING"))
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
-        nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": True})
-    edges = [{"source": dependency, "target": node_id} for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
+        regeneratable = spec.regeneratable if spec is not None else True
+        nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": regeneratable, "regeneration": _regeneration_metadata(node_id, regeneratable)})
+    edges = [_edge(dependency, node_id) for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
     if not include_disabled:
         disabled = disabled_nodes(project, settings)
         nodes = [node for node in nodes if node["id"] not in disabled]
@@ -306,7 +335,7 @@ def graph_for(
         beats = tuple(f"beat_image_{number:03d}" for number in range(1, count + 1))
         for index, node_id in enumerate(beats):
             dependencies[node_id] = (beats[index - 1],) if index else ("visual_plan", "world_keyframe", "world_style_anchor")
-        dependencies["transition_direction"] = ("visual_plan", *beats)
+        dependencies["body_images"] = beats
     nodes: list[dict[str, Any]] = []
     for node_id in dependencies:
         if node_id.startswith("beat_image_"):
@@ -335,9 +364,10 @@ def graph_for(
                     status = validation["status"].upper()
             elif node_id == "world_style_anchor" and entry.get("reuse_of"):
                 validation = {"status": "catalog", "reason": "Reused catalog style anchor"}
-        nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": True, "validation": validation})
+        regeneratable = spec.regeneratable if spec is not None else True
+        nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": regeneratable, "regeneration": _regeneration_metadata(node_id, regeneratable), "validation": validation})
 
-    edges = [{"source": dependency, "target": node_id} for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
+    edges = [_edge(dependency, node_id) for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
     if not include_disabled:
         disabled = disabled_nodes(project, settings)
         nodes = [node for node in nodes if node["id"] not in disabled]
@@ -350,7 +380,9 @@ def descendants(graph: dict[str, Any], root: str) -> set[str]:
     return affected_nodes(graph, [root])
 
 
-def affected_nodes(graph: dict[str, Any], roots: Iterable[str]) -> set[str]:
+def affected_nodes(
+    graph: dict[str, Any], roots: Iterable[str], *, regeneration_mode: str = "cascade"
+) -> set[str]:
     node_ids = {str(node.get("id")) for node in graph.get("nodes") or []}
     requested = {str(root) for root in roots}
     unknown = requested - node_ids
@@ -358,6 +390,8 @@ def affected_nodes(graph: dict[str, Any], roots: Iterable[str]) -> set[str]:
         raise ValueError(f"Unknown graph node(s): {', '.join(sorted(unknown))}")
     forward: dict[str, set[str]] = {}
     for edge in graph.get("edges") or []:
+        if regeneration_mode == "isolated" and edge.get("kind") == "continuity":
+            continue
         forward.setdefault(str(edge["source"]), set()).add(str(edge["target"]))
     found, queue = set(requested), list(requested)
     while queue:
@@ -376,10 +410,24 @@ def regeneration_plan(
     include_disabled: bool = False,
     settings: dict[str, Any] | None = None,
     skip_disabled_descendants: bool = False,
+    regeneration_mode: str = "cascade",
 ) -> dict[str, Any]:
+    if regeneration_mode not in {"cascade", "isolated"}:
+        raise ValueError("Regeneration mode must be cascade or isolated.")
     graph = graph_for(project, include_disabled=include_disabled, settings=settings)
     root_list = list(dict.fromkeys(str(root) for root in roots))
-    affected = affected_nodes(graph, root_list)
+    node_map = {str(node.get("id")): node for node in graph.get("nodes") or []}
+    unknown = set(root_list) - set(node_map)
+    if unknown:
+        raise ValueError(f"Unknown graph node(s): {', '.join(sorted(unknown))}")
+    managed = [node_id for node_id in root_list if node_map[node_id].get("regeneratable") is False]
+    if managed:
+        raise ValueError("These stages are managed automatically and cannot be regenerated directly: " + ", ".join(managed))
+    if regeneration_mode == "isolated" and (
+        len(root_list) != 1 or not root_list[0].startswith("beat_image_")
+    ):
+        raise ValueError("Isolated regeneration is available for one beat image at a time.")
+    affected = affected_nodes(graph, root_list, regeneration_mode=regeneration_mode)
     skipped: set[str] = set()
     if skip_disabled_descendants:
         skipped = (affected & disabled_nodes(project, settings)) - set(root_list)
@@ -387,6 +435,7 @@ def regeneration_plan(
     ordered = [node["id"] for node in graph["nodes"]]
     return {
         "roots": root_list,
+        "regeneration_mode": regeneration_mode,
         "affected_nodes": [node_id for node_id in ordered if node_id in affected],
         "reused_nodes": [node_id for node_id in ordered if node_id not in affected and node_id not in skipped],
         "skipped_nodes": [node_id for node_id in ordered if node_id in skipped],

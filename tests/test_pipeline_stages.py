@@ -9,8 +9,9 @@ SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from pipeline_stages import PIPELINE_STAGE_SEQUENCE, stage_title  # noqa: E402
+from pipeline_stages import PIPELINE_STAGE_SEQUENCE, STAGE_PHASES, stage_title  # noqa: E402
 from run_completion_pipeline import completion_stage_sequence  # noqa: E402
+from run_graph import NODE_SPECS  # noqa: E402
 
 
 def test_independent_post_visual_work_has_its_own_visible_stage() -> None:
@@ -21,13 +22,15 @@ def test_independent_post_visual_work_has_its_own_visible_stage() -> None:
     }
     assert expected <= set(PIPELINE_STAGE_SEQUENCE)
     assert len(PIPELINE_STAGE_SEQUENCE) == len(set(PIPELINE_STAGE_SEQUENCE))
+    assert set(PIPELINE_STAGE_SEQUENCE) == set(NODE_SPECS), "stage titles and the panel DAG must not drift"
+    assert set(STAGE_PHASES) == set(PIPELINE_STAGE_SEQUENCE)
 
 
-def test_titles_use_the_global_count_for_visual_and_render_stages() -> None:
-    total = len(PIPELINE_STAGE_SEQUENCE)
-    assert stage_title("body_images") == f"step 15/{total} · Body Images"
-    assert stage_title("transition_direction") == f"step 16/{total} · Transition Direction"
-    assert stage_title("render_baseline") == f"step 26/{total} · Render Baseline"
+def test_titles_do_not_claim_a_false_global_position() -> None:
+    assert stage_title("character_resolution") == "Creative · Character Resolution"
+    assert stage_title("body_images") == "Visual · Body Images"
+    assert stage_title("transition_direction") == "Edit · Transition Direction"
+    assert stage_title("render_baseline") == "Render · Render Baseline"
 
 
 def test_completion_stage_sequence_gates_motion_without_changing_legacy_workflow() -> None:

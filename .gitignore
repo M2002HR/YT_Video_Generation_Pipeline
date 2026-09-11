@@ -56,6 +56,8 @@ videos/**/assets/sfx/*
 # Persistent Freesound cache/index is runtime data, never repository media.
 runtime/sfx_library/
 runtime/freesound_music_library/
+videos/**/pipeline/TELEGRAM_NOTIFICATION_STATE.json
+videos/**/pipeline/TELEGRAM_NOTIFICATION_STATE.json.lock
 
 # Per-video execution metadata is durable engineering evidence and must stay
 # eligible for Git even when generated media itself is ignored.

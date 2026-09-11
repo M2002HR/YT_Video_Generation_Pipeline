@@ -58,6 +58,9 @@ QH_ROOTS = {
     "world_style_id": ("world_style_director",),
     "world_style_hint": ("world_style_director",),
     "gemini_image_model": ("world_style_anchor",),
+    # Affects only future image attempts; saving it must not spend credits rebuilding
+    # already accepted artifacts.
+    "image_qc_correction_policy": (),
     "flow_video_model": ("flow_clip_a", "flow_clip_b"),
     "flow_resolution": ("flow_clip_a", "flow_clip_b"),
     "opening_a_seconds": ("flow_clip_a",),
@@ -307,6 +310,8 @@ def validate_config_values(values: dict) -> dict:
         normalized[name] = value
     if float(normalized["min_duration_seconds"]) > float(normalized["max_duration_seconds"]):
         raise ValueError("Minimum duration cannot be greater than maximum duration.")
+    if resolve_project_id(normalized["content_project"]) == "q_station" and normalized["aspect_ratio"] != "9:16":
+        raise ValueError("Q Station currently requires the 9:16 book-world frame format.")
     if not normalized["telegram_low_size"] and not normalized["telegram_original"]:
         raise ValueError("Choose at least one Telegram delivery output.")
     motion_primitives = (
@@ -1043,6 +1048,8 @@ def pipeline_command(record: dict) -> list[str]:
         revision = record.get("pending_revision") or {}
         if revision.get("regenerate_beats"):
             command += ["--regenerate-beats", ",".join(str(x) for x in revision["regenerate_beats"])]
+        if revision.get("regeneration_mode") == "isolated":
+            command.append("--preserve-downstream-beats")
         if revision.get("feedback_path"):
             command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
         return command
@@ -1063,6 +1070,8 @@ def pipeline_command(record: dict) -> list[str]:
     revision = record.get("pending_revision") or {}
     if revision.get("regenerate_beats"):
         command += ["--regenerate-beats", ",".join(str(x) for x in revision["regenerate_beats"])]
+    if revision.get("regeneration_mode") == "isolated":
+        command.append("--preserve-downstream-beats")
     if revision.get("feedback_path"):
         command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
     if revision.get("kind") == "config":
@@ -1762,27 +1771,39 @@ class Handler(BaseHTTPRequestHandler):
             payload = self.read_json_payload()
             job_id = str(payload.get("job_id") or "")
             roots = payload.get("node_ids") or [payload.get("node_id")]
+            regeneration_mode = str(payload.get("regeneration_mode") or "cascade")
             if not JOB_ID_RE.fullmatch(job_id) or not isinstance(roots, list) or not all(isinstance(item, str) and item for item in roots):
                 raise ValueError("Choose at least one valid node.")
             resolved = self.project_for_job(job_id)
             if not resolved:
                 self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
             record, project = resolved
-            plan = regeneration_plan(project, roots)
+            plan = regeneration_plan(project, roots, regeneration_mode=regeneration_mode)
             graph = graph_for(project)
             summary = {node["id"]: {key: node.get(key) for key in ("title", "kind", "phase", "status")} for node in graph["nodes"]}
             self.send_json(HTTPStatus.OK, {**plan, "nodes": summary, "can_start": not record.get("external") and active_job(self.jobs_dir) is None, "read_only": bool(record.get("external")), "run_status": record.get("status")})
         except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Invalid regeneration request."})
 
-    def start_regeneration(self, record: dict, project: Path, roots: list[str], feedback: str = "", kind: str = "node") -> tuple[dict, subprocess.Popen]:
+    def start_regeneration(
+        self,
+        record: dict,
+        project: Path,
+        roots: list[str],
+        feedback: str = "",
+        kind: str = "node",
+        regeneration_mode: str = "cascade",
+    ) -> tuple[dict, subprocess.Popen]:
         """Archive an exact DAG branch and start it, rolling back if spawn fails."""
+        if regeneration_mode == "isolated" and not feedback.strip():
+            raise ValueError("Describe the requested change for an isolated beat-image regeneration.")
         plan = regeneration_plan(
             project,
             roots,
             include_disabled=kind == "config",
             settings=record if kind == "config" else None,
             skip_disabled_descendants=kind == "config",
+            regeneration_mode=regeneration_mode,
         )
         revision_id = str(uuid.uuid4())
         folder = project / "pipeline" / "revisions" / revision_id
@@ -1825,6 +1846,7 @@ class Handler(BaseHTTPRequestHandler):
                 "created_at": utcnow(), "roots": roots, "affected_nodes": plan["affected_nodes"],
                 "reused_nodes": plan["reused_nodes"], "skipped_nodes": plan.get("skipped_nodes", []), "archived_artifacts": archived,
                 "regenerate_beats": regenerate_beats, "feedback": feedback, "status": "QUEUED",
+                "regeneration_mode": regeneration_mode,
             }
             if beat_feedback:
                 revision["feedback_path"] = str(feedback_path.relative_to(ROOT))
@@ -1865,8 +1887,11 @@ class Handler(BaseHTTPRequestHandler):
             job_id = str(payload.get("job_id") or "")
             roots = payload.get("node_ids") or [payload.get("node_id")]
             feedback = str(payload.get("feedback") or "").strip()
+            regeneration_mode = str(payload.get("regeneration_mode") or "cascade")
             if len(feedback) > 4_000 or not JOB_ID_RE.fullmatch(job_id) or not isinstance(roots, list) or not all(isinstance(item, str) and item for item in roots):
                 raise ValueError("Choose valid nodes and keep feedback below 4,000 characters.")
+            if regeneration_mode == "isolated" and not feedback:
+                raise ValueError("Describe the requested image change before isolated regeneration.")
             resolved = self.project_for_job(job_id)
             if not resolved:
                 self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
@@ -1875,7 +1900,9 @@ class Handler(BaseHTTPRequestHandler):
             with LAUNCH_LOCK:
                 if active_job(self.jobs_dir) is not None:
                     self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."}); return
-                revision, _ = self.start_regeneration(*resolved, roots, feedback)
+                revision, _ = self.start_regeneration(
+                    *resolved, roots, feedback, regeneration_mode=regeneration_mode
+                )
             self.send_json(HTTPStatus.ACCEPTED, {"revision": revision, "status": "RUNNING"})
         except (ValueError, KeyError, TypeError, OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Invalid regeneration request."})
@@ -2064,6 +2091,9 @@ class Handler(BaseHTTPRequestHandler):
                 known_qh.update(("world_style_policy", "world_style_id", "world_style_hint"))
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("gemini_image_model",)): roots.add("world_style_anchor")
                 known_qh.add("gemini_image_model")
+                # Policy changes apply to subsequent image attempts and isolated
+                # regenerations; they do not invalidate already accepted pixels.
+                known_qh.add("image_qc_correction_policy")
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds")): roots.update(("flow_clip_a", "flow_clip_b"))
                 known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds"))
                 # Trim-only rule: changing the 10% sync tolerance never invalidates Flow
@@ -2758,6 +2788,7 @@ class Handler(BaseHTTPRequestHandler):
             if world_style_id and world_style_id not in catalogued_style_ids(content_project):
                 raise ValueError(f"Unknown world style: {world_style_id}")
             gemini_image_model = values.get("gemini_image_model", ["nano_banana_2"])[0].strip() or "nano_banana_2"
+            image_qc_correction_policy = values.get("image_qc_correction_policy", ["0"])[0].strip() or "0"
             flow_video_model = values.get("flow_video_model", ["gemini_omni_1_1_flash"])[0].strip() or "gemini_omni_1_1_flash"
             flow_resolution = values.get("flow_resolution", ["720p"])[0].strip() or "720p"
             opening_a_seconds = int(values.get("opening_a_seconds", ["6"])[0])
@@ -2782,6 +2813,8 @@ class Handler(BaseHTTPRequestHandler):
                     gemini_image_model = normalize_gemini_model(gemini_image_model)
                 except Exception:
                     raise ValueError("Invalid gemini_image_model")
+            if image_qc_correction_policy not in {"0", "1", "2", "strict"}:
+                raise ValueError("Invalid image_qc_correction_policy")
             if flow_video_model not in {"gemini_omni_1_1_flash", "veo_3_1_quality", "veo_3_1_fast", "veo_3_1_lite"}:
                 try:
                     flow_video_model = normalize_flow_model(flow_video_model)
@@ -2876,6 +2909,7 @@ class Handler(BaseHTTPRequestHandler):
                 "min_duration_seconds": duration_min,
                 "max_duration_seconds": duration_max,
                 "gemini_image_model": gemini_image_model,
+                "image_qc_correction_policy": image_qc_correction_policy,
                 "flow_video_model": flow_video_model,
                 "flow_resolution": flow_resolution,
                 "opening_a_source_seconds": opening_a_seconds,

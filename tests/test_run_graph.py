@@ -108,8 +108,40 @@ def test_beat_regeneration_cascades_continuity_but_reuses_independent_audio(tmp_
 def test_music_regeneration_does_not_invalidate_timeline_or_motion(tmp_path: Path) -> None:
     project = project_with_beats(tmp_path)
     affected = set(regeneration_plan(project, ["background_music"])["affected_nodes"])
-    assert "audio_mix_profile" in affected and "render_baseline" in affected
+    assert "audio_mix_profile" in affected and "polish_audio" in affected
+    assert "render_baseline" not in affected
     assert "build_timeline" not in affected and "motion_director" not in affected
+
+
+def test_generic_music_regeneration_also_waits_until_audio_polish(tmp_path: Path) -> None:
+    project = generic_project_with_beats(tmp_path)
+    affected = set(regeneration_plan(project, ["background_music"])["affected_nodes"])
+    assert {"audio_mix_profile", "polish_audio", "qc_polished"} <= affected
+    assert {"ajil_alignment", "build_timeline", "render_baseline"}.isdisjoint(affected)
+
+
+def test_isolated_beat_regeneration_preserves_other_images_but_rebuilds_edits(tmp_path: Path) -> None:
+    project = project_with_beats(tmp_path)
+    plan = regeneration_plan(
+        project, ["beat_image_002"], regeneration_mode="isolated"
+    )
+    affected = set(plan["affected_nodes"])
+    assert "beat_image_002" in affected
+    assert {"beat_image_001", "beat_image_003", "beat_image_004"}.isdisjoint(affected)
+    assert {"body_images", "transition_direction", "build_timeline", "render_baseline"} <= affected
+    assert plan["regeneration_mode"] == "isolated"
+
+
+def test_isolated_mode_accepts_exactly_one_beat_image(tmp_path: Path) -> None:
+    project = project_with_beats(tmp_path)
+    with pytest.raises(ValueError, match="one beat image"):
+        regeneration_plan(project, ["visual_plan"], regeneration_mode="isolated")
+    with pytest.raises(ValueError, match="one beat image"):
+        regeneration_plan(
+            project,
+            ["beat_image_001", "beat_image_002"],
+            regeneration_mode="isolated",
+        )
 
 
 def test_episode_direction_regenerates_its_world_style_and_visual_descendants(tmp_path: Path) -> None:

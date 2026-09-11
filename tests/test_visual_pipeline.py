@@ -82,6 +82,34 @@ def test_existing_valid_beat_is_skipped(tmp_path: Path) -> None:
     assert pipeline.state["beats"]["001"]["attempts"] == 0
 
 
+def test_isolated_mode_never_replaces_unselected_generic_beat_images(tmp_path: Path) -> None:
+    pipeline = make_pipeline(tmp_path)
+    pipeline.preserve_downstream_beats = True
+    pipeline.regenerate_beats = {99}
+    pipeline.project.mkdir(parents=True)
+    pipeline.state = {
+        "beats": {
+            "001": {"status": "PROMPT_READY", "attempts": 0},
+            "002": {"status": "PROMPT_READY", "attempts": 0},
+        },
+        "stages": {},
+    }
+    output = pipeline.project / "assets" / "raw_beats"
+    output.mkdir(parents=True)
+    first = output / "beat_001.png"
+    second = output / "beat_002.png"
+    save_nontrivial_png(first, 1600, 900)
+    second.write_bytes(first.read_bytes())
+    before = {path.name: module.sha256(path) for path in (first, second)}
+
+    pipeline.generate_images(
+        [{"id": 1}, {"id": 2}], tmp_path / "unused-style.png", tmp_path / "unused-character.png"
+    )
+
+    assert {path.name: module.sha256(path) for path in (first, second)} == before
+    assert pipeline.state["beats"]["002"]["isolated_revision"] is True
+
+
 def test_creative_brief_is_persisted_and_resume_locked(tmp_path: Path) -> None:
     project = make_content_project(tmp_path)
     brief = {"narrative_angle": "Enter through a clockwork book.", "must_avoid": "No fake statistics."}
