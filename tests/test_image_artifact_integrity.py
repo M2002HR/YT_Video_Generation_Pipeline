@@ -94,6 +94,32 @@ def test_reviewer_cannot_escalate_a_minor_finding_to_blocking(tmp_path):
     assert check['blocking_violations']==[]
 
 
+def test_character_or_style_continuity_drift_is_blocking(tmp_path):
+    candidate=picture(tmp_path/'candidate.png')
+    character=picture(tmp_path/'character.png',2)
+    style=picture(tmp_path/'style.png',3)
+    runner=object.__new__(qh.Runner)
+    captured={}
+    def review(_stage,_prompt,*,references):
+        captured['roles']=[reference.role for reference in references]
+        return {
+            'passed':False,
+            'description':'the candidate changes the host silhouette and the recurring print treatment',
+            'violations':[
+                'character identity drift: horn silhouette differs from the canonical sheet.',
+                'style continuity drift: rendering loses the supplied print texture.',
+            ],
+            'blocking_violations':[],
+        }
+    runner.json=review
+    with pytest.raises(qh.StageFailure,match='content QC rejected'):
+        runner.validate_image_content(
+            'beat_image_001','scene',candidate,
+            references=[Reference('character_sheet',character),Reference('style_reference',style)],
+        )
+    assert captured['roles']==['candidate_output','character_sheet','style_reference']
+
+
 def test_receipt_reuse_rejects_changed_reference_and_prompt(tmp_path):
     output=picture(tmp_path/'beat.png');ref=picture(tmp_path/'style.png',2)
     references=[Reference('style_reference',ref)];model='nano_banana_2'

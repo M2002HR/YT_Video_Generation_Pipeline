@@ -7,7 +7,7 @@ deletable like any other run, instead of being a silent background thread.
 
 Each cycle:
 
-  1. Probe the Flow project page. No upload, no Generate — the probe never spends a credit.
+  1. Probe the Flow landing page. No upload, no New project, no Generate — the probe never spends a credit.
   2. Log the verdict, so the panel's log tail shows exactly how long the wait has been.
   3. When Flow answers normally, launch the same pipeline command the episode was started
      with. Completed stages are reused, so only the clips and the render are paid for.
@@ -41,8 +41,9 @@ def log(message: str) -> None:
     print(f"[{utcnow()}] {message}", flush=True)
 
 
-def flow_project_url() -> str:
-    return os.getenv("YT_ORDAK_FLOW_URL", "https://labs.google/fx/tools/flow").strip()
+def flow_landing_url() -> str:
+    """Availability probes never open a configured historical Flow project."""
+    return "https://flow.google.com/"
 
 
 def browser_is_busy() -> bool:
@@ -79,7 +80,7 @@ def probe_flow() -> tuple[str, str]:
     except ImportError as exc:
         return ("unknown", f"ordak runtime unavailable: {exc}")
     try:
-        tab = open_url_in_existing_chrome(flow_project_url())
+        tab = open_url_in_existing_chrome(flow_landing_url())
         time.sleep(8)
         ref = ChromeTabRef(window_id=tab.window_id, tab_id=tab.tab_id, target_id=tab.target_id)
         payload = execute_javascript(
@@ -96,9 +97,9 @@ def probe_flow() -> tuple[str, str]:
         return ("blocked", f"redirected to {data.get('u')}")
     if any(marker in text for marker in OUTAGE_TEXT_MARKERS):
         return ("blocked", "the page says Flow is not available in this country")
-    if "/fx/tools/flow" not in url:
+    if "flow.google.com" not in url and "/fx/tools/flow" not in url:
         return ("unknown", f"unexpected url {data.get('u')}")
-    return ("available", f"project page loaded: {data.get('u')}")
+    return ("available", f"landing page loaded: {data.get('u')}")
 
 
 def episode_finished(project: Path) -> bool:

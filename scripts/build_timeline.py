@@ -322,38 +322,53 @@ def build_subtitle_cues(
     return cues
 
 
-TRANSITION_TYPES = (
-    "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft", "smoothright", "smoothup", "smoothdown",
-    "wipeleft", "wiperight", "wipeup", "wipedown", "wipetl", "wipetr", "wipebl", "wipebr",
-    "slideleft", "slideright", "slideup", "slidedown", "radial", "circleopen", "circleclose", "zoomin",
-    "hblur", "distance", "diagtl", "diagtr", "diagbl", "diagbr", "coverleft", "coverright", "coverup",
-    "coverdown", "revealleft", "revealright", "revealup", "revealdown",
-)
-MOTION_TYPES = {"still", "slow_zoom_in", "slow_zoom_out", "zoom_in", "zoom_out"}
+TIMELINE_TRANSITIONS = {
+    "cut", "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft",
+    "smoothright", "wipeleft", "wiperight", "slideleft", "slideright",
+}
 
 
-def transition_for_entry(entry: dict[str, Any], index: int) -> str:
-    """Choose a restrained, meaningful transition when a planner hint is unavailable."""
-    hinted = str(entry.get("transition_in") or "").lower().strip()
-    if hinted in TRANSITION_TYPES:
-        return hinted
-    text = str(entry.get("narration") or "").lower()
-    if any(word in text for word in ("reveal", "discover", "open", "unleash", "escape")):
-        return "circleopen" if index % 2 else "radial"
-    if any(word in text for word in ("then", "across", "through", "into", "from")):
-        return "slideleft" if index % 2 else "slideright"
-    if any(word in text for word in ("but", "however", "instead", "yet")):
-        return "dissolve"
-    return ("fade", "smoothleft", "dissolve", "smoothright", "wipeleft", "wiperight")[index % 6]
+def image_transition_settings(profile: dict[str, Any]) -> dict[str, Any]:
+    """Read the frozen all-media transition policy from the render profile.
+
+    Old profiles deliberately migrate to the new user-visible default: fade at .28s.
+    """
+    raw = profile.get("transitions") if isinstance(profile.get("transitions"), dict) else {}
+    try:
+        seconds = float(raw.get("default_seconds", .28))
+    except (TypeError, ValueError):
+        seconds = .28
+    default_type = str(raw.get("default_type") or "fade").strip().lower()
+    if default_type not in TIMELINE_TRANSITIONS:
+        default_type = "fade"
+    overrides: dict[tuple[str, str], dict[str, Any]] = {}
+    for item in raw.get("manual_overrides") or []:
+        if not isinstance(item, dict):
+            continue
+        left, right = str(item.get("from_beat_id") or ""), str(item.get("to_beat_id") or "")
+        kind = str(item.get("type") or "").lower().strip()
+        try:
+            duration = float(item.get("duration"))
+        except (TypeError, ValueError):
+            continue
+        if left and right and kind in TIMELINE_TRANSITIONS and (
+            (kind == "cut" and abs(duration) < .001) or (kind != "cut" and .08 <= duration <= .45)
+        ):
+            overrides[(left, right)] = {"type": kind, "duration": round(duration, 3), "source": "manual"}
+    return {
+        "default": {"type": default_type, "duration": 0.0 if default_type == "cut" else round(min(.45, max(.08, seconds)), 3), "source": "default"},
+        "overrides": overrides,
+    }
 
 
-def load_visual_transition_hints(video_dir: Path) -> dict[int, dict[str, Any]]:
-    """Read image-pair edit decisions, with legacy visual-plan hints as a fallback."""
+def load_visual_transition_hints(video_dir: Path) -> dict[tuple[str, str], dict[str, Any]]:
+    """Read AI image-pair decisions, including legacy artifacts safely."""
     try:
         decisions = load_json(video_dir / "creative" / "TRANSITION_PLAN.json").get("decisions") or []
         planned = {
-            int(item["to_beat_id"]): item for item in decisions
-            if isinstance(item, dict) and str(item.get("to_beat_id") or "").isdigit()
+            (str(item.get("from_beat_id") or ""), str(item.get("to_beat_id") or "")): item
+            for item in decisions
+            if isinstance(item, dict) and str(item.get("from_beat_id") or "") and str(item.get("to_beat_id") or "")
         }
         if planned:
             return planned
@@ -364,29 +379,41 @@ def load_visual_transition_hints(video_dir: Path) -> dict[int, dict[str, Any]]:
     except (OSError, ValueError):
         return {}
     return {
-        int(beat["beat_id"]): {"transition_in": str(beat.get("transition_in") or "")}
+        (str(int(beat["beat_id"]) - 1), str(beat["beat_id"])): {"transition_in": str(beat.get("transition_in") or "")}
         for beat in beats
-        if isinstance(beat, dict) and str(beat.get("beat_id") or "").isdigit()
+        if isinstance(beat, dict) and str(beat.get("beat_id") or "").isdigit() and int(beat["beat_id"]) > 1
     }
 
 
-def add_transitions(entries: list[dict[str, Any]], hints: dict[int, dict[str, Any]]) -> None:
-    """Annotate boundaries without duplicating an image or moving speech timing."""
+def add_transitions(entries: list[dict[str, Any]], hints: dict[tuple[str, str], dict[str, Any]], settings: dict[str, Any]) -> None:
+    """Annotate every timeline boundary with manual > AI > default precedence."""
     for index, entry in enumerate(entries):
         if index == 0:
             entry["transition_in"] = "cut"
             entry["transition_seconds"] = 0.0
             continue
-        if entry.get("media_type") == "image":
-            direction = hints.get(int(entry["beat_id"]), {})
-            entry["transition_in"] = str(direction.get("transition_in") or "")
-            motion = str(direction.get("next_motion") or "")
-            if motion in MOTION_TYPES:
-                entry["motion"] = motion
-        duration = float(entry.get("duration") or 0.0)
-        entry["transition_in"] = transition_for_entry(entry, index)
-        requested = float(direction.get("transition_seconds") or 0.0) if entry.get("media_type") == "image" else 0.0
-        entry["transition_seconds"] = round(min(0.42, max(0.14, requested or min(0.32, max(0.16, duration / 8)))), 3)
+        previous = entries[index - 1]
+        key = (str(previous.get("beat_id")), str(entry.get("beat_id")))
+        decision = settings["overrides"].get(key)
+        source = "manual"
+        if decision is None:
+            hinted = hints.get(key) or {}
+            # A disabled editor persists a receipt for observability, but it must not
+            # freeze an old default over a later panel change.
+            if str(hinted.get("source") or "ai") != "ai":
+                hinted = {}
+            kind = str(hinted.get("transition_in") or hinted.get("type") or "").lower().strip()
+            try:
+                duration = float(hinted.get("transition_seconds", hinted.get("duration")))
+            except (TypeError, ValueError):
+                duration = -1
+            if kind in TIMELINE_TRANSITIONS and ((kind == "cut" and abs(duration) < .005) or (kind != "cut" and .08 <= duration <= .45)):
+                decision, source = {"type": kind, "duration": round(duration, 3)}, "ai"
+            else:
+                decision, source = settings["default"], "default"
+        entry["transition_in"] = decision["type"]
+        entry["transition_seconds"] = decision["duration"]
+        entry["transition_source"] = decision.get("source", source)
 
 
 def build_cues_from_words(
@@ -875,10 +902,7 @@ def main() -> None:
     body_start = float(opening_timing.get("transition_end") or 0.0) if is_mixed else 0.0
     boundaries, adjustments = compute_display_boundaries(beats, audio_duration, start_at=body_start)
 
-    motion_cfg = profile.get("motion") if isinstance(profile.get("motion"), dict) else {}
-    motion_cycle = motion_cfg.get("cycle") or ["zoom_in"]
-    if not isinstance(motion_cycle, list) or not motion_cycle:
-        motion_cycle = ["zoom_in"]
+    transition_settings = image_transition_settings(profile)
 
     timeline_beats: list[dict[str, Any]] = []
 
@@ -920,7 +944,9 @@ def main() -> None:
                     "speech_start": round(float(beat["speech_start"]), 3),
                     "speech_end": round(float(beat["speech_end"]), 3),
                     "match_confidence": float(beat.get("match_confidence", 0.0)),
-                    "motion": str(motion_cycle[index % len(motion_cycle)]),
+                    # Every body image steadily pushes in. The final image is the single
+                    # intentional release and therefore pulls out for its full duration.
+                    "motion": "zoom_out" if index == len(beats) - 1 else "zoom_in",
                     "narration": str(beat["narration"]),
                 }
             )
@@ -952,14 +978,14 @@ def main() -> None:
                     "speech_start": round(float(beat["speech_start"]), 3),
                     "speech_end": round(float(beat["speech_end"]), 3),
                     "match_confidence": float(beat.get("match_confidence", 0.0)),
-                    "motion": str(motion_cycle[index % len(motion_cycle)]),
+                    "motion": "zoom_out" if index == len(beats) - 1 else "zoom_in",
                     "narration": str(beat["narration"]),
                 }
             )
 
     # Each body sentence owns one image. Never split a long slot into repeated reframings of
     # the same source: that looks slow and violates the sentence-to-picture contract.
-    add_transitions(timeline_beats, load_visual_transition_hints(video_dir))
+    add_transitions(timeline_beats, load_visual_transition_hints(video_dir), transition_settings)
 
     subtitle_cfg = (
         profile.get("subtitles")

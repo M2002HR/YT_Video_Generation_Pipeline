@@ -133,7 +133,7 @@ def test_body_images_keep_their_measured_positions():
         assert abs(images[-1]["end"] - AUDIO_DURATION) <= 0.05
 
 
-def test_image_pair_editor_decision_controls_the_next_boundary_and_motion():
+def test_image_pair_editor_obeys_the_small_transition_vocabulary_and_fixed_image_motion():
     with tempfile.TemporaryDirectory() as tmp:
         video_dir = _build_workspace(Path(tmp), spark=SPARK_END, transition=TRANSITION_END)
         _write_opening_timing(video_dir, spark=SPARK_END, transition=TRANSITION_END)
@@ -141,7 +141,7 @@ def test_image_pair_editor_decision_controls_the_next_boundary_and_motion():
         (video_dir / "creative" / "TRANSITION_PLAN.json").write_text(
             json.dumps({"decisions": [{
                 "from_beat_id": 1, "to_beat_id": 2,
-                "transition_in": "circleopen", "transition_seconds": 0.37,
+                "transition_in": "dissolve", "transition_seconds": 0.37,
                 "next_motion": "slow_zoom_out", "reason": "a reveal",
             }]}), encoding="utf-8",
         )
@@ -149,9 +149,47 @@ def test_image_pair_editor_decision_controls_the_next_boundary_and_motion():
         assert result.returncode == 0, result.stderr
         timeline = json.loads((video_dir / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))
         second_image = [entry for entry in timeline["beats"] if entry["media_type"] == "image"][1]
-        assert second_image["transition_in"] == "circleopen"
+        # Legacy AI plans remain readable, including their exact selected duration. New
+        # Studio policies persist the source explicitly and default every other boundary.
+        assert second_image["transition_in"] == "dissolve"
         assert second_image["transition_seconds"] == 0.37
-        assert second_image["motion"] == "slow_zoom_out"
+        assert second_image["motion"] == "zoom_out"
+
+
+def test_opening_to_first_image_is_a_dedicated_gentle_fade_and_other_images_push_in():
+    with tempfile.TemporaryDirectory() as tmp:
+        video_dir = _build_workspace(Path(tmp), spark=SPARK_END, transition=TRANSITION_END)
+        _write_opening_timing(video_dir, spark=SPARK_END, transition=TRANSITION_END)
+        result = _run_builder(video_dir)
+        assert result.returncode == 0, result.stderr
+        timeline = json.loads((video_dir / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))
+        images = [entry for entry in timeline["beats"] if entry["media_type"] == "image"]
+        assert images[0]["transition_in"] == "fade"
+        assert images[0]["transition_seconds"] == 0.28
+        assert images[0]["motion"] == "zoom_in"
+        assert images[-1]["motion"] == "zoom_out"
+
+
+def test_manual_transition_overrides_apply_to_video_and_image_boundaries() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        video_dir = _build_workspace(Path(tmp), spark=SPARK_END, transition=TRANSITION_END)
+        _write_opening_timing(video_dir, spark=SPARK_END, transition=TRANSITION_END)
+        profile = json.loads((video_dir / "render" / "RENDER_PROFILE.json").read_text(encoding="utf-8"))
+        profile["transitions"] = {
+            "default_type": "fade", "default_seconds": .28,
+            "manual_overrides": [
+                {"from_beat_id": "video_opening_a", "to_beat_id": "video_opening_b", "type": "dissolve", "duration": .31},
+                {"from_beat_id": "video_opening_b", "to_beat_id": "1", "type": "wipeleft", "duration": .20},
+                {"from_beat_id": "1", "to_beat_id": "2", "type": "cut", "duration": 0},
+            ],
+        }
+        (video_dir / "render" / "RENDER_PROFILE.json").write_text(json.dumps(profile), encoding="utf-8")
+        result = _run_builder(video_dir)
+        assert result.returncode == 0, result.stderr
+        beats = json.loads((video_dir / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))["beats"]
+        assert [(item["transition_in"], item["transition_seconds"], item["transition_source"]) for item in beats[1:]] == [
+            ("dissolve", .31, "manual"), ("wipeleft", .20, "manual"), ("cut", 0.0, "manual"),
+        ]
 
 
 def test_opening_drift_is_rejected():

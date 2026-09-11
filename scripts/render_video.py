@@ -245,7 +245,9 @@ def motion_filter(
     """
 
     frames = max(2, int(math.ceil(duration * fps)))
-    strength = max(0.0, min(float(strength), 0.10))
+    # ``strength`` is the full per-image zoom range. The Studio default is now a
+    # deliberately noticeable 14%; retain a safe ceiling for low-detail/portrait artwork.
+    strength = max(0.0, min(float(strength), 0.24))
     supersample = max(1, min(int(supersample), 4))
     if motion == "still" or strength <= 0:
         return (
@@ -262,19 +264,22 @@ def motion_filter(
     work_width = width * supersample
     work_height = height * supersample
     progress = f"min(on/{frames - 1},1)"
+    accelerating_progress = f"pow({progress},1.65)"
 
     if motion == "zoom_out":
         effective_strength = strength
-        z = f"1+{effective_strength:.6f}*(1-{progress})"
+        # Exact counterpart to the inward curve: begin close, then ease back to the
+        # full frame. Only the final body image receives this motion policy.
+        z = f"1+{effective_strength:.6f}*pow(1-{progress},1.65)"
     elif motion == "slow_zoom_in":
         effective_strength = strength * 0.60
-        z = f"1+{effective_strength:.6f}*{progress}"
+        z = f"1+{effective_strength:.6f}*{accelerating_progress}"
     elif motion == "slow_zoom_out":
         effective_strength = strength * 0.60
-        z = f"1+{effective_strength:.6f}*(1-{progress})"
+        z = f"1+{effective_strength:.6f}*pow(1-{progress},1.65)"
     else:
         effective_strength = strength
-        z = f"1+{effective_strength:.6f}*{progress}"
+        z = f"1+{effective_strength:.6f}*{accelerating_progress}"
 
     # Always keep the crop centered. No pan_x/pan_y animation.
     x = "iw/2-(iw/zoom/2)"

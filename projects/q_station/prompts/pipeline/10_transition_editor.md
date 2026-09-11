@@ -13,9 +13,8 @@ decision, not a random effect picker.
 ## Output — raw JSON only
 ```json
 {
-  "transition_in": "fade|dissolve|fadeblack|fadewhite|smoothleft|smoothright|smoothup|smoothdown|wipeleft|wiperight|wipeup|wipedown|wipetl|wipetr|wipebl|wipebr|slideleft|slideright|slideup|slidedown|radial|circleopen|circleclose|zoomin|hblur|distance|diagtl|diagtr|diagbl|diagbr|coverleft|coverright|coverup|coverdown|revealleft|revealright|revealup|revealdown",
-  "transition_seconds": 0.24,
-  "next_motion": "still|slow_zoom_in|slow_zoom_out|zoom_in|zoom_out",
+  "transition_in": "{{ALLOWED_TRANSITIONS}}",
+  "transition_seconds": {{SOFT_TRANSITION_SECONDS}},
   "reason": "brief visual-edit rationale"
 }
 ```
@@ -23,17 +22,12 @@ decision, not a random effect picker.
 ## Editorial rules
 - Use the attached pictures to preserve screen direction, avoid a jarring cut between similar
   compositions, and make the change match the narration's meaning.
-- A hard `fade`/`dissolve` is best for reflection, a change of time, or an abstract explanation.
-  Directional movement is for travel, sequence, cause-and-effect, or a clear left/right/up/down
-  visual handoff. `radial`, `circleopen`, `circleclose`, or `zoomin` are reserved for a real
-  reveal, opening, discovery, or entering a world. `fadeblack`/`fadewhite` mark an emphatic
-  rupture or flash of realization. Do not use novelty effects merely to add variety.
-- Select a duration from 0.14 to 0.42 seconds: short for urgent action, slightly longer for
-  reflection. Never make the transition longer than the visual idea deserves.
-- Choose the next image motion from its composition: still for diagrams/textured detail,
-  slow zoom for reflective or grand scenes, normal zoom only for action/reveal. Avoid alternating
-  mechanically and never introduce lateral image pan.
-- Keep repeated effect names rare in adjacent boundaries. At a literal book/page boundary,
-  `revealleft`, `coverright`, or a directional wipe may suggest a page handoff; true page curl
-  is not a portable built-in FFmpeg transition, so never pretend a generic wipe is a page curl.
+- Choose **only** one literal value listed in `{{ALLOWED_TRANSITIONS}}`. Do not invent an
+  alternative, a directional wipe, a slide, a reveal, or any other effect.
+- `cut` means `transition_seconds: 0`. For `fade` or `dissolve`, use exactly
+  `{{SOFT_TRANSITION_SECONDS}}`. This is an image-pair decision, not an effect picker.
+- A soft `fade`/`dissolve` is appropriate only when the visual or narrative change benefits
+  from blending. A cut is a good, normal choice for a new fact or a decisive shift.
+- Image motion is owned by the render policy: every body image already pushes in continuously,
+  except the final image which pulls out. Do not add a motion field.
 - Return only JSON. No Markdown.

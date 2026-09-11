@@ -121,6 +121,17 @@ def test_all_advanced_settings_are_strictly_bounded() -> None:
         settings({"word_sync_tolerance_ms": 251})
     with pytest.raises(MotionPlanError):
         settings({"face_padding": .51})
+    with pytest.raises(MotionPlanError):
+        settings({"image_zoom_strength": .25})
+
+
+def test_enforced_image_zoom_policy_rejects_a_non_directional_legacy_plan(tmp_path: Path) -> None:
+    _, context, inventory, _ = make_episode(tmp_path)
+    with pytest.raises(MotionPlanError, match="image zoom policy"):
+        validate_plan(
+            copy.deepcopy(PLAN), context, inventory,
+            settings({**CFG, "enforce_image_zoom_policy": True}),
+        )
 
 
 def test_none_sync_drops_stale_word_metadata(tmp_path: Path) -> None:

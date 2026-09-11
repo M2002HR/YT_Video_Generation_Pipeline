@@ -213,8 +213,16 @@ def test_the_director_retries_once_when_it_repeats_a_recent_opening(
         qh, "_recent_history", lambda *a, **k: [{"opening_activity": "boiling a kettle"}]
     )
     runner = DirectorSpy([
-        {"opening_activity": "Boiling a kettle", "opening_location": "kitchen"},
-        {"opening_activity": "folding laundry", "opening_location": "hallway"},
+        {
+            "opening_activity": "Boiling a kettle", "opening_location": "kitchen",
+            "topic_visual_link": "a whistling kettle makes the sound question visible",
+            "link_type": "direct", "opening_visual_proof": "steam and the vibrating whistle",
+        },
+        {
+            "opening_activity": "folding laundry", "opening_location": "hallway",
+            "topic_visual_link": "a kettle whistle interrupts the routine",
+            "link_type": "direct", "opening_visual_proof": "steam from a kettle beside the laundry basket",
+        },
     ])
 
     plan = qh.stage_episode_director(runner, project, content_project, "why kettles sing", "brief", {"full_narration": "n"})
@@ -235,8 +243,14 @@ def test_a_director_that_keeps_repeating_fails_the_stage(
         qh, "_recent_history", lambda *a, **k: [{"opening_activity": "boiling a kettle"}]
     )
     runner = DirectorSpy([
-        {"opening_activity": "boiling a kettle"},
-        {"opening_activity": "boiling a kettle"},
+        {
+            "opening_activity": "boiling a kettle", "topic_visual_link": "steam signals heat",
+            "link_type": "direct", "opening_visual_proof": "a kettle releases steam",
+        },
+        {
+            "opening_activity": "boiling a kettle", "topic_visual_link": "steam signals heat",
+            "link_type": "direct", "opening_visual_proof": "a kettle releases steam",
+        },
     ])
 
     with pytest.raises(qh.StageFailure) as excinfo:
@@ -252,10 +266,28 @@ def test_a_first_episode_is_accepted_without_a_correction_round(
 
     project, content_project = _director_project(tmp_path)
     monkeypatch.setattr(qh, "_recent_history", lambda *a, **k: [])
-    runner = DirectorSpy([{"opening_activity": "boiling a kettle"}])
+    runner = DirectorSpy([{
+        "opening_activity": "boiling a kettle", "topic_visual_link": "steam makes heat visible",
+        "link_type": "direct", "opening_visual_proof": "steam lifting from the kettle spout",
+    }])
 
     plan = qh.stage_episode_director(runner, project, content_project, "topic", "brief", {"full_narration": "n"})
 
     assert plan["opening_activity"] == "boiling a kettle"
     assert len(runner.prompts) == 1
     assert (project / "creative" / "EPISODE_PLAN.json").is_file()
+
+
+def test_a_director_plan_without_visible_topic_proof_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import run_question_harvest_pipeline as qh
+
+    project, content_project = _director_project(tmp_path)
+    monkeypatch.setattr(qh, "_recent_history", lambda *a, **k: [])
+    runner = DirectorSpy([{"opening_activity": "boiling a kettle"}])
+
+    with pytest.raises(qh.StageFailure) as excinfo:
+        qh.stage_episode_director(runner, project, content_project, "why kettles sing", "brief", {"full_narration": "n"})
+    assert excinfo.value.state == "FAILED_VALIDATION"
+    assert "topic_visual_link" in excinfo.value.message

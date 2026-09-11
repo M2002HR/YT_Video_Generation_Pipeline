@@ -228,10 +228,15 @@ def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
         # The server has two vCPUs.  Use the full CPU ceiling, never more,
         # while niceness keeps the interactive services schedulable.
         "resource_limits": {"ffmpeg_threads": 2, "filter_threads": 2, "filter_complex_threads": 2},
-        # Every still moves, and consecutive stills move in opposite directions: a cut between a
-        # push-in and a pull-out reads as a real change of shot, where a cut into a motionless
-        # frame read as a freeze. "still" is deliberately not in the cycle any more.
-        "motion": {"enabled": True, "strength": 0.085, "supersample": 2, "cycle": ["zoom_in", "zoom_out", "slow_zoom_in", "slow_zoom_out"]},
+        # The image policy is intentionally simple and continuous: each body image pushes in
+        # for its entire slot and the final image is the single, purposeful pull-out.
+        "motion": {"enabled": True, "strength": 0.14, "supersample": 2, "cycle": ["zoom_in"], "image_zoom_policy": "push_in_except_final_pull_out"},
+        "transitions": {
+            "image_beat_style": "cut_fade_dissolve",
+            "image_beat_seconds": 0.28,
+            "opening_to_image_type": "fade",
+            "opening_to_image_seconds": 0.52,
+        },
         # margin_v is omitted on purpose: build_timeline derives it from the frame height so
         # captions clear the platform UI band at the bottom of a vertical short (T9.8).
         "subtitles": {
@@ -267,6 +272,61 @@ def apply_subtitle_preferences(profile_path: Path, creative_brief: dict[str, Any
         subtitles["word_highlight"] = {}
     subtitles["word_highlight"]["enabled"] = bool(requested)
     apply_subtitle_style(subtitles, style)
+    profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
+
+
+def apply_motion_preferences(profile_path: Path, creative_brief: dict[str, Any]) -> None:
+    """Freeze panel-owned image motion and transition policy into the render profile.
+
+    This is deliberately separate from Motion Director's semantic camera settings: the
+    renderer must honour the same image-level policy when that optional director is off.
+    """
+    requested = creative_brief.get("_motion") if isinstance(creative_brief.get("_motion"), dict) else {}
+    profile = json.loads(profile_path.read_text(encoding="utf-8"))
+    motion = profile.setdefault("motion", {})
+    transitions = profile.setdefault("transitions", {})
+
+    def number(name: str, default: float, low: float, high: float) -> float:
+        try:
+            value = float(requested.get(name, default))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"{name} must be a number.") from exc
+        if not low <= value <= high:
+            raise ValueError(f"{name} is outside {low}..{high}.")
+        return value
+
+    strength = number("image_zoom_strength", .14, .04, .24)
+    soft_seconds = number("image_transition_seconds", .28, .14, .42)
+    opening_seconds = number("opening_to_image_seconds", .28, .08, .45)
+    transition_seconds = number("transition_seconds", .28, .08, .45)
+    transition_default_type = str(requested.get("transition_default_type", "fade")).strip().lower()
+    if transition_default_type not in {
+        "cut", "fade", "dissolve", "fadeblack", "fadewhite", "smoothleft",
+        "smoothright", "wipeleft", "wiperight", "slideleft", "slideright",
+    }:
+        raise ValueError("transition_default_type is not supported.")
+    transition_overrides = requested.get("transition_overrides", [])
+    if not isinstance(transition_overrides, list):
+        raise ValueError("transition_overrides must be a list.")
+    style = str(requested.get("image_transition_style", "cut_fade_dissolve"))
+    if style not in {"cuts", "cut_fade", "cut_fade_dissolve"}:
+        raise ValueError("image_transition_style must be cuts, cut_fade, or cut_fade_dissolve.")
+    motion.update({
+        "enabled": bool(motion.get("enabled", True)),
+        "strength": strength,
+        "cycle": ["zoom_in"],
+        "image_zoom_policy": "push_in_except_final_pull_out",
+    })
+    transitions.update({
+        "default_type": transition_default_type,
+        "default_seconds": transition_seconds,
+        "ai_selection_enabled": bool(requested.get("transition_ai_enabled", False)),
+        "manual_overrides": transition_overrides,
+        "image_beat_style": style,
+        "image_beat_seconds": soft_seconds,
+        "opening_to_image_type": "fade",
+        "opening_to_image_seconds": opening_seconds,
+    })
     profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
 
 
@@ -442,6 +502,7 @@ def main() -> None:
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)
     apply_subtitle_preferences(render_profile, frozen_brief)
+    apply_motion_preferences(render_profile, frozen_brief)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     completion = [py, "scripts/run_completion_pipeline.py", str(project), "--publish", "--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size"]
     if creative_brief is not None:

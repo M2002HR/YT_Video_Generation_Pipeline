@@ -55,7 +55,7 @@ return/closing.
   gardening/digging/planting/watering, workshop repair/sorting tools/rope, feeding
   chickens/barn, harvest/orchard/greenhouse/well, home maintenance/market prep/rainy-day/winter
   work. The activity must feel natural, never a topic prop dropped into a farm.
-- Tie the hook to that physical activity: curiosity arrives while the hands are busy.
+- Tie the hook to that physical activity: curiosity arrives while the hands are busy. The activity or a visible disruption within it must admit a specific, observable link to the topic (literal, causal, ironic, or metaphorical), rather than a generic routine with a topic prop inserted later.
 - Make the book retrieval natural. `book_transition` is roughly 3 seconds of speech.
 - `opening_question_spark` is roughly 5 seconds of speech.
 - Every `body` entry must be a short, independently visualisable unit (normally ≤16 words). It

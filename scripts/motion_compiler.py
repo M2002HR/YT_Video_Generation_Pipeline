@@ -128,33 +128,35 @@ def dynamic_motion_filter(*, input_index: int, label: str, width: int, height: i
 
 
 def plan_render_units(plan: dict[str, Any], timeline_beats: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Expand image beats into micro-shots while retaining video beats unchanged."""
+    """Expand image beats while keeping timeline boundary decisions authoritative.
+
+    The Motion Director owns camera movement inside an image.  Studio/Revise owns the
+    transition between original media beats, so an LLM camera plan may never replace a
+    manual or default timeline transition.
+    """
     by_id = {str(b["beat_id"]): b for b in plan.get("beats", [])}; units: list[dict[str, Any]] = []
     for beat in timeline_beats:
         planned = by_id.get(str(beat.get("beat_id")))
         if planned and str(beat.get("media_type", "image")) == "image":
             for i, shot in enumerate(planned["micro_shots"]):
                 units.append({**beat, "duration": round(shot["end"]-shot["start"], 6), "motion_shot": shot,
-                              "transition_in": "cut" if i else beat.get("transition_in", "cut"), "transition_seconds": 0.0,
+                              "transition_in": "cut" if i else beat.get("transition_in", "cut"), "transition_seconds": 0.0 if i else float(beat.get("transition_seconds", 0)),
                               "plan_transition_out": planned["transition_out"] if i == len(planned["micro_shots"])-1 else {"type":"cut","duration":0}})
         else:
             units.append({**beat, "plan_transition_out": {"type": beat.get("transition_in", "cut"), "duration": float(beat.get("transition_seconds", 0))}})
-    # boundary belongs to the outgoing final micro-shot of each original beat.
+    # Preserve the incoming boundary on each original beat's first unit.  Internal
+    # micro-shot edits are cuts; no motion-plan transition leaks across media beats.
     for i in range(1, len(units)):
-        prior = units[i-1]
-        # Plan-owned image endings override legacy timeline hints. Video beats retain
-        # their existing incoming-boundary semantics (the next unit owns that hint).
-        if prior.get("motion_shot") and prior.get("plan_transition_out"):
-            t = prior["plan_transition_out"]
-        else:
-            t = {"type": units[i].get("transition_in", "cut"), "duration": float(units[i].get("transition_seconds", 0))}
+        is_first_unit = str(units[i].get("beat_id")) != str(units[i - 1].get("beat_id"))
+        t = ({"type": units[i].get("transition_in", "cut"), "duration": float(units[i].get("transition_seconds", 0))}
+             if is_first_unit else {"type": "cut", "duration": 0.0})
         units[i]["transition_in"] = t.get("type", "cut"); units[i]["transition_seconds"] = float(t.get("duration", 0))
     if units: units[0]["transition_in"], units[0]["transition_seconds"] = "cut", 0.0
     return units
 
 
 def plan_render_units_v2(plan: dict[str, Any], timeline_beats: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Expand compiled V2 image beats while preserving moving-video beats unchanged."""
+    """Expand compiled V2 image beats without replacing timeline transitions."""
     planned_by_id = {str(beat["beat_id"]): beat for beat in plan.get("beats") or []}
     units: list[dict[str, Any]] = []
     for beat in timeline_beats:
@@ -166,8 +168,8 @@ def plan_render_units_v2(plan: dict[str, Any], timeline_beats: list[dict[str, An
                     **beat,
                     "duration": round(float(shot["end"]) - float(shot["start"]), 6),
                     "motion_shot_v2": shot,
-                    "transition_in": "cut",
-                    "transition_seconds": 0.0,
+                    "transition_in": beat.get("transition_in", "cut") if index == 0 else "cut",
+                    "transition_seconds": float(beat.get("transition_seconds") or 0) if index == 0 else 0.0,
                     "internal_edit_in": internal_edit,
                     "plan_transition_out": planned["transition_out"] if index == len(planned["micro_shots"]) - 1 else {"type": "cut", "duration": 0.0},
                 })
@@ -176,14 +178,12 @@ def plan_render_units_v2(plan: dict[str, Any], timeline_beats: list[dict[str, An
                 **beat,
                 "plan_transition_out": {"type": beat.get("transition_in", "cut"), "duration": float(beat.get("transition_seconds") or 0.0)},
             })
-    # The outgoing decision owns the boundary. Internal micro-shot edits are always real
-    # zero-overlap cuts; a continue is a visually continuous camera path across that cut.
+    # The timeline owns original-media boundaries. Internal micro-shot edits are always
+    # real zero-overlap cuts; a continue is a visually continuous camera path across it.
     for index in range(1, len(units)):
-        previous = units[index - 1]
-        if previous.get("motion_shot_v2"):
-            decision = previous["plan_transition_out"]
-        else:
-            decision = {"type": units[index].get("transition_in", "cut"), "duration": float(units[index].get("transition_seconds") or 0)}
+        is_first_unit = str(units[index].get("beat_id")) != str(units[index - 1].get("beat_id"))
+        decision = ({"type": units[index].get("transition_in", "cut"), "duration": float(units[index].get("transition_seconds") or 0)}
+                    if is_first_unit else {"type": "cut", "duration": 0.0})
         units[index]["transition_in"] = str(decision.get("type") or "cut")
         units[index]["transition_seconds"] = float(decision.get("duration") or 0.0)
     if units:

@@ -176,7 +176,12 @@ def _with_zoom(state: dict[str, Any], zoom: float, artwork: dict[str, float]) ->
 def _enforce_primitive_shape(start: dict[str, Any], end: dict[str, Any], motion: str, settings: dict[str, Any], artwork: dict[str, float]) -> tuple[dict[str, Any], dict[str, Any], list[str]]:
     """Ensure a requested push/pull has a visible but bounded camera trajectory."""
     correction: list[str] = []
-    minimum = {"subtle": .04, "normal": .065, "strong": .09}.get(str(settings.get("intensity")), .065)
+    # The panel's image-level zoom strength is a visible minimum trajectory. Camera safety
+    # still wins: ceilings, face protection and velocity limits run immediately afterwards.
+    minimum = max(
+        {"subtle": .04, "normal": .065, "strong": .09}.get(str(settings.get("intensity")), .065),
+        float(settings.get("image_zoom_strength", .14)),
+    )
     a, b = dict(start), dict(end)
     if motion in {"push_in", "pan_push", "reveal_move"} and b["zoom"] - a["zoom"] < minimum:
         possible_start = max(1.0, b["zoom"] - minimum)

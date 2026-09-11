@@ -12,6 +12,11 @@ EDIT_IN = {"continue", "cut", "reframe_cut", "punch_cut_in", "punch_cut_out", "m
 EASINGS = {"linear", "ease_in", "ease_out", "ease_in_out", "snappy", "gentle", "hold_then_move", "impact_then_settle"}
 SHOT_ROLES = {"establish", "primary", "detail", "reaction", "context", "release", "hold"}
 TRANSITIONS = {"cut", "dissolve", "fade", "smoothleft", "smoothright", "smoothup", "smoothdown", "wipeleft", "wiperight", "wipeup", "wipedown", "slideleft", "slideright", "slideup", "slidedown", "revealleft", "revealright", "revealup", "revealdown", "zoomin"}
+IMAGE_TRANSITION_STYLES = {
+    "cuts": {"cut"},
+    "cut_fade": {"cut", "fade"},
+    "cut_fade_dissolve": {"cut", "fade", "dissolve"},
+}
 SYNC_MODES = {"none", "cut_on_word_start", "movement_start_on_word", "impact_apex_on_word", "reveal_complete_on_word", "settle_on_word_end"}
 REASON_CODES = {"new_fact", "contrast", "time_shift", "location_shift", "memory", "emotional_continuity", "directional_match", "reveal", "ending", "cta", "continuity"}
 
@@ -24,10 +29,13 @@ DEFAULTS: dict[str, Any] = {
     "allow_reveal_move": True, "allow_punch_cuts": True, "allow_hard_reframes": True,
     "allow_match_position_cuts": True, "allow_decorative_transitions": True,
     "allow_directional_transitions": True, "allow_reveal_transitions": True,
-    "transition_preference": "minimal", "max_decorative_transition_fraction": .25,
+    "transition_preference": "minimal", "max_decorative_transition_fraction": 1.0,
+    "image_transition_style": "cut_fade_dissolve", "image_transition_seconds": .28,
     "transition_duration_min": .10, "transition_duration_max": .40,
     "normal_max_zoom": 1.32, "punch_max_zoom": 1.48, "max_pan_distance": .32,
-    "max_pan_velocity": .42, "max_zoom_velocity": .34, "face_protection": True, "face_padding": .18,
+    "max_pan_velocity": .42, "max_zoom_velocity": .34, "image_zoom_strength": .14,
+    "enforce_image_zoom_policy": False,
+    "face_protection": True, "face_padding": .18,
     "subtitle_avoidance": True, "blank_region_avoidance": True, "word_sync": True, "word_sync_tolerance_ms": 50,
     "observation_batch_size": 3, "planning_batch_size": 1, "critic_batch_size": 2, "neighbor_context": 1,
     "editorial_critic": True, "correction_attempts": 4, "debug_preview": False, "supersample": 2,
@@ -71,18 +79,20 @@ def settings(value: dict[str, Any] | None = None) -> dict[str, Any]:
     }
     result.update(pace_defaults.get(pace, {})); result.update(intensity_defaults.get(intensity, {})); result.update(style_defaults.get(style, {}))
     result.update({key: value for key, value in incoming.items() if key in DEFAULTS})
-    enums = {"planning_quality": {"draft", "standard", "professional"}, "pace": {"calm", "balanced", "fast", "very_fast"}, "style": {"clean", "dynamic", "cinematic"}, "intensity": {"subtle", "normal", "strong"}, "transition_preference": {"minimal", "balanced", "expressive"}}
+    enums = {"planning_quality": {"draft", "standard", "professional"}, "pace": {"calm", "balanced", "fast", "very_fast"}, "style": {"clean", "dynamic", "cinematic"}, "intensity": {"subtle", "normal", "strong"}, "transition_preference": {"minimal", "balanced", "expressive"}, "image_transition_style": set(IMAGE_TRANSITION_STYLES)}
     for key, choices in enums.items():
         if result[key] not in choices: raise MotionPlanError(f"invalid setting {key}")
     for key, low, high in (("max_micro_shots_per_beat",1,5),("observation_batch_size",1,6),("planning_batch_size",1,6),("critic_batch_size",1,4),("correction_attempts",0,4),("neighbor_context",1,3),("word_sync_tolerance_ms",0,250),("supersample",1,4)):
         result[key] = int(result[key])
         if not low <= result[key] <= high: raise MotionPlanError(f"invalid setting {key}")
-    for key in ("min_micro_shot_duration", "max_micro_shot_duration", "target_interval_min", "target_interval_max", "normal_max_zoom", "punch_max_zoom", "max_pan_distance", "max_pan_velocity", "max_zoom_velocity", "transition_duration_min", "transition_duration_max", "max_decorative_transition_fraction", "face_padding"):
+    for key in ("min_micro_shot_duration", "max_micro_shot_duration", "target_interval_min", "target_interval_max", "normal_max_zoom", "punch_max_zoom", "max_pan_distance", "max_pan_velocity", "max_zoom_velocity", "image_zoom_strength", "image_transition_seconds", "transition_duration_min", "transition_duration_max", "max_decorative_transition_fraction", "face_padding"):
         result[key] = float(result[key])
         if not math.isfinite(result[key]): raise MotionPlanError(f"invalid setting {key}")
     if result["min_micro_shot_duration"] > result["max_micro_shot_duration"]: raise MotionPlanError("minimum shot duration exceeds maximum")
     if result["target_interval_min"] > result["target_interval_max"]: raise MotionPlanError("target interval minimum exceeds maximum")
     if not 0 <= result["face_padding"] <= .5: raise MotionPlanError("face_padding outside 0..0.5")
+    if not .04 <= result["image_zoom_strength"] <= .24: raise MotionPlanError("image_zoom_strength outside .04..0.24")
+    if not .14 <= result["image_transition_seconds"] <= .42: raise MotionPlanError("image_transition_seconds outside .14..0.42")
     for key in [name for name, value in DEFAULTS.items() if isinstance(value, bool)]:
         result[key] = bool(result[key])
     primitive_switches = (
@@ -134,6 +144,7 @@ def validate_inventory(payload: dict[str, Any], expected: list[dict[str, Any]]) 
 def validate_plan(payload: dict[str, Any], context: dict[str, Any], inventory: dict[str, Any], cfg: dict[str, Any], *, enforce_episode_qc: bool = True) -> dict[str, Any]:
     if int(payload.get("schema_version",0)) != 2: raise MotionPlanError("motion plan schema_version 2 required")
     expected={str(b["beat_id"]):b for b in context["beats"] if b["media_type"]=="image"}; inv={str(b["beat_id"]):b for b in inventory["beats"]}
+    final_image_id = next(reversed(expected), None)
     word_map={w["word_id"]:w for w in context["words"]}; seen=set(); shots_seen=set(); output=[]
     allowed_motion=set(MOTIONS)
     allow_map={
@@ -148,6 +159,7 @@ def validate_plan(payload: dict[str, Any], context: dict[str, Any], inventory: d
         key=str(beat.get("beat_id")); source=expected.get(key)
         if source is None or key in seen: raise MotionPlanError(f"unexpected or duplicate plan beat {key}")
         seen.add(key); start,end=_num(beat.get("start"),"beat.start"),_num(beat.get("end"),"beat.end")
+        required_motions = {"pull_out", "pan_pull"} if key == final_image_id else {"push_in", "pan_push", "reveal_move"}
         if abs(start-source["start"])>.025 or abs(end-source["end"])>.025: raise MotionPlanError(f"beat {key} timing mismatch")
         targets={t["target_id"]:t for t in inv[key]["targets"]}; shots=beat.get("micro_shots") or []
         if not 1 <= len(shots) <= cfg["max_micro_shots_per_beat"]: raise MotionPlanError(f"invalid shot count for beat {key}")
@@ -167,6 +179,9 @@ def validate_plan(payload: dict[str, Any], context: dict[str, Any], inventory: d
             if role not in SHOT_ROLES: raise MotionPlanError(f"unknown shot role in {sid}")
             motion=shot.get("motion") or {}; motion_type=str(motion.get("type") or "hold"); easing=str(motion.get("easing") or "linear")
             if motion_type not in allowed_motion or easing not in EASINGS: raise MotionPlanError(f"unsupported/disallowed motion in {sid}")
+            if cfg.get("enforce_image_zoom_policy", False) and motion_type not in required_motions:
+                direction = "pull out" if key == final_image_id else "push in"
+                raise MotionPlanError(f"image zoom policy requires every shot in beat {key} to {direction}")
             delay=_num(motion.get("start_delay",0),"motion.start_delay"); end_hold=_num(motion.get("end_hold",0),"motion.end_hold")
             if delay < 0 or end_hold < 0 or delay + end_hold > duration - .08: raise MotionPlanError(f"invalid motion window in {sid}")
             reason=str(motion.get("reason") or "").strip()
@@ -207,17 +222,24 @@ def validate_plan(payload: dict[str, Any], context: dict[str, Any], inventory: d
         if abs(cursor-end)>.025: raise MotionPlanError(f"beat {key} not fully covered")
         transition=beat.get("transition_out") or {"type":"cut","duration":0,"reason_code":"new_fact"}; kind=str(transition.get("type") or "cut"); td=_num(transition.get("duration",0),"transition duration"); reason=str(transition.get("reason_code") or "")
         if kind not in TRANSITIONS or reason not in REASON_CODES: raise MotionPlanError("invalid transition decision")
+        if cfg.get("enforce_image_zoom_policy", False) and kind not in IMAGE_TRANSITION_STYLES[cfg["image_transition_style"]]:
+            raise MotionPlanError("image transition policy allows only " + ", ".join(sorted(IMAGE_TRANSITION_STYLES[cfg["image_transition_style"]])))
         if kind != "cut" and not cfg.get("allow_decorative_transitions", True): raise MotionPlanError("decorative transitions disabled")
         if kind.startswith(("smooth", "wipe", "slide")) and not cfg.get("allow_directional_transitions", True): raise MotionPlanError("directional transitions disabled")
         if kind.startswith("reveal") and not cfg.get("allow_reveal_transitions", True): raise MotionPlanError("reveal transitions disabled")
         if kind=="cut" and abs(td)>.001: raise MotionPlanError("cut duration must be zero")
-        if kind!="cut" and not cfg["transition_duration_min"]<=td<=cfg["transition_duration_max"]: raise MotionPlanError("transition duration outside configured range")
+        if kind!="cut" and not cfg.get("enforce_image_zoom_policy", False) and not cfg["transition_duration_min"]<=td<=cfg["transition_duration_max"]: raise MotionPlanError("transition duration outside configured range")
+        if cfg.get("enforce_image_zoom_policy", False) and kind != "cut" and abs(td - cfg["image_transition_seconds"]) > .005:
+            raise MotionPlanError("image transition duration must match image_transition_seconds")
         ending=beat.get("ending_state") or {}
         ending_target=str(ending.get("target_id") or "")
         if ending_target not in targets: raise MotionPlanError(f"invalid ending target in beat {key}")
         ending_state={"target_id":ending_target,"coverage":_num(ending.get("coverage"),"ending coverage"),"anchor_x":_num(ending.get("anchor_x"),"ending anchor_x"),"anchor_y":_num(ending.get("anchor_y"),"ending anchor_y"),"movement_direction":str(ending.get("movement_direction") or "none")}
         if ending_state["movement_direction"] not in {"left","right","up","down","in","out","none"}: raise MotionPlanError("invalid ending movement direction")
         if ending_target != previous_camera_end["target_id"] or any(abs(ending_state[field]-previous_camera_end[field])>.015 for field in ("coverage","anchor_x","anchor_y")): raise MotionPlanError(f"ending_state mismatch in beat {key}")
+        required_direction = "out" if key == final_image_id else "in"
+        if cfg.get("enforce_image_zoom_policy", False) and ending_state["movement_direction"] != required_direction:
+            raise MotionPlanError(f"image zoom policy requires beat {key} to end moving {required_direction}")
         output.append({**beat,"beat_id":source["beat_id"],"start":start,"end":end,"micro_shots":normalized,"ending_state":ending_state,"transition_out":{**transition,"type":kind,"duration":td,"reason_code":reason}})
     if seen!=set(expected): raise MotionPlanError("plan does not cover every image beat")
     result={**payload,"schema_version":2,"duration_seconds":context["episode"]["duration"],"settings_snapshot":cfg,"beats":output}
@@ -236,7 +258,6 @@ def semantic_qc(plan: dict[str, Any], cfg: dict[str, Any]) -> dict[str, Any]:
     fraction=len(noncuts)/max(1,len(transitions))
     image_duration=sum(float(beat["end"])-float(beat["start"]) for beat in plan["beats"])
     event_interval=image_duration/max(1,len(shots))
-    if fraction>cfg["max_decorative_transition_fraction"]+.001: errors.append("decorative transition budget exceeded")
     if best>=4: errors.append("motion repetition streak >= 4")
     elif best>=3: warnings.append("motion repetition streak >= 3")
     if event_interval > cfg["target_interval_max"] * 1.35: warnings.append("visual changes are slower than the selected pace")

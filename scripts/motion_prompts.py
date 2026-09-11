@@ -11,7 +11,7 @@ def _json(value: Any) -> str:
 
 
 def _editorial_settings(settings: dict[str, Any]) -> dict[str, Any]:
-    keep = ("pace", "style", "intensity", "max_micro_shots_per_beat", "min_micro_shot_duration", "max_micro_shot_duration", "target_interval_min", "target_interval_max", "allow_hold", "allow_push", "allow_pull", "allow_pan", "allow_tilt", "allow_pan_push", "allow_pan_pull", "allow_drift", "allow_settle", "allow_reveal_move", "allow_punch_cuts", "allow_hard_reframes", "allow_match_position_cuts", "allow_decorative_transitions", "allow_directional_transitions", "allow_reveal_transitions", "transition_preference", "max_decorative_transition_fraction", "word_sync")
+    keep = ("pace", "style", "intensity", "image_zoom_strength", "image_transition_style", "image_transition_seconds", "max_micro_shots_per_beat", "min_micro_shot_duration", "max_micro_shot_duration", "target_interval_min", "target_interval_max", "allow_hold", "allow_push", "allow_pull", "allow_pan", "allow_tilt", "allow_pan_push", "allow_pan_pull", "allow_drift", "allow_settle", "allow_reveal_move", "allow_punch_cuts", "allow_hard_reframes", "allow_match_position_cuts", "allow_decorative_transitions", "allow_directional_transitions", "allow_reveal_transitions", "transition_preference", "word_sync")
     return {key: settings.get(key) for key in keep}
 
 BASE = """You are the Motion Director for a professional short-form video pipeline.
@@ -67,7 +67,16 @@ Easing is never "hold" (use linear for a hold). Use a hard reframe only for a me
 attention jump. Avoid repetitive move shapes across neighboring beats. Preserve faces,
 hands/actions, artwork bounds, and subtitle safety. Prefer a stable hold when movement has no
 narrative purpose. Transition out defaults to cut and decorative transitions require geometry
-and semantic justification. Return decisions for current_beats only.
+and semantic justification. NON-NEGOTIABLE IMAGE TRANSITION POLICY: transition_out may use
+only the types selected by image_transition_style: cuts are duration 0; fade/dissolve use
+exactly image_transition_seconds. Do not use wipe, slide, cover, reveal, radial, zoom or any
+other display-style effect. There is no quota for semantically justified soft transitions.
+NON-NEGOTIABLE IMAGE ZOOM POLICY: every micro-shot in every body
+image except the episode's final image must be a continuous inward move (`push_in`, `pan_push`,
+or `reveal_move`) and the beat must end with `movement_direction: "in"`. The final image is the
+one release: every one of its micro-shots must be `pull_out` or `pan_pull`, ending with
+`movement_direction: "out"`. Use image_zoom_strength as the minimum perceptible zoom change.
+Return decisions for current_beats only.
 """
     return BASE+rules+"\nCONTRACT:\n"+_json(contract)+"\nCONTEXT:\n"+_json(payload)
 

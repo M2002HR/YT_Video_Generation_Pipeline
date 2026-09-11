@@ -322,9 +322,12 @@ def test_active_prompts_enforce_stage_isolation() -> None:
         ROOT / "projects/q_station/prompts/reference/book_transition_reference_prompt.txt"
     ).read_text()
     stage3 = (prompts / "03_episode_director.md").read_text()
+    stage8 = (prompts / "08_opening_video_prompt_writer.md").read_text()
     stage6 = (prompts / "06_world_keyframe_prompt_writer.md").read_text()
     stage9 = (prompts / "09_book_transition_video_prompt_writer.md").read_text()
     assert "{{CHARACTER_CONTEXT}}" in stage3 and "free semantic description" in stage3
+    assert "topic_visual_link" in stage3 and "opening_visual_proof" in stage3
+    assert "opening_visual_proof" in stage8 and "first 1–2 seconds" in stage8
     assert "no recurring host" in stage6.lower()
     assert "{{CHARACTER_CONTEXT}}" not in stage9 and "{{EPISODE_PLAN}}" not in stage9
     assert "no recurring host" in stage9.lower() and "no farmer" not in stage9.lower()
