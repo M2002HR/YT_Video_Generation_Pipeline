@@ -1,0 +1,20 @@
+{
+  "style_id": "orchard_sleep_memory_collage_001",
+  "decision": "reuse",
+  "reuse_of": "orchard_sleep_memory_collage_001",
+  "medium": "paper cut",
+  "secondary_treatment": "subtle collage layering for anatomical and cognitive overlays",
+  "texture_family": "hand-layered paper grain with fibrous cut edges",
+  "palette_summary": "warm orchard greens, muted amber sunlight, cream paper layers, soft slate blues for fatigue states, restrained honey highlights for brain and body signals",
+  "line_treatment": "clean cut-paper silhouettes with softly irregular fibrous edges, minimal drawn outlines, and simplified anatomical contours",
+  "lighting": "soft diffused daylight shifting toward subdued slate-blue fatigue tones, with restrained warm honey illumination on active brain and body signals",
+  "frame_language": "a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "allow orchard and apple-sorting metaphors, books, clocks without readable markings, beds and sleep cues, simplified paper-cut brain anatomy, attention and reaction-time imagery, memory motifs, emotional-regulation symbolism, hunger and calorie-dense food silhouettes, immune-system metaphors, heart and blood-vessel imagery, blood-pressure and blood-sugar concepts, caffeine cups without branding or text, and coherent body-system diagrams rendered entirely within the layered paper-cut vocabulary",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears later, translate the established host silhouette and recognizable proportions into layered cut-paper shapes with fibrous edges, cream-and-slate facial planes, restrained orchard-green clothing accents, and honey highlights consistent with the world; do not introduce new identity traits",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime or manga styling, no neon cyberpunk treatment, no photographic textures, no realistic medical gore, no beat-by-beat medium switching, no dense typography, no readable labels or UI inside illustrations, and no oversized empty subtitle void",
+  "reason": "The operator directive explicitly requires reuse of orchard_sleep_memory_collage_001, so it overrides all selection heuristics. The style also has unusually strong topic affinity: its orchard vocabulary directly supports the opening apple-sorting metaphor, while slate fatigue tones and honey brain/body highlights naturally carry attention, memory, metabolic, cardiovascular, and immune-system beats. It has only one catalogued prior use and does not appear in the supplied recent-style sequence, so the recent-usage penalty is low compared with the repeatedly used recent ink, retro, and screen-print styles.",
+  "style_subtitle_reserve": "a calm lower field occupying only the bottom 8–10% of the vertical 9:16 frame, rendered as low-detail cream or softly mottled slate paper texture integrated into the layered card; keep it free of faces, hands, focal objects, important anatomical details, and absolutely free of any text, letters, numbers, captions, labels, words, or UI, while preserving enough quiet space for two subtitle lines",
+  "reserve_subtitle_space": false
+}

@@ -1,0 +1,18 @@
+{
+  "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+  "opening_location": "early-morning orchard packing shed",
+  "opening_environment": "A practical dawn-lit apple packing shed with a waist-high sorting table, rolling fruit, wooden produce crates, and a small reference book kept beneath the work surface.",
+  "topic_visual_link": "His visibly tired attention causes an immediate, obvious apple-sorting mistake, directly illustrating how severe sleep restriction can impair focus and accuracy.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "With heavy-lidded eyes, he places a spotless apple into the reject crate while a clearly bruised apple rolls into the good crate beside it.",
+  "curiosity_trigger": "He notices the clean apple sitting among rejects, then looks back at the bruised apple he just accepted.",
+  "trigger_object": "the clean and bruised apples sitting in the wrong crates",
+  "reaction": "He freezes, narrows his tired eyes at both crates, then gives a small skeptical head tilt as if questioning his own mistake.",
+  "book_retrieval": "Without leaving the sorting station, he reaches beneath the worktable and pulls out the reference book kept on a low shelf beside the crates.",
+  "camera_pattern": "over_shoulder",
+  "book_template_id": "002",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "return_to_opening",
+  "world_style_hint": "Dawn orchard-and-packing imagery gradually blends with surreal sleep-memory motifs, drifting attention cues, and physiological visual metaphors.",
+  "reason": "Apple sorting comes directly from the script and gives this restrained, observant host a grounded task where a simple fatigue-driven mistake can visibly launch the question without forcing an unrelated prop or setting."
+}

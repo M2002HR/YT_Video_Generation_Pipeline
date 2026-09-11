@@ -1,0 +1,170 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "879f920db270e6a449fe888d9175963ec6b9fc79609d9b9f41681c8b7329ac0f",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical frame shows one closed dark violet hardback book on a pale layered paper ground with torn green and cream paper near the top. The cover visibly features a cracked alarm clock above a rumpled pillow, a partly drained tipped coffee cup near the bottom, and a cluster of dark crescent-shaped patches. Binding details, corner protectors, page edges, grain, shadows, and tactile cut-paper construction are visible.",
+    "violations": [
+      "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+      "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+      "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+      "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+      "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+      "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+      "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+      "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+      "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+      "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+      "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+      "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+      "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+    ],
+    "observations": [
+      "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+      "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+      "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+      "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+      "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+      "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+      "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "f67a5c6e-b998-4b16-9c7d-c4a763fadb96",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/c4ff6f16f0760077",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=f67a5c6e-b998-4b16-9c7d-c4a763fadb96_output_1.png 1536x2752 sha256=db032365020f09f975f420931ad0ba6be7fbb15ac0783ac8be061cbfc329587b"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical frame shows one closed dark violet hardback book on a pale layered paper ground with torn green and cream paper near the top. The cover visibly features a cracked alarm clock above a rumpled pillow, a partly drained tipped coffee cup near the bottom, and a cluster of dark crescent-shaped patches. Binding details, corner protectors, page edges, grain, shadows, and tactile cut-paper construction are visible.",
+      "violations": [
+        "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+        "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+        "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+        "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+        "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+        "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+        "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+        "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+        "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+        "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+        "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+        "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+        "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+      ],
+      "observations": [
+        "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+        "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+        "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+        "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+        "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+        "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+        "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "879f920db270e6a449fe888d9175963ec6b9fc79609d9b9f41681c8b7329ac0f",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "f67a5c6e-b998-4b16-9c7d-c4a763fadb96",
+        "prompt_sha256": "9a97b3d709a1ba66183c57ee3acfab122d0e79a9d83fd9d6b9c91a8258e66cf6",
+        "output_sha256": "db032365020f09f975f420931ad0ba6be7fbb15ac0783ac8be061cbfc329587b",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical frame shows one closed dark violet hardback book on a pale layered paper ground with torn green and cream paper near the top. The cover visibly features a cracked alarm clock above a rumpled pillow, a partly drained tipped coffee cup near the bottom, and a cluster of dark crescent-shaped patches. Binding details, corner protectors, page edges, grain, shadows, and tactile cut-paper construction are visible.",
+          "violations": [
+            "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+            "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+            "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+            "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+            "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+            "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+            "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+            "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+            "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+            "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+            "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+            "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+            "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+          ],
+          "observations": [
+            "The book is substantially smaller than the requested 82–88% of canvas height, leaving broad top and bottom empty areas rather than narrow even margins.",
+            "The composition is not perfectly orthographic in presentation: visible book thickness, cast shadows, raised motifs, and dimensional corner pieces create a pronounced 3D papercraft/mockup effect despite the explicit no-3D requirement.",
+            "The alarm clock has a prominent top-center shape that reads like a capital 'T', conflicting with the prohibition on letters or readable marks.",
+            "The alarm clock face is cracked, but the requested partial obscuration of the fractured face by shadow is weak; most of the face remains clearly visible.",
+            "The requested muted navy component is limited; the cover is dominated by bruised violet and cool gray/lavender tones.",
+            "Heavy grain is present, but the requested soft vignette shading and compressed fatigued atmosphere are comparatively subtle.",
+            "The surrounding paper treatment broadly follows the reference's tactile torn-paper language, but it is cooler, cleaner, and more dimensional than the reference's warmer flat cut-paper illustration treatment."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    }
+  ],
+  "prompt_sha256": "9a97b3d709a1ba66183c57ee3acfab122d0e79a9d83fd9d6b9c91a8258e66cf6",
+  "prompt": "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and occupies about 82–88% of the canvas height with narrow even margins. The entire cover and page block are visible. The surrounding tabletop/paper/ground uses ONLY the supplied episode style reference's texture, palette and frame language; it must not borrow the book-cover subject matter. The cover itself is uniquely and richly crafted for this topic: What will happen if you sleep less than 5 hours a day. The authoritative COVER DESIGN BRIEF is: A closed illustrated book cover with a rumpled pillow centered beneath a cracked alarm clock, its fractured face partly obscured by shadow. Arrange a half-drained coffee cup near the lower edge, tipped slightly toward a scattered cluster of dark under-eye patches rendered as symbolic crescent shapes. Use muted navy, bruised violet, and sickly gray tones, with heavy grain and soft vignette shading to create a fatigued, compressed atmosphere. Render every named motif as visible cover craftsmanship — central emblem, border, binding, corners or page edges — rather than as tiny incidental decoration. Use ONLY motifs justified by that brief; do not substitute generic book imagery. No title, letters, numbers, readable marks, logos or real-person likeness. This is a closed cover only: no open pages, no two-page spread, no hands, no people, no UI, no photorealism and no 3D.",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "db032365020f09f975f420931ad0ba6be7fbb15ac0783ac8be061cbfc329587b",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.17,
+  "completed_at": "2026-09-11T19:10:36Z"
+}

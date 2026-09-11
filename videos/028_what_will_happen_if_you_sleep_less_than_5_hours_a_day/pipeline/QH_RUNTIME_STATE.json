@@ -1,0 +1,552 @@
+{
+  "schema_version": 2,
+  "video_id": "028",
+  "topic": "What will happen if you sleep less than 5 hours a day",
+  "created_at": "2026-09-11T18:55:09Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:08Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:08Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:08Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:08Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:08Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:09Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-11T20:20:10Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "BOOK_COVER_DESIGN.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:11Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-11T20:20:15Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:14Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:14Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:14Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:14Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:14Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:15Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:15Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:15Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:15Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:15Z",
+      "artifact": "beat_010.png"
+    },
+    "beat_image_011": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:15Z",
+      "artifact": "beat_011.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:17Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:17Z",
+      "artifact": "question_spark_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T20:20:17Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-11T20:20:17Z",
+      "body_images": 11
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 79.485,
+      "at": "2026-09-11T18:56:29Z",
+      "words": 118
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 43.481,
+      "at": "2026-09-11T18:57:14Z",
+      "words": 116
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 40.257,
+      "at": "2026-09-11T18:57:55Z",
+      "activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 31.476,
+      "at": "2026-09-11T18:58:28Z",
+      "style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 40.477,
+      "at": "2026-09-11T18:59:10Z",
+      "reuse_of": "orchard_sleep_memory_collage_001",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57",
+      "usage_count": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.233,
+      "at": "2026-09-11T18:59:12Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 55.348,
+      "at": "2026-09-11T19:00:09Z",
+      "beats": 11
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.215,
+      "at": "2026-09-11T19:04:55Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 33.564,
+      "at": "2026-09-11T19:05:29Z",
+      "prompt_sha256": "6d6ec365248ae8f13d2bf0015153c6c74da4d26cfba5bac6d92ff516c1bc37dd"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 139.999,
+      "at": "2026-09-11T19:07:51Z",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 26.216,
+      "at": "2026-09-11T19:08:18Z",
+      "prompt_sha256": "75afe3a91de72d417d9db1be710a09b818904ceff40e348d3336d9306980a9a4"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 136.79,
+      "at": "2026-09-11T19:10:36Z",
+      "sha256": "db032365020f09f975f420931ad0ba6be7fbb15ac0783ac8be061cbfc329587b",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 43.234,
+      "at": "2026-09-11T19:11:20Z",
+      "prompt_sha256": "c36bb2935ea58e239e24210c640106cd635866afddae45512219a9164471a70d"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 25.629,
+      "at": "2026-09-11T19:11:47Z",
+      "prompt_sha256": "35ded79b4f5c619ee74049aaebfa7e603f6904e8d3816784cd11c29120119134"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 141.951,
+      "at": "2026-09-11T19:14:42Z",
+      "sha256": "50a706071064f932760b66573ce019f5adc06c726c73b480100a9909451fecc6",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 151.005,
+      "at": "2026-09-11T19:17:47Z",
+      "sha256": "94f0414d1e944fa1e4bdf5d1e766a4100ae3e1c28202be80fead326fc0d4adcb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 172.163,
+      "at": "2026-09-11T19:21:11Z",
+      "sha256": "8b2d6eaf4bd2090cd1897d0537fa8be12553aba7aca9ca76c6940f05d525f4ed",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 178.137,
+      "at": "2026-09-11T19:24:37Z",
+      "sha256": "278208d65d133fe1a12dec4a5ad1a8e5ae909cb35f4a4ec94bba1ce5b79c5a90",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 178.176,
+      "at": "2026-09-11T19:28:10Z",
+      "sha256": "55e45c602f1f322fe074691235734e4e77c6deb6d4824633b73e6aa3e338a168",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 135.999,
+      "at": "2026-09-11T19:30:54Z",
+      "sha256": "8ee060980151b3e4beb8d233d76eb2f121fbb59a5fce703eba24c6baae5f916e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 132.971,
+      "at": "2026-09-11T19:33:39Z",
+      "sha256": "abb2bcbc098693c8886a10107454ae21585753ffbcfe12a239884b742401caa5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 169.035,
+      "at": "2026-09-11T19:36:56Z",
+      "sha256": "68198bc460e39a1b24d6d2d76e6c8f824fad12f0b3254e857f6c6f5f7a28a130",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 138.929,
+      "at": "2026-09-11T19:39:44Z",
+      "sha256": "c15eb1d991d277549aad539fee68f1c48497be6bcca9c125a71d3c0cfda22406",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.732,
+      "at": "2026-09-11T19:57:57Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 90.768,
+      "at": "2026-09-11T19:59:33Z",
+      "sha256": "7548f4341152694b0e83bf78cea0de1184e0ee7623a62379a95ac9dd69fc7ae5",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 85.134,
+      "at": "2026-09-11T20:01:30Z",
+      "sha256": "49310c39366e37691fece3158fb8ea7080f4a87ff8c6c5b6789b4dac8d63354c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 212.441,
+      "at": "2026-09-11T20:01:31Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.308,
+      "at": "2026-09-11T20:01:34Z",
+      "boundaries": 10
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 106.639,
+      "at": "2026-09-11T20:03:21Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "70ee4e383d6aa7b3e0cf69e31578a7f2693d3aaff5ec24b573b8172fc98e5c08"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 121.433,
+      "at": "2026-09-11T20:05:24Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "da10481b2818a8b8636f66d9c3f1acc85d4bb9bccfa1855fb1fc1c793900ec0d"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.215,
+      "at": "2026-09-11T20:08:00Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.327,
+      "at": "2026-09-11T20:08:06Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.426,
+      "at": "2026-09-11T20:12:55Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.287,
+      "at": "2026-09-11T20:13:01Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.229,
+      "at": "2026-09-11T20:15:37Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.445,
+      "at": "2026-09-11T20:15:42Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.486,
+      "at": "2026-09-11T20:18:06Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.963,
+      "at": "2026-09-11T20:18:13Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.614,
+      "at": "2026-09-11T20:20:10Z",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed",
+      "camera_pattern": "over_shoulder",
+      "book_template_id": "002",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.914,
+      "at": "2026-09-11T20:20:15Z"
+    }
+  ],
+  "updated_at": "2026-09-11T20:20:17Z"
+}

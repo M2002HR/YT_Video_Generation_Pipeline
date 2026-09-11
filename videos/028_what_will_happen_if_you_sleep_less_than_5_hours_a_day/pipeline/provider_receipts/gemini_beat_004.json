@@ -1,0 +1,152 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "89459f1ff491f38f292c05f75e84d12a0a1b29d351e66600d5ffc3626d271cd7",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical paper-cut scene within the recurring thick cream-paper card frame and inset orchard-green, slate-blue, and amber window. A slim full-body Red Horned Everyman stands in side profile facing viewer-right on an open cream-paper stage, with two large black ridged horns, pointed ear, angular nose, tired eyes, black hair and goatee, plaid overshirt, dark shirt, faded jeans, and brown boots. Behind him, a very large red-and-amber curling crest dominates most of the frame, while a thin honey-colored ribbon loops loosely through the composition with visibly frayed ends. The rendering maintains layered fibrous paper texture, shallow cut-paper depth, muted world palette, and soft lighting, with no captions or readable text.",
+    "violations": [
+      "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+      "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+      "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+      "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+      "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+    ],
+    "observations": [
+      "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+      "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+      "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "dc765a71-024b-4f4c-8835-71ff06c2429e",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/9fc1ffe0fc1be5b6",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=dc765a71-024b-4f4c-8835-71ff06c2429e_output_1.png 1536x2752 sha256=278208d65d133fe1a12dec4a5ad1a8e5ae909cb35f4a4ec94bba1ce5b79c5a90"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical paper-cut scene within the recurring thick cream-paper card frame and inset orchard-green, slate-blue, and amber window. A slim full-body Red Horned Everyman stands in side profile facing viewer-right on an open cream-paper stage, with two large black ridged horns, pointed ear, angular nose, tired eyes, black hair and goatee, plaid overshirt, dark shirt, faded jeans, and brown boots. Behind him, a very large red-and-amber curling crest dominates most of the frame, while a thin honey-colored ribbon loops loosely through the composition with visibly frayed ends. The rendering maintains layered fibrous paper texture, shallow cut-paper depth, muted world palette, and soft lighting, with no captions or readable text.",
+      "violations": [
+        "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+        "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+        "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+        "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+        "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+      ],
+      "observations": [
+        "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+        "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+        "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "89459f1ff491f38f292c05f75e84d12a0a1b29d351e66600d5ffc3626d271cd7",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "dc765a71-024b-4f4c-8835-71ff06c2429e",
+        "prompt_sha256": "36e1a83ce0f3d95984f5c3ecf0091df7e02181ca591a31bb8bbef80d116bbace",
+        "output_sha256": "278208d65d133fe1a12dec4a5ad1a8e5ae909cb35f4a4ec94bba1ce5b79c5a90",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical paper-cut scene within the recurring thick cream-paper card frame and inset orchard-green, slate-blue, and amber window. A slim full-body Red Horned Everyman stands in side profile facing viewer-right on an open cream-paper stage, with two large black ridged horns, pointed ear, angular nose, tired eyes, black hair and goatee, plaid overshirt, dark shirt, faded jeans, and brown boots. Behind him, a very large red-and-amber curling crest dominates most of the frame, while a thin honey-colored ribbon loops loosely through the composition with visibly frayed ends. The rendering maintains layered fibrous paper texture, shallow cut-paper depth, muted world palette, and soft lighting, with no captions or readable text.",
+          "violations": [
+            "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+            "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+            "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+            "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+            "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+          ],
+          "observations": [
+            "The red-and-amber emotion wave uses many sharp flame- or feather-like tongues, so portions can read as fire or a large wing/plume rather than an unequivocal abstract emotional wave; this conflicts mildly with the requested avoidance of flames and wings.",
+            "The honey control ribbon is visibly loosened and frayed, but its connection to brain-control or emotional regulation is somewhat ambiguous and could also read as a loose cord or scarf.",
+            "The delivered raster is 1143 by 2048, which is slightly narrower than an exact 9:16 aspect ratio."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/red_horned_everyman/refs/character_sheet.png",
+      "sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_003.png",
+      "sha256": "8b2d6eaf4bd2090cd1897d0537fa8be12553aba7aca9ca76c6940f05d525f4ed"
+    }
+  ],
+  "prompt_sha256": "36e1a83ce0f3d95984f5c3ecf0091df7e02181ca591a31bb8bbef80d116bbace",
+  "prompt": "Gemini Image Prompt — Beat 4\n\nCreate exactly one standalone vertical 9:16 image in the established orchard_sleep_memory_collage_001 world: layered paper-cut illustration with hand-layered fibrous paper grain, softly irregular cut edges, shallow stacked-paper depth, clean silhouettes, minimal drawn outlines, warm orchard greens, muted amber, cream, soft slate-blue fatigue tones, restrained honey highlights, and soft diffused daylight. Preserve the recurring cream-paper card frame and inset illustrated window from the accepted world, using the full illustration height with no caption reserve, blank strip, empty panel, or low-detail subtitle band. Show the Red Horned Everyman as a small full-body side-profile figure on an open cream-paper stage, calm and restrained rather than angry: slim lanky red-skinned adult, exactly two enormous symmetrical black ridged horns with both tips visible, pointed ears, long angular nose, tired drooping eyes, short tousled black hair, pointed black goatee, two small lower tusks, muted red-charcoal plaid overshirt, dark shirt, faded blue jeans, worn brown boots. Behind him, an enormous layered red-and-amber paper wave of emotion rises and dominates the upper frame, while a thin honey-colored brain-control ribbon that would normally contain it hangs visibly frayed, loosened, and failing, clearly conveying weakened emotional regulation and stronger emotional impact. Translate all anatomy and metaphor into the same tactile paper-cut vocabulary; no supernatural aura, flames, wings, tail, hooves, extra horns, or villainous acting. Use character_sheet for identity only, never pose or composition; use style_reference only for rendering medium and visual treatment; use world_keyframe only for recurring frame language, materials, texture, palette, and lighting; use previous_beat only to maintain those same continuity traits, never its crop, camera, pose, placement, layout, or focal object. Do not carry any unrelated opening environment into this beat. No photorealism, glossy 3D, anime, neon, gore, storyboard, grid, collage layout, multiple panels, captions, labels, UI, letters, numbers, or readable text.\n\nClarify the emotion wave’s shape\nSpecify the profile’s facing direction NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "278208d65d133fe1a12dec4a5ad1a8e5ae909cb35f4a4ec94bba1ce5b79c5a90",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 90.301,
+  "completed_at": "2026-09-11T19:24:37Z"
+}

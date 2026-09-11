@@ -1,0 +1,137 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "1ea709bbc8aff3f28ad77caf239fe04b4975375a22efe4ab50fa5112a544422b",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical paper-cut anatomical landscape is shown inside a layered cream card frame. A serpentine slate-blue bloodstream runs diagonally from the lower-left toward the upper-right through orchard-green, cream, and muted blue terrain. Numerous amber and ochre hexagonal paper shapes crowd the stream, while a nearby rounded cell-like pocket contains only a few similar shapes, creating the requested visual imbalance. The image maintains tactile stacked-paper depth, warm restrained lighting, simplified non-gory anatomy, and the established green, cream, slate-blue, and amber palette.",
+    "violations": [
+      "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+      "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+      "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+    ],
+    "observations": [
+      "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+      "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "55a1e15f-e8f1-49df-ad2d-179dfef7cbed",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/47f8783f799936e0",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=55a1e15f-e8f1-49df-ad2d-179dfef7cbed_output_1.png 1536x2752 sha256=68198bc460e39a1b24d6d2d76e6c8f824fad12f0b3254e857f6c6f5f7a28a130"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical paper-cut anatomical landscape is shown inside a layered cream card frame. A serpentine slate-blue bloodstream runs diagonally from the lower-left toward the upper-right through orchard-green, cream, and muted blue terrain. Numerous amber and ochre hexagonal paper shapes crowd the stream, while a nearby rounded cell-like pocket contains only a few similar shapes, creating the requested visual imbalance. The image maintains tactile stacked-paper depth, warm restrained lighting, simplified non-gory anatomy, and the established green, cream, slate-blue, and amber palette.",
+      "violations": [
+        "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+        "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+        "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+      ],
+      "observations": [
+        "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+        "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "1ea709bbc8aff3f28ad77caf239fe04b4975375a22efe4ab50fa5112a544422b",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "55a1e15f-e8f1-49df-ad2d-179dfef7cbed",
+        "prompt_sha256": "46af56c9646371292293e7242aec34d7590214a8fdde5698a25c03270bb95291",
+        "output_sha256": "68198bc460e39a1b24d6d2d76e6c8f824fad12f0b3254e857f6c6f5f7a28a130",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical paper-cut anatomical landscape is shown inside a layered cream card frame. A serpentine slate-blue bloodstream runs diagonally from the lower-left toward the upper-right through orchard-green, cream, and muted blue terrain. Numerous amber and ochre hexagonal paper shapes crowd the stream, while a nearby rounded cell-like pocket contains only a few similar shapes, creating the requested visual imbalance. The image maintains tactile stacked-paper depth, warm restrained lighting, simplified non-gory anatomy, and the established green, cream, slate-blue, and amber palette.",
+          "violations": [
+            "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+            "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+            "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+          ],
+          "observations": [
+            "The honey-like illumination on metabolically active signals is very subtle; the amber shapes read primarily through color and paper shadow rather than a distinct localized glow.",
+            "Some cut edges, especially along the inner terrain bands, appear cleaner and smoother than the more visibly fibrous torn-paper treatment seen in parts of the continuity references, though the overall paper material remains consistent."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_007.png",
+      "sha256": "abb2bcbc098693c8886a10107454ae21585753ffbcfe12a239884b742401caa5"
+    }
+  ],
+  "prompt_sha256": "46af56c9646371292293e7242aec34d7590214a8fdde5698a25c03270bb95291",
+  "prompt": "Create exactly one vertical 9:16 image in the established orchard_sleep_memory_collage_001 world: a tactile paper-cut anatomical landscape framed by the recurring layered cream-paper card with visible fibrous cut edges, shallow stacked-paper depth, and a full-height inset illustration window. Show a broad oblique metabolic scene where a winding bloodstream forms a serpentine river traveling from bottom-left toward top-right through cream and soft slate-blue anatomical terrain. Fill the stream with numerous muted amber, sugar-like hexagonal paper shapes, several visibly crowded together in the flow, while a nearby simplified cell-shaped paper pocket receives noticeably fewer shapes than the surrounding supply suggests, communicating worsened blood-sugar regulation purely through visual imbalance. Use warm orchard greens, cream layers, subdued slate fatigue tones, restrained amber daylight, and subtle honey illumination on metabolically active signals; maintain hand-layered paper grain, softly irregular fibrous edges, clean cut-paper silhouettes, minimal drawn outlines, and simplified non-gory anatomy. Compose naturally across the entire illustration height with no lower caption field, blank strip, empty panel, or subtitle reserve. Reference roles: use style_reference only to preserve the simplified handcrafted visual grammar and restraint; use world_keyframe to match the established paper-cut world, recurring frame language, palette, texture, and lighting; use previous_beat as binding continuity for frame material, edge treatment, inner window, texture, palette, and lighting only—do not copy its composition, crop, camera angle, subject placement, or focal object. No photorealism, glossy 3D, anime, neon, realistic gore, readable labels, numbers, UI, captions, text, storyboard, grid, multi-panel layout, or montage. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_008.png",
+  "output_sha256": "68198bc460e39a1b24d6d2d76e6c8f824fad12f0b3254e857f6c6f5f7a28a130",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 108.307,
+  "completed_at": "2026-09-11T19:36:56Z"
+}

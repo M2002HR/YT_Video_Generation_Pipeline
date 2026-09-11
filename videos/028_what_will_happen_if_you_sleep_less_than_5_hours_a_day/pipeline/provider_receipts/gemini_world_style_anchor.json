@@ -1,0 +1,34 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "request_fingerprint": "a5e4e10b532439c9d3c4b59473a8c340256aec0367f045b75596e78cc5a8979d",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical paper-cut style reference sheet showing layered cream and orchard-green torn paper, five palette swatches in green, amber, cream, slate blue, and honey, plus simplified cut-paper botanical and anatomical samples. Fibrous paper grain and irregular cut edges are visible throughout, with soft daylight, slate-blue fatigue accents, and restrained honey highlights on neural and body-signal motifs.",
+    "violations": [
+      "Some anatomical samples use more drawn contour lines than the requested minimal-outline treatment.",
+      "The anatomical examples occupy a relatively large portion of the sheet, making it slightly more like a motif reference board than a pure texture-and-palette sample."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Some anatomical samples use more drawn contour lines than the requested minimal-outline treatment.",
+      "The anatomical examples occupy a relatively large portion of the sheet, making it slightly more like a motif reference board than a pure texture-and-palette sample."
+    ],
+    "observations": [
+      "Some anatomical samples use more drawn contour lines than the requested minimal-outline treatment.",
+      "The anatomical examples occupy a relatively large portion of the sheet, making it slightly more like a motif reference board than a pure texture-and-palette sample."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/010_orchard_sleep_memory_collage_001/style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    }
+  ]
+}

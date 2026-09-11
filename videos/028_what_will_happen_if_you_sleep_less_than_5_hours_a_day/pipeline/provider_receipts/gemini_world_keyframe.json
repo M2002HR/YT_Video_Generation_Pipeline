@@ -1,0 +1,143 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "7674da980aeca70336327dcebb74cddf15193b4a12485832ac182781064aa234",
+  "quality_check": {
+    "passed": true,
+    "description": "A standalone vertical paper-cut world keyframe shows a softly illuminated central brain connected downward through simplified anatomical pathways to a heart, branching blood vessels, and a stomach. Drifting fragments surround the brain alongside a blank clock, tree, house-like symbol, immune-style starbursts, amber arrows and hexagonal metabolic signals, and a plain caffeine cup. The scene is host-free and character-free, fills the usable height, and is contained within a layered cream inset frame using orchard greens, cream, muted amber, slate blue, and honey illumination.",
+    "violations": [
+      "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+      "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+      "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+      "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+      "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+      "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+      "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+    ],
+    "observations": [
+      "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+      "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+      "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+      "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "08eaf78e-f1f3-479f-8330-5ea7a94ae4c8",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/fa0598a8e4072201",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=08eaf78e-f1f3-479f-8330-5ea7a94ae4c8_output_1.png 1536x2752 sha256=6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A standalone vertical paper-cut world keyframe shows a softly illuminated central brain connected downward through simplified anatomical pathways to a heart, branching blood vessels, and a stomach. Drifting fragments surround the brain alongside a blank clock, tree, house-like symbol, immune-style starbursts, amber arrows and hexagonal metabolic signals, and a plain caffeine cup. The scene is host-free and character-free, fills the usable height, and is contained within a layered cream inset frame using orchard greens, cream, muted amber, slate blue, and honey illumination.",
+      "violations": [
+        "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+        "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+        "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+        "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+        "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+        "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+        "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+      ],
+      "observations": [
+        "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+        "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+        "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+        "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "7674da980aeca70336327dcebb74cddf15193b4a12485832ac182781064aa234",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "08eaf78e-f1f3-479f-8330-5ea7a94ae4c8",
+        "prompt_sha256": "6d6ec365248ae8f13d2bf0015153c6c74da4d26cfba5bac6d92ff516c1bc37dd",
+        "output_sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c",
+        "quality_check": {
+          "passed": true,
+          "description": "A standalone vertical paper-cut world keyframe shows a softly illuminated central brain connected downward through simplified anatomical pathways to a heart, branching blood vessels, and a stomach. Drifting fragments surround the brain alongside a blank clock, tree, house-like symbol, immune-style starbursts, amber arrows and hexagonal metabolic signals, and a plain caffeine cup. The scene is host-free and character-free, fills the usable height, and is contained within a layered cream inset frame using orchard greens, cream, muted amber, slate blue, and honey illumination.",
+          "violations": [
+            "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+            "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+            "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+            "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+            "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+            "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+            "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+          ],
+          "observations": [
+            "Several paper shapes in the upper-right and mid-right read as letter-like or typographic glyphs, conflicting with the requirement for no letters, readable text, or labels.",
+            "The candidate's cut-edge treatment is noticeably smoother and more rounded than the style reference's visibly torn, fibrous paper edges, so the hand-torn edge grammar is less pronounced.",
+            "Anatomical and object contours use comparatively thick slate-blue layered borders and shadows, whereas the style reference relies more on thin restrained drawn outlines and flatter paper layering.",
+            "The outer cream frame has a polished rounded-card appearance with very regular edges, reducing some of the irregular handmade fibrous quality emphasized by the reference and frame contract."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    }
+  ],
+  "prompt_sha256": "6d6ec365248ae8f13d2bf0015153c6c74da4d26cfba5bac6d92ff516c1bc37dd",
+  "prompt": "Create one standalone vertical 9:16 WORLD_KEYFRAME, completely host-free and character-free, establishing an inside-book subject world about short sleep and its effects on brain and body. Use layered paper-cut illustration with subtle collage depth, hand-layered paper grain, visible fibrous cut edges, clean simplified silhouettes, minimal drawn outlines, and restrained anatomical contours. Build a cohesive symbolic composition around a softly illuminated paper-cut brain surrounded by drifting attention fragments, fading memory shapes, a clock with no readable markings, simplified heart and blood-vessel forms, immune-system motifs, abstract blood-sugar and hunger signals, and a plain unbranded caffeine cup; integrate all elements naturally as one illustrated world rather than separate panels.\n\nPalette: warm orchard greens, cream paper, muted amber, soft slate blues for fatigue, restrained honey highlights on active brain and body signals. Lighting: soft diffused daylight subdued by slate-blue fatigue tones, with gentle honey illumination guiding the eye through key signals. Recurring frame language: a layered cream-paper card with fibrous cut edges and shallow stacked-paper depth surrounding one inset illustrated window of overlapping green, slate-blue, amber, and cream paper shapes; maintain consistent tactile border thickness and cut-edge grammar.\n\nAtmosphere: curious, tactile, educational, slightly weary but inviting, with visual complexity that rewards exploration without becoming clinical or alarming. Fill the full illustration height naturally; do not reserve any lower caption field, blank strip, empty panel, low-detail band, or subtitle void. No recurring host, selected host, foreground person, character, readable text, letters, numbers, labels, captions, branding, UI, grid, sheet layout, swatches, photorealism, glossy CGI, anime, neon styling, photographic textures, or medical gore. Reference input defines medium/style only, never composition. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI. Binding isolation: no recurring host, no selected host, and no foreground person or character.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.217,
+  "completed_at": "2026-09-11T19:07:51Z"
+}

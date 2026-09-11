@@ -1,0 +1,146 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "563611f16a5ae622c843caf25d37c485e0fd76695a23ed4774575b42c92c5dff",
+  "quality_check": {
+    "passed": true,
+    "description": "A standalone vertical 9:16 layered paper-cut scene inside the recurring cream inset card. A wide reclining human body spans the frame horizontally in slate-blue, orchard-green, cream, and muted amber layers beneath deep nocturnal paper forms. Small shield-like shapes are distributed across the body, a restrained honey glow appears around the mid-body repair area, and a large pale blank clock presses inward from the right. The composition continues through the full usable height with no caption band, labels, numbers, or UI. The recurring cream border, inset-window construction, subdued palette, shallow stacked-paper depth, and soft paper-shadow lighting remain visibly consistent with the supplied world references.",
+    "violations": [
+      "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+      "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+      "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+      "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+      "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+    ],
+    "observations": [
+      "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+      "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+      "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "5158005f-d58e-4e7c-b6b9-1aa554a2c889",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/209e42c789d23ec6",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=5158005f-d58e-4e7c-b6b9-1aa554a2c889_output_1.png 1536x2752 sha256=8ee060980151b3e4beb8d233d76eb2f121fbb59a5fce703eba24c6baae5f916e"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A standalone vertical 9:16 layered paper-cut scene inside the recurring cream inset card. A wide reclining human body spans the frame horizontally in slate-blue, orchard-green, cream, and muted amber layers beneath deep nocturnal paper forms. Small shield-like shapes are distributed across the body, a restrained honey glow appears around the mid-body repair area, and a large pale blank clock presses inward from the right. The composition continues through the full usable height with no caption band, labels, numbers, or UI. The recurring cream border, inset-window construction, subdued palette, shallow stacked-paper depth, and soft paper-shadow lighting remain visibly consistent with the supplied world references.",
+      "violations": [
+        "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+        "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+        "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+        "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+        "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+      ],
+      "observations": [
+        "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+        "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+        "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "563611f16a5ae622c843caf25d37c485e0fd76695a23ed4774575b42c92c5dff",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "5158005f-d58e-4e7c-b6b9-1aa554a2c889",
+        "prompt_sha256": "1e7703af3c9397c9bd4fd0a5e0df0ffce0759e3f077f282b4ff81d4e2f4a6bb7",
+        "output_sha256": "8ee060980151b3e4beb8d233d76eb2f121fbb59a5fce703eba24c6baae5f916e",
+        "quality_check": {
+          "passed": true,
+          "description": "A standalone vertical 9:16 layered paper-cut scene inside the recurring cream inset card. A wide reclining human body spans the frame horizontally in slate-blue, orchard-green, cream, and muted amber layers beneath deep nocturnal paper forms. Small shield-like shapes are distributed across the body, a restrained honey glow appears around the mid-body repair area, and a large pale blank clock presses inward from the right. The composition continues through the full usable height with no caption band, labels, numbers, or UI. The recurring cream border, inset-window construction, subdued palette, shallow stacked-paper depth, and soft paper-shadow lighting remain visibly consistent with the supplied world references.",
+          "violations": [
+            "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+            "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+            "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+            "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+            "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+          ],
+          "observations": [
+            "The shield-like immune elements read more as emblem or badge shapes placed on the body than as clearly active cells visibly mending specific tiny gaps.",
+            "Several unfinished repairs are only weakly communicated; irregular body-layer separations are present, but distinct partially completed repair sites are not consistently legible.",
+            "Some internal body-layer edges are smoother and more polished than the visibly fibrous torn-edge treatment emphasized by the style reference, though the overall recurring paper-cut material language remains intact."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_005.png",
+      "sha256": "55e45c602f1f322fe074691235734e4e77c6deb6d4824633b73e6aa3e338a168"
+    }
+  ],
+  "prompt_sha256": "1e7703af3c9397c9bd4fd0a5e0df0ffce0759e3f077f282b4ff81d4e2f4a6bb7",
+  "prompt": "Gemini Image Prompt — Beat 6\n\nCreate exactly one standalone 9:16 image in the established orchard_sleep_memory_collage_001 world: a night-themed layered paper-cut body diagram showing shortened sleep reducing immune recovery time. Inside the recurring cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, compose a wide reclining human body silhouette horizontally across the vertical frame, built from overlapping slate-blue, orchard-green, cream, and muted amber paper shapes with softly irregular fibrous edges and simplified anatomical contours. Across the figure, small shield-like immune-cell shapes attempt to mend tiny gaps in the body layers; several repairs remain visibly unfinished. A large pale blank clock shape with absolutely no markings presses inward from one side, visually compressing the available recovery period as deep slate-blue night layers overtake a restrained warm honey recovery glow, interrupting it around mid-body. Use soft diffused nocturnal lighting, subdued slate fatigue tones, restrained honey illumination on active repair signals, tactile hand-layered paper grain, and subtle anatomical collage layering while maintaining clean readable silhouettes. Fill the full illustration height naturally: no lower caption reserve, blank strip, empty panel, or low-detail subtitle band. style_reference defines the simplified cut-paper medium, texture, edge grammar, palette, and lighting treatment; world_keyframe defines the recurring cream card, inset illustrated-window construction, and overall world vocabulary; previous_beat is binding only for recurring frame language, material treatment, texture, palette, and lighting continuity—do not copy its composition, crop, camera angle, subject placement, pose, or focal object. No photorealism, glossy 3D CGI, anime, neon styling, photographic textures, medical gore, dense typography, readable labels, letters, numbers, UI, captions, storyboard, grid, panels, or multi-image collage layout. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_006.png",
+  "output_sha256": "8ee060980151b3e4beb8d233d76eb2f121fbb59a5fce703eba24c6baae5f916e",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.276,
+  "completed_at": "2026-09-11T19:30:54Z"
+}

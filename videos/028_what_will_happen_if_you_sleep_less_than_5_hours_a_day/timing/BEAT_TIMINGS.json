@@ -1,0 +1,126 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 59.611,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Why is sorting apples harder after less than five hours of sleep? Grab the book. The answer starts in your tired brain. Attention drifts. Obvious details slip past. Reaction time slows, making mistakes easier. New memories become harder to store. Emotional control weakens, so feelings hit harder. Hunger shifts toward more calorie-dense foods. Your immune system gets less recovery time. Blood pressure control can worsen. Blood sugar control can worsen too. Repeated short sleep is linked with heart disease and diabetes. Caffeine can mask sleepiness, but cannot replace sleep. Most adults need at least seven hours nightly. Five hours may save time tonight, then cost to you tomorrow. Like and subscribe to keep growing your questions.",
+  "word_count": 116,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Attention drifts; obvious details slip past.",
+      "speech_start": 9.06,
+      "speech_end": 12.48,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 12.96,
+      "display_duration": 12.96
+    },
+    {
+      "beat_id": 2,
+      "narration": "Reaction time slows, making mistakes easier.",
+      "speech_start": 12.96,
+      "speech_end": 16.1,
+      "match_confidence": 1.0,
+      "display_start": 12.96,
+      "display_end": 16.88,
+      "display_duration": 3.92
+    },
+    {
+      "beat_id": 3,
+      "narration": "New memories become harder to store.",
+      "speech_start": 16.88,
+      "speech_end": 19.2,
+      "match_confidence": 1.0,
+      "display_start": 16.88,
+      "display_end": 20.1,
+      "display_duration": 3.22
+    },
+    {
+      "beat_id": 4,
+      "narration": "Emotional control weakens, so feelings hit harder.",
+      "speech_start": 20.1,
+      "speech_end": 23.64,
+      "match_confidence": 1.0,
+      "display_start": 20.1,
+      "display_end": 24.36,
+      "display_duration": 4.26
+    },
+    {
+      "beat_id": 5,
+      "narration": "Hunger shifts toward more calorie-dense foods.",
+      "speech_start": 24.36,
+      "speech_end": 27.32,
+      "match_confidence": 0.714,
+      "display_start": 24.36,
+      "display_end": 28.06,
+      "display_duration": 3.7
+    },
+    {
+      "beat_id": 6,
+      "narration": "Your immune system gets less recovery time.",
+      "speech_start": 28.06,
+      "speech_end": 31.22,
+      "match_confidence": 1.0,
+      "display_start": 28.06,
+      "display_end": 31.66,
+      "display_duration": 3.6
+    },
+    {
+      "beat_id": 7,
+      "narration": "Blood pressure control can worsen.",
+      "speech_start": 31.66,
+      "speech_end": 33.88,
+      "match_confidence": 1.0,
+      "display_start": 31.66,
+      "display_end": 34.36,
+      "display_duration": 2.7
+    },
+    {
+      "beat_id": 8,
+      "narration": "Blood sugar control can worsen too.",
+      "speech_start": 34.36,
+      "speech_end": 36.74,
+      "match_confidence": 1.0,
+      "display_start": 34.36,
+      "display_end": 37.68,
+      "display_duration": 3.32
+    },
+    {
+      "beat_id": 9,
+      "narration": "Repeated short sleep is linked with heart disease and diabetes.",
+      "speech_start": 37.68,
+      "speech_end": 41.26,
+      "match_confidence": 1.0,
+      "display_start": 37.68,
+      "display_end": 42.22,
+      "display_duration": 4.54
+    },
+    {
+      "beat_id": 10,
+      "narration": "Caffeine can mask sleepiness, but cannot replace sleep.",
+      "speech_start": 42.22,
+      "speech_end": 46.4,
+      "match_confidence": 1.0,
+      "display_start": 42.22,
+      "display_end": 47.12,
+      "display_duration": 4.9
+    },
+    {
+      "beat_id": 11,
+      "narration": "Most adults need at least seven hours nightly.",
+      "speech_start": 47.12,
+      "speech_end": 50.12,
+      "match_confidence": 1.0,
+      "display_start": 47.12,
+      "display_end": 59.611,
+      "display_duration": 12.491
+    }
+  ]
+}

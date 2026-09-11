@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "603312113ad10aa824215a10cee939467c6a7138f54776914c954d175dad48d8",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "5d693f58-4919-4170-b5d2-57b786084841",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/4836cb509b032bed",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=5d693f58-4919-4170-b5d2-57b786084841_output_1.png 1536x2752 sha256=49310c39366e37691fece3158fb8ea7080f4a87ff8c6c5b6789b4dac8d63354c"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "603312113ad10aa824215a10cee939467c6a7138f54776914c954d175dad48d8",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "5d693f58-4919-4170-b5d2-57b786084841",
+        "prompt_sha256": "ecbc83484c2090ee66b16a64e9f4cc7e4daca57aa67691a7fe7a063659b2aea1",
+        "output_sha256": "49310c39366e37691fece3158fb8ea7080f4a87ff8c6c5b6789b4dac8d63354c",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_010.png",
+      "sha256": "7548f4341152694b0e83bf78cea0de1184e0ee7623a62379a95ac9dd69fc7ae5"
+    }
+  ],
+  "prompt_sha256": "ecbc83484c2090ee66b16a64e9f4cc7e4daca57aa67691a7fe7a063659b2aea1",
+  "prompt": "Create exactly one vertical 9:16 image: a calm, wide-feeling nighttime bedroom scene rendered entirely as tactile layered paper cut, with hand-layered fibrous paper grain, softly irregular cut edges, shallow stacked-paper depth, clean simplified silhouettes, restrained cel-like shading, and no glossy or photorealistic effects. Preserve the recurring cream-paper outer card and inset illustrated window, with consistent border thickness and overlapping orchard-green, muted amber, cream, and soft slate-blue shapes. Center a simple adult silhouette peacefully asleep in a bed; above the bed, arrange exactly seven small abstract, unmarked moon-phase-like paper discs in a serene symmetrical visual rhythm, communicating seven hours without numerals, clock markings, symbols, or labels. Let subdued slate-blue fatigue layers gently recede toward the outer edges while restrained warm honey illumination returns across the sleeping body, suggesting recovery and restoration. Use soft diffused nocturnal lighting, quiet balanced negative space, and a restful final-beat mood. Fill the complete illustration height naturally: no lower caption reserve, blank strip, empty panel, or deliberately low-detail subtitle band. Reference roles: use style_reference only for the established paper-cut medium, texture, palette, contour simplicity, and lighting treatment; use world_keyframe only for the recurring cream-paper frame language, fibrous-edge grammar, stacked-paper depth, and inset-window construction; use previous_beat as binding continuity for those same materials, palette, texture, frame, and lighting, but do not copy its composition, crop, camera angle, pose, subject placement, or focal object. Exactly one image only—no storyboard, grid, multi-image collage, panels, captions, readable text, letters, numbers, labels, UI, photographic textures, anime, neon cyberpunk, realistic medical imagery, or glossy 3D CGI. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_011.png",
+  "output_sha256": "49310c39366e37691fece3158fb8ea7080f4a87ff8c6c5b6789b4dac8d63354c",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 84.66,
+  "completed_at": "2026-09-11T20:01:30Z"
+}

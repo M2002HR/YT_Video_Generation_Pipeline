@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 59.611,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 116,
+  "words": [
+    {
+      "text": "Why",
+      "token": "why",
+      "start": 0.02,
+      "end": 0.24
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 0.24,
+      "end": 0.54
+    },
+    {
+      "text": "sorting",
+      "token": "sorting",
+      "start": 0.54,
+      "end": 0.8
+    },
+    {
+      "text": "apples",
+      "token": "apples",
+      "start": 0.8,
+      "end": 1.2
+    },
+    {
+      "text": "harder",
+      "token": "harder",
+      "start": 1.2,
+      "end": 1.7
+    },
+    {
+      "text": "after",
+      "token": "after",
+      "start": 1.7,
+      "end": 2.1
+    },
+    {
+      "text": "less",
+      "token": "less",
+      "start": 2.1,
+      "end": 2.42
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 2.42,
+      "end": 2.6
+    },
+    {
+      "text": "five",
+      "token": "five",
+      "start": 2.6,
+      "end": 3.02
+    },
+    {
+      "text": "hours",
+      "token": "hours",
+      "start": 3.02,
+      "end": 3.38
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 3.38,
+      "end": 3.6
+    },
+    {
+      "text": "sleep?",
+      "token": "sleep",
+      "start": 3.6,
+      "end": 3.94
+    },
+    {
+      "text": "Grab",
+      "token": "grab",
+      "start": 4.8,
+      "end": 5.02
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 5.02,
+      "end": 5.24
+    },
+    {
+      "text": "book.",
+      "token": "book",
+      "start": 5.24,
+      "end": 5.64
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 6.0,
+      "end": 6.18
+    },
+    {
+      "text": "answer",
+      "token": "answer",
+      "start": 6.18,
+      "end": 6.46
+    },
+    {
+      "text": "starts",
+      "token": "starts",
+      "start": 6.46,
+      "end": 7.02
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 7.02,
+      "end": 7.26
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 7.26,
+      "end": 7.42
+    },
+    {
+      "text": "tired",
+      "token": "tired",
+      "start": 7.42,
+      "end": 7.84
+    },
+    {
+      "text": "brain.",
+      "token": "brain",
+      "start": 7.84,
+      "end": 8.62
+    },
+    {
+      "text": "Attention",
+      "token": "attention",
+      "start": 9.06,
+      "end": 9.5
+    },
+    {
+      "text": "drifts.",
+      "token": "drifts",
+      "start": 9.5,
+      "end": 10.3
+    },
+    {
+      "text": "Obvious",
+      "token": "obvious",
+      "start": 10.58,
+      "end": 10.96
+    },
+    {
+      "text": "details",
+      "token": "details",
+      "start": 10.96,
+      "end": 11.54
+    },
+    {
+      "text": "slip",
+      "token": "slip",
+      "start": 11.54,
+      "end": 11.9
+    },
+    {
+      "text": "past.",
+      "token": "past",
+      "start": 11.9,
+      "end": 12.48
+    },
+    {
+      "text": "Reaction",
+      "token": "reaction",
+      "start": 12.96,
+      "end": 13.38
+    },
+    {
+      "text": "time",
+      "token": "time",
+      "start": 13.38,
+      "end": 13.76
+    },
+    {
+      "text": "slows,",
+      "token": "slows",
+      "start": 13.76,
+      "end": 14.12
+    },
+    {
+      "text": "making",
+      "token": "making",
+      "start": 14.12,
+      "end": 14.92
+    },
+    {
+      "text": "mistakes",
+      "token": "mistakes",
+      "start": 14.92,
+      "end": 15.52
+    },
+    {
+      "text": "easier.",
+      "token": "easier",
+      "start": 15.52,
+      "end": 16.1
+    },
+    {
+      "text": "New",
+      "token": "new",
+      "start": 16.88,
+      "end": 17.08
+    },
+    {
+      "text": "memories",
+      "token": "memories",
+      "start": 17.08,
+      "end": 17.56
+    },
+    {
+      "text": "become",
+      "token": "become",
+      "start": 17.56,
+      "end": 18.1
+    },
+    {
+      "text": "harder",
+      "token": "harder",
+      "start": 18.1,
+      "end": 18.54
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 18.54,
+      "end": 18.78
+    },
+    {
+      "text": "store.",
+      "token": "store",
+      "start": 18.78,
+      "end": 19.2
+    },
+    {
+      "text": "Emotional",
+      "token": "emotional",
+      "start": 20.1,
+      "end": 20.52
+    },
+    {
+      "text": "control",
+      "token": "control",
+      "start": 20.52,
+      "end": 21.16
+    },
+    {
+      "text": "weakens,",
+      "token": "weakens",
+      "start": 21.16,
+      "end": 21.78
+    },
+    {
+      "text": "so",
+      "token": "so",
+      "start": 21.78,
+      "end": 22.38
+    },
+    {
+      "text": "feelings",
+      "token": "feelings",
+      "start": 22.38,
+      "end": 22.9
+    },
+    {
+      "text": "hit",
+      "token": "hit",
+      "start": 22.9,
+      "end": 23.18
+    },
+    {
+      "text": "harder.",
+      "token": "harder",
+      "start": 23.18,
+      "end": 23.64
+    },
+    {
+      "text": "Hunger",
+      "token": "hunger",
+      "start": 24.36,
+      "end": 24.64
+    },
+    {
+      "text": "shifts",
+      "token": "shifts",
+      "start": 24.64,
+      "end": 25.16
+    },
+    {
+      "text": "toward",
+      "token": "toward",
+      "start": 25.16,
+      "end": 25.54
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 25.54,
+      "end": 25.92
+    },
+    {
+      "text": "calorie-dense",
+      "token": "caloriedense",
+      "start": 25.92,
+      "end": 26.84
+    },
+    {
+      "text": "foods.",
+      "token": "foods",
+      "start": 26.84,
+      "end": 27.32
+    },
+    {
+      "text": "Your",
+      "token": "your",
+      "start": 28.06,
+      "end": 28.2
+    },
+    {
+      "text": "immune",
+      "token": "immune",
+      "start": 28.2,
+      "end": 28.6
+    },
+    {
+      "text": "system",
+      "token": "system",
+      "start": 28.6,
+      "end": 29.1
+    },
+    {
+      "text": "gets",
+      "token": "gets",
+      "start": 29.1,
+      "end": 29.5
+    },
+    {
+      "text": "less",
+      "token": "less",
+      "start": 29.5,
+      "end": 29.86
+    },
+    {
+      "text": "recovery",
+      "token": "recovery",
+      "start": 29.86,
+      "end": 30.42
+    },
+    {
+      "text": "time.",
+      "token": "time",
+      "start": 30.42,
+      "end": 31.22
+    },
+    {
+      "text": "Blood",
+      "token": "blood",
+      "start": 31.66,
+      "end": 31.92
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 31.92,
+      "end": 32.26
+    },
+    {
+      "text": "control",
+      "token": "control",
+      "start": 32.26,
+      "end": 32.76
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 32.76,
+      "end": 33.1
+    },
+    {
+      "text": "worsen.",
+      "token": "worsen",
+      "start": 33.1,
+      "end": 33.88
+    },
+    {
+      "text": "Blood",
+      "token": "blood",
+      "start": 34.36,
+      "end": 34.58
+    },
+    {
+      "text": "sugar",
+      "token": "sugar",
+      "start": 34.58,
+      "end": 34.96
+    },
+    {
+      "text": "control",
+      "token": "control",
+      "start": 34.96,
+      "end": 35.48
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 35.48,
+      "end": 35.92
+    },
+    {
+      "text": "worsen",
+      "token": "worsen",
+      "start": 35.92,
+      "end": 36.38
+    },
+    {
+      "text": "too.",
+      "token": "too",
+      "start": 36.38,
+      "end": 36.74
+    },
+    {
+      "text": "Repeated",
+      "token": "repeated",
+      "start": 37.68,
+      "end": 38.0
+    },
+    {
+      "text": "short",
+      "token": "short",
+      "start": 38.0,
+      "end": 38.38
+    },
+    {
+      "text": "sleep",
+      "token": "sleep",
+      "start": 38.38,
+      "end": 38.68
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 38.68,
+      "end": 39.06
+    },
+    {
+      "text": "linked",
+      "token": "linked",
+      "start": 39.06,
+      "end": 39.42
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 39.42,
+      "end": 39.62
+    },
+    {
+      "text": "heart",
+      "token": "heart",
+      "start": 39.62,
+      "end": 39.9
+    },
+    {
+      "text": "disease",
+      "token": "disease",
+      "start": 39.9,
+      "end": 40.32
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 40.32,
+      "end": 40.66
+    },
+    {
+      "text": "diabetes.",
+      "token": "diabetes",
+      "start": 40.66,
+      "end": 41.26
+    },
+    {
+      "text": "Caffeine",
+      "token": "caffeine",
+      "start": 42.22,
+      "end": 42.8
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 42.8,
+      "end": 43.12
+    },
+    {
+      "text": "mask",
+      "token": "mask",
+      "start": 43.12,
+      "end": 43.56
+    },
+    {
+      "text": "sleepiness,",
+      "token": "sleepiness",
+      "start": 43.56,
+      "end": 44.2
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 44.2,
+      "end": 44.86
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 44.86,
+      "end": 45.26
+    },
+    {
+      "text": "replace",
+      "token": "replace",
+      "start": 45.26,
+      "end": 45.9
+    },
+    {
+      "text": "sleep.",
+      "token": "sleep",
+      "start": 45.9,
+      "end": 46.4
+    },
+    {
+      "text": "Most",
+      "token": "most",
+      "start": 47.12,
+      "end": 47.38
+    },
+    {
+      "text": "adults",
+      "token": "adults",
+      "start": 47.38,
+      "end": 47.92
+    },
+    {
+      "text": "need",
+      "token": "need",
+      "start": 47.92,
+      "end": 48.3
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 48.3,
+      "end": 48.44
+    },
+    {
+      "text": "least",
+      "token": "least",
+      "start": 48.44,
+      "end": 48.72
+    },
+    {
+      "text": "seven",
+      "token": "seven",
+      "start": 48.72,
+      "end": 49.12
+    },
+    {
+      "text": "hours",
+      "token": "hours",
+      "start": 49.12,
+      "end": 49.54
+    },
+    {
+      "text": "nightly.",
+      "token": "nightly",
+      "start": 49.54,
+      "end": 50.12
+    },
+    {
+      "text": "Five",
+      "token": "five",
+      "start": 50.74,
+      "end": 51.04
+    },
+    {
+      "text": "hours",
+      "token": "hours",
+      "start": 51.04,
+      "end": 51.4
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 51.4,
+      "end": 51.68
+    },
+    {
+      "text": "save",
+      "token": "save",
+      "start": 51.68,
+      "end": 52.02
+    },
+    {
+      "text": "time",
+      "token": "time",
+      "start": 52.02,
+      "end": 52.38
+    },
+    {
+      "text": "tonight,",
+      "token": "tonight",
+      "start": 52.38,
+      "end": 52.76
+    },
+    {
+      "text": "then",
+      "token": "then",
+      "start": 52.76,
+      "end": 53.48
+    },
+    {
+      "text": "cost",
+      "token": "cost",
+      "start": 53.48,
+      "end": 53.84
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 53.84,
+      "end": 54.0
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 54.0,
+      "end": 54.06
+    },
+    {
+      "text": "tomorrow.",
+      "token": "tomorrow",
+      "start": 54.06,
+      "end": 54.48
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 55.3,
+      "end": 55.48
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 55.48,
+      "end": 56.12
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 56.12,
+      "end": 56.62
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 56.62,
+      "end": 57.24
+    },
+    {
+      "text": "keep",
+      "token": "keep",
+      "start": 57.24,
+      "end": 57.54
+    },
+    {
+      "text": "growing",
+      "token": "growing",
+      "start": 57.54,
+      "end": 57.98
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 57.98,
+      "end": 58.3
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 58.3,
+      "end": 58.86
+    }
+  ]
+}

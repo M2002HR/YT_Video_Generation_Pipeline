@@ -1,0 +1,119 @@
+{
+  "audio_duration_seconds": 59.611,
+  "spark_start": 0.02,
+  "spark_end": 3.94,
+  "spark_duration": 3.92,
+  "transition_start": 4.8,
+  "transition_end": 8.62,
+  "transition_duration": 3.82,
+  "clip_a_target_seconds": 3.94,
+  "clip_b_target_seconds": 4.68,
+  "body_start": 9.06,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Why is sorting apples harder after less than five hours of sleep?",
+      "speech_start": 0.02,
+      "speech_end": 3.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "Grab the book—the answer starts in your tired brain.",
+      "speech_start": 4.8,
+      "speech_end": 8.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Attention drifts; obvious details slip past.",
+      "speech_start": 9.06,
+      "speech_end": 12.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Reaction time slows, making mistakes easier.",
+      "speech_start": 12.96,
+      "speech_end": 16.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "New memories become harder to store.",
+      "speech_start": 16.88,
+      "speech_end": 19.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Emotional control weakens, so feelings hit harder.",
+      "speech_start": 20.1,
+      "speech_end": 23.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Hunger shifts toward more calorie-dense foods.",
+      "speech_start": 24.36,
+      "speech_end": 27.32,
+      "match_confidence": 0.714
+    },
+    {
+      "segment": "body_06",
+      "narration": "Your immune system gets less recovery time.",
+      "speech_start": 28.06,
+      "speech_end": 31.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Blood pressure control can worsen.",
+      "speech_start": 31.66,
+      "speech_end": 33.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Blood sugar control can worsen too.",
+      "speech_start": 34.36,
+      "speech_end": 36.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Repeated short sleep is linked with heart disease and diabetes.",
+      "speech_start": 37.68,
+      "speech_end": 41.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "Caffeine can mask sleepiness, but cannot replace sleep.",
+      "speech_start": 42.22,
+      "speech_end": 46.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "Most adults need at least seven hours nightly.",
+      "speech_start": 47.12,
+      "speech_end": 50.12,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Five hours may save time tonight, then cost you tomorrow.",
+      "speech_start": 50.74,
+      "speech_end": 54.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to keep growing your questions.",
+      "speech_start": 55.3,
+      "speech_end": 58.86,
+      "match_confidence": 1.0
+    }
+  ]
+}

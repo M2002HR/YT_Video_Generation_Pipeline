@@ -1,0 +1,173 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "b3861aff3dc9863745e4eac40f5fad6bae4e8580a5dd523c7f769220f076cd91",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical layered paper-cut anatomical brain scene appears inside a recurring cream-paper card with a rounded inset window. The brain sits high in the composition against a mostly uniform slate-blue field, with orchard-green outer layers, cream cortical cutouts, a slate-blue and green inner pocket, and scattered amber-honey square memory tokens progressing generally from upper-left toward lower-right. The rendering uses shallow stacked-paper depth, soft shadows, subdued cream, green, slate-blue and amber colors, and no readable text or UI.",
+    "violations": [
+      "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+      "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+      "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+      "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+      "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+      "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+      "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+      "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+      "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+      "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+      "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+    ],
+    "observations": [
+      "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+      "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+      "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+      "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+      "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+      "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "4c7a31b9-ff54-4f0d-8067-bb5f3234088d",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/527bb11105d0c2ad",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=4c7a31b9-ff54-4f0d-8067-bb5f3234088d_output_1.png 1536x2752 sha256=8b2d6eaf4bd2090cd1897d0537fa8be12553aba7aca9ca76c6940f05d525f4ed"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical layered paper-cut anatomical brain scene appears inside a recurring cream-paper card with a rounded inset window. The brain sits high in the composition against a mostly uniform slate-blue field, with orchard-green outer layers, cream cortical cutouts, a slate-blue and green inner pocket, and scattered amber-honey square memory tokens progressing generally from upper-left toward lower-right. The rendering uses shallow stacked-paper depth, soft shadows, subdued cream, green, slate-blue and amber colors, and no readable text or UI.",
+      "violations": [
+        "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+        "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+        "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+        "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+        "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+        "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+        "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+        "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+        "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+        "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+        "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+      ],
+      "observations": [
+        "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+        "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+        "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+        "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+        "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+        "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "b3861aff3dc9863745e4eac40f5fad6bae4e8580a5dd523c7f769220f076cd91",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "4c7a31b9-ff54-4f0d-8067-bb5f3234088d",
+        "prompt_sha256": "292ded88dddcb0ae8232a7464e61f34eabe9e0f85e02479a05b8061d94140a7d",
+        "output_sha256": "8b2d6eaf4bd2090cd1897d0537fa8be12553aba7aca9ca76c6940f05d525f4ed",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical layered paper-cut anatomical brain scene appears inside a recurring cream-paper card with a rounded inset window. The brain sits high in the composition against a mostly uniform slate-blue field, with orchard-green outer layers, cream cortical cutouts, a slate-blue and green inner pocket, and scattered amber-honey square memory tokens progressing generally from upper-left toward lower-right. The rendering uses shallow stacked-paper depth, soft shadows, subdued cream, green, slate-blue and amber colors, and no readable text or UI.",
+          "violations": [
+            "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+            "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+            "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+            "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+            "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+            "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+            "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+            "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+            "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+            "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+            "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+          ],
+          "observations": [
+            "The brain reads primarily as a flat medial or sagittal cutaway rather than the requested medium three-quarter anatomical view.",
+            "A very large low-detail slate-blue area occupies the lower half of the usable illustration window, creating the empty-band feeling the direction explicitly asked to avoid.",
+            "The inset background loses much of the overlapping orchard-green, slate-blue and amber paper-shape construction established in the world keyframe and previous beat, becoming predominantly a single flat slate-blue field.",
+            "The memory-storage failure action is somewhat ambiguous: tokens are scattered around the brain and pocket, but only weakly communicate several tokens visibly slipping past or sliding off the pocket edge.",
+            "Cut edges are generally smooth and softly beveled; visible fibrous paper-edge texture is less pronounced than requested and less tactile than in the references.",
+            "The canvas is 1143 by 2048 pixels, which is close to but not exactly 9:16."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_002.png",
+      "sha256": "94f0414d1e944fa1e4bdf5d1e766a4100ae3e1c28202be80fead326fc0d4adcb"
+    }
+  ],
+  "prompt_sha256": "292ded88dddcb0ae8232a7464e61f34eabe9e0f85e02479a05b8061d94140a7d",
+  "prompt": "Create exactly one vertical 9:16 image: a simplified layered paper-cut brain in medium three-quarter anatomical view, centered within the established recurring cream-paper card and inset illustration window, with visible fibrous cut edges, shallow stacked-paper depth, minimal drawn outlines, and clean readable silhouettes. Inside the brain, suggest a simplified hippocampus-like inner pocket using overlapping cream, slate-blue, and muted orchard-green paper layers; several small honey-glowing memory tokens flow diagonally from upper-left toward lower-right, with a few approaching the pocket successfully while several visibly slip past or slide off its edge instead of settling inside, clearly communicating difficulty storing new memories. Fill the full illustration height naturally with a quiet slate-blue anatomical space—no lower caption field, blank strip, empty panel, or reserved band. Use warm orchard greens, cream, subdued slate blues, muted amber, restrained honey highlights, soft diffused lighting, hand-layered paper grain, and softly irregular fibrous edges; avoid photorealism, glossy 3D, anime, neon styling, photographic textures, gore, dense UI, labels, symbols, letters, numbers, or readable markings. Reference roles: use the style_reference only for the established rendering vocabulary and tactile material treatment; use the world_keyframe only for recurring frame language, paper depth, palette, texture, and lighting; use the previous_beat as binding continuity for frame material, edge treatment, inner window, texture, palette, and lighting, but do not copy its composition, crop, camera angle, subject placement, or focal object. Exactly one image only—no storyboard, grid, multi-panel layout, captions, or readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "8b2d6eaf4bd2090cd1897d0537fa8be12553aba7aca9ca76c6940f05d525f4ed",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.304,
+  "completed_at": "2026-09-11T19:21:11Z"
+}

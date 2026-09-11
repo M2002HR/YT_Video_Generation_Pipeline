@@ -1,0 +1,137 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "f368fa7ffcd7cb1b0e8fc31f0dec870e2c4565e23b5505b3d60495a2be67c917",
+  "quality_check": {
+    "passed": true,
+    "description": "A vertical layered cream-paper card frames a top-down orchard-green scene. Cream hands with staggered soft-slate and cream motion silhouettes reach around a centered amber apple. A small cream jar with a wood-toned lid sits near the lower-right corner, but it is spatially separated from the apple. No text, labels, UI, or caption strip are visible. The fibrous paper texture, shallow stacked depth, rounded inset frame, warm greens, amber, cream, and fatigue-state slate tones closely preserve the continuity references.",
+    "violations": [
+      "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+      "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": false,
+    "raw_violations": [
+      "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+      "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+    ],
+    "observations": [
+      "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+      "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "8b3f4153-6360-4e57-be16-02478d719f58",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/b80ac855e3907357",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=8b3f4153-6360-4e57-be16-02478d719f58_output_1.png 1536x2752 sha256=94f0414d1e944fa1e4bdf5d1e766a4100ae3e1c28202be80fead326fc0d4adcb"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A vertical layered cream-paper card frames a top-down orchard-green scene. Cream hands with staggered soft-slate and cream motion silhouettes reach around a centered amber apple. A small cream jar with a wood-toned lid sits near the lower-right corner, but it is spatially separated from the apple. No text, labels, UI, or caption strip are visible. The fibrous paper texture, shallow stacked depth, rounded inset frame, warm greens, amber, cream, and fatigue-state slate tones closely preserve the continuity references.",
+      "violations": [
+        "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+        "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": false,
+      "raw_violations": [
+        "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+        "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+      ],
+      "observations": [
+        "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+        "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "f368fa7ffcd7cb1b0e8fc31f0dec870e2c4565e23b5505b3d60495a2be67c917",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "8b3f4153-6360-4e57-be16-02478d719f58",
+        "prompt_sha256": "ccc4a164c850c8d65847ffb6766c5fed1820b31520694496d73f473c1408d056",
+        "output_sha256": "94f0414d1e944fa1e4bdf5d1e766a4100ae3e1c28202be80fead326fc0d4adcb",
+        "quality_check": {
+          "passed": true,
+          "description": "A vertical layered cream-paper card frames a top-down orchard-green scene. Cream hands with staggered soft-slate and cream motion silhouettes reach around a centered amber apple. A small cream jar with a wood-toned lid sits near the lower-right corner, but it is spatially separated from the apple. No text, labels, UI, or caption strip are visible. The fibrous paper texture, shallow stacked depth, rounded inset frame, warm greens, amber, cream, and fatigue-state slate tones closely preserve the continuity references.",
+          "violations": [
+            "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+            "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": false,
+          "raw_violations": [
+            "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+            "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+          ],
+          "observations": [
+            "The delayed-reaction timing is somewhat ambiguous because the correctly positioned catch hand is not clearly readable as visibly lagging behind the falling apple.",
+            "The overlapping cream hand forms can initially read as more than two separate hands rather than two hands plus motion echoes, reducing action clarity."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_001.png",
+      "sha256": "50a706071064f932760b66573ce019f5adc06c726c73b480100a9909451fecc6"
+    }
+  ],
+  "prompt_sha256": "ccc4a164c850c8d65847ffb6766c5fed1820b31520694496d73f473c1408d056",
+  "prompt": "Gemini Image Prompt\n\nCreate exactly one vertical 9:16 image: a single coherent top-down paper-cut educational-animation scene showing two anonymous hands reaching toward a falling apple, with the hand correctly positioned to catch it visibly lagging behind; staggered cream and soft slate cut-paper motion silhouettes communicate the delayed reaction, and the missed apple collides with a small second tabletop object near the lower-right corner, making the simple mistake immediately readable without text. Render everything in the established orchard_sleep_memory_collage_001 world: layered paper-cut construction, hand-layered fibrous grain, softly irregular cut edges, clean readable silhouettes, simplified contours, shallow stacked-paper depth, warm orchard greens, muted amber, cream, fatigue-state slate blues, and restrained honey highlights, under soft diffused daylight shifting subtly toward slate-blue fatigue tones. Preserve the recurring layered cream-paper card and inset illustrated window across the full frame height; do not reserve any lower caption strip, blank panel, empty field, or low-detail subtitle band. Use style_reference only to preserve the simplified hand-crafted 2D rendering vocabulary and restrained visual clarity; use world_keyframe only for the established frame language, materials, edge treatment, texture, palette, and lighting; use previous_beat as binding continuity for those same world qualities, never copying its composition, crop, camera angle, pose, subject placement, or focal object. No identifiable character, faces, storyboard, grid, multi-image collage, panels, captions, labels, UI, letters, numbers, readable markings, photorealism, glossy 3D CGI, anime styling, neon effects, photographic textures, or medical gore.\n\nClarify the collision object\nRemove redundant style wording NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_002.png",
+  "output_sha256": "94f0414d1e944fa1e4bdf5d1e766a4100ae3e1c28202be80fead326fc0d4adcb",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.256,
+  "completed_at": "2026-09-11T19:17:47Z"
+}

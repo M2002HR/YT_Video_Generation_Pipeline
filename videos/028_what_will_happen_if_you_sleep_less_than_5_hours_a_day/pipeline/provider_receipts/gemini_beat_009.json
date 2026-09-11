@@ -1,0 +1,155 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "f81e0f281a0f1e6fe4fe128dde89d874c4e1fb13e149d777c48520d25e2865d7",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall 9:16 hand-layered paper-cut scene shows a deep receding corridor of repeated small bed silhouettes progressing through nested slate-blue night layers. A large dark simplified paper heart anchors the lower-left foreground and an overloaded cluster of blue-gray cells with warm honey interiors anchors the lower-right. The scene is enclosed by the recurring thick layered cream-paper frame with fibrous irregular edges and an inset orchard-green, slate-blue, amber, and cream illustrated window. The full usable height remains illustrated with no caption reserve, text, host, or UI.",
+    "violations": [
+      "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+      "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+      "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+      "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+      "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+      "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+      "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+    ],
+    "observations": [
+      "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+      "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+      "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+      "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "6955a77c-653f-4513-8344-674abc3101f6",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/572a2ee42b89c168",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=6955a77c-653f-4513-8344-674abc3101f6_output_1.png 1536x2752 sha256=c15eb1d991d277549aad539fee68f1c48497be6bcca9c125a71d3c0cfda22406"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single tall 9:16 hand-layered paper-cut scene shows a deep receding corridor of repeated small bed silhouettes progressing through nested slate-blue night layers. A large dark simplified paper heart anchors the lower-left foreground and an overloaded cluster of blue-gray cells with warm honey interiors anchors the lower-right. The scene is enclosed by the recurring thick layered cream-paper frame with fibrous irregular edges and an inset orchard-green, slate-blue, amber, and cream illustrated window. The full usable height remains illustrated with no caption reserve, text, host, or UI.",
+      "violations": [
+        "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+        "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+        "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+        "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+        "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+        "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+        "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+      ],
+      "observations": [
+        "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+        "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+        "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+        "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "f81e0f281a0f1e6fe4fe128dde89d874c4e1fb13e149d777c48520d25e2865d7",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "6955a77c-653f-4513-8344-674abc3101f6",
+        "prompt_sha256": "abf2ed187242bfc631b8772cb6b14cd49b43282a459c9fa003eb44c52bdd7d1a",
+        "output_sha256": "c15eb1d991d277549aad539fee68f1c48497be6bcca9c125a71d3c0cfda22406",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall 9:16 hand-layered paper-cut scene shows a deep receding corridor of repeated small bed silhouettes progressing through nested slate-blue night layers. A large dark simplified paper heart anchors the lower-left foreground and an overloaded cluster of blue-gray cells with warm honey interiors anchors the lower-right. The scene is enclosed by the recurring thick layered cream-paper frame with fibrous irregular edges and an inset orchard-green, slate-blue, amber, and cream illustrated window. The full usable height remains illustrated with no caption reserve, text, host, or UI.",
+          "violations": [
+            "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+            "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+            "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+            "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+            "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+            "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+            "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+          ],
+          "observations": [
+            "The foreground heart communicates heaviness through dark slate layering but its stressed state is somewhat subtle; a clearer paper-cut stress cue such as restrained tension marks or deformation would strengthen the requested cardiovascular-risk endpoint.",
+            "Several of the smallest receding bed silhouettes become partially abstract and less immediately legible as beds at extreme depth.",
+            "The metabolic-cell cluster is visually overloaded and contains warm honey centers, but some outer forms can also read as a generic clustered organic mass rather than unmistakably cellular shapes.",
+            "The darkest slate corridor layers dominate much of the upper-middle image, slightly reducing the orchard-green and amber presence compared with the established reference balance."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/references/world_keyframe.png",
+      "sha256": "6d0d7d86dc68893ad106708e2e922766a40593e26fa732040a38b1367973dd0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/raw_beats/beat_008.png",
+      "sha256": "68198bc460e39a1b24d6d2d76e6c8f824fad12f0b3254e857f6c6f5f7a28a130"
+    }
+  ],
+  "prompt_sha256": "abf2ed187242bfc631b8772cb6b14cd49b43282a459c9fa003eb44c52bdd7d1a",
+  "prompt": "Create exactly one standalone 9:16 image in the established orchard_sleep_memory_collage_001 world: a deep-perspective abstract timeline corridor made entirely from hand-layered paper cut shapes, where a repeating sequence of small bed silhouettes recedes through successive nights toward two dominant foreground endpoints—a visibly stressed simplified paper heart on one side and an overloaded cluster of metabolic cells on the other. Let accumulating slate-blue paper layers progressively darken the beds, corridor, heart, and cells to communicate the compounding long-term cardiovascular and metabolic risk of repeated short sleep; retain restrained warm honey highlights on active body signals and muted orchard greens, amber daylight, cream layers, and soft slate fatigue tones. Preserve the recurring layered cream-paper frame with fibrous cut edges, shallow stacked-paper depth, and inset illustrated window, filling the full illustration height naturally with no lower caption reserve or empty band. Keep silhouettes readable, contours simplified, edges softly irregular and tactile, lighting softly diffused and increasingly subdued toward the risk symbols. Use style_reference only to preserve the simplified educational clarity, clean readable shapes, restrained shading, and muted natural color discipline; use world_keyframe to preserve the canonical paper-cut medium, frame language, texture family, palette, lighting, and depth grammar; use previous_beat only as binding continuity for that same frame material, fibrous edge treatment, inner-window construction, texture, palette, and lighting, never copying its composition, crop, camera angle, subject placement, or focal object. No host or human figure. Exactly one image, no storyboard, grid, collage layout, panels, captions, labels, UI, letters, numbers, or readable text; no photorealism, glossy 3D CGI, anime, neon cyberpunk, photographic textures, or medical gore. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring layered cream-paper card with visible fibrous cut edges and shallow stacked-paper depth, framing an inner illustrated window built from overlapping orchard-green, slate-blue, and amber paper shapes; the same tactile border thickness, cut-edge grammar, and inset illustration window persist across the world keyframe and every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_009.png",
+  "output_sha256": "c15eb1d991d277549aad539fee68f1c48497be6bcca9c125a71d3c0cfda22406",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.17,
+  "completed_at": "2026-09-11T19:39:44Z"
+}

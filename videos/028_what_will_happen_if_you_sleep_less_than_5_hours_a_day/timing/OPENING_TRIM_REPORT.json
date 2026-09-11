@@ -1,0 +1,26 @@
+{
+  "spark_end": 3.94,
+  "transition_end": 8.62,
+  "max_rate_adjust": 0.2,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/opening/question_spark_trimmed.mp4",
+      "target": 3.94,
+      "actual": 3.958,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/opening/book_transition_trimmed.mp4",
+      "target": 4.68,
+      "actual": 4.667,
+      "speed_factor": 1.167082,
+      "rate_adjusted": true
+    }
+  ],
+  "opening_total_seconds": 8.625,
+  "opening_total_target_seconds": 8.62,
+  "opening_total_drift_seconds": 0.005
+}
