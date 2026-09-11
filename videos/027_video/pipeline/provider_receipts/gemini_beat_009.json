@@ -1,0 +1,169 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "2fb8f759f1319dc6cb69c35b7599a7dc2b084f71bc82e4dd1815053d2e52a6bf",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical editorial ink-wash illustration shows a brass balance scale with one red lipstick on the lower left pan and a varied cluster of groceries, bottles, a fuel-canister silhouette, coins, and a house key on the right pan. The warm ivory worn-paper sheet, loose inset charcoal boundary, muted taupe and sage washes, brass ochre, selective lipstick red, soft shadows, and tactile print texture remain consistent with the supplied continuity references. The candidate adds a broad muted sage-gray wash across the upper illustration window, reducing the previously blank-feeling upper field, and the economic-object packaging no longer shows conspicuous faux lettering.",
+    "violations": [
+      "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+      "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+      "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+    ],
+    "observations": [
+      "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+      "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "a791a175-d612-4ee4-92f4-2702da03a93a",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/4285dac13f1eede3",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat",
+      "qc_previous_candidate"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=a791a175-d612-4ee4-92f4-2702da03a93a_output_1.png 1536x2752 sha256=e03bfce4c84bbb1813b4193ca1b83387c73acb64cde658269152155af42c9bc1"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical editorial ink-wash illustration shows a brass balance scale with one red lipstick on the lower left pan and a varied cluster of groceries, bottles, a fuel-canister silhouette, coins, and a house key on the right pan. The warm ivory worn-paper sheet, loose inset charcoal boundary, muted taupe and sage washes, brass ochre, selective lipstick red, soft shadows, and tactile print texture remain consistent with the supplied continuity references. The candidate adds a broad muted sage-gray wash across the upper illustration window, reducing the previously blank-feeling upper field, and the economic-object packaging no longer shows conspicuous faux lettering.",
+      "violations": [
+        "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+        "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+        "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+      ],
+      "observations": [
+        "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+        "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "2fb8f759f1319dc6cb69c35b7599a7dc2b084f71bc82e4dd1815053d2e52a6bf",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "7d212467-6fe1-4b3c-9fa0-c956fe08868e",
+        "prompt_sha256": "c344cb3775a367b8b796f0bf9e0401d567a84f62a1e42b38118d02456d73b1e0",
+        "output_sha256": "3732a681893de529d320dcca563f3140cc836522d6708ec43a4756ea42040830",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall editorial ink-wash image shows a frontal brass balance scale on a warm ivory worn paper sheet. One pan holds a single red lipstick, while the opposite pan contains a varied cluster of grocery packages and bottles, a dark fuel-canister form, several coins, and a house key. The scale is visibly tilted and the scene uses muted taupe, gray-brown, dusty sage, restrained brass ochre, and selective lipstick red. Loose charcoal-and-ink inset boundary marks, irregular paper edges, faint wash texture, soft shadows, and subdued print-like wear closely continue the established frame and material language of the references.",
+          "violations": [
+            "The upper portion of the illustration window contains a relatively large quiet field of lightly textured paper, making the scene slightly less vertically filled than requested, though it does not form a separate caption reserve or blank lower band.",
+            "Tiny packaging marks within the economic-object cluster resemble faux lettering or label fragments, although no clearly readable words are visible.",
+            "The raster dimensions are 1143 by 2048, which is slightly narrower than an exact 9:16 ratio, though visually it remains a 9:16-style vertical composition."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The upper portion of the illustration window contains a relatively large quiet field of lightly textured paper, making the scene slightly less vertically filled than requested, though it does not form a separate caption reserve or blank lower band.",
+            "Tiny packaging marks within the economic-object cluster resemble faux lettering or label fragments, although no clearly readable words are visible.",
+            "The raster dimensions are 1143 by 2048, which is slightly narrower than an exact 9:16 ratio, though visually it remains a 9:16-style vertical composition."
+          ],
+          "observations": [
+            "The upper portion of the illustration window contains a relatively large quiet field of lightly textured paper, making the scene slightly less vertically filled than requested, though it does not form a separate caption reserve or blank lower band.",
+            "Tiny packaging marks within the economic-object cluster resemble faux lettering or label fragments, although no clearly readable words are visible.",
+            "The raster dimensions are 1143 by 2048, which is slightly narrower than an exact 9:16 ratio, though visually it remains a 9:16-style vertical composition."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      },
+      {
+        "attempt": 2,
+        "job_id": "a791a175-d612-4ee4-92f4-2702da03a93a",
+        "prompt_sha256": "72916e2238d6d7d0eb160852a38cca4b31b5a37a7d519207dd8d4d5600133874",
+        "output_sha256": "e03bfce4c84bbb1813b4193ca1b83387c73acb64cde658269152155af42c9bc1",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash illustration shows a brass balance scale with one red lipstick on the lower left pan and a varied cluster of groceries, bottles, a fuel-canister silhouette, coins, and a house key on the right pan. The warm ivory worn-paper sheet, loose inset charcoal boundary, muted taupe and sage washes, brass ochre, selective lipstick red, soft shadows, and tactile print texture remain consistent with the supplied continuity references. The candidate adds a broad muted sage-gray wash across the upper illustration window, reducing the previously blank-feeling upper field, and the economic-object packaging no longer shows conspicuous faux lettering.",
+          "violations": [
+            "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+            "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+            "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+          ],
+          "observations": [
+            "The raster remains 1143 by 2048 rather than an exact 9:16 ratio; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+            "The upper portion is improved by the added watercolor wash but still remains comparatively low-detail and visually quiet relative to the densely occupied lower half."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 2
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_008.png",
+      "sha256": "48e50685d0633ded9f19220949062041dff7ef5004b04c12338c453c9bf51100"
+    }
+  ],
+  "prompt_sha256": "c344cb3775a367b8b796f0bf9e0401d567a84f62a1e42b38118d02456d73b1e0",
+  "prompt": "Edit\n\nCreate exactly one 9:16 image: a medium frontal editorial ink-wash metaphor showing a single lipstick tube balanced precariously on one side of a slightly tilted brass balance scale, opposed by a varied cluster of ordinary economic objects—simple groceries, a fuel-canister silhouette, a few coins, and a house key—so the unstable comparison clearly implies that one cosmetic purchase cannot reliably represent the weight or condition of an entire economy. Render on the established warm ivory editorial sheet with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and the recurring inset illustration window defined by loose charcoal-and-ink boundary marks. Use warm lightly toothy paper grain, soft charcoal contours with brush variation, subtle dry-brush edges, restrained hatching, muted taupe and recession-gray browns, dusty sage/desaturated teal, subdued brass ochre, and selective lipstick red only on the cosmetic and tiny compositional echoes. Soft diffuse editorial daylight, warm paper glow, gentle gray shadows; human-scale, skeptical, non-technical visual logic. Fill the complete illustration height naturally with no lower caption reserve, blank strip, empty panel, or low-detail subtitle band. The style_reference governs medium, linework, texture, palette, and lighting; the world_keyframe governs recurring editorial-sheet frame language and material treatment only; the previous_beat is binding for frame material, edge treatment, illustration-window language, texture, palette, and lighting, but do not copy its composition, crop, camera angle, subject placement, or focal object. No photorealism, glossy 3D, anime, neon, polished vector art, hyper-saturated advertising, certainty-style market graphics, storyboard, grid, collage, multiple panels, captions, labels, letters, numbers, UI, or any readable text.\n\nTighten the prompt under 1800 characters NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_009.png",
+  "output_sha256": "e03bfce4c84bbb1813b4193ca1b83387c73acb64cde658269152155af42c9bc1",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 87.359,
+  "completed_at": "2026-09-11T14:28:07Z"
+}

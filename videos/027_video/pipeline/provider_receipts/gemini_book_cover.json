@@ -1,0 +1,209 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "e675c080dc9d8e145bba5fe5ad6ee169adcbc477e7230e20f2e9f64e1442ae05",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical illustrated frame shows one closed hardback book lying centered on a cream watercolor-paper ground. The entire dark cover and lower page block are visible. The cover features a central upright metallic red lipstick, a broad irregular crimson wax-like arch surrounding it, scattered coins concentrated toward the lower edges, dark folded velvet-like material, metallic ornamental borderwork and corner fittings. The surrounding ground uses the reference image's muted sage, taupe, charcoal, ochre and red watercolor shapes with loose ink contours and paper texture. No people, hands, title or logo are visible.",
+    "violations": [
+      "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+      "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+      "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+      "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+      "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+      "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+      "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+      "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+      "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+      "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+      "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+    ],
+    "observations": [
+      "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+      "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+      "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+      "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+      "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+      "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "eb950522-d4f0-487d-b0d0-2fb63271973e",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/66a3a0b4dcd39c24",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=eb950522-d4f0-487d-b0d0-2fb63271973e_output_1.png 1536x2752 sha256=f3f4d62a1bad2f4ce1a020195a6074dfc4e01ba8c7dfa2f46ea8caaccc1d0a9a"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical illustrated frame shows one closed hardback book lying centered on a cream watercolor-paper ground. The entire dark cover and lower page block are visible. The cover features a central upright metallic red lipstick, a broad irregular crimson wax-like arch surrounding it, scattered coins concentrated toward the lower edges, dark folded velvet-like material, metallic ornamental borderwork and corner fittings. The surrounding ground uses the reference image's muted sage, taupe, charcoal, ochre and red watercolor shapes with loose ink contours and paper texture. No people, hands, title or logo are visible.",
+      "violations": [
+        "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+        "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+        "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+        "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+        "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+        "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+        "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+        "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+        "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+        "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+        "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+      ],
+      "observations": [
+        "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+        "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+        "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+        "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+        "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+        "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "e675c080dc9d8e145bba5fe5ad6ee169adcbc477e7230e20f2e9f64e1442ae05",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "eb950522-d4f0-487d-b0d0-2fb63271973e",
+        "prompt_sha256": "269ef63ba3b843a6e09fa855d159d4504941052b6d4eac9eaf422a1c478cf3f2",
+        "output_sha256": "f3f4d62a1bad2f4ce1a020195a6074dfc4e01ba8c7dfa2f46ea8caaccc1d0a9a",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical illustrated frame shows one closed hardback book lying centered on a cream watercolor-paper ground. The entire dark cover and lower page block are visible. The cover features a central upright metallic red lipstick, a broad irregular crimson wax-like arch surrounding it, scattered coins concentrated toward the lower edges, dark folded velvet-like material, metallic ornamental borderwork and corner fittings. The surrounding ground uses the reference image's muted sage, taupe, charcoal, ochre and red watercolor shapes with loose ink contours and paper texture. No people, hands, title or logo are visible.",
+          "violations": [
+            "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+            "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+            "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+            "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+            "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+            "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+            "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+            "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+            "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+            "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+            "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+          ],
+          "observations": [
+            "The book occupies only roughly two-thirds of the canvas height rather than the requested 82–88%, leaving substantially larger surrounding margins than specified.",
+            "The canvas proportions are approximately 1143 by 2048, which is close to but not exactly 9:16.",
+            "Several coins contain visible numeral-like markings, including a clearly legible '1', conflicting with the prohibition on numbers and readable marks.",
+            "The cover includes ornate generic border motifs and prominent cylindrical corner fittings that are not clearly motivated by the lipstick, spending or economic-psychology brief.",
+            "Dimensional shading on the page block, frame and corner hardware introduces mild depth and perspective cues, so the result is not perfectly flat orthographic in every detail.",
+            "The cover rendering is substantially denser, darker and more polished than the airy reference sheet, although the surrounding ground preserves the reference watercolor texture, line language and palette closely enough that this does not constitute a material style continuity break."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "64571532-a2ac-48a5-b839-18975320f9d5",
+        "prompt_sha256": "d5325487f38c334a3858f8df43fbee1929713f7beb5701aaa804950f69536aa3",
+        "output_sha256": "e2e11b10bd9187bf506cfb4967308b132b08027a6893230555bf83e28bbd8235",
+        "quality_check": {
+          "passed": true,
+          "description": "A single closed hardback book is shown centered in a top-down composition on the cream watercolor reference ground. The cover is dark teal with gold edging and geometric corner plates, a central upright red lipstick in a metallic gold tube, a broad crimson wax-like arch, and a small scattering of coins below. The surrounding abstract watercolor shapes, loose ink outlines, muted sage, taupe and red accents visibly echo the supplied style reference. No people, hands, UI, title text, logos, or clearly readable coin numerals are visible.",
+          "violations": [
+            "The candidate remains 1143 by 2048 pixels, so the canvas is close to but not exactly 9:16.",
+            "The book occupies only about 68% of the canvas height rather than the requested 82–88%; this improves on the previous candidate at roughly 63–64% but still leaves substantially oversized margins.",
+            "Generic geometric gold corner plates and a multi-line gold border remain on the cover; they are less intrusive than the previous ornate frame and cylindrical fittings but are still not clearly motivated by the lipstick, spending, or economic-psychology brief.",
+            "The lipstick tube, coins, page block, border, and corner plates retain dimensional highlights, shadows, and mild relief cues rather than reading as completely flat orthographic craftsmanship.",
+            "The dark cover remains considerably denser and more polished than the airy watercolor reference sheet, although the surrounding ground and overall illustrated line-and-wash language maintain sufficient continuity.",
+            "The cover background reads more as mottled dark teal material than clearly identifiable matte velvet with soft folds.",
+            "The coins are distributed through the lower-middle area rather than showing the previous candidate's stronger concentration near the cover edges, weakening the requested visual idea of spending contracting toward small necessities."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "The previous candidate showed clearly visible soft radial velvet folds behind the lipstick; the candidate largely loses that already-correct material cue and replaces it with a flatter mottled field.",
+            "The previous candidate clustered coins more strongly toward the lower left and right edges; the candidate moves several coins inward, reducing the requested edge-weighted spending-compression motif."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The candidate remains 1143 by 2048 pixels, so the canvas is close to but not exactly 9:16.",
+            "The book occupies only about 68% of the canvas height rather than the requested 82–88%; this improves on the previous candidate at roughly 63–64% but still leaves substantially oversized margins.",
+            "Generic geometric gold corner plates and a multi-line gold border remain on the cover; they are less intrusive than the previous ornate frame and cylindrical fittings but are still not clearly motivated by the lipstick, spending, or economic-psychology brief.",
+            "The lipstick tube, coins, page block, border, and corner plates retain dimensional highlights, shadows, and mild relief cues rather than reading as completely flat orthographic craftsmanship.",
+            "The dark cover remains considerably denser and more polished than the airy watercolor reference sheet, although the surrounding ground and overall illustrated line-and-wash language maintain sufficient continuity.",
+            "The cover background reads more as mottled dark teal material than clearly identifiable matte velvet with soft folds.",
+            "The coins are distributed through the lower-middle area rather than showing the previous candidate's stronger concentration near the cover edges, weakening the requested visual idea of spending contracting toward small necessities."
+          ],
+          "observations": [
+            "The candidate remains 1143 by 2048 pixels, so the canvas is close to but not exactly 9:16.",
+            "The book occupies only about 68% of the canvas height rather than the requested 82–88%; this improves on the previous candidate at roughly 63–64% but still leaves substantially oversized margins.",
+            "Generic geometric gold corner plates and a multi-line gold border remain on the cover; they are less intrusive than the previous ornate frame and cylindrical fittings but are still not clearly motivated by the lipstick, spending, or economic-psychology brief.",
+            "The lipstick tube, coins, page block, border, and corner plates retain dimensional highlights, shadows, and mild relief cues rather than reading as completely flat orthographic craftsmanship.",
+            "The dark cover remains considerably denser and more polished than the airy watercolor reference sheet, although the surrounding ground and overall illustrated line-and-wash language maintain sufficient continuity.",
+            "The cover background reads more as mottled dark teal material than clearly identifiable matte velvet with soft folds.",
+            "The coins are distributed through the lower-middle area rather than showing the previous candidate's stronger concentration near the cover edges, weakening the requested visual idea of spending contracting toward small necessities.",
+            "The previous candidate showed clearly visible soft radial velvet folds behind the lipstick; the candidate largely loses that already-correct material cue and replaces it with a flatter mottled field.",
+            "The previous candidate clustered coins more strongly toward the lower left and right edges; the candidate moves several coins inward, reducing the requested edge-weighted spending-compression motif."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    }
+  ],
+  "prompt_sha256": "269ef63ba3b843a6e09fa855d159d4504941052b6d4eac9eaf422a1c478cf3f2",
+  "prompt": "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and occupies about 82–88% of the canvas height with narrow even margins. The entire cover and page block are visible. The surrounding tabletop/paper/ground uses ONLY the supplied episode style reference's texture, palette and frame language; it must not borrow the book-cover subject matter. The cover itself is uniquely and richly crafted for this topic: تئوری و سندروم رژ لب. The authoritative COVER DESIGN BRIEF is: غلاف كتاب مغلق بإحساس اقتصادي نفسي أنيق ومتوتر: أنبوب أحمر شفاه معدني مفتوح يتوسط الغلاف عموديًا كعنصر رئيسي، تحيط بقاعدته مسحة شمعية قرمزية عريضة على هيئة قوس غير منتظم. تتناثر عملات معدنية قليلة أسفل التكوين بكثافة أكبر قرب الحواف، وكأن الإنفاق انكمش نحو الضروريات الصغيرة. الخلفية من مخمل داكن مطفأ بطيّات ناعمة، مع إضاءة جانبية منخفضة تُبرز لمعان المعدن وملمس الشمع والعملات دون أي عناصر كتابية. Render every named motif as visible cover craftsmanship — central emblem, border, binding, corners or page edges — rather than as tiny incidental decoration. Use ONLY motifs justified by that brief; do not substitute generic book imagery. No title, letters, numbers, readable marks, logos or real-person likeness. This is a closed cover only: no open pages, no two-page spread, no hands, no people, no UI, no photorealism and no 3D.",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "f3f4d62a1bad2f4ce1a020195a6074dfc4e01ba8c7dfa2f46ea8caaccc1d0a9a",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 60.186,
+  "completed_at": "2026-09-11T13:28:49Z"
+}

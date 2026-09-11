@@ -1,0 +1,166 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "7f27fd17761e7136a72b96dfc9f49a5d058af4cec95ff4c2974e63d52b3b0147",
+  "quality_check": {
+    "passed": true,
+    "description": "A single 9:16 editorial ink-wash illustration on warm worn ivory paper. A heavy recession-gray slope descends diagonally from the upper left through the center, while five physical lipstick tubes rise progressively along the right side, establishing the requested opposing diagonal metaphor. Diffuse gray wash and cloud-like tonal passages now extend through the upper center and upper right, reducing the previously large empty ivory area. The loose inset charcoal boundary, muted sage, taupe, gray and restrained ochre palette, selective lipstick-red accents, paper texture, and print-worn edge language remain continuous with the references. No people, text, labels, axes, arrows, numbers, panels, or UI are visible.",
+    "violations": [
+      "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+      "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+      "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+    ],
+    "observations": [
+      "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+      "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "95ea6aef-1bb3-46b6-a8c7-cf5f8c413921",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a517eb28a940d80c",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat",
+      "qc_previous_candidate"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=95ea6aef-1bb3-46b6-a8c7-cf5f8c413921_output_1.png 1536x2752 sha256=855a97b57decd32542051531be22b54c48e3aaa021c99c6cddbde8b96f29f23a"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single 9:16 editorial ink-wash illustration on warm worn ivory paper. A heavy recession-gray slope descends diagonally from the upper left through the center, while five physical lipstick tubes rise progressively along the right side, establishing the requested opposing diagonal metaphor. Diffuse gray wash and cloud-like tonal passages now extend through the upper center and upper right, reducing the previously large empty ivory area. The loose inset charcoal boundary, muted sage, taupe, gray and restrained ochre palette, selective lipstick-red accents, paper texture, and print-worn edge language remain continuous with the references. No people, text, labels, axes, arrows, numbers, panels, or UI are visible.",
+      "violations": [
+        "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+        "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+        "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+      ],
+      "observations": [
+        "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+        "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "7f27fd17761e7136a72b96dfc9f49a5d058af4cec95ff4c2974e63d52b3b0147",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "6de0e2b3-57b3-4095-92d1-2e891c282068",
+        "prompt_sha256": "35d342afb412ac855c10b81b8042869a7802e6e9f71d5b60ae75b2cd38e423db",
+        "output_sha256": "8999b31cd6292f03f873de23cad69b007fd578f47faa57d9c6f61372427da3ec",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash illustration on warm worn ivory paper, framed by loose charcoal boundary marks. A large recession-gray wash descends diagonally from the upper left toward the lower right, while five physical lipstick tubes form an ascending diagonal from the lower center toward the upper right. The lipsticks use restrained red bullets with muted sage, taupe, ochre, and gray-green cases. The rendering uses soft irregular ink contours, watercolor pooling, light hatching, subdued shadows, and tactile paper texture. No people, readable text, labels, axes, arrows, numbers, captions, UI, or multi-panel structure are visible.",
+          "violations": [
+            "There is a fairly large low-detail ivory negative-space area across the upper center and upper right; although it is not a caption reserve or separate blank band and the paper texture continues through it, the composition could fill the full illustration height more naturally.",
+            "The repeated lipstick tubes are comparatively crisp and product-like relative to some of the looser wash passages in the continuity references, though they remain within the established ink-wash rendering language."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "There is a fairly large low-detail ivory negative-space area across the upper center and upper right; although it is not a caption reserve or separate blank band and the paper texture continues through it, the composition could fill the full illustration height more naturally.",
+            "The repeated lipstick tubes are comparatively crisp and product-like relative to some of the looser wash passages in the continuity references, though they remain within the established ink-wash rendering language."
+          ],
+          "observations": [
+            "There is a fairly large low-detail ivory negative-space area across the upper center and upper right; although it is not a caption reserve or separate blank band and the paper texture continues through it, the composition could fill the full illustration height more naturally.",
+            "The repeated lipstick tubes are comparatively crisp and product-like relative to some of the looser wash passages in the continuity references, though they remain within the established ink-wash rendering language."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      },
+      {
+        "attempt": 2,
+        "job_id": "95ea6aef-1bb3-46b6-a8c7-cf5f8c413921",
+        "prompt_sha256": "2d986d72b9860563d9a31baea6d6e897ce77495f41cae63c7251c4ba844597a1",
+        "output_sha256": "855a97b57decd32542051531be22b54c48e3aaa021c99c6cddbde8b96f29f23a",
+        "quality_check": {
+          "passed": true,
+          "description": "A single 9:16 editorial ink-wash illustration on warm worn ivory paper. A heavy recession-gray slope descends diagonally from the upper left through the center, while five physical lipstick tubes rise progressively along the right side, establishing the requested opposing diagonal metaphor. Diffuse gray wash and cloud-like tonal passages now extend through the upper center and upper right, reducing the previously large empty ivory area. The loose inset charcoal boundary, muted sage, taupe, gray and restrained ochre palette, selective lipstick-red accents, paper texture, and print-worn edge language remain continuous with the references. No people, text, labels, axes, arrows, numbers, panels, or UI are visible.",
+          "violations": [
+            "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+            "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+            "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+          ],
+          "observations": [
+            "The lipstick tubes remain somewhat more crisply outlined and product-rendered than the loosest watercolor and ink-wash passages in the style reference, so the second QC concern is improved only modestly.",
+            "A light low-detail pocket remains near the upper-right interior, although it is now integrated with surrounding diffuse wash rather than reading as a separate blank reserve."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 2
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_005.png",
+      "sha256": "e489b6036db1310f2395b604febcc30b821de2d2245880340bce0c88b3571f08"
+    }
+  ],
+  "prompt_sha256": "35d342afb412ac855c10b81b8042869a7802e6e9f71d5b60ae75b2cd38e423db",
+  "prompt": "Edit\n\nCreate exactly one standalone 9:16 vertical image in the established editorial ink-wash world: warm lightly toothy ivory paper, faint dry-brush pooling and restrained print wear, soft charcoal-ink contours with imperfect brush variation, subtle hatching, muted taupe and recession-gray browns, dusty sage/desaturated teal, restrained ochre, and selective lipstick-red accents. Visualize the proposed inverse relationship between a weakening economy and rising lipstick sales as a simple human-readable metaphor: across a wide graphic composition, a heavy recession-gray economic slope descends diagonally on one side while several physical lipstick tubes rise progressively upward on the other, creating strong opposing diagonal motion. Keep the relationship suggestive rather than scientifically certain; use no numbers, arrows, axes, labels, graphs with text, or predictive-certainty symbols. Maintain soft diffuse editorial daylight, gentle warm paper glow, subdued gray shadows, and the recurring inset illustration window formed by loose charcoal-and-ink boundary marks on the same worn editorial sheet. Fill the full illustration height naturally—no lower caption reserve, blank strip, empty panel, or deliberately low-detail subtitle band. The style_reference governs the ink-wash rendering language, palette, linework, and tactile print character; the world_keyframe establishes the recurring editorial page and inset-window frame language without supplying a composition to copy; the previous_beat is binding only for recurring material/edge treatment, texture, palette, lighting, and frame continuity, never its crop, camera angle, subject placement, focal object, or layout. No people. No photorealism, glossy 3D, anime, neon, polished corporate vector art, hyper-saturated advertising, storyboard, grid, collage, multiple panels, captions, UI, letters, numbers, labels, words, or any readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_006.png",
+  "output_sha256": "855a97b57decd32542051531be22b54c48e3aaa021c99c6cddbde8b96f29f23a",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 93.293,
+  "completed_at": "2026-09-11T14:07:59Z"
+}

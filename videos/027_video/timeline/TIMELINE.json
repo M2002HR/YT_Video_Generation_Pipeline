@@ -1,0 +1,1438 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 62.354,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 5.75,
+      "duration": 5.75,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 5.75,
+      "end": 9.417,
+      "duration": 3.667,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.417,
+      "end": 12.94,
+      "duration": 3.523,
+      "speech_start": 9.86,
+      "speech_end": 12.2,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "It’s often called the lipstick effect.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 12.94,
+      "end": 16.5,
+      "duration": 3.56,
+      "speech_start": 12.94,
+      "speech_end": 15.54,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Tight budgets can push bigger luxuries aside.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 16.5,
+      "end": 20.62,
+      "duration": 4.12,
+      "speech_start": 16.5,
+      "speech_end": 19.72,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Lipstick can still feel like affordable comfort.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 20.62,
+      "end": 25.3,
+      "duration": 4.68,
+      "speech_start": 20.62,
+      "speech_end": 24.22,
+      "match_confidence": 0.857,
+      "motion": "zoom_in",
+      "narration": "Juliet Schor described this behavior in 1998.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 25.3,
+      "end": 30.02,
+      "duration": 4.72,
+      "speech_start": 25.3,
+      "speech_end": 29.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Leonard Lauder popularized the lipstick index in 2001.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 30.02,
+      "end": 35.08,
+      "duration": 5.06,
+      "speech_start": 30.02,
+      "speech_end": 34.56,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "He suggested lipstick sales might rise when the economy weakens.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 35.08,
+      "end": 38.96,
+      "duration": 3.88,
+      "speech_start": 35.08,
+      "speech_end": 38.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The idea became a quirky recession signal.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 38.96,
+      "end": 43.34,
+      "duration": 4.38,
+      "speech_start": 38.96,
+      "speech_end": 42.46,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Later downturns did not repeat the pattern reliably.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 43.34,
+      "end": 47.1,
+      "duration": 3.76,
+      "speech_start": 43.34,
+      "speech_end": 47.38,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "So lipstick sales are not a dependable economic indicator.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 47.1,
+      "end": 62.354,
+      "duration": 15.254,
+      "speech_start": 46.82,
+      "speech_end": 52.42,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "And “lipstick syndrome” is not a recognized medical diagnosis.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.04,
+      "end": 0.6,
+      "text": "When money",
+      "ass_text": "When money",
+      "words": [
+        {
+          "text": "When",
+          "start": 0.04,
+          "end": 0.26
+        },
+        {
+          "text": "money",
+          "start": 0.26,
+          "end": 0.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.6,
+      "end": 1.54,
+      "text": "gets tight,",
+      "ass_text": "gets tight,",
+      "words": [
+        {
+          "text": "gets",
+          "start": 0.6,
+          "end": 0.92
+        },
+        {
+          "text": "tight,",
+          "start": 0.92,
+          "end": 1.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.54,
+      "end": 2.38,
+      "text": "why can",
+      "ass_text": "why can",
+      "words": [
+        {
+          "text": "why",
+          "start": 1.54,
+          "end": 2.08
+        },
+        {
+          "text": "can",
+          "start": 2.08,
+          "end": 2.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.38,
+      "end": 3.22,
+      "text": "one tiny",
+      "ass_text": "one tiny",
+      "words": [
+        {
+          "text": "one",
+          "start": 2.38,
+          "end": 2.76
+        },
+        {
+          "text": "tiny",
+          "start": 2.76,
+          "end": 3.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.22,
+      "end": 4.22,
+      "text": "luxury survive?",
+      "ass_text": "luxury survive?",
+      "words": [
+        {
+          "text": "luxury",
+          "start": 3.22,
+          "end": 3.7
+        },
+        {
+          "text": "survive?",
+          "start": 3.7,
+          "end": 4.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.9,
+      "end": 5.74,
+      "text": "Here's why.",
+      "ass_text": "Here's why.",
+      "words": [
+        {
+          "text": "Here's",
+          "start": 4.9,
+          "end": 5.28
+        },
+        {
+          "text": "why.",
+          "start": 5.28,
+          "end": 5.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 6.64,
+      "end": 7.46,
+      "text": "That contradiction",
+      "ass_text": "That contradiction",
+      "words": [
+        {
+          "text": "That",
+          "start": 6.64,
+          "end": 6.94
+        },
+        {
+          "text": "contradiction",
+          "start": 6.94,
+          "end": 7.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.46,
+      "end": 8.3,
+      "text": "sends me",
+      "ass_text": "sends me",
+      "words": [
+        {
+          "text": "sends",
+          "start": 7.46,
+          "end": 8.08
+        },
+        {
+          "text": "me",
+          "start": 8.08,
+          "end": 8.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.3,
+      "end": 8.98,
+      "text": "reaching for",
+      "ass_text": "reaching for",
+      "words": [
+        {
+          "text": "reaching",
+          "start": 8.3,
+          "end": 8.72
+        },
+        {
+          "text": "for",
+          "start": 8.72,
+          "end": 8.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.98,
+      "end": 9.38,
+      "text": "the book.",
+      "ass_text": "the book.",
+      "words": [
+        {
+          "text": "the",
+          "start": 8.98,
+          "end": 9.14
+        },
+        {
+          "text": "book.",
+          "start": 9.14,
+          "end": 9.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.86,
+      "end": 10.4,
+      "text": "It's often",
+      "ass_text": "It's often",
+      "words": [
+        {
+          "text": "It's",
+          "start": 9.86,
+          "end": 10.12
+        },
+        {
+          "text": "often",
+          "start": 10.12,
+          "end": 10.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.4,
+      "end": 11.26,
+      "text": "called the",
+      "ass_text": "called the",
+      "words": [
+        {
+          "text": "called",
+          "start": 10.4,
+          "end": 10.86
+        },
+        {
+          "text": "the",
+          "start": 10.86,
+          "end": 11.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.26,
+      "end": 12.2,
+      "text": "lipstick effect.",
+      "ass_text": "lipstick effect.",
+      "words": [
+        {
+          "text": "lipstick",
+          "start": 11.26,
+          "end": 11.66
+        },
+        {
+          "text": "effect.",
+          "start": 11.66,
+          "end": 12.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.94,
+      "end": 13.6,
+      "text": "Tight budgets",
+      "ass_text": "Tight budgets",
+      "words": [
+        {
+          "text": "Tight",
+          "start": 12.94,
+          "end": 13.2
+        },
+        {
+          "text": "budgets",
+          "start": 13.2,
+          "end": 13.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.6,
+      "end": 14.2,
+      "text": "can push",
+      "ass_text": "can push",
+      "words": [
+        {
+          "text": "can",
+          "start": 13.6,
+          "end": 13.86
+        },
+        {
+          "text": "push",
+          "start": 13.86,
+          "end": 14.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.2,
+      "end": 15.08,
+      "text": "bigger luxuries",
+      "ass_text": "bigger luxuries",
+      "words": [
+        {
+          "text": "bigger",
+          "start": 14.2,
+          "end": 14.58
+        },
+        {
+          "text": "luxuries",
+          "start": 14.58,
+          "end": 15.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.08,
+      "end": 15.54,
+      "text": "aside.",
+      "ass_text": "aside.",
+      "words": [
+        {
+          "text": "aside.",
+          "start": 15.08,
+          "end": 15.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.5,
+      "end": 17.3,
+      "text": "Lipstick can",
+      "ass_text": "Lipstick can",
+      "words": [
+        {
+          "text": "Lipstick",
+          "start": 16.5,
+          "end": 16.98
+        },
+        {
+          "text": "can",
+          "start": 16.98,
+          "end": 17.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.3,
+      "end": 18.16,
+      "text": "still feel",
+      "ass_text": "still feel",
+      "words": [
+        {
+          "text": "still",
+          "start": 17.3,
+          "end": 17.66
+        },
+        {
+          "text": "feel",
+          "start": 17.66,
+          "end": 18.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.16,
+      "end": 19.1,
+      "text": "like affordable",
+      "ass_text": "like affordable",
+      "words": [
+        {
+          "text": "like",
+          "start": 18.16,
+          "end": 18.54
+        },
+        {
+          "text": "affordable",
+          "start": 18.54,
+          "end": 19.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.1,
+      "end": 19.72,
+      "text": "comfort.",
+      "ass_text": "comfort.",
+      "words": [
+        {
+          "text": "comfort.",
+          "start": 19.1,
+          "end": 19.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.62,
+      "end": 21.54,
+      "text": "Juliet Shore",
+      "ass_text": "Juliet Shore",
+      "words": [
+        {
+          "text": "Juliet",
+          "start": 20.62,
+          "end": 21.02
+        },
+        {
+          "text": "Shore",
+          "start": 21.02,
+          "end": 21.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.54,
+      "end": 22.48,
+      "text": "described this",
+      "ass_text": "described this",
+      "words": [
+        {
+          "text": "described",
+          "start": 21.54,
+          "end": 22.08
+        },
+        {
+          "text": "this",
+          "start": 22.08,
+          "end": 22.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.48,
+      "end": 23.32,
+      "text": "behavior in",
+      "ass_text": "behavior in",
+      "words": [
+        {
+          "text": "behavior",
+          "start": 22.48,
+          "end": 22.9
+        },
+        {
+          "text": "in",
+          "start": 22.9,
+          "end": 23.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.32,
+      "end": 24.22,
+      "text": "1998.",
+      "ass_text": "1998.",
+      "words": [
+        {
+          "text": "1998.",
+          "start": 23.32,
+          "end": 24.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.3,
+      "end": 25.98,
+      "text": "Leonard Lauder",
+      "ass_text": "Leonard Lauder",
+      "words": [
+        {
+          "text": "Leonard",
+          "start": 25.3,
+          "end": 25.58
+        },
+        {
+          "text": "Lauder",
+          "start": 25.58,
+          "end": 25.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.98,
+      "end": 27.12,
+      "text": "popularized the",
+      "ass_text": "popularized the",
+      "words": [
+        {
+          "text": "popularized",
+          "start": 25.98,
+          "end": 26.96
+        },
+        {
+          "text": "the",
+          "start": 26.96,
+          "end": 27.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.12,
+      "end": 27.9,
+      "text": "lipstick index",
+      "ass_text": "lipstick index",
+      "words": [
+        {
+          "text": "lipstick",
+          "start": 27.12,
+          "end": 27.4
+        },
+        {
+          "text": "index",
+          "start": 27.4,
+          "end": 27.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.9,
+      "end": 29.6,
+      "text": "in 2001.",
+      "ass_text": "in 2001.",
+      "words": [
+        {
+          "text": "in",
+          "start": 27.9,
+          "end": 28.26
+        },
+        {
+          "text": "2001.",
+          "start": 28.26,
+          "end": 29.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 30.02,
+      "end": 30.88,
+      "text": "He suggested",
+      "ass_text": "He suggested",
+      "words": [
+        {
+          "text": "He",
+          "start": 30.02,
+          "end": 30.24
+        },
+        {
+          "text": "suggested",
+          "start": 30.24,
+          "end": 30.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.88,
+      "end": 31.82,
+      "text": "lipstick sales",
+      "ass_text": "lipstick sales",
+      "words": [
+        {
+          "text": "lipstick",
+          "start": 30.88,
+          "end": 31.32
+        },
+        {
+          "text": "sales",
+          "start": 31.32,
+          "end": 31.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.82,
+      "end": 32.62,
+      "text": "might rise",
+      "ass_text": "might rise",
+      "words": [
+        {
+          "text": "might",
+          "start": 31.82,
+          "end": 32.16
+        },
+        {
+          "text": "rise",
+          "start": 32.16,
+          "end": 32.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.62,
+      "end": 33.16,
+      "text": "when the",
+      "ass_text": "when the",
+      "words": [
+        {
+          "text": "when",
+          "start": 32.62,
+          "end": 32.96
+        },
+        {
+          "text": "the",
+          "start": 32.96,
+          "end": 33.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.16,
+      "end": 34.56,
+      "text": "economy weakens.",
+      "ass_text": "economy weakens.",
+      "words": [
+        {
+          "text": "economy",
+          "start": 33.16,
+          "end": 33.68
+        },
+        {
+          "text": "weakens.",
+          "start": 33.68,
+          "end": 34.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 35.08,
+      "end": 35.7,
+      "text": "The idea",
+      "ass_text": "The idea",
+      "words": [
+        {
+          "text": "The",
+          "start": 35.08,
+          "end": 35.26
+        },
+        {
+          "text": "idea",
+          "start": 35.26,
+          "end": 35.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.7,
+      "end": 36.42,
+      "text": "became a",
+      "ass_text": "became a",
+      "words": [
+        {
+          "text": "became",
+          "start": 35.7,
+          "end": 36.22
+        },
+        {
+          "text": "a",
+          "start": 36.22,
+          "end": 36.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.42,
+      "end": 37.6,
+      "text": "quirky recession",
+      "ass_text": "quirky recession",
+      "words": [
+        {
+          "text": "quirky",
+          "start": 36.42,
+          "end": 36.94
+        },
+        {
+          "text": "recession",
+          "start": 36.94,
+          "end": 37.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.6,
+      "end": 38.16,
+      "text": "signal.",
+      "ass_text": "signal.",
+      "words": [
+        {
+          "text": "signal.",
+          "start": 37.6,
+          "end": 38.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.96,
+      "end": 40.02,
+      "text": "Later, downturns",
+      "ass_text": "Later, downturns",
+      "words": [
+        {
+          "text": "Later,",
+          "start": 38.96,
+          "end": 39.28
+        },
+        {
+          "text": "downturns",
+          "start": 39.28,
+          "end": 40.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.02,
+      "end": 40.52,
+      "text": "did not",
+      "ass_text": "did not",
+      "words": [
+        {
+          "text": "did",
+          "start": 40.02,
+          "end": 40.18
+        },
+        {
+          "text": "not",
+          "start": 40.18,
+          "end": 40.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.52,
+      "end": 41.3,
+      "text": "repeat the",
+      "ass_text": "repeat the",
+      "words": [
+        {
+          "text": "repeat",
+          "start": 40.52,
+          "end": 41.02
+        },
+        {
+          "text": "the",
+          "start": 41.02,
+          "end": 41.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.3,
+      "end": 42.46,
+      "text": "pattern reliably.",
+      "ass_text": "pattern reliably.",
+      "words": [
+        {
+          "text": "pattern",
+          "start": 41.3,
+          "end": 41.72
+        },
+        {
+          "text": "reliably.",
+          "start": 41.72,
+          "end": 42.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.34,
+      "end": 43.9,
+      "text": "So, lipstick",
+      "ass_text": "So, lipstick",
+      "words": [
+        {
+          "text": "So,",
+          "start": 43.34,
+          "end": 43.52
+        },
+        {
+          "text": "lipstick",
+          "start": 43.52,
+          "end": 43.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.9,
+      "end": 44.6,
+      "text": "sales are",
+      "ass_text": "sales are",
+      "words": [
+        {
+          "text": "sales",
+          "start": 43.9,
+          "end": 44.32
+        },
+        {
+          "text": "are",
+          "start": 44.32,
+          "end": 44.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 44.6,
+      "end": 45.04,
+      "text": "not a",
+      "ass_text": "not a",
+      "words": [
+        {
+          "text": "not",
+          "start": 44.6,
+          "end": 44.86
+        },
+        {
+          "text": "a",
+          "start": 44.86,
+          "end": 45.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.04,
+      "end": 46.36,
+      "text": "dependable economic",
+      "ass_text": "dependable economic",
+      "words": [
+        {
+          "text": "dependable",
+          "start": 45.04,
+          "end": 45.72
+        },
+        {
+          "text": "economic",
+          "start": 45.72,
+          "end": 46.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.36,
+      "end": 47.1,
+      "text": "indicator.",
+      "ass_text": "indicator.",
+      "words": [
+        {
+          "text": "indicator.",
+          "start": 46.36,
+          "end": 47.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 47.1,
+      "end": 48.74,
+      "text": "And lipstick",
+      "ass_text": "And lipstick",
+      "words": [
+        {
+          "text": "And",
+          "start": 46.82,
+          "end": 48.26
+        },
+        {
+          "text": "lipstick",
+          "start": 48.26,
+          "end": 48.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.74,
+      "end": 49.9,
+      "text": "syndrome is",
+      "ass_text": "syndrome is",
+      "words": [
+        {
+          "text": "syndrome",
+          "start": 48.74,
+          "end": 49.2
+        },
+        {
+          "text": "is",
+          "start": 49.2,
+          "end": 49.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 49.9,
+      "end": 50.48,
+      "text": "not a",
+      "ass_text": "not a",
+      "words": [
+        {
+          "text": "not",
+          "start": 49.9,
+          "end": 50.24
+        },
+        {
+          "text": "a",
+          "start": 50.24,
+          "end": 50.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 50.48,
+      "end": 51.62,
+      "text": "recognized medical",
+      "ass_text": "recognized medical",
+      "words": [
+        {
+          "text": "recognized",
+          "start": 50.48,
+          "end": 50.92
+        },
+        {
+          "text": "medical",
+          "start": 50.92,
+          "end": 51.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 51.62,
+      "end": 52.42,
+      "text": "diagnosis.",
+      "ass_text": "diagnosis.",
+      "words": [
+        {
+          "text": "diagnosis.",
+          "start": 51.62,
+          "end": 52.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.26,
+      "end": 53.62,
+      "text": "It's an",
+      "ass_text": "It's an",
+      "words": [
+        {
+          "text": "It's",
+          "start": 53.26,
+          "end": 53.5
+        },
+        {
+          "text": "an",
+          "start": 53.5,
+          "end": 53.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.62,
+      "end": 54.54,
+      "text": "informal label",
+      "ass_text": "informal label",
+      "words": [
+        {
+          "text": "informal",
+          "start": 53.62,
+          "end": 54.12
+        },
+        {
+          "text": "label",
+          "start": 54.12,
+          "end": 54.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 54.54,
+      "end": 55.28,
+      "text": "for small",
+      "ass_text": "for small",
+      "words": [
+        {
+          "text": "for",
+          "start": 54.54,
+          "end": 54.8
+        },
+        {
+          "text": "small",
+          "start": 54.8,
+          "end": 55.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 55.28,
+      "end": 56.26,
+      "text": "comforts under",
+      "ass_text": "comforts under",
+      "words": [
+        {
+          "text": "comforts",
+          "start": 55.28,
+          "end": 55.88
+        },
+        {
+          "text": "under",
+          "start": 55.88,
+          "end": 56.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 56.26,
+      "end": 56.7,
+      "text": "pressure.",
+      "ass_text": "pressure.",
+      "words": [
+        {
+          "text": "pressure.",
+          "start": 56.26,
+          "end": 56.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 58.0,
+      "end": 58.42,
+      "text": "Like and",
+      "ass_text": "Like and",
+      "words": [
+        {
+          "text": "Like",
+          "start": 58.0,
+          "end": 58.16
+        },
+        {
+          "text": "and",
+          "start": 58.16,
+          "end": 58.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 58.42,
+      "end": 59.22,
+      "text": "subscribe for",
+      "ass_text": "subscribe for",
+      "words": [
+        {
+          "text": "subscribe",
+          "start": 58.42,
+          "end": 58.78
+        },
+        {
+          "text": "for",
+          "start": 58.78,
+          "end": 59.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 59.22,
+      "end": 60.0,
+      "text": "more questions",
+      "ass_text": "more questions",
+      "words": [
+        {
+          "text": "more",
+          "start": 59.22,
+          "end": 59.46
+        },
+        {
+          "text": "questions",
+          "start": 59.46,
+          "end": 60.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 60.0,
+      "end": 61.06,
+      "text": "with surprising",
+      "ass_text": "with surprising",
+      "words": [
+        {
+          "text": "with",
+          "start": 60.0,
+          "end": 60.38
+        },
+        {
+          "text": "surprising",
+          "start": 60.38,
+          "end": 61.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 61.06,
+      "end": 61.72,
+      "text": "answers.",
+      "ass_text": "answers.",
+      "words": [
+        {
+          "text": "answers.",
+          "start": 61.06,
+          "end": 61.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 9,
+        "before_beat": 10,
+        "current_speech_end": 47.38,
+        "next_speech_start": 46.82,
+        "overlap_seconds": 0.56,
+        "chosen_boundary": 47.1
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 46,
+        "current_cue": 47,
+        "previous_end": 47.38,
+        "current_start": 46.82,
+        "overlap_seconds": 0.56,
+        "chosen_boundary": 47.1
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 62,
+    "subtitle_cues_estimated": 0
+  }
+}

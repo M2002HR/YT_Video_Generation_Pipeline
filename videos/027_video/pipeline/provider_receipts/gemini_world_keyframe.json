@@ -1,0 +1,127 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "aedcdc34aafc53a8ce3e8da9b284ef8d7e22fa2df7ab545cfcc0860a0cde1c8a",
+  "quality_check": {
+    "passed": true,
+    "description": "A single 9:16 warm-ivory editorial page shows a host-free ink-and-wash economic still life with a controlled red lipstick, modest wallet and coins, closed research book over budget papers, muted teal cup, folded paper, and simplified recession-like landscape motifs. The worn paper edges, loose charcoal inset boundary, subdued taupe-sage-teal palette, watercolor pooling, hatching, and selective lipstick-red accent closely preserve the established style reference and previous composition. The prior pseudo-readable receipt and paper markings have been removed, and the rectangular label-like panel has been removed from the book cover.",
+    "violations": [],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [],
+    "observations": [],
+    "review_status": "passed"
+  },
+  "provider": "gemini",
+  "job_id": "7a83820e-38e1-462f-9922-3e5c96224425",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/924e5b969b445277",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "qc_previous_candidate"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=7a83820e-38e1-462f-9922-3e5c96224425_output_1.png 1536x2752 sha256=e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single 9:16 warm-ivory editorial page shows a host-free ink-and-wash economic still life with a controlled red lipstick, modest wallet and coins, closed research book over budget papers, muted teal cup, folded paper, and simplified recession-like landscape motifs. The worn paper edges, loose charcoal inset boundary, subdued taupe-sage-teal palette, watercolor pooling, hatching, and selective lipstick-red accent closely preserve the established style reference and previous composition. The prior pseudo-readable receipt and paper markings have been removed, and the rectangular label-like panel has been removed from the book cover.",
+      "violations": [],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [],
+      "observations": [],
+      "review_status": "passed"
+    },
+    "request_fingerprint": "aedcdc34aafc53a8ce3e8da9b284ef8d7e22fa2df7ab545cfcc0860a0cde1c8a",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "b5018e08-f940-4f89-9619-917d0426667d",
+        "prompt_sha256": "f9d4fc10e8e4bfde26cb61c071bb1e9079cc712a96abb305efd6c3bb0f18b81a",
+        "output_sha256": "b9c60bd6b2694118982bee8395aa23385781b2351f1607159b5a42b2d78e90ad",
+        "quality_check": {
+          "passed": true,
+          "description": "A standalone 9:16 warm-ivory editorial still life rendered in loose ink wash with soft charcoal contours. A controlled red lipstick stands beside a modest taupe wallet with coins and a receipt, a closed gray-brown research book rests on budget-like papers, and a muted teal cup and folded papers complete the lower scene. Layered sage, taupe, gray and charcoal recession or consumer-behavior graph motifs occupy the inset illustration window. The irregular paper edges, faint pooling, restrained print wear, hand-drawn hatching and loose inset boundary are visibly consistent with the attached style reference. No people or medical symbolism are present.",
+          "violations": [
+            "Small pseudo-readable marks resembling letters and numbers appear on the receipt and on papers beneath the book, contrary to the requirement for no readable text, letters or numbers.",
+            "The closed book includes a prominent blank rectangular label-like panel on its cover, which weakly conflicts with the instruction to avoid labels."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Small pseudo-readable marks resembling letters and numbers appear on the receipt and on papers beneath the book, contrary to the requirement for no readable text, letters or numbers.",
+            "The closed book includes a prominent blank rectangular label-like panel on its cover, which weakly conflicts with the instruction to avoid labels."
+          ],
+          "observations": [
+            "Small pseudo-readable marks resembling letters and numbers appear on the receipt and on papers beneath the book, contrary to the requirement for no readable text, letters or numbers.",
+            "The closed book includes a prominent blank rectangular label-like panel on its cover, which weakly conflicts with the instruction to avoid labels."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      },
+      {
+        "attempt": 2,
+        "job_id": "7a83820e-38e1-462f-9922-3e5c96224425",
+        "prompt_sha256": "f7eef62cfa89a83becc76e567113f80542c30e1203b8bd21f1ab7c19e8855cfa",
+        "output_sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409",
+        "quality_check": {
+          "passed": true,
+          "description": "A single 9:16 warm-ivory editorial page shows a host-free ink-and-wash economic still life with a controlled red lipstick, modest wallet and coins, closed research book over budget papers, muted teal cup, folded paper, and simplified recession-like landscape motifs. The worn paper edges, loose charcoal inset boundary, subdued taupe-sage-teal palette, watercolor pooling, hatching, and selective lipstick-red accent closely preserve the established style reference and previous composition. The prior pseudo-readable receipt and paper markings have been removed, and the rectangular label-like panel has been removed from the book cover.",
+          "violations": [],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [],
+          "observations": [],
+          "review_status": "passed"
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 2
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    }
+  ],
+  "prompt_sha256": "f9d4fc10e8e4bfde26cb61c071bb1e9079cc712a96abb305efd6c3bb0f18b81a",
+  "prompt": "Create one standalone 9:16 WORLD_KEYFRAME establishing an inside-book editorial subject world about the “lipstick effect” and small comforts during economic pressure. Use ink wash on warm, lightly toothy paper with faint dry-brush pooling, restrained print wear, soft charcoal-ink contours, subtle hand-drawn hatching, and slightly imperfect print-like registration. Palette: warm cream and faded ivory, muted taupe and recession-gray browns, dusty sage, desaturated teal, soft charcoal, restrained ochre, with lipstick-red used only as a selective accent.\n\nCompose a human-scale economic still life: an elegant lipstick tube in controlled red beside a modest wallet, a few understated shopping or household-budget objects, a closed research book, and simplified recession/consumer-behavior motifs integrated naturally into the scene. Suggest affordable comfort surviving while larger luxuries recede, without implying lipstick sales reliably predict recessions. No medical symbolism.\n\nLighting is soft diffuse editorial daylight with a gentle warm paper glow, subdued gray-brown shadows, and subtle emphasis on the red cosmetic detail. Maintain the recurring frame language of a warm ivory editorial page with lightly worn irregular edges, faint ink pooling, restrained print wear, and a loose charcoal-and-ink inset illustration boundary, as though the scene were washed directly onto the same tactile sheet.\n\nAtmosphere: thoughtful, quietly curious, economically restrained, historical-editorial rather than commercial. Fill the complete illustration height naturally; do not reserve any caption strip, blank lower field, empty panel, or low-detail subtitle band.\n\nAbsolutely no recurring host, selected host, foreground person, human figure, character, face, hand, readable text, letters, numbers, labels, UI, grid, sheet layout, swatches, photorealism, glossy CGI, anime, neon, or polished vector-flat art. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI. Binding isolation: no recurring host, no selected host, and no foreground person or character.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.227,
+  "completed_at": "2026-09-11T13:22:22Z"
+}

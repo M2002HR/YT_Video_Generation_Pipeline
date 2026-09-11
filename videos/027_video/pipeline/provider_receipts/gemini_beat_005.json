@@ -1,0 +1,189 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "432d64297e759955e6a924e24f5e8d4ebd2ef75c85eab4b3d51d510b425d41c1",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical 9:16 editorial ink-wash scene shows a mature suited man in a medium-wide rear three-quarter view standing at a department-store cosmetics counter, studying dense repeated rows of red lipsticks while holding a small notepad. The store fixtures, boxed cosmetics and tiered displays recede around him in linear perspective. The image uses warm ivory paper, irregular worn edges, an inset loose charcoal boundary, muted taupe and gray-brown washes, dusty sage accents, soft diffuse light, visible hatching and restrained lipstick-red highlights.",
+    "violations": [
+      "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+      "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+      "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+      "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+      "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+      "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+      "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+    ],
+    "observations": [
+      "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+      "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+      "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+      "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "d2cdda1c-ff49-4057-a369-d7d06cd5b3c5",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/57186cddd185c23b",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=d2cdda1c-ff49-4057-a369-d7d06cd5b3c5_output_1.png 1536x2752 sha256=e489b6036db1310f2395b604febcc30b821de2d2245880340bce0c88b3571f08"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical 9:16 editorial ink-wash scene shows a mature suited man in a medium-wide rear three-quarter view standing at a department-store cosmetics counter, studying dense repeated rows of red lipsticks while holding a small notepad. The store fixtures, boxed cosmetics and tiered displays recede around him in linear perspective. The image uses warm ivory paper, irregular worn edges, an inset loose charcoal boundary, muted taupe and gray-brown washes, dusty sage accents, soft diffuse light, visible hatching and restrained lipstick-red highlights.",
+      "violations": [
+        "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+        "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+        "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+        "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+        "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+        "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+        "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+      ],
+      "observations": [
+        "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+        "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+        "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+        "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "432d64297e759955e6a924e24f5e8d4ebd2ef75c85eab4b3d51d510b425d41c1",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "d2cdda1c-ff49-4057-a369-d7d06cd5b3c5",
+        "prompt_sha256": "b9fd381beac8ece7a3089f570a8e3efa8b03974ee59120aa3c928db21077fe91",
+        "output_sha256": "e489b6036db1310f2395b604febcc30b821de2d2245880340bce0c88b3571f08",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 editorial ink-wash scene shows a mature suited man in a medium-wide rear three-quarter view standing at a department-store cosmetics counter, studying dense repeated rows of red lipsticks while holding a small notepad. The store fixtures, boxed cosmetics and tiered displays recede around him in linear perspective. The image uses warm ivory paper, irregular worn edges, an inset loose charcoal boundary, muted taupe and gray-brown washes, dusty sage accents, soft diffuse light, visible hatching and restrained lipstick-red highlights.",
+          "violations": [
+            "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+            "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+            "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+            "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+            "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+            "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+            "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+          ],
+          "observations": [
+            "The executive reads somewhat generically as a suited observer or store manager; the requested historical association is conveyed mainly by the lipstick-row context rather than by stronger non-portrait visual cues of a senior cosmetics executive.",
+            "The notepad contains small pseudo-writing and a red header-like mark that approaches the prohibited appearance of readable text, although it is not clearly legible.",
+            "Linework and object rendering are slightly more precise and densely illustrative than the looser watercolor abstraction of the style reference, though the overall charcoal-and-wash medium remains consistent.",
+            "A few loose lipstick-red smears appear on the counter surface; these function as compositional echoes but are somewhat more conspicuous than the otherwise tightly controlled red accents."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "6f8b0a03-5905-46e5-8a21-ef7d7c4c3a94",
+        "prompt_sha256": "6ac75c4abfae7c16135e752e93aedb6f5c971a77ff7ce5fce1bdf3ea6e3659c1",
+        "output_sha256": "7fadd59d753b5d3487b556bf359b5d113d8a23b5fb93c9b8507d07b632b098c9",
+        "quality_check": {
+          "passed": true,
+          "description": "A single near-9:16 editorial ink-wash scene shows a mature suited man in rear three-quarter view standing at an early-2000s-style cosmetics counter and inspecting repeated rows of red lipsticks while holding a spiral notepad. The image preserves the warm ivory worn paper, irregular edges, loose inset charcoal boundary, muted taupe and sage-gray palette, diffuse wash lighting, and controlled lipstick-red accents of the continuity references. The notepad now contains abstract cross-hatching rather than the previous red header and line-like pseudo-writing, and the conspicuous loose red counter smears have been removed.",
+          "violations": [
+            "The executive still reads primarily as a generic well-dressed observer or store manager; there are no substantially stronger non-portrait visual cues establishing him specifically as a senior cosmetics executive, so the requested historical association remains dependent mainly on the lipstick-display context.",
+            "The lipstick fixtures, repeated packaging, suit folds, and architectural lines remain somewhat more precise and densely delineated than the looser watercolor abstraction in the style reference, although the underlying charcoal-and-wash medium is continuous.",
+            "The delivered raster is 1143 by 2048 pixels, which is slightly narrower than an exact 9:16 aspect ratio."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "Compared with the previous candidate, the executive has lost the visible pinstripe tailoring detail; because the requested correction called for stronger non-portrait senior-executive cues, this change makes his corporate identity slightly more generic rather than more explicit."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The executive still reads primarily as a generic well-dressed observer or store manager; there are no substantially stronger non-portrait visual cues establishing him specifically as a senior cosmetics executive, so the requested historical association remains dependent mainly on the lipstick-display context.",
+            "The lipstick fixtures, repeated packaging, suit folds, and architectural lines remain somewhat more precise and densely delineated than the looser watercolor abstraction in the style reference, although the underlying charcoal-and-wash medium is continuous.",
+            "The delivered raster is 1143 by 2048 pixels, which is slightly narrower than an exact 9:16 aspect ratio."
+          ],
+          "observations": [
+            "The executive still reads primarily as a generic well-dressed observer or store manager; there are no substantially stronger non-portrait visual cues establishing him specifically as a senior cosmetics executive, so the requested historical association remains dependent mainly on the lipstick-display context.",
+            "The lipstick fixtures, repeated packaging, suit folds, and architectural lines remain somewhat more precise and densely delineated than the looser watercolor abstraction in the style reference, although the underlying charcoal-and-wash medium is continuous.",
+            "The delivered raster is 1143 by 2048 pixels, which is slightly narrower than an exact 9:16 aspect ratio.",
+            "Compared with the previous candidate, the executive has lost the visible pinstripe tailoring detail; because the requested correction called for stronger non-portrait senior-executive cues, this change makes his corporate identity slightly more generic rather than more explicit."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_004.png",
+      "sha256": "46f253b4e18c8dbb9a1f6082afca35bdc924643bf7ac9fcdf8b4c9b418b1a5bc"
+    }
+  ],
+  "prompt_sha256": "b9fd381beac8ece7a3089f570a8e3efa8b03974ee59120aa3c928db21077fe91",
+  "prompt": "Edit\n\nCreate exactly one 9:16 image: an early-2000s department-store cosmetics floor, shown in a medium-wide rear three-quarter view, where a suited male cosmetics executive stands in the aisle observing repeated rows of lipstick displays, evoking Leonard Lauder’s 2001 popularization of the lipstick index without portrait-level celebrity likeness, branding, labels, or readable text. Use simplified hand-drawn 2D educational animation translated into the established editorial ink-wash world: soft charcoal-ink contours, restrained cel-like wash shading, subtle dry-brush edges and hatching, warm lightly toothy ivory paper grain, faint ink pooling and print wear, muted taupe and recession-gray browns, dusty sage, desaturated teal, restrained ochre, and selective lipstick-red accents only on cosmetics and tiny compositional echoes. Soft diffuse editorial daylight, gentle warm paper glow, subdued gray shadows. Preserve the recurring warm ivory editorial page, lightly worn irregular paper edges, and inset illustration window defined by loose charcoal-and-ink boundary marks. Fill the complete illustration height naturally; no lower caption field, blank strip, empty panel, or low-detail subtitle band. Period-appropriate early-2000s packaging silhouettes and retail fixtures; perspective lines lead toward the executive while lipstick rows create visual rhythm. The style_reference governs rendering medium and stylistic treatment; the world_keyframe governs recurring frame language and tactile world consistency; the previous_beat is binding only for frame material, edge treatment, inner illustration window, texture, palette, and lighting—do not copy its composition, crop, camera angle, pose, subject placement, or focal object. No photorealism, glossy 3D CGI, anime, neon, polished vector-flat art, hyper-saturated advertising, storyboard, grid, collage, panels, captions, letters, numbers, logos, labels, UI, or readable text.\n\nClarify the executive's visual identity\nMake the historical association more explicit NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "e489b6036db1310f2395b604febcc30b821de2d2245880340bce0c88b3571f08",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.234,
+  "completed_at": "2026-09-11T14:01:28Z"
+}

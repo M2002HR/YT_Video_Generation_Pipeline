@@ -1,0 +1,34 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "request_fingerprint": "36fc5b85383ffb5a4ce9b6eba231fd013c8c5e1f9ca306b95f6cb2be007ff5ce",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall vertical ink-wash style reference sheet on warm cream paper, composed of abstract geometric swatches, brush tests, contour studies, hatching, and small compositional motifs. The visible palette uses muted taupe and gray-browns, dusty sage and desaturated teal, soft charcoal, restrained ochre, and selective lipstick-red accents. The sheet shows lightly toothy paper texture, watercolor-like pooling, dry-brush variation, imperfect charcoal contours, and hand-drawn hatching. No characters, logos, labels, or photorealistic elements are visible.",
+    "violations": [
+      "The canvas is approximately 1143 by 2048, which is very close to but not exactly a 9:16 aspect ratio.",
+      "Several grouped geometric arrangements read somewhat like miniature composition or object-layout studies rather than strictly isolated texture and palette swatches, though the overall deliverable still functions as a style reference sheet."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The canvas is approximately 1143 by 2048, which is very close to but not exactly a 9:16 aspect ratio.",
+      "Several grouped geometric arrangements read somewhat like miniature composition or object-layout studies rather than strictly isolated texture and palette swatches, though the overall deliverable still functions as a style reference sheet."
+    ],
+    "observations": [
+      "The canvas is approximately 1143 by 2048, which is very close to but not exactly a 9:16 aspect ratio.",
+      "Several grouped geometric arrangements read somewhat like miniature composition or object-layout studies rather than strictly isolated texture and palette swatches, though the overall deliverable still functions as a style reference sheet."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/013_editorial_lipstick_economics_inkwash_001/style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "schema_version": 2,
+  "video_id": "027",
+  "topic": "تئوری و سندروم رژ لب",
+  "created_at": "2026-09-11T13:10:56Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:14Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:14Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:14Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:14Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:14Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:14Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-11T18:13:15Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "BOOK_COVER_DESIGN.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:16Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-11T18:13:20Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:19Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:19Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:19Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:19Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:19Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:20Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:20Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:20Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:20Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:20Z",
+      "artifact": "beat_010.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:21Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:22Z",
+      "artifact": "question_spark_source.mp4 (6.02s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-11T18:13:22Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-11T18:13:22Z",
+      "body_images": 10
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 96.648,
+      "at": "2026-09-11T13:12:34Z",
+      "words": 115
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 55.438,
+      "at": "2026-09-11T13:13:30Z",
+      "words": 117
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.392,
+      "at": "2026-09-11T13:14:15Z",
+      "activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 37.252,
+      "at": "2026-09-11T13:14:53Z",
+      "style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 50.258,
+      "at": "2026-09-11T13:15:45Z",
+      "reuse_of": "editorial_lipstick_economics_inkwash_001",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf",
+      "usage_count": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.436,
+      "at": "2026-09-11T13:15:48Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 64.565,
+      "at": "2026-09-11T13:16:54Z",
+      "beats": 10
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 31.435,
+      "at": "2026-09-11T13:17:26Z",
+      "prompt_sha256": "f9d4fc10e8e4bfde26cb61c071bb1e9079cc712a96abb305efd6c3bb0f18b81a"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 294.482,
+      "at": "2026-09-11T13:22:22Z",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 26.723,
+      "at": "2026-09-11T13:22:50Z",
+      "prompt_sha256": "3328220e8f79485212c899d801d646964814555818d6359dc5840789ccec3712"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 356.972,
+      "at": "2026-09-11T13:28:49Z",
+      "sha256": "f3f4d62a1bad2f4ce1a020195a6074dfc4e01ba8c7dfa2f46ea8caaccc1d0a9a",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 49.55,
+      "at": "2026-09-11T13:29:40Z",
+      "prompt_sha256": "03da7cb9481364aab93d26eee02a92a787ab41f36a3ee74efb7ce522467d14c5"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 28.28,
+      "at": "2026-09-11T13:30:09Z",
+      "prompt_sha256": "d670c90d6bec19c20d82edfd900648c1343946e42606cac2af9ba5bfe4448ccc"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 304.691,
+      "at": "2026-09-11T13:35:47Z",
+      "sha256": "5765b6b1cb6fda9cd2a363b37a8793403b37e5b74d386c61015d88f163573d15",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 344.075,
+      "at": "2026-09-11T13:42:02Z",
+      "sha256": "21deeca1c98dcd35c2afc9597d56b35a9d4ffcac282cbcbf45a87239a44b7ba9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 320.062,
+      "at": "2026-09-11T13:47:54Z",
+      "sha256": "cb3f0aea6cf5c2d874849f994bbd06f19cdef3243450738f84d5e2c76c63a4b0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 380.201,
+      "at": "2026-09-11T13:54:43Z",
+      "sha256": "46f253b4e18c8dbb9a1f6082afca35bdc924643bf7ac9fcdf8b4c9b418b1a5bc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 374.358,
+      "at": "2026-09-11T14:01:28Z",
+      "sha256": "e489b6036db1310f2395b604febcc30b821de2d2245880340bce0c88b3571f08",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 362.131,
+      "at": "2026-09-11T14:07:59Z",
+      "sha256": "855a97b57decd32542051531be22b54c48e3aaa021c99c6cddbde8b96f29f23a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 326.103,
+      "at": "2026-09-11T14:13:56Z",
+      "sha256": "efab6acfb640fce58376d8b882c85d1907e1bce5f7f04fbe42930ac02a159370",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 437.464,
+      "at": "2026-09-11T14:21:45Z",
+      "sha256": "48e50685d0633ded9f19220949062041dff7ef5004b04c12338c453c9bf51100",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 353.16,
+      "at": "2026-09-11T14:28:07Z",
+      "sha256": "e03bfce4c84bbb1813b4193ca1b83387c73acb64cde658269152155af42c9bc1",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 425.335,
+      "at": "2026-09-11T14:35:41Z",
+      "sha256": "4c26ce5001d5cefec88060d1ff61d2908b763b7e6c4c1eb971879ec64e823419",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3931.471,
+      "at": "2026-09-11T14:35:42Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.135,
+      "at": "2026-09-11T14:35:44Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 100.854,
+      "at": "2026-09-11T14:37:26Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "d3d7a1b2b233fe167f845d5ec4f16e6df350b74d3f78204c2a74986ad38950be"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 118.653,
+      "at": "2026-09-11T14:39:27Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "4fe4bd50e7de2808d649be01a48bc1034e51e7ac43050f4179a98b4c57ca446c"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.6,
+      "at": "2026-09-11T14:42:56Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.893,
+      "at": "2026-09-11T15:19:01Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.371,
+      "at": "2026-09-11T15:41:14Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.959,
+      "at": "2026-09-11T15:41:20Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.478,
+      "at": "2026-09-11T15:42:41Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.437,
+      "at": "2026-09-11T15:42:46Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.45,
+      "at": "2026-09-11T15:51:32Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.859,
+      "at": "2026-09-11T15:51:38Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.185,
+      "at": "2026-09-11T17:20:55Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.958,
+      "at": "2026-09-11T17:21:00Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.447,
+      "at": "2026-09-11T17:28:58Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.131,
+      "at": "2026-09-11T17:29:03Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.132,
+      "at": "2026-09-11T17:33:23Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.987,
+      "at": "2026-09-11T17:33:28Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.194,
+      "at": "2026-09-11T18:07:22Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.584,
+      "at": "2026-09-11T18:07:27Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.228,
+      "at": "2026-09-11T18:13:15Z",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.819,
+      "at": "2026-09-11T18:13:20Z"
+    }
+  ],
+  "updated_at": "2026-09-11T18:13:22Z"
+}

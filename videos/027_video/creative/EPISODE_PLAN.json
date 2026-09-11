@@ -1,0 +1,18 @@
+{
+  "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+  "opening_location": "department-store cosmetics checkout counter",
+  "opening_environment": "a restrained beauty counter with a few premium items, a small checkout tray, and the visual contrast between costly indulgences and one compact lipstick",
+  "topic_visual_link": "The host visibly gives up a larger discretionary luxury but hesitates and keeps the much smaller lipstick, directly embodying the affordable-comfort substitution behind the lipstick effect.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "At frame zero, the host pushes an expensive perfume box away from his purchase pile while leaving a single lipstick beside a nearly empty wallet.",
+  "curiosity_trigger": "He notices that after cutting the larger indulgence, his hand still instinctively protects the tiny lipstick.",
+  "trigger_object": "the lone lipstick remaining beside the nearly empty wallet after the perfume is rejected",
+  "reaction": "He pauses, looks from the rejected perfume to the lipstick, then gives a small skeptical squint as if catching himself in a contradiction.",
+  "book_retrieval": "He reaches into the tote resting beside the checkout tray and pulls out the book as the question clicks into place.",
+  "camera_pattern": "static_wide",
+  "book_template_id": "003",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "book_closing_echo",
+  "world_style_hint": "editorial inkwash world of cosmetics, household budgets, recession-era consumer choices, and economic charts translated into visual metaphors",
+  "reason": "A real purchase-cutting decision makes the script's opening contradiction immediately visible and gives the host's restrained, skeptical curiosity a natural reason to investigate."
+}

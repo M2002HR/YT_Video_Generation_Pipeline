@@ -1,0 +1,125 @@
+{
+  "body_duration_seconds": 39.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "It’s often called the lipstick effect.",
+      "visual": "Ink-wash editorial still of a single lipstick tube standing upright beside a nearly empty coin purse on warm ivory paper, the lipstick-red tip acting as the only vivid accent while muted charcoal shadows suggest financial strain.",
+      "purpose": "introduce the lipstick effect as the idea linking a small cosmetic purchase with economic pressure",
+      "visual_fingerprint": "single lipstick and open coin purse; static tabletop still life; close three-quarter view; warm ivory editorial surface; lipstick-red focal accent; centered asymmetrical composition",
+      "type": "subject_world",
+      "continuity": "Begins the body with the core symbolic pairing of lipstick and limited money, establishing the recurring editorial paper world.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Tight budgets can push bigger luxuries aside.",
+      "visual": "Ink-wash scene of a hand sliding a large elegant shopping bag and a luxury shoe box away from the foreground while a thin wallet with only a few coins remains near the center, rendered in recession-gray taupe and charcoal.",
+      "purpose": "show expensive discretionary purchases being removed when money becomes scarce",
+      "visual_fingerprint": "hands pushing large luxury bag and shoe box away; medium overhead angle; household budgeting table zone; muted taupe objects; diagonal outward motion composition",
+      "type": "literal",
+      "continuity": "Moves from the small lipstick symbol to a wider budgeting action, showing what gets sacrificed before smaller comforts.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Lipstick can still feel like affordable comfort.",
+      "visual": "Ink-wash close-up of an ordinary shopper's hand selecting one modest lipstick from a sparse cosmetic counter while larger luxury items blur into pale gray wash behind it; the small red cosmetic feels warm and attainable.",
+      "purpose": "show lipstick functioning as a comparatively affordable personal treat",
+      "visual_fingerprint": "hand choosing one lipstick at modest cosmetics counter; intimate close-up; eye-level retail angle; soft sage and ivory surroundings; small red object isolated against subdued background",
+      "type": "literal",
+      "continuity": "Contrasts the discarded large luxuries with one small purchase that remains within reach.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Juliet Schor described this behavior in 1998.",
+      "visual": "Late-1990s editorial research scene in ink wash: a female sociologist figure at a wooden desk studying consumer notes and books beside a small lipstick, with period-appropriate clothing, paper files, and an older desktop computer shape kept free of readable text.",
+      "purpose": "attribute an early description of this consumer behavior to Juliet Schor in the late 1990s",
+      "visual_fingerprint": "female researcher at late-1990s desk; seated reading and annotating; medium side profile; academic office setting; bulky period computer and lipstick as symbolic objects; left-weighted composition",
+      "type": "literal",
+      "continuity": "Shifts from present-tense consumer behavior into its historical discussion, retaining the lipstick as a small visual bridge.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Leonard Lauder popularized the lipstick index in 2001.",
+      "visual": "Early-2000s department-store cosmetics floor rendered in soft ink wash, with a suited male executive observing rows of lipstick displays from the aisle; period packaging silhouettes and restrained red accents evoke the era without any readable branding.",
+      "purpose": "show Leonard Lauder's early-2000s association with popularizing the lipstick index",
+      "visual_fingerprint": "suited executive observing cosmetic display; medium-wide rear three-quarter shot; early-2000s department-store aisle; repeated lipstick rows; perspective lines leading toward figure",
+      "type": "literal",
+      "continuity": "Advances chronologically from academic observation to the idea's public popularization in the cosmetics business.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "He suggested lipstick sales might rise when the economy weakens.",
+      "visual": "Editorial ink-wash metaphor showing a gray descending economic slope on one side while several lipstick tubes rise upward like simple physical markers on the other, with no numbers, labels, arrows, or chart text.",
+      "purpose": "visualize the proposed inverse relationship between a weakening economy and rising lipstick sales",
+      "visual_fingerprint": "descending gray economic slope opposed by ascending lipstick objects; symbolic action; wide graphic composition; abstract ivory paper field; charcoal downturn versus red upward accents; strong diagonal counter-motion",
+      "type": "diagram",
+      "continuity": "Extracts Lauder's proposition from the retail setting and turns it into a simple visual relationship.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "The idea became a quirky recession signal.",
+      "visual": "Ink-wash metaphor of a lipstick tube perched like the needle of an old-fashioned economic gauge beside a small storm cloud over a miniature shopping street, playful but restrained and entirely free of labels or numbers.",
+      "purpose": "show how the lipstick idea came to be treated as an informal signal of recession",
+      "visual_fingerprint": "lipstick acting as gauge needle above miniature retail street; whimsical symbolic setup; slightly high angle; isolated editorial vignette; storm cloud and ochre gauge frame; circular composition",
+      "type": "metaphor",
+      "continuity": "Turns the proposed sales relationship into the quirky indicator metaphor that made the concept memorable.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Later downturns did not repeat the pattern reliably.",
+      "visual": "Ink-wash tabletop with several recession-era shopping moments represented by scattered lipstick tubes pointing in inconsistent directions among faded receipts, coins, and closed wallets, creating an irregular pattern rather than a clean trend.",
+      "purpose": "show that subsequent economic downturns produced inconsistent lipstick-sales behavior",
+      "visual_fingerprint": "scattered lipsticks oriented unpredictably among wallets and receipts; top-down wide still life; household evidence table; alternating gray and faded red marks; deliberately irregular radial scatter",
+      "type": "metaphor",
+      "continuity": "Breaks the neat signal from the prior beat by replacing a single clear indicator with contradictory outcomes.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "So lipstick sales are not a dependable economic indicator.",
+      "visual": "Editorial ink-wash image of a lipstick balanced precariously on a tilted brass scale opposite a cluster of mixed economic objects such as groceries, fuel canister silhouette, coins, and a house key, emphasizing that one cosmetic cannot reliably represent the whole economy.",
+      "purpose": "make clear that lipstick sales should not be treated as a reliable economic measurement",
+      "visual_fingerprint": "lipstick on unstable balance scale versus mixed household-economic objects; medium frontal shot; neutral paper void; restrained brass ochre and charcoal; opposing weighted composition",
+      "type": "metaphor",
+      "continuity": "Converts the inconsistent evidence into the conclusion that lipstick alone cannot carry the weight of economic diagnosis.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "And “lipstick syndrome” is not a recognized medical diagnosis.",
+      "visual": "Ink-wash still of a lipstick resting outside a closed doctor's medical bag and stethoscope, clearly separated from the clinical objects by open ivory space; the cosmetic remains vivid red while the medical items stay subdued charcoal and taupe.",
+      "purpose": "distinguish the informal phrase lipstick syndrome from an actual medical diagnosis",
+      "visual_fingerprint": "lipstick physically separated from closed medical bag and stethoscope; static close-medium composition; clean ivory negative space; clinical objects muted charcoal; strong spatial separation between cosmetic and medicine",
+      "type": "metaphor",
+      "continuity": "Ends the body by separating the informal consumer-behavior label from clinical medicine, setting up the closing clarification.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "c538d16fe6cdc2a39c48302061ad07fea04a95e54c5803219c7128bc2c4f11e9",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical editorial ink-wash office scene shows a woman in late-1990s professional clothing seated left-weighted in medium side profile at a wooden desk, reading and annotating loose papers. Books, paper files, a bulky CRT desktop computer, office storage, shelving and small cosmetic containers establish the academic-office setting. A red lipstick sits prominently but discreetly on the desk. The image uses warm ivory paper with irregular worn edges, an inset loose charcoal boundary, muted taupe, gray-brown, dusty sage and desaturated teal washes, soft diffuse light, restrained hatching and selective lipstick-red accents.",
+    "violations": [
+      "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+      "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+      "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+      "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+      "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+    ],
+    "observations": [
+      "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+      "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+      "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "0a20fd05-832c-4b05-991b-d5f9bc4fe758",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/f676e1a5415f7314",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=0a20fd05-832c-4b05-991b-d5f9bc4fe758_output_1.png 1536x2752 sha256=46f253b4e18c8dbb9a1f6082afca35bdc924643bf7ac9fcdf8b4c9b418b1a5bc"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical editorial ink-wash office scene shows a woman in late-1990s professional clothing seated left-weighted in medium side profile at a wooden desk, reading and annotating loose papers. Books, paper files, a bulky CRT desktop computer, office storage, shelving and small cosmetic containers establish the academic-office setting. A red lipstick sits prominently but discreetly on the desk. The image uses warm ivory paper with irregular worn edges, an inset loose charcoal boundary, muted taupe, gray-brown, dusty sage and desaturated teal washes, soft diffuse light, restrained hatching and selective lipstick-red accents.",
+      "violations": [
+        "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+        "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+        "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+        "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+        "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+      ],
+      "observations": [
+        "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+        "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+        "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "c538d16fe6cdc2a39c48302061ad07fea04a95e54c5803219c7128bc2c4f11e9",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "0a20fd05-832c-4b05-991b-d5f9bc4fe758",
+        "prompt_sha256": "edade7a0b922112674b123585bfc993559a877d0db1f7d211d5ad52260e8a6a6",
+        "output_sha256": "46f253b4e18c8dbb9a1f6082afca35bdc924643bf7ac9fcdf8b4c9b418b1a5bc",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash office scene shows a woman in late-1990s professional clothing seated left-weighted in medium side profile at a wooden desk, reading and annotating loose papers. Books, paper files, a bulky CRT desktop computer, office storage, shelving and small cosmetic containers establish the academic-office setting. A red lipstick sits prominently but discreetly on the desk. The image uses warm ivory paper with irregular worn edges, an inset loose charcoal boundary, muted taupe, gray-brown, dusty sage and desaturated teal washes, soft diffuse light, restrained hatching and selective lipstick-red accents.",
+          "violations": [
+            "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+            "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+            "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+            "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+            "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+          ],
+          "observations": [
+            "The open notebook contains several small handwriting-like ink marks that resemble textual notation, although they are not clearly readable.",
+            "The large nearly empty rectangular wall object in the upper-left creates a somewhat panel-like blank area, though it remains visibly part of the depicted office rather than a separate layout panel.",
+            "The candidate is somewhat more densely rendered and literal in its office furniture and figure detail than the looser object-focused world keyframe and previous beat, but the recurring ink-wash medium, palette, paper texture, boundary language and lighting remain materially consistent."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "b4bfbcec-1c13-4658-8f4c-caa422c6cab9",
+        "prompt_sha256": "502653afc651a1f20d263085b9cede058de5d875bf2785d37960ac41ff4fb2d8",
+        "output_sha256": "313f06862ec40652d458b04e451317a4e3c5aa332b87f1f76a52511cb4fbde39",
+        "quality_check": {
+          "passed": true,
+          "description": "A single 9:16 vertical editorial ink-wash scene shows a woman seated left-weighted in side profile at a wooden academic-office desk, reading and annotating an open notebook amid loose papers, books and files. A bulky period desktop computer sits at right with a blank screen, and a small red lipstick provides the selective accent. The scene uses warm ivory worn paper, an inset charcoal boundary, muted taupe, sage, teal and charcoal washes, and soft diffuse lighting consistent with the supplied continuity references.",
+          "violations": [
+            "The open notebook still contains several prominent handwriting-like squiggles and notation marks, including small chart-like strokes, so QC finding 1 was not successfully corrected.",
+            "The upper-left framed wall rectangle is improved by faint interior wash marks but still reads as a comparatively large, mostly empty rectangular area and retains some of the panel-like quality identified in QC finding 2.",
+            "The office, furniture, figure and background are still rendered more densely and literally than the looser object-focused world keyframe and previous beat, although the recurring ink-wash medium, palette, paper texture, boundary treatment and lighting remain materially consistent.",
+            "The replacement makes broader scene changes than the requested smallest targeted corrections, most notably adding a substantial abstract landscape-like wall wash behind the desk instead of preserving the previously plainer office wall."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "Compared with the qc_previous_candidate, the open notebook now includes more conspicuous notation and chart-like marks rather than removing the handwriting-like marks called out for correction.",
+            "A large new multicolored abstract wall wash or landscape motif has been introduced across the central background, altering an area that did not require redesign and increasing visual density relative to the previous candidate."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The open notebook still contains several prominent handwriting-like squiggles and notation marks, including small chart-like strokes, so QC finding 1 was not successfully corrected.",
+            "The upper-left framed wall rectangle is improved by faint interior wash marks but still reads as a comparatively large, mostly empty rectangular area and retains some of the panel-like quality identified in QC finding 2.",
+            "The office, furniture, figure and background are still rendered more densely and literally than the looser object-focused world keyframe and previous beat, although the recurring ink-wash medium, palette, paper texture, boundary treatment and lighting remain materially consistent.",
+            "The replacement makes broader scene changes than the requested smallest targeted corrections, most notably adding a substantial abstract landscape-like wall wash behind the desk instead of preserving the previously plainer office wall."
+          ],
+          "observations": [
+            "The open notebook still contains several prominent handwriting-like squiggles and notation marks, including small chart-like strokes, so QC finding 1 was not successfully corrected.",
+            "The upper-left framed wall rectangle is improved by faint interior wash marks but still reads as a comparatively large, mostly empty rectangular area and retains some of the panel-like quality identified in QC finding 2.",
+            "The office, furniture, figure and background are still rendered more densely and literally than the looser object-focused world keyframe and previous beat, although the recurring ink-wash medium, palette, paper texture, boundary treatment and lighting remain materially consistent.",
+            "The replacement makes broader scene changes than the requested smallest targeted corrections, most notably adding a substantial abstract landscape-like wall wash behind the desk instead of preserving the previously plainer office wall.",
+            "Compared with the qc_previous_candidate, the open notebook now includes more conspicuous notation and chart-like marks rather than removing the handwriting-like marks called out for correction.",
+            "A large new multicolored abstract wall wash or landscape motif has been introduced across the central background, altering an area that did not require redesign and increasing visual density relative to the previous candidate."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_003.png",
+      "sha256": "cb3f0aea6cf5c2d874849f994bbd06f19cdef3243450738f84d5e2c76c63a4b0"
+    }
+  ],
+  "prompt_sha256": "edade7a0b922112674b123585bfc993559a877d0db1f7d211d5ad52260e8a6a6",
+  "prompt": "Create exactly one 9:16 vertical image, a single uninterrupted editorial ink-wash illustration with no storyboard, grid, collage, panels, captions, labels, UI, or readable text. Depict Juliet Schor in a plausible late-1990s academic office, seated in medium side profile at a wooden desk, left-weighted in the composition, reading and annotating loose consumer-research notes beside several books and paper files; include a small lipstick on the desk as a subtle symbolic bridge and a bulky period desktop computer with no legible screen content. Use period-appropriate late-1990s clothing, office objects, printed materials, cosmetics packaging, and computer design. Render everything on the recurring warm ivory editorial sheet with lightly worn irregular paper edges, faint ink pooling and restrained print wear, inside the established loose charcoal-and-ink illustration boundary. Maintain soft charcoal contours, brush variation, dry-brush edges, restrained hatching, warm toothy paper grain, muted taupe and recession-gray browns, dusty sage, desaturated teal, soft charcoal, restrained ochre, and only a selective lipstick-red accent. Lighting is soft diffuse editorial daylight with warm paper glow and subdued gray shadows. Fill the complete illustration height naturally; do not create any blank lower strip, caption reserve, empty panel, or low-detail subtitle band. Reference roles: style_reference defines the ink-wash rendering language and palette; world_keyframe defines the recurring editorial page, inner illustration-window language, material treatment, and lighting; previous_beat is binding only for those recurring frame, texture, palette, edge, and lighting qualities—do not copy its composition, crop, camera angle, pose, subject placement, or focal object. No photorealism, glossy 3D, anime, neon, corporate vector art, hyper-saturated advertising, or imagery implying the lipstick index is scientifically validated. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "46f253b4e18c8dbb9a1f6082afca35bdc924643bf7ac9fcdf8b4c9b418b1a5bc",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.219,
+  "completed_at": "2026-09-11T13:54:43Z"
+}

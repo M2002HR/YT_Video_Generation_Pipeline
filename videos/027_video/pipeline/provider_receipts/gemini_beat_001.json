@@ -1,0 +1,171 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "54b1fedc1116404422535d2205ceb24fa32d2e8cf0d058972847dca5c261e3ca",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical editorial ink-wash illustration on warm ivory textured paper shows one upright red lipstick beside an open, nearly empty dark coin purse containing two muted coins, with another ochre coin below and the lipstick cap lying nearby. Loose charcoal boundary marks form an inset page window, and a muted sage, taupe, gray and charcoal mountain-like wash occupies the upper background. The lower portion of the page is largely unoccupied warm paper.",
+    "violations": [
+      "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+      "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+      "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+      "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+      "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+    ],
+    "observations": [
+      "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+      "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+      "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "e0535a19-6c3a-4596-b797-44912974ab6e",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/538c32c4e69702e8",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=e0535a19-6c3a-4596-b797-44912974ab6e_output_1.png 1536x2752 sha256=5765b6b1cb6fda9cd2a363b37a8793403b37e5b74d386c61015d88f163573d15"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical editorial ink-wash illustration on warm ivory textured paper shows one upright red lipstick beside an open, nearly empty dark coin purse containing two muted coins, with another ochre coin below and the lipstick cap lying nearby. Loose charcoal boundary marks form an inset page window, and a muted sage, taupe, gray and charcoal mountain-like wash occupies the upper background. The lower portion of the page is largely unoccupied warm paper.",
+      "violations": [
+        "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+        "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+        "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+        "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+        "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+      ],
+      "observations": [
+        "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+        "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+        "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "54b1fedc1116404422535d2205ceb24fa32d2e8cf0d058972847dca5c261e3ca",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "e0535a19-6c3a-4596-b797-44912974ab6e",
+        "prompt_sha256": "6c977405ab87cdb8118fce327fd1c0b97382f59bd01a945d1f4be11a66a9f9ec",
+        "output_sha256": "5765b6b1cb6fda9cd2a363b37a8793403b37e5b74d386c61015d88f163573d15",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash illustration on warm ivory textured paper shows one upright red lipstick beside an open, nearly empty dark coin purse containing two muted coins, with another ochre coin below and the lipstick cap lying nearby. Loose charcoal boundary marks form an inset page window, and a muted sage, taupe, gray and charcoal mountain-like wash occupies the upper background. The lower portion of the page is largely unoccupied warm paper.",
+          "violations": [
+            "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+            "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+            "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+            "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+            "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+          ],
+          "observations": [
+            "A large low-detail blank area occupies roughly the lower third to two-fifths of the image, contrary to the explicit requirement to continue the scene and natural texture through the full usable height without a blank strip or caption-like field.",
+            "The still-life grouping sits relatively high in the composition, making the lower area read somewhat like reserved editorial copy space even though no text is present.",
+            "The background scenic wash is concentrated in the upper portion rather than carrying more visual texture through the full inset illustration window."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "b1bbc59a-652f-4ce0-a09f-dd6cff220e78",
+        "prompt_sha256": "56ea6f1751957769413f16c07468445a714fdb80516e1b69cb64d6e1613fe2f4",
+        "output_sha256": "710edbc8f416bea742fd20193c401755af7463234a8310e76303e8cad73c7c84",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 hand-drawn ink-wash editorial still life on warm worn ivory paper. An upright red lipstick stands beside an open nearly empty coin purse with a few muted coins. Loose charcoal boundary marks define an inset illustration window, with layered dusty sage, taupe, gray, and desaturated washes resembling mountainous or economic-chart contours across the upper half. The lower portion remains predominantly pale paper with only sparse faint gray wash and a few small ink marks.",
+          "violations": [
+            "The requested QC correction is only partially achieved: a large low-detail pale area still occupies roughly the lower third of the inset scene and continues to read like reserved editorial copy space.",
+            "The lipstick and purse grouping remains relatively high in the composition, leaving substantial unused visual weight below it.",
+            "The scenic and tonal wash is still concentrated mainly in the upper portion rather than continuing with comparable natural texture through the full usable height of the inset window."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested QC correction is only partially achieved: a large low-detail pale area still occupies roughly the lower third of the inset scene and continues to read like reserved editorial copy space.",
+            "The lipstick and purse grouping remains relatively high in the composition, leaving substantial unused visual weight below it.",
+            "The scenic and tonal wash is still concentrated mainly in the upper portion rather than continuing with comparable natural texture through the full usable height of the inset window."
+          ],
+          "observations": [
+            "The requested QC correction is only partially achieved: a large low-detail pale area still occupies roughly the lower third of the inset scene and continues to read like reserved editorial copy space.",
+            "The lipstick and purse grouping remains relatively high in the composition, leaving substantial unused visual weight below it.",
+            "The scenic and tonal wash is still concentrated mainly in the upper portion rather than continuing with comparable natural texture through the full usable height of the inset window."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    }
+  ],
+  "prompt_sha256": "6c977405ab87cdb8118fce327fd1c0b97382f59bd01a945d1f4be11a66a9f9ec",
+  "prompt": "Edit\n\nCreate exactly one vertical 9:16 image: a simplified hand-drawn 2D editorial ink-wash still life on warm ivory, lightly toothy paper, showing one lipstick tube standing upright beside an open, nearly empty coin purse, viewed in a close three-quarter tabletop composition. Make the lipstick-red tip the only vivid accent, immediately linking a small cosmetic luxury with limited money and economic pressure; keep everything else muted in warm cream, faded ivory, taupe, recession-gray brown, dusty sage, desaturated teal, soft charcoal, and restrained ochre. Use soft charcoal-ink contours with natural brush variation, faint dry-brush edges, restrained hand-drawn hatching, gentle ink pooling, subtle print wear, and slightly imperfect registration. Light with soft diffuse editorial daylight and a warm paper glow, with subdued charcoal-gray shadows around the purse and objects suggesting financial strain without melodrama. Preserve the recurring world frame language: the scene should feel washed or printed onto the same tactile editorial page, with lightly worn irregular paper edges and loose charcoal-and-ink boundary marks defining an inset illustration presence while the artwork naturally fills the complete image height. Do not reserve any caption field, blank strip, empty panel, or low-detail subtitle band. Use the supplied style_reference only to match medium, texture, contour behavior, palette discipline, and rendering character; use the supplied world_keyframe only to maintain the established paper world, frame material, lighting, and overall visual continuity. Do not copy either reference’s pose, object placement, layout, or composition. No people or host character. No photorealism, glossy 3D CGI, anime, neon, polished vector-flat art, hyper-saturated advertising, storyboard, grid, collage, multiple panels, captions, labels, UI, letters, numbers, logos, or any readable text.\n\nClarify the Inset Window\nTighten the Single-Image Constraints NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_001.png",
+  "output_sha256": "5765b6b1cb6fda9cd2a363b37a8793403b37e5b74d386c61015d88f163573d15",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.221,
+  "completed_at": "2026-09-11T13:35:47Z"
+}

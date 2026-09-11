@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "video": "027_video",
+  "started_at": "2026-09-11T18:13:56.720232+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-11T18:13:56.739388+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:13:58.146712+00:00",
+      "elapsed_seconds": 1.407,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 30078
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-11T18:13:59.274168+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 2/8 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:17:17.032697+00:00",
+      "elapsed_seconds": 197.758,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 42656423
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-11T18:17:17.033147+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:17:25.239802+00:00",
+      "elapsed_seconds": 8.207,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-11T18:17:26.684747+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:17:30.852109+00:00",
+      "elapsed_seconds": 4.167,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 42995473
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-11T18:17:32.009423+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:17:41.001194+00:00",
+      "elapsed_seconds": 8.992,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-11T18:17:42.058469+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:18:01.084136+00:00",
+      "elapsed_seconds": 19.026,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2427404
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-11T18:18:02.142778+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-11T18:13:56.720232+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ]
+}

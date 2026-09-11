@@ -1,0 +1,184 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "b678a8f2e1dffb2c5f539ef9ad73725b4c75281dfd32cee8536c2550628262f8",
+  "quality_check": {
+    "passed": true,
+    "description": "A single 9:16 ink-wash editorial scene on a warm worn ivory page shows one hand moving a large muted-sage shopping bag diagonally away from the foreground, with a closed brown presentation-style box behind it. A wallet with a few coins and loose papers remains in the lower foreground. The background uses soft atmospheric mountain-like washes rather than chart-like graph lines, and the loose charcoal inset frame, subdued taupe-sage palette, paper grain, hatching, and diffuse editorial lighting remain consistent with the supplied visual world. No readable text or obvious logo is visible.",
+    "violations": [
+      "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+      "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+      "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+      "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+      "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+    ],
+    "observations": [
+      "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+      "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+      "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "2adb44b9-2a60-4b48-afbe-02b6936af058",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/deeea10b169ddc15",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat",
+      "qc_previous_candidate"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=2adb44b9-2a60-4b48-afbe-02b6936af058_output_1.png 1536x2752 sha256=21deeca1c98dcd35c2afc9597d56b35a9d4ffcac282cbcbf45a87239a44b7ba9"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single 9:16 ink-wash editorial scene on a warm worn ivory page shows one hand moving a large muted-sage shopping bag diagonally away from the foreground, with a closed brown presentation-style box behind it. A wallet with a few coins and loose papers remains in the lower foreground. The background uses soft atmospheric mountain-like washes rather than chart-like graph lines, and the loose charcoal inset frame, subdued taupe-sage palette, paper grain, hatching, and diffuse editorial lighting remain consistent with the supplied visual world. No readable text or obvious logo is visible.",
+      "violations": [
+        "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+        "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+        "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+        "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+        "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+      ],
+      "observations": [
+        "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+        "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+        "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "b678a8f2e1dffb2c5f539ef9ad73725b4c75281dfd32cee8536c2550628262f8",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "f122e5c3-4873-4b6f-80af-3fce72acf540",
+        "prompt_sha256": "68f26457829e61ce353a7bf8bca129cc32b0a949d5f7b6af28db8d50575af07e",
+        "output_sha256": "d92d045ef020732ca01387dcee881a2c718e71af9094ad70b04329a2c63584ab",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical ink-wash editorial scene on warm worn ivory paper shows one hand pushing a large muted-sage shopping bag diagonally across and away from the foreground, with a brown rectangular luxury-style box behind it. A worn wallet with only a few coins sits near the lower-central area among receipts and papers. The image preserves the loose charcoal inset frame, muted taupe-sage-charcoal palette, watercolor pooling, restrained hatching, diffuse daylight, and tactile paper treatment established by the references.",
+          "violations": [
+            "Readable text 'UTILITY' appears on a receipt at left, contrary to the no text, letters, words, or labels requirement.",
+            "The shopping bag carries a prominent signature-like mark that reads as a logo or branding device, contrary to the no logos requirement.",
+            "The brown box is visually generic and does not clearly communicate a luxury shoe box beyond its placement with the shopping bag.",
+            "The wallet is fairly substantial and foreground-weighted rather than distinctly thin and nearly empty, so the intended quiet focal emphasis is somewhat weakened.",
+            "Jagged linework across the background resembles financial-chart or graph imagery, which conflicts with the request to avoid technical financial graphics."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Readable text 'UTILITY' appears on a receipt at left, contrary to the no text, letters, words, or labels requirement.",
+            "The shopping bag carries a prominent signature-like mark that reads as a logo or branding device, contrary to the no logos requirement.",
+            "The brown box is visually generic and does not clearly communicate a luxury shoe box beyond its placement with the shopping bag.",
+            "The wallet is fairly substantial and foreground-weighted rather than distinctly thin and nearly empty, so the intended quiet focal emphasis is somewhat weakened.",
+            "Jagged linework across the background resembles financial-chart or graph imagery, which conflicts with the request to avoid technical financial graphics."
+          ],
+          "observations": [
+            "Readable text 'UTILITY' appears on a receipt at left, contrary to the no text, letters, words, or labels requirement.",
+            "The shopping bag carries a prominent signature-like mark that reads as a logo or branding device, contrary to the no logos requirement.",
+            "The brown box is visually generic and does not clearly communicate a luxury shoe box beyond its placement with the shopping bag.",
+            "The wallet is fairly substantial and foreground-weighted rather than distinctly thin and nearly empty, so the intended quiet focal emphasis is somewhat weakened.",
+            "Jagged linework across the background resembles financial-chart or graph imagery, which conflicts with the request to avoid technical financial graphics."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      },
+      {
+        "attempt": 2,
+        "job_id": "2adb44b9-2a60-4b48-afbe-02b6936af058",
+        "prompt_sha256": "55bf1ac57ec060a1e39698a6bf332c7933593442f0c092a521fca25dde4c5db8",
+        "output_sha256": "21deeca1c98dcd35c2afc9597d56b35a9d4ffcac282cbcbf45a87239a44b7ba9",
+        "quality_check": {
+          "passed": true,
+          "description": "A single 9:16 ink-wash editorial scene on a warm worn ivory page shows one hand moving a large muted-sage shopping bag diagonally away from the foreground, with a closed brown presentation-style box behind it. A wallet with a few coins and loose papers remains in the lower foreground. The background uses soft atmospheric mountain-like washes rather than chart-like graph lines, and the loose charcoal inset frame, subdued taupe-sage palette, paper grain, hatching, and diffuse editorial lighting remain consistent with the supplied visual world. No readable text or obvious logo is visible.",
+          "violations": [
+            "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+            "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+            "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+            "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+            "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+          ],
+          "observations": [
+            "The wallet still reads as fairly substantial and layered rather than distinctly thin and nearly empty, so it does not fully achieve the requested quiet focal emphasis.",
+            "The brown box has more luxury presentation cues than before, including a tassel, but it still does not unmistakably read as a luxury shoe box because no shoe-specific form or contents are visible.",
+            "The oversized shopping bag and box remain the strongest visual masses, making the wallet less central as the intended quiet focal point."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 2
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_001.png",
+      "sha256": "5765b6b1cb6fda9cd2a363b37a8793403b37e5b74d386c61015d88f163573d15"
+    }
+  ],
+  "prompt_sha256": "68f26457829e61ce353a7bf8bca129cc32b0a949d5f7b6af28db8d50575af07e",
+  "prompt": "Edit\n\nCreate exactly one standalone 9:16 vertical image in the established editorial lipstick-economics world: an ink-wash overhead-to-medium-overhead household budgeting scene where a single hand is actively sliding a large elegant shopping bag and a luxury shoe box diagonally outward and away from the foreground, clearly signaling that expensive discretionary purchases are being set aside, while a thin nearly empty wallet with only a few visible coins remains near the center as the quiet focal point. Render everything as simplified hand-drawn 2D editorial animation with soft charcoal-ink contours, subtle brush variation, selective dry-brush edges, restrained hatching, subdued cel-like shading, and warm lightly toothy ivory paper grain with faint ink pooling and restrained print wear. Use recession-gray taupes, muted browns, dusty sage or desaturated teal touches, soft charcoal, and restrained ochre; avoid lipstick-red unless a tiny non-focal compositional echo genuinely belongs. Light with soft diffuse editorial daylight, warm paper glow, and subdued gray shadows. Preserve the recurring warm ivory page, irregular worn paper edges, and loose charcoal-and-ink inset illustration-window boundary, while filling the complete illustration height naturally with scene detail—no lower caption reserve, blank strip, empty panel, or low-detail subtitle band. Use style_reference only to preserve medium, palette, line treatment, texture, and lighting; use world_keyframe only to preserve the recurring editorial page/frame language and material treatment; use previous_beat only as binding continuity for those same frame materials, edges, texture, palette, and lighting, never copying its composition, crop, camera angle, pose, subject placement, or focal object. No photorealism, glossy 3D, anime, neon, corporate vector-flat styling, hyper-saturated advertising, or technical financial graphics. Exactly one image only: no storyboard, grid, collage, split panels, captions, labels, UI, letters, numbers, logos, or any readable text.\n\nClarify the Hand Count and Placement NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_002.png",
+  "output_sha256": "21deeca1c98dcd35c2afc9597d56b35a9d4ffcac282cbcbf45a87239a44b7ba9",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 99.297,
+  "completed_at": "2026-09-11T13:42:02Z"
+}

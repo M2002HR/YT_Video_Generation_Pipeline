@@ -1,0 +1,181 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "a84847a6f9539eac4b1bbdb7e605fcd6dadfc88beb6ba6b9d23f3703e2b7fc14",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical 9:16 ink-wash editorial scene shows an ordinary shopper's hand selecting one red lipstick on a restrained cosmetics counter. The lipstick is the sole controlled red accent, with a plain dark detached cap nearby, a muted sage grooming brush in the foreground, a partial mirror at left, and a softly blurred luxury bottle receding into pale gray wash behind. The warm ivory worn-paper sheet, loose charcoal inset boundary, subdued sage-taupe-gray palette, paper grain, and diffuse lighting remain consistent with the supplied continuity references.",
+    "violations": [
+      "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+      "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+      "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+      "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+      "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+    ],
+    "observations": [
+      "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+      "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+      "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "8f42eb4f-8ed8-4413-9020-d2d1667aa3a9",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/8bd712443402fd08",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat",
+      "qc_previous_candidate"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=8f42eb4f-8ed8-4413-9020-d2d1667aa3a9_output_1.png 1536x2752 sha256=cb3f0aea6cf5c2d874849f994bbd06f19cdef3243450738f84d5e2c76c63a4b0"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical 9:16 ink-wash editorial scene shows an ordinary shopper's hand selecting one red lipstick on a restrained cosmetics counter. The lipstick is the sole controlled red accent, with a plain dark detached cap nearby, a muted sage grooming brush in the foreground, a partial mirror at left, and a softly blurred luxury bottle receding into pale gray wash behind. The warm ivory worn-paper sheet, loose charcoal inset boundary, subdued sage-taupe-gray palette, paper grain, and diffuse lighting remain consistent with the supplied continuity references.",
+      "violations": [
+        "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+        "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+        "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+        "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+        "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+      ],
+      "observations": [
+        "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+        "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+        "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "a84847a6f9539eac4b1bbdb7e605fcd6dadfc88beb6ba6b9d23f3703e2b7fc14",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "48638f28-4239-4487-8040-55628c712b38",
+        "prompt_sha256": "6f9e58780af171cc6724fc7265734776aebcbefbb7a344cd01a5ec74c7825dbe",
+        "output_sha256": "7f9e8ecc1d1806f185427cbbbefdda7baafb70ae043209437e4d9154a5653ad2",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash scene shows an ordinary shopper's hand reaching from the right to select a modest upright red lipstick on a sparse cosmetics counter. A mirror, brush, compact items and slim cosmetic tools occupy the foreground, while two larger perfume-like bottles recede into soft pale gray blur behind the hand. The lipstick bullet is the dominant red accent. The image uses warm ivory paper, muted sage, taupe, gray-brown and charcoal washes, loose hand-drawn contours, hatching, watercolor variation and a worn inset illustration boundary consistent with the supplied continuity references. The scene and texture continue through the lower portion rather than leaving a caption reserve.",
+          "violations": [
+            "The camera angle reads somewhat elevated over the countertop rather than strictly eye-level.",
+            "A small red circular mark on the end of the detached lipstick cap creates a secondary lipstick-red accent, slightly weakening the request for the lipstick to be the only controlled red focal accent.",
+            "Some foreground object contours and shading are a little more crisp and densely rendered than the loosest passages in the style reference, though the overall ink-wash medium remains consistent.",
+            "The cosmetics counter contains several accessory objects, making it marginally busier than the requested sparse presentation."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The camera angle reads somewhat elevated over the countertop rather than strictly eye-level.",
+            "A small red circular mark on the end of the detached lipstick cap creates a secondary lipstick-red accent, slightly weakening the request for the lipstick to be the only controlled red focal accent.",
+            "Some foreground object contours and shading are a little more crisp and densely rendered than the loosest passages in the style reference, though the overall ink-wash medium remains consistent.",
+            "The cosmetics counter contains several accessory objects, making it marginally busier than the requested sparse presentation."
+          ],
+          "observations": [
+            "The camera angle reads somewhat elevated over the countertop rather than strictly eye-level.",
+            "A small red circular mark on the end of the detached lipstick cap creates a secondary lipstick-red accent, slightly weakening the request for the lipstick to be the only controlled red focal accent.",
+            "Some foreground object contours and shading are a little more crisp and densely rendered than the loosest passages in the style reference, though the overall ink-wash medium remains consistent.",
+            "The cosmetics counter contains several accessory objects, making it marginally busier than the requested sparse presentation."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      },
+      {
+        "attempt": 2,
+        "job_id": "8f42eb4f-8ed8-4413-9020-d2d1667aa3a9",
+        "prompt_sha256": "c8b040f542b92f80bf6766df00fe82218b0feedf2b62b8d278904fc5fd81363b",
+        "output_sha256": "cb3f0aea6cf5c2d874849f994bbd06f19cdef3243450738f84d5e2c76c63a4b0",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 ink-wash editorial scene shows an ordinary shopper's hand selecting one red lipstick on a restrained cosmetics counter. The lipstick is the sole controlled red accent, with a plain dark detached cap nearby, a muted sage grooming brush in the foreground, a partial mirror at left, and a softly blurred luxury bottle receding into pale gray wash behind. The warm ivory worn-paper sheet, loose charcoal inset boundary, subdued sage-taupe-gray palette, paper grain, and diffuse lighting remain consistent with the supplied continuity references.",
+          "violations": [
+            "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+            "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+            "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+            "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+            "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+          ],
+          "observations": [
+            "The viewpoint still reads mildly elevated because a substantial amount of the countertop top plane is visible, so it is not fully strict eye-level.",
+            "The hand, lipstick casing, and foreground brush retain somewhat crisp contour work and denser hatching than the loosest, more dissolved ink-wash passages in the style reference.",
+            "Although substantially simplified versus the previous candidate, the detached cap and foreground grooming brush still make the counter slightly more accessorized than an extremely sparse interpretation."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 2
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_002.png",
+      "sha256": "21deeca1c98dcd35c2afc9597d56b35a9d4ffcac282cbcbf45a87239a44b7ba9"
+    }
+  ],
+  "prompt_sha256": "6f9e58780af171cc6724fc7265734776aebcbefbb7a344cd01a5ec74c7825dbe",
+  "prompt": "Here’s the standalone Gemini image prompt:\n\nEdit\n\nCreate exactly one vertical 9:16 image: an intimate eye-level ink-wash close-up of an ordinary shopper’s hand selecting a single modest lipstick from a sparse cosmetics counter, conveying a small, affordable personal comfort during economic restraint. Make the lipstick the only controlled lipstick-red focal accent, warm and attainable against muted soft sage, faded ivory, taupe, recession-gray brown, and charcoal surroundings; let larger luxury goods recede out of focus into pale gray wash behind it, clearly present but emotionally distant. Render in simplified hand-drawn 2D editorial ink wash with soft charcoal contours, restrained cel-like shading, subtle brush variation, dry-brush edges, light hatching, faint ink pooling, imperfect print registration, and warm lightly toothy paper grain. Maintain the recurring warm ivory editorial-page frame language with lightly worn irregular paper edges and the established loose charcoal-and-ink inset illustration boundary. Use soft diffuse editorial daylight, gentle warm paper glow, and subdued gray shadows. Fill the complete illustration height naturally: no caption reserve, blank strip, empty panel, or low-detail lower band. Reference roles: style_reference governs the ink-wash medium, palette, linework, texture, and lighting; world_keyframe anchors the recurring editorial sheet, material treatment, and illustration-window language; previous_beat is binding only for frame material, edge treatment, texture, palette, and lighting continuity—do not copy its composition, crop, camera angle, pose, subject placement, or focal object. No recurring host or inferred host. No photorealism, glossy 3D CGI, anime, neon, polished vector art, hyper-saturated advertising, storyboard, grid, collage, panels, captions, labels, UI, letters, numbers, or any readable text.\n\nClarify the shopper's hand\nTighten the negative constraints NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "cb3f0aea6cf5c2d874849f994bbd06f19cdef3243450738f84d5e2c76c63a4b0",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 108.359,
+  "completed_at": "2026-09-11T13:47:54Z"
+}

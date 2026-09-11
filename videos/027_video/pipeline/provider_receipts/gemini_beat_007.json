@@ -1,0 +1,195 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "9d5a4fb62a708bb83e0afae92898821d3eef55272b7ed2ffa3a6d5609ace33fc",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical editorial ink-wash illustration on warm worn ivory paper. A large circular economic-style gauge with a restrained ochre rim dominates the center, with a red lipstick tube laid diagonally across the dial as the implied needle. Muted sage, teal, taupe and recession-gray wash segments sit within the gauge, a small gray storm cloud hangs at lower left, and a miniature shopping street runs beneath the gauge. Loose charcoal inset boundary marks, watercolor pooling, subdued shadows and controlled lipstick-red accents visibly continue the established editorial-page treatment.",
+    "violations": [
+      "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+      "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+      "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+      "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+      "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+      "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+      "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+    ],
+    "observations": [
+      "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+      "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+      "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+      "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "ea968d4a-c87f-4ff0-b79c-3f694f50d9e7",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/0cd22bba2e82ffe9",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=ea968d4a-c87f-4ff0-b79c-3f694f50d9e7_output_1.png 1536x2752 sha256=efab6acfb640fce58376d8b882c85d1907e1bce5f7f04fbe42930ac02a159370"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical editorial ink-wash illustration on warm worn ivory paper. A large circular economic-style gauge with a restrained ochre rim dominates the center, with a red lipstick tube laid diagonally across the dial as the implied needle. Muted sage, teal, taupe and recession-gray wash segments sit within the gauge, a small gray storm cloud hangs at lower left, and a miniature shopping street runs beneath the gauge. Loose charcoal inset boundary marks, watercolor pooling, subdued shadows and controlled lipstick-red accents visibly continue the established editorial-page treatment.",
+      "violations": [
+        "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+        "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+        "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+        "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+        "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+        "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+        "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+      ],
+      "observations": [
+        "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+        "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+        "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+        "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "9d5a4fb62a708bb83e0afae92898821d3eef55272b7ed2ffa3a6d5609ace33fc",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "ea968d4a-c87f-4ff0-b79c-3f694f50d9e7",
+        "prompt_sha256": "93043bfcca7a46465a269039bad1a9056c8ca705b1ba6dbca80ac21f0cc0a1fe",
+        "output_sha256": "efab6acfb640fce58376d8b882c85d1907e1bce5f7f04fbe42930ac02a159370",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash illustration on warm worn ivory paper. A large circular economic-style gauge with a restrained ochre rim dominates the center, with a red lipstick tube laid diagonally across the dial as the implied needle. Muted sage, teal, taupe and recession-gray wash segments sit within the gauge, a small gray storm cloud hangs at lower left, and a miniature shopping street runs beneath the gauge. Loose charcoal inset boundary marks, watercolor pooling, subdued shadows and controlled lipstick-red accents visibly continue the established editorial-page treatment.",
+          "violations": [
+            "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+            "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+            "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+            "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+            "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+            "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+            "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+          ],
+          "observations": [
+            "The gauge mechanism is only partially clarified: the lipstick reads as a needle metaphor, but there is no strongly defined central pivot or hub visibly anchoring it to the gauge mechanism.",
+            "The requested slightly high-angle viewpoint is subtle; the gauge is presented predominantly front-on.",
+            "There is substantial unillustrated cream-paper space above the gauge and below the shopping street, so the scene does not fully use the vertical illustration height as strongly as requested, although it does not form a distinct caption band or panel.",
+            "The shopping street is very compressed and schematic relative to the dominant gauge, making the commercial-street metaphor secondary rather than tightly integrated into the circular composition."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "2d23a7b2-275e-44c1-8043-4be66cafb535",
+        "prompt_sha256": "ea89ff48f0aabf94915b414f2da7c9e3ad97fb4dbcce7e753fd69b88125922b9",
+        "output_sha256": "beaacc6b26e73faab0504d57f61a691732fe889c254f4a6c6edd1cf458109ece",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 editorial ink-wash image on warm worn ivory paper, framed by loose charcoal inset boundary marks. A large restrained ochre circular economic gauge dominates the center, with a red lipstick mounted diagonally through a clearly visible metallic central pivot or hub. Muted sage, teal, taupe and recession-gray gauge segments surround it. A miniature shopping street occupies the lower area with additional foreground rooftops extending toward the bottom edge, while gray storm clouds sit near the lower sides of the gauge. The recurring tactile wash, charcoal contours, paper texture, subdued palette and red accent treatment remain consistent with the supplied continuity references.",
+          "violations": [
+            "The requested slightly high-angle viewpoint remains weak; the gauge still reads predominantly front-on rather than visibly viewed from above.",
+            "A substantial area of lightly illustrated cream paper remains between the upper inset boundary and the top of the gauge, so the usable vertical height is still not fully activated.",
+            "The shopping street has been enlarged and extended into the foreground, but it still reads mostly as a separate base beneath the dominant gauge rather than being tightly integrated into the circular composition.",
+            "There are two distinct gray cloud masses flanking the lower gauge rather than the requested single small recession-gray storm cloud.",
+            "The lipstick mechanism is now visibly anchored by a central hub, but the red lower-left tube end and exposed red lipstick tip can momentarily make the pointer read as a double-ended object rather than one immediately legible lipstick needle."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "A second storm cloud has been introduced on the lower right compared with the previous candidate, adding an extra object not needed for the targeted QC corrections."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested slightly high-angle viewpoint remains weak; the gauge still reads predominantly front-on rather than visibly viewed from above.",
+            "A substantial area of lightly illustrated cream paper remains between the upper inset boundary and the top of the gauge, so the usable vertical height is still not fully activated.",
+            "The shopping street has been enlarged and extended into the foreground, but it still reads mostly as a separate base beneath the dominant gauge rather than being tightly integrated into the circular composition.",
+            "There are two distinct gray cloud masses flanking the lower gauge rather than the requested single small recession-gray storm cloud.",
+            "The lipstick mechanism is now visibly anchored by a central hub, but the red lower-left tube end and exposed red lipstick tip can momentarily make the pointer read as a double-ended object rather than one immediately legible lipstick needle."
+          ],
+          "observations": [
+            "The requested slightly high-angle viewpoint remains weak; the gauge still reads predominantly front-on rather than visibly viewed from above.",
+            "A substantial area of lightly illustrated cream paper remains between the upper inset boundary and the top of the gauge, so the usable vertical height is still not fully activated.",
+            "The shopping street has been enlarged and extended into the foreground, but it still reads mostly as a separate base beneath the dominant gauge rather than being tightly integrated into the circular composition.",
+            "There are two distinct gray cloud masses flanking the lower gauge rather than the requested single small recession-gray storm cloud.",
+            "The lipstick mechanism is now visibly anchored by a central hub, but the red lower-left tube end and exposed red lipstick tip can momentarily make the pointer read as a double-ended object rather than one immediately legible lipstick needle.",
+            "A second storm cloud has been introduced on the lower right compared with the previous candidate, adding an extra object not needed for the targeted QC corrections."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_006.png",
+      "sha256": "855a97b57decd32542051531be22b54c48e3aaa021c99c6cddbde8b96f29f23a"
+    }
+  ],
+  "prompt_sha256": "93043bfcca7a46465a269039bad1a9056c8ca705b1ba6dbca80ac21f0cc0a1fe",
+  "prompt": "Edit\n\nCreate exactly one vertical 9:16 image: an isolated editorial ink-wash metaphor showing a lipstick tube acting like the needle of an old-fashioned economic gauge, poised within a restrained ochre gauge frame above a miniature shopping street, with a small recession-gray storm cloud hanging nearby. Use a slightly high-angle view and a compact circular composition; playful and quirky but visually restrained, suggesting an informal recession signal without implying scientific certainty. Render everything as warm, tactile editorial ink wash on lightly toothy cream-to-faded-ivory paper, with soft charcoal contours, brush variation, faint dry-brush pooling, restrained hatching, slight print wear and imperfect registration. Palette: muted taupe and recession-gray browns, dusty sage, desaturated teal, soft charcoal, restrained ochre, with lipstick-red reserved for the lipstick and tiny compositional echoes. Lighting is soft diffuse editorial daylight with warm paper glow and subdued shadows. Fill the complete illustration height naturally—no lower caption reserve, blank strip, empty panel or low-detail subtitle band. Reference roles: use the style_reference only for medium, linework, texture, palette and lighting; use the world_keyframe only to preserve the established recurring ivory editorial-page frame language and loose charcoal-and-ink inset boundary treatment; use the previous_beat as binding reference for recurring material/edge treatment, illustration-window treatment, texture, palette and lighting, but do not copy its composition, crop, camera angle, subject placement or focal object. No photorealism, glossy 3D, anime, neon, corporate vector art or hyper-saturated advertising. Exactly one image only—no storyboard, grid, collage, panels, captions, labels, numbers, letters, UI or any readable text.\n\nClarify the gauge mechanism\nStrengthen the circular composition NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_007.png",
+  "output_sha256": "efab6acfb640fce58376d8b882c85d1907e1bce5f7f04fbe42930ac02a159370",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 87.283,
+  "completed_at": "2026-09-11T14:13:56Z"
+}

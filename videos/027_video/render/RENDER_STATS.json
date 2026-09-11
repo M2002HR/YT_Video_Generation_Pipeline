@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-11T18:17:16.965970+00:00",
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/final.mp4",
+  "output_bytes": 42656423,
+  "target_duration_seconds": 62.354,
+  "actual_duration_seconds": 62.354,
+  "duration_drift_seconds": -0.0,
+  "wall_seconds": 197.409,
+  "realtime_factor": 3.166,
+  "beats": 12,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "subtitles": true,
+  "resource_budget": 0.8,
+  "cpus_available": 2,
+  "threads": {
+    "encoder": 2,
+    "filter": 2,
+    "filter_complex": 2,
+    "source": "render profile"
+  },
+  "nice": 10,
+  "ionice": true,
+  "supersample": 2,
+  "supersample_note": "",
+  "motion_render_backend": "single_graph",
+  "motion_segments_rendered": 0,
+  "motion_segments_reused": 0,
+  "peak_child_rss_mb": 1243.9
+}

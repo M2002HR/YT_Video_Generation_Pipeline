@@ -1,0 +1,112 @@
+{
+  "audio_duration_seconds": 62.354,
+  "spark_start": 0.04,
+  "spark_end": 5.74,
+  "spark_duration": 5.7,
+  "transition_start": 6.64,
+  "transition_end": 9.38,
+  "transition_duration": 2.74,
+  "clip_a_target_seconds": 5.74,
+  "clip_b_target_seconds": 3.64,
+  "body_start": 9.86,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "When money gets tight, why can one tiny luxury survive? Here’s why.",
+      "speech_start": 0.04,
+      "speech_end": 5.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "That contradiction sends me reaching for the book.",
+      "speech_start": 6.64,
+      "speech_end": 9.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "It’s often called the lipstick effect.",
+      "speech_start": 9.86,
+      "speech_end": 12.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Tight budgets can push bigger luxuries aside.",
+      "speech_start": 12.94,
+      "speech_end": 15.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Lipstick can still feel like affordable comfort.",
+      "speech_start": 16.5,
+      "speech_end": 19.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Juliet Schor described this behavior in 1998.",
+      "speech_start": 20.62,
+      "speech_end": 24.22,
+      "match_confidence": 0.857
+    },
+    {
+      "segment": "body_05",
+      "narration": "Leonard Lauder popularized the lipstick index in 2001.",
+      "speech_start": 25.3,
+      "speech_end": 29.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "He suggested lipstick sales might rise when the economy weakens.",
+      "speech_start": 30.02,
+      "speech_end": 34.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "The idea became a quirky recession signal.",
+      "speech_start": 35.08,
+      "speech_end": 38.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Later downturns did not repeat the pattern reliably.",
+      "speech_start": 38.96,
+      "speech_end": 42.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "So lipstick sales are not a dependable economic indicator.",
+      "speech_start": 43.34,
+      "speech_end": 47.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "And “lipstick syndrome” is not a recognized medical diagnosis.",
+      "speech_start": 46.82,
+      "speech_end": 52.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "It’s an informal label for small comforts under pressure.",
+      "speech_start": 53.26,
+      "speech_end": 56.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more questions with surprising answers.",
+      "speech_start": 58.0,
+      "speech_end": 61.72,
+      "match_confidence": 1.0
+    }
+  ]
+}

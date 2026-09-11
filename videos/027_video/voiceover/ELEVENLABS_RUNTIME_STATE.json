@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "video_id": "027",
+  "created_at": "2026-09-11T15:41:24.326060+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/027_video/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "2d0bee1b2a8eb2768ba89a6b748b1bcae306637419c58d7062b027ec35b36355",
+  "settings": {
+    "voice": "Jerry B - Jolly",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.4,
+    "similarity": 0.4,
+    "style": 0.17,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T15:41:31.296598+00:00",
+      "elapsed_seconds": 6.948
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-11T15:41:44.728386+00:00",
+      "elapsed_seconds": 13.432,
+      "settings": {
+        "voice": "Jerry B - Jolly",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Jerry B - Jolly Santa Claus",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-11T15:41:44.885744+00:00",
+      "elapsed_seconds": 13.589,
+      "characters": 757
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T15:42:53.355199+00:00",
+      "elapsed_seconds": 1.762
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-11T15:42:59.663939+00:00",
+      "elapsed_seconds": 6.308,
+      "settings": {
+        "voice": "Jerry B - Jolly",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Jerry B - Jolly Santa Claus",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-11T15:42:59.742339+00:00",
+      "elapsed_seconds": 6.386,
+      "characters": 757
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T15:51:44.202420+00:00",
+      "elapsed_seconds": 1.636
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T17:21:06.151905+00:00",
+      "elapsed_seconds": 1.361
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-11T17:21:11.930724+00:00",
+      "elapsed_seconds": 5.779,
+      "settings": {
+        "voice": "Jerry B - Jolly",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Jerry B - Jolly Santa Claus",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-11T17:21:12.048482+00:00",
+      "elapsed_seconds": 5.896,
+      "characters": 757
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T17:29:09.414656+00:00",
+      "elapsed_seconds": 1.427
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T17:33:34.336625+00:00",
+      "elapsed_seconds": 1.464
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-11T18:07:32.988709+00:00",
+      "elapsed_seconds": 1.45
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-11T18:07:44.081053+00:00",
+      "elapsed_seconds": 11.089,
+      "settings": {
+        "voice": "Jerry B - Jolly",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Jerry B - Jolly Santa Claus",
+        "model": "Eleven Multilingual v2",
+        "speed": 0.9,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.17,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-11T18:07:44.153403+00:00",
+      "elapsed_seconds": 11.161,
+      "characters": 757
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-11T18:07:45.316741+00:00",
+      "elapsed_seconds": 1.163,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "selector_keyboard",
+        "delay_seconds": 0.701,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-11T18:08:02.307701+00:00",
+      "elapsed_seconds": 18.154,
+      "choice": "Download latest",
+      "retry": false
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-11T18:08:34.240468+00:00",
+      "elapsed_seconds": 50.087,
+      "choice": "Download latest",
+      "retry": true
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-11T18:09:07.572083+00:00",
+      "elapsed_seconds": 83.418,
+      "choice": "Download latest",
+      "retry": true
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-11T18:09:40.942212+00:00",
+      "elapsed_seconds": 116.788,
+      "choice": "Download latest",
+      "retry": true
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-09-11T18:10:08.685391+00:00",
+      "elapsed_seconds": 144.532,
+      "bytes": 1014316,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-09-11T18:10:08.685399+00:00",
+  "submitted_at": "2026-09-11T18:07:45.316140+00:00",
+  "download_choice": "Download latest",
+  "download_requested_at": 1789150180.9417536,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-11T18:10:08.685333+00:00"
+}

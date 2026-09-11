@@ -1,0 +1,165 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "156186c2d2a8a5e3307037a48ecf3e790782ea6e42efc24d4fd0dc88d0b4d01a",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical 9:16 warm-ivory editorial sheet with irregular worn paper edges and a loose charcoal inset border. A closed charcoal-gray doctor bag and coiled stethoscope occupy the upper portion, while a vivid red lipstick with muted metallic casing rests separately near the lower portion. A large expanse of clean ivory paper physically separates the cosmetic from the clinical objects. The rendering uses ink-wash shading, hand-drawn contours, hatching, paper grain, faint wear, and soft diffuse illumination consistent with the supplied world references.",
+    "violations": [
+      "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+      "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+      "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+    ],
+    "observations": [
+      "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+      "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "61cbdea4-06ff-496b-b933-41083116a8d1",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/8021b9280ffd844d",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=61cbdea4-06ff-496b-b933-41083116a8d1_output_1.png 1536x2752 sha256=4c26ce5001d5cefec88060d1ff61d2908b763b7e6c4c1eb971879ec64e823419"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical 9:16 warm-ivory editorial sheet with irregular worn paper edges and a loose charcoal inset border. A closed charcoal-gray doctor bag and coiled stethoscope occupy the upper portion, while a vivid red lipstick with muted metallic casing rests separately near the lower portion. A large expanse of clean ivory paper physically separates the cosmetic from the clinical objects. The rendering uses ink-wash shading, hand-drawn contours, hatching, paper grain, faint wear, and soft diffuse illumination consistent with the supplied world references.",
+      "violations": [
+        "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+        "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+        "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+      ],
+      "observations": [
+        "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+        "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "156186c2d2a8a5e3307037a48ecf3e790782ea6e42efc24d4fd0dc88d0b4d01a",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "61cbdea4-06ff-496b-b933-41083116a8d1",
+        "prompt_sha256": "d89b63d25918f34e972221719b8eb8e44bd84a3427a73bef51718c59a01d0e5d",
+        "output_sha256": "4c26ce5001d5cefec88060d1ff61d2908b763b7e6c4c1eb971879ec64e823419",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 warm-ivory editorial sheet with irregular worn paper edges and a loose charcoal inset border. A closed charcoal-gray doctor bag and coiled stethoscope occupy the upper portion, while a vivid red lipstick with muted metallic casing rests separately near the lower portion. A large expanse of clean ivory paper physically separates the cosmetic from the clinical objects. The rendering uses ink-wash shading, hand-drawn contours, hatching, paper grain, faint wear, and soft diffuse illumination consistent with the supplied world references.",
+          "violations": [
+            "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+            "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+            "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+          ],
+          "observations": [
+            "The central negative-space interval is extremely large and low-detail, so it comes close to reading as the prohibited blank strip or caption-field treatment rather than solely as integrated compositional negative space.",
+            "The lipstick is relatively small and distant from the medical objects, making the overall framing feel looser than the requested close-medium editorial still."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "5a47600f-256b-48bf-910d-d499bbd4f977",
+        "prompt_sha256": "6166dea28bacf7b4deaa2c04e520acfb3027ed48518f9e9d4c319d1cda543845",
+        "output_sha256": "09df4fe201b4bd752f15e9018b79e4f6678c83c06f37cecacfc3db2d23755afb",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial ink-wash illustration on warm ivory textured paper shows a closed charcoal-gray medical bag and coiled stethoscope grouped in the upper portion, with one vivid lipstick-red lipstick below them. A broad clean field of paper separates the cosmetic from the clinical objects. Loose charcoal inset-frame lines, irregular worn paper edges, soft gray-brown washes, hand-drawn hatching, paper grain, subtle print wear, and restrained red specks maintain the established visual world. No person or readable text is present.",
+          "violations": [
+            "The central negative-space interval remains unusually broad and low-detail, so despite being integrated into the sheet it still comes close to reading as a blank or caption-like band.",
+            "The lipstick is noticeably larger than in the previous candidate, but it remains fairly distant from the medical-object grouping, leaving the framing somewhat looser than the requested close-medium editorial still."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The central negative-space interval remains unusually broad and low-detail, so despite being integrated into the sheet it still comes close to reading as a blank or caption-like band.",
+            "The lipstick is noticeably larger than in the previous candidate, but it remains fairly distant from the medical-object grouping, leaving the framing somewhat looser than the requested close-medium editorial still."
+          ],
+          "observations": [
+            "The central negative-space interval remains unusually broad and low-detail, so despite being integrated into the sheet it still comes close to reading as a blank or caption-like band.",
+            "The lipstick is noticeably larger than in the previous candidate, but it remains fairly distant from the medical-object grouping, leaving the framing somewhat looser than the requested close-medium editorial still."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/027_video/references/world_style_anchor.png",
+      "sha256": "da92ff0c12d5bad301ad883e217c4c5d9a9f62852e79606c8add9590765940cf"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/027_video/references/world_keyframe.png",
+      "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/027_video/assets/raw_beats/beat_009.png",
+      "sha256": "e03bfce4c84bbb1813b4193ca1b83387c73acb64cde658269152155af42c9bc1"
+    }
+  ],
+  "prompt_sha256": "d89b63d25918f34e972221719b8eb8e44bd84a3427a73bef51718c59a01d0e5d",
+  "prompt": "Create exactly one standalone 9:16 image: a static close-medium editorial ink-wash still showing one vivid lipstick-red lipstick resting apart from a closed doctor’s medical bag and a stethoscope, with a deliberate expanse of clean warm-ivory negative space physically separating the cosmetic from the clinical objects so the image clearly suggests that the informal phrase “lipstick syndrome” is not a medical diagnosis. Render the bag and stethoscope in subdued soft charcoal, muted taupe, and recession-gray browns, while reserving saturated lipstick red only for the lipstick and tiny restrained compositional echoes. Preserve the established world medium and frame language: warm lightly toothy paper grain, faint dry-brush pooling, restrained print wear, softly varied charcoal-ink contours, slight hand-drawn hatching, imperfect print-like registration, loose ink boundary marks defining the recurring inset illustration window, and soft diffuse editorial daylight with gentle paper glow. Use the full illustration height naturally; do not create any lower caption field, blank strip, empty panel, or low-detail subtitle band. Reference roles: use style_reference only for broad compatible hand-drawn clarity and readable silhouettes; use world_keyframe for the canonical ink-wash world, tactile editorial sheet, palette, line treatment, and lighting; use previous_beat as binding continuity for recurring frame material, irregular edge treatment, illustration-window language, texture, palette, and lighting only—do not copy its composition, crop, camera angle, subject placement, or focal object. No host or person. No photorealism, glossy 3D, anime, neon, vector-corporate styling, medicalized diagnosis imagery, or hyper-saturated cosmetic advertising. Exactly one image only: no storyboard, grid, collage, split panels, captions, labels, letters, numbers, UI, or any readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring warm ivory editorial page with lightly worn irregular paper edges, faint ink pooling, restrained print wear, and a consistent inset illustration window defined by loose charcoal-and-ink boundary marks; each body image should feel printed or washed onto the same tactile editorial sheet, with lipstick-red appearing only as a controlled recurring accent. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_010.png",
+  "output_sha256": "4c26ce5001d5cefec88060d1ff61d2908b763b7e6c4c1eb971879ec64e823419",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 111.298,
+  "completed_at": "2026-09-11T14:35:41Z"
+}

@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 62.354,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "When money gets tight, why can one tiny luxury survive? Here's why. That contradiction sends me reaching for the book. It's often called the lipstick effect. Tight budgets can push bigger luxuries aside. Lipstick can still feel like affordable comfort. Juliet Shore described this behavior in 1998. Leonard Lauder popularized the lipstick index in 2001. He suggested lipstick sales might rise when the economy weakens. The idea became a quirky recession signal. Later, downturns did not repeat the pattern reliably. So, lipstick sales are not a dependable economic indicator. And lipstick syndrome is not a recognized medical diagnosis. It's an informal label for small comforts under pressure. Like and subscribe for more questions with surprising answers.",
+  "word_count": 116,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "It’s often called the lipstick effect.",
+      "speech_start": 9.86,
+      "speech_end": 12.2,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 12.94,
+      "display_duration": 12.94
+    },
+    {
+      "beat_id": 2,
+      "narration": "Tight budgets can push bigger luxuries aside.",
+      "speech_start": 12.94,
+      "speech_end": 15.54,
+      "match_confidence": 1.0,
+      "display_start": 12.94,
+      "display_end": 16.5,
+      "display_duration": 3.56
+    },
+    {
+      "beat_id": 3,
+      "narration": "Lipstick can still feel like affordable comfort.",
+      "speech_start": 16.5,
+      "speech_end": 19.72,
+      "match_confidence": 1.0,
+      "display_start": 16.5,
+      "display_end": 20.62,
+      "display_duration": 4.12
+    },
+    {
+      "beat_id": 4,
+      "narration": "Juliet Schor described this behavior in 1998.",
+      "speech_start": 20.62,
+      "speech_end": 24.22,
+      "match_confidence": 0.857,
+      "display_start": 20.62,
+      "display_end": 25.3,
+      "display_duration": 4.68
+    },
+    {
+      "beat_id": 5,
+      "narration": "Leonard Lauder popularized the lipstick index in 2001.",
+      "speech_start": 25.3,
+      "speech_end": 29.6,
+      "match_confidence": 1.0,
+      "display_start": 25.3,
+      "display_end": 30.02,
+      "display_duration": 4.72
+    },
+    {
+      "beat_id": 6,
+      "narration": "He suggested lipstick sales might rise when the economy weakens.",
+      "speech_start": 30.02,
+      "speech_end": 34.56,
+      "match_confidence": 1.0,
+      "display_start": 30.02,
+      "display_end": 35.08,
+      "display_duration": 5.06
+    },
+    {
+      "beat_id": 7,
+      "narration": "The idea became a quirky recession signal.",
+      "speech_start": 35.08,
+      "speech_end": 38.16,
+      "match_confidence": 1.0,
+      "display_start": 35.08,
+      "display_end": 38.96,
+      "display_duration": 3.88
+    },
+    {
+      "beat_id": 8,
+      "narration": "Later downturns did not repeat the pattern reliably.",
+      "speech_start": 38.96,
+      "speech_end": 42.46,
+      "match_confidence": 1.0,
+      "display_start": 38.96,
+      "display_end": 43.34,
+      "display_duration": 4.38
+    },
+    {
+      "beat_id": 9,
+      "narration": "So lipstick sales are not a dependable economic indicator.",
+      "speech_start": 43.34,
+      "speech_end": 47.38,
+      "match_confidence": 1.0,
+      "display_start": 43.34,
+      "display_end": 46.82,
+      "display_duration": 3.48
+    },
+    {
+      "beat_id": 10,
+      "narration": "And “lipstick syndrome” is not a recognized medical diagnosis.",
+      "speech_start": 46.82,
+      "speech_end": 52.42,
+      "match_confidence": 1.0,
+      "display_start": 46.82,
+      "display_end": 62.354,
+      "display_duration": 15.534
+    }
+  ]
+}
