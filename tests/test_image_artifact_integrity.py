@@ -72,6 +72,38 @@ def test_zero_qc_policy_reports_noncritical_findings_without_regeneration(tmp_pa
     assert selected.generation_receipt['qc_selected_attempt']==1
 
 
+def test_disabled_beat_qc_never_uploads_generated_image_to_chatgpt(tmp_path):
+    source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
+    runner=object.__new__(qh.Runner)
+    runner.beat_image_qc_disabled=True
+    runner.image_qc_correction_policy='strict'
+    runner._run=lambda *a,**k:result()
+    runner.jobs=SimpleNamespace(download=lambda _,dst:dst.write_bytes(source.read_bytes()))
+    runner.validate_image_content=lambda *a,**k:pytest.fail('beat image was sent to ChatGPT QC')
+    selected=runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
+    assert target.is_file()
+    assert selected.generation_receipt['qc_policy']=='disabled'
+    assert selected.generation_receipt['quality_check']['review_status']=='disabled'
+    assert selected.generation_receipt['quality_check']['review_provider'] is None
+
+
+def test_pre_generation_feedback_mode_never_uploads_gemini_replacement_to_chatgpt(tmp_path):
+    source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
+    runner=object.__new__(qh.Runner)
+    runner.beat_image_qc_disabled=False
+    runner.image_qc_correction_policy='strict'
+    runner._run=lambda *a,**k:result()
+    runner.jobs=SimpleNamespace(download=lambda _,dst:dst.write_bytes(source.read_bytes()))
+    runner.validate_image_content=lambda *a,**k:pytest.fail('replacement was sent to ChatGPT QC')
+    selected=runner.image(
+        'beat_image_001','scene',[],model='nano_banana_2',destination=target,
+        skip_content_qc=True,
+    )
+    assert target.is_file()
+    assert selected.generation_receipt['qc_policy']=='disabled'
+    assert selected.generation_receipt['quality_check']['review_status']=='skipped_after_pre_generation_feedback'
+
+
 def test_one_qc_correction_uses_previous_candidate_as_a_quality_floor(tmp_path):
     runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='1';calls=[]
     checks=[

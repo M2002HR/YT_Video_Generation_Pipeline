@@ -166,6 +166,8 @@ def qh_overrides(creative_brief: Path) -> list[str]:
     for key, flag in mapping.items():
         if advanced.get(key):
             flags += [flag, str(advanced[key])]
+    if bool(advanced.get("beat_image_qc_disabled", False)):
+        flags.append("--disable-beat-image-qc")
     character = advanced.get("character")
     if isinstance(character, dict):
         mode = str(character.get("mode") or "auto")
@@ -240,6 +242,7 @@ def main() -> int:
     parser.add_argument("--regenerate-beats", default="", help="Comma-separated beat IDs to revise, including their continuity downstream.")
     parser.add_argument("--preserve-downstream-beats", action="store_true", help="Regenerate only the explicitly selected beat images; keep later continuity images unchanged.")
     parser.add_argument("--beat-feedback-json", type=Path, help="Operator feedback JSON passed into revised beat prompts.")
+    parser.add_argument("--chatgpt-revision-feedback-json", type=Path, help="One-shot ChatGPT review requests for existing beat images before Gemini regeneration.")
     parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
@@ -302,6 +305,7 @@ def main() -> int:
             + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
             + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
             + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
+            + (["--chatgpt-revision-feedback-json", str(args.chatgpt_revision_feedback_json)] if args.chatgpt_revision_feedback_json else [])
         )
     except subprocess.CalledProcessError:
         only_flow, reason = blocked_only_on_flow(project)

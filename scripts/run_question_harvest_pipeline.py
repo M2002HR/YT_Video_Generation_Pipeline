@@ -478,7 +478,7 @@ class Runner:
     site is allowed to catch a provider failure and substitute something it made up.
     """
 
-    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QHState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0") -> None:
+    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QHState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0", beat_image_qc_disabled: bool = False) -> None:
         self.jobs = jobs
         self.notifier = notifier
         self.state = state
@@ -486,6 +486,26 @@ class Runner:
         self.stage_started_at: dict[str, float] = {}
         self.chatgpt_fallback_mode = chatgpt_fallback_mode if chatgpt_fallback_mode in {"auto", "approval"} else "approval"
         self.image_qc_correction_policy = image_qc_correction_policy if image_qc_correction_policy in {"0", "1", "2", "strict"} else "0"
+        self.beat_image_qc_disabled = bool(beat_image_qc_disabled)
+
+    def image_qc_disabled_for(self, stage: str) -> bool:
+        """Whether this body beat must never be uploaded to the ChatGPT reviewer."""
+        return bool(getattr(self, "beat_image_qc_disabled", False)) and stage.startswith("beat_image_")
+
+    @staticmethod
+    def disabled_image_qc_receipt() -> dict[str, Any]:
+        return {
+            "passed": True,
+            "raw_passed": None,
+            "review_status": "disabled",
+            "description": "ChatGPT visual QC disabled by the launch configuration.",
+            "violations": [],
+            "raw_violations": [],
+            "blocking_violations": [],
+            "observations": [],
+            "regressions": [],
+            "review_provider": None,
+        }
 
     @staticmethod
     def _fallback_stage(stage: str) -> str:
@@ -677,6 +697,7 @@ class Runner:
 
     def image(
         self, stage: str, prompt: str, references: list[Reference], *, model: str, destination: Path,
+        skip_content_qc: bool = False,
     ) -> JobResult:
         """Generate, review and commit the best acceptable candidate atomically.
 
@@ -685,10 +706,11 @@ class Runner:
         previous candidate is supplied as a quality-floor reference on corrections, and
         the final file is replaced only after the best reviewed candidate is known.
         """
-        policy = getattr(self, "image_qc_correction_policy", "0")
-        policy = policy if policy in {"0", "1", "2", "strict"} else "0"
-        max_attempts = {"0": 2, "1": 2, "2": 3, "strict": 3}[policy]
-        correction_budget = {"0": 0, "1": 1, "2": 2, "strict": 2}[policy]
+        qc_disabled = skip_content_qc or self.image_qc_disabled_for(stage)
+        policy = "disabled" if qc_disabled else getattr(self, "image_qc_correction_policy", "0")
+        policy = policy if policy in {"disabled", "0", "1", "2", "strict"} else "0"
+        max_attempts = {"disabled": 1, "0": 2, "1": 2, "2": 3, "strict": 3}[policy]
+        correction_budget = {"disabled": 0, "0": 0, "1": 1, "2": 2, "strict": 2}[policy]
         request_id = request_fingerprint(prompt, model, references)[:16]
         candidates_dir = destination.parent / ".qc_candidates"
         iterations: list[dict[str, Any]] = []
@@ -700,12 +722,14 @@ class Runner:
         try:
             for attempt in range(max_attempts):
                 candidate = candidates_dir / f"{destination.stem}.{request_id}.attempt-{attempt + 1}.png"
+                attempt_options = {"skip_content_qc": True} if skip_content_qc else {}
                 result = self._image_attempt(
                     stage,
                     current_prompt,
                     current_references,
                     model=model,
                     destination=candidate,
+                    **attempt_options,
                 )
                 check = dict((result.generation_receipt or {}).get("quality_check") or {})
                 blocking = list(check.get("blocking_violations") or [])
@@ -824,6 +848,7 @@ class Runner:
         *,
         model: str,
         destination: Path,
+        skip_content_qc: bool = False,
     ) -> JobResult:
         """One Gemini image, downloaded and verified. Returns the job result for the receipt."""
         fingerprint = request_fingerprint(prompt, model, references)
@@ -891,8 +916,16 @@ class Runner:
             }})
             try:
                 check = (result.generation_receipt or {}).get("quality_check")
-                if not (isinstance(check, dict) and check.get("passed") is True and
-                        saved.get("review_contract_version") == CONTRACT_VERSION):
+                if skip_content_qc:
+                    check = {
+                        **self.disabled_image_qc_receipt(),
+                        "review_status": "skipped_after_pre_generation_feedback",
+                        "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+                    }
+                elif self.image_qc_disabled_for(stage):
+                    check = self.disabled_image_qc_receipt()
+                elif not (isinstance(check, dict) and check.get("passed") is True and
+                          saved.get("review_contract_version") == CONTRACT_VERSION):
                     check = self.validate_image_content(
                         stage, prompt, partial, references=references, reject_blocking=False
                     )
@@ -1745,6 +1778,16 @@ def reusable_image(runner, project: Path, stage: str, target: Path, receipt: Pat
             data.get("prompt_sha256") != sha256_text(prompt) or expected_refs != recorded_refs):
         return False
     require_verified_image_model(stage, model, data.get("provider_receipt"))
+    if runner.image_qc_disabled_for(stage):
+        # The provider/model/hash/reference checks above remain mandatory. Only the
+        # ChatGPT visual review is bypassed, so this path never uploads the pixels.
+        data.update(
+            contract_version=CONTRACT_VERSION,
+            request_fingerprint=fingerprint,
+            quality_check=runner.disabled_image_qc_receipt(),
+        )
+        save_json(receipt, data)
+        return True
     try:
         check = runner.validate_image_content(stage, prompt, target, references=references)
     except StageFailure as exc:
@@ -1929,7 +1972,7 @@ def stage_world_keyframe_prompt(
     target = project / "references" / "world_keyframe_prompt.txt"
     if runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
-        return target.read_text(encoding="utf-8")
+        return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
     # Deliberately ignore episode direction and character-aware body planning. Clip B's
     # last frame depends only on the factual script and inside-book world style.
@@ -2238,7 +2281,7 @@ def stage_flow_prompt(
     target = project / "references" / f"flow_prompt_{'opening_a' if clip == 'A' else 'book_transition'}.txt"
     if not force and runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
-        return target.read_text(encoding="utf-8")
+        return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
     if clip == "A":
         if character is None:
@@ -2666,6 +2709,71 @@ def stage_beat_prompt(
     return text
 
 
+def chatgpt_revision_guidance(
+    runner: Runner,
+    project: Path,
+    beat_id: int,
+    original_prompt: str,
+    request: dict[str, Any],
+) -> tuple[str, dict[str, Any]]:
+    """Review the old image once, before regeneration, and durably reuse that advice."""
+    instruction = str(request.get("instruction") or "").strip()
+    relative_source = Path(str(request.get("source_image") or ""))
+    source = (project / relative_source).resolve()
+    try:
+        source.relative_to(project.resolve())
+    except ValueError as exc:
+        raise StageFailure(
+            f"beat_image_{beat_id:03d}", "FAILED_VALIDATION",
+            "ChatGPT revision source must stay inside the episode project.",
+        ) from exc
+    if not instruction or not valid_image(source):
+        raise StageFailure(
+            f"beat_image_{beat_id:03d}", "FAILED_VALIDATION",
+            "ChatGPT revision feedback requires both an operator note and the archived current image.",
+        )
+
+    fingerprint = sha256_text("\n".join((instruction, original_prompt, sha256_file(source))))
+    receipt_path = project / "pipeline" / "provider_receipts" / f"chatgpt_revision_feedback_beat_{beat_id:03d}.json"
+    try:
+        cached = load_json(receipt_path) if receipt_path.is_file() else {}
+    except (OSError, ValueError):
+        cached = {}
+    if cached.get("request_fingerprint") == fingerprint and str(cached.get("guidance") or "").strip():
+        return str(cached["guidance"]).strip(), cached
+
+    stage = f"beat_image_{beat_id:03d}_revision_feedback"
+    response = runner._run(
+        stage,
+        "You are the pre-generation visual QC reviewer for a precise image revision. "
+        "Inspect the attached current image and translate the operator's requested change into concise, concrete "
+        "instructions for Gemini. Preserve every successful, unmentioned part of the image, including identity, "
+        "style, composition, continuity, palette, and aspect ratio. Identify only visible changes needed to satisfy "
+        "the operator. Return plain text instructions, with no JSON, preamble, score, or approval verdict.\n\n"
+        f"OPERATOR REQUEST:\n{instruction}\n\nORIGINAL ART DIRECTION:\n{original_prompt}",
+        provider="chatgpt",
+        mode="chat",
+        references=[Reference(role="current_image_to_revise", path=source)],
+    )
+    guidance = str(response.answer or "").strip()
+    if not guidance:
+        raise StageFailure(stage, "FAILED_VALIDATION", "ChatGPT returned empty revision guidance.")
+    receipt = {
+        "schema_version": 1,
+        "beat_id": beat_id,
+        "provider": "chatgpt",
+        "phase": "pre_generation_feedback",
+        "request_fingerprint": fingerprint,
+        "source_image": str(relative_source),
+        "source_sha256": sha256_file(source),
+        "operator_instruction": instruction,
+        "guidance": guidance,
+        "created_at": utcnow(),
+    }
+    save_json(receipt_path, receipt)
+    return guidance, receipt
+
+
 def stage_body_images(
     runner: Runner,
     project: Path,
@@ -2677,6 +2785,7 @@ def stage_body_images(
     regenerate_beats: set[int] | None = None,
     revision_feedback: dict[int, str] | None = None,
     character: CharacterContext | None = None,
+    chatgpt_revision_requests: dict[int, dict[str, Any]] | None = None,
     preserve_downstream_beats: bool = False,
 ) -> list[Path]:
     """One Gemini image per body beat, sequential because each uses the previous for continuity."""
@@ -2684,6 +2793,7 @@ def stage_body_images(
     beats = list(visual_plan.get("beats") or [])
     requested_regenerations = regenerate_beats or set()
     revision_feedback = revision_feedback or {}
+    chatgpt_revision_requests = chatgpt_revision_requests or {}
     unknown_regenerations = requested_regenerations - {int(beat["beat_id"]) for beat in beats}
     if unknown_regenerations:
         raise StageFailure(
@@ -2742,7 +2852,29 @@ def stage_body_images(
             started = time.perf_counter()
             runner.state.mark(stage, STATE_RUNNING)
             print(f"▶ {stage}", flush=True)
-            result = runner.image(stage, prompt, references, model=model, destination=target)
+            revision_guidance_receipt = None
+            if beat_id in chatgpt_revision_requests:
+                guidance, revision_guidance_receipt = chatgpt_revision_guidance(
+                    runner, project, beat_id, prompt, chatgpt_revision_requests[beat_id]
+                )
+                prompt = (
+                    f"{prompt.rstrip()}\n\nCHATGPT PRE-GENERATION QC GUIDANCE (binding):\n{guidance}\n\n"
+                    "Apply this guidance in the replacement while preserving all unmentioned successful details."
+                )
+            image_options = {"skip_content_qc": True} if revision_guidance_receipt is not None else {}
+            result = runner.image(
+                stage, prompt, references, model=model, destination=target,
+                **image_options,
+            )
+            if revision_guidance_receipt is not None:
+                result.generation_receipt = {
+                    **(result.generation_receipt or {}),
+                    "pre_generation_chatgpt_feedback": {
+                        "request_fingerprint": revision_guidance_receipt["request_fingerprint"],
+                        "source_sha256": revision_guidance_receipt["source_sha256"],
+                        "post_generation_chatgpt_qc": "skipped",
+                    },
+                }
             _write_image_receipt(project, f"gemini_beat_{beat_id:03d}", result, prompt, references, target, model)
             elapsed = time.perf_counter() - started
             runner.state.mark(stage, STATE_DONE, sha256=sha256_file(target), references=[ref.role for ref in references])
@@ -2903,6 +3035,7 @@ def ensure_launch_request(
     style_id: str,
     style_hint: str,
     image_qc_correction_policy: str = "0",
+    beat_image_qc_disabled: bool = False,
     character_mode: str = "auto",
     character_id: str | None = None,
 ) -> dict[str, Any]:
@@ -2923,6 +3056,7 @@ def ensure_launch_request(
             "model": normalize_gemini_model(gemini_model),
             "quality": "best",
             "qc_correction_policy": image_qc_correction_policy,
+            "beat_qc_disabled": bool(beat_image_qc_disabled),
             "extended_thinking_required": True,
         },
         "video_generation": {
@@ -3004,6 +3138,11 @@ def main() -> int:
         ),
     )
     parser.add_argument("--beat-feedback-json", type=Path, help="Revision feedback keyed by numeric beat id.")
+    parser.add_argument(
+        "--chatgpt-revision-feedback-json",
+        type=Path,
+        help="One-shot ChatGPT review requests for archived beat images before Gemini regeneration.",
+    )
     parser.add_argument("--flow-model", default="gemini_omni_1_1_flash")
     parser.add_argument("--flow-resolution", default="720p")
     parser.add_argument("--aspect-ratio", default="9:16")
@@ -3067,6 +3206,11 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--disable-beat-image-qc",
+        action="store_true",
+        help="Never upload generated body-beat images to ChatGPT for visual QC.",
+    )
+    parser.add_argument(
         "--regenerate-beats",
         default="",
         help="Comma-separated body beat IDs to regenerate even when their existing files are valid (for example: 1,9,13).",
@@ -3096,6 +3240,28 @@ def main() -> int:
             revision_feedback = {int(key): str(value).strip() for key, value in raw_feedback.items() if str(value).strip()}
         except (OSError, ValueError, TypeError):
             parser.error("--beat-feedback-json must be a JSON object keyed by beat number")
+    chatgpt_revision_requests: dict[int, dict[str, Any]] = {}
+    if args.chatgpt_revision_feedback_json:
+        try:
+            raw_requests = load_json(args.chatgpt_revision_feedback_json)
+            if not isinstance(raw_requests, dict):
+                raise ValueError("request root must be an object")
+            for key, value in raw_requests.items():
+                beat_id = int(key)
+                if beat_id < 1 or not isinstance(value, dict):
+                    raise ValueError("each beat request must be an object")
+                instruction = str(value.get("instruction") or "").strip()
+                source_image = str(value.get("source_image") or "").strip()
+                if not instruction or not source_image:
+                    raise ValueError("each request needs instruction and source_image")
+                chatgpt_revision_requests[beat_id] = {
+                    "instruction": instruction,
+                    "source_image": source_image,
+                }
+        except (OSError, ValueError, TypeError):
+            parser.error("--chatgpt-revision-feedback-json must map beat IDs to instruction/source_image objects")
+    if set(chatgpt_revision_requests) - regenerate_beats:
+        parser.error("ChatGPT revision feedback may target only explicitly regenerated beats")
 
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
 
@@ -3192,6 +3358,7 @@ def main() -> int:
         requested_style_id,
         args.world_style_hint,
         args.image_qc_correction_policy,
+        args.disable_beat_image_qc,
         requested_mode,
         requested_character_id,
     )
@@ -3229,6 +3396,7 @@ def main() -> int:
             state,
             chatgpt_fallback_mode=args.chatgpt_fallback_mode,
             image_qc_correction_policy=args.image_qc_correction_policy,
+            beat_image_qc_disabled=args.disable_beat_image_qc,
         )
         current_stage = "preflight"
         try:
@@ -3316,6 +3484,7 @@ def main() -> int:
                 world_style_anchor, world_keyframe, regenerate_beats,
                 revision_feedback,
                 character,
+                chatgpt_revision_requests=chatgpt_revision_requests,
                 preserve_downstream_beats=args.preserve_downstream_beats,
             )
             stage_transition_direction(

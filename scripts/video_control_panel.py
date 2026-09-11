@@ -61,6 +61,8 @@ QH_ROOTS = {
     # Affects only future image attempts; saving it must not spend credits rebuilding
     # already accepted artifacts.
     "image_qc_correction_policy": (),
+    # Same scope: existing beat pixels stay valid; future/regenerated beats skip review.
+    "beat_image_qc_disabled": (),
     "flow_video_model": ("flow_clip_a", "flow_clip_b"),
     "flow_resolution": ("flow_clip_a", "flow_clip_b"),
     "opening_a_seconds": ("flow_clip_a",),
@@ -1052,6 +1054,8 @@ def pipeline_command(record: dict) -> list[str]:
             command.append("--preserve-downstream-beats")
         if revision.get("feedback_path"):
             command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
+        if revision.get("chatgpt_feedback_path"):
+            command += ["--chatgpt-revision-feedback-json", str(ROOT / str(revision["chatgpt_feedback_path"]))]
         return command
     command = [
         sys.executable, "-u", "scripts/run_full_video_pipeline.py",
@@ -1074,6 +1078,8 @@ def pipeline_command(record: dict) -> list[str]:
         command.append("--preserve-downstream-beats")
     if revision.get("feedback_path"):
         command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
+    if revision.get("chatgpt_feedback_path"):
+        command += ["--chatgpt-revision-feedback-json", str(ROOT / str(revision["chatgpt_feedback_path"]))]
     if revision.get("kind") == "config":
         command.append("--config-revision")
     return command
@@ -1793,10 +1799,19 @@ class Handler(BaseHTTPRequestHandler):
         feedback: str = "",
         kind: str = "node",
         regeneration_mode: str = "cascade",
+        use_chatgpt_feedback: bool = False,
     ) -> tuple[dict, subprocess.Popen]:
         """Archive an exact DAG branch and start it, rolling back if spawn fails."""
         if regeneration_mode == "isolated" and not feedback.strip():
             raise ValueError("Describe the requested change for an isolated beat-image regeneration.")
+        if use_chatgpt_feedback:
+            if not feedback.strip():
+                raise ValueError("Describe the requested change before asking ChatGPT for revision feedback.")
+            if not roots or any(not root.startswith("beat_image_") for root in roots):
+                raise ValueError("ChatGPT revision feedback is available only for beat images.")
+            content_project = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT))
+            if not content_project.is_question_harvest:
+                raise ValueError("ChatGPT-to-Gemini revision feedback is available only for Gemini beat-image runs.")
         plan = regeneration_plan(
             project,
             roots,
@@ -1809,6 +1824,7 @@ class Handler(BaseHTTPRequestHandler):
         folder = project / "pipeline" / "revisions" / revision_id
         folder.mkdir(parents=True, exist_ok=False)
         feedback_path = folder / "feedback.json"
+        chatgpt_feedback_path = folder / "chatgpt_feedback.json"
         beat_feedback = {str(int(root[-3:])): feedback for root in roots if root.startswith("beat_image_") and feedback}
         if beat_feedback:
             write_json(feedback_path, beat_feedback)
@@ -1841,15 +1857,29 @@ class Handler(BaseHTTPRequestHandler):
             # naturally. Passing every old descendant after a visual-plan rewrite could name
             # beats that no longer exist in the newly generated plan.
             regenerate_beats = [int(node[-3:]) for node in roots if node.startswith("beat_image_")]
+            chatgpt_feedback_requests = {}
+            if use_chatgpt_feedback:
+                for beat_id in regenerate_beats:
+                    archived_source = folder / "previous" / "assets" / "raw_beats" / f"beat_{beat_id:03d}.png"
+                    if not archived_source.is_file():
+                        raise ValueError(f"The current image for beat {beat_id:03d} is unavailable for ChatGPT review.")
+                    chatgpt_feedback_requests[str(beat_id)] = {
+                        "instruction": feedback,
+                        "source_image": str(archived_source.relative_to(project)),
+                    }
+                write_json(chatgpt_feedback_path, chatgpt_feedback_requests)
             revision = {
                 "schema_version": 2, "revision_id": revision_id, "kind": kind,
                 "created_at": utcnow(), "roots": roots, "affected_nodes": plan["affected_nodes"],
                 "reused_nodes": plan["reused_nodes"], "skipped_nodes": plan.get("skipped_nodes", []), "archived_artifacts": archived,
                 "regenerate_beats": regenerate_beats, "feedback": feedback, "status": "QUEUED",
                 "regeneration_mode": regeneration_mode,
+                "use_chatgpt_feedback": bool(use_chatgpt_feedback),
             }
             if beat_feedback:
                 revision["feedback_path"] = str(feedback_path.relative_to(ROOT))
+            if chatgpt_feedback_requests:
+                revision["chatgpt_feedback_path"] = str(chatgpt_feedback_path.relative_to(ROOT))
             write_json(folder / "REVISION.json", revision)
             record["pending_revision"] = revision
             command = pipeline_command(record)
@@ -1888,10 +1918,16 @@ class Handler(BaseHTTPRequestHandler):
             roots = payload.get("node_ids") or [payload.get("node_id")]
             feedback = str(payload.get("feedback") or "").strip()
             regeneration_mode = str(payload.get("regeneration_mode") or "cascade")
+            raw_use_chatgpt_feedback = payload.get("use_chatgpt_feedback", False)
+            if not isinstance(raw_use_chatgpt_feedback, bool):
+                raise ValueError("use_chatgpt_feedback must be a boolean.")
+            use_chatgpt_feedback = raw_use_chatgpt_feedback
             if len(feedback) > 4_000 or not JOB_ID_RE.fullmatch(job_id) or not isinstance(roots, list) or not all(isinstance(item, str) and item for item in roots):
                 raise ValueError("Choose valid nodes and keep feedback below 4,000 characters.")
             if regeneration_mode == "isolated" and not feedback:
                 raise ValueError("Describe the requested image change before isolated regeneration.")
+            if use_chatgpt_feedback and not feedback:
+                raise ValueError("Describe the requested image change before using ChatGPT feedback.")
             resolved = self.project_for_job(job_id)
             if not resolved:
                 self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
@@ -1901,7 +1937,8 @@ class Handler(BaseHTTPRequestHandler):
                 if active_job(self.jobs_dir) is not None:
                     self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."}); return
                 revision, _ = self.start_regeneration(
-                    *resolved, roots, feedback, regeneration_mode=regeneration_mode
+                    *resolved, roots, feedback, regeneration_mode=regeneration_mode,
+                    use_chatgpt_feedback=use_chatgpt_feedback,
                 )
             self.send_json(HTTPStatus.ACCEPTED, {"revision": revision, "status": "RUNNING"})
         except (ValueError, KeyError, TypeError, OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
@@ -2093,7 +2130,7 @@ class Handler(BaseHTTPRequestHandler):
                 known_qh.add("gemini_image_model")
                 # Policy changes apply to subsequent image attempts and isolated
                 # regenerations; they do not invalidate already accepted pixels.
-                known_qh.add("image_qc_correction_policy")
+                known_qh.update(("image_qc_correction_policy", "beat_image_qc_disabled"))
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds")): roots.update(("flow_clip_a", "flow_clip_b"))
                 known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds"))
                 # Trim-only rule: changing the 10% sync tolerance never invalidates Flow
@@ -2788,6 +2825,7 @@ class Handler(BaseHTTPRequestHandler):
             if world_style_id and world_style_id not in catalogued_style_ids(content_project):
                 raise ValueError(f"Unknown world style: {world_style_id}")
             gemini_image_model = values.get("gemini_image_model", ["nano_banana_2"])[0].strip() or "nano_banana_2"
+            beat_image_qc_disabled = "beat_image_qc_disabled" in values
             image_qc_correction_policy = values.get("image_qc_correction_policy", ["0"])[0].strip() or "0"
             flow_video_model = values.get("flow_video_model", ["gemini_omni_1_1_flash"])[0].strip() or "gemini_omni_1_1_flash"
             flow_resolution = values.get("flow_resolution", ["720p"])[0].strip() or "720p"
@@ -2909,6 +2947,7 @@ class Handler(BaseHTTPRequestHandler):
                 "min_duration_seconds": duration_min,
                 "max_duration_seconds": duration_max,
                 "gemini_image_model": gemini_image_model,
+                "beat_image_qc_disabled": beat_image_qc_disabled,
                 "image_qc_correction_policy": image_qc_correction_policy,
                 "flow_video_model": flow_video_model,
                 "flow_resolution": flow_resolution,

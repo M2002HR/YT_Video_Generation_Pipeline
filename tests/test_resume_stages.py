@@ -327,6 +327,36 @@ def test_isolated_body_image_revision_preserves_every_other_image_byte_for_byte(
     assert runner.state.state["stages"]["beat_image_003"]["isolated_revision"] is True
 
 
+def test_chatgpt_revision_guidance_reviews_old_image_once_and_reuses_receipt(
+    runner: Runner, project: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    source = _png(project / "pipeline/revisions/rev/previous/assets/raw_beats/beat_002.png", seed=22)
+    calls = []
+
+    def review(stage, prompt, *, provider, mode, references=()):  # noqa: ANN001
+        calls.append((stage, prompt, provider, mode, references))
+        return qh.JobResult(
+            job_id="feedback-test", status="DONE",
+            answer="Remove the small red object; preserve the subject and lighting exactly.",
+        )
+
+    monkeypatch.setattr(runner, "_run", review)
+    request = {
+        "instruction": "remove the distracting object",
+        "source_image": str(source.relative_to(project)),
+    }
+    first, first_receipt = qh.chatgpt_revision_guidance(runner, project, 2, "original direction", request)
+    second, second_receipt = qh.chatgpt_revision_guidance(runner, project, 2, "original direction", request)
+
+    assert first == second
+    assert first_receipt["request_fingerprint"] == second_receipt["request_fingerprint"]
+    assert len(calls) == 1
+    assert calls[0][0] == "beat_image_002_revision_feedback"
+    assert calls[0][2:4] == ("chatgpt", "chat")
+    assert [reference.role for reference in calls[0][4]] == ["current_image_to_revise"]
+    assert calls[0][4][0].path == source
+
+
 def test_stage_state_survives_a_fresh_state_object(project: Path) -> None:
     """Resume works across processes because every transition is written to disk (§81)."""
     first = QHState(project, "901_resume", "topic")

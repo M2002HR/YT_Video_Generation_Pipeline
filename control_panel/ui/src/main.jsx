@@ -692,6 +692,7 @@ function Field({ field, value, onChange, allValues = {} }) {
   const gated = requirements.some(
     (requirement) => allValues == null || allValues[requirement.field] !== requirement.value,
   );
+  if (gated && field.hideWhenGated) return null;
   const common = {
     id,
     name: field.name,
@@ -1829,10 +1830,12 @@ function NodeDetail({ run, node, close, regenerate, fallbackAction, resolveFallb
 function RegenerationModal({ run, node, close, started }) {
   const [plan, setPlan] = useState(null),
     [feedback, setFeedback] = useState(""),
+    [useChatgptFeedback, setUseChatgptFeedback] = useState(false),
     [isolated, setIsolated] = useState(false),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const supportsIsolated = (node.regeneration?.modes || []).includes("isolated");
+  const supportsChatgptFeedback = node.id.startsWith("beat_image_") && ["q_station", "question_harvest"].includes(run.job.content_project);
   useEffect(() => {
     setPlan(null);
     setError("");
@@ -1865,6 +1868,7 @@ function RegenerationModal({ run, node, close, started }) {
           job_id: run.job.job_id,
           node_ids: [node.id],
           feedback,
+          use_chatgpt_feedback: supportsChatgptFeedback && useChatgptFeedback,
           regeneration_mode: isolated ? "isolated" : "cascade",
         }),
       });
@@ -1938,22 +1942,36 @@ function RegenerationModal({ run, node, close, started }) {
         )}
         <label className="field">
           <span>
-            Revision note <i>{isolated ? "required" : "optional"}</i>
+            Revision note <i>{isolated || useChatgptFeedback ? "required" : "optional"}</i>
           </span>
           <textarea
             value={feedback}
             onChange={(event) => setFeedback(event.target.value)}
             maxLength={4000}
-            required={isolated}
+            required={isolated || useChatgptFeedback}
             placeholder="Describe exactly what should change in this image. This is added to the provider prompt."
           />
         </label>
+        {supportsChatgptFeedback && (
+          <label className="toggle-field regeneration-mode">
+            <input
+              type="checkbox"
+              checked={useChatgptFeedback}
+              onChange={(event) => setUseChatgptFeedback(event.target.checked)}
+            />
+            <span className="switch" />
+            <span>
+              <b>Use ChatGPT feedback before regenerating</b>
+              <small>ChatGPT reviews the current image and your note once, then Gemini creates the replacement. The replacement is not sent back to ChatGPT.</small>
+            </span>
+          </label>
+        )}
         {error && (
           <div className="inline-error" role="alert">
             {error}
           </div>
         )}
-        <button className="primary" disabled={busy || !plan || !plan.can_start || (isolated && !feedback.trim())}>
+        <button className="primary" disabled={busy || !plan || !plan.can_start || ((isolated || useChatgptFeedback) && !feedback.trim())}>
           {busy
             ? "Preparing revision…"
             : plan?.can_start === false

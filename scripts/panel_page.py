@@ -270,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function(){
   onProjectChange();
   syncMotionControls();
   syncSubtitleOffset();
+  syncBeatImageQcControls();
   pollStatus();
   setInterval(pollStatus, 5000);
   setInterval(pollLog, 2000);
@@ -291,6 +292,14 @@ function syncSubtitleOffset(){
     var el = document.querySelector('[name=' + name + ']');
     if (el) el.disabled = !custom;
   });
+}
+
+function syncBeatImageQcControls(){
+  var disabled = document.querySelector('input[name=beat_image_qc_disabled]');
+  var policy = document.getElementById('beat_image_qc_policy');
+  if (!disabled || !policy) return;
+  policy.style.display = disabled.checked ? 'none' : '';
+  policy.querySelectorAll('select,input').forEach(function(control){ control.disabled = disabled.checked; });
 }
 
 function onProjectChange(){
@@ -421,7 +430,10 @@ def launch_form(project_options: str, style_options: str, character_options: str
   <label>Gemini image model <select name=gemini_image_model>
     <option value=nano_banana_2 selected>Nano Banana 2 — what Gemini offers today</option>
     <option value=nano_banana_pro>Nano Banana Pro — fails until Gemini exposes it</option></select></label>
-  <label>Non-critical image QC corrections <select name=image_qc_correction_policy>
+  <label class=check><input type=checkbox name=beat_image_qc_disabled onchange="syncBeatImageQcControls()">
+   Disable ChatGPT QC for beat images
+   <small>Generated body-beat images will never be uploaded to ChatGPT for review.</small></label>
+  <label id=beat_image_qc_policy>Non-critical image QC corrections <select name=image_qc_correction_policy>
     <option value=0 selected>0 — report only (current behaviour)</option>
     <option value=1>1 corrective regeneration</option>
     <option value=2>2 corrective regenerations, then use best</option>

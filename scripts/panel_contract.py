@@ -128,6 +128,10 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("world_style_hint", "Style hint", maxLength=500, placeholder="charcoal, woodcut, ink wash…"),
             _field("gemini_image_model", "Gemini image model", "select", default="nano_banana_2", options=select([("nano_banana_2", "Nano Banana 2"), ("nano_banana_pro", "Nano Banana Pro (availability required)")])),
             _field(
+                "beat_image_qc_disabled", "Disable ChatGPT QC for beat images", "toggle", default=False,
+                help="Skips visual review entirely for body beats: generated beat images are never uploaded to ChatGPT.",
+            ),
+            _field(
                 "image_qc_correction_policy", "Non-critical QC corrections", "select", default="0",
                 options=select([
                     ("0", "0 — report only (current behaviour)"),
@@ -136,6 +140,8 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
                     ("strict", "Strict — 3 attempts, then fail if not clean"),
                 ]),
                 help="Blocking identity/style/output failures always retry and never get accepted. Non-critical retries preserve the best candidate seen.",
+                requires={"field": "beat_image_qc_disabled", "value": False},
+                hideWhenGated=True,
             ),
         ]},
         {"id": "opening", "title": "Opening clips", "description": "Flow model, source quality and narration-sync headroom.", "projects": ["q_station"], "fields": [

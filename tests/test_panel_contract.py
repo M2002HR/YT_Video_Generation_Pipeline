@@ -37,6 +37,7 @@ def test_schema_defaults_match_the_server_launch_contract() -> None:
     assert values["music_providers"] == ["freesound", "mixkit", "pixabay"]
     assert values["word_highlight"] is True
     assert values["reserve_subtitle_space"] is True
+    assert values["beat_image_qc_disabled"] is False
     assert values["image_qc_correction_policy"] == "0"
     assert values["motion_enabled"] is True
     assert "locked_text" not in values
@@ -45,9 +46,13 @@ def test_schema_defaults_match_the_server_launch_contract() -> None:
 def test_visual_group_exposes_stage_aware_image_qc_policy() -> None:
     schema = launch_schema([{"value": "q_station", "label": "Q Station"}], [])
     visual = next(group for group in schema["groups"] if group["id"] == "visual")
-    field = next(field for field in visual["fields"] if field["name"] == "image_qc_correction_policy")
-    assert field["default"] == "0"
-    assert [option["value"] for option in field["options"]] == ["0", "1", "2", "strict"]
+    fields = {field["name"]: field for field in visual["fields"]}
+    assert fields["beat_image_qc_disabled"]["default"] is False
+    policy = fields["image_qc_correction_policy"]
+    assert policy["default"] == "0"
+    assert [option["value"] for option in policy["options"]] == ["0", "1", "2", "strict"]
+    assert policy["requires"] == {"field": "beat_image_qc_disabled", "value": False}
+    assert policy["hideWhenGated"] is True
 
 
 def test_react_schema_keeps_every_legacy_launch_control() -> None:
