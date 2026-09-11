@@ -77,7 +77,7 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "FAILED",
+  "status": "DONE",
   "started_at": "2026-09-11T10:36:49.309688+00:00",
   "pid": 1263840,
   "changed_fields": [
@@ -85,5 +85,5 @@
     "motion_transition_seconds"
   ],
   "config_revision_id": "de3b1d9f-c21b-450d-9796-d52e8fddcab6",
-  "completed_at": "2026-09-11T10:36:52.185299+00:00"
+  "completed_at": "2026-09-11T11:01:38.402833+00:00"
 }

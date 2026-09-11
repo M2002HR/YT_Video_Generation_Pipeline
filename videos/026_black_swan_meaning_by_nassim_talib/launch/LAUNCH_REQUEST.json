@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "q_station",
   "job_id": "e33ef07a-1132-4cce-863a-4f13c86d321c",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-10T11:10:24.316258+00:00",
   "topic": "Black Swan Meaning, by Nassim talib",
   "video_id": "026",
@@ -329,5 +329,6 @@
     ],
     "config_revision_id": "de3b1d9f-c21b-450d-9796-d52e8fddcab6",
     "completed_at": "2026-09-11T10:36:52.185299+00:00"
-  }
+  },
+  "completed_at": "2026-09-11T11:01:38.402833+00:00"
 }
