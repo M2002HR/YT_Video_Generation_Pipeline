@@ -24,12 +24,25 @@ from dotenv import load_dotenv
 
 from pipeline_notifier import PipelineNotifier, format_duration
 from pipeline_stages import stage_title
-from ui_navigation_advisor import NavigationAdvisor
-
-
 ROOT = Path(__file__).resolve().parents[1]
 ELEVENLABS_HOME_URL = "https://elevenlabs.io/app/speech-synthesis/text-to-speech"
 AUDIO_EXTENSIONS = (".wav", ".flac", ".mp3", ".m4a", ".ogg")
+
+# ElevenLabs owns the markup, but these attributes are its explicit automation and
+# accessibility contract.  Keep every browser action anchored to one of them.  In
+# particular, never identify a control from its viewport coordinates: the settings
+# rail scrolls independently and valid controls routinely sit just outside the fold.
+TEXTAREA_SELECTOR = 'textarea[data-testid="tts-editor"], textarea[aria-label="Main textarea"]'
+VOICE_TRIGGER_SELECTOR = 'button[data-testid="tts-voice-selector"]'
+MODEL_TRIGGER_SELECTOR = 'button[data-testid="tts-model-selector"]'
+SETTINGS_TAB_SELECTOR = 'button[data-testid="tts-settings-tab"]'
+OUTPUT_FORMAT_SELECTOR = 'button[aria-label="Output format"][role="combobox"]'
+GENERATE_SELECTOR = 'button[data-testid="tts-generate"]'
+VOICE_SEARCH_SELECTOR = '[role="dialog"] input[aria-label="Start typing to search..."]'
+VOICE_OPTION_SELECTOR = '[role="dialog"] button[data-type="list-item-trigger-overlay"][aria-labelledby]'
+MODEL_OPTION_SELECTOR = '[role="dialog"] button[role="radio"]'
+OUTPUT_FORMAT_OPTION_SELECTOR = '[role="option"][aria-labelledby]'
+DOWNLOAD_SELECTOR = 'button[data-testid="tts-download-latest-button"]'
 
 
 def utcnow() -> str:
@@ -52,6 +65,13 @@ def bool_env(name: str, default: bool = False) -> bool:
 def output_format_identity(value: str | None) -> str:
     """Compare ElevenLabs format labels despite harmless UI typography changes."""
     return re.sub(r"[^a-z0-9]+", "", str(value or "").casefold())
+
+
+def setting_label_matches(requested: str | None, observed: str | None) -> bool:
+    """Match an exact setting label while allowing ElevenLabs' added descriptor."""
+    wanted = re.sub(r"\s+", " ", str(requested or "").strip().casefold())
+    actual = re.sub(r"\s+", " ", str(observed or "").strip().casefold())
+    return bool(wanted) and (actual == wanted or (" - " in wanted and actual.startswith(wanted + " ")))
 
 
 @dataclass(frozen=True)
@@ -131,6 +151,7 @@ class ElevenLabsUI:
         sys.path.insert(0, str(ROOT / "services" / "ordak"))
         try:
             from app.automation.existing_chrome import (  # type: ignore[import-not-found]
+                dispatch_mouse_click,
                 execute_javascript,
                 get_tab_info,
                 list_google_chrome_tabs,
@@ -139,6 +160,7 @@ class ElevenLabsUI:
         except ImportError as exc:
             raise RuntimeError("Ordak browser runtime is unavailable; run scripts/setup_services.py first.") from exc
         self._execute = execute_javascript
+        self._dispatch_mouse_click = dispatch_mouse_click
         self._get_tab_info = get_tab_info
         self._list_tabs = list_google_chrome_tabs
         self._open_url = open_url_in_existing_chrome
@@ -146,7 +168,6 @@ class ElevenLabsUI:
         self.stall_seconds = stall_seconds
         self.max_refreshes = max_refreshes
         self.tab: Any | None = None
-        self.advisor = NavigationAdvisor()
 
     def _json(self, expression: str) -> dict[str, Any]:
         if self.tab is None:
@@ -157,43 +178,108 @@ class ElevenLabsUI:
         except json.JSONDecodeError as exc:
             raise RuntimeError("ElevenLabs page returned an unreadable browser response.") from exc
 
-    def _trusted_click(self, expression: str) -> None:
-        """Click through CDP input events; Radix menus ignore synthetic clicks."""
-        point = self._json(expression)
-        if not point.get("ok"):
-            raise RuntimeError("Required ElevenLabs UI control is not visible.")
+    def _focus_selector(self, selector: str, *, requested: str | None = None, identity: bool = False) -> dict[str, Any]:
+        """Focus one semantic DOM target, optionally matching its accessible label.
+
+        React/Radix does not expose native ``select`` elements.  The reliable and
+        accessibility-correct equivalent is: locate the exact trigger/option with a
+        stable selector, focus that node, then send a trusted keyboard activation.
+        This helper deliberately returns no coordinates and accepts no arbitrary JS.
+        """
+        # Bringing a tab forward *after* focusing an option lets Radix's dialog
+        # focus trap restore focus to its search box.  Front the tab first, then
+        # resolve and focus the selector as one uninterrupted action.
+        self._bring_to_front()
+        result = self._json(f"""(() => {{
+          const selector={json.dumps(selector)};
+          const requested={json.dumps(requested)};
+          const identity={str(identity).lower()};
+          const rendered=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+          const labelled=e=>{{
+            const ids=(e.getAttribute('aria-labelledby')||'').trim().split(/\\s+/).filter(Boolean);
+            const labels=ids.map(id=>document.getElementById(id)?.innerText||'').join(' ').trim();
+            return (labels||e.innerText||e.getAttribute('aria-label')||'').trim();
+          }};
+          const normalize=text=>String(text||'').trim().toLowerCase().replace(/\\s+/g,' ');
+          const compact=text=>normalize(text).replace(/[^a-z0-9]+/g,'');
+          const wanted=identity?compact(requested):normalize(requested);
+          const candidates=[...document.querySelectorAll(selector)].filter(rendered).filter(e=>
+            !e.disabled && e.getAttribute('aria-disabled')!=='true' && !e.hasAttribute('data-disabled'));
+          const matches=requested===null?candidates:candidates.filter(e=>{{
+            // Voice/model cards include a long description in aria-labelledby.
+            // Their first line is the actual option label; descriptions must never
+            // participate in matching one requested setting.
+            const primary=labelled(e).split(String.fromCharCode(10))[0].trim();
+            const actual=identity?compact(primary):normalize(primary);
+            return actual===wanted || (!identity && wanted.includes(' - ') && actual.startsWith(wanted+' '));
+          }});
+          const e=matches[0];
+          if(!e)return {{ok:false, available:candidates.map(labelled).filter(Boolean).slice(0,80)}};
+          e.scrollIntoView({{block:'nearest',inline:'nearest'}});
+          e.focus({{preventScroll:true}});
+          return {{ok:document.activeElement===e,text:labelled(e),tag:e.tagName,role:e.getAttribute('role')}};
+        }})()""")
+        if not result.get("ok"):
+            detail = f" matching '{requested}'" if requested is not None else ""
+            raise RuntimeError(f"Could not focus ElevenLabs selector {selector!r}{detail}; available={result.get('available', [])}.")
+        return result
+
+    def _activate_selector(self, selector: str, *, requested: str | None = None, identity: bool = False, key: str = " ") -> dict[str, Any]:
+        """Activate a selector-resolved control without mouse coordinates."""
+        focused = self._focus_selector(selector, requested=requested, identity=identity)
+        self._trusted_key(key)
+        return focused
+
+    def _pointer_activate_selector(self, selector: str) -> dict[str, Any]:
+        """Dispatch a trusted pointer action to one freshly resolved selector.
+
+        Chrome downloads require a provider-recognized user gesture.  ElevenLabs'
+        download icon currently ignores keyboard activation, so this is reserved for
+        that action button; voice/model/format selection remains keyboard-only.
+        Coordinates are derived immediately from the exact selector, checked with
+        ``elementFromPoint``, and never persisted or accepted from a caller.
+        """
+        self._bring_to_front()
+        target = self._json(f"""(() => {{
+          const e=document.querySelector({json.dumps(selector)});
+          if(!e)return {{ok:false,reason:'selector not found'}};
+          if(e.disabled||e.getAttribute('aria-disabled')==='true')return {{ok:false,reason:'selector disabled'}};
+          e.scrollIntoView({{block:'nearest',inline:'nearest'}});
+          const r=e.getBoundingClientRect();
+          const x=r.left+r.width/2, y=r.top+r.height/2;
+          const hit=document.elementFromPoint(x,y);
+          if(!hit||!(hit===e||e.contains(hit)))return {{ok:false,reason:'selector is obscured'}};
+          return {{ok:true,x,y,text:(e.innerText||e.getAttribute('aria-label')||'').trim()}};
+        }})()""")
+        if not target.get("ok"):
+            raise RuntimeError(f"Could not pointer-activate ElevenLabs selector {selector!r}: {target.get('reason', 'unknown state')}.")
+        self._dispatch_mouse_click(self.tab, float(target["x"]), float(target["y"]))
+        return target
+
+    def _bring_to_front(self) -> None:
+        """Bring the ElevenLabs render widget forward before DOM focus is set."""
+        if self.tab is None:
+            raise RuntimeError("ElevenLabs browser tab has not been opened.")
         info = self._get_tab_info(self.tab)
         websocket_url = getattr(info, "websocket_debugger_url", None)
         if not websocket_url:
             raise RuntimeError("Ordak could not attach a DevTools target for ElevenLabs.")
         from websockets.sync.client import connect
-
         with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
-            websocket.send(json.dumps({"id": 0, "method": "Page.bringToFront", "params": {}}))
+            websocket.send(json.dumps({"id": 1, "method": "Page.bringToFront", "params": {}}))
             while True:
                 response = json.loads(websocket.recv())
-                if response.get("id") == 0:
+                if response.get("id") == 1:
                     if response.get("error"):
                         raise RuntimeError("Chrome could not focus the ElevenLabs tab.")
                     break
-            for request_id, params in enumerate((
-                {"type": "mouseMoved", "x": point["x"], "y": point["y"]},
-                {"type": "mousePressed", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1},
-                {"type": "mouseReleased", "x": point["x"], "y": point["y"], "button": "left", "clickCount": 1},
-            ), start=1):
-                websocket.send(json.dumps({"id": request_id, "method": "Input.dispatchMouseEvent", "params": params}))
-                while True:
-                    response = json.loads(websocket.recv())
-                    if response.get("id") == request_id:
-                        if response.get("error"):
-                            raise RuntimeError("Chrome rejected the ElevenLabs UI click.")
-                        break
+        time.sleep(0.25)
 
-    def _trusted_key(self, key: str) -> None:
+    def _trusted_key(self, key: str, *, bring_to_front: bool = False) -> None:
         """Send a real keyboard event to the focused control through CDP."""
-        self._trusted_keys(key, 1)
+        self._trusted_keys(key, 1, bring_to_front=bring_to_front)
 
-    def _trusted_keys(self, key: str, count: int) -> None:
+    def _trusted_keys(self, key: str, count: int, *, bring_to_front: bool = False) -> None:
         """Send repeated real key presses over one CDP connection."""
         if count < 1:
             return
@@ -205,14 +291,33 @@ class ElevenLabsUI:
             raise RuntimeError("Ordak could not attach a DevTools target for ElevenLabs.")
         from websockets.sync.client import connect
         with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
-            keycode = 36 if key == "Home" else 35 if key == "End" else 39 if key == "ArrowRight" else 37
+            first_request_id = 1
+            if bring_to_front:
+                websocket.send(json.dumps({"id": 1, "method": "Page.bringToFront", "params": {}}))
+                while True:
+                    response = json.loads(websocket.recv())
+                    if response.get("id") == 1:
+                        if response.get("error"):
+                            raise RuntimeError("Chrome could not focus the ElevenLabs tab.")
+                        break
+                time.sleep(0.25)
+                first_request_id = 2
+            key_metadata = {
+                "Home": ("Home", 36), "End": ("End", 35),
+                "ArrowRight": ("ArrowRight", 39), "ArrowLeft": ("ArrowLeft", 37),
+                "Enter": ("Enter", 13), " ": ("Space", 32),
+                "Escape": ("Escape", 27),
+            }
+            if key not in key_metadata:
+                raise RuntimeError(f"Unsupported trusted key: {key!r}")
+            code, keycode = key_metadata[key]
             events = []
             for _ in range(count):
                 events.extend((
-                    {"type": "keyDown", "key": key, "code": key, "windowsVirtualKeyCode": keycode},
-                    {"type": "keyUp", "key": key, "code": key, "windowsVirtualKeyCode": keycode},
+                    {"type": "keyDown", "key": key, "code": code, "windowsVirtualKeyCode": keycode, "nativeVirtualKeyCode": keycode},
+                    {"type": "keyUp", "key": key, "code": code, "windowsVirtualKeyCode": keycode, "nativeVirtualKeyCode": keycode},
                 ))
-            for request_id, params in enumerate(events, start=1):
+            for request_id, params in enumerate(events, start=first_request_id):
                 websocket.send(json.dumps({"id": request_id, "method": "Input.dispatchKeyEvent", "params": params}))
                 while True:
                     response = json.loads(websocket.recv())
@@ -237,36 +342,40 @@ class ElevenLabsUI:
         raise RuntimeError(f"ElevenLabs composer did not become ready: {last.get('summary', 'unknown page state')}")
 
     def snapshot(self) -> dict[str, Any]:
-        return self._json("""(() => {
+        expression = """(() => {
           const visible = e => { const r=e.getBoundingClientRect(); return !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length) && r.bottom>0 && r.right>0 && r.top<innerHeight && r.left<innerWidth; };
           const text = document.body?.innerText || '';
-          const controls = [...document.querySelectorAll('button,a,[role=button]')].filter(visible);
           const describe = e => ({text:(e.innerText||'').trim(), aria:e.getAttribute('aria-label')||'', title:e.getAttribute('title')||'', disabled:!!e.disabled, ariaDisabled:e.getAttribute('aria-disabled')==='true'});
-          const input = [...document.querySelectorAll('textarea')].find(e => visible(e) && (/main textarea/i.test(e.getAttribute('aria-label')||'') || /start typing|paste text/i.test(e.placeholder||'')));
-          const generateElement = controls.find(e => e.getAttribute('data-testid')==='tts-generate' || /^generate(?: speech)?$/i.test((e.innerText||'').trim()) || /^generate(?: speech)?$/i.test((e.getAttribute('aria-label')||'').trim()));
+          const input = document.querySelector(__TEXTAREA_SELECTOR__);
+          const generateElement = document.querySelector(__GENERATE_SELECTOR__);
           const generate = generateElement ? describe(generateElement) : null;
           // Only an *enabled* download control means there is something to download.
           // ElevenLabs always renders "Download latest" and "Download previous in history
           // tab"; both sit disabled until a generation finishes. Counting them made submit()
-          // believe a render was already in flight and skip clicking Generate entirely.
+          // believe a render was already in flight and skip Generate entirely.
           const enabled = e => !e.disabled && e.getAttribute('aria-disabled') !== 'true';
-          const download = controls.filter(enabled).map(describe).filter(c => /download|export/i.test(`${c.text} ${c.aria} ${c.title}`));
+          const latestDownload = document.querySelector(__DOWNLOAD_SELECTOR__);
+          const download = latestDownload && enabled(latestDownload) ? [describe(latestDownload)] : [];
           const generationText = `${generate?.text||''} ${generate?.aria||''}`;
           const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
-          const captcha = [...document.querySelectorAll('iframe')].some(e => visible(e) && /hcaptcha|recaptcha|turnstile/i.test(`${e.src||''} ${e.title||''} ${e.name||''}`));
+          const progress = !!document.querySelector('[aria-busy=true],[role=progressbar]');
+          // Only a challenge widget a human could actually interact with counts.
+          // Stripe's invisible 1911x1 hcaptcha beacon is always present and never
+          // needs interaction; counting it blocked every submit as "verification".
+          const captcha = [...document.querySelectorAll('iframe')].some(e => visible(e) && e.offsetWidth >= 20 && e.offsetHeight >= 20 && /hcaptcha|recaptcha|turnstile/i.test(`${e.src||''} ${e.title||''} ${e.name||''}`));
           return {
             url: location.href, title: document.title, ready: !!input && location.pathname.includes('app/speech-synthesis/text-to-speech'),
             login_required: /sign in|log in|create an account/i.test(text) && !input,
-            busy: loading || !!generate?.disabled || !!generate?.ariaDisabled || !!document.querySelector('[aria-busy=true],[role=progressbar]'),
-            loading, captcha, downloads: download, summary: text.slice(0, 1600), generate
+            busy: loading || !!generate?.disabled || !!generate?.ariaDisabled || progress,
+            loading, progress, captcha, downloads: download, summary: text.slice(0, 1600), generate
           };
-        })()""")
+        })()"""
+        return self._json(expression.replace("__TEXTAREA_SELECTOR__", json.dumps(TEXTAREA_SELECTOR)).replace("__GENERATE_SELECTOR__", json.dumps(GENERATE_SELECTOR)).replace("__DOWNLOAD_SELECTOR__", json.dumps(DOWNLOAD_SELECTOR)))
 
     def set_text(self, text: str) -> None:
         encoded = json.dumps(text)
         result = self._json(f"""(() => {{
-          const visible = e => !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length);
-          const e = [...document.querySelectorAll('textarea')].find(x => visible(x) && (/main textarea/i.test(x.getAttribute('aria-label')||'') || /start typing|paste text/i.test(x.placeholder||'')));
+          const e = document.querySelector({json.dumps(TEXTAREA_SELECTOR)});
           if (!e) return {{ok:false, reason:'narration textarea not found'}};
           const setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
           setter.call(e, {encoded});
@@ -279,16 +388,18 @@ class ElevenLabsUI:
             raise RuntimeError(f"ElevenLabs narration input failed: {result.get('reason', 'text length mismatch')}")
 
     def select_option(self, kind: str, requested: str) -> None:
-        """Open a visible control and choose a visible exact/starts-with option.
+        """Choose a voice/model through its semantic trigger and option selectors.
 
         Defaults are intentionally left untouched; this is used only for an
         explicit CLI/env parameter and fails loudly rather than guessing.
         """
+        if kind not in {"voice", "model"}:
+            raise ValueError(f"Unsupported ElevenLabs selection kind: {kind}")
+        trigger = VOICE_TRIGGER_SELECTOR if kind == "voice" else MODEL_TRIGGER_SELECTOR
+        option = VOICE_OPTION_SELECTOR if kind == "voice" else MODEL_OPTION_SELECTOR
         probe = f"""(() => {{
-          const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-          const selector={json.dumps("button[data-testid=tts-model-selector]" if kind == "model" else "button[data-testid=tts-voice-selector]")};
-          const e=[...document.querySelectorAll(selector)].filter(visible)[0];
-          if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,text:(e.innerText||e.getAttribute('aria-label')||'').trim(),open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}};
+          const e=document.querySelector({json.dumps(trigger)});
+          return e?{{ok:true,text:(e.innerText||e.getAttribute('aria-label')||'').trim(),open:e.getAttribute('data-state')==='open'}}:{{ok:false}};
         }})()"""
         # The composer becomes usable before its selectors finish rendering, so the control
         # is waited for rather than demanded on the first look. Still fails loudly: a
@@ -305,51 +416,47 @@ class ElevenLabsUI:
                 f"Could not find the ElevenLabs {kind} control for explicit value "
                 f"'{requested}' after {self.control_timeout_seconds:g}s."
             )
-        if requested.lower() in str(control.get("text", "")).lower():
+        if setting_label_matches(requested, str(control.get("text") or "")):
             return
         if not control.get("open"):
-            self._trusted_click(f"""(() => {{ return {json.dumps(control)}; }})()""")
+            self._activate_selector(trigger)
         if kind == "voice":
-            # The compact menu is intentionally only a recent-voices list.
-            # Enter the full catalog so a profile is not silently limited to it.
-            all_voices = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('[role=menuitem],button,[role=button]')].filter(visible).find(x=>/^all voices$/i.test((x.innerText||'').trim())); if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
-            if all_voices.get("ok"):
-                self._trusted_click(f"""(() => {{ return {json.dumps(all_voices)}; }})()""")
-            # The catalog search matches the voice *name*, while the row is labelled
-            # "<name> - <use case>". Searching the whole label returns nothing, so only the
-            # name is typed; the exact label is still what gets clicked below.
             search_term = search_term_for_voice(requested)
             deadline = time.monotonic() + 20
             while time.monotonic() < deadline:
-                search = self._json("""(() => { const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${x.placeholder||''} ${x.getAttribute('aria-label')||''}`)); if(!e)return {ok:false}; return {ok:true}; })()""")
+                search = self._json(f"""(() => ({{ok:!!document.querySelector({json.dumps(VOICE_SEARCH_SELECTOR)})}}))()""")
                 if search.get("ok"):
-                    self._json(f"""(() => {{ const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length); const e=[...document.querySelectorAll('input')].find(x=>visible(x)&&/search/i.test(`${{x.placeholder||''}} ${{x.getAttribute('aria-label')||''}}`)); const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(e,{json.dumps("SEARCH_TERM")});e.dispatchEvent(new Event('input',{{bubbles:true}}));return {{ok:true}}; }})()""".replace('"SEARCH_TERM"', json.dumps(search_term)))
+                    self._json(f"""(() => {{
+                      const e=document.querySelector({json.dumps(VOICE_SEARCH_SELECTOR)});
+                      const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;
+                      setter.call(e,{json.dumps(search_term)});
+                      e.dispatchEvent(new InputEvent('input',{{bubbles:true,inputType:'insertText',data:{json.dumps(search_term)}}}));
+                      e.dispatchEvent(new Event('change',{{bubbles:true}}));
+                      return {{ok:e.value==={json.dumps(search_term)}}};
+                    }})()""")
                     break
                 time.sleep(0.5)
         deadline = time.monotonic() + 15
+        last_error = ""
         while time.monotonic() < deadline:
-            point = self._json(f"""(() => {{
-              const wanted={json.dumps(requested)}.trim().toLowerCase();
-              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-              const choices=[...document.querySelectorAll('[role=option],button,[role=button],li,[cmdk-item],div')].filter(visible);
-              const matching=choices.filter(x=>{{const t=(x.innerText||x.getAttribute('aria-label')||'').trim().toLowerCase(); return t===wanted||t.startsWith(wanted+' ')||t.startsWith(wanted+'-');}});
-              // Several ancestors contain the row's text. The tightest box is the row.
-              matching.sort((a,b)=>{{const ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect(); return ra.width*ra.height-rb.width*rb.height;}});
-              const e=matching[0];
-              if(!e) return {{ok:false}}; const r=e.getBoundingClientRect(); return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}};
-            }})()""")
-            if point.get("ok"):
-                self._trusted_click(f"""(() => {{ return {json.dumps(point)}; }})()""")
-                return
-            labels = self._json("""(() => ({items:[...document.querySelectorAll('[role=menuitem],[role=option],button')].filter(e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)).map(e=>(e.innerText||e.getAttribute('aria-label')||'').trim()).filter(Boolean).slice(0,80)}))()""").get("items", [])
-            decision = self.advisor.decide(goal=f"Select exact {kind} requested: {requested}", choices=[str(x) for x in labels])
-            if decision.action == "choose":
-                point = self._json(f"""(() => {{ const wanted={json.dumps(decision.target)}.trim();const e=[...document.querySelectorAll('[role=menuitem],[role=option],button')].find(x=>!!(x.offsetWidth||x.offsetHeight||x.getClientRects().length)&&(x.innerText||x.getAttribute('aria-label')||'').trim()===wanted);if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2}}; }})()""")
-                if point.get("ok"):
-                    self._trusted_click(f"""(() => {{ return {json.dumps(point)}; }})()""")
-                    return
+            try:
+                self._activate_selector(option, requested=requested)
+                break
+            except RuntimeError as exc:
+                last_error = str(exc)
             time.sleep(0.5)
-        raise RuntimeError(f"ElevenLabs did not show the requested {kind} option '{requested}'.")
+        else:
+            raise RuntimeError(f"ElevenLabs did not show requested {kind} option '{requested}': {last_error}")
+
+        # Selection is not complete merely because a key event was accepted.  Read
+        # the stable trigger until React has committed the requested label.
+        deadline = time.monotonic() + 8
+        while time.monotonic() < deadline:
+            observed = self._json(probe)
+            if observed.get("ok") and setting_label_matches(requested, str(observed.get("text") or "")):
+                return
+            time.sleep(0.25)
+        raise RuntimeError(f"ElevenLabs did not retain requested {kind} '{requested}' after selector activation.")
 
     def open_settings_tab(self) -> None:
         """Show the voice-settings sliders, which live behind their own tab.
@@ -361,21 +468,15 @@ class ElevenLabsUI:
         deadline = time.monotonic() + self.control_timeout_seconds
         while time.monotonic() < deadline:
             present = self._json("""(() => {
-              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-              const sliders=[...document.querySelectorAll('[role=slider]')].filter(visible);
+              const sliders=[...document.querySelectorAll('[role=slider][aria-label]')];
               return {ok:sliders.length>0};
             })()""")
             if present.get("ok"):
                 return
-            tab = self._json("""(() => {
-              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-              const e=[...document.querySelectorAll('[data-testid=tts-settings-tab]')].filter(visible)[0];
-              if(!e) return {ok:false};
-              const r=e.getBoundingClientRect();
-              return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2};
-            })()""")
-            if tab.get("ok"):
-                self._trusted_click(f"""(() => {{ return {json.dumps(tab)}; }})()""")
+            try:
+                self._activate_selector(SETTINGS_TAB_SELECTOR)
+            except RuntimeError:
+                pass
             time.sleep(self.poll_seconds)
         raise RuntimeError(
             "ElevenLabs voice-settings sliders never appeared, even after opening the "
@@ -389,7 +490,8 @@ class ElevenLabsUI:
         Starting from Home then moving in 0.01 increments is deterministic and
         lets us verify the value after every real browser interaction.
         """
-        probe = f"""(() => {{ const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')==={json.dumps(label)}); if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,min:Number(e.getAttribute('aria-valuemin')),max:Number(e.getAttribute('aria-valuemax')),current:Number(e.getAttribute('aria-valuenow'))}}; }})()"""
+        selector = f'[role="slider"][aria-label={json.dumps(label)}]'
+        probe = f"""(() => {{ const e=document.querySelector({json.dumps(selector)}); if(!e)return {{ok:false}};return {{ok:true,min:Number(e.getAttribute('aria-valuemin')),max:Number(e.getAttribute('aria-valuemax')),current:Number(e.getAttribute('aria-valuenow'))}}; }})()"""
         detail = self._json(probe)
         if not detail.get("ok"):
             self.open_settings_tab()
@@ -398,7 +500,7 @@ class ElevenLabsUI:
             raise RuntimeError(f"Could not find ElevenLabs '{label}' slider on the canonical Text to Speech page.")
         if not float(detail["min"]) <= value <= float(detail["max"]):
             raise RuntimeError(f"ElevenLabs '{label}' value {value} is outside its current UI range {detail['min']}..{detail['max']}.")
-        self._trusted_click(f"""(() => {{ return {json.dumps(detail)}; }})()""")
+        self._focus_selector(selector)
         time.sleep(0.2)
         self._trusted_key("Home")
         time.sleep(0.15)
@@ -433,29 +535,31 @@ class ElevenLabsUI:
         """
         if requested is None:
             return None
-        control = self._json("""(() => { const e=document.querySelector(\"button[aria-label=\\\"Output format\\\"]\");if(!e)return {ok:false};const r=e.getBoundingClientRect();return {ok:true,text:(e.innerText||'').trim(),open:e.getAttribute('aria-expanded')==='true',x:r.left+r.width/2,y:r.top+r.height/2}; })()""")
+        control = self._json(f"""(() => {{ const e=document.querySelector({json.dumps(OUTPUT_FORMAT_SELECTOR)});if(!e)return {{ok:false}};return {{ok:true,text:(e.innerText||'').trim(),open:e.getAttribute('data-state')==='open'}}; }})()""")
         if not control.get("ok"):
             raise RuntimeError("Could not find ElevenLabs Output format control.")
         if output_format_identity(str(control.get("text") or "")) == output_format_identity(requested):
             return str(control["text"])
         if not control.get("open"):
-            self._trusted_click(f"""(() => {{ return {json.dumps(control)}; }})()""")
+            self._activate_selector(OUTPUT_FORMAT_SELECTOR)
         deadline = time.monotonic() + 10
+        selected: dict[str, Any] | None = None
         while time.monotonic() < deadline:
-            option = self._json(f"""(() => {{
-              const wanted={json.dumps(output_format_identity(requested))};
-              const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-              const identity=text=>(text||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
-              const choices=[...document.querySelectorAll('[role=option],[role=menuitemradio],[data-radix-collection-item],button,[role=button]')].filter(visible);
-              const matches=choices.filter(x=>identity((x.innerText||'').trim())===wanted);
-              matches.sort((a,b)=>{{const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect();return ar.width*ar.height-br.width*br.height;}});
-              const e=matches[0]; if(!e)return {{ok:false}};const r=e.getBoundingClientRect();return {{ok:true,x:r.left+r.width/2,y:r.top+r.height/2,text:(e.innerText||'').trim()}};
-            }})()""")
-            if option.get("ok"):
-                self._trusted_click(f"""(() => {{ return {json.dumps(option)}; }})()""")
-                return str(option["text"])
+            try:
+                selected = self._activate_selector(OUTPUT_FORMAT_OPTION_SELECTOR, requested=requested, identity=True, key="Enter")
+                break
+            except RuntimeError:
+                pass
             time.sleep(0.25)
-        raise RuntimeError(f"ElevenLabs did not expose requested output format '{requested}'.")
+        if selected is None:
+            raise RuntimeError(f"ElevenLabs did not expose enabled output format '{requested}'.")
+        deadline = time.monotonic() + 5
+        while time.monotonic() < deadline:
+            observed = self._json(f"""(() => {{const e=document.querySelector({json.dumps(OUTPUT_FORMAT_SELECTOR)});return {{text:(e?.innerText||'').trim()}};}})()""").get("text")
+            if output_format_identity(str(observed or "")) == output_format_identity(requested):
+                return str(observed)
+            time.sleep(0.25)
+        raise RuntimeError(f"ElevenLabs did not retain requested output format '{requested}' after selector activation.")
 
     def dismiss_overlays(self) -> None:
         """Close any panel left open, because an open one hides the settings controls.
@@ -471,39 +575,26 @@ class ElevenLabsUI:
             })()""")
             if not open_panel.get("ok"):
                 return
-            # ElevenLabs shows a "credits remaining" modal that does NOT close on
-            # Escape and puts aria-hidden on the main content, making the Radix
-            # sliders unfocusable (pointerEvents:none). That breaks the real
-            # keyboard increment check. Close it via its explicit button.
-            credits_closed = self._json("""(() => {
+            # This modal does not close on Escape and makes the main controls
+            # unfocusable. Resolve its explicit button inside the dialog and use
+            # keyboard activation; do not fall back to screen coordinates.
+            credits = self._json("""(() => {
               const dlg=[...document.querySelectorAll('[role=dialog]')].find(d=>d.offsetWidth>0 && /credits remaining/i.test(d.innerText||''));
-              if(!dlg) return {ok:false};
-              const btn=[...dlg.querySelectorAll('button')].find(b=>/^(Close|Remind Me Later)$/i.test((b.innerText||'').trim()));
-              if(!btn) return {ok:false};
-              btn.click();
-              return {ok:true, text:(btn.innerText||'').trim()};
+              return {ok:!!dlg};
             })()""")
-            if credits_closed.get("ok"):
-                time.sleep(0.6)
+            if credits.get("ok"):
+                for label in ("Close", "Remind Me Later"):
+                    try:
+                        self._activate_selector('[role="dialog"] button', requested=label)
+                        time.sleep(0.6)
+                        break
+                    except RuntimeError:
+                        continue
+                else:
+                    raise RuntimeError("ElevenLabs credits dialog has no selector-addressable dismissal button.")
                 continue
-            # Fallback: try clicking the visible Close via trusted mouse
-            close_probe = self._json("""(() => {
-              const dlg=[...document.querySelectorAll('[role=dialog]')].find(d=>d.offsetWidth>0 && /credits remaining/i.test(d.innerText||''));
-              if(!dlg) return {ok:false};
-              const btn=[...dlg.querySelectorAll('button')].find(b=>/^(Close|Remind Me Later)$/i.test((b.innerText||'').trim()));
-              if(!btn) return {ok:false};
-              const r=btn.getBoundingClientRect();
-              return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2};
-            })()""")
-            if close_probe.get("ok"):
-                try:
-                    self._trusted_click(f"""(() => {{ return {json.dumps(close_probe)}; }})()""")
-                    time.sleep(0.6)
-                    continue
-                except RuntimeError:
-                    pass
             try:
-                self._trusted_key("Escape")
+                self._trusted_key("Escape", bring_to_front=True)
             except RuntimeError:
                 return
             time.sleep(0.4)
@@ -523,14 +614,18 @@ class ElevenLabsUI:
                 self.apply_numeric_setting(label, value)
         if settings.speaker_boost is not None:
             wanted = bool(settings.speaker_boost)
+            speaker_selector = '[role="switch"][aria-label*="Speaker boost" i], input[type="checkbox"][aria-label*="Speaker boost" i]'
             result = self._json(f"""(() => {{
-              const labels=[...document.querySelectorAll('label')];
-              const l=labels.find(x=>/speaker boost/i.test(x.innerText||''));
-              const i=l?.querySelector('input')||l?.parentElement?.querySelector('input[type=checkbox]');
-              if(!i)return {{available:false}};
-              if(i.checked!=={str(wanted).lower()}) i.click();
-              return {{available:true, checked:!!i.checked}};
+              const e=document.querySelector({json.dumps(speaker_selector)});
+              return e?{{available:true,checked:e.getAttribute('aria-checked')==='true'||!!e.checked}}:{{available:false}};
             }})()""")
+            if result.get("available") and bool(result.get("checked")) != wanted:
+                self._activate_selector(speaker_selector)
+                time.sleep(0.25)
+                result = self._json(f"""(() => {{
+                  const e=document.querySelector({json.dumps(speaker_selector)});
+                  return e?{{available:true,checked:e.getAttribute('aria-checked')==='true'||!!e.checked}}:{{available:false}};
+                }})()""")
             if not result.get("available") and wanted:
                 raise RuntimeError("Could not set ElevenLabs Speaker boost in the current UI.")
             if result.get("available") and bool(result.get("checked")) != wanted:
@@ -546,31 +641,42 @@ class ElevenLabsUI:
             }
         selected_output = self.select_output_format(settings.output_format)
         if selected_output:
-            settings_result = self._json("""(() => ({format:(document.querySelector(\"button[aria-label=\\\"Output format\\\"]\")?.innerText||'').trim()}))()""")
-            if settings_result.get("format") != selected_output:
+            settings_result = self._json(f"""(() => ({{format:(document.querySelector({json.dumps(OUTPUT_FORMAT_SELECTOR)})?.innerText||'').trim()}}))()""")
+            if output_format_identity(str(settings_result.get("format") or "")) != output_format_identity(selected_output):
                 raise RuntimeError("ElevenLabs did not retain the requested output format.")
         return applied
 
     def effective_settings(self) -> dict[str, Any]:
-        """Read back the visible composer controls for the persistent record."""
-        return self._json("""(() => {
-          const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth};
-          const buttonText=selector=>{const e=[...document.querySelectorAll(selector)].find(visible);return (e?.innerText||e?.getAttribute('aria-label')||'').trim()||null};
+        """Read back controls from the DOM, independent of the settings-rail scroll."""
+        expression = """(() => {
+          const buttonText=selector=>{const e=document.querySelector(selector);return (e?.innerText||e?.getAttribute('aria-label')||'').trim()||null};
           const slider=label=>{const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')===label);return e?Number(e.getAttribute('aria-valuenow')):null};
-          return {voice:buttonText('button[data-testid=tts-voice-selector]'),model:buttonText('button[data-testid=tts-model-selector]'),speed:slider('Speed'),stability:slider('Stability'),similarity:slider('Similarity'),style:slider('Style Exaggeration'),output_format:buttonText('button[aria-label="Output format"]')};
-        })()""")
+          return {voice:buttonText(__VOICE__),model:buttonText(__MODEL__),speed:slider('Speed'),stability:slider('Stability'),similarity:slider('Similarity'),style:slider('Style Exaggeration'),output_format:buttonText(__FORMAT__)};
+        })()"""
+        expression = expression.replace("__VOICE__", json.dumps(VOICE_TRIGGER_SELECTOR)).replace("__MODEL__", json.dumps(MODEL_TRIGGER_SELECTOR)).replace("__FORMAT__", json.dumps(OUTPUT_FORMAT_SELECTOR))
+        return self._json(expression)
 
     def verify_settings(self, settings: VoiceSettings) -> dict[str, Any]:
         effective = self.effective_settings()
-        for field, requested in (("voice", settings.voice), ("model", settings.model), ("output_format", settings.output_format)):
+        for field, requested in (("voice", settings.voice), ("model", settings.model)):
             observed = effective.get(field)
-            if requested is not None and requested.casefold() not in str(observed or "").casefold():
+            if requested is not None and not setting_label_matches(requested, str(observed or "")):
                 raise RuntimeError(f"ElevenLabs did not retain requested {field} '{requested}'; observed '{observed}'.")
+        if settings.output_format is not None and output_format_identity(str(effective.get("output_format") or "")) != output_format_identity(settings.output_format):
+            raise RuntimeError(f"ElevenLabs did not retain requested output_format '{settings.output_format}'; observed '{effective.get('output_format')}'.")
         for field, requested in (("speed", settings.speed), ("stability", settings.stability), ("similarity", settings.similarity), ("style", settings.style)):
             observed = effective.get(field)
             if requested is not None and (observed is None or abs(float(observed) - requested) > 0.011):
                 raise RuntimeError(f"ElevenLabs did not retain requested {field} {requested}; observed {observed}.")
         return effective
+
+    def textarea_characters(self) -> int:
+        """Read-only length of the visible narration box (-1 when it is gone)."""
+        result = self._json(f"""(() => {{const e=document.querySelector({json.dumps(TEXTAREA_SELECTOR)});return {{characters:e?e.value.length:-1}};}})()""")
+        try:
+            return int(result.get("characters", -1))
+        except (TypeError, ValueError):
+            return -1
 
     def submit(self, *, acknowledgement_seconds: float = 12) -> dict[str, Any]:
         """Submit once and require visible UI acknowledgement before proceeding.
@@ -585,47 +691,48 @@ class ElevenLabsUI:
         before = self.snapshot()
         if before.get("captcha"):
             raise RuntimeError("ElevenLabs requires an on-screen human verification in Chrome; complete it in VNC, then resume.")
-        if before.get("busy") or before.get("downloads"):
+        if before.get("loading") or before.get("progress") or before.get("downloads"):
             return {"acknowledged": True, "method": "existing_ui_state", "delay_seconds": 0.0}
-        click = """(() => { const visible=e=>{const r=e.getBoundingClientRect();return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth}; const e=[...document.querySelectorAll('button,[role=button]')].filter(visible).find(x=>x.getAttribute('data-testid')==='tts-generate'||/^generate(?: speech)?$/i.test((x.innerText||'').trim())||/^generate(?: speech)?$/i.test((x.getAttribute('aria-label')||'').trim())); if(!e||e.disabled||e.getAttribute('aria-disabled')==='true')return {ok:false};const r=e.getBoundingClientRect();return {ok:true,x:r.left+r.width/2,y:r.top+r.height/2}; })()"""
+        # The narration box can lose its text between set_text and activation
+        # (app re-render/reset). Activating Generate on an empty composer never
+        # produces audio, so refuse loudly instead of burning a submit cycle.
+        if self.textarea_characters() <= 0:
+            raise RuntimeError("ElevenLabs narration text is missing from the composer; refusing to activate Generate on an empty box. Resume to re-enter the text.")
         # The generate control is disabled for a moment after the text lands while the app
         # prices the request, so it is waited for rather than demanded on the first look.
         # A control that never becomes clickable is still an error.
         deadline = time.monotonic() + self.control_timeout_seconds
         while time.monotonic() < deadline:
-            if self._json(click).get("ok"):
+            try:
+                self._focus_selector(GENERATE_SELECTOR)
                 break
+            except RuntimeError:
+                pass
             time.sleep(self.poll_seconds)
+        else:
+            raise RuntimeError("ElevenLabs Generate selector did not become enabled before timeout.")
         started = time.monotonic()
-        self._trusted_click(click)
+        self._activate_selector(GENERATE_SELECTOR)
         deadline = started + acknowledgement_seconds
         while time.monotonic() < deadline:
             current = self.snapshot()
             if current.get("captcha"):
                 raise RuntimeError("ElevenLabs requires an on-screen human verification in Chrome; complete it in VNC, then resume.")
             if current.get("busy") or current.get("downloads"):
-                return {"acknowledged": True, "method": "trusted_click", "delay_seconds": round(time.monotonic() - started, 3), "generate": current.get("generate")}
+                return {"acknowledged": True, "method": "selector_keyboard", "delay_seconds": round(time.monotonic() - started, 3), "generate": current.get("generate")}
             time.sleep(min(0.5, self.poll_seconds))
-        raise RuntimeError("ElevenLabs did not acknowledge Generate speech after a real browser click; no request was recorded as submitted.")
+        raise RuntimeError(f"ElevenLabs did not acknowledge Generate after selector keyboard activation; no request was recorded as submitted (composer holds {self.textarea_characters()} characters now).")
 
     def refresh(self) -> None:
         self._json("""(() => { location.reload(); return {ok:true}; })()""")
 
     def download_best_available(self) -> dict[str, Any]:
-        """Click the visible UI download option with the strongest advertised format."""
-        choice = self._json("""(() => {
-          const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
-          const controls=[...document.querySelectorAll('button,a,[role=button],[role=menuitem]')].filter(visible);
-          const usable=controls.filter(e=>!e.disabled&&e.getAttribute('aria-disabled')!=='true');
-          const candidates=usable.map(e=>({e,t:`${e.innerText||''} ${e.getAttribute('aria-label')||''} ${e.getAttribute('title')||''} ${e.getAttribute('data-testid')||''}`.trim()})).filter(x=>/download|export/i.test(x.t));
-          if(!candidates.length)return {ok:false,reason:'no visible download control'};
-          const score=t=>{const n=(t.match(/(\\d+)\\s*kbps/i)||[])[1]||0;return (/tts-download-latest-button|download latest/i.test(t)?5000000:0)+(/history/i.test(t)?-1000000:0)+(/\\bwav\\b/i.test(t)?1000000:0)+(/\\bflac\\b/i.test(t)?900000:0)+Number(n)*100+(/download/i.test(t)?1:0)};
-          candidates.sort((a,b)=>score(b.t)-score(a.t)); const r=candidates[0].e.getBoundingClientRect();
-          return {ok:true,choice:candidates[0].t,x:r.left+r.width/2,y:r.top+r.height/2};
-        })()""")
-        if choice.get("ok"):
-            self._trusted_click(f"""(() => {{ return {json.dumps(choice)}; }})()""")
-        return choice
+        """Activate ElevenLabs' canonical latest-result download selector."""
+        try:
+            choice = self._pointer_activate_selector(DOWNLOAD_SELECTOR)
+        except RuntimeError as exc:
+            return {"ok": False, "reason": str(exc)}
+        return {"ok": True, "choice": choice.get("text") or "Download latest"}
 
 
 def narration_input(project: Path) -> tuple[Path, str]:

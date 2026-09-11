@@ -39,12 +39,17 @@ for the selected model, an explicit `false` is recorded as unavailable/effective
 off and generation continues. An explicit `true` still fails safely, because it
 cannot be honestly applied without a visible control.
 
-Before recording a submission, the runner reads the selected voice/model,
-numeric controls and output format back from the visible UI and compares them
-with the requested profile/CLI values. It also requires the Generate Speech
-action to produce a visible acknowledgement (for example `Loading...`, a
-disabled generate button, progress, or a visible download); a successfully
-sent mouse event by itself is never treated as a generation request. An
+All composer controls are resolved through narrow `data-testid`, role and ARIA
+selectors. React/Radix selection triggers and options are focused by selector
+and activated with trusted keyboard input. The Download Latest icon does not
+honor keyboard activation, so that action alone uses a trusted pointer gesture
+whose target is freshly resolved and hit-tested from its exact selector; no
+coordinates are stored or accepted by the workflow. Before recording a
+submission, the runner reads voice, model, numeric
+controls and output format back from the DOM independent of the settings-panel
+scroll position and compares them with the requested profile/CLI values. It also
+requires Generate Speech to produce a visible acknowledgement (for example
+`Loading...`, a disabled generate button, progress, or a visible download). An
 on-screen human-verification challenge is reported safely for VNC completion
 and is never automated.
 
@@ -53,19 +58,11 @@ few seconds. It treats `Loading...` and other visible generation activity as
 progress, refreshes only after a genuine no-progress stall, caps recovery
 refreshes, and after each recovery refresh re-applies and verifies all requested
 settings, restores the canonical narration text, and obtains a fresh visible
-submission acknowledgement. It then triggers the strongest visible web-UI
-download option and waits for the browser download before moving the audio into
-the video project. A stale persisted download-click record is cleared when a
+submission acknowledgement. It then activates ElevenLabs' canonical
+`tts-download-latest-button` selector and waits for the browser download before
+moving the audio into the video project. A stale persisted download record is cleared when a
 runner resumes, and a still-visible download option is retried after the
 configured retry window (`YT_ELEVENLABS_DOWNLOAD_RETRY_SECONDS`, default 30),
 so a process crash cannot strand an already-generated result. English Telegram
 progress, timing and failure notifications use the existing pipeline notifier
 when enabled.
-
-## Navigation advisor
-
-For unstable menus the optional advisor calls the local Ajil gateway on port
-8188 with `openai/gpt-oss-120b`. It sees only a capped list of visible labels
-and a narrow goal, returns one schema-validated JSON decision, and has no
-browser, filesystem, credential, or generation authority. Ordak remains the
-deterministic executor and rejects invented labels/actions.
