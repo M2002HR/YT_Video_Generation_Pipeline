@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "revision_id": "9543dc21-b4b2-4bf0-af94-4438f01c0a23",
+  "revision_id": "6131ce49-ef60-40d3-9167-d97c4f621e7d",
   "kind": "node",
-  "created_at": "2026-09-11T12:09:14.617827+00:00",
+  "created_at": "2026-09-11T12:56:21.767572+00:00",
   "roots": [
     "beat_image_008"
   ],
@@ -74,16 +74,16 @@
     "assets/raw_beats/beat_008.png",
     "beats/BEAT_008_PROMPT.md",
     "beats/BEAT_008_PROMPT.inputs.json",
+    "beats/BEAT_008_PROMPT.revision.md",
     "pipeline/provider_receipts/gemini_beat_008.json"
   ],
   "regenerate_beats": [
     8
   ],
-  "feedback": "جالب نیس",
-  "status": "DONE",
+  "feedback": "better",
+  "status": "RUNNING",
   "regeneration_mode": "isolated",
-  "feedback_path": "videos/026_black_swan_meaning_by_nassim_talib/pipeline/revisions/9543dc21-b4b2-4bf0-af94-4438f01c0a23/feedback.json",
-  "started_at": "2026-09-11T12:09:14.618580+00:00",
-  "pid": 1283301,
-  "completed_at": "2026-09-11T12:18:31.468889+00:00"
+  "feedback_path": "videos/026_black_swan_meaning_by_nassim_talib/pipeline/revisions/6131ce49-ef60-40d3-9167-d97c4f621e7d/feedback.json",
+  "started_at": "2026-09-11T12:56:21.768316+00:00",
+  "pid": 1297459
 }
