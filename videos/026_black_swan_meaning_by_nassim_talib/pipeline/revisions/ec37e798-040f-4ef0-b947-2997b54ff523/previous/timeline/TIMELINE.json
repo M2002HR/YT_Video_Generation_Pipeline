@@ -29,9 +29,8 @@
       "duration": 2.917,
       "beat_id": "video_opening_b",
       "motion": "still",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 1,
@@ -47,8 +46,7 @@
       "motion": "zoom_in",
       "narration": "A Black Swan is an event outside normal expectations.",
       "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_seconds": 0.52
     },
     {
       "beat_id": 2,
@@ -63,9 +61,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Its impact is enormous.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 3,
@@ -80,9 +77,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Afterward, people build explanations that make it look predictable.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
     },
     {
       "beat_id": 4,
@@ -97,9 +93,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Hindsight hides how surprising it really was.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 5,
@@ -115,8 +110,7 @@
       "motion": "zoom_in",
       "narration": "The name comes from Europe's old belief that all swans were white.",
       "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_seconds": 0.28
     },
     {
       "beat_id": 6,
@@ -131,9 +125,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Then Europeans encountered black swans in Australia.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 7,
@@ -148,9 +141,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "One observation shattered a rule that had seemed certain.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 8,
@@ -165,9 +157,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Taleb says forecasts can fail the same way.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
     },
     {
       "beat_id": 9,
@@ -182,9 +173,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Models usually depend on what has already been observed.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 10,
@@ -199,9 +189,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Markets can change through events those models barely considered.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 11,
@@ -216,9 +205,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "Technologies can overturn assumptions just as suddenly.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 12,
@@ -233,9 +221,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "You cannot reliably predict every Black Swan.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "dissolve",
+      "transition_seconds": 0.28
     },
     {
       "beat_id": 13,
@@ -250,9 +237,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_in",
       "narration": "So reduce dependence on fragile forecasts.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     },
     {
       "beat_id": 14,
@@ -267,9 +253,8 @@
       "match_confidence": 1.0,
       "motion": "zoom_out",
       "narration": "Leave room for error before surprise arrives.",
-      "transition_in": "fade",
-      "transition_seconds": 0.35,
-      "transition_source": "default"
+      "transition_in": "cut",
+      "transition_seconds": 0.0
     }
   ],
   "subtitles": [

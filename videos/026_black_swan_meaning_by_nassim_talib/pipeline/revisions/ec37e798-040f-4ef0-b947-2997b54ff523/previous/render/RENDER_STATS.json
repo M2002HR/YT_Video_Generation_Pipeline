@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "completed_at": "2026-09-11T11:00:02.353578+00:00",
+  "completed_at": "2026-09-10T19:55:57.242802+00:00",
   "output": "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/final.mp4",
-  "output_bytes": 63793448,
+  "output_bytes": 71570278,
   "target_duration_seconds": 77.087,
   "actual_duration_seconds": 77.087,
   "duration_drift_seconds": 0.0,
-  "wall_seconds": 345.97,
-  "realtime_factor": 4.488,
+  "wall_seconds": 250.798,
+  "realtime_factor": 3.253,
   "beats": 16,
   "resolution": "1080x1920",
   "fps": 30,
@@ -27,5 +27,5 @@
   "motion_render_backend": "single_graph",
   "motion_segments_rendered": 0,
   "motion_segments_reused": 0,
-  "peak_child_rss_mb": 1518.9
+  "peak_child_rss_mb": 1502.6
 }

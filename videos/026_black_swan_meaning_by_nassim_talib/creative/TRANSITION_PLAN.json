@@ -1,110 +1,111 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "ai_selection_enabled": false,
   "decisions": [
     {
       "from_beat_id": 1,
       "to_beat_id": 2,
-      "transition_in": "circleopen",
-      "transition_seconds": 0.24,
-      "next_motion": "slow_zoom_in",
-      "reason": "Circleopen mirrors the vermilion shockwave bursting outward from the impact, while a slow zoom emphasizes the monumental scale of disruption."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 2,
       "to_beat_id": 3,
-      "transition_in": "dissolve",
-      "transition_seconds": 0.32,
-      "next_motion": "still",
-      "reason": "The shared central black swan provides continuity while the scene shifts from explosive impact to a calm top-down explanatory diagram; a measured dissolve turns consequence into retrospective interpretation without implying new physical motion."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 3,
       "to_beat_id": 4,
-      "transition_in": "coverright",
-      "transition_seconds": 0.26,
-      "next_motion": "still",
-      "reason": "A restrained left-to-right cover turns the transition itself into hindsight masking the prior chaotic diagram, landing on the orderly veil while preserving the exposed vermilion edge at frame right."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 4,
       "to_beat_id": 5,
       "transition_in": "fade",
-      "transition_seconds": 0.28,
-      "next_motion": "slow_zoom_in",
-      "reason": "A soft fade cleanly shifts from the abstract hindsight metaphor into an earlier historical world without carrying the outgoing image's jagged directional energy; the calm symmetrical swan scene supports a restrained slow push-in."
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 5,
       "to_beat_id": 6,
-      "transition_in": "slideright",
-      "transition_seconds": 0.24,
-      "next_motion": "slow_zoom_in",
-      "reason": "A brisk directional slide carries the story from the symmetrical European assumption into a distinctly new Australian setting, while the slow push gives the foreground black swan the weight of the discovery."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 6,
       "to_beat_id": 7,
-      "transition_in": "fadewhite",
-      "transition_seconds": 0.2,
-      "next_motion": "still",
-      "reason": "A brief white flash cleanly ruptures the literal wetland scene into the abstract shattered-rule graphic, matching the narration's sudden logical break without turning the circle motif into a decorative reveal."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 7,
       "to_beat_id": 8,
-      "transition_in": "dissolve",
-      "transition_seconds": 0.28,
-      "next_motion": "still",
-      "reason": "The cut moves from a dense circular metaphor to a sparse forecast diagram, so a short dissolve cleanly bridges the abstract explanation without implying false directional continuity; the diagram should remain still for legibility."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 8,
       "to_beat_id": 9,
-      "transition_in": "smoothright",
-      "transition_seconds": 0.26,
-      "next_motion": "still",
-      "reason": "The outgoing forecast drives left-to-right into its fracture near the right edge, so a brief smoothright carries that causal momentum into the next technical diagram; the dense pebble-and-arc construction should remain still for legibility."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 9,
       "to_beat_id": 10,
-      "transition_in": "wiperight",
-      "transition_seconds": 0.2,
-      "next_motion": "zoom_in",
-      "reason": "The outgoing model curves resolve into a stable technical field, then the incoming image is violently driven by a black wedge advancing from the left toward the central collapse. A fast rightward wipe turns that visual intrusion into a cause-and-effect handoff, while a controlled zoom-in intensifies the impact point without adding lateral motion."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 10,
       "to_beat_id": 11,
-      "transition_in": "wipedown",
-      "transition_seconds": 0.18,
-      "next_motion": "zoom_in",
-      "reason": "The incoming image’s dominant action descends from the upper right into the old mechanism, so a quick downward wipe reinforces the sudden technological impact while changing direction from the prior leftward slide; a restrained zoom-in adds urgency to the disruption."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 11,
       "to_beat_id": 12,
-      "transition_in": "dissolve",
-      "transition_seconds": 0.3,
-      "next_motion": "still",
-      "reason": "The chaotic mechanical rupture resolves into a sparse abstract probability diagram, so a brief dissolve cleanly shifts from concrete disruption to reflective explanation without implying directional travel; the diagram should remain still."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 12,
       "to_beat_id": 13,
-      "transition_in": "smoothleft",
-      "transition_seconds": 0.26,
-      "next_motion": "still",
-      "reason": "A restrained leftward handoff carries the abstract prediction limit into its practical consequence; the incoming split composition reads clearly without added zoom, preserving the fragile-left versus resilient-right contrast."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     },
     {
       "from_beat_id": 13,
       "to_beat_id": 14,
-      "transition_in": "smoothup",
-      "transition_seconds": 0.28,
-      "next_motion": "slow_zoom_out",
-      "reason": "The outgoing frame’s sturdier support sits low on the right, so a gentle upward handoff expands naturally into the larger resilient structure; the slow zoom out reinforces visible spare capacity and lets the distant black swan remain a looming surprise."
+      "transition_in": "fade",
+      "transition_seconds": 0.35,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
     }
   ],
-  "created_at": "2026-09-10T13:07:24Z"
+  "created_at": "2026-09-11T10:54:10Z"
 }

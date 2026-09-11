@@ -1,12 +1,14 @@
 {
   "schema_version": 2,
-  "revision_id": "53d747dd-a611-4d9c-9329-7e00350ad041",
+  "revision_id": "ec37e798-040f-4ef0-b947-2997b54ff523",
   "kind": "config",
-  "created_at": "2026-09-10T19:51:14.592003+00:00",
+  "created_at": "2026-09-11T10:36:49.308743+00:00",
   "roots": [
-    "render_profile"
+    "render_profile",
+    "transition_direction"
   ],
   "affected_nodes": [
+    "transition_direction",
     "build_timeline",
     "render_profile",
     "render_baseline",
@@ -37,7 +39,6 @@
     "background_music",
     "ajil_alignment",
     "opening_trim",
-    "transition_direction",
     "audio_mix_profile",
     "beat_image_001",
     "beat_image_002",
@@ -60,6 +61,7 @@
     "sfx_acquire"
   ],
   "archived_artifacts": [
+    "creative/TRANSITION_PLAN.json",
     "timeline/TIMELINE.json",
     "timeline/SUBTITLES.ass",
     "render/RENDER_PROFILE.json",
@@ -75,12 +77,13 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
-  "started_at": "2026-09-10T19:51:14.593336+00:00",
-  "pid": 1186983,
+  "status": "FAILED",
+  "started_at": "2026-09-11T10:36:49.309688+00:00",
+  "pid": 1263840,
   "changed_fields": [
-    "motion_image_zoom_strength"
+    "motion_image_zoom_strength",
+    "motion_transition_seconds"
   ],
-  "config_revision_id": "30ada09b-a6ea-44a1-986a-dd7a4efa9a9e",
-  "completed_at": "2026-09-10T19:57:12.904516+00:00"
+  "config_revision_id": "de3b1d9f-c21b-450d-9796-d52e8fddcab6",
+  "completed_at": "2026-09-11T10:36:52.185299+00:00"
 }
