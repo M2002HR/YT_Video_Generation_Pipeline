@@ -118,19 +118,75 @@
         "--started-at",
         "2026-09-11T18:13:56.720232+00:00"
       ],
-      "status": "RUNNING"
+      "status": "DONE",
+      "ended_at": "2026-09-11T18:18:11.246279+00:00",
+      "elapsed_seconds": 9.103,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 320
     },
     {
-      "stage": "git_commit_push",
+      "stage": "publish_telegram",
+      "started_at": "2026-09-11T18:18:12.485554+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-11T18:13:56.720232+00:00",
-      "ended_at": "2026-09-11T18:18:09.310001+00:00",
-      "elapsed_seconds": 252.59,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "a42a974a899fe898009a3ea4335dd72ef5765594"
+      "ended_at": "2026-09-11T18:18:19.256457+00:00",
+      "elapsed_seconds": 6.771,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2117
     }
   ],
-  "completed_at": "2026-09-11T18:18:09.310001+00:00",
-  "total_elapsed_seconds": 492.147
+  "completed_at": "2026-09-11T18:18:20.369724+00:00",
+  "total_elapsed_seconds": 255.431,
+  "summary": {
+    "video": "027_video",
+    "duration_seconds": 62.354,
+    "beat_count": 12,
+    "video_beat_count": 2,
+    "image_beat_count": 10,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 5.74,
+      "transition_end": 9.38
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Nano Banana 2"
+      ],
+      "unverified": [
+        "gemini_world_style_anchor"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 197.409,
+      "realtime_factor": 3.166,
+      "peak_child_rss_mb": 1243.9,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

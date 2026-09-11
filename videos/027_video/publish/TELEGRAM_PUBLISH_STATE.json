@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-11T18:18:19.202789+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-11T18:18:19.202561+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25679,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2427404,
+      "sha256": "180f07b1c742fd90c0c7cbafc68f46c1a4b738cbba47f286e5c690e84129abd8",
+      "duration_seconds": 62.361,
+      "elapsed_seconds": 5.365,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "027_video",
+        "duration_seconds": 62.354,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 5.74,
+          "transition_end": 9.38
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ],
+          "unverified": [
+            "gemini_world_style_anchor"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 197.409,
+          "realtime_factor": 3.166,
+          "peak_child_rss_mb": 1243.9,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 027_video\n⏱ Duration: 1:02\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n⚠️ Unverified receipts: 1\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:17 wall (3.166x realtime) · 2 thread(s) · peak 1243.9 MB\nArtifact: 180f07b1c742 · Delivery: compressed"
+    }
+  }
+}

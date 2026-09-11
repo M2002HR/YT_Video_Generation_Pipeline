@@ -118,19 +118,72 @@
         "--started-at",
         "2026-09-11T13:03:06.168740+00:00"
       ],
-      "status": "RUNNING"
+      "status": "DONE",
+      "ended_at": "2026-09-11T13:09:00.616578+00:00",
+      "elapsed_seconds": 5.485,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 350
     },
     {
-      "stage": "git_commit_push",
+      "stage": "publish_telegram",
+      "started_at": "2026-09-11T13:09:01.814385+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-11T13:03:06.168740+00:00",
-      "ended_at": "2026-09-11T13:08:58.706794+00:00",
-      "elapsed_seconds": 352.538,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "c30b4b9d1c0feab9a5ae8dd7617a1aee6f49f240"
+      "ended_at": "2026-09-11T13:09:12.116732+00:00",
+      "elapsed_seconds": 10.302,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2063
     }
   ],
-  "completed_at": "2026-09-11T13:08:58.706794+00:00",
-  "total_elapsed_seconds": 695.281
+  "completed_at": "2026-09-11T13:09:13.332308+00:00",
+  "total_elapsed_seconds": 358.53,
+  "summary": {
+    "video": "026_black_swan_meaning_by_nassim_talib",
+    "duration_seconds": 77.087,
+    "beat_count": 16,
+    "video_beat_count": 2,
+    "image_beat_count": 14,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 6.44,
+      "transition_end": 9.34
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Nano Banana 2"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 281.91,
+      "realtime_factor": 3.657,
+      "peak_child_rss_mb": 1522.6,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

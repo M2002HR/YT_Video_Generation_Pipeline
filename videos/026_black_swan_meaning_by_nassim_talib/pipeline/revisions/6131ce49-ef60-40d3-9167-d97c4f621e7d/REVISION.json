@@ -81,9 +81,10 @@
     8
   ],
   "feedback": "better",
-  "status": "RUNNING",
+  "status": "DONE",
   "regeneration_mode": "isolated",
   "feedback_path": "videos/026_black_swan_meaning_by_nassim_talib/pipeline/revisions/6131ce49-ef60-40d3-9167-d97c4f621e7d/feedback.json",
   "started_at": "2026-09-11T12:56:21.768316+00:00",
-  "pid": 1297459
+  "pid": 1297459,
+  "completed_at": "2026-09-11T13:09:16.310602+00:00"
 }

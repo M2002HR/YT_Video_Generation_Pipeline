@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-11T13:09:12.055283+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-11T13:09:12.055099+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25622,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 3664488,
+      "sha256": "5b86e3239d80ff2a57b9c1d840719df32e3ff847762cbc557e5f6c514ba9a32d",
+      "duration_seconds": 77.09,
+      "elapsed_seconds": 8.713,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "026_black_swan_meaning_by_nassim_talib",
+        "duration_seconds": 77.087,
+        "beat_count": 16,
+        "video_beat_count": 2,
+        "image_beat_count": 14,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 6.44,
+          "transition_end": 9.34
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 281.91,
+          "realtime_factor": 3.657,
+          "peak_child_rss_mb": 1522.6,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 026_black_swan_meaning_by_nassim_talib\n⏱ Duration: 1:17\n🎞 Beats: 16 (2 video · 14 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 4:42 wall (3.657x realtime) · 2 thread(s) · peak 1522.6 MB\nArtifact: 5b86e3239d80 · Delivery: compressed"
+    }
+  }
+}

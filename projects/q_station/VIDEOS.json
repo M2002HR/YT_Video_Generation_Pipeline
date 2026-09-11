@@ -144,7 +144,16 @@
       "camera_pattern": "slow_push_in",
       "book_template_id": "002",
       "world_style_id": "fractured_probability_screenprint_001",
-      "updated_at": "2026-09-11T10:53:43.013985+00:00"
+      "updated_at": "2026-09-11T12:56:25.669730+00:00"
+    },
+    {
+      "video_id": "027",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "world_style_id": "editorial_lipstick_economics_inkwash_001",
+      "updated_at": "2026-09-11T18:13:15.413904+00:00"
     }
   ]
 }
