@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "026_black_swan_meaning_by_nassim_talib",
   "started_at": "2026-09-11T10:54:13.401307+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -117,6 +117,18 @@
         "2026-09-11T10:54:13.401307+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-11T10:54:13.401307+00:00",
+      "ended_at": "2026-09-11T11:01:23.844119+00:00",
+      "elapsed_seconds": 430.443,
+      "branch": "ordak",
+      "remote": "origin",
+      "artifact_commit": "fb9b3b8c4aa5fbed50052a04831b680ef3e3014c"
     }
-  ]
+  ],
+  "completed_at": "2026-09-11T11:01:23.844119+00:00",
+  "total_elapsed_seconds": 850.558
 }
