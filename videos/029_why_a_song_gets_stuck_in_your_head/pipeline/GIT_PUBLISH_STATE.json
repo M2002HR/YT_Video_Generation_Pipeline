@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "369a6c912f367a4a48e8011ec116f19045429ac8",
+  "started_at": "2026-09-12T07:58:14.486953+00:00",
+  "completed_at": "2026-09-12T08:02:35.878028+00:00",
+  "elapsed_seconds": 261.391,
+  "scope": "videos/029_why_a_song_gets_stuck_in_your_head"
+}
