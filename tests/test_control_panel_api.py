@@ -76,6 +76,30 @@ def test_style_reference_is_hash_pinned_and_frozen_inside_the_run(tmp_path: Path
     assert reference["sha256"] == panel.sha256_path(tmp_path / reference["path"])
 
 
+def test_hash_verified_uploaded_subtitle_font_is_available_to_both_panel_forms(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """The runtime schema is the shared source for launch and Revise font choices."""
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    font_id = "b" * 32
+    folder = tmp_path / "control_panel" / "subtitle_fonts"; folder.mkdir(parents=True)
+    font = folder / f"{font_id}.ttf"; font.write_bytes(b"operator-owned-font")
+    panel.write_json(folder / "catalog.json", {"schema_version": 1, "fonts": [{
+        "id": font_id, "family": "Operator Sans", "extension": ".ttf",
+        "sha256": panel.sha256_path(font), "created_at": "2026-01-01T00:00:00+00:00",
+    }]})
+
+    custom = panel.custom_subtitle_fonts()
+    assert custom == [{
+        "id": font_id, "family": "Operator Sans", "extension": ".ttf",
+        "sha256": panel.sha256_path(font), "mime_type": "font/ttf", "created_at": "2026-01-01T00:00:00+00:00",
+    }]
+    assert "Operator Sans" in panel.available_subtitle_font_families()
+    schema = panel.studio_schema()
+    subtitle = next(group for group in schema["groups"] if group["id"] == "subtitles")
+    choice = next(field for field in subtitle["fields"] if field["name"] == "subtitle_font")
+    assert {"value": "Operator Sans", "label": "Operator Sans · Uploaded", "uploaded": True, "font_url": f"/api/fonts/custom-{font_id}"} in choice["options"]
+    assert panel.custom_font_for_slug(f"custom-{font_id}")["family"] == "Operator Sans"
+
+
 def test_launch_form_exposes_the_word_highlight_choice() -> None:
     form = launch_form("", "")
     assert 'name=word_highlight checked' in form

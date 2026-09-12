@@ -161,28 +161,45 @@ function useWebSocketUpdates({ jobId, onChange, notify, enabled = true, onStatus
   }, [jobId, enabled]);
 }
 
-let subtitleFontsInjected = false;
-function ensureSubtitleFonts() {
-  if (subtitleFontsInjected) return;
-  subtitleFontsInjected = true;
-  const css = Object.entries(SUBTITLE_FONT_SLUGS)
-    .map(
-      ([family, slug]) =>
-        `@font-face{font-family:"${family}";src:url("/api/fonts/${slug}");font-display:swap;}`,
-    )
+const injectedSubtitleFontSources = new Set();
+function subtitleFontSource(font, fontSources = {}) {
+  return fontSources[font] || (SUBTITLE_FONT_SLUGS[font] ? `/api/fonts/${SUBTITLE_FONT_SLUGS[font]}` : "");
+}
+
+function previewFontFamily(font, fontSources = {}) {
+  return subtitleFontSource(font, fontSources) ? font : "DejaVu Sans";
+}
+
+function ensureSubtitleFonts(fontSources = {}) {
+  const sources = Object.fromEntries(
+    Object.entries(SUBTITLE_FONT_SLUGS).map(([family, slug]) => [family, `/api/fonts/${slug}`]),
+  );
+  Object.assign(sources, fontSources);
+  const css = Object.entries(sources)
+    .filter(([family, source]) => family && source && !injectedSubtitleFontSources.has(`${family}|${source}`))
+    .map(([family, source]) => {
+      injectedSubtitleFontSources.add(`${family}|${source}`);
+      return `@font-face{font-family:"${family}";src:url("${source}");font-display:swap;}`;
+    })
     .join("\n");
+  if (!css) return;
   const el = document.createElement("style");
   el.textContent = css;
   document.head.appendChild(el);
 }
 
-function useSubtitleFont(font) {
+function useSubtitleFont(font, fontSources = {}) {
   const [status, setStatus] = useState("loading");
+  const source = subtitleFontSource(font, fontSources);
   useEffect(() => {
-    const family = SUBTITLE_FONT_SLUGS[font] != null ? font : "DejaVu Sans";
+    const family = previewFontFamily(font, fontSources);
     let cancelled = false;
     try {
-      ensureSubtitleFonts();
+      ensureSubtitleFonts(fontSources);
+      if (!source) {
+        setStatus("fallback");
+        return undefined;
+      }
       if (!document.fonts) {
         setStatus("ready");
         return undefined;
@@ -200,14 +217,12 @@ function useSubtitleFont(font) {
     return () => {
       cancelled = true;
     };
-  }, [font]);
+  }, [font, source]);
   return status;
 }
 
-function SubtitleFontSpecimen({ values }) {
-  const font = SUBTITLE_FONT_SLUGS[values.subtitle_font] != null
-    ? values.subtitle_font
-    : "DejaVu Sans";
+function SubtitleFontSpecimen({ values, fontSources = {} }) {
+  const font = previewFontFamily(values.subtitle_font, fontSources);
   return (
     <div
       className="subtitle-font-specimen"
@@ -226,8 +241,8 @@ function SubtitleFontSpecimen({ values }) {
 // Live caption preview on a fixed 270x480 frame (480/1920 of the ASS PlayRes
 // height, so sizes and bottom offsets match the burn-in math). Backdrops are
 // tried in order: the run's own keyframe, the selected style anchor, gradient.
-function SubtitlePreview({ values, backdrops, backdropLabel, note = "" }) {
-  const fontStatus = useSubtitleFont(values.subtitle_font);
+function SubtitlePreview({ values, backdrops, backdropLabel, note = "", fontSources = {} }) {
+  const fontStatus = useSubtitleFont(values.subtitle_font, fontSources);
   const keys = (backdrops || []).filter(Boolean).join("|");
   const [bgIndex, setBgIndex] = useState(0);
   useEffect(() => {
@@ -253,14 +268,13 @@ function SubtitlePreview({ values, backdrops, backdropLabel, note = "" }) {
           values={values}
           lines={lines}
           highlightFirst={Boolean(values.word_highlight)}
+          fontSources={fontSources}
         />
       </div>
-      <SubtitleFontSpecimen values={values} />
+      <SubtitleFontSpecimen values={values} fontSources={fontSources} />
       <small>
         {backdropLabel || "Sample backdrop"} · first {maxWords}-word caption ·{" "}
-        {SUBTITLE_FONT_SLUGS[values.subtitle_font] != null
-          ? values.subtitle_font
-          : "DejaVu Sans"}{" "}
+        {previewFontFamily(values.subtitle_font, fontSources)}{" "}
         {Math.min(120, Math.max(24, Number(values.subtitle_font_size) || 56))}px
         {values.subtitle_position ? ` · ${values.subtitle_position}` : ""}
         {fontStatus === "loading" ? " · loading font…" : ""}
@@ -273,10 +287,10 @@ function SubtitlePreview({ values, backdrops, backdropLabel, note = "" }) {
 
 // Cue-by-cue browser for revisions.  Each item is an actual timeline cue, on its
 // owning media beat, rather than a narration excerpt rewrapped in the browser.
-function SubtitleCuePreview({ values, cues }) {
+function SubtitleCuePreview({ values, cues, fontSources = {} }) {
   const [index, setIndex] = useState(0);
   const [mediaFailed, setMediaFailed] = useState(false);
-  const fontStatus = useSubtitleFont(values.subtitle_font);
+  const fontStatus = useSubtitleFont(values.subtitle_font, fontSources);
   const safe = cues.length ? Math.min(index, cues.length - 1) : 0;
   const cue = cues.length ? cues[safe] : null;
   const mediaKey = cue ? `${cue.kind}:${cue.src}:${cue.start}` : "none";
@@ -319,9 +333,10 @@ function SubtitleCuePreview({ values, cues }) {
           values={values}
           lines={cue.lines.length ? cue.lines : ["…"]}
           highlightFirst={Boolean(values.word_highlight)}
+          fontSources={fontSources}
         />
       </div>
-      <SubtitleFontSpecimen values={values} />
+      <SubtitleFontSpecimen values={values} fontSources={fontSources} />
       <div className="beat-nav">
         <button
           type="button"
@@ -355,11 +370,8 @@ function SubtitleCuePreview({ values, cues }) {
 
 // Caption overlay shared by the static preview and the beat browser. Geometry
 // mirrors build_timeline on a 270x480 frame (480/1920 of the ASS PlayRes).
-function CaptionOverlay({ values, lines, highlightFirst = false }) {
-  const font =
-    SUBTITLE_FONT_SLUGS[values.subtitle_font] != null
-      ? values.subtitle_font
-      : "DejaVu Sans";
+function CaptionOverlay({ values, lines, highlightFirst = false, fontSources = {} }) {
+  const font = previewFontFamily(values.subtitle_font, fontSources);
   const size = Math.min(120, Math.max(24, Number(values.subtitle_font_size) || 56));
   const margin = subtitleMarginPx(
     values.subtitle_position,
@@ -615,7 +627,7 @@ function SearchableSelect({ field, value, onChange, disabled = false }) {
               >
                 <i>{option.value === value ? "✓" : ""}</i>
                 {option.label}
-                {field.name === "subtitle_font" && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
+                {field.name === "subtitle_font" && SUBTITLE_FONT_SLUGS[option.value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
                   ? " · Latin only"
                   : ""}
               </button>
@@ -739,7 +751,7 @@ function Field({ field, value, onChange, allValues = {} }) {
     return (
       <>
         <SearchableSelect field={field} value={value} onChange={onChange} disabled={gated} />
-        {field.name === "subtitle_font" && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
+        {field.name === "subtitle_font" && SUBTITLE_FONT_SLUGS[value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
           <small className="font-language-warning">
             This face is Latin-only. Persian/Arabic captions will fall back to DejaVu Sans; use Rubik or DejaVu Sans for a deliberate Persian look.
           </small>
@@ -973,8 +985,44 @@ function StyleReferenceUpload({ value, change, previewUrl = "" }) {
   );
 }
 
+function SubtitleFontUpload({ change, onUploaded }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+  async function upload(event) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setUploading(true); setError("");
+    try {
+      const body = new FormData(); body.append("font", file);
+      const result = await request("/api/subtitle-fonts", { method: "POST", body });
+      if (!result?.font?.family || !result.font.font_url) throw new Error("The uploaded font response was incomplete.");
+      onUploaded(result.font);
+      change("subtitle_font", result.font.family);
+    } catch (failure) {
+      setError(failure.message);
+    } finally { setUploading(false); }
+  }
+  return (
+    <section className="subtitle-font-upload">
+      <div><b>Upload subtitle font</b><p>Use a licensed <code>.ttf</code> or <code>.otf</code> file (up to 16 MiB). It is stored securely for future renders and selected immediately.</p></div>
+      <label className="upload-button">{uploading ? "Validating font…" : "Upload font"}<input type="file" accept="font/ttf,font/otf,.ttf,.otf" disabled={uploading} onChange={upload} /></label>
+      {error && <small className="style-reference-error" role="alert">{error}</small>}
+    </section>
+  );
+}
+
 function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "" }) {
   const [advanced, setAdvanced] = useState(false);
+  const [uploadedFonts, setUploadedFonts] = useState([]);
+  const subtitleField = group.fields.find((field) => field.name === "subtitle_font");
+  const subtitleOptions = [
+    ...(subtitleField?.options || []),
+    ...uploadedFonts.filter((font) => !(subtitleField?.options || []).some((option) => option.value === font.family)),
+  ];
+  const subtitleFontSources = Object.fromEntries(
+    subtitleOptions.filter((option) => option.font_url).map((option) => [option.value, option.font_url]),
+  );
   const advancedCount = group.fields.filter((field) => field.advanced).length;
   return (
     <section className={`settings-group ${open ? "open" : ""}`}>
@@ -994,8 +1042,9 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
         <div className="field-grid">
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
           {group.id === "visual" && values.world_style_policy === "new" && !values.world_style_id && <StyleReferenceUpload value={values.world_style_reference_id} change={change} previewUrl={styleReferencePreview} />}
+          {group.id === "subtitles" && <SubtitleFontUpload change={change} onUploaded={(font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font])} />}
           {group.id === "subtitles" && subtitleBeats?.length > 0 && (
-            <SubtitleCuePreview values={values} cues={subtitleBeats} />
+            <SubtitleCuePreview values={values} cues={subtitleBeats} fontSources={subtitleFontSources} />
           )}
           {group.id === "subtitles" && (
             <small className="timeline-info">
@@ -1012,6 +1061,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
               backdrops={subtitleBackdrops}
               backdropLabel={subtitleBackdropLabel}
               note={subtitleNote}
+              fontSources={subtitleFontSources}
             />
           )}
           {group.fields
@@ -1025,6 +1075,9 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
                     ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({ value: item.id, label: item.display_name }))]
                     : field.options,
                 } : field;
+              if (field.name === "subtitle_font") {
+                displayField = { ...displayField, options: subtitleOptions };
+              }
               if (group.id === "sfx" && field.name !== "sfx_enabled") {
                 displayField = { ...displayField, requires: { field: "sfx_enabled", value: true } };
               }

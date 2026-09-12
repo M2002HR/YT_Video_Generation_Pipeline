@@ -998,8 +998,17 @@ def main() -> None:
     if subtitles_enabled:
         final_video_label = "vout"
         ass_path = escape_filter_path(subtitle_path)
+        # Operator-uploaded subtitle faces are stored with the panel, outside an
+        # episode directory.  Passing the directory directly to libass makes the
+        # persisted selected family deterministic without relying on system cache.
+        custom_fonts_dir = ROOT / "control_panel" / "subtitle_fonts"
+        fontsdir = (
+            f":fontsdir='{escape_filter_path(custom_fonts_dir)}'"
+            if custom_fonts_dir.is_dir()
+            else ""
+        )
         filter_parts.append(
-            f"[{concat_output}]ass=filename='{ass_path}'[{final_video_label}]"
+            f"[{concat_output}]ass=filename='{ass_path}'{fontsdir}[{final_video_label}]"
         )
 
     filter_complex = ";".join(filter_parts)

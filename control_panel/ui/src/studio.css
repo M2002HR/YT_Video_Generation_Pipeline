@@ -1948,6 +1948,24 @@ p {
   font-size: 11px;
   line-height: 1.45;
 }
+.subtitle-font-upload {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px;
+  border: 1px dashed #5c78a0;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #0a1421, #0c1929);
+}
+.subtitle-font-upload b { font-size: 12px; }
+.subtitle-font-upload p { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
+.subtitle-font-upload code { color: #b9d7ff; }
+.subtitle-font-upload .style-reference-error { margin-left: auto; }
+@media (max-width: 560px) {
+  .subtitle-font-upload { align-items: flex-start; flex-direction: column; }
+}
 /* Searchable font picker. */
 .search-select {
   position: relative;

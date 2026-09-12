@@ -425,6 +425,7 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <small>ignored when a style is picked above</small></label>
   <label>Style hint <small>free text; steers a new style</small>
    <input name=world_style_hint maxlength=500 placeholder="e.g. charcoal, woodcut, ink wash …"></label>
+  <input type=hidden name=world_style_reference_id value="">
   <label><input type=checkbox name=reserve_subtitle_space checked> Reserve lower space inside images for subtitles</label>
   <label><input type=checkbox name=chatgpt_fallback_auto> Automatically fall back to Gemini if ChatGPT fails</label>
   <label>Gemini image model <select name=gemini_image_model>

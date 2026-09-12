@@ -7,17 +7,17 @@
   "stages": {
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:13:58Z",
+      "updated_at": "2026-09-12T11:55:49Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:13:58Z",
+      "updated_at": "2026-09-12T11:55:49Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "character_resolution": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:13:58Z",
+      "updated_at": "2026-09-12T11:55:49Z",
       "requested_mode": "manual",
       "requested_character_id": "red_horned_everyman",
       "resolved_character_id": "red_horned_everyman",
@@ -27,22 +27,22 @@
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:13:58Z",
+      "updated_at": "2026-09-12T11:55:49Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:13:58Z",
+      "updated_at": "2026-09-12T11:55:49Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:13:58Z",
+      "updated_at": "2026-09-12T11:55:49Z",
       "artifact": "world_style_anchor.png → catalog/016_neon_earworm_pop_screenprint_001"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-12T08:13:59Z",
+      "updated_at": "2026-09-12T11:55:50Z",
       "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
       "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
       "camera_pattern": "pan_right",
@@ -51,73 +51,67 @@
     },
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:51Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:51Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:52Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:52Z",
       "artifact": "book_design_sheet_v2.png"
     },
     "book_cover_design": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:52Z",
       "artifact": "BOOK_COVER_DESIGN.txt"
     },
     "book_cover": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:52Z",
       "artifact": "book_cover_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:52Z",
       "artifact": "flow_prompt_opening_a.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:00Z",
+      "updated_at": "2026-09-12T11:55:52Z",
       "artifact": "flow_prompt_book_transition.txt"
     },
     "beat_image_001": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:03Z",
-      "artifact": "beat_001.png",
-      "isolated_revision": true
+      "updated_at": "2026-09-12T11:55:54Z",
+      "artifact": "beat_001.png"
     },
     "beat_image_002": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:03Z",
-      "artifact": "beat_002.png",
-      "isolated_revision": true
+      "updated_at": "2026-09-12T11:55:54Z",
+      "artifact": "beat_002.png"
     },
     "beat_image_003": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:03Z",
-      "artifact": "beat_003.png",
-      "isolated_revision": true
+      "updated_at": "2026-09-12T11:55:55Z",
+      "artifact": "beat_003.png"
     },
     "beat_image_004": {
       "status": "REUSED",
-      "updated_at": "2026-09-12T08:14:03Z",
-      "artifact": "beat_004.png",
-      "isolated_revision": true
+      "updated_at": "2026-09-12T11:55:55Z",
+      "artifact": "beat_004.png"
     },
     "beat_image_006": {
-      "status": "REUSED",
-      "updated_at": "2026-09-12T08:16:18Z",
-      "artifact": "beat_006.png",
-      "isolated_revision": true
+      "status": "RUNNING",
+      "updated_at": "2026-09-12T11:55:55Z"
     },
     "beat_image_007": {
       "status": "REUSED",
@@ -159,20 +153,13 @@
       "body_images": 10
     },
     "body_images": {
-      "status": "DONE",
-      "updated_at": "2026-09-12T08:16:19Z"
+      "status": "RUNNING",
+      "updated_at": "2026-09-12T11:55:52Z"
     },
     "beat_image_005": {
-      "status": "DONE",
-      "updated_at": "2026-09-12T08:16:17Z",
-      "sha256": "28a821f6a6ee131498b80ac30638c560d786b0286d2b0e3a027baed016eac59c",
-      "references": [
-        "character_sheet",
-        "style_reference",
-        "world_keyframe",
-        "operator_style_reference",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-12T11:55:55Z",
+      "artifact": "beat_005.png"
     },
     "transition_direction": {
       "status": "DONE",
@@ -516,7 +503,18 @@
       "elapsed_seconds": 1.179,
       "at": "2026-09-12T08:16:21Z",
       "boundaries": 9
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.22,
+      "at": "2026-09-12T11:55:50Z",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "neon_earworm_pop_screenprint_001"
     }
   ],
-  "updated_at": "2026-09-12T08:16:23Z"
+  "updated_at": "2026-09-12T11:55:55Z"
 }

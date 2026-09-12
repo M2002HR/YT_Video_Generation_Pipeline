@@ -35,7 +35,7 @@ from panel_previews import preview as build_preview
 from image_artifacts import receipt_status
 from panel_contract import defaults as launch_defaults
 from panel_contract import launch_schema
-from panel_contract import ALL_SUBTITLE_FONTS
+from panel_contract import ALL_SUBTITLE_FONTS, RECOMMENDED_SUBTITLE_FONTS
 from run_graph import graph_for, invalidation_paths, regeneration_plan
 from content_projects import (
     DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project,
@@ -46,6 +46,7 @@ from character_runtime import CharacterSelectionError, load_character_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
+FONT_UPLOAD_LOCK = threading.Lock()
 PROVIDER_STATUS_LOCK = threading.Lock()
 PROVIDER_STATUS_CACHE: dict[str, object] = {"at": 0.0, "base": "", "value": {}}
 CREDIT_CHECK_LOCK = threading.Lock()
@@ -211,7 +212,7 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
     values["word_highlight"] = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
     _subtitle = brief.get("_subtitle") if isinstance(brief.get("_subtitle"), dict) else {}
     values["subtitle_font"] = str(_subtitle.get("font_name", SUBTITLE_STYLE_DEFAULTS["font_name"]))
-    if values["subtitle_font"] not in ALL_SUBTITLE_FONTS:
+    if values["subtitle_font"] not in available_subtitle_font_families():
         values["subtitle_font"] = SUBTITLE_STYLE_DEFAULTS["font_name"]
     for key, default in (("subtitle_font_size", "font_size"), ("subtitle_max_words", "max_words_per_cue")):
         try:
@@ -457,10 +458,17 @@ STYLE_REFERENCE_EXISTING_RE = re.compile(r"^existing:([a-f0-9]{64})$")
 STYLE_REFERENCE_MAX_BYTES = 12 * 1024 * 1024
 STYLE_REFERENCE_MAX_PIXELS = 32_000_000
 STYLE_REFERENCE_MIN_EDGE = 128
+SUBTITLE_FONT_UPLOAD_RE = re.compile(r"^[a-f0-9]{32}$")
+SUBTITLE_FONT_MAX_BYTES = 16 * 1024 * 1024
 
 
 def style_reference_uploads_dir() -> Path:
     return ROOT / "control_panel" / "style_reference_uploads"
+
+
+def subtitle_fonts_dir() -> Path:
+    """Persistent, panel-owned fonts used by both browser preview and libass."""
+    return ROOT / "control_panel" / "subtitle_fonts"
 
 
 def sha256_path(path: Path) -> str:
@@ -585,6 +593,85 @@ SUBTITLE_FONT_FILES = {
 SUBTITLE_FONT_SLUGS = {family: slug for slug, (family, _, _) in SUBTITLE_FONT_FILES.items()}
 assert set(ALL_SUBTITLE_FONTS) == set(SUBTITLE_FONT_SLUGS), "panel contract fonts and font files disagree"
 
+
+def _custom_font_catalog_path() -> Path:
+    return subtitle_fonts_dir() / "catalog.json"
+
+
+def custom_subtitle_fonts() -> list[dict[str, str]]:
+    """Return only hash-verified custom faces; stale catalog rows are ignored safely."""
+    try:
+        catalog = json.loads(_custom_font_catalog_path().read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    entries = catalog.get("fonts") if isinstance(catalog, dict) else None
+    if not isinstance(entries, list):
+        return []
+    valid: list[dict[str, str]] = []
+    for item in entries:
+        if not isinstance(item, dict):
+            continue
+        font_id = str(item.get("id") or "")
+        extension = str(item.get("extension") or "").lower()
+        family = str(item.get("family") or "").strip()
+        digest = str(item.get("sha256") or "")
+        if (
+            not SUBTITLE_FONT_UPLOAD_RE.fullmatch(font_id)
+            or extension not in {".ttf", ".otf"}
+            or not re.fullmatch(r"[0-9a-f]{64}", digest)
+            or not family
+            or len(family) > 120
+            or "," in family
+            or any(ord(char) < 32 for char in family)
+        ):
+            continue
+        path = subtitle_fonts_dir() / f"{font_id}{extension}"
+        try:
+            if not path.is_file() or sha256_path(path) != digest:
+                continue
+        except OSError:
+            continue
+        valid.append({
+            "id": font_id,
+            "family": family,
+            "extension": extension,
+            "sha256": digest,
+            "mime_type": "font/otf" if extension == ".otf" else "font/ttf",
+            "created_at": str(item.get("created_at") or ""),
+        })
+    return valid
+
+
+def available_subtitle_font_families() -> set[str]:
+    return set(ALL_SUBTITLE_FONTS) | {font["family"] for font in custom_subtitle_fonts()}
+
+
+def custom_font_for_slug(slug: str) -> dict[str, str] | None:
+    """Resolve a URL-safe custom id without exposing arbitrary filesystem paths."""
+    match = re.fullmatch(r"custom-([a-f0-9]{32})", slug)
+    if not match:
+        return None
+    font_id = match.group(1)
+    return next((font for font in custom_subtitle_fonts() if font["id"] == font_id), None)
+
+
+def subtitle_font_options() -> list[dict[str, Any]]:
+    """Schema options, with uploaded faces visibly separated from curated defaults."""
+    options = [
+        {"value": name, "label": name, "recommended": index < len(RECOMMENDED_SUBTITLE_FONTS)}
+        for index, name in enumerate(ALL_SUBTITLE_FONTS)
+    ]
+    options.extend(
+        {
+            "value": font["family"],
+            "label": f"{font['family']} · Uploaded",
+            "uploaded": True,
+            "font_url": f"/api/fonts/custom-{font['id']}",
+        }
+        for font in custom_subtitle_fonts()
+    )
+    return options
+
 #: Defaults for the subtitle style form, applied when an older brief omits ``_subtitle``.
 SUBTITLE_STYLE_DEFAULTS = {
     "font_name": "DejaVu Sans",
@@ -610,6 +697,10 @@ def studio_schema() -> dict:
                 field["options"] = [{"value": "", "label": "Choose a character"}] + [
                     {"value": item["id"], "label": item["display_name"]} for item in characters
                 ]
+            elif field["name"] == "subtitle_font":
+                # The static contract supplies the defaults; this runtime extension makes
+                # verified operator uploads available to both New run and Revise forms.
+                field["options"] = subtitle_font_options()
     return schema
 
 
@@ -1778,20 +1869,22 @@ class Handler(BaseHTTPRequestHandler):
         return None
 
     def serve_subtitle_font(self, slug: str) -> None:
-        """Serve one curated subtitle face so the Studio preview uses the burn-in font.
-
-        Read-only and allowlisted: only the exact files in SUBTITLE_FONT_FILES resolve.
-        """
+        """Serve an allowlisted curated or hash-verified uploaded subtitle face."""
         entry = SUBTITLE_FONT_FILES.get(slug)
-        if entry is None:
-            self.send_error(HTTPStatus.NOT_FOUND); return
-        _, path, mime = entry
-        target = Path(path)
+        if entry is not None:
+            _, path, mime = entry
+            target = Path(path)
+        else:
+            custom = custom_font_for_slug(slug)
+            if custom is None:
+                self.send_error(HTTPStatus.NOT_FOUND); return
+            target = subtitle_fonts_dir() / f"{custom['id']}{custom['extension']}"
+            mime = custom["mime_type"]
         try:
             data = target.read_bytes()
         except OSError:
             self.send_error(HTTPStatus.NOT_FOUND); return
-        if not data or len(data) > 8 * 1024 * 1024:
+        if not data or len(data) > SUBTITLE_FONT_MAX_BYTES:
             self.send_error(HTTPStatus.NOT_FOUND); return
         self.send_response(HTTPStatus.OK); self.send_header("Content-Type", mime); self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "public, max-age=31536000, immutable")
@@ -1803,6 +1896,100 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(data)
         except (BrokenPipeError, ConnectionResetError):
             return
+
+    def handle_subtitle_font_upload(self) -> None:
+        """Validate and persist a font once for exact browser and libass use.
+
+        The stored filename is generated, not user-controlled.  ``fc-scan`` extracts
+        the family libass will resolve, so the selected panel value and ASS Fontname
+        stay identical.
+        """
+        target: Path | None = None
+        catalog_committed = False
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            content_type = str(self.headers.get("Content-Type") or "")
+            if length <= 0 or length > SUBTITLE_FONT_MAX_BYTES + 128_000:
+                raise ValueError("Font upload is empty or exceeds 16 MiB.")
+            if not content_type.lower().startswith("multipart/form-data;"):
+                raise ValueError("Upload a .ttf or .otf font file.")
+            body = self.rfile.read(length)
+            message = BytesParser(policy=policy.default).parsebytes(
+                f"Content-Type: {content_type}\r\nMIME-Version: 1.0\r\n\r\n".encode("ascii") + body
+            )
+            parts = [item for item in message.iter_parts() if item.get_content_disposition() == "form-data"]
+            fonts = [item for item in parts if item.get_param("name", header="content-disposition") == "font"]
+            if len(fonts) != 1:
+                raise ValueError("Choose exactly one subtitle font.")
+            item = fonts[0]
+            filename = str(item.get_filename() or "")
+            extension = Path(filename).suffix.lower()
+            if extension not in {".ttf", ".otf"}:
+                raise ValueError("Subtitle fonts must be .ttf or .otf files.")
+            raw = item.get_payload(decode=True) or b""
+            if not raw or len(raw) > SUBTITLE_FONT_MAX_BYTES:
+                raise ValueError("Font upload is empty or exceeds 16 MiB.")
+            if extension == ".ttf" and raw[:4] not in {b"\x00\x01\x00\x00", b"true"}:
+                raise ValueError("The uploaded .ttf file has an invalid font signature.")
+            if extension == ".otf" and raw[:4] != b"OTTO":
+                raise ValueError("The uploaded .otf file has an invalid font signature.")
+            folder = subtitle_fonts_dir(); folder.mkdir(parents=True, exist_ok=True)
+            temporary = folder / f".scan-{uuid.uuid4().hex}{extension}"
+            try:
+                temporary.write_bytes(raw)
+                scanned = subprocess.run(
+                    ["fc-scan", "--format=%{family}\n%{fontformat}\n", str(temporary)],
+                    capture_output=True, text=True, timeout=8, check=False,
+                )
+                lines = [line.strip() for line in scanned.stdout.splitlines() if line.strip()]
+                family, font_format = (lines + ["", ""])[:2]
+                # Fontconfig can list aliases comma-separated; ASS needs one family
+                # name, so store the primary family exposed by the same font file.
+                family = family.split(",", 1)[0].strip()
+                allowed_formats = {"TrueType"} if extension == ".ttf" else {"CFF", "OpenType"}
+                if scanned.returncode or font_format not in allowed_formats:
+                    raise ValueError("The file is not a valid supported OpenType font.")
+                if (
+                    not family or len(family) > 120 or "," in family
+                    or any(ord(char) < 32 for char in family)
+                ):
+                    raise ValueError("This font has an unsupported family name.")
+                with FONT_UPLOAD_LOCK:
+                    if family in available_subtitle_font_families():
+                        raise ValueError(f"A subtitle font named '{family}' is already available.")
+                    font_id = uuid.uuid4().hex
+                    target = folder / f"{font_id}{extension}"
+                    temporary.replace(target)
+                    catalog_path = _custom_font_catalog_path()
+                    try:
+                        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+                    except (OSError, ValueError):
+                        catalog = {"schema_version": 1, "fonts": []}
+                    fonts = catalog.get("fonts") if isinstance(catalog.get("fonts"), list) else []
+                    fonts.append({
+                        "id": font_id, "family": family, "extension": extension,
+                        "sha256": sha256_path(target), "created_at": utcnow(),
+                    })
+                    catalog = {"schema_version": 1, "fonts": fonts}
+                    catalog_temp = catalog_path.with_name(f".{catalog_path.name}.{uuid.uuid4().hex}.tmp")
+                    try:
+                        catalog_temp.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                        catalog_temp.replace(catalog_path)
+                        catalog_committed = True
+                    finally:
+                        catalog_temp.unlink(missing_ok=True)
+            finally:
+                temporary.unlink(missing_ok=True)
+                if target is not None and not catalog_committed:
+                    target.unlink(missing_ok=True)
+            self.send_json(HTTPStatus.CREATED, {"font": {
+                "id": font_id, "family": family, "label": f"{family} · Uploaded",
+                "uploaded": True, "font_url": f"/api/fonts/custom-{font_id}",
+            }})
+        except subprocess.TimeoutExpired:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Font validation timed out; try another .ttf or .otf file."})
+        except (ValueError, OSError, UnicodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not accept subtitle font."})
 
     def serve_style_preview(self, content_project: str, style_id: str, kind: str) -> None:
         """Serve a small JPEG thumbnail for a style anchor or a representative beat."""
@@ -3030,6 +3217,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         if self.path == "/api/style-reference-uploads": self.handle_style_reference_upload(); return
+        if self.path == "/api/subtitle-fonts": self.handle_subtitle_font_upload(); return
         if self.path == "/api/credits/check":
             active = active_job(self.jobs_dir)
             if active is not None:
@@ -3191,7 +3379,7 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid flow_resolution")
             if opening_a_seconds not in {4,5,6,8} or opening_b_seconds not in {3,4,6,8}:
                 raise ValueError("Invalid opening durations")
-            if subtitle_font not in ALL_SUBTITLE_FONTS:
+            if subtitle_font not in available_subtitle_font_families():
                 raise ValueError("Invalid subtitle font.")
             if not 24 <= subtitle_font_size <= 120:
                 raise ValueError("Subtitle font size is outside 24..120.")
