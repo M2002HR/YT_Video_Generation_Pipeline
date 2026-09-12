@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "029_why_a_song_gets_stuck_in_your_head",
   "started_at": "2026-09-12T13:18:51.197047+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -119,6 +119,18 @@
         "2026-09-12T13:18:51.197047+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-12T13:18:51.197047+00:00",
+      "ended_at": "2026-09-12T13:22:55.005693+00:00",
+      "elapsed_seconds": 243.809,
+      "branch": "ordak",
+      "remote": "origin",
+      "artifact_commit": "d68a22490b6ef35d1fb118d02b42dbec926fe36d"
     }
-  ]
+  ],
+  "completed_at": "2026-09-12T13:22:55.005693+00:00",
+  "total_elapsed_seconds": 477.733
 }
