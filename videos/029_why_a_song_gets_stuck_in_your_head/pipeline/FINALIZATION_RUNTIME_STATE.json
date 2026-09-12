@@ -32,6 +32,92 @@
         "--telegram-title",
         "step 2/8 · Render Baseline"
       ],
+      "status": "DONE",
+      "ended_at": "2026-09-12T15:15:24.978550+00:00",
+      "elapsed_seconds": 228.45,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 49218653
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-12T15:15:24.979011+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-12T15:15:33.976790+00:00",
+      "elapsed_seconds": 8.998,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-12T15:15:35.173064+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-12T15:15:39.355236+00:00",
+      "elapsed_seconds": 4.182,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 49558544
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-12T15:15:40.436723+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-12T15:15:50.249082+00:00",
+      "elapsed_seconds": 9.812,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-12T15:15:51.494801+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-12T15:16:10.837779+00:00",
+      "elapsed_seconds": 19.343,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2881626
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-12T15:16:11.847726+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-12T15:11:34.045221+00:00"
+      ],
       "status": "RUNNING"
     }
   ]
