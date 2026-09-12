@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-12T08:20:46.779777+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-12T08:20:46.779594+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25794,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2640201,
+      "sha256": "27bbfbc727cc0bc41f26233403d3fc371abbf199803e04c594ab1250ece6fb09",
+      "duration_seconds": 59.432,
+      "elapsed_seconds": 6.618,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "029_why_a_song_gets_stuck_in_your_head",
+        "duration_seconds": 59.429,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.9,
+          "transition_end": 10.18
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 197.375,
+          "realtime_factor": 3.321,
+          "peak_child_rss_mb": 1285.4,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 029_why_a_song_gets_stuck_in_your_head\n⏱ Duration: 0:59\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:17 wall (3.321x realtime) · 2 thread(s) · peak 1285.4 MB\nArtifact: 27bbfbc727cc · Delivery: compressed"
+    }
+  }
+}

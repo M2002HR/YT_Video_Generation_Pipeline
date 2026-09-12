@@ -52,6 +52,30 @@ def test_launch_and_resume_build_the_same_command() -> None:
     assert panel.pipeline_command(record) == command, "the builder must be deterministic"
 
 
+def test_style_reference_is_hash_pinned_and_frozen_inside_the_run(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """An upload token must never leak into the launch brief or point outside its run."""
+    from PIL import Image
+
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    upload_id = "a" * 32
+    uploads = tmp_path / "control_panel" / "style_reference_uploads"
+    uploads.mkdir(parents=True)
+    source = uploads / f"{upload_id}.png"
+    Image.new("RGB", (160, 160), "navy").save(source)
+    panel.write_json(uploads / f"{upload_id}.json", {
+        "sha256": panel.sha256_path(source), "width": 160, "height": 160,
+    })
+    project = tmp_path / "videos" / "001_reference"
+    brief = {"_qh": {"_style_reference_upload_id": upload_id}}
+
+    panel.freeze_style_reference(brief, project, project / "launch" / "style_references")
+
+    reference = brief["_qh"]["world_style_reference"]
+    assert "_style_reference_upload_id" not in brief["_qh"]
+    assert reference["path"] == "videos/001_reference/launch/style_references/style_reference.png"
+    assert reference["sha256"] == panel.sha256_path(tmp_path / reference["path"])
+
+
 def test_launch_form_exposes_the_word_highlight_choice() -> None:
     form = launch_form("", "")
     assert 'name=word_highlight checked' in form

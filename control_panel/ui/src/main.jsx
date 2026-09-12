@@ -856,6 +856,7 @@ function StyleLibrary({ styles, loading, values, change }) {
   const select = (styleId, nextPolicy) => {
     change("world_style_id", styleId);
     change("world_style_policy", nextPolicy);
+    if (nextPolicy !== "new") change("world_style_reference_id", "");
   };
   const remove = async (style) => {
     if (!window.confirm(`Delete “${style.display_name}” permanently? Its catalog entry and style files will be removed from disk.`)) return;
@@ -896,7 +897,7 @@ function StyleLibrary({ styles, loading, values, change }) {
           aria-pressed={!selectedId && policy === "new"}
           onClick={() => select("", "new")}
         >
-          <b>＋ Create a new style</b><span>Describe the desired look below; a new reusable anchor is created.</span>
+          <b>＋ Create a new style</b><span>Describe the look or upload a visual reference below; a new reusable anchor is created.</span>
         </button>
       </div>
       <div className="style-card-grid" aria-live="polite">
@@ -939,7 +940,40 @@ function StyleLibrary({ styles, loading, values, change }) {
   );
 }
 
-function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1 }) {
+function StyleReferenceUpload({ value, change, previewUrl = "" }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+  const [preview, setPreview] = useState(previewUrl);
+  useEffect(() => { if (previewUrl && !preview) setPreview(previewUrl); }, [previewUrl, preview]);
+  async function upload(event) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setUploading(true); setError("");
+    try {
+      const body = new FormData(); body.append("image", file);
+      const result = await request("/api/style-reference-uploads", { method: "POST", body });
+      change("world_style_reference_id", result.id);
+      setPreview(result.preview_url || "");
+    } catch (failure) {
+      setError(failure.message);
+    } finally { setUploading(false); }
+  }
+  return (
+    <section className="style-reference-upload">
+      <div><b>Visual style reference <small>optional</small></b><p>Use only for texture, palette, line work and mood. It will not copy people, text, logos, or composition.</p></div>
+      <div className="style-reference-actions">
+        <label className="upload-button">{uploading ? "Uploading…" : "Upload PNG, JPEG or WebP"}<input type="file" accept="image/png,image/jpeg,image/webp" disabled={uploading} onChange={upload} /></label>
+        {value && <button type="button" onClick={() => { change("world_style_reference_id", ""); setPreview(""); }}>Remove reference</button>}
+      </div>
+      {preview && <img src={preview} alt="Selected visual style reference" />}
+      {value && !preview && <small className="style-reference-saved">A hash-pinned reference is saved for this run.</small>}
+      {error && <small className="style-reference-error" role="alert">{error}</small>}
+    </section>
+  );
+}
+
+function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "" }) {
   const [advanced, setAdvanced] = useState(false);
   const advancedCount = group.fields.filter((field) => field.advanced).length;
   return (
@@ -959,6 +993,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
       {open && (
         <div className="field-grid">
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
+          {group.id === "visual" && values.world_style_policy === "new" && !values.world_style_id && <StyleReferenceUpload value={values.world_style_reference_id} change={change} previewUrl={styleReferencePreview} />}
           {group.id === "subtitles" && subtitleBeats?.length > 0 && (
             <SubtitleCuePreview values={values} cues={subtitleBeats} />
           )}
@@ -980,7 +1015,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
             />
           )}
           {group.fields
-            .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy"].includes(field.name))
+            .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy", "world_style_reference_id"].includes(field.name))
             .filter((field) => advanced || !field.advanced)
             .filter((field) => field.name !== "character_id" || values.character_mode === "manual")
             .map((field) => {
@@ -2029,6 +2064,7 @@ function ConfigModal({ run, close, done }) {
     [values, setValues] = useState(null),
     [plan, setPlan] = useState(null),
     [styles, setStyles] = useState([]),
+    [styleReference, setStyleReference] = useState(null),
     [stylesLoading, setStylesLoading] = useState(false),
     [timeline, setTimeline] = useState(null),
     [timelineTried, setTimelineTried] = useState(false),
@@ -2043,6 +2079,7 @@ function ConfigModal({ run, close, done }) {
     ])
       .then(([data, contract]) => {
         setValues(data.values);
+        setStyleReference(data.style_reference && typeof data.style_reference === "object" ? data.style_reference : null);
         setTransitionOverrides(Array.isArray(data.transition_overrides) ? data.transition_overrides : []);
         setSchema(contract.schema);
       })
@@ -2228,6 +2265,7 @@ function ConfigModal({ run, close, done }) {
                   change={(name, value) => setValues((current) => ({ ...current, [name]: value }))}
                   styles={styles}
                   stylesLoading={stylesLoading}
+                  styleReferencePreview={styleReference?.preview_path ? `/api/run/${run.job.job_id}/artifact/${styleReference.preview_path}` : ""}
                   open={openGroups.has(group.id)}
                   toggle={() => setOpenGroups((current) => {
                     const next = new Set(current);

@@ -163,6 +163,15 @@
       "book_template_id": "002",
       "world_style_id": "orchard_sleep_memory_collage_001",
       "updated_at": "2026-09-11T20:20:10.631977+00:00"
+    },
+    {
+      "video_id": "029",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "neon_earworm_pop_screenprint_001",
+      "updated_at": "2026-09-12T08:13:59.449619+00:00"
     }
   ]
 }

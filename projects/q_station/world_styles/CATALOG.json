@@ -143,6 +143,17 @@
       "path": "015_fractured_probability_screenprint_001",
       "anchor": "015_fractured_probability_screenprint_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "neon_earworm_pop_screenprint_001",
+      "display_name": "Neon Earworm Pop Screenprint 001",
+      "medium_family": "screen print",
+      "texture_family": "dry matte screen-print ink on lightly coarse paper with subtle registration wear",
+      "palette_summary": "high-energy pop-art palette of cherry red, hot pink, lemon yellow, electric violet and warm orange, anchored by dense black outlines and small off-white breathing areas; saturated accents are concentrated around looping sound and memory cues",
+      "status": "ready",
+      "path": "016_neon_earworm_pop_screenprint_001",
+      "anchor": "016_neon_earworm_pop_screenprint_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

@@ -61,6 +61,16 @@ def receipt_status(project: Path, output: Path, receipt_path: Path, *, fingerpri
             raise ValueError("Invalid receipt")
         if digest(output) != receipt.get("output_sha256"):
             return outcome("stale", "Image differs from its receipt")
+        # The request fingerprint already binds the full runtime prompt, model and
+        # reference bytes. The prompt-file check below compares the *base* file
+        # against the recorded *runtime* prompt, which for world_keyframe includes
+        # a runtime-only operator suffix (see stage_world_keyframe). When the
+        # caller supplies a fingerprint and it matches, the inputs are proven
+        # identical, so the weaker file-content heuristic must not override it.
+        fingerprint_matches = (
+            fingerprint is not None
+            and receipt.get("request_fingerprint") == fingerprint
+        )
         launch = project / "launch/LAUNCH_REQUEST.json"
         if _model_bound(receipt) and launch.is_file():
             model = json.loads(launch.read_text()).get("image_generation", {}).get("model")
@@ -73,7 +83,7 @@ def receipt_status(project: Path, output: Path, receipt_path: Path, *, fingerpri
             base = project / "beats" / (output.stem.upper() + "_PROMPT.md")
             revision = base.with_suffix(".revision.md")
             prompt_path = revision if revision.is_file() else base
-        if prompt_path and prompt_path.is_file():
+        if prompt_path and prompt_path.is_file() and not fingerprint_matches:
             current_prompt = prompt_path.read_text().strip()
             recorded_prompt = str(receipt.get("prompt") or "").strip()
             if recorded_prompt and current_prompt != recorded_prompt:

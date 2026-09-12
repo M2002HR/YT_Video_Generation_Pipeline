@@ -985,7 +985,7 @@ class Runner:
             "candidate directly to it. A changed face, silhouette, body proportions, hair/facial-hair, "
             "signature anatomy, or canonical outfit is a fundamental failure: set passed=false and include "
             "'character identity drift: <specific mismatch>' in blocking_violations. When a style_reference, "
-            "world_keyframe, or previous_beat is attached, compare the candidate directly to the applicable "
+            "world_keyframe, previous_beat, or operator_style_reference is attached, compare the candidate directly to the applicable "
             "reference(s). A material break in the recurring medium, line treatment, palette logic, texture, "
             "frame language, or established visual world is a fundamental failure: set passed=false and include "
             "'style continuity drift: <specific mismatch>' in blocking_violations. Do not reject minor natural "
@@ -1241,6 +1241,7 @@ def ask_with_correction(
     *,
     attempts: int = 3,
     hint: str = "",
+    references: list[Reference] = (),
 ) -> Any:
     """Ask for JSON and send the validator's own complaint back when it refuses.
 
@@ -1255,7 +1256,7 @@ def ask_with_correction(
     for attempt in range(attempts):
         label = stage if attempt == 0 else f"{stage}_fix{attempt}"
         try:
-            return validate(runner.json(label, current))
+            return validate(runner.json(label, current, references=references))
         except StageFailure as exc:
             failure = exc
             print(f"    ↻ {stage} rejected: {exc.message}", flush=True)
@@ -1569,6 +1570,25 @@ def style_directive(policy: str, style_id: str, hint: str) -> str:
     return "No operator constraint: choose reuse or new on the merits, per the rules below."
 
 
+def operator_style_reference(project: Path) -> Reference | None:
+    """Resolve only a hash-pinned, run-owned operator reference from the frozen brief."""
+    try:
+        manifest = (load_json(project / "launch" / "CREATIVE_BRIEF.json").get("_qh") or {}).get("world_style_reference")
+    except (OSError, ValueError, TypeError):
+        return None
+    if not isinstance(manifest, dict):
+        return None
+    relative, digest = str(manifest.get("path") or ""), str(manifest.get("sha256") or "")
+    try:
+        path = (ROOT / relative).resolve()
+        path.relative_to(project.resolve())
+    except ValueError:
+        raise StageFailure("world_style_director", "FAILED_VALIDATION", "Style reference path is outside this run.")
+    if not re.fullmatch(r"[a-f0-9]{64}", digest) or not valid_image(path) or sha256_file(path) != digest:
+        raise StageFailure("world_style_director", "FAILED_VALIDATION", "Style reference failed integrity verification.")
+    return Reference(role="operator_style_reference", path=path)
+
+
 def stage_world_style_director(
     runner: Runner,
     project: Path,
@@ -1583,6 +1603,7 @@ def stage_world_style_director(
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
+    reference = operator_style_reference(project)
     catalog = {}
     catalog_path = WORLD_STYLES_ROOT / "CATALOG.json"
     if catalog_path.is_file():
@@ -1607,9 +1628,15 @@ def stage_world_style_director(
                 "FAILED_VALIDATION",
                 "The world style plan must define both frame_language and subtitle_reserve.",
             )
+        if reference and str(data.get("decision") or "").lower() != "new":
+            raise StageFailure(stage, "FAILED_VALIDATION", "An operator style reference requires a new style, not catalog reuse.")
         return data
 
-    data = ask_with_correction(runner, stage, prompt, check_style)
+    data = ask_with_correction(runner, stage, prompt, check_style, references=[reference] if reference else ())
+    if reference:
+        data["operator_style_reference"] = {
+            "path": str(reference.path.relative_to(ROOT)), "sha256": sha256_file(reference.path), "role": reference.role,
+        }
     save_json(target, data)
     runner.stage_done(stage, started, f"{data.get('style_id')} ({data.get('decision')})", style_id=data.get("style_id"))
     return data
@@ -1655,6 +1682,7 @@ def stage_world_style_anchor(
     """The style anchor is a Gemini image or a catalog reuse — never a drawn placeholder."""
     stage = "world_style_anchor"
     target = project / "references" / "world_style_anchor.png"
+    reference = operator_style_reference(project)
     prompt = (
         "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, "
         f"not a scene. Medium: {world_style_plan.get('medium')}. "
@@ -1664,6 +1692,12 @@ def stage_world_style_anchor(
         f"Lighting: {world_style_plan.get('lighting')}. "
         f"Avoid: {world_style_plan.get('negative_constraints')}. "
         "No characters, no text, no logos, no photorealism."
+        + (
+            " The attached operator_style_reference is style-only: use its palette, material texture, "
+            "line language and lighting as inspiration for this original neutral anchor. Do not copy "
+            "its subject, composition, text, logo, person, or recognizable layout."
+            if reference else ""
+        )
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
@@ -1717,12 +1751,13 @@ def stage_world_style_anchor(
             "for it in the catalog.",
         )
 
-    reused = reusable_image(runner, project, stage, target, receipt_path, prompt, model, [])
+    references = [reference] if reference else []
+    reused = reusable_image(runner, project, stage, target, receipt_path, prompt, model, references)
     started = None
     if not reused:
         started = runner.stage_start(stage)
-        result = runner.image(stage, prompt, [], model=model, destination=target)
-        _write_image_receipt(project, "gemini_world_style_anchor", result, prompt, [], target, model)
+        result = runner.image(stage, prompt, references, model=model, destination=target)
+        _write_image_receipt(project, "gemini_world_style_anchor", result, prompt, references, target, model)
 
     # A new style is only reusable once it is in the catalog: the director is shown that
     # file, the panel lists it, and a later episode can be pinned to it (§35).
@@ -2160,6 +2195,14 @@ def stage_world_keyframe(
     references: list[Reference] = []
     if valid_image(world_style_anchor):
         references.append(Reference(role="style_reference", path=world_style_anchor))
+    reference = operator_style_reference(project)
+    if reference:
+        references.append(reference)
+        prompt = (
+            f"{prompt.rstrip()}\n\nThe attached operator_style_reference is style-only. Preserve the "
+            "newly established world plan while echoing only its texture, palette, line work and lighting; "
+            "do not copy its subject, text, people, logo, or composition."
+        )
 
     if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, references):
         runner.stage_reused(stage, target.name)
@@ -2617,6 +2660,7 @@ def _beat_reference_stack(
     world_style_anchor: Path,
     world_keyframe: Path,
     previous: Path | None,
+    operator_reference: Reference | None = None,
 ) -> list[Reference]:
     """§30 reference order: identity, style, world, then texture-only continuity.
 
@@ -2634,6 +2678,8 @@ def _beat_reference_stack(
         references.append(Reference(role="style_reference", path=world_style_anchor))
     if valid_image(world_keyframe):
         references.append(Reference(role="world_keyframe", path=world_keyframe))
+    if operator_reference is not None:
+        references.append(operator_reference)
     if previous is not None and valid_image(previous):
         references.append(Reference(role="previous_beat", path=previous))
     return references
@@ -2826,7 +2872,10 @@ def stage_body_images(
             target = output_dir / f"beat_{beat_id:03d}.png"
 
             beat_character = character if beat.get("hero_present", False) else None
-            references = _beat_reference_stack(beat_character, beat, world_style_anchor, world_keyframe, previous)
+            references = _beat_reference_stack(
+                beat_character, beat, world_style_anchor, world_keyframe, previous,
+                operator_style_reference(project),
+            )
             prompt = stage_beat_prompt(
                 runner, project, content_project, beat, world_style_plan, references, beat_character
             )

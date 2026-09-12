@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import argparse
 import base64
+from email import policy
+from email.parser import BytesParser
 import html
 import hashlib
 import json
@@ -57,6 +59,7 @@ QH_ROOTS = {
     "world_style_policy": ("world_style_director",),
     "world_style_id": ("world_style_director",),
     "world_style_hint": ("world_style_director",),
+    "world_style_reference_id": ("world_style_director",),
     "gemini_image_model": ("world_style_anchor",),
     # Affects only future image attempts; saving it must not spend credits rebuilding
     # already accepted artifacts.
@@ -198,6 +201,9 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         if field != "chatgpt_fallback_auto" and stored in qh
     })
     values["chatgpt_fallback_auto"] = qh.get("chatgpt_fallback_mode", "approval") == "auto"
+    reference = qh.get("world_style_reference") if isinstance(qh.get("world_style_reference"), dict) else {}
+    reference_hash = str(reference.get("sha256") or "")
+    values["world_style_reference_id"] = f"existing:{reference_hash}" if re.fullmatch(r"[a-f0-9]{64}", reference_hash) else ""
     character = qh.get("character") if isinstance(qh.get("character"), dict) else record.get("character") or {}
     values["character_mode"] = str(character.get("mode") or "auto")
     values["character_id"] = str(character.get("character_id") or "")
@@ -343,11 +349,30 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     brief = {**previous, **{key: merged[key] for key in CREATIVE_FIELDS}}
     qh = dict(previous.get("_qh") or {})
     for key in QH_FIELDS:
-        if key in {"chatgpt_fallback_auto", "character_mode", "character_id"}:
+        if key in {"chatgpt_fallback_auto", "character_mode", "character_id", "world_style_reference_id"}:
             continue
         qh[QH_STORED_FIELDS[key]] = merged[key]
         if before.get(key) != merged.get(key):
             roots.update(QH_ROOTS[key])
+    reference_id = str(merged.get("world_style_reference_id") or "")
+    old_reference = qh.get("world_style_reference") if isinstance(qh.get("world_style_reference"), dict) else None
+    old_hash = str((old_reference or {}).get("sha256") or "")
+    if reference_id:
+        existing_match = STYLE_REFERENCE_EXISTING_RE.fullmatch(reference_id)
+        if existing_match:
+            if existing_match.group(1) != old_hash:
+                raise ValueError("Stored style reference no longer matches this run.")
+        elif not STYLE_REFERENCE_UPLOAD_RE.fullmatch(reference_id):
+            raise ValueError("Invalid style reference upload.")
+        else:
+            qh["_style_reference_upload_id"] = reference_id
+    else:
+        qh.pop("world_style_reference", None)
+        qh.pop("_style_reference_upload_id", None)
+    if before.get("world_style_reference_id") != reference_id:
+        roots.update(QH_ROOTS["world_style_reference_id"])
+    if reference_id and merged["world_style_policy"] != "new":
+        raise ValueError("A style reference can only be used when creating a new style.")
     qh["chatgpt_fallback_mode"] = "auto" if merged["chatgpt_fallback_auto"] else "approval"
     qh["character"] = {
         "mode": merged["character_mode"],
@@ -427,6 +452,107 @@ PROVIDERS = ("chatgpt", "gemini", "flow")
 MUSIC_PROVIDERS = ("freesound", "mixkit", "pixabay")
 JOB_ID_RE = re.compile(r"^[a-f0-9-]{36}$")
 STYLE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,119}$", re.IGNORECASE)
+STYLE_REFERENCE_UPLOAD_RE = re.compile(r"^[a-f0-9]{32}$")
+STYLE_REFERENCE_EXISTING_RE = re.compile(r"^existing:([a-f0-9]{64})$")
+STYLE_REFERENCE_MAX_BYTES = 12 * 1024 * 1024
+STYLE_REFERENCE_MAX_PIXELS = 32_000_000
+STYLE_REFERENCE_MIN_EDGE = 128
+
+
+def style_reference_uploads_dir() -> Path:
+    return ROOT / "control_panel" / "style_reference_uploads"
+
+
+def sha256_path(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def validate_style_reference_image(payload: bytes) -> tuple[bytes, int, int]:
+    """Decode an operator image defensively and strip all untrusted metadata."""
+    if not payload or len(payload) > STYLE_REFERENCE_MAX_BYTES:
+        raise ValueError("Style reference image must be between 1 byte and 12 MiB.")
+    try:
+        from PIL import Image, ImageOps
+        from io import BytesIO
+        with Image.open(BytesIO(payload)) as image:
+            image.verify()
+        with Image.open(BytesIO(payload)) as image:
+            if getattr(image, "n_frames", 1) != 1:
+                raise ValueError("Animated or multi-frame images cannot be used as a style reference.")
+            width, height = image.size
+            if width < STYLE_REFERENCE_MIN_EDGE or height < STYLE_REFERENCE_MIN_EDGE:
+                raise ValueError("Style reference image must be at least 128 pixels on each side.")
+            if width * height > STYLE_REFERENCE_MAX_PIXELS:
+                raise ValueError("Style reference image has too many pixels.")
+            normalized = ImageOps.exif_transpose(image).convert("RGB")
+            output = BytesIO()
+            normalized.save(output, format="PNG", optimize=True)
+            return output.getvalue(), width, height
+    except ValueError:
+        raise
+    except Exception as exc:
+        raise ValueError("Style reference must be a valid PNG, JPEG, or WebP image.") from exc
+
+
+def read_style_reference_upload(upload_id: str) -> tuple[Path, dict]:
+    if not STYLE_REFERENCE_UPLOAD_RE.fullmatch(upload_id):
+        raise ValueError("Invalid style reference upload.")
+    folder = style_reference_uploads_dir()
+    image, metadata_path = folder / f"{upload_id}.png", folder / f"{upload_id}.json"
+    try:
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ValueError("Style reference upload has expired; upload it again.") from exc
+    if not isinstance(metadata, dict) or not image.is_file() or metadata.get("sha256") != sha256_path(image):
+        raise ValueError("Style reference upload failed integrity verification; upload it again.")
+    return image, metadata
+
+
+def freeze_style_reference(brief: dict, project: Path, folder: Path) -> None:
+    """Turn an ephemeral upload into an immutable, run-owned reference manifest."""
+    qh = brief.setdefault("_qh", {})
+    if not isinstance(qh, dict):
+        raise ValueError("Invalid Q Station settings.")
+    upload_id = str(qh.pop("_style_reference_upload_id", "") or "")
+    existing = qh.get("world_style_reference")
+    source: Path | None = None
+    metadata: dict[str, Any] = {}
+    if upload_id:
+        source, metadata = read_style_reference_upload(upload_id)
+    elif isinstance(existing, dict):
+        relative = str(existing.get("path") or "")
+        try:
+            candidate = (ROOT / relative).resolve()
+            candidate.relative_to((ROOT / "videos").resolve())
+        except ValueError as exc:
+            raise ValueError("Stored style reference has an unsafe path.") from exc
+        if not candidate.is_file() or not re.fullmatch(r"[a-f0-9]{64}", str(existing.get("sha256") or "")) or sha256_path(candidate) != existing["sha256"]:
+            raise ValueError("Stored style reference failed integrity verification.")
+        source = candidate
+        metadata = dict(existing)
+    if source is None:
+        qh.pop("world_style_reference", None)
+        return
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / "style_reference.png"
+    temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        shutil.copyfile(source, temporary)
+        temporary.replace(target)
+    finally:
+        temporary.unlink(missing_ok=True)
+    qh["world_style_reference"] = {
+        "schema_version": 1,
+        "path": str(target.relative_to(ROOT)),
+        "sha256": sha256_path(target),
+        "mime_type": "image/png",
+        "width": int(metadata.get("width") or 0),
+        "height": int(metadata.get("height") or 0),
+    }
 
 #: Subtitle preview fonts. Slugs are URL-safe; files are the exact faces fontconfig
 #: resolves for the ASS ``font_name`` so the Studio preview matches the burn-in.
@@ -1811,6 +1937,59 @@ class Handler(BaseHTTPRequestHandler):
         except (BrokenPipeError, ConnectionResetError):
             return
 
+    def handle_style_reference_upload(self) -> None:
+        """Accept one small operator-owned style image and store a normalized temporary copy."""
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            content_type = str(self.headers.get("Content-Type") or "")
+            if length <= 0 or length > STYLE_REFERENCE_MAX_BYTES + 128_000:
+                raise ValueError("Style reference upload is empty or too large.")
+            if not content_type.lower().startswith("multipart/form-data;"):
+                raise ValueError("Style reference must be uploaded as a file.")
+            body = self.rfile.read(length)
+            message = BytesParser(policy=policy.default).parsebytes(
+                f"Content-Type: {content_type}\r\nMIME-Version: 1.0\r\n\r\n".encode("ascii") + body
+            )
+            parts = [item for item in message.iter_parts() if item.get_content_disposition() == "form-data"]
+            images = [item for item in parts if item.get_param("name", header="content-disposition") == "image"]
+            if len(images) != 1:
+                raise ValueError("Choose exactly one style reference image.")
+            item = images[0]
+            if item.get_content_type().lower() not in {"image/png", "image/jpeg", "image/webp", "application/octet-stream"}:
+                raise ValueError("Style reference must be PNG, JPEG, or WebP.")
+            raw = item.get_payload(decode=True) or b""
+            normalized, width, height = validate_style_reference_image(raw)
+            upload_id = uuid.uuid4().hex
+            folder = style_reference_uploads_dir(); folder.mkdir(parents=True, exist_ok=True)
+            image = folder / f"{upload_id}.png"
+            temporary = image.with_name(f".{image.name}.{uuid.uuid4().hex}.tmp")
+            try:
+                temporary.write_bytes(normalized)
+                temporary.replace(image)
+            finally:
+                temporary.unlink(missing_ok=True)
+            metadata = {"schema_version": 1, "sha256": sha256_path(image), "width": width, "height": height, "created_at": utcnow()}
+            write_json(folder / f"{upload_id}.json", metadata)
+            self.send_json(HTTPStatus.CREATED, {"id": upload_id, "width": width, "height": height, "preview_url": f"/api/style-reference-uploads/{upload_id}/preview"})
+        except (ValueError, OSError, UnicodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not accept style reference image."})
+
+    def serve_style_reference_upload_preview(self, upload_id: str) -> None:
+        try:
+            image, _ = read_style_reference_upload(upload_id)
+            cache = style_reference_uploads_dir() / "previews"; cache.mkdir(parents=True, exist_ok=True)
+            preview, _ = build_preview(image, cache, style=True)
+            payload = preview.read_bytes()
+        except (ValueError, OSError):
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "image/jpeg"); self.send_header("Content-Length", str(len(payload)))
+        self.send_header("Cache-Control", "private, no-cache"); self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY"); self.end_headers()
+        if getattr(self, "command", "GET") != "HEAD":
+            try: self.wfile.write(payload)
+            except (BrokenPipeError, ConnectionResetError): return
+
     def read_json_payload(self, limit: int = 100_000) -> dict:
         size = int(self.headers.get("Content-Length", "0"))
         if size <= 0 or size > limit:
@@ -2050,6 +2229,7 @@ class Handler(BaseHTTPRequestHandler):
             "launch_reason": "topic_change",
         }
         request = project / "launch" / "LAUNCH_REQUEST.json"
+        freeze_style_reference(brief, project, project / "launch" / "style_references")
         write_json(profile, voice)
         write_json(creative_brief_path, brief)
         write_json(request, record)
@@ -2256,6 +2436,7 @@ class Handler(BaseHTTPRequestHandler):
                     self.send_json(HTTPStatus.CONFLICT, {"error": "Another episode is running."})
                     return
                 folder.mkdir(parents=True, exist_ok=False)
+                freeze_style_reference(brief, project, folder)
                 write_json(folder / "CREATIVE_BRIEF.json", brief)
                 write_json(folder / "VOICE_PROFILE.json", voice)
                 record.update({key: value for key, value in launch.items() if not key.startswith("_")})
@@ -2679,6 +2860,10 @@ class Handler(BaseHTTPRequestHandler):
                 return
             self.send_json(HTTPStatus.OK, {"content_project": canonical, "styles": style_catalog_entries(canonical)})
             return
+        if route.startswith("/api/style-reference-uploads/") and route.endswith("/preview"):
+            upload_id = route.removeprefix("/api/style-reference-uploads/").removesuffix("/preview").strip("/")
+            self.serve_style_reference_upload_preview(upload_id)
+            return
         if route == "/api/character-catalog":
             content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
             try:
@@ -2753,11 +2938,19 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError, KeyError):
                 self.send_json(HTTPStatus.CONFLICT, {"error": "This run's frozen configuration is unavailable."}); return
             launch = {key: record.get(key) for key in ("music_provider", "music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
+            style_reference = (brief.get("_qh") or {}).get("world_style_reference")
+            if isinstance(style_reference, dict):
+                style_reference = dict(style_reference)
+                try:
+                    style_reference["preview_path"] = str((ROOT / str(style_reference.get("path") or "")).resolve().relative_to(_project))
+                except ValueError:
+                    style_reference.pop("preview_path", None)
             self.send_json(HTTPStatus.OK, {
                 "creative_brief": brief,
                 "voice_profile": voice,
                 "launch": launch,
                 "values": frozen_values(record, brief, voice),
+                "style_reference": style_reference,
                 "transition_overrides": list((brief.get("_motion") or {}).get("transition_overrides", []) or []),
             }); return
 
@@ -2836,6 +3029,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_error(HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:
+        if self.path == "/api/style-reference-uploads": self.handle_style_reference_upload(); return
         if self.path == "/api/credits/check":
             active = active_job(self.jobs_dir)
             if active is not None:
@@ -2949,6 +3143,7 @@ class Handler(BaseHTTPRequestHandler):
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
             world_style_hint = form_text(values, "world_style_hint", 500) if values.get("world_style_hint") else ""
+            world_style_reference_id = values.get("world_style_reference_id", [""])[0].strip()
             reserve_subtitle_space = "reserve_subtitle_space" in values
             chatgpt_fallback_auto = "chatgpt_fallback_auto" in values
             world_style_id = values.get("world_style_id", [""])[0].strip()
@@ -2976,6 +3171,10 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid hero_presence_mode")
             if world_style_policy not in {"auto", "reuse", "new"}:
                 raise ValueError("Invalid world_style_policy")
+            if world_style_reference_id and not STYLE_REFERENCE_UPLOAD_RE.fullmatch(world_style_reference_id):
+                raise ValueError("Invalid style reference upload.")
+            if world_style_reference_id and world_style_policy != "new":
+                raise ValueError("A style reference can only be used when creating a new style.")
             if gemini_image_model not in {"nano_banana_pro", "nano_banana_2"}:
                 try:
                     gemini_image_model = normalize_gemini_model(gemini_image_model)
@@ -3088,6 +3287,8 @@ class Handler(BaseHTTPRequestHandler):
                 "reserve_subtitle_space": reserve_subtitle_space,
                 "chatgpt_fallback_mode": "auto" if chatgpt_fallback_auto else "approval",
             }
+            if world_style_reference_id:
+                creative_brief["_qh"]["_style_reference_upload_id"] = world_style_reference_id
             # Kept outside the QH-only settings so legacy content projects use the same
             # visible panel choice when their render profile is created.
             creative_brief["_subtitle"] = {
@@ -3165,6 +3366,10 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_notice(HTTPStatus.CONFLICT, f"Video {active.get('video_id')} is already running. Wait for it to finish before launching another."); return
             video_id = next_video_id()
             project = ROOT / "videos" / f"{video_id}_{video_slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
+            try:
+                freeze_style_reference(creative_brief, project, project / "launch" / "style_references")
+            except ValueError as exc:
+                self.send_notice(HTTPStatus.BAD_REQUEST, str(exc)); return
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
             creative_brief_path = project / "launch" / "CREATIVE_BRIEF.json"; write_json(creative_brief_path, creative_brief)
             # Store the launch request with frozen settings §59.

@@ -125,6 +125,9 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
         {"id": "visual", "title": "World style & still images", "description": "World identity, style selection and Gemini still generation.", "projects": ["q_station"], "fields": [
             _field("world_style_id", "World style", "select", default="", options=[{"value": "", "label": "Auto — let the director decide"}] + [{"value": value, "label": value} for value in styles]),
             _field("world_style_policy", "Style policy", "select", default="auto", options=select([("auto", "Auto — reuse or create"), ("reuse", "Reuse an existing style"), ("new", "Create a new style")])),
+            # Rendered by the Studio's dedicated upload control.  Keeping its opaque
+            # token in the typed contract means launch and revision use one validator.
+            _field("world_style_reference_id", "Style reference upload", maxLength=96, placeholder=""),
             _field("world_style_hint", "Style hint", maxLength=500, placeholder="charcoal, woodcut, ink wash…"),
             _field("gemini_image_model", "Gemini image model", "select", default="nano_banana_2", options=select([("nano_banana_2", "Nano Banana 2"), ("nano_banana_pro", "Nano Banana Pro (availability required)")])),
             _field(

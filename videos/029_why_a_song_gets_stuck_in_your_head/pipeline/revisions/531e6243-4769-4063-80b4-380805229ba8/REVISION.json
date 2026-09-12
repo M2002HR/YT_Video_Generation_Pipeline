@@ -76,10 +76,11 @@
     5
   ],
   "feedback": "fix it",
-  "status": "RUNNING",
+  "status": "DONE",
   "regeneration_mode": "isolated",
   "use_chatgpt_feedback": false,
   "feedback_path": "videos/029_why_a_song_gets_stuck_in_your_head/pipeline/revisions/531e6243-4769-4063-80b4-380805229ba8/feedback.json",
   "started_at": "2026-09-12T08:13:56.143913+00:00",
-  "pid": 1480884
+  "pid": 1480884,
+  "completed_at": "2026-09-12T08:20:50.455443+00:00"
 }
