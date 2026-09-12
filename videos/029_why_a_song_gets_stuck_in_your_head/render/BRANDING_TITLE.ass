@@ -7,9 +7,9 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding
-Style: VideoTitle,North Eternal,80,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,2,0,8,0,0,0,1
+Style: VideoTitle,North Eternal,90,&H00FAFAFA,&H00FAFAFA,&H00471A3C,&H00000000,0,0,0,0,100,100,0,0,1,4,0,8,0,0,0,1
 
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
 Dialogue: 1,0:00:00.00,0:00:59.43,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,48.00)}Why a Song Gets
-Dialogue: 1,0:00:00.00,0:00:59.43,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,146.00)}Stuck in Your Head
+Dialogue: 1,0:00:00.00,0:00:59.43,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,150.00)}Stuck in Your Head
