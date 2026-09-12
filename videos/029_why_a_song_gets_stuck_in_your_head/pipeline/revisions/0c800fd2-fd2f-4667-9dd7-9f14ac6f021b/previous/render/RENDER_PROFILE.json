@@ -66,7 +66,7 @@
   "branding": {
     "logo": {
       "enabled": true,
-      "source": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/5130d2ac-8f6b-4b49-b16d-385d4e64ee68/branding/logo.png",
+      "source": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/208324f3-ca55-43d9-aba7-e0f610e52ef8/branding/logo.png",
       "sha256": "b5b4478688010b96909c8d33cd5049263ae9fdeec718f9aad461873c9245d065",
       "position": "custom",
       "width_percent": 11.0,
@@ -80,7 +80,7 @@
       "enabled": true,
       "text": "Why a Song Gets Stuck in Your Head",
       "position": "top_center",
-      "font_name": "Gruze Drip",
+      "font_name": "North Eternal",
       "font_size": 90,
       "bold": false,
       "italic": false,
