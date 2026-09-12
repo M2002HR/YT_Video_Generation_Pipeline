@@ -8,6 +8,7 @@ import {
   label,
   previewCaptionLines,
   previewCuesFromWords,
+  previewFramesFromTimeline,
   statusClass,
   subtitleMarginPx,
   SUBTITLE_FONT_SUPPORTS_PERSIAN,
@@ -135,4 +136,18 @@ test("subtitle font coverage makes Persian fallback explicit", () => {
   assert.equal(SUBTITLE_FONT_SUPPORTS_PERSIAN.has("Rubik"), true);
   assert.equal(SUBTITLE_FONT_SUPPORTS_PERSIAN.has("DejaVu Sans"), true);
   assert.equal(SUBTITLE_FONT_SUPPORTS_PERSIAN.has("Oswald"), false);
+});
+
+test("revision branding preview samples ten frames across video and image beats", () => {
+  const frames = previewFramesFromTimeline({ beats: [
+    { beat_id: "video_opening_a", media_type: "video", source: "assets/opening/a clip.mp4", duration: 4 },
+    { beat_id: 1, media_type: "image", image: "assets/raw_beats/beat_001.png", duration: 2 },
+    { beat_id: 2, media_type: "image", image: "assets/raw_beats/beat_002.png", duration: 2 },
+  ] }, "/api/run/job/artifact", 10);
+  assert.equal(frames.length, 10);
+  assert.equal(frames[0].kind, "video");
+  assert.equal(frames[0].mediaStart, 2);
+  assert.match(frames[0].src, /a%20clip\.mp4$/);
+  assert.ok(frames.some((frame) => frame.kind === "image"));
+  assert.ok(frames.some((frame) => frame.label === "Image beat 2"));
 });

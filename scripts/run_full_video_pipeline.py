@@ -14,7 +14,7 @@ from typing import Any
 
 from pipeline_notifier import PipelineNotifier
 from content_projects import DEFAULT_CONTENT_PROJECT, load_content_project, validate_content_project, video_slug
-from panel_contract import SUBTITLE_FONT_SIZE_MIN, SUBTITLE_FONT_SIZE_MAX
+from panel_contract import SUBTITLE_FONT_SIZE_MIN, SUBTITLE_FONT_SIZE_MAX, TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -253,6 +253,7 @@ def ensure_render_profile(project: Path, aspect_ratio: str) -> Path:
                 "outline_colour": "&H00130D09",
             },
         },
+        "branding": {"logo": {"enabled": False}, "title": {"enabled": True}},
     }, indent=2) + "\n", encoding="utf-8")
     return profile
 
@@ -390,6 +391,68 @@ def apply_subtitle_style(subtitles: dict[str, Any], style: dict[str, Any]) -> No
         subtitles["max_words_per_cue"] = words
 
 
+def apply_branding_preferences(profile_path: Path, creative_brief: dict[str, Any], topic: str) -> None:
+    """Freeze final-frame logo/title composition without touching generated media."""
+    requested = creative_brief.get("_branding") if isinstance(creative_brief.get("_branding"), dict) else {}
+    profile = json.loads(profile_path.read_text(encoding="utf-8"))
+    branding = profile.setdefault("branding", {})
+
+    def number(name: str, default: float, low: float, high: float) -> float:
+        try:
+            value = float(requested.get(name, default))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"Branding {name} must be a number.") from exc
+        if not low <= value <= high:
+            raise ValueError(f"Branding {name} is outside {low}..{high}.")
+        return value
+
+    positions = {
+        "top_left", "top_center", "top_right", "middle_left", "center", "middle_right",
+        "bottom_left", "bottom_center", "bottom_right", "custom",
+    }
+    logo_position = str(requested.get("logo_position", "top_right")).strip().lower()
+    title_position = str(requested.get("title_position", "below_logo")).strip().lower()
+    align = str(requested.get("title_text_align", "right")).strip().lower()
+    if logo_position not in positions or title_position not in positions | {"below_logo"}:
+        raise ValueError("Branding position is invalid.")
+    if align not in {"left", "center", "right"}:
+        raise ValueError("Title text alignment is invalid.")
+    logo_asset = requested.get("logo_asset") if isinstance(requested.get("logo_asset"), dict) else {}
+    logo_source = str(logo_asset.get("path") or "")
+    branding["logo"] = {
+        "enabled": bool(requested.get("show_logo", False) and logo_source),
+        "source": logo_source, "sha256": str(logo_asset.get("sha256") or ""),
+        "position": logo_position,
+        "width_percent": number("logo_width_percent", 14, 4, 40),
+        "opacity": number("logo_opacity", 1, .1, 1),
+        "margin_x_percent": number("logo_margin_x_percent", 3, 0, 25),
+        "margin_y_percent": number("logo_margin_y_percent", 2.5, 0, 25),
+        "custom_x_percent": number("logo_custom_x_percent", 85, 0, 100),
+        "custom_y_percent": number("logo_custom_y_percent", 10, 0, 100),
+    }
+    font_size = int(number("title_font_size", 38, TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX))
+    branding["title"] = {
+        "enabled": bool(requested.get("show_title", True)),
+        # The source of truth is the launch topic/question, never generated copy.
+        "text": str(topic).strip(), "position": title_position,
+        "font_name": str(requested.get("title_font", "Roboto")).strip() or "Roboto",
+        "font_size": font_size, "bold": bool(requested.get("title_bold", True)),
+        "italic": bool(requested.get("title_italic", False)), "text_align": align,
+        "max_words_per_line": int(number("title_max_words_per_line", 7, 1, 100)),
+        "line_spacing": number("title_line_spacing", 6, -10, 100),
+        "max_width_percent": number("title_max_width_percent", 34, 12, 90),
+        "margin_x_percent": number("title_margin_x_percent", 3, 0, 25),
+        "margin_y_percent": number("title_margin_y_percent", 2.5, 0, 25),
+        "logo_gap_percent": number("title_logo_gap_percent", 1, 0, 15),
+        "custom_x_percent": number("title_custom_x_percent", 80, 0, 100),
+        "custom_y_percent": number("title_custom_y_percent", 18, 0, 100),
+        "font_colour": _subtitle_colour(requested.get("title_font_colour", "#FFFFFF")),
+        "outline_colour": _subtitle_colour(requested.get("title_outline_colour", "#000000")),
+        "outline": number("title_outline", 2, 0, 8),
+    }
+    profile_path.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     pipeline_started = time.perf_counter()
     parser = argparse.ArgumentParser(description="Run a new topic through visuals, voice, edit, music, QC and Telegram.")
@@ -525,6 +588,7 @@ def main() -> None:
     render_profile = ensure_render_profile(project, args.aspect_ratio)
     apply_subtitle_preferences(render_profile, frozen_brief)
     apply_motion_preferences(render_profile, frozen_brief)
+    apply_branding_preferences(render_profile, frozen_brief, args.topic)
     reuse("render_profile", render_profile, state, state_path, notifier=notifier)
     completion = [py, "scripts/run_completion_pipeline.py", str(project), "--publish", "--telegram-low-size" if args.telegram_low_size else "--no-telegram-low-size"]
     if creative_brief is not None:

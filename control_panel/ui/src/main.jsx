@@ -19,6 +19,7 @@ import {
   dependentNodeIds,
   previewCaptionLines,
   previewCuesFromWords,
+  previewFramesFromTimeline,
   statusClass,
   subtitleMarginPx,
   SUBTITLE_FONT_SLUGS,
@@ -234,6 +235,103 @@ function SubtitleFontSpecimen({ values, fontSources = {} }) {
     >
       <span>Ag</span>
       <small>{font}</small>
+    </div>
+  );
+}
+
+function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "Preview backdrop", logoUrl = "" }) {
+  useSubtitleFont(values.title_font, fontSources);
+  const frameKey = frames.map((frame) => `${frame.kind}:${frame.src}:${frame.mediaStart || 0}`).join("|");
+  const [frameIndex, setFrameIndex] = useState(0);
+  const [mediaFailed, setMediaFailed] = useState(false);
+  useEffect(() => { setFrameIndex(0); }, [frameKey]);
+  const safeFrameIndex = frames.length ? Math.min(frameIndex, frames.length - 1) : 0;
+  const backdrop = frames[safeFrameIndex] || null;
+  useEffect(() => { setMediaFailed(false); }, [safeFrameIndex, frameKey]);
+  const landscape = values.aspect_ratio === "16:9";
+  const frameWidth = landscape ? 480 : 270, frameHeight = landscape ? 270 : 480;
+  const logoWidth = frameWidth * Math.min(40, Math.max(4, Number(values.logo_width_percent) || 14)) / 100;
+  const mx = frameWidth * (Number(values.logo_margin_x_percent) || 0) / 100;
+  const my = frameHeight * (Number(values.logo_margin_y_percent) || 0) / 100;
+  const presetBox = (position, boxWidth, boxHeight = boxWidth) => {
+    if (position === "custom") return {
+      left: frameWidth * (Number(values.logo_custom_x_percent) || 0) / 100 - boxWidth / 2,
+      top: frameHeight * (Number(values.logo_custom_y_percent) || 0) / 100 - boxHeight / 2,
+    };
+    const normalized = position === "center" ? "middle_center" : position || "top_right";
+    const [vertical, horizontal] = normalized.split("_");
+    return {
+      left: horizontal === "left" ? mx : horizontal === "center" ? (frameWidth - boxWidth) / 2 : frameWidth - boxWidth - mx,
+      top: vertical === "top" ? my : vertical === "middle" ? (frameHeight - boxHeight) / 2 : frameHeight - boxHeight - my,
+    };
+  };
+  const logo = presetBox(values.logo_position, logoWidth);
+  const logoVisible = Boolean(values.show_logo && logoUrl);
+  const titleWidth = frameWidth * Math.min(90, Math.max(12, Number(values.title_max_width_percent) || 34)) / 100;
+  const tmx = frameWidth * (Number(values.title_margin_x_percent) || 0) / 100;
+  const tmy = frameHeight * (Number(values.title_margin_y_percent) || 0) / 100;
+  let titleLeft, titleTop, titleTransform = "";
+  if (values.title_position === "below_logo" && logoVisible) {
+    titleLeft = logo.left + logoWidth / 2 - titleWidth / 2;
+    titleTop = logo.top + logoWidth + frameHeight * (Number(values.title_logo_gap_percent) || 0) / 100;
+  } else if (values.title_position === "below_logo") {
+    titleLeft = frameWidth - titleWidth - tmx;
+    titleTop = tmy;
+  } else if (values.title_position === "custom") {
+    titleLeft = frameWidth * (Number(values.title_custom_x_percent) || 0) / 100 - titleWidth / 2;
+    titleTop = frameHeight * (Number(values.title_custom_y_percent) || 0) / 100;
+  } else {
+    const normalized = values.title_position === "center" ? "middle_center" : values.title_position || "top_right";
+    const [vertical, horizontal] = normalized.split("_");
+    titleLeft = horizontal === "left" ? tmx : horizontal === "center" ? (frameWidth - titleWidth) / 2 : frameWidth - titleWidth - tmx;
+    titleTop = vertical === "top" ? tmy : vertical === "middle" ? frameHeight / 2 : frameHeight - tmy;
+    titleTransform = vertical === "middle" ? "translateY(-50%)" : vertical === "bottom" ? "translateY(-100%)" : "";
+  }
+  titleLeft = Math.max(0, Math.min(frameWidth - titleWidth, titleLeft));
+  const titleColour = /^#[0-9a-fA-F]{6}$/.test(values.title_font_colour || "") ? values.title_font_colour : "#FFFFFF";
+  const titleOutline = /^#[0-9a-fA-F]{6}$/.test(values.title_outline_colour || "") ? values.title_outline_colour : "#000000";
+  const outline = Math.min(8, Math.max(0, Number(values.title_outline) || 0)) * .25;
+  const titleFontSize = Math.max(16, Math.min(200, Number(values.title_font_size) || 38));
+  const wordsPerLine = Math.max(1, Math.min(100, Math.round(Number(values.title_max_words_per_line) || 7)));
+  const titleWords = String(values.topic || "Your video question appears here").trim().split(/\s+/).filter(Boolean);
+  const titleLines = [];
+  for (let index = 0; index < titleWords.length; index += wordsPerLine)
+    titleLines.push(titleWords.slice(index, index + wordsPerLine).join(" "));
+  const lineSpacing = Math.max(-10, Math.min(100, Number(values.title_line_spacing) || 0));
+  return (
+    <div className="brand-preview">
+      <div className="subtitle-preview-frame brand-preview-frame" style={{ width: frameWidth, aspectRatio: landscape ? "16 / 9" : "9 / 16" }}>
+        <div className="subtitle-preview-fallback" />
+        {!mediaFailed && backdrop?.kind === "video" && <video
+          key={`${safeFrameIndex}:${backdrop.src}`}
+          src={`${backdrop.src}#t=${Math.max(0, Number(backdrop.mediaStart) || 0).toFixed(2)}`}
+          muted playsInline preload="metadata"
+          onLoadedMetadata={(event) => { event.currentTarget.currentTime = Math.max(0, Number(backdrop.mediaStart) || 0); }}
+          onError={() => setMediaFailed(true)}
+        />}
+        {!mediaFailed && backdrop?.kind !== "video" && backdrop?.src && <img
+          key={`${safeFrameIndex}:${backdrop.src}`}
+          src={backdrop.src}
+          alt={backdrop.label || backdropLabel}
+          onError={() => setMediaFailed(true)}
+        />}
+        {logoVisible && <img className="brand-preview-logo" src={logoUrl} alt="Uploaded channel logo" style={{ left: logo.left, top: logo.top, width: logoWidth, opacity: Number(values.logo_opacity) || 1 }} />}
+        {values.show_title && <div className="brand-preview-title" style={{
+          left: titleLeft, top: Math.max(0, titleTop), width: titleWidth, transform: titleTransform,
+          fontFamily: `"${previewFontFamily(values.title_font, fontSources)}", sans-serif`,
+          fontSize: `${Math.max(4, titleFontSize * .25)}px`,
+          lineHeight: `${Math.max(1, (titleFontSize + lineSpacing) * .25)}px`,
+          fontWeight: values.title_bold === false ? 400 : 700, fontStyle: values.title_italic ? "italic" : "normal",
+          textAlign: values.title_text_align || "right", color: titleColour,
+          WebkitTextStroke: outline ? `${outline}px ${titleOutline}` : "0 transparent", paintOrder: "stroke fill",
+        }}>{titleLines.map((line, index) => <span key={index}>{line}</span>)}</div>}
+      </div>
+      {frames.length > 1 && <div className="brand-frame-nav">
+        <button type="button" disabled={safeFrameIndex === 0} onClick={() => setFrameIndex((index) => Math.max(0, index - 1))} aria-label="Previous preview frame">←</button>
+        <div><b>{safeFrameIndex + 1} / {frames.length}</b><small>{backdrop?.label || `Timeline frame ${safeFrameIndex + 1}`}</small></div>
+        <button type="button" disabled={safeFrameIndex >= frames.length - 1} onClick={() => setFrameIndex((index) => Math.min(frames.length - 1, index + 1))} aria-label="Next preview frame">→</button>
+      </div>}
+      <small>Live {landscape ? "16:9" : "9:16"} composition preview · {backdrop?.label || backdropLabel} · title text follows the episode question automatically</small>
     </div>
   );
 }
@@ -627,7 +725,7 @@ function SearchableSelect({ field, value, onChange, disabled = false }) {
               >
                 <i>{option.value === value ? "✓" : ""}</i>
                 {option.label}
-                {field.name === "subtitle_font" && SUBTITLE_FONT_SLUGS[option.value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
+                {["subtitle_font", "title_font"].includes(field.name) && SUBTITLE_FONT_SLUGS[option.value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
                   ? " · Latin only"
                   : ""}
               </button>
@@ -751,7 +849,7 @@ function Field({ field, value, onChange, allValues = {} }) {
     return (
       <>
         <SearchableSelect field={field} value={value} onChange={onChange} disabled={gated} />
-        {field.name === "subtitle_font" && SUBTITLE_FONT_SLUGS[value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
+        {["subtitle_font", "title_font"].includes(field.name) && SUBTITLE_FONT_SLUGS[value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
           <small className="font-language-warning">
             This face is Latin-only. Persian/Arabic captions will fall back to DejaVu Sans; use Rubik or DejaVu Sans for a deliberate Persian look.
           </small>
@@ -985,7 +1083,37 @@ function StyleReferenceUpload({ value, change, previewUrl = "" }) {
   );
 }
 
-function SubtitleFontUpload({ change, onUploaded }) {
+function LogoUpload({ value, change, previewUrl = "", onPreviewChange }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+  async function upload(event) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setUploading(true); setError("");
+    try {
+      const body = new FormData(); body.append("logo", file);
+      const result = await request("/api/logo-uploads", { method: "POST", body });
+      if (!result?.id || !result.preview_url) throw new Error("The uploaded logo response was incomplete.");
+      change("logo_upload_id", result.id);
+      change("show_logo", true);
+      onPreviewChange(result.preview_url);
+    } catch (failure) {
+      setError(failure.message);
+    } finally { setUploading(false); }
+  }
+  return <section className="logo-upload">
+    <div><b>Channel logo</b><p>Upload PNG, JPEG, or WebP up to 12 MiB. Transparency is preserved and the file is frozen into each run.</p></div>
+    <div className="style-reference-actions">
+      <label className="upload-button">{uploading ? "Validating logo…" : value ? "Replace logo" : "Upload logo"}<input type="file" accept="image/png,image/jpeg,image/webp" disabled={uploading} onChange={upload} /></label>
+      {value && <button type="button" onClick={() => { change("logo_upload_id", ""); change("show_logo", false); onPreviewChange(""); }}>Remove logo</button>}
+    </div>
+    {previewUrl && <img src={previewUrl} alt="Uploaded channel logo preview" />}
+    {error && <small className="style-reference-error" role="alert">{error}</small>}
+  </section>;
+}
+
+function SubtitleFontUpload({ change, onUploaded, fieldName = "subtitle_font", label = "subtitle" }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   async function upload(event) {
@@ -998,24 +1126,26 @@ function SubtitleFontUpload({ change, onUploaded }) {
       const result = await request("/api/subtitle-fonts", { method: "POST", body });
       if (!result?.font?.family || !result.font.font_url) throw new Error("The uploaded font response was incomplete.");
       onUploaded(result.font);
-      change("subtitle_font", result.font.family);
+      change(fieldName, result.font.family);
     } catch (failure) {
       setError(failure.message);
     } finally { setUploading(false); }
   }
   return (
     <section className="subtitle-font-upload">
-      <div><b>Upload subtitle font</b><p>Use a licensed <code>.ttf</code> or <code>.otf</code> file (up to 16 MiB). It is stored securely for future renders and selected immediately.</p></div>
+      <div><b>Upload {label} font</b><p>Use a licensed <code>.ttf</code> or <code>.otf</code> file (up to 16 MiB). It is shared by title and subtitle renders.</p></div>
       <label className="upload-button">{uploading ? "Validating font…" : "Upload font"}<input type="file" accept="font/ttf,font/otf,.ttf,.otf" disabled={uploading} onChange={upload} /></label>
       {error && <small className="style-reference-error" role="alert">{error}</small>}
     </section>
   );
 }
 
-function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "" }) {
+function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "" }) {
   const [advanced, setAdvanced] = useState(false);
   const [uploadedFonts, setUploadedFonts] = useState([]);
-  const subtitleField = group.fields.find((field) => field.name === "subtitle_font");
+  const [logoPreview, setLogoPreview] = useState(logoPreviewUrl);
+  useEffect(() => setLogoPreview(logoPreviewUrl), [logoPreviewUrl]);
+  const subtitleField = group.fields.find((field) => ["subtitle_font", "title_font"].includes(field.name));
   const subtitleOptions = [
     ...(subtitleField?.options || []),
     ...uploadedFonts.filter((font) => !(subtitleField?.options || []).some((option) => option.value === font.family)),
@@ -1043,6 +1173,19 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
           {group.id === "visual" && values.world_style_policy === "new" && !values.world_style_id && <StyleReferenceUpload value={values.world_style_reference_id} change={change} previewUrl={styleReferencePreview} />}
           {group.id === "subtitles" && <SubtitleFontUpload change={change} onUploaded={(font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font])} />}
+          {group.id === "branding" && <div className="branding-editor">
+            <div className="branding-controls">
+              <LogoUpload value={values.logo_upload_id} change={change} previewUrl={logoPreview} onPreviewChange={setLogoPreview} />
+              <SubtitleFontUpload fieldName="title_font" label="title" change={change} onUploaded={(font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font])} />
+              {group.fields.filter((field) => field.name !== "logo_upload_id").map((field) => {
+                const displayField = ["subtitle_font", "title_font"].includes(field.name) ? { ...field, options: subtitleOptions } : field;
+                return <Field key={field.name} field={displayField} value={values[field.name]} onChange={change} allValues={values} />;
+              })}
+            </div>
+            <aside className="branding-preview-rail">
+              <BrandPreview values={values} fontSources={subtitleFontSources} frames={brandingFrames} backdropLabel={brandingBackdropLabel} logoUrl={logoPreview} />
+            </aside>
+          </div>}
           {group.id === "subtitles" && subtitleBeats?.length > 0 && (
             <SubtitleCuePreview values={values} cues={subtitleBeats} fontSources={subtitleFontSources} />
           )}
@@ -1065,6 +1208,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
             />
           )}
           {group.fields
+            .filter(() => group.id !== "branding")
             .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy", "world_style_reference_id"].includes(field.name))
             .filter((field) => advanced || !field.advanced)
             .filter((field) => field.name !== "character_id" || values.character_mode === "manual")
@@ -1075,7 +1219,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
                     ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({ value: item.id, label: item.display_name }))]
                     : field.options,
                 } : field;
-              if (field.name === "subtitle_font") {
+              if (["subtitle_font", "title_font"].includes(field.name)) {
                 displayField = { ...displayField, options: subtitleOptions };
               }
               if (group.id === "sfx" && field.name !== "sfx_enabled") {
@@ -1155,6 +1299,14 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
     styleAnchorFor(values.world_style_id),
     ...styles.map((item) => item.anchor_url),
   ].filter((url, index, all) => url && all.indexOf(url) === index);
+  const selectedStyleAnchor = styleAnchorFor(values.world_style_id);
+  const uploadedStylePreview = /^[a-f0-9]{32}$/.test(values.world_style_reference_id || "")
+    ? `/api/style-reference-uploads/${values.world_style_reference_id}/preview`
+    : "";
+  const brandingFrames = selectedStyleAnchor || uploadedStylePreview ? [{
+    kind: "image", src: selectedStyleAnchor || uploadedStylePreview,
+    label: selectedStyleAnchor ? `${values.world_style_id} style anchor` : "Uploaded style reference",
+  }] : [];
   const enabled = applicableGroups
     .flatMap((group) => group.fields)
     .filter((field) => field.type !== "readonly").length;
@@ -1242,6 +1394,8 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
                 ? "Style anchor backdrop"
                 : "Sample style backdrop"
             }
+            brandingFrames={brandingFrames}
+            brandingBackdropLabel={values.world_style_id || uploadedStylePreview ? "Selected style reference" : "Select a style to preview its anchor"}
           />
       ))}
       {error && (
@@ -2118,6 +2272,7 @@ function ConfigModal({ run, close, done }) {
     [plan, setPlan] = useState(null),
     [styles, setStyles] = useState([]),
     [styleReference, setStyleReference] = useState(null),
+    [logoAsset, setLogoAsset] = useState(null),
     [stylesLoading, setStylesLoading] = useState(false),
     [timeline, setTimeline] = useState(null),
     [timelineTried, setTimelineTried] = useState(false),
@@ -2133,6 +2288,7 @@ function ConfigModal({ run, close, done }) {
       .then(([data, contract]) => {
         setValues(data.values);
         setStyleReference(data.style_reference && typeof data.style_reference === "object" ? data.style_reference : null);
+        setLogoAsset(data.logo_asset && typeof data.logo_asset === "object" ? data.logo_asset : null);
         setTransitionOverrides(Array.isArray(data.transition_overrides) ? data.transition_overrides : []);
         setSchema(contract.schema);
       })
@@ -2221,6 +2377,12 @@ function ConfigModal({ run, close, done }) {
       })
       .filter(Boolean);
   }, [timeline, values?.subtitle_max_words, run.job.job_id]);
+  const brandingFrames = useMemo(() => {
+    const base = `/api/run/${run.job.job_id}/artifact`;
+    // Ten evenly distributed timeline representatives make opening clips and
+    // body-image beats inspectable without loading a full contact sheet at once.
+    return previewFramesFromTimeline(timeline, base, 10);
+  }, [timeline, run.job.job_id]);
   useEffect(() => {
     if (!values) return;
     let cancelled = false;
@@ -2319,6 +2481,7 @@ function ConfigModal({ run, close, done }) {
                   styles={styles}
                   stylesLoading={stylesLoading}
                   styleReferencePreview={styleReference?.preview_path ? `/api/run/${run.job.job_id}/artifact/${styleReference.preview_path}` : ""}
+                  logoPreviewUrl={logoAsset?.preview_path ? `/api/run/${run.job.job_id}/artifact/${logoAsset.preview_path}` : ""}
                   open={openGroups.has(group.id)}
                   toggle={() => setOpenGroups((current) => {
                     const next = new Set(current);
@@ -2343,6 +2506,8 @@ function ConfigModal({ run, close, done }) {
                       ? "static sample — this run has no timeline yet"
                       : ""
                   }
+                  brandingFrames={brandingFrames}
+                  brandingBackdropLabel={timelineTried ? "Timeline preview unavailable" : "Loading timeline frames…"}
                 />
               ))}
             <TransitionOverrides timeline={timeline} values={values} overrides={transitionOverrides} onChange={setTransitionOverrides} />

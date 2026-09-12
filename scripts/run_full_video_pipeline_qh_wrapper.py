@@ -177,7 +177,7 @@ def qh_overrides(creative_brief: Path) -> list[str]:
     return flags
 
 
-def apply_render_preferences(profile_path: Path, creative_brief: Path) -> None:
+def apply_render_preferences(profile_path: Path, creative_brief: Path, topic: str = "") -> None:
     try:
         brief = json.loads(Path(creative_brief).read_text(encoding="utf-8"))
         wanted = bool((brief.get("_qh") or {}).get("show_subtitles", False))
@@ -185,7 +185,7 @@ def apply_render_preferences(profile_path: Path, creative_brief: Path) -> None:
         style = brief.get("_subtitle") if isinstance(brief.get("_subtitle"), dict) else {}
     except (OSError, ValueError):
         brief, wanted, word_highlight, style = {}, False, True, {}
-    from run_full_video_pipeline import apply_motion_preferences, apply_subtitle_style
+    from run_full_video_pipeline import apply_branding_preferences, apply_motion_preferences, apply_subtitle_style
 
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
     subtitles = profile.setdefault("subtitles", {})
@@ -197,6 +197,9 @@ def apply_render_preferences(profile_path: Path, creative_brief: Path) -> None:
     profile_path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
     # Reuse the canonical profile validator/writer so direct and QH runs cannot drift.
     apply_motion_preferences(profile_path, brief)
+    # Same branding freeze as the direct launch path: without this a regenerated
+    # profile keeps title.enabled=true with no text and render_video refuses it.
+    apply_branding_preferences(profile_path, brief, topic)
 
 
 def write_pending_state(project: Path, absent: str, reason: str) -> Path:
@@ -446,7 +449,7 @@ def main() -> int:
     from run_full_video_pipeline import ensure_audio_mix_profile, ensure_render_profile
 
     ensure_audio_mix_profile(project)
-    apply_render_preferences(ensure_render_profile(project, args.aspect_ratio), args.creative_brief)
+    apply_render_preferences(ensure_render_profile(project, args.aspect_ratio), args.creative_brief, args.topic)
 
     completion = [
         python, "scripts/run_completion_pipeline.py", str(project),

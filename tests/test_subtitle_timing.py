@@ -348,3 +348,29 @@ def test_apply_subtitle_style_validates_colours_and_outline() -> None:
     for bad in ({"font_colour": "gold"}, {"outline_colour": "#12345"}, {"outline": 9}, {"custom_offset_unit": "em"}):
         with pytest.raises(ValueError):
             apply_subtitle_style({}, bad)
+
+
+def test_branding_profile_uses_topic_as_title_and_freezes_panel_geometry(tmp_path: Path) -> None:
+    from run_full_video_pipeline import apply_branding_preferences
+
+    profile_path = tmp_path / "RENDER_PROFILE.json"
+    profile_path.write_text(json.dumps({"schema_version": 1}), encoding="utf-8")
+    apply_branding_preferences(profile_path, {"_branding": {
+        "show_logo": True,
+        "logo_asset": {"path": "videos/001/launch/branding/logo.png", "sha256": "a" * 64},
+        "logo_position": "custom", "logo_custom_x_percent": 72,
+        "title_position": "below_logo", "title_font": "Rubik",
+        "title_font_colour": "#FFD700", "title_outline": 3,
+        "title_max_words_per_line": 9, "title_line_spacing": 11,
+    }}, "Why does time feel faster?")
+
+    branding = json.loads(profile_path.read_text(encoding="utf-8"))["branding"]
+    assert branding["logo"]["enabled"] is True
+    assert branding["logo"]["source"] == "videos/001/launch/branding/logo.png"
+    assert branding["logo"]["sha256"] == "a" * 64
+    assert branding["logo"]["custom_x_percent"] == 72
+    assert branding["title"]["text"] == "Why does time feel faster?"
+    assert branding["title"]["font_name"] == "Rubik"
+    assert branding["title"]["font_colour"] == "#FFD700"
+    assert branding["title"]["max_words_per_line"] == 9
+    assert branding["title"]["line_spacing"] == 11

@@ -397,6 +397,38 @@ def launch_form(project_options: str, style_options: str, character_options: str
     <small>0 switches the outline off.</small></label>
    <label class="check"><input type=checkbox name=subtitle_italic> Subtitle italic</label>
   </div>
+  <h3>Logo &amp; video title</h3>
+  <label class=check><input type=checkbox name=show_logo> Show logo</label>
+  <input type=hidden name=logo_upload_id value="">
+  <div class=grid2>
+   <label>Logo position <select name=logo_position><option value=top_right selected>Top right</option><option value=top_left>Top left</option><option value=bottom_right>Bottom right</option><option value=bottom_left>Bottom left</option><option value=custom>Custom</option></select></label>
+   <label>Logo width % <input name=logo_width_percent type=number min=4 max=40 step=.5 value=14></label>
+   <label>Logo opacity <input name=logo_opacity type=number min=.1 max=1 step=.05 value=1></label>
+   <label>Logo horizontal margin % <input name=logo_margin_x_percent type=number min=0 max=25 step=.5 value=3></label>
+   <label>Logo vertical margin % <input name=logo_margin_y_percent type=number min=0 max=25 step=.5 value=2.5></label>
+   <label>Logo custom centre X % <input name=logo_custom_x_percent type=number min=0 max=100 step=.5 value=85></label>
+   <label>Logo custom centre Y % <input name=logo_custom_y_percent type=number min=0 max=100 step=.5 value=10></label>
+  </div>
+  <label class=check><input type=checkbox name=show_title checked> Show question as title</label>
+  <div class=grid2>
+   <label>Title position <select name=title_position><option value=below_logo selected>Below logo</option><option value=top_left>Top left</option><option value=top_center>Top centre</option><option value=top_right>Top right</option><option value=center>Centre</option><option value=bottom_left>Bottom left</option><option value=bottom_center>Bottom centre</option><option value=bottom_right>Bottom right</option><option value=custom>Custom</option></select></label>
+   <label>Title font <select name=title_font><option selected>Roboto</option><option>Open Sans</option><option>Rubik</option><option>DejaVu Sans</option></select></label>
+   <label>Title font size <input name=title_font_size type=number min=16 max=200 value=38></label>
+   <label>Maximum words per line <input name=title_max_words_per_line type=number min=1 max=100 value=7></label>
+   <label>Line spacing (px) <input name=title_line_spacing type=number min=-10 max=100 value=6></label>
+   <label>Title box width % <input name=title_max_width_percent type=number min=12 max=90 value=34></label>
+   <label>Text alignment <select name=title_text_align><option value=right selected>Right</option><option value=center>Centre</option><option value=left>Left</option></select></label>
+   <label>Title horizontal margin % <input name=title_margin_x_percent type=number min=0 max=25 step=.5 value=3></label>
+   <label>Title vertical margin % <input name=title_margin_y_percent type=number min=0 max=25 step=.5 value=2.5></label>
+   <label>Gap below logo % <input name=title_logo_gap_percent type=number min=0 max=15 step=.5 value=1></label>
+   <label>Title custom centre X % <input name=title_custom_x_percent type=number min=0 max=100 step=.5 value=80></label>
+   <label>Title custom top Y % <input name=title_custom_y_percent type=number min=0 max=100 step=.5 value=18></label>
+   <label>Title colour <input name=title_font_colour type=color value=#FFFFFF></label>
+   <label>Title outline colour <input name=title_outline_colour type=color value=#000000></label>
+   <label>Title outline width <input name=title_outline type=number min=0 max=8 step=.5 value=2></label>
+   <label class=check><input type=checkbox name=title_bold checked> Title bold</label>
+   <label class=check><input type=checkbox name=title_italic> Title italic</label>
+  </div>
   <label class="check"><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC
    <small>needs a remote with write access</small></label>
   <label class="check"><input type=checkbox name=telegram_low_size checked> Send low-size copy to Telegram

@@ -94,6 +94,45 @@ def test_style_reference_is_hash_pinned_and_frozen_inside_the_run(tmp_path: Path
     assert reference["sha256"] == panel.sha256_path(tmp_path / reference["path"])
 
 
+def test_logo_upload_is_normalized_with_alpha_and_frozen_inside_the_run(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """A logo upload becomes a hash-pinned run asset, never a global root file."""
+    from PIL import Image
+
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    upload_id = "c" * 32
+    uploads = tmp_path / "control_panel" / "logo_uploads"
+    uploads.mkdir(parents=True)
+    source = uploads / f"{upload_id}.png"
+    Image.new("RGBA", (96, 64), (12, 34, 56, 127)).save(source)
+    panel.write_json(uploads / f"{upload_id}.json", {
+        "sha256": panel.sha256_path(source), "width": 96, "height": 64,
+    })
+    project = tmp_path / "videos" / "001_logo"
+    brief = {"_branding": {"show_logo": True, "_logo_upload_id": upload_id}}
+
+    panel.freeze_logo_asset(brief, project, project / "launch" / "branding")
+
+    asset = brief["_branding"]["logo_asset"]
+    frozen = tmp_path / asset["path"]
+    assert "_logo_upload_id" not in brief["_branding"]
+    assert asset["path"] == "videos/001_logo/launch/branding/logo.png"
+    assert asset["sha256"] == panel.sha256_path(frozen)
+    with Image.open(frozen) as image:
+        assert image.mode == "RGBA"
+        assert image.getpixel((0, 0))[3] == 127
+
+
+def test_branding_revision_requires_an_uploaded_or_frozen_logo() -> None:
+    record = _record()
+    brief = {"_branding": {"show_logo": False}}
+    voice = {}
+    values = panel.frozen_values(record, brief, voice)
+    values["show_logo"] = True
+
+    with pytest.raises(ValueError, match="Upload a logo"):
+        panel.config_roots(record, brief, voice, values)
+
+
 def test_hash_verified_uploaded_subtitle_font_is_available_to_both_panel_forms(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """The runtime schema is the shared source for launch and Revise font choices."""
     monkeypatch.setattr(panel, "ROOT", tmp_path)
@@ -843,6 +882,35 @@ def test_structured_image_edit_settings_use_only_their_render_and_transition_roo
     assert roots == {"render_profile", "transition_direction"}
     assert revised["_motion"]["image_transition_style"] == "cut_fade"
     assert "motion_image_transition_style" in changed
+
+
+def test_branding_revision_is_render_only_and_persists_the_shared_font_style() -> None:
+    record = _record(motion={"enabled": False}, sfx={"enabled": False})
+    brief = {"_qh": {}, "_motion": {"enabled": False}, "_sfx": {}, "_subtitle": {}}
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+    values.update({
+        "logo_width_percent": 18,
+        "logo_position": "bottom_left",
+        "title_font": "Rubik",
+        "title_font_colour": "#FFD700",
+        "title_position": "custom",
+        "title_custom_x_percent": 62,
+        "title_custom_y_percent": 21,
+        "title_max_words_per_line": 12,
+        "title_line_spacing": 14,
+    })
+
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+
+    assert roots == {"render_profile"}
+    assert revised["_branding"]["logo_width_percent"] == 18
+    assert revised["_branding"]["logo_position"] == "bottom_left"
+    assert revised["_branding"]["title_font"] == "Rubik"
+    assert revised["_branding"]["title_font_colour"] == "#FFD700"
+    assert revised["_branding"]["title_max_words_per_line"] == 12
+    assert revised["_branding"]["title_line_spacing"] == 14
+    assert {"logo_width_percent", "logo_position", "title_font", "title_position"} <= set(changed)
 
 
 def test_structured_config_rejects_unknown_and_invalid_values() -> None:

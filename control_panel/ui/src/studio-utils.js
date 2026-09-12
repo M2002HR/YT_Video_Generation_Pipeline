@@ -45,6 +45,26 @@ export const artifactUrl = (base, path, version = "") => {
   return `${base}/${encoded}${version ? `?v=${version}` : ""}`;
 };
 
+export function previewFramesFromTimeline(timeline, base, count = 10) {
+  const beats = Array.isArray(timeline?.beats)
+    ? timeline.beats.filter((beat) => beat && (beat.image || beat.source))
+    : [];
+  const total = Math.max(1, Math.min(20, Math.round(Number(count) || 10)));
+  if (!beats.length) return [];
+  return Array.from({ length: total }, (_, sample) => {
+    const index = Math.min(beats.length - 1, Math.floor(sample * beats.length / total));
+    const beat = beats[index];
+    const isVideo = String(beat.media_type || "image").toLowerCase() === "video";
+    const duration = Math.max(0, Number(beat.duration) || ((Number(beat.end) || 0) - (Number(beat.start) || 0)));
+    return {
+      kind: isVideo ? "video" : "image",
+      src: artifactUrl(base, beat.image || beat.source),
+      mediaStart: isVideo ? duration / 2 : 0,
+      label: `${isVideo ? "Video" : "Image"} beat ${String(beat.beat_id || index + 1).replace(/^video_/, "")}`,
+    };
+  });
+}
+
 export const SUBTITLE_PREVIEW_TEXT =
   "This a subtitle preview for test, thank you for your attention to this matter!";
 

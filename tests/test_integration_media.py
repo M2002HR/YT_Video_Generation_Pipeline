@@ -11,6 +11,7 @@ subtitles on, subtitles off, and rejection of an mp4 that will not decode.
 from __future__ import annotations
 
 import json
+import hashlib
 import shlex
 import subprocess
 import sys
@@ -259,6 +260,56 @@ def test_subtitles_on_without_a_subtitle_file_is_refused(tmp_path: Path) -> None
     result = _render(video_dir)
     assert result.returncode != 0
     assert "Subtitle file not found" in result.stdout + result.stderr
+
+
+def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path) -> None:
+    beats = [{"beat_id": 1, "start": 0.0, "duration": 0.6, "image": "assets/raw_beats/beat_001.png"}]
+    video_dir = _workspace(tmp_path, beats, subtitles=False, duration=0.6)
+    _png(video_dir / "assets" / "raw_beats" / "beat_001.png")
+    profile_path = video_dir / "render" / "RENDER_PROFILE.json"
+    profile = json.loads(profile_path.read_text())
+    logo = _png(video_dir / "launch" / "branding" / "logo.png", "0x77cc22")
+    profile["branding"] = {
+        "logo": {
+            "enabled": True, "position": "top_right", "width_percent": 14,
+            "source": str(logo.relative_to(video_dir)), "sha256": hashlib.sha256(logo.read_bytes()).hexdigest(),
+        },
+        "title": {
+            "enabled": True, "text": "Why does time feel faster?", "position": "below_logo",
+            "font_name": "DejaVu Sans", "font_size": 20, "max_width_percent": 40,
+            "max_words_per_line": 2, "line_spacing": 8,
+            "font_colour": "#FFFFFF", "outline_colour": "#000000", "outline": 2,
+        },
+    }
+    profile_path.write_text(json.dumps(profile))
+
+    dry = _render(video_dir, "--dry-run")
+    assert dry.returncode == 0, dry.stdout + dry.stderr
+    command = " ".join(_ffmpeg_command(dry))
+    assert "overlay=x=" in command
+    assert "BRANDING_TITLE.ass" in command
+    assert "Subtitles: off" in dry.stdout
+    assert "Branding: logo=on, title=on" in dry.stdout
+    title_ass = (video_dir / "render" / "BRANDING_TITLE.ass").read_text()
+    dialogue = [line for line in title_ass.splitlines() if line.startswith("Dialogue:")]
+    assert len(dialogue) == 3
+    assert dialogue[0].endswith("Why does")
+    assert dialogue[1].endswith("time feel")
+    assert dialogue[2].endswith("faster?")
+    y_positions = [float(line.split("\\pos(", 1)[1].split(")", 1)[0].split(",")[1]) for line in dialogue]
+    assert y_positions[1] - y_positions[0] == 28
+
+    result = _render(video_dir)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert (video_dir / "assets" / "renders" / "preview.mp4").is_file()
+
+    profile["branding"]["title"]["max_words_per_line"] = 100
+    profile_path.write_text(json.dumps(profile))
+    one_line = _render(video_dir, "--dry-run")
+    assert one_line.returncode == 0, one_line.stdout + one_line.stderr
+    rewritten = (video_dir / "render" / "BRANDING_TITLE.ass").read_text()
+    assert len([line for line in rewritten.splitlines() if line.startswith("Dialogue:")]) == 1
+    assert rewritten.rstrip().endswith("Why does time feel faster?")
 
 
 # --------------------------------------------------------------------------- 7

@@ -28,8 +28,8 @@ artifacts are exposed only for a small allowlist (`json`, `txt`, `md`, and `ass`
 ### Launch
 
 The home page obtains its form from `GET /api/launch-schema`. Fields are grouped by the
-pipeline concern they actually control: Episode, Format, Character, World style & still
-images, Opening videos, Voice, Music, Subtitles & safe areas, Transitions, Camera motion,
+pipeline concern they actually control: Episode, Format, Logo & video title, Character,
+World style & still images, Opening videos, Voice, Music, Subtitles & safe areas, Transitions, Camera motion,
 Sound effects, Delivery, and Providers. Dependent fields are disabled when their owning
 feature is off. Q Station is locked to its supported 9:16 format in both the browser and
 backend. Collapsed and advanced controls still retain and submit their defaults.
@@ -43,7 +43,7 @@ HTTP `409`.
 Frozen input files:
 
 - `launch/LAUNCH_REQUEST.json`: durable run/job settings used by resume.
-- `launch/CREATIVE_BRIEF.json`: editorial, Question Harvest, subtitle, SFX, and motion input.
+- `launch/CREATIVE_BRIEF.json`: editorial, Question Harvest, branding, subtitle, SFX, and motion input.
 - `voiceover/REQUESTED_VOICE_PROFILE.json`: ElevenLabs settings.
 
 The locked provider contract remains ChatGPT for text, Gemini for images, and Flow for video.
@@ -144,10 +144,36 @@ Beat feedback is written to `feedback.json` and consumed by the existing beat re
 path. A failed revision remains recorded and pending for audit/safe retry; successful
 reconciliation clears `pending_revision` from the job.
 
-Configuration revisions are available through the advanced frozen-JSON editor. The backend
+Configuration revisions are available through the same typed Studio controls used at launch. The backend
 maps changed settings to the narrowest safe graph roots: voice to narration, music priority
-to background music, subtitle settings to timeline, motion/SFX to their directors, Flow
+to background music, branding and subtitle styles to final rendering, motion/SFX to their directors, Flow
 settings to opening clips, and unknown editorial changes conservatively to script draft.
+
+### Logo and question title
+
+The `Logo & video title` group accepts an operator-uploaded PNG, JPEG, or WebP logo in
+both New Run and Revise. Uploads are validated, normalized to PNG without losing alpha,
+hash-pinned, and frozen inside each run; there is no repository-global logo fallback.
+The logo is composited after timeline motion/transitions so it stays fixed on screen. Its
+default placement is top-right at 14% of frame width. Nine anchor presets, a custom
+percentage centre, margins, opacity, and size are available in both workflows.
+
+The title text is always the frozen episode topic/question rather than generated copy. Its
+default placement follows immediately below the logo. It can instead use any anchor preset
+or custom percentage coordinates, with an adjustable box width, alignment, font size,
+weight, italics, colour, outline, maximum words per line, and exact pixel line spacing.
+Raising the words-per-line limit keeps the complete question on one explicit line. It
+shares the subtitle font catalogue and uploaded font store. Unicode shaping and wrapping
+are rendered through libass. A branding-only
+revision starts at `render_profile`, so accepted images and Flow clips remain untouched.
+
+The branding editor uses a responsive two-column layout. Its preview rail is sticky while
+the branding controls scroll, then returns to normal document flow on narrow screens. For a
+new run, the backdrop is the selected catalogue style anchor or uploaded style reference.
+For Revise, the browser samples ten representatives across the frozen timeline and provides
+previous/next navigation through both opening-video and body-image beats. These source
+frames intentionally precede branding composition, so the live logo/title overlay is never
+duplicated over an already-branded final render.
 
 Runs discovered from terminal/manual execution have deterministic IDs and can be inspected,
 but are explicitly read-only because they do not have a panel-owned frozen job contract.
@@ -159,6 +185,8 @@ but are explicitly read-only because they do not have a panel-owned frozen job c
 | `GET /` | React Studio shell |
 | `GET /runs/<job-id>` | React run workspace (history fallback) |
 | `GET /api/launch-schema` | Declarative groups, fields, options, constraints, and defaults |
+| `POST /api/logo-uploads` | Validate and normalize one operator-uploaded logo |
+| `GET /api/logo-uploads/<id>/preview` | Preview a pending normalized logo upload |
 | `GET /api/status` | Provider health, active job, run history, progress, and controls |
 | `GET /api/run/<job-id>/graph` | Job controls, canonical DAG, artifacts, and activity |
 | `GET /api/run/<job-id>/activity` | Normalized durable events |

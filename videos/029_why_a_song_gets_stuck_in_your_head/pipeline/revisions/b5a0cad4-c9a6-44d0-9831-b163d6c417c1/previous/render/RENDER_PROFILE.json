@@ -66,7 +66,7 @@
   "branding": {
     "logo": {
       "enabled": true,
-      "source": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/9f667f15-3b3b-4574-852a-1aadda384dcc/branding/logo.png",
+      "source": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/c09b5fc5-0b48-49d5-a559-9caa07923da0/branding/logo.png",
       "sha256": "b5b4478688010b96909c8d33cd5049263ae9fdeec718f9aad461873c9245d065",
       "position": "custom",
       "width_percent": 11.0,
@@ -79,15 +79,15 @@
     "title": {
       "enabled": true,
       "text": "Why a Song Gets Stuck in Your Head",
-      "position": "top_center",
+      "position": "custom",
       "font_name": "North Eternal",
-      "font_size": 80,
+      "font_size": 31,
       "bold": true,
       "italic": false,
-      "text_align": "center",
+      "text_align": "left",
       "max_words_per_line": 4,
       "line_spacing": 18.0,
-      "max_width_percent": 90.0,
+      "max_width_percent": 13.0,
       "margin_x_percent": 0.0,
       "margin_y_percent": 2.5,
       "logo_gap_percent": 1.0,

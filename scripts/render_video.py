@@ -21,6 +21,7 @@ import json
 import math
 import os
 import resource
+import re
 import shlex
 import shutil
 import subprocess
@@ -222,6 +223,127 @@ def escape_filter_path(path: Path) -> str:
     value = value.replace(":", r"\:")
     value = value.replace("'", r"\'")
     return value
+
+
+BRAND_POSITIONS = {
+    "top_left", "top_center", "top_right", "middle_left", "center", "middle_right",
+    "bottom_left", "bottom_center", "bottom_right", "custom",
+}
+
+
+def _bounded_number(config: dict[str, Any], name: str, default: float, low: float, high: float) -> float:
+    try:
+        value = float(config.get(name, default))
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"Branding {name} must be a number.") from exc
+    if not low <= value <= high:
+        raise ValueError(f"Branding {name} is outside {low}..{high}.")
+    return value
+
+
+def logo_geometry(config: dict[str, Any], width: int, height: int, source_width: int, source_height: int) -> tuple[int, int, int, int]:
+    """Resolve a panel logo preset/custom centre into an exact clamped pixel box."""
+    logo_width = max(2, round(width * _bounded_number(config, "width_percent", 14, 4, 40) / 100 / 2) * 2)
+    logo_height = max(2, round(logo_width * source_height / max(1, source_width) / 2) * 2)
+    margin_x = round(width * _bounded_number(config, "margin_x_percent", 3, 0, 25) / 100)
+    margin_y = round(height * _bounded_number(config, "margin_y_percent", 2.5, 0, 25) / 100)
+    position = str(config.get("position", "top_right")).strip().lower()
+    if position not in BRAND_POSITIONS:
+        raise ValueError("Invalid logo position in render profile.")
+    if position == "custom":
+        x = round(width * _bounded_number(config, "custom_x_percent", 85, 0, 100) / 100 - logo_width / 2)
+        y = round(height * _bounded_number(config, "custom_y_percent", 10, 0, 100) / 100 - logo_height / 2)
+    else:
+        vertical, horizontal = ("middle", "center") if position == "center" else position.split("_", 1)
+        x = margin_x if horizontal == "left" else (width - logo_width) // 2 if horizontal == "center" else width - logo_width - margin_x
+        y = margin_y if vertical == "top" else (height - logo_height) // 2 if vertical == "middle" else height - logo_height - margin_y
+    return max(0, min(width - logo_width, x)), max(0, min(height - logo_height, y)), logo_width, logo_height
+
+
+def css_to_ass_colour(value: Any, default: str) -> str:
+    candidate = str(value or "").strip()
+    if not re.fullmatch(r"#[0-9A-Fa-f]{6}", candidate):
+        return default
+    red, green, blue = candidate[1:3], candidate[3:5], candidate[5:7]
+    return f"&H00{blue}{green}{red}".upper()
+
+
+def ass_timestamp(seconds: float) -> str:
+    centiseconds = max(0, round(seconds * 100))
+    hours, remainder = divmod(centiseconds, 360000)
+    minutes, remainder = divmod(remainder, 6000)
+    whole, fraction = divmod(remainder, 100)
+    return f"{hours}:{minutes:02d}:{whole:02d}.{fraction:02d}"
+
+
+def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[int, int, int, int] | None, width: int, height: int, duration: float) -> None:
+    """Write explicitly wrapped title lines with exact, independent vertical spacing."""
+    text = " ".join(str(config.get("text") or "").split())
+    if not text:
+        raise ValueError("Enabled video title has no topic text.")
+    max_words = round(_bounded_number(config, "max_words_per_line", 7, 1, 100))
+    words = text.split()
+    lines = [" ".join(words[index:index + max_words]) for index in range(0, len(words), max_words)]
+    position = str(config.get("position", "below_logo")).strip().lower()
+    if position not in BRAND_POSITIONS | {"below_logo"}:
+        raise ValueError("Invalid title position in render profile.")
+    box_width = round(width * _bounded_number(config, "max_width_percent", 34, 12, 90) / 100)
+    margin_x = round(width * _bounded_number(config, "margin_x_percent", 3, 0, 25) / 100)
+    margin_y = round(height * _bounded_number(config, "margin_y_percent", 2.5, 0, 25) / 100)
+    align_name = str(config.get("text_align", "right")).strip().lower()
+    if align_name not in {"left", "center", "right"}:
+        raise ValueError("Invalid title text alignment in render profile.")
+    top_alignment = {"left": 7, "center": 8, "right": 9}[align_name]
+    vertical = "top"
+    if position == "below_logo":
+        if logo_box:
+            lx, ly, lw, lh = logo_box
+            left = round(lx + lw / 2 - box_width / 2)
+            top = ly + lh + round(height * _bounded_number(config, "logo_gap_percent", 1, 0, 15) / 100)
+        else:
+            left, top = width - box_width - margin_x, margin_y
+    elif position == "custom":
+        left = round(width * _bounded_number(config, "custom_x_percent", 80, 0, 100) / 100 - box_width / 2)
+        top = round(height * _bounded_number(config, "custom_y_percent", 18, 0, 100) / 100)
+    else:
+        vertical, horizontal = ("middle", "center") if position == "center" else position.split("_", 1)
+        left = margin_x if horizontal == "left" else (width - box_width) // 2 if horizontal == "center" else width - box_width - margin_x
+        top = margin_y
+    left = max(0, min(width - box_width, left))
+    font_size = round(_bounded_number(config, "font_size", 38, 16, 200))
+    line_spacing = _bounded_number(config, "line_spacing", 6, -10, 100)
+    line_advance = max(1, font_size + line_spacing)
+    block_height = font_size + line_advance * (len(lines) - 1)
+    if vertical == "middle":
+        top = (height - block_height) / 2
+    elif vertical == "bottom":
+        top = height - margin_y - block_height
+    top = max(0, min(max(0, height - block_height), top))
+    x = left if align_name == "left" else left + box_width / 2 if align_name == "center" else left + box_width
+    primary = css_to_ass_colour(config.get("font_colour"), "&H00FFFFFF")
+    outline_colour = css_to_ass_colour(config.get("outline_colour"), "&H00000000")
+    outline = _bounded_number(config, "outline", 2, 0, 8)
+    font_name = str(config.get("font_name") or "Roboto").replace(",", " ").strip()
+    events = []
+    for index, line in enumerate(lines):
+        safe_line = line.replace("\\", "／").replace("{", r"\{").replace("}", r"\}")
+        y = top + index * line_advance
+        # q2 disables libass auto-wrap: only the operator's word-count breaks apply.
+        events.append(
+            f"Dialogue: 1,0:00:00.00,{ass_timestamp(duration)},VideoTitle,,0,0,0,,"
+            f"{{\\an{top_alignment}\\q2\\pos({x:.2f},{y:.2f})}}{safe_line}"
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "[Script Info]\nScriptType: v4.00+\nWrapStyle: 0\nScaledBorderAndShadow: yes\n"
+        f"PlayResX: {width}\nPlayResY: {height}\n\n[V4+ Styles]\n"
+        "Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding\n"
+        f"Style: VideoTitle,{font_name},{font_size},{primary},{primary},{outline_colour},&H00000000,"
+        f"{-1 if bool(config.get('bold', True)) else 0},{-1 if bool(config.get('italic', False)) else 0},0,0,100,100,0,0,1,{outline:g},0,{top_alignment},0,0,0,1\n\n"
+        "[Events]\nFormat: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text\n"
+        + "\n".join(events) + "\n",
+        encoding="utf-8",
+    )
 
 
 def motion_filter(
@@ -773,6 +895,31 @@ def main() -> None:
     )
     subtitles_enabled = bool(subtitle_cfg.get("enabled", True)) and not args.no_subtitles
     subtitle_path = video_dir / "timeline" / "SUBTITLES.ass"
+    branding_cfg = profile.get("branding") if isinstance(profile.get("branding"), dict) else {}
+    logo_cfg = branding_cfg.get("logo") if isinstance(branding_cfg.get("logo"), dict) else {}
+    title_cfg = branding_cfg.get("title") if isinstance(branding_cfg.get("title"), dict) else {}
+    logo_enabled = bool(logo_cfg.get("enabled", False))
+    title_enabled = bool(title_cfg.get("enabled", False))
+    logo_path: Path | None = None
+    if logo_enabled:
+        logo_source = str(logo_cfg.get("source") or "")
+        raw_logo_path = Path(logo_source)
+        if raw_logo_path.is_absolute():
+            raise ValueError("Brand logo path must be relative.")
+        candidates = [(video_dir / raw_logo_path).resolve(), (ROOT / raw_logo_path).resolve()]
+        logo_path = next((candidate for candidate in candidates if candidate.is_file()), candidates[0])
+        try:
+            logo_path.relative_to(video_dir)
+        except ValueError as exc:
+            raise ValueError("Brand logo path must stay inside this video workspace.") from exc
+        expected_logo_hash = str(logo_cfg.get("sha256") or "")
+        if not logo_path.is_file():
+            raise FileNotFoundError(f"Brand logo not found: {logo_path}")
+        if not re.fullmatch(r"[a-f0-9]{64}", expected_logo_hash):
+            raise ValueError("Brand logo is missing its integrity hash.")
+        actual_logo_hash = hashlib.sha256(logo_path.read_bytes()).hexdigest()
+        if actual_logo_hash != expected_logo_hash:
+            raise ValueError("Brand logo failed integrity verification.")
 
     if subtitles_enabled:
         if not subtitle_path.exists():
@@ -780,10 +927,10 @@ def main() -> None:
                 f"Subtitle file not found: {subtitle_path}\n"
                 "Rebuild the timeline first."
             )
+    if subtitles_enabled or title_enabled:
         if not ffmpeg_has_ass_filter(ffmpeg):
             raise RuntimeError(
-                "This FFmpeg build does not expose the 'ass' subtitle filter. "
-                "Install an FFmpeg build with libass, or render with --no-subtitles."
+                "This FFmpeg build does not expose the 'ass' text filter required for subtitles/title."
             )
 
     video_cfg = profile.get("video") if isinstance(profile.get("video"), dict) else {}
@@ -925,7 +1072,17 @@ def main() -> None:
             # use accurate seek if needed; for now, input as is and trim via filter if source longer than needed
             command.extend(["-i", str(path)])
 
-    audio_input_index = len(input_paths)
+    logo_input_index: int | None = None
+    logo_box: tuple[int, int, int, int] | None = None
+    if logo_enabled and logo_path is not None:
+        logo_input_index = len(input_paths)
+        command.extend(["-loop", "1", "-framerate", str(fps), "-t", f"{duration:.6f}", "-i", str(logo_path)])
+        logo_probe = probe_video(ffprobe, logo_path)
+        logo_stream = next((item for item in logo_probe.get("streams", []) if item.get("width") and item.get("height")), None)
+        if not logo_stream:
+            raise ValueError(f"Could not read brand logo dimensions: {logo_path}")
+        logo_box = logo_geometry(logo_cfg, width, height, int(logo_stream["width"]), int(logo_stream["height"]))
+    audio_input_index = len(input_paths) + (1 if logo_input_index is not None else 0)
     command.extend(["-i", str(audio_path)])
 
     filter_parts: list[str] = []
@@ -996,21 +1153,41 @@ def main() -> None:
     filter_parts.append(f"[{current_label}]null[{concat_output}]")
 
     final_video_label = concat_output
+    if logo_enabled and logo_input_index is not None and logo_box is not None:
+        logo_x, logo_y, logo_width, logo_height = logo_box
+        opacity = _bounded_number(logo_cfg, "opacity", 1, .1, 1)
+        filter_parts.append(
+            f"[{logo_input_index}:v]scale={logo_width}:{logo_height}:flags=lanczos,format=rgba,colorchannelmixer=aa={opacity:.3f}[brand_logo]"
+        )
+        branded_label = "vlogo"
+        filter_parts.append(
+            f"[{final_video_label}][brand_logo]overlay=x={logo_x}:y={logo_y}:eof_action=repeat:shortest=1[{branded_label}]"
+        )
+        final_video_label = branded_label
+    custom_fonts_dir = prepare_uploaded_fonts_dir(ROOT)
+    fontsdir = (
+        f":fontsdir='{escape_filter_path(custom_fonts_dir)}'"
+        if custom_fonts_dir is not None
+        else ""
+    )
+    if title_enabled:
+        title_path = video_dir / "render" / "BRANDING_TITLE.ass"
+        write_brand_title_ass(title_path, title_cfg, logo_box, width, height, duration)
+        title_label = "vtitle"
+        filter_parts.append(
+            f"[{final_video_label}]ass=filename='{escape_filter_path(title_path)}'{fontsdir}[{title_label}]"
+        )
+        final_video_label = title_label
     if subtitles_enabled:
-        final_video_label = "vout"
+        subtitle_label = "vout"
         ass_path = escape_filter_path(subtitle_path)
         # Operator-uploaded subtitle faces are stored with the panel, outside an
         # episode directory.  Passing the directory directly to libass makes the
         # persisted selected family deterministic without relying on system cache.
-        custom_fonts_dir = prepare_uploaded_fonts_dir(ROOT)
-        fontsdir = (
-            f":fontsdir='{escape_filter_path(custom_fonts_dir)}'"
-            if custom_fonts_dir is not None
-            else ""
-        )
         filter_parts.append(
-            f"[{concat_output}]ass=filename='{ass_path}'{fontsdir}[{final_video_label}]"
+            f"[{final_video_label}]ass=filename='{ass_path}'{fontsdir}[{subtitle_label}]"
         )
+        final_video_label = subtitle_label
 
     filter_complex = ";".join(filter_parts)
 
@@ -1067,6 +1244,7 @@ def main() -> None:
     command = [*launcher, *command] if launcher else command
 
     print(f"Subtitles: {'on' if subtitles_enabled else 'off'}")
+    print(f"Branding: logo={'on' if logo_enabled else 'off'}, title={'on' if title_enabled else 'off'}")
     print(
         f"Resource caps: encoder={thread_cap}, filter={filter_threads}, "
         f"complex={filter_complex_threads} (from {thread_source})"
@@ -1119,6 +1297,7 @@ def main() -> None:
         "resolution": f"{width}x{height}",
         "fps": fps,
         "subtitles": subtitles_enabled,
+        "branding": {"logo": logo_enabled, "title": title_enabled},
         "resource_budget": round(float(args.resource_budget), 3),
         "cpus_available": cpu_count(),
         "threads": {

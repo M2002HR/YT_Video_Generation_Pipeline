@@ -37,6 +37,7 @@ from panel_contract import defaults as launch_defaults
 from panel_contract import launch_schema
 from panel_contract import ALL_SUBTITLE_FONTS, RECOMMENDED_SUBTITLE_FONTS
 from panel_contract import SUBTITLE_FONT_SIZE_MIN, SUBTITLE_FONT_SIZE_MAX
+from panel_contract import TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX
 from subtitle_font_runtime import prepare_uploaded_fonts_dir, sfnt_vertical_metrics
 from run_graph import graph_for, invalidation_paths, regeneration_plan
 from content_projects import (
@@ -242,6 +243,18 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         values["subtitle_outline"] = float(_subtitle.get("outline", 3))
     except (TypeError, ValueError):
         values["subtitle_outline"] = 3
+    branding = brief.get("_branding") if isinstance(brief.get("_branding"), dict) else {}
+    for key, default in BRANDING_DEFAULTS.items():
+        values[key] = branding.get(key, default)
+    logo_asset = branding.get("logo_asset") if isinstance(branding.get("logo_asset"), dict) else {}
+    logo_hash = str(logo_asset.get("sha256") or "")
+    values["logo_upload_id"] = f"existing:{logo_hash}" if re.fullmatch(r"[a-f0-9]{64}", logo_hash) else ""
+    # Fixed-root-logo builds had show_logo=true but no frozen asset. Treat them as
+    # unbranded after migration rather than failing every unrelated revision.
+    if not values["logo_upload_id"]:
+        values["show_logo"] = False
+    if values["title_font"] not in available_subtitle_font_families():
+        values["title_font"] = BRANDING_DEFAULTS["title_font"]
     values.update({key: voice[key] for key in VOICE_FIELDS if key in voice})
     inverse_motion = {stored: field for field, stored in MOTION_FIELDS.items()}
     for key, value in (brief.get("_motion") or {}).items():
@@ -406,6 +419,32 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         for key in ("subtitle_font", "subtitle_font_size", "subtitle_bold", "subtitle_italic", "subtitle_position", "subtitle_offset_value", "subtitle_offset_unit", "subtitle_max_words", "subtitle_font_colour", "subtitle_outline", "subtitle_outline_colour")
     ):
         roots.add("render_profile")
+    brief["_branding"] = {
+        **dict(previous.get("_branding") or {}),
+        **{key: merged[key] for key in BRANDING_FIELDS},
+    }
+    logo_reference = str(merged.get("logo_upload_id") or "")
+    branding_before = previous.get("_branding") if isinstance(previous.get("_branding"), dict) else {}
+    old_logo_asset = branding_before.get("logo_asset") if isinstance(branding_before.get("logo_asset"), dict) else {}
+    old_logo_hash = str(old_logo_asset.get("sha256") or "")
+    if logo_reference:
+        existing_match = LOGO_EXISTING_RE.fullmatch(logo_reference)
+        if existing_match:
+            if existing_match.group(1) != old_logo_hash:
+                raise ValueError("Stored logo no longer matches this run.")
+        elif LOGO_UPLOAD_RE.fullmatch(logo_reference):
+            brief["_branding"]["_logo_upload_id"] = logo_reference
+        else:
+            raise ValueError("Invalid logo upload.")
+    else:
+        brief["_branding"].pop("logo_asset", None)
+        brief["_branding"].pop("_logo_upload_id", None)
+    brief["_branding"].pop("logo_upload_id", None)
+    if merged["show_logo"] and not logo_reference:
+        raise ValueError("Upload a logo before enabling it.")
+    if any(before.get(key) != merged.get(key) for key in BRANDING_FIELDS):
+        # Branding is a final compositing concern: never invalidate paid source media.
+        roots.add("render_profile")
     motion = {
         MOTION_FIELDS.get(key, key.removeprefix("motion_")): merged[key]
         for key in merged if key.startswith("motion_")
@@ -460,12 +499,21 @@ STYLE_REFERENCE_EXISTING_RE = re.compile(r"^existing:([a-f0-9]{64})$")
 STYLE_REFERENCE_MAX_BYTES = 12 * 1024 * 1024
 STYLE_REFERENCE_MAX_PIXELS = 32_000_000
 STYLE_REFERENCE_MIN_EDGE = 128
+LOGO_UPLOAD_RE = re.compile(r"^[a-f0-9]{32}$")
+LOGO_EXISTING_RE = re.compile(r"^existing:([a-f0-9]{64})$")
+LOGO_MAX_BYTES = 12 * 1024 * 1024
+LOGO_MAX_PIXELS = 32_000_000
+LOGO_MIN_EDGE = 32
 SUBTITLE_FONT_UPLOAD_RE = re.compile(r"^[a-f0-9]{32}$")
 SUBTITLE_FONT_MAX_BYTES = 16 * 1024 * 1024
 
 
 def style_reference_uploads_dir() -> Path:
     return ROOT / "control_panel" / "style_reference_uploads"
+
+
+def logo_uploads_dir() -> Path:
+    return ROOT / "control_panel" / "logo_uploads"
 
 
 def subtitle_fonts_dir() -> Path:
@@ -567,6 +615,88 @@ def freeze_style_reference(brief: dict, project: Path, folder: Path) -> None:
         "mime_type": "image/png",
         "width": int(metadata.get("width") or 0),
         "height": int(metadata.get("height") or 0),
+    }
+
+
+def validate_logo_image(payload: bytes) -> tuple[bytes, int, int]:
+    """Decode a single logo safely, preserving its alpha channel in normalized PNG."""
+    if not payload or len(payload) > LOGO_MAX_BYTES:
+        raise ValueError("Logo must be between 1 byte and 12 MiB.")
+    try:
+        from PIL import Image, ImageOps
+        from io import BytesIO
+        with Image.open(BytesIO(payload)) as image:
+            image.verify()
+        with Image.open(BytesIO(payload)) as image:
+            if getattr(image, "n_frames", 1) != 1:
+                raise ValueError("Animated or multi-frame images cannot be used as a logo.")
+            width, height = image.size
+            if width < LOGO_MIN_EDGE or height < LOGO_MIN_EDGE:
+                raise ValueError("Logo must be at least 32 pixels on each side.")
+            if width * height > LOGO_MAX_PIXELS:
+                raise ValueError("Logo has too many pixels.")
+            normalized = ImageOps.exif_transpose(image).convert("RGBA")
+            output = BytesIO()
+            normalized.save(output, format="PNG", optimize=True)
+            return output.getvalue(), width, height
+    except ValueError:
+        raise
+    except Exception as exc:
+        raise ValueError("Logo must be a valid PNG, JPEG, or WebP image.") from exc
+
+
+def read_logo_upload(upload_id: str) -> tuple[Path, dict]:
+    if not LOGO_UPLOAD_RE.fullmatch(upload_id):
+        raise ValueError("Invalid logo upload.")
+    folder = logo_uploads_dir()
+    image, metadata_path = folder / f"{upload_id}.png", folder / f"{upload_id}.json"
+    try:
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ValueError("Logo upload has expired; upload it again.") from exc
+    if not isinstance(metadata, dict) or not image.is_file() or metadata.get("sha256") != sha256_path(image):
+        raise ValueError("Logo upload failed integrity verification; upload it again.")
+    return image, metadata
+
+
+def freeze_logo_asset(brief: dict, project: Path, folder: Path) -> None:
+    """Copy an upload/existing run logo into the current immutable configuration."""
+    branding = brief.setdefault("_branding", {})
+    if not isinstance(branding, dict):
+        raise ValueError("Invalid branding settings.")
+    upload_id = str(branding.pop("_logo_upload_id", "") or "")
+    existing = branding.get("logo_asset")
+    source: Path | None = None
+    metadata: dict[str, Any] = {}
+    if upload_id:
+        source, metadata = read_logo_upload(upload_id)
+    elif isinstance(existing, dict):
+        relative = str(existing.get("path") or "")
+        try:
+            candidate = (ROOT / relative).resolve()
+            candidate.relative_to((ROOT / "videos").resolve())
+        except ValueError as exc:
+            raise ValueError("Stored logo has an unsafe path.") from exc
+        expected = str(existing.get("sha256") or "")
+        if not candidate.is_file() or not re.fullmatch(r"[a-f0-9]{64}", expected) or sha256_path(candidate) != expected:
+            raise ValueError("Stored logo failed integrity verification.")
+        source, metadata = candidate, dict(existing)
+    if source is None:
+        branding.pop("logo_asset", None)
+        branding["show_logo"] = False
+        return
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / "logo.png"
+    temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        shutil.copyfile(source, temporary)
+        temporary.replace(target)
+    finally:
+        temporary.unlink(missing_ok=True)
+    branding["logo_asset"] = {
+        "schema_version": 1, "path": str(target.relative_to(ROOT)),
+        "sha256": sha256_path(target), "mime_type": "image/png",
+        "width": int(metadata.get("width") or 0), "height": int(metadata.get("height") or 0),
     }
 
 #: Subtitle preview fonts. Slugs are URL-safe; files are the exact faces fontconfig
@@ -691,6 +821,20 @@ SUBTITLE_STYLE_DEFAULTS = {
     "max_words_per_cue": 6,
 }
 
+BRANDING_DEFAULTS = {
+    "show_logo": False, "logo_position": "top_right", "logo_width_percent": 14,
+    "logo_opacity": 1, "logo_margin_x_percent": 3, "logo_margin_y_percent": 2.5,
+    "logo_custom_x_percent": 85, "logo_custom_y_percent": 10,
+    "show_title": True, "title_position": "below_logo", "title_font": "Roboto",
+    "title_font_size": 38, "title_max_words_per_line": 7, "title_line_spacing": 6,
+    "title_max_width_percent": 34, "title_bold": True,
+    "title_italic": False, "title_text_align": "right", "title_margin_x_percent": 3,
+    "title_margin_y_percent": 2.5, "title_logo_gap_percent": 1,
+    "title_custom_x_percent": 80, "title_custom_y_percent": 18,
+    "title_font_colour": "#FFFFFF", "title_outline_colour": "#000000", "title_outline": 2,
+}
+BRANDING_FIELDS = (*BRANDING_DEFAULTS, "logo_upload_id")
+
 
 def studio_schema() -> dict:
     """Current launch form contract, including live project and style choices."""
@@ -706,7 +850,7 @@ def studio_schema() -> dict:
                 field["options"] = [{"value": "", "label": "Choose a character"}] + [
                     {"value": item["id"], "label": item["display_name"]} for item in characters
                 ]
-            elif field["name"] == "subtitle_font":
+            elif field["name"] in {"subtitle_font", "title_font"}:
                 # The static contract supplies the defaults; this runtime extension makes
                 # verified operator uploads available to both New run and Revise forms.
                 field["options"] = subtitle_font_options()
@@ -2206,6 +2350,59 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, OSError, UnicodeError) as exc:
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not accept style reference image."})
 
+    def handle_logo_upload(self) -> None:
+        """Accept and normalize one operator logo while retaining transparency."""
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            content_type = str(self.headers.get("Content-Type") or "")
+            if length <= 0 or length > LOGO_MAX_BYTES + 128_000:
+                raise ValueError("Logo upload is empty or too large.")
+            if not content_type.lower().startswith("multipart/form-data;"):
+                raise ValueError("Logo must be uploaded as a file.")
+            body = self.rfile.read(length)
+            message = BytesParser(policy=policy.default).parsebytes(
+                f"Content-Type: {content_type}\r\nMIME-Version: 1.0\r\n\r\n".encode("ascii") + body
+            )
+            parts = [item for item in message.iter_parts() if item.get_content_disposition() == "form-data"]
+            images = [item for item in parts if item.get_param("name", header="content-disposition") == "logo"]
+            if len(images) != 1:
+                raise ValueError("Choose exactly one logo image.")
+            item = images[0]
+            if item.get_content_type().lower() not in {"image/png", "image/jpeg", "image/webp", "application/octet-stream"}:
+                raise ValueError("Logo must be PNG, JPEG, or WebP.")
+            normalized, width, height = validate_logo_image(item.get_payload(decode=True) or b"")
+            upload_id = uuid.uuid4().hex
+            folder = logo_uploads_dir(); folder.mkdir(parents=True, exist_ok=True)
+            image = folder / f"{upload_id}.png"
+            temporary = image.with_name(f".{image.name}.{uuid.uuid4().hex}.tmp")
+            try:
+                temporary.write_bytes(normalized)
+                temporary.replace(image)
+            finally:
+                temporary.unlink(missing_ok=True)
+            metadata = {"schema_version": 1, "sha256": sha256_path(image), "width": width, "height": height, "created_at": utcnow()}
+            write_json(folder / f"{upload_id}.json", metadata)
+            self.send_json(HTTPStatus.CREATED, {
+                "id": upload_id, "width": width, "height": height,
+                "preview_url": f"/api/logo-uploads/{upload_id}/preview",
+            })
+        except (ValueError, OSError, UnicodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not accept logo image."})
+
+    def serve_logo_upload_preview(self, upload_id: str) -> None:
+        try:
+            image, _ = read_logo_upload(upload_id)
+            payload = image.read_bytes()
+        except (ValueError, OSError):
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "image/png"); self.send_header("Content-Length", str(len(payload)))
+        self.send_header("Cache-Control", "private, no-cache"); self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY"); self.end_headers()
+        if getattr(self, "command", "GET") != "HEAD":
+            try: self.wfile.write(payload)
+            except (BrokenPipeError, ConnectionResetError): return
+
     def serve_style_reference_upload_preview(self, upload_id: str) -> None:
         try:
             image, _ = read_style_reference_upload(upload_id)
@@ -2464,6 +2661,7 @@ class Handler(BaseHTTPRequestHandler):
         }
         request = project / "launch" / "LAUNCH_REQUEST.json"
         freeze_style_reference(brief, project, project / "launch" / "style_references")
+        freeze_logo_asset(brief, project, project / "launch" / "branding")
         write_json(profile, voice)
         write_json(creative_brief_path, brief)
         write_json(request, record)
@@ -2509,8 +2707,8 @@ class Handler(BaseHTTPRequestHandler):
             not isinstance(values, dict) and not all(isinstance(x, dict) for x in (brief, voice, launch))
         ):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "All configuration sections must be JSON objects."}); return
-        if not isinstance(values, dict) and any(key in brief and not isinstance(brief[key], dict) for key in ("_qh", "_motion", "_sfx", "_subtitle")):
-            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Nested _qh, _motion, _sfx, and _subtitle settings must be JSON objects."}); return
+        if not isinstance(values, dict) and any(key in brief and not isinstance(brief[key], dict) for key in ("_qh", "_motion", "_sfx", "_subtitle", "_branding")):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Nested launch settings must be JSON objects."}); return
         try:
             if not isinstance(values, dict) and ("music_providers" in launch or "music_provider" in launch):
                 music_provider_priority(launch.get("music_providers") or launch.get("music_provider"))
@@ -2572,6 +2770,7 @@ class Handler(BaseHTTPRequestHandler):
             )
             return
         revision_id = str(uuid.uuid4()); folder = project / "launch" / "config_revisions" / revision_id; folder.mkdir(parents=True, exist_ok=True)
+        freeze_logo_asset(brief, project, folder / "branding")
         write_json(folder / "CREATIVE_BRIEF.json", brief); write_json(folder / "VOICE_PROFILE.json", voice)
         # Derive the narrowest safe root(s). Any unknown editorial launch change begins at
         # the script; this errs toward correct output rather than reusing stale media.
@@ -2612,6 +2811,7 @@ class Handler(BaseHTTPRequestHandler):
         if changed(previous_brief.get("_motion", {}), brief.get("_motion", {})): roots.add("motion_director")
         if changed(previous_brief.get("_sfx", {}), brief.get("_sfx", {})): roots.update(("sfx_plan", "sfx_acquire"))
         if changed(previous_brief.get("_subtitle", {}), brief.get("_subtitle", {})): roots.add("render_profile")
+        if changed(previous_brief.get("_branding", {}), brief.get("_branding", {})): roots.add("render_profile")
         if changed(previous_voice, voice): roots.add("elevenlabs_voiceover")
         for key in ("music_providers", "music_provider"):
             if launch.get(key) != record.get(key): roots.add("background_music")
@@ -2671,6 +2871,7 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 folder.mkdir(parents=True, exist_ok=False)
                 freeze_style_reference(brief, project, folder)
+                freeze_logo_asset(brief, project, folder / "branding")
                 write_json(folder / "CREATIVE_BRIEF.json", brief)
                 write_json(folder / "VOICE_PROFILE.json", voice)
                 record.update({key: value for key, value in launch.items() if not key.startswith("_")})
@@ -3098,6 +3299,10 @@ class Handler(BaseHTTPRequestHandler):
             upload_id = route.removeprefix("/api/style-reference-uploads/").removesuffix("/preview").strip("/")
             self.serve_style_reference_upload_preview(upload_id)
             return
+        if route.startswith("/api/logo-uploads/") and route.endswith("/preview"):
+            upload_id = route.removeprefix("/api/logo-uploads/").removesuffix("/preview").strip("/")
+            self.serve_logo_upload_preview(upload_id)
+            return
         if route == "/api/character-catalog":
             content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
             try:
@@ -3179,12 +3384,20 @@ class Handler(BaseHTTPRequestHandler):
                     style_reference["preview_path"] = str((ROOT / str(style_reference.get("path") or "")).resolve().relative_to(_project))
                 except ValueError:
                     style_reference.pop("preview_path", None)
+            logo_asset = (brief.get("_branding") or {}).get("logo_asset")
+            if isinstance(logo_asset, dict):
+                logo_asset = dict(logo_asset)
+                try:
+                    logo_asset["preview_path"] = str((ROOT / str(logo_asset.get("path") or "")).resolve().relative_to(_project))
+                except ValueError:
+                    logo_asset.pop("preview_path", None)
             self.send_json(HTTPStatus.OK, {
                 "creative_brief": brief,
                 "voice_profile": voice,
                 "launch": launch,
                 "values": frozen_values(record, brief, voice),
                 "style_reference": style_reference,
+                "logo_asset": logo_asset,
                 "transition_overrides": list((brief.get("_motion") or {}).get("transition_overrides", []) or []),
             }); return
 
@@ -3264,6 +3477,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         if self.path == "/api/style-reference-uploads": self.handle_style_reference_upload(); return
+        if self.path == "/api/logo-uploads": self.handle_logo_upload(); return
         if self.path == "/api/subtitle-fonts": self.handle_subtitle_font_upload(); return
         if self.path == "/api/credits/check":
             active = active_job(self.jobs_dir)
@@ -3325,6 +3539,26 @@ class Handler(BaseHTTPRequestHandler):
                 subtitle_outline = float(values.get("subtitle_outline", ["3"])[0])
             except (TypeError, ValueError):
                 raise ValueError("Invalid subtitle outline.")
+            show_logo = "show_logo" in values
+            logo_upload_id = values.get("logo_upload_id", [""])[0].strip()
+            show_title = "show_title" in values
+            logo_position = values.get("logo_position", ["top_right"])[0].strip().lower()
+            title_position = values.get("title_position", ["below_logo"])[0].strip().lower()
+            title_font = values.get("title_font", ["Roboto"])[0].strip() or "Roboto"
+            title_text_align = values.get("title_text_align", ["right"])[0].strip().lower()
+            try:
+                branding_numbers = {
+                    key: float(values.get(key, [str(default)])[0])
+                    for key, default in BRANDING_DEFAULTS.items()
+                    if isinstance(default, (int, float)) and not isinstance(default, bool)
+                }
+            except (TypeError, ValueError):
+                raise ValueError("Invalid logo or title geometry.")
+            title_font_size = int(branding_numbers["title_font_size"])
+            title_bold = "title_bold" in values
+            title_italic = "title_italic" in values
+            title_font_colour = values.get("title_font_colour", ["#FFFFFF"])[0].strip().upper()
+            title_outline_colour = values.get("title_outline_colour", ["#000000"])[0].strip().upper()
             commit_artifacts = "commit_artifacts" in values
             telegram_low_size = "telegram_low_size" in values
             telegram_original = "telegram_original" in values
@@ -3447,6 +3681,36 @@ class Handler(BaseHTTPRequestHandler):
                     raise ValueError(f"{label} colour must be #RRGGBB.")
             if not 0 <= subtitle_outline <= 8:
                 raise ValueError("Subtitle outline is outside 0..8.")
+            overlay_positions = {
+                "top_left", "top_center", "top_right", "middle_left", "center", "middle_right",
+                "bottom_left", "bottom_center", "bottom_right", "custom",
+            }
+            if logo_position not in overlay_positions or title_position not in overlay_positions | {"below_logo"}:
+                raise ValueError("Invalid logo or title position.")
+            if logo_upload_id and not LOGO_UPLOAD_RE.fullmatch(logo_upload_id):
+                raise ValueError("Invalid logo upload.")
+            if show_logo and not logo_upload_id:
+                raise ValueError("Upload a logo before enabling it.")
+            if title_font not in available_subtitle_font_families():
+                raise ValueError("Invalid title font.")
+            if title_text_align not in {"left", "center", "right"}:
+                raise ValueError("Invalid title text alignment.")
+            ranges = {
+                "logo_width_percent": (4, 40), "logo_opacity": (.1, 1),
+                "logo_margin_x_percent": (0, 25), "logo_margin_y_percent": (0, 25),
+                "logo_custom_x_percent": (0, 100), "logo_custom_y_percent": (0, 100),
+                "title_font_size": (TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX),
+                "title_max_words_per_line": (1, 100), "title_line_spacing": (-10, 100),
+                "title_max_width_percent": (12, 90), "title_margin_x_percent": (0, 25),
+                "title_margin_y_percent": (0, 25), "title_logo_gap_percent": (0, 15),
+                "title_custom_x_percent": (0, 100), "title_custom_y_percent": (0, 100),
+                "title_outline": (0, 8),
+            }
+            if any(not low <= branding_numbers[key] <= high for key, (low, high) in ranges.items()):
+                raise ValueError("A logo or title setting is outside its allowed range.")
+            for colour, label in ((title_font_colour, "Title text"), (title_outline_colour, "Title outline")):
+                if not re.fullmatch(r"#[0-9A-Fa-f]{6}", colour):
+                    raise ValueError(f"{label} colour must be #RRGGBB.")
             if not 0 <= opening_speed_tolerance <= 0.5:
                 raise ValueError("Invalid opening_speed_tolerance")
             if sfx_style not in {"restrained", "balanced", "expressive"} or not 0 <= sfx_max_events <= 20 or not 0 <= sfx_min_gap <= 30 or not 0 <= sfx_threshold <= 1 or sfx_license not in {"cc0", "cc0_by"} or not 1 <= sfx_candidates <= 50 or not 1 <= sfx_queries <= 5 or not -40 <= sfx_gain <= -3:
@@ -3542,6 +3806,18 @@ class Handler(BaseHTTPRequestHandler):
                 "outline": subtitle_outline,
                 "outline_colour": subtitle_outline_colour,
             }
+            creative_brief["_branding"] = {
+                "show_logo": show_logo, "logo_position": logo_position,
+                "show_title": show_title, "title_position": title_position,
+                "title_font": title_font, "title_font_size": title_font_size,
+                "title_bold": title_bold, "title_italic": title_italic,
+                "title_text_align": title_text_align,
+                "title_font_colour": title_font_colour,
+                "title_outline_colour": title_outline_colour,
+                **branding_numbers,
+            }
+            if logo_upload_id:
+                creative_brief["_branding"]["_logo_upload_id"] = logo_upload_id
             creative_brief["_sfx"] = {"enabled": sfx_enabled, "planner_enabled": sfx_enabled, "planner_style": sfx_style, "max_events_per_minute": sfx_max_events, "minimum_gap_seconds": sfx_min_gap, "local_match_threshold": sfx_threshold, "freesound_enabled": sfx_freesound_enabled, "license_policy": sfx_license, "candidate_count": sfx_candidates, "max_queries_per_event": sfx_queries, "default_gain_db": sfx_gain, "min_gain_db": -20, "max_gain_db": -3}
             creative_brief["_motion"] = {
                 "enabled": motion_enabled, "planning_quality": motion_planning_quality,
@@ -3605,6 +3881,7 @@ class Handler(BaseHTTPRequestHandler):
             project = ROOT / "videos" / f"{video_id}_{video_slug(topic)}"; profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
             try:
                 freeze_style_reference(creative_brief, project, project / "launch" / "style_references")
+                freeze_logo_asset(creative_brief, project, project / "launch" / "branding")
             except ValueError as exc:
                 self.send_notice(HTTPStatus.BAD_REQUEST, str(exc)); return
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})

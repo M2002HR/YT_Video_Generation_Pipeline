@@ -11,6 +11,8 @@ from typing import Any
 
 SUBTITLE_FONT_SIZE_MIN = 24
 SUBTITLE_FONT_SIZE_MAX = 300
+TITLE_FONT_SIZE_MIN = 16
+TITLE_FONT_SIZE_MAX = 200
 
 
 def _field(name: str, label: str, kind: str = "text", **values: Any) -> dict[str, Any]:
@@ -77,6 +79,13 @@ SUBTITLE_COLOUR_PRESETS = (
     ("#000000", "Black"),
 )
 
+OVERLAY_POSITIONS = (
+    ("top_left", "Top left"), ("top_center", "Top centre"), ("top_right", "Top right"),
+    ("middle_left", "Middle left"), ("center", "Centre"), ("middle_right", "Middle right"),
+    ("bottom_left", "Bottom left"), ("bottom_center", "Bottom centre"), ("bottom_right", "Bottom right"),
+    ("custom", "Custom coordinates"),
+)
+
 
 def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str, Any]:
     select = lambda values: [{"value": value, "label": label} for value, label in values]
@@ -98,6 +107,38 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
                 {"value": "9:16", "label": "9:16 — Shorts / Reels"},
                 {"value": "16:9", "label": "16:9 — YouTube landscape", "disabledProjects": ["q_station"]},
             ], help="Q Station's book-world image contract is currently vertical; landscape remains available to generic projects."),
+        ]},
+        {"id": "branding", "title": "Logo & video title", "description": "Persistent channel branding burned into the final video. The title text is always the episode question/topic.", "fields": [
+            _field("show_logo", "Show logo", "toggle", default=False, help="Upload a logo below to enable this control."),
+            _field("logo_upload_id", "Logo upload", default="", maxLength=96, placeholder=""),
+            _field("logo_position", "Logo position", "select", default="top_right", options=select(list(OVERLAY_POSITIONS)), requires={"field": "show_logo", "value": True}),
+            _field("logo_width_percent", "Logo width (% of frame)", "number", default=14, min=4, max=40, step=.5, width="half", requires={"field": "show_logo", "value": True}),
+            _field("logo_opacity", "Logo opacity", "number", default=1, min=.1, max=1, step=.05, width="half", requires={"field": "show_logo", "value": True}),
+            _field("logo_margin_x_percent", "Logo horizontal margin %", "number", default=3, min=0, max=25, step=.5, width="half", requires={"field": "show_logo", "value": True}),
+            _field("logo_margin_y_percent", "Logo vertical margin %", "number", default=2.5, min=0, max=25, step=.5, width="half", requires={"field": "show_logo", "value": True}),
+            _field("logo_custom_x_percent", "Logo custom centre X %", "number", default=85, min=0, max=100, step=.5, width="half", requires=[{"field": "show_logo", "value": True}, {"field": "logo_position", "value": "custom"}]),
+            _field("logo_custom_y_percent", "Logo custom centre Y %", "number", default=10, min=0, max=100, step=.5, width="half", requires=[{"field": "show_logo", "value": True}, {"field": "logo_position", "value": "custom"}]),
+            _field("show_title", "Show question as video title", "toggle", default=True),
+            _field("title_position", "Title position", "select", default="below_logo", options=select([("below_logo", "Below the logo (dynamic)"), *OVERLAY_POSITIONS]), requires={"field": "show_title", "value": True}),
+            _field("title_font", "Title font", "select", default="Roboto", options=[
+                {"value": name, "label": name, "recommended": name in RECOMMENDED_SUBTITLE_FONTS}
+                for name in ALL_SUBTITLE_FONTS
+            ], searchable=True, help="Uses the same installed and uploaded font library as subtitles.", requires={"field": "show_title", "value": True}),
+            _field("title_font_size", "Title font size", "number", default=38, min=TITLE_FONT_SIZE_MIN, max=TITLE_FONT_SIZE_MAX, step=1, width="half", requires={"field": "show_title", "value": True}),
+            _field("title_max_words_per_line", "Maximum words per line", "number", default=7, min=1, max=100, step=1, width="half", help="Set this high enough to keep the complete question on one line.", requires={"field": "show_title", "value": True}),
+            _field("title_line_spacing", "Line spacing (px)", "number", default=6, min=-10, max=100, step=1, width="half", help="Extra vertical space between title lines at final render resolution.", requires={"field": "show_title", "value": True}),
+            _field("title_max_width_percent", "Title box width %", "number", default=34, min=12, max=90, step=1, width="half", requires={"field": "show_title", "value": True}),
+            _field("title_bold", "Title bold", "toggle", default=True, requires={"field": "show_title", "value": True}),
+            _field("title_italic", "Title italic", "toggle", default=False, requires={"field": "show_title", "value": True}),
+            _field("title_text_align", "Text alignment", "select", default="right", options=select([("left", "Left"), ("center", "Centre"), ("right", "Right")]), requires={"field": "show_title", "value": True}),
+            _field("title_margin_x_percent", "Title horizontal margin %", "number", default=3, min=0, max=25, step=.5, width="half", requires={"field": "show_title", "value": True}),
+            _field("title_margin_y_percent", "Title vertical margin %", "number", default=2.5, min=0, max=25, step=.5, width="half", requires={"field": "show_title", "value": True}),
+            _field("title_logo_gap_percent", "Gap below logo %", "number", default=1, min=0, max=15, step=.5, width="half", requires=[{"field": "show_title", "value": True}, {"field": "title_position", "value": "below_logo"}]),
+            _field("title_custom_x_percent", "Title box centre X %", "number", default=80, min=0, max=100, step=.5, width="half", requires=[{"field": "show_title", "value": True}, {"field": "title_position", "value": "custom"}]),
+            _field("title_custom_y_percent", "Title box top Y %", "number", default=18, min=0, max=100, step=.5, width="half", requires=[{"field": "show_title", "value": True}, {"field": "title_position", "value": "custom"}]),
+            _field("title_font_colour", "Title colour", "color", default="#FFFFFF", width="half", presets=list(SUBTITLE_COLOUR_PRESETS), requires={"field": "show_title", "value": True}),
+            _field("title_outline_colour", "Title outline colour", "color", default="#000000", width="half", presets=list(SUBTITLE_COLOUR_PRESETS), requires={"field": "show_title", "value": True}),
+            _field("title_outline", "Title outline width", "number", default=2, min=0, max=8, step=.5, requires={"field": "show_title", "value": True}),
         ]},
         {"id": "subtitles", "title": "Subtitles & safe areas", "description": "Caption content, styling and the visual space protected for it.", "fields": [
             _field("show_subtitles", "Burn in subtitles", "toggle", default=False),
@@ -230,11 +271,11 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
         ]},
     ]
     order = (
-        "episode", "format", "character", "visual", "opening", "voice", "music",
+        "episode", "format", "branding", "character", "visual", "opening", "voice", "music",
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
     )
     groups.sort(key=lambda group: order.index(group["id"]))
-    return {"schema_version": 2, "groups": groups}
+    return {"schema_version": 3, "groups": groups}
 
 
 def defaults(schema: dict[str, Any]) -> dict[str, Any]:

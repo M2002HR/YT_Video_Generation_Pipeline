@@ -14,7 +14,7 @@ from panel_page import launch_form
 def test_schema_exposes_every_launch_configuration_group() -> None:
     schema = launch_schema([{"value": "question_harvest", "label": "Question Harvest"}], ["ink_001"])
     assert [group["id"] for group in schema["groups"]] == [
-        "episode", "format", "character", "visual", "opening", "voice", "music",
+        "episode", "format", "branding", "character", "visual", "opening", "voice", "music",
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
     ]
     names = {field["name"] for group in schema["groups"] for field in group["fields"]}
@@ -42,6 +42,22 @@ def test_schema_defaults_match_the_server_launch_contract() -> None:
     assert values["image_qc_correction_policy"] == "0"
     assert values["motion_enabled"] is True
     assert "locked_text" not in values
+
+
+def test_branding_defaults_put_the_question_below_a_top_right_logo() -> None:
+    schema = launch_schema([{"value": "q_station", "label": "Q Station"}], [])
+    group = next(item for item in schema["groups"] if item["id"] == "branding")
+    fields = {field["name"]: field for field in group["fields"]}
+    assert fields["show_logo"]["default"] is False
+    assert fields["logo_upload_id"]["default"] == ""
+    assert fields["logo_position"]["default"] == "top_right"
+    assert fields["show_title"]["default"] is True
+    assert fields["title_position"]["default"] == "below_logo"
+    assert fields["title_max_words_per_line"]["default"] == 7
+    assert fields["title_max_words_per_line"]["max"] == 100
+    assert fields["title_line_spacing"]["default"] == 6
+    assert {option["value"] for option in fields["title_font"]["options"]} >= {"Roboto", "Rubik", "DejaVu Sans"}
+    assert fields["logo_custom_x_percent"]["requires"][1] == {"field": "logo_position", "value": "custom"}
 
 
 def test_visual_group_exposes_stage_aware_image_qc_policy() -> None:
