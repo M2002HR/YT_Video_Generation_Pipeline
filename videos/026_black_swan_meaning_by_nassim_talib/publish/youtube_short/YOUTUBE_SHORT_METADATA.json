@@ -1,0 +1,472 @@
+{
+  "title": "Why Black Swan Events Defy Forecasts",
+  "title_options": [
+    "What Taleb Means by a Black Swan",
+    "Why Hindsight Makes Black Swans Look Predictable",
+    "One Black Swan Can Shatter a Forecast"
+  ],
+  "description": "What does Nassim Taleb mean by a Black Swan? This Q Station Short explains the idea: a Black Swan is an event outside normal expectations, with enormous impact, that people often make look predictable in hindsight. The metaphor comes from the old European belief that all swans were white until Europeans encountered black swans in Australia. The practical lesson is that forecasts built from past observations can miss consequential surprises in markets, technology, and beyond. Taleb's response is not perfect prediction, but less dependence on fragile forecasts and more room for error. Q Station explores questions that open bigger worlds of ideas.",
+  "tags": [
+    "Black Swan meaning",
+    "Nassim Taleb",
+    "Black Swan event",
+    "risk and uncertainty",
+    "forecasting failure",
+    "hindsight bias",
+    "fragile forecasts",
+    "decision making under uncertainty",
+    "market uncertainty",
+    "technology disruption",
+    "Taleb explained",
+    "Black Swan explained"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "private",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "manual_review": [
+    {
+      "field": "audience",
+      "recommendation": "Review and confirm the audience declaration before publication.",
+      "reason": "The supplied channel recommendation is not_made_for_kids, but the uploader must make the final platform declaration based on the completed video and intended audience."
+    },
+    {
+      "field": "age_restriction",
+      "recommendation": "Review the completed video and determine whether an age restriction is required.",
+      "reason": "The supplied script and rendered frames are educational and stylized, but the uploader must make the final platform declaration."
+    },
+    {
+      "field": "paid_promotion",
+      "recommendation": "Confirm whether any paid-promotion disclosure is required before publication.",
+      "reason": "No sponsorship, endorsement, product placement, or other commercial relationship is identified in the supplied context, but only the uploader can verify this."
+    },
+    {
+      "field": "altered_or_synthetic_content",
+      "recommendation": "Inspect the final render and determine whether the platform's altered-or-synthetic-content disclosure applies.",
+      "reason": "The supplied rendered frames are stylized illustrations, but the source context does not establish the production method or whether any content meets the platform's disclosure standard."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify the current Mixkit source page and applicable music license terms before publication.",
+      "reason": "The supplied context explicitly identifies the music as a Mixkit fallback and instructs that the current source license be verified before publication."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Gemini: Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, line quality, and relevant subject matter. Any supplied world keyframe is supporting continuity only and must never override the final rendered frames. Any character sheet is identity-only and must not make a character appear unless that character genuinely belongs in this episode's thumbnail. Create one simple, instantly readable vertical 9:16 editorial illustration for a phone screen. Show one dominant black swan abruptly breaking through an orderly circular flow of white swans, making the violation of expectation unmistakable at a glance. Keep the black swan as the sole focal subject, large and high-contrast, with restrained muted-red fracture lines as abstract impact marks rather than blood or realistic injury. Match the rendered video's cream paper texture, slate-blue forms, black ink outlines, sparse muted-red accents, and editorial printmaking feel. Use a clear hierarchy, strong silhouette, minimal background detail, and deliberate negative space in the upper-right area for optional later overlay text. Make it feel specific to this Black Swan episode, never like generic stock art. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "One Swan Breaks the Rule",
+  "related_video_note": "No related video is identified in the supplied context; leave this unset unless the uploader selects an existing, genuinely relevant Q Station video.",
+  "schema_version": 1,
+  "created_at": "2026-09-12T02:48:11.304249+00:00",
+  "source_master_sha256": "5b346cc74862dd4461a189f56e09f243d9ed9c3e8cb5adc945de97ff6197b6df",
+  "chatgpt_jobs": {
+    "draft": "80e09f33-2ec4-4cd2-8f65-c9ae58ee258d",
+    "review": "5df67dbb-0686-4725-9f7a-d17c0535d2a3"
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "private",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "026_black_swan_meaning_by_nassim_talib",
+      "duration_seconds": 77.087,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "opening_activity": "preparing a rolling repair cart for a job and checking its labeled tool slots",
+      "opening_location": "community workshop maintenance bay",
+      "opening_environment": "A practical shared workshop with a metal workbench, pegboard tools, and a wheeled repair cart staged near the entrance.",
+      "curiosity_trigger": "He notices one wrench-shaped slot on the cart is conspicuously empty while every other tool is accounted for.",
+      "trigger_object": "the empty labeled slot where a wrench should be",
+      "reaction": "He pauses, studies the empty slot with a tired skeptical look, then glances toward the bench as the question clicks.",
+      "book_retrieval": "He reaches beneath a clipboard on the nearby workbench and pulls out Taleb's book, already kept with his reference materials.",
+      "camera_pattern": "slow_push_in",
+      "book_template_id": "002",
+      "hero_presence_mode": "opener_only",
+      "closing_mode": "book_closing_echo",
+      "world_style_hint": "Editorial natural-history-to-modern-risk world moving from European swan certainty to Australian black swans, forecasting models, markets, and disruptive technology.",
+      "reason": "A missing expected tool creates a small, grounded violation of expectation that naturally motivates Taleb's idea of consequential surprises without forcing the host into a repeated setting."
+    },
+    "script_plan": {
+      "opening_question_spark": "Sorting tools, a missing wrench makes me ask: what does Taleb mean by a Black Swan?",
+      "book_transition": "I grab Taleb's book and follow the answer.",
+      "cta": "Like and subscribe to grow more questions.",
+      "body": [
+        "A Black Swan is an event outside normal expectations.",
+        "Its impact is enormous.",
+        "Afterward, people build explanations that make it look predictable.",
+        "Hindsight hides how surprising it really was.",
+        "The name comes from Europe's old belief that all swans were white.",
+        "Then Europeans encountered black swans in Australia.",
+        "One observation shattered a rule that had seemed certain.",
+        "Taleb says forecasts can fail the same way.",
+        "Models usually depend on what has already been observed.",
+        "Markets can change through events those models barely considered.",
+        "Technologies can overturn assumptions just as suddenly.",
+        "You cannot reliably predict every Black Swan.",
+        "So reduce dependence on fragile forecasts.",
+        "Leave room for error before surprise arrives."
+      ],
+      "optional_closing": "Expect uncertainty, not perfect prediction.",
+      "full_narration": "Sorting tools, a missing wrench makes me ask: what does Taleb mean by a Black Swan? I grab Taleb's book and follow the answer. A Black Swan is an event outside normal expectations. Its impact is enormous. Afterward, people build explanations that make it look predictable. Hindsight hides how surprising it really was. The name comes from Europe's old belief that all swans were white. Then Europeans encountered black swans in Australia. One observation shattered a rule that had seemed certain. Taleb says forecasts can fail the same way. Models usually depend on what has already been observed. Markets can change through events those models barely considered. Technologies can overturn assumptions just as suddenly. You cannot reliably predict every Black Swan. So reduce dependence on fragile forecasts. Leave room for error before surprise arrives. Expect uncertainty, not perfect prediction. Like and subscribe to grow more questions.",
+      "word_count": 146,
+      "created_at": "2026-09-10T11:13:32Z"
+    },
+    "narration": "Sorting tools, a missing wrench makes me ask: what does Taleb mean by a Black Swan? I grab Taleb's book and follow the answer. A Black Swan is an event outside normal expectations. Its impact is enormous. Afterward, people build explanations that make it look predictable. Hindsight hides how surprising it really was. The name comes from Europe's old belief that all swans were white. Then Europeans encountered black swans in Australia. One observation shattered a rule that had seemed certain. Taleb says forecasts can fail the same way. Models usually depend on what has already been observed. Markets can change through events those models barely considered. Technologies can overturn assumptions just as suddenly. You cannot reliably predict every Black Swan. So reduce dependence on fragile forecasts. Leave room for error before surprise arrives. Expect uncertainty, not perfect prediction. Like and subscribe to grow more questions.",
+    "music": {
+      "provider": "Mixkit verified local fallback",
+      "source_url": "https://mixkit.co/free-stock-music/item/684/",
+      "license": "Mixkit source license; verify current source page before publication."
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1460561,
+          "sha256": "7fb61b4973f0f4b9915c2b0ea8b8e874b6e454ac49ceb48e38d0529c90a4d53f",
+          "time_seconds": 7.709
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2132761,
+          "sha256": "f29c099f142bb1c3b5b6ffde6764312305968fcfcba2e318c21477eef24af979",
+          "time_seconds": 38.544
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1276269,
+          "sha256": "750807172b2c7f50e3d9b8e4aa46e88486ca002866a0b3db9251a9906aecfd12",
+          "time_seconds": 64.753
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3089191,
+          "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1536,
+      "height": 2752,
+      "bytes": 2522562,
+      "sha256": "3151fb27e3fcdb410cd74f04b8a67bd65ddf657be1f38b498188bf7f4fae7579"
+    },
+    "selected_attempt": 1,
+    "quality_check": {
+      "passed": true,
+      "description": "A vertical editorial illustration on cream textured paper shows one large black swan dominating the center-lower area while many outlined white swans form an orderly circular stream around it. The black swan intersects a sharp abstract fracture burst with restrained muted-red impact lines. Slate-blue circular forms, black ink contours, sparse red accents, and lightly aged print texture closely match the rendered references.",
+      "violations": [
+        "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+        "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+        "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+        "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+        "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+        "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+        "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+      ],
+      "observations": [
+        "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+        "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+        "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+        "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "candidates": [
+      {
+        "attempt": 1,
+        "job_id": "1c3af433-1a2a-4e97-bdb6-61e9634fff98",
+        "prompt_sha256": "1040cc73e0056565f3d90cf427c7e385afe787c79e1331aa9779eb723e72d913",
+        "output_sha256": "3151fb27e3fcdb410cd74f04b8a67bd65ddf657be1f38b498188bf7f4fae7579",
+        "quality_check": {
+          "passed": true,
+          "description": "A vertical editorial illustration on cream textured paper shows one large black swan dominating the center-lower area while many outlined white swans form an orderly circular stream around it. The black swan intersects a sharp abstract fracture burst with restrained muted-red impact lines. Slate-blue circular forms, black ink contours, sparse red accents, and lightly aged print texture closely match the rendered references.",
+          "violations": [
+            "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+            "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+            "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+            "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+            "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+            "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+            "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+          ],
+          "observations": [
+            "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+            "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+            "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+            "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+        "selected": true,
+        "file": "thumbnail_candidates/thumbnail.attempt_1.png",
+        "image": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 2522562,
+          "sha256": "3151fb27e3fcdb410cd74f04b8a67bd65ddf657be1f38b498188bf7f4fae7579"
+        },
+        "visual_references": [
+          {
+            "role": "thumbnail_rendered_opening_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_opening.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 1460561,
+            "sha256": "7fb61b4973f0f4b9915c2b0ea8b8e874b6e454ac49ceb48e38d0529c90a4d53f",
+            "time_seconds": 7.709
+          },
+          {
+            "role": "thumbnail_rendered_body_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_body.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2132761,
+            "sha256": "f29c099f142bb1c3b5b6ffde6764312305968fcfcba2e318c21477eef24af979",
+            "time_seconds": 38.544
+          },
+          {
+            "role": "thumbnail_rendered_closing_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_closing.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 1276269,
+            "sha256": "750807172b2c7f50e3d9b8e4aa46e88486ca002866a0b3db9251a9906aecfd12",
+            "time_seconds": 64.753
+          },
+          {
+            "role": "thumbnail_world_keyframe",
+            "purpose": "Supporting world continuity only; never overrides final rendered frames",
+            "file": "references/world_keyframe.png",
+            "width": 1536,
+            "height": 2752,
+            "bytes": 3089191,
+            "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+          }
+        ]
+      }
+    ],
+    "visual_references": [
+      {
+        "role": "thumbnail_rendered_opening_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_opening.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 1460561,
+        "sha256": "7fb61b4973f0f4b9915c2b0ea8b8e874b6e454ac49ceb48e38d0529c90a4d53f",
+        "time_seconds": 7.709
+      },
+      {
+        "role": "thumbnail_rendered_body_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_body.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2132761,
+        "sha256": "f29c099f142bb1c3b5b6ffde6764312305968fcfcba2e318c21477eef24af979",
+        "time_seconds": 38.544
+      },
+      {
+        "role": "thumbnail_rendered_closing_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_closing.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 1276269,
+        "sha256": "750807172b2c7f50e3d9b8e4aa46e88486ca002866a0b3db9251a9906aecfd12",
+        "time_seconds": 64.753
+      },
+      {
+        "role": "thumbnail_world_keyframe",
+        "purpose": "Supporting world continuity only; never overrides final rendered frames",
+        "file": "references/world_keyframe.png",
+        "width": 1536,
+        "height": 2752,
+        "bytes": 3089191,
+        "sha256": "4f21ac1173337fe29d0dee61ce896284d855b0e2b702cbeb2644a46d788e85d1"
+      }
+    ],
+    "requested_model": "nano_banana_2",
+    "source_image_contract": {
+      "model": "nano_banana_2",
+      "qc_correction_policy": "0",
+      "chatgpt_fallback_mode": "auto"
+    },
+    "gemini_job_id": "1c3af433-1a2a-4e97-bdb6-61e9634fff98",
+    "gemini_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/06d0b9d9f3976ba8",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "thumbnail_rendered_opening_frame",
+        "thumbnail_rendered_body_frame",
+        "thumbnail_rendered_closing_frame",
+        "thumbnail_world_keyframe"
+      ],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=1c3af433-1a2a-4e97-bdb6-61e9634fff98_output_1.png 1536x2752 sha256=3151fb27e3fcdb410cd74f04b8a67bd65ddf657be1f38b498188bf7f4fae7579"
+      ],
+      "quality_check": {
+        "passed": true,
+        "description": "A vertical editorial illustration on cream textured paper shows one large black swan dominating the center-lower area while many outlined white swans form an orderly circular stream around it. The black swan intersects a sharp abstract fracture burst with restrained muted-red impact lines. Slate-blue circular forms, black ink contours, sparse red accents, and lightly aged print texture closely match the rendered references.",
+        "violations": [
+          "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+          "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+          "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+          "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+        ],
+        "blocking_violations": [],
+        "regressions": [],
+        "raw_passed": true,
+        "raw_violations": [
+          "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+          "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+          "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+          "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+        ],
+        "observations": [
+          "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+          "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+          "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+          "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+        ],
+        "review_status": "passed_with_warnings"
+      },
+      "request_fingerprint": "c81293b235377c0eaef18967e57e965b5d5cdbf95ccfeeea00c4a9d7970aa454",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "job_id": "1c3af433-1a2a-4e97-bdb6-61e9634fff98",
+          "prompt_sha256": "1040cc73e0056565f3d90cf427c7e385afe787c79e1331aa9779eb723e72d913",
+          "output_sha256": "3151fb27e3fcdb410cd74f04b8a67bd65ddf657be1f38b498188bf7f4fae7579",
+          "quality_check": {
+            "passed": true,
+            "description": "A vertical editorial illustration on cream textured paper shows one large black swan dominating the center-lower area while many outlined white swans form an orderly circular stream around it. The black swan intersects a sharp abstract fracture burst with restrained muted-red impact lines. Slate-blue circular forms, black ink contours, sparse red accents, and lightly aged print texture closely match the rendered references.",
+            "violations": [
+              "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+              "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+              "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+              "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+            ],
+            "blocking_violations": [],
+            "regressions": [],
+            "raw_passed": true,
+            "raw_violations": [
+              "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+              "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+              "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+              "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+            ],
+            "observations": [
+              "The requested deliberate negative space in the upper-right is limited because the circular flow of white swans continues densely through that area.",
+              "The surrounding white-swan population is somewhat busier and more repetitive than the requested simple, instantly readable hierarchy, especially near the top and right edges.",
+              "The fracture burst is visually prominent enough to compete slightly with the black swan for attention, though the black swan remains the primary focal subject.",
+              "The candidate uses a denser, more elaborate circular composition than the rendered reference frames, but its cream paper texture, slate-blue palette logic, ink linework, muted-red accents, and editorial printmaking language remain visibly continuous."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/026_black_swan_meaning_by_nassim_talib/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+          "selected": true
+        }
+      ],
+      "qc_policy": "0",
+      "qc_selected_attempt": 1
+    }
+  }
+}

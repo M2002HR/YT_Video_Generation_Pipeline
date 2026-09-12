@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "started_at": "2026-09-12T03:02:40.740499+00:00",
+  "video": "027_video",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "311a38e8858b303b207eb5f43c6fafb1b5afd6096c3024606074b64ca43e5f9c",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:02:43.462409+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-12T03:03:49.692901+00:00",
+      "chatgpt_job_id": "897568bc-dc34-4110-8245-b71a5851adc4"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:03:49.692912+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-12T03:05:04.951214+00:00",
+      "chatgpt_job_id": "e56771ea-ab1c-4d65-b1c2-b8919e52d9fa",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:05:04.951220+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-12T03:10:15.846931+00:00",
+      "selected_attempt": 1,
+      "qc_passed": true
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:10:15.847211+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-12T03:11:24.141695+00:00",
+      "messages": {
+        "master": 25735,
+        "thumbnail": 25736,
+        "summary": 25737,
+        "upload_markdown": 25738,
+        "metadata_json": 25739
+      }
+    }
+  ],
+  "completed_at": "2026-09-12T03:11:24.141700+00:00",
+  "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
+  "thumbnail": "publish/youtube_short/thumbnail.png",
+  "messages": {
+    "master": 25735,
+    "thumbnail": 25736,
+    "summary": 25737,
+    "upload_markdown": 25738,
+    "metadata_json": 25739
+  }
+}

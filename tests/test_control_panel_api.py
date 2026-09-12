@@ -668,6 +668,31 @@ def test_structured_config_revision_maps_caption_layout_to_body_images() -> None
     assert changed == ["reserve_subtitle_space"]
 
 
+def test_structured_config_revision_persists_opening_speed_tolerance() -> None:
+    """Trim-only tolerance must reach the brief without invalidating any stage."""
+    record = _record(
+        music_providers=["pixabay"], telegram_low_size=True, telegram_original=False,
+        commit_artifacts=False, motion={"enabled": False}, sfx={"enabled": False},
+    )
+    brief = {
+        "_qh": {"opening_speed_tolerance": 0.1},
+        "_motion": {"enabled": False}, "_sfx": {"enabled": False},
+        "_subtitle": {"word_highlight": True},
+    }
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+    assert values["opening_speed_tolerance"] == 0.1
+    values["opening_speed_tolerance"] = 0.2
+
+    roots, revised_brief, _voice, _launch, changed = panel.config_roots(
+        record, brief, voice, values
+    )
+
+    assert roots == set()
+    assert revised_brief["_qh"]["opening_speed_tolerance"] == 0.2
+    assert changed == ["opening_speed_tolerance"]
+
+
 def test_topic_change_from_revision_launches_a_separate_clean_run(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

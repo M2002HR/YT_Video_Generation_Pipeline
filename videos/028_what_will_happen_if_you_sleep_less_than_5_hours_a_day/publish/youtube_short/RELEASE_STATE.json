@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "started_at": "2026-09-12T03:12:20.851018+00:00",
+  "video": "028_what_will_happen_if_you_sleep_less_than_5_hours_a_day",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "bade221fa7ae714987f6b6ce34be926fbad546d741d71a2713990c24077b3d1c",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:12:22.684712+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-12T03:13:34.960571+00:00",
+      "chatgpt_job_id": "cc5e37f7-8322-4dbd-9837-0402a32b3c18"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:13:34.960582+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-12T03:14:59.248912+00:00",
+      "chatgpt_job_id": "1e74b059-fdae-4e7b-aafb-1a7f92d85423",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:14:59.248918+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-12T03:17:09.153975+00:00",
+      "selected_attempt": 1,
+      "qc_passed": true
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-12T03:17:09.154237+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-12T03:17:57.540954+00:00",
+      "messages": {
+        "master": 25740,
+        "thumbnail": 25741,
+        "summary": 25742,
+        "upload_markdown": 25743,
+        "metadata_json": 25744
+      }
+    }
+  ],
+  "completed_at": "2026-09-12T03:17:57.540959+00:00",
+  "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
+  "thumbnail": "publish/youtube_short/thumbnail.png",
+  "messages": {
+    "master": 25740,
+    "thumbnail": 25741,
+    "summary": 25742,
+    "upload_markdown": 25743,
+    "metadata_json": 25744
+  }
+}

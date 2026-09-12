@@ -62,7 +62,7 @@
   "archived_artifacts": [],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "FAILED",
+  "status": "DONE",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "started_at": "2026-09-11T20:18:03.249565+00:00",
@@ -72,5 +72,5 @@
     "subtitle_font_size"
   ],
   "config_revision_id": "dbe97406-39e2-4c3f-88e7-3431273817a6",
-  "completed_at": "2026-09-11T20:18:22.781775+00:00"
+  "completed_at": "2026-09-11T20:24:43.063575+00:00"
 }

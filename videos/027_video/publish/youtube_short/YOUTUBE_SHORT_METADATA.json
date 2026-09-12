@@ -1,0 +1,594 @@
+{
+  "title": "Why Lipstick Survives When Money Gets Tight",
+  "title_options": [
+    "The Lipstick Effect: Why Small Luxuries Survive Tight Budgets",
+    "Can Lipstick Sales Predict a Recession? Not Reliably",
+    "Why Small Luxuries Survive When Bigger Ones Get Cut"
+  ],
+  "description": "Why can a tiny luxury survive when money gets tight? The lipstick effect describes how tighter budgets can push bigger indulgences aside while a smaller comfort such as lipstick still feels affordable. Juliet Schor described this behavior in 1998, and Leonard Lauder popularized the “lipstick index” in 2001, suggesting lipstick sales might rise when the economy weakens. Later downturns did not repeat that pattern reliably, so lipstick sales are not a dependable economic indicator. “Lipstick syndrome” is also not a recognized medical diagnosis; here it is an informal label for small comforts under pressure. Q Station is an educational channel where every question opens a world. #LipstickEffect #ConsumerBehavior #Economics",
+  "tags": [
+    "lipstick effect",
+    "lipstick index",
+    "affordable luxury",
+    "consumer behavior",
+    "recession spending",
+    "Leonard Lauder",
+    "Juliet Schor",
+    "consumer psychology",
+    "economic indicators",
+    "discretionary spending",
+    "small luxuries",
+    "recession signal"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "private",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "not_made_for_kids",
+      "reason": "The supplied context recommends not made for kids, but the uploader must review the finished video and make the final audience declaration."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "no_age_restriction_indicated",
+      "reason": "Nothing in the supplied narration or visual direction indicates age-restricted subject matter, but the uploader must review the finished video and make the final platform declaration."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "no_paid_promotion_indicated",
+      "reason": "The supplied context contains no sponsorship, endorsement, or paid-promotion information. The uploader must declare any commercial relationship that exists outside the supplied context."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "review_before_publish",
+      "reason": "The supplied context does not establish whether the finished video meets YouTube's altered or synthetic content disclosure threshold. The uploader must inspect the final video and make that declaration."
+    },
+    {
+      "field": "Audience",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm the audience declaration in YouTube Studio; only the uploader can make the final Made for Kids decision."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Gemini: treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Any world keyframe is supporting continuity only and must never override the rendered frames. Any character sheet is identity-only and must not make a character appear unless that character belongs in this episode's thumbnail. Create one simple, instantly readable vertical 9:16 scene for this exact episode in the rendered frames' editorial watercolor-and-ink style: warm cream paper, muted gray-green and taupe washes, fine dark linework, restrained metallic tones, and a strong deep-red lipstick accent. Make one red lipstick the dominant focal subject beside a nearly empty wallet, with a larger luxury perfume box visibly pushed away toward the edge to communicate the tension of keeping one small comfort after rejecting a bigger indulgence. Use strong value contrast, clear visual hierarchy, and deliberate clean negative space in the upper third for optional later overlay text. Keep secondary objects minimal and make the lipstick unmistakable at phone size. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Why Lipstick Survives",
+  "related_video_note": "No specific related video is supported by the supplied context; select a relevant Q Station episode manually if one is available.",
+  "schema_version": 1,
+  "created_at": "2026-09-12T03:05:04.950752+00:00",
+  "source_master_sha256": "311a38e8858b303b207eb5f43c6fafb1b5afd6096c3024606074b64ca43e5f9c",
+  "chatgpt_jobs": {
+    "draft": "897568bc-dc34-4110-8245-b71a5851adc4",
+    "review": "e56771ea-ab1c-4d65-b1c2-b8919e52d9fa",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "private",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "027_video",
+      "duration_seconds": 62.354,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter",
+      "opening_environment": "a restrained beauty counter with a few premium items, a small checkout tray, and the visual contrast between costly indulgences and one compact lipstick",
+      "topic_visual_link": "The host visibly gives up a larger discretionary luxury but hesitates and keeps the much smaller lipstick, directly embodying the affordable-comfort substitution behind the lipstick effect.",
+      "link_type": "cause_effect",
+      "opening_visual_proof": "At frame zero, the host pushes an expensive perfume box away from his purchase pile while leaving a single lipstick beside a nearly empty wallet.",
+      "curiosity_trigger": "He notices that after cutting the larger indulgence, his hand still instinctively protects the tiny lipstick.",
+      "trigger_object": "the lone lipstick remaining beside the nearly empty wallet after the perfume is rejected",
+      "reaction": "He pauses, looks from the rejected perfume to the lipstick, then gives a small skeptical squint as if catching himself in a contradiction.",
+      "book_retrieval": "He reaches into the tote resting beside the checkout tray and pulls out the book as the question clicks into place.",
+      "camera_pattern": "static_wide",
+      "book_template_id": "003",
+      "hero_presence_mode": "opener_only",
+      "closing_mode": "book_closing_echo",
+      "world_style_hint": "editorial inkwash world of cosmetics, household budgets, recession-era consumer choices, and economic charts translated into visual metaphors",
+      "reason": "A real purchase-cutting decision makes the script's opening contradiction immediately visible and gives the host's restrained, skeptical curiosity a natural reason to investigate."
+    },
+    "script_plan": {
+      "opening_question_spark": "When money gets tight, why can one tiny luxury survive? Here’s why.",
+      "book_transition": "That contradiction sends me reaching for the book.",
+      "cta": "Like and subscribe for more questions with surprising answers.",
+      "body": [
+        "It’s often called the lipstick effect.",
+        "Tight budgets can push bigger luxuries aside.",
+        "Lipstick can still feel like affordable comfort.",
+        "Juliet Schor described this behavior in 1998.",
+        "Leonard Lauder popularized the lipstick index in 2001.",
+        "He suggested lipstick sales might rise when the economy weakens.",
+        "The idea became a quirky recession signal.",
+        "Later downturns did not repeat the pattern reliably.",
+        "So lipstick sales are not a dependable economic indicator.",
+        "And “lipstick syndrome” is not a recognized medical diagnosis."
+      ],
+      "optional_closing": "It’s an informal label for small comforts under pressure.",
+      "full_narration": "When money gets tight, why can one tiny luxury survive? Here’s why. That contradiction sends me reaching for the book. It’s often called the lipstick effect. Tight budgets can push bigger luxuries aside. Lipstick can still feel like affordable comfort. Juliet Schor described this behavior in 1998. Leonard Lauder popularized the lipstick index in 2001. He suggested lipstick sales might rise when the economy weakens. The idea became a quirky recession signal. Later downturns did not repeat the pattern reliably. So lipstick sales are not a dependable economic indicator. And “lipstick syndrome” is not a recognized medical diagnosis. It’s an informal label for small comforts under pressure. Like and subscribe for more questions with surprising answers.",
+      "word_count": 117,
+      "created_at": "2026-09-11T13:13:30Z"
+    },
+    "narration": "When money gets tight, why can one tiny luxury survive? Here’s why. That contradiction sends me reaching for the book. It’s often called the lipstick effect. Tight budgets can push bigger luxuries aside. Lipstick can still feel like affordable comfort. Juliet Schor described this behavior in 1998. Leonard Lauder popularized the lipstick index in 2001. He suggested lipstick sales might rise when the economy weakens. The idea became a quirky recession signal. Later downturns did not repeat the pattern reliably. So lipstick sales are not a dependable economic indicator. And “lipstick syndrome” is not a recognized medical diagnosis. It’s an informal label for small comforts under pressure. Like and subscribe for more questions with surprising answers.",
+    "music": {
+      "provider": "freesound",
+      "source_url": "https://freesound.org/people/city11/sounds/735080/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2221277,
+          "sha256": "90f687825de9e438ef713e235c6d3ab41342b3694e124aca127086340d0e730c",
+          "time_seconds": 6.235
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2319005,
+          "sha256": "35b31cef268b8dc88576f8f2f4aaf2f35d1ca8ee585f8e383dd903f3f73ea9ef",
+          "time_seconds": 31.177
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1618164,
+          "sha256": "1be5d900d1fe021b0f96959889c6124387bc798147f7104cdf860e6742852877",
+          "time_seconds": 52.377
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 2397448,
+          "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1536,
+      "height": 2752,
+      "bytes": 1954213,
+      "sha256": "a941e2a984f11b858b3e77cd106b2414f8f1d742e40ccebf82b1e4cc5c3d21d6"
+    },
+    "selected_attempt": 1,
+    "quality_check": {
+      "passed": true,
+      "description": "A vertical editorial watercolor-and-ink scene on warm cream paper shows a vivid deep-red lipstick as the dominant foreground focal point, a mostly empty wallet with a few coins behind it, and a substantially larger muted gray-green perfume box displaced to the right. The upper portion is largely open negative space. The palette, paper texture, restrained metallic accents, soft gray-green and taupe washes, and fine dark contour lines closely match the rendered reference frames.",
+      "violations": [
+        "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+        "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+        "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+        "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+        "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+        "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+        "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+      ],
+      "observations": [
+        "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+        "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+        "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+        "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "candidates": [
+      {
+        "attempt": 1,
+        "job_id": "d89ab45e-367b-42a6-857a-b8cf05de8d2d",
+        "prompt_sha256": "fc27c1768d2d56d33bdafe25af960c8ca5c6d06194615cc9ee59fe5246580e13",
+        "output_sha256": "a941e2a984f11b858b3e77cd106b2414f8f1d742e40ccebf82b1e4cc5c3d21d6",
+        "quality_check": {
+          "passed": true,
+          "description": "A vertical editorial watercolor-and-ink scene on warm cream paper shows a vivid deep-red lipstick as the dominant foreground focal point, a mostly empty wallet with a few coins behind it, and a substantially larger muted gray-green perfume box displaced to the right. The upper portion is largely open negative space. The palette, paper texture, restrained metallic accents, soft gray-green and taupe washes, and fine dark contour lines closely match the rendered reference frames.",
+          "violations": [
+            "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+            "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+            "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+            "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+            "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+            "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+            "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+          ],
+          "observations": [
+            "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+            "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+            "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+            "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/027_video/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+        "selected": true,
+        "file": "thumbnail_candidates/thumbnail.attempt_1.png",
+        "image": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 1954213,
+          "sha256": "a941e2a984f11b858b3e77cd106b2414f8f1d742e40ccebf82b1e4cc5c3d21d6"
+        },
+        "visual_references": [
+          {
+            "role": "thumbnail_rendered_opening_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_opening.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2221277,
+            "sha256": "90f687825de9e438ef713e235c6d3ab41342b3694e124aca127086340d0e730c",
+            "time_seconds": 6.235
+          },
+          {
+            "role": "thumbnail_rendered_body_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_body.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2319005,
+            "sha256": "35b31cef268b8dc88576f8f2f4aaf2f35d1ca8ee585f8e383dd903f3f73ea9ef",
+            "time_seconds": 31.177
+          },
+          {
+            "role": "thumbnail_rendered_closing_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_closing.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 1618164,
+            "sha256": "1be5d900d1fe021b0f96959889c6124387bc798147f7104cdf860e6742852877",
+            "time_seconds": 52.377
+          },
+          {
+            "role": "thumbnail_world_keyframe",
+            "purpose": "Supporting world continuity only; never overrides final rendered frames",
+            "file": "references/world_keyframe.png",
+            "width": 1536,
+            "height": 2752,
+            "bytes": 2397448,
+            "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+          }
+        ]
+      },
+      {
+        "attempt": 2,
+        "job_id": "4d6769f3-d3a2-4b88-8866-61a47bdbecc7",
+        "prompt_sha256": "fbfbbd05ab86c11bb953506db49a4d26d42f0adf68dc93db24cf9e84b18d88df",
+        "output_sha256": "7a5d377b8a18ee64cbd40cdb783110d8ffa9b4cd3b986e2be509331d1ddbf15d",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical editorial watercolor-and-ink image on warm cream paper. A deep-red lipstick is the dominant foreground focal point beside a nearly empty taupe wallet with visible coins. A muted gray-green luxury perfume box sits isolated toward the upper-right edge. The upper portion is largely clean negative space with natural paper texture, with no visible grid, written text, logo, UI, or surrounding hand-drawn border.",
+          "violations": [
+            "The perfume box is pushed toward the right edge, but it has been made substantially smaller than the foreground lipstick and wallet, so the intended contrast of rejecting a 'larger luxury indulgence' is weaker than requested.",
+            "The visual idea of the perfume box being actively pushed away remains understated because there is no strong directional or displacement cue beyond its isolated rightward placement.",
+            "The PNG remains 1143×2048 pixels, which is slightly off exact 9:16 and below the preferred 2160×3840 target."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "Compared with the qc_previous_candidate, the perfume box has been scaled down markedly and moved farther upward/right, losing some of the previously correct 'larger luxury purchase' emphasis.",
+            "Compared with the qc_previous_candidate, the stronger visual relationship between the lipstick, wallet, and perfume box has been weakened by the box becoming smaller and more detached, which changes more of the established layout than was necessary for the requested QC fixes."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The perfume box is pushed toward the right edge, but it has been made substantially smaller than the foreground lipstick and wallet, so the intended contrast of rejecting a 'larger luxury indulgence' is weaker than requested.",
+            "The visual idea of the perfume box being actively pushed away remains understated because there is no strong directional or displacement cue beyond its isolated rightward placement.",
+            "The PNG remains 1143×2048 pixels, which is slightly off exact 9:16 and below the preferred 2160×3840 target."
+          ],
+          "observations": [
+            "The perfume box is pushed toward the right edge, but it has been made substantially smaller than the foreground lipstick and wallet, so the intended contrast of rejecting a 'larger luxury indulgence' is weaker than requested.",
+            "The visual idea of the perfume box being actively pushed away remains understated because there is no strong directional or displacement cue beyond its isolated rightward placement.",
+            "The PNG remains 1143×2048 pixels, which is slightly off exact 9:16 and below the preferred 2160×3840 target.",
+            "Compared with the qc_previous_candidate, the perfume box has been scaled down markedly and moved farther upward/right, losing some of the previously correct 'larger luxury purchase' emphasis.",
+            "Compared with the qc_previous_candidate, the stronger visual relationship between the lipstick, wallet, and perfume box has been weakened by the box becoming smaller and more detached, which changes more of the established layout than was necessary for the requested QC fixes."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/027_video/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_2.png",
+        "selected": false,
+        "file": "thumbnail_candidates/thumbnail.attempt_2.png",
+        "image": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 1651519,
+          "sha256": "7a5d377b8a18ee64cbd40cdb783110d8ffa9b4cd3b986e2be509331d1ddbf15d"
+        },
+        "visual_references": [
+          {
+            "role": "thumbnail_rendered_opening_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_opening.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2221277,
+            "sha256": "90f687825de9e438ef713e235c6d3ab41342b3694e124aca127086340d0e730c",
+            "time_seconds": 6.235
+          },
+          {
+            "role": "thumbnail_rendered_body_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_body.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2319005,
+            "sha256": "35b31cef268b8dc88576f8f2f4aaf2f35d1ca8ee585f8e383dd903f3f73ea9ef",
+            "time_seconds": 31.177
+          },
+          {
+            "role": "thumbnail_rendered_closing_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_closing.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 1618164,
+            "sha256": "1be5d900d1fe021b0f96959889c6124387bc798147f7104cdf860e6742852877",
+            "time_seconds": 52.377
+          },
+          {
+            "role": "thumbnail_world_keyframe",
+            "purpose": "Supporting world continuity only; never overrides final rendered frames",
+            "file": "references/world_keyframe.png",
+            "width": 1536,
+            "height": 2752,
+            "bytes": 2397448,
+            "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+          }
+        ]
+      }
+    ],
+    "visual_references": [
+      {
+        "role": "thumbnail_rendered_opening_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_opening.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2221277,
+        "sha256": "90f687825de9e438ef713e235c6d3ab41342b3694e124aca127086340d0e730c",
+        "time_seconds": 6.235
+      },
+      {
+        "role": "thumbnail_rendered_body_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_body.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2319005,
+        "sha256": "35b31cef268b8dc88576f8f2f4aaf2f35d1ca8ee585f8e383dd903f3f73ea9ef",
+        "time_seconds": 31.177
+      },
+      {
+        "role": "thumbnail_rendered_closing_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_closing.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 1618164,
+        "sha256": "1be5d900d1fe021b0f96959889c6124387bc798147f7104cdf860e6742852877",
+        "time_seconds": 52.377
+      },
+      {
+        "role": "thumbnail_world_keyframe",
+        "purpose": "Supporting world continuity only; never overrides final rendered frames",
+        "file": "references/world_keyframe.png",
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2397448,
+        "sha256": "e130e0f82a7d928014751a04988f49aad469aacc45cbc67ac0b69bfc2df93409"
+      }
+    ],
+    "requested_model": "nano_banana_2",
+    "source_image_contract": {
+      "model": "nano_banana_2",
+      "qc_correction_policy": "1",
+      "chatgpt_fallback_mode": "approval"
+    },
+    "gemini_job_id": "d89ab45e-367b-42a6-857a-b8cf05de8d2d",
+    "gemini_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/5f02f2259fe6877d",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "thumbnail_rendered_opening_frame",
+        "thumbnail_rendered_body_frame",
+        "thumbnail_rendered_closing_frame",
+        "thumbnail_world_keyframe"
+      ],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=d89ab45e-367b-42a6-857a-b8cf05de8d2d_output_1.png 1536x2752 sha256=a941e2a984f11b858b3e77cd106b2414f8f1d742e40ccebf82b1e4cc5c3d21d6"
+      ],
+      "quality_check": {
+        "passed": true,
+        "description": "A vertical editorial watercolor-and-ink scene on warm cream paper shows a vivid deep-red lipstick as the dominant foreground focal point, a mostly empty wallet with a few coins behind it, and a substantially larger muted gray-green perfume box displaced to the right. The upper portion is largely open negative space. The palette, paper texture, restrained metallic accents, soft gray-green and taupe washes, and fine dark contour lines closely match the rendered reference frames.",
+        "violations": [
+          "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+          "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+          "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+          "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+        ],
+        "blocking_violations": [],
+        "regressions": [],
+        "raw_passed": true,
+        "raw_violations": [
+          "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+          "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+          "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+          "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+        ],
+        "observations": [
+          "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+          "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+          "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+          "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+        ],
+        "review_status": "passed_with_warnings"
+      },
+      "request_fingerprint": "33ca09150b4a1577f5527c7d17e7efa0e90b492abc6c416baa76d1c65379317d",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "job_id": "d89ab45e-367b-42a6-857a-b8cf05de8d2d",
+          "prompt_sha256": "fc27c1768d2d56d33bdafe25af960c8ca5c6d06194615cc9ee59fe5246580e13",
+          "output_sha256": "a941e2a984f11b858b3e77cd106b2414f8f1d742e40ccebf82b1e4cc5c3d21d6",
+          "quality_check": {
+            "passed": true,
+            "description": "A vertical editorial watercolor-and-ink scene on warm cream paper shows a vivid deep-red lipstick as the dominant foreground focal point, a mostly empty wallet with a few coins behind it, and a substantially larger muted gray-green perfume box displaced to the right. The upper portion is largely open negative space. The palette, paper texture, restrained metallic accents, soft gray-green and taupe washes, and fine dark contour lines closely match the rendered reference frames.",
+            "violations": [
+              "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+              "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+              "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+              "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+            ],
+            "blocking_violations": [],
+            "regressions": [],
+            "raw_passed": true,
+            "raw_violations": [
+              "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+              "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+              "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+              "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+            ],
+            "observations": [
+              "A thin hand-drawn border surrounds the composition even though the requested art direction specifies no border.",
+              "The upper negative-space area contains a faint grid pattern, making it less completely clean than requested.",
+              "The perfume box is positioned toward the right edge, but the visual idea of it being actively pushed away is somewhat understated.",
+              "The candidate PNG is 1143 by 2048 pixels, slightly off exact 9:16 and below the preferred 2160 by 3840 target resolution."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/027_video/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+          "selected": true
+        },
+        {
+          "attempt": 2,
+          "job_id": "4d6769f3-d3a2-4b88-8866-61a47bdbecc7",
+          "prompt_sha256": "fbfbbd05ab86c11bb953506db49a4d26d42f0adf68dc93db24cf9e84b18d88df",
+          "output_sha256": "7a5d377b8a18ee64cbd40cdb783110d8ffa9b4cd3b986e2be509331d1ddbf15d",
+          "quality_check": {
+            "passed": true,
+            "description": "A single vertical editorial watercolor-and-ink image on warm cream paper. A deep-red lipstick is the dominant foreground focal point beside a nearly empty taupe wallet with visible coins. A muted gray-green luxury perfume box sits isolated toward the upper-right edge. The upper portion is largely clean negative space with natural paper texture, with no visible grid, written text, logo, UI, or surrounding hand-drawn border.",
+            "violations": [
+              "The perfume box is pushed toward the right edge, but it has been made substantially smaller than the foreground lipstick and wallet, so the intended contrast of rejecting a 'larger luxury indulgence' is weaker than requested.",
+              "The visual idea of the perfume box being actively pushed away remains understated because there is no strong directional or displacement cue beyond its isolated rightward placement.",
+              "The PNG remains 1143×2048 pixels, which is slightly off exact 9:16 and below the preferred 2160×3840 target."
+            ],
+            "blocking_violations": [],
+            "regressions": [
+              "Compared with the qc_previous_candidate, the perfume box has been scaled down markedly and moved farther upward/right, losing some of the previously correct 'larger luxury purchase' emphasis.",
+              "Compared with the qc_previous_candidate, the stronger visual relationship between the lipstick, wallet, and perfume box has been weakened by the box becoming smaller and more detached, which changes more of the established layout than was necessary for the requested QC fixes."
+            ],
+            "raw_passed": true,
+            "raw_violations": [
+              "The perfume box is pushed toward the right edge, but it has been made substantially smaller than the foreground lipstick and wallet, so the intended contrast of rejecting a 'larger luxury indulgence' is weaker than requested.",
+              "The visual idea of the perfume box being actively pushed away remains understated because there is no strong directional or displacement cue beyond its isolated rightward placement.",
+              "The PNG remains 1143×2048 pixels, which is slightly off exact 9:16 and below the preferred 2160×3840 target."
+            ],
+            "observations": [
+              "The perfume box is pushed toward the right edge, but it has been made substantially smaller than the foreground lipstick and wallet, so the intended contrast of rejecting a 'larger luxury indulgence' is weaker than requested.",
+              "The visual idea of the perfume box being actively pushed away remains understated because there is no strong directional or displacement cue beyond its isolated rightward placement.",
+              "The PNG remains 1143×2048 pixels, which is slightly off exact 9:16 and below the preferred 2160×3840 target.",
+              "Compared with the qc_previous_candidate, the perfume box has been scaled down markedly and moved farther upward/right, losing some of the previously correct 'larger luxury purchase' emphasis.",
+              "Compared with the qc_previous_candidate, the stronger visual relationship between the lipstick, wallet, and perfume box has been weakened by the box becoming smaller and more detached, which changes more of the established layout than was necessary for the requested QC fixes."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/027_video/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_2.png",
+          "selected": false
+        }
+      ],
+      "qc_policy": "1",
+      "qc_selected_attempt": 1
+    }
+  }
+}

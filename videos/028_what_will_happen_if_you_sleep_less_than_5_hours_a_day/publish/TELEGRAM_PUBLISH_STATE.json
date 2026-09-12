@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-11T20:24:40.273949+00:00",
+  "recipient": "we_are_waiting_for_him",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-11T20:24:40.273765+00:00",
+      "recipient": "we_are_waiting_for_him",
+      "message_id": 25728,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 1806145,
+      "sha256": "dfb0a14036a3dadef063c703c7608d226d250832bb21674d950497b4217add36",
+      "duration_seconds": 59.62,
+      "elapsed_seconds": 4.596,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "028_what_will_happen_if_you_sleep_less_than_5_hours_a_day",
+        "duration_seconds": 59.611,
+        "beat_count": 13,
+        "video_beat_count": 2,
+        "image_beat_count": 11,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.94,
+          "transition_end": 8.62
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ],
+          "unverified": [
+            "gemini_world_style_anchor"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 192.622,
+          "realtime_factor": 3.231,
+          "peak_child_rss_mb": 1263.7,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 028_what_will_happen_if_you_sleep_less_than_5_hours_a_day\n⏱ Duration: 1:00\n🎞 Beats: 13 (2 video · 11 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n⚠️ Unverified receipts: 1\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:13 wall (3.231x realtime) · 2 thread(s) · peak 1263.7 MB\nArtifact: dfb0a14036a3 · Delivery: compressed"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "started_at": "2026-09-12T02:45:37.310209+00:00",
+  "video": "026_black_swan_meaning_by_nassim_talib",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "5b346cc74862dd4461a189f56e09f243d9ed9c3e8cb5adc945de97ff6197b6df",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-12T02:45:40.783707+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-12T02:46:50.015991+00:00",
+      "chatgpt_job_id": "80e09f33-2ec4-4cd2-8f65-c9ae58ee258d"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-12T02:46:50.016000+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-12T02:48:11.304811+00:00",
+      "chatgpt_job_id": "5df67dbb-0686-4725-9f7a-d17c0535d2a3"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-12T02:48:11.304820+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-12T02:50:24.256491+00:00",
+      "selected_attempt": 1,
+      "qc_passed": true
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-12T02:50:24.256779+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-12T02:52:02.018483+00:00",
+      "messages": {
+        "master": 25730,
+        "thumbnail": 25731,
+        "summary": 25732,
+        "upload_markdown": 25733,
+        "metadata_json": 25734
+      }
+    }
+  ],
+  "completed_at": "2026-09-12T02:52:02.018490+00:00",
+  "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
+  "thumbnail": "publish/youtube_short/thumbnail.png",
+  "messages": {
+    "master": 25730,
+    "thumbnail": 25731,
+    "summary": 25732,
+    "upload_markdown": 25733,
+    "metadata_json": 25734
+  }
+}
