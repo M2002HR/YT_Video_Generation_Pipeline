@@ -7,8 +7,8 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,North Eternal,319.9,&H0000FFB6,&H000000FF,&H00471A3C,&H80000000,0,-1,0,0,100,100,0,0,1,8.0,0.0,2,60,60,416,1
-Style: Karaoke,North Eternal,319.9,&H0000D7FF,&H0000FFB6,&H00471A3C,&H80000000,0,-1,0,0,100,100,0,0,1,8.0,0.0,2,60,60,416,1
+Style: Default,North Eternal,120,&H0000FFB6,&H000000FF,&H00471A3C,&H80000000,0,-1,0,0,100,100,0,0,1,8.0,0.0,2,60,60,326,1
+Style: Karaoke,North Eternal,120,&H0000D7FF,&H0000FFB6,&H00471A3C,&H80000000,0,-1,0,0,100,100,0,0,1,8.0,0.0,2,60,60,326,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

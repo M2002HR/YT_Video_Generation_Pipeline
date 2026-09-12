@@ -43,7 +43,7 @@
   "subtitles": {
     "enabled": true,
     "font_name": "North Eternal",
-    "font_size": 140,
+    "font_size": 120,
     "bold": false,
     "outline": 8.0,
     "shadow": 0,
@@ -58,7 +58,7 @@
     },
     "italic": true,
     "position": "custom",
-    "custom_offset_value": 25.0,
+    "custom_offset_value": 17.0,
     "custom_offset_unit": "percent",
     "font_colour": "#B6FF00",
     "outline_colour": "#3C1A47"

@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "revision_id": "55ecfb0c-1d75-411c-8f14-2f7175f1aec9",
+  "revision_id": "756d8730-7cdb-4df4-ac3b-db40e2c1083d",
   "kind": "config",
-  "created_at": "2026-09-12T12:18:38.511575+00:00",
+  "created_at": "2026-09-12T13:18:49.645235+00:00",
   "roots": [
     "render_profile"
   ],
@@ -58,18 +58,31 @@
     "sfx_plan",
     "sfx_acquire"
   ],
-  "archived_artifacts": [],
+  "archived_artifacts": [
+    "timeline/TIMELINE.json",
+    "timeline/SUBTITLES.ass",
+    "render/RENDER_PROFILE.json",
+    "assets/renders/final.mp4",
+    "render/RENDER_STATS.json",
+    "render/QC_REPORT.json",
+    "assets/renders/polished.mp4",
+    "render/QC_REPORT_polished.json",
+    "assets/renders/telegram_low.mp4",
+    "render/TELEGRAM_RENDER_PROGRESS.json",
+    "pipeline/GIT_PUBLISH_STATE.json",
+    "publish/TELEGRAM_PUBLISH_STATE.json"
+  ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
+  "status": "RUNNING",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "skip_visual_stages": true,
-  "started_at": "2026-09-12T12:18:38.512296+00:00",
-  "pid": 1502448,
+  "started_at": "2026-09-12T13:18:49.645897+00:00",
+  "pid": 1511290,
   "changed_fields": [
-    "subtitle_font"
+    "subtitle_font_size",
+    "subtitle_offset_value"
   ],
-  "config_revision_id": "c3b92889-f2a5-4c7d-9e48-b7c2665d41cb",
-  "completed_at": "2026-09-12T12:23:00.267894+00:00"
+  "config_revision_id": "30b3029e-7e9b-47f6-9999-b98933f9fc24"
 }
