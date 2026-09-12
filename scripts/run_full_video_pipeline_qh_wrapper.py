@@ -243,6 +243,11 @@ def main() -> int:
     parser.add_argument("--preserve-downstream-beats", action="store_true", help="Regenerate only the explicitly selected beat images; keep later continuity images unchanged.")
     parser.add_argument("--beat-feedback-json", type=Path, help="Operator feedback JSON passed into revised beat prompts.")
     parser.add_argument("--chatgpt-revision-feedback-json", type=Path, help="One-shot ChatGPT review requests for existing beat images before Gemini regeneration.")
+    parser.add_argument(
+        "--skip-visual-stages",
+        action="store_true",
+        help="Reuse locked visual assets for a render/audio/publish-only config revision.",
+    )
     parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
@@ -280,6 +285,11 @@ def main() -> int:
                 "↻ Valid unaffected stages will be reused",
             ],
         )
+    elif args.skip_visual_stages:
+        notifier.send(
+            "Render-only revision started",
+            ["🔒 Visual generation is locked", "↻ Existing images and opening media will not be sent to providers"],
+        )
     else:
         notifier.send("Pipeline started", ["🚀 Q Station workflow active", f"🎯 {args.topic}"])
 
@@ -290,34 +300,41 @@ def main() -> int:
     #    stages that need no video clip still run, and the trim and render wait instead of
     #    the whole episode being thrown away.
     flow_pending_reason = ""
-    try:
-        run(
-            [
-                python, "-u", "scripts/run_question_harvest_pipeline.py",
-                "--topic", args.topic,
-                "--video-id", args.video_id,
-                "--content-project", args.content_project,
-                "--creative-brief", str(args.creative_brief),
-                "--voice-profile", str(args.voice_profile),
-                "--aspect-ratio", args.aspect_ratio,
-            ]
-            + qh_overrides(args.creative_brief)
-            + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
-            + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
-            + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
-            + (["--chatgpt-revision-feedback-json", str(args.chatgpt_revision_feedback_json)] if args.chatgpt_revision_feedback_json else [])
-        )
-    except subprocess.CalledProcessError:
-        only_flow, reason = blocked_only_on_flow(project)
-        if not only_flow:
-            raise
-        flow_pending_reason = reason
-        print(
-            "FLOW PENDING: the visual stages are complete except the Flow clips "
-            f"({reason}). Continuing with narration, timing and music; the trim and render "
-            "wait for the clips.",
-            flush=True,
-        )
+    if args.skip_visual_stages:
+        # A subtitle/render/audio/publish config revision must be incapable of making a
+        # Gemini or Flow request.  This is stronger than cache reuse: an isolated image
+        # revision can intentionally leave downstream receipt fingerprints stale.
+        print("↻ visual stages locked — render-only revision; no image or Flow provider calls", flush=True)
+        mark_wrapper_stage(project, "visual_generation", "REUSED", reason="render-only configuration revision")
+    else:
+        try:
+            run(
+                [
+                    python, "-u", "scripts/run_question_harvest_pipeline.py",
+                    "--topic", args.topic,
+                    "--video-id", args.video_id,
+                    "--content-project", args.content_project,
+                    "--creative-brief", str(args.creative_brief),
+                    "--voice-profile", str(args.voice_profile),
+                    "--aspect-ratio", args.aspect_ratio,
+                ]
+                + qh_overrides(args.creative_brief)
+                + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
+                + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
+                + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
+                + (["--chatgpt-revision-feedback-json", str(args.chatgpt_revision_feedback_json)] if args.chatgpt_revision_feedback_json else [])
+            )
+        except subprocess.CalledProcessError:
+            only_flow, reason = blocked_only_on_flow(project)
+            if not only_flow:
+                raise
+            flow_pending_reason = reason
+            print(
+                "FLOW PENDING: the visual stages are complete except the Flow clips "
+                f"({reason}). Continuing with narration, timing and music; the trim and render "
+                "wait for the clips.",
+                flush=True,
+            )
 
     # 2. One continuous narration track (§66).
     narration = project / "assets" / "audio" / "narration.mp3"

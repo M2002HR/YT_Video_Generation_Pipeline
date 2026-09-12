@@ -1242,6 +1242,36 @@ def reconcile_scheduled_resumes() -> None:
         except (KeyError, OSError, subprocess.SubprocessError, json.JSONDecodeError):
             continue
 
+
+# These roots are owned by ``run_question_harvest_pipeline.py``.  A config revision
+# without one of them must never invoke that executable: it could inspect a stale
+# continuity receipt and spend Gemini credits despite the DAG saying every image is
+# reusable.  Render/audio/publish roots are owned by the wrapper's later stages.
+QH_VISUAL_REGENERATION_ROOTS = frozenset({
+    "script_draft", "retention_edit", "character_resolution", "episode_director",
+    "world_style_director", "world_style_anchor", "visual_plan",
+    "world_keyframe_prompt", "world_keyframe", "book_cover_design", "book_cover",
+    "flow_prompt_a", "flow_prompt_b", "flow_clip_a", "flow_clip_b",
+    "transition_direction",
+})
+
+
+def config_revision_skips_qh_visual_stages(revision: dict | object) -> bool:
+    """Whether a config revision is prohibited from entering the visual generator.
+
+    This is deliberately based on persisted roots rather than a frontend field, so a
+    stopped older revision remains safe if an operator resumes it after this fix.
+    """
+    if not isinstance(revision, dict) or revision.get("kind") != "config":
+        return False
+    roots = revision.get("roots")
+    if not isinstance(roots, list) or not roots or not all(isinstance(root, str) for root in roots):
+        return False
+    return not bool(
+        set(roots) & QH_VISUAL_REGENERATION_ROOTS
+        or any(root.startswith("beat_image_") for root in roots)
+    )
+
 def pipeline_command(record: dict) -> list[str]:
     """The command that runs one episode. Launch and resume must not diverge (§78)."""
     content_project = str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)
@@ -1276,6 +1306,8 @@ def pipeline_command(record: dict) -> list[str]:
             command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
         if revision.get("chatgpt_feedback_path"):
             command += ["--chatgpt-revision-feedback-json", str(ROOT / str(revision["chatgpt_feedback_path"]))]
+        if config_revision_skips_qh_visual_stages(revision):
+            command.append("--skip-visual-stages")
         return command
     command = [
         sys.executable, "-u", "scripts/run_full_video_pipeline.py",
@@ -2290,6 +2322,8 @@ class Handler(BaseHTTPRequestHandler):
                 "regeneration_mode": regeneration_mode,
                 "use_chatgpt_feedback": bool(use_chatgpt_feedback),
             }
+            if config_revision_skips_qh_visual_stages(revision):
+                revision["skip_visual_stages"] = True
             if beat_feedback:
                 revision["feedback_path"] = str(feedback_path.relative_to(ROOT))
             if chatgpt_feedback_requests:

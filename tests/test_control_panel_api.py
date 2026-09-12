@@ -52,6 +52,24 @@ def test_launch_and_resume_build_the_same_command() -> None:
     assert panel.pipeline_command(record) == command, "the builder must be deterministic"
 
 
+def test_render_only_config_revision_locks_out_visual_generation_even_on_resume() -> None:
+    """Subtitle style edits must never reach Gemini after an isolated beat revision."""
+    record = _record(pending_revision={
+        "kind": "config",
+        "roots": ["render_profile"],
+    })
+    command = panel.pipeline_command(record)
+    assert "--skip-visual-stages" in command
+    assert panel.config_revision_skips_qh_visual_stages(record["pending_revision"]) is True
+
+    visual = _record(pending_revision={
+        "kind": "config",
+        "roots": ["beat_image_001"],
+    })
+    assert "--skip-visual-stages" not in panel.pipeline_command(visual)
+    assert panel.config_revision_skips_qh_visual_stages(visual["pending_revision"]) is False
+
+
 def test_style_reference_is_hash_pinned_and_frozen_inside_the_run(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """An upload token must never leak into the launch brief or point outside its run."""
     from PIL import Image
