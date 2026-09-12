@@ -4,3 +4,5 @@ Create exactly one standalone 9:16 image: a waist-up front three-quarter portrai
 
 Clarify the single-frame treatment
 Reconcile the framing-language conflict NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent pop-art print card divided into an asymmetrical modular comic-panel grid by thick black borders; each scene occupies one or more bold rectangular illustration windows while cropped graphic motifs may bridge adjacent panels. Slight screen-print edge wear and registration offsets recur throughout, but panel geometry stays disciplined and readable rather than chaotic. Do not reproduce the reference image's exact layout or imagery.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.
+
+ADMIN REVISION REQUEST (binding): fix it

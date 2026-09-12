@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "q_station",
   "job_id": "02cfa0dd-40d6-4bd9-8e3d-e5b7fc76f7fb",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-12T06:01:36.657092+00:00",
   "topic": "Why a Song Gets Stuck in Your Head",
   "video_id": "029",
@@ -226,5 +226,6 @@
   },
   "resumed_at": "2026-09-12T07:57:55.561489+00:00",
   "resume_count": 2,
-  "stopped_by": "panel"
+  "stopped_by": "panel",
+  "completed_at": "2026-09-12T08:02:48.460254+00:00"
 }

@@ -1,0 +1,1472 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 59.429,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.917,
+      "duration": 4.917,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 4.917,
+      "end": 10.167,
+      "duration": 5.25,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 10.18,
+      "end": 16.84,
+      "duration": 6.66,
+      "speech_start": 10.94,
+      "speech_end": 16.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Scientists call it involuntary musical imagery, or an earworm.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 16.84,
+      "end": 19.96,
+      "duration": 3.12,
+      "speech_start": 16.84,
+      "speech_end": 19.32,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Recent or repeated listening can trigger it.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 19.96,
+      "end": 24.52,
+      "duration": 4.56,
+      "speech_start": 19.96,
+      "speech_end": 23.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Short, distinctive fragments are easier to retrieve.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 24.52,
+      "end": 28.26,
+      "duration": 3.74,
+      "speech_start": 24.52,
+      "speech_end": 27.26,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Repetition makes the next note feel predictable.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 28.26,
+      "end": 32.66,
+      "duration": 4.4,
+      "speech_start": 28.26,
+      "speech_end": 31.84,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Your brain can replay that pattern without any sound.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 32.66,
+      "end": 36.12,
+      "duration": 3.46,
+      "speech_start": 32.66,
+      "speech_end": 35.22,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Idle moments give the loop room to return.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 36.12,
+      "end": 40.14,
+      "duration": 4.02,
+      "speech_start": 36.12,
+      "speech_end": 39.2,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Mood or personal memories can strengthen the cue.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 40.14,
+      "end": 43.06,
+      "duration": 2.92,
+      "speech_start": 40.14,
+      "speech_end": 43.06,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Fighting it can keep your attention stuck on it.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 43.06,
+      "end": 46.7,
+      "duration": 3.64,
+      "speech_start": 43.06,
+      "speech_end": 46.94,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "An absorbing task can pull attention elsewhere.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 46.7,
+      "end": 59.429,
+      "duration": 12.729,
+      "speech_start": 46.46,
+      "speech_end": 50.62,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Then the loop often fades on its own.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 0.52,
+      "text": "Why does",
+      "ass_text": "Why does",
+      "words": [
+        {
+          "text": "Why",
+          "start": 0.0,
+          "end": 0.24
+        },
+        {
+          "text": "does",
+          "start": 0.24,
+          "end": 0.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.52,
+      "end": 1.18,
+      "text": "one tune",
+      "ass_text": "one tune",
+      "words": [
+        {
+          "text": "one",
+          "start": 0.52,
+          "end": 0.84
+        },
+        {
+          "text": "tune",
+          "start": 0.84,
+          "end": 1.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.18,
+      "end": 2.12,
+      "text": "keep looping",
+      "ass_text": "keep looping",
+      "words": [
+        {
+          "text": "keep",
+          "start": 1.18,
+          "end": 1.52
+        },
+        {
+          "text": "looping",
+          "start": 1.52,
+          "end": 2.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.12,
+      "end": 2.52,
+      "text": "while you",
+      "ass_text": "while you",
+      "words": [
+        {
+          "text": "while",
+          "start": 2.12,
+          "end": 2.36
+        },
+        {
+          "text": "you",
+          "start": 2.36,
+          "end": 2.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.52,
+      "end": 3.28,
+      "text": "sort tools",
+      "ass_text": "sort tools",
+      "words": [
+        {
+          "text": "sort",
+          "start": 2.52,
+          "end": 2.88
+        },
+        {
+          "text": "tools",
+          "start": 2.88,
+          "end": 3.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.28,
+      "end": 3.94,
+      "text": "after the",
+      "ass_text": "after the",
+      "words": [
+        {
+          "text": "after",
+          "start": 3.28,
+          "end": 3.72
+        },
+        {
+          "text": "the",
+          "start": 3.72,
+          "end": 3.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.94,
+      "end": 4.9,
+      "text": "music stops?",
+      "ass_text": "music stops?",
+      "words": [
+        {
+          "text": "music",
+          "start": 3.94,
+          "end": 4.28
+        },
+        {
+          "text": "stops?",
+          "start": 4.28,
+          "end": 4.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.7,
+      "end": 6.18,
+      "text": "You pull",
+      "ass_text": "You pull",
+      "words": [
+        {
+          "text": "You",
+          "start": 5.7,
+          "end": 5.9
+        },
+        {
+          "text": "pull",
+          "start": 5.9,
+          "end": 6.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.18,
+      "end": 6.54,
+      "text": "down a",
+      "ass_text": "down a",
+      "words": [
+        {
+          "text": "down",
+          "start": 6.18,
+          "end": 6.36
+        },
+        {
+          "text": "a",
+          "start": 6.36,
+          "end": 6.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.54,
+      "end": 6.74,
+      "text": "book.",
+      "ass_text": "book.",
+      "words": [
+        {
+          "text": "book.",
+          "start": 6.54,
+          "end": 6.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.36,
+      "end": 7.92,
+      "text": "The clue",
+      "ass_text": "The clue",
+      "words": [
+        {
+          "text": "The",
+          "start": 7.36,
+          "end": 7.56
+        },
+        {
+          "text": "clue",
+          "start": 7.56,
+          "end": 7.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.92,
+      "end": 8.52,
+      "text": "is how",
+      "ass_text": "is how",
+      "words": [
+        {
+          "text": "is",
+          "start": 7.92,
+          "end": 8.26
+        },
+        {
+          "text": "how",
+          "start": 8.26,
+          "end": 8.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.52,
+      "end": 9.66,
+      "text": "memory handles",
+      "ass_text": "memory handles",
+      "words": [
+        {
+          "text": "memory",
+          "start": 8.52,
+          "end": 9.1
+        },
+        {
+          "text": "handles",
+          "start": 9.1,
+          "end": 9.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.66,
+      "end": 10.18,
+      "text": "sound.",
+      "ass_text": "sound.",
+      "words": [
+        {
+          "text": "sound.",
+          "start": 9.66,
+          "end": 10.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 10.94,
+      "end": 11.94,
+      "text": "Scientists call",
+      "ass_text": "Scientists call",
+      "words": [
+        {
+          "text": "Scientists",
+          "start": 10.94,
+          "end": 11.38
+        },
+        {
+          "text": "call",
+          "start": 11.38,
+          "end": 11.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.94,
+      "end": 13.34,
+      "text": "it involuntary",
+      "ass_text": "it involuntary",
+      "words": [
+        {
+          "text": "it",
+          "start": 11.94,
+          "end": 12.12
+        },
+        {
+          "text": "involuntary",
+          "start": 12.12,
+          "end": 13.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.34,
+      "end": 14.44,
+      "text": "musical imagery",
+      "ass_text": "musical imagery",
+      "words": [
+        {
+          "text": "musical",
+          "start": 13.34,
+          "end": 13.96
+        },
+        {
+          "text": "imagery",
+          "start": 13.96,
+          "end": 14.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.44,
+      "end": 15.58,
+      "text": "or an",
+      "ass_text": "or an",
+      "words": [
+        {
+          "text": "or",
+          "start": 14.44,
+          "end": 15.28
+        },
+        {
+          "text": "an",
+          "start": 15.28,
+          "end": 15.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 15.58,
+      "end": 16.34,
+      "text": "earworm.",
+      "ass_text": "earworm.",
+      "words": [
+        {
+          "text": "earworm.",
+          "start": 15.58,
+          "end": 16.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 16.84,
+      "end": 17.46,
+      "text": "Recent or",
+      "ass_text": "Recent or",
+      "words": [
+        {
+          "text": "Recent",
+          "start": 16.84,
+          "end": 17.14
+        },
+        {
+          "text": "or",
+          "start": 17.14,
+          "end": 17.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.46,
+      "end": 18.4,
+      "text": "repeated listening",
+      "ass_text": "repeated listening",
+      "words": [
+        {
+          "text": "repeated",
+          "start": 17.46,
+          "end": 18.0
+        },
+        {
+          "text": "listening",
+          "start": 18.0,
+          "end": 18.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 18.4,
+      "end": 19.04,
+      "text": "can trigger",
+      "ass_text": "can trigger",
+      "words": [
+        {
+          "text": "can",
+          "start": 18.4,
+          "end": 18.74
+        },
+        {
+          "text": "trigger",
+          "start": 18.74,
+          "end": 19.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 19.04,
+      "end": 19.32,
+      "text": "it.",
+      "ass_text": "it.",
+      "words": [
+        {
+          "text": "it.",
+          "start": 19.04,
+          "end": 19.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 19.96,
+      "end": 20.84,
+      "text": "Short distinctive",
+      "ass_text": "Short distinctive",
+      "words": [
+        {
+          "text": "Short",
+          "start": 19.96,
+          "end": 20.3
+        },
+        {
+          "text": "distinctive",
+          "start": 20.3,
+          "end": 20.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.84,
+      "end": 21.98,
+      "text": "fragments are",
+      "ass_text": "fragments are",
+      "words": [
+        {
+          "text": "fragments",
+          "start": 20.84,
+          "end": 21.48
+        },
+        {
+          "text": "are",
+          "start": 21.48,
+          "end": 21.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.98,
+      "end": 22.9,
+      "text": "easier to",
+      "ass_text": "easier to",
+      "words": [
+        {
+          "text": "easier",
+          "start": 21.98,
+          "end": 22.56
+        },
+        {
+          "text": "to",
+          "start": 22.56,
+          "end": 22.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.9,
+      "end": 23.34,
+      "text": "retrieve.",
+      "ass_text": "retrieve.",
+      "words": [
+        {
+          "text": "retrieve.",
+          "start": 22.9,
+          "end": 23.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 24.52,
+      "end": 25.4,
+      "text": "Repetition makes",
+      "ass_text": "Repetition makes",
+      "words": [
+        {
+          "text": "Repetition",
+          "start": 24.52,
+          "end": 25.02
+        },
+        {
+          "text": "makes",
+          "start": 25.02,
+          "end": 25.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.4,
+      "end": 25.9,
+      "text": "the next",
+      "ass_text": "the next",
+      "words": [
+        {
+          "text": "the",
+          "start": 25.4,
+          "end": 25.56
+        },
+        {
+          "text": "next",
+          "start": 25.56,
+          "end": 25.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.9,
+      "end": 26.68,
+      "text": "note feel",
+      "ass_text": "note feel",
+      "words": [
+        {
+          "text": "note",
+          "start": 25.9,
+          "end": 26.26
+        },
+        {
+          "text": "feel",
+          "start": 26.26,
+          "end": 26.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 26.68,
+      "end": 27.26,
+      "text": "predictable.",
+      "ass_text": "predictable.",
+      "words": [
+        {
+          "text": "predictable.",
+          "start": 26.68,
+          "end": 27.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 28.26,
+      "end": 28.86,
+      "text": "Your brain",
+      "ass_text": "Your brain",
+      "words": [
+        {
+          "text": "Your",
+          "start": 28.26,
+          "end": 28.36
+        },
+        {
+          "text": "brain",
+          "start": 28.36,
+          "end": 28.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.86,
+      "end": 29.72,
+      "text": "can replay",
+      "ass_text": "can replay",
+      "words": [
+        {
+          "text": "can",
+          "start": 28.86,
+          "end": 29.2
+        },
+        {
+          "text": "replay",
+          "start": 29.2,
+          "end": 29.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.72,
+      "end": 30.52,
+      "text": "that pattern",
+      "ass_text": "that pattern",
+      "words": [
+        {
+          "text": "that",
+          "start": 29.72,
+          "end": 30.06
+        },
+        {
+          "text": "pattern",
+          "start": 30.06,
+          "end": 30.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 30.52,
+      "end": 31.32,
+      "text": "without any",
+      "ass_text": "without any",
+      "words": [
+        {
+          "text": "without",
+          "start": 30.52,
+          "end": 30.94
+        },
+        {
+          "text": "any",
+          "start": 30.94,
+          "end": 31.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 31.32,
+      "end": 33.02,
+      "text": "sound Idle",
+      "ass_text": "sound Idle",
+      "words": [
+        {
+          "text": "sound",
+          "start": 31.32,
+          "end": 31.84
+        },
+        {
+          "text": "Idle",
+          "start": 32.66,
+          "end": 33.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 33.02,
+      "end": 33.84,
+      "text": "moments give",
+      "ass_text": "moments give",
+      "words": [
+        {
+          "text": "moments",
+          "start": 33.02,
+          "end": 33.44
+        },
+        {
+          "text": "give",
+          "start": 33.44,
+          "end": 33.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.84,
+      "end": 34.3,
+      "text": "the loop",
+      "ass_text": "the loop",
+      "words": [
+        {
+          "text": "the",
+          "start": 33.84,
+          "end": 34.02
+        },
+        {
+          "text": "loop",
+          "start": 34.02,
+          "end": 34.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.3,
+      "end": 34.82,
+      "text": "room to",
+      "ass_text": "room to",
+      "words": [
+        {
+          "text": "room",
+          "start": 34.3,
+          "end": 34.62
+        },
+        {
+          "text": "to",
+          "start": 34.62,
+          "end": 34.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.82,
+      "end": 36.52,
+      "text": "return Mood",
+      "ass_text": "return Mood",
+      "words": [
+        {
+          "text": "return",
+          "start": 34.82,
+          "end": 35.22
+        },
+        {
+          "text": "Mood",
+          "start": 36.12,
+          "end": 36.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 36.52,
+      "end": 37.26,
+      "text": "or personal",
+      "ass_text": "or personal",
+      "words": [
+        {
+          "text": "or",
+          "start": 36.52,
+          "end": 36.8
+        },
+        {
+          "text": "personal",
+          "start": 36.8,
+          "end": 37.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.26,
+      "end": 38.14,
+      "text": "memories can",
+      "ass_text": "memories can",
+      "words": [
+        {
+          "text": "memories",
+          "start": 37.26,
+          "end": 37.76
+        },
+        {
+          "text": "can",
+          "start": 37.76,
+          "end": 38.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.14,
+      "end": 38.92,
+      "text": "strengthen the",
+      "ass_text": "strengthen the",
+      "words": [
+        {
+          "text": "strengthen",
+          "start": 38.14,
+          "end": 38.56
+        },
+        {
+          "text": "the",
+          "start": 38.56,
+          "end": 38.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.92,
+      "end": 40.5,
+      "text": "cue Fighting",
+      "ass_text": "cue Fighting",
+      "words": [
+        {
+          "text": "cue",
+          "start": 38.92,
+          "end": 39.2
+        },
+        {
+          "text": "Fighting",
+          "start": 40.14,
+          "end": 40.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 40.5,
+      "end": 40.94,
+      "text": "it can",
+      "ass_text": "it can",
+      "words": [
+        {
+          "text": "it",
+          "start": 40.5,
+          "end": 40.74
+        },
+        {
+          "text": "can",
+          "start": 40.74,
+          "end": 40.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.94,
+      "end": 41.52,
+      "text": "keep your",
+      "ass_text": "keep your",
+      "words": [
+        {
+          "text": "keep",
+          "start": 40.94,
+          "end": 41.22
+        },
+        {
+          "text": "your",
+          "start": 41.22,
+          "end": 41.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.52,
+      "end": 42.58,
+      "text": "attention stuck",
+      "ass_text": "attention stuck",
+      "words": [
+        {
+          "text": "attention",
+          "start": 41.52,
+          "end": 42.04
+        },
+        {
+          "text": "stuck",
+          "start": 42.04,
+          "end": 42.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.58,
+      "end": 43.06,
+      "text": "on it",
+      "ass_text": "on it",
+      "words": [
+        {
+          "text": "on",
+          "start": 42.58,
+          "end": 42.9
+        },
+        {
+          "text": "it",
+          "start": 42.9,
+          "end": 43.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.06,
+      "end": 44.42,
+      "text": "An absorbing",
+      "ass_text": "An absorbing",
+      "words": [
+        {
+          "text": "An",
+          "start": 43.06,
+          "end": 43.9
+        },
+        {
+          "text": "absorbing",
+          "start": 43.9,
+          "end": 44.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 44.42,
+      "end": 45.36,
+      "text": "task can",
+      "ass_text": "task can",
+      "words": [
+        {
+          "text": "task",
+          "start": 44.42,
+          "end": 45.06
+        },
+        {
+          "text": "can",
+          "start": 45.06,
+          "end": 45.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.36,
+      "end": 46.16,
+      "text": "pull attention",
+      "ass_text": "pull attention",
+      "words": [
+        {
+          "text": "pull",
+          "start": 45.36,
+          "end": 45.64
+        },
+        {
+          "text": "attention",
+          "start": 45.64,
+          "end": 46.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.16,
+      "end": 48.32,
+      "text": "elsewhere Then",
+      "ass_text": "elsewhere Then",
+      "words": [
+        {
+          "text": "elsewhere",
+          "start": 46.16,
+          "end": 46.94
+        },
+        {
+          "text": "Then",
+          "start": 46.46,
+          "end": 48.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.32,
+      "end": 48.94,
+      "text": "the loop",
+      "ass_text": "the loop",
+      "words": [
+        {
+          "text": "the",
+          "start": 48.32,
+          "end": 48.64
+        },
+        {
+          "text": "loop",
+          "start": 48.64,
+          "end": 48.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.94,
+      "end": 49.84,
+      "text": "often fades",
+      "ass_text": "often fades",
+      "words": [
+        {
+          "text": "often",
+          "start": 48.94,
+          "end": 49.32
+        },
+        {
+          "text": "fades",
+          "start": 49.32,
+          "end": 49.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 49.84,
+      "end": 50.3,
+      "text": "on its",
+      "ass_text": "on its",
+      "words": [
+        {
+          "text": "on",
+          "start": 49.84,
+          "end": 50.16
+        },
+        {
+          "text": "its",
+          "start": 50.16,
+          "end": 50.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 50.3,
+      "end": 51.6,
+      "text": "own The",
+      "ass_text": "own The",
+      "words": [
+        {
+          "text": "own",
+          "start": 50.3,
+          "end": 50.62
+        },
+        {
+          "text": "The",
+          "start": 50.36,
+          "end": 51.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 51.6,
+      "end": 52.92,
+      "text": "music stopped,",
+      "ass_text": "music stopped,",
+      "words": [
+        {
+          "text": "music",
+          "start": 51.6,
+          "end": 52.0
+        },
+        {
+          "text": "stopped,",
+          "start": 52.0,
+          "end": 52.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 52.92,
+      "end": 53.22,
+      "text": "but the",
+      "ass_text": "but the",
+      "words": [
+        {
+          "text": "but",
+          "start": 52.92,
+          "end": 53.04
+        },
+        {
+          "text": "the",
+          "start": 53.04,
+          "end": 53.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.22,
+      "end": 54.04,
+      "text": "pattern kept",
+      "ass_text": "pattern kept",
+      "words": [
+        {
+          "text": "pattern",
+          "start": 53.22,
+          "end": 53.66
+        },
+        {
+          "text": "kept",
+          "start": 53.66,
+          "end": 54.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 54.04,
+      "end": 55.56,
+      "text": "moving Like",
+      "ass_text": "moving Like",
+      "words": [
+        {
+          "text": "moving",
+          "start": 54.04,
+          "end": 54.48
+        },
+        {
+          "text": "Like",
+          "start": 55.4,
+          "end": 55.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 55.56,
+      "end": 56.32,
+      "text": "and subscribe",
+      "ass_text": "and subscribe",
+      "words": [
+        {
+          "text": "and",
+          "start": 55.56,
+          "end": 55.84
+        },
+        {
+          "text": "subscribe",
+          "start": 55.84,
+          "end": 56.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 56.32,
+      "end": 57.22,
+      "text": "to keep",
+      "ass_text": "to keep",
+      "words": [
+        {
+          "text": "to",
+          "start": 56.32,
+          "end": 56.94
+        },
+        {
+          "text": "keep",
+          "start": 56.94,
+          "end": 57.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 57.22,
+      "end": 58.04,
+      "text": "growing your",
+      "ass_text": "growing your",
+      "words": [
+        {
+          "text": "growing",
+          "start": 57.22,
+          "end": 57.68
+        },
+        {
+          "text": "your",
+          "start": 57.68,
+          "end": 58.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 58.04,
+      "end": 58.64,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "words": [
+        {
+          "text": "questions.",
+          "start": 58.04,
+          "end": 58.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 9,
+        "before_beat": 10,
+        "current_speech_end": 46.94,
+        "next_speech_start": 46.46,
+        "overlap_seconds": 0.48,
+        "chosen_boundary": 46.7
+      }
+    ],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 64,
+    "subtitle_cues_estimated": 0
+  }
+}

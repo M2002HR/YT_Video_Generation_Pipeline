@@ -1,6 +1,6 @@
 {
   "contract_version": 1,
-  "request_fingerprint": "fa903b0d152fdac7b6021d7b93f23871f720fe413344d2815997fc25f7c80daa",
+  "request_fingerprint": "016969962586df4d69c64333a2f350770e526a3979c73a40a21ec15a35fcbf0a",
   "quality_check": {
     "passed": true,
     "raw_passed": null,
@@ -14,7 +14,7 @@
     "review_provider": null
   },
   "provider": "gemini",
-  "job_id": "517a82c7-3642-4f76-89d1-a4eb98ac5b45",
+  "job_id": "51dbab68-ad4b-43ff-8445-a68465dc5a5f",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Open mode picker, currently Flash",
   "model_verified": true,
@@ -32,7 +32,7 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/97f7ecc24b9c0be2",
+    "workspace_url": "https://gemini.google.com/app/e4dcfa4f81255a95",
     "submission_fingerprint": null,
     "reference_roles": [
       "character_sheet",
@@ -45,7 +45,7 @@
       "model_label_source=mode-picker",
       "extended_thinking_mode=Open mode picker, currently Flash Extended",
       "artifact_source=download",
-      "image=517a82c7-3642-4f76-89d1-a4eb98ac5b45_output_1.png 1536x2752 sha256=2bd7d9ce700be5de7e08826a95ff7c126e672cdfe2a6ecf0e231ca372182ebd1"
+      "image=51dbab68-ad4b-43ff-8445-a68465dc5a5f_output_1.png 1536x2752 sha256=28a821f6a6ee131498b80ac30638c560d786b0286d2b0e3a027baed016eac59c"
     ],
     "quality_check": {
       "passed": true,
@@ -59,13 +59,13 @@
       "regressions": [],
       "review_provider": null
     },
-    "request_fingerprint": "fa903b0d152fdac7b6021d7b93f23871f720fe413344d2815997fc25f7c80daa",
+    "request_fingerprint": "016969962586df4d69c64333a2f350770e526a3979c73a40a21ec15a35fcbf0a",
     "quality_iterations": [
       {
         "attempt": 1,
-        "job_id": "517a82c7-3642-4f76-89d1-a4eb98ac5b45",
-        "prompt_sha256": "3632dbd84d63ef3db3ee002a02b3141c28bf2efdb7b51fa522a2b304d594d982",
-        "output_sha256": "2bd7d9ce700be5de7e08826a95ff7c126e672cdfe2a6ecf0e231ca372182ebd1",
+        "job_id": "51dbab68-ad4b-43ff-8445-a68465dc5a5f",
+        "prompt_sha256": "cf81d3059cd2bfd080e4f4788d9c654451eb3da8f88d89a043b06d92a1084bfb",
+        "output_sha256": "28a821f6a6ee131498b80ac30638c560d786b0286d2b0e3a027baed016eac59c",
         "quality_check": {
           "passed": true,
           "raw_passed": null,
@@ -103,7 +103,7 @@
     },
     {
       "role": "operator_style_reference",
-      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/style_references/style_reference.png",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/08e58d18-4056-40b6-a105-020028dc8465/style_reference.png",
       "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589"
     },
     {
@@ -112,14 +112,14 @@
       "sha256": "85678037bbd08dfa4a6e7074b0da603bc617f1256af5210fb6c6d7c42c55a042"
     }
   ],
-  "prompt_sha256": "3632dbd84d63ef3db3ee002a02b3141c28bf2efdb7b51fa522a2b304d594d982",
-  "prompt": "Create exactly one 9:16 standalone image, not a storyboard, grid, collage, multi-panel layout, captioned graphic, or text-bearing design. Render a single full-height pop-art screen-print card with disciplined thick black framing and an inner illustration window, preserving the recurring world medium, dry matte ink on lightly coarse paper, subtle registration wear, bold comic contours, simplified silhouettes, sparse halftone texture, flat high-key lighting, and cherry red/hot pink/lemon yellow/electric violet/warm orange palette; fill the entire illustration height naturally with no caption reserve or blank lower band. Show the Red Horned Everyman waist-up in a calm front three-quarter view near the lower center, preserving identity from character_sheet only: red skin, exactly two enormous symmetrical black ridged horns with both tips visible, pointed ears, long angular nose, tired drooping eyes, short tousled black hair, pointed black goatee, two small lower tusks, muted red-and-charcoal plaid overshirt over dark charcoal shirt; restrained, observant, slightly weary expression, never villainous or supernatural. Depict a translucent graphic silhouette of his head containing a completely closed violet-and-hot-pink loop of repeated geometric pulse shapes circling entirely inside the skull, clearly self-sustaining with no line reaching outward. Place unplugged headphones far to one side on a nearby simple table, visibly silent and disconnected. Use previous_beat as binding only for recurring frame material, texture, palette, lighting and edge treatment, never its composition, crop, pose or focal object; use world_keyframe only for established subject-world rendering language; use style_reference and operator_style_reference only for medium, color, print texture and graphic treatment, never copied layout or imagery; use character_sheet for identity only. No photorealism, 3D CGI, anime, glossy gradients, readable notation, letters, numbers, logos, captions, UI, wings, tail, extra horns, flames, glowing eyes or infernal setting. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent pop-art print card divided into an asymmetrical modular comic-panel grid by thick black borders; each scene occupies one or more bold rectangular illustration windows while cropped graphic motifs may bridge adjacent panels. Slight screen-print edge wear and registration offsets recur throughout, but panel geometry stays disciplined and readable rather than chaotic. Do not reproduce the reference image's exact layout or imagery.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "prompt_sha256": "cf81d3059cd2bfd080e4f4788d9c654451eb3da8f88d89a043b06d92a1084bfb",
+  "prompt": "Gemini Image Prompt\n\nCreate exactly one standalone 9:16 image: a waist-up front three-quarter portrait of Red Horned Everyman calmly seated in the lower center, rendered as bright pop-art screen print with dry matte ink, lightly coarse paper grain, subtle registration wear, dense bold black contours, restrained halftone texture, and flat high-key color blocking in cherry red, hot pink, lemon yellow, electric violet, warm orange, and small off-white accents. Preserve his identity exactly: red skin, slim lanky build, exactly two enormous symmetrical ridged black horns sweeping upward/outward with both tips visible, pointed ears, long angular nose, tired slightly drooping eyes, short tousled black hair, pointed black goatee, two small lower tusks, muted red-charcoal plaid overshirt over dark charcoal shirt; expression serious, observant, slightly weary, never sinister or manic. Show unplugged headphones resting silently on a nearby table far to one side, clearly disconnected from him and from all visual pulses. Inside a translucent graphic silhouette of his head, enclose a vivid closed loop of violet-and-hot-pink repeating geometric pulses, entirely internal with no line, cable, glow, or pulse reaching any external source, making self-sustaining mental replay instantly readable. Use the full illustration height with no caption reserve or blank lower strip. Maintain the recurring print-card material, edge treatment, palette, lighting, and disciplined bold framing from world_keyframe and previous_beat, but do not copy their composition, crop, pose, camera angle, or focal object; use character_sheet for identity only; use style_reference and operator_style_reference only for medium, texture, palette, and graphic treatment. No storyboard, grid, collage, multiple panels, captions, letters, numbers, logos, readable text, photorealism, 3D CGI, anime, glossy gradients, wings, tail, extra horns, flames, armor, supernatural aura, or hell imagery.\n\nClarify the single-frame treatment\nReconcile the framing-language conflict NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent pop-art print card divided into an asymmetrical modular comic-panel grid by thick black borders; each scene occupies one or more bold rectangular illustration windows while cropped graphic motifs may bridge adjacent panels. Slight screen-print edge wear and registration offsets recur throughout, but panel geometry stays disciplined and readable rather than chaotic. Do not reproduce the reference image's exact layout or imagery.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.\n\nADMIN REVISION REQUEST (binding): fix it",
   "output_path": "assets/raw_beats/beat_005.png",
-  "output_sha256": "2bd7d9ce700be5de7e08826a95ff7c126e672cdfe2a6ecf0e231ca372182ebd1",
+  "output_sha256": "28a821f6a6ee131498b80ac30638c560d786b0286d2b0e3a027baed016eac59c",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 99.276,
-  "completed_at": "2026-09-12T06:24:56Z"
+  "elapsed_seconds": 105.268,
+  "completed_at": "2026-09-12T08:16:17Z"
 }
