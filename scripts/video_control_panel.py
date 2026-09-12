@@ -75,6 +75,9 @@ QH_ROOTS = {
     # opening clips and the world keyframe remain stable during a revision.
     "reserve_subtitle_space": ("beat_image_001",),
     "chatgpt_fallback_auto": (),
+    # Trim-only rule: changing the opening sync tolerance never invalidates Flow
+    # clips or images; the wrapper simply re-runs the trim on resume.
+    "opening_speed_tolerance": (),
 }
 QH_FIELDS = tuple(QH_ROOTS)
 QH_STORED_FIELDS = {
@@ -1409,6 +1412,49 @@ def flow_pending_of(record: dict) -> dict:
     return data if isinstance(data, dict) else {}
 
 
+def release_eligibility(record: dict, project: Path) -> tuple[bool, str]:
+    """Server-side gate for a manual YouTube Release.
+
+    The UI mirrors this result for convenience, but this is the authority: no browser may
+    trigger expensive ChatGPT/Gemini work for a partial, failed, or externally discovered run.
+    """
+    if bool(record.get("external")):
+        return False, "Runs discovered outside Studio are read-only."
+    if record.get("status") != "DONE":
+        return False, "Release is available only after the run is DONE."
+    if pid_is_live(record.get("pid")):
+        return False, "The pipeline process is still live."
+    try:
+        final = json.loads((project / "pipeline" / "FINALIZATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        final = {}
+    try:
+        qc = json.loads((project / "render" / "QC_REPORT_polished.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        qc = {}
+    master = project / "assets" / "renders" / "polished.mp4"
+    if final.get("status") != "DONE":
+        return False, "Finalization is not complete."
+    if qc.get("passed") is not True:
+        return False, "Final render QC has not passed."
+    if not master.is_file() or master.stat().st_size <= 0:
+        return False, "The polished master is missing."
+    return True, ""
+
+
+def active_release(jobs_dir: Path) -> dict | None:
+    """Only one release may use the shared authenticated browser at a time."""
+    for path in jobs_dir.glob("*.json"):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        release = record.get("release") if isinstance(record.get("release"), dict) else {}
+        if release.get("status") == "RUNNING" and pid_is_live(release.get("pid")):
+            return record
+    return None
+
+
 def start_stuck_job_reconciler(interval: int = 30) -> None:
     """Background thread to periodically reconcile stuck jobs — permanent anti-hang (§81)."""
     def loop() -> None:
@@ -1488,8 +1534,10 @@ class Handler(BaseHTTPRequestHandler):
                 project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
                 project / "pipeline/FINALIZATION_RUNTIME_STATE.json",
                 project / "pipeline/WRAPPER_RUNTIME_STATE.json",
+                project / "publish/youtube_short/RELEASE_STATE.json",
                 self.jobs_dir / f"{job_id}.json",
                 self.jobs_dir / f"{job_id}.log",
+                self.jobs_dir / f"{job_id}.release.log",
             ]
             state = [(str(path), path.stat().st_mtime_ns, path.stat().st_size) for path in files if path.is_file()]
             graph = graph_for(project)
@@ -2520,6 +2568,85 @@ class Handler(BaseHTTPRequestHandler):
                 write_json(request, record)
         self.send_notice(HTTPStatus.ACCEPTED, f"Resumed {record.get('video_id')} — completed stages are reused, not regenerated.")
 
+    def handle_release(self) -> None:
+        """Start the isolated, auditable YouTube-release worker for one completed run."""
+        job_id = self.read_job_id()
+        if job_id is None:
+            return
+        record_path = self.jobs_dir / f"{job_id}.json"
+        try:
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            project = (ROOT / str(record.get("project") or "")).resolve()
+            project.relative_to((ROOT / "videos").resolve())
+        except (OSError, ValueError, TypeError):
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."})
+            return
+        allowed, reason = release_eligibility(record, project)
+        if not allowed:
+            self.send_json(HTTPStatus.CONFLICT, {"error": reason})
+            return
+        with LAUNCH_LOCK:
+            active = active_job(self.jobs_dir)
+            if active is not None:
+                self.send_json(HTTPStatus.CONFLICT, {
+                    "error": f"Video {active.get('video_id')} is using the shared browser; release it after that pipeline finishes."
+                })
+                return
+            other = active_release(self.jobs_dir)
+            if other is not None:
+                self.send_json(HTTPStatus.CONFLICT, {
+                    "error": f"A Release for video {other.get('video_id')} is already using the shared browser."
+                })
+                return
+            log = self.jobs_dir / f"{job_id}.release.log"
+            handle = log.open("a", encoding="utf-8")
+            command = [
+                sys.executable, "-u", "scripts/release_youtube_short.py", str(project),
+                "--content-project", str(record.get("content_project") or DEFAULT_CONTENT_PROJECT),
+            ]
+            try:
+                process = subprocess.Popen(
+                    command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True,
+                )
+            except OSError as exc:
+                handle.close()
+                self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"Could not start Release: {exc}"})
+                return
+            finally:
+                if not handle.closed:
+                    handle.close()
+            release = {
+                "status": "RUNNING", "pid": process.pid, "started_at": utcnow(),
+                "command": command, "log": str(log.relative_to(ROOT)),
+            }
+            record["release"] = release
+            write_json(record_path, record)
+
+        def monitor() -> None:
+            code = process.wait()
+            try:
+                current = json.loads(record_path.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                return
+            package_state = project / "publish" / "youtube_short" / "RELEASE_STATE.json"
+            try:
+                worker = json.loads(package_state.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                worker = {}
+            result = dict(current.get("release") or {})
+            succeeded = code == 0 and worker.get("status") == "DONE"
+            result.update({
+                "status": "DONE" if succeeded else "FAILED", "exit_code": code,
+                "completed_at": utcnow(), "state": str(package_state.relative_to(ROOT)),
+            })
+            if not succeeded:
+                result["error"] = str(worker.get("error") or f"Release worker exited with code {code}.")[:1000]
+            current["release"] = result
+            write_json(record_path, current)
+
+        threading.Thread(target=monitor, daemon=True, name=f"release-{job_id[:8]}").start()
+        self.send_json(HTTPStatus.ACCEPTED, {"message": "Release started. Metadata, thumbnail QC, and Telegram delivery are running.", "release": release})
+
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         route = parsed.path
@@ -2588,7 +2715,9 @@ class Handler(BaseHTTPRequestHandler):
                 fallback_action = json.loads((project / "pipeline" / "FALLBACK_ACTION_REQUIRED.json").read_text(encoding="utf-8"))
             except (OSError, ValueError):
                 fallback_action = None
-            self.send_json(HTTPStatus.OK, {"job": {**{key: record.get(key) for key in ("job_id", "video_id", "topic", "status", "created_at", "completed_at", "resumed_at", "external")}, "live": live, "read_only": read_only, "resumable": not read_only and not live and record.get("status") not in {"DONE"}, "stoppable": not read_only and live}, "graph": graph_for(project), "activity": activity_for(record, project), "fallback_action": fallback_action}); return
+            release_allowed, release_reason = release_eligibility(record, project)
+            release = record.get("release") if isinstance(record.get("release"), dict) else {}
+            self.send_json(HTTPStatus.OK, {"job": {**{key: record.get(key) for key in ("job_id", "video_id", "topic", "status", "created_at", "completed_at", "resumed_at", "external")}, "live": live, "read_only": read_only, "resumable": not read_only and not live and record.get("status") not in {"DONE"}, "stoppable": not read_only and live, "release_available": release_allowed, "release_reason": release_reason, "release": release}, "graph": graph_for(project), "activity": activity_for(record, project), "fallback_action": fallback_action}); return
 
         if route.startswith("/api/run/") and route.endswith("/activity"):
             job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
@@ -2721,6 +2850,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/revisions": self.handle_revision(); return
         if self.path == "/api/config-revisions/preview": self.handle_config_preview(); return
         if self.path == "/api/config-revisions": self.handle_config_revision(); return
+        if self.path == "/api/releases": self.handle_release(); return
         if self.path in {"/resume", "/api/fallback-action"}: self.handle_resume(); return
         if self.path == "/stop": self.handle_stop(); return
         if self.path == "/delete": self.handle_delete(); return

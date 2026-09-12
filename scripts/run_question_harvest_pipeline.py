@@ -697,7 +697,7 @@ class Runner:
 
     def image(
         self, stage: str, prompt: str, references: list[Reference], *, model: str, destination: Path,
-        skip_content_qc: bool = False,
+        skip_content_qc: bool = False, retain_candidates_dir: Path | None = None,
     ) -> JobResult:
         """Generate, review and commit the best acceptable candidate atomically.
 
@@ -744,6 +744,16 @@ class Runner:
                     "quality_check": check,
                     "fully_clean": fully_clean,
                 }
+                if retain_candidates_dir is not None:
+                    retain_candidates_dir.mkdir(parents=True, exist_ok=True)
+                    retained = retain_candidates_dir / f"{destination.stem}.attempt_{attempt + 1}.png"
+                    retained_partial = retained.with_name(f".{retained.name}.{uuid.uuid4().hex}.tmp")
+                    try:
+                        shutil.copyfile(candidate, retained_partial)
+                        retained_partial.replace(retained)
+                    finally:
+                        retained_partial.unlink(missing_ok=True)
+                    record["retained_candidate"] = str(retained)
                 iterations.append(record)
                 if not blocking:
                     # A candidate with a newly introduced regression can never displace a

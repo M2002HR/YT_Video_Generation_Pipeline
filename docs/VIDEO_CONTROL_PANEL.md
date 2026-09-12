@@ -174,6 +174,43 @@ but are explicitly read-only because they do not have a panel-owned frozen job c
 | `POST /api/regenerations` | Version artifacts and rebuild the chosen graph branch |
 | `POST /api/revisions` | Compatibility alias for regeneration |
 | `POST /api/config-revisions` | Version edited input JSON and rebuild its affected branches |
+| `POST /api/releases` | Create the manual YouTube Shorts release package for one fully completed Studio run |
+
+### YouTube Release
+
+The `Release` button appears only for a panel-owned run whose durable finalization state is
+`DONE`, whose `polished.mp4` exists, and whose polished QC report passed. It starts a separate
+post-render worker; it never changes the episode master or reopens the video pipeline.
+
+The worker derives facts from the final narration, plans, timeline, render profile, QC, and
+music receipt; asks ChatGPT through Ordak for a draft and a reviewed structured metadata package;
+asks ChatGPT for the Gemini thumbnail prompt; generates one 9:16 Gemini thumbnail; runs a
+ChatGPT image QC; and permits exactly one corrective thumbnail generation. Before either model is
+called, it extracts opening/body/closing frames from the **QC-passed final master** into
+`publish/youtube_short/visual_references/`. Those frames are mandatory primary references for
+the thumbnail's texture, rendering medium, palette, lighting, atmosphere and subject world. The
+episode world keyframe is only a supporting continuity reference. If the episode has a resolved
+host, its canonical character sheet is attached identity-only; it must not introduce a character
+that does not belong in the thumbnail. The prompt and QC enforce one readable, high-contrast,
+single-focal 9:16 scene rather than generic stock art, a copied frame, a busy collage, or
+AI-rendered text. They also require a concise, accurate, curiosity-led title rather than
+clickbait. Both paid candidates are retained under `publish/youtube_short/thumbnail_candidates/`;
+after the correction attempt, the valid second image is retained along with its QC observations so
+no paid result disappears.
+
+Release does not have a separate, weaker image path: it reads the completed episode's immutable
+`launch/LAUNCH_REQUEST.json` (and its versioned creative brief when needed) for the exact Gemini
+model, ChatGPT fallback setting and image-QC correction policy used by the main pipeline. It then
+uses the same shared `Runner.image` worker as world and beat images: bounded Gemini retries,
+UI-verified model receipt, verified-download provenance, reference fingerprinting, atomic commit,
+ChatGPT visual QC and the episode's correction policy. A release never silently swaps a requested
+model for a different Gemini variant.
+
+It then sends, using the existing Telegram **user session**, the exact `polished.mp4` as a
+document (never the compressed preview), the original 9:16 thumbnail PNG, a copy-ready Markdown
+upload sheet, and the structured JSON metadata. `RELEASE_STATE.json` records source hashes,
+provider job IDs, QC decisions, and every Telegram message ID. Re-clicking a delivered release
+with the same master is idempotent and does not duplicate the Telegram delivery.
 
 JSON errors use an `error` string. Launch/resume/stop retain HTML responses for compatibility;
 the React request helper extracts their notice text and presents it as a toast/inline error.

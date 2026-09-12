@@ -2498,6 +2498,9 @@ function RunPage({ jobId, goHome, goRun, notify }) {
     ["DONE", "REUSED"].includes(node.status),
   ).length;
   const dependents = dependentNodeIds(run.graph.edges, selected?.id);
+  const release = run.job.release || {};
+  const releaseRunning = release.status === "RUNNING";
+  const releaseDone = release.status === "DONE";
   return (
     <main className="run-page">
       <header className="run-header">
@@ -2538,6 +2541,26 @@ function RunPage({ jobId, goHome, goRun, notify }) {
               onClick={() => control("/resume", "Pipeline resumed")}
             >
               Resume
+            </button>
+          )}
+          {(run.job.release_available || releaseRunning || releaseDone) && (
+            <button
+              className="primary"
+              disabled={!run.job.release_available || releaseRunning}
+              title={
+                releaseRunning
+                  ? "Release is generating metadata, thumbnail, and Telegram delivery."
+                  : run.job.release_available
+                    ? "Create the complete YouTube Shorts release package and send it to Telegram."
+                    : run.job.release_reason || undefined
+              }
+              onClick={() => control("/api/releases", "Release started")}
+            >
+              {releaseRunning
+                ? "Release in progress…"
+                : releaseDone
+                  ? "Release delivered"
+                  : "Release →"}
             </button>
           )}
           {!run.job.live && !run.job.read_only && (

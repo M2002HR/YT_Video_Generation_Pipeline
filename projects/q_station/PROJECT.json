@@ -28,6 +28,18 @@
     "opening_b_source_seconds": 4,
     "opening_speed_tolerance": 0.1
   },
+  "youtube_release": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "private",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
   "characters": {
     "registry": "characters/registry.json",
     "default_selection_mode": "auto"
