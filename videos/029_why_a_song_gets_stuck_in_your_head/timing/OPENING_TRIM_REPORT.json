@@ -1,0 +1,26 @@
+{
+  "spark_end": 4.9,
+  "transition_end": 10.18,
+  "max_rate_adjust": 0.32,
+  "clips": [
+    {
+      "label": "Clip A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/opening/question_spark_trimmed.mp4",
+      "target": 4.9,
+      "actual": 4.917,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    },
+    {
+      "label": "Clip B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/opening/book_transition_trimmed.mp4",
+      "target": 5.28,
+      "actual": 5.25,
+      "speed_factor": 1.316708,
+      "rate_adjusted": true
+    }
+  ],
+  "opening_total_seconds": 10.167,
+  "opening_total_target_seconds": 10.18,
+  "opening_total_drift_seconds": -0.013
+}

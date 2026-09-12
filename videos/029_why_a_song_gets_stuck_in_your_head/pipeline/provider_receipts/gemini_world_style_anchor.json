@@ -1,0 +1,134 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "693b005896f0351b80e4053230a8efbf369192ab8bdba0cfc132f4a96be4e929",
+  "quality_check": {
+    "passed": true,
+    "description": "A single near-9:16 vertical style reference sheet on lightly coarse off-white paper, showing cherry red, hot pink, lemon yellow, electric violet, warm orange and dense black as flat screen-print swatches and abstract samples. Bold black rectangular contours, dry ink texture, halftone dots, visible registration offsets, looping spiral motifs, a gear-like graphic, abstract blobs and a simple cylindrical sample establish a high-energy retro pop-art print language without characters, typography, logos or a narrative scene.",
+    "violations": [
+      "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+      "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+      "Some central off-white negative space is larger than the requested small off-white breathing areas."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+      "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+      "Some central off-white negative space is larger than the requested small off-white breathing areas."
+    ],
+    "observations": [
+      "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+      "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+      "Some central off-white negative space is larger than the requested small off-white breathing areas."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "7b3c8523-997b-43c7-b962-9942770dcb10",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/36eaf791771b8fd8",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "operator_style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=7b3c8523-997b-43c7-b962-9942770dcb10_output_1.png 1536x2752 sha256=c2c555a4184e75b95514f7fc7cfd6ee98a5134ac89a58ad051cf297b2787b056"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single near-9:16 vertical style reference sheet on lightly coarse off-white paper, showing cherry red, hot pink, lemon yellow, electric violet, warm orange and dense black as flat screen-print swatches and abstract samples. Bold black rectangular contours, dry ink texture, halftone dots, visible registration offsets, looping spiral motifs, a gear-like graphic, abstract blobs and a simple cylindrical sample establish a high-energy retro pop-art print language without characters, typography, logos or a narrative scene.",
+      "violations": [
+        "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+        "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+        "Some central off-white negative space is larger than the requested small off-white breathing areas."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+        "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+        "Some central off-white negative space is larger than the requested small off-white breathing areas."
+      ],
+      "observations": [
+        "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+        "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+        "Some central off-white negative space is larger than the requested small off-white breathing areas."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "693b005896f0351b80e4053230a8efbf369192ab8bdba0cfc132f4a96be4e929",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "7b3c8523-997b-43c7-b962-9942770dcb10",
+        "prompt_sha256": "2e09fd15b960c0a70ccd1e8386c0af8732ef2aa577fab97fe181240001a4bdfb",
+        "output_sha256": "c2c555a4184e75b95514f7fc7cfd6ee98a5134ac89a58ad051cf297b2787b056",
+        "quality_check": {
+          "passed": true,
+          "description": "A single near-9:16 vertical style reference sheet on lightly coarse off-white paper, showing cherry red, hot pink, lemon yellow, electric violet, warm orange and dense black as flat screen-print swatches and abstract samples. Bold black rectangular contours, dry ink texture, halftone dots, visible registration offsets, looping spiral motifs, a gear-like graphic, abstract blobs and a simple cylindrical sample establish a high-energy retro pop-art print language without characters, typography, logos or a narrative scene.",
+          "violations": [
+            "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+            "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+            "Some central off-white negative space is larger than the requested small off-white breathing areas."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+            "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+            "Some central off-white negative space is larger than the requested small off-white breathing areas."
+          ],
+          "observations": [
+            "Several areas use relatively dense fine contour work, especially the large spiral sample, which pushes beyond the requested preference for minimal fine linework.",
+            "The gear-like graphic and cylindrical object are mildly representational rather than purely neutral texture or palette samples, though they do not turn the sheet into a scene.",
+            "Some central off-white negative space is larger than the requested small off-white breathing areas."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "operator_style_reference",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/style_references/style_reference.png",
+      "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589"
+    }
+  ],
+  "prompt_sha256": "2e09fd15b960c0a70ccd1e8386c0af8732ef2aa577fab97fe181240001a4bdfb",
+  "prompt": "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, not a scene. Medium: screen print. Texture family: dry matte screen-print ink on lightly coarse paper with subtle registration wear. Palette: high-energy pop-art palette of cherry red, hot pink, lemon yellow, electric violet and warm orange, anchored by dense black outlines and small off-white breathing areas; saturated accents are concentrated around looping sound and memory cues. Line treatment: bold comic-style black contour lines, simplified graphic silhouettes, chunky geometric dividers, occasional sparse halftone or misregistration texture, with minimal fine linework. Lighting: flat graphic high-key lighting with strong color-block contrast and virtually no volumetric shading. Avoid: no photorealism, no 3D CGI, no anime, no painterly realism, no glossy digital gradients, no legible typography, no letters, no numbers, no captions or UI inside artwork, no brand marks, no recognizable album covers, no exact copying of the style reference composition, and no grim fractured monochrome treatment. No characters, no text, no logos, no photorealism. The attached operator_style_reference is style-only: use its palette, material texture, line language and lighting as inspiration for this original neutral anchor. Do not copy its subject, composition, text, logo, person, or recognizable layout.",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "c2c555a4184e75b95514f7fc7cfd6ee98a5134ac89a58ad051cf297b2787b056",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 51.135,
+  "completed_at": "2026-09-12T06:06:41Z"
+}

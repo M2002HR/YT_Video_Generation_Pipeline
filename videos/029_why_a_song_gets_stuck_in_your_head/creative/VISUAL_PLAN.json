@@ -1,0 +1,125 @@
+{
+  "body_duration_seconds": 41.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Scientists call it involuntary musical imagery, or an earworm.",
+      "visual": "Vertical screen-print collage of a simplified abstract brain in three-quarter view with a bright looping ribbon of repeated geometric sound-pulses circling through it, dense black contours and cherry-red, violet, and yellow ink shapes on coarse off-white paper.",
+      "purpose": "introduce involuntary musical imagery as an internally repeating musical pattern",
+      "visual_fingerprint": "large abstract brain centered high in frame; looping pulse-ribbon enters one side, coils through the brain, and exits back toward itself; close diagram-like composition on an off-white paper field with a calm low-detail lower edge",
+      "type": "diagram",
+      "continuity": "first body explanation shifts away from the opening environment into the abstract subject world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Recent or repeated listening can trigger it.",
+      "visual": "Red Horned Everyman, rendered as a restrained pop-art screen-print figure, stands beside a generic tabletop speaker while identical colored pulse-shapes repeatedly stream toward his ear; several fading pulse echoes behind him imply recent listening without any notation or text.",
+      "purpose": "show that recent or repeated exposure to a tune can trigger an earworm",
+      "visual_fingerprint": "medium side-profile shot of host on the right and generic sound source on the left; repeated horizontal pulse-shapes cross the frame between them; warm orange background with sparse halftone texture and a quiet lower margin",
+      "type": "literal",
+      "continuity": "moves from the abstract definition to a concrete triggering event involving the host",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Short, distinctive fragments are easier to retrieve.",
+      "visual": "A bold screen-printed memory shelf holds many muted abstract shape-clusters, while one compact hot-pink and lemon-yellow zigzag fragment is being pulled forward by a simplified black hand-shaped attention cue.",
+      "purpose": "show that a short distinctive fragment is easier for memory to retrieve",
+      "visual_fingerprint": "tight frontal still-life composition of stacked abstract memory shapes; one tiny high-contrast fragment projects dramatically toward camera while the rest recede in muted rows; no character face, violet background zone",
+      "type": "metaphor",
+      "continuity": "changes from listening exposure to the memory-selection process that follows",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Repetition makes the next note feel predictable.",
+      "visual": "A diagonal staircase of repeating red-orange geometric pulse tiles climbs upward, with the final position shown as an empty outlined slot visually implied by the rhythm of the preceding shapes; no musical notation or symbols.",
+      "purpose": "show how repetition creates an expectation for what comes next",
+      "visual_fingerprint": "low-angle graphic composition with five repeating pulse blocks ascending from lower left to upper right and one anticipated empty destination at the top; lemon-yellow ground, heavy black contours, no people",
+      "type": "diagram",
+      "continuity": "builds from retrieval of a fragment into the predictive pattern created by repeated structure",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Your brain can replay that pattern without any sound.",
+      "visual": "Red Horned Everyman sits calmly with unplugged headphones resting on a nearby table while a closed loop of vivid geometric pulses visibly circles inside a translucent graphic silhouette of his head, with no pulse connecting to any external source.",
+      "purpose": "show the brain internally replaying a pattern even when no sound is present",
+      "visual_fingerprint": "waist-up front three-quarter portrait of host in lower center; silent headphones isolated far to one side; internal violet-and-pink pulse loop enclosed entirely within the head silhouette against a cherry-red field",
+      "type": "subject_world",
+      "continuity": "turns the predicted sequence from the previous beat into a self-sustaining internal replay",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Idle moments give the loop room to return.",
+      "visual": "A lone simplified figure waits at a nearly empty bus-stop-like shelter in a wide vertical composition; most of the frame is quiet negative space while a small familiar loop of colored pulse-shapes drifts back into the upper area around the figure's head.",
+      "purpose": "show that unoccupied moments create space for the earworm to reappear",
+      "visual_fingerprint": "very wide environmental shot with tiny host silhouette low in frame, large pale warm-pink empty field above, one returning curved pulse-loop entering from upper right; sparse setting and minimal objects",
+      "type": "literal",
+      "continuity": "pulls far back from the internal close-up to show the quiet circumstances in which replay resurfaces",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Mood or personal memories can strengthen the cue.",
+      "visual": "An abstract memory collage radiates from a small central pulse fragment: a warm sun-like disk, a simple chair silhouette, a hand-held keepsake shape, and a soft facial-profile silhouette all connected by thick curved black pathways that brighten toward the center.",
+      "purpose": "show emotional state and personal memories reinforcing the cue that recalls a tune",
+      "visual_fingerprint": "top-down radial composition with four distinct memory objects surrounding one central repeating fragment; circular warm-orange and hot-pink forms replace the prior empty-space staging; no host body and no external sound source",
+      "type": "diagram",
+      "continuity": "explains why the returning loop from an idle moment may become stronger when linked to emotion or memory",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Fighting it can keep your attention stuck on it.",
+      "visual": "Red Horned Everyman presses both hands against a large springy loop-shaped ribbon as if trying to push it away, but the ribbon bends back around and points toward his face; his expression stays skeptical and restrained rather than frantic.",
+      "purpose": "show that actively resisting the earworm can keep attention focused on it",
+      "visual_fingerprint": "dynamic medium-wide side view with host on left pushing against one oversized curved violet ribbon that rebounds from the right; strong diagonal tension, hot-pink background, no memory collage or sound device",
+      "type": "metaphor",
+      "continuity": "converts the strengthened cue into a physical metaphor for attention becoming trapped by resistance",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "An absorbing task can pull attention elsewhere.",
+      "visual": "The host leans over a tabletop assembling a complex but readable arrangement of interlocking geometric pieces and workshop tools; his gaze is fixed on the task while the earworm ribbon is displaced to a small, faint corner shape behind him.",
+      "purpose": "show an engaging task redirecting attention away from the looping tune",
+      "visual_fingerprint": "high-angle over-the-shoulder composition focused on hands, tools, and bright interlocking shapes across a work surface; host occupies lower right while a tiny faded loop recedes at upper left; lemon-yellow and orange task zone dominates",
+      "type": "literal",
+      "continuity": "releases the direct struggle of the prior beat by redirecting the host's attention into purposeful activity",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Then the loop often fades on its own.",
+      "visual": "A once-bold looping ribbon of geometric pulses crosses a quiet off-white field and progressively breaks into lighter, smaller screen-print marks until only subtle registration traces remain, with the host visible as a small calm silhouette walking away at the bottom.",
+      "purpose": "show the earworm naturally weakening after attention has moved elsewhere",
+      "visual_fingerprint": "minimal long-shot composition with pulse-loop beginning large and saturated at upper left, thinning and fragmenting toward upper right; tiny departing host along the calm bottom edge; mostly off-white negative space with sparse faded ink",
+      "type": "metaphor",
+      "continuity": "follows the absorbing task by letting the previously displaced loop diminish without further effort",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

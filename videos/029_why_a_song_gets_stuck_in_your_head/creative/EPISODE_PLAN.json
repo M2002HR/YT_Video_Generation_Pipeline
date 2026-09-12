@@ -1,0 +1,18 @@
+{
+  "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+  "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+  "opening_environment": "A compact pop-art rehearsal room after hours, with silent speakers, stacked instrument cases, coiled cables, a worktable, and a compartmented maintenance-tool case.",
+  "topic_visual_link": "The external music has stopped, yet the host's hands keep repeating the same short sorting rhythm, visually echoing how a recently heard musical pattern can continue looping internally.",
+  "link_type": "metaphor",
+  "opening_visual_proof": "At frame zero, the speaker is visibly inactive while the host places three differently shaped tools into three compartments in sequence, then immediately repeats that identical hand pattern instead of continuing normally.",
+  "curiosity_trigger": "He notices his fingers have fallen into the same little rhythm again even though the room has gone silent.",
+  "trigger_object": "the repeated three-tool sorting sequence beside the now-silent speaker",
+  "reaction": "He freezes mid-placement, gives the silent speaker a tired sideways glance, then watches his own hand with skeptical curiosity.",
+  "book_retrieval": "He reaches beneath the worktable for the reference book he had been using to level the compartmented tool case, slides it free, and opens it on the cleared tabletop.",
+  "camera_pattern": "pan_right",
+  "book_template_id": "001",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "return_to_opening",
+  "world_style_hint": "bold pop-art rehearsal-space imagery with graphic sound-pattern motifs, halftone textures, and repeated geometric shapes suggesting loops and memory",
+  "reason": "Post-rehearsal cleanup makes the script's tool-sorting line literal while the host's restrained accidental repetition provides an immediate, grounded visual metaphor for a musical fragment continuing after the sound itself is gone."
+}

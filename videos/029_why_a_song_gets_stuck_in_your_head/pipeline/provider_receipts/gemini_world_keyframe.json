@@ -1,0 +1,149 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "69b316986d53827ed13ca7b997dcf729669156a6cb0101fa970ac20183e48dc5",
+  "quality_check": {
+    "passed": true,
+    "description": "A tall pop-art screen-print world built from thick black modular comic-panel borders and saturated cherry red, hot pink, lemon yellow, violet and orange. Visible motifs include an abstract pink brain feeding into branching memory pathways, repeated geometric pattern tiles, nested recurring rectangles, looping ribbons with headphones and generic sound emitters, attention-target imagery, interlocking storage-like memory blocks, magnification, and progressively simplified fading loops. The paper is warm off-white with light print grain and small registration imperfections. No human figure, host, face, readable text, musical notation, brand, or album art is visible.",
+    "violations": [
+      "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+      "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+      "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+      "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+      "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+      "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+      "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+    ],
+    "observations": [
+      "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+      "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+      "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+      "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "cf90642c-907c-45c6-b57b-5d182f1770ed",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/56ffa2c1afeec32b",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "operator_style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=cf90642c-907c-45c6-b57b-5d182f1770ed_output_1.png 1536x2752 sha256=1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A tall pop-art screen-print world built from thick black modular comic-panel borders and saturated cherry red, hot pink, lemon yellow, violet and orange. Visible motifs include an abstract pink brain feeding into branching memory pathways, repeated geometric pattern tiles, nested recurring rectangles, looping ribbons with headphones and generic sound emitters, attention-target imagery, interlocking storage-like memory blocks, magnification, and progressively simplified fading loops. The paper is warm off-white with light print grain and small registration imperfections. No human figure, host, face, readable text, musical notation, brand, or album art is visible.",
+      "violations": [
+        "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+        "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+        "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+        "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+        "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+        "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+        "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+      ],
+      "observations": [
+        "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+        "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+        "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+        "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "69b316986d53827ed13ca7b997dcf729669156a6cb0101fa970ac20183e48dc5",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "cf90642c-907c-45c6-b57b-5d182f1770ed",
+        "prompt_sha256": "0441ce74fbce69a7d64a2ec7eccba2632c57df0c5feffec42b7b418e29be9876",
+        "output_sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d",
+        "quality_check": {
+          "passed": true,
+          "description": "A tall pop-art screen-print world built from thick black modular comic-panel borders and saturated cherry red, hot pink, lemon yellow, violet and orange. Visible motifs include an abstract pink brain feeding into branching memory pathways, repeated geometric pattern tiles, nested recurring rectangles, looping ribbons with headphones and generic sound emitters, attention-target imagery, interlocking storage-like memory blocks, magnification, and progressively simplified fading loops. The paper is warm off-white with light print grain and small registration imperfections. No human figure, host, face, readable text, musical notation, brand, or album art is visible.",
+          "violations": [
+            "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+            "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+            "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+            "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+            "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+            "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+            "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+          ],
+          "observations": [
+            "The center-right panel contains a large pointer cursor and focus-bracket motif that reads as explicit UI, contrary to the no-UI direction.",
+            "The lower-right column of repeated ribbon silhouettes and small graphic marks has a slight specimen-sheet or legend-like presentation rather than feeling fully embedded in the conceptual world.",
+            "Several nested rectangles and isometric memory blocks are unusually crisp and digitally geometric; the dry-ink wear, halftone grit, and registration roughness are somewhat subtler than in the supplied style references.",
+            "The lower-right off-white region is substantially less dense than the rest of the image, creating a mild low-detail area, although it is not an empty caption strip or fully blank panel."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/references/world_style_anchor.png",
+      "sha256": "c2c555a4184e75b95514f7fc7cfd6ee98a5134ac89a58ad051cf297b2787b056"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/style_references/style_reference.png",
+      "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589"
+    }
+  ],
+  "prompt_sha256": "0441ce74fbce69a7d64a2ec7eccba2632c57df0c5feffec42b7b418e29be9876",
+  "prompt": "Create one standalone 9:16 WORLD_KEYFRAME establishing an inside-book conceptual world about involuntary musical imagery, memory retrieval, repetition, prediction, attention, and fading mental loops. Absolutely no host, recurring host, selected host, foreground person, human figure, face, or character.\n\nRender as bold pop-art screen print with collage accents: dry matte ink on lightly coarse paper, subtle registration wear and slight edge misalignment. Use dense black comic contours with flat cherry red, hot pink, lemon yellow, electric violet, warm orange, and small off-white breathing areas. Flat high-key graphic lighting, strong color-block contrast, virtually no volumetric shading, no glossy gradients.\n\nBuild the world from abstract brains and memory pathways, looping ribbons, repeated geometric sound-pulses, rhythmic pattern tiles, simplified headphones or generic sound sources, attention cues, and visual motifs that recur, predict, overlap, and gradually dissipate. Represent musical fragments only through abstract repeated shapes and rhythms—never literal notation. Create disciplined asymmetrical comic-panel framing with thick black borders and occasional cropped motifs bridging adjacent image regions, while avoiding any visible grid or sheet-like layout. Atmosphere: energetic, playful, persistent, mentally recursive, then subtly easing toward release.\n\nUse the full illustration height naturally; do not reserve any caption field, blank strip, empty panel, low-detail band, or subtitle zone. No readable text, letters, numbers, captions, labels, UI, logos, brands, album art, swatches, photorealism, 3D CGI, anime, painterly realism, or grim monochrome treatment. Use the reference input only as a world-style anchor for medium, print texture, palette behavior, and lighting—never copy or infer its composition or subjects. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent pop-art print card divided into an asymmetrical modular comic-panel grid by thick black borders; each scene occupies one or more bold rectangular illustration windows while cropped graphic motifs may bridge adjacent panels. Slight screen-print edge wear and registration offsets recur throughout, but panel geometry stays disciplined and readable rather than chaotic. Do not reproduce the reference image's exact layout or imagery.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI. Binding isolation: no recurring host, no selected host, and no foreground person or character.\n\nThe attached operator_style_reference is style-only. Preserve the newly established world plan while echoing only its texture, palette, line work and lighting; do not copy its subject, text, people, logo, or composition.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.176,
+  "completed_at": "2026-09-12T06:09:54Z"
+}

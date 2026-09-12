@@ -1,0 +1,16 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Jerry B - Jolly",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.9,
+    "stability": 0.4,
+    "similarity": 0.4,
+    "style": 0.17,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "3bd59aa5baf7adf7cbc1e64c3fab7570c74e95e22b1faffd0cb64bb8a59c028c",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-09-12T06:39:18.357445+00:00"
+}

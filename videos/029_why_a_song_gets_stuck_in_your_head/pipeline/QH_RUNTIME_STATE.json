@@ -1,0 +1,468 @@
+{
+  "schema_version": 2,
+  "video_id": "029",
+  "topic": "Why a Song Gets Stuck in Your Head",
+  "created_at": "2026-09-12T06:01:38Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:57Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:57Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:57Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:57Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:57Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:57Z",
+      "artifact": "world_style_anchor.png → catalog/016_neon_earworm_pop_screenprint_001"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T07:57:58Z",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "neon_earworm_pop_screenprint_001"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:59Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:57:59Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:00Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:00Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:00Z",
+      "artifact": "BOOK_COVER_DESIGN.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:00Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:00Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:00Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T07:58:03Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:02Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:02Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:02Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:02Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:02Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:03Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:03Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:03Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:03Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:03Z",
+      "artifact": "beat_010.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:04Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:04Z",
+      "artifact": "question_spark_source.mp4 (6.02s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T07:58:05Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T07:58:05Z",
+      "body_images": 10
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 49.584,
+      "at": "2026-09-12T06:02:28Z",
+      "words": 115
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 67.505,
+      "at": "2026-09-12T06:03:37Z",
+      "words": 121
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 34.37,
+      "at": "2026-09-12T06:04:12Z",
+      "activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 40.193,
+      "at": "2026-09-12T06:04:53Z",
+      "style_id": "neon_earworm_pop_screenprint_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 106.541,
+      "at": "2026-09-12T06:06:41Z",
+      "sha256": "c2c555a4184e75b95514f7fc7cfd6ee98a5134ac89a58ad051cf297b2787b056",
+      "model": "nano_banana_2",
+      "catalog_path": "016_neon_earworm_pop_screenprint_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 0.967,
+      "at": "2026-09-12T06:06:43Z",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "neon_earworm_pop_screenprint_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 43.239,
+      "at": "2026-09-12T06:07:27Z",
+      "beats": 10
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 25.042,
+      "at": "2026-09-12T06:07:54Z",
+      "prompt_sha256": "8e6831021fbf608f8629279a8e95669f4ef577d40fcb8e362523ca5195a5e514"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 118.669,
+      "at": "2026-09-12T06:09:54Z",
+      "sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 23.119,
+      "at": "2026-09-12T06:10:18Z",
+      "prompt_sha256": "71564a375f52ea44ae1072aaaa7c285a0a9d8dbf9f81aeb4eabe57159d4667a2"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 254.658,
+      "at": "2026-09-12T06:14:33Z",
+      "sha256": "1e2e8c0d8d822e6bfc895b32df80733c5141626673ad529bffe458b70ca9eef6",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 46.401,
+      "at": "2026-09-12T06:15:21Z",
+      "prompt_sha256": "b10202632893470318e873809796ba7fab9db61d8c44c08ca2ec2f36fec4c05f"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 25.018,
+      "at": "2026-09-12T06:15:47Z",
+      "prompt_sha256": "429de8799fc40b9acbb81845cf8e2689de406dd72874237d4b0f16a145e4c516"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 75.6,
+      "at": "2026-09-12T06:17:29Z",
+      "sha256": "e4891e3aa0ee9897b26cc13573cbe558b8e6d81b606bd951d5a668ef781d3732",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 87.827,
+      "at": "2026-09-12T06:19:25Z",
+      "sha256": "9928c45d38179d88a0455901881bee9f5e4dc2cb40c93639d537e8012c0f7e8b",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 78.701,
+      "at": "2026-09-12T06:21:07Z",
+      "sha256": "5dfa2dc3547adc4713d9fa774e75c3ca74ce611bca8becdc00c470d8b0bab521",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 78.74,
+      "at": "2026-09-12T06:22:51Z",
+      "sha256": "85678037bbd08dfa4a6e7074b0da603bc617f1256af5210fb6c6d7c42c55a042",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 99.882,
+      "at": "2026-09-12T06:24:56Z",
+      "sha256": "2bd7d9ce700be5de7e08826a95ff7c126e672cdfe2a6ecf0e231ca372182ebd1",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 93.871,
+      "at": "2026-09-12T06:26:56Z",
+      "sha256": "c724c56ea07f8928b98bd9747e515a8a0ee6be0b54291fedd40f5a87692c6355",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 84.836,
+      "at": "2026-09-12T06:28:49Z",
+      "sha256": "9898fd36d7c2baf636a32b9f115bdf2c0404171488a2501c663f8f49d13917b8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 90.835,
+      "at": "2026-09-12T06:30:48Z",
+      "sha256": "81cf8e7a72d59004aace3e70b59e74ac79ab67f941e927b4471c0fff5813e2f5",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 93.841,
+      "at": "2026-09-12T06:32:47Z",
+      "sha256": "5c5904cb4f7bafe221ea78f09afd9a8c064da8ed20b321d3eccebe3db49ccfb0",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 93.821,
+      "at": "2026-09-12T06:34:46Z",
+      "sha256": "23fabc9500d339a58cb69d52a7d0ff9ea2bfdcc6185ce29de8d38c0b70b595c6",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1139.498,
+      "at": "2026-09-12T06:34:48Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.051,
+      "at": "2026-09-12T06:34:50Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 94.626,
+      "at": "2026-09-12T06:36:26Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "03a66252dceb320fc0787ff0185fe34726b43d83b95b187f630d059e0e5b41b3"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 124.564,
+      "at": "2026-09-12T06:38:31Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "ffa7ea222c5ca7339efe8354befeb56daa71d85feaf2700ad92f7a37d7d5c9be"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.392,
+      "at": "2026-09-12T07:02:31Z",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "neon_earworm_pop_screenprint_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.322,
+      "at": "2026-09-12T07:57:58Z",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "world_style_id": "neon_earworm_pop_screenprint_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.782,
+      "at": "2026-09-12T07:58:03Z"
+    }
+  ],
+  "updated_at": "2026-09-12T07:58:05Z"
+}

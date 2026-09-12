@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "DONE",
+      "started_at": "2026-09-12T06:38:34.095758+00:00",
+      "ended_at": "2026-09-12T06:39:19.369968+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "DONE",
+      "started_at": "2026-09-12T06:39:19.370246+00:00",
+      "ended_at": "2026-09-12T06:39:40.337255+00:00"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "DONE",
+      "started_at": "2026-09-12T06:39:40.337536+00:00",
+      "ended_at": "2026-09-12T06:39:43.511450+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_trim",
+      "status": "FAILED",
+      "started_at": "2026-09-12T06:39:43.511802+00:00",
+      "ended_at": "2026-09-12T06:39:47.354569+00:00",
+      "returncode": 2
+    },
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "REUSED",
+      "started_at": "2026-09-12T07:58:07.377360+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "REUSED",
+      "started_at": "2026-09-12T07:58:07.377986+00:00",
+      "artifact": "assets/music"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "REUSED",
+      "started_at": "2026-09-12T07:58:07.378391+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_trim",
+      "status": "DONE",
+      "started_at": "2026-09-12T07:58:07.378769+00:00",
+      "ended_at": "2026-09-12T07:58:14.416646+00:00",
+      "artifact": "timing/OPENING_TRIM_REPORT.json"
+    }
+  ],
+  "status": "DONE",
+  "updated_at": "2026-09-12T07:58:14.416646+00:00"
+}

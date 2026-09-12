@@ -1,0 +1,78 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Rubik,111,&H00A9FEFE,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5.0,0.0,2,60,60,326,1
+Style: Karaoke,Rubik,111,&H0000D7FF,&H00A9FEFE,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5.0,0.0,2,60,60,326,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.52,Default,,0,0,0,,Why does
+Dialogue: 0,0:00:00.52,0:00:01.18,Default,,0,0,0,,one tune
+Dialogue: 0,0:00:01.18,0:00:02.12,Default,,0,0,0,,keep looping
+Dialogue: 0,0:00:02.12,0:00:02.52,Default,,0,0,0,,while you
+Dialogue: 0,0:00:02.52,0:00:03.28,Default,,0,0,0,,sort tools
+Dialogue: 0,0:00:03.28,0:00:03.94,Default,,0,0,0,,after the
+Dialogue: 0,0:00:03.94,0:00:04.90,Default,,0,0,0,,music stops?
+Dialogue: 0,0:00:05.70,0:00:06.18,Default,,0,0,0,,You pull
+Dialogue: 0,0:00:06.18,0:00:06.54,Default,,0,0,0,,down a
+Dialogue: 0,0:00:06.54,0:00:06.74,Default,,0,0,0,,book.
+Dialogue: 0,0:00:07.36,0:00:07.92,Default,,0,0,0,,The clue
+Dialogue: 0,0:00:07.92,0:00:08.52,Default,,0,0,0,,is how
+Dialogue: 0,0:00:08.52,0:00:09.66,Default,,0,0,0,,memory handles
+Dialogue: 0,0:00:09.66,0:00:10.18,Default,,0,0,0,,sound.
+Dialogue: 0,0:00:10.94,0:00:11.94,Default,,0,0,0,,Scientists call
+Dialogue: 0,0:00:11.94,0:00:13.34,Default,,0,0,0,,it involuntary
+Dialogue: 0,0:00:13.34,0:00:14.44,Default,,0,0,0,,musical imagery
+Dialogue: 0,0:00:14.44,0:00:15.58,Default,,0,0,0,,or an
+Dialogue: 0,0:00:15.58,0:00:16.34,Default,,0,0,0,,earworm.
+Dialogue: 0,0:00:16.84,0:00:17.46,Default,,0,0,0,,Recent or
+Dialogue: 0,0:00:17.46,0:00:18.40,Default,,0,0,0,,repeated listening
+Dialogue: 0,0:00:18.40,0:00:19.04,Default,,0,0,0,,can trigger
+Dialogue: 0,0:00:19.04,0:00:19.32,Default,,0,0,0,,it.
+Dialogue: 0,0:00:19.96,0:00:20.84,Default,,0,0,0,,Short distinctive
+Dialogue: 0,0:00:20.84,0:00:21.98,Default,,0,0,0,,fragments are
+Dialogue: 0,0:00:21.98,0:00:22.90,Default,,0,0,0,,easier to
+Dialogue: 0,0:00:22.90,0:00:23.34,Default,,0,0,0,,retrieve.
+Dialogue: 0,0:00:24.52,0:00:25.40,Default,,0,0,0,,Repetition makes
+Dialogue: 0,0:00:25.40,0:00:25.90,Default,,0,0,0,,the next
+Dialogue: 0,0:00:25.90,0:00:26.68,Default,,0,0,0,,note feel
+Dialogue: 0,0:00:26.68,0:00:27.26,Default,,0,0,0,,predictable.
+Dialogue: 0,0:00:28.26,0:00:28.86,Default,,0,0,0,,Your brain
+Dialogue: 0,0:00:28.86,0:00:29.72,Default,,0,0,0,,can replay
+Dialogue: 0,0:00:29.72,0:00:30.52,Default,,0,0,0,,that pattern
+Dialogue: 0,0:00:30.52,0:00:31.32,Default,,0,0,0,,without any
+Dialogue: 0,0:00:31.32,0:00:33.02,Default,,0,0,0,,sound Idle
+Dialogue: 0,0:00:33.02,0:00:33.84,Default,,0,0,0,,moments give
+Dialogue: 0,0:00:33.84,0:00:34.30,Default,,0,0,0,,the loop
+Dialogue: 0,0:00:34.30,0:00:34.82,Default,,0,0,0,,room to
+Dialogue: 0,0:00:34.82,0:00:36.52,Default,,0,0,0,,return Mood
+Dialogue: 0,0:00:36.52,0:00:37.26,Default,,0,0,0,,or personal
+Dialogue: 0,0:00:37.26,0:00:38.14,Default,,0,0,0,,memories can
+Dialogue: 0,0:00:38.14,0:00:38.92,Default,,0,0,0,,strengthen the
+Dialogue: 0,0:00:38.92,0:00:40.50,Default,,0,0,0,,cue Fighting
+Dialogue: 0,0:00:40.50,0:00:40.94,Default,,0,0,0,,it can
+Dialogue: 0,0:00:40.94,0:00:41.52,Default,,0,0,0,,keep your
+Dialogue: 0,0:00:41.52,0:00:42.58,Default,,0,0,0,,attention stuck
+Dialogue: 0,0:00:42.58,0:00:43.06,Default,,0,0,0,,on it
+Dialogue: 0,0:00:43.06,0:00:44.42,Default,,0,0,0,,An absorbing
+Dialogue: 0,0:00:44.42,0:00:45.36,Default,,0,0,0,,task can
+Dialogue: 0,0:00:45.36,0:00:46.16,Default,,0,0,0,,pull attention
+Dialogue: 0,0:00:46.16,0:00:48.32,Default,,0,0,0,,elsewhere Then
+Dialogue: 0,0:00:48.32,0:00:48.94,Default,,0,0,0,,the loop
+Dialogue: 0,0:00:48.94,0:00:49.84,Default,,0,0,0,,often fades
+Dialogue: 0,0:00:49.84,0:00:50.30,Default,,0,0,0,,on its
+Dialogue: 0,0:00:50.30,0:00:51.60,Default,,0,0,0,,own The
+Dialogue: 0,0:00:51.60,0:00:52.92,Default,,0,0,0,,music stopped,
+Dialogue: 0,0:00:52.92,0:00:53.22,Default,,0,0,0,,but the
+Dialogue: 0,0:00:53.22,0:00:54.04,Default,,0,0,0,,pattern kept
+Dialogue: 0,0:00:54.04,0:00:55.56,Default,,0,0,0,,moving Like
+Dialogue: 0,0:00:55.56,0:00:56.32,Default,,0,0,0,,and subscribe
+Dialogue: 0,0:00:56.32,0:00:57.22,Default,,0,0,0,,to keep
+Dialogue: 0,0:00:57.22,0:00:58.04,Default,,0,0,0,,growing your
+Dialogue: 0,0:00:58.04,0:00:58.64,Default,,0,0,0,,questions.

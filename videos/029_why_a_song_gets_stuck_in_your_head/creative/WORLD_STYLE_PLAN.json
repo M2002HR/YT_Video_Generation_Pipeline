@@ -1,0 +1,25 @@
+{
+  "style_id": "neon_earworm_pop_screenprint_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "screen print",
+  "secondary_treatment": "collage",
+  "texture_family": "dry matte screen-print ink on lightly coarse paper with subtle registration wear",
+  "palette_summary": "high-energy pop-art palette of cherry red, hot pink, lemon yellow, electric violet and warm orange, anchored by dense black outlines and small off-white breathing areas; saturated accents are concentrated around looping sound and memory cues",
+  "line_treatment": "bold comic-style black contour lines, simplified graphic silhouettes, chunky geometric dividers, occasional sparse halftone or misregistration texture, with minimal fine linework",
+  "lighting": "flat graphic high-key lighting with strong color-block contrast and virtually no volumetric shading",
+  "frame_language": "a persistent pop-art print card divided into an asymmetrical modular comic-panel grid by thick black borders; each scene occupies one or more bold rectangular illustration windows while cropped graphic motifs may bridge adjacent panels. Slight screen-print edge wear and registration offsets recur throughout, but panel geometry stays disciplined and readable rather than chaotic. Do not reproduce the reference image's exact layout or imagery.",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "use graphic visual vocabulary tied to involuntary musical imagery and memory: simplified books, workshop tools, abstract brains and memory pathways, headphones or generic sound sources, looping ribbons, repeating note-like geometric pulses without literal notation, rhythmic pattern tiles, attention cues, idle-space compositions and absorbing-task imagery. Musical fragments should be represented as abstract shapes and repeated visual rhythms rather than readable notation or typography. No brands, logos, recognizable album art or copied reference-image subjects.",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears, translate only the established silhouette and features into a simplified pop-art screen-print portrait using bold black contours, two-to-four flat color fills, sparse halftone shadow and clean graphic cropping; do not invent new identity traits",
+  "negative_constraints": "no photorealism, no 3D CGI, no anime, no painterly realism, no glossy digital gradients, no legible typography, no letters, no numbers, no captions or UI inside artwork, no brand marks, no recognizable album covers, no exact copying of the style reference composition, and no grim fractured monochrome treatment",
+  "reason": "The operator explicitly requires a new pop-art style, so reuse is disallowed. The topic benefits from visually repetitive panels, recurring shapes and high-contrast rhythmic color because those devices can make the earworm loop itself feel persistent and retrievable. The attached style reference supports saturated primary and candy colors, heavy black contouring, flat print texture and modular panel framing as style-only cues. A recent episode already used fractured_probability_screenprint_001, creating a reuse penalty for screen-print texture, but this new treatment is deliberately separated from that style through bright comic-pop saturation, playful modular collage framing and smooth rhythmic repetition rather than fractured, austere probability imagery.",
+  "operator_style_reference": {
+    "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/style_references/style_reference.png",
+    "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589",
+    "role": "operator_style_reference"
+  },
+  "style_subtitle_reserve": "reserve only the bottom 8–10% of every 9:16 frame as a calm, low-detail screen-printed field, preferably a restrained off-white, pale warm pink or lightly muted single-color band with subtle paper grain; keep it free of faces, hands, focal objects, fine detail and absolutely free of any text, letters, numbers, captions, labels, words or UI, while integrating it naturally with the surrounding panel border",
+  "reserve_subtitle_space": false
+}

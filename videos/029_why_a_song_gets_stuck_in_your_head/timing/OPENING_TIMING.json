@@ -1,0 +1,112 @@
+{
+  "audio_duration_seconds": 59.429,
+  "spark_start": 0.0,
+  "spark_end": 4.9,
+  "spark_duration": 4.9,
+  "transition_start": 5.7,
+  "transition_end": 10.18,
+  "transition_duration": 4.48,
+  "clip_a_target_seconds": 4.9,
+  "clip_b_target_seconds": 5.28,
+  "body_start": 10.94,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Why does one tune keep looping while you sort tools after the music stops?",
+      "speech_start": 0.0,
+      "speech_end": 4.9,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "You pull down a book: the clue is how memory handles sound.",
+      "speech_start": 5.7,
+      "speech_end": 10.18,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Scientists call it involuntary musical imagery, or an earworm.",
+      "speech_start": 10.94,
+      "speech_end": 16.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Recent or repeated listening can trigger it.",
+      "speech_start": 16.84,
+      "speech_end": 19.32,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Short, distinctive fragments are easier to retrieve.",
+      "speech_start": 19.96,
+      "speech_end": 23.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Repetition makes the next note feel predictable.",
+      "speech_start": 24.52,
+      "speech_end": 27.26,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Your brain can replay that pattern without any sound.",
+      "speech_start": 28.26,
+      "speech_end": 31.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Idle moments give the loop room to return.",
+      "speech_start": 32.66,
+      "speech_end": 35.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Mood or personal memories can strengthen the cue.",
+      "speech_start": 36.12,
+      "speech_end": 39.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Fighting it can keep your attention stuck on it.",
+      "speech_start": 40.14,
+      "speech_end": 43.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "An absorbing task can pull attention elsewhere.",
+      "speech_start": 43.06,
+      "speech_end": 46.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "Then the loop often fades on its own.",
+      "speech_start": 46.46,
+      "speech_end": 50.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "The music stopped, but the pattern kept moving.",
+      "speech_start": 50.36,
+      "speech_end": 54.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to keep growing your questions.",
+      "speech_start": 55.4,
+      "speech_end": 58.64,
+      "match_confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "6fef5125279b4fd237a1a3455020c981c41d43a4ce0f22637b4a0d45a582ef0d",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "9f6f89b6-f142-4523-8f69-e6a50383e2a4",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/fa09c581f5f626b0",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=9f6f89b6-f142-4523-8f69-e6a50383e2a4_output_1.png 1536x2752 sha256=5dfa2dc3547adc4713d9fa774e75c3ca74ce611bca8becdc00c470d8b0bab521"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "6fef5125279b4fd237a1a3455020c981c41d43a4ce0f22637b4a0d45a582ef0d",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "9f6f89b6-f142-4523-8f69-e6a50383e2a4",
+        "prompt_sha256": "58ae0b73b76bd9d8bf684613a14412cf6a0269f5b782529e6fa4afecd3bf6da8",
+        "output_sha256": "5dfa2dc3547adc4713d9fa774e75c3ca74ce611bca8becdc00c470d8b0bab521",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/references/world_style_anchor.png",
+      "sha256": "c2c555a4184e75b95514f7fc7cfd6ee98a5134ac89a58ad051cf297b2787b056"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/references/world_keyframe.png",
+      "sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/style_references/style_reference.png",
+      "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/assets/raw_beats/beat_002.png",
+      "sha256": "9928c45d38179d88a0455901881bee9f5e4dc2cb40c93639d537e8012c0f7e8b"
+    }
+  ],
+  "prompt_sha256": "58ae0b73b76bd9d8bf684613a14412cf6a0269f5b782529e6fa4afecd3bf6da8",
+  "prompt": "Gemini Image Prompt\n\nCreate exactly one vertical 9:16 image, a single full-frame illustration with no storyboard, grid, collage, multiple panels, captions, labels, UI, letters, numbers, musical notation, or readable text. Depict a tight frontal still life of a bold screen-printed “memory shelf” filled with orderly rows of muted abstract shape-clusters receding in depth against an electric-violet background zone; one tiny, compact, distinctive zigzag fragment in hot pink and lemon yellow projects dramatically forward toward the viewer as a simplified black hand-shaped attention cue pulls it from the shelf, clearly communicating that short distinctive fragments are easier to retrieve. Render in dry matte screen-print ink on lightly coarse paper, with bold comic-style black contours, simplified silhouettes, restrained off-white breathing areas, subtle halftone and registration wear, flat high-key graphic lighting, minimal shading, and saturated cherry red, hot pink, lemon yellow, electric violet, and warm orange accents. Preserve the recurring disciplined pop-art print-card framing and edge treatment while using the entire illustration height with no lower caption reserve or blank band. The style_reference establishes the subject world’s overall visual language; the world_keyframe anchors its recurring frame material, texture, palette, and lighting; the operator_style_reference supplies style-only cues such as bright comic-pop saturation, heavy contours, flat print texture, and rhythmic repetition without copying its imagery or arrangement; the previous_beat is binding only for recurring framing, material/edge treatment, inner illustration treatment, texture, palette, and lighting, never its composition, crop, camera angle, pose, subject placement, or focal object. No photorealism, 3D CGI, anime, painterly realism, glossy gradients, brands, logos, album art, or grim fractured monochrome styling. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent pop-art print card divided into an asymmetrical modular comic-panel grid by thick black borders; each scene occupies one or more bold rectangular illustration windows while cropped graphic motifs may bridge adjacent panels. Slight screen-print edge wear and registration offsets recur throughout, but panel geometry stays disciplined and readable rather than chaotic. Do not reproduce the reference image's exact layout or imagery.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "5dfa2dc3547adc4713d9fa774e75c3ca74ce611bca8becdc00c470d8b0bab521",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.196,
+  "completed_at": "2026-09-12T06:21:07Z"
+}
