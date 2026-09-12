@@ -14,6 +14,7 @@ from typing import Any
 
 from pipeline_notifier import PipelineNotifier
 from content_projects import DEFAULT_CONTENT_PROJECT, load_content_project, validate_content_project, video_slug
+from panel_contract import SUBTITLE_FONT_SIZE_MIN, SUBTITLE_FONT_SIZE_MAX
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -348,8 +349,11 @@ def apply_subtitle_style(subtitles: dict[str, Any], style: dict[str, Any]) -> No
         subtitles["font_name"] = str(style["font_name"]).strip()
     if style.get("font_size") is not None and str(style["font_size"]).strip() != "":
         size = int(float(style["font_size"]))
-        if not 24 <= size <= 120:
-            raise ValueError(f"Subtitle font size {style['font_size']!r} is outside 24..120.")
+        if not SUBTITLE_FONT_SIZE_MIN <= size <= SUBTITLE_FONT_SIZE_MAX:
+            raise ValueError(
+                f"Subtitle font size {style['font_size']!r} is outside "
+                f"{SUBTITLE_FONT_SIZE_MIN}..{SUBTITLE_FONT_SIZE_MAX}."
+            )
         subtitles["font_size"] = size
     if "bold" in style:
         subtitles["bold"] = bool(style["bold"])

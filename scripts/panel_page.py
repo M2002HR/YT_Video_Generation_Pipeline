@@ -370,7 +370,7 @@ def launch_form(project_options: str, style_options: str, character_options: str
     <option>Noto Sans Mono</option></select>
    <small>Starred picks and search are in Studio; the burn-in face is identical.</small></label>
   <div class="grid2">
-   <label>Subtitle font size <input name=subtitle_font_size type=number min=24 max=120 step=1 value=56></label>
+   <label>Subtitle font size <input name=subtitle_font_size type=number min=24 max=300 step=1 value=56></label>
    <label>Max words per caption <input name=subtitle_max_words type=number min=1 max=12 step=1 value=6></label>
   </div>
   <div class="grid2">

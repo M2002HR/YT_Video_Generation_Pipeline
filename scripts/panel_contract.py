@@ -9,6 +9,10 @@ from __future__ import annotations
 from typing import Any
 
 
+SUBTITLE_FONT_SIZE_MIN = 24
+SUBTITLE_FONT_SIZE_MAX = 300
+
+
 def _field(name: str, label: str, kind: str = "text", **values: Any) -> dict[str, Any]:
     return {"name": name, "label": label, "type": kind, **values}
 
@@ -106,7 +110,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             ] + [
                 {"value": name, "label": name} for name in SUBTITLE_FONTS
             ], searchable=True, help="Highlighted faces are the research-backed subtitle picks.", requires={"field": "show_subtitles", "value": True}),
-            _field("subtitle_font_size", "Font size", "number", default=56, min=24, max=120, step=1, width="half", requires={"field": "show_subtitles", "value": True}),
+            _field("subtitle_font_size", "Font size", "number", default=56, min=SUBTITLE_FONT_SIZE_MIN, max=SUBTITLE_FONT_SIZE_MAX, step=1, width="half", requires={"field": "show_subtitles", "value": True}),
             _field("subtitle_max_words", "Max words per caption", "number", default=6, min=1, max=12, step=1, width="half", requires={"field": "show_subtitles", "value": True}),
             _field("subtitle_bold", "Bold", "toggle", default=True, requires={"field": "show_subtitles", "value": True}),
             _field("subtitle_italic", "Italic", "toggle", default=False, requires={"field": "show_subtitles", "value": True}),

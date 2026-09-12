@@ -299,8 +299,11 @@ def test_apply_subtitle_style_copies_panel_keys_and_rejects_garbage() -> None:
     }
     apply_subtitle_style(subtitles, {})
     assert subtitles["font_name"] == "Nimbus Sans", "empty style must not clobber"
+    maximum: dict = {}
+    apply_subtitle_style(maximum, {"font_size": 300})
+    assert maximum["font_size"] == 300
     with pytest.raises(ValueError):
-        apply_subtitle_style({}, {"font_size": 200})
+        apply_subtitle_style({}, {"font_size": 301})
     with pytest.raises(ValueError):
         apply_subtitle_style({}, {"max_words_per_cue": 0})
     with pytest.raises(ValueError):

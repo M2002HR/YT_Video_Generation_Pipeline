@@ -36,6 +36,8 @@ from image_artifacts import receipt_status
 from panel_contract import defaults as launch_defaults
 from panel_contract import launch_schema
 from panel_contract import ALL_SUBTITLE_FONTS, RECOMMENDED_SUBTITLE_FONTS
+from panel_contract import SUBTITLE_FONT_SIZE_MIN, SUBTITLE_FONT_SIZE_MAX
+from subtitle_font_runtime import prepare_uploaded_fonts_dir, sfnt_vertical_metrics
 from run_graph import graph_for, invalidation_paths, regeneration_plan
 from content_projects import (
     DEFAULT_CONTENT_PROJECT, list_content_projects, load_content_project,
@@ -471,6 +473,11 @@ def subtitle_fonts_dir() -> Path:
     return ROOT / "control_panel" / "subtitle_fonts"
 
 
+def subtitle_font_files_dir() -> Path:
+    """Font-only directory passed to libass (catalog metadata stays outside it)."""
+    return subtitle_fonts_dir() / "files"
+
+
 def sha256_path(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -625,7 +632,9 @@ def custom_subtitle_fonts() -> list[dict[str, str]]:
             or any(ord(char) < 32 for char in family)
         ):
             continue
-        path = subtitle_fonts_dir() / f"{font_id}{extension}"
+        path = subtitle_font_files_dir() / f"{font_id}{extension}"
+        if not path.is_file():
+            path = subtitle_fonts_dir() / f"{font_id}{extension}"
         try:
             if not path.is_file() or sha256_path(path) != digest:
                 continue
@@ -1910,7 +1919,9 @@ class Handler(BaseHTTPRequestHandler):
             custom = custom_font_for_slug(slug)
             if custom is None:
                 self.send_error(HTTPStatus.NOT_FOUND); return
-            target = subtitle_fonts_dir() / f"{custom['id']}{custom['extension']}"
+            target = subtitle_font_files_dir() / f"{custom['id']}{custom['extension']}"
+            if not target.is_file():
+                target = subtitle_fonts_dir() / f"{custom['id']}{custom['extension']}"
             mime = custom["mime_type"]
         try:
             data = target.read_bytes()
@@ -1981,6 +1992,7 @@ class Handler(BaseHTTPRequestHandler):
                 allowed_formats = {"TrueType"} if extension == ".ttf" else {"CFF", "OpenType"}
                 if scanned.returncode or font_format not in allowed_formats:
                     raise ValueError("The file is not a valid supported OpenType font.")
+                sfnt_vertical_metrics(temporary)
                 if (
                     not family or len(family) > 120 or "," in family
                     or any(ord(char) < 32 for char in family)
@@ -1990,7 +2002,8 @@ class Handler(BaseHTTPRequestHandler):
                     if family in available_subtitle_font_families():
                         raise ValueError(f"A subtitle font named '{family}' is already available.")
                     font_id = uuid.uuid4().hex
-                    target = folder / f"{font_id}{extension}"
+                    files = subtitle_font_files_dir(); files.mkdir(parents=True, exist_ok=True)
+                    target = files / f"{font_id}{extension}"
                     temporary.replace(target)
                     catalog_path = _custom_font_catalog_path()
                     try:
@@ -3415,8 +3428,10 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid opening durations")
             if subtitle_font not in available_subtitle_font_families():
                 raise ValueError("Invalid subtitle font.")
-            if not 24 <= subtitle_font_size <= 120:
-                raise ValueError("Subtitle font size is outside 24..120.")
+            if not SUBTITLE_FONT_SIZE_MIN <= subtitle_font_size <= SUBTITLE_FONT_SIZE_MAX:
+                raise ValueError(
+                    f"Subtitle font size is outside {SUBTITLE_FONT_SIZE_MIN}..{SUBTITLE_FONT_SIZE_MAX}."
+                )
             if not 1 <= subtitle_max_words <= 12:
                 raise ValueError("Subtitle words per caption is outside 1..12.")
             if subtitle_position not in {"low", "standard", "high", "custom"}:
@@ -3667,6 +3682,7 @@ class Handler(BaseHTTPRequestHandler):
 def main() -> None:
     parser = argparse.ArgumentParser(); parser.add_argument("--host", default="127.0.0.1"); parser.add_argument("--port", type=int, default=4142); args = parser.parse_args()
     (ROOT / "control_panel" / "jobs").mkdir(parents=True, exist_ok=True)
+    prepare_uploaded_fonts_dir(ROOT)
     reconcile_scheduled_resumes()
     reconcile_stuck_jobs_once()
     start_stuck_job_reconciler(interval=30)

@@ -28,6 +28,7 @@ def test_subtitle_controls_are_colocated_and_gated() -> None:
     assert {"show_subtitles", "word_highlight", "reserve_subtitle_space", "motion_subtitle_avoidance"} <= set(fields)
     assert fields["word_highlight"]["requires"] == {"field": "show_subtitles", "value": True}
     assert fields["reserve_subtitle_space"]["requires"] == {"field": "show_subtitles", "value": True}
+    assert fields["subtitle_font_size"]["max"] == 300
 
 
 def test_schema_defaults_match_the_server_launch_contract() -> None:

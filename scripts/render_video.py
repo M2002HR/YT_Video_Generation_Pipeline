@@ -35,6 +35,7 @@ from motion_compiler import dynamic_motion_filter, dynamic_motion_filter_v2, pla
 from motion_context import build_motion_context
 from motion_schema import MotionPlanError, validate_plan
 from motion_v2_schema import settings as motion_v2_settings, validate_inventory, validate_plan as validate_plan_v2
+from subtitle_font_runtime import prepare_uploaded_fonts_dir
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -1001,10 +1002,10 @@ def main() -> None:
         # Operator-uploaded subtitle faces are stored with the panel, outside an
         # episode directory.  Passing the directory directly to libass makes the
         # persisted selected family deterministic without relying on system cache.
-        custom_fonts_dir = ROOT / "control_panel" / "subtitle_fonts"
+        custom_fonts_dir = prepare_uploaded_fonts_dir(ROOT)
         fontsdir = (
             f":fontsdir='{escape_filter_path(custom_fonts_dir)}'"
-            if custom_fonts_dir.is_dir()
+            if custom_fonts_dir is not None
             else ""
         )
         filter_parts.append(

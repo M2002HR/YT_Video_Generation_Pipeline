@@ -21,6 +21,11 @@ import textwrap
 from pathlib import Path
 from typing import Any
 
+from subtitle_font_runtime import css_equivalent_ass_geometry
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
 
 #: How far the rendered opening may sit from the measured narration boundary (§67 step 8).
 OPENING_ALIGNMENT_TOLERANCE = 0.05
@@ -719,6 +724,10 @@ def write_ass(
     font_colour = css_hex_to_ass(subtitle_cfg.get("font_colour"), "&H00FFFFFF")
     custom_outline = css_hex_to_ass(subtitle_cfg.get("outline_colour"), "")
     margin_v = subtitle_margin_v(subtitle_cfg, height)
+    ass_font_size, ass_margin_v = css_equivalent_ass_geometry(
+        ROOT, font_name, font_size, margin_v,
+    )
+    ass_font_size_text = f"{ass_font_size:.3f}".rstrip("0").rstrip(".")
     outline = float(subtitle_cfg.get("outline", 3))
     shadow = float(subtitle_cfg.get("shadow", 0))
     highlight_cfg = subtitle_cfg.get("word_highlight")
@@ -746,13 +755,13 @@ def write_ass(
         "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
         "Alignment, MarginL, MarginR, MarginV, Encoding",
         "Style: Default,"
-        f"{font_name},{font_size},"
+        f"{font_name},{ass_font_size_text},"
         f"{font_colour},&H000000FF,{default_outline_colour},&H80000000,"
-        f"{bold},{italic},0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
+        f"{bold},{italic},0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{ass_margin_v},1",
         "Style: Karaoke,"
-        f"{font_name},{font_size},"
+        f"{font_name},{ass_font_size_text},"
         f"{active_colour},{inactive_colour},{outline_colour},&H80000000,"
-        f"{bold},{italic},0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{margin_v},1",
+        f"{bold},{italic},0,0,100,100,0,0,1,{outline},{shadow},2,60,60,{ass_margin_v},1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",

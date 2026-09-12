@@ -275,7 +275,7 @@ function SubtitlePreview({ values, backdrops, backdropLabel, note = "", fontSour
       <small>
         {backdropLabel || "Sample backdrop"} · first {maxWords}-word caption ·{" "}
         {previewFontFamily(values.subtitle_font, fontSources)}{" "}
-        {Math.min(120, Math.max(24, Number(values.subtitle_font_size) || 56))}px
+        {Math.min(300, Math.max(24, Number(values.subtitle_font_size) || 56))}px
         {values.subtitle_position ? ` · ${values.subtitle_position}` : ""}
         {fontStatus === "loading" ? " · loading font…" : ""}
         {fontStatus === "fallback" ? " · font unavailable; using fallback" : ""}
@@ -372,7 +372,7 @@ function SubtitleCuePreview({ values, cues, fontSources = {} }) {
 // mirrors build_timeline on a 270x480 frame (480/1920 of the ASS PlayRes).
 function CaptionOverlay({ values, lines, highlightFirst = false, fontSources = {} }) {
   const font = previewFontFamily(values.subtitle_font, fontSources);
-  const size = Math.min(120, Math.max(24, Number(values.subtitle_font_size) || 56));
+  const size = Math.min(300, Math.max(24, Number(values.subtitle_font_size) || 56));
   const margin = subtitleMarginPx(
     values.subtitle_position,
     values.subtitle_offset_value,
