@@ -122,6 +122,18 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12p
   border:1px solid var(--line-2);background:#0a0d13;display:block}
 .shots figcaption{font-size:10px;color:var(--ink-dim);margin-top:3px;text-align:center;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (prefers-color-scheme:light){:root{color-scheme:light;
+  --bg:#edf1f7; --panel:#ffffff; --panel-2:#f0f3f9; --line:#cbd5e2; --line-2:#b9c6d9;
+  --ink:#17222f; --ink-dim:#5b6d83; --ink-faint:#8a97a8;
+  --accent:#2b5fc7; --accent-ink:#ffffff;
+  --ok:#0c7a55; --ok-bg:#e2f4ea; --ok-line:#a4d9c0;
+  --warn:#8a5f05; --warn-bg:#faf0d7; --warn-line:#e6cf96;
+  --bad:#bf3040; --bad-bg:#fdecef; --bad-line:#efb3bb}
+  input:disabled{color:var(--ink-dim);background:#e8edf4}
+  .pill.idle{background:#e8edf4}
+  tr.sel td{background:#e9f0fc}
+  .bar{background:#dbe2ec}
+  .notice{background:#e9f0fc}}
 """
 
 

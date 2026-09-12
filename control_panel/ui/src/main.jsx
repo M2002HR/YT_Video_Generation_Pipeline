@@ -83,6 +83,49 @@ function readAutoUpdate() {
   }
 }
 
+const THEME_KEY = "studio.theme";
+
+function readTheme() {
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored === "light" || stored === "dark") return stored;
+  } catch {}
+  try {
+    if (matchMedia("(prefers-color-scheme: light)").matches) return "light";
+  } catch {}
+  return "dark";
+}
+
+function useTheme() {
+  const [theme, setTheme] = useState(readTheme);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch {}
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === "light" ? "#edf1f7" : "#080c13";
+  }, [theme]);
+  return [theme, () => setTheme((current) => (current === "light" ? "dark" : "light"))];
+}
+
+function ThemeToggle({ theme, onToggle }) {
+  const light = theme === "light";
+  return (
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={onToggle}
+      title={light ? "Switch to dark theme" : "Switch to light theme"}
+      aria-label={light ? "Switch to dark theme" : "Switch to light theme"}
+      aria-pressed={light}
+    >
+      <span aria-hidden="true">{light ? "☾" : "☀"}</span>
+      <span>{light ? "Dark" : "Light"}</span>
+    </button>
+  );
+}
+
 function useWebSocketUpdates({ jobId, onChange, notify, enabled = true, onStatus }) {
   const change = useRef(onChange);
   const announce = useRef(notify);
@@ -1529,7 +1572,7 @@ function CreditCheckModal({ value, close, retry }) {
   );
 }
 
-function Home({ open, notify }) {
+function Home({ open, notify, theme, onToggleTheme }) {
   const [jobs, setJobs] = useState([]),
     [health, setHealth] = useState(null),
     [contract, setContract] = useState(null),
@@ -1641,6 +1684,7 @@ function Home({ open, notify }) {
         </div>
         <div className="brand-side">
           <button className="credit-check-button" onClick={startCreditCheck}>Check credits</button>
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <ConnectionStatus
             status={connStatus}
             autoUpdate={autoUpdate}
@@ -1828,7 +1872,8 @@ function PipelineBoard({ graph, selected, dependents, choose }) {
   );
 }
 
-function DependencyGraph({ run, selected, choose }) {
+function DependencyGraph({ run, selected, choose, theme = "dark" }) {
+  const light = theme === "light";
   const dependents = useMemo(
     () => dependentNodeIds(run.graph.edges, selected?.id),
     [run.graph.edges, selected?.id],
@@ -1861,12 +1906,12 @@ function DependencyGraph({ run, selected, choose }) {
           "RUNNING",
         style: {
           stroke: selected?.id === edge.source && dependents.has(edge.target)
-            ? "#b58cff"
+            ? light ? "#6d3fd4" : "#b58cff"
             : edge.kind === "continuity"
-              ? "#4f8fc9"
+              ? light ? "#2b5fc7" : "#4f8fc9"
               : edge.kind === "gate"
-                ? "#b58b4c"
-                : "#53647d",
+                ? light ? "#8a5f0b" : "#b58b4c"
+                : light ? "#8a97a8" : "#53647d",
           strokeWidth: selected?.id === edge.source ? 2 : 1.2,
           strokeDasharray: edge.kind === "gate" ? "6 4" : undefined,
         },
@@ -1886,17 +1931,17 @@ function DependencyGraph({ run, selected, choose }) {
         minZoom={0.2}
         maxZoom={1.5}
       >
-        <Background gap={24} color="#273246" />
+        <Background gap={24} color={light ? "#c9d3e1" : "#273246"} />
         <Controls />
         <MiniMap
           pannable
           zoomable
           nodeColor={(node) =>
             node.data?.status === "RUNNING"
-              ? "#f2bb61"
+              ? light ? "#8a5f0b" : "#f2bb61"
               : node.data?.status === "DONE"
-                ? "#38d996"
-                : "#53647d"
+                ? light ? "#0c7a55" : "#38d996"
+                : light ? "#8a97a8" : "#53647d"
           }
         />
       </ReactFlow>
@@ -2599,7 +2644,7 @@ function ActivityPanel({ events, log, open, toggle }) {
   );
 }
 
-function RunPage({ jobId, goHome, goRun, notify }) {
+function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
   const [run, setRun] = useState(null),
     [selected, setSelected] = useState(null),
     [view, setView] = useState("board"),
@@ -2771,6 +2816,7 @@ function RunPage({ jobId, goHome, goRun, notify }) {
           </small>
         </div>
         <div className="run-actions">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button
             className="secondary"
             disabled={run.job.live || run.job.read_only}
@@ -2871,7 +2917,7 @@ function RunPage({ jobId, goHome, goRun, notify }) {
             choose={setSelected}
           />
         ) : (
-          <DependencyGraph run={run} selected={selected} choose={setSelected} />
+          <DependencyGraph run={run} selected={selected} choose={setSelected} theme={theme} />
         )}
         <NodeDetail
           run={run}
@@ -2931,7 +2977,8 @@ function RunPage({ jobId, goHome, goRun, notify }) {
 
 function App() {
   const [path, setPath] = useState(location.pathname),
-    [toasts, setToasts] = useState([]);
+    [toasts, setToasts] = useState([]),
+    [theme, toggleTheme] = useTheme();
   const notify = (title, body, kind = "") => {
     const id = crypto.randomUUID();
     setToasts((items) => [...items, { id, title, body, kind }].slice(-5));
@@ -2966,9 +3013,11 @@ function App() {
           goHome={() => navigate("/")}
           goRun={(id) => navigate(`/runs/${id}`)}
           notify={notify}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
       ) : (
-        <Home open={(id) => navigate(`/runs/${id}`)} notify={notify} />
+        <Home open={(id) => navigate(`/runs/${id}`)} notify={notify} theme={theme} onToggleTheme={toggleTheme} />
       )}
     </>
   );

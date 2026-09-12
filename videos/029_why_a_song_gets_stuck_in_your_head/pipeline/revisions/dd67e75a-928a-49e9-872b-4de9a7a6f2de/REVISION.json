@@ -74,7 +74,7 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "RUNNING",
+  "status": "DONE",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "skip_visual_stages": true,
@@ -88,5 +88,6 @@
     "title_outline_colour",
     "title_outline"
   ],
-  "config_revision_id": "208324f3-ca55-43d9-aba7-e0f610e52ef8"
+  "config_revision_id": "208324f3-ca55-43d9-aba7-e0f610e52ef8",
+  "completed_at": "2026-09-12T15:29:56.813915+00:00"
 }

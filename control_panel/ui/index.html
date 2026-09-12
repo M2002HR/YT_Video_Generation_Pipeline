@@ -10,6 +10,14 @@
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>Video Pipeline Studio</title>
+    <script>
+      try {
+        var stored = localStorage.getItem("studio.theme");
+        var theme = stored === "light" || stored === "dark" ? stored
+          : matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
