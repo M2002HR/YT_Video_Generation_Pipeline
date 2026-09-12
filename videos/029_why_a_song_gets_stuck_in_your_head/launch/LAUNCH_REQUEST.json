@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "q_station",
   "job_id": "02cfa0dd-40d6-4bd9-8e3d-e5b7fc76f7fb",
-  "status": "DONE",
+  "status": "RUNNING",
   "created_at": "2026-09-12T06:01:36.657092+00:00",
   "topic": "Why a Song Gets Stuck in Your Head",
   "video_id": "029",
@@ -10,8 +10,8 @@
   "duration_max_seconds": 50,
   "aspect_ratio": "9:16",
   "project": "videos/029_why_a_song_gets_stuck_in_your_head",
-  "voice_profile": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/30b3029e-7e9b-47f6-9999-b98933f9fc24/VOICE_PROFILE.json",
-  "creative_brief": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/30b3029e-7e9b-47f6-9999-b98933f9fc24/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/c09b5fc5-0b48-49d5-a559-9caa07923da0/VOICE_PROFILE.json",
+  "creative_brief": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/c09b5fc5-0b48-49d5-a559-9caa07923da0/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -36,7 +36,7 @@
     "beat_image_qc_disabled": true,
     "world_style_reference": {
       "schema_version": 1,
-      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/30b3029e-7e9b-47f6-9999-b98933f9fc24/style_reference.png",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/c09b5fc5-0b48-49d5-a559-9caa07923da0/style_reference.png",
       "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589",
       "mime_type": "image/png",
       "width": 259,
@@ -139,7 +139,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 1511290,
+  "pid": 1533655,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -151,9 +151,9 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/30b3029e-7e9b-47f6-9999-b98933f9fc24/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/c09b5fc5-0b48-49d5-a559-9caa07923da0/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/30b3029e-7e9b-47f6-9999-b98933f9fc24/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/c09b5fc5-0b48-49d5-a559-9caa07923da0/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -163,13 +163,13 @@
     "--skip-visual-stages"
   ],
   "started_at": "2026-09-12T06:01:36.659813+00:00",
-  "exit_code": 0,
-  "process_exited_at": "2026-09-12T12:23:00.266181+00:00",
+  "exit_code": 1,
+  "process_exited_at": "2026-09-12T14:58:18.472979+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "756d8730-7cdb-4df4-ac3b-db40e2c1083d",
+    "revision_id": "8900a83b-88e2-4b68-8201-6bfc2fec223f",
     "kind": "config",
-    "created_at": "2026-09-12T13:18:49.645235+00:00",
+    "created_at": "2026-09-12T15:04:22.617563+00:00",
     "roots": [
       "render_profile"
     ],
@@ -228,16 +228,7 @@
     "archived_artifacts": [
       "timeline/TIMELINE.json",
       "timeline/SUBTITLES.ass",
-      "render/RENDER_PROFILE.json",
-      "assets/renders/final.mp4",
-      "render/RENDER_STATS.json",
-      "render/QC_REPORT.json",
-      "assets/renders/polished.mp4",
-      "render/QC_REPORT_polished.json",
-      "assets/renders/telegram_low.mp4",
-      "render/TELEGRAM_RENDER_PROGRESS.json",
-      "pipeline/GIT_PUBLISH_STATE.json",
-      "publish/TELEGRAM_PUBLISH_STATE.json"
+      "render/RENDER_PROFILE.json"
     ],
     "regenerate_beats": [],
     "feedback": "",
@@ -245,22 +236,21 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-12T13:18:49.645897+00:00",
-    "pid": 1511290,
+    "started_at": "2026-09-12T15:04:22.618184+00:00",
+    "pid": 1533655,
     "changed_fields": [
-      "subtitle_font_size",
-      "subtitle_offset_value"
+      "logo_upload_id"
     ],
-    "config_revision_id": "30b3029e-7e9b-47f6-9999-b98933f9fc24"
+    "config_revision_id": "c09b5fc5-0b48-49d5-a559-9caa07923da0"
   },
-  "resumed_at": "2026-09-12T13:18:49.646045+00:00",
+  "resumed_at": "2026-09-12T15:04:22.618338+00:00",
   "resume_count": 2,
   "stopped_by": "panel",
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "756d8730-7cdb-4df4-ac3b-db40e2c1083d",
+    "revision_id": "8900a83b-88e2-4b68-8201-6bfc2fec223f",
     "kind": "config",
-    "created_at": "2026-09-12T13:18:49.645235+00:00",
+    "created_at": "2026-09-12T15:04:22.617563+00:00",
     "roots": [
       "render_profile"
     ],
@@ -319,16 +309,7 @@
     "archived_artifacts": [
       "timeline/TIMELINE.json",
       "timeline/SUBTITLES.ass",
-      "render/RENDER_PROFILE.json",
-      "assets/renders/final.mp4",
-      "render/RENDER_STATS.json",
-      "render/QC_REPORT.json",
-      "assets/renders/polished.mp4",
-      "render/QC_REPORT_polished.json",
-      "assets/renders/telegram_low.mp4",
-      "render/TELEGRAM_RENDER_PROGRESS.json",
-      "pipeline/GIT_PUBLISH_STATE.json",
-      "publish/TELEGRAM_PUBLISH_STATE.json"
+      "render/RENDER_PROFILE.json"
     ],
     "regenerate_beats": [],
     "feedback": "",
@@ -336,13 +317,11 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-12T13:18:49.645897+00:00",
-    "pid": 1511290,
+    "started_at": "2026-09-12T15:04:22.618184+00:00",
+    "pid": 1533655,
     "changed_fields": [
-      "subtitle_font_size",
-      "subtitle_offset_value"
+      "logo_upload_id"
     ],
-    "config_revision_id": "30b3029e-7e9b-47f6-9999-b98933f9fc24"
-  },
-  "completed_at": "2026-09-12T13:23:09.810999+00:00"
+    "config_revision_id": "c09b5fc5-0b48-49d5-a559-9caa07923da0"
+  }
 }
