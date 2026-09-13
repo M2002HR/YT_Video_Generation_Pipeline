@@ -412,11 +412,13 @@ def apply_branding_preferences(profile_path: Path, creative_brief: dict[str, Any
     }
     logo_position = str(requested.get("logo_position", "top_right")).strip().lower()
     title_position = str(requested.get("title_position", "below_logo")).strip().lower()
+    watermark_position = str(requested.get("watermark_position", "bottom_right")).strip().lower()
     align = str(requested.get("title_text_align", "right")).strip().lower()
-    if logo_position not in positions or title_position not in positions | {"below_logo"}:
+    watermark_align = str(requested.get("watermark_text_align", "right")).strip().lower()
+    if logo_position not in positions or title_position not in positions | {"below_logo"} or watermark_position not in positions | {"below_logo"}:
         raise ValueError("Branding position is invalid.")
-    if align not in {"left", "center", "right"}:
-        raise ValueError("Title text alignment is invalid.")
+    if align not in {"left", "center", "right"} or watermark_align not in {"left", "center", "right"}:
+        raise ValueError("Branding text alignment is invalid.")
     logo_asset = requested.get("logo_asset") if isinstance(requested.get("logo_asset"), dict) else {}
     logo_source = str(logo_asset.get("path") or "")
     branding["logo"] = {
@@ -449,6 +451,29 @@ def apply_branding_preferences(profile_path: Path, creative_brief: dict[str, Any
         "font_colour": _subtitle_colour(requested.get("title_font_colour", "#FFFFFF")),
         "outline_colour": _subtitle_colour(requested.get("title_outline_colour", "#000000")),
         "outline": number("title_outline", 2, 0, 8),
+    }
+    watermark_text = " ".join(str(requested.get("watermark_text") or "").split())
+    watermark_enabled = bool(requested.get("show_watermark", False))
+    if watermark_enabled and not watermark_text:
+        raise ValueError("Enabled text watermark has no text.")
+    branding["watermark"] = {
+        "enabled": watermark_enabled, "text": watermark_text, "position": watermark_position,
+        "font_name": str(requested.get("watermark_font", "Roboto")).strip() or "Roboto",
+        "font_size": int(number("watermark_font_size", 28, TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX)),
+        "opacity": number("watermark_opacity", .72, .05, 1),
+        "bold": bool(requested.get("watermark_bold", True)), "italic": bool(requested.get("watermark_italic", False)),
+        "text_align": watermark_align,
+        "max_words_per_line": int(number("watermark_max_words_per_line", 7, 1, 100)),
+        "line_spacing": number("watermark_line_spacing", 6, -10, 100),
+        "max_width_percent": number("watermark_max_width_percent", 34, 12, 90),
+        "margin_x_percent": number("watermark_margin_x_percent", 3, 0, 25),
+        "margin_y_percent": number("watermark_margin_y_percent", 2.5, 0, 25),
+        "logo_gap_percent": number("watermark_logo_gap_percent", 1, 0, 15),
+        "custom_x_percent": number("watermark_custom_x_percent", 80, 0, 100),
+        "custom_y_percent": number("watermark_custom_y_percent", 88, 0, 100),
+        "font_colour": _subtitle_colour(requested.get("watermark_font_colour", "#FFFFFF")),
+        "outline_colour": _subtitle_colour(requested.get("watermark_outline_colour", "#000000")),
+        "outline": number("watermark_outline", 2, 0, 8),
     }
     profile_path.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

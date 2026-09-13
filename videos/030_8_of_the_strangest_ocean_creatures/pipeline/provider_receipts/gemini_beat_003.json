@@ -1,0 +1,204 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "bec5a182ed574e144a9731a3f444e19c68cad847d97f35db6d19a9e02e9a8373",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical 9:16 underwater line-art illustration shows one long-snouted shark swimming side-on toward the right across the upper portion of a rounded hand-drawn ocean frame. The shark has an open toothed mouth, visible gill slits and fins, with sparse bubbles, current marks and tiny plankton-like forms nearby. Most of the middle and lower image is open pale water, with a small cluster of marine plants along the bottom edge. The treatment uses thin black contours, subtle graphite-gray accents, an off-white paper-like field and the same organic rounded frame vocabulary visible in the continuity references.",
+    "violations": [
+      "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+      "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+      "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+      "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+      "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+      "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+      "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+      "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+      "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+    ],
+    "observations": [
+      "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+      "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+      "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+      "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+      "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "db18d2ec-9bae-44d8-9d79-061040a9ef14",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/323286f0c94dcd78",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=db18d2ec-9bae-44d8-9d79-061040a9ef14_output_1.png 1536x2752 sha256=c4466536bb3fab6e87fe4955b4dae543047c3804fa03fdcab61be21294a19e6d"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical 9:16 underwater line-art illustration shows one long-snouted shark swimming side-on toward the right across the upper portion of a rounded hand-drawn ocean frame. The shark has an open toothed mouth, visible gill slits and fins, with sparse bubbles, current marks and tiny plankton-like forms nearby. Most of the middle and lower image is open pale water, with a small cluster of marine plants along the bottom edge. The treatment uses thin black contours, subtle graphite-gray accents, an off-white paper-like field and the same organic rounded frame vocabulary visible in the continuity references.",
+      "violations": [
+        "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+        "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+        "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+        "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+        "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+        "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+        "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+        "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+        "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+      ],
+      "observations": [
+        "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+        "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+        "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+        "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+        "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "bec5a182ed574e144a9731a3f444e19c68cad847d97f35db6d19a9e02e9a8373",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "db18d2ec-9bae-44d8-9d79-061040a9ef14",
+        "prompt_sha256": "6451b351c0f84f18f44ef7c8f18e55eede4c2f25a79560bd5e91d750b17c3e84",
+        "output_sha256": "c4466536bb3fab6e87fe4955b4dae543047c3804fa03fdcab61be21294a19e6d",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 underwater line-art illustration shows one long-snouted shark swimming side-on toward the right across the upper portion of a rounded hand-drawn ocean frame. The shark has an open toothed mouth, visible gill slits and fins, with sparse bubbles, current marks and tiny plankton-like forms nearby. Most of the middle and lower image is open pale water, with a small cluster of marine plants along the bottom edge. The treatment uses thin black contours, subtle graphite-gray accents, an off-white paper-like field and the same organic rounded frame vocabulary visible in the continuity references.",
+          "violations": [
+            "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+            "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+            "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+            "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+            "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+            "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+            "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+            "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+            "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+          ],
+          "observations": [
+            "The defining goblin-shark strike is not depicted clearly: the jaws remain close to the head instead of being explosively projected far beyond the snout.",
+            "There is no clearly readable small fish directly ahead of the shark, so the requested open hunting corridor and predator-to-prey relationship are missing.",
+            "The lower majority of the composition is extremely empty and low-detail, reading like a large reserved blank field rather than a scene naturally continuing through the full usable height.",
+            "The lunge lacks a strong sudden-strike cue; the few current marks do not create much forward speed or explosive motion.",
+            "The shark is generally recognizable as a long-snouted deep-sea shark, but the absent protrusible-jaw extension weakens the specifically goblin-shark anatomy requested."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "2faf56ef-0814-4821-bdd3-9518e16420d7",
+        "prompt_sha256": "c5baaa16817a7cd0737f51dbd5635e50fde7c423dd127cacc533d792cb279d7c",
+        "output_sha256": "064fcb908857f133749bafdfee8fb717be1323efdb5238dbedeb355bf3f8858c",
+        "quality_check": {
+          "passed": true,
+          "description": "A single 9:16 monochrome underwater illustration shows a side-on long-snouted shark lunging rightward toward a clearly visible small fish. The shark occupies the upper portion, with current and speed lines around it, scattered bubbles, plankton and small fish continuing through the water column, and rocks and marine plants completing the lower edge. The off-white matte field, thin rounded black contours, restrained gray accents, irregular hand-drawn border and open marine line-art treatment remain consistent with the supplied continuity references.",
+          "violations": [
+            "The defining protrusible goblin-shark jaw action is still not fully readable: the toothed jaws open dramatically but remain largely behind the tip of the long snout rather than projecting far beyond it as specifically requested.",
+            "The new structures surrounding the cheek and jaw read as rigid mechanical hinge or harness components rather than simplified biological jaw anatomy, weakening the educational goblin-shark depiction and introducing an unintended object-like element.",
+            "Although the added current lines improve the sense of motion, the strike still reads more as a fast swim with an open mouth than an unmistakably explosive forward jaw projection."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "Compared with the previous candidate, the formerly clean biological head silhouette now contains conspicuous hinge-like struts around the jaw and gill area, introducing a mechanical appearance and extra anatomical clutter."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The defining protrusible goblin-shark jaw action is still not fully readable: the toothed jaws open dramatically but remain largely behind the tip of the long snout rather than projecting far beyond it as specifically requested.",
+            "The new structures surrounding the cheek and jaw read as rigid mechanical hinge or harness components rather than simplified biological jaw anatomy, weakening the educational goblin-shark depiction and introducing an unintended object-like element.",
+            "Although the added current lines improve the sense of motion, the strike still reads more as a fast swim with an open mouth than an unmistakably explosive forward jaw projection."
+          ],
+          "observations": [
+            "The defining protrusible goblin-shark jaw action is still not fully readable: the toothed jaws open dramatically but remain largely behind the tip of the long snout rather than projecting far beyond it as specifically requested.",
+            "The new structures surrounding the cheek and jaw read as rigid mechanical hinge or harness components rather than simplified biological jaw anatomy, weakening the educational goblin-shark depiction and introducing an unintended object-like element.",
+            "Although the added current lines improve the sense of motion, the strike still reads more as a fast swim with an open mouth than an unmistakably explosive forward jaw projection.",
+            "Compared with the previous candidate, the formerly clean biological head silhouette now contains conspicuous hinge-like struts around the jaw and gill area, introducing a mechanical appearance and extra anatomical clutter."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_style_anchor.png",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_keyframe.png",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+      "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/assets/raw_beats/beat_002.png",
+      "sha256": "54c43c6ef2bc9b9c24277db03984f5a48df895d2544b2911e488296cd6335054"
+    }
+  ],
+  "prompt_sha256": "6451b351c0f84f18f44ef7c8f18e55eede4c2f25a79560bd5e91d750b17c3e84",
+  "prompt": "Create exactly one standalone 9:16 image: a wide side-on monochrome illustration of a biologically recognizable goblin shark lunging horizontally through deep ocean water, its protrusible jaws explosively projected far beyond the snout toward one small fish directly ahead, creating a clear open hunting corridor; emphasize the sudden strike with a few sparse current/speed lines while keeping anatomy simplified, educational, and non-grotesque. Render in clean confident rounded carbon-black monoline contours on smooth matte bone-white paper with extremely light natural tooth, soft graphite-gray micro-accents, restrained cel-like depth through overlap and contour density, no heavy filled shadows, gradients, or modeled light. Maintain the recurring organic interlocking illustration-window language: thin hand-drawn outer contour, rounded irregular edges, generous breathing space, tiny bubbles/current/plankton marks, and marine line-art vocabulary. Fill the complete illustration height naturally—no lower caption reserve, blank strip, empty panel, or low-detail subtitle band. Use style_reference to guide the established visual treatment only; world_keyframe to preserve the canonical world medium, palette, texture, lighting, and frame language; operator_style_reference to reinforce crisp playful editorial line-art qualities without copying its people, objects, text, logos, campus imagery, or composition; previous_beat is binding only for recurring frame material, edge treatment, illustration-window behavior, texture, palette, and lighting, never its subject placement, crop, camera angle, pose, or focal composition. No photorealism, 3D CGI, anime, painterly wash, collage, dense engraving, fantasy-monster distortion, decorative typography, labels, symbols, captions, or readable text. Exactly one image only—no storyboard, grid, collage, split screen, or panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "c4466536bb3fab6e87fe4955b4dae543047c3804fa03fdcab61be21294a19e6d",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 111.377,
+  "completed_at": "2026-09-12T16:33:42Z"
+}

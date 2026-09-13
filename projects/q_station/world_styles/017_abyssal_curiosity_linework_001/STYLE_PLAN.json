@@ -1,0 +1,25 @@
+{
+  "style_id": "abyssal_curiosity_linework_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "monochrome illustration",
+  "secondary_treatment": "subtle technical-drawing diagram language for anatomical features and unusual adaptations",
+  "texture_family": "smooth matte off-white paper with extremely light natural tooth",
+  "palette_summary": "predominantly bone-white ground and soft carbon-black linework, with cool graphite-gray micro-accents and extremely sparse abyssal cyan reserved for bioluminescence, transparent anatomy, or one key adaptation per frame",
+  "line_treatment": "clean confident monoline contours with rounded joins, playful continuous-line transitions, simplified anatomical shapes, sparse hatching only where depth is essential, no heavy filled shadows",
+  "lighting": "flat diffuse illustrative lighting with no modeled light source; depth communicated through overlap, scale, contour density, and occasional restrained cyan glow",
+  "frame_language": "a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "allow simplified but recognizable deep-sea zoology: transparent domes, tubular eyes, protrusible jaws, webbed arms, tiny spines, leaflike appendages, segmented armor, ear-like fins, bioluminescent lures, flowing octopus membranes, seaweed, bubbles, drifting particulate, currents, rope, and occasional unlabeled scientific cutaway or comparison motifs. Strange anatomy should remain immediately readable and biologically grounded rather than becoming fantasy monsters. Environmental vocabulary stays marine and deep-ocean focused.",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears later, translate the existing silhouette into the same clean rounded carbon-black monoline language with minimal interior detail, flat off-white fills, and at most one tiny cyan accent; do not alter identity or invent new costume traits",
+  "negative_constraints": "no photorealism, no 3D CGI, no anime, no painterly rendering, no watercolor wash, no screen-print halftones, no collage cut edges, no dense engraving crosshatching, no neon-pop palette, no heavy gradients, no dramatic cinematic realism, no grotesque horror treatment, no decorative typography, no labels or readable text inside illustrations, and no copying of the reference image's people, campus imagery, objects, logos, text, or exact composition",
+  "reason": "A new line-art world directly follows the operator directive and the attached style reference's strongest visual qualities: crisp black contour language, flat high-key ground, playful dense-but-readable visual interlocking, minimal shading, and an editorial educational mood. The strange-ocean-creature script benefits from precise silhouette recognition because each adaptation—the barreleye dome, goblin-shark jaws, vampire-squid web, leafy camouflage, isopod armor, Dumbo fins, angler lure, and blanket membrane—can be communicated instantly through contour alone. This is also deliberately distinct from the recent fractured screen print, editorial ink wash, paper collage, and neon screen-print styles, avoiding repetition of recently used texture families and giving the episode strong between-episode visual diversity.",
+  "operator_style_reference": {
+    "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+    "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c",
+    "role": "operator_style_reference"
+  },
+  "style_subtitle_reserve": "keep only the bottom 8–10% as a calm off-white paper field with at most a few widely spaced tiny bubble or current marks; absolutely no faces, hands, creature heads, tentacles, fins, focal anatomy, lure, prey, rope, book, fine hatching, text, letters, numbers, captions, labels, words, symbols functioning as UI, or interface elements; preserve enough quiet space for two subtitle lines without creating an oversized empty void",
+  "reserve_subtitle_space": false
+}

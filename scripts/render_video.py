@@ -268,6 +268,13 @@ def css_to_ass_colour(value: Any, default: str) -> str:
     return f"&H00{blue}{green}{red}".upper()
 
 
+def ass_colour_with_opacity(value: Any, default: str, opacity: float) -> str:
+    """Encode a CSS colour and one shared alpha value for libass."""
+    colour = css_to_ass_colour(value, default)
+    alpha = max(0, min(255, round((1 - opacity) * 255)))
+    return f"&H{alpha:02X}{colour[4:]}"
+
+
 def ass_timestamp(seconds: float) -> str:
     centiseconds = max(0, round(seconds * 100))
     hours, remainder = divmod(centiseconds, 360000)
@@ -276,23 +283,23 @@ def ass_timestamp(seconds: float) -> str:
     return f"{hours}:{minutes:02d}:{whole:02d}.{fraction:02d}"
 
 
-def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[int, int, int, int] | None, width: int, height: int, duration: float) -> None:
-    """Write explicitly wrapped title lines with exact, independent vertical spacing."""
+def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[int, int, int, int] | None, width: int, height: int, duration: float, *, style_name: str = "VideoTitle", layer_name: str = "title") -> None:
+    """Write one explicitly wrapped, independently positioned branding text layer."""
     text = " ".join(str(config.get("text") or "").split())
     if not text:
-        raise ValueError("Enabled video title has no topic text.")
+        raise ValueError(f"Enabled {layer_name} has no text.")
     max_words = round(_bounded_number(config, "max_words_per_line", 7, 1, 100))
     words = text.split()
     lines = [" ".join(words[index:index + max_words]) for index in range(0, len(words), max_words)]
     position = str(config.get("position", "below_logo")).strip().lower()
     if position not in BRAND_POSITIONS | {"below_logo"}:
-        raise ValueError("Invalid title position in render profile.")
+        raise ValueError(f"Invalid {layer_name} position in render profile.")
     box_width = round(width * _bounded_number(config, "max_width_percent", 34, 12, 90) / 100)
     margin_x = round(width * _bounded_number(config, "margin_x_percent", 3, 0, 25) / 100)
     margin_y = round(height * _bounded_number(config, "margin_y_percent", 2.5, 0, 25) / 100)
     align_name = str(config.get("text_align", "right")).strip().lower()
     if align_name not in {"left", "center", "right"}:
-        raise ValueError("Invalid title text alignment in render profile.")
+        raise ValueError(f"Invalid {layer_name} text alignment in render profile.")
     top_alignment = {"left": 7, "center": 8, "right": 9}[align_name]
     vertical = "top"
     if position == "below_logo":
@@ -320,8 +327,9 @@ def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[in
         top = height - margin_y - block_height
     top = max(0, min(max(0, height - block_height), top))
     x = left if align_name == "left" else left + box_width / 2 if align_name == "center" else left + box_width
-    primary = css_to_ass_colour(config.get("font_colour"), "&H00FFFFFF")
-    outline_colour = css_to_ass_colour(config.get("outline_colour"), "&H00000000")
+    opacity = _bounded_number(config, "opacity", 1, .05, 1)
+    primary = ass_colour_with_opacity(config.get("font_colour"), "&H00FFFFFF", opacity)
+    outline_colour = ass_colour_with_opacity(config.get("outline_colour"), "&H00000000", opacity)
     outline = _bounded_number(config, "outline", 2, 0, 8)
     font_name = str(config.get("font_name") or "Roboto").replace(",", " ").strip()
     events = []
@@ -330,7 +338,7 @@ def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[in
         y = top + index * line_advance
         # q2 disables libass auto-wrap: only the operator's word-count breaks apply.
         events.append(
-            f"Dialogue: 1,0:00:00.00,{ass_timestamp(duration)},VideoTitle,,0,0,0,,"
+            f"Dialogue: 1,0:00:00.00,{ass_timestamp(duration)},{style_name},,0,0,0,,"
             f"{{\\an{top_alignment}\\q2\\pos({x:.2f},{y:.2f})}}{safe_line}"
         )
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -338,12 +346,126 @@ def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[in
         "[Script Info]\nScriptType: v4.00+\nWrapStyle: 0\nScaledBorderAndShadow: yes\n"
         f"PlayResX: {width}\nPlayResY: {height}\n\n[V4+ Styles]\n"
         "Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding\n"
-        f"Style: VideoTitle,{font_name},{font_size},{primary},{primary},{outline_colour},&H00000000,"
+        f"Style: {style_name},{font_name},{font_size},{primary},{primary},{outline_colour},&H00000000,"
         f"{-1 if bool(config.get('bold', True)) else 0},{-1 if bool(config.get('italic', False)) else 0},0,0,100,100,0,0,1,{outline:g},0,{top_alignment},0,0,0,1\n\n"
         "[Events]\nFormat: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text\n"
         + "\n".join(events) + "\n",
         encoding="utf-8",
     )
+
+
+def _ass_font_families(path: Path) -> set[str]:
+    """Return the Fontname set declared by an ASS file's Style lines."""
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return set()
+    families: set[str] = set()
+    for line in text.splitlines():
+        if not line.strip().lower().startswith("style:"):
+            continue
+        parts = line.strip().split(",", 2)
+        if len(parts) >= 2 and parts[1].strip():
+            families.add(parts[1].strip())
+    return families
+
+
+def _scan_fonts_dir_families(folder: Path) -> set[str]:
+    """Read display family names straight from font binaries (no daemon needed)."""
+    try:
+        from fontTools.ttLib import TTFont
+    except ImportError:
+        TTFont = None  # type: ignore[assignment]
+    found: set[str] = set()
+    try:
+        candidates = [path for pattern in ("*.ttf", "*.otf") for path in folder.glob(pattern)]
+    except OSError:
+        return set()
+    for path in candidates:
+        if TTFont is not None:
+            try:
+                font = TTFont(str(path), lazy=True)
+                for record in font["name"].names:
+                    if record.nameID in (1, 16):
+                        try:
+                            name = record.toUnicode().strip()
+                        except Exception:
+                            continue
+                        if name:
+                            found.add(name)
+                continue
+            except Exception:
+                pass
+        try:
+            proc = subprocess.run(
+                ["fc-scan", "--format=%{family}\n", str(path)],
+                capture_output=True, text=True, timeout=30,
+            )
+        except (OSError, ValueError, subprocess.SubprocessError):
+            continue
+        if proc.returncode != 0:
+            continue
+        for line in proc.stdout.splitlines():
+            for piece in line.split(","):
+                if piece.strip():
+                    found.add(piece.strip())
+    return found
+
+
+def _system_font_families() -> set[str] | None:
+    """All fontconfig families, or None when the query itself is unavailable."""
+    try:
+        proc = subprocess.run(
+            ["fc-list", "--format=%{family}\n"],
+            capture_output=True, text=True, timeout=60,
+        )
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return None
+    if proc.returncode != 0:
+        return None
+    families: set[str] = set()
+    for line in proc.stdout.splitlines():
+        for piece in line.split(","):
+            if piece.strip():
+                families.add(piece.strip().lower())
+    return families
+
+
+def verify_ass_fonts(ass_paths: list[Path], fonts_dir: Path | None) -> None:
+    """Fail fast when a burned ASS family resolves nowhere.
+
+    libass silently substitutes a fallback face, so an unresolvable upload
+    would otherwise render a full episode in the wrong font. The check mirrors
+    exactly what libass sees: system fontconfig plus the uploaded fonts dir.
+    When neither source can be queried, it steps aside instead of blocking.
+    """
+    wanted: dict[str, list[str]] = {}
+    for ass_path in ass_paths:
+        for family in _ass_font_families(ass_path):
+            wanted.setdefault(family, []).append(ass_path.name)
+    if not wanted:
+        return
+    pooled: set[str] = set()
+    system = _system_font_families()
+    if system is not None:
+        pooled.update(system)
+    scanned: set[str] = set()
+    if fonts_dir is not None:
+        try:
+            scanned = {name.lower() for name in _scan_fonts_dir_families(fonts_dir)}
+        except Exception:
+            scanned = set()
+        pooled.update(scanned)
+    if system is None and not scanned:
+        print("Warning: unable to query system or uploaded fonts; skipping ASS font verification.")
+        return
+    missing = sorted(family for family in wanted if family.lower() not in pooled)
+    if missing:
+        detail = "; ".join(f"{family} (from {', '.join(sorted(set(wanted[family])))})" for family in missing)
+        raise ValueError(
+            f"Render requested unavailable font(s): {detail}. "
+            "Re-upload the font in Studio or pick an installed face before rendering."
+        )
 
 
 def motion_filter(
@@ -898,8 +1020,10 @@ def main() -> None:
     branding_cfg = profile.get("branding") if isinstance(profile.get("branding"), dict) else {}
     logo_cfg = branding_cfg.get("logo") if isinstance(branding_cfg.get("logo"), dict) else {}
     title_cfg = branding_cfg.get("title") if isinstance(branding_cfg.get("title"), dict) else {}
+    watermark_cfg = branding_cfg.get("watermark") if isinstance(branding_cfg.get("watermark"), dict) else {}
     logo_enabled = bool(logo_cfg.get("enabled", False))
     title_enabled = bool(title_cfg.get("enabled", False))
+    watermark_enabled = bool(watermark_cfg.get("enabled", False))
     logo_path: Path | None = None
     if logo_enabled:
         logo_source = str(logo_cfg.get("source") or "")
@@ -1178,6 +1302,17 @@ def main() -> None:
             f"[{final_video_label}]ass=filename='{escape_filter_path(title_path)}'{fontsdir}[{title_label}]"
         )
         final_video_label = title_label
+    if watermark_enabled:
+        watermark_path = video_dir / "render" / "BRANDING_WATERMARK.ass"
+        write_brand_title_ass(
+            watermark_path, watermark_cfg, logo_box, width, height, duration,
+            style_name="VideoWatermark", layer_name="text watermark",
+        )
+        watermark_label = "vwatermark"
+        filter_parts.append(
+            f"[{final_video_label}]ass=filename='{escape_filter_path(watermark_path)}'{fontsdir}[{watermark_label}]"
+        )
+        final_video_label = watermark_label
     if subtitles_enabled:
         subtitle_label = "vout"
         ass_path = escape_filter_path(subtitle_path)
@@ -1188,6 +1323,10 @@ def main() -> None:
             f"[{final_video_label}]ass=filename='{ass_path}'{fontsdir}[{subtitle_label}]"
         )
         final_video_label = subtitle_label
+    verify_ass_fonts(
+        ([title_path] if title_enabled else []) + ([subtitle_path] if subtitles_enabled else []),
+        custom_fonts_dir,
+    )
 
     filter_complex = ";".join(filter_parts)
 
@@ -1244,7 +1383,7 @@ def main() -> None:
     command = [*launcher, *command] if launcher else command
 
     print(f"Subtitles: {'on' if subtitles_enabled else 'off'}")
-    print(f"Branding: logo={'on' if logo_enabled else 'off'}, title={'on' if title_enabled else 'off'}")
+    print(f"Branding: logo={'on' if logo_enabled else 'off'}, title={'on' if title_enabled else 'off'}, watermark={'on' if watermark_enabled else 'off'}")
     print(
         f"Resource caps: encoder={thread_cap}, filter={filter_threads}, "
         f"complex={filter_complex_threads} (from {thread_source})"

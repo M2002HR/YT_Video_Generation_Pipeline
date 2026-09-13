@@ -1,0 +1,206 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "58b620ccf63666530cb6492812c62be64f1a5c920c1e5868045ebc754fb408e0",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall off-white line-art image shows a small Dumbo octopus fully visible low-center, surrounded by a very large open field with sparse bubbles and particulate marks. The octopus has prominent ear-like fins in differing flap positions, restrained curved motion marks, rounded black contours, light gray micro-shading, and sparse cyan on the eye and some suckers. A thin irregular hand-drawn contour runs near the outer edge with small bubble interruptions, closely retaining the recurring paper, palette, edge, and frame language of the supplied continuity references.",
+    "violations": [
+      "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+      "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+      "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+      "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+      "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+      "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+      "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+    ],
+    "observations": [
+      "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+      "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+      "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+      "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "90d9e84b-03c8-4f34-a2f7-dceab93e0c4e",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/caeb1a490cfc30f4",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=90d9e84b-03c8-4f34-a2f7-dceab93e0c4e_output_1.png 1536x2752 sha256=fae862bc5cda1724ebb7c0a8ce00133158103521f719fa2a088643eb9a3df32b"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single tall off-white line-art image shows a small Dumbo octopus fully visible low-center, surrounded by a very large open field with sparse bubbles and particulate marks. The octopus has prominent ear-like fins in differing flap positions, restrained curved motion marks, rounded black contours, light gray micro-shading, and sparse cyan on the eye and some suckers. A thin irregular hand-drawn contour runs near the outer edge with small bubble interruptions, closely retaining the recurring paper, palette, edge, and frame language of the supplied continuity references.",
+      "violations": [
+        "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+        "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+        "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+        "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+        "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+        "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+        "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+      ],
+      "observations": [
+        "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+        "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+        "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+        "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "58b620ccf63666530cb6492812c62be64f1a5c920c1e5868045ebc754fb408e0",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "90d9e84b-03c8-4f34-a2f7-dceab93e0c4e",
+        "prompt_sha256": "e1ad5262f562d9ba37a1034afae2d80dc4669dda6a977c32ae466f7928b3dd7b",
+        "output_sha256": "fae862bc5cda1724ebb7c0a8ce00133158103521f719fa2a088643eb9a3df32b",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall off-white line-art image shows a small Dumbo octopus fully visible low-center, surrounded by a very large open field with sparse bubbles and particulate marks. The octopus has prominent ear-like fins in differing flap positions, restrained curved motion marks, rounded black contours, light gray micro-shading, and sparse cyan on the eye and some suckers. A thin irregular hand-drawn contour runs near the outer edge with small bubble interruptions, closely retaining the recurring paper, palette, edge, and frame language of the supplied continuity references.",
+          "violations": [
+            "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+            "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+            "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+            "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+            "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+            "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+            "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+          ],
+          "observations": [
+            "The 1143 by 2048 canvas is very close to but not mathematically exact 9:16.",
+            "The viewing angle reads more as a lateral or gently three-quarter view than an unmistakable distant high three-quarter view.",
+            "The creature treatment is somewhat more cute and character-like, especially in the large expressive eye and simplified face, than the more observational educational anatomy visible in the world keyframe.",
+            "The cyan accent appears on both the eye and multiple suckers rather than being confined to a single especially focused anatomical feature."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "354c0238-7e4d-47c6-8253-b62c017f8e44",
+        "prompt_sha256": "52ce9bee2e3c328f7e58b7e4cb1dd5c9b96d99244e0ed965d8014fd36fed9a79",
+        "output_sha256": "0721d93708ab6960749ce09d7f8dfa9c57dd2c7a7e87563b6ef192afee5e1f34",
+        "quality_check": {
+          "passed": true,
+          "description": "A single full-body Dumbo octopus appears low-center in a tall off-white deep-ocean field, surrounded by abundant negative space, sparse bubbles, particulate, and restrained current or motion marks. The image uses thin black hand-drawn linework with light graphite-gray interior accents and a single cyan accent concentrated in the visible eye. A thin outer contour frames the scene, and there is no text, caption area, grid, or panel layout.",
+          "violations": [
+            "The canvas remains 1143 by 2048, which is close to but not mathematically exact 9:16; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+            "The camera still reads as an oblique lateral or mild three-quarter view rather than an unmistakable distant high three-quarter view because the large side-facing eye and lateral silhouette dominate while relatively little top surface is exposed.",
+            "The octopus is fairly large in frame for the requested distant presentation, so the subject reads more as a medium-distance focal illustration than a small creature gliding through a vast water column.",
+            "The oversized, highly articulated eye and simplified facial organization still make the animal somewhat character-like compared with the more observational educational anatomy established by the world keyframe.",
+            "The eye area carries comparatively dense contouring and gray detail, making that focal region more expressive and illustrative than the requested sparse anatomical treatment.",
+            "The outer frame is slightly straighter and more rectangular in places than the softer organic rounded frame language visible in the continuity references."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "Compared with the qc_previous_candidate, the octopus has been enlarged substantially, weakening the already-correct distant scale and reducing the sense of generous surrounding negative space.",
+            "Compared with the qc_previous_candidate, the outer contour reads somewhat straighter and squarer, losing some of the previous frame's softer organic hand-drawn character."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The canvas remains 1143 by 2048, which is close to but not mathematically exact 9:16; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+            "The camera still reads as an oblique lateral or mild three-quarter view rather than an unmistakable distant high three-quarter view because the large side-facing eye and lateral silhouette dominate while relatively little top surface is exposed.",
+            "The octopus is fairly large in frame for the requested distant presentation, so the subject reads more as a medium-distance focal illustration than a small creature gliding through a vast water column.",
+            "The oversized, highly articulated eye and simplified facial organization still make the animal somewhat character-like compared with the more observational educational anatomy established by the world keyframe.",
+            "The eye area carries comparatively dense contouring and gray detail, making that focal region more expressive and illustrative than the requested sparse anatomical treatment.",
+            "The outer frame is slightly straighter and more rectangular in places than the softer organic rounded frame language visible in the continuity references."
+          ],
+          "observations": [
+            "The canvas remains 1143 by 2048, which is close to but not mathematically exact 9:16; an exact 2048-high 9:16 canvas would be 1152 pixels wide.",
+            "The camera still reads as an oblique lateral or mild three-quarter view rather than an unmistakable distant high three-quarter view because the large side-facing eye and lateral silhouette dominate while relatively little top surface is exposed.",
+            "The octopus is fairly large in frame for the requested distant presentation, so the subject reads more as a medium-distance focal illustration than a small creature gliding through a vast water column.",
+            "The oversized, highly articulated eye and simplified facial organization still make the animal somewhat character-like compared with the more observational educational anatomy established by the world keyframe.",
+            "The eye area carries comparatively dense contouring and gray detail, making that focal region more expressive and illustrative than the requested sparse anatomical treatment.",
+            "The outer frame is slightly straighter and more rectangular in places than the softer organic rounded frame language visible in the continuity references.",
+            "Compared with the qc_previous_candidate, the octopus has been enlarged substantially, weakening the already-correct distant scale and reducing the sense of generous surrounding negative space.",
+            "Compared with the qc_previous_candidate, the outer contour reads somewhat straighter and squarer, losing some of the previous frame's softer organic hand-drawn character."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_style_anchor.png",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_keyframe.png",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+      "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/assets/raw_beats/beat_006.png",
+      "sha256": "127f138ef537c5876916cc48d0046285509440ceeb62549cec37f27597ce5f75"
+    }
+  ],
+  "prompt_sha256": "e1ad5262f562d9ba37a1034afae2d80dc4669dda6a977c32ae466f7928b3dd7b",
+  "prompt": "Gemini Image Prompt — Beat 7\n\nGenerate exactly one 9:16 image: a small Dumbo octopus viewed from a distant high three-quarter angle, gliding gently through a vast open deep-ocean water column, full body visible low-center with generous surrounding negative space; its paired ear-like fins are caught at opposite phases of a soft flap, clarified by a few restrained curved motion marks. Render as monochrome educational line-art on smooth matte off-white paper with extremely light natural tooth: clean confident rounded carbon-black monoline contours, simplified biologically recognizable anatomy, minimal interior detail, sparse graphite-gray micro-accents, no heavy shadows, flat diffuse illustrative lighting, depth shown through scale, overlap, contour density, tiny drifting particulate, bubbles and current marks; optionally use one extremely sparse abyssal-cyan accent only if it supports a key anatomical feature. Maintain the recurring thin hand-drawn outer contour and organically interlocking illustration-window language while using the full image height naturally, with no caption reserve or low-detail bottom strip. Reference roles: style_reference guides the general visual treatment only; world_keyframe establishes this ocean world's canonical medium, palette, texture, lighting and frame language; operator_style_reference informs crisp contour rhythm and editorial educational clarity without copying its people, objects, text or composition; previous_beat is binding only for recurring frame material, edge treatment, inner-window language, texture, palette and lighting, never its crop, camera angle, pose, subject placement or focal object. No photorealism, 3D CGI, anime, painterly effects, watercolor, collage, halftones, dense engraving, neon palette, gradients, horror styling, decorative typography, labels, UI, readable text, storyboard, grid, collage or panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_007.png",
+  "output_sha256": "fae862bc5cda1724ebb7c0a8ce00133158103521f719fa2a088643eb9a3df32b",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.147,
+  "completed_at": "2026-09-12T17:01:12Z"
+}

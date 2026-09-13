@@ -1,21 +1,20 @@
 {
-  "title": "Why a Song Keeps Playing in Your Head After It Stops",
+  "title": "Why a Song Keeps Playing in Your Head After the Music Stops",
   "title_options": [
-    "Why Songs Get Stuck in Your Head",
     "Why Your Brain Replays the Same Tune",
-    "Why Fighting an Earworm Can Keep It Going"
+    "Why Earworms Keep Coming Back",
+    "What Makes a Song Get Stuck in Your Head?"
   ],
-  "description": "Why can a tune keep looping in your head after the music stops? This Short explores involuntary musical imagery, often called an earworm. Recent or repeated listening can trigger it, while short, distinctive fragments may be easier to retrieve. Repetition can make the next note feel predictable, allowing your brain to replay the pattern without external sound. Idle moments, mood, and personal memories can strengthen the cue, while an absorbing task can shift attention until the loop fades.\n\nQ Station is an English-language education channel built around the idea that every question opens a world.\n\n#Earworm #Music #Memory",
+  "description": "Why can a tune keep looping in your mind after the music stops? This Q Station Short explores involuntary musical imagery, often called an earworm. Recent or repeated listening can trigger a musical fragment, while short, distinctive patterns can be easier to retrieve. Repetition can make the next note feel predictable, and idle moments, mood, or personal memories can give the loop another cue. An absorbing task can shift attention elsewhere until the pattern fades. Q Station is an educational channel where every question opens a world.",
   "tags": [
+    "why songs get stuck in your head",
     "earworm",
     "involuntary musical imagery",
-    "song stuck in your head",
-    "why songs get stuck in your head",
-    "music memory",
-    "repeated listening",
+    "song stuck in head",
+    "why earworms happen",
+    "music and memory",
+    "musical memory",
     "brain replaying music",
-    "attention and earworms",
-    "music repetition",
     "Q Station"
   ],
   "category": "Education",
@@ -36,24 +35,34 @@
   },
   "manual_review": [
     {
-      "field": "audience",
-      "recommendation": "Confirm not_made_for_kids before publishing.",
-      "reason": "The source recommends not_made_for_kids, but the uploader must make the final audience declaration."
+      "field": "audience_recommendation",
+      "recommendation": "Use the channel recommendation of not_made_for_kids as context, but make the final audience designation during upload.",
+      "reason": "Audience designation is an uploader declaration and should not be decided automatically from metadata."
     },
     {
       "field": "age_restriction",
-      "recommendation": "Review the completed video and make the final age-restriction declaration.",
-      "reason": "The supplied context does not provide a final uploader declaration."
+      "recommendation": "Review the finished video and make the age-restriction declaration during upload.",
+      "reason": "The source context does not establish a final platform declaration."
     },
     {
       "field": "paid_promotion",
-      "recommendation": "Confirm whether any sponsorship, endorsement, or other qualifying commercial relationship applies before publishing.",
-      "reason": "The supplied context does not provide a final paid-promotion declaration."
+      "recommendation": "Confirm whether the finished upload contains any paid promotion, sponsorship, endorsement, or commercial placement.",
+      "reason": "The source context does not provide enough information to make this declaration."
     },
     {
       "field": "altered_or_synthetic_content",
-      "recommendation": "Review the finished video and make the applicable altered-or-synthetic-content disclosure decision under YouTube's current requirements.",
-      "reason": "The supplied rendered frames are stylized, but the uploader must make the final platform disclosure declaration."
+      "recommendation": "Review the finished video and decide whether YouTube's altered or synthetic content disclosure applies.",
+      "reason": "The supplied source context and rendered frames do not establish the facts needed for a final platform disclosure decision."
+    },
+    {
+      "field": "music_license",
+      "recommendation": "Verify that the final audio uses the cited Freesound track and confirm its licensing or attribution requirements before publishing.",
+      "reason": "The source context identifies a Freesound source and a CC0 license URL, but licensing compliance should be checked against the actual final audio."
+    },
+    {
+      "field": "Audience",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm the audience declaration in YouTube Studio; only the uploader can make the final Made for Kids decision."
     },
     {
       "field": "Age Restriction",
@@ -71,15 +80,15 @@
       "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
     }
   ],
-  "thumbnail_prompt": "Create one instantly readable 9:16 YouTube Shorts thumbnail for this exact earworm episode. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Match their bold pop-art/comic look with thick dark outlines, cream backgrounds, saturated purple, yellow, pink, red, and orange, graphic halftone texture, and clean flat shapes. Any world keyframe is supporting continuity only and must never override the final rendered frames. Any character sheet is identity-only and must not make a character appear unless that character genuinely belongs in this episode's thumbnail. Use one dominant focal subject taken directly from the episode imagery: the large stylized purple ear on the illustrated reference-book page, surrounded by a tight closed loop of yellow musical-note shapes that visibly circles back toward itself, making the internal repetition immediately clear. Keep the composition simple enough to read on a phone, with strong contrast, a clear silhouette, deliberate negative space in the upper third, and minimal secondary detail. Preserve the distinctive book-and-ear visual language of the rendered opening frame so the thumbnail feels unmistakably connected to this episode rather than generic music artwork. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
-  "thumbnail_overlay_text": "Stuck on Repeat",
-  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader deliberately chooses one.",
+  "thumbnail_prompt": "Gemini: create one instantly readable vertical 9:16 thumbnail for this exact earworm episode. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Match their bold black ink outlines, cream/off-white ground, saturated yellow, pink, purple, red and orange palette, halftone texture, and graphic pop-art rehearsal-world aesthetic. Any world keyframe is supporting continuity only and must never override the final rendered frames. Any character sheet is identity-only and must not make a character appear unless that character belongs in this episode's thumbnail. Use one dominant focal subject inspired directly by the rendered opening frame: a large purple ear surrounded by one unmistakable circular loop of musical-note and sound-pattern motifs, with a partial record-like form reinforcing the idea of repetition. Make the looping path visibly return toward the ear so the stuck-song idea reads immediately at phone size. Keep high contrast, a simple hierarchy, and deliberate clean negative space in the upper-right for optional later overlay text. Do not turn it into generic neuroscience imagery. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Why Songs Get Stuck",
+  "related_video_note": "No related video is specified in the source context; select one manually only if there is a genuinely relevant Q Station episode.",
   "schema_version": 1,
-  "created_at": "2026-09-13T14:22:03.756549+00:00",
-  "source_master_sha256": "69a30eff830c51700922aaebd1417e181cd5d0ebe918bd4e367a436fb6cd4044",
+  "created_at": "2026-09-13T15:30:56.312641+00:00",
+  "source_master_sha256": "812fb0ed713e1f38655d74ef53f81df024f3394486e4c0a894dc49221ec184f6",
   "chatgpt_jobs": {
-    "draft": "802f2e65-7d32-42e8-8430-126750653a9b",
-    "review": "b2886580-4717-4bb5-81f0-038966568282",
+    "draft": "83d0be21-d6ae-4531-8010-21d46f2c5cf0",
+    "review": "a6783719-1b5f-4c78-8506-9f65bb457a98",
     "schema_repairs": []
   },
   "source_context": {
@@ -163,8 +172,8 @@
           "file": "publish/youtube_short/visual_references/render_opening.png",
           "width": 1080,
           "height": 1920,
-          "bytes": 2767763,
-          "sha256": "da522afc0381599dfca8426821d6e0fe785a07c77a2edae8b0a2f00db20d8eb2",
+          "bytes": 2771864,
+          "sha256": "4d5a84f047b349be81db5aec281fd98f98d292f73febb58507a5825973dbb116",
           "time_seconds": 5.943
         },
         {
@@ -173,8 +182,8 @@
           "file": "publish/youtube_short/visual_references/render_body.png",
           "width": 1080,
           "height": 1920,
-          "bytes": 2802506,
-          "sha256": "360394a53543786ba1aa66c85d55082aead0d964d7c6ca8a9a091d41f567b0be",
+          "bytes": 2783128,
+          "sha256": "01e6ef18e2f4220ca852eee5efd85407186d69da188a91bc838ee1c98f9b65d0",
           "time_seconds": 29.714
         },
         {
@@ -183,8 +192,8 @@
           "file": "publish/youtube_short/visual_references/render_closing.png",
           "width": 1080,
           "height": 1920,
-          "bytes": 1653600,
-          "sha256": "ff1797c0d8917f598091f2c731dbe7e54c6daa2a83d21b4363f89df97694e283",
+          "bytes": 1657741,
+          "sha256": "fa16ef45cf7605c6b3b2a809e301a44ad682bf2d944c26219a93c1cfee4cf88e",
           "time_seconds": 49.92
         },
         {
@@ -204,65 +213,65 @@
     "selected": {
       "width": 1536,
       "height": 2752,
-      "bytes": 3257624,
-      "sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c"
+      "bytes": 3137587,
+      "sha256": "c20126c4e38c659efec6355a9224377123be19bfc50407f8109f62ae0209aefe"
     },
     "selected_attempt": 1,
     "quality_check": {
       "passed": true,
-      "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+      "description": "A vertical pop-art thumbnail showing a large purple ear as the dominant central focal subject, surrounded by concentric circular bands of colorful musical-note motifs, with a large red record-like form cropped along the bottom. The image uses bold black ink outlines, a cream ground, saturated yellow, pink, purple, red and orange accents, plus halftone and print-like texture consistent with the rendered reference frames. No host character, written words, logo, watermark, UI, border, collage, or generic neuroscience imagery is visible.",
       "violations": [
-        "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-        "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-        "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-        "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+        "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+        "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+        "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+        "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
       ],
       "blocking_violations": [],
       "regressions": [],
       "raw_passed": true,
       "raw_violations": [
-        "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-        "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-        "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-        "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+        "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+        "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+        "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+        "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
       ],
       "observations": [
-        "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-        "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-        "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-        "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+        "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+        "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+        "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+        "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
       ],
       "review_status": "passed_with_warnings"
     },
     "candidates": [
       {
         "attempt": 1,
-        "job_id": "364588e8-70eb-4026-b097-0babdcf65078",
-        "prompt_sha256": "9f209b94ebab59c02986d6c69b14a98eb8b62a397a3be77895d368e6a37829c8",
-        "output_sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c",
+        "job_id": "401b3a1e-a8d1-4abb-8360-8bcc49d5bea6",
+        "prompt_sha256": "9ff837409e53eaeb71c8ce3ebff9f94ebf0356a2cf1854ee3aaad891c7971e65",
+        "output_sha256": "c20126c4e38c659efec6355a9224377123be19bfc50407f8109f62ae0209aefe",
         "quality_check": {
           "passed": true,
-          "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+          "description": "A vertical pop-art thumbnail showing a large purple ear as the dominant central focal subject, surrounded by concentric circular bands of colorful musical-note motifs, with a large red record-like form cropped along the bottom. The image uses bold black ink outlines, a cream ground, saturated yellow, pink, purple, red and orange accents, plus halftone and print-like texture consistent with the rendered reference frames. No host character, written words, logo, watermark, UI, border, collage, or generic neuroscience imagery is visible.",
           "violations": [
-            "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-            "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-            "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-            "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+            "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+            "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+            "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+            "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
           ],
           "blocking_violations": [],
           "regressions": [],
           "raw_passed": true,
           "raw_violations": [
-            "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-            "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-            "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-            "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+            "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+            "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+            "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+            "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
           ],
           "observations": [
-            "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-            "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-            "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-            "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+            "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+            "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+            "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+            "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
           ],
           "review_status": "passed_with_warnings"
         },
@@ -273,8 +282,8 @@
         "image": {
           "width": 1536,
           "height": 2752,
-          "bytes": 3257624,
-          "sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c"
+          "bytes": 3137587,
+          "sha256": "c20126c4e38c659efec6355a9224377123be19bfc50407f8109f62ae0209aefe"
         },
         "visual_references": [
           {
@@ -283,8 +292,8 @@
             "file": "publish/youtube_short/visual_references/render_opening.png",
             "width": 1080,
             "height": 1920,
-            "bytes": 2767763,
-            "sha256": "da522afc0381599dfca8426821d6e0fe785a07c77a2edae8b0a2f00db20d8eb2",
+            "bytes": 2771864,
+            "sha256": "4d5a84f047b349be81db5aec281fd98f98d292f73febb58507a5825973dbb116",
             "time_seconds": 5.943
           },
           {
@@ -293,8 +302,8 @@
             "file": "publish/youtube_short/visual_references/render_body.png",
             "width": 1080,
             "height": 1920,
-            "bytes": 2802506,
-            "sha256": "360394a53543786ba1aa66c85d55082aead0d964d7c6ca8a9a091d41f567b0be",
+            "bytes": 2783128,
+            "sha256": "01e6ef18e2f4220ca852eee5efd85407186d69da188a91bc838ee1c98f9b65d0",
             "time_seconds": 29.714
           },
           {
@@ -303,8 +312,8 @@
             "file": "publish/youtube_short/visual_references/render_closing.png",
             "width": 1080,
             "height": 1920,
-            "bytes": 1653600,
-            "sha256": "ff1797c0d8917f598091f2c731dbe7e54c6daa2a83d21b4363f89df97694e283",
+            "bytes": 1657741,
+            "sha256": "fa16ef45cf7605c6b3b2a809e301a44ad682bf2d944c26219a93c1cfee4cf88e",
             "time_seconds": 49.92
           },
           {
@@ -326,8 +335,8 @@
         "file": "publish/youtube_short/visual_references/render_opening.png",
         "width": 1080,
         "height": 1920,
-        "bytes": 2767763,
-        "sha256": "da522afc0381599dfca8426821d6e0fe785a07c77a2edae8b0a2f00db20d8eb2",
+        "bytes": 2771864,
+        "sha256": "4d5a84f047b349be81db5aec281fd98f98d292f73febb58507a5825973dbb116",
         "time_seconds": 5.943
       },
       {
@@ -336,8 +345,8 @@
         "file": "publish/youtube_short/visual_references/render_body.png",
         "width": 1080,
         "height": 1920,
-        "bytes": 2802506,
-        "sha256": "360394a53543786ba1aa66c85d55082aead0d964d7c6ca8a9a091d41f567b0be",
+        "bytes": 2783128,
+        "sha256": "01e6ef18e2f4220ca852eee5efd85407186d69da188a91bc838ee1c98f9b65d0",
         "time_seconds": 29.714
       },
       {
@@ -346,8 +355,8 @@
         "file": "publish/youtube_short/visual_references/render_closing.png",
         "width": 1080,
         "height": 1920,
-        "bytes": 1653600,
-        "sha256": "ff1797c0d8917f598091f2c731dbe7e54c6daa2a83d21b4363f89df97694e283",
+        "bytes": 1657741,
+        "sha256": "fa16ef45cf7605c6b3b2a809e301a44ad682bf2d944c26219a93c1cfee4cf88e",
         "time_seconds": 49.92
       },
       {
@@ -366,7 +375,7 @@
       "qc_correction_policy": "0",
       "chatgpt_fallback_mode": "auto"
     },
-    "gemini_job_id": "364588e8-70eb-4026-b097-0babdcf65078",
+    "gemini_job_id": "401b3a1e-a8d1-4abb-8360-8bcc49d5bea6",
     "gemini_receipt": {
       "provider": "gemini",
       "requested_model": "nano_banana_2",
@@ -380,7 +389,7 @@
       "actual_duration_seconds": null,
       "requested_resolution": null,
       "actual_resolution": null,
-      "workspace_url": "https://gemini.google.com/app/853f82885a2220d4",
+      "workspace_url": "https://gemini.google.com/app/3e09ad18ee7968de",
       "submission_fingerprint": null,
       "reference_roles": [
         "thumbnail_rendered_opening_frame",
@@ -392,64 +401,64 @@
         "model_label_source=mode-picker",
         "extended_thinking_mode=Open mode picker, currently Flash Extended",
         "artifact_source=download",
-        "image=364588e8-70eb-4026-b097-0babdcf65078_output_1.png 1536x2752 sha256=e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c"
+        "image=401b3a1e-a8d1-4abb-8360-8bcc49d5bea6_output_1.png 1536x2752 sha256=c20126c4e38c659efec6355a9224377123be19bfc50407f8109f62ae0209aefe"
       ],
       "quality_check": {
         "passed": true,
-        "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+        "description": "A vertical pop-art thumbnail showing a large purple ear as the dominant central focal subject, surrounded by concentric circular bands of colorful musical-note motifs, with a large red record-like form cropped along the bottom. The image uses bold black ink outlines, a cream ground, saturated yellow, pink, purple, red and orange accents, plus halftone and print-like texture consistent with the rendered reference frames. No host character, written words, logo, watermark, UI, border, collage, or generic neuroscience imagery is visible.",
         "violations": [
-          "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-          "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-          "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-          "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+          "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+          "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+          "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+          "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
         ],
         "blocking_violations": [],
         "regressions": [],
         "raw_passed": true,
         "raw_violations": [
-          "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-          "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-          "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-          "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+          "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+          "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+          "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+          "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
         ],
         "observations": [
-          "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-          "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-          "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-          "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+          "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+          "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+          "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+          "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
         ],
         "review_status": "passed_with_warnings"
       },
-      "request_fingerprint": "caaa1edbfa9c46ffd12c65e583385cdaf99b7fb8daf652982958c7b2b62f1f98",
+      "request_fingerprint": "8c8af5bef81e6d65dd67ef54d7c9620ce9001c767cc56c53d1af7b2360764181",
       "quality_iterations": [
         {
           "attempt": 1,
-          "job_id": "364588e8-70eb-4026-b097-0babdcf65078",
-          "prompt_sha256": "9f209b94ebab59c02986d6c69b14a98eb8b62a397a3be77895d368e6a37829c8",
-          "output_sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c",
+          "job_id": "401b3a1e-a8d1-4abb-8360-8bcc49d5bea6",
+          "prompt_sha256": "9ff837409e53eaeb71c8ce3ebff9f94ebf0356a2cf1854ee3aaad891c7971e65",
+          "output_sha256": "c20126c4e38c659efec6355a9224377123be19bfc50407f8109f62ae0209aefe",
           "quality_check": {
             "passed": true,
-            "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+            "description": "A vertical pop-art thumbnail showing a large purple ear as the dominant central focal subject, surrounded by concentric circular bands of colorful musical-note motifs, with a large red record-like form cropped along the bottom. The image uses bold black ink outlines, a cream ground, saturated yellow, pink, purple, red and orange accents, plus halftone and print-like texture consistent with the rendered reference frames. No host character, written words, logo, watermark, UI, border, collage, or generic neuroscience imagery is visible.",
             "violations": [
-              "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-              "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-              "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-              "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+              "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+              "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+              "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+              "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
             ],
             "blocking_violations": [],
             "regressions": [],
             "raw_passed": true,
             "raw_violations": [
-              "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-              "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-              "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-              "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+              "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+              "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+              "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+              "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
             ],
             "observations": [
-              "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
-              "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
-              "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
-              "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+              "The requested clean negative space in the upper-right is not preserved; musical-note motifs occupy that area.",
+              "The repetition idea is represented by several concentric note bands rather than one unmistakable single looping path, so the return-to-ear motion is somewhat less explicit than requested.",
+              "The composition is visually busier than the requested simple hierarchy because numerous individual note motifs surround the ear.",
+              "The delivered image is 1143×2048, which is close to but not exactly 9:16 and is below the stated 2160×3840 target resolution."
             ],
             "review_status": "passed_with_warnings"
           },

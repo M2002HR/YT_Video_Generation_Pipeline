@@ -1,0 +1,210 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "cd0c15d55d16d798b64bd217b9927d0957a87938248fef8c924aabe75143ab5f",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall deep-sea illustration shows a giant isopod dominating the foreground and crawling head-first toward the camera across a rocky benthic floor. Its overlapping dorsal plates, antennae, many jointed legs, and pill-bug-like silhouette are immediately readable. The Red Horned Everyman crouches small in the rear-left, retaining red skin, two enormous ridged black horns, pointed ears, long angular nose, drooping eyes, tousled black hair, pointed goatee, lower tusks, plaid overshirt, dark shirt, faded jeans, and work boots. The scene uses an off-white paper field, black linework, sparse gray shading and hatching, tiny ocean particulate and bubble marks, limited cyan accents on the isopod, and a thin rounded hand-drawn outer contour continuing around the full-height seafloor scene.",
+    "violations": [
+      "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+      "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+      "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+      "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+      "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+      "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+      "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+      "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+      "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+    ],
+    "observations": [
+      "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+      "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+      "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+      "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+      "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "13106400-3ad6-4a84-894d-5c31dc850a3f",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/facc8e47d3571a5b",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=13106400-3ad6-4a84-894d-5c31dc850a3f_output_1.png 1536x2752 sha256=127f138ef537c5876916cc48d0046285509440ceeb62549cec37f27597ce5f75"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single tall deep-sea illustration shows a giant isopod dominating the foreground and crawling head-first toward the camera across a rocky benthic floor. Its overlapping dorsal plates, antennae, many jointed legs, and pill-bug-like silhouette are immediately readable. The Red Horned Everyman crouches small in the rear-left, retaining red skin, two enormous ridged black horns, pointed ears, long angular nose, drooping eyes, tousled black hair, pointed goatee, lower tusks, plaid overshirt, dark shirt, faded jeans, and work boots. The scene uses an off-white paper field, black linework, sparse gray shading and hatching, tiny ocean particulate and bubble marks, limited cyan accents on the isopod, and a thin rounded hand-drawn outer contour continuing around the full-height seafloor scene.",
+      "violations": [
+        "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+        "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+        "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+        "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+        "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+        "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+        "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+        "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+        "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+      ],
+      "observations": [
+        "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+        "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+        "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+        "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+        "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "cd0c15d55d16d798b64bd217b9927d0957a87938248fef8c924aabe75143ab5f",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "13106400-3ad6-4a84-894d-5c31dc850a3f",
+        "prompt_sha256": "6d9d57fc1042a59b6e6b3e0288b72c241bc832f552e76034b8a944fae3525bc8",
+        "output_sha256": "127f138ef537c5876916cc48d0046285509440ceeb62549cec37f27597ce5f75",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall deep-sea illustration shows a giant isopod dominating the foreground and crawling head-first toward the camera across a rocky benthic floor. Its overlapping dorsal plates, antennae, many jointed legs, and pill-bug-like silhouette are immediately readable. The Red Horned Everyman crouches small in the rear-left, retaining red skin, two enormous ridged black horns, pointed ears, long angular nose, drooping eyes, tousled black hair, pointed goatee, lower tusks, plaid overshirt, dark shirt, faded jeans, and work boots. The scene uses an off-white paper field, black linework, sparse gray shading and hatching, tiny ocean particulate and bubble marks, limited cyan accents on the isopod, and a thin rounded hand-drawn outer contour continuing around the full-height seafloor scene.",
+          "violations": [
+            "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+            "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+            "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+            "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+            "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+            "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+            "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+            "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+            "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+          ],
+          "observations": [
+            "The canvas is 1143 by 2048 pixels, which is very slightly narrower than an exact 9:16 aspect ratio.",
+            "The foreground isopod uses noticeably heavier contour weight and broader armor outlines than the finer recurring line treatment in the previous beat and world references, though the overall medium and visual language remain compatible.",
+            "The isopod armor plates are somewhat exaggerated and simplified relative to biologically grounded giant-isopod anatomy, with some legs and ventral structure obscured by the oversized dorsal mass.",
+            "The host's saturated red skin and dense dark horn and clothing fills carry substantially more visual weight than the otherwise sparse abyssal monochrome palette, although this remains consistent with the supplied character identity reference.",
+            "The host's plaid overshirt reads primarily gray rather than the darker red-and-black plaid seen on the character sheet, but the canonical garment type and overall outfit are preserved."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "5d994a2d-f0b8-4a8b-bc42-7cccef7402a9",
+        "prompt_sha256": "ab32a688a81ab9ecd30ce58e0f984ffef983381a1a1b4c5f9d334b3848eaa085",
+        "output_sha256": "698ff3a7e2fcc1f3745cde679c09320e5a2ea8b22fff241cc83d4fcf659872ab",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical deep-sea scene shows a giant isopod dominating the foreground and crawling toward camera, with the Red Horned Everyman crouched small in the rear-left. The image retains the off-white matte field, hand-drawn rounded border, sparse ocean marks, monochrome line-art treatment, restrained cyan accents, rocky benthic setting, and full-height composition. The host visibly retains his two large black ridged horns, pointed ears, long nose, drooping eyes, black hair and goatee, lower tusks, plaid overshirt, dark shirt, jeans, and work boots. Compared with the previous candidate, the overshirt is darker and redder and the isopod underside has additional leg and ventral detail.",
+          "violations": [
+            "The canvas remains 1143 by 2048 pixels rather than an exact 9:16 ratio; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+            "The giant isopod still uses noticeably heavier major contour and armor-plate lines than the finer recurring line treatment in the previous beat and world references.",
+            "The isopod dorsal armor remains somewhat oversized and simplified relative to biologically grounded giant-isopod anatomy, although the added underside detail improves leg and ventral readability compared with the previous candidate.",
+            "The host's saturated red skin and dense dark horns and clothing still carry substantially more visual weight than the sparse abyssal monochrome environment, though this remains consistent with the supplied character identity."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The canvas remains 1143 by 2048 pixels rather than an exact 9:16 ratio; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+            "The giant isopod still uses noticeably heavier major contour and armor-plate lines than the finer recurring line treatment in the previous beat and world references.",
+            "The isopod dorsal armor remains somewhat oversized and simplified relative to biologically grounded giant-isopod anatomy, although the added underside detail improves leg and ventral readability compared with the previous candidate.",
+            "The host's saturated red skin and dense dark horns and clothing still carry substantially more visual weight than the sparse abyssal monochrome environment, though this remains consistent with the supplied character identity."
+          ],
+          "observations": [
+            "The canvas remains 1143 by 2048 pixels rather than an exact 9:16 ratio; at 2048 pixels high, exact 9:16 would be 1152 pixels wide.",
+            "The giant isopod still uses noticeably heavier major contour and armor-plate lines than the finer recurring line treatment in the previous beat and world references.",
+            "The isopod dorsal armor remains somewhat oversized and simplified relative to biologically grounded giant-isopod anatomy, although the added underside detail improves leg and ventral readability compared with the previous candidate.",
+            "The host's saturated red skin and dense dark horns and clothing still carry substantially more visual weight than the sparse abyssal monochrome environment, though this remains consistent with the supplied character identity."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/red_horned_everyman/refs/character_sheet.png",
+      "sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_style_anchor.png",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_keyframe.png",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+      "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/assets/raw_beats/beat_005.png",
+      "sha256": "f7bce7004e3650f565d54d6a60f843f9d18c9a169f968dd829da8c5de48ebf59"
+    }
+  ],
+  "prompt_sha256": "6d9d57fc1042a59b6e6b3e0288b72c241bc832f552e76034b8a944fae3525bc8",
+  "prompt": "Gemini Image Prompt\n\nCreate exactly one 9:16 image: a low-angle wide illustration on a rocky deep-sea benthic floor, with a giant isopod dominating the foreground as it crawls slowly toward camera, its broad overlapping segmented armor plates, jointed legs, antennae, and pill-bug-like body shape immediately readable and biologically grounded. In the rear-left, small for scale, the Red Horned Everyman crouches at a respectful distance studying it with restrained, skeptical curiosity: slim lanky red-skinned adult, exactly two enormous symmetrical black ridged horns sweeping upward/outward, pointed ears, long angular nose, tired drooping eyes, short tousled black hair, pointed black goatee, two small lower tusks, plaid overshirt, dark shirt, faded jeans, worn work boots; preserve horn headroom, no extra fantasy traits. Render everything in the established abyssal monochrome illustration world: bone-white matte paper with faint natural tooth, clean rounded carbon-black monoline contours, simplified anatomy, sparse graphite-gray micro-accents, minimal hatching only for essential depth, flat diffuse illustrative lighting, generous negative space, tiny marine particulate/bubble/current marks, and only an extremely sparse cyan accent if useful for one key adaptation. Maintain the recurring thin hand-drawn outer contour and organic interlocking illustration-window language, using the full height naturally with no caption reserve or blank lower strip. Reference roles: character_sheet = host identity only, never pose/layout; style_reference = broad visual compatibility only; world_keyframe = established world rendering and frame-language continuity; operator_style_reference = line-art/editorial qualities only, never its people, objects, text, logos, or composition; previous_beat = binding for material/edge treatment, inner window, texture, palette, lighting, and full-height layout, but never copy its camera, crop, pose, placement, focal object, or composition. No photorealism, 3D CGI, anime, painterly effects, horror, storyboard, grid, collage, panels, captions, labels, UI, or readable text.\n\nClarify the isopod's foreground crawl direction NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_006.png",
+  "output_sha256": "127f138ef537c5876916cc48d0046285509440ceeb62549cec37f27597ce5f75",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 84.21,
+  "completed_at": "2026-09-12T16:55:06Z"
+}

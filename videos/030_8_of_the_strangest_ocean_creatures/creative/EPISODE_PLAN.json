@@ -1,0 +1,18 @@
+{
+  "opening_activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot",
+  "opening_location": "weathered public marina dock beside a small tied skiff",
+  "opening_environment": "quiet working marina at overcast daylight, with damp planks, a cleat, coiled dock lines, bits of washed-up kelp, and open seawater immediately beside the host",
+  "topic_visual_link": "A bizarre knot formed in ordinary marine rope creates an immediate visual comparison to the unexpectedly strange body shapes found in ocean animals.",
+  "link_type": "metaphor",
+  "opening_visual_proof": "At frame zero, the host holds a thick dock line whose center is visibly snarled into a dense asymmetrical mass of loops and protruding bends while the rest of the rope hangs normally toward the cleat.",
+  "curiosity_trigger": "He rotates the tangled section once and notices that every angle reveals another odd loop or projection instead of a recognizable knot pattern.",
+  "trigger_object": "the contorted knot in the wet mooring line",
+  "reaction": "He studies it with a weary squint, gives one small skeptical head tilt, then glances toward his nearby reference book.",
+  "book_retrieval": "He lowers the rope onto the dock and reaches sideways to pull the book from an open canvas gear bag already sitting beside the cleat.",
+  "camera_pattern": "gentle_pan_left",
+  "book_template_id": "003",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "return_to_opening",
+  "world_style_hint": "clean natural-history line art of deep-sea creatures with exaggerated silhouettes, sparse ocean textures, and strong anatomical shape readability",
+  "reason": "A marina rope naturally supplies the script's tangled-knot setup while giving the restrained host a believable task and a visually immediate bridge from an ordinary ocean object to the extraordinary shapes of real sea creatures."
+}

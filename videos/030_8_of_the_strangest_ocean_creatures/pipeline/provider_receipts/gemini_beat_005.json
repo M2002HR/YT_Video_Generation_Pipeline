@@ -1,0 +1,186 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "324f794fcd44797ecdd08ee4133c770fdc008cd42fc53497e883a87080ac06fc",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical monochrome environmental illustration shows a biologically recognizable leafy seadragon hovering within a dense seaweed thicket. The animal sits predominantly right of center, with leaf-shaped appendages interlocking visually with surrounding fronds. The image uses a warm off-white matte ground, rounded black linework, sparse graphite-like interior marks, tiny bubbles and particulate, and one restrained cyan accent at the eye. A thin hand-drawn rounded outer contour encloses the scene, and vegetation plus seabed detail continue through the lower edge without a caption reserve.",
+    "violations": [
+      "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+      "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+      "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+      "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+      "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+    ],
+    "observations": [
+      "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+      "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+      "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "0262dfba-afcd-4684-894b-3380de704239",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/c0e88c41a849e0ee",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=0262dfba-afcd-4684-894b-3380de704239_output_1.png 1536x2752 sha256=f7bce7004e3650f565d54d6a60f843f9d18c9a169f968dd829da8c5de48ebf59"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical monochrome environmental illustration shows a biologically recognizable leafy seadragon hovering within a dense seaweed thicket. The animal sits predominantly right of center, with leaf-shaped appendages interlocking visually with surrounding fronds. The image uses a warm off-white matte ground, rounded black linework, sparse graphite-like interior marks, tiny bubbles and particulate, and one restrained cyan accent at the eye. A thin hand-drawn rounded outer contour encloses the scene, and vegetation plus seabed detail continue through the lower edge without a caption reserve.",
+      "violations": [
+        "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+        "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+        "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+        "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+        "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+      ],
+      "observations": [
+        "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+        "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+        "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "324f794fcd44797ecdd08ee4133c770fdc008cd42fc53497e883a87080ac06fc",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "0262dfba-afcd-4684-894b-3380de704239",
+        "prompt_sha256": "e5f333f545c54f14b284794c336a107264dce7e73460a7ffaa76261a1313ae60",
+        "output_sha256": "f7bce7004e3650f565d54d6a60f843f9d18c9a169f968dd829da8c5de48ebf59",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical monochrome environmental illustration shows a biologically recognizable leafy seadragon hovering within a dense seaweed thicket. The animal sits predominantly right of center, with leaf-shaped appendages interlocking visually with surrounding fronds. The image uses a warm off-white matte ground, rounded black linework, sparse graphite-like interior marks, tiny bubbles and particulate, and one restrained cyan accent at the eye. A thin hand-drawn rounded outer contour encloses the scene, and vegetation plus seabed detail continue through the lower edge without a caption reserve.",
+          "violations": [
+            "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+            "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+            "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+            "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+            "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+          ],
+          "observations": [
+            "The cyan eye accent is slightly more conspicuous than the requested extremely subtle abyssal-cyan treatment.",
+            "Some interior hatching on the seadragon and vegetation is a little denser than the requested minimal-hatching approach.",
+            "The seadragon occupies a fairly prominent central-right area, so the camouflage effect is somewhat easier to parse at first glance than the direction's initially difficult-to-distinguish target."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "07b2baf5-13e0-49aa-9e9b-9d40f6d0e786",
+        "prompt_sha256": "6067b06c65fdef99de8d55a2296e9d14eeed77b2955cce56a7188cd1a241776d",
+        "output_sha256": "11e15a6198b3e843778f51eca981ea3ec88c934fac97386f76c8a323ba184b35",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall underwater line-art illustration shows a full-body leafy seadragon hovering within a dense seaweed thicket, offset toward the right. The scene uses an off-white matte ground, thin rounded black contours, sparse gray detail, scattered bubbles and particulate, an irregular rounded outer frame, and a small cyan eye accent. Vegetation continues through the full height with a naturally textured seabed at the bottom.",
+          "violations": [
+            "The cyan eye remains noticeably vivid and immediately attention-grabbing rather than reading as an extremely subtle abyssal-cyan accent.",
+            "Interior graphite hatching is still somewhat denser than requested, especially around the seadragon's head, neck and torso and within several nearby seaweed leaves.",
+            "The seadragon remains fairly easy to identify on first glance because its large central-right body and several continuous outer contours stay clearly separated from surrounding fronds, so the requested initially difficult-to-distinguish camouflage effect is only partially achieved."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "Compared with the qc previous candidate, additional curved hatching and gray shading around the seadragon's head and eye area increases local tonal density and moves further from the minimal-hatching target."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The cyan eye remains noticeably vivid and immediately attention-grabbing rather than reading as an extremely subtle abyssal-cyan accent.",
+            "Interior graphite hatching is still somewhat denser than requested, especially around the seadragon's head, neck and torso and within several nearby seaweed leaves.",
+            "The seadragon remains fairly easy to identify on first glance because its large central-right body and several continuous outer contours stay clearly separated from surrounding fronds, so the requested initially difficult-to-distinguish camouflage effect is only partially achieved."
+          ],
+          "observations": [
+            "The cyan eye remains noticeably vivid and immediately attention-grabbing rather than reading as an extremely subtle abyssal-cyan accent.",
+            "Interior graphite hatching is still somewhat denser than requested, especially around the seadragon's head, neck and torso and within several nearby seaweed leaves.",
+            "The seadragon remains fairly easy to identify on first glance because its large central-right body and several continuous outer contours stay clearly separated from surrounding fronds, so the requested initially difficult-to-distinguish camouflage effect is only partially achieved.",
+            "Compared with the qc previous candidate, additional curved hatching and gray shading around the seadragon's head and eye area increases local tonal density and moves further from the minimal-hatching target."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_style_anchor.png",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_keyframe.png",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+      "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/assets/raw_beats/beat_004.png",
+      "sha256": "1d65f7b45e330dcd110b042100ca0b18eaab8ca2d828fb1adb304539c4e351d9"
+    }
+  ],
+  "prompt_sha256": "e5f333f545c54f14b284794c336a107264dce7e73460a7ffaa76261a1313ae60",
+  "prompt": "Create exactly one 9:16 vertical image: a full-body environmental illustration of a leafy seadragon hovering nearly motionless within a dense, tall seaweed thicket, subject offset to the right in an asymmetrical vertical camouflage composition. Its delicate leaf-shaped appendages should closely echo the surrounding fronds, making the animal’s silhouette initially difficult to distinguish while remaining biologically recognizable and educationally clear. Render in monochrome illustration on smooth matte off-white paper with extremely light natural tooth, clean confident rounded carbon-black monoline contours, simplified anatomy, sparse graphite-gray micro-accents, minimal hatching only where depth is essential, and at most one extremely subtle abyssal-cyan accent if useful for visual focus. Use flat diffuse illustrative lighting; create depth through overlap, scale, contour density, drifting particulate, tiny bubbles, and gently bending vegetation rather than shadows or gradients. Maintain the recurring organic illustration-window frame language: thin hand-drawn outer contour, rounded irregular transitions, generous breathing channels within the dense seaweed, and natural ocean marks, with the scene filling the entire illustration height—no lower caption reserve or blank band. Reference roles: use style_reference only for the established visual treatment; world_keyframe only for continuity of this ocean world’s line, texture, palette, and frame language; operator_style_reference only for crisp contour language, high-key ground, readable interlocking forms, and educational editorial mood; previous_beat is binding for recurring frame material, edge treatment, texture, palette, and lighting, but do not copy its composition, crop, camera angle, pose, subject placement, or focal object. No host or human figure. No photorealism, 3D CGI, anime, painterly effects, watercolor, collage, halftones, heavy shadows, horror styling, neon palette, labels, symbols, captions, or readable text. No storyboard, grid, collage, or panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "f7bce7004e3650f565d54d6a60f843f9d18c9a169f968dd829da8c5de48ebf59",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 84.211,
+  "completed_at": "2026-09-12T16:47:50Z"
+}

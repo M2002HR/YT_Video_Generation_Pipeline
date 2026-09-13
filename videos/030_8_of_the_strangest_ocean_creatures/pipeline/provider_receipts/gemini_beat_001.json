@@ -1,0 +1,175 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "0d302855bf6f8c95ebb3b16695064afe94e3b276e45fe9bbeac6b2e82e5e1247",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical 9:16 hand-drawn deep-water scene shows one large barreleye fish in side profile high-center within the recurring rounded black contour frame. The fish has a transparent cranial dome with restrained cyan highlighting around the dome and internal eye relationship, while the rest remains bone-white with crisp carbon-black contours and light graphite detail. Sparse bubbles, tiny plankton, and flowing current marks surround it. The previously visible secondary anglerfish-like creature is absent.",
+    "violations": [
+      "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+      "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+      "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+    ],
+    "observations": [
+      "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+      "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "06066a09-1e4c-4789-ae9d-f7b5ac15057c",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/1daf851e90a49735",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "qc_previous_candidate"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=06066a09-1e4c-4789-ae9d-f7b5ac15057c_output_1.png 1536x2752 sha256=46fe258c79cd14e903bc49f38b81d861da7f01dbab8fcf23bcbb2ceed0c6a6a8"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical 9:16 hand-drawn deep-water scene shows one large barreleye fish in side profile high-center within the recurring rounded black contour frame. The fish has a transparent cranial dome with restrained cyan highlighting around the dome and internal eye relationship, while the rest remains bone-white with crisp carbon-black contours and light graphite detail. Sparse bubbles, tiny plankton, and flowing current marks surround it. The previously visible secondary anglerfish-like creature is absent.",
+      "violations": [
+        "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+        "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+        "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+      ],
+      "observations": [
+        "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+        "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "0d302855bf6f8c95ebb3b16695064afe94e3b276e45fe9bbeac6b2e82e5e1247",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "fb425983-2cc6-4434-abd2-a573617b312d",
+        "prompt_sha256": "486ba7eca02733fa78dfe78076ff8c50f15157f88a4704fdf34960c57772847b",
+        "output_sha256": "894f0c6d76f40a9503bd5b9e3c65b80b824002c1dda03d8571a0fcc501e45366",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 hand-drawn educational scene shows a barreleye fish in side profile high in the frame, with a cyan-tinted transparent cranial dome and paired tubular eye structures. The image uses thin carbon-black linework, bone-white fills, light graphite hatching, an off-white paper field, a rounded irregular outer contour, and scattered bubbles, current lines, plankton, and tiny fish marks. Broad negative space extends below the main fish. A faint secondary anglerfish-like creature with a cyan-glowing lure is also visible in the lower-middle area.",
+          "violations": [
+            "A faint secondary anglerfish-like creature appears in the lower-middle field, while the requested scene is meant to focus solely on the barreleye with only sparse plankton, bubbles, and current marks around it.",
+            "The lower portion becomes exceptionally sparse and reads somewhat like a low-detail reserved band rather than fully continuing the natural midwater scene through the usable height.",
+            "The barreleye is large and readable but does not feel quite as extreme a close-up as requested; substantial margins remain around the fish.",
+            "The cyan accent is reused on the secondary anglerfish-like lure, whereas the requested restrained abyssal-cyan accent is intended specifically for the barreleye cranial dome and its internal anatomical relationship.",
+            "The faint secondary creature is rendered with much paler, ghosted linework than the otherwise crisp contour discipline established by the continuity references."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "A faint secondary anglerfish-like creature appears in the lower-middle field, while the requested scene is meant to focus solely on the barreleye with only sparse plankton, bubbles, and current marks around it.",
+            "The lower portion becomes exceptionally sparse and reads somewhat like a low-detail reserved band rather than fully continuing the natural midwater scene through the usable height.",
+            "The barreleye is large and readable but does not feel quite as extreme a close-up as requested; substantial margins remain around the fish.",
+            "The cyan accent is reused on the secondary anglerfish-like lure, whereas the requested restrained abyssal-cyan accent is intended specifically for the barreleye cranial dome and its internal anatomical relationship.",
+            "The faint secondary creature is rendered with much paler, ghosted linework than the otherwise crisp contour discipline established by the continuity references."
+          ],
+          "observations": [
+            "A faint secondary anglerfish-like creature appears in the lower-middle field, while the requested scene is meant to focus solely on the barreleye with only sparse plankton, bubbles, and current marks around it.",
+            "The lower portion becomes exceptionally sparse and reads somewhat like a low-detail reserved band rather than fully continuing the natural midwater scene through the usable height.",
+            "The barreleye is large and readable but does not feel quite as extreme a close-up as requested; substantial margins remain around the fish.",
+            "The cyan accent is reused on the secondary anglerfish-like lure, whereas the requested restrained abyssal-cyan accent is intended specifically for the barreleye cranial dome and its internal anatomical relationship.",
+            "The faint secondary creature is rendered with much paler, ghosted linework than the otherwise crisp contour discipline established by the continuity references."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      },
+      {
+        "attempt": 2,
+        "job_id": "06066a09-1e4c-4789-ae9d-f7b5ac15057c",
+        "prompt_sha256": "e0d36b7262b619afcfeeaf8e5d84de706d45771d43d7d8f1cf7b5c91cb2cc777",
+        "output_sha256": "46fe258c79cd14e903bc49f38b81d861da7f01dbab8fcf23bcbb2ceed0c6a6a8",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 hand-drawn deep-water scene shows one large barreleye fish in side profile high-center within the recurring rounded black contour frame. The fish has a transparent cranial dome with restrained cyan highlighting around the dome and internal eye relationship, while the rest remains bone-white with crisp carbon-black contours and light graphite detail. Sparse bubbles, tiny plankton, and flowing current marks surround it. The previously visible secondary anglerfish-like creature is absent.",
+          "violations": [
+            "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+            "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+            "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+          ],
+          "observations": [
+            "The barreleye still falls somewhat short of the requested extreme close-up; generous margins remain around the fish rather than the subject strongly dominating the frame.",
+            "The lower half remains exceptionally sparse, with long stretches of nearly empty paper field and only scattered tiny marks, so it still partially reads as a low-detail reserved band instead of a naturally continuous midwater environment through the full usable height."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 2
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_style_anchor.png",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_keyframe.png",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+      "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c"
+    }
+  ],
+  "prompt_sha256": "486ba7eca02733fa78dfe78076ff8c50f15157f88a4704fdf34960c57772847b",
+  "prompt": "Gemini Image Prompt — Barreleye Fish\n\nCreate exactly one vertical 9:16 image: a simplified hand-drawn 2D educational monochrome illustration of a barreleye fish drifting stationary in side profile in open deep water, framed as an extreme close-up with the fish high-center and broad natural midwater negative space continuing below. Make the transparent cranial dome unmistakable: outline the dome and its internal anatomical relationship with one extremely restrained abyssal-cyan accent, while all other forms use soft carbon-black monoline contours, rounded joins, flat bone-white fills, cool graphite-gray micro-accents, minimal interior detail, and sparse hatching only where depth is essential. Preserve biologically grounded barreleye anatomy, readable silhouette, calm non-horror expression, sparse plankton/bubble/current marks, smooth matte off-white paper with extremely light natural tooth, flat diffuse illustrative lighting, and the recurring thin hand-drawn outer contour with playful interruptions from tiny ocean marks. Use the full illustration height naturally; do not create a caption reserve, blank strip, empty panel, or low-detail subtitle band. The style_reference defines the approved medium, contour discipline, palette, texture, and educational illustration mood; the world_keyframe defines continuity of frame language, paper field, ocean-mark vocabulary, scale rhythm, and lighting across the creature world; the operator_style_reference is a quality/style anchor for crisp linework, high-key ground, interlocking readability, and editorial clarity only—do not copy its people, objects, logos, pose, layout, or composition. No photorealism, 3D CGI, anime, painterly effects, watercolor, halftones, collage, heavy gradients, dense crosshatching, neon palette, grotesque horror, decorative typography, labels, captions, letters, numbers, or readable text. Exactly one image only; no storyboard, grid, collage, split screen, or panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_001.png",
+  "output_sha256": "46fe258c79cd14e903bc49f38b81d861da7f01dbab8fcf23bcbb2ceed0c6a6a8",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 96.24,
+  "completed_at": "2026-09-12T16:19:11Z"
+}

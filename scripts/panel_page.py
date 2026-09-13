@@ -441,6 +441,28 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <label class=check><input type=checkbox name=title_bold checked> Title bold</label>
    <label class=check><input type=checkbox name=title_italic> Title italic</label>
   </div>
+  <label class=check><input type=checkbox name=show_watermark> Show text watermark</label>
+  <div class=grid2>
+   <label>Watermark text <input name=watermark_text maxlength=220 placeholder="© Your Channel"></label>
+   <label>Watermark position <select name=watermark_position><option value=bottom_right selected>Bottom right</option><option value=below_logo>Below logo</option><option value=top_left>Top left</option><option value=top_center>Top centre</option><option value=top_right>Top right</option><option value=center>Centre</option><option value=bottom_left>Bottom left</option><option value=bottom_center>Bottom centre</option><option value=custom>Custom</option></select></label>
+   <label>Watermark font <select name=watermark_font><option selected>Roboto</option><option>Open Sans</option><option>Rubik</option><option>DejaVu Sans</option></select></label>
+   <label>Watermark font size <input name=watermark_font_size type=number min=16 max=200 value=28></label>
+   <label>Watermark opacity <input name=watermark_opacity type=number min=.05 max=1 step=.05 value=.72></label>
+   <label>Maximum words per line <input name=watermark_max_words_per_line type=number min=1 max=100 value=7></label>
+   <label>Line spacing (px) <input name=watermark_line_spacing type=number min=-10 max=100 value=6></label>
+   <label>Watermark box width % <input name=watermark_max_width_percent type=number min=12 max=90 value=34></label>
+   <label>Text alignment <select name=watermark_text_align><option value=right selected>Right</option><option value=center>Centre</option><option value=left>Left</option></select></label>
+   <label>Watermark horizontal margin % <input name=watermark_margin_x_percent type=number min=0 max=25 step=.5 value=3></label>
+   <label>Watermark vertical margin % <input name=watermark_margin_y_percent type=number min=0 max=25 step=.5 value=2.5></label>
+   <label>Gap below logo % <input name=watermark_logo_gap_percent type=number min=0 max=15 step=.5 value=1></label>
+   <label>Watermark custom centre X % <input name=watermark_custom_x_percent type=number min=0 max=100 step=.5 value=80></label>
+   <label>Watermark custom top Y % <input name=watermark_custom_y_percent type=number min=0 max=100 step=.5 value=88></label>
+   <label>Watermark colour <input name=watermark_font_colour type=color value=#FFFFFF></label>
+   <label>Watermark outline colour <input name=watermark_outline_colour type=color value=#000000></label>
+   <label>Watermark outline width <input name=watermark_outline type=number min=0 max=8 step=.5 value=2></label>
+   <label class=check><input type=checkbox name=watermark_bold checked> Watermark bold</label>
+   <label class=check><input type=checkbox name=watermark_italic> Watermark italic</label>
+  </div>
   <label class="check"><input type=checkbox name=commit_artifacts> Commit &amp; push artifacts after QC
    <small>needs a remote with write access</small></label>
   <label class="check"><input type=checkbox name=telegram_low_size checked> Send low-size copy to Telegram

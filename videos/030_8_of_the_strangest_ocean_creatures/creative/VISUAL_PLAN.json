@@ -1,0 +1,113 @@
+{
+  "body_duration_seconds": 42.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "A barreleye fish wears a transparent dome over its head.",
+      "visual": "Vertical monochrome line-art close-up of a barreleye fish drifting in open deep water, its transparent cranial dome outlined with a single restrained cyan accent so the structure reads instantly.",
+      "purpose": "show the barreleye fish's transparent dome over its head",
+      "visual_fingerprint": "barreleye fish + stationary side-profile drift + extreme close-up + empty midwater zone + transparent dome as cyan anatomical reveal + fish placed high-center with broad negative space below",
+      "type": "literal",
+      "continuity": "Begins the creature sequence in a clean deep-ocean subject world with the shared off-white paper field and sparse particulate marks.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Its tubular eyes rotate upward to watch for prey above.",
+      "visual": "Technical-drawing-style cutaway of the barreleye seen from a three-quarter underside angle, with paired tubular eyes visibly pivoted upward toward a tiny prey silhouette overhead.",
+      "purpose": "explain that the barreleye's tubular eyes rotate upward to watch for prey",
+      "visual_fingerprint": "barreleye eye anatomy + eyes pivot upward toward prey + medium three-quarter underside view + upper-water prey zone + curved motion cues around tubular eyes + strong diagonal composition from fish lower-left to prey upper-right",
+      "type": "diagram",
+      "continuity": "Stays with the barreleye but changes from exterior portrait to anatomical action and an upward-looking composition.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "A goblin shark shoots its jaws forward to snatch prey.",
+      "visual": "Side-on line illustration of a goblin shark lunging horizontally as its jaws project far ahead of its snout toward a small fish, with sparse current lines emphasizing the sudden strike.",
+      "purpose": "show the goblin shark's protrusible jaws shooting forward to catch prey",
+      "visual_fingerprint": "goblin shark + explosive jaw projection + wide side view + open hunting corridor + prey directly ahead + long horizontal composition dominated by extended jaws and speed lines",
+      "type": "literal",
+      "continuity": "Moves from a quiet upward-looking sensory adaptation to a fast horizontal feeding action by a different animal.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "A vampire squid flips its webbed arms outward, revealing tiny spines.",
+      "visual": "Front-facing vampire squid suspended against sparse deep-water marks, arms flipped outward into a broad circular web with tiny spine-like cirri picked out around the inner surface.",
+      "purpose": "show the vampire squid exposing its webbing and tiny spines",
+      "visual_fingerprint": "vampire squid + arms inverted outward + frontal medium shot + isolated blackwater pocket + tiny cirri as anatomical detail + radial flower-like silhouette centered in frame",
+      "type": "literal",
+      "continuity": "Contrasts the shark's lateral strike with a centered defensive reveal that expands radially toward the viewer.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "A leafy seadragon disappears among seaweed with leaflike camouflage.",
+      "visual": "Tall seaweed thicket drawn in loose monoline contours with a leafy seadragon woven vertically through the fronds, its appendages deliberately echoing surrounding blades so its outline is initially hard to separate.",
+      "purpose": "show how the leafy seadragon blends into seaweed using leaflike camouflage",
+      "visual_fingerprint": "leafy seadragon + hovering motionless among swaying vegetation + full-body environmental shot + dense seaweed garden + matching leaf-shaped appendages + asymmetrical vertical camouflage composition with subject offset right",
+      "type": "subject_world",
+      "continuity": "Leaves isolated open water for a textured vegetation zone where the adaptation works through concealment instead of display.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "A giant isopod looks like an armored pill bug.",
+      "visual": "Low-angle illustration of a giant isopod crawling across the seafloor, its overlapping segmented plates emphasized, while the Red Horned Everyman crouches at a respectful distance studying its pill-bug-like armor.",
+      "purpose": "make the giant isopod's pill-bug-like segmented armor immediately recognizable",
+      "visual_fingerprint": "giant isopod with Red Horned Everyman + slow seafloor crawl and skeptical observation + low-angle wide shot + rocky benthic floor + repeated armored body plates + isopod dominating foreground while small host anchors rear-left scale",
+      "type": "subject_world",
+      "continuity": "Drops from the seaweed column to the seafloor and briefly introduces the in-world host as a grounded scale and observation cue.",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "A Dumbo octopus flaps ear-like fins through the deep.",
+      "visual": "Small Dumbo octopus shown from a high three-quarter view gliding through a broad empty water column, with its paired ear-like fins caught at opposite points of a gentle flap.",
+      "purpose": "show the Dumbo octopus swimming by flapping its ear-like fins",
+      "visual_fingerprint": "Dumbo octopus + gentle paired-fin flapping + distant high-angle full-body shot + vast open-water column + curved fin-motion marks + tiny subject low-center surrounded by generous negative space",
+      "type": "literal",
+      "continuity": "Leaves the grounded seafloor and host behind, opening into a spacious midwater composition focused on gentle locomotion.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "An anglerfish dangles a glowing lure in darkness.",
+      "visual": "Anglerfish emerging from a nearly empty off-white-to-graphite implied abyss, shown in side three-quarter close-up with a tiny cyan bioluminescent lure hanging above its mouth and attracting a small prey silhouette.",
+      "purpose": "show the anglerfish using a glowing lure in dark water",
+      "visual_fingerprint": "anglerfish + lure dangling toward prey + tight three-quarter close-up + sparse abyssal darkness zone + single cyan bioluminescent bulb + face anchored lower-right with lure arcing into empty upper-left",
+      "type": "literal",
+      "continuity": "Turns the previous airy swimming scene into a tighter darkness-focused hunting scene, using the world's rare cyan accent for bioluminescence.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "A blanket octopus unfurls a huge web between its arms.",
+      "visual": "Wide vertical illustration of a blanket octopus sweeping upward through open water as an enormous webbed membrane unfurls behind and between its arms like a flowing biological sail.",
+      "purpose": "show the blanket octopus spreading its unusually large arm membrane",
+      "visual_fingerprint": "blanket octopus + membrane dramatically unfurling + full-body upward wide shot + open pelagic zone with sparse currents + enormous flowing web as key adaptation + sweeping S-curve composition filling the upper two-thirds",
+      "type": "literal",
+      "continuity": "Expands from the anglerfish's tight dark close-up into a broad final silhouette reveal, ending the body sequence with the largest flowing shape.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    }
+  ]
+}

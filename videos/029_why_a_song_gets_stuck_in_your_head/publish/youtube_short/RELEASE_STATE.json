@@ -1,72 +1,72 @@
 {
   "schema_version": 1,
   "status": "DONE",
-  "started_at": "2026-09-13T14:19:11.554661+00:00",
+  "started_at": "2026-09-13T15:28:07.373632+00:00",
   "video": "029_why_a_song_gets_stuck_in_your_head",
   "master": "assets/renders/polished.mp4",
-  "master_sha256": "69a30eff830c51700922aaebd1417e181cd5d0ebe918bd4e367a436fb6cd4044",
+  "master_sha256": "812fb0ed713e1f38655d74ef53f81df024f3394486e4c0a894dc49221ec184f6",
   "events": [
     {
       "stage": "metadata_draft",
       "status": "RUNNING",
-      "at": "2026-09-13T14:19:15.165741+00:00"
+      "at": "2026-09-13T15:28:10.718276+00:00"
     },
     {
       "stage": "metadata_draft",
       "status": "DONE",
-      "at": "2026-09-13T14:20:51.501667+00:00",
-      "chatgpt_job_id": "802f2e65-7d32-42e8-8430-126750653a9b"
+      "at": "2026-09-13T15:29:35.021882+00:00",
+      "chatgpt_job_id": "83d0be21-d6ae-4531-8010-21d46f2c5cf0"
     },
     {
       "stage": "metadata_review",
       "status": "RUNNING",
-      "at": "2026-09-13T14:20:51.501680+00:00"
+      "at": "2026-09-13T15:29:35.021894+00:00"
     },
     {
       "stage": "metadata_review",
       "status": "DONE",
-      "at": "2026-09-13T14:22:03.757140+00:00",
-      "chatgpt_job_id": "b2886580-4717-4bb5-81f0-038966568282",
+      "at": "2026-09-13T15:30:56.313336+00:00",
+      "chatgpt_job_id": "a6783719-1b5f-4c78-8506-9f65bb457a98",
       "schema_repair_job_ids": []
     },
     {
       "stage": "thumbnail",
       "status": "RUNNING",
-      "at": "2026-09-13T14:22:03.757148+00:00"
+      "at": "2026-09-13T15:30:56.313344+00:00"
     },
     {
       "stage": "thumbnail",
       "status": "DONE",
-      "at": "2026-09-13T14:24:49.989098+00:00",
+      "at": "2026-09-13T15:33:36.491881+00:00",
       "selected_attempt": 1,
       "qc_passed": true
     },
     {
       "stage": "telegram_delivery",
       "status": "RUNNING",
-      "at": "2026-09-13T14:24:49.989378+00:00"
+      "at": "2026-09-13T15:33:36.492211+00:00"
     },
     {
       "stage": "telegram_delivery",
       "status": "DONE",
-      "at": "2026-09-13T14:26:04.397505+00:00",
+      "at": "2026-09-13T15:34:50.739483+00:00",
       "messages": {
-        "master": 25894,
-        "thumbnail": 25895,
-        "summary": 25896,
-        "upload_markdown": 25897,
-        "metadata_json": 25898
+        "master": 14848,
+        "thumbnail": 14849,
+        "summary": 14850,
+        "upload_markdown": 14851,
+        "metadata_json": 14852
       }
     }
   ],
-  "completed_at": "2026-09-13T14:26:04.397511+00:00",
+  "completed_at": "2026-09-13T15:34:50.739489+00:00",
   "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
   "thumbnail": "publish/youtube_short/thumbnail.png",
   "messages": {
-    "master": 25894,
-    "thumbnail": 25895,
-    "summary": 25896,
-    "upload_markdown": 25897,
-    "metadata_json": 25898
+    "master": 14848,
+    "thumbnail": 14849,
+    "summary": 14850,
+    "upload_markdown": 14851,
+    "metadata_json": 14852
   }
 }

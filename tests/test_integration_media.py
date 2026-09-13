@@ -280,6 +280,12 @@ def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path
             "max_words_per_line": 2, "line_spacing": 8,
             "font_colour": "#FFFFFF", "outline_colour": "#000000", "outline": 2,
         },
+        "watermark": {
+            "enabled": True, "text": "© Example Channel watermark", "position": "bottom_right",
+            "font_name": "DejaVu Sans", "font_size": 18, "opacity": .5,
+            "max_width_percent": 40, "max_words_per_line": 2, "line_spacing": 4,
+            "font_colour": "#FFFFFF", "outline_colour": "#000000", "outline": 2,
+        },
     }
     profile_path.write_text(json.dumps(profile))
 
@@ -288,8 +294,9 @@ def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path
     command = " ".join(_ffmpeg_command(dry))
     assert "overlay=x=" in command
     assert "BRANDING_TITLE.ass" in command
+    assert "BRANDING_WATERMARK.ass" in command
     assert "Subtitles: off" in dry.stdout
-    assert "Branding: logo=on, title=on" in dry.stdout
+    assert "Branding: logo=on, title=on, watermark=on" in dry.stdout
     title_ass = (video_dir / "render" / "BRANDING_TITLE.ass").read_text()
     dialogue = [line for line in title_ass.splitlines() if line.startswith("Dialogue:")]
     assert len(dialogue) == 3
@@ -298,6 +305,14 @@ def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path
     assert dialogue[2].endswith("faster?")
     y_positions = [float(line.split("\\pos(", 1)[1].split(")", 1)[0].split(",")[1]) for line in dialogue]
     assert y_positions[1] - y_positions[0] == 28
+    watermark_ass = (video_dir / "render" / "BRANDING_WATERMARK.ass").read_text()
+    watermark_dialogue = [line for line in watermark_ass.splitlines() if line.startswith("Dialogue:")]
+    assert len(watermark_dialogue) == 2
+    assert watermark_dialogue[0].endswith("© Example")
+    assert watermark_dialogue[1].endswith("Channel watermark")
+    # 50% opacity is encoded in libass's alpha byte for both fill and outline.
+    assert "&H80FFFFFF" in watermark_ass
+    assert "&H80000000" in watermark_ass
 
     result = _render(video_dir)
     assert result.returncode == 0, result.stdout + result.stderr

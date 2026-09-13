@@ -167,6 +167,11 @@ shares the subtitle font catalogue and uploaded font store. Unicode shaping and 
 are rendered through libass. A branding-only
 revision starts at `render_profile`, so accepted images and Flow clips remain untouched.
 
+An independent text watermark can also be enabled beside the logo and title. It has its
+own text, opacity, anchor/custom placement, margins, logo-relative position, box width,
+alignment, font, size, weight, italics, colours, outline, word wrapping, and line spacing.
+It is previewed live over the same frame and rendered as a separate persistent layer.
+
 The branding editor uses a responsive two-column layout. Its preview rail is sticky while
 the branding controls scroll, then returns to normal document flow on narrow screens. For a
 new run, the backdrop is the selected catalogue style anchor or uploaded style reference.

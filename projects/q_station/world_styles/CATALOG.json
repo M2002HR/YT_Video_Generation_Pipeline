@@ -154,6 +154,17 @@
       "path": "016_neon_earworm_pop_screenprint_001",
       "anchor": "016_neon_earworm_pop_screenprint_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "abyssal_curiosity_linework_001",
+      "display_name": "Abyssal Curiosity Linework 001",
+      "medium_family": "monochrome illustration",
+      "texture_family": "smooth matte off-white paper with extremely light natural tooth",
+      "palette_summary": "predominantly bone-white ground and soft carbon-black linework, with cool graphite-gray micro-accents and extremely sparse abyssal cyan reserved for bioluminescence, transparent anatomy, or one key adaptation per frame",
+      "status": "ready",
+      "path": "017_abyssal_curiosity_linework_001",
+      "anchor": "017_abyssal_curiosity_linework_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

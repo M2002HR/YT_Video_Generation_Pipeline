@@ -1,0 +1,375 @@
+{
+  "schema_version": 2,
+  "video_id": "030",
+  "topic": "8 of the Strangest Ocean Creatures",
+  "created_at": "2026-09-12T15:52:36Z",
+  "pipeline_state": "RUNNING",
+  "stages": {
+    "script_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T15:54:32Z",
+      "words": 120
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T15:55:53Z",
+      "words": 123
+    },
+    "character_resolution": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T15:55:54Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "episode_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T15:56:31Z",
+      "activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot"
+    },
+    "world_style_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T15:57:16Z",
+      "style_id": "abyssal_curiosity_linework_001"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:01:46Z",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361",
+      "model": "nano_banana_2",
+      "catalog_path": "017_abyssal_curiosity_linework_001"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:01:49Z",
+      "opening_activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot",
+      "opening_location": "weathered public marina dock beside a small tied skiff",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "abyssal_curiosity_linework_001"
+    },
+    "visual_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:02:30Z",
+      "beats": 9
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:02:57Z",
+      "prompt_sha256": "4b69604014f24857b2c8ceb419f8c8019cc34a8da3cb55b6225e81d77ea91a3d"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:07:31Z",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-12T16:07:32Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:07:55Z",
+      "prompt_sha256": "6b6bca583c44daeef6e53061a8b4c5b0eafb1c1fd6932d0b05f1bc6b72aaa6e3"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:12:08Z",
+      "sha256": "1b125d21bc495072ad1cca0ae2ddb4a08142a30b64aa05bd24f607b40f372fde",
+      "model": "nano_banana_2"
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:12:58Z",
+      "prompt_sha256": "3a0bc54b0c2c89fc90fe53af84e00ac8198c6b958fc17355d1d08f8720b0965c"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:13:25Z",
+      "prompt_sha256": "4f9ca66e72dd5c9035177b37a894ea74e3fc5c2d74d99778a0229741f7bd2cf6"
+    },
+    "body_images": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-12T16:13:26Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:19:11Z",
+      "sha256": "46fe258c79cd14e903bc49f38b81d861da7f01dbab8fcf23bcbb2ceed0c6a6a8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:27:15Z",
+      "sha256": "54c43c6ef2bc9b9c24277db03984f5a48df895d2544b2911e488296cd6335054",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:33:42Z",
+      "sha256": "c4466536bb3fab6e87fe4955b4dae543047c3804fa03fdcab61be21294a19e6d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:39:25Z",
+      "sha256": "1d65f7b45e330dcd110b042100ca0b18eaab8ca2d828fb1adb304539c4e351d9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:47:50Z",
+      "sha256": "f7bce7004e3650f565d54d6a60f843f9d18c9a169f968dd829da8c5de48ebf59",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T16:55:06Z",
+      "sha256": "127f138ef537c5876916cc48d0046285509440ceeb62549cec37f27597ce5f75",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-12T17:01:12Z",
+      "sha256": "fae862bc5cda1724ebb7c0a8ce00133158103521f719fa2a088643eb9a3df32b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-12T17:01:40Z"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 115.745,
+      "at": "2026-09-12T15:54:32Z",
+      "words": 120
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 79.252,
+      "at": "2026-09-12T15:55:53Z",
+      "words": 123
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 37.207,
+      "at": "2026-09-12T15:56:31Z",
+      "activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.393,
+      "at": "2026-09-12T15:57:16Z",
+      "style_id": "abyssal_curiosity_linework_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 269.128,
+      "at": "2026-09-12T16:01:46Z",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361",
+      "model": "nano_banana_2",
+      "catalog_path": "017_abyssal_curiosity_linework_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.377,
+      "at": "2026-09-12T16:01:49Z",
+      "opening_activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot",
+      "opening_location": "weathered public marina dock beside a small tied skiff",
+      "camera_pattern": "gentle_pan_left",
+      "book_template_id": "003",
+      "world_style_id": "abyssal_curiosity_linework_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 40.132,
+      "at": "2026-09-12T16:02:30Z",
+      "beats": 9
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 25.138,
+      "at": "2026-09-12T16:02:57Z",
+      "prompt_sha256": "4b69604014f24857b2c8ceb419f8c8019cc34a8da3cb55b6225e81d77ea91a3d"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 272.763,
+      "at": "2026-09-12T16:07:31Z",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 23.35,
+      "at": "2026-09-12T16:07:55Z",
+      "prompt_sha256": "6b6bca583c44daeef6e53061a8b4c5b0eafb1c1fd6932d0b05f1bc6b72aaa6e3"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 251.519,
+      "at": "2026-09-12T16:12:08Z",
+      "sha256": "1b125d21bc495072ad1cca0ae2ddb4a08142a30b64aa05bd24f607b40f372fde",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 49.297,
+      "at": "2026-09-12T16:12:58Z",
+      "prompt_sha256": "3a0bc54b0c2c89fc90fe53af84e00ac8198c6b958fc17355d1d08f8720b0965c"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 25.397,
+      "at": "2026-09-12T16:13:25Z",
+      "prompt_sha256": "4f9ca66e72dd5c9035177b37a894ea74e3fc5c2d74d99778a0229741f7bd2cf6"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 319.658,
+      "at": "2026-09-12T16:19:11Z",
+      "sha256": "46fe258c79cd14e903bc49f38b81d861da7f01dbab8fcf23bcbb2ceed0c6a6a8",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 455.043,
+      "at": "2026-09-12T16:27:15Z",
+      "sha256": "54c43c6ef2bc9b9c24277db03984f5a48df895d2544b2911e488296cd6335054",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 362.063,
+      "at": "2026-09-12T16:33:42Z",
+      "sha256": "c4466536bb3fab6e87fe4955b4dae543047c3804fa03fdcab61be21294a19e6d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 320.042,
+      "at": "2026-09-12T16:39:25Z",
+      "sha256": "1d65f7b45e330dcd110b042100ca0b18eaab8ca2d828fb1adb304539c4e351d9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 479.439,
+      "at": "2026-09-12T16:47:50Z",
+      "sha256": "f7bce7004e3650f565d54d6a60f843f9d18c9a169f968dd829da8c5de48ebf59",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 407.212,
+      "at": "2026-09-12T16:55:06Z",
+      "sha256": "127f138ef537c5876916cc48d0046285509440ceeb62549cec37f27597ce5f75",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 343.955,
+      "at": "2026-09-12T17:01:12Z",
+      "sha256": "fae862bc5cda1724ebb7c0a8ce00133158103521f719fa2a088643eb9a3df32b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    }
+  ],
+  "updated_at": "2026-09-12T17:01:40Z"
+}

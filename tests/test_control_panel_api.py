@@ -133,6 +133,23 @@ def test_branding_revision_requires_an_uploaded_or_frozen_logo() -> None:
         panel.config_roots(record, brief, voice, values)
 
 
+def test_text_watermark_requires_text_and_is_a_render_only_revision() -> None:
+    record = _record()
+    brief = {"_branding": {"show_logo": False, "show_watermark": False}}
+    voice = {}
+    values = panel.frozen_values(record, brief, voice)
+    values["show_watermark"] = True
+
+    with pytest.raises(ValueError, match="watermark text"):
+        panel.config_roots(record, brief, voice, values)
+
+    values["watermark_text"] = "© Example Channel"
+    roots, revised, _, _, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {"render_profile"}
+    assert "show_watermark" in changed
+    assert revised["_branding"]["watermark_text"] == "© Example Channel"
+
+
 def test_hash_verified_uploaded_subtitle_font_is_available_to_both_panel_forms(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """The runtime schema is the shared source for launch and Revise font choices."""
     monkeypatch.setattr(panel, "ROOT", tmp_path)

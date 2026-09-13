@@ -58,6 +58,11 @@ def test_branding_defaults_put_the_question_below_a_top_right_logo() -> None:
     assert fields["title_line_spacing"]["default"] == 6
     assert {option["value"] for option in fields["title_font"]["options"]} >= {"Roboto", "Rubik", "DejaVu Sans"}
     assert fields["logo_custom_x_percent"]["requires"][1] == {"field": "logo_position", "value": "custom"}
+    assert fields["show_watermark"]["default"] is False
+    assert fields["watermark_position"]["default"] == "bottom_right"
+    assert fields["watermark_opacity"]["default"] == .72
+    assert fields["watermark_text"]["maxLength"] == 220
+    assert fields["watermark_custom_y_percent"]["requires"][1] == {"field": "watermark_position", "value": "custom"}
 
 
 def test_visual_group_exposes_stage_aware_image_qc_policy() -> None:

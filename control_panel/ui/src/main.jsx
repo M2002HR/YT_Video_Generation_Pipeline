@@ -284,6 +284,7 @@ function SubtitleFontSpecimen({ values, fontSources = {} }) {
 
 function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "Preview backdrop", logoUrl = "" }) {
   useSubtitleFont(values.title_font, fontSources);
+  useSubtitleFont(values.watermark_font, fontSources);
   const frameKey = frames.map((frame) => `${frame.kind}:${frame.src}:${frame.mediaStart || 0}`).join("|");
   const [frameIndex, setFrameIndex] = useState(0);
   const [mediaFailed, setMediaFailed] = useState(false);
@@ -341,6 +342,38 @@ function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "
   for (let index = 0; index < titleWords.length; index += wordsPerLine)
     titleLines.push(titleWords.slice(index, index + wordsPerLine).join(" "));
   const lineSpacing = Math.max(-10, Math.min(100, Number(values.title_line_spacing) || 0));
+  const watermarkText = String(values.watermark_text || "").trim();
+  const watermarkWidth = frameWidth * Math.min(90, Math.max(12, Number(values.watermark_max_width_percent) || 34)) / 100;
+  const wmx = frameWidth * (Number(values.watermark_margin_x_percent) || 0) / 100;
+  const wmy = frameHeight * (Number(values.watermark_margin_y_percent) || 0) / 100;
+  let watermarkLeft, watermarkTop, watermarkTransform = "";
+  if (values.watermark_position === "below_logo" && logoVisible) {
+    watermarkLeft = logo.left + logoWidth / 2 - watermarkWidth / 2;
+    watermarkTop = logo.top + logoWidth + frameHeight * (Number(values.watermark_logo_gap_percent) || 0) / 100;
+  } else if (values.watermark_position === "below_logo") {
+    watermarkLeft = frameWidth - watermarkWidth - wmx;
+    watermarkTop = wmy;
+  } else if (values.watermark_position === "custom") {
+    watermarkLeft = frameWidth * (Number(values.watermark_custom_x_percent) || 0) / 100 - watermarkWidth / 2;
+    watermarkTop = frameHeight * (Number(values.watermark_custom_y_percent) || 0) / 100;
+  } else {
+    const normalized = values.watermark_position === "center" ? "middle_center" : values.watermark_position || "bottom_right";
+    const [vertical, horizontal] = normalized.split("_");
+    watermarkLeft = horizontal === "left" ? wmx : horizontal === "center" ? (frameWidth - watermarkWidth) / 2 : frameWidth - watermarkWidth - wmx;
+    watermarkTop = vertical === "top" ? wmy : vertical === "middle" ? frameHeight / 2 : frameHeight - wmy;
+    watermarkTransform = vertical === "middle" ? "translateY(-50%)" : vertical === "bottom" ? "translateY(-100%)" : "";
+  }
+  watermarkLeft = Math.max(0, Math.min(frameWidth - watermarkWidth, watermarkLeft));
+  const watermarkColour = /^#[0-9a-fA-F]{6}$/.test(values.watermark_font_colour || "") ? values.watermark_font_colour : "#FFFFFF";
+  const watermarkOutline = /^#[0-9a-fA-F]{6}$/.test(values.watermark_outline_colour || "") ? values.watermark_outline_colour : "#000000";
+  const watermarkOutlineWidth = Math.min(8, Math.max(0, Number(values.watermark_outline) || 0)) * .25;
+  const watermarkFontSize = Math.max(16, Math.min(200, Number(values.watermark_font_size) || 28));
+  const watermarkWordsPerLine = Math.max(1, Math.min(100, Math.round(Number(values.watermark_max_words_per_line) || 7)));
+  const watermarkWords = watermarkText.split(/\s+/).filter(Boolean);
+  const watermarkLines = [];
+  for (let index = 0; index < watermarkWords.length; index += watermarkWordsPerLine)
+    watermarkLines.push(watermarkWords.slice(index, index + watermarkWordsPerLine).join(" "));
+  const watermarkLineSpacing = Math.max(-10, Math.min(100, Number(values.watermark_line_spacing) || 0));
   return (
     <div className="brand-preview">
       <div className="subtitle-preview-frame brand-preview-frame" style={{ width: frameWidth, aspectRatio: landscape ? "16 / 9" : "9 / 16" }}>
@@ -368,13 +401,23 @@ function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "
           textAlign: values.title_text_align || "right", color: titleColour,
           WebkitTextStroke: outline ? `${outline}px ${titleOutline}` : "0 transparent", paintOrder: "stroke fill",
         }}>{titleLines.map((line, index) => <span key={index}>{line}</span>)}</div>}
+        {values.show_watermark && watermarkText && <div className="brand-preview-watermark" style={{
+          left: watermarkLeft, top: Math.max(0, watermarkTop), width: watermarkWidth, transform: watermarkTransform,
+          fontFamily: `"${previewFontFamily(values.watermark_font, fontSources)}", sans-serif`,
+          fontSize: `${Math.max(4, watermarkFontSize * .25)}px`,
+          lineHeight: `${Math.max(1, (watermarkFontSize + watermarkLineSpacing) * .25)}px`,
+          fontWeight: values.watermark_bold === false ? 400 : 700, fontStyle: values.watermark_italic ? "italic" : "normal",
+          textAlign: values.watermark_text_align || "right", color: watermarkColour,
+          opacity: Math.max(.05, Math.min(1, Number(values.watermark_opacity) || .72)),
+          WebkitTextStroke: watermarkOutlineWidth ? `${watermarkOutlineWidth}px ${watermarkOutline}` : "0 transparent", paintOrder: "stroke fill",
+        }}>{watermarkLines.map((line, index) => <span key={index}>{line}</span>)}</div>}
       </div>
       {frames.length > 1 && <div className="brand-frame-nav">
         <button type="button" disabled={safeFrameIndex === 0} onClick={() => setFrameIndex((index) => Math.max(0, index - 1))} aria-label="Previous preview frame">←</button>
         <div><b>{safeFrameIndex + 1} / {frames.length}</b><small>{backdrop?.label || `Timeline frame ${safeFrameIndex + 1}`}</small></div>
         <button type="button" disabled={safeFrameIndex >= frames.length - 1} onClick={() => setFrameIndex((index) => Math.min(frames.length - 1, index + 1))} aria-label="Next preview frame">→</button>
       </div>}
-      <small>Live {landscape ? "16:9" : "9:16"} composition preview · {backdrop?.label || backdropLabel} · title text follows the episode question automatically</small>
+      <small>Live {landscape ? "16:9" : "9:16"} composition preview · {backdrop?.label || backdropLabel} · title follows the episode question automatically</small>
     </div>
   );
 }
@@ -768,7 +811,7 @@ function SearchableSelect({ field, value, onChange, disabled = false }) {
               >
                 <i>{option.value === value ? "✓" : ""}</i>
                 {option.label}
-                {["subtitle_font", "title_font"].includes(field.name) && SUBTITLE_FONT_SLUGS[option.value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
+                {["subtitle_font", "title_font", "watermark_font"].includes(field.name) && SUBTITLE_FONT_SLUGS[option.value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(option.value)
                   ? " · Latin only"
                   : ""}
               </button>
@@ -892,7 +935,7 @@ function Field({ field, value, onChange, allValues = {} }) {
     return (
       <>
         <SearchableSelect field={field} value={value} onChange={onChange} disabled={gated} />
-        {["subtitle_font", "title_font"].includes(field.name) && SUBTITLE_FONT_SLUGS[value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
+        {["subtitle_font", "title_font", "watermark_font"].includes(field.name) && SUBTITLE_FONT_SLUGS[value] != null && !SUBTITLE_FONT_SUPPORTS_PERSIAN.has(value) && (
           <small className="font-language-warning">
             This face is Latin-only. Persian/Arabic captions will fall back to DejaVu Sans; use Rubik or DejaVu Sans for a deliberate Persian look.
           </small>
@@ -1183,12 +1226,17 @@ function SubtitleFontUpload({ change, onUploaded, fieldName = "subtitle_font", l
   );
 }
 
-function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "" }) {
+function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "", uploadedFonts: sharedFonts, onFontUploaded }) {
   const [advanced, setAdvanced] = useState(false);
-  const [uploadedFonts, setUploadedFonts] = useState([]);
+  const [localFonts, setLocalFonts] = useState([]);
+  // Fonts uploaded during this form session must be pickable in every font
+  // picker (subtitles and branding share one library); callers share one list
+  // so an upload in one section is selectable in the other without re-upload.
+  const uploadedFonts = sharedFonts || localFonts;
+  const addUploadedFont = onFontUploaded || ((font) => setLocalFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font]));
   const [logoPreview, setLogoPreview] = useState(logoPreviewUrl);
   useEffect(() => setLogoPreview(logoPreviewUrl), [logoPreviewUrl]);
-  const subtitleField = group.fields.find((field) => ["subtitle_font", "title_font"].includes(field.name));
+  const subtitleField = group.fields.find((field) => ["subtitle_font", "title_font", "watermark_font"].includes(field.name));
   const subtitleOptions = [
     ...(subtitleField?.options || []),
     ...uploadedFonts.filter((font) => !(subtitleField?.options || []).some((option) => option.value === font.family)),
@@ -1215,13 +1263,13 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
         <div className="field-grid">
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
           {group.id === "visual" && values.world_style_policy === "new" && !values.world_style_id && <StyleReferenceUpload value={values.world_style_reference_id} change={change} previewUrl={styleReferencePreview} />}
-          {group.id === "subtitles" && <SubtitleFontUpload change={change} onUploaded={(font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font])} />}
+          {group.id === "subtitles" && <SubtitleFontUpload change={change} onUploaded={addUploadedFont} />}
           {group.id === "branding" && <div className="branding-editor">
             <div className="branding-controls">
               <LogoUpload value={values.logo_upload_id} change={change} previewUrl={logoPreview} onPreviewChange={setLogoPreview} />
-              <SubtitleFontUpload fieldName="title_font" label="title" change={change} onUploaded={(font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font])} />
+              <SubtitleFontUpload fieldName="title_font" label="branding" change={change} onUploaded={addUploadedFont} />
               {group.fields.filter((field) => field.name !== "logo_upload_id").map((field) => {
-                const displayField = ["subtitle_font", "title_font"].includes(field.name) ? { ...field, options: subtitleOptions } : field;
+                const displayField = ["subtitle_font", "title_font", "watermark_font"].includes(field.name) ? { ...field, options: subtitleOptions } : field;
                 return <Field key={field.name} field={displayField} value={values[field.name]} onChange={change} allValues={values} />;
               })}
             </div>
@@ -1262,7 +1310,7 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
                     ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({ value: item.id, label: item.display_name }))]
                     : field.options,
                 } : field;
-              if (["subtitle_font", "title_font"].includes(field.name)) {
+              if (["subtitle_font", "title_font", "watermark_font"].includes(field.name)) {
                 displayField = { ...displayField, options: subtitleOptions };
               }
               if (group.id === "sfx" && field.name !== "sfx_enabled") {
@@ -1306,6 +1354,8 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
   const [openGroups, setOpenGroups] = useState(
     () => new Set(schema.groups.filter((group) => !group.collapsed).map((group) => group.id)),
   );
+  const [uploadedFonts, setUploadedFonts] = useState([]);
+  const addUploadedFont = (font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font]);
   useEffect(() => setValues(initial || {}), [initial]);
   useEffect(() => {
     const project = values.content_project;
@@ -1439,6 +1489,8 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
             }
             brandingFrames={brandingFrames}
             brandingBackdropLabel={values.world_style_id || uploadedStylePreview ? "Selected style reference" : "Select a style to preview its anchor"}
+            uploadedFonts={uploadedFonts}
+            onFontUploaded={addUploadedFont}
           />
       ))}
       {error && (
@@ -2324,7 +2376,20 @@ function ConfigModal({ run, close, done }) {
     [openGroups, setOpenGroups] = useState(new Set(["visual"])),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
-    [transitionOverrides, setTransitionOverrides] = useState([]);
+    [transitionOverrides, setTransitionOverrides] = useState([]),
+    [uploadedFonts, setUploadedFonts] = useState([]),
+    initialValues = useRef(null);
+  const addUploadedFont = (font) => setUploadedFonts((current) => current.some((item) => item.family === font.family) ? current : [...current, font]);
+  const isDirty = (current) => {
+    if (!current || !initialValues.current) return false;
+    const { transition_overrides: _a, ...restCurrent } = { ...current, transition_overrides: transitionOverrides };
+    const { transition_overrides: _b, ...restInitial } = initialValues.current;
+    return JSON.stringify(restCurrent) !== JSON.stringify(restInitial)
+      || JSON.stringify(transitionOverrides) !== JSON.stringify(initialValues.current.transition_overrides || []);
+  };
+  const requestClose = () => {
+    if (!isDirty(values) || window.confirm("Discard unapplied revision edits?")) close();
+  };
   useEffect(() => {
     Promise.all([
       request(`/api/run/${run.job.job_id}/config`),
@@ -2332,6 +2397,10 @@ function ConfigModal({ run, close, done }) {
     ])
       .then(([data, contract]) => {
         setValues(data.values);
+        initialValues.current = {
+          ...data.values,
+          transition_overrides: Array.isArray(data.transition_overrides) ? data.transition_overrides : [],
+        };
         setStyleReference(data.style_reference && typeof data.style_reference === "object" ? data.style_reference : null);
         setLogoAsset(data.logo_asset && typeof data.logo_asset === "object" ? data.logo_asset : null);
         setTransitionOverrides(Array.isArray(data.transition_overrides) ? data.transition_overrides : []);
@@ -2452,10 +2521,10 @@ function ConfigModal({ run, close, done }) {
     };
   }, [run.job.job_id, values, transitionOverrides]);
   useEffect(() => {
-    const escape = (event) => event.key === "Escape" && close();
+    const escape = (event) => event.key === "Escape" && requestClose();
     addEventListener("keydown", escape);
     return () => removeEventListener("keydown", escape);
-  }, [close]);
+  });
   async function submit(event) {
     event.preventDefault();
     setBusy(true);
@@ -2483,13 +2552,13 @@ function ConfigModal({ run, close, done }) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="config-title"
-      onMouseDown={(event) => event.target === event.currentTarget && close()}
+      onMouseDown={(event) => event.target === event.currentTarget && requestClose()}
     >
       <form className="modal config-modal" onSubmit={submit}>
         <button
           type="button"
           className="icon close"
-          onClick={close}
+          onClick={requestClose}
           aria-label="Close"
         >
           ×
@@ -2553,6 +2622,8 @@ function ConfigModal({ run, close, done }) {
                   }
                   brandingFrames={brandingFrames}
                   brandingBackdropLabel={timelineTried ? "Timeline preview unavailable" : "Loading timeline frames…"}
+                  uploadedFonts={uploadedFonts}
+                  onFontUploaded={addUploadedFont}
                 />
               ))}
             <TransitionOverrides timeline={timeline} values={values} overrides={transitionOverrides} onChange={setTransitionOverrides} />

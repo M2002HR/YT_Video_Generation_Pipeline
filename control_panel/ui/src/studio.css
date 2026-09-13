@@ -1897,13 +1897,16 @@ p {
   object-fit: contain;
   z-index: 2;
 }
-.brand-preview-title {
+.brand-preview-title,
+.brand-preview-watermark {
   position: absolute;
   z-index: 3;
   line-height: 1.18;
   overflow-wrap: anywhere;
 }
-.brand-preview-title span {
+.brand-preview-watermark { z-index: 4; }
+.brand-preview-title span,
+.brand-preview-watermark span {
   display: block;
   white-space: nowrap;
 }

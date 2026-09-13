@@ -255,6 +255,8 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         values["show_logo"] = False
     if values["title_font"] not in available_subtitle_font_families():
         values["title_font"] = BRANDING_DEFAULTS["title_font"]
+    if values["watermark_font"] not in available_subtitle_font_families():
+        values["watermark_font"] = BRANDING_DEFAULTS["watermark_font"]
     values.update({key: voice[key] for key in VOICE_FIELDS if key in voice})
     inverse_motion = {stored: field for field, stored in MOTION_FIELDS.items()}
     for key, value in (brief.get("_motion") or {}).items():
@@ -341,6 +343,8 @@ def validate_config_values(values: dict) -> dict:
         raise ValueError("Q Station currently requires the 9:16 book-world frame format.")
     if not normalized["telegram_low_size"] and not normalized["telegram_original"]:
         raise ValueError("Choose at least one Telegram delivery output.")
+    if normalized["show_watermark"] and not normalized["watermark_text"]:
+        raise ValueError("Enter watermark text before enabling it.")
     motion_primitives = (
         "motion_allow_hold", "motion_allow_push", "motion_allow_pull",
         "motion_allow_directional_pans", "motion_allow_tilt", "motion_allow_pan_push",
@@ -832,6 +836,14 @@ BRANDING_DEFAULTS = {
     "title_margin_y_percent": 2.5, "title_logo_gap_percent": 1,
     "title_custom_x_percent": 80, "title_custom_y_percent": 18,
     "title_font_colour": "#FFFFFF", "title_outline_colour": "#000000", "title_outline": 2,
+    "show_watermark": False, "watermark_text": "", "watermark_position": "bottom_right",
+    "watermark_font": "Roboto", "watermark_font_size": 28, "watermark_opacity": .72,
+    "watermark_max_words_per_line": 7, "watermark_line_spacing": 6,
+    "watermark_max_width_percent": 34, "watermark_bold": True, "watermark_italic": False,
+    "watermark_text_align": "right", "watermark_margin_x_percent": 3,
+    "watermark_margin_y_percent": 2.5, "watermark_logo_gap_percent": 1,
+    "watermark_custom_x_percent": 80, "watermark_custom_y_percent": 88,
+    "watermark_font_colour": "#FFFFFF", "watermark_outline_colour": "#000000", "watermark_outline": 2,
 }
 BRANDING_FIELDS = (*BRANDING_DEFAULTS, "logo_upload_id")
 
@@ -850,7 +862,7 @@ def studio_schema() -> dict:
                 field["options"] = [{"value": "", "label": "Choose a character"}] + [
                     {"value": item["id"], "label": item["display_name"]} for item in characters
                 ]
-            elif field["name"] in {"subtitle_font", "title_font"}:
+            elif field["name"] in {"subtitle_font", "title_font", "watermark_font"}:
                 # The static contract supplies the defaults; this runtime extension makes
                 # verified operator uploads available to both New run and Revise forms.
                 field["options"] = subtitle_font_options()
@@ -3559,6 +3571,15 @@ class Handler(BaseHTTPRequestHandler):
             title_italic = "title_italic" in values
             title_font_colour = values.get("title_font_colour", ["#FFFFFF"])[0].strip().upper()
             title_outline_colour = values.get("title_outline_colour", ["#000000"])[0].strip().upper()
+            show_watermark = "show_watermark" in values
+            watermark_text = form_text(values, "watermark_text", 220) if values.get("watermark_text") else ""
+            watermark_position = values.get("watermark_position", ["bottom_right"])[0].strip().lower()
+            watermark_font = values.get("watermark_font", ["Roboto"])[0].strip() or "Roboto"
+            watermark_text_align = values.get("watermark_text_align", ["right"])[0].strip().lower()
+            watermark_bold = "watermark_bold" in values
+            watermark_italic = "watermark_italic" in values
+            watermark_font_colour = values.get("watermark_font_colour", ["#FFFFFF"])[0].strip().upper()
+            watermark_outline_colour = values.get("watermark_outline_colour", ["#000000"])[0].strip().upper()
             commit_artifacts = "commit_artifacts" in values
             telegram_low_size = "telegram_low_size" in values
             telegram_original = "telegram_original" in values
@@ -3685,8 +3706,8 @@ class Handler(BaseHTTPRequestHandler):
                 "top_left", "top_center", "top_right", "middle_left", "center", "middle_right",
                 "bottom_left", "bottom_center", "bottom_right", "custom",
             }
-            if logo_position not in overlay_positions or title_position not in overlay_positions | {"below_logo"}:
-                raise ValueError("Invalid logo or title position.")
+            if logo_position not in overlay_positions or title_position not in overlay_positions | {"below_logo"} or watermark_position not in overlay_positions | {"below_logo"}:
+                raise ValueError("Invalid logo, title, or watermark position.")
             if logo_upload_id and not LOGO_UPLOAD_RE.fullmatch(logo_upload_id):
                 raise ValueError("Invalid logo upload.")
             if show_logo and not logo_upload_id:
@@ -3695,6 +3716,12 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid title font.")
             if title_text_align not in {"left", "center", "right"}:
                 raise ValueError("Invalid title text alignment.")
+            if show_watermark and not watermark_text:
+                raise ValueError("Enter watermark text before enabling it.")
+            if watermark_font not in available_subtitle_font_families():
+                raise ValueError("Invalid watermark font.")
+            if watermark_text_align not in {"left", "center", "right"}:
+                raise ValueError("Invalid watermark text alignment.")
             ranges = {
                 "logo_width_percent": (4, 40), "logo_opacity": (.1, 1),
                 "logo_margin_x_percent": (0, 25), "logo_margin_y_percent": (0, 25),
@@ -3705,10 +3732,19 @@ class Handler(BaseHTTPRequestHandler):
                 "title_margin_y_percent": (0, 25), "title_logo_gap_percent": (0, 15),
                 "title_custom_x_percent": (0, 100), "title_custom_y_percent": (0, 100),
                 "title_outline": (0, 8),
+                "watermark_font_size": (TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX),
+                "watermark_opacity": (.05, 1), "watermark_max_words_per_line": (1, 100),
+                "watermark_line_spacing": (-10, 100), "watermark_max_width_percent": (12, 90),
+                "watermark_margin_x_percent": (0, 25), "watermark_margin_y_percent": (0, 25),
+                "watermark_logo_gap_percent": (0, 15), "watermark_custom_x_percent": (0, 100),
+                "watermark_custom_y_percent": (0, 100), "watermark_outline": (0, 8),
             }
             if any(not low <= branding_numbers[key] <= high for key, (low, high) in ranges.items()):
-                raise ValueError("A logo or title setting is outside its allowed range.")
+                raise ValueError("A logo, title, or watermark setting is outside its allowed range.")
             for colour, label in ((title_font_colour, "Title text"), (title_outline_colour, "Title outline")):
+                if not re.fullmatch(r"#[0-9A-Fa-f]{6}", colour):
+                    raise ValueError(f"{label} colour must be #RRGGBB.")
+            for colour, label in ((watermark_font_colour, "Watermark text"), (watermark_outline_colour, "Watermark outline")):
                 if not re.fullmatch(r"#[0-9A-Fa-f]{6}", colour):
                     raise ValueError(f"{label} colour must be #RRGGBB.")
             if not 0 <= opening_speed_tolerance <= 0.5:
@@ -3814,6 +3850,12 @@ class Handler(BaseHTTPRequestHandler):
                 "title_text_align": title_text_align,
                 "title_font_colour": title_font_colour,
                 "title_outline_colour": title_outline_colour,
+                "show_watermark": show_watermark, "watermark_text": watermark_text,
+                "watermark_position": watermark_position, "watermark_font": watermark_font,
+                "watermark_bold": watermark_bold, "watermark_italic": watermark_italic,
+                "watermark_text_align": watermark_text_align,
+                "watermark_font_colour": watermark_font_colour,
+                "watermark_outline_colour": watermark_outline_colour,
                 **branding_numbers,
             }
             if logo_upload_id:

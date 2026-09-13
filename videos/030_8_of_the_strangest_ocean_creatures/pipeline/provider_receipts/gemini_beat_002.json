@@ -1,0 +1,214 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "c4594cc9a161942d87da508a1a9b28ab04d08ceb3958e570b0492610e19f5278",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall educational line-art scene shows a stylized barreleye fish occupying the lower-left to center area and swimming diagonally upward-right. The fish has a pale cyan transparent head dome with two prominent tubular eyes, curved line cues around the eye structures, sparse graphite-gray hatching and shading, scattered bubbles and tiny water marks, all enclosed by a thin irregular rounded black outer contour on warm bone-white paper. The rendering closely maintains the established monochrome-plus-cyan hand-drawn material, contour, paper, and lighting language.",
+    "violations": [
+      "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+      "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+      "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+      "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+      "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+      "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+      "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+      "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+      "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+    ],
+    "observations": [
+      "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+      "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+      "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+      "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+      "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "dfe1b597-cbb6-45af-bd7c-4e8d148103e3",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/c40a4135501eb4d5",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=dfe1b597-cbb6-45af-bd7c-4e8d148103e3_output_1.png 1536x2752 sha256=54c43c6ef2bc9b9c24277db03984f5a48df895d2544b2911e488296cd6335054"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single tall educational line-art scene shows a stylized barreleye fish occupying the lower-left to center area and swimming diagonally upward-right. The fish has a pale cyan transparent head dome with two prominent tubular eyes, curved line cues around the eye structures, sparse graphite-gray hatching and shading, scattered bubbles and tiny water marks, all enclosed by a thin irregular rounded black outer contour on warm bone-white paper. The rendering closely maintains the established monochrome-plus-cyan hand-drawn material, contour, paper, and lighting language.",
+      "violations": [
+        "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+        "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+        "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+        "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+        "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+        "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+        "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+        "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+        "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+      ],
+      "observations": [
+        "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+        "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+        "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+        "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+        "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "c4594cc9a161942d87da508a1a9b28ab04d08ceb3958e570b0492610e19f5278",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "dfe1b597-cbb6-45af-bd7c-4e8d148103e3",
+        "prompt_sha256": "f25940131e87ac1504b7f6bba9e866ae79cc23d1a460ba71755dcae8f855ca52",
+        "output_sha256": "54c43c6ef2bc9b9c24277db03984f5a48df895d2544b2911e488296cd6335054",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall educational line-art scene shows a stylized barreleye fish occupying the lower-left to center area and swimming diagonally upward-right. The fish has a pale cyan transparent head dome with two prominent tubular eyes, curved line cues around the eye structures, sparse graphite-gray hatching and shading, scattered bubbles and tiny water marks, all enclosed by a thin irregular rounded black outer contour on warm bone-white paper. The rendering closely maintains the established monochrome-plus-cyan hand-drawn material, contour, paper, and lighting language.",
+          "violations": [
+            "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+            "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+            "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+            "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+            "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+            "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+            "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+            "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+            "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+          ],
+          "observations": [
+            "The requested tiny prey silhouette high in the upper-right water column is absent, leaving the fish without the intended visible gaze target.",
+            "Because the prey is missing, the tubular eyes read as generally upward-oriented rather than clearly pivoted toward a specific prey target.",
+            "The upper half contains substantially more uninterrupted empty space than the requested full-height scene treatment, although sparse bubbles and marks prevent it from becoming a literal blank panel.",
+            "The fish sits somewhat more centrally than a strict lower-left placement would suggest, with the head extending to the right of center.",
+            "The canvas is 1143 by 2048 pixels, which is very close to but not mathematically exact 9:16."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      },
+      {
+        "attempt": 2,
+        "job_id": "7b8bc691-5be8-4eeb-9802-343b5f3973d4",
+        "prompt_sha256": "2b94752fb70973eba6d2c301365b5416bfca9aacbca851596dbd5142b9f32570",
+        "output_sha256": "db4f16f9f7b36c4309af322f2033feab454362f65c9e9d853e5084a7a666d202",
+        "quality_check": {
+          "passed": true,
+          "description": "A single portrait underwater illustration shows a recognizable barreleye fish in a three-quarter underside view, angled diagonally upward from the lower-left toward a small dark prey silhouette in the upper-right water column. The transparent head dome contains paired cyan-accented tubular eyes with curved rotation cues. The image uses thin carbon-black line work on a warm bone-white field with sparse bubbles and current marks, a hand-drawn rounded outer contour, and a detailed seabed scene with a ray, leafy sea dragon, vegetation, and other tiny marine life along the lower portion.",
+          "violations": [
+            "The canvas remains 1143 by 2048 pixels, so it is close to but not mathematically exact 9:16.",
+            "The curved eye-rotation cues contain visible arrowheads, conflicting with the explicit prohibition on arrows and symbols.",
+            "The correction introduces substantial new scene content at the bottom, including a ray, leafy sea dragon, vegetation, seabed forms, and extra organisms, despite the instruction to make only the smallest targeted changes and introduce no new objects.",
+            "The barreleye still spans substantially into the center of the composition, with its head extending to the right of center rather than reading as a strict lower-left placement.",
+            "Although the prey and additional marks improve directional storytelling, the upper portion still contains a broad uninterrupted breathing area compared with the requested fuller-height scene treatment."
+          ],
+          "blocking_violations": [],
+          "regressions": [
+            "New explicit arrowheads were added around the eye tubes; the previous candidate did not have this prohibited symbol treatment.",
+            "Large amounts of new seabed and secondary-creature content were added instead of preserving the previous scene and making only the requested localized corrections.",
+            "The dense lower habitat introduces more visual competition around the barreleye than the previous candidate's cleaner, more focused composition."
+          ],
+          "raw_passed": true,
+          "raw_violations": [
+            "The canvas remains 1143 by 2048 pixels, so it is close to but not mathematically exact 9:16.",
+            "The curved eye-rotation cues contain visible arrowheads, conflicting with the explicit prohibition on arrows and symbols.",
+            "The correction introduces substantial new scene content at the bottom, including a ray, leafy sea dragon, vegetation, seabed forms, and extra organisms, despite the instruction to make only the smallest targeted changes and introduce no new objects.",
+            "The barreleye still spans substantially into the center of the composition, with its head extending to the right of center rather than reading as a strict lower-left placement.",
+            "Although the prey and additional marks improve directional storytelling, the upper portion still contains a broad uninterrupted breathing area compared with the requested fuller-height scene treatment."
+          ],
+          "observations": [
+            "The canvas remains 1143 by 2048 pixels, so it is close to but not mathematically exact 9:16.",
+            "The curved eye-rotation cues contain visible arrowheads, conflicting with the explicit prohibition on arrows and symbols.",
+            "The correction introduces substantial new scene content at the bottom, including a ray, leafy sea dragon, vegetation, seabed forms, and extra organisms, despite the instruction to make only the smallest targeted changes and introduce no new objects.",
+            "The barreleye still spans substantially into the center of the composition, with its head extending to the right of center rather than reading as a strict lower-left placement.",
+            "Although the prey and additional marks improve directional storytelling, the upper portion still contains a broad uninterrupted breathing area compared with the requested fuller-height scene treatment.",
+            "New explicit arrowheads were added around the eye tubes; the previous candidate did not have this prohibited symbol treatment.",
+            "Large amounts of new seabed and secondary-creature content were added instead of preserving the previous scene and making only the requested localized corrections.",
+            "The dense lower habitat introduces more visual competition around the barreleye than the previous candidate's cleaner, more focused composition."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": false
+      }
+    ],
+    "qc_policy": "1",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_style_anchor.png",
+      "sha256": "32ee7dd1e2f2537c2cee520df4377898f9108a7385468e7005438ca7322ee361"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/references/world_keyframe.png",
+      "sha256": "f9f802adb6eb730ce7aa525abf6690f8f1d55fa577c64d5b9437c7c4cb1d4c30"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/launch/style_references/style_reference.png",
+      "sha256": "c258cf92b03f5f5d3e7082d86f405dd620543238f38293725cb3865f598f860c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/030_8_of_the_strangest_ocean_creatures/assets/raw_beats/beat_001.png",
+      "sha256": "46fe258c79cd14e903bc49f38b81d861da7f01dbab8fcf23bcbb2ceed0c6a6a8"
+    }
+  ],
+  "prompt_sha256": "f25940131e87ac1504b7f6bba9e866ae79cc23d1a460ba71755dcae8f855ca52",
+  "prompt": "Create exactly one 9:16 image: a monochrome educational illustration of a biologically recognizable barreleye fish in a medium three-quarter underside view, positioned lower-left and angled diagonally toward a tiny prey silhouette high in the upper-right water column. Show a subtle technical cutaway through the transparent head dome so the paired tubular eyes are clearly visible and pivoted upward toward the prey; use simple curved motion cues around the eye tubes to communicate rotation, with no arrows, labels, symbols, or text. Render in clean rounded carbon-black monoline contours on smooth matte bone-white paper with extremely light natural tooth, simplified anatomy, flat diffuse illustrative lighting, sparse graphite-gray depth accents, minimal hatching, and one restrained abyssal-cyan accent limited to the transparent eye anatomy or faint ocular glow. Preserve generous breathing space while adding a few tiny bubbles, plankton specks, and current marks; use the full illustration height with no caption strip, blank lower band, or empty panel. Maintain the recurring thin hand-drawn outer contour and organically interlocking illustration-window language. Use style_reference for the simplified hand-drawn 2D educational rendering rules; world_keyframe for the established frame language, paper texture, palette, contour weight, and lighting continuity; operator_style_reference only for its crisp line-art, high-key editorial qualities, never its people, campus imagery, objects, logos, text, or composition; previous_beat is binding for material/edge treatment, texture, palette, and lighting only, never its crop, camera angle, pose, placement, or focal composition. No storyboard, grid, collage, panels, captions, readable text, photorealism, 3D CGI, anime, painterly effects, heavy shadows, gradients, or horror styling. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a consistent clean off-white matte field bounded by a thin hand-drawn black contour near the outer edge, occasionally interrupted by tiny bubble, current, or plankton marks; each scene sits inside an organically interlocking line-art illustration window rather than a rigid panel, with generous white breathing channels separating creature silhouettes. The same thin contour weight, rounded corners, scattered miniature ocean marks, and open negative-space rhythm repeat across every body image. The lower edge transitions naturally into a quieter low-detail field rather than a hard caption box.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_002.png",
+  "output_sha256": "54c43c6ef2bc9b9c24277db03984f5a48df895d2544b2911e488296cd6335054",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 120.203,
+  "completed_at": "2026-09-12T16:27:14Z"
+}

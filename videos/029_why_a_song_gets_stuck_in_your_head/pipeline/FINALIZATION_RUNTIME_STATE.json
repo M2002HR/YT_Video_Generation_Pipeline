@@ -118,19 +118,72 @@
         "--started-at",
         "2026-09-13T15:21:09.490871+00:00"
       ],
-      "status": "RUNNING"
+      "status": "DONE",
+      "ended_at": "2026-09-13T15:25:13.589933+00:00",
+      "elapsed_seconds": 5.801,
+      "artifact": "pipeline/GIT_PUBLISH_STATE.json",
+      "artifact_bytes": 349
     },
     {
-      "stage": "git_commit_push",
+      "stage": "publish_telegram",
+      "started_at": "2026-09-13T15:25:14.552269+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
       "status": "DONE",
-      "started_at": "2026-09-13T15:21:09.490871+00:00",
-      "ended_at": "2026-09-13T15:25:11.820361+00:00",
-      "elapsed_seconds": 242.33,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "8e6d178c9bc406304d6b6c9b0ca13f0c291c0517"
+      "ended_at": "2026-09-13T15:25:21.770636+00:00",
+      "elapsed_seconds": 7.218,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2043
     }
   ],
-  "completed_at": "2026-09-13T15:25:11.820361+00:00",
-  "total_elapsed_seconds": 474.832
+  "completed_at": "2026-09-13T15:25:23.260568+00:00",
+  "total_elapsed_seconds": 245.521,
+  "summary": {
+    "video": "029_why_a_song_gets_stuck_in_your_head",
+    "duration_seconds": 59.429,
+    "beat_count": 12,
+    "video_beat_count": 2,
+    "image_beat_count": 10,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 4.9,
+      "transition_end": 10.18
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Nano Banana 2"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 191.901,
+      "realtime_factor": 3.229,
+      "peak_child_rss_mb": 1298.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
 }

@@ -362,6 +362,9 @@ def test_branding_profile_uses_topic_as_title_and_freezes_panel_geometry(tmp_pat
         "title_position": "below_logo", "title_font": "Rubik",
         "title_font_colour": "#FFD700", "title_outline": 3,
         "title_max_words_per_line": 9, "title_line_spacing": 11,
+        "show_watermark": True, "watermark_text": "© Q Station",
+        "watermark_position": "bottom_left", "watermark_font": "Roboto",
+        "watermark_opacity": .63, "watermark_max_words_per_line": 2,
     }}, "Why does time feel faster?")
 
     branding = json.loads(profile_path.read_text(encoding="utf-8"))["branding"]
@@ -374,3 +377,9 @@ def test_branding_profile_uses_topic_as_title_and_freezes_panel_geometry(tmp_pat
     assert branding["title"]["font_colour"] == "#FFD700"
     assert branding["title"]["max_words_per_line"] == 9
     assert branding["title"]["line_spacing"] == 11
+    assert branding["watermark"]["enabled"] is True
+    assert branding["watermark"]["text"] == "© Q Station"
+    assert branding["watermark"]["position"] == "bottom_left"
+    assert branding["watermark"]["font_name"] == "Roboto"
+    assert branding["watermark"]["opacity"] == .63
+    assert branding["watermark"]["max_words_per_line"] == 2
