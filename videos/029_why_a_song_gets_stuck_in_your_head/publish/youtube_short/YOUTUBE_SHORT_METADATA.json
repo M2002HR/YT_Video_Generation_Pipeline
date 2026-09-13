@@ -1,0 +1,465 @@
+{
+  "title": "Why a Song Keeps Playing in Your Head After It Stops",
+  "title_options": [
+    "Why Songs Get Stuck in Your Head",
+    "Why Your Brain Replays the Same Tune",
+    "Why Fighting an Earworm Can Keep It Going"
+  ],
+  "description": "Why can a tune keep looping in your head after the music stops? This Short explores involuntary musical imagery, often called an earworm. Recent or repeated listening can trigger it, while short, distinctive fragments may be easier to retrieve. Repetition can make the next note feel predictable, allowing your brain to replay the pattern without external sound. Idle moments, mood, and personal memories can strengthen the cue, while an absorbing task can shift attention until the loop fades.\n\nQ Station is an English-language education channel built around the idea that every question opens a world.\n\n#Earworm #Music #Memory",
+  "tags": [
+    "earworm",
+    "involuntary musical imagery",
+    "song stuck in your head",
+    "why songs get stuck in your head",
+    "music memory",
+    "repeated listening",
+    "brain replaying music",
+    "attention and earworms",
+    "music repetition",
+    "Q Station"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "private",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "manual_review": [
+    {
+      "field": "audience",
+      "recommendation": "Confirm not_made_for_kids before publishing.",
+      "reason": "The source recommends not_made_for_kids, but the uploader must make the final audience declaration."
+    },
+    {
+      "field": "age_restriction",
+      "recommendation": "Review the completed video and make the final age-restriction declaration.",
+      "reason": "The supplied context does not provide a final uploader declaration."
+    },
+    {
+      "field": "paid_promotion",
+      "recommendation": "Confirm whether any sponsorship, endorsement, or other qualifying commercial relationship applies before publishing.",
+      "reason": "The supplied context does not provide a final paid-promotion declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content",
+      "recommendation": "Review the finished video and make the applicable altered-or-synthetic-content disclosure decision under YouTube's current requirements.",
+      "reason": "The supplied rendered frames are stylized, but the uploader must make the final platform disclosure declaration."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Create one instantly readable 9:16 YouTube Shorts thumbnail for this exact earworm episode. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Match their bold pop-art/comic look with thick dark outlines, cream backgrounds, saturated purple, yellow, pink, red, and orange, graphic halftone texture, and clean flat shapes. Any world keyframe is supporting continuity only and must never override the final rendered frames. Any character sheet is identity-only and must not make a character appear unless that character genuinely belongs in this episode's thumbnail. Use one dominant focal subject taken directly from the episode imagery: the large stylized purple ear on the illustrated reference-book page, surrounded by a tight closed loop of yellow musical-note shapes that visibly circles back toward itself, making the internal repetition immediately clear. Keep the composition simple enough to read on a phone, with strong contrast, a clear silhouette, deliberate negative space in the upper third, and minimal secondary detail. Preserve the distinctive book-and-ear visual language of the rendered opening frame so the thumbnail feels unmistakably connected to this episode rather than generic music artwork. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Stuck on Repeat",
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader deliberately chooses one.",
+  "schema_version": 1,
+  "created_at": "2026-09-13T14:22:03.756549+00:00",
+  "source_master_sha256": "69a30eff830c51700922aaebd1417e181cd5d0ebe918bd4e367a436fb6cd4044",
+  "chatgpt_jobs": {
+    "draft": "802f2e65-7d32-42e8-8430-126750653a9b",
+    "review": "b2886580-4717-4bb5-81f0-038966568282",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "private",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "029_why_a_song_gets_stuck_in_your_head",
+      "duration_seconds": 59.429,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup",
+      "opening_environment": "A compact pop-art rehearsal room after hours, with silent speakers, stacked instrument cases, coiled cables, a worktable, and a compartmented maintenance-tool case.",
+      "topic_visual_link": "The external music has stopped, yet the host's hands keep repeating the same short sorting rhythm, visually echoing how a recently heard musical pattern can continue looping internally.",
+      "link_type": "metaphor",
+      "opening_visual_proof": "At frame zero, the speaker is visibly inactive while the host places three differently shaped tools into three compartments in sequence, then immediately repeats that identical hand pattern instead of continuing normally.",
+      "curiosity_trigger": "He notices his fingers have fallen into the same little rhythm again even though the room has gone silent.",
+      "trigger_object": "the repeated three-tool sorting sequence beside the now-silent speaker",
+      "reaction": "He freezes mid-placement, gives the silent speaker a tired sideways glance, then watches his own hand with skeptical curiosity.",
+      "book_retrieval": "He reaches beneath the worktable for the reference book he had been using to level the compartmented tool case, slides it free, and opens it on the cleared tabletop.",
+      "camera_pattern": "pan_right",
+      "book_template_id": "001",
+      "hero_presence_mode": "in_world",
+      "closing_mode": "return_to_opening",
+      "world_style_hint": "bold pop-art rehearsal-space imagery with graphic sound-pattern motifs, halftone textures, and repeated geometric shapes suggesting loops and memory",
+      "reason": "Post-rehearsal cleanup makes the script's tool-sorting line literal while the host's restrained accidental repetition provides an immediate, grounded visual metaphor for a musical fragment continuing after the sound itself is gone."
+    },
+    "script_plan": {
+      "opening_question_spark": "Why does one tune keep looping while you sort tools after the music stops?",
+      "book_transition": "You pull down a book: the clue is how memory handles sound.",
+      "cta": "Like and subscribe to keep growing your questions.",
+      "body": [
+        "Scientists call it involuntary musical imagery, or an earworm.",
+        "Recent or repeated listening can trigger it.",
+        "Short, distinctive fragments are easier to retrieve.",
+        "Repetition makes the next note feel predictable.",
+        "Your brain can replay that pattern without any sound.",
+        "Idle moments give the loop room to return.",
+        "Mood or personal memories can strengthen the cue.",
+        "Fighting it can keep your attention stuck on it.",
+        "An absorbing task can pull attention elsewhere.",
+        "Then the loop often fades on its own."
+      ],
+      "optional_closing": "The music stopped, but the pattern kept moving.",
+      "full_narration": "Why does one tune keep looping while you sort tools after the music stops? You pull down a book: the clue is how memory handles sound. Scientists call it involuntary musical imagery, or an earworm. Recent or repeated listening can trigger it. Short, distinctive fragments are easier to retrieve. Repetition makes the next note feel predictable. Your brain can replay that pattern without any sound. Idle moments give the loop room to return. Mood or personal memories can strengthen the cue. Fighting it can keep your attention stuck on it. An absorbing task can pull attention elsewhere. Then the loop often fades on its own. The music stopped, but the pattern kept moving. Like and subscribe to keep growing your questions.",
+      "word_count": 121,
+      "created_at": "2026-09-12T06:03:37Z"
+    },
+    "narration": "Why does one tune keep looping while you sort tools after the music stops? You pull down a book: the clue is how memory handles sound. Scientists call it involuntary musical imagery, or an earworm. Recent or repeated listening can trigger it. Short, distinctive fragments are easier to retrieve. Repetition makes the next note feel predictable. Your brain can replay that pattern without any sound. Idle moments give the loop room to return. Mood or personal memories can strengthen the cue. Fighting it can keep your attention stuck on it. An absorbing task can pull attention elsewhere. Then the loop often fades on its own. The music stopped, but the pattern kept moving. Like and subscribe to keep growing your questions.",
+    "music": {
+      "provider": "freesound",
+      "source_url": "https://freesound.org/people/city11/sounds/735080/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2767763,
+          "sha256": "da522afc0381599dfca8426821d6e0fe785a07c77a2edae8b0a2f00db20d8eb2",
+          "time_seconds": 5.943
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2802506,
+          "sha256": "360394a53543786ba1aa66c85d55082aead0d964d7c6ca8a9a091d41f567b0be",
+          "time_seconds": 29.714
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1653600,
+          "sha256": "ff1797c0d8917f598091f2c731dbe7e54c6daa2a83d21b4363f89df97694e283",
+          "time_seconds": 49.92
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 2944819,
+          "sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1536,
+      "height": 2752,
+      "bytes": 3257624,
+      "sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c"
+    },
+    "selected_attempt": 1,
+    "quality_check": {
+      "passed": true,
+      "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+      "violations": [
+        "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+        "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+        "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+        "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+        "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+        "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+        "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+      ],
+      "observations": [
+        "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+        "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+        "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+        "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "candidates": [
+      {
+        "attempt": 1,
+        "job_id": "364588e8-70eb-4026-b097-0babdcf65078",
+        "prompt_sha256": "9f209b94ebab59c02986d6c69b14a98eb8b62a397a3be77895d368e6a37829c8",
+        "output_sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c",
+        "quality_check": {
+          "passed": true,
+          "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+          "violations": [
+            "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+            "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+            "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+            "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+            "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+            "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+            "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+          ],
+          "observations": [
+            "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+            "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+            "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+            "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+        "selected": true,
+        "file": "thumbnail_candidates/thumbnail.attempt_1.png",
+        "image": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3257624,
+          "sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c"
+        },
+        "visual_references": [
+          {
+            "role": "thumbnail_rendered_opening_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_opening.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2767763,
+            "sha256": "da522afc0381599dfca8426821d6e0fe785a07c77a2edae8b0a2f00db20d8eb2",
+            "time_seconds": 5.943
+          },
+          {
+            "role": "thumbnail_rendered_body_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_body.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2802506,
+            "sha256": "360394a53543786ba1aa66c85d55082aead0d964d7c6ca8a9a091d41f567b0be",
+            "time_seconds": 29.714
+          },
+          {
+            "role": "thumbnail_rendered_closing_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_closing.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 1653600,
+            "sha256": "ff1797c0d8917f598091f2c731dbe7e54c6daa2a83d21b4363f89df97694e283",
+            "time_seconds": 49.92
+          },
+          {
+            "role": "thumbnail_world_keyframe",
+            "purpose": "Supporting world continuity only; never overrides final rendered frames",
+            "file": "references/world_keyframe.png",
+            "width": 1536,
+            "height": 2752,
+            "bytes": 2944819,
+            "sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d"
+          }
+        ]
+      }
+    ],
+    "visual_references": [
+      {
+        "role": "thumbnail_rendered_opening_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_opening.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2767763,
+        "sha256": "da522afc0381599dfca8426821d6e0fe785a07c77a2edae8b0a2f00db20d8eb2",
+        "time_seconds": 5.943
+      },
+      {
+        "role": "thumbnail_rendered_body_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_body.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2802506,
+        "sha256": "360394a53543786ba1aa66c85d55082aead0d964d7c6ca8a9a091d41f567b0be",
+        "time_seconds": 29.714
+      },
+      {
+        "role": "thumbnail_rendered_closing_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_closing.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 1653600,
+        "sha256": "ff1797c0d8917f598091f2c731dbe7e54c6daa2a83d21b4363f89df97694e283",
+        "time_seconds": 49.92
+      },
+      {
+        "role": "thumbnail_world_keyframe",
+        "purpose": "Supporting world continuity only; never overrides final rendered frames",
+        "file": "references/world_keyframe.png",
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2944819,
+        "sha256": "1192a5086ff6d4114de71525e02bf401e5aca0d790f72aab51a1554e443f6d8d"
+      }
+    ],
+    "requested_model": "nano_banana_2",
+    "source_image_contract": {
+      "model": "nano_banana_2",
+      "qc_correction_policy": "0",
+      "chatgpt_fallback_mode": "auto"
+    },
+    "gemini_job_id": "364588e8-70eb-4026-b097-0babdcf65078",
+    "gemini_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/853f82885a2220d4",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "thumbnail_rendered_opening_frame",
+        "thumbnail_rendered_body_frame",
+        "thumbnail_rendered_closing_frame",
+        "thumbnail_world_keyframe"
+      ],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=364588e8-70eb-4026-b097-0babdcf65078_output_1.png 1536x2752 sha256=e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c"
+      ],
+      "quality_check": {
+        "passed": true,
+        "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+        "violations": [
+          "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+          "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+          "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+          "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+        ],
+        "blocking_violations": [],
+        "regressions": [],
+        "raw_passed": true,
+        "raw_violations": [
+          "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+          "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+          "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+          "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+        ],
+        "observations": [
+          "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+          "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+          "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+          "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+        ],
+        "review_status": "passed_with_warnings"
+      },
+      "request_fingerprint": "caaa1edbfa9c46ffd12c65e583385cdaf99b7fb8daf652982958c7b2b62f1f98",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "job_id": "364588e8-70eb-4026-b097-0babdcf65078",
+          "prompt_sha256": "9f209b94ebab59c02986d6c69b14a98eb8b62a397a3be77895d368e6a37829c8",
+          "output_sha256": "e0407553ce4047c47c2fedd75bf73bed954f5ad9dbe40cd92f3076b8d6bcda5c",
+          "quality_check": {
+            "passed": true,
+            "description": "A vertical comic-pop illustration of an open cream reference-book page dominated by a large purple ear with thick dark outlines and halftone shading. Yellow musical-note shapes spiral around the ear in repeated circular bands. Saturated pink, purple, orange, and red panels appear across the top, with book-edge details surrounding the page. The image contains no written words, logos, watermark, UI, collage panels, stock-photo elements, or foreground host character.",
+            "violations": [
+              "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+              "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+              "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+              "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+            ],
+            "blocking_violations": [],
+            "regressions": [],
+            "raw_passed": true,
+            "raw_violations": [
+              "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+              "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+              "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+              "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+            ],
+            "observations": [
+              "The upper third is relatively busy because saturated rectangular color panels fill much of the top area, reducing the deliberate negative space requested for thumbnail readability.",
+              "The musical notes form several concentric and partially overlapping rings rather than one especially clear tight closed loop, so the repetition concept is slightly less immediate at phone size.",
+              "The heavy outer book-edge treatment reads somewhat like an enclosing border, despite the request for no border.",
+              "The delivered image is 1143 by 2048 pixels, which is slightly narrower than exact 9:16 and below the preferred 2160 by 3840 target, although it remains a high-resolution vertical PNG and should not be artificially upscaled."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+          "selected": true
+        }
+      ],
+      "qc_policy": "0",
+      "qc_selected_attempt": 1
+    }
+  }
+}
