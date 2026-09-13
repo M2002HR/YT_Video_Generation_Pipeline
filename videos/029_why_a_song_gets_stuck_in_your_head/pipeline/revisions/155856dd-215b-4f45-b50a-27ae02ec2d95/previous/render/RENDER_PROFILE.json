@@ -66,10 +66,10 @@
   "branding": {
     "logo": {
       "enabled": true,
-      "source": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/349e6195-6c14-44c3-84e9-8dd6f60d3911/branding/logo.png",
+      "source": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/5130d2ac-8f6b-4b49-b16d-385d4e64ee68/branding/logo.png",
       "sha256": "b5b4478688010b96909c8d33cd5049263ae9fdeec718f9aad461873c9245d065",
       "position": "custom",
-      "width_percent": 14.0,
+      "width_percent": 11.0,
       "opacity": 1.0,
       "margin_x_percent": 3.0,
       "margin_y_percent": 2.5,
@@ -86,7 +86,7 @@
       "italic": false,
       "text_align": "center",
       "max_words_per_line": 4,
-      "line_spacing": 0.0,
+      "line_spacing": 12.0,
       "max_width_percent": 90.0,
       "margin_x_percent": 0.0,
       "margin_y_percent": 2.5,

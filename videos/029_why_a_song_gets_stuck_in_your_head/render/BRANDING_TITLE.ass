@@ -12,4 +12,4 @@ Style: VideoTitle,Gruze Drip,90,&H00FAFAFA,&H00FAFAFA,&H00471A3C,&H00000000,0,0,
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
 Dialogue: 1,0:00:00.00,0:00:59.43,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,48.00)}Why a Song Gets
-Dialogue: 1,0:00:00.00,0:00:59.43,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,150.00)}Stuck in Your Head
+Dialogue: 1,0:00:00.00,0:00:59.43,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,138.00)}Stuck in Your Head

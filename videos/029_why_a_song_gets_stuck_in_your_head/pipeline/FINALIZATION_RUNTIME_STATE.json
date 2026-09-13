@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "029_why_a_song_gets_stuck_in_your_head",
-  "started_at": "2026-09-12T17:40:28.494011+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-13T14:11:40.884009+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-12T17:40:28.514913+00:00",
+      "started_at": "2026-09-13T14:11:40.904137+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-12T17:40:30.361178+00:00",
-      "elapsed_seconds": 1.846,
+      "ended_at": "2026-09-13T14:11:42.417799+00:00",
+      "elapsed_seconds": 1.514,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 40808
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-12T17:40:31.482225+00:00",
+      "started_at": "2026-09-13T14:11:43.443536+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -33,14 +33,14 @@
         "step 2/8 · Render Baseline"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-12T17:44:10.151710+00:00",
-      "elapsed_seconds": 218.669,
+      "ended_at": "2026-09-13T14:15:25.845039+00:00",
+      "elapsed_seconds": 222.401,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 49585990
+      "artifact_bytes": 49780039
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-12T17:44:10.152247+00:00",
+      "started_at": "2026-09-13T14:15:25.845545+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -50,14 +50,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-12T17:44:18.893767+00:00",
-      "elapsed_seconds": 8.741,
+      "ended_at": "2026-09-13T14:15:35.033715+00:00",
+      "elapsed_seconds": 9.188,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-12T17:44:19.982330+00:00",
+      "started_at": "2026-09-13T14:15:36.284370+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -66,14 +66,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-12T17:44:23.882054+00:00",
-      "elapsed_seconds": 3.9,
+      "ended_at": "2026-09-13T14:15:40.205792+00:00",
+      "elapsed_seconds": 3.921,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 49925881
+      "artifact_bytes": 50119930
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-12T17:44:25.014101+00:00",
+      "started_at": "2026-09-13T14:15:41.406436+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -83,14 +83,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-12T17:44:33.531019+00:00",
-      "elapsed_seconds": 8.517,
+      "ended_at": "2026-09-13T14:15:50.609687+00:00",
+      "elapsed_seconds": 9.203,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-12T17:44:34.585946+00:00",
+      "started_at": "2026-09-13T14:15:51.672701+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -101,14 +101,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-12T17:44:53.013063+00:00",
-      "elapsed_seconds": 18.427,
+      "ended_at": "2026-09-13T14:16:10.548433+00:00",
+      "elapsed_seconds": 18.876,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 2948410
+      "artifact_bytes": 2952263
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-12T17:44:54.315912+00:00",
+      "started_at": "2026-09-13T14:16:11.727673+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -116,21 +116,9 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-12T17:40:28.494011+00:00"
+        "2026-09-13T14:11:40.884009+00:00"
       ],
       "status": "RUNNING"
-    },
-    {
-      "stage": "git_commit_push",
-      "status": "DONE",
-      "started_at": "2026-09-12T17:40:28.494011+00:00",
-      "ended_at": "2026-09-12T17:44:58.658419+00:00",
-      "elapsed_seconds": 270.164,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "e735669c7ab11fe0e50a94242302ed2f8f7c26ec"
     }
-  ],
-  "completed_at": "2026-09-12T17:44:58.658419+00:00",
-  "total_elapsed_seconds": 530.264
+  ]
 }
