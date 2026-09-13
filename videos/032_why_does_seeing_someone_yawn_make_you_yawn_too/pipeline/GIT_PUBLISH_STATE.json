@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "72df6181fdaf4f954ea43e3ac9182996e8b8f1a2",
+  "started_at": "2026-09-13T21:28:38.205672+00:00",
+  "completed_at": "2026-09-13T21:32:29.091822+00:00",
+  "elapsed_seconds": 230.886,
+  "scope": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too"
+}
