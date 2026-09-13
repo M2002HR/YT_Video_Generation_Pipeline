@@ -1,21 +1,17 @@
 {
   "schema_version": 1,
-  "completed_at": "2026-09-13T18:59:48.298473+00:00",
+  "completed_at": "2026-09-11T20:23:43.089793+00:00",
   "output": "/opt/YT_Video_Generation_Pipeline/videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/assets/renders/final.mp4",
-  "output_bytes": 32727640,
+  "output_bytes": 29704201,
   "target_duration_seconds": 59.611,
   "actual_duration_seconds": 59.611,
   "duration_drift_seconds": -0.0,
-  "wall_seconds": 190.028,
-  "realtime_factor": 3.188,
+  "wall_seconds": 192.622,
+  "realtime_factor": 3.231,
   "beats": 13,
   "resolution": "1080x1920",
   "fps": 30,
   "subtitles": true,
-  "branding": {
-    "logo": false,
-    "title": true
-  },
   "resource_budget": 0.8,
   "cpus_available": 2,
   "threads": {
@@ -31,5 +27,5 @@
   "motion_render_backend": "single_graph",
   "motion_segments_rendered": 0,
   "motion_segments_reused": 0,
-  "peak_child_rss_mb": 1283.6
+  "peak_child_rss_mb": 1263.7
 }

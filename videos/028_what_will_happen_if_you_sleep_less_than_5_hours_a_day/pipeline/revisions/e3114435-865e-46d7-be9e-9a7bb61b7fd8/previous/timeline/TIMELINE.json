@@ -224,25 +224,15 @@
   "subtitles": [
     {
       "start": 0.02,
-      "end": 0.24,
-      "text": "Why",
-      "ass_text": "Why",
+      "end": 0.54,
+      "text": "Why is",
+      "ass_text": "Why is",
       "words": [
         {
           "text": "Why",
           "start": 0.02,
           "end": 0.24
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
-    },
-    {
-      "start": 0.24,
-      "end": 0.54,
-      "text": "is",
-      "ass_text": "is",
-      "words": [
+        },
         {
           "text": "is",
           "start": 0.24,
@@ -254,25 +244,15 @@
     },
     {
       "start": 0.54,
-      "end": 0.8,
-      "text": "sorting",
-      "ass_text": "sorting",
+      "end": 1.2,
+      "text": "sorting apples",
+      "ass_text": "sorting apples",
       "words": [
         {
           "text": "sorting",
           "start": 0.54,
           "end": 0.8
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
-    },
-    {
-      "start": 0.8,
-      "end": 1.2,
-      "text": "apples",
-      "ass_text": "apples",
-      "words": [
+        },
         {
           "text": "apples",
           "start": 0.8,
@@ -284,25 +264,15 @@
     },
     {
       "start": 1.2,
-      "end": 1.7,
-      "text": "harder",
-      "ass_text": "harder",
+      "end": 2.1,
+      "text": "harder after",
+      "ass_text": "harder after",
       "words": [
         {
           "text": "harder",
           "start": 1.2,
           "end": 1.7
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
-    },
-    {
-      "start": 1.7,
-      "end": 2.1,
-      "text": "after",
-      "ass_text": "after",
-      "words": [
+        },
         {
           "text": "after",
           "start": 1.7,
@@ -314,25 +284,15 @@
     },
     {
       "start": 2.1,
-      "end": 2.42,
-      "text": "less",
-      "ass_text": "less",
+      "end": 2.6,
+      "text": "less than",
+      "ass_text": "less than",
       "words": [
         {
           "text": "less",
           "start": 2.1,
           "end": 2.42
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
-    },
-    {
-      "start": 2.42,
-      "end": 2.6,
-      "text": "than",
-      "ass_text": "than",
-      "words": [
+        },
         {
           "text": "than",
           "start": 2.42,
@@ -344,25 +304,15 @@
     },
     {
       "start": 2.6,
-      "end": 3.02,
-      "text": "five",
-      "ass_text": "five",
+      "end": 3.38,
+      "text": "five hours",
+      "ass_text": "five hours",
       "words": [
         {
           "text": "five",
           "start": 2.6,
           "end": 3.02
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
-    },
-    {
-      "start": 3.02,
-      "end": 3.38,
-      "text": "hours",
-      "ass_text": "hours",
-      "words": [
+        },
         {
           "text": "hours",
           "start": 3.02,
@@ -374,25 +324,15 @@
     },
     {
       "start": 3.38,
-      "end": 3.6,
-      "text": "of",
-      "ass_text": "of",
+      "end": 3.94,
+      "text": "of sleep?",
+      "ass_text": "of sleep?",
       "words": [
         {
           "text": "of",
           "start": 3.38,
           "end": 3.6
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_a"
-    },
-    {
-      "start": 3.6,
-      "end": 3.94,
-      "text": "sleep?",
-      "ass_text": "sleep?",
-      "words": [
+        },
         {
           "text": "sleep?",
           "start": 3.6,
@@ -404,25 +344,15 @@
     },
     {
       "start": 4.8,
-      "end": 5.02,
-      "text": "Grab",
-      "ass_text": "Grab",
+      "end": 5.24,
+      "text": "Grab the",
+      "ass_text": "Grab the",
       "words": [
         {
           "text": "Grab",
           "start": 4.8,
           "end": 5.02
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
-    },
-    {
-      "start": 5.02,
-      "end": 5.24,
-      "text": "the",
-      "ass_text": "the",
-      "words": [
+        },
         {
           "text": "the",
           "start": 5.02,
@@ -449,25 +379,15 @@
     },
     {
       "start": 6.0,
-      "end": 6.18,
-      "text": "The",
-      "ass_text": "The",
+      "end": 6.46,
+      "text": "The answer",
+      "ass_text": "The answer",
       "words": [
         {
           "text": "The",
           "start": 6.0,
           "end": 6.18
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
-    },
-    {
-      "start": 6.18,
-      "end": 6.46,
-      "text": "answer",
-      "ass_text": "answer",
-      "words": [
+        },
         {
           "text": "answer",
           "start": 6.18,
@@ -479,25 +399,15 @@
     },
     {
       "start": 6.46,
-      "end": 7.02,
-      "text": "starts",
-      "ass_text": "starts",
+      "end": 7.26,
+      "text": "starts in",
+      "ass_text": "starts in",
       "words": [
         {
           "text": "starts",
           "start": 6.46,
           "end": 7.02
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
-    },
-    {
-      "start": 7.02,
-      "end": 7.26,
-      "text": "in",
-      "ass_text": "in",
-      "words": [
+        },
         {
           "text": "in",
           "start": 7.02,
@@ -509,25 +419,15 @@
     },
     {
       "start": 7.26,
-      "end": 7.42,
-      "text": "your",
-      "ass_text": "your",
+      "end": 7.84,
+      "text": "your tired",
+      "ass_text": "your tired",
       "words": [
         {
           "text": "your",
           "start": 7.26,
           "end": 7.42
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": "video_opening_b"
-    },
-    {
-      "start": 7.42,
-      "end": 7.84,
-      "text": "tired",
-      "ass_text": "tired",
-      "words": [
+        },
         {
           "text": "tired",
           "start": 7.42,
@@ -554,25 +454,15 @@
     },
     {
       "start": 9.06,
-      "end": 9.5,
-      "text": "Attention",
-      "ass_text": "Attention",
+      "end": 10.3,
+      "text": "Attention drifts.",
+      "ass_text": "Attention drifts.",
       "words": [
         {
           "text": "Attention",
           "start": 9.06,
           "end": 9.5
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 1
-    },
-    {
-      "start": 9.5,
-      "end": 10.3,
-      "text": "drifts.",
-      "ass_text": "drifts.",
-      "words": [
+        },
         {
           "text": "drifts.",
           "start": 9.5,
@@ -584,25 +474,15 @@
     },
     {
       "start": 10.58,
-      "end": 10.96,
-      "text": "Obvious",
-      "ass_text": "Obvious",
+      "end": 11.54,
+      "text": "Obvious details",
+      "ass_text": "Obvious details",
       "words": [
         {
           "text": "Obvious",
           "start": 10.58,
           "end": 10.96
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 1
-    },
-    {
-      "start": 10.96,
-      "end": 11.54,
-      "text": "details",
-      "ass_text": "details",
-      "words": [
+        },
         {
           "text": "details",
           "start": 10.96,
@@ -614,25 +494,15 @@
     },
     {
       "start": 11.54,
-      "end": 11.9,
-      "text": "slip",
-      "ass_text": "slip",
+      "end": 12.48,
+      "text": "slip past.",
+      "ass_text": "slip past.",
       "words": [
         {
           "text": "slip",
           "start": 11.54,
           "end": 11.9
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 1
-    },
-    {
-      "start": 11.9,
-      "end": 12.48,
-      "text": "past.",
-      "ass_text": "past.",
-      "words": [
+        },
         {
           "text": "past.",
           "start": 11.9,
@@ -644,25 +514,15 @@
     },
     {
       "start": 12.96,
-      "end": 13.38,
-      "text": "Reaction",
-      "ass_text": "Reaction",
+      "end": 13.76,
+      "text": "Reaction time",
+      "ass_text": "Reaction time",
       "words": [
         {
           "text": "Reaction",
           "start": 12.96,
           "end": 13.38
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 2
-    },
-    {
-      "start": 13.38,
-      "end": 13.76,
-      "text": "time",
-      "ass_text": "time",
-      "words": [
+        },
         {
           "text": "time",
           "start": 13.38,
@@ -674,25 +534,15 @@
     },
     {
       "start": 13.76,
-      "end": 14.12,
-      "text": "slows,",
-      "ass_text": "slows,",
+      "end": 14.92,
+      "text": "slows, making",
+      "ass_text": "slows, making",
       "words": [
         {
           "text": "slows,",
           "start": 13.76,
           "end": 14.12
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 2
-    },
-    {
-      "start": 14.12,
-      "end": 14.92,
-      "text": "making",
-      "ass_text": "making",
-      "words": [
+        },
         {
           "text": "making",
           "start": 14.12,
@@ -704,25 +554,15 @@
     },
     {
       "start": 14.92,
-      "end": 15.52,
-      "text": "mistakes",
-      "ass_text": "mistakes",
+      "end": 16.1,
+      "text": "mistakes easier.",
+      "ass_text": "mistakes easier.",
       "words": [
         {
           "text": "mistakes",
           "start": 14.92,
           "end": 15.52
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 2
-    },
-    {
-      "start": 15.52,
-      "end": 16.1,
-      "text": "easier.",
-      "ass_text": "easier.",
-      "words": [
+        },
         {
           "text": "easier.",
           "start": 15.52,
@@ -734,25 +574,15 @@
     },
     {
       "start": 16.88,
-      "end": 17.08,
-      "text": "New",
-      "ass_text": "New",
+      "end": 17.56,
+      "text": "New memories",
+      "ass_text": "New memories",
       "words": [
         {
           "text": "New",
           "start": 16.88,
           "end": 17.08
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 3
-    },
-    {
-      "start": 17.08,
-      "end": 17.56,
-      "text": "memories",
-      "ass_text": "memories",
-      "words": [
+        },
         {
           "text": "memories",
           "start": 17.08,
@@ -764,25 +594,15 @@
     },
     {
       "start": 17.56,
-      "end": 18.1,
-      "text": "become",
-      "ass_text": "become",
+      "end": 18.54,
+      "text": "become harder",
+      "ass_text": "become harder",
       "words": [
         {
           "text": "become",
           "start": 17.56,
           "end": 18.1
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 3
-    },
-    {
-      "start": 18.1,
-      "end": 18.54,
-      "text": "harder",
-      "ass_text": "harder",
-      "words": [
+        },
         {
           "text": "harder",
           "start": 18.1,
@@ -794,25 +614,15 @@
     },
     {
       "start": 18.54,
-      "end": 18.78,
-      "text": "to",
-      "ass_text": "to",
+      "end": 19.2,
+      "text": "to store.",
+      "ass_text": "to store.",
       "words": [
         {
           "text": "to",
           "start": 18.54,
           "end": 18.78
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 3
-    },
-    {
-      "start": 18.78,
-      "end": 19.2,
-      "text": "store.",
-      "ass_text": "store.",
-      "words": [
+        },
         {
           "text": "store.",
           "start": 18.78,
@@ -824,25 +634,15 @@
     },
     {
       "start": 20.1,
-      "end": 20.52,
-      "text": "Emotional",
-      "ass_text": "Emotional",
+      "end": 21.16,
+      "text": "Emotional control",
+      "ass_text": "Emotional control",
       "words": [
         {
           "text": "Emotional",
           "start": 20.1,
           "end": 20.52
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 4
-    },
-    {
-      "start": 20.52,
-      "end": 21.16,
-      "text": "control",
-      "ass_text": "control",
-      "words": [
+        },
         {
           "text": "control",
           "start": 20.52,
@@ -854,25 +654,15 @@
     },
     {
       "start": 21.16,
-      "end": 21.78,
-      "text": "weakens,",
-      "ass_text": "weakens,",
+      "end": 22.38,
+      "text": "weakens, so",
+      "ass_text": "weakens, so",
       "words": [
         {
           "text": "weakens,",
           "start": 21.16,
           "end": 21.78
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 4
-    },
-    {
-      "start": 21.78,
-      "end": 22.38,
-      "text": "so",
-      "ass_text": "so",
-      "words": [
+        },
         {
           "text": "so",
           "start": 21.78,
@@ -884,25 +674,15 @@
     },
     {
       "start": 22.38,
-      "end": 22.9,
-      "text": "feelings",
-      "ass_text": "feelings",
+      "end": 23.18,
+      "text": "feelings hit",
+      "ass_text": "feelings hit",
       "words": [
         {
           "text": "feelings",
           "start": 22.38,
           "end": 22.9
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 4
-    },
-    {
-      "start": 22.9,
-      "end": 23.18,
-      "text": "hit",
-      "ass_text": "hit",
-      "words": [
+        },
         {
           "text": "hit",
           "start": 22.9,
@@ -929,25 +709,15 @@
     },
     {
       "start": 24.36,
-      "end": 24.64,
-      "text": "Hunger",
-      "ass_text": "Hunger",
+      "end": 25.16,
+      "text": "Hunger shifts",
+      "ass_text": "Hunger shifts",
       "words": [
         {
           "text": "Hunger",
           "start": 24.36,
           "end": 24.64
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 5
-    },
-    {
-      "start": 24.64,
-      "end": 25.16,
-      "text": "shifts",
-      "ass_text": "shifts",
-      "words": [
+        },
         {
           "text": "shifts",
           "start": 24.64,
@@ -959,25 +729,15 @@
     },
     {
       "start": 25.16,
-      "end": 25.54,
-      "text": "toward",
-      "ass_text": "toward",
+      "end": 25.92,
+      "text": "toward more",
+      "ass_text": "toward more",
       "words": [
         {
           "text": "toward",
           "start": 25.16,
           "end": 25.54
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 5
-    },
-    {
-      "start": 25.54,
-      "end": 25.92,
-      "text": "more",
-      "ass_text": "more",
-      "words": [
+        },
         {
           "text": "more",
           "start": 25.54,
@@ -989,25 +749,15 @@
     },
     {
       "start": 25.92,
-      "end": 26.84,
-      "text": "calorie-dense",
-      "ass_text": "calorie-dense",
+      "end": 27.32,
+      "text": "calorie-dense foods.",
+      "ass_text": "calorie-dense foods.",
       "words": [
         {
           "text": "calorie-dense",
           "start": 25.92,
           "end": 26.84
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 5
-    },
-    {
-      "start": 26.84,
-      "end": 27.32,
-      "text": "foods.",
-      "ass_text": "foods.",
-      "words": [
+        },
         {
           "text": "foods.",
           "start": 26.84,
@@ -1019,25 +769,15 @@
     },
     {
       "start": 28.06,
-      "end": 28.2,
-      "text": "Your",
-      "ass_text": "Your",
+      "end": 28.6,
+      "text": "Your immune",
+      "ass_text": "Your immune",
       "words": [
         {
           "text": "Your",
           "start": 28.06,
           "end": 28.2
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 6
-    },
-    {
-      "start": 28.2,
-      "end": 28.6,
-      "text": "immune",
-      "ass_text": "immune",
-      "words": [
+        },
         {
           "text": "immune",
           "start": 28.2,
@@ -1049,25 +789,15 @@
     },
     {
       "start": 28.6,
-      "end": 29.1,
-      "text": "system",
-      "ass_text": "system",
+      "end": 29.5,
+      "text": "system gets",
+      "ass_text": "system gets",
       "words": [
         {
           "text": "system",
           "start": 28.6,
           "end": 29.1
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 6
-    },
-    {
-      "start": 29.1,
-      "end": 29.5,
-      "text": "gets",
-      "ass_text": "gets",
-      "words": [
+        },
         {
           "text": "gets",
           "start": 29.1,
@@ -1079,25 +809,15 @@
     },
     {
       "start": 29.5,
-      "end": 29.86,
-      "text": "less",
-      "ass_text": "less",
+      "end": 30.42,
+      "text": "less recovery",
+      "ass_text": "less recovery",
       "words": [
         {
           "text": "less",
           "start": 29.5,
           "end": 29.86
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 6
-    },
-    {
-      "start": 29.86,
-      "end": 30.42,
-      "text": "recovery",
-      "ass_text": "recovery",
-      "words": [
+        },
         {
           "text": "recovery",
           "start": 29.86,
@@ -1124,25 +844,15 @@
     },
     {
       "start": 31.66,
-      "end": 31.92,
-      "text": "Blood",
-      "ass_text": "Blood",
+      "end": 32.26,
+      "text": "Blood pressure",
+      "ass_text": "Blood pressure",
       "words": [
         {
           "text": "Blood",
           "start": 31.66,
           "end": 31.92
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 7
-    },
-    {
-      "start": 31.92,
-      "end": 32.26,
-      "text": "pressure",
-      "ass_text": "pressure",
-      "words": [
+        },
         {
           "text": "pressure",
           "start": 31.92,
@@ -1154,25 +864,15 @@
     },
     {
       "start": 32.26,
-      "end": 32.76,
-      "text": "control",
-      "ass_text": "control",
+      "end": 33.1,
+      "text": "control can",
+      "ass_text": "control can",
       "words": [
         {
           "text": "control",
           "start": 32.26,
           "end": 32.76
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 7
-    },
-    {
-      "start": 32.76,
-      "end": 33.1,
-      "text": "can",
-      "ass_text": "can",
-      "words": [
+        },
         {
           "text": "can",
           "start": 32.76,
@@ -1199,25 +899,15 @@
     },
     {
       "start": 34.36,
-      "end": 34.58,
-      "text": "Blood",
-      "ass_text": "Blood",
+      "end": 34.96,
+      "text": "Blood sugar",
+      "ass_text": "Blood sugar",
       "words": [
         {
           "text": "Blood",
           "start": 34.36,
           "end": 34.58
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 8
-    },
-    {
-      "start": 34.58,
-      "end": 34.96,
-      "text": "sugar",
-      "ass_text": "sugar",
-      "words": [
+        },
         {
           "text": "sugar",
           "start": 34.58,
@@ -1229,25 +919,15 @@
     },
     {
       "start": 34.96,
-      "end": 35.48,
-      "text": "control",
-      "ass_text": "control",
+      "end": 35.92,
+      "text": "control can",
+      "ass_text": "control can",
       "words": [
         {
           "text": "control",
           "start": 34.96,
           "end": 35.48
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 8
-    },
-    {
-      "start": 35.48,
-      "end": 35.92,
-      "text": "can",
-      "ass_text": "can",
-      "words": [
+        },
         {
           "text": "can",
           "start": 35.48,
@@ -1259,25 +939,15 @@
     },
     {
       "start": 35.92,
-      "end": 36.38,
-      "text": "worsen",
-      "ass_text": "worsen",
+      "end": 36.74,
+      "text": "worsen too.",
+      "ass_text": "worsen too.",
       "words": [
         {
           "text": "worsen",
           "start": 35.92,
           "end": 36.38
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 8
-    },
-    {
-      "start": 36.38,
-      "end": 36.74,
-      "text": "too.",
-      "ass_text": "too.",
-      "words": [
+        },
         {
           "text": "too.",
           "start": 36.38,
@@ -1289,25 +959,15 @@
     },
     {
       "start": 37.68,
-      "end": 38.0,
-      "text": "Repeated",
-      "ass_text": "Repeated",
+      "end": 38.38,
+      "text": "Repeated short",
+      "ass_text": "Repeated short",
       "words": [
         {
           "text": "Repeated",
           "start": 37.68,
           "end": 38.0
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 9
-    },
-    {
-      "start": 38.0,
-      "end": 38.38,
-      "text": "short",
-      "ass_text": "short",
-      "words": [
+        },
         {
           "text": "short",
           "start": 38.0,
@@ -1319,25 +979,15 @@
     },
     {
       "start": 38.38,
-      "end": 38.68,
-      "text": "sleep",
-      "ass_text": "sleep",
+      "end": 39.06,
+      "text": "sleep is",
+      "ass_text": "sleep is",
       "words": [
         {
           "text": "sleep",
           "start": 38.38,
           "end": 38.68
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 9
-    },
-    {
-      "start": 38.68,
-      "end": 39.06,
-      "text": "is",
-      "ass_text": "is",
-      "words": [
+        },
         {
           "text": "is",
           "start": 38.68,
@@ -1349,25 +999,15 @@
     },
     {
       "start": 39.06,
-      "end": 39.42,
-      "text": "linked",
-      "ass_text": "linked",
+      "end": 39.62,
+      "text": "linked with",
+      "ass_text": "linked with",
       "words": [
         {
           "text": "linked",
           "start": 39.06,
           "end": 39.42
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 9
-    },
-    {
-      "start": 39.42,
-      "end": 39.62,
-      "text": "with",
-      "ass_text": "with",
-      "words": [
+        },
         {
           "text": "with",
           "start": 39.42,
@@ -1379,25 +1019,15 @@
     },
     {
       "start": 39.62,
-      "end": 39.9,
-      "text": "heart",
-      "ass_text": "heart",
+      "end": 40.32,
+      "text": "heart disease",
+      "ass_text": "heart disease",
       "words": [
         {
           "text": "heart",
           "start": 39.62,
           "end": 39.9
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 9
-    },
-    {
-      "start": 39.9,
-      "end": 40.32,
-      "text": "disease",
-      "ass_text": "disease",
-      "words": [
+        },
         {
           "text": "disease",
           "start": 39.9,
@@ -1409,25 +1039,15 @@
     },
     {
       "start": 40.32,
-      "end": 40.66,
-      "text": "and",
-      "ass_text": "and",
+      "end": 41.26,
+      "text": "and diabetes.",
+      "ass_text": "and diabetes.",
       "words": [
         {
           "text": "and",
           "start": 40.32,
           "end": 40.66
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 9
-    },
-    {
-      "start": 40.66,
-      "end": 41.26,
-      "text": "diabetes.",
-      "ass_text": "diabetes.",
-      "words": [
+        },
         {
           "text": "diabetes.",
           "start": 40.66,
@@ -1439,25 +1059,15 @@
     },
     {
       "start": 42.22,
-      "end": 42.8,
-      "text": "Caffeine",
-      "ass_text": "Caffeine",
+      "end": 43.12,
+      "text": "Caffeine can",
+      "ass_text": "Caffeine can",
       "words": [
         {
           "text": "Caffeine",
           "start": 42.22,
           "end": 42.8
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 10
-    },
-    {
-      "start": 42.8,
-      "end": 43.12,
-      "text": "can",
-      "ass_text": "can",
-      "words": [
+        },
         {
           "text": "can",
           "start": 42.8,
@@ -1469,25 +1079,15 @@
     },
     {
       "start": 43.12,
-      "end": 43.56,
-      "text": "mask",
-      "ass_text": "mask",
+      "end": 44.2,
+      "text": "mask sleepiness,",
+      "ass_text": "mask sleepiness,",
       "words": [
         {
           "text": "mask",
           "start": 43.12,
           "end": 43.56
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 10
-    },
-    {
-      "start": 43.56,
-      "end": 44.2,
-      "text": "sleepiness,",
-      "ass_text": "sleepiness,",
-      "words": [
+        },
         {
           "text": "sleepiness,",
           "start": 43.56,
@@ -1499,25 +1099,15 @@
     },
     {
       "start": 44.2,
-      "end": 44.86,
-      "text": "but",
-      "ass_text": "but",
+      "end": 45.26,
+      "text": "but cannot",
+      "ass_text": "but cannot",
       "words": [
         {
           "text": "but",
           "start": 44.2,
           "end": 44.86
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 10
-    },
-    {
-      "start": 44.86,
-      "end": 45.26,
-      "text": "cannot",
-      "ass_text": "cannot",
-      "words": [
+        },
         {
           "text": "cannot",
           "start": 44.86,
@@ -1529,25 +1119,15 @@
     },
     {
       "start": 45.26,
-      "end": 45.9,
-      "text": "replace",
-      "ass_text": "replace",
+      "end": 46.4,
+      "text": "replace sleep.",
+      "ass_text": "replace sleep.",
       "words": [
         {
           "text": "replace",
           "start": 45.26,
           "end": 45.9
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 10
-    },
-    {
-      "start": 45.9,
-      "end": 46.4,
-      "text": "sleep.",
-      "ass_text": "sleep.",
-      "words": [
+        },
         {
           "text": "sleep.",
           "start": 45.9,
@@ -1559,25 +1139,15 @@
     },
     {
       "start": 47.12,
-      "end": 47.38,
-      "text": "Most",
-      "ass_text": "Most",
+      "end": 47.92,
+      "text": "Most adults",
+      "ass_text": "Most adults",
       "words": [
         {
           "text": "Most",
           "start": 47.12,
           "end": 47.38
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 47.38,
-      "end": 47.92,
-      "text": "adults",
-      "ass_text": "adults",
-      "words": [
+        },
         {
           "text": "adults",
           "start": 47.38,
@@ -1589,25 +1159,15 @@
     },
     {
       "start": 47.92,
-      "end": 48.3,
-      "text": "need",
-      "ass_text": "need",
+      "end": 48.44,
+      "text": "need at",
+      "ass_text": "need at",
       "words": [
         {
           "text": "need",
           "start": 47.92,
           "end": 48.3
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 48.3,
-      "end": 48.44,
-      "text": "at",
-      "ass_text": "at",
-      "words": [
+        },
         {
           "text": "at",
           "start": 48.3,
@@ -1619,25 +1179,15 @@
     },
     {
       "start": 48.44,
-      "end": 48.72,
-      "text": "least",
-      "ass_text": "least",
+      "end": 49.12,
+      "text": "least seven",
+      "ass_text": "least seven",
       "words": [
         {
           "text": "least",
           "start": 48.44,
           "end": 48.72
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 48.72,
-      "end": 49.12,
-      "text": "seven",
-      "ass_text": "seven",
-      "words": [
+        },
         {
           "text": "seven",
           "start": 48.72,
@@ -1649,25 +1199,15 @@
     },
     {
       "start": 49.12,
-      "end": 49.54,
-      "text": "hours",
-      "ass_text": "hours",
+      "end": 50.12,
+      "text": "hours nightly.",
+      "ass_text": "hours nightly.",
       "words": [
         {
           "text": "hours",
           "start": 49.12,
           "end": 49.54
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 49.54,
-      "end": 50.12,
-      "text": "nightly.",
-      "ass_text": "nightly.",
-      "words": [
+        },
         {
           "text": "nightly.",
           "start": 49.54,
@@ -1679,25 +1219,15 @@
     },
     {
       "start": 50.74,
-      "end": 51.04,
-      "text": "Five",
-      "ass_text": "Five",
+      "end": 51.4,
+      "text": "Five hours",
+      "ass_text": "Five hours",
       "words": [
         {
           "text": "Five",
           "start": 50.74,
           "end": 51.04
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 51.04,
-      "end": 51.4,
-      "text": "hours",
-      "ass_text": "hours",
-      "words": [
+        },
         {
           "text": "hours",
           "start": 51.04,
@@ -1709,25 +1239,15 @@
     },
     {
       "start": 51.4,
-      "end": 51.68,
-      "text": "may",
-      "ass_text": "may",
+      "end": 52.02,
+      "text": "may save",
+      "ass_text": "may save",
       "words": [
         {
           "text": "may",
           "start": 51.4,
           "end": 51.68
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 51.68,
-      "end": 52.02,
-      "text": "save",
-      "ass_text": "save",
-      "words": [
+        },
         {
           "text": "save",
           "start": 51.68,
@@ -1739,25 +1259,15 @@
     },
     {
       "start": 52.02,
-      "end": 52.38,
-      "text": "time",
-      "ass_text": "time",
+      "end": 52.76,
+      "text": "time tonight,",
+      "ass_text": "time tonight,",
       "words": [
         {
           "text": "time",
           "start": 52.02,
           "end": 52.38
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 52.38,
-      "end": 52.76,
-      "text": "tonight,",
-      "ass_text": "tonight,",
-      "words": [
+        },
         {
           "text": "tonight,",
           "start": 52.38,
@@ -1769,25 +1279,15 @@
     },
     {
       "start": 52.76,
-      "end": 53.48,
-      "text": "then",
-      "ass_text": "then",
+      "end": 53.84,
+      "text": "then cost",
+      "ass_text": "then cost",
       "words": [
         {
           "text": "then",
           "start": 52.76,
           "end": 53.48
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 53.48,
-      "end": 53.84,
-      "text": "cost",
-      "ass_text": "cost",
-      "words": [
+        },
         {
           "text": "cost",
           "start": 53.48,
@@ -1799,25 +1299,15 @@
     },
     {
       "start": 53.84,
-      "end": 54.0,
-      "text": "to",
-      "ass_text": "to",
+      "end": 54.06,
+      "text": "to you",
+      "ass_text": "to you",
       "words": [
         {
           "text": "to",
           "start": 53.84,
           "end": 54.0
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 54.0,
-      "end": 54.06,
-      "text": "you",
-      "ass_text": "you",
-      "words": [
+        },
         {
           "text": "you",
           "start": 54.0,
@@ -1844,25 +1334,15 @@
     },
     {
       "start": 55.3,
-      "end": 55.48,
-      "text": "Like",
-      "ass_text": "Like",
+      "end": 56.12,
+      "text": "Like and",
+      "ass_text": "Like and",
       "words": [
         {
           "text": "Like",
           "start": 55.3,
           "end": 55.48
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 55.48,
-      "end": 56.12,
-      "text": "and",
-      "ass_text": "and",
-      "words": [
+        },
         {
           "text": "and",
           "start": 55.48,
@@ -1874,25 +1354,15 @@
     },
     {
       "start": 56.12,
-      "end": 56.62,
-      "text": "subscribe",
-      "ass_text": "subscribe",
+      "end": 57.24,
+      "text": "subscribe to",
+      "ass_text": "subscribe to",
       "words": [
         {
           "text": "subscribe",
           "start": 56.12,
           "end": 56.62
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 56.62,
-      "end": 57.24,
-      "text": "to",
-      "ass_text": "to",
-      "words": [
+        },
         {
           "text": "to",
           "start": 56.62,
@@ -1904,25 +1374,15 @@
     },
     {
       "start": 57.24,
-      "end": 57.54,
-      "text": "keep",
-      "ass_text": "keep",
+      "end": 57.98,
+      "text": "keep growing",
+      "ass_text": "keep growing",
       "words": [
         {
           "text": "keep",
           "start": 57.24,
           "end": 57.54
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 57.54,
-      "end": 57.98,
-      "text": "growing",
-      "ass_text": "growing",
-      "words": [
+        },
         {
           "text": "growing",
           "start": 57.54,
@@ -1934,25 +1394,15 @@
     },
     {
       "start": 57.98,
-      "end": 58.3,
-      "text": "your",
-      "ass_text": "your",
+      "end": 58.86,
+      "text": "your questions.",
+      "ass_text": "your questions.",
       "words": [
         {
           "text": "your",
           "start": 57.98,
           "end": 58.3
-        }
-      ],
-      "timing_source": "word",
-      "beat_id": 11
-    },
-    {
-      "start": 58.3,
-      "end": 58.86,
-      "text": "questions.",
-      "ass_text": "questions.",
-      "words": [
+        },
         {
           "text": "questions.",
           "start": 58.3,
@@ -1971,7 +1421,7 @@
     "timestamp_overlap_adjustments": [],
     "subtitle_overlap_adjustments": [],
     "subtitle_word_timings_available": true,
-    "subtitle_cues_from_measured_words": 116,
+    "subtitle_cues_from_measured_words": 61,
     "subtitle_cues_estimated": 0
   }
 }

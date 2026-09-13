@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "aspect_ratio": "9:16",
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "video": {
+    "codec": "libx264",
+    "preset": "medium",
+    "crf": 18,
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "192k"
+  },
+  "resource_limits": {
+    "ffmpeg_threads": 2,
+    "filter_threads": 2,
+    "filter_complex_threads": 2
+  },
+  "motion": {
+    "enabled": true,
+    "strength": 0.14,
+    "supersample": 2,
+    "cycle": [
+      "zoom_in"
+    ],
+    "image_zoom_policy": "push_in_except_final_pull_out"
+  },
+  "transitions": {
+    "image_beat_style": "cut_fade_dissolve",
+    "image_beat_seconds": 0.28,
+    "opening_to_image_type": "fade",
+    "opening_to_image_seconds": 0.28,
+    "default_type": "fade",
+    "default_seconds": 0.3,
+    "ai_selection_enabled": false,
+    "manual_overrides": []
+  },
+  "subtitles": {
+    "enabled": true,
+    "font_name": "Rubik",
+    "font_size": 111,
+    "bold": true,
+    "outline": 5.0,
+    "shadow": 0,
+    "max_words_per_cue": 2,
+    "max_chars_per_line": 34,
+    "max_lines": 2,
+    "word_highlight": {
+      "enabled": false,
+      "active_colour": "&H0000D7FF",
+      "inactive_colour": "&H00F5F5F5",
+      "outline_colour": "&H00130D09"
+    },
+    "italic": false,
+    "position": "custom",
+    "custom_offset_value": 17.0,
+    "custom_offset_unit": "percent",
+    "font_colour": "#FEFEA9",
+    "outline_colour": "#000000"
+  }
+}
