@@ -10,8 +10,8 @@
   "duration_max_seconds": 50,
   "aspect_ratio": "9:16",
   "project": "videos/029_why_a_song_gets_stuck_in_your_head",
-  "voice_profile": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79/VOICE_PROFILE.json",
-  "creative_brief": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/VOICE_PROFILE.json",
+  "creative_brief": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -36,7 +36,7 @@
     "beat_image_qc_disabled": true,
     "world_style_reference": {
       "schema_version": 1,
-      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79/style_reference.png",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/style_reference.png",
       "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589",
       "mime_type": "image/png",
       "width": 259,
@@ -139,7 +139,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 1604757,
+  "pid": 1607028,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -151,9 +151,9 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -164,12 +164,12 @@
   ],
   "started_at": "2026-09-12T06:01:36.659813+00:00",
   "exit_code": 0,
-  "process_exited_at": "2026-09-13T14:16:30.997962+00:00",
+  "process_exited_at": "2026-09-13T15:13:43.138848+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "eb681101-efcf-41c2-9ec4-c3736b042b87",
+    "revision_id": "9995b452-fcf2-409b-b75b-650e274024cb",
     "kind": "config",
-    "created_at": "2026-09-13T15:08:54.751881+00:00",
+    "created_at": "2026-09-13T15:21:07.592196+00:00",
     "roots": [
       "render_profile"
     ],
@@ -245,24 +245,19 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-13T15:08:54.752537+00:00",
-    "pid": 1604757,
+    "started_at": "2026-09-13T15:21:07.592863+00:00",
+    "pid": 1607028,
     "changed_fields": [
-      "show_logo",
       "title_font",
-      "show_watermark",
-      "watermark_text",
       "watermark_position",
       "watermark_font",
       "watermark_font_size",
       "watermark_opacity",
-      "watermark_max_width_percent",
-      "watermark_bold",
-      "watermark_text_align"
+      "watermark_margin_y_percent"
     ],
-    "config_revision_id": "fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79"
+    "config_revision_id": "a451f28a-16bd-4bdb-8f70-ce51c606b239"
   },
-  "resumed_at": "2026-09-13T15:08:54.752677+00:00",
+  "resumed_at": "2026-09-13T15:21:07.592999+00:00",
   "resume_count": 2,
   "stopped_by": "panel",
   "release": {
@@ -284,9 +279,9 @@
   },
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "eb681101-efcf-41c2-9ec4-c3736b042b87",
+    "revision_id": "9995b452-fcf2-409b-b75b-650e274024cb",
     "kind": "config",
-    "created_at": "2026-09-13T15:08:54.751881+00:00",
+    "created_at": "2026-09-13T15:21:07.592196+00:00",
     "roots": [
       "render_profile"
     ],
@@ -362,21 +357,16 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-13T15:08:54.752537+00:00",
-    "pid": 1604757,
+    "started_at": "2026-09-13T15:21:07.592863+00:00",
+    "pid": 1607028,
     "changed_fields": [
-      "show_logo",
       "title_font",
-      "show_watermark",
-      "watermark_text",
       "watermark_position",
       "watermark_font",
       "watermark_font_size",
       "watermark_opacity",
-      "watermark_max_width_percent",
-      "watermark_bold",
-      "watermark_text_align"
+      "watermark_margin_y_percent"
     ],
-    "config_revision_id": "fbea7cbe-e562-47f6-b8cb-c3d4ed9ccc79"
+    "config_revision_id": "a451f28a-16bd-4bdb-8f70-ce51c606b239"
   }
 }

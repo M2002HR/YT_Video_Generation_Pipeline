@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "completed_at": "2026-09-13T15:24:24.684072+00:00",
+  "completed_at": "2026-09-13T15:12:26.504599+00:00",
   "output": "/opt/YT_Video_Generation_Pipeline/videos/029_why_a_song_gets_stuck_in_your_head/assets/renders/final.mp4",
-  "output_bytes": 50102784,
+  "output_bytes": 49571746,
   "target_duration_seconds": 59.429,
   "actual_duration_seconds": 59.428,
   "duration_drift_seconds": -0.001,
-  "wall_seconds": 191.901,
-  "realtime_factor": 3.229,
+  "wall_seconds": 206.997,
+  "realtime_factor": 3.483,
   "beats": 12,
   "resolution": "1080x1920",
   "fps": 30,
@@ -31,5 +31,5 @@
   "motion_render_backend": "single_graph",
   "motion_segments_rendered": 0,
   "motion_segments_reused": 0,
-  "peak_child_rss_mb": 1298.8
+  "peak_child_rss_mb": 1298.9
 }
