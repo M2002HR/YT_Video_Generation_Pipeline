@@ -1,0 +1,10 @@
+{
+  "voice": "Jerry B - Jolly",
+  "model": "Eleven Multilingual v2",
+  "speed": 1.0,
+  "stability": 0.3,
+  "similarity": 0.3,
+  "style": 0.17,
+  "speaker_boost": false,
+  "output_format": "MP3 44.1 kHz (128kbps)"
+}

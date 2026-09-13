@@ -1,0 +1,134 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "3c61f92c0a4c5994a31c7ea8d20df55ec07e64d42dcb7305f81158dc8397bd94",
+  "quality_check": {
+    "passed": true,
+    "description": "A single near-9:16 vertical style reference sheet on warm cream textured paper, featuring loose graphite form studies, muted watercolor palette swatches, side brush and pencil marks, a softly colored object study, and a large paper-texture sample. The palette uses subdued sage and moss greens, ochres, powder blue, graphite grays, and restrained brick red. Linework shows variable pencil pressure, construction marks, hatching, and softened shadows, with no characters, text, logos, or watermark.",
+    "violations": [
+      "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+      "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+      "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+      "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+      "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+    ],
+    "observations": [
+      "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+      "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+      "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "d7dd48f0-27d2-4f2e-b82f-b08289a60d67",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/5975eca9f1de2ff0",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "operator_style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=d7dd48f0-27d2-4f2e-b82f-b08289a60d67_output_1.png 1536x2752 sha256=9aed17ee2af2053f855a30456c248619bab317bf89d422d3c36e73238a5df155"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single near-9:16 vertical style reference sheet on warm cream textured paper, featuring loose graphite form studies, muted watercolor palette swatches, side brush and pencil marks, a softly colored object study, and a large paper-texture sample. The palette uses subdued sage and moss greens, ochres, powder blue, graphite grays, and restrained brick red. Linework shows variable pencil pressure, construction marks, hatching, and softened shadows, with no characters, text, logos, or watermark.",
+      "violations": [
+        "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+        "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+        "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+        "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+        "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+      ],
+      "observations": [
+        "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+        "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+        "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "3c61f92c0a4c5994a31c7ea8d20df55ec07e64d42dcb7305f81158dc8397bd94",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "d7dd48f0-27d2-4f2e-b82f-b08289a60d67",
+        "prompt_sha256": "fb4f8fcefd33d25212fda0aac6250996aac034988ee6b71f8dd1583a777f0c1d",
+        "output_sha256": "9aed17ee2af2053f855a30456c248619bab317bf89d422d3c36e73238a5df155",
+        "quality_check": {
+          "passed": true,
+          "description": "A single near-9:16 vertical style reference sheet on warm cream textured paper, featuring loose graphite form studies, muted watercolor palette swatches, side brush and pencil marks, a softly colored object study, and a large paper-texture sample. The palette uses subdued sage and moss greens, ochres, powder blue, graphite grays, and restrained brick red. Linework shows variable pencil pressure, construction marks, hatching, and softened shadows, with no characters, text, logos, or watermark.",
+          "violations": [
+            "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+            "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+            "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+            "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+            "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+          ],
+          "observations": [
+            "The graphite studies are somewhat heavier and more abstract than the operator reference's especially delicate illustrative contours, though the paper texture, muted watercolor handling, low-saturation palette, and vintage storybook material language remain continuous.",
+            "The thin panel dividers and outer guide rules are cleaner and more diagrammatic than the otherwise loose hand-drawn marks, but they do not read as modern HUD graphics.",
+            "The large lower texture panel is comparatively sparse and occupies substantial space, reducing the amount of varied texture sampling without making the sheet unusable."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "operator_style_reference",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/style_references/style_reference.png",
+      "sha256": "1096a5b029ce0f29a6dec3d08a541436954d929af852b8d9a09bc54130d6a1f3"
+    }
+  ],
+  "prompt_sha256": "fb4f8fcefd33d25212fda0aac6250996aac034988ee6b71f8dd1583a777f0c1d",
+  "prompt": "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, not a scene. Medium: painted storybook. Texture family: warm lightly toothy cream drawing-paper grain with faint graphite smudge and softly uneven pigment pickup. Palette: warm ivory and cream paper, soft graphite and sepia-gray pencil, muted sage and moss greens, pale straw ochre, faded powder blue, restrained brick-red accents, all low-saturation and softly weathered. Line treatment: loose hand-drawn graphite contours with visible pressure variation, gentle broken hatching, softened construction marks, sparse crosshatching, and lightly rubbed shadow edges; colored pencil remains subordinate to the pencil drawing. Lighting: soft diffuse daylight with gentle warm highlights, shallow pencil-cast shadows, and no dramatic cinematic contrast. Avoid: no photorealism, no glossy 3D CGI, no anime or manga language, no vector-clean outlines, no neon palette, no heavy inked comic rendering, no hyper-detailed medical illustration, no modern HUD graphics, no hard digital gradients, no copied characters or exact composition from the style reference, and no visible watermarks, text, labels or typography inside the imagery. No characters, no text, no logos, no photorealism. The attached operator_style_reference is style-only: use its palette, material texture, line language and lighting as inspiration for this original neutral anchor. Do not copy its subject, composition, text, logo, person, or recognizable layout.",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "9aed17ee2af2053f855a30456c248619bab317bf89d422d3c36e73238a5df155",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 57.189,
+  "completed_at": "2026-09-13T20:56:12Z"
+}

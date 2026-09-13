@@ -1,0 +1,119 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "fe2cde5ea0585f5fb0a858eb5df55d044658453048663719774878f1a36a6f72",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "f492422e-0cf6-4a97-81f6-e0dfdd37b3f3",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/77b6362224a371f4",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=f492422e-0cf6-4a97-81f6-e0dfdd37b3f3_output_1.png 1536x2752 sha256=890bcd2fcc39cae47f311e7c5fc8ea7252d3896cf5f2f9803033239b0da81bcd"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "fe2cde5ea0585f5fb0a858eb5df55d044658453048663719774878f1a36a6f72",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "f492422e-0cf6-4a97-81f6-e0dfdd37b3f3",
+        "prompt_sha256": "183738817d36d22f5c30cd6695fa9272ca0c850ff189e4de415f8ac78f214d70",
+        "output_sha256": "890bcd2fcc39cae47f311e7c5fc8ea7252d3896cf5f2f9803033239b0da81bcd",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/references/world_style_anchor.png",
+      "sha256": "9aed17ee2af2053f855a30456c248619bab317bf89d422d3c36e73238a5df155"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/references/world_keyframe.png",
+      "sha256": "6f76b05e0751a97ba2e4f0b2b62c9075d928f424caf6f95433769508a29250e7"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/style_references/style_reference.png",
+      "sha256": "1096a5b029ce0f29a6dec3d08a541436954d929af852b8d9a09bc54130d6a1f3"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/raw_beats/beat_003.png",
+      "sha256": "7d8de1f1ee346ef638039e0efe9f604b82be26fc0a6f74e750e9416658964b4a"
+    }
+  ],
+  "prompt_sha256": "183738817d36d22f5c30cd6695fa9272ca0c850ff189e4de415f8ac78f214d70",
+  "prompt": "Gemini Image Prompt\n\nCreate exactly one vertical 9:16 image: a split-free conceptual illustration in a soft graphite storybook-pencil world, rendered as simplified hand-drawn 2D educational art on warm, lightly toothy cream paper. Show a single anonymous seated human figure in a sparse everyday setting; above-left near the head, include one faint ghosted graphite face visibly yawning, with a subtle curved pathway of loose pencil motion strokes traveling toward the seated figure and resolving into a second translucent jaw-opening echo aligned with their own face/body, suggesting perception and movement systems becoming primed for a matching response without literal machinery. Keep silhouettes immediately readable, contours dark but softly broken with pressure variation, gentle hatching and rubbed graphite shadows, plus restrained dry colored-pencil tints in muted sage, moss, straw ochre, faded powder blue and tiny brick-red accents. Use soft diffuse daylight, shallow warm shadows, low contrast, and the recurring rounded cream sketchbook-card field whose centered illustration softly fades into graphite-worn paper edges; fill the complete illustration height naturally with no lower caption reserve or blank band. Reference roles: style_reference guides only overall compatible hand-drawn educational simplicity; world_keyframe establishes the recurring world medium, frame language, paper texture, palette and lighting; operator_style_reference informs warm cream paper, graphite-led drawing, muted color accents and quiet nostalgic mood only; previous_beat is binding only for recurring frame/material/edge treatment, inner-window behavior, texture, palette and lighting, never its composition, crop, camera angle, pose, placement or focal object. Do not depict or imply any recurring host. No copied reference composition, no photorealism, glossy 3D, anime, vector-clean lines, neon, HUD graphics, hard gradients, hyper-detailed anatomy, storyboard, grid, collage, panels, captions, labels, typography, watermark or any readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring softly rounded cream sketchbook-card field with lightly worn graphite-softened edges and a centered illustrated window that fades naturally into the paper rather than ending in a hard border; peripheral foliage, tools, or diagram motifs may taper into unfinished pencil strokes at the margins, while the same warm drawing-paper material and softly vignetted edge grammar persist across every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "890bcd2fcc39cae47f311e7c5fc8ea7252d3896cf5f2f9803033239b0da81bcd",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.182,
+  "completed_at": "2026-09-13T21:10:28Z"
+}

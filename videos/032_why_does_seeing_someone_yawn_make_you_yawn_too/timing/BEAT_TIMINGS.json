@@ -1,0 +1,126 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 54.883,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "While he sorts tools, why can one nearby yawn trigger his own? He reaches for the worn book and the answer starts to unfold. Eyes catch the stretching jaw. The brain recognizes a familiar human action. Attention snaps toward it. Perception and movement systems may prime a matching response. That can make your own yawn easier to trigger. Scientists call this contagious yawning. It occurs in humans and some social animals. Social connection may influence who catches it, but the exact mechanism remains unsettled. Evidence tying it directly to empathy is mixed, so seeing a yawn can quietly set another in motion. One mouth opens, and another suddenly wants to. Like and subscribe for more strange everyday questions.",
+  "word_count": 118,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Eyes catch the stretching jaw.",
+      "speech_start": 9.4,
+      "speech_end": 11.1,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 11.74,
+      "display_duration": 11.74
+    },
+    {
+      "beat_id": 2,
+      "narration": "The brain recognizes a familiar human action.",
+      "speech_start": 11.74,
+      "speech_end": 14.9,
+      "match_confidence": 1.0,
+      "display_start": 11.74,
+      "display_end": 15.66,
+      "display_duration": 3.92
+    },
+    {
+      "beat_id": 3,
+      "narration": "Attention snaps toward it.",
+      "speech_start": 15.66,
+      "speech_end": 17.12,
+      "match_confidence": 1.0,
+      "display_start": 15.66,
+      "display_end": 17.82,
+      "display_duration": 2.16
+    },
+    {
+      "beat_id": 4,
+      "narration": "Perception and movement systems may prime a matching response.",
+      "speech_start": 17.82,
+      "speech_end": 21.58,
+      "match_confidence": 1.0,
+      "display_start": 17.82,
+      "display_end": 20.94,
+      "display_duration": 3.12
+    },
+    {
+      "beat_id": 5,
+      "narration": "That can make your own yawn easier to trigger.",
+      "speech_start": 20.94,
+      "speech_end": 24.66,
+      "match_confidence": 1.0,
+      "display_start": 20.94,
+      "display_end": 25.0,
+      "display_duration": 4.06
+    },
+    {
+      "beat_id": 6,
+      "narration": "Scientists call this contagious yawning.",
+      "speech_start": 25.0,
+      "speech_end": 27.34,
+      "match_confidence": 1.0,
+      "display_start": 25.0,
+      "display_end": 28.0,
+      "display_duration": 3.0
+    },
+    {
+      "beat_id": 7,
+      "narration": "It occurs in humans and some social animals.",
+      "speech_start": 28.0,
+      "speech_end": 31.16,
+      "match_confidence": 1.0,
+      "display_start": 28.0,
+      "display_end": 31.62,
+      "display_duration": 3.62
+    },
+    {
+      "beat_id": 8,
+      "narration": "Social connection may influence who catches it.",
+      "speech_start": 31.62,
+      "speech_end": 34.48,
+      "match_confidence": 1.0,
+      "display_start": 31.62,
+      "display_end": 34.78,
+      "display_duration": 3.16
+    },
+    {
+      "beat_id": 9,
+      "narration": "But the exact mechanism remains unsettled.",
+      "speech_start": 34.78,
+      "speech_end": 37.68,
+      "match_confidence": 1.0,
+      "display_start": 34.78,
+      "display_end": 38.32,
+      "display_duration": 3.54
+    },
+    {
+      "beat_id": 10,
+      "narration": "Evidence tying it directly to empathy is mixed.",
+      "speech_start": 38.32,
+      "speech_end": 41.4,
+      "match_confidence": 1.0,
+      "display_start": 38.32,
+      "display_end": 42.06,
+      "display_duration": 3.74
+    },
+    {
+      "beat_id": 11,
+      "narration": "So seeing a yawn can quietly set another in motion.",
+      "speech_start": 42.06,
+      "speech_end": 45.48,
+      "match_confidence": 1.0,
+      "display_start": 42.06,
+      "display_end": 54.883,
+      "display_duration": 12.823
+    }
+  ]
+}

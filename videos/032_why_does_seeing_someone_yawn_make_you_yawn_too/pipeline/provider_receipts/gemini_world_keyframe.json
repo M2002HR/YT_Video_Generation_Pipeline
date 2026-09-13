@@ -1,0 +1,158 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "5a534a9b057eef05d0d8f3e050ee68feae6b28115be303d100bfad857f36abfc",
+  "quality_check": {
+    "passed": true,
+    "description": "A standalone vertical cream-paper keyframe shows a large sketched observing eye at the top, a muted sage-tinted brain near the upper middle, several graphite jaw and open-mouth studies descending through the page, and faint looping construction or motion lines connecting the motifs. The rendering uses loose graphite, broken hatching, pale ochre and green washes, small brick-red accents, and a softly rounded graphite-edged card frame. No host, person, character, readable text, watermark, grid, palette swatches, or caption strip is visible.",
+    "violations": [
+      "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+      "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+      "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+      "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+      "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+      "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+      "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+      "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+      "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+    ],
+    "observations": [
+      "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+      "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+      "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+      "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+      "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "5c3107e1-db0d-4350-b37c-529a8adf5974",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/90fbae928e4b95ef",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "operator_style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=5c3107e1-db0d-4350-b37c-529a8adf5974_output_1.png 1536x2752 sha256=6f76b05e0751a97ba2e4f0b2b62c9075d928f424caf6f95433769508a29250e7"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A standalone vertical cream-paper keyframe shows a large sketched observing eye at the top, a muted sage-tinted brain near the upper middle, several graphite jaw and open-mouth studies descending through the page, and faint looping construction or motion lines connecting the motifs. The rendering uses loose graphite, broken hatching, pale ochre and green washes, small brick-red accents, and a softly rounded graphite-edged card frame. No host, person, character, readable text, watermark, grid, palette swatches, or caption strip is visible.",
+      "violations": [
+        "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+        "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+        "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+        "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+        "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+        "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+        "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+        "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+        "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+      ],
+      "observations": [
+        "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+        "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+        "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+        "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+        "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "5a534a9b057eef05d0d8f3e050ee68feae6b28115be303d100bfad857f36abfc",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "5c3107e1-db0d-4350-b37c-529a8adf5974",
+        "prompt_sha256": "9ecc1c02e45f890746f677ebb129a7eb3d1243690dbf2bb00978b7d64ed5d803",
+        "output_sha256": "6f76b05e0751a97ba2e4f0b2b62c9075d928f424caf6f95433769508a29250e7",
+        "quality_check": {
+          "passed": true,
+          "description": "A standalone vertical cream-paper keyframe shows a large sketched observing eye at the top, a muted sage-tinted brain near the upper middle, several graphite jaw and open-mouth studies descending through the page, and faint looping construction or motion lines connecting the motifs. The rendering uses loose graphite, broken hatching, pale ochre and green washes, small brick-red accents, and a softly rounded graphite-edged card frame. No host, person, character, readable text, watermark, grid, palette swatches, or caption strip is visible.",
+          "violations": [
+            "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+            "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+            "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+            "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+            "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+            "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+            "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+            "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+            "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+          ],
+          "observations": [
+            "The anatomical jaw and brain studies lean somewhat more medical and specimen-like than the requested intuitive, poetic, unresolved treatment.",
+            "The composition includes multiple extra jaw and mouth studies, which makes the page read slightly more like an anatomy sketch collection than a single flowing contagious-yawn visual sequence.",
+            "The rounded card perimeter is drawn as a fairly explicit continuous graphite outline instead of having the illustration window fade more naturally into the surrounding paper at its edges.",
+            "Some large interior areas remain very sparse, so the contagious-yawning progression is less atmospherically integrated across the full frame than the direction suggests.",
+            "The ghosted motion echoes are present but faint and ambiguous, so the intended progression from seeing through recognition and motor priming to an easier second yawn is only partially legible."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/references/world_style_anchor.png",
+      "sha256": "9aed17ee2af2053f855a30456c248619bab317bf89d422d3c36e73238a5df155"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/style_references/style_reference.png",
+      "sha256": "1096a5b029ce0f29a6dec3d08a541436954d929af852b8d9a09bc54130d6a1f3"
+    }
+  ],
+  "prompt_sha256": "9ecc1c02e45f890746f677ebb129a7eb3d1243690dbf2bb00978b7d64ed5d803",
+  "prompt": "Create one standalone vertical 9:16 WORLD_KEYFRAME showing the inside-book subject world of contagious yawning, with absolutely no recurring host, selected host, foreground person, or character. Use a soft graphite storybook-pencil medium on warm, lightly toothy cream drawing paper, with subtle dry colored-pencil tinting subordinate to the graphite. Build the subject visually through non-character scientific motifs: a sketched observing eye, an opening jaw/mouth study, a simple brain silhouette, and faint ghosted motion echoes flowing between them to suggest seeing, recognition, attention, motor priming, and a second yawn becoming easier to trigger. Keep these forms intuitive and poetic rather than medical or diagrammatic; no labels or explanatory text.\n\nPalette: warm ivory/cream paper, graphite and sepia-gray, muted sage and moss green, pale straw ochre, faded powder blue, and tiny restrained brick-red accents, all low-saturation and softly weathered. Lines are loose graphite with pressure variation, broken hatching, faint construction marks, sparse crosshatching, rubbed shadow edges, and uneven colored-pencil pickup. Lighting is soft diffuse daylight with gentle warm highlights and shallow pencil-cast shadows.\n\nUse the recurring softly rounded cream sketchbook-card field with graphite-softened worn edges; the central illustrated world should fade naturally into the paper, with peripheral visual motifs tapering into unfinished pencil strokes rather than hard borders. Atmosphere: quiet, curious, observational, subtly uncanny, scientifically suggestive but unresolved.\n\nUse the full illustration height naturally. Do not reserve any caption strip, empty lower field, or low-detail band. No readable text, letters, numbers, labels, typography, UI, grid, sheet layout, swatches, watermark, photorealism, glossy CGI, anime, neon, or futuristic HUD elements. Reference imagery is a world-style anchor for medium only, never composition. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring softly rounded cream sketchbook-card field with lightly worn graphite-softened edges and a centered illustrated window that fades naturally into the paper rather than ending in a hard border; peripheral foliage, tools, or diagram motifs may taper into unfinished pencil strokes at the margins, while the same warm drawing-paper material and softly vignetted edge grammar persist across every body image. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI. Binding isolation: no recurring host, no selected host, and no foreground person or character.\n\nThe attached operator_style_reference is style-only. Preserve the newly established world plan while echoing only its texture, palette, line work and lighting; do not copy its subject, text, people, logo, or composition.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "6f76b05e0751a97ba2e4f0b2b62c9075d928f424caf6f95433769508a29250e7",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.141,
+  "completed_at": "2026-09-13T20:59:35Z"
+}

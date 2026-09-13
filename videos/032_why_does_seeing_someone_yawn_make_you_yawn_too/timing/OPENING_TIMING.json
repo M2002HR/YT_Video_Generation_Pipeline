@@ -1,0 +1,119 @@
+{
+  "audio_duration_seconds": 54.883,
+  "spark_start": 0.02,
+  "spark_end": 4.44,
+  "spark_duration": 4.42,
+  "transition_start": 5.06,
+  "transition_end": 8.62,
+  "transition_duration": 3.56,
+  "clip_a_target_seconds": 4.44,
+  "clip_b_target_seconds": 4.18,
+  "body_start": 9.4,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "While he sorts tools, why can one nearby yawn trigger his own?",
+      "speech_start": 0.02,
+      "speech_end": 4.44,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "He reaches for the worn book, and the answer starts to unfold.",
+      "speech_start": 5.06,
+      "speech_end": 8.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Eyes catch the stretching jaw.",
+      "speech_start": 9.4,
+      "speech_end": 11.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "The brain recognizes a familiar human action.",
+      "speech_start": 11.74,
+      "speech_end": 14.9,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Attention snaps toward it.",
+      "speech_start": 15.66,
+      "speech_end": 17.12,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Perception and movement systems may prime a matching response.",
+      "speech_start": 17.82,
+      "speech_end": 21.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "That can make your own yawn easier to trigger.",
+      "speech_start": 20.94,
+      "speech_end": 24.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Scientists call this contagious yawning.",
+      "speech_start": 25.0,
+      "speech_end": 27.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "It occurs in humans and some social animals.",
+      "speech_start": 28.0,
+      "speech_end": 31.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Social connection may influence who catches it.",
+      "speech_start": 31.62,
+      "speech_end": 34.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "But the exact mechanism remains unsettled.",
+      "speech_start": 34.78,
+      "speech_end": 37.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "Evidence tying it directly to empathy is mixed.",
+      "speech_start": 38.32,
+      "speech_end": 41.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_11",
+      "narration": "So seeing a yawn can quietly set another in motion.",
+      "speech_start": 42.06,
+      "speech_end": 45.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "One mouth opens, and another suddenly wants to.",
+      "speech_start": 46.22,
+      "speech_end": 49.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more strange everyday questions.",
+      "speech_start": 50.44,
+      "speech_end": 54.16,
+      "match_confidence": 1.0
+    }
+  ]
+}

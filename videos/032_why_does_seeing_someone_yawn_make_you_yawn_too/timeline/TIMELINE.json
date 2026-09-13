@@ -1,0 +1,2025 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 54.883,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.458,
+      "duration": 4.458,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 4.458,
+      "end": 8.625,
+      "duration": 4.167,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 8.625,
+      "end": 11.74,
+      "duration": 3.115,
+      "speech_start": 9.4,
+      "speech_end": 11.1,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Eyes catch the stretching jaw.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 11.74,
+      "end": 15.66,
+      "duration": 3.92,
+      "speech_start": 11.74,
+      "speech_end": 14.9,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The brain recognizes a familiar human action.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 15.66,
+      "end": 17.82,
+      "duration": 2.16,
+      "speech_start": 15.66,
+      "speech_end": 17.12,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Attention snaps toward it.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 17.82,
+      "end": 21.26,
+      "duration": 3.44,
+      "speech_start": 17.82,
+      "speech_end": 21.58,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Perception and movement systems may prime a matching response.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 21.26,
+      "end": 25.0,
+      "duration": 3.74,
+      "speech_start": 20.94,
+      "speech_end": 24.66,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That can make your own yawn easier to trigger.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 25.0,
+      "end": 28.0,
+      "duration": 3.0,
+      "speech_start": 25.0,
+      "speech_end": 27.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Scientists call this contagious yawning.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 28.0,
+      "end": 31.62,
+      "duration": 3.62,
+      "speech_start": 28.0,
+      "speech_end": 31.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "It occurs in humans and some social animals.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 31.62,
+      "end": 34.78,
+      "duration": 3.16,
+      "speech_start": 31.62,
+      "speech_end": 34.48,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Social connection may influence who catches it.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 34.78,
+      "end": 38.32,
+      "duration": 3.54,
+      "speech_start": 34.78,
+      "speech_end": 37.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "But the exact mechanism remains unsettled.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 38.32,
+      "end": 42.06,
+      "duration": 3.74,
+      "speech_start": 38.32,
+      "speech_end": 41.4,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Evidence tying it directly to empathy is mixed.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 42.06,
+      "end": 54.883,
+      "duration": 12.823,
+      "speech_start": 42.06,
+      "speech_end": 45.48,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "So seeing a yawn can quietly set another in motion.",
+      "transition_in": "fade",
+      "transition_seconds": 0.24,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 0.26,
+      "text": "While",
+      "ass_text": "While",
+      "words": [
+        {
+          "text": "While",
+          "start": 0.02,
+          "end": 0.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.26,
+      "end": 0.42,
+      "text": "he",
+      "ass_text": "he",
+      "words": [
+        {
+          "text": "he",
+          "start": 0.26,
+          "end": 0.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.42,
+      "end": 0.74,
+      "text": "sorts",
+      "ass_text": "sorts",
+      "words": [
+        {
+          "text": "sorts",
+          "start": 0.42,
+          "end": 0.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.74,
+      "end": 1.7,
+      "text": "tools,",
+      "ass_text": "tools,",
+      "words": [
+        {
+          "text": "tools,",
+          "start": 0.74,
+          "end": 1.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.7,
+      "end": 1.86,
+      "text": "why",
+      "ass_text": "why",
+      "words": [
+        {
+          "text": "why",
+          "start": 1.7,
+          "end": 1.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.86,
+      "end": 2.1,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 1.86,
+          "end": 2.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.1,
+      "end": 2.4,
+      "text": "one",
+      "ass_text": "one",
+      "words": [
+        {
+          "text": "one",
+          "start": 2.1,
+          "end": 2.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.4,
+      "end": 2.92,
+      "text": "nearby",
+      "ass_text": "nearby",
+      "words": [
+        {
+          "text": "nearby",
+          "start": 2.4,
+          "end": 2.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.92,
+      "end": 3.5,
+      "text": "yawn",
+      "ass_text": "yawn",
+      "words": [
+        {
+          "text": "yawn",
+          "start": 2.92,
+          "end": 3.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.5,
+      "end": 3.84,
+      "text": "trigger",
+      "ass_text": "trigger",
+      "words": [
+        {
+          "text": "trigger",
+          "start": 3.5,
+          "end": 3.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.84,
+      "end": 4.12,
+      "text": "his",
+      "ass_text": "his",
+      "words": [
+        {
+          "text": "his",
+          "start": 3.84,
+          "end": 4.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.12,
+      "end": 4.44,
+      "text": "own?",
+      "ass_text": "own?",
+      "words": [
+        {
+          "text": "own?",
+          "start": 4.12,
+          "end": 4.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.06,
+      "end": 5.24,
+      "text": "He",
+      "ass_text": "He",
+      "words": [
+        {
+          "text": "He",
+          "start": 5.06,
+          "end": 5.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.24,
+      "end": 5.56,
+      "text": "reaches",
+      "ass_text": "reaches",
+      "words": [
+        {
+          "text": "reaches",
+          "start": 5.24,
+          "end": 5.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.56,
+      "end": 5.78,
+      "text": "for",
+      "ass_text": "for",
+      "words": [
+        {
+          "text": "for",
+          "start": 5.56,
+          "end": 5.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.78,
+      "end": 5.94,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 5.78,
+          "end": 5.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.94,
+      "end": 6.28,
+      "text": "worn",
+      "ass_text": "worn",
+      "words": [
+        {
+          "text": "worn",
+          "start": 5.94,
+          "end": 6.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.28,
+      "end": 6.56,
+      "text": "book",
+      "ass_text": "book",
+      "words": [
+        {
+          "text": "book",
+          "start": 6.28,
+          "end": 6.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.56,
+      "end": 6.98,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 6.56,
+          "end": 6.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.98,
+      "end": 7.14,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 6.98,
+          "end": 7.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.14,
+      "end": 7.46,
+      "text": "answer",
+      "ass_text": "answer",
+      "words": [
+        {
+          "text": "answer",
+          "start": 7.14,
+          "end": 7.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.46,
+      "end": 7.92,
+      "text": "starts",
+      "ass_text": "starts",
+      "words": [
+        {
+          "text": "starts",
+          "start": 7.46,
+          "end": 7.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.92,
+      "end": 8.12,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 7.92,
+          "end": 8.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.12,
+      "end": 8.62,
+      "text": "unfold.",
+      "ass_text": "unfold.",
+      "words": [
+        {
+          "text": "unfold.",
+          "start": 8.12,
+          "end": 8.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.4,
+      "end": 9.76,
+      "text": "Eyes",
+      "ass_text": "Eyes",
+      "words": [
+        {
+          "text": "Eyes",
+          "start": 9.4,
+          "end": 9.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.76,
+      "end": 10.08,
+      "text": "catch",
+      "ass_text": "catch",
+      "words": [
+        {
+          "text": "catch",
+          "start": 9.76,
+          "end": 10.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.08,
+      "end": 10.3,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 10.08,
+          "end": 10.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.3,
+      "end": 10.68,
+      "text": "stretching",
+      "ass_text": "stretching",
+      "words": [
+        {
+          "text": "stretching",
+          "start": 10.3,
+          "end": 10.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.68,
+      "end": 11.1,
+      "text": "jaw.",
+      "ass_text": "jaw.",
+      "words": [
+        {
+          "text": "jaw.",
+          "start": 10.68,
+          "end": 11.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.74,
+      "end": 11.92,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 11.74,
+          "end": 11.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 11.92,
+      "end": 12.3,
+      "text": "brain",
+      "ass_text": "brain",
+      "words": [
+        {
+          "text": "brain",
+          "start": 11.92,
+          "end": 12.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.3,
+      "end": 13.02,
+      "text": "recognizes",
+      "ass_text": "recognizes",
+      "words": [
+        {
+          "text": "recognizes",
+          "start": 12.3,
+          "end": 13.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.02,
+      "end": 13.36,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 13.02,
+          "end": 13.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.36,
+      "end": 13.94,
+      "text": "familiar",
+      "ass_text": "familiar",
+      "words": [
+        {
+          "text": "familiar",
+          "start": 13.36,
+          "end": 13.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.94,
+      "end": 14.44,
+      "text": "human",
+      "ass_text": "human",
+      "words": [
+        {
+          "text": "human",
+          "start": 13.94,
+          "end": 14.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.44,
+      "end": 14.9,
+      "text": "action.",
+      "ass_text": "action.",
+      "words": [
+        {
+          "text": "action.",
+          "start": 14.44,
+          "end": 14.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.66,
+      "end": 16.08,
+      "text": "Attention",
+      "ass_text": "Attention",
+      "words": [
+        {
+          "text": "Attention",
+          "start": 15.66,
+          "end": 16.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.08,
+      "end": 16.58,
+      "text": "snaps",
+      "ass_text": "snaps",
+      "words": [
+        {
+          "text": "snaps",
+          "start": 16.08,
+          "end": 16.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.58,
+      "end": 16.92,
+      "text": "toward",
+      "ass_text": "toward",
+      "words": [
+        {
+          "text": "toward",
+          "start": 16.58,
+          "end": 16.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.92,
+      "end": 17.12,
+      "text": "it.",
+      "ass_text": "it.",
+      "words": [
+        {
+          "text": "it.",
+          "start": 16.92,
+          "end": 17.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.82,
+      "end": 18.14,
+      "text": "Perception",
+      "ass_text": "Perception",
+      "words": [
+        {
+          "text": "Perception",
+          "start": 17.82,
+          "end": 18.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 18.14,
+      "end": 18.46,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 18.14,
+          "end": 18.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 18.46,
+      "end": 18.86,
+      "text": "movement",
+      "ass_text": "movement",
+      "words": [
+        {
+          "text": "movement",
+          "start": 18.46,
+          "end": 18.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 18.86,
+      "end": 19.34,
+      "text": "systems",
+      "ass_text": "systems",
+      "words": [
+        {
+          "text": "systems",
+          "start": 18.86,
+          "end": 19.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.34,
+      "end": 19.74,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 19.34,
+          "end": 19.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.74,
+      "end": 20.12,
+      "text": "prime",
+      "ass_text": "prime",
+      "words": [
+        {
+          "text": "prime",
+          "start": 19.74,
+          "end": 20.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.12,
+      "end": 20.36,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 20.12,
+          "end": 20.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.36,
+      "end": 20.74,
+      "text": "matching",
+      "ass_text": "matching",
+      "words": [
+        {
+          "text": "matching",
+          "start": 20.36,
+          "end": 20.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.74,
+      "end": 21.26,
+      "text": "response.",
+      "ass_text": "response.",
+      "words": [
+        {
+          "text": "response.",
+          "start": 20.74,
+          "end": 21.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.26,
+      "end": 22.08,
+      "text": "That",
+      "ass_text": "That",
+      "words": [
+        {
+          "text": "That",
+          "start": 20.94,
+          "end": 22.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.08,
+      "end": 22.26,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 22.08,
+          "end": 22.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.26,
+      "end": 22.48,
+      "text": "make",
+      "ass_text": "make",
+      "words": [
+        {
+          "text": "make",
+          "start": 22.26,
+          "end": 22.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.48,
+      "end": 22.7,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 22.48,
+          "end": 22.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.7,
+      "end": 23.02,
+      "text": "own",
+      "ass_text": "own",
+      "words": [
+        {
+          "text": "own",
+          "start": 22.7,
+          "end": 23.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.02,
+      "end": 23.38,
+      "text": "yawn",
+      "ass_text": "yawn",
+      "words": [
+        {
+          "text": "yawn",
+          "start": 23.02,
+          "end": 23.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.38,
+      "end": 23.78,
+      "text": "easier",
+      "ass_text": "easier",
+      "words": [
+        {
+          "text": "easier",
+          "start": 23.38,
+          "end": 23.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.78,
+      "end": 24.0,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 23.78,
+          "end": 24.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 24.0,
+      "end": 24.66,
+      "text": "trigger.",
+      "ass_text": "trigger.",
+      "words": [
+        {
+          "text": "trigger.",
+          "start": 24.0,
+          "end": 24.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.0,
+      "end": 25.4,
+      "text": "Scientists",
+      "ass_text": "Scientists",
+      "words": [
+        {
+          "text": "Scientists",
+          "start": 25.0,
+          "end": 25.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.4,
+      "end": 25.9,
+      "text": "call",
+      "ass_text": "call",
+      "words": [
+        {
+          "text": "call",
+          "start": 25.4,
+          "end": 25.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.9,
+      "end": 26.14,
+      "text": "this",
+      "ass_text": "this",
+      "words": [
+        {
+          "text": "this",
+          "start": 25.9,
+          "end": 26.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.14,
+      "end": 26.78,
+      "text": "contagious",
+      "ass_text": "contagious",
+      "words": [
+        {
+          "text": "contagious",
+          "start": 26.14,
+          "end": 26.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.78,
+      "end": 27.34,
+      "text": "yawning.",
+      "ass_text": "yawning.",
+      "words": [
+        {
+          "text": "yawning.",
+          "start": 26.78,
+          "end": 27.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 28.0,
+      "end": 28.1,
+      "text": "It",
+      "ass_text": "It",
+      "words": [
+        {
+          "text": "It",
+          "start": 28.0,
+          "end": 28.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.1,
+      "end": 28.52,
+      "text": "occurs",
+      "ass_text": "occurs",
+      "words": [
+        {
+          "text": "occurs",
+          "start": 28.1,
+          "end": 28.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.52,
+      "end": 28.86,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 28.52,
+          "end": 28.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.86,
+      "end": 29.3,
+      "text": "humans",
+      "ass_text": "humans",
+      "words": [
+        {
+          "text": "humans",
+          "start": 28.86,
+          "end": 29.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 29.3,
+      "end": 29.6,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 29.3,
+          "end": 29.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 29.6,
+      "end": 29.9,
+      "text": "some",
+      "ass_text": "some",
+      "words": [
+        {
+          "text": "some",
+          "start": 29.6,
+          "end": 29.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 29.9,
+      "end": 30.32,
+      "text": "social",
+      "ass_text": "social",
+      "words": [
+        {
+          "text": "social",
+          "start": 29.9,
+          "end": 30.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 30.32,
+      "end": 31.16,
+      "text": "animals.",
+      "ass_text": "animals.",
+      "words": [
+        {
+          "text": "animals.",
+          "start": 30.32,
+          "end": 31.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 31.62,
+      "end": 32.0,
+      "text": "Social",
+      "ass_text": "Social",
+      "words": [
+        {
+          "text": "Social",
+          "start": 31.62,
+          "end": 32.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 32.0,
+      "end": 32.46,
+      "text": "connection",
+      "ass_text": "connection",
+      "words": [
+        {
+          "text": "connection",
+          "start": 32.0,
+          "end": 32.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 32.46,
+      "end": 32.82,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 32.46,
+          "end": 32.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 32.82,
+      "end": 33.28,
+      "text": "influence",
+      "ass_text": "influence",
+      "words": [
+        {
+          "text": "influence",
+          "start": 32.82,
+          "end": 33.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 33.28,
+      "end": 33.6,
+      "text": "who",
+      "ass_text": "who",
+      "words": [
+        {
+          "text": "who",
+          "start": 33.28,
+          "end": 33.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 33.6,
+      "end": 34.02,
+      "text": "catches",
+      "ass_text": "catches",
+      "words": [
+        {
+          "text": "catches",
+          "start": 33.6,
+          "end": 34.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 34.02,
+      "end": 34.48,
+      "text": "it,",
+      "ass_text": "it,",
+      "words": [
+        {
+          "text": "it,",
+          "start": 34.02,
+          "end": 34.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 34.78,
+      "end": 34.94,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 34.78,
+          "end": 34.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 34.94,
+      "end": 35.12,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 34.94,
+          "end": 35.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 35.12,
+      "end": 35.52,
+      "text": "exact",
+      "ass_text": "exact",
+      "words": [
+        {
+          "text": "exact",
+          "start": 35.12,
+          "end": 35.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 35.52,
+      "end": 36.18,
+      "text": "mechanism",
+      "ass_text": "mechanism",
+      "words": [
+        {
+          "text": "mechanism",
+          "start": 35.52,
+          "end": 36.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 36.18,
+      "end": 36.88,
+      "text": "remains",
+      "ass_text": "remains",
+      "words": [
+        {
+          "text": "remains",
+          "start": 36.18,
+          "end": 36.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 36.88,
+      "end": 37.68,
+      "text": "unsettled.",
+      "ass_text": "unsettled.",
+      "words": [
+        {
+          "text": "unsettled.",
+          "start": 36.88,
+          "end": 37.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 38.32,
+      "end": 38.72,
+      "text": "Evidence",
+      "ass_text": "Evidence",
+      "words": [
+        {
+          "text": "Evidence",
+          "start": 38.32,
+          "end": 38.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 38.72,
+      "end": 39.0,
+      "text": "tying",
+      "ass_text": "tying",
+      "words": [
+        {
+          "text": "tying",
+          "start": 38.72,
+          "end": 39.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.0,
+      "end": 39.24,
+      "text": "it",
+      "ass_text": "it",
+      "words": [
+        {
+          "text": "it",
+          "start": 39.0,
+          "end": 39.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.24,
+      "end": 39.8,
+      "text": "directly",
+      "ass_text": "directly",
+      "words": [
+        {
+          "text": "directly",
+          "start": 39.24,
+          "end": 39.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.8,
+      "end": 40.06,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 39.8,
+          "end": 40.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.06,
+      "end": 40.42,
+      "text": "empathy",
+      "ass_text": "empathy",
+      "words": [
+        {
+          "text": "empathy",
+          "start": 40.06,
+          "end": 40.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.42,
+      "end": 40.86,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 40.42,
+          "end": 40.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.86,
+      "end": 41.4,
+      "text": "mixed,",
+      "ass_text": "mixed,",
+      "words": [
+        {
+          "text": "mixed,",
+          "start": 40.86,
+          "end": 41.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 42.06,
+      "end": 42.2,
+      "text": "so",
+      "ass_text": "so",
+      "words": [
+        {
+          "text": "so",
+          "start": 42.06,
+          "end": 42.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 42.2,
+      "end": 42.58,
+      "text": "seeing",
+      "ass_text": "seeing",
+      "words": [
+        {
+          "text": "seeing",
+          "start": 42.2,
+          "end": 42.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 42.58,
+      "end": 42.8,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 42.58,
+          "end": 42.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 42.8,
+      "end": 43.18,
+      "text": "yawn",
+      "ass_text": "yawn",
+      "words": [
+        {
+          "text": "yawn",
+          "start": 42.8,
+          "end": 43.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 43.18,
+      "end": 43.44,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 43.18,
+          "end": 43.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 43.44,
+      "end": 43.94,
+      "text": "quietly",
+      "ass_text": "quietly",
+      "words": [
+        {
+          "text": "quietly",
+          "start": 43.44,
+          "end": 43.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 43.94,
+      "end": 44.34,
+      "text": "set",
+      "ass_text": "set",
+      "words": [
+        {
+          "text": "set",
+          "start": 43.94,
+          "end": 44.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 44.34,
+      "end": 44.84,
+      "text": "another",
+      "ass_text": "another",
+      "words": [
+        {
+          "text": "another",
+          "start": 44.34,
+          "end": 44.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 44.84,
+      "end": 45.12,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 44.84,
+          "end": 45.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 45.12,
+      "end": 45.48,
+      "text": "motion.",
+      "ass_text": "motion.",
+      "words": [
+        {
+          "text": "motion.",
+          "start": 45.12,
+          "end": 45.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 46.22,
+      "end": 46.46,
+      "text": "One",
+      "ass_text": "One",
+      "words": [
+        {
+          "text": "One",
+          "start": 46.22,
+          "end": 46.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 46.46,
+      "end": 46.78,
+      "text": "mouth",
+      "ass_text": "mouth",
+      "words": [
+        {
+          "text": "mouth",
+          "start": 46.46,
+          "end": 46.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 46.78,
+      "end": 47.16,
+      "text": "opens,",
+      "ass_text": "opens,",
+      "words": [
+        {
+          "text": "opens,",
+          "start": 46.78,
+          "end": 47.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 47.16,
+      "end": 47.92,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 47.16,
+          "end": 47.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 47.92,
+      "end": 48.38,
+      "text": "another",
+      "ass_text": "another",
+      "words": [
+        {
+          "text": "another",
+          "start": 47.92,
+          "end": 48.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 48.38,
+      "end": 48.98,
+      "text": "suddenly",
+      "ass_text": "suddenly",
+      "words": [
+        {
+          "text": "suddenly",
+          "start": 48.38,
+          "end": 48.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 48.98,
+      "end": 49.44,
+      "text": "wants",
+      "ass_text": "wants",
+      "words": [
+        {
+          "text": "wants",
+          "start": 48.98,
+          "end": 49.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 49.44,
+      "end": 49.74,
+      "text": "to.",
+      "ass_text": "to.",
+      "words": [
+        {
+          "text": "to.",
+          "start": 49.44,
+          "end": 49.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 50.44,
+      "end": 50.64,
+      "text": "Like",
+      "ass_text": "Like",
+      "words": [
+        {
+          "text": "Like",
+          "start": 50.44,
+          "end": 50.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 50.64,
+      "end": 51.14,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 50.64,
+          "end": 51.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 51.14,
+      "end": 51.56,
+      "text": "subscribe",
+      "ass_text": "subscribe",
+      "words": [
+        {
+          "text": "subscribe",
+          "start": 51.14,
+          "end": 51.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 51.56,
+      "end": 52.0,
+      "text": "for",
+      "ass_text": "for",
+      "words": [
+        {
+          "text": "for",
+          "start": 51.56,
+          "end": 52.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 52.0,
+      "end": 52.22,
+      "text": "more",
+      "ass_text": "more",
+      "words": [
+        {
+          "text": "more",
+          "start": 52.0,
+          "end": 52.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 52.22,
+      "end": 52.9,
+      "text": "strange",
+      "ass_text": "strange",
+      "words": [
+        {
+          "text": "strange",
+          "start": 52.22,
+          "end": 52.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 52.9,
+      "end": 53.5,
+      "text": "everyday",
+      "ass_text": "everyday",
+      "words": [
+        {
+          "text": "everyday",
+          "start": 52.9,
+          "end": 53.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 53.5,
+      "end": 54.16,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "words": [
+        {
+          "text": "questions.",
+          "start": 53.5,
+          "end": 54.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    }
+  ],
+  "qc": {
+    "beat_count": 13,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 4,
+        "before_beat": 5,
+        "current_speech_end": 21.58,
+        "next_speech_start": 20.94,
+        "overlap_seconds": 0.64,
+        "chosen_boundary": 21.26
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 48,
+        "current_cue": 49,
+        "previous_end": 21.58,
+        "current_start": 20.94,
+        "overlap_seconds": 0.64,
+        "chosen_boundary": 21.26
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 118,
+    "subtitle_cues_estimated": 0
+  }
+}

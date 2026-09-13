@@ -1,0 +1,18 @@
+{
+  "opening_activity": "sorting mismatched hand tools back onto a wall-mounted tool rack after a community repair session while another volunteer works at the neighboring bench",
+  "opening_location": "quiet late-afternoon community repair workshop",
+  "opening_environment": "a modest shared repair space with wooden benches, hanging hand tools, small parts trays, task lamps, and another volunteer working within easy view",
+  "topic_visual_link": "A nearby volunteer visibly yawns while the host is sorting tools, and moments later the host's own jaw begins opening despite his effort to keep working.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "At frame zero the host is placing a wrench onto the rack while a volunteer at the adjacent bench gives a large unmistakable yawn directly within his peripheral view.",
+  "curiosity_trigger": "He catches the neighboring yawn, then feels his own mouth and jaw involuntarily starting the same motion.",
+  "trigger_object": "the neighboring volunteer's visible yawn",
+  "reaction": "He suppresses the emerging yawn, pauses with a tool still in hand, and gives the other volunteer a tired, skeptical sideways glance.",
+  "book_retrieval": "He sets the tool down and reaches to the end of the workbench for a worn reference book already resting beside the parts trays.",
+  "camera_pattern": "slow_push_in",
+  "book_template_id": "002",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "return_to_opening",
+  "world_style_hint": "textured graphite-and-pencil-sketch repair workshop with loose construction lines, paper grain, soft smudged shading, and clearly drawn hand tools",
+  "reason": "The shared workshop makes tool sorting natural for the script while placing another person close enough for a plainly visible yawn to trigger the host's restrained, immediately understandable contagious-yawning reaction."
+}

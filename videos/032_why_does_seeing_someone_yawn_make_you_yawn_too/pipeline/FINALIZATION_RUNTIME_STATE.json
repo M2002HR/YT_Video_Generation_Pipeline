@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "video": "032_why_does_seeing_someone_yawn_make_you_yawn_too",
+  "started_at": "2026-09-13T21:28:38.205672+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-13T21:28:38.224810+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-13T21:28:39.844756+00:00",
+      "elapsed_seconds": 1.62,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 40187
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-13T21:28:41.019184+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 2/8 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-13T21:31:41.645789+00:00",
+      "elapsed_seconds": 180.627,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 47803437
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-13T21:31:41.646326+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-13T21:31:49.762511+00:00",
+      "elapsed_seconds": 8.116,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-13T21:31:50.981153+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-13T21:31:54.880751+00:00",
+      "elapsed_seconds": 3.9,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 48086439
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-13T21:31:56.275488+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-13T21:32:03.886921+00:00",
+      "elapsed_seconds": 7.611,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-13T21:32:04.860933+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-13T21:32:21.165884+00:00",
+      "elapsed_seconds": 16.305,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2313573
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-13T21:32:22.272158+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-13T21:28:38.205672+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ]
+}
