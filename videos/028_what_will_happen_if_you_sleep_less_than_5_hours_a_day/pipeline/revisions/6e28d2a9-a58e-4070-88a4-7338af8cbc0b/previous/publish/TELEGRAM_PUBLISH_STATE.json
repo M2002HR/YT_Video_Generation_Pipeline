@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-13T19:00:45.123269+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-13T19:00:45.123079+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 14864,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2187271,
+      "sha256": "407f0d90f196eadf2659fdc77e09f857bbbc1c77793cd4d582aee2b2eb3669ba",
+      "duration_seconds": 59.62,
+      "elapsed_seconds": 5.705,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "028_what_will_happen_if_you_sleep_less_than_5_hours_a_day",
+        "duration_seconds": 59.611,
+        "beat_count": 13,
+        "video_beat_count": 2,
+        "image_beat_count": 11,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.94,
+          "transition_end": 8.62
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ],
+          "unverified": [
+            "gemini_world_style_anchor"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 190.028,
+          "realtime_factor": 3.188,
+          "peak_child_rss_mb": 1283.6,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 028_what_will_happen_if_you_sleep_less_than_5_hours_a_day\n⏱ Duration: 1:00\n🎞 Beats: 13 (2 video · 11 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n⚠️ Unverified receipts: 1\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:10 wall (3.188x realtime) · 2 thread(s) · peak 1283.6 MB\nArtifact: 407f0d90f196 · Delivery: compressed"
+    }
+  }
+}

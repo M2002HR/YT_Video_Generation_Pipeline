@@ -1,26 +1,23 @@
 {
-  "title": "Sleep Less Than 5 Hours? Why Mistakes Get Easier",
+  "title": "Under 5 Hours of Sleep? Why Mistakes Get Easier",
   "title_options": [
-    "Under 5 Hours of Sleep? Focus, Memory and Recovery Can Suffer",
-    "Why Less Than 5 Hours of Sleep Makes Focus Harder",
-    "What Short Sleep Does to Focus, Memory and Recovery"
+    "What Happens When You Sleep Less Than 5 Hours?",
+    "Less Than 5 Hours of Sleep? Attention and Reaction Time Can Slip",
+    "Why Short Sleep Hurts Attention, Memory and Reaction Time"
   ],
-  "description": "What can happen when you sleep less than five hours? This Short explains how very short sleep can make attention drift, slow reaction time, make new memories harder to store and weaken emotional control. It can also shift hunger toward more calorie-dense foods, give the immune system less recovery time, and worsen blood pressure and blood sugar control. Repeated short sleep is linked with heart disease and diabetes. Caffeine can mask sleepiness, but it cannot replace sleep, and most adults need at least seven hours nightly. Q Station is an educational channel where every question opens a world. #Sleep #SleepHealth #Education",
+  "description": "Sleeping less than five hours can make attention drift, slow reaction time, make new memories harder to store, and weaken emotional control. Short sleep can also shift hunger toward more calorie-dense foods, give the immune system less recovery time, and worsen blood pressure and blood sugar control. Repeated short sleep is linked with heart disease and diabetes. Caffeine can mask sleepiness, but it cannot replace sleep, and most adults need at least seven hours nightly. Q Station explores everyday questions through concise visual explanations—every question opens a world.",
   "tags": [
-    "sleep less than 5 hours",
-    "sleep restriction",
-    "short sleep",
+    "less than 5 hours sleep",
+    "sleep deprivation",
+    "short sleep effects",
     "sleep and attention",
-    "sleep and reaction time",
+    "reaction time",
     "sleep and memory",
     "sleep and emotional control",
-    "sleep and appetite",
+    "sleep and hunger",
     "sleep and immune system",
-    "sleep and blood pressure",
-    "sleep and blood sugar",
     "caffeine and sleep",
     "adult sleep needs",
-    "sleep health",
     "Q Station"
   ],
   "category": "Education",
@@ -41,24 +38,29 @@
   },
   "manual_review": [
     {
-      "field": "audience",
-      "recommendation": "The supplied channel recommendation is not made for kids; the uploader must confirm the final audience designation.",
-      "reason": "Audience designation is a platform and legal declaration that must be confirmed from the final video's intended audience."
+      "field": "audience_recommendation",
+      "recommendation": "Review the supplied not_made_for_kids recommendation before publishing.",
+      "reason": "SOURCE_CONTEXT recommends not_made_for_kids, but the uploader must make the final audience declaration."
     },
     {
-      "field": "age_restriction",
-      "recommendation": "Review the final video and make the age-restriction selection manually.",
-      "reason": "The supplied context describes educational sleep-health content, but the uploader must make the final platform declaration."
+      "field": "age_restriction_recommendation",
+      "recommendation": "Review whether an age restriction is required.",
+      "reason": "SOURCE_CONTEXT does not provide an age-restriction declaration, so this must remain an uploader decision."
     },
     {
-      "field": "paid_promotion",
-      "recommendation": "No paid promotion is indicated in the supplied context; the uploader must confirm whether any sponsorship, endorsement or commercial relationship applies.",
-      "reason": "Paid-promotion status is a declaration that cannot be finalized from the supplied episode metadata alone."
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Confirm the video's paid-promotion status before publishing.",
+      "reason": "SOURCE_CONTEXT does not establish a paid-promotion declaration, so the uploader must make the final determination."
     },
     {
-      "field": "altered_or_synthetic_content",
-      "recommendation": "Review the final rendered visuals and make the altered-or-synthetic-content disclosure decision manually.",
-      "reason": "The supplied context includes stylized rendered visuals but does not establish whether the platform's disclosure criteria apply to the final video."
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review the final video against YouTube's altered or synthetic content disclosure requirements.",
+      "reason": "SOURCE_CONTEXT does not establish whether a disclosure is required for the final published video, so this must remain an uploader decision."
+    },
+    {
+      "field": "Audience",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm the audience declaration in YouTube Studio; only the uploader can make the final Made for Kids decision."
     },
     {
       "field": "Age Restriction",
@@ -76,15 +78,15 @@
       "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
     }
   ],
-  "thumbnail_prompt": "Create one instantly readable 9:16 YouTube Shorts thumbnail for this exact sleep-restriction episode. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere and relevant subject matter. Any world keyframe is supporting continuity only and must never override the rendered frames. Any character sheet is identity-only and must not make a character appear unless that character genuinely belongs in this episode's thumbnail. Use one dominant focal subject: the large layered paper-cut human brain seen in the rendered episode, with the analog clock as a supporting element and a few scattered fragments suggesting impaired attention after very short sleep. Keep the brain large, high-contrast and centered slightly above mid-frame, with the episode's muted sage-green, cream, slate-blue and mustard palette, soft dimensional paper-cut lighting, and deliberate negative space in the lower third for optional later text. One scene only, unmistakable sleep-loss tension, strong hierarchy and phone-legible silhouettes. It must feel like this exact episode, never generic stock art. No written words, letters, logos, watermark, UI, border, collage, split-screen or stock-photo look.",
-  "thumbnail_overlay_text": "Under 5 Hours?",
-  "related_video_note": "No related video is specified in the supplied source context; leave this unset unless the uploader selects an appropriate related video manually.",
+  "thumbnail_prompt": "Create one instantly readable 9:16 thumbnail for this exact sleep-restriction episode. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Match their layered paper-cut relief, soft dimensional shadows, muted olive green, cream, slate blue, ochre, and warm glow. Any world keyframe is supporting continuity only and must never override the rendered frames. Any character sheet is identity-only and must not cause a character to appear unless that character genuinely belongs in this episode's thumbnail. Use one dominant focal subject: a large layered paper-cut brain, with a simple analog clock as a secondary cue for too little sleep and impaired attention. Keep other anatomical elements minimal and subdued. Create clear tension by making the brain and clock bright and sharply separated from a darker sleep-toned background. Preserve deliberate uncluttered negative space in the upper third for optional overlay text. Make the scene immediately legible on a phone and unmistakably consistent with the actual rendered episode, never generic sleep imagery or stock art. No written words, letters, numbers, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Under 5 Hours",
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave the related-video field unset until the uploader selects a genuinely relevant Q Station video.",
   "schema_version": 1,
-  "created_at": "2026-09-12T03:14:59.248412+00:00",
-  "source_master_sha256": "bade221fa7ae714987f6b6ce34be926fbad546d741d71a2713990c24077b3d1c",
+  "created_at": "2026-09-13T19:31:11.270905+00:00",
+  "source_master_sha256": "9e459dc3909daca6e864b0a2845b39563298c5105f6acef64e3c95d5a6e59138",
   "chatgpt_jobs": {
-    "draft": "cc5e37f7-8322-4dbd-9837-0402a32b3c18",
-    "review": "1e74b059-fdae-4e7b-aafb-1a7f92d85423",
+    "draft": "b4b63dd0-08cb-4736-9932-8c4dc437fc37",
+    "review": "bf023d53-2109-4f8f-a409-7259a1892d59",
     "schema_repairs": []
   },
   "source_context": {
@@ -169,8 +171,8 @@
           "file": "publish/youtube_short/visual_references/render_opening.png",
           "width": 1080,
           "height": 1920,
-          "bytes": 1369840,
-          "sha256": "8d156585860db730782cabb97d39da77121095dc4fb8e5f1aac6e3a5826398a3",
+          "bytes": 1516122,
+          "sha256": "ca364601142af84442e87dcfafb16115a4a80e38f8eaf01530bd03bd09659d2d",
           "time_seconds": 5.961
         },
         {
@@ -179,8 +181,8 @@
           "file": "publish/youtube_short/visual_references/render_body.png",
           "width": 1080,
           "height": 1920,
-          "bytes": 1431292,
-          "sha256": "d3bc975acb306b27d1a4bd2c28a736a2282d9359500266b2cd1a489fd25ad6ed",
+          "bytes": 1526472,
+          "sha256": "246cd0e1f59e3626e66ab572a9ff5e6b7ecc250af3c2efdb17d0128d24a3799d",
           "time_seconds": 29.805
         },
         {
@@ -189,8 +191,8 @@
           "file": "publish/youtube_short/visual_references/render_closing.png",
           "width": 1080,
           "height": 1920,
-          "bytes": 1909860,
-          "sha256": "bd5973318d780df0da30f88d5af29d743a7b4d68541914558741393d95a76ffc",
+          "bytes": 1708952,
+          "sha256": "fc719d5af3f824409f25f6142adc133966e659a9787381d97e1ea58fd34d1a6f",
           "time_seconds": 50.073
         },
         {
@@ -210,65 +212,65 @@
     "selected": {
       "width": 1536,
       "height": 2752,
-      "bytes": 2265160,
-      "sha256": "82102c1ae7e81123b09359be257364a955832105a18d6b77836d669a6bf6f13e"
+      "bytes": 1802989,
+      "sha256": "e2df904aa0736f224f7b89da3778f2e30b205d959c6b60aeb87043c014058888"
     },
     "selected_attempt": 1,
     "quality_check": {
       "passed": true,
-      "description": "A single vertical paper-cut scene shows a large cream layered brain centered slightly above mid-frame, a large analog clock beneath it, scattered paper fragments, and a small house icon within a muted sage-green, slate-blue, cream and mustard environment. Soft shadows and layered cut-paper edges closely match the tactile rendering language of the supplied episode frames. The lower third is intentionally sparse, providing clear negative space.",
+      "description": "A vertical layered paper-cut scene with a large glowing cream brain as the dominant focal subject, a warm-lit analog clock at upper right, dark slate-blue sleep-toned layers behind it, subdued anatomical neck and torso forms below, and an olive outer field. The tactile cut-paper relief, dimensional shadows, cream, slate, ochre glow, and muted olive palette visibly connect to the rendered episode frames.",
       "violations": [
-        "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-        "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-        "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-        "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+        "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+        "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+        "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+        "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
       ],
       "blocking_violations": [],
       "regressions": [],
       "raw_passed": true,
       "raw_violations": [
-        "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-        "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-        "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-        "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+        "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+        "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+        "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+        "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
       ],
       "observations": [
-        "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-        "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-        "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-        "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+        "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+        "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+        "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+        "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
       ],
       "review_status": "passed_with_warnings"
     },
     "candidates": [
       {
         "attempt": 1,
-        "job_id": "970064e7-958c-415d-85ed-fb4523c9ebb1",
-        "prompt_sha256": "c44917d0da80b7259d012cbffd44be63b190409a3f6898682aac7c4c743cef68",
-        "output_sha256": "82102c1ae7e81123b09359be257364a955832105a18d6b77836d669a6bf6f13e",
+        "job_id": "88551db9-950e-4f14-889c-9116d80ec815",
+        "prompt_sha256": "1b7e19d058c1afe6e9ace0598ef0a62a32c98b79eda74694564b18bb1cc01c33",
+        "output_sha256": "e2df904aa0736f224f7b89da3778f2e30b205d959c6b60aeb87043c014058888",
         "quality_check": {
           "passed": true,
-          "description": "A single vertical paper-cut scene shows a large cream layered brain centered slightly above mid-frame, a large analog clock beneath it, scattered paper fragments, and a small house icon within a muted sage-green, slate-blue, cream and mustard environment. Soft shadows and layered cut-paper edges closely match the tactile rendering language of the supplied episode frames. The lower third is intentionally sparse, providing clear negative space.",
+          "description": "A vertical layered paper-cut scene with a large glowing cream brain as the dominant focal subject, a warm-lit analog clock at upper right, dark slate-blue sleep-toned layers behind it, subdued anatomical neck and torso forms below, and an olive outer field. The tactile cut-paper relief, dimensional shadows, cream, slate, ochre glow, and muted olive palette visibly connect to the rendered episode frames.",
           "violations": [
-            "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-            "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-            "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-            "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+            "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+            "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+            "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+            "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
           ],
           "blocking_violations": [],
           "regressions": [],
           "raw_passed": true,
           "raw_violations": [
-            "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-            "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-            "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-            "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+            "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+            "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+            "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+            "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
           ],
           "observations": [
-            "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-            "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-            "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-            "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+            "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+            "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+            "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+            "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
           ],
           "review_status": "passed_with_warnings"
         },
@@ -279,8 +281,8 @@
         "image": {
           "width": 1536,
           "height": 2752,
-          "bytes": 2265160,
-          "sha256": "82102c1ae7e81123b09359be257364a955832105a18d6b77836d669a6bf6f13e"
+          "bytes": 1802989,
+          "sha256": "e2df904aa0736f224f7b89da3778f2e30b205d959c6b60aeb87043c014058888"
         },
         "visual_references": [
           {
@@ -289,8 +291,8 @@
             "file": "publish/youtube_short/visual_references/render_opening.png",
             "width": 1080,
             "height": 1920,
-            "bytes": 1369840,
-            "sha256": "8d156585860db730782cabb97d39da77121095dc4fb8e5f1aac6e3a5826398a3",
+            "bytes": 1516122,
+            "sha256": "ca364601142af84442e87dcfafb16115a4a80e38f8eaf01530bd03bd09659d2d",
             "time_seconds": 5.961
           },
           {
@@ -299,8 +301,8 @@
             "file": "publish/youtube_short/visual_references/render_body.png",
             "width": 1080,
             "height": 1920,
-            "bytes": 1431292,
-            "sha256": "d3bc975acb306b27d1a4bd2c28a736a2282d9359500266b2cd1a489fd25ad6ed",
+            "bytes": 1526472,
+            "sha256": "246cd0e1f59e3626e66ab572a9ff5e6b7ecc250af3c2efdb17d0128d24a3799d",
             "time_seconds": 29.805
           },
           {
@@ -309,8 +311,8 @@
             "file": "publish/youtube_short/visual_references/render_closing.png",
             "width": 1080,
             "height": 1920,
-            "bytes": 1909860,
-            "sha256": "bd5973318d780df0da30f88d5af29d743a7b4d68541914558741393d95a76ffc",
+            "bytes": 1708952,
+            "sha256": "fc719d5af3f824409f25f6142adc133966e659a9787381d97e1ea58fd34d1a6f",
             "time_seconds": 50.073
           },
           {
@@ -332,8 +334,8 @@
         "file": "publish/youtube_short/visual_references/render_opening.png",
         "width": 1080,
         "height": 1920,
-        "bytes": 1369840,
-        "sha256": "8d156585860db730782cabb97d39da77121095dc4fb8e5f1aac6e3a5826398a3",
+        "bytes": 1516122,
+        "sha256": "ca364601142af84442e87dcfafb16115a4a80e38f8eaf01530bd03bd09659d2d",
         "time_seconds": 5.961
       },
       {
@@ -342,8 +344,8 @@
         "file": "publish/youtube_short/visual_references/render_body.png",
         "width": 1080,
         "height": 1920,
-        "bytes": 1431292,
-        "sha256": "d3bc975acb306b27d1a4bd2c28a736a2282d9359500266b2cd1a489fd25ad6ed",
+        "bytes": 1526472,
+        "sha256": "246cd0e1f59e3626e66ab572a9ff5e6b7ecc250af3c2efdb17d0128d24a3799d",
         "time_seconds": 29.805
       },
       {
@@ -352,8 +354,8 @@
         "file": "publish/youtube_short/visual_references/render_closing.png",
         "width": 1080,
         "height": 1920,
-        "bytes": 1909860,
-        "sha256": "bd5973318d780df0da30f88d5af29d743a7b4d68541914558741393d95a76ffc",
+        "bytes": 1708952,
+        "sha256": "fc719d5af3f824409f25f6142adc133966e659a9787381d97e1ea58fd34d1a6f",
         "time_seconds": 50.073
       },
       {
@@ -372,7 +374,7 @@
       "qc_correction_policy": "0",
       "chatgpt_fallback_mode": "auto"
     },
-    "gemini_job_id": "970064e7-958c-415d-85ed-fb4523c9ebb1",
+    "gemini_job_id": "88551db9-950e-4f14-889c-9116d80ec815",
     "gemini_receipt": {
       "provider": "gemini",
       "requested_model": "nano_banana_2",
@@ -386,7 +388,7 @@
       "actual_duration_seconds": null,
       "requested_resolution": null,
       "actual_resolution": null,
-      "workspace_url": "https://gemini.google.com/app/33af216ff7fe5911",
+      "workspace_url": "https://gemini.google.com/app/7c8a9c577912fd9c",
       "submission_fingerprint": null,
       "reference_roles": [
         "thumbnail_rendered_opening_frame",
@@ -398,64 +400,64 @@
         "model_label_source=mode-picker",
         "extended_thinking_mode=Open mode picker, currently Flash Extended",
         "artifact_source=download",
-        "image=970064e7-958c-415d-85ed-fb4523c9ebb1_output_1.png 1536x2752 sha256=82102c1ae7e81123b09359be257364a955832105a18d6b77836d669a6bf6f13e"
+        "image=88551db9-950e-4f14-889c-9116d80ec815_output_1.png 1536x2752 sha256=e2df904aa0736f224f7b89da3778f2e30b205d959c6b60aeb87043c014058888"
       ],
       "quality_check": {
         "passed": true,
-        "description": "A single vertical paper-cut scene shows a large cream layered brain centered slightly above mid-frame, a large analog clock beneath it, scattered paper fragments, and a small house icon within a muted sage-green, slate-blue, cream and mustard environment. Soft shadows and layered cut-paper edges closely match the tactile rendering language of the supplied episode frames. The lower third is intentionally sparse, providing clear negative space.",
+        "description": "A vertical layered paper-cut scene with a large glowing cream brain as the dominant focal subject, a warm-lit analog clock at upper right, dark slate-blue sleep-toned layers behind it, subdued anatomical neck and torso forms below, and an olive outer field. The tactile cut-paper relief, dimensional shadows, cream, slate, ochre glow, and muted olive palette visibly connect to the rendered episode frames.",
         "violations": [
-          "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-          "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-          "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-          "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+          "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+          "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+          "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+          "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
         ],
         "blocking_violations": [],
         "regressions": [],
         "raw_passed": true,
         "raw_violations": [
-          "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-          "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-          "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-          "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+          "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+          "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+          "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+          "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
         ],
         "observations": [
-          "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-          "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-          "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-          "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+          "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+          "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+          "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+          "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
         ],
         "review_status": "passed_with_warnings"
       },
-      "request_fingerprint": "9d275f44aff12883a60066559af1a8e2c936b09bcc9d7479ac618200db0fe75a",
+      "request_fingerprint": "c2de12ef76836e5bf2e73abe6177b4da96292c02ec69c007be13d7fcb621c60a",
       "quality_iterations": [
         {
           "attempt": 1,
-          "job_id": "970064e7-958c-415d-85ed-fb4523c9ebb1",
-          "prompt_sha256": "c44917d0da80b7259d012cbffd44be63b190409a3f6898682aac7c4c743cef68",
-          "output_sha256": "82102c1ae7e81123b09359be257364a955832105a18d6b77836d669a6bf6f13e",
+          "job_id": "88551db9-950e-4f14-889c-9116d80ec815",
+          "prompt_sha256": "1b7e19d058c1afe6e9ace0598ef0a62a32c98b79eda74694564b18bb1cc01c33",
+          "output_sha256": "e2df904aa0736f224f7b89da3778f2e30b205d959c6b60aeb87043c014058888",
           "quality_check": {
             "passed": true,
-            "description": "A single vertical paper-cut scene shows a large cream layered brain centered slightly above mid-frame, a large analog clock beneath it, scattered paper fragments, and a small house icon within a muted sage-green, slate-blue, cream and mustard environment. Soft shadows and layered cut-paper edges closely match the tactile rendering language of the supplied episode frames. The lower third is intentionally sparse, providing clear negative space.",
+            "description": "A vertical layered paper-cut scene with a large glowing cream brain as the dominant focal subject, a warm-lit analog clock at upper right, dark slate-blue sleep-toned layers behind it, subdued anatomical neck and torso forms below, and an olive outer field. The tactile cut-paper relief, dimensional shadows, cream, slate, ochre glow, and muted olive palette visibly connect to the rendered episode frames.",
             "violations": [
-              "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-              "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-              "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-              "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+              "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+              "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+              "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+              "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
             ],
             "blocking_violations": [],
             "regressions": [],
             "raw_passed": true,
             "raw_violations": [
-              "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-              "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-              "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-              "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+              "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+              "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+              "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+              "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
             ],
             "observations": [
-              "The analog clock is nearly as visually dominant as the brain, slightly weakening the requested one-subject hierarchy.",
-              "The small house icon and extra decorative fragments add some secondary visual information that is not necessary to communicate the sleep-restriction premise.",
-              "The sleep-loss tension is conveyed indirectly through the clock and fragmentation rather than through an especially explicit cue of very short sleep.",
-              "The lower negative-space area is very large, which slightly compresses the main brain-and-clock content toward the upper portion of the frame."
+              "The olive outer margin and inset rounded dark panel read as a framed border treatment, despite the direction specifying no border.",
+              "The upper third is usable for overlay text but is not completely uncluttered because layered mountain-like paper forms and the clock occupy part of that region.",
+              "The candidate leans more heavily into dark slate and navy than the primary rendered frames, with less visible olive-green integration in the central scene.",
+              "Native output is 1143x2048 rather than the requested 2160x3840 target, and its aspect ratio is only approximately 9:16."
             ],
             "review_status": "passed_with_warnings"
           },
