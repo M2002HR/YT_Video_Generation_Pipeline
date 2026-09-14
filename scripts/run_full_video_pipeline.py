@@ -433,10 +433,13 @@ def apply_branding_preferences(profile_path: Path, creative_brief: dict[str, Any
         "custom_y_percent": number("logo_custom_y_percent", 10, 0, 100),
     }
     font_size = int(number("title_font_size", 38, TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX))
+    # An empty custom title deliberately preserves the historical behaviour: use
+    # the episode topic.  A non-empty value is frozen verbatim (apart from edge
+    # whitespace) so the panel preview and final render use the same text.
+    title_text = str(requested.get("title_text") or "").strip() or str(topic).strip()
     branding["title"] = {
         "enabled": bool(requested.get("show_title", True)),
-        # The source of truth is the launch topic/question, never generated copy.
-        "text": str(topic).strip(), "position": title_position,
+        "text": title_text, "position": title_position,
         "font_name": str(requested.get("title_font", "Roboto")).strip() or "Roboto",
         "font_size": font_size, "bold": bool(requested.get("title_bold", True)),
         "italic": bool(requested.get("title_italic", False)), "text_align": align,

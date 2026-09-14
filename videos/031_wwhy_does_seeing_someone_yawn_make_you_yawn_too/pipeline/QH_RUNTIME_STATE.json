@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "video_id": "031",
+  "topic": "WWhy Does Seeing Someone Yawn Make You Yawn Too?",
+  "created_at": "2026-09-13T20:48:32Z",
+  "pipeline_state": "RUNNING",
+  "stages": {
+    "script_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-13T20:49:19Z",
+      "words": 110
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "updated_at": "2026-09-13T20:49:53Z",
+      "words": 119
+    },
+    "character_resolution": {
+      "status": "DONE",
+      "updated_at": "2026-09-13T20:49:54Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "episode_director": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-13T20:49:54Z"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 46.7,
+      "at": "2026-09-13T20:49:19Z",
+      "words": 110
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 31.797,
+      "at": "2026-09-13T20:49:53Z",
+      "words": 119
+    }
+  ],
+  "updated_at": "2026-09-13T20:49:54Z"
+}

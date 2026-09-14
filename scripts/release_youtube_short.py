@@ -45,6 +45,14 @@ CHANNEL_DEFAULTS = {
     "audience_recommendation": "not_made_for_kids",
 }
 
+# Every switch maps to a real, isolated post-render operation.  This file is
+# deliberately limited to the release package: it cannot change the finished movie.
+RELEASE_REQUEST_DEFAULTS = {
+    "generate_metadata": True, "generate_thumbnail": True,
+    "create_upload_guide": True, "send_telegram": True, "force": False,
+    "metadata_note": "", "thumbnail_note": "", "title_override": "",
+}
+
 METADATA_QUALITY_ADDENDUM = """
 TITLE AND THUMBNAIL QUALITY BAR (mandatory):
 - The recommended title and every alternative must be concise, accurate and genuinely compelling.
@@ -106,6 +114,28 @@ def package_paths(video: Path) -> dict[str, Path]:
         "candidates": root / "thumbnail_candidates",
         "visual_references": root / "visual_references",
     }
+
+
+def release_request(path: Path | None) -> dict[str, Any]:
+    payload = load_json(path) if path else {}
+    raw = payload.get("settings") if isinstance(payload.get("settings"), dict) else payload
+    if not isinstance(raw, dict):
+        raise RuntimeError("Release request settings must be an object.")
+    unknown = set(raw) - set(RELEASE_REQUEST_DEFAULTS)
+    if unknown:
+        raise RuntimeError("Unknown Release request setting(s): " + ", ".join(sorted(unknown)))
+    result = dict(RELEASE_REQUEST_DEFAULTS)
+    for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram", "force"):
+        if key in raw and not isinstance(raw[key], bool):
+            raise RuntimeError(f"Release request {key} must be boolean.")
+        result[key] = bool(raw.get(key, result[key]))
+    for key, limit in (("metadata_note", 2_000), ("thumbnail_note", 2_000), ("title_override", 100)):
+        result[key] = str(raw.get(key, "") or "").strip()
+        if len(result[key]) > limit:
+            raise RuntimeError(f"Release request {key} is too long.")
+    if not any(result[key] for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram")):
+        raise RuntimeError("Release request selected no steps.")
+    return result
 
 
 def must_be_release_ready(video: Path) -> Path:
@@ -535,10 +565,13 @@ Reference roles:
 
 def generate_thumbnail(
     jobs: OrdakJobs, metadata: dict[str, Any], image_contract: dict[str, str], paths: dict[str, Path],
-    visual_references: list[Reference], manifest: list[dict[str, Any]],
+    visual_references: list[Reference], manifest: list[dict[str, Any]], direction: str = "",
 ) -> dict[str, Any]:
     paths["candidates"].mkdir(parents=True, exist_ok=True)
-    prompt = thumbnail_generation_prompt(metadata, manifest)
+    prompt = thumbnail_generation_prompt(
+        metadata, manifest,
+        f"\n\nOPERATOR THUMBNAIL DIRECTION (follow only when consistent with the factual source):\n{direction}" if direction else "",
+    )
     # This is the same image worker used for world/beat images: it uses the original
     # episode's model lock, three bounded provider attempts, verified download provenance,
     # model-UI verification, atomic commits, content QC and its configured correction policy.
@@ -580,7 +613,7 @@ def generate_thumbnail(
     }
 
 
-def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any], context: dict[str, Any]) -> str:
+def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any] | None, context: dict[str, Any]) -> str:
     settings = metadata["upload_settings"]
     tags = ", ".join(metadata["tags"])
     reviews = metadata.get("manual_review") or []
@@ -592,6 +625,15 @@ def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any], c
     music_warning = ""
     if music.get("license"):
         music_warning = f"\nMusic provenance: {music.get('provider') or 'unknown'} — {music['license']}\n"
+    thumbnail_section = (
+        f"""File: `thumbnail.png` ({thumbnail['selected']['width']}×{thumbnail['selected']['height']}, 9:16)
+Optional human-added overlay text: `{metadata['thumbnail_overlay_text'] or 'None'}`
+Upload the original PNG in YouTube Studio on desktop; do not ask Gemini to render words into it.
+It was generated against final-render reference frames (plus only relevant continuity/identity references)
+and QC checked for visual fidelity, legibility and policy issues."""
+        if thumbnail else "No thumbnail was generated or selected for this release request."
+    )
+    thumbnail_qc = "passed" if thumbnail and thumbnail["quality_check"].get("passed") else "not generated for this release request"
     return f"""# YouTube Shorts release package
 
 ## Recommended title
@@ -611,11 +653,7 @@ Alternatives:
 
 ## Thumbnail
 
-File: `thumbnail.png` ({thumbnail['selected']['width']}×{thumbnail['selected']['height']}, 9:16)
-Optional human-added overlay text: `{metadata['thumbnail_overlay_text'] or 'None'}`
-Upload the original PNG in YouTube Studio on desktop; do not ask Gemini to render words into it.
-It was generated against final-render reference frames (plus only relevant continuity/identity references)
-and QC checked for visual fidelity, legibility and policy issues.
+{thumbnail_section}
 
 ## Upload settings
 
@@ -643,11 +681,11 @@ and QC checked for visual fidelity, legibility and policy issues.
 - Master: `assets/renders/polished.mp4`
 - Duration: {context['run'].get('duration_seconds')} seconds
 - Render: {context['run'].get('resolution')} · {context['run'].get('aspect_ratio')}
-- Thumbnail QC: {'passed' if thumbnail['quality_check'].get('passed') else 'second candidate retained after one correction attempt; review observations before upload'}
+- Thumbnail QC: {thumbnail_qc}
 """
 
 
-def video_caption(metadata: dict[str, Any], thumbnail: dict[str, Any]) -> str:
+def video_caption(metadata: dict[str, Any], thumbnail: dict[str, Any] | None) -> str:
     description = metadata["description"].replace("\n", " ").strip()
     available = 920 - len(metadata["title"]) - len("🎬 YouTube Release\nTitle: \n\nThumbnail: attached separately")
     short = description[:max(120, available)].rsplit(" ", 1)[0]
@@ -655,13 +693,13 @@ def video_caption(metadata: dict[str, Any], thumbnail: dict[str, Any]) -> str:
         "🎬 YouTube Release\n"
         f"Title: {metadata['title']}\n\n"
         f"{short}\n\n"
-        f"Thumbnail: {'QC passed' if thumbnail['quality_check'].get('passed') else 'review second candidate'}\n"
+        f"Thumbnail: {'QC passed' if thumbnail and thumbnail['quality_check'].get('passed') else 'not included'}\n"
         "Full copy-ready metadata is attached."
     )[:1024]
 
 
 async def deliver_bundle(
-    settings: NotifierSettings, master: Path, thumbnail: Path, upload: Path, metadata: Path,
+    settings: NotifierSettings, master: Path, thumbnail: Path | None, upload: Path | None, metadata: Path,
     caption: str, title: str,
 ) -> dict[str, int]:
     from telethon import TelegramClient
@@ -680,29 +718,30 @@ async def deliver_bundle(
             settings.recipient, str(master), caption=caption, force_document=True,
             supports_streaming=False,
         )
-        thumbnail_message = await client.send_file(
-            settings.recipient, str(thumbnail), caption="YouTube Shorts thumbnail — original PNG (9:16)",
-            force_document=True, reply_to=video_message.id,
-        )
+        messages = {"master": int(video_message.id)}
+        if thumbnail and thumbnail.is_file():
+            thumbnail_message = await client.send_file(
+                settings.recipient, str(thumbnail), caption="YouTube Shorts thumbnail — original PNG (9:16)",
+                force_document=True, reply_to=video_message.id,
+            )
+            messages["thumbnail"] = int(thumbnail_message.id)
         text = (
             f"YouTube release ready: {title}\n"
             "Attached files: original master MP4, original thumbnail PNG, copy-ready Markdown, and JSON metadata.\n"
             "Upload the MP4, paste the Markdown fields, then confirm every Manual review item in YouTube Studio."
         )
         text_message = await client.send_message(settings.recipient, text, reply_to=video_message.id)
-        upload_message = await client.send_file(
-            settings.recipient, str(upload), caption="Copy-ready YouTube upload instructions (.md)",
-            force_document=True, reply_to=video_message.id,
-        )
+        if upload and upload.is_file():
+            upload_message = await client.send_file(
+                settings.recipient, str(upload), caption="Copy-ready YouTube upload instructions (.md)",
+                force_document=True, reply_to=video_message.id,
+            )
+            messages["upload_markdown"] = int(upload_message.id)
         metadata_message = await client.send_file(
             settings.recipient, str(metadata), caption="Machine-readable YouTube metadata (.json)",
             force_document=True, reply_to=video_message.id,
         )
-        return {
-            "master": int(video_message.id), "thumbnail": int(thumbnail_message.id),
-            "summary": int(text_message.id), "upload_markdown": int(upload_message.id),
-            "metadata_json": int(metadata_message.id),
-        }
+        return {**messages, "summary": int(text_message.id), "metadata_json": int(metadata_message.id)}
     finally:
         await client.disconnect()
 
@@ -716,6 +755,7 @@ def main() -> None:
     parser.add_argument("video_dir", type=Path)
     parser.add_argument("--content-project", default="q_station")
     parser.add_argument("--force", action="store_true", help="Create and deliver a new package even when this master was already delivered.")
+    parser.add_argument("--request-file", type=Path, help="Validated Release-modal request JSON.")
     args = parser.parse_args()
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
     video = args.video_dir.expanduser().resolve()
@@ -723,77 +763,106 @@ def main() -> None:
         raise SystemExit("video_dir must be one direct episode directory below videos/.")
     master = must_be_release_ready(video)
     paths = package_paths(video)
+    request = release_request(args.request_file)
     previous = load_json(paths["state"])
     master_sha = sha256_file(master)
     if (
-        not args.force and previous.get("status") == "DONE" and previous.get("master_sha256") == master_sha
+        not (args.force or request["force"]) and request == RELEASE_REQUEST_DEFAULTS
+        and previous.get("status") == "DONE" and previous.get("master_sha256") == master_sha
         and (paths["metadata"].is_file()) and paths["thumbnail"].is_file()
     ):
         print("YOUTUBE RELEASE: ALREADY DONE")
         return
     state: dict[str, Any] = {
         "schema_version": 1, "status": "RUNNING", "started_at": now(), "video": video.name,
-        "master": str(master.relative_to(video)), "master_sha256": master_sha, "events": [],
+        "master": str(master.relative_to(video)), "master_sha256": master_sha, "events": [], "request": request,
     }
     write_json(paths["state"], state)
     try:
         policy = channel_policy(args.content_project)
-        image_contract = original_image_contract(video, args.content_project)
         narration = source_text(video)
         context = factual_context(video, policy, narration)
-        visual_references, visual_manifest = thumbnail_visual_references(
-            video, master, paths, args.content_project, context,
-        )
-        context["thumbnail_visual_references"] = {
-            "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
-            "attachments": visual_manifest,
-        }
-        with OrdakJobs() as jobs:
-            event(state, "metadata_draft", "RUNNING"); write_json(paths["state"], state)
-            draft, draft_job_id = ask_json(
-                jobs, metadata_prompt(context) + METADATA_QUALITY_ADDENDUM, "metadata draft", visual_references,
+        needs_metadata = request["generate_metadata"]
+        needs_thumbnail = request["generate_thumbnail"]
+        needs_references = needs_metadata or needs_thumbnail
+        visual_references: list[Reference] = []
+        visual_manifest: list[dict[str, Any]] = []
+        if needs_references:
+            visual_references, visual_manifest = thumbnail_visual_references(
+                video, master, paths, args.content_project, context,
             )
-            event(state, "metadata_draft", "DONE", chatgpt_job_id=draft_job_id)
-            event(state, "metadata_review", "RUNNING"); write_json(paths["state"], state)
-            reviewed, review_job_id = ask_json(
-                jobs, review_prompt(context, draft) + METADATA_QUALITY_ADDENDUM,
-                "metadata review", visual_references,
-            )
-            metadata, schema_repair_job_ids = validate_or_repair_metadata(
-                jobs, reviewed, policy, visual_references,
-            )
-            metadata.update({
-                "schema_version": 1, "created_at": now(), "source_master_sha256": master_sha,
-                "chatgpt_jobs": {
-                    "draft": draft_job_id, "review": review_job_id, "schema_repairs": schema_repair_job_ids,
-                },
-                "source_context": context,
-            })
+            context["thumbnail_visual_references"] = {
+                "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+                "attachments": visual_manifest,
+            }
+        metadata: dict[str, Any]
+        if needs_metadata:
+            with OrdakJobs() as jobs:
+                note = f"\n\nOPERATOR METADATA DIRECTION (follow only when factually supported):\n{request['metadata_note']}" if request["metadata_note"] else ""
+                event(state, "metadata_draft", "RUNNING"); write_json(paths["state"], state)
+                draft, draft_job_id = ask_json(
+                    jobs, metadata_prompt(context) + METADATA_QUALITY_ADDENDUM + note, "metadata draft", visual_references,
+                )
+                event(state, "metadata_draft", "DONE", chatgpt_job_id=draft_job_id)
+                event(state, "metadata_review", "RUNNING"); write_json(paths["state"], state)
+                reviewed, review_job_id = ask_json(
+                    jobs, review_prompt(context, draft) + METADATA_QUALITY_ADDENDUM + note,
+                    "metadata review", visual_references,
+                )
+                metadata, schema_repair_job_ids = validate_or_repair_metadata(jobs, reviewed, policy, visual_references)
+                metadata.update({"schema_version": 1, "created_at": now(), "source_master_sha256": master_sha,
+                    "chatgpt_jobs": {"draft": draft_job_id, "review": review_job_id, "schema_repairs": schema_repair_job_ids},
+                    "source_context": context})
+                event(state, "metadata_review", "DONE", chatgpt_job_id=review_job_id, schema_repair_job_ids=schema_repair_job_ids)
+        else:
+            metadata = load_json(paths["metadata"])
+            if not metadata and any(request[key] for key in ("generate_thumbnail", "create_upload_guide", "send_telegram")):
+                raise RuntimeError("Selected Release steps require existing metadata; enable Generate metadata first.")
+            event(state, "metadata", "REUSED")
+        if request["title_override"]:
+            metadata["title"] = request["title_override"]
+        if needs_metadata or request["title_override"]:
             write_json(paths["metadata"], metadata)
-            event(
-                state, "metadata_review", "DONE", chatgpt_job_id=review_job_id,
-                schema_repair_job_ids=schema_repair_job_ids,
-            )
-            event(state, "thumbnail", "RUNNING"); write_json(paths["state"], state)
-            thumbnail = generate_thumbnail(
-                jobs, metadata, image_contract, paths, visual_references, visual_manifest,
-            )
+
+        saved_thumbnail = metadata.get("thumbnail") if isinstance(metadata.get("thumbnail"), dict) else None
+        thumbnail = saved_thumbnail if saved_thumbnail and paths["thumbnail"].is_file() else None
+        if needs_thumbnail:
+            image_contract = original_image_contract(video, args.content_project)
+            with OrdakJobs() as jobs:
+                event(state, "thumbnail", "RUNNING"); write_json(paths["state"], state)
+                thumbnail = generate_thumbnail(jobs, metadata, image_contract, paths, visual_references, visual_manifest, request["thumbnail_note"])
             metadata["thumbnail"] = thumbnail
             write_json(paths["metadata"], metadata)
             event(state, "thumbnail", "DONE", selected_attempt=thumbnail["selected_attempt"], qc_passed=thumbnail["quality_check"].get("passed"))
-        upload_text = build_upload_markdown(metadata, thumbnail, context)
-        write_text(paths["upload"], upload_text)
-        event(state, "telegram_delivery", "RUNNING"); write_json(paths["state"], state)
-        settings = NotifierSettings.from_environment()
-        if not settings.delivery_configured:
-            raise RuntimeError("Telegram delivery is not configured. Set YT_PIPELINE_TELEGRAM_* in .env.")
-        messages = asyncio.run(deliver_bundle(
-            settings, master, paths["thumbnail"], paths["upload"], paths["metadata"],
-            video_caption(metadata, thumbnail), metadata["title"],
-        ))
-        event(state, "telegram_delivery", "DONE", messages=messages)
-        state.update({"status": "DONE", "completed_at": now(), "metadata": str(paths["metadata"].relative_to(video)),
-                      "thumbnail": str(paths["thumbnail"].relative_to(video)), "messages": messages})
+        else:
+            event(state, "thumbnail", "REUSED" if thumbnail and paths["thumbnail"].is_file() else "SKIPPED")
+
+        if request["create_upload_guide"]:
+            write_text(paths["upload"], build_upload_markdown(metadata, thumbnail, context))
+            event(state, "upload_guide", "DONE")
+        else:
+            event(state, "upload_guide", "REUSED" if paths["upload"].is_file() else "SKIPPED")
+
+        messages: dict[str, int] = {}
+        if request["send_telegram"]:
+            event(state, "telegram_delivery", "RUNNING"); write_json(paths["state"], state)
+            delivery_settings = NotifierSettings.from_environment()
+            if not delivery_settings.delivery_configured:
+                raise RuntimeError("Telegram delivery is not configured. Set YT_PIPELINE_TELEGRAM_* in .env.")
+            messages = asyncio.run(deliver_bundle(
+                delivery_settings, master, paths["thumbnail"] if thumbnail and paths["thumbnail"].is_file() else None,
+                paths["upload"] if paths["upload"].is_file() else None, paths["metadata"],
+                video_caption(metadata, thumbnail), metadata["title"],
+            ))
+            event(state, "telegram_delivery", "DONE", messages=messages)
+        else:
+            event(state, "telegram_delivery", "SKIPPED")
+        state.update({
+            "status": "DONE", "completed_at": now(), "metadata": str(paths["metadata"].relative_to(video)),
+            "messages": messages,
+            **({"thumbnail": str(paths["thumbnail"].relative_to(video))} if thumbnail else {}),
+            **({"upload": str(paths["upload"].relative_to(video))} if paths["upload"].is_file() else {}),
+        })
         write_json(paths["state"], state)
         print("YOUTUBE RELEASE: PASS")
     except Exception as exc:

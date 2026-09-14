@@ -108,7 +108,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
                 {"value": "16:9", "label": "16:9 — YouTube landscape", "disabledProjects": ["q_station"]},
             ], help="Q Station's book-world image contract is currently vertical; landscape remains available to generic projects."),
         ]},
-        {"id": "branding", "title": "Logo & video title", "description": "Persistent channel branding burned into the final video. The title text is always the episode question/topic.", "fields": [
+        {"id": "branding", "title": "Logo & video title", "description": "Persistent channel branding burned into the final video. Leave the title text empty to use the episode question/topic.", "fields": [
             _field("show_logo", "Show logo", "toggle", default=False, help="Upload a logo below to enable this control."),
             _field("logo_upload_id", "Logo upload", default="", maxLength=96, placeholder=""),
             _field("logo_position", "Logo position", "select", default="top_right", options=select(list(OVERLAY_POSITIONS)), requires={"field": "show_logo", "value": True}),
@@ -119,6 +119,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("logo_custom_x_percent", "Logo custom centre X %", "number", default=85, min=0, max=100, step=.5, width="half", requires=[{"field": "show_logo", "value": True}, {"field": "logo_position", "value": "custom"}]),
             _field("logo_custom_y_percent", "Logo custom centre Y %", "number", default=10, min=0, max=100, step=.5, width="half", requires=[{"field": "show_logo", "value": True}, {"field": "logo_position", "value": "custom"}]),
             _field("show_title", "Show question as video title", "toggle", default=True),
+            _field("title_text", "Custom title text", "text", default="", maxLength=220, placeholder="Type the exact title to show in the video", help="This text replaces the question everywhere: live preview and final video. Leave it empty only to use the episode question.", requires={"field": "show_title", "value": True}),
             _field("title_position", "Title position", "select", default="below_logo", options=select([("below_logo", "Below the logo (dynamic)"), *OVERLAY_POSITIONS]), requires={"field": "show_title", "value": True}),
             _field("title_font", "Title font", "select", default="Roboto", options=[
                 {"value": name, "label": name, "recommended": name in RECOMMENDED_SUBTITLE_FONTS}

@@ -1,72 +1,66 @@
 {
   "schema_version": 1,
-  "status": "DONE",
-  "started_at": "2026-09-13T19:28:29.521198+00:00",
+  "status": "FAILED",
+  "started_at": "2026-09-14T07:25:18.610401+00:00",
   "video": "028_what_will_happen_if_you_sleep_less_than_5_hours_a_day",
   "master": "assets/renders/polished.mp4",
-  "master_sha256": "9e459dc3909daca6e864b0a2845b39563298c5105f6acef64e3c95d5a6e59138",
+  "master_sha256": "6689a78fc6e0ed2b867fd047f4a30e88a05346b6f2e0754c065cbcd49e301655",
   "events": [
     {
       "stage": "metadata_draft",
       "status": "RUNNING",
-      "at": "2026-09-13T19:28:31.726936+00:00"
+      "at": "2026-09-14T07:25:20.956122+00:00"
     },
     {
       "stage": "metadata_draft",
       "status": "DONE",
-      "at": "2026-09-13T19:29:49.994479+00:00",
-      "chatgpt_job_id": "b4b63dd0-08cb-4736-9932-8c4dc437fc37"
+      "at": "2026-09-14T07:27:03.359105+00:00",
+      "chatgpt_job_id": "33c2cab0-6808-4c84-be9f-8b0fabc82851"
     },
     {
       "stage": "metadata_review",
       "status": "RUNNING",
-      "at": "2026-09-13T19:29:49.994490+00:00"
+      "at": "2026-09-14T07:27:03.359117+00:00"
     },
     {
       "stage": "metadata_review",
       "status": "DONE",
-      "at": "2026-09-13T19:31:11.271611+00:00",
-      "chatgpt_job_id": "bf023d53-2109-4f8f-a409-7259a1892d59",
+      "at": "2026-09-14T07:29:00.808792+00:00",
+      "chatgpt_job_id": "05a2915e-d0a9-4310-8df7-fb7eb850c5b8",
       "schema_repair_job_ids": []
     },
     {
       "stage": "thumbnail",
-      "status": "RUNNING",
-      "at": "2026-09-13T19:31:11.271620+00:00"
+      "status": "SKIPPED",
+      "at": "2026-09-14T07:29:00.810271+00:00"
     },
     {
-      "stage": "thumbnail",
-      "status": "DONE",
-      "at": "2026-09-13T19:33:39.176359+00:00",
-      "selected_attempt": 1,
-      "qc_passed": true
+      "stage": "upload_guide",
+      "status": "REUSED",
+      "at": "2026-09-14T07:29:00.810318+00:00"
     },
     {
       "stage": "telegram_delivery",
       "status": "RUNNING",
-      "at": "2026-09-13T19:33:39.176767+00:00"
+      "at": "2026-09-14T07:29:00.810322+00:00"
     },
     {
-      "stage": "telegram_delivery",
-      "status": "DONE",
-      "at": "2026-09-13T19:34:37.895634+00:00",
-      "messages": {
-        "master": 14866,
-        "thumbnail": 14867,
-        "summary": 14868,
-        "upload_markdown": 14869,
-        "metadata_json": 14870
-      }
+      "stage": "release",
+      "status": "FAILED",
+      "at": "2026-09-14T07:29:51.601154+00:00",
+      "error": "TypeNotFoundError: Could not find a matching Constructor ID for the TLObject that was supposed to be read with ID b1b8cc83. See the FAQ for more details. Remaining bytes: b\"\\x83\\xcc\\xb8\\xb1+@\\x00\\x02\\x10\\x00\\x00\\x00\\x18\\xac'\\x08\\x00\\x00\\x00\\x00\\xe5p\\xa3 @^\\x82\\x03\\x07Channel\\x0bChannel_Bot\\x06\\xf7\\xd1\\x82\\x02\\x00\\x00\\x00\\xa9\\xa71\\x1b\\x18\\xac'\\x08\\x10\\x01\\x08\\x08\\xb1\\xf2\\xf9_\\xedg4QEp3\\xad\\x1f\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x04\\x00\\x00\\x00\\x15\\xc4\\xb5\\x1c\\x01\\x00\\x00\\x00\\xc64\\x9f\\xd4``\\x00\\x00\\x08\\x00\\x00\\x00PY\\x1d\\xeb\\x00\\x00\\x00\\x00\\xdb\\x1eK\\xd2\\xef\\x07[\\x99\\x08Kiwi Log\\x00\\x00\\x00\\x0bkiwibot_log\\x11\\x1cn\\x1c\\x02\\x00\\x00\\x00\\x03\\x0bk\\x1b\\x94g\\tL\\x10\\x01\\x08\\x08\\xd1\\xfd\\xe7\\x9d\\xfc]\\x7f\\x0cQE\\x15\\t\\x01\\x00\\x00\\x00\\x01\\x00\\x00\\x00D\\xaf;j\\xd5$\\xb2_?\\xd8\\x03\\x00n\\xa2\\xa7j\\x00\\x00\\x00\\x00\""
     }
   ],
-  "completed_at": "2026-09-13T19:34:37.895640+00:00",
-  "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
-  "thumbnail": "publish/youtube_short/thumbnail.png",
-  "messages": {
-    "master": 14866,
-    "thumbnail": 14867,
-    "summary": 14868,
-    "upload_markdown": 14869,
-    "metadata_json": 14870
-  }
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": false,
+    "create_upload_guide": false,
+    "send_telegram": true,
+    "force": false,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": ""
+  },
+  "failed_at": "2026-09-14T07:29:51.601168+00:00",
+  "error": "TypeNotFoundError: Could not find a matching Constructor ID for the TLObject that was supposed to be read with ID b1b8cc83. See the FAQ for more details. Remaining bytes: b\"\\x83\\xcc\\xb8\\xb1+@\\x00\\x02\\x10\\x00\\x00\\x00\\x18\\xac'\\x08\\x00\\x00\\x00\\x00\\xe5p\\xa3 @^\\x82\\x03\\x07Channel\\x0bChannel_Bot\\x06\\xf7\\xd1\\x82\\x02\\x00\\x00\\x00\\xa9\\xa71\\x1b\\x18\\xac'\\x08\\x10\\x01\\x08\\x08\\xb1\\xf2\\xf9_\\xedg4QEp3\\xad\\x1f\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x04\\x00\\x00\\x00\\x15\\xc4\\xb5\\x1c\\x01\\x00\\x00\\x00\\xc64\\x9f\\xd4``\\x00\\x00\\x08\\x00\\x00\\x00PY\\x1d\\xeb\\x00\\x00\\x00\\x00\\xdb\\x1eK\\xd2\\xef\\x07[\\x99\\x08Kiwi Log\\x00\\x00\\x00\\x0bkiwibot_log\\x11\\x1cn\\x1c\\x02\\x00\\x00\\x00\\x03\\x0bk\\x1b\\x94g\\tL\\x10\\x01\\x08\\x08\\xd1\\xfd\\xe7\\x9d\\xfc]\\x7f\\x0cQE\\x15\\t\\x01\\x00\\x00\\x00\\x01\\x00\\x00\\x00D\\xaf;j\\xd5$\\xb2_?\\xd8\\x03\\x00n\\xa2\\xa7j\\x00\\x00\\x00\\x00\""
 }

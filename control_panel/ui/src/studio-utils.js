@@ -1,5 +1,164 @@
 export const READY = new Set(["DONE", "REUSED"]);
 
+export const CONFIG_GROUP_CLIPBOARD_KIND =
+  "yt-video-generation-pipeline/config-group";
+export const CONFIG_GROUP_CLIPBOARD_VERSION = 1;
+
+const editableGroupFields = (group) =>
+  (Array.isArray(group?.fields) ? group.fields : []).filter(
+    (field) => field?.name && field.type !== "readonly",
+  );
+
+function clipboardFieldValue(field, values) {
+  if (Object.prototype.hasOwnProperty.call(values || {}, field.name))
+    return values[field.name];
+  if (Object.prototype.hasOwnProperty.call(field, "default")) return field.default;
+  if (field.type === "toggle") return false;
+  if (field.type === "priority") return [];
+  return "";
+}
+
+// A deliberately readable, versioned envelope makes copied sections useful both
+// to humans and to future clients while preventing an arbitrary JSON object from
+// being mistaken for settings from this panel.
+export function serializeConfigGroup(group, values, copiedAt = new Date().toISOString()) {
+  if (!group?.id) throw new Error("This settings section has no stable identifier.");
+  const fields = editableGroupFields(group);
+  if (!fields.length) throw new Error("This section has no editable settings to copy.");
+  const settings = Object.fromEntries(
+    fields.map((field) => [field.name, clipboardFieldValue(field, values)]),
+  );
+  return JSON.stringify({
+    kind: CONFIG_GROUP_CLIPBOARD_KIND,
+    version: CONFIG_GROUP_CLIPBOARD_VERSION,
+    group_id: group.id,
+    group_title: group.title || group.id,
+    copied_at: copiedAt,
+    settings,
+  }, null, 2);
+}
+
+function validateClipboardField(field, value) {
+  const name = field.label || field.name;
+  if (field.type === "toggle") {
+    if (typeof value !== "boolean") throw new Error(`${name} must be true or false.`);
+    return;
+  }
+  if (field.type === "priority") {
+    if (!Array.isArray(value) || value.some((item) => typeof item !== "string"))
+      throw new Error(`${name} must be a list of providers.`);
+    if (!value.length) throw new Error(`${name} must contain at least one provider.`);
+    if (new Set(value).size !== value.length)
+      throw new Error(`${name} cannot contain duplicate providers.`);
+    const allowed = new Set((field.options || []).map((option) => option.value));
+    if (allowed.size && value.some((item) => !allowed.has(item)))
+      throw new Error(`${name} contains an unavailable option.`);
+    return;
+  }
+  if (field.type === "number") {
+    if ((typeof value !== "number" && typeof value !== "string") || value === "")
+      throw new Error(`${name} must be a number.`);
+    const number = Number(value);
+    if (!Number.isFinite(number)) throw new Error(`${name} must be a finite number.`);
+    if (field.min != null && number < Number(field.min))
+      throw new Error(`${name} cannot be less than ${field.min}.`);
+    if (field.max != null && number > Number(field.max))
+      throw new Error(`${name} cannot be greater than ${field.max}.`);
+    return;
+  }
+  if (typeof value !== "string") throw new Error(`${name} must be text.`);
+  if (field.required && !value.trim()) throw new Error(`${name} is required.`);
+  if (field.maxLength != null && value.length > Number(field.maxLength))
+    throw new Error(`${name} exceeds its ${field.maxLength}-character limit.`);
+  if (field.type === "color" && !/^#[0-9a-fA-F]{6}$/.test(value))
+    throw new Error(`${name} must be a six-digit hex colour.`);
+  if (field.type === "select" && !field.searchable) {
+    const allowed = new Set((field.options || []).map((option) => option.value));
+    if (!allowed.has(value))
+      throw new Error(`${name} contains an unavailable option.`);
+  }
+}
+
+function validateClipboardRelationships(settings, currentValues = {}) {
+  const merged = { ...currentValues, ...settings };
+  if (
+    "min_duration_seconds" in settings &&
+    "max_duration_seconds" in settings &&
+    Number(merged.min_duration_seconds) > Number(merged.max_duration_seconds)
+  ) throw new Error("Minimum duration cannot be greater than maximum duration.");
+  if (
+    "aspect_ratio" in settings &&
+    merged.content_project === "q_station" &&
+    merged.aspect_ratio !== "9:16"
+  ) throw new Error("Q Station requires the 9:16 frame format.");
+  if (
+    ("telegram_low_size" in settings || "telegram_original" in settings) &&
+    !merged.telegram_low_size && !merged.telegram_original
+  ) throw new Error("At least one Telegram delivery output must be enabled.");
+  if (
+    "show_watermark" in settings && merged.show_watermark &&
+    !String(merged.watermark_text || "").trim()
+  ) throw new Error("Watermark text is required when the watermark is enabled.");
+  if (
+    "character_mode" in settings && merged.character_mode === "manual" &&
+    !merged.character_id
+  ) throw new Error("A character must be selected in manual character mode.");
+  const motionPrimitives = [
+    "motion_allow_hold", "motion_allow_push", "motion_allow_pull",
+    "motion_allow_directional_pans", "motion_allow_tilt", "motion_allow_pan_push",
+    "motion_allow_pan_pull", "motion_allow_drift", "motion_allow_settle",
+    "motion_allow_reveal_move",
+  ];
+  if (
+    "motion_enabled" in settings && merged.motion_enabled &&
+    !motionPrimitives.some((name) => merged[name])
+  ) throw new Error("At least one Motion primitive must be enabled.");
+}
+
+export function parseConfigGroup(text, group, currentValues = {}) {
+  if (typeof text !== "string" || !text.trim())
+    throw new Error("The clipboard is empty.");
+  if (text.length > 1_000_000)
+    throw new Error("The clipboard content is too large to be a settings section.");
+  let payload;
+  try {
+    payload = JSON.parse(text);
+  } catch {
+    throw new Error("The clipboard does not contain valid JSON settings.");
+  }
+  if (!payload || typeof payload !== "object" || Array.isArray(payload))
+    throw new Error("The clipboard does not contain a settings section.");
+  if (payload.kind !== CONFIG_GROUP_CLIPBOARD_KIND)
+    throw new Error("The clipboard was not copied from a panel settings section.");
+  if (payload.version !== CONFIG_GROUP_CLIPBOARD_VERSION)
+    throw new Error(`Clipboard format version ${String(payload.version)} is not supported.`);
+  if (payload.group_id !== group?.id)
+    throw new Error(`These settings belong to “${payload.group_title || payload.group_id || "another section"}”, not “${group?.title || group?.id}”.`);
+  if (!payload.settings || typeof payload.settings !== "object" || Array.isArray(payload.settings))
+    throw new Error("The copied section has no valid settings object.");
+
+  const fields = editableGroupFields(group);
+  const expected = new Set(fields.map((field) => field.name));
+  const received = Object.keys(payload.settings);
+  const unknown = received.filter((name) => !expected.has(name));
+  const missing = fields.filter(
+    (field) => !Object.prototype.hasOwnProperty.call(payload.settings, field.name),
+  );
+  if (unknown.length)
+    throw new Error(`The copied section contains unknown setting “${unknown[0]}”.`);
+  if (missing.length)
+    throw new Error(`The copied section is missing “${missing[0].label || missing[0].name}”.`);
+
+  const settings = {};
+  for (const field of fields) {
+    const value = payload.settings[field.name];
+    validateClipboardField(field, value);
+    settings[field.name] = value;
+  }
+  validateClipboardRelationships(settings, currentValues);
+  return settings;
+}
+
 export const label = (value) => String(value || "").replaceAll("_", " ");
 
 export const statusClass = (value) => {

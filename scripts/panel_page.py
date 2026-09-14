@@ -421,8 +421,9 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <label>Logo custom centre X % <input name=logo_custom_x_percent type=number min=0 max=100 step=.5 value=85></label>
    <label>Logo custom centre Y % <input name=logo_custom_y_percent type=number min=0 max=100 step=.5 value=10></label>
   </div>
-  <label class=check><input type=checkbox name=show_title checked> Show question as title</label>
+  <label class=check><input type=checkbox name=show_title checked> Show video title</label>
   <div class=grid2>
+   <label>Title text <input name=title_text maxlength=220 placeholder="Leave empty to use the episode question"></label>
    <label>Title position <select name=title_position><option value=below_logo selected>Below logo</option><option value=top_left>Top left</option><option value=top_center>Top centre</option><option value=top_right>Top right</option><option value=center>Centre</option><option value=bottom_left>Bottom left</option><option value=bottom_center>Bottom centre</option><option value=bottom_right>Bottom right</option><option value=custom>Custom</option></select></label>
    <label>Title font <select name=title_font><option selected>Roboto</option><option>Open Sans</option><option>Rubik</option><option>DejaVu Sans</option></select></label>
    <label>Title font size <input name=title_font_size type=number min=16 max=200 value=38></label>

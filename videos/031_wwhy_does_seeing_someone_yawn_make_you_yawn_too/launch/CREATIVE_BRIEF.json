@@ -1,18 +1,11 @@
 {
-  "schema_version": 5,
-  "content_project": "q_station",
-  "job_id": "b6f6b170-9fd1-4a82-87b0-1d45f32e9f81",
-  "status": "DONE",
-  "created_at": "2026-09-13T20:50:31.125339+00:00",
-  "topic": "Why Does Seeing Someone Yawn Make You Yawn Too?",
-  "video_id": "032",
-  "duration_min_seconds": 30,
-  "duration_max_seconds": 50,
-  "aspect_ratio": "9:16",
-  "project": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
-  "voice_profile": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
-  "creative_brief": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
-  "qh": {
+  "working_title": "",
+  "audience": "",
+  "narrative_angle": "",
+  "must_include": "",
+  "must_avoid": "",
+  "source_notes": "",
+  "_qh": {
     "character": {
       "mode": "manual",
       "character_id": "red_horned_everyman"
@@ -43,13 +36,21 @@
       "height": 521
     }
   },
-  "character": {
-    "mode": "manual",
-    "character_id": "red_horned_everyman"
+  "_subtitle": {
+    "word_highlight": false,
+    "font_name": "North Eternal",
+    "font_size": 140,
+    "bold": false,
+    "italic": true,
+    "position": "custom",
+    "custom_offset_value": 25.0,
+    "custom_offset_unit": "percent",
+    "max_words_per_cue": 1,
+    "font_colour": "#B6FF00",
+    "outline": 8.0,
+    "outline_colour": "#3C1A47"
   },
-  "subtitles": true,
-  "word_highlight": false,
-  "sfx": {
+  "_sfx": {
     "enabled": false,
     "planner_enabled": false,
     "planner_style": "restrained",
@@ -64,7 +65,7 @@
     "min_gain_db": -20,
     "max_gain_db": -3
   },
-  "motion": {
+  "_motion": {
     "enabled": false,
     "planning_quality": "professional",
     "pace": "fast",
@@ -127,48 +128,60 @@
     "max_shot_duration": 3.2,
     "transition_overrides": []
   },
-  "music_provider": "freesound",
-  "music_providers": [
-    "freesound",
-    "mixkit",
-    "pixabay"
-  ],
-  "commit_artifacts": true,
-  "telegram_low_size": true,
-  "telegram_original": false,
-  "launched_from_job_id": "666597c7-559a-4ad9-8de6-816d945aeff6",
-  "launched_from_video_id": "031",
-  "launch_reason": "topic_change",
-  "pid": 1649720,
-  "command": [
-    "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
-    "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
-    "--topic",
-    "Why Does Seeing Someone Yawn Make You Yawn Too?",
-    "--video-id",
-    "032",
-    "--content-project",
-    "q_station",
-    "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
-    "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
-    "--aspect-ratio",
-    "9:16",
-    "--music-providers",
-    "freesound,mixkit,pixabay",
-    "--publish",
-    "--commit"
-  ],
-  "started_at": "2026-09-13T20:50:31.135989+00:00",
-  "character_resolution": {
-    "requested_mode": "manual",
-    "requested_character_id": "red_horned_everyman",
-    "resolved_character_id": "red_horned_everyman",
-    "resolution_source": "manual",
-    "character_version": 1,
-    "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
-  },
-  "completed_at": "2026-09-13T21:32:40.963606+00:00"
+  "_branding": {
+    "show_logo": false,
+    "logo_position": "custom",
+    "logo_width_percent": 14.0,
+    "logo_opacity": 1.0,
+    "logo_margin_x_percent": 3.0,
+    "logo_margin_y_percent": 2.5,
+    "logo_custom_x_percent": 8.0,
+    "logo_custom_y_percent": 4.5,
+    "show_title": true,
+    "title_position": "top_center",
+    "title_font": "Gruze Drip",
+    "title_font_size": 90,
+    "title_max_words_per_line": 4,
+    "title_line_spacing": 0,
+    "title_max_width_percent": 90,
+    "title_bold": false,
+    "title_italic": false,
+    "title_text_align": "center",
+    "title_margin_x_percent": 0.0,
+    "title_margin_y_percent": 2.5,
+    "title_logo_gap_percent": 1.0,
+    "title_custom_x_percent": 23.0,
+    "title_custom_y_percent": 2.5,
+    "title_font_colour": "#FAFAFA",
+    "title_outline_colour": "#3C1A47",
+    "title_outline": 4.0,
+    "logo_asset": {
+      "schema_version": 1,
+      "path": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/launch/branding/logo.png",
+      "sha256": "b5b4478688010b96909c8d33cd5049263ae9fdeec718f9aad461873c9245d065",
+      "mime_type": "image/png",
+      "width": 1254,
+      "height": 1254
+    },
+    "show_watermark": true,
+    "watermark_text": "Q Station",
+    "watermark_position": "bottom_center",
+    "watermark_font": "Gruze Drip",
+    "watermark_font_size": 120,
+    "watermark_opacity": 0.4,
+    "watermark_max_words_per_line": 7,
+    "watermark_line_spacing": 6,
+    "watermark_max_width_percent": 90,
+    "watermark_bold": false,
+    "watermark_italic": false,
+    "watermark_text_align": "center",
+    "watermark_margin_x_percent": 3.0,
+    "watermark_margin_y_percent": 6.0,
+    "watermark_logo_gap_percent": 1.0,
+    "watermark_custom_x_percent": 80.0,
+    "watermark_custom_y_percent": 88.0,
+    "watermark_font_colour": "#FFFFFF",
+    "watermark_outline_colour": "#000000",
+    "watermark_outline": 2.0
+  }
 }

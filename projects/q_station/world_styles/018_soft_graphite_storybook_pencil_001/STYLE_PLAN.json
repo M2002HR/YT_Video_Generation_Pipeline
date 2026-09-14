@@ -1,0 +1,25 @@
+{
+  "style_id": "soft_graphite_storybook_pencil_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "painted storybook",
+  "secondary_treatment": "subtle dry colored-pencil tinting over graphite pencil construction",
+  "texture_family": "warm lightly toothy cream drawing-paper grain with faint graphite smudge and softly uneven pigment pickup",
+  "palette_summary": "warm ivory and cream paper, soft graphite and sepia-gray pencil, muted sage and moss greens, pale straw ochre, faded powder blue, restrained brick-red accents, all low-saturation and softly weathered",
+  "line_treatment": "loose hand-drawn graphite contours with visible pressure variation, gentle broken hatching, softened construction marks, sparse crosshatching, and lightly rubbed shadow edges; colored pencil remains subordinate to the pencil drawing",
+  "lighting": "soft diffuse daylight with gentle warm highlights, shallow pencil-cast shadows, and no dramatic cinematic contrast",
+  "frame_language": "a recurring softly rounded cream sketchbook-card field with lightly worn graphite-softened edges and a centered illustrated window that fades naturally into the paper rather than ending in a hard border; peripheral foliage, tools, or diagram motifs may taper into unfinished pencil strokes at the margins, while the same warm drawing-paper material and softly vignetted edge grammar persist across every body image",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "contemporary everyday human actions, workshop or household tools, worn books, simple social interactions, expressive yawning gestures, observational eye-to-jaw visual cues, restrained brain-and-movement-system metaphors, and occasional non-specific social animals; scientific concepts should be shown through intuitive pencil diagrams, ghosted motion echoes, or simple anatomical silhouettes rather than futuristic interfaces",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears, preserve only the established silhouette and proportions while translating the figure into soft graphite pencil contours, restrained hatching, cream-paper highlights, and sparse muted colored-pencil accents consistent with the world",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime or manga language, no vector-clean outlines, no neon palette, no heavy inked comic rendering, no hyper-detailed medical illustration, no modern HUD graphics, no hard digital gradients, no copied characters or exact composition from the style reference, and no visible watermarks, text, labels or typography inside the imagery",
+  "reason": "A new pencil-led storybook style directly follows the operator directive and the attached style-only reference, whose useful qualities are warm cream paper, soft hand-drawn graphite language, muted natural color accents, gentle daylight and a quiet nostalgic frame mood. Painted storybook is selected as the closest allowed primary family while keeping graphite pencil dominant through line treatment and only subtle colored-pencil tinting. Reuse is explicitly disallowed by the operator. This also avoids repeating the last two recent primary looks—high-energy screen print and stark monochrome linework—and introduces a softer observational visual language well suited to an everyday contagious-yawning explanation.",
+  "operator_style_reference": {
+    "path": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/style_references/style_reference.png",
+    "sha256": "1096a5b029ce0f29a6dec3d08a541436954d929af852b8d9a09bc54130d6a1f3",
+    "role": "operator_style_reference"
+  },
+  "style_subtitle_reserve": "inside only the bottom 8–10% of the 9:16 frame, maintain a calm band of warm cream drawing paper with extremely faint graphite grain or broad low-detail pencil shading; keep it free of faces, hands, focal objects, diagrams, fine detail and absolutely free of text, letters, numbers, captions, labels, words or UI, while preserving enough visual texture that it feels integrated rather than blank",
+  "reserve_subtitle_space": false
+}

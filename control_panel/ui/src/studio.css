@@ -74,6 +74,59 @@ p {
   margin: auto;
   padding: 28px 28px 90px;
 }
+.landing {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  gap: 28px;
+  max-width: 940px;
+  padding-bottom: 28px;
+}
+.landing-brand h1 {
+  margin-top: 6px;
+  font-size: clamp(36px, 6vw, 58px);
+  letter-spacing: -2.5px;
+}
+.landing-brand {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.landing-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.landing-card {
+  min-height: 250px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px;
+  text-align: left;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(145deg, #131e2e, #0d141f);
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.landing-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--blue);
+  background: linear-gradient(145deg, #172842, #101926);
+}
+.landing-card.primary-card {
+  border-color: #4169b7;
+  background: linear-gradient(145deg, #183260, #101a2b);
+}
+.landing-card b { font-size: 22px; letter-spacing: -.5px; }
+.landing-card small { max-width: 290px; color: var(--muted); line-height: 1.55; }
+.landing-card i { margin-top: auto; align-self: flex-end; color: var(--blue); font-size: 24px; font-style: normal; }
+.landing-icon { color: var(--blue); font-size: 31px; line-height: 1; }
+.page-back { margin-top: 8px; }
 .brand {
   display: flex;
   align-items: flex-start;
@@ -241,8 +294,13 @@ p {
 .settings-group {
   border-bottom: 1px solid var(--line-soft);
 }
+.group-header-row {
+  display: flex;
+  align-items: stretch;
+}
 .group-head {
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -270,6 +328,39 @@ p {
   color: var(--blue);
   font-size: 20px;
 }
+.group-clipboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 28px;
+}
+.group-clipboard-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #0b121d;
+  color: var(--muted);
+  font: 600 10px ui-monospace, SFMono-Regular, monospace;
+  white-space: nowrap;
+}
+.group-clipboard-actions button:hover {
+  border-color: var(--blue);
+  color: var(--text);
+}
+.group-clipboard-actions button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.group-clipboard-status {
+  margin: -5px 28px 10px;
+  color: var(--green);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.group-clipboard-status.bad { color: var(--red); }
 .field-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1336,6 +1427,22 @@ p {
   border-radius: 15px;
   box-shadow: 0 25px 80px #000;
 }
+.release-modal { width: min(680px, calc(100vw - 32px)); }
+.release-modal > p { color: var(--muted); line-height: 1.55; margin: 8px 0 18px; }
+.release-step-list, .release-editorial {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface-2);
+}
+.release-editorial { margin-top: 14px; }
+.release-editorial h3 { font-size: 13px; }
+.release-editorial .field { gap: 5px; }
+.release-editorial textarea { min-height: 72px; resize: vertical; }
+.release-force { margin-top: 14px; }
+.release-dependency { display: block; margin: 10px 0 14px; color: var(--muted); line-height: 1.45; }
 .modal h2 {
   font-size: 28px;
   letter-spacing: -1px;
@@ -1686,6 +1793,9 @@ p {
   .provider-strip {
     justify-content: flex-start;
   }
+  .landing-actions {
+    grid-template-columns: 1fr;
+  }
   .dashboard-hero {
     grid-template-columns: 1fr;
     margin-top: 42px;
@@ -1704,6 +1814,7 @@ p {
   .group-head {
     padding: 16px 20px;
   }
+  .group-clipboard-actions { padding-right: 20px; }
   .workspace {
     grid-template-columns: 1fr;
   }
@@ -1751,6 +1862,11 @@ p {
   .field-grid {
     grid-template-columns: 1fr;
   }
+  .group-header-row { flex-wrap: wrap; }
+  .group-head { flex-basis: 100%; padding-bottom: 9px; }
+  .group-clipboard-actions { width: 100%; padding: 0 20px 13px; }
+  .group-clipboard-actions button { flex: 1; justify-content: center; }
+  .group-clipboard-status { margin: 0 20px 10px; }
   .branding-editor { grid-template-columns: 1fr; }
   .branding-controls { grid-template-columns: 1fr; }
   .branding-preview-rail {
@@ -1929,6 +2045,14 @@ p {
   min-width: 0;
 }
 .branding-controls .subtitle-font-upload { grid-column: 1 / -1; }
+.branding-controls .title-text-field {
+  grid-column: 1 / -1;
+  padding: 13px;
+  border: 1px solid #3d6094;
+  border-radius: 10px;
+  background: #101d2f;
+}
+.branding-controls .title-text-field input { font-weight: 600; }
 .branding-preview-rail {
   position: sticky;
   top: 14px;
@@ -2249,6 +2373,22 @@ p {
 [data-theme="light"] .active-card {
   background: linear-gradient(145deg, #ffffff, #eef2f8);
 }
+[data-theme="light"] .landing-card {
+  border-color: #c3cede;
+  background: linear-gradient(145deg, #ffffff, #eef3f9);
+}
+[data-theme="light"] .landing-card:hover {
+  border-color: var(--blue);
+  background: linear-gradient(145deg, #f9fbff, #e5edf9);
+}
+[data-theme="light"] .landing-card.primary-card {
+  border-color: #90addd;
+  background: linear-gradient(145deg, #edf4ff, #dce9fb);
+}
+[data-theme="light"] .branding-controls .title-text-field {
+  border-color: #9fb8dd;
+  background: #eef4ff;
+}
 [data-theme="light"] .active-card.live {
   border-color: #dfc086;
   background: linear-gradient(145deg, #fdf4e0, #f9edd2);
@@ -2263,6 +2403,9 @@ p {
 }
 [data-theme="light"] .group-head:hover {
   background: #2b5fc70f;
+}
+[data-theme="light"] .group-clipboard-actions button {
+  background: #f5f8fc;
 }
 [data-theme="light"] .style-library {
   border-color: #c3cede;
@@ -2528,6 +2671,8 @@ p {
   border-color: #c3cede;
   box-shadow: 0 25px 80px #0e243f40;
 }
+[data-theme="light"] .release-step-list,
+[data-theme="light"] .release-editorial { background: #f5f8fc; }
 [data-theme="light"] .regeneration-mode {
   border-color: #c3cede;
   background: var(--surface-2);

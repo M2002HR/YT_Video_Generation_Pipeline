@@ -52,6 +52,8 @@ def test_branding_defaults_put_the_question_below_a_top_right_logo() -> None:
     assert fields["logo_upload_id"]["default"] == ""
     assert fields["logo_position"]["default"] == "top_right"
     assert fields["show_title"]["default"] is True
+    assert fields["title_text"]["default"] == ""
+    assert fields["title_text"]["maxLength"] == 220
     assert fields["title_position"]["default"] == "below_logo"
     assert fields["title_max_words_per_line"]["default"] == 7
     assert fields["title_max_words_per_line"]["max"] == 100

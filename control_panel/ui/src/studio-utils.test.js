@@ -9,12 +9,92 @@ import {
   previewCaptionLines,
   previewCuesFromWords,
   previewFramesFromTimeline,
+  parseConfigGroup,
+  serializeConfigGroup,
   statusClass,
   subtitleMarginPx,
   SUBTITLE_FONT_SUPPORTS_PERSIAN,
   SUBTITLE_POSITION_OFFSETS,
   validateLaunchValues,
 } from "./studio-utils.js";
+
+const clipboardGroup = {
+  id: "subtitles",
+  title: "Subtitles",
+  fields: [
+    { name: "show_subtitles", label: "Show", type: "toggle", default: false },
+    { name: "subtitle_size", label: "Size", type: "number", min: 24, max: 100, default: 56 },
+    { name: "subtitle_colour", label: "Colour", type: "color", default: "#FFFFFF" },
+    { name: "locked", label: "Locked", type: "readonly", default: "provider" },
+  ],
+};
+
+test("config groups round-trip through a readable versioned clipboard envelope", () => {
+  const text = serializeConfigGroup(clipboardGroup, {
+    show_subtitles: true,
+    subtitle_size: "64",
+    subtitle_colour: "#00E5FF",
+    locked: "must not be copied",
+  }, "2026-09-13T00:00:00.000Z");
+  const payload = JSON.parse(text);
+  assert.equal(payload.kind, "yt-video-generation-pipeline/config-group");
+  assert.equal(payload.version, 1);
+  assert.equal(payload.group_id, "subtitles");
+  assert.equal(payload.settings.locked, undefined);
+  assert.deepEqual(parseConfigGroup(text, clipboardGroup), {
+    show_subtitles: true,
+    subtitle_size: "64",
+    subtitle_colour: "#00E5FF",
+  });
+});
+
+test("config group paste rejects wrong sections, partial payloads, and invalid values atomically", () => {
+  const valid = JSON.parse(serializeConfigGroup(clipboardGroup, {
+    show_subtitles: true,
+    subtitle_size: 64,
+    subtitle_colour: "#FFFFFF",
+  }));
+  assert.throws(
+    () => parseConfigGroup(JSON.stringify({ ...valid, group_id: "motion" }), clipboardGroup),
+    /belong.*not/i,
+  );
+  const partial = structuredClone(valid);
+  delete partial.settings.subtitle_size;
+  assert.throws(() => parseConfigGroup(JSON.stringify(partial), clipboardGroup), /missing/i);
+  const invalid = structuredClone(valid);
+  invalid.settings.subtitle_size = 101;
+  assert.throws(() => parseConfigGroup(JSON.stringify(invalid), clipboardGroup), /greater than 100/i);
+  const extra = structuredClone(valid);
+  extra.settings.injected = true;
+  assert.throws(() => parseConfigGroup(JSON.stringify(extra), clipboardGroup), /unknown setting/i);
+});
+
+test("config group paste enforces cross-field section constraints", () => {
+  const format = {
+    id: "format",
+    title: "Format",
+    fields: [
+      { name: "min_duration_seconds", label: "Minimum", type: "number", min: 15, max: 300 },
+      { name: "max_duration_seconds", label: "Maximum", type: "number", min: 15, max: 300 },
+      { name: "aspect_ratio", label: "Ratio", type: "select", options: [{ value: "9:16" }, { value: "16:9" }] },
+    ],
+  };
+  const text = serializeConfigGroup(format, {
+    min_duration_seconds: 80,
+    max_duration_seconds: 40,
+    aspect_ratio: "9:16",
+  });
+  assert.throws(() => parseConfigGroup(text, format), /Minimum duration/i);
+  const landscape = serializeConfigGroup(format, {
+    min_duration_seconds: 40,
+    max_duration_seconds: 60,
+    aspect_ratio: "16:9",
+  });
+  assert.throws(
+    () => parseConfigGroup(landscape, format, { content_project: "q_station" }),
+    /Q Station requires/i,
+  );
+});
 
 test("dependentNodeIds finds all downstream consumers without looping", () => {
   const dependents = dependentNodeIds(

@@ -165,6 +165,17 @@
       "path": "017_abyssal_curiosity_linework_001",
       "anchor": "017_abyssal_curiosity_linework_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "soft_graphite_storybook_pencil_001",
+      "display_name": "Soft Graphite Storybook Pencil 001",
+      "medium_family": "painted storybook",
+      "texture_family": "warm lightly toothy cream drawing-paper grain with faint graphite smudge and softly uneven pigment pickup",
+      "palette_summary": "warm ivory and cream paper, soft graphite and sepia-gray pencil, muted sage and moss greens, pale straw ochre, faded powder blue, restrained brick-red accents, all low-saturation and softly weathered",
+      "status": "ready",
+      "path": "018_soft_graphite_storybook_pencil_001",
+      "anchor": "018_soft_graphite_storybook_pencil_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

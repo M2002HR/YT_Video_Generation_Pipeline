@@ -829,7 +829,7 @@ BRANDING_DEFAULTS = {
     "show_logo": False, "logo_position": "top_right", "logo_width_percent": 14,
     "logo_opacity": 1, "logo_margin_x_percent": 3, "logo_margin_y_percent": 2.5,
     "logo_custom_x_percent": 85, "logo_custom_y_percent": 10,
-    "show_title": True, "title_position": "below_logo", "title_font": "Roboto",
+    "show_title": True, "title_text": "", "title_position": "below_logo", "title_font": "Roboto",
     "title_font_size": 38, "title_max_words_per_line": 7, "title_line_spacing": 6,
     "title_max_width_percent": 34, "title_bold": True,
     "title_italic": False, "title_text_align": "right", "title_margin_x_percent": 3,
@@ -1854,6 +1854,40 @@ def release_eligibility(record: dict, project: Path) -> tuple[bool, str]:
     if not master.is_file() or master.stat().st_size <= 0:
         return False, "The polished master is missing."
     return True, ""
+
+
+RELEASE_SETTING_DEFAULTS = {
+    "generate_metadata": True,
+    "generate_thumbnail": True,
+    "create_upload_guide": True,
+    "send_telegram": True,
+    "force": False,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "",
+}
+
+
+def normalize_release_settings(value: Any) -> dict[str, Any]:
+    """Validate the bounded, post-render choices exposed by the Release modal."""
+    if not isinstance(value, dict):
+        raise ValueError("Release settings must be an object.")
+    unknown = set(value) - set(RELEASE_SETTING_DEFAULTS)
+    if unknown:
+        raise ValueError("Unknown Release setting(s): " + ", ".join(sorted(unknown)))
+    settings = dict(RELEASE_SETTING_DEFAULTS)
+    for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram", "force"):
+        if key in value and not isinstance(value[key], bool):
+            raise ValueError(f"Release setting {key} must be on or off.")
+        settings[key] = bool(value.get(key, settings[key]))
+    for key, limit in (("metadata_note", 2_000), ("thumbnail_note", 2_000), ("title_override", 100)):
+        text = str(value.get(key, "") or "").strip()
+        if len(text) > limit:
+            raise ValueError(f"Release setting {key} is too long.")
+        settings[key] = text
+    if not any(settings[key] for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram")):
+        raise ValueError("Choose at least one Release step.")
+    return settings
 
 
 def active_release(jobs_dir: Path) -> dict | None:
@@ -3198,8 +3232,14 @@ class Handler(BaseHTTPRequestHandler):
 
     def handle_release(self) -> None:
         """Start the isolated, auditable YouTube-release worker for one completed run."""
-        job_id = self.read_job_id()
-        if job_id is None:
+        try:
+            payload = self.read_json_payload(limit=12_000)
+            job_id = str(payload.get("job_id") or "")
+            if not JOB_ID_RE.fullmatch(job_id):
+                raise ValueError("Unknown job id.")
+            settings = normalize_release_settings(payload.get("settings") or {})
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
             return
         record_path = self.jobs_dir / f"{job_id}.json"
         try:
@@ -3228,9 +3268,14 @@ class Handler(BaseHTTPRequestHandler):
                 return
             log = self.jobs_dir / f"{job_id}.release.log"
             handle = log.open("a", encoding="utf-8")
+            request_dir = project / "publish" / "youtube_short" / "release_requests"
+            request_dir.mkdir(parents=True, exist_ok=True)
+            request_path = request_dir / f"{utcnow().replace(':', '-').replace('+', '_')}.json"
+            write_json(request_path, {"schema_version": 1, "job_id": job_id, "created_at": utcnow(), "settings": settings})
             command = [
                 sys.executable, "-u", "scripts/release_youtube_short.py", str(project),
                 "--content-project", str(record.get("content_project") or DEFAULT_CONTENT_PROJECT),
+                "--request-file", str(request_path),
             ]
             try:
                 process = subprocess.Popen(
@@ -3246,6 +3291,7 @@ class Handler(BaseHTTPRequestHandler):
             release = {
                 "status": "RUNNING", "pid": process.pid, "started_at": utcnow(),
                 "command": command, "log": str(log.relative_to(ROOT)),
+                "settings": settings, "request": str(request_path.relative_to(ROOT)),
             }
             record["release"] = release
             write_json(record_path, record)
@@ -3273,7 +3319,7 @@ class Handler(BaseHTTPRequestHandler):
             write_json(record_path, current)
 
         threading.Thread(target=monitor, daemon=True, name=f"release-{job_id[:8]}").start()
-        self.send_json(HTTPStatus.ACCEPTED, {"message": "Release started. Metadata, thumbnail QC, and Telegram delivery are running.", "release": release})
+        self.send_json(HTTPStatus.ACCEPTED, {"message": "Release started with the selected steps.", "release": release})
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -3554,6 +3600,7 @@ class Handler(BaseHTTPRequestHandler):
             show_logo = "show_logo" in values
             logo_upload_id = values.get("logo_upload_id", [""])[0].strip()
             show_title = "show_title" in values
+            title_text = form_text(values, "title_text", 220) if values.get("title_text") else ""
             logo_position = values.get("logo_position", ["top_right"])[0].strip().lower()
             title_position = values.get("title_position", ["below_logo"])[0].strip().lower()
             title_font = values.get("title_font", ["Roboto"])[0].strip() or "Roboto"
@@ -3844,7 +3891,7 @@ class Handler(BaseHTTPRequestHandler):
             }
             creative_brief["_branding"] = {
                 "show_logo": show_logo, "logo_position": logo_position,
-                "show_title": show_title, "title_position": title_position,
+                "show_title": show_title, "title_text": title_text, "title_position": title_position,
                 "title_font": title_font, "title_font_size": title_font_size,
                 "title_bold": title_bold, "title_italic": title_italic,
                 "title_text_align": title_text_align,

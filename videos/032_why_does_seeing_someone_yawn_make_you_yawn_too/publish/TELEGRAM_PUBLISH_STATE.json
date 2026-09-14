@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-13T21:32:38.653625+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-13T21:32:38.653406+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 14906,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2313573,
+      "sha256": "cb4a2ef8eacfed863b8c3f9fe6c038365d091b4a9867d42d40aa9bc0a6c52e8a",
+      "duration_seconds": 54.886,
+      "elapsed_seconds": 5.275,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "032_why_does_seeing_someone_yawn_make_you_yawn_too",
+        "duration_seconds": 54.883,
+        "beat_count": 13,
+        "video_beat_count": 2,
+        "image_beat_count": 11,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.44,
+          "transition_end": 8.62
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 180.153,
+          "realtime_factor": 3.282,
+          "peak_child_rss_mb": 1337.5,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 032_why_does_seeing_someone_yawn_make_you_yawn_too\n⏱ Duration: 0:55\n🎞 Beats: 13 (2 video · 11 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:00 wall (3.282x realtime) · 2 thread(s) · peak 1337.5 MB\nArtifact: cb4a2ef8eacf · Delivery: compressed"
+    }
+  }
+}

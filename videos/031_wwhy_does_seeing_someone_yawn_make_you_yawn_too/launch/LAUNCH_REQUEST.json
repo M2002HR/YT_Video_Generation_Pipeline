@@ -1,17 +1,17 @@
 {
   "schema_version": 5,
   "content_project": "q_station",
-  "job_id": "b6f6b170-9fd1-4a82-87b0-1d45f32e9f81",
-  "status": "DONE",
-  "created_at": "2026-09-13T20:50:31.125339+00:00",
-  "topic": "Why Does Seeing Someone Yawn Make You Yawn Too?",
-  "video_id": "032",
+  "job_id": "666597c7-559a-4ad9-8de6-816d945aeff6",
+  "status": "STOPPED",
+  "created_at": "2026-09-13T20:48:30.908725+00:00",
+  "topic": "WWhy Does Seeing Someone Yawn Make You Yawn Too?",
+  "video_id": "031",
   "duration_min_seconds": 30,
   "duration_max_seconds": 50,
   "aspect_ratio": "9:16",
-  "project": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too",
-  "voice_profile": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
-  "creative_brief": "videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
+  "project": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too",
+  "voice_profile": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
+  "creative_brief": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -36,12 +36,13 @@
     "beat_image_qc_disabled": true,
     "world_style_reference": {
       "schema_version": 1,
-      "path": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/launch/style_references/style_reference.png",
-      "sha256": "1096a5b029ce0f29a6dec3d08a541436954d929af852b8d9a09bc54130d6a1f3",
+      "path": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/style_reference.png",
+      "sha256": "ce0932200b0be237a97f76d0ee62f41379e5c9572a37cf45ed20bde04f249589",
       "mime_type": "image/png",
-      "width": 969,
-      "height": 521
-    }
+      "width": 259,
+      "height": 343
+    },
+    "_style_reference_upload_id": "0ecc3cfd62be4b18968dc9eed19844ab"
   },
   "character": {
     "mode": "manual",
@@ -136,24 +137,24 @@
   "commit_artifacts": true,
   "telegram_low_size": true,
   "telegram_original": false,
-  "launched_from_job_id": "666597c7-559a-4ad9-8de6-816d945aeff6",
-  "launched_from_video_id": "031",
+  "launched_from_job_id": "02cfa0dd-40d6-4bd9-8e3d-e5b7fc76f7fb",
+  "launched_from_video_id": "029",
   "launch_reason": "topic_change",
-  "pid": 1649720,
+  "pid": 1649151,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
     "scripts/run_full_video_pipeline_qh_wrapper.py",
     "--topic",
-    "Why Does Seeing Someone Yawn Make You Yawn Too?",
+    "WWhy Does Seeing Someone Yawn Make You Yawn Too?",
     "--video-id",
-    "032",
+    "031",
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/032_why_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -161,14 +162,7 @@
     "--publish",
     "--commit"
   ],
-  "started_at": "2026-09-13T20:50:31.135989+00:00",
-  "character_resolution": {
-    "requested_mode": "manual",
-    "requested_character_id": "red_horned_everyman",
-    "resolved_character_id": "red_horned_everyman",
-    "resolution_source": "manual",
-    "character_version": 1,
-    "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
-  },
-  "completed_at": "2026-09-13T21:32:40.963606+00:00"
+  "started_at": "2026-09-13T20:48:30.919604+00:00",
+  "completed_at": "2026-09-13T20:50:16.725113+00:00",
+  "stopped_by": "panel"
 }

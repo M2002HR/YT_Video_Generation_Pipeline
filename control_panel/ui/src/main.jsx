@@ -17,9 +17,11 @@ import {
   formatDate,
   label,
   dependentNodeIds,
+  parseConfigGroup,
   previewCaptionLines,
   previewCuesFromWords,
   previewFramesFromTimeline,
+  serializeConfigGroup,
   statusClass,
   subtitleMarginPx,
   SUBTITLE_FONT_SLUGS,
@@ -27,6 +29,38 @@ import {
   SUBTITLE_PREVIEW_TEXT,
   validateLaunchValues,
 } from "./studio-utils.js";
+
+async function writeClipboardText(text) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Permission and non-secure-context failures use the local fallback below.
+    }
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.readOnly = true;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand?.("copy");
+  textarea.remove();
+  if (!copied) throw new Error("Clipboard access was denied by the browser.");
+}
+
+async function readClipboardText() {
+  if (navigator.clipboard?.readText) {
+    try {
+      return await navigator.clipboard.readText();
+    } catch {
+      // Manual paste still works when programmatic clipboard permission is denied.
+    }
+  }
+  return window.prompt("Paste the copied settings JSON here:");
+}
 
 const PHASE_LABELS = {
   creative: "Creative",
@@ -337,7 +371,8 @@ function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "
   const outline = Math.min(8, Math.max(0, Number(values.title_outline) || 0)) * .25;
   const titleFontSize = Math.max(16, Math.min(200, Number(values.title_font_size) || 38));
   const wordsPerLine = Math.max(1, Math.min(100, Math.round(Number(values.title_max_words_per_line) || 7)));
-  const titleWords = String(values.topic || "Your video question appears here").trim().split(/\s+/).filter(Boolean);
+  const titleText = String(values.title_text || values.topic || "Your video question appears here").trim();
+  const titleWords = titleText.split(/\s+/).filter(Boolean);
   const titleLines = [];
   for (let index = 0; index < titleWords.length; index += wordsPerLine)
     titleLines.push(titleWords.slice(index, index + wordsPerLine).join(" "));
@@ -417,7 +452,7 @@ function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "
         <div><b>{safeFrameIndex + 1} / {frames.length}</b><small>{backdrop?.label || `Timeline frame ${safeFrameIndex + 1}`}</small></div>
         <button type="button" disabled={safeFrameIndex >= frames.length - 1} onClick={() => setFrameIndex((index) => Math.min(frames.length - 1, index + 1))} aria-label="Next preview frame">→</button>
       </div>}
-      <small>Live {landscape ? "16:9" : "9:16"} composition preview · {backdrop?.label || backdropLabel} · title follows the episode question automatically</small>
+      <small>Live {landscape ? "16:9" : "9:16"} composition preview · {backdrop?.label || backdropLabel} · {values.title_text?.trim() ? "custom title" : "episode question"}</small>
     </div>
   );
 }
@@ -832,7 +867,7 @@ function ColourField({ field, value, onChange, gated = false }) {
   const safe = /^#[0-9a-fA-F]{6}$/.test(value || "") ? value : "#FFFFFF";
   return (
     <label
-      className={`field ${field.width === "half" ? "half" : ""} ${field.advanced ? "advanced-field" : ""} ${gated ? "field-off" : ""}`}
+      className={`field ${field.name === "title_text" ? "title-text-field" : ""} ${field.width === "half" ? "half" : ""} ${field.advanced ? "advanced-field" : ""} ${gated ? "field-off" : ""}`}
       htmlFor={id}
     >
       <span>
@@ -1226,9 +1261,37 @@ function SubtitleFontUpload({ change, onUploaded, fieldName = "subtitle_font", l
   );
 }
 
-function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "", uploadedFonts: sharedFonts, onFontUploaded }) {
+function SettingsGroup({ group, values, change, replaceGroup, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "", uploadedFonts: sharedFonts, onFontUploaded }) {
   const [advanced, setAdvanced] = useState(false);
   const [localFonts, setLocalFonts] = useState([]);
+  const [clipboardState, setClipboardState] = useState(null);
+  const clipboardTimer = useRef(null);
+  useEffect(() => () => clearTimeout(clipboardTimer.current), []);
+  const reportClipboard = (message, bad = false) => {
+    clearTimeout(clipboardTimer.current);
+    setClipboardState({ message, bad });
+    clipboardTimer.current = setTimeout(() => setClipboardState(null), bad ? 7000 : 3500);
+  };
+  const copyGroup = async () => {
+    try {
+      await writeClipboardText(serializeConfigGroup(group, values));
+      reportClipboard(`${group.title} copied.`);
+    } catch (failure) {
+      reportClipboard(failure.message || "Could not copy this section.", true);
+    }
+  };
+  const pasteGroup = async () => {
+    try {
+      const text = await readClipboardText();
+      if (text == null) return;
+      const next = parseConfigGroup(text, group, values);
+      if (replaceGroup) replaceGroup(next);
+      else Object.entries(next).forEach(([name, value]) => change(name, value));
+      reportClipboard(`${group.title} replaced from clipboard.`);
+    } catch (failure) {
+      reportClipboard(failure.message || "Could not paste this section.", true);
+    }
+  };
   // Fonts uploaded during this form session must be pickable in every font
   // picker (subtitles and branding share one library); callers share one list
   // so an upload in one section is selectable in the other without re-upload.
@@ -1247,18 +1310,33 @@ function SettingsGroup({ group, values, change, open, toggle, styles, stylesLoad
   const advancedCount = group.fields.filter((field) => field.advanced).length;
   return (
     <section className={`settings-group ${open ? "open" : ""}`}>
-      <button
-        type="button"
-        className="group-head"
-        onClick={toggle}
-        aria-expanded={open}
-      >
-        <span>
-          <b>{group.title}</b>
-          <small>{group.description}</small>
-        </span>
-        <span>{open ? "−" : "+"}</span>
-      </button>
+      <div className="group-header-row">
+        <button
+          type="button"
+          className="group-head"
+          onClick={toggle}
+          aria-expanded={open}
+        >
+          <span>
+            <b>{group.title}</b>
+            <small>{group.description}</small>
+          </span>
+          <span>{open ? "−" : "+"}</span>
+        </button>
+        <div className="group-clipboard-actions" aria-label={`${group.title} clipboard actions`}>
+          <button type="button" onClick={copyGroup} title={`Copy all ${group.title} settings`} aria-label={`Copy ${group.title} settings`}>
+            <span aria-hidden="true">⧉</span> Copy
+          </button>
+          <button type="button" onClick={pasteGroup} title={`Replace all ${group.title} settings from clipboard`} aria-label={`Paste ${group.title} settings from clipboard`}>
+            <span aria-hidden="true">▣</span> Paste
+          </button>
+        </div>
+      </div>
+      {clipboardState && (
+        <div className={`group-clipboard-status ${clipboardState.bad ? "bad" : ""}`} role={clipboardState.bad ? "alert" : "status"}>
+          {clipboardState.bad ? "Could not paste/copy: " : "✓ "}{clipboardState.message}
+        </div>
+      )}
       {open && (
         <div className="field-grid">
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
@@ -1469,6 +1547,7 @@ function NewRunForm({ schema, initial, onLaunched, notify }) {
             group={group}
             values={values}
             change={change}
+            replaceGroup={(settings) => setValues((current) => ({ ...current, ...settings }))}
             styles={styles}
             stylesLoading={stylesLoading}
             characters={characters}
@@ -1624,7 +1703,7 @@ function CreditCheckModal({ value, close, retry }) {
   );
 }
 
-function Home({ open, notify, theme, onToggleTheme }) {
+function Home({ open, go, page = "home", notify, theme, onToggleTheme }) {
   const [jobs, setJobs] = useState([]),
     [health, setHealth] = useState(null),
     [contract, setContract] = useState(null),
@@ -1727,12 +1806,39 @@ function Home({ open, notify, theme, onToggleTheme }) {
         .includes(query.toLowerCase()),
   );
   const active = jobs.find((job) => job.live);
+  if (page === "home") {
+    return (
+      <main className="home landing">
+        <div className="landing-brand">
+          <div>
+            <span className="eyebrow">VIDEO GENERATION PIPELINE</span>
+            <h1>Studio</h1>
+          </div>
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+        </div>
+        <section className="landing-actions" aria-label="Choose a Studio action">
+          <button className="landing-card" onClick={() => go("/runs")}>
+            <span className="landing-icon" aria-hidden="true">◫</span>
+            <b>Previous runs</b>
+            <small>Browse the status, progress, and output of earlier video runs.</small>
+            <i aria-hidden="true">→</i>
+          </button>
+          <button className="landing-card primary-card" onClick={() => go("/new")}>
+            <span className="landing-icon" aria-hidden="true">＋</span>
+            <b>Create new video</b>
+            <small>Set up a new video and start its generation pipeline.</small>
+            <i aria-hidden="true">→</i>
+          </button>
+        </section>
+      </main>
+    );
+  }
   return (
     <main className="home">
       <header className="brand">
         <div>
           <span className="eyebrow">VIDEO GENERATION PIPELINE</span>
-          <h1>Studio</h1>
+          <button className="back page-back" onClick={() => go("/")}>← Studio</button>
         </div>
         <div className="brand-side">
           <button className="credit-check-button" onClick={startCreditCheck}>Check credits</button>
@@ -1746,46 +1852,7 @@ function Home({ open, notify, theme, onToggleTheme }) {
           <ProviderHealth health={health} />
         </div>
       </header>
-      <section className="dashboard-hero">
-        <div>
-          <span className="eyebrow">PRODUCTION CONTROL</span>
-          <h2>
-            One place to create,
-            <br />
-            inspect and improve.
-          </h2>
-          <p>
-            Every stage is observable. Every artifact is versioned. Every
-            regeneration follows the dependency graph.
-          </p>
-        </div>
-        <div
-          className={`active-card ${active ? "live" : ""} ${health && !health.reachable ? "bad" : ""}`}
-        >
-          <span>
-            {active
-              ? "ACTIVE RUN"
-              : health && !health.reachable
-                ? "PROVIDER ATTENTION"
-                : "SYSTEM READY"}
-          </span>
-          <b>
-            {active
-              ? `${active.video_id} · ${active.topic}`
-              : health && !health.reachable
-                ? "Ordak is currently unavailable"
-                : "No pipeline is using the providers"}
-          </b>
-          <small>
-            {active?.pipeline?.running
-              ? label(active.pipeline.running)
-              : health && !health.reachable
-                ? "Restore provider access before launching"
-                : "Ready for a new run"}
-          </small>
-        </div>
-      </section>
-      {contract ? (
+      {page === "new" && (contract ? (
         <NewRunForm
           schema={contract.schema}
           initial={contract.defaults}
@@ -1797,8 +1864,8 @@ function Home({ open, notify, theme, onToggleTheme }) {
         />
       ) : (
         <div className="loading-card">Loading launch settings…</div>
-      )}
-      <section className="runs">
+      ))}
+      {page === "runs" && <section className="runs">
         <div className="section-head">
           <div>
             <span className="eyebrow">HISTORY</span>
@@ -1829,7 +1896,7 @@ function Home({ open, notify, theme, onToggleTheme }) {
         ) : (
           <div className="no-runs">No runs match this view.</div>
         )}
-      </section>
+      </section>}
       {creditModalOpen && (
         <CreditCheckModal
           value={creditCheck}
@@ -2592,6 +2659,7 @@ function ConfigModal({ run, close, done }) {
                   group={group}
                   values={values}
                   change={(name, value) => setValues((current) => ({ ...current, [name]: value }))}
+                  replaceGroup={(settings) => setValues((current) => ({ ...current, ...settings }))}
                   styles={styles}
                   stylesLoading={stylesLoading}
                   styleReferencePreview={styleReference?.preview_path ? `/api/run/${run.job.job_id}/artifact/${styleReference.preview_path}` : ""}
@@ -2715,12 +2783,101 @@ function ActivityPanel({ events, log, open, toggle }) {
   );
 }
 
+const RELEASE_DEFAULTS = {
+  generate_metadata: true,
+  generate_thumbnail: true,
+  create_upload_guide: true,
+  send_telegram: true,
+  force: false,
+  metadata_note: "",
+  thumbnail_note: "",
+  title_override: "",
+};
+
+function ReleaseModal({ jobId, close, started }) {
+  const [settings, setSettings] = useState(RELEASE_DEFAULTS);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const change = (name, value) => setSettings((current) => ({ ...current, [name]: value }));
+  const tasks = [
+    ["generate_metadata", "Generate YouTube metadata", "Creates title alternatives, description, tags, upload recommendations, and a thumbnail brief."],
+    ["generate_thumbnail", "Generate thumbnail", "Creates and quality-checks a new 9:16 thumbnail from final-render reference frames."],
+    ["create_upload_guide", "Create upload guide", "Writes copy-ready YouTube instructions and manual-review reminders."],
+    ["send_telegram", "Send selected release files to Telegram", "Always sends the QC-passed master; attaches metadata, guide, and thumbnail only when available."],
+  ];
+  async function submit(event) {
+    event.preventDefault();
+    if (!tasks.some(([key]) => settings[key])) {
+      setError("Choose at least one Release step.");
+      return;
+    }
+    setBusy(true); setError("");
+    try {
+      const response = await request("/api/releases", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ job_id: jobId, settings }),
+      });
+      started(response);
+    } catch (failure) {
+      setError(failure.message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <div className="modal-back" role="dialog" aria-modal="true" aria-labelledby="release-title" onMouseDown={(event) => event.target === event.currentTarget && !busy && close()}>
+      <form className="modal release-modal" onSubmit={submit}>
+        <button type="button" className="icon close" onClick={close} disabled={busy} aria-label="Close Release settings">×</button>
+        <span className="eyebrow">POST-RENDER RELEASE</span>
+        <h2 id="release-title">Choose Release steps</h2>
+        <p>Only selected operations run. The finished video is never changed; this creates its YouTube package and optional delivery.</p>
+        <section className="release-step-list" aria-label="Release operations">
+          {tasks.map(([key, title, detail]) => (
+            <label className="toggle-field" key={key}>
+              <input type="checkbox" checked={settings[key]} onChange={(event) => change(key, event.target.checked)} disabled={busy} />
+              <span className="switch" />
+              <span><b>{title}</b><small>{detail}</small></span>
+            </label>
+          ))}
+        </section>
+        <section className="release-editorial">
+          <h3>Optional direction</h3>
+          <label className="field">
+            <span>Custom final title</span>
+            <input value={settings.title_override} maxLength="100" placeholder="Leave empty to use generated or saved metadata" disabled={busy} onChange={(event) => change("title_override", event.target.value)} />
+            <small>Applied to the metadata, upload guide, and Telegram caption.</small>
+          </label>
+          <label className="field">
+            <span>Metadata direction</span>
+            <textarea value={settings.metadata_note} maxLength="2000" placeholder="Facts, tone, audience, wording to avoid, or other editorial direction…" disabled={busy} onChange={(event) => change("metadata_note", event.target.value)} />
+            <small>Used only when generating metadata; it cannot override the source facts.</small>
+          </label>
+          <label className="field">
+            <span>Thumbnail direction</span>
+            <textarea value={settings.thumbnail_note} maxLength="2000" placeholder="Desired visual emphasis, focal subject, composition, or constraints…" disabled={busy} onChange={(event) => change("thumbnail_note", event.target.value)} />
+            <small>Used only when generating a thumbnail; final-video frames remain the visual source of truth.</small>
+          </label>
+        </section>
+        <label className="toggle-field release-force">
+          <input type="checkbox" checked={settings.force} onChange={(event) => change("force", event.target.checked)} disabled={busy} />
+          <span className="switch" />
+          <span><b>Replace already completed selected outputs</b><small>Use for an intentional new metadata or thumbnail version. Existing files remain in the project history where retained.</small></span>
+        </label>
+        <small className="release-dependency">If Metadata is off, Thumbnail, Guide, and Telegram reuse saved metadata; the request stops safely before any provider call if it is unavailable.</small>
+        {error && <div className="inline-error" role="alert">{error}</div>}
+        <button className="primary" disabled={busy}>{busy ? "Starting Release…" : "Start selected Release steps →"}</button>
+      </form>
+    </div>
+  );
+}
+
 function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
   const [run, setRun] = useState(null),
     [selected, setSelected] = useState(null),
     [view, setView] = useState("board"),
     [revisionNode, setRevisionNode] = useState(null),
     [configOpen, setConfigOpen] = useState(false),
+    [releaseOpen, setReleaseOpen] = useState(false),
     [drawer, setDrawer] = useState(true),
     [log, setLog] = useState(""),
     [autoUpdate, setAutoUpdate] = useState(readAutoUpdate),
@@ -2927,7 +3084,7 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
                     ? "Create the complete YouTube Shorts release package and send it to Telegram."
                     : run.job.release_reason || undefined
               }
-              onClick={() => control("/api/releases", "Release started")}
+              onClick={() => setReleaseOpen(true)}
             >
               {releaseRunning
                 ? "Release in progress…"
@@ -3042,6 +3199,17 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
           }}
         />
       )}
+      {releaseOpen && (
+        <ReleaseModal
+          jobId={jobId}
+          close={() => setReleaseOpen(false)}
+          started={() => {
+            setReleaseOpen(false);
+            notify("Release started", "The selected post-render operations are running.");
+            setTimeout(load, 400);
+          }}
+        />
+      )}
     </main>
   );
 }
@@ -3069,6 +3237,7 @@ function App() {
     return () => removeEventListener("popstate", pop);
   }, []);
   const match = path.match(/^\/runs\/([a-f0-9-]{36})$/);
+  const page = path === "/new" ? "new" : path === "/runs" ? "runs" : "home";
   return (
     <>
       <Toasts
@@ -3088,7 +3257,7 @@ function App() {
           onToggleTheme={toggleTheme}
         />
       ) : (
-        <Home open={(id) => navigate(`/runs/${id}`)} notify={notify} theme={theme} onToggleTheme={toggleTheme} />
+        <Home open={(id) => navigate(`/runs/${id}`)} go={navigate} page={page} notify={notify} theme={theme} onToggleTheme={toggleTheme} />
       )}
     </>
   );

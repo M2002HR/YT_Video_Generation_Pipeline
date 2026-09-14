@@ -15,6 +15,7 @@ from release_youtube_short import (  # noqa: E402
     CHANNEL_DEFAULTS,
     build_upload_markdown,
     original_image_contract,
+    release_request,
     thumbnail_generation_prompt,
     validate_or_repair_metadata,
     validate_metadata,
@@ -163,3 +164,29 @@ def test_release_gate_requires_done_state_master_and_passing_qc(tmp_path: Path) 
     assert allowed is True and reason == ""
     allowed, reason = panel.release_eligibility({"status": "FAILED", "external": False, "pid": None}, project)
     assert allowed is False and "DONE" in reason
+
+
+def test_release_request_selects_real_steps_and_rejects_unknown_settings(tmp_path: Path) -> None:
+    request = tmp_path / "release.json"
+    request.write_text(json.dumps({"settings": {
+        "generate_metadata": False,
+        "generate_thumbnail": False,
+        "create_upload_guide": True,
+        "send_telegram": False,
+        "title_override": "A deliberate title",
+    }}), encoding="utf-8")
+    settings = release_request(request)
+    assert settings["create_upload_guide"] is True
+    assert settings["generate_thumbnail"] is False
+    assert settings["title_override"] == "A deliberate title"
+    request.write_text(json.dumps({"settings": {"not_a_step": True}}), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="Unknown Release"):
+        release_request(request)
+
+
+def test_panel_release_settings_require_at_least_one_step() -> None:
+    with pytest.raises(ValueError, match="at least one"):
+        panel.normalize_release_settings({
+            "generate_metadata": False, "generate_thumbnail": False,
+            "create_upload_guide": False, "send_telegram": False,
+        })

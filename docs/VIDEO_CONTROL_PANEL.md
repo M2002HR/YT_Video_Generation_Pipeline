@@ -158,7 +158,8 @@ The logo is composited after timeline motion/transitions so it stays fixed on sc
 default placement is top-right at 14% of frame width. Nine anchor presets, a custom
 percentage centre, margins, opacity, and size are available in both workflows.
 
-The title text is always the frozen episode topic/question rather than generated copy. Its
+The title text can be entered directly by the operator. When left empty, it uses the frozen
+episode topic/question rather than generated copy. Its
 default placement follows immediately below the logo. It can instead use any anchor preset
 or custom percentage coordinates, with an adjustable box width, alignment, font size,
 weight, italics, colour, outline, maximum words per line, and exact pixel line spacing.
