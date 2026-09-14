@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "revision_id": "3c71437e-99a7-4dfe-b8ae-4681e9ac0e8a",
+  "revision_id": "6bb649d5-5852-4315-94f3-04162077426c",
   "kind": "config",
-  "created_at": "2026-09-14T18:14:20.081202+00:00",
+  "created_at": "2026-09-14T18:41:35.906213+00:00",
   "roots": [
     "audio_mix_profile"
   ],
@@ -67,15 +67,14 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
+  "status": "RUNNING",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "skip_visual_stages": true,
-  "started_at": "2026-09-14T18:14:20.082067+00:00",
-  "pid": 2140843,
+  "started_at": "2026-09-14T18:41:35.907092+00:00",
+  "pid": 2157816,
   "changed_fields": [
     "narration_gain_db"
   ],
-  "config_revision_id": "d69a2777-430e-4c45-80a7-b63acab3d444",
-  "completed_at": "2026-09-14T18:23:13.072731+00:00"
+  "config_revision_id": "737af624-f73c-4a9c-a842-ef3e6841e502"
 }

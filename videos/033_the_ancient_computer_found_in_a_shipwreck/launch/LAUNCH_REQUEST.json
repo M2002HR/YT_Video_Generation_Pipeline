@@ -10,8 +10,8 @@
   "duration_max_seconds": "45",
   "aspect_ratio": "9:16",
   "project": "videos/033_the_ancient_computer_found_in_a_shipwreck",
-  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/VOICE_PROFILE.json",
-  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/VOICE_PROFILE.json",
+  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 2140843,
+  "pid": 2157816,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -143,16 +143,16 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
     "freesound,mixkit,pixabay",
     "--publish",
     "--music-file",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/music/background_music.mp3",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/music/background_music.mp3",
     "--music-file-sha256",
     "01d97304c3f291204fdc3043e32d82313ea2cf2bb3204c38d3a87754fb118e49",
     "--music-source-provider",
@@ -170,12 +170,12 @@
   ],
   "started_at": "2026-09-14T10:56:06.346509+00:00",
   "stopped_by": "panel",
-  "resumed_at": "2026-09-14T18:14:20.082243+00:00",
+  "resumed_at": "2026-09-14T18:41:35.907248+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "3c71437e-99a7-4dfe-b8ae-4681e9ac0e8a",
+    "revision_id": "6bb649d5-5852-4315-94f3-04162077426c",
     "kind": "config",
-    "created_at": "2026-09-14T18:14:20.081202+00:00",
+    "created_at": "2026-09-14T18:41:35.906213+00:00",
     "roots": [
       "audio_mix_profile"
     ],
@@ -244,19 +244,19 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-14T18:14:20.082067+00:00",
-    "pid": 2140843,
+    "started_at": "2026-09-14T18:41:35.907092+00:00",
+    "pid": 2157816,
     "changed_fields": [
       "narration_gain_db"
     ],
-    "config_revision_id": "d69a2777-430e-4c45-80a7-b63acab3d444"
+    "config_revision_id": "737af624-f73c-4a9c-a842-ef3e6841e502"
   },
-  "exit_code": 1,
-  "process_exited_at": "2026-09-14T18:11:34.720132+00:00",
-  "resume_count": 2,
+  "exit_code": 0,
+  "process_exited_at": "2026-09-14T18:23:13.070207+00:00",
+  "resume_count": 3,
   "music_upload": {
     "schema_version": 1,
-    "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/music/background_music.mp3",
+    "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/music/background_music.mp3",
     "sha256": "01d97304c3f291204fdc3043e32d82313ea2cf2bb3204c38d3a87754fb118e49",
     "extension": ".mp3",
     "mime_type": "audio/mpeg",
@@ -268,9 +268,9 @@
   },
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "3c71437e-99a7-4dfe-b8ae-4681e9ac0e8a",
+    "revision_id": "6bb649d5-5852-4315-94f3-04162077426c",
     "kind": "config",
-    "created_at": "2026-09-14T18:14:20.081202+00:00",
+    "created_at": "2026-09-14T18:41:35.906213+00:00",
     "roots": [
       "audio_mix_profile"
     ],
@@ -339,11 +339,11 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-14T18:14:20.082067+00:00",
-    "pid": 2140843,
+    "started_at": "2026-09-14T18:41:35.907092+00:00",
+    "pid": 2157816,
     "changed_fields": [
       "narration_gain_db"
     ],
-    "config_revision_id": "d69a2777-430e-4c45-80a7-b63acab3d444"
+    "config_revision_id": "737af624-f73c-4a9c-a842-ef3e6841e502"
   }
 }
