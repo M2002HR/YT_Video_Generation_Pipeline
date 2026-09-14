@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "q_station",
   "job_id": "05e326d1-cf5d-48be-928c-3d2635399ea8",
-  "status": "RUNNING",
+  "status": "STOPPED",
   "created_at": "2026-09-14T10:56:06.344951+00:00",
   "topic": "The Ancient “Computer” Found in a Shipwreck",
   "video_id": "033",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 2157816,
+  "pid": 2159061,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -166,11 +166,12 @@
     "--music-source-name",
     "mondamusic-mystery-mysterious-mystical-519335 (2).mp3",
     "--commit",
-    "--skip-visual-stages"
+    "--regenerate-beats",
+    "10"
   ],
   "started_at": "2026-09-14T10:56:06.346509+00:00",
   "stopped_by": "panel",
-  "resumed_at": "2026-09-14T18:41:35.907248+00:00",
+  "resumed_at": "2026-09-14T18:43:51.595244+00:00",
   "last_config_revision": {
     "schema_version": 2,
     "revision_id": "6bb649d5-5852-4315-94f3-04162077426c",
@@ -240,7 +241,7 @@
     ],
     "regenerate_beats": [],
     "feedback": "",
-    "status": "RUNNING",
+    "status": "DONE",
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
@@ -249,10 +250,11 @@
     "changed_fields": [
       "narration_gain_db"
     ],
-    "config_revision_id": "737af624-f73c-4a9c-a842-ef3e6841e502"
+    "config_revision_id": "737af624-f73c-4a9c-a842-ef3e6841e502",
+    "completed_at": "2026-09-14T18:42:35.676014+00:00"
   },
   "exit_code": 0,
-  "process_exited_at": "2026-09-14T18:23:13.070207+00:00",
+  "process_exited_at": "2026-09-14T18:42:35.674019+00:00",
   "resume_count": 3,
   "music_upload": {
     "schema_version": 1,
@@ -268,19 +270,24 @@
   },
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "6bb649d5-5852-4315-94f3-04162077426c",
-    "kind": "config",
-    "created_at": "2026-09-14T18:41:35.906213+00:00",
+    "revision_id": "16c3214c-cf86-44f7-aac0-09c397e914de",
+    "kind": "node",
+    "created_at": "2026-09-14T18:43:51.594070+00:00",
     "roots": [
-      "audio_mix_profile"
+      "beat_image_010"
     ],
     "affected_nodes": [
-      "audio_mix_profile",
+      "body_images",
+      "transition_direction",
+      "build_timeline",
+      "render_baseline",
+      "qc_baseline",
       "polish_audio",
       "qc_polished",
       "telegram_compress",
       "git_commit_push",
-      "publish_telegram"
+      "publish_telegram",
+      "beat_image_010"
     ],
     "reused_nodes": [
       "character_resolution",
@@ -304,15 +311,8 @@
       "background_music",
       "ajil_alignment",
       "opening_trim",
-      "body_images",
-      "transition_direction",
-      "build_timeline",
       "render_profile",
-      "motion_director",
-      "sfx_plan",
-      "render_baseline",
-      "qc_baseline",
-      "sfx_acquire",
+      "audio_mix_profile",
       "beat_image_001",
       "beat_image_002",
       "beat_image_003",
@@ -321,29 +321,32 @@
       "beat_image_006",
       "beat_image_007",
       "beat_image_008",
-      "beat_image_009",
-      "beat_image_010"
+      "beat_image_009"
     ],
     "skipped_nodes": [],
     "archived_artifacts": [
-      "audio_mix/AUDIO_MIX_PROFILE.json",
+      "creative/TRANSITION_PLAN.json",
+      "timeline/TIMELINE.json",
+      "timeline/SUBTITLES.ass",
+      "assets/renders/final.mp4",
+      "render/RENDER_STATS.json",
+      "render/QC_REPORT.json",
       "assets/renders/polished.mp4",
       "render/QC_REPORT_polished.json",
       "assets/renders/telegram_low.mp4",
       "pipeline/GIT_PUBLISH_STATE.json",
       "publish/TELEGRAM_PUBLISH_STATE.json"
     ],
-    "regenerate_beats": [],
+    "regenerate_beats": [
+      10
+    ],
     "feedback": "",
-    "status": "RUNNING",
+    "status": "STOPPED",
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
-    "skip_visual_stages": true,
-    "started_at": "2026-09-14T18:41:35.907092+00:00",
-    "pid": 2157816,
-    "changed_fields": [
-      "narration_gain_db"
-    ],
-    "config_revision_id": "737af624-f73c-4a9c-a842-ef3e6841e502"
-  }
+    "started_at": "2026-09-14T18:43:51.595054+00:00",
+    "pid": 2159061,
+    "completed_at": "2026-09-14T18:45:01.573849+00:00"
+  },
+  "completed_at": "2026-09-14T18:45:01.573849+00:00"
 }

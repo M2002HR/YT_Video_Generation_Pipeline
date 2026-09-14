@@ -1,5 +1,11 @@
 export const READY = new Set(["DONE", "REUSED"]);
 
+export function dbToLinearGain(value, minimum = -12, maximum = 12) {
+  const numeric = Number(value);
+  const db = Math.min(maximum, Math.max(minimum, Number.isFinite(numeric) ? numeric : 0));
+  return 10 ** (db / 20);
+}
+
 export const CONFIG_GROUP_CLIPBOARD_KIND =
   "yt-video-generation-pipeline/config-group";
 export const CONFIG_GROUP_CLIPBOARD_VERSION = 1;

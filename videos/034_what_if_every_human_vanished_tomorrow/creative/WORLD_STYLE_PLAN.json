@@ -1,0 +1,20 @@
+{
+  "style_id": "cinematic_abandoned_world_charcoal_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "charcoal",
+  "secondary_treatment": "subtle diluted ink wash for atmospheric depth, water, haze, and distant structural silhouettes",
+  "texture_family": "rough fibrous charcoal paper with weathered concrete-like grain, soft soot bloom, rubbed graphite haze, and restrained water-stain mottling",
+  "palette_summary": "desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, and sparse cold amber remnants for failing artificial light",
+  "line_treatment": "cinematic charcoal silhouettes with broken architectural edges, selective crisp dark contours around important infrastructure, loose rubbed shading in decay zones, and fine scratch marks for cables, weeds, cracks, and rain",
+  "lighting": "overcast cinematic daylight shifting into dim emergency-light gloom, with long soft shadows, misty atmospheric falloff, and occasional isolated cold-amber utility glow",
+  "frame_language": "every 9:16 body image sits inside a recurring weathered charcoal-and-concrete outer field with irregular soot-darkened edges and a softly abraded inner illustration window, as if the abandoned scene has been rubbed into a stained architectural drawing board; the central image retains cinematic depth with foreground debris or vegetation, a readable midground event, and hazed infrastructure beyond, while the same worn perimeter and charcoal vignette grammar persist throughout the episode",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "modern post-human environments only: unattended suburban yards and running hoses, empty streets and homes, failing electrical infrastructure, substations and transmission lines, nuclear facilities shown externally or through simplified non-instructional cutaway imagery, trapped domestic pets, abandoned farms and livestock, flooded subway tunnels, invasive weeds, weather-damaged buildings, rust, standing water, cracked concrete, windblown debris, and gradual ecological reclamation; human crowds and active operators are absent after entry into the scenario",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears inside the world, translate only that established silhouette and costume into the same charcoal-and-ink language, using soot-soft contours, desaturated values, and the scene's cinematic lighting without introducing a new character design",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime, no neon cyberpunk, no clean vector infographic aesthetic, no cheerful storybook treatment, no excessive gore or animal suffering, no disaster-movie fireball spectacle, no dense technical labels, no visible text or UI inside world imagery, and no beat-by-beat medium switching",
+  "reason": "The operator directive explicitly requires a new style and steers toward cinematic abandoned-world texture, so catalog reuse is disallowed. Charcoal provides tactile ruin, shadow, weathering, and strong cinematic depth for the progression from a running garden hose to grid failure, flooding, overgrowth, and structural decay. A restrained ink-wash secondary adds water, mist, and atmospheric recession without changing the primary medium. This also avoids repeating the most recent visual languages—pop screen print, monochrome linework, soft graphite storybook, and verdigris technical drawing—giving this episode stronger between-episode diversity while keeping the imagery cohesive.",
+  "style_subtitle_reserve": "maintain a calm lower field occupying only the bottom 8–10% of every 9:16 frame, integrated as softly rubbed charcoal paper, low-detail pavement, shadow, water haze, or muted ground texture appropriate to the scene; keep it free of faces, hands, focal objects, fine detail and absolutely free of any text, letters, numbers, captions, labels, words or UI, with enough visual quiet for two subtitle lines without becoming an oversized empty void",
+  "reserve_subtitle_space": false
+}

@@ -68,7 +68,7 @@ and asserts each one.
 | Clip | Allowed roles | Flow mode |
 |---|---|---|
 | A — question spark | `character_sheet` | Ingredients |
-| B — book transition | `first_frame`, `last_frame` | Frames |
+| B — configured entry transition | `first_frame`, `last_frame` | Frames |
 
 Frames and Ingredients are **exclusive**: one tablist, one active tab. That is why Clip B
 carries only the two frames.

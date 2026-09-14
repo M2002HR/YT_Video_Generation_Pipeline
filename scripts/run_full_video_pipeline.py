@@ -177,7 +177,7 @@ def music_segments(project: Path, fallback_track: Path) -> list[dict[str, Any]]:
     }]
 
 
-def ensure_audio_mix_profile(project: Path) -> Path:
+def ensure_audio_mix_profile(project: Path, narration_gain_db: float = 0.0) -> Path:
     """Create the conservative music-only profile required by completion."""
     profile = project / "audio_mix" / "AUDIO_MIX_PROFILE.json"
     if profile.is_file():
@@ -193,6 +193,7 @@ def ensure_audio_mix_profile(project: Path) -> Path:
         "output_video": "assets/renders/polished.mp4",
         # ``file`` stays for the current single-bed mixer; ``segments`` is what a second cue
         # will use, and it comes straight from MUSIC_PLAN.json when one exists (T9.7).
+        "narration": {"gain_db": max(-12.0, min(12.0, float(narration_gain_db)))},
         "music": {"enabled": True, "file": str(tracks[0].relative_to(project)), "segments": music_segments(project, tracks[0]), "gain_db": -20.0, "loop": True, "fade_in_sec": 0.8, "fade_out_sec": 1.4, "ducking": {"enabled": True, "threshold": 0.025, "ratio": 8.0, "attack_ms": 18, "release_ms": 320}},
         "sfx": {"enabled": False, "events": []},
         "loudness": {"enabled": True, "integrated_lufs": -14.0, "true_peak_db": -1.5, "lra": 11.0},
@@ -496,6 +497,13 @@ def main() -> None:
     parser.add_argument("--creative-brief", type=Path, default=None)
     parser.add_argument("--music-provider", choices=("mixkit", "pixabay"), default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
+    parser.add_argument("--music-file", type=Path, default=None, help="Frozen operator-uploaded music; bypasses provider search.")
+    parser.add_argument("--music-file-sha256", default="", help="Integrity hash for --music-file.")
+    parser.add_argument("--music-source-provider", default="operator_upload")
+    parser.add_argument("--music-source-origin", default="upload")
+    parser.add_argument("--music-source-url", default="")
+    parser.add_argument("--music-source-license", default="")
+    parser.add_argument("--music-source-name", default="")
     parser.add_argument("--dry-run", action="store_true", help="Validate the launch configuration and print its durable stage plan without browser/media work.")
     parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Send a compressed Telegram copy (default: enabled).")
     parser.add_argument("--telegram-original", action="store_true", help="Also send the polished original to Telegram.")
@@ -603,7 +611,15 @@ def main() -> None:
         # consumed substantial RAM/CPU and could disappear before recording an
         # event, leaving the panel looking stuck between ElevenLabs and music.
         run("timing", [py, "scripts/align_beats.py", str(project), "--fallback-backend", "none"], state, state_path, retries=1, notifier=notifier)
-    music_file = next((path for path in (project / "assets" / "music").glob("*") if path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"} and valid_music_artifact(path)), None)
+    operator_music: Path | None = None
+    if args.music_file is not None:
+        from operator_music import audio_duration, install_operator_music
+        operator_music = install_operator_music(project, args.music_file, args.music_file_sha256, audio_duration(narration), {
+            "provider": args.music_source_provider, "origin": args.music_source_origin,
+            "source_url": args.music_source_url or None, "license": args.music_source_license or None,
+            "original_name": args.music_source_name or args.music_file.name,
+        })
+    music_file = operator_music or next((path for path in (project / "assets" / "music").glob("*") if path.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg", ".flac"} and valid_music_artifact(path)), None)
     if music_file is not None:
         reuse("music", music_file, state, state_path, notifier=notifier)
     else:
@@ -611,7 +627,8 @@ def main() -> None:
         # resume, audio validation, and verified local fallback. One outer retry
         # still covers process-level failures such as an interrupted interpreter.
         run("music", [py, "scripts/run_pixabay_music.py", "--video-id", args.video_id, "--project", str(project), "--providers", args.music_providers or args.music_provider or "mixkit"], state, state_path, retries=1, notifier=None)
-    mix_profile = ensure_audio_mix_profile(project)
+    audio_settings = frozen_brief.get("_audio") if isinstance(frozen_brief.get("_audio"), dict) else {}
+    mix_profile = ensure_audio_mix_profile(project, float(audio_settings.get("narration_gain_db", 0)))
     reuse("audio_mix_profile", mix_profile, state, state_path, notifier=notifier)
     render_profile = ensure_render_profile(project, args.aspect_ratio)
     apply_subtitle_preferences(render_profile, frozen_brief)

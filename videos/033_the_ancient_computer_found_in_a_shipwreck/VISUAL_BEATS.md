@@ -6,7 +6,7 @@ Narration:
 In 1900, sponge divers found a wreck off Antikythera.
 
 Visual:
-Vertical technical-drawing scene of two sponge divers descending toward a broken ancient shipwreck on the rocky seabed, scattered amphorae emerging from deep Aegean blue beneath them, all framed by the recurring patinated-bronze instrument bezel.
+A vertical technical-drawing scene of two sponge divers descending toward an ancient wreck scattered with amphorae on the seabed off a rocky Mediterranean island, framed by the recurring patinated-bronze bezel.
 
 ### Beat 2
 
@@ -14,7 +14,7 @@ Narration:
 Its cargo included a corroded bronze lump.
 
 Visual:
-Close archaeological technical drawing of a rough green-brown bronze fragment lying among broken amphora shards and seabed sediment, isolated as the clear focal object inside the vellum illustration window.
+A close technical illustration of a diver's hand lifting an irregular green-brown corroded bronze fragment from among broken amphorae and sediment, with the artifact isolated as the clear focal point.
 
 ### Beat 3
 
@@ -22,7 +22,7 @@ Narration:
 Inside were tightly packed, precision-cut gears.
 
 Visual:
-Cutaway technical illustration of the corroded fragment opened visually to reveal a dense cluster of intermeshing bronze gear wheels, with precise compass-drawn teeth and restrained engraving hatching but no labels.
+An archaeological cutaway-style technical drawing of the bronze fragment opened visually to reveal a dense cluster of interlocking hand-cut bronze gears, with broken outer edges clearly distinguished from reconstructed internal geometry.
 
 ### Beat 4
 
@@ -30,7 +30,7 @@ Narration:
 The mechanism was built over two thousand years ago.
 
 Visual:
-A restrained historical technical drawing places a reconstructed bronze mechanism on a Hellenistic workbench beside a hand compass, bronze filings and an oil lamp silhouette, with an abstract worn celestial motif behind it and no readable markings.
+A restrained Hellenistic workshop reconstruction in technical-drawing form: an ancient craftsperson's hands shape a small bronze gear beside dividers, bronze blanks and a partly assembled mechanism, with no modern tools or readable markings.
 
 ### Beat 5
 
@@ -38,7 +38,7 @@ Narration:
 A hand crank moved pointers across astronomical dials.
 
 Visual:
-Oblique technical reconstruction showing a human hand turning a small side crank while linked gears drive slender bronze pointers around concentric astronomical dials, with motion implied by fine arc lines rather than modern graphics.
+A clean three-quarter technical reconstruction of the mechanism with one hand turning a side crank while linked gear trains visibly connect to slender pointers sweeping across concentric astronomical dials.
 
 ### Beat 6
 
@@ -46,7 +46,7 @@ Narration:
 One dial tracked the Sun and Moon.
 
 Visual:
-Front-facing technical drawing of a single circular dial with two distinct pointer markers represented by a small sun disk and moon sphere, arranged against restrained orbital geometry with no letters or numerals.
+A front-facing astronomical dial rendered as precise vellum linework, with distinct symbolic Sun and Moon indicators occupying different positions on the same circular path and restrained celestial arcs behind them.
 
 ### Beat 7
 
@@ -54,7 +54,7 @@ Narration:
 Others modeled cycles used to predict eclipses.
 
 Visual:
-A vertical eclipse-cycle diagram rendered as nested bronze-and-charcoal orbital rings, with repeated moon positions culminating in a darkened Sun-Moon alignment, visually linked to a small gear segment below and containing no symbols that resemble readable text.
+An abstract but historically grounded eclipse-cycle diagram built from nested gear-linked arcs: darkened Sun and Moon discs align along a crossing orbital geometry while a spiral-like cycle path curls around them without labels or numerals.
 
 ### Beat 8
 
@@ -62,7 +62,7 @@ Narration:
 Another tracked the cycle of major Greek games.
 
 Visual:
-Technical-drawing interpretation of a separate circular cycle dial paired with a small engraved-style olive wreath, stadium turning post and runner silhouette as non-textual visual cues for recurring Greek games.
+A separate circular cycle dial surrounded by restrained symbolic imagery of an olive wreath, stadium turning post and small ceremonial amphora, all integrated as unlabeled engraved motifs rather than readable text.
 
 ### Beat 9
 
@@ -70,4 +70,12 @@ Narration:
 Inscriptions even explained parts of its operation.
 
 Visual:
-Extreme close technical drawing of a surviving bronze plate surface covered in shallow, fragmentary inscription-like incisions rendered only as illegible archaeological texture, beside the edge of a gear and pointer to suggest operating instructions without readable generated text.
+An extreme close technical study of a surviving bronze plate fragment covered with shallow, densely packed but deliberately illegible incised marks, with a fine pointer indicating the relationship between the inscription-bearing plate and a nearby mechanical edge.
+
+### Beat 10
+
+Narration:
+It was a hand-powered mechanical model of the heavens.
+
+Visual:
+A culminating technical illustration of the reconstructed mechanism suspended centrally against a restrained celestial sphere: the hand crank, nested bronze gears and pointers align visually with Sun, Moon and orbital arcs, making the machine read as a compact mechanical cosmos.

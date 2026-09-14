@@ -13,7 +13,7 @@ Return ONLY a raw JSON object with exactly these keys, no markdown fences, no co
 ```
 {
   "opening_question_spark": "...",
-  "book_transition": "...",
+  "{{ENTRY_SEGMENT_KEY}}": "...",
   "body": ["...", "..."],
   "optional_closing": "...",
   "cta": "...",
@@ -22,14 +22,14 @@ Return ONLY a raw JSON object with exactly these keys, no markdown fences, no co
 ```
 
 `full_narration` MUST be the exact space-joined concatenation of
-`opening_question_spark`, `book_transition`, every `body` entry in order,
+`opening_question_spark`, `{{ENTRY_SEGMENT_KEY}}`, every `body` entry in order,
 `optional_closing`, then `cta`. The alignment step verifies this and rejects the
 script if it does not hold, so an edit that changes a segment must also update
 `full_narration`.
 
 ## Must preserve
 - the same ordinary opening activity and curiosity trigger
-- the book retrieval and the ~3s `book_transition` beat
+- the active presentation progression and the ~3–4s `{{ENTRY_SEGMENT_KEY}}` beat
 - factual integrity: do not strengthen uncertain claims, never add statistics
 - a hook that works from second zero
 - between {{BEAT_MIN}} and {{BEAT_MAX}} `body` entries, each an independently visualisable
@@ -37,13 +37,15 @@ script if it does not hold, so an edit that changes a segment must also update
   consequence into its own unit, including natural clauses from a longer sentence. Each entry
   triggers one unique picture; never merge separate visual moments to make the narration sound
   more literary.
+- a non-empty `optional_closing` is one additional, separate final image beat before CTA. It must
+  be one sentence of at most 16 words; CTA may share that final image.
 
 ## May sharpen
 - hook compression and curiosity payoff
 - word count tightened to {{WORD_RANGE}} for a {{DURATION_RANGE}} Short
 - TTS rhythm and visual translatability
 - removing generic openers such as "Have you ever wondered"
-- making the book-transition sentence a more natural hinge
+- making the {{ENTRY_SEGMENT_LABEL}} sentence a more natural hinge
 - replacing vague summaries with supported, concrete named details (people, place, origin,
   mechanism, or consequence) when the brief's Source notes support them; if they are absent,
   retain only conservative, widely-established canonical details
@@ -55,3 +57,6 @@ script if it does not hold, so an edit that changes a segment must also update
 4. Are there no invented numbers?
 5. Does `full_narration` still concatenate the segments exactly?
 6. Is the output raw JSON with no fences?
+
+## Active presentation contract
+{{PRESENTATION_RULES}}

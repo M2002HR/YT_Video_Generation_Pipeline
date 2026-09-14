@@ -1,7 +1,7 @@
 # Prompt 05 — Visual Beat Planner (Q Station)
 
 ## Purpose
-Plan BODY visual beats. First ~8 seconds are Flow video (Clip A ~5s + Clip B ~3s) and are NOT counted as still-image beats. The script has already split BODY into short spoken visual units: produce exactly one unique still-image beat for every unit.
+Plan every pre-CTA still-image beat. First ~8 seconds are Flow video (Clip A ~5s + Clip B ~3s) and are NOT counted as still-image beats. The script has already split BODY into short spoken visual units. If `optional_closing` is non-empty, it is one additional final visual unit. Produce exactly one unique still-image beat for every BODY unit plus that optional closing; CTA never creates an extra beat.
 
 ## Inputs
 - FINAL SCRIPT (segmented): {{FINAL_SCRIPT}}
@@ -34,7 +34,7 @@ Return RAW JSON:
 ```
 
 ## Rules
-- Return exactly as many beats as there are BODY entries, in the same order. One narration_slice must equal exactly one BODY visual unit; never combine units or split one unit across beats.
+- Return exactly `len(body) + (1 if optional_closing is non-empty else 0)` beats, in spoken order. Each narration_slice must exactly equal its corresponding BODY entry or optional_closing. Never combine units or split one unit across beats. Do not create a beat for CTA.
 - Every beat needs a freshly generated, unique standalone image. `world_keyframe_is_first` is always false: the world keyframe is an anchor, never a substitute body image.
 - One standalone image per beat, 9:16 vertical, simple composition. Make the visual idea distinct from its neighbours even when the setting remains continuous.
 - Each `visual_fingerprint` must be unique across the plan. Change at least two of subject/action,

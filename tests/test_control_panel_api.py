@@ -224,6 +224,145 @@ def test_the_music_provider_priority_survives_into_a_resume() -> None:
     assert command[command.index("--music-providers") + 1] == "mixkit,pixabay"
 
 
+def test_uploaded_music_and_hash_survive_launch_and_resume() -> None:
+    upload = {
+        "path": "videos/901_panel/launch/music/background_music.mp3",
+        "sha256": "a" * 64,
+        "provider": "freesound", "origin": "provider",
+        "source_url": "https://example.test/music", "license": "CC0",
+        "original_name": "saved-track.mp3",
+    }
+    command = panel.pipeline_command(_record(music_upload=upload))
+    assert command[command.index("--music-file") + 1].endswith(upload["path"])
+    assert command[command.index("--music-file-sha256") + 1] == "a" * 64
+    assert command[command.index("--music-source-provider") + 1] == "freesound"
+    assert command[command.index("--music-source-origin") + 1] == "provider"
+    assert command[command.index("--music-source-license") + 1] == "CC0"
+
+
+def test_narration_gain_is_mix_only_and_music_upload_owns_music_branch() -> None:
+    record = _record(
+        music_providers=["pixabay"], telegram_low_size=True, telegram_original=False,
+        commit_artifacts=False, motion={"enabled": False}, sfx={"enabled": False},
+    )
+    brief = {"_qh": {}, "_motion": {"enabled": False}, "_sfx": {"enabled": False}, "_audio": {"narration_gain_db": 0}}
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+    values["narration_gain_db"] = 5.5
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {"audio_mix_profile"}
+    assert revised["_audio"]["narration_gain_db"] == 5.5
+    assert changed == ["narration_gain_db"]
+
+    values = panel.frozen_values(record, brief, voice)
+    values["music_upload_id"] = "b" * 32
+    roots, _brief, _voice, launch, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {"background_music"}
+    assert launch["_music_upload_id"] == "b" * 32
+    assert changed == ["music_upload_id"]
+
+
+def test_music_upload_is_hash_pinned_and_frozen_inside_run(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    upload_id = "d" * 32
+    uploads = tmp_path / "control_panel/music_uploads"; uploads.mkdir(parents=True)
+    source = uploads / f"{upload_id}.mp3"; source.write_bytes(b"ID3" + b"audio" * 100)
+    panel.write_json(uploads / f"{upload_id}.json", {
+        "sha256": panel.sha256_path(source), "extension": ".mp3",
+        "mime_type": "audio/mpeg", "original_name": "mine.mp3",
+    })
+    project = tmp_path / "videos/001_music"
+    launch = {"_music_upload_id": upload_id}
+    panel.freeze_music_asset(launch, project, project / "launch/music")
+    frozen = tmp_path / launch["music_upload"]["path"]
+    assert frozen.is_file()
+    assert launch["music_upload"]["sha256"] == panel.sha256_path(frozen)
+    assert "_music_upload_id" not in launch
+
+
+def test_music_library_combines_uploads_and_provider_downloads_and_freezes_selection(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    panel.MUSIC_LIBRARY_HASH_CACHE.clear()
+    uploads = tmp_path / "control_panel/music_uploads"; uploads.mkdir(parents=True)
+    upload_id = "e" * 32
+    uploaded = uploads / f"{upload_id}.mp3"; uploaded.write_bytes(b"ID3operator-library-track")
+    uploaded_hash = panel.sha256_path(uploaded)
+    panel.write_json(uploads / f"{upload_id}.json", {
+        "sha256": uploaded_hash, "extension": ".mp3", "mime_type": "audio/mpeg",
+        "original_name": "my-bed.mp3", "duration_seconds": 12.5,
+    })
+    old_project = tmp_path / "videos/004_old"
+    provider_file = old_project / "assets/music/freesound_background.mp3"
+    provider_file.parent.mkdir(parents=True); provider_file.write_bytes(b"ID3provider-library-track")
+    panel.write_json(old_project / "music/MUSIC_SELECTION.json", {
+        "provider": "freesound", "library_id": "freesound_42",
+        "file": "assets/music/freesound_background.mp3", "duration_seconds": 19.0,
+        "source_url": "https://example.test/42", "license": "CC0",
+    })
+    cached = tmp_path / "runtime/mixkit_music_library/assets/cached.mp3"
+    cached.parent.mkdir(parents=True); cached.write_bytes(b"ID3downloaded-but-not-selected")
+
+    entries = panel.music_library_entries()
+    assert {item["id"] for item in entries} == {
+        uploaded_hash, panel.sha256_path(provider_file), panel.sha256_path(cached),
+    }
+    assert next(item for item in entries if item["id"] == panel.sha256_path(cached))["provider"] == "mixkit"
+    provider = next(item for item in entries if item["provider"] == "freesound")
+    assert provider["source_video_id"] == "004_old"
+    assert provider["license"] == "CC0"
+
+    new_project = tmp_path / "videos/005_new"
+    launch = {"_music_library_id": provider["id"]}
+    panel.freeze_music_asset(launch, new_project, new_project / "launch/music")
+    frozen = tmp_path / launch["music_upload"]["path"]
+    assert frozen.read_bytes() == provider_file.read_bytes()
+    assert launch["music_upload"]["provider"] == "freesound"
+    assert launch["music_upload"]["sha256"] == provider["id"]
+    assert "_music_library_id" not in launch
+
+
+def test_music_library_selection_invalidates_only_background_music() -> None:
+    record = _record(music_providers=["pixabay"])
+    brief = {"_qh": {}, "_motion": {}, "_sfx": {}}
+    values = panel.frozen_values(record, brief, {})
+    digest = "f" * 64
+    values["music_upload_id"] = f"library:{digest}"
+    roots, _brief, _voice, launch, changed = panel.config_roots(record, brief, {}, values)
+    assert roots == {"background_music"}
+    assert launch["_music_library_id"] == digest
+    assert changed == ["music_upload_id"]
+
+
+def test_selected_library_music_preserves_provider_provenance_in_manifests(tmp_path: Path) -> None:
+    from operator_music import install_operator_music
+
+    source = tmp_path / "frozen.mp3"; source.write_bytes(b"ID3frozen-provider-track")
+    project = tmp_path / "videos/007_provenance"
+    install_operator_music(project, source, panel.sha256_path(source), 20.0, {
+        "provider": "freesound", "origin": "provider", "source_url": "https://example.test/7",
+        "license": "CC0", "original_name": "provider-title.mp3",
+    })
+    selection = json.loads((project / "music/MUSIC_SELECTION.json").read_text())
+    plan = json.loads((project / "music/MUSIC_PLAN.json").read_text())
+    assert selection["provider"] == "freesound"
+    assert selection["selection_mode"] == "library_selection"
+    assert selection["license"] == "CC0"
+    assert selection["original_name"] == "provider-title.mp3"
+    assert plan["segments"][0]["provider"] == "freesound"
+
+
+def test_narration_preview_exists_only_for_a_generated_audio_asset(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    project = tmp_path / "videos/006_preview"
+    assert panel.narration_asset_for(project) is None
+    narration = project / "assets/audio/narration.mp3"
+    narration.parent.mkdir(parents=True); narration.write_bytes(b"ID3narration")
+    monkeypatch.setattr(panel, "validate_audio_file", lambda _path: 8.25)
+    assert panel.narration_asset_for(project) == {
+        "preview_path": "assets/audio/narration.mp3", "name": "narration.mp3",
+        "bytes": narration.stat().st_size, "duration_seconds": 8.25,
+    }
+
+
 def test_music_provider_priority_requires_unique_supported_values() -> None:
     assert panel.music_provider_priority("pixabay,mixkit") == ["pixabay", "mixkit"]
     with pytest.raises(ValueError, match="duplicates"):
@@ -813,6 +952,108 @@ def test_structured_config_revision_persists_opening_speed_tolerance() -> None:
     assert roots == set()
     assert revised_brief["_qh"]["opening_speed_tolerance"] == 0.2
     assert changed == ["opening_speed_tolerance"]
+
+
+def test_character_revision_starts_at_resolution_and_updates_profile_request() -> None:
+    record = _record(
+        content_project="q_station", character={"mode": "manual", "character_id": "red_horned_everyman"},
+        music_providers=["pixabay"], telegram_low_size=True, telegram_original=False,
+        commit_artifacts=False, motion={"enabled": False}, sfx={"enabled": False},
+    )
+    brief = {
+        "_qh": {"character": {"mode": "manual", "character_id": "red_horned_everyman"}},
+        "_motion": {"enabled": False}, "_sfx": {"enabled": False},
+        "_subtitle": {"word_highlight": True},
+    }
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+    values.update(character_mode="manual", character_id="moss_cloaked_crone")
+
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+
+    assert roots == {"character_resolution"}
+    assert revised["_qh"]["character"] == {"mode": "manual", "character_id": "moss_cloaked_crone"}
+    assert {"character_id"} <= set(changed)
+
+    values.update(character_mode="auto", character_id="moss_cloaked_crone")
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {"character_resolution"}
+    assert revised["_qh"]["character"] == {"mode": "auto"}
+    assert {"character_mode", "character_id"} <= set(changed)
+
+
+def test_character_revision_archives_old_resolution_and_clears_resume_authority(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from character_runtime import load_character_registry
+
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    monkeypatch.setattr(panel, "monitor_process", lambda *args, **kwargs: None)
+    jobs = tmp_path / "control_panel/jobs"; jobs.mkdir(parents=True)
+    project = tmp_path / "videos/901_panel"
+    old_request = {"mode": "manual", "character_id": "red_horned_everyman"}
+    old_resolution = {
+        "requested_mode": "manual", "requested_character_id": "red_horned_everyman",
+        "resolved_character_id": "red_horned_everyman", "resolution_source": "manual",
+    }
+    brief = {
+        "_qh": {"character": old_request}, "_motion": {"enabled": False},
+        "_sfx": {"enabled": False}, "_subtitle": {"word_highlight": True},
+    }
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    brief_path = project / "launch/CREATIVE_BRIEF.json"
+    voice_path = project / "voiceover/REQUESTED_VOICE_PROFILE.json"
+    brief_path.parent.mkdir(parents=True); brief_path.write_text(json.dumps(brief), encoding="utf-8")
+    voice_path.parent.mkdir(parents=True); voice_path.write_text(json.dumps(voice), encoding="utf-8")
+    record = _record(
+        content_project="q_station", character=old_request, character_resolution=old_resolution,
+        qh=brief["_qh"], creative_brief=str(brief_path.relative_to(tmp_path)),
+        voice_profile=str(voice_path.relative_to(tmp_path)), music_providers=["pixabay"],
+        telegram_low_size=True, telegram_original=False, commit_artifacts=False,
+        motion={"enabled": False}, sfx={"enabled": False},
+    )
+    launch_path = project / "launch/LAUNCH_REQUEST.json"
+    launch_path.write_text(json.dumps(record), encoding="utf-8")
+    (jobs / f"{record['job_id']}.json").write_text(json.dumps(record), encoding="utf-8")
+    creative = project / "creative"; creative.mkdir(parents=True)
+    (creative / "CHARACTER_RESOLUTION.json").write_text(json.dumps(old_resolution), encoding="utf-8")
+    registry = load_character_registry(ROOT / "projects/q_station/characters/registry.json")
+    (creative / "PRESENTATION_RESOLUTION.json").write_text(
+        json.dumps(registry.get("red_horned_everyman").presentation.to_resolution()), encoding="utf-8",
+    )
+    old_entry = project / "references/book_cover_frame.png"
+    old_entry.parent.mkdir(parents=True); old_entry.write_bytes(b"old-book-frame")
+
+    values = panel.frozen_values(record, brief, voice)
+    values.update(character_mode="manual", character_id="moss_cloaked_crone")
+    roots, revised_brief, revised_voice, launch, changed = panel.config_roots(record, brief, voice, values)
+
+    class Process:
+        pid = 7272
+    monkeypatch.setattr(panel.subprocess, "Popen", lambda *args, **kwargs: Process())
+    class Handler(_Handler):
+        response = None
+        def send_json(self, status, value): self.response = (status, value)
+    handler = Handler(jobs)
+    handler.commit_config_revision(record, project, roots, revised_brief, revised_voice, launch, changed)
+
+    assert handler.response[0] == 202
+    revision = handler.response[1]["revision"]
+    saved_launch = json.loads(launch_path.read_text())
+    assert saved_launch["character"] == {"mode": "manual", "character_id": "moss_cloaked_crone"}
+    assert "character_resolution" not in saved_launch
+    assert revision["roots"] == ["character_resolution"]
+    assert revision["character_change"]["previous_resolved_character_id"] == "red_horned_everyman"
+    archived = project / "pipeline/revisions" / revision["revision_id"] / "previous"
+    assert (archived / "creative/CHARACTER_RESOLUTION.json").is_file()
+    assert (archived / "creative/PRESENTATION_RESOLUTION.json").is_file()
+    assert (archived / "references/book_cover_frame.png").read_bytes() == b"old-book-frame"
+    assert not (creative / "CHARACTER_RESOLUTION.json").exists()
+    saved_job = json.loads((jobs / f"{record['job_id']}.json").read_text())
+    frozen_brief = tmp_path / saved_job["creative_brief"]
+    from run_full_video_pipeline_qh_wrapper import qh_overrides
+    overrides = qh_overrides(frozen_brief)
+    assert overrides[overrides.index("--character-id") + 1] == "moss_cloaked_crone"
 
 
 def test_topic_change_from_revision_launches_a_separate_clean_run(

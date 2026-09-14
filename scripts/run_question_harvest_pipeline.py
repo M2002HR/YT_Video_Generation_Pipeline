@@ -8,7 +8,7 @@ Stage order:
     → Gemini world keyframe → book spread composition → Flow Clip A/B prompts
     → Flow Clip A → Flow Clip B → per-beat image prompts → Gemini body images
 
-Rules this file exists to keep (master_prompt §4, §60-61):
+Production rules this file exists to keep:
 
 * **No synthetic media, ever.** There is no fallback that draws a placeholder or renders a
   colour card. A provider failure becomes a ``PAUSED_*``/``FAILED_*`` state with the
@@ -71,6 +71,7 @@ from ordak_jobs import (  # noqa: E402
 from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
 from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprint
+from presentation_runtime import PresentationContext
 
 # Initialized from the resolved project in main. Kept as module globals for compatibility
 # with existing helpers/tests that monkeypatch catalog roots.
@@ -834,8 +835,8 @@ class Runner:
             if stage.startswith("beat_image_") else
             "Preserve the world composition, camera, palette, medium, texture, and host-free intent."
             if stage == "world_keyframe" else
-            "Preserve the book identity, view, layout, materials, motifs, and usable blank areas."
-            if "book" in stage else
+            "Preserve the recurring entry object's identity, view, layout, materials, motifs, and usable blank areas."
+            if stage in {"book_design_sheet", "book_cover"} else
             "Preserve the established medium, palette, texture family, line treatment, lighting, and layout."
         )
         numbered = "\n".join(f"{index}. {finding}" for index, finding in enumerate(findings, 1))
@@ -1057,7 +1058,7 @@ class Runner:
 
 # ------------------------------------------------------------------- script plan (§67)
 
-SCRIPT_PLAN_KEYS = ("opening_question_spark", "book_transition", "body", "cta", "full_narration")
+SCRIPT_PLAN_KEYS = ("opening_question_spark", "body", "cta", "full_narration")
 
 #: Spoken words per second, measured against the format's own 40-60s => 92-150 word rule.
 WORDS_PER_SECOND_RANGE = (2.3, 2.5)
@@ -1128,7 +1129,12 @@ def _plan_tokens(text: str) -> list[str]:
     return [token.lower() for token in re.findall(r"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?", text)]
 
 
-def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | None = None) -> dict[str, Any]:
+def validate_script_plan(
+    stage: str,
+    data: Any,
+    duration: "DurationTarget" | None = None,
+    presentation: PresentationContext | None = None,
+) -> dict[str, Any]:
     """Accept a script only if its segments really are the narration.
 
     Downstream, the Flow clips are trimmed to the measured end of ``opening_question_spark``
@@ -1139,7 +1145,10 @@ def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | Non
     """
     if not isinstance(data, dict):
         raise StageFailure(stage, "FAILED_VALIDATION", "The script must be a JSON object.")
-    missing = [key for key in SCRIPT_PLAN_KEYS if key not in data]
+    entry_key = presentation.segment_key if presentation is not None else (
+        "entry_transition" if "entry_transition" in data else "book_transition"
+    )
+    missing = [key for key in (*SCRIPT_PLAN_KEYS, entry_key) if key not in data]
     if missing:
         raise StageFailure(stage, "FAILED_VALIDATION", f"The script is missing keys: {missing}")
 
@@ -1162,6 +1171,17 @@ def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | Non
             "FAILED_VALIDATION",
             "A body visual unit exceeds 16 words. Split distinct actions, actors, reveals, and consequences into faster picture beats.",
         )
+    optional_closing = str(data.get("optional_closing") or "").strip()
+    if optional_closing and len(re.findall(r"[.!?…](?:[\"')\]]|\s)*", optional_closing)) > 1:
+        raise StageFailure(
+            stage, "FAILED_VALIDATION",
+            "`optional_closing` must be one atomic sentence because it owns one final image beat.",
+        )
+    if optional_closing and len(_plan_tokens(optional_closing)) > 16:
+        raise StageFailure(
+            stage, "FAILED_VALIDATION",
+            "`optional_closing` exceeds 16 words; keep the final pre-CTA image beat concise.",
+        )
     if not target.beat_min <= len(body) <= target.beat_max:
         raise StageFailure(
             stage,
@@ -1172,7 +1192,7 @@ def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | Non
 
     ordered = [
         str(data.get("opening_question_spark") or "").strip(),
-        str(data.get("book_transition") or "").strip(),
+        str(data.get(entry_key) or "").strip(),
         *[item.strip() for item in body],
         str(data.get("optional_closing") or "").strip(),
         str(data.get("cta") or "").strip(),
@@ -1197,9 +1217,9 @@ def validate_script_plan(stage: str, data: Any, duration: "DurationTarget" | Non
             f"{low}-{high}.",
         )
 
-    normalized = {key: data.get(key) for key in ("opening_question_spark", "book_transition", "cta")}
+    normalized = {key: data.get(key) for key in ("opening_question_spark", entry_key, "cta")}
     normalized["body"] = [item.strip() for item in body]
-    normalized["optional_closing"] = str(data.get("optional_closing") or "").strip()
+    normalized["optional_closing"] = optional_closing
     normalized["full_narration"] = full
     normalized["word_count"] = words
     normalized["created_at"] = utcnow()
@@ -1275,13 +1295,14 @@ def ask_for_script(
     duration: DurationTarget,
     *,
     attempts: int = 3,
+    presentation: PresentationContext | None = None,
 ) -> dict[str, Any]:
     """One script plan, re-asked with the complaint until it satisfies the validator."""
     return ask_with_correction(
         runner,
         stage,
         prompt,
-        lambda data: validate_script_plan(stage, data, duration),
+        lambda data: validate_script_plan(stage, data, duration, presentation),
         attempts=attempts,
         hint=(
             "Keep `full_narration` exactly the concatenation of the segments in order, and "
@@ -1291,7 +1312,8 @@ def ask_for_script(
 
 
 def stage_script(
-    runner: Runner, project: Path, content_project: Any, brief: str, duration: DurationTarget
+    runner: Runner, project: Path, content_project: Any, brief: str, duration: DurationTarget,
+    presentation: PresentationContext | None = None,
 ) -> dict[str, Any]:
     stage = "script_draft"
     target = project / "creative" / "SCRIPT_DRAFT.json"
@@ -1299,12 +1321,16 @@ def stage_script(
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
+    presentation = presentation or _coerce_character_context(content_project).presentation
     prompt = fill(
         resolve_prompt(content_project, "01_script_writer.md"),
         VIDEO_BRIEF=brief,
+        ENTRY_SEGMENT_KEY=presentation.segment_key,
+        ENTRY_SEGMENT_LABEL=presentation.segment_label,
+        PRESENTATION_RULES=presentation.script_rules,
         **duration.as_prompt_values(),
     )
-    plan = ask_for_script(runner, stage, prompt, duration)
+    plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
     save_json(target, plan)
     runner.stage_done(stage, started, f"{plan['word_count']} words, {len(plan['body'])} beats", words=plan["word_count"])
     return plan
@@ -1317,6 +1343,7 @@ def stage_retention(
     brief: str,
     draft: dict[str, Any],
     duration: DurationTarget,
+    presentation: PresentationContext | None = None,
 ) -> dict[str, Any]:
     stage = "retention_edit"
     target = project / "creative" / "SCRIPT_PLAN.json"
@@ -1324,13 +1351,17 @@ def stage_retention(
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
+    presentation = presentation or _coerce_character_context(content_project).presentation
     prompt = fill(
         resolve_prompt(content_project, "02_retention_editor.md"),
         VIDEO_BRIEF=brief,
         CURRENT_SCRIPT=json.dumps(draft, ensure_ascii=False, indent=2),
+        ENTRY_SEGMENT_KEY=presentation.segment_key,
+        ENTRY_SEGMENT_LABEL=presentation.segment_label,
+        PRESENTATION_RULES=presentation.script_rules,
         **duration.as_prompt_values(),
     )
-    plan = ask_for_script(runner, stage, prompt, duration)
+    plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
     save_json(target, plan)
     # The plain-text narration is what ElevenLabs speaks; it must be the same words.
     (project / "SCRIPT_FINAL.md").write_text(plan["full_narration"] + "\n", encoding="utf-8")
@@ -1349,6 +1380,7 @@ def _character_prompt_context(character: CharacterContext) -> str:
             "environment_policy": character.environment_policy,
             "environment_affinities": list(character.environment_affinities),
             "reference_mode": character.reference_mode,
+            "presentation": character.presentation.prompt_context(),
         },
         ensure_ascii=False,
     )
@@ -1371,12 +1403,12 @@ def stage_character_resolution(
     content_project: Any,
     topic: str,
     brief: str,
-    plan: dict[str, Any],
+    plan: dict[str, Any] | None,
     launch: dict[str, Any],
     *,
     is_legacy_run: bool,
 ) -> tuple[CharacterResolution, CharacterContext]:
-    """Resolve WHO once, after final script and before Episode Director, then persist it."""
+    """Resolve WHO and the presentation once before profile-aware script generation."""
     registry_file = character_registry_path(content_project)
     if registry_file is None:
         raise StageFailure("character_resolution", "FAILED_VALIDATION", "Q Station character registry is not configured.")
@@ -1397,7 +1429,7 @@ def stage_character_resolution(
             TOPIC=topic,
             USER_REQUEST=topic,
             CREATIVE_BRIEF=brief,
-            FINAL_SCRIPT=plan["full_narration"],
+            FINAL_SCRIPT=(plan or {}).get("full_narration", "Not finalized yet; select from topic and brief."),
             CHARACTER_PROFILES=json.dumps(
                 [registry.get(char_id).selection_summary() for char_id in registry.enabled_ids()],
                 ensure_ascii=False,
@@ -1423,7 +1455,11 @@ def stage_character_resolution(
         }
         launch["character_resolution"] = payload
         save_json(project / "launch" / "LAUNCH_REQUEST.json", launch)
-    save_json(resolution_path, payload)
+    if not (persisted is not None and resolution_path.is_file()):
+        save_json(resolution_path, payload)
+    presentation_path = project / "creative" / "PRESENTATION_RESOLUTION.json"
+    if persisted is None and not is_legacy_run and not presentation_path.exists():
+        save_json(presentation_path, context.presentation.to_resolution())
     runner.state.mark(
         "character_resolution",
         STATE_REUSED if persisted else STATE_DONE,
@@ -1508,6 +1544,8 @@ def stage_episode_director(
         CREATIVE_BRIEF=brief,
         FINAL_SCRIPT=plan["full_narration"],
         CHARACTER_CONTEXT=_character_prompt_context(character),
+        PRESENTATION_CONTEXT=json.dumps(character.presentation.prompt_context(), ensure_ascii=False),
+        PRESENTATION_RULES=character.presentation.episode_rules,
         RECENT_HISTORY=json.dumps(history, ensure_ascii=False),
     )
     prompt = base_prompt
@@ -1943,9 +1981,17 @@ def stage_visual_plan(
 ) -> dict[str, Any]:
     stage = "visual_plan"
     target = project / "creative" / "VISUAL_PLAN.json"
+    visual_units = [*plan["body"]]
+    if str(plan.get("optional_closing") or "").strip():
+        visual_units.append(str(plan["optional_closing"]).strip())
     if runner.state.done(stage) and target.is_file():
-        runner.stage_reused(stage, target.name)
-        return load_json(target)
+        existing = load_json(target)
+        existing_beats = existing.get("beats") or []
+        existing_slices = [str(item.get("narration_slice") or "").strip() for item in existing_beats if isinstance(item, dict)]
+        if len(existing_beats) == len(visual_units) and existing_slices == visual_units:
+            runner.stage_reused(stage, target.name)
+            return existing
+        print("↻ visual_plan is stale: it does not include one image for every pre-CTA unit", flush=True)
     started = runner.stage_start(stage)
     body_episode_context = {
         key: episode_plan.get(key)
@@ -1956,7 +2002,7 @@ def stage_visual_plan(
         resolve_prompt(content_project, "05_visual_beat_planner.md"),
         FINAL_SCRIPT=json.dumps(
             {"opening_question_spark": plan["opening_question_spark"],
-             "book_transition": plan["book_transition"],
+             character.presentation.segment_key: plan[character.presentation.segment_key],
              "body": plan["body"],
              "optional_closing": plan["optional_closing"],
              "cta": plan["cta"]},
@@ -1976,13 +2022,22 @@ def stage_visual_plan(
         beats = data.get("beats") if isinstance(data, dict) else None
         if not isinstance(beats, list) or not beats:
             raise StageFailure(stage, "FAILED_VALIDATION", "The visual plan has no beats.")
-        if len(beats) != len(plan["body"]):
+        if len(beats) != len(visual_units):
             raise StageFailure(
                 stage,
                 "FAILED_VALIDATION",
-                f"The visual plan has {len(beats)} beats but the narration has {len(plan['body'])} "
-                "body segments; one beat must correspond to one segment or the images will not "
+                f"The visual plan has {len(beats)} beats but the narration has {len(visual_units)} "
+                "pre-CTA visual units; one beat must correspond to one unit or the images will not "
                 "land on their own sentences.",
+            )
+        ids = [item.get("beat_id") for item in beats if isinstance(item, dict)]
+        if ids != list(range(1, len(beats) + 1)):
+            raise StageFailure(stage, "FAILED_VALIDATION", "Visual beat IDs must be contiguous integers starting at 1.")
+        slices = [str(item.get("narration_slice") or "").strip() for item in beats if isinstance(item, dict)]
+        if slices != visual_units:
+            raise StageFailure(
+                stage, "FAILED_VALIDATION",
+                "Every narration_slice must exactly match its body/optional-closing unit in order.",
             )
         fingerprints = [str(item.get("visual_fingerprint") or "").strip().lower() for item in beats if isinstance(item, dict)]
         if len(fingerprints) != len(beats) or any(not value for value in fingerprints):
@@ -1998,7 +2053,7 @@ def stage_visual_plan(
         stage,
         prompt,
         check,
-        hint=f"Return exactly {len(plan['body'])} beats, one per narration body segment, in order.",
+        hint=f"Return exactly {len(visual_units)} beats, one per pre-CTA visual unit, in order; the final unit may be optional_closing.",
     )
     beats = data["beats"]
     save_json(target, data)
@@ -2019,8 +2074,8 @@ def stage_world_keyframe_prompt(
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
-    # Deliberately ignore episode direction and character-aware body planning. Clip B's
-    # last frame depends only on the factual script and inside-book world style.
+    # Deliberately ignore episode direction and character-aware body planning. The entry
+    # clip's last frame depends only on the factual script and topic-world style.
     prompt = fill(
         resolve_prompt(content_project, "06_world_keyframe_prompt_writer.md"),
         FINAL_SCRIPT=plan["full_narration"],
@@ -2064,8 +2119,6 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
     # the sheet came out as a scene rather than a clean, natural reference.
     reference_dir = ROOT / "projects" / content_project.project_id / "prompts" / "reference"
     reference_prompt = reference_dir / "book_identity.txt"
-    if not reference_prompt.is_file():
-        reference_prompt = reference_dir / "book_transition_reference_prompt.txt"
     if not reference_prompt.is_file():
         raise StageFailure(
             stage,
@@ -2316,6 +2369,94 @@ def stage_topic_book_cover(
     return target
 
 
+def stage_entry_identity(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    presentation: PresentationContext,
+) -> Path:
+    """Resolve/generate the recurring entry object's identity outside topic-world styling."""
+    # Preserve the proven book implementation and its canonical receipt byte-for-byte.
+    if presentation.id == "book_portal":
+        return stage_book_design_sheet(runner, project, content_project)
+    stage = "book_design_sheet"  # durable compatibility id; UI title is profile-aware
+    target = presentation.identity_sheet_path
+    prompt = presentation.entry_identity_prompt
+    receipt = target.with_suffix(target.suffix + ".receipt.json")
+    fingerprint = request_fingerprint(prompt, "canonical", [])
+    if valid_image(target) and receipt_status(project, target, receipt, fingerprint=fingerprint)["status"] == "verified":
+        runner.stage_reused(stage, target.name)
+        return target
+    started = runner.stage_start(stage)
+    launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    result = runner.image(stage, prompt, [], model=model, destination=target)
+    check = (result.generation_receipt or {}).get("quality_check")
+    if not isinstance(check, dict) or check.get("passed") is not True:
+        raise StageFailure(stage, "FAILED_VALIDATION", "Generated entry identity has no successful content review.")
+    _write_canonical_image_receipt(target, prompt, check, result=result, model=model)
+    runner.stage_done(stage, started, str(target.relative_to(ROOT)), sha256=sha256_file(target), profile_id=presentation.id)
+    return target
+
+
+def stage_entry_frame(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    topic: str,
+    world_style_anchor: Path,
+    entry_identity: Path,
+    episode_plan: dict[str, Any],
+    character: CharacterContext,
+    *,
+    force: bool = False,
+) -> Path:
+    """Create Intro B's topic/style-aware first frame from a stable entry identity."""
+    presentation = character.presentation
+    if presentation.id == "book_portal":
+        return stage_topic_book_cover(runner, project, content_project, topic, world_style_anchor, force=force)
+    direction_stage = "book_cover_design"  # durable compatibility id
+    direction_target = presentation.artifacts.path(project, "entry_direction")
+    if force or not (runner.state.done(direction_stage) and direction_target.is_file()):
+        started = runner.stage_start(direction_stage)
+        prompt = (
+            "Write a compact 55–90 word, non-textual art-direction brief for the configured entry frame. "
+            f"Topic: {topic!r}. Episode direction: {json.dumps(episode_plan, ensure_ascii=False)}. "
+            f"Presentation: {json.dumps(presentation.prompt_context(), ensure_ascii=False)}. "
+            "Name concrete topic motifs and one readable ownership/agency cue. No markdown, labels, words inside the image, or explanation."
+        )
+        direction = runner.text(direction_stage, prompt).strip()
+        if len(direction) < 40:
+            raise StageFailure(direction_stage, "FAILED_VALIDATION", "Entry-frame direction was unusably short.")
+        direction_target.parent.mkdir(parents=True, exist_ok=True)
+        direction_target.write_text(direction + "\n", encoding="utf-8")
+        runner.stage_done(direction_stage, started, direction_target.name, profile_id=presentation.id)
+    else:
+        runner.stage_reused(direction_stage, direction_target.name)
+        direction = direction_target.read_text(encoding="utf-8").strip()
+    stage = "book_cover"  # durable compatibility id
+    target = presentation.artifacts.path(project, "entry_frame")
+    receipt = presentation.artifacts.path(project, "entry_image_receipt")
+    prompt = (
+        f"{presentation.entry_frame_prompt}\n\nEPISODE TOPIC: {topic}\n"
+        f"EPISODE DIRECTION: {direction}\n"
+        f"TOPIC-WORLD STYLE: {json.dumps(load_json(project / 'creative' / 'WORLD_STYLE_PLAN.json'), ensure_ascii=False)}"
+    )
+    refs = [Reference(role="entry_identity", path=entry_identity), Reference(role="style_reference", path=world_style_anchor)]
+    if presentation.entry_frame_character_presence == "ownership_cue":
+        refs.append(Reference(role="character_sheet", path=character.sheet_path))
+    launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
+    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, refs):
+        runner.stage_reused(stage, target.name)
+        return target
+    started = runner.stage_start(stage)
+    result = runner.image(stage, prompt, refs, model=model, destination=target)
+    _write_image_receipt(project, f"gemini_{presentation.entry_kind}_entry_frame", result, prompt, refs, target, model)
+    runner.stage_done(stage, started, target.name, sha256=sha256_file(target), model=model, profile_id=presentation.id)
+    return target
+
+
 def stage_flow_prompt(
     runner: Runner,
     project: Path,
@@ -2330,8 +2471,9 @@ def stage_flow_prompt(
     character: CharacterContext | None = None,
 ) -> str:
     """Every Flow prompt comes from ChatGPT; none of them is hardcoded (§194)."""
+    presentation = (character or _coerce_character_context(content_project)).presentation
     stage = f"flow_prompt_{'a' if clip == 'A' else 'b'}"
-    target = project / "references" / f"flow_prompt_{'opening_a' if clip == 'A' else 'book_transition'}.txt"
+    target = presentation.artifacts.path(project, "question_prompt" if clip == "A" else "entry_prompt")
     if not force and runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8").strip()
@@ -2350,12 +2492,15 @@ def stage_flow_prompt(
             EPISODE_PLAN=json.dumps(episode_plan, ensure_ascii=False),
             VISUAL_PRESET_RULES=preset_rules,
             CHARACTER_CONTEXT=_character_prompt_context(character),
+            PRESENTATION_RULES=presentation.question_prompt_rules,
         )
     else:
         prompt = fill(
-            resolve_prompt(content_project, "09_book_transition_video_prompt_writer.md"),
-            BOOK_TRANSITION_NARRATION=narration,
+            resolve_prompt(content_project, "09_entry_transition_video_prompt_writer.md"),
+            ENTRY_TRANSITION_NARRATION=narration,
             TOPIC=topic,
+            PRESENTATION_CONTEXT=json.dumps(presentation.prompt_context(), ensure_ascii=False),
+            ENTRY_TRANSITION_RULES=presentation.transition_prompt,
             WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
             WORLD_KEYFRAME_DESC=world_keyframe_description,
             SOURCE_DURATION_SECONDS=str(source_seconds),
@@ -2390,9 +2535,10 @@ def stage_flow_clip(
     retry spends credits, so recovery is the worker's reconciliation path, not a loop here.
     """
     stage = f"flow_clip_{clip.lower()}"
-    filename = "question_spark_source.mp4" if clip == "A" else "book_transition_source.mp4"
+    presentation = (character or _coerce_character_context(content_project)).presentation
+    target = presentation.artifacts.path(project, "question_source" if clip == "A" else "entry_source")
+    filename = target.name
     receipt_name = "flow_opening_a" if clip == "A" else "flow_opening_b"
-    target = project / "assets" / "opening" / filename
     receipt = project / "pipeline" / "provider_receipts" / f"{receipt_name}.json"
     receipt_duration = None
     if receipt.is_file():
@@ -2422,7 +2568,7 @@ def stage_flow_clip(
     else:
         uploads = build_flow_uploads(
             clip="B",
-            book_spread_frame=book_spread,
+            entry_frame=book_spread,
             world_keyframe=world_keyframe,
         )
     references = [Reference(role=role, path=path) for role, path in uploads]
@@ -2490,7 +2636,7 @@ def stage_flow_policy_repair_prompt(
     instruction = (
         "Rewrite the following Google Flow video prompt after Flow rejected it. Return ONLY one "
         "compact production prompt, no explanation or markdown. Preserve the supplied frame-to-frame "
-        "camera transition and 2D illustrated-book treatment, but make it policy-safe: depict only "
+        "camera transition and hand-drawn illustrated treatment, but make it policy-safe: depict only "
         "fictional, non-identifiable adults; do not name, imitate or recreate any real person or public "
         "figure; do not include injury, fighting, weapons, threats, extremist symbols, logos, readable "
         "text, or claims about a real person. Keep all action calm, symbolic and non-violent. Do not tell "
@@ -2518,8 +2664,8 @@ def policy_safe_frame_prompt(original: str, flow_evidence: str, attempt: int) ->
     """A narrow image-stage rewind for Flow's two endpoint frames.
 
     Flow cannot tell us reliably whether it objected to text or a frame.  On a real policy
-    rejection we therefore regenerate the *only* images sent to Flow (world keyframe and its
-    composed book spread), keeping all body images and already-completed work intact.
+    rejection we therefore regenerate the *only* images sent to Flow (world keyframe and the
+    active presentation's entry frame), keeping all body images and completed work intact.
     """
     return (
         f"{original.strip()}\n\n"
@@ -2567,6 +2713,8 @@ def stage_flow_clip_with_policy_recovery(
     aspect_ratio: str,
     source_seconds: int,
     character: CharacterContext | None = None,
+    entry_identity: Path | None = None,
+    episode_plan: dict[str, Any] | None = None,
 ) -> Path:
     """Run a Flow clip and perform up to three audited policy-only rewinds.
 
@@ -2599,9 +2747,15 @@ def stage_flow_clip_with_policy_recovery(
             active_world_keyframe = stage_world_keyframe(
                 runner, project, content_project, safe_prompt, world_style_anchor, force=True
             )
-            active_book_spread = stage_topic_book_cover(
-                runner, project, content_project, runner.state.state["topic"], world_style_anchor, force=True
-            )
+            if character is not None and entry_identity is not None and episode_plan is not None:
+                active_book_spread = stage_entry_frame(
+                    runner, project, content_project, runner.state.state["topic"], world_style_anchor,
+                    entry_identity, episode_plan, character, force=True,
+                )
+            else:
+                active_book_spread = stage_topic_book_cover(
+                    runner, project, content_project, runner.state.state["topic"], world_style_anchor, force=True
+                )
         runner.state.mark(recovery_stage, STATE_DONE, attempt=0, next_attempt=1)
     for attempt in range(1, FLOW_POLICY_RETRY_LIMIT + 1):
         try:
@@ -2647,9 +2801,15 @@ def stage_flow_clip_with_policy_recovery(
                 active_world_keyframe = stage_world_keyframe(
                     runner, project, content_project, safe_prompt, world_style_anchor, force=True
                 )
-                active_book_spread = stage_topic_book_cover(
-                    runner, project, content_project, runner.state.state["topic"], world_style_anchor, force=True
-                )
+                if character is not None and entry_identity is not None and episode_plan is not None:
+                    active_book_spread = stage_entry_frame(
+                        runner, project, content_project, runner.state.state["topic"], world_style_anchor,
+                        entry_identity, episode_plan, character, force=True,
+                    )
+                else:
+                    active_book_spread = stage_topic_book_cover(
+                        runner, project, content_project, runner.state.state["topic"], world_style_anchor, force=True
+                    )
             runner.state.mark(recovery_stage, STATE_DONE, attempt=attempt, next_attempt=attempt + 1)
     raise AssertionError("policy recovery loop must return or raise")
 
@@ -3012,8 +3172,19 @@ def stage_transition_direction(
     if len(beats) != len(images):
         raise StageFailure(stage, "FAILED_VALIDATION", "Transition editor needs one accepted image for every visual beat.")
     if not force and runner.state.done(stage) and target.is_file():
-        runner.stage_reused(stage, target.name)
-        return load_json(target)
+        existing = load_json(target)
+        expected_boundaries = [
+            (int(left["beat_id"]), int(right["beat_id"]))
+            for left, right in zip(beats, beats[1:])
+        ]
+        actual_boundaries = [
+            (item.get("from_beat_id"), item.get("to_beat_id"))
+            for item in (existing.get("decisions") or []) if isinstance(item, dict)
+        ]
+        if actual_boundaries == expected_boundaries:
+            runner.stage_reused(stage, target.name)
+            return existing
+        print("↻ transition_direction is stale for the revised visual beat list", flush=True)
 
     started = runner.stage_start(stage)
     decisions: list[dict[str, Any]] = []
@@ -3146,7 +3317,16 @@ def ensure_launch_request(
 def write_visual_beats_markdown(project: Path, plan: dict[str, Any], visual_plan: dict[str, Any]) -> Path:
     """VISUAL_BEATS.md is what align_beats.py reads, so it must carry the spoken words."""
     lines = ["# Visual Beats", ""]
-    for beat, narration in zip(visual_plan.get("beats") or [], plan["body"]):
+    visual_units = [*plan["body"]]
+    if str(plan.get("optional_closing") or "").strip():
+        visual_units.append(str(plan["optional_closing"]).strip())
+    beats = visual_plan.get("beats") or []
+    if len(beats) != len(visual_units):
+        raise StageFailure(
+            "visual_plan", "FAILED_VALIDATION",
+            f"Cannot write VISUAL_BEATS.md: {len(beats)} images do not cover {len(visual_units)} pre-CTA units.",
+        )
+    for beat, narration in zip(beats, visual_units):
         lines += [
             f"### Beat {int(beat['beat_id'])}",
             "",
@@ -3463,12 +3643,13 @@ def main() -> int:
             jobs.require_ready(["chatgpt", "gemini", "flow"])
             brief = build_brief(project, args.topic, content_project, duration)
 
-            draft = stage_script(runner, project, content_project, brief, duration)
-            plan = stage_retention(runner, project, content_project, brief, draft, duration)
             _resolution, character = stage_character_resolution(
-                runner, project, content_project, args.topic, brief, plan, launch,
+                runner, project, content_project, args.topic, brief, None, launch,
                 is_legacy_run=is_legacy_run,
             )
+            presentation = character.presentation
+            draft = stage_script(runner, project, content_project, brief, duration, presentation)
+            plan = stage_retention(runner, project, content_project, brief, draft, duration, presentation)
             episode_plan = stage_episode_director(
                 runner, project, content_project, args.topic, brief, plan, character
             )
@@ -3516,11 +3697,10 @@ def main() -> int:
             world_keyframe = stage_world_keyframe(
                 runner, project, content_project, keyframe_prompt, world_style_anchor
             )
-            stage_book_design_sheet(runner, project, content_project)
-            # Clip B now begins on an episode-specific closed cover.  The old spread remains
-            # available for legacy episodes, but is never a Flow start frame for new work.
-            book_cover = stage_topic_book_cover(
-                runner, project, content_project, args.topic, world_style_anchor
+            entry_identity = stage_entry_identity(runner, project, content_project, presentation)
+            entry_frame = stage_entry_frame(
+                runner, project, content_project, args.topic, world_style_anchor,
+                entry_identity, episode_plan, character,
             )
 
             clip_a_prompt = stage_flow_prompt(
@@ -3529,8 +3709,9 @@ def main() -> int:
                 character=character,
             )
             clip_b_prompt = stage_flow_prompt(
-                runner, project, content_project, "B", plan["book_transition"],
+                runner, project, content_project, "B", plan[presentation.segment_key],
                 None, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
+                character=character,
             )
 
             # The body images depend only on the plan, the style anchor and the world
@@ -3566,10 +3747,13 @@ def main() -> int:
             )
             clip_b = stage_flow_clip_with_policy_recovery(
                 runner, project, content_project, "B", clip_b_prompt,
-                book_spread=book_cover, world_keyframe=world_keyframe,
+                book_spread=entry_frame, world_keyframe=world_keyframe,
                 world_keyframe_prompt=keyframe_prompt, world_style_anchor=world_style_anchor,
                 model=flow_model, resolution=flow_resolution, aspect_ratio=args.aspect_ratio,
                 source_seconds=opening_b_seconds,
+                character=character,
+                entry_identity=entry_identity,
+                episode_plan=episode_plan,
             )
 
             state.mark("qh_visual_complete", STATE_DONE, body_images=len(body_images))

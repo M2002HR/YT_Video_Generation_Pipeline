@@ -11,6 +11,10 @@
     {
       "id": "red_horned_everyman",
       "config": "red_horned_everyman/character.json"
+    },
+    {
+      "id": "moss_cloaked_crone",
+      "config": "moss_cloaked_crone/character.json"
     }
   ]
 }

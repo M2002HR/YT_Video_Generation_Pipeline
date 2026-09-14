@@ -4,7 +4,7 @@
 
 This folder is one reusable visual preset. A visual preset packages the **style prompt + style anchor + character prompt + character anchor** that belong together.
 
-Different videos may select different presets. New presets can be added as sibling folders without changing the storyboard pipeline.
+Different videos may select different presets. New presets can be added as sibling folders without changing the image pipeline.
 
 ## Contents
 
@@ -31,22 +31,10 @@ Recurring protagonist:
 
 ## Usage
 
-When a video selects this preset:
-
-For Sheet 01 upload:
-1. `style_anchor.png`
-2. `character_anchor.png`
-3. any video-specific recurring anchors
-4. send the current sheet prompt
-
-For Sheet 02+ upload:
-1. `style_anchor.png`
-2. `character_anchor.png`
-3. any video-specific recurring anchors
-4. previous raw storyboard sheet
-5. send the current sheet prompt
-
-The preset anchors are canonical. The previous sheet is only for local continuity and must never override the canonical character/style anchors.
+When a video selects this legacy preset, each beat is generated as one image. Supply
+`style_anchor.png`, add `character_anchor.png` only when the protagonist is present, add any
+genuinely required video-owned identity reference, and send the current single-beat prompt.
+The preset anchors remain canonical; a previous generated scene is not a style source.
 
 ## Adding another visual mode
 

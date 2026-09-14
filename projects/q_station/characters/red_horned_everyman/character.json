@@ -4,6 +4,7 @@
   "display_name": "Red Horned Everyman",
   "enabled": true,
   "version": 1,
+  "presentation_profile": "book_portal",
   "environment_policy": "dynamic",
   "selection_profile": {
     "archetype": "serious skeptical everyday explainer",

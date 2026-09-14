@@ -190,6 +190,22 @@
       "book_template_id": "002",
       "world_style_id": "soft_graphite_storybook_pencil_001",
       "updated_at": "2026-09-13T20:56:14.992324+00:00"
+    },
+    {
+      "video_id": "033",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001",
+      "updated_at": "2026-09-14T18:43:55.368511+00:00"
+    },
+    {
+      "video_id": "034",
+      "opening_activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot",
+      "opening_location": "quiet early-morning urban community garden with several adjacent raised beds",
+      "camera_pattern": "static_wide",
+      "world_style_id": "cinematic_abandoned_world_charcoal_001",
+      "updated_at": "2026-09-14T19:27:35.790996+00:00"
     }
   ]
 }

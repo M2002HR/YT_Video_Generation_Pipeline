@@ -58,7 +58,7 @@ woodcut, historical engraving, charcoal, ink wash, clay / stop-motion-like, pape
   8–10% of the frame (two subtitle lines). It may contain low-detail texture or atmosphere, but never the face,
   hands, key action, critical diagram labels, focal object or any text, letters, numbers, captions, labels, words or UI — leave the reserve as calm texture only. Do not make it an oversized
   empty void; it must feel like a balanced part of the frame.
-- Choose solely for the topic, script, and inside-book subject world. Recurring host identity and opening environment must not influence medium, palette, or subject vocabulary.
+- Choose solely for the topic, script, and post-entry subject world. Recurring host identity, entry mechanism and opening environment must not influence medium, palette, or subject vocabulary.
 - `hero_rendering_in_world` describes medium translation only if a later beat includes its resolved host; do not invent character identity here.
 
 Return ONLY JSON.

@@ -28,7 +28,7 @@ QH_PIPELINE_PROMPTS = (
     "06_world_keyframe_prompt_writer.md",
     "07_single_beat_image_prompt_writer.md",
     "08_opening_video_prompt_writer.md",
-    "09_book_transition_video_prompt_writer.md",
+    "09_entry_transition_video_prompt_writer.md",
 )
 
 # Flow reference policy lives in exactly one module (scripts/flow_reference_policy.py).

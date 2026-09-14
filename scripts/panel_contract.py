@@ -106,7 +106,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("aspect_ratio", "Frame format", "select", default="9:16", options=[
                 {"value": "9:16", "label": "9:16 — Shorts / Reels"},
                 {"value": "16:9", "label": "16:9 — YouTube landscape", "disabledProjects": ["q_station"]},
-            ], help="Q Station's book-world image contract is currently vertical; landscape remains available to generic projects."),
+            ], help="Q Station's presentation/world image contract is currently vertical; landscape remains available to generic projects."),
         ]},
         {"id": "branding", "title": "Logo & video title", "description": "Persistent channel branding burned into the final video. Leave the title text empty to use the episode question/topic.", "fields": [
             _field("show_logo", "Show logo", "toggle", default=False, help="Upload a logo below to enable this control."),
@@ -186,7 +186,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("subtitle_outline_colour", "Outline colour", "color", default="#000000", width="half", presets=list(SUBTITLE_COLOUR_PRESETS), requires={"field": "show_subtitles", "value": True}),
             _field("subtitle_outline", "Outline width", "number", default=3, min=0, max=8, step=0.5, help="0 switches the outline off.", requires={"field": "show_subtitles", "value": True}),
         ]},
-        {"id": "character", "title": "Character & presence", "description": "Choose the recurring host and where it may appear.", "projects": ["q_station"], "fields": [
+        {"id": "character", "title": "Character & presentation", "description": "Choose the recurring host; its configured intro and entry format are selected with it.", "projects": ["q_station"], "fields": [
             _field("character_mode", "Character", "select", default="auto", options=select([("auto", "Auto"), ("manual", "Manual character")])),
             _field("character_id", "Manual character", "select", default="", options=[{"value": "", "label": "Choose a character"}]),
             _field("hero_presence_mode", "Hero presence", "select", default="auto", options=select([("auto", "Auto"), ("opener_only", "Opener only"), ("limited_in_world", "Limited in world"), ("in_world", "In world")])),
@@ -230,8 +230,12 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("stability", "Stability", "number", default=.3, min=0, max=1, step=.01, width="half"),
             _field("similarity", "Similarity", "number", default=.5, min=0, max=1, step=.01, width="half"),
             _field("style", "Voice style", "number", default=.15, min=0, max=1, step=.01, width="half"),
+            _field("narration_gain_db", "Narration volume (dB)", "number", default=0, min=-12, max=12, step=.5, help="Final-mix gain. Positive values make narration louder without regenerating the ElevenLabs voice.", width="half"),
         ]},
         {"id": "music", "title": "Background music", "description": "Ordered source fallback for the final audio mix.", "fields": [
+            # Rendered by the Studio's dedicated audio uploader. The opaque token is
+            # validated and frozen into each launch/revision by the backend.
+            _field("music_upload_id", "Uploaded music", default="", maxLength=96, placeholder=""),
             _field("music_providers", "Music provider priority", "priority", default=["freesound", "mixkit", "pixabay"], options=select([("freesound", "Freesound"), ("mixkit", "Mixkit"), ("pixabay", "Pixabay")]), help="Use the arrows to set fallback order; each provider is tried once."),
         ]},
         {"id": "sfx", "title": "Sound effects", "description": "Optional restrained sound-design pass.", "collapsed": True, "fields": [
@@ -299,7 +303,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
     )
     groups.sort(key=lambda group: order.index(group["id"]))
-    return {"schema_version": 3, "groups": groups}
+    return {"schema_version": 4, "groups": groups}
 
 
 def defaults(schema: dict[str, Any]) -> dict[str, Any]:

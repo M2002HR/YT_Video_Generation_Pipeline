@@ -216,6 +216,9 @@ def main() -> None:
     command: list[str] = [ffmpeg, "-hide_banner", "-y", "-i", str(baseline)]
     filter_parts: list[str] = []
 
+    narration_cfg = profile.get("narration") if isinstance(profile.get("narration"), dict) else {}
+    narration_gain_db = max(-12.0, min(12.0, float(narration_cfg.get("gain_db", 0.0))))
+
     # Narration/audio already accepted in the baseline render.
     # Split it when sidechain ducking needs a dedicated detector signal.
     narration_mix_label = "narr"
@@ -249,13 +252,13 @@ def main() -> None:
 
         if duck_enabled:
             filter_parts.append(
-                f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS,"
+                f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS,volume={narration_gain_db:.3f}dB,"
                 "asplit=2[narr][sidechain]"
             )
             sidechain_label = "sidechain"
         else:
             filter_parts.append(
-                f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS[narr]"
+                f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS,volume={narration_gain_db:.3f}dB[narr]"
             )
 
         segment_labels: list[str] = []
@@ -314,7 +317,7 @@ def main() -> None:
             filter_parts.append("[musicpre]anull[music]")
     else:
         filter_parts.append(
-            f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS[narr]"
+            f"[0:a:0]atrim=0:{duration:.6f},asetpts=PTS-STARTPTS,volume={narration_gain_db:.3f}dB[narr]"
         )
 
     next_input_index = (1 + len(music_segments)) if music_enabled else 1

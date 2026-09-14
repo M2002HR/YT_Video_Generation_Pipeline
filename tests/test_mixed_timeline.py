@@ -133,6 +133,36 @@ def test_body_images_keep_their_measured_positions():
         assert abs(images[-1]["end"] - AUDIO_DURATION) <= 0.05
 
 
+def test_orb_profile_opening_reaches_timeline_without_provider_calls():
+    """The crone's two profile-owned clips feed the shared downstream timeline unchanged."""
+    from character_runtime import load_character_registry
+
+    with tempfile.TemporaryDirectory() as tmp:
+        video_dir = _build_workspace(Path(tmp), spark=SPARK_END, transition=TRANSITION_END)
+        _write_opening_timing(video_dir, spark=SPARK_END, transition=TRANSITION_END)
+        opening = video_dir / "assets" / "opening"
+        (opening / "question_spark_trimmed.mp4").rename(opening / "question_intro_trimmed.mp4")
+        (opening / "book_transition_trimmed.mp4").rename(opening / "orb_transition_trimmed.mp4")
+
+        registry = load_character_registry(ROOT / "projects/q_station/characters/registry.json")
+        profile = registry.get("moss_cloaked_crone").presentation
+        resolution = video_dir / "creative" / "PRESENTATION_RESOLUTION.json"
+        resolution.parent.mkdir(parents=True)
+        resolution.write_text(json.dumps(profile.to_resolution()), encoding="utf-8")
+        launch = video_dir / "launch" / "LAUNCH_REQUEST.json"
+        launch.parent.mkdir(parents=True)
+        launch.write_text(json.dumps({"content_project": "q_station"}), encoding="utf-8")
+
+        result = _run_builder(video_dir)
+        assert result.returncode == 0, result.stderr
+        timeline = json.loads((video_dir / "timeline" / "TIMELINE.json").read_text(encoding="utf-8"))
+        videos = [entry for entry in timeline["beats"] if entry["media_type"] == "video"]
+        assert [Path(entry["source"]).name for entry in videos] == [
+            "question_intro_trimmed.mp4", "orb_transition_trimmed.mp4",
+        ]
+        assert [entry["beat_id"] for entry in videos] == ["video_opening_a", "video_opening_b"]
+
+
 def test_image_pair_editor_obeys_the_small_transition_vocabulary_and_fixed_image_motion():
     with tempfile.TemporaryDirectory() as tmp:
         video_dir = _build_workspace(Path(tmp), spark=SPARK_END, transition=TRANSITION_END)

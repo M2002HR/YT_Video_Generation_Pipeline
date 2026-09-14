@@ -68,3 +68,20 @@ def test_success_without_the_required_artifact_fails_validation(
     assert saved["status"] == "FAILED"
     assert len(saved["events"]) == 1
     assert saved["events"][0]["status"] == "FAILED_VALIDATION"
+
+
+def test_timeline_reuse_rejects_an_old_missing_closing_beat(tmp_path: Path) -> None:
+    (tmp_path / "timeline").mkdir()
+    (tmp_path / "timing").mkdir()
+    (tmp_path / "timeline/TIMELINE.json").write_text(json.dumps({
+        "duration": 20, "beats": [
+            {"beat_id": 1, "media_type": "image", "narration": "Body sentence."},
+        ],
+    }), encoding="utf-8")
+    (tmp_path / "timing/BEAT_TIMINGS.json").write_text(json.dumps({
+        "audio_duration_seconds": 20, "beats": [
+            {"beat_id": 1, "narration": "Body sentence."},
+            {"beat_id": 2, "narration": "Closing sentence."},
+        ],
+    }), encoding="utf-8")
+    assert completion.timeline_matches_current_timing(tmp_path) is False

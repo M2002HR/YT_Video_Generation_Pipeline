@@ -66,6 +66,20 @@ def save(path: Path, state: dict[str, Any]) -> None:
     path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def timeline_matches_current_timing(video: Path) -> bool:
+    """Refuse a plausible-looking timeline built from an older visual-beat contract."""
+    try:
+        timeline = json.loads((video / "timeline/TIMELINE.json").read_text(encoding="utf-8"))
+        timing = json.loads((video / "timing/BEAT_TIMINGS.json").read_text(encoding="utf-8"))
+        timeline_beats = [item for item in timeline.get("beats") or [] if isinstance(item, dict) and item.get("media_type") == "image"]
+        timing_beats = [item for item in timing.get("beats") or [] if isinstance(item, dict)]
+        left = [(item.get("beat_id"), " ".join(str(item.get("narration") or "").split())) for item in timeline_beats]
+        right = [(item.get("beat_id"), " ".join(str(item.get("narration") or "").split())) for item in timing_beats]
+        return left == right and abs(float(timeline.get("duration")) - float(timing.get("audio_duration_seconds"))) <= .01
+    except (OSError, ValueError, TypeError):
+        return False
+
+
 def execute(
     name: str,
     command: list[str],
@@ -210,7 +224,10 @@ def main() -> None:
         publish=args.publish, telegram_low_size=args.telegram_low_size, commit=args.commit,
     )
 
+    upstream_changed = False
+
     def step(name: str, command: list[str], **kw: Any) -> None:
+        nonlocal upstream_changed
         position = f"step {sequence.index(name) + 1}/{len(sequence)}" if name in sequence else ""
         artifact = kw.get("artifact")
         if (
@@ -218,6 +235,8 @@ def main() -> None:
             and artifact.is_file()
             and artifact.stat().st_size > 0
             and previous_status.get(name) in {"DONE", "REUSED"}
+            and not upstream_changed
+            and (name != "build_timeline" or timeline_matches_current_timing(video))
         ):
             event = {"stage": name, "status": "REUSED", "ended_at": now(), "elapsed_seconds": 0.0, "artifact": str(artifact.relative_to(video))}
             state["events"].append(event)
@@ -230,6 +249,7 @@ def main() -> None:
             name, command, state, state_path,
             notifier=notifier, video=video, position=position, **kw,
         )
+        upstream_changed = True
 
     def active_title(name: str) -> str:
         position = f"step {sequence.index(name) + 1}/{len(sequence)}" if name in sequence else ""

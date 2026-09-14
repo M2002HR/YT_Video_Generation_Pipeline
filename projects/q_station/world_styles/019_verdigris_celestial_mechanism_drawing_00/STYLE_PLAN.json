@@ -1,0 +1,20 @@
+{
+  "style_id": "verdigris_celestial_mechanism_drawing_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "technical drawing",
+  "secondary_treatment": "subtle historical-engraving hatching",
+  "texture_family": "aged vellum grain with restrained oxidized-bronze patina speckling",
+  "palette_summary": "deep Aegean blue and charcoal foundations, parchment cream, oxidized copper verdigris, muted antique bronze and ochre, with sparse pale celestial-blue highlights",
+  "line_treatment": "precise compass-and-stylus technical linework for gears, pointers and orbital geometry, softened by fine archaeological engraving hatching and occasional worn or broken edges",
+  "lighting": "cool raking archaeological light with restrained warm bronze glints and soft shadow falloff",
+  "frame_language": "every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "world vocabulary may include the Antikythera shipwreck, sponge divers, amphorae and ancient cargo, corroded bronze fragments, interlocking hand-cut gears, hand crank, pointers, concentric astronomical dials, Sun and Moon indicators, eclipse-cycle geometry, Greek-games cycle imagery, fragmentary inscriptions represented only as illegible texture, ancient Mediterranean seascapes, and abstract celestial diagrams consistent with Hellenistic astronomy; exclude modern machinery, electronics and contemporary laboratory interfaces",
+  "historical_accuracy_note": "Treat the mechanism as a Hellenistic Greek bronze geared instrument more than two millennia old and base reconstructions on surviving fragments and mainstream scholarly reconstructions. Avoid modern clockwork embellishments, steel components, electric illumination, fantasy gears, intact invented inscriptions, or presenting uncertain reconstructed details as archaeologically preserved fact.",
+  "hero_rendering_in_world": "if the resolved host later appears inside the world, preserve the established silhouette and translate it into precise charcoal-and-verdigris technical linework with sparse engraved hatching and the same vellum/patinated-bronze material language; do not invent new costume or identity details",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no steampunk, no cyberpunk or neon sci-fi, no anime, no modern blueprint grids or CAD UI, no holograms, no glowing digital numerals, no modern watches or computers, no pristine fantasy machinery, and no readable generated text anywhere in the artwork",
+  "reason": "The episode is fundamentally about an ancient geared machine that mechanically models celestial cycles, so a technical-drawing world makes the mechanism, crank, pointers and astronomical relationships immediately legible while aged vellum, verdigris and engraving hatching keep the imagery archaeological rather than modern. A new style is required by the operator directive. It also avoids the four most recent treatments—pop screenprint, monochrome linework, soft graphite storybook and paper collage—and establishes a distinct mechanical-celestial visual identity without reusing the catalog's existing engraving, fresco or luminous-network styles.",
+  "style_subtitle_reserve": "reserve only the bottom 8–10% of the 9:16 frame as a quiet continuation of the vellum-and-patina field with low-detail mottling and faint non-semantic wear; keep it free of faces, hands, gears, pointers, focal artifacts, fine diagrams and absolutely free of any text, letters, numbers, captions, labels, words or UI",
+  "reserve_subtitle_space": false
+}

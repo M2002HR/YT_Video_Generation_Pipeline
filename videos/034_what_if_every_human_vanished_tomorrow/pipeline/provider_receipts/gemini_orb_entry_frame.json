@@ -1,0 +1,173 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "d6f0a01ecafe6e9700f372b9eb1d129ab4bd481143fc641b5741ac2734ee780f",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical illustrated frame centers the recurring glass orb on its bronze support. The sphere retains the equatorial bronze band, moss-green cord knot, crescent-like brace and clawed base, while a long-fingered elderly hand emerging from a moss-green sleeve reaches across the foreground and establishes the crone's ownership. The orb and surrounding scene show a deserted, overgrown urban street with abandoned vehicles, standing water, weathered buildings and a subway entrance, rendered in muted gray-green charcoal-and-ink textures with a worn paper perimeter. A strong spray or beam enters from the upper right and crosses toward the orb.",
+    "violations": [
+      "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+      "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+      "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+      "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+      "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+      "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+      "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+      "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+      "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+      "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+      "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+    ],
+    "observations": [
+      "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+      "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+      "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+      "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+      "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+      "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "f4deada9-caa6-46f7-a36e-04b1e1d3c2ae",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/64c699ab54468b32",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=f4deada9-caa6-46f7-a36e-04b1e1d3c2ae_output_1.png 1536x2752 sha256=5b72314723bdd6b56a16619a487c8e1f236e9bf792e29e067f96c8d696b5159f"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical illustrated frame centers the recurring glass orb on its bronze support. The sphere retains the equatorial bronze band, moss-green cord knot, crescent-like brace and clawed base, while a long-fingered elderly hand emerging from a moss-green sleeve reaches across the foreground and establishes the crone's ownership. The orb and surrounding scene show a deserted, overgrown urban street with abandoned vehicles, standing water, weathered buildings and a subway entrance, rendered in muted gray-green charcoal-and-ink textures with a worn paper perimeter. A strong spray or beam enters from the upper right and crosses toward the orb.",
+      "violations": [
+        "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+        "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+        "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+        "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+        "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+        "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+        "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+        "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+        "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+        "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+        "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+      ],
+      "observations": [
+        "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+        "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+        "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+        "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+        "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+        "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "d6f0a01ecafe6e9700f372b9eb1d129ab4bd481143fc641b5741ac2734ee780f",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "f4deada9-caa6-46f7-a36e-04b1e1d3c2ae",
+        "prompt_sha256": "db26dc3b86b87639d32620d2b01482f5f1d8c7d246b68bc6866a51ab15a11474",
+        "output_sha256": "5b72314723bdd6b56a16619a487c8e1f236e9bf792e29e067f96c8d696b5159f",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical illustrated frame centers the recurring glass orb on its bronze support. The sphere retains the equatorial bronze band, moss-green cord knot, crescent-like brace and clawed base, while a long-fingered elderly hand emerging from a moss-green sleeve reaches across the foreground and establishes the crone's ownership. The orb and surrounding scene show a deserted, overgrown urban street with abandoned vehicles, standing water, weathered buildings and a subway entrance, rendered in muted gray-green charcoal-and-ink textures with a worn paper perimeter. A strong spray or beam enters from the upper right and crosses toward the orb.",
+          "violations": [
+            "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+            "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+            "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+            "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+            "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+            "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+            "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+            "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+            "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+            "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+            "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+          ],
+          "observations": [
+            "The requested episode-specific allotment scene is largely absent: there are no dew-dark raised beds, narrow garden paths, abandoned ground hose, dropped glove or tipped trowel; the setting is instead an urban street.",
+            "The water source reads as an elevated wall or pipe spray rather than the specified unattended hose hissing across an empty allotment.",
+            "The orb reflection conveys deserted streets, flooding, creeping vegetation and weathered infrastructure well, but stalled transit is only weakly suggested by the subway entrance rather than visibly depicted.",
+            "Readable text appears on the subway entrance sign inside the orb, violating the no-readable-text requirement.",
+            "The calm low-detail field at the bottom occupies noticeably more than the requested approximate 8–10 percent and reads somewhat like an enlarged blank reserve.",
+            "Some crisp inked contours and polished object rendering are stronger than the rough charcoal treatment in the world-style reference, though the overall palette, soot texture, weathered border and atmospheric gray-green presentation remain recognizably continuous."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/orb_portal/refs/orb_design_sheet.png",
+      "sha256": "4c47c81f9a59c1d45f4be697997af1614d754249a71301f2e80ac5546263899e"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/034_what_if_every_human_vanished_tomorrow/references/world_style_anchor.png",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/moss_cloaked_crone/refs/character_sheet.jpg",
+      "sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    }
+  ],
+  "prompt_sha256": "db26dc3b86b87639d32620d2b01482f5f1d8c7d246b68bc6866a51ab15a11474",
+  "prompt": "Create one 9:16 first frame centered on the recurring magic orb from the attached identity sheet.\nPreserve its sphere, aged-bronze equatorial band, three-claw cradle, crescent brace and moss-green cord\nknot. Make ownership and agency unmistakably the old crone's using the attached character identity:\nshow one strong cue such as her long fingers touching the cradle, a moss-green sleeve framing it, her\nhunched shadow/reflection, or her black raven beside it; do not require a full face or body. Inside the\norb, stage a still subject-specific glimpse directed by the episode brief, gradually adopting the\nattached world style's palette, texture, atmosphere and frame language. The world style affects the\norb interior and surrounding presentation, never the crone's identity or the orb's locked geometry.\nNo readable text, generic crystal ball, unrelated wizard, UI, 3D CGI or photorealism.\n\nEPISODE TOPIC: What If Every Human Vanished Tomorrow?\nEPISODE DIRECTION: Static wide frame at dawn: dew-dark raised beds and narrow paths, one abandoned hose hissing across an empty allotment, flooding soil into muddy overflow beside a dropped glove and tipped trowel. The crone freezes mid-reach, then her long fingers emerge unmistakably from a moss-green sleeve holding her orb into the spray, clearly directing the moment. In its wet reflection: deserted streets, stalled transit, creeping vegetation, flooded infrastructure, and weathered buildings foreshadow a humanless world.\nTOPIC-WORLD STYLE: {\"style_id\": \"cinematic_abandoned_world_charcoal_001\", \"decision\": \"new\", \"reuse_of\": null, \"medium\": \"charcoal\", \"secondary_treatment\": \"subtle diluted ink wash for atmospheric depth, water, haze, and distant structural silhouettes\", \"texture_family\": \"rough fibrous charcoal paper with weathered concrete-like grain, soft soot bloom, rubbed graphite haze, and restrained water-stain mottling\", \"palette_summary\": \"desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, and sparse cold amber remnants for failing artificial light\", \"line_treatment\": \"cinematic charcoal silhouettes with broken architectural edges, selective crisp dark contours around important infrastructure, loose rubbed shading in decay zones, and fine scratch marks for cables, weeds, cracks, and rain\", \"lighting\": \"overcast cinematic daylight shifting into dim emergency-light gloom, with long soft shadows, misty atmospheric falloff, and occasional isolated cold-amber utility glow\", \"frame_language\": \"every 9:16 body image sits inside a recurring weathered charcoal-and-concrete outer field with irregular soot-darkened edges and a softly abraded inner illustration window, as if the abandoned scene has been rubbed into a stained architectural drawing board; the central image retains cinematic depth with foreground debris or vegetation, a readable midground event, and hazed infrastructure beyond, while the same worn perimeter and charcoal vignette grammar persist throughout the episode\", \"subtitle_reserve\": \"no dedicated caption reserve; the scene and matching texture fill the complete illustration height\", \"subject_constraints\": \"modern post-human environments only: unattended suburban yards and running hoses, empty streets and homes, failing electrical infrastructure, substations and transmission lines, nuclear facilities shown externally or through simplified non-instructional cutaway imagery, trapped domestic pets, abandoned farms and livestock, flooded subway tunnels, invasive weeds, weather-damaged buildings, rust, standing water, cracked concrete, windblown debris, and gradual ecological reclamation; human crowds and active operators are absent after entry into the scenario\", \"historical_accuracy_note\": null, \"hero_rendering_in_world\": \"if the resolved host appears inside the world, translate only that established silhouette and costume into the same charcoal-and-ink language, using soot-soft contours, desaturated values, and the scene's cinematic lighting without introducing a new character design\", \"negative_constraints\": \"no photorealism, no glossy 3D CGI, no anime, no neon cyberpunk, no clean vector infographic aesthetic, no cheerful storybook treatment, no excessive gore or animal suffering, no disaster-movie fireball spectacle, no dense technical labels, no visible text or UI inside world imagery, and no beat-by-beat medium switching\", \"reason\": \"The operator directive explicitly requires a new style and steers toward cinematic abandoned-world texture, so catalog reuse is disallowed. Charcoal provides tactile ruin, shadow, weathering, and strong cinematic depth for the progression from a running garden hose to grid failure, flooding, overgrowth, and structural decay. A restrained ink-wash secondary adds water, mist, and atmospheric recession without changing the primary medium. This also avoids repeating the most recent visual languages—pop screen print, monochrome linework, soft graphite storybook, and verdigris technical drawing—giving this episode stronger between-episode diversity while keeping the imagery cohesive.\", \"style_subtitle_reserve\": \"maintain a calm lower field occupying only the bottom 8–10% of every 9:16 frame, integrated as softly rubbed charcoal paper, low-detail pavement, shadow, water haze, or muted ground texture appropriate to the scene; keep it free of faces, hands, focal objects, fine detail and absolutely free of any text, letters, numbers, captions, labels, words or UI, with enough visual quiet for two subtitle lines without becoming an oversized empty void\", \"reserve_subtitle_space\": false}",
+  "output_path": "references/orb_entry_frame.png",
+  "output_sha256": "5b72314723bdd6b56a16619a487c8e1f236e9bf792e29e067f96c8d696b5159f",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 87.3,
+  "completed_at": "2026-09-14T19:33:57Z"
+}

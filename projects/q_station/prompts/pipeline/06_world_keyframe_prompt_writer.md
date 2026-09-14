@@ -1,6 +1,6 @@
 # Prompt 06 — World Keyframe Prompt Writer (Q Station)
 
-Write one precise Gemini prompt for a host-free WORLD_KEYFRAME establishing the inside-book subject world.
+Write one precise Gemini prompt for a host-free WORLD_KEYFRAME establishing the post-entry subject world.
 
 Inputs:
 - FINAL SCRIPT: {{FINAL_SCRIPT}}

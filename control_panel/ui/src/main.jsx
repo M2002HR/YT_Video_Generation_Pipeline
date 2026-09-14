@@ -17,6 +17,7 @@ import {
   formatDate,
   label,
   dependentNodeIds,
+  dbToLinearGain,
   parseConfigGroup,
   previewCaptionLines,
   previewCuesFromWords,
@@ -108,6 +109,41 @@ async function request(url, options) {
 const AUTO_UPDATE_KEY = "studio.autoUpdate";
 const STALE_SOCKET_MS = 35000;
 
+// A Studio tab can briefly be running an older bundle while the server has
+// just been deployed.  Treat the graph response as an external boundary: a
+// missing/partial graph must result in an empty workspace, never a React
+// render error that hides the entire run.
+function normalizeGraph(graph) {
+  const source = graph && typeof graph === "object" ? graph : {};
+  const nodes = Array.isArray(source.nodes)
+    ? source.nodes.filter((node) => node && typeof node === "object")
+    : [];
+  const nodeIds = new Set(nodes.map((node) => node.id).filter(Boolean));
+  const edges = Array.isArray(source.edges)
+    ? source.edges.filter(
+      (edge) =>
+        edge &&
+        typeof edge === "object" &&
+        nodeIds.has(edge.source) &&
+        nodeIds.has(edge.target),
+    )
+    : [];
+  const phases = Array.isArray(source.phases)
+    ? source.phases.filter((phase) => typeof phase === "string")
+    : [...new Set(nodes.map((node) => node.phase).filter(Boolean))];
+  return { ...source, nodes, edges, phases };
+}
+
+function normalizeRunPayload(payload) {
+  const source = payload && typeof payload === "object" ? payload : {};
+  return {
+    ...source,
+    job: source.job && typeof source.job === "object" ? source.job : {},
+    graph: normalizeGraph(source.graph),
+    activity: Array.isArray(source.activity) ? source.activity : [],
+  };
+}
+
 function readAutoUpdate() {
   try {
     const stored = localStorage.getItem(AUTO_UPDATE_KEY);
@@ -129,6 +165,10 @@ function readTheme() {
   } catch {}
   return "dark";
 }
+
+// Apply the persisted theme before React's first paint. The previous inline
+// bootstrap was blocked by the Studio CSP and could briefly render the wrong theme.
+document.documentElement.dataset.theme = readTheme();
 
 function useTheme() {
   const [theme, setTheme] = useState(readTheme);
@@ -1234,6 +1274,124 @@ function LogoUpload({ value, change, previewUrl = "", onPreviewChange }) {
   </section>;
 }
 
+function MusicLibrary({ value, change, previewUrl = "" }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+  const [tracks, setTracks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [reloadToken, setReloadToken] = useState(0);
+  const selectedHash = /^(?:library|existing):([a-f0-9]{64})$/.exec(value || "")?.[1] || "";
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      setLoading(true); setError("");
+      let failure = null;
+      for (let attempt = 0; attempt < 3 && !cancelled; attempt += 1) {
+        try {
+          const result = await request("/api/music-library");
+          if (!cancelled) setTracks(Array.isArray(result?.tracks) ? result.tracks : []);
+          failure = null;
+          break;
+        } catch (caught) {
+          failure = caught;
+          if (attempt < 2) await new Promise((resolve) => setTimeout(resolve, 300 * (attempt + 1)));
+        }
+      }
+      if (!cancelled && failure) {
+        const detail = failure instanceof TypeError || /failed to fetch/i.test(String(failure?.message))
+          ? "The music library is temporarily unreachable. It will not affect your saved music; please retry."
+          : String(failure?.message || "Could not load the music library. Please retry.");
+        setError(detail);
+      }
+      if (!cancelled) setLoading(false);
+    };
+    void load();
+    return () => { cancelled = true; };
+  }, [reloadToken]);
+  async function upload(event) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setUploading(true); setError("");
+    try {
+      const body = new FormData(); body.append("music", file);
+      const result = await request("/api/music-uploads", { method: "POST", body });
+      if (!result?.sha256 || !result.preview_url) throw new Error("The uploaded music response was incomplete.");
+      change("music_upload_id", `library:${result.sha256}`);
+      setReloadToken((current) => current + 1);
+    } catch (failure) {
+      setError(failure.message);
+    } finally { setUploading(false); }
+  }
+  const hasSelectedCard = selectedHash && tracks.some((track) => track.id === selectedHash);
+  return <section className="music-library style-reference-upload">
+    <div><b>Background music library <small>optional</small></b><p>Uploaded files and music saved from provider runs remain selectable. Selecting one bypasses provider search and freezes a hash-pinned copy into the run.</p></div>
+    <div className="style-reference-actions">
+      <label className="upload-button">{uploading ? "Validating audio…" : "Upload music"}<input type="file" accept="audio/mpeg,audio/wav,audio/mp4,audio/ogg,audio/flac,.mp3,.wav,.m4a,.ogg,.flac" disabled={uploading} onChange={upload} /></label>
+      {value && <button type="button" onClick={() => change("music_upload_id", "")}>Use providers instead</button>}
+    </div>
+    {loading && <small className="style-reference-saved">Loading saved music…</small>}
+    {!loading && !tracks.length && <small className="style-reference-saved">No saved music yet. Upload a track or complete a provider-backed run.</small>}
+    {previewUrl && value && !hasSelectedCard && <article className="music-card selected"><div><b>Current run music</b><small>Frozen selection</small></div><audio controls preload="metadata" src={previewUrl} /></article>}
+    <div className="music-card-grid">
+      {tracks.map((track) => {
+        const selected = track.id === selectedHash;
+        const origin = track.origin === "upload" ? "Uploaded" : track.origin === "provider" ? `Downloaded · ${track.provider}` : `Saved run · ${track.provider}`;
+        return <article className={`music-card ${selected ? "selected" : ""}`} key={track.id}>
+          <div className="music-card-heading"><span><b title={track.name}>{track.name}</b><small>{origin}{track.source_video_id ? ` · ${track.source_video_id}` : ""}</small></span><button type="button" disabled={selected} onClick={() => change("music_upload_id", `library:${track.id}`)}>{selected ? "Selected ✓" : "Select"}</button></div>
+          <audio controls preload="metadata" src={track.preview_url} />
+          <div className="music-card-meta"><small>{formatBytes(Number(track.bytes) || 0)}{track.duration_seconds ? ` · ${Number(track.duration_seconds).toFixed(1)}s` : ""}</small>{track.license && <small title={track.license}>License: {track.license}</small>}</div>
+        </article>;
+      })}
+    </div>
+    {error && <div className="music-library-error" role="alert"><small className="style-reference-error">{error}</small><button type="button" onClick={() => setReloadToken((current) => current + 1)}>Retry library</button></div>}
+  </section>;
+}
+
+function NarrationPreview({ url, gainDb = 0 }) {
+  const audio = useRef(null);
+  const context = useRef(null);
+  const source = useRef(null);
+  const gain = useRef(null);
+  const [audioError, setAudioError] = useState("");
+  const linearGain = dbToLinearGain(gainDb);
+  useEffect(() => {
+    if (gain.current && context.current) {
+      gain.current.gain.setTargetAtTime(linearGain, context.current.currentTime, 0.015);
+    } else if (audio.current) {
+      // Safe fallback for browsers without Web Audio; positive gain needs the graph.
+      audio.current.volume = Math.min(1, linearGain);
+    }
+  }, [linearGain]);
+  useEffect(() => () => {
+    try { source.current?.disconnect(); } catch {}
+    try { gain.current?.disconnect(); } catch {}
+    context.current?.close().catch(() => {});
+  }, []);
+  const enableGainPreview = async () => {
+    try {
+      if (!context.current) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const nextContext = new AudioContext();
+        const nextSource = nextContext.createMediaElementSource(audio.current);
+        const nextGain = nextContext.createGain();
+        audio.current.volume = 1;
+        nextSource.connect(nextGain).connect(nextContext.destination);
+        context.current = nextContext; source.current = nextSource; gain.current = nextGain;
+      }
+      gain.current.gain.setValueAtTime(dbToLinearGain(gainDb), context.current.currentTime);
+      if (context.current.state === "suspended") await context.current.resume();
+      setAudioError("");
+    } catch {
+      setAudioError("Live dB preview is unavailable in this browser; the saved final mix value is unaffected.");
+    }
+  };
+  if (!url) return null;
+  const signedDb = `${Number(gainDb) > 0 ? "+" : ""}${Number(gainDb) || 0} dB`;
+  return <section className="narration-preview"><div><b>Generated narration <small>{signedDb} live preview</small></b><p>Changing Narration volume updates this player immediately and the same dB value is used by the final mix.</p></div><audio ref={audio} controls preload="metadata" src={url} onPlay={enableGainPreview} />{audioError && <small className="style-reference-error">{audioError}</small>}</section>;
+}
+
 function SubtitleFontUpload({ change, onUploaded, fieldName = "subtitle_font", label = "subtitle" }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
@@ -1261,7 +1419,7 @@ function SubtitleFontUpload({ change, onUploaded, fieldName = "subtitle_font", l
   );
 }
 
-function SettingsGroup({ group, values, change, replaceGroup, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "", uploadedFonts: sharedFonts, onFontUploaded }) {
+function SettingsGroup({ group, values, change, replaceGroup, open, toggle, styles, stylesLoading, characters = [], subtitleBackdrops = null, subtitleBackdropLabel = "", subtitleBeats = null, subtitleNote = "", timelineBeats = -1, styleReferencePreview = "", brandingFrames = [], brandingBackdropLabel = "Preview backdrop", logoPreviewUrl = "", musicPreviewUrl = "", narrationPreviewUrl = "", uploadedFonts: sharedFonts, onFontUploaded }) {
   const [advanced, setAdvanced] = useState(false);
   const [localFonts, setLocalFonts] = useState([]);
   const [clipboardState, setClipboardState] = useState(null);
@@ -1341,6 +1499,8 @@ function SettingsGroup({ group, values, change, replaceGroup, open, toggle, styl
         <div className="field-grid">
           {group.id === "visual" && <StyleLibrary styles={styles} loading={stylesLoading} values={values} change={change} />}
           {group.id === "visual" && values.world_style_policy === "new" && !values.world_style_id && <StyleReferenceUpload value={values.world_style_reference_id} change={change} previewUrl={styleReferencePreview} />}
+          {group.id === "music" && <MusicLibrary value={values.music_upload_id} change={change} previewUrl={musicPreviewUrl} />}
+          {group.id === "voice" && <NarrationPreview url={narrationPreviewUrl} gainDb={values.narration_gain_db} />}
           {group.id === "subtitles" && <SubtitleFontUpload change={change} onUploaded={addUploadedFont} />}
           {group.id === "branding" && <div className="branding-editor">
             <div className="branding-controls">
@@ -1379,13 +1539,17 @@ function SettingsGroup({ group, values, change, replaceGroup, open, toggle, styl
           {group.fields
             .filter(() => group.id !== "branding")
             .filter((field) => group.id !== "visual" || !["world_style_id", "world_style_policy", "world_style_reference_id"].includes(field.name))
+            .filter((field) => field.name !== "music_upload_id")
             .filter((field) => advanced || !field.advanced)
             .filter((field) => field.name !== "character_id" || values.character_mode === "manual")
             .map((field) => {
               let displayField = field.name === "character_id" ? {
                   ...field,
                   options: characters.length
-                    ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({ value: item.id, label: item.display_name }))]
+                    ? [{ value: "", label: "Choose a character" }, ...characters.map((item) => ({
+                        value: item.id,
+                        label: item.presentation_name ? `${item.display_name} — ${item.presentation_name}` : item.display_name,
+                      }))]
                     : field.options,
                 } : field;
               if (["subtitle_font", "title_font", "watermark_font"].includes(field.name)) {
@@ -2435,8 +2599,11 @@ function ConfigModal({ run, close, done }) {
     [values, setValues] = useState(null),
     [plan, setPlan] = useState(null),
     [styles, setStyles] = useState([]),
+    [characters, setCharacters] = useState([]),
     [styleReference, setStyleReference] = useState(null),
     [logoAsset, setLogoAsset] = useState(null),
+    [musicAsset, setMusicAsset] = useState(null),
+    [narrationAsset, setNarrationAsset] = useState(null),
     [stylesLoading, setStylesLoading] = useState(false),
     [timeline, setTimeline] = useState(null),
     [timelineTried, setTimelineTried] = useState(false),
@@ -2470,6 +2637,8 @@ function ConfigModal({ run, close, done }) {
         };
         setStyleReference(data.style_reference && typeof data.style_reference === "object" ? data.style_reference : null);
         setLogoAsset(data.logo_asset && typeof data.logo_asset === "object" ? data.logo_asset : null);
+        setMusicAsset(data.music_asset && typeof data.music_asset === "object" ? data.music_asset : null);
+        setNarrationAsset(data.narration_asset && typeof data.narration_asset === "object" ? data.narration_asset : null);
         setTransitionOverrides(Array.isArray(data.transition_overrides) ? data.transition_overrides : []);
         setSchema(contract.schema);
       })
@@ -2479,8 +2648,15 @@ function ConfigModal({ run, close, done }) {
     if (!values?.content_project) return;
     let cancelled = false;
     setStylesLoading(true);
-    request(`/api/style-catalog?content_project=${encodeURIComponent(values.content_project)}`)
-      .then((data) => !cancelled && setStyles(data.styles || []))
+    Promise.all([
+      request(`/api/style-catalog?content_project=${encodeURIComponent(values.content_project)}`),
+      request(`/api/character-catalog?content_project=${encodeURIComponent(values.content_project)}`),
+    ])
+      .then(([styleData, characterData]) => {
+        if (cancelled) return;
+        setStyles(styleData.styles || []);
+        setCharacters(characterData.characters || []);
+      })
       .catch((failure) => !cancelled && setError(failure.message))
       .finally(() => !cancelled && setStylesLoading(false));
     return () => { cancelled = true; };
@@ -2649,7 +2825,7 @@ function ConfigModal({ run, close, done }) {
               .map((group) => ({
                 ...group,
                 fields: group.fields.filter(
-                  (field) => field.type !== "readonly" && !["content_project", "character_mode", "character_id"].includes(field.name),
+                  (field) => field.type !== "readonly" && field.name !== "content_project",
                 ),
               }))
               .filter((group) => group.fields.length)
@@ -2661,9 +2837,12 @@ function ConfigModal({ run, close, done }) {
                   change={(name, value) => setValues((current) => ({ ...current, [name]: value }))}
                   replaceGroup={(settings) => setValues((current) => ({ ...current, ...settings }))}
                   styles={styles}
+                  characters={characters}
                   stylesLoading={stylesLoading}
                   styleReferencePreview={styleReference?.preview_path ? `/api/run/${run.job.job_id}/artifact/${styleReference.preview_path}` : ""}
                   logoPreviewUrl={logoAsset?.preview_path ? `/api/run/${run.job.job_id}/artifact/${logoAsset.preview_path}` : ""}
+                  musicPreviewUrl={musicAsset?.preview_path ? `/api/run/${run.job.job_id}/artifact/${musicAsset.preview_path}` : ""}
+                  narrationPreviewUrl={narrationAsset?.preview_path ? `/api/run/${run.job.job_id}/artifact/${narrationAsset.preview_path}` : ""}
                   open={openGroups.has(group.id)}
                   toggle={() => setOpenGroups((current) => {
                     const next = new Set(current);
@@ -2709,6 +2888,13 @@ function ConfigModal({ run, close, done }) {
                 stages from the current run will be reused.
               </div>
             ) : (
+              <>
+              {plan.changed_fields.some((name) => ["character_mode", "character_id"].includes(name)) && (
+                <div className="topic-change-notice">
+                  Character change: the previous character/presentation branch will be archived,
+                  then script, intro media and every dependent stage will rebuild in this run.
+                </div>
+              )}
               <div className="impact-grid config-impact">
                 <section>
                   <h3>Rebuild · {plan.affected_nodes.length}</h3>
@@ -2719,6 +2905,7 @@ function ConfigModal({ run, close, done }) {
                   <div>{plan.reused_nodes.map((id) => <span key={id}>{label(id)}</span>)}</div>
                 </section>
               </div>
+              </>
             )}
           </div>
         )}
@@ -2893,7 +3080,7 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
     if (loading.current) return;
     loading.current = true;
     try {
-      const data = await request(`/api/run/${jobId}/graph`);
+      const data = normalizeRunPayload(await request(`/api/run/${jobId}/graph`));
       const incoming = data.activity || [];
       if (initialized.current)
         incoming.forEach((event) => {
@@ -3214,6 +3401,41 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
   );
 }
 
+class StudioErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+  componentDidCatch(error, info) {
+    console.error("Studio render failure", error, info);
+    try {
+      sessionStorage.setItem("studio.lastRenderError", JSON.stringify({
+        at: new Date().toISOString(), message: String(error?.message || error),
+        componentStack: String(info?.componentStack || "").slice(0, 4000),
+      }));
+    } catch {}
+  }
+  render() {
+    if (!this.state.error) return this.props.children;
+    return <main className="studio-recovery" role="alert">
+      <span className="eyebrow">RECOVERY MODE</span>
+      <h1>The Studio hit a display error</h1>
+      <p>Your run and generated files are safe. Reload the interface; if the problem repeats, reset the two local display preferences.</p>
+      <code>{String(this.state.error?.message || "Unknown interface error")}</code>
+      <div>
+        <button className="primary" type="button" onClick={() => location.reload()}>Reload Studio</button>
+        <button type="button" onClick={() => {
+          try { localStorage.removeItem(THEME_KEY); localStorage.removeItem(AUTO_UPDATE_KEY); } catch {}
+          location.assign("/");
+        }}>Reset display &amp; go home</button>
+      </div>
+    </main>;
+  }
+}
+
 function App() {
   const [path, setPath] = useState(location.pathname),
     [toasts, setToasts] = useState([]),
@@ -3263,4 +3485,5 @@ function App() {
   );
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+const studioRoot = document.getElementById("root");
+if (studioRoot) createRoot(studioRoot).render(<StudioErrorBoundary><App /></StudioErrorBoundary>);

@@ -1,18 +1,11 @@
 # Content projects
 
-A content project is a long-lived channel/brand universe. It owns its own pipeline prompts, visual presets, canonical characters, style anchors, and creative rules.
+A content project owns its provider locks, prompts, characters, presentation formats, visual presets,
+world-style catalog and publication defaults. Videos remain under repository-level `videos/` for
+render/publish compatibility and identify membership through their launch/PROJECT metadata.
 
-Individual videos intentionally remain under the stable repository-level `videos/` directory so the mature render/publish tooling is not broken by path migration. Membership is explicit through each video's `PROJECT.md`.
+Prompt resolution is `projects/<project_id>/prompts/pipeline/` only unless a project explicitly enables
+legacy fallback. The repository no longer carries duplicate root prompt copies.
 
-On successful finalization, the publication step registers the new video in
-the selected project's `VIDEOS.json` and commits that registry entry together
-with the video's artifacts.
-
-Resolution order:
-1. `projects/<project_id>/prompts/pipeline/`
-2. `projects/<project_id>/visual_presets/`
-3. legacy root fallback only when the project explicitly allows it
-
-Current projects:
-- `default` — all videos created before this split
-- `world_behind_the_question` — new general-curiosity brand; no videos yet
+Current canonical projects are `default`, `q_station`, and `world_behind_the_question`.
+`projects/question_harvest` is a compatibility symlink to `q_station`, not a separate project.

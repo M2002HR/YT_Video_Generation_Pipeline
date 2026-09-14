@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Flow reference policy — the single source of truth for what Google Flow may receive.
 
-Absolute rules (master_prompt §12-16, §41, §61 + user workflow decision 2026-09-03):
+Absolute production upload rules:
 
   * Flow NEVER receives a style sheet. Not the world style anchor, not a home/environment
     style sheet, not a mood board, not a previous image used as a style reference.
@@ -9,13 +9,10 @@ Absolute rules (master_prompt §12-16, §41, §61 + user workflow decision 2026-
     ``Frames | Ingredients`` as one tablist with a single active option (verified
     2026-09-04). A clip therefore uses either frame slots or ingredient chips, never both:
         Clip A (question spark) -> Ingredients: character_sheet
-        Clip B (book -> world)  -> Frames: first_frame=book_spread_frame,
+        Clip B (entry -> world) -> Frames: first_frame=entry_frame,
                                             last_frame=world_keyframe
-  * Clip B has no characters at all (see
-    prompts/reference/book_transition_reference_prompt.txt), so no character sheet is sent
-    there. The book's locked identity reaches Clip B through the composited
-    ``book_spread_frame`` rather than through a separate ingredient, which is what the
-    exclusive mode allows.
+  * Clip B receives no ingredient sheet because Frames mode is exclusive. Character/entry
+    identity and any required ownership cue are baked into its first frame by Gemini.
   * ``book_design_sheet`` remains an allowed canonical role: it is the Gemini-side reference
     used to compose that spread, and it stays in the vocabulary so a future
     Ingredients-mode book shot can use it directly.
@@ -113,7 +110,7 @@ def validate_flow_roles(roles: Sequence[str]) -> list[str]:
     forbidden = [role for role in normalized if role in FORBIDDEN_ROLES]
     if forbidden:
         raise FlowReferencePolicyError(
-            "Flow style-sheet upload is FORBIDDEN (master_prompt §12-16, §61). "
+            "Flow style-sheet upload is forbidden by the production reference contract. "
             f"Rejected roles: {forbidden}. Allowed: {sorted(ALLOWED_ROLES)}."
         )
 
@@ -162,11 +159,11 @@ def clip_b_roles(
     has_first_frame: bool = True,
     has_last_frame: bool = True,
 ) -> list[str]:
-    """Clip B (book -> world): the two scene frames only (§16).
+    """Intro B (configured entry -> world): the two scene frames only (§16).
 
     Frames mode and Ingredients mode are mutually exclusive in the Flow composer, so Clip B
-    cannot carry a canonical sheet alongside its frames. The book identity arrives inside the
-    composited first frame instead.
+    cannot carry a canonical sheet alongside its frames. Entry/character identity arrives already
+    rendered into the first frame instead.
     """
     roles: list[str] = []
     if has_first_frame:
@@ -199,6 +196,7 @@ def build_flow_uploads(
     character_sheet: Path | None = None,
     book_design_sheet: Path | None = None,
     book_spread_frame: Path | None = None,
+    entry_frame: Path | None = None,
     world_keyframe: Path | None = None,
 ) -> list[tuple[str, Path]]:
     """Return the validated ``(role, path)`` upload list for a Flow clip.
@@ -214,7 +212,7 @@ def build_flow_uploads(
     elif clip_key == "B":
         # Frames mode excludes ingredient chips, so Clip B sends only its two frames. The
         # book identity is already baked into the composited first frame.
-        uploads.append(("first_frame", _require_file(book_spread_frame, "first_frame (book_spread_frame)")))
+        uploads.append(("first_frame", _require_file(entry_frame or book_spread_frame, "first_frame (entry_frame)")))
         uploads.append(("last_frame", _require_file(world_keyframe, "last_frame (world_keyframe)")))
     else:
         raise FlowReferencePolicyError(f"clip must be 'A' or 'B', got {clip!r}")

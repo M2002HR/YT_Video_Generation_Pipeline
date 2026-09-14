@@ -30,8 +30,8 @@
   },
   "_subtitle": {
     "word_highlight": false,
-    "font_name": "North Eternal",
-    "font_size": 140,
+    "font_name": "Wonderbar",
+    "font_size": 120,
     "bold": false,
     "italic": true,
     "position": "custom",
@@ -168,5 +168,8 @@
     "watermark_outline_colour": "#000000",
     "watermark_outline": 2.0,
     "title_text": "The Ancient “Computer” Found in a Shipwreck"
+  },
+  "_audio": {
+    "narration_gain_db": 6.0
   }
 }

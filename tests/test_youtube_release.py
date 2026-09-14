@@ -31,14 +31,14 @@ SPEC.loader.exec_module(panel)
 
 def sample_metadata() -> dict:
     return {
-        "title": "Why Black Swans Break Our Forecasts",
+        "title": "BLACK SWAN Events Break Forecasts #shorts 🦢",
         "title_options": [
-            "The Surprise Your Model Never Saw",
-            "Taleb's Black Swan in 60 Seconds",
-            "The Risk No Forecast Can See",
+            "HIDDEN RISK Your Model Misses #shorts 🎯",
+            "FORECAST FAILURE The Surprise Ahead #shorts 📉",
+            "UNSEEN EVENTS Why Plans Break #shorts ⚠️",
         ],
-        "description": "A Black Swan is an event outside normal expectations with an outsized impact. This short explains why hindsight makes surprise look predictable and why robust plans leave room for uncertainty. Q Station turns everyday questions into clear visual stories. #BlackSwan #DecisionMaking",
-        "tags": ["black swan", "Nassim Taleb", "uncertainty", "forecasting"],
+        "description": "A Black Swan is an unexpected event with an outsized impact on forecasts and decisions.\nKeywords: black swan, Nassim Taleb, uncertainty, forecasting, risk management\n#shorts #viralshorts #BlackSwan #Forecasting #DecisionMaking",
+        "tags": ["shorts", "viral shorts", "Q Station", "black swan", "Nassim Taleb", "uncertainty", "forecasting"],
         "category": "Education",
         "category_id": "27",
         "language": "en",
@@ -53,7 +53,7 @@ def sample_metadata() -> dict:
 
 def test_metadata_contract_applies_channel_defaults_and_youtube_limits() -> None:
     metadata = validate_metadata(sample_metadata(), CHANNEL_DEFAULTS)
-    assert metadata["title"] == "Why Black Swans Break Our Forecasts"
+    assert metadata["title"] == "BLACK SWAN Events Break Forecasts #shorts 🦢"
     assert metadata["upload_settings"]["category_id"] == "27"
     assert len(",".join(metadata["tags"])) < 500
     assert {item["field"].casefold() for item in metadata["manual_review"]} >= {
@@ -69,16 +69,31 @@ def test_metadata_contract_refuses_overlong_youtube_title() -> None:
         validate_metadata(metadata, CHANNEL_DEFAULTS)
 
 
+def test_metadata_contract_enforces_shorts_title_description_and_tags() -> None:
+    metadata = sample_metadata()
+    metadata["title"] = "Black Swan Events Break Forecasts #shorts 🦢"
+    with pytest.raises(ValueError, match="title"):
+        validate_metadata(metadata, CHANNEL_DEFAULTS)
+    metadata = sample_metadata()
+    metadata["description"] = "A summary without the required structured fields."
+    with pytest.raises(ValueError, match="description"):
+        validate_metadata(metadata, CHANNEL_DEFAULTS)
+    metadata = sample_metadata()
+    metadata["tags"] = ["shorts", "viral shorts", "black swan", "forecasting", "risk"]
+    with pytest.raises(ValueError, match="tags"):
+        validate_metadata(metadata, CHANNEL_DEFAULTS)
+
+
 def test_metadata_contract_normalizes_common_non_array_list_formatting() -> None:
     metadata = sample_metadata()
-    metadata["tags"] = "black swan, forecasting"  # type: ignore[assignment]
+    metadata["tags"] = "shorts, viral shorts, Q Station, black swan, forecasting"  # type: ignore[assignment]
     metadata["title_options"] = (
-        "The Surprise Your Model Never Saw\n"
-        "Taleb's Black Swan in 60 Seconds\n"
-        "The Risk No Forecast Can See"
+        "HIDDEN RISK Your Model Misses #shorts 🎯\n"
+        "FORECAST FAILURE The Surprise Ahead #shorts 📉\n"
+        "UNSEEN EVENTS Why Plans Break #shorts ⚠️"
     )
     normalized = validate_metadata(metadata, CHANNEL_DEFAULTS)
-    assert normalized["tags"] == ["black swan", "forecasting"]
+    assert normalized["tags"] == ["shorts", "viral shorts", "Q Station", "black swan", "forecasting"]
     assert len(normalized["title_options"]) == 3
 
 

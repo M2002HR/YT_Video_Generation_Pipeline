@@ -282,8 +282,12 @@ def check_q_station_assets(report: Report) -> None:
         f"{len(entries)} template(s)" if not missing else f"missing: {missing}",
     )
 
-    identity = project.root / "prompts" / "reference" / "book_transition_reference_prompt.txt"
-    report.check("locked book identity present", identity.is_file(), str(identity.name))
+    profiles = {registry.get(character_id).presentation for character_id in registry.enabled_ids()}
+    report.check(
+        "presentation profiles usable",
+        bool(profiles) and all(profile.entry_identity_prompt and profile.transition_prompt for profile in profiles),
+        ", ".join(sorted(profile.id for profile in profiles)),
+    )
 
 
 def check_no_synthetic_path(report: Report) -> None:

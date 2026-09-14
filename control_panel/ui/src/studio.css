@@ -432,6 +432,21 @@ p {
 .style-reference-upload b { font-size: 12px; }.style-reference-upload b small { color: var(--muted); font-weight: 500; }.style-reference-upload p { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
 .style-reference-actions { display: flex; align-items: center; gap: 8px; }.upload-button { cursor: pointer; border: 1px solid #5279ae; border-radius: 7px; padding: 8px 10px; color: #e7f0ff; background: #152944; font-size: 10px; }.upload-button:hover { background: #1b365a; }.upload-button input { display: none; }
 .style-reference-actions button { padding: 7px 9px; font-size: 10px; }.style-reference-upload img { max-width: 180px; max-height: 140px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }.style-reference-saved, .style-reference-error { grid-column: 1 / -1; font-size: 10px; }.style-reference-saved { color: var(--muted); }.style-reference-error { color: #ff9ca8; }
+.music-card-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+.music-card { grid-column: 1 / -1; min-width: 0; display: grid; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: #0d1928; }
+.music-card-grid .music-card { grid-column: auto; }
+.music-card.selected { border-color: var(--blue); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--blue) 45%, transparent); }
+.music-card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; min-width: 0; }
+.music-card-heading span { display: grid; gap: 3px; min-width: 0; }.music-card-heading b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.music-card-heading small, .music-card-meta small { color: var(--muted); }
+.music-card-heading button { flex: 0 0 auto; padding: 5px 8px; font-size: 10px; }.music-card audio, .narration-preview audio { width: 100%; height: 36px; accent-color: var(--blue); }
+.music-card-meta { display: grid; gap: 2px; min-width: 0; }.music-card-meta small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.music-library-error { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border: 1px solid color-mix(in srgb, var(--red) 55%, var(--line)); border-radius: 7px; background: color-mix(in srgb, var(--red) 10%, var(--surface)); }.music-library-error button { flex: 0 0 auto; padding: 5px 8px; font-size: 10px; }
+.narration-preview { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 520px); align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: #0a1421; }
+.narration-preview p { margin: 4px 0 0; color: var(--muted); font-size: 10px; }
+.narration-preview b small { margin-left: 6px; color: var(--blue); font-weight: 600; }
+@media (max-width: 720px) { .narration-preview { grid-template-columns: 1fr; } }
+.studio-recovery { min-height: 100vh; display: grid; place-content: center; justify-items: start; gap: 14px; width: min(620px, calc(100% - 40px)); margin: auto; }
+.studio-recovery h1 { font-size: clamp(28px, 5vw, 42px); }.studio-recovery p { color: var(--muted); line-height: 1.6; }.studio-recovery code { max-width: 100%; padding: 10px 12px; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: 8px; color: var(--red); background: var(--surface); }.studio-recovery > div { display: flex; flex-wrap: wrap; gap: 9px; }
 .logo-upload { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; padding: 12px; border: 1px dashed #48658d; border-radius: 9px; background: #0a1421; }
 .logo-upload b { font-size: 12px; }
 .logo-upload p { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
@@ -2445,9 +2460,19 @@ p {
 }
 [data-theme="light"] .style-reference-upload,
 [data-theme="light"] .logo-upload,
-[data-theme="light"] .subtitle-font-upload {
+[data-theme="light"] .subtitle-font-upload,
+[data-theme="light"] .narration-preview {
   border-color: #9db4d9;
   background: #f0f4fa;
+}
+[data-theme="light"] .music-card {
+  border-color: #c3cede;
+  background: #ffffff;
+}
+[data-theme="light"] .music-card.selected {
+  border-color: var(--blue);
+  background: #eaf1fc;
+  box-shadow: inset 0 0 0 1px #2b5fc744;
 }
 [data-theme="light"] .upload-button {
   border-color: var(--blue);

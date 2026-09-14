@@ -1,0 +1,293 @@
+{
+  "schema_version": 2,
+  "video_id": "034",
+  "topic": "What If Every Human Vanished Tomorrow?",
+  "created_at": "2026-09-14T19:21:08Z",
+  "pipeline_state": "RUNNING",
+  "stages": {
+    "character_resolution": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:21:09Z",
+      "requested_mode": "manual",
+      "requested_character_id": "moss_cloaked_crone",
+      "resolved_character_id": "moss_cloaked_crone",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    },
+    "script_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:23:23Z",
+      "words": 109
+    },
+    "retention_edit": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:24:34Z",
+      "words": 112
+    },
+    "episode_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:25:18Z",
+      "activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot"
+    },
+    "world_style_director": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:25:57Z",
+      "style_id": "cinematic_abandoned_world_charcoal_001"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:27:33Z",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d",
+      "model": "nano_banana_2",
+      "catalog_path": "020_cinematic_abandoned_world_charcoal_001"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:27:35Z",
+      "opening_activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot",
+      "opening_location": "quiet early-morning urban community garden with several adjacent raised beds",
+      "camera_pattern": "static_wide",
+      "world_style_id": "cinematic_abandoned_world_charcoal_001"
+    },
+    "visual_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:28:26Z",
+      "beats": 10
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:28:53Z",
+      "prompt_sha256": "4b72c9681a3522dd0e3c24abbeb54d747275724bc53d54c563564a8fb01a8cc2"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:30:38Z",
+      "sha256": "1d83cd7bed98578b225fef1e36141db46a02619586cf4cb4d2e47ee7d3ee4721",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T19:30:39Z",
+      "artifact": "orb_design_sheet.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:31:03Z",
+      "profile_id": "orb_portal"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:33:57Z",
+      "sha256": "5b72314723bdd6b56a16619a487c8e1f236e9bf792e29e067f96c8d696b5159f",
+      "model": "nano_banana_2",
+      "profile_id": "orb_portal"
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:34:21Z",
+      "prompt_sha256": "e14809c1a66ec98c8a0504bc4039626146f91dbd3d183caca41168b37df6db36"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:34:47Z",
+      "prompt_sha256": "67e0c9213a15ca36bb1d8ff838c997e66bbb5db60ab052de998e2190207ad325"
+    },
+    "body_images": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-14T19:34:48Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:36:36Z",
+      "sha256": "ec109848a8b24e222fc4f07f3a39890dd2a84322dbfb52658b3ff024770e7277",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:38:17Z",
+      "sha256": "017295cc325d2c74a918205095aa44c82c43c0a4c366912a3e2428f733ccc273",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:40:04Z",
+      "sha256": "deb2d9f00c5c6776c739be429943a5d7fb9c93d4f0fd6f25288bd296ae9d65ae",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T19:42:22Z",
+      "sha256": "c2eeb1a9c2cf7482352d10606ec2c96cd94aa4d8c38caa9a0586cbf2ec08967e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-14T19:42:47Z"
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 133.944,
+      "at": "2026-09-14T19:23:23Z",
+      "words": 109
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 70.333,
+      "at": "2026-09-14T19:24:34Z",
+      "words": 112
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.149,
+      "at": "2026-09-14T19:25:18Z",
+      "activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 37.478,
+      "at": "2026-09-14T19:25:57Z",
+      "style_id": "cinematic_abandoned_world_charcoal_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 94.541,
+      "at": "2026-09-14T19:27:33Z",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d",
+      "model": "nano_banana_2",
+      "catalog_path": "020_cinematic_abandoned_world_charcoal_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.239,
+      "at": "2026-09-14T19:27:35Z",
+      "opening_activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot",
+      "opening_location": "quiet early-morning urban community garden with several adjacent raised beds",
+      "camera_pattern": "static_wide",
+      "world_style_id": "cinematic_abandoned_world_charcoal_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 49.619,
+      "at": "2026-09-14T19:28:26Z",
+      "beats": 10
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 25.352,
+      "at": "2026-09-14T19:28:53Z",
+      "prompt_sha256": "4b72c9681a3522dd0e3c24abbeb54d747275724bc53d54c563564a8fb01a8cc2"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 103.863,
+      "at": "2026-09-14T19:30:38Z",
+      "sha256": "1d83cd7bed98578b225fef1e36141db46a02619586cf4cb4d2e47ee7d3ee4721",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 23.496,
+      "at": "2026-09-14T19:31:03Z",
+      "profile_id": "orb_portal"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 173.288,
+      "at": "2026-09-14T19:33:57Z",
+      "sha256": "5b72314723bdd6b56a16619a487c8e1f236e9bf792e29e067f96c8d696b5159f",
+      "model": "nano_banana_2",
+      "profile_id": "orb_portal"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 22.018,
+      "at": "2026-09-14T19:34:21Z",
+      "prompt_sha256": "e14809c1a66ec98c8a0504bc4039626146f91dbd3d183caca41168b37df6db36"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 25.059,
+      "at": "2026-09-14T19:34:47Z",
+      "prompt_sha256": "67e0c9213a15ca36bb1d8ff838c997e66bbb5db60ab052de998e2190207ad325"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 78.698,
+      "at": "2026-09-14T19:36:36Z",
+      "sha256": "ec109848a8b24e222fc4f07f3a39890dd2a84322dbfb52658b3ff024770e7277",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 75.803,
+      "at": "2026-09-14T19:38:17Z",
+      "sha256": "017295cc325d2c74a918205095aa44c82c43c0a4c366912a3e2428f733ccc273",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 81.857,
+      "at": "2026-09-14T19:40:04Z",
+      "sha256": "deb2d9f00c5c6776c739be429943a5d7fb9c93d4f0fd6f25288bd296ae9d65ae",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 111.925,
+      "at": "2026-09-14T19:42:22Z",
+      "sha256": "c2eeb1a9c2cf7482352d10606ec2c96cd94aa4d8c38caa9a0586cbf2ec08967e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    }
+  ],
+  "updated_at": "2026-09-14T19:42:47Z"
+}

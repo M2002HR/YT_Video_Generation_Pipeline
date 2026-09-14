@@ -2,9 +2,9 @@
 
 ## Purpose
 
-Create a reusable canonical character-reference image for the recurring adult protagonist used across storyboard sheets.
+Create a reusable canonical character-reference image for the recurring adult protagonist used across individually generated beat images.
 
-This reference should be uploaded together with the style anchor whenever a new storyboard sheet is generated in a new chat or browser session.
+This reference should be supplied with the style anchor whenever a new beat image that contains the protagonist is generated in a fresh provider session.
 
 ## Prompt
 

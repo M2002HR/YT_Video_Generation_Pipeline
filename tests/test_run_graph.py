@@ -98,6 +98,23 @@ def test_music_node_owns_stale_provider_alternatives_too(tmp_path: Path) -> None
     assert "assets/music/mixkit_background.mp3" in paths
 
 
+def test_graph_marks_pre_cta_closing_gap_stale_and_exposes_missing_beat(tmp_path: Path) -> None:
+    project = tmp_path / "videos/001_closing_gap"
+    write_json(project / "launch/LAUNCH_REQUEST.json", {"content_project": "q_station"})
+    write_json(project / "creative/SCRIPT_PLAN.json", {
+        "body": ["First sentence.", "Second sentence."],
+        "optional_closing": "Closing sentence.",
+    })
+    write_json(project / "creative/VISUAL_PLAN.json", {"beats": [
+        {"beat_id": 1, "narration_slice": "First sentence."},
+        {"beat_id": 2, "narration_slice": "Second sentence."},
+    ]})
+    graph = graph_for(project, include_disabled=True)
+    nodes = {node["id"]: node for node in graph["nodes"]}
+    assert nodes["visual_plan"]["status"] == "STALE"
+    assert nodes["beat_image_003"]["status"] == "PENDING"
+
+
 def test_beat_regeneration_cascades_continuity_but_reuses_independent_audio(tmp_path: Path) -> None:
     project = project_with_beats(tmp_path)
     plan = regeneration_plan(project, ["beat_image_002"])

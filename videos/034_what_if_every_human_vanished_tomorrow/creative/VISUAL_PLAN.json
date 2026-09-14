@@ -1,0 +1,125 @@
+{
+  "body_duration_seconds": 35.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "At first, your hose might keep flowing from stored water pressure.",
+      "visual": "Cinematic charcoal-and-ink view of an unattended suburban backyard, a garden hose snaking across wet concrete and still spraying a weak arc into an overgrown flowerbed, with the empty house looming behind through gray haze.",
+      "purpose": "show that residual water pressure can keep a garden hose running briefly after people disappear",
+      "visual_fingerprint": "running green garden hose + weakening water arc + empty suburban backyard + low ground-level close-wide composition toward a dark vacant house",
+      "type": "literal",
+      "continuity": "enter the abandoned subject world directly through the running hose established by the question",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Within hours, unattended power grids would begin failing.",
+      "visual": "Wide upward charcoal view of an empty electrical substation at dusk, transformers and insulators receding beneath transmission towers while one isolated cold-amber utility light dims in the storm-gray air.",
+      "purpose": "show unattended electrical infrastructure beginning to fail within hours",
+      "visual_fingerprint": "silent electrical substation + dimming utility lamp + towering transmission lines + dramatic low-angle wide shot at gloomy dusk",
+      "type": "literal",
+      "continuity": "shift from household infrastructure to the larger utility network that supports it",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Many nuclear reactors would shut down automatically.",
+      "visual": "Distant elevated charcoal panorama of a nuclear power station under heavy overcast, cooling towers and containment buildings sitting still as steam output fades into a pale ink-wash sky, with no workers or vehicles present.",
+      "purpose": "show nuclear plants entering automatic shutdown without human operators",
+      "visual_fingerprint": "nuclear station exterior + fading steam plume + empty industrial grounds + elevated long-lens panoramic composition under flat overcast",
+      "type": "literal",
+      "continuity": "follow the grid failure into a major power facility responding automatically",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Cooling systems would still need power.",
+      "visual": "Simplified non-instructional charcoal cutaway of a reactor building focused on a dark cooling-water loop and pump chamber, with a small reservoir rendered in diluted blue-green ink and the surrounding machinery fading into soot shadow.",
+      "purpose": "explain that reactor cooling still depends on powered circulation systems after shutdown",
+      "visual_fingerprint": "simplified reactor cutaway + cooling-water loop + dormant pump chamber + centered sectional composition with blue-green water accent",
+      "type": "diagram",
+      "continuity": "move from the plant exterior to the single support system that remains critical after shutdown",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Pets trapped indoors would face danger quickly.",
+      "visual": "Intimate charcoal interior of an abandoned apartment kitchen, a house cat standing beside an empty water bowl near a closed door, pale daylight filtering through blinds and casting long soft bars across the floor.",
+      "purpose": "show the immediate vulnerability of domestic pets trapped inside empty homes",
+      "visual_fingerprint": "solitary house cat + empty water bowl + closed apartment door + eye-level medium interior shot with striped window light",
+      "type": "literal",
+      "continuity": "pivot from infrastructure consequences to immediate effects on dependent animals",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Some farm animals would escape or starve.",
+      "visual": "Windblown charcoal farmyard seen from outside a broken fence, several cattle moving through a collapsed gate toward an empty field while a dark barn and scattered feed troughs sit abandoned in the background.",
+      "purpose": "show that livestock could either break free or lose access to human-provided food and care",
+      "visual_fingerprint": "cattle leaving through broken gate + abandoned feed troughs + open farm field + diagonal wide composition from behind a splintered foreground fence",
+      "type": "literal",
+      "continuity": "expand the animal consequence from enclosed household pets to livestock in larger human-managed spaces",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Without pumps, subways could begin flooding within days.",
+      "visual": "Deep one-point-perspective charcoal view down an empty subway tunnel, dark water already covering the rails and reflecting a few dying amber emergency lamps while stairs disappear into mist behind.",
+      "purpose": "show groundwater and seepage accumulating in subway systems once pumping stops",
+      "visual_fingerprint": "flooded subway rails + rising black water + dying emergency lamps + centered tunnel vanishing-point shot from near water level",
+      "type": "literal",
+      "continuity": "move from animal dependence to another hidden system that requires continuous powered maintenance",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Weeks later, weeds would spread across untended roads.",
+      "visual": "Top-down oblique charcoal streetscape weeks later, cracked asphalt overtaken by tufts of dead moss green weeds pushing through lane seams around a rusting abandoned bicycle and windblown debris.",
+      "purpose": "show vegetation beginning to reclaim paved urban surfaces within weeks",
+      "visual_fingerprint": "weeds splitting cracked roadway + abandoned bicycle + scattered debris + high oblique street shot dominated by branching green growth",
+      "type": "literal",
+      "continuity": "advance the timeline from days to weeks and shift from water intrusion to visible ecological reclamation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Years later, weather would weaken empty buildings.",
+      "visual": "Low-angle charcoal view of a weather-beaten apartment block years later, rain streaks and cracks cutting across the facade as a section of roofline sags, vines cling to balconies, and storm haze erases the distant skyline.",
+      "purpose": "show long-term structural deterioration caused by weather and lack of maintenance",
+      "visual_fingerprint": "cracked apartment facade + sagging roofline + rain and climbing vines + low-angle architectural shot during a gray storm",
+      "type": "literal",
+      "continuity": "advance from early plant growth to years of combined weathering and biological decay",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Earth would keep going; our systems would not.",
+      "visual": "Quiet panoramic charcoal vista of a reclaimed city edge at dawn-gray light, trees and tall grasses overtaking a silent roadway in the foreground while corroded towers and collapsed utility lines recede into soft ink-wash mist.",
+      "purpose": "summarize the contrast between resilient natural processes and decaying human-built systems",
+      "visual_fingerprint": "reclaimed roadway + dense young trees + corroded skyline and fallen utility lines + wide contemplative horizon composition with misty atmospheric depth",
+      "type": "subject_world",
+      "continuity": "resolve the progression by widening from one failing building to the larger world continuing around abandoned infrastructure",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ]
+}

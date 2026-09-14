@@ -19,6 +19,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
+from presentation_runtime import PresentationContext, PresentationProfileError, load_presentation_profile
+
 # Resolution sources persisted alongside a run so a resolution can be reproduced/debugged.
 SOURCE_MANUAL = "manual"
 SOURCE_AUTO = "auto"
@@ -96,6 +98,7 @@ class CharacterContext:
     appearance_full: str
     behavior: str
     negative_constraints: str
+    presentation: PresentationContext
     selection_profile: dict[str, Any] = field(default_factory=dict)
 
     @property
@@ -180,6 +183,8 @@ class CharacterRegistry:
                 "display_name": ctx.display_name,
                 "archetype": ctx.archetype,
                 "tone": list(ctx.tone),
+                "presentation_profile": ctx.presentation.id,
+                "presentation_name": ctx.presentation.display_name,
             }
             for ctx in self._contexts.values()
         ]
@@ -205,6 +210,17 @@ def _load_character(root: Path, entry: dict[str, Any]) -> tuple[str, CharacterCo
     enabled = bool(config.get("enabled", True))
 
     pack_dir = config_path.parent
+    presentation_id = str(config.get("presentation_profile") or "book_portal").strip()
+    if not _ID_RE.fullmatch(presentation_id):
+        raise CharacterRegistryError(f"Character {char_id!r} has invalid presentation_profile {presentation_id!r}.")
+    content_project_root = root.parent
+    presentation_path = content_project_root / "presentation_profiles" / presentation_id / "profile.json"
+    try:
+        presentation = load_presentation_profile(presentation_path)
+    except PresentationProfileError as exc:
+        raise CharacterRegistryError(
+            f"Character {char_id!r} has invalid presentation profile {presentation_id!r}: {exc}"
+        ) from exc
     references = config.get("references") or {}
     reference_mode = str(references.get("reference_mode") or "").strip()
     if reference_mode not in VALID_REFERENCE_MODES:
@@ -252,6 +268,7 @@ def _load_character(root: Path, entry: dict[str, Any]) -> tuple[str, CharacterCo
         appearance_full=prompts["appearance"],
         behavior=prompts["behavior"],
         negative_constraints=prompts["negative"],
+        presentation=presentation,
         selection_profile=dict(profile),
     )
     return char_id, context if enabled else None
@@ -302,12 +319,22 @@ def _load_registry_cached(registry_path_str: str, mtime_ns: int) -> CharacterReg
     )
 
 
+def _registry_revision(registry_path: Path) -> int:
+    """Fingerprint configs, prompt fragments and sheets used by this registry."""
+    root = registry_path.parent
+    candidates = [
+        path for path in root.rglob("*")
+        if path.is_file() and path.suffix.lower() in {".json", ".md", ".png", ".jpg", ".jpeg", ".webp"}
+    ]
+    return max(path.stat().st_mtime_ns for path in candidates)
+
+
 def load_character_registry(registry_path: Path) -> CharacterRegistry:
-    """Load + validate a registry, caching on (path, mtime) so packs are parsed once."""
+    """Load + validate a registry, caching until any pack input changes."""
     registry_path = registry_path.resolve()
     if not registry_path.is_file():
         raise CharacterRegistryError(f"Character registry not found: {registry_path}")
-    registry = _load_registry_cached(str(registry_path), registry_path.stat().st_mtime_ns)
+    registry = _load_registry_cached(str(registry_path), _registry_revision(registry_path))
     if registry.default_selection_mode != "auto":
         raise CharacterRegistryError("default_selection_mode must be 'auto'.")
     return registry

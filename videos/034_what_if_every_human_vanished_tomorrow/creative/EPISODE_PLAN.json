@@ -1,0 +1,18 @@
+{
+  "opening_activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot",
+  "opening_location": "quiet early-morning urban community garden with several adjacent raised beds",
+  "opening_environment": "dew-dark soil, simple raised beds and narrow paths, with one unattended hose arcing water steadily into an increasingly waterlogged bed while gardening items sit abandoned nearby",
+  "topic_visual_link": "A human-controlled garden hose keeps running after its user is conspicuously absent, immediately previewing how ordinary infrastructure would continue briefly before unattended systems begin to fail.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "At frame zero, a hose lies on the path spraying continuously into an overflowing raised bed beside a dropped gardening glove and tipped hand trowel, with no gardener anywhere near it.",
+  "curiosity_trigger": "The steady hiss of water and expanding muddy overflow make the crone notice that the hose is still running even though nobody is tending it.",
+  "trigger_object": "unattended running garden hose flooding a raised bed",
+  "reaction": "She stops mid-reach, follows the stream with a sharp side-eye, then gives the raven a small knowing glance as her long fingers withdraw beneath her cloak.",
+  "entry_retrieval": "Her long fingers disappear beneath the moss-green cloak and return cradling her unmistakable orb; she raises it into the path of the spraying water, its surface catches the empty garden in reflection, and the camera moves directly into the orb.",
+  "entry_variant": "sleeve_reveal",
+  "camera_pattern": "static_wide",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "cinematic abandoned-world realism progressing from recently deserted infrastructure to flooded transit, overgrown streets and weathered empty buildings",
+  "reason": "The unattended hose is a simple, instantly readable first consequence of human disappearance and naturally matches the script's opening while giving the observant, economical crone a grounded reason to reveal her orb."
+}

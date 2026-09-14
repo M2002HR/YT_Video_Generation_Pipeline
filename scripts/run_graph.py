@@ -7,7 +7,7 @@ visible graph cannot silently diverge from invalidation behaviour.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Iterable
 from image_artifacts import receipt_status
@@ -28,10 +28,10 @@ class NodeSpec:
 # Adding a regular stage should require one entry here, not coordinated edits in the API,
 # graph renderer and regeneration handler. Beat-image nodes are expanded dynamically.
 NODE_SPECS: dict[str, NodeSpec] = {
-    "script_draft": NodeSpec("Script draft", "text", artifacts=("creative/SCRIPT_DRAFT.json",), description="Initial researched script response.", phase="creative"),
+    "character_resolution": NodeSpec("Character & presentation resolution", "data", (), ("creative/CHARACTER_RESOLUTION.json",), ("creative/PRESENTATION_RESOLUTION.json",), description="One-time Auto/manual host and opening-format resolution.", phase="creative"),
+    "script_draft": NodeSpec("Script draft", "text", ("character_resolution",), ("creative/SCRIPT_DRAFT.json",), description="Initial script using the resolved presentation grammar.", phase="creative"),
     "retention_edit": NodeSpec("Final script", "text", ("script_draft",), ("creative/SCRIPT_PLAN.json", "SCRIPT_FINAL.md"), description="Retention-edited narration and beat plan.", phase="creative"),
-    "character_resolution": NodeSpec("Character resolution", "data", ("retention_edit",), ("creative/CHARACTER_RESOLUTION.json",), description="One-time Auto/manual host resolution between Stages 02 and 03.", phase="creative"),
-    "episode_director": NodeSpec("Episode direction", "data", ("character_resolution",), ("creative/EPISODE_PLAN.json",), phase="creative"),
+    "episode_director": NodeSpec("Episode direction", "data", ("retention_edit", "character_resolution"), ("creative/EPISODE_PLAN.json",), phase="creative"),
     "world_style_director": NodeSpec("World style", "data", ("retention_edit",), ("creative/WORLD_STYLE_PLAN.json",), phase="creative"),
     "world_style_anchor": NodeSpec("Style anchor", "image", ("world_style_director",), ("references/world_style_anchor.png",), ("pipeline/provider_receipts/gemini_world_style_anchor.json",), phase="visual"),
     "episode_history": NodeSpec("Episode history", "data", ("episode_director", "world_style_director"), description="Records anti-repetition traits for future episodes.", phase="creative", regeneratable=False),
@@ -39,10 +39,10 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "world_keyframe_prompt": NodeSpec("Keyframe prompt", "text", ("retention_edit", "world_style_director"), ("references/world_keyframe_prompt.txt",), phase="visual"),
     "world_keyframe": NodeSpec("World keyframe", "image", ("world_keyframe_prompt", "world_style_anchor"), ("references/world_keyframe.png",), ("pipeline/provider_receipts/gemini_world_keyframe.json",), phase="visual"),
     "book_design_sheet": NodeSpec("Canonical book design", "image", description="Shared project-level book identity; inspected here but not owned by this episode.", phase="visual", regeneratable=False),
-    "book_cover_design": NodeSpec("Book-cover direction", "text", artifacts=("creative/BOOK_COVER_DESIGN.txt",), description="Topic-specific motifs; independent of the narration draft.", phase="visual"),
-    "book_cover": NodeSpec("Book cover", "image", ("book_cover_design", "world_style_anchor"), ("references/book_cover_frame.png",), ("pipeline/provider_receipts/gemini_book_cover.json",), phase="visual"),
+    "book_cover_design": NodeSpec("Book-cover direction", "text", ("episode_director",), ("creative/BOOK_COVER_DESIGN.txt",), description="Topic-specific entry-frame motifs and staging.", phase="visual"),
+    "book_cover": NodeSpec("Book cover", "image", ("book_cover_design", "book_design_sheet", "world_style_anchor", "episode_director", "character_resolution"), ("references/book_cover_frame.png",), ("pipeline/provider_receipts/gemini_book_cover.json",), phase="visual"),
     "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "character_resolution", "retention_edit"), ("references/flow_prompt_opening_a.txt",), phase="opening"),
-    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit"), ("references/flow_prompt_book_transition.txt",), phase="opening"),
+    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit", "character_resolution"), ("references/flow_prompt_book_transition.txt",), phase="opening"),
     "flow_clip_a": NodeSpec("Opening A", "video", ("flow_prompt_a",), ("assets/opening/question_spark_source.mp4",), ("pipeline/provider_receipts/flow_opening_a.json",), phase="opening"),
     "flow_clip_b": NodeSpec("Opening B", "video", ("flow_prompt_b", "book_cover", "world_keyframe"), ("assets/opening/book_transition_source.mp4",), ("pipeline/provider_receipts/flow_opening_b.json",), phase="opening"),
     "elevenlabs_voiceover": NodeSpec("Narration", "audio", ("retention_edit",), ("assets/audio/narration.mp3",), ("voiceover/ELEVENLABS_RUNTIME_STATE.json",), phase="audio"),
@@ -196,7 +196,47 @@ def artifacts_for(project: Path, node_id: str, spec: NodeSpec | None = None) -> 
     return result
 
 
+def qh_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict[str, NodeSpec]:
+    """Profile-aware QH specs while retaining durable historical stage ids.
+
+    A manual character change can preview its destination presentation before the old
+    resolution is archived. Auto intentionally keeps the current profile until its selector
+    has produced the new persisted resolution.
+    """
+    from presentation_runtime import presentation_for_project
+    presentation = presentation_for_project(project)
+    if isinstance(settings, dict):
+        qh = settings.get("qh") if isinstance(settings.get("qh"), dict) else {}
+        request = qh.get("character") if isinstance(qh.get("character"), dict) else settings.get("character")
+        if isinstance(request, dict) and request.get("mode") == "manual" and request.get("character_id"):
+            from character_runtime import load_character_registry
+            from content_projects import character_registry_path, load_content_project
+            content = load_content_project(str(settings.get("content_project") or "q_station"))
+            registry_path = character_registry_path(content)
+            if registry_path is not None:
+                presentation = load_character_registry(registry_path).get(str(request["character_id"])).presentation
+    a = presentation.artifacts
+    label = presentation.entry_kind.title()
+    specs = dict(NODE_SPECS)
+    specs["book_design_sheet"] = replace(specs["book_design_sheet"], title=f"{label} identity", description="Shared recurring entry-object identity; not owned by this episode.")
+    specs["book_cover_design"] = replace(specs["book_cover_design"], title=f"{label} frame direction", artifacts=(a.entry_direction,))
+    specs["book_cover"] = replace(specs["book_cover"], title=f"Topic-styled {presentation.entry_kind} frame", artifacts=(a.entry_frame,), optional_artifacts=(a.entry_image_receipt,))
+    specs["flow_prompt_a"] = replace(specs["flow_prompt_a"], title="Question intro prompt", artifacts=(a.question_prompt,))
+    specs["flow_prompt_b"] = replace(specs["flow_prompt_b"], title=f"{label} entry prompt", artifacts=(a.entry_prompt,))
+    specs["flow_clip_a"] = replace(specs["flow_clip_a"], title="Question intro", artifacts=(a.question_source,))
+    specs["flow_clip_b"] = replace(specs["flow_clip_b"], title=f"{label} entry", artifacts=(a.entry_source,))
+    specs["opening_trim"] = replace(specs["opening_trim"], artifacts=(a.question_trimmed, a.entry_trimmed))
+    return specs
+
+
 def _beat_count(project: Path) -> int:
+    script = load(project / "creative/SCRIPT_PLAN.json")
+    body = script.get("body")
+    expected = len(body) if isinstance(body, list) else 0
+    if expected and str(script.get("optional_closing") or "").strip():
+        expected += 1
+    if expected:
+        return expected
     count = len(load(project / "creative/VISUAL_PLAN.json").get("beats") or [])
     if count:
         return count
@@ -205,6 +245,22 @@ def _beat_count(project: Path) -> int:
         return count
     ids = [int(path.stem.rsplit("_", 1)[-1]) for path in project.glob("assets/raw_beats/beat_*.png") if path.stem.rsplit("_", 1)[-1].isdigit()]
     return max(ids, default=0)
+
+
+def visual_plan_contract_matches(project: Path) -> bool:
+    """Every body/closing unit before CTA must own exactly one ordered visual beat."""
+    script = load(project / "creative/SCRIPT_PLAN.json")
+    body = script.get("body")
+    if not isinstance(body, list) or not body:
+        return True
+    expected = [str(item).strip() for item in body]
+    closing = str(script.get("optional_closing") or "").strip()
+    if closing:
+        expected.append(closing)
+    beats = load(project / "creative/VISUAL_PLAN.json").get("beats") or []
+    actual = [str(item.get("narration_slice") or "").strip() for item in beats if isinstance(item, dict)]
+    ids = [item.get("beat_id") for item in beats if isinstance(item, dict)]
+    return actual == expected and ids == list(range(1, len(expected) + 1))
 
 
 def _generic_graph_for(
@@ -277,6 +333,8 @@ def _generic_graph_for(
         status = str(entry.get("status") or ("DONE" if required_ok else "PENDING"))
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
+        if node_id == "visual_plan" and not visual_plan_contract_matches(project):
+            status = "STALE"
         regeneratable = spec.regeneratable if spec is not None else True
         nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": regeneratable, "regeneration": _regeneration_metadata(node_id, regeneratable)})
     edges = [_edge(dependency, node_id) for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
@@ -330,7 +388,8 @@ def graph_for(
         if item.get("stage"):
             stages[str(item["stage"])] = {**item, "status": item.get("status", "PENDING")}
     count = _beat_count(project)
-    dependencies: dict[str, tuple[str, ...]] = {name: spec.dependencies for name, spec in NODE_SPECS.items()}
+    specs = qh_node_specs(project, settings)
+    dependencies: dict[str, tuple[str, ...]] = {name: spec.dependencies for name, spec in specs.items()}
     if count:
         beats = tuple(f"beat_image_{number:03d}" for number in range(1, count + 1))
         for index, node_id in enumerate(beats):
@@ -342,7 +401,7 @@ def graph_for(
             number = int(node_id.rsplit("_", 1)[1])
             title, kind, phase, description, required, spec = f"Beat {number:02d}", "image", "visual", "Continuity image for this narration beat.", (f"assets/raw_beats/beat_{number:03d}.png",), None
         else:
-            spec = NODE_SPECS[node_id]
+            spec = specs[node_id]
             title, kind, phase, description, required = spec.title, spec.kind, spec.phase, spec.description, spec.artifacts
             if node_id == "background_music":
                 required = (*music_files(project), "music/MUSIC_SELECTION.json")
@@ -355,6 +414,8 @@ def graph_for(
         status = str(entry.get("status") or ("DONE" if required_ok else "PENDING"))
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
+        if node_id == "visual_plan" and not visual_plan_contract_matches(project):
+            status = "STALE"
         validation = None
         if kind == "image":
             receipt = next((item for item in artifacts if "provider_receipts/gemini_" in item["path"]), None)
@@ -445,7 +506,7 @@ def regeneration_plan(
 def invalidation_paths(project: Path, node_ids: Iterable[str]) -> list[str]:
     """All existing project-local files owned by the selected nodes."""
     paths: list[str] = []
-    specs = GENERIC_NODE_SPECS if project_mode(project) == "generic" else NODE_SPECS
+    specs = GENERIC_NODE_SPECS if project_mode(project) == "generic" else qh_node_specs(project)
     for node_id in node_ids:
         for artifact in artifacts_for(project, node_id, specs.get(node_id)):
             if artifact["present"] and artifact["path"] not in paths:

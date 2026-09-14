@@ -88,6 +88,23 @@ Music is not assumed to have a fixed filename. `run_graph.music_files()` resolve
 segment from `music/MUSIC_PLAN.json`, then the selected file from
 `music/MUSIC_SELECTION.json`, and finally provider-produced audio under `assets/music/`.
 This supports Freesound, Mixkit, Pixabay, and multi-segment plans without UI-specific paths.
+New Run and Revise share a persistent music library. It contains validated MP3/WAV/M4A/OGG/FLAC
+uploads plus tracks downloaded into earlier runs by Freesound, Mixkit, or Pixabay. Entries are
+deduplicated by SHA-256 and retain available provider, source, and licence metadata. Every card has
+an inline seekable preview and can be selected independently. The server freezes the selected file
+under the versioned launch inputs and passes that immutable path/hash to the wrapper. A library
+selection has strict precedence: it writes the normal music selection/plan manifests and bypasses
+all provider searches. Clearing it invalidates `background_music` and restores the selected provider
+fallback chain. Revise also exposes an inline narration player only when a decodable generated
+`assets/audio/narration.*` exists; New Run intentionally shows no empty narration preview. Its
+Web Audio gain stage follows the Narration volume control live using the same dB-to-linear
+conversion as an audio gain stage, including positive amplification.
+
+The SPA serves `/`, `/new`, `/runs`, and `/runs/<job-id>` through the same no-cache application
+shell, so direct navigation and refresh do not fall through to a server 404. A CSP-compatible
+external theme bootstrap applies Dark/Light before first paint. A static loading/reload fallback
+and React error boundary keep a recoverable diagnostic screen visible if the client bundle or a
+component render fails instead of leaving a blank white document.
 
 Media safety and bandwidth rules:
 
@@ -148,6 +165,9 @@ Configuration revisions are available through the same typed Studio controls use
 maps changed settings to the narrowest safe graph roots: voice to narration, music priority
 to background music, branding and subtitle styles to final rendering, motion/SFX to their directors, Flow
 settings to opening clips, and unknown editorial changes conservatively to script draft.
+Narration gain is deliberately different from voice synthesis controls: changing it starts at
+`audio_mix_profile`, then rebuilds only audio polish/QC/delivery. Uploaded-music changes start at
+`background_music`; neither change regenerates narration, timing, images, or Flow clips.
 
 ### Logo and question title
 
@@ -227,8 +247,12 @@ episode world keyframe is only a supporting continuity reference. If the episode
 host, its canonical character sheet is attached identity-only; it must not introduce a character
 that does not belong in the thumbnail. The prompt and QC enforce one readable, high-contrast,
 single-focal 9:16 scene rather than generic stock art, a copied frame, a busy collage, or
-AI-rendered text. They also require a concise, accurate, curiosity-led title rather than
-clickbait. Both paid candidates are retained under `publish/youtube_short/thumbnail_candidates/`;
+AI-rendered text. They also require a concise, accurate, curiosity-led title: its first two
+topic keywords are ALL CAPS, it contains only `#shorts`, and ends with a relevant emoji.
+Descriptions use a short summary, a 5–6 keyword comma-separated line, and a final 4–5 hashtag
+line beginning `#shorts #viralshorts`; tags include `shorts`, `viral shorts`, the channel name,
+and relevant topic/niche terms. Both paid candidates are retained under
+`publish/youtube_short/thumbnail_candidates/`;
 after the correction attempt, the valid second image is retained along with its QC observations so
 no paid result disappears.
 
@@ -245,6 +269,13 @@ document (never the compressed preview), the original 9:16 thumbnail PNG, a copy
 upload sheet, and the structured JSON metadata. `RELEASE_STATE.json` records source hashes,
 provider job IDs, QC decisions, and every Telegram message ID. Re-clicking a delivered release
 with the same master is idempotent and does not duplicate the Telegram delivery.
+
+The upload sheet is an English mobile-only checklist: update the official YouTube and YT Studio
+apps, upload as **Unlisted** in YouTube, add a suitable trending song and set its balance, choose
+the thumbnail frame, then use YT Studio for description, tags, category, hidden like count and
+enabled video/audio remixing. It ends with the manual switch from **Unlisted** to **Public** and
+a timing suggestion (test low-competition hours and Friday evening–Sunday afternoon against
+channel analytics). It explicitly does not instruct browser uploads.
 
 JSON errors use an `error` string. Launch/resume/stop retain HTML responses for compatibility;
 the React request helper extracts their notice text and presents it as a toast/inline error.

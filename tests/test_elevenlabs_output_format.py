@@ -20,6 +20,10 @@ def test_output_format_identity_ignores_ui_typography() -> None:
 
 def test_setting_label_matches_provider_descriptor_suffix() -> None:
     assert setting_label_matches("Jerry B - Jolly", "Jerry B - Jolly Santa Claus")
+    assert setting_label_matches(
+        "Seer Morganna - Intimidating",
+        "Seer Morganna - Intimidating, and Clear\n\nThe voice of an old wise seer woman.",
+    )
     assert setting_label_matches("Eleven Multilingual v2", "Eleven Multilingual v2")
     assert not setting_label_matches("Jerry B - Jolly", None)
     assert not setting_label_matches("Jerry", "Jerry B - Jolly")

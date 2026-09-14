@@ -33,11 +33,14 @@ def registry():
 def copied_registry(tmp_path: Path) -> Path:
     target = tmp_path / "characters"
     shutil.copytree(ROOT / "projects/q_station/characters", target)
+    shutil.copytree(ROOT / "projects/q_station/presentation_profiles", tmp_path / "presentation_profiles")
+    # The book identity path is optional at preflight, so a copied unit-test registry does
+    # not need the production visual-preset tree.
     return target / "registry.json"
 
 
-def test_registry_loads_both_enabled_character_packs(registry) -> None:
-    assert registry.enabled_ids() == ("farmer_host", "red_horned_everyman")
+def test_registry_loads_all_enabled_character_packs(registry) -> None:
+    assert registry.enabled_ids() == ("farmer_host", "red_horned_everyman", "moss_cloaked_crone")
     assert registry.get("farmer_host").sheet_path.parent.name == "refs"
     assert registry.get("red_horned_everyman").reference_mode == "IDENTITY_ONLY"
 
@@ -219,7 +222,7 @@ def test_project_alias_is_canonical_and_not_listed_twice() -> None:
 
 def test_character_catalog_is_server_driven_and_safe() -> None:
     entries = character_catalog_entries("question_harvest")
-    assert {item["id"] for item in entries} == {"farmer_host", "red_horned_everyman"}
+    assert {item["id"] for item in entries} == {"farmer_host", "red_horned_everyman", "moss_cloaked_crone"}
     assert all("path" not in item and "sheet" not in item for item in entries)
 
 
@@ -232,7 +235,7 @@ def test_character_catalog_endpoint_resolves_alias() -> None:
     assert captured["status"] == 200
     assert captured["payload"]["content_project"] == "q_station"
     assert {item["id"] for item in captured["payload"]["characters"]} == {
-        "farmer_host", "red_horned_everyman",
+        "farmer_host", "red_horned_everyman", "moss_cloaked_crone",
     }
 
 
@@ -318,21 +321,16 @@ def test_body_reference_is_conditional(registry) -> None:
 
 def test_active_prompts_enforce_stage_isolation() -> None:
     prompts = ROOT / "projects/q_station/prompts/pipeline"
-    transition_reference = (
-        ROOT / "projects/q_station/prompts/reference/book_transition_reference_prompt.txt"
-    ).read_text()
     stage3 = (prompts / "03_episode_director.md").read_text()
     stage8 = (prompts / "08_opening_video_prompt_writer.md").read_text()
     stage6 = (prompts / "06_world_keyframe_prompt_writer.md").read_text()
-    stage9 = (prompts / "09_book_transition_video_prompt_writer.md").read_text()
+    stage9 = (prompts / "09_entry_transition_video_prompt_writer.md").read_text()
     assert "{{CHARACTER_CONTEXT}}" in stage3 and "free semantic description" in stage3
     assert "topic_visual_link" in stage3 and "opening_visual_proof" in stage3
     assert "opening_visual_proof" in stage8 and "first 1–2 seconds" in stage8
     assert "no recurring host" in stage6.lower()
     assert "{{CHARACTER_CONTEXT}}" not in stage9 and "{{EPISODE_PLAN}}" not in stage9
-    assert "no recurring host" in stage9.lower() and "no farmer" not in stage9.lower()
-    assert "no recurring host" in transition_reference.lower()
-    assert "no farmer" not in transition_reference.lower()
+    assert "first_frame" in stage9 and "last_frame" in stage9
 
 
 def test_flow_clip_a_uses_selected_pack_and_clip_b_is_frames_only(registry, tmp_path: Path, monkeypatch) -> None:

@@ -34,7 +34,7 @@
     "language": "en",
     "category": "Education",
     "category_id": "27",
-    "privacy_recommendation": "private",
+    "privacy_recommendation": "unlisted",
     "license": "youtube",
     "comments": "allow_all",
     "remixing": "allow",
@@ -43,6 +43,9 @@
   "characters": {
     "registry": "characters/registry.json",
     "default_selection_mode": "auto"
+  },
+  "presentation_profiles": {
+    "legacy_default": "book_portal"
   },
   "default_visual_preset": "001_home_world",
   "allow_global_visual_preset_fallback": false,

@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 PIPELINE_STAGE_SEQUENCE = (
-    "script_draft", "retention_edit", "character_resolution", "episode_director", "world_style_director",
+    "character_resolution", "script_draft", "retention_edit", "episode_director", "world_style_director",
     "world_style_anchor", "episode_history", "visual_plan", "world_keyframe_prompt",
     "world_keyframe", "book_design_sheet", "book_cover_design", "book_cover", "flow_prompt_a", "flow_prompt_b",
     "body_images", "transition_direction", "flow_clip_a", "flow_clip_b", "elevenlabs_voiceover", "background_music",

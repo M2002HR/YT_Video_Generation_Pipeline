@@ -99,7 +99,7 @@ def compute_display_boundaries(
     completely early or late.
 
     ``start_at`` is where the image section begins on the narration timeline. For a
-    mixed-media episode that is the measured end of the book transition, so the body
+    mixed-media episode that is the measured end of the entry transition, so the body
     images keep their real spoken positions instead of being rescaled into a window.
     """
 
@@ -428,7 +428,7 @@ def build_cues_from_words(
     """Caption the whole narration, from its first measured word to its last.
 
     Cues used to be built per body beat, so everything spoken outside a body segment — the
-    opening question, the book transition, the closing and the CTA — had no caption at all: the
+    opening question, the entry transition, the closing and the CTA — had no caption at all: the
     subtitles appeared partway in and stopped before the end (observed on 011 and 012). The word
     stream *is* the narration, so chunking it is what makes the captions cover all of it, and
     every cue still starts and ends on a measured word rather than on an estimate.
@@ -552,7 +552,7 @@ def normalize_subtitle_cue_boundaries(
         adjustments.append(
             {
                 # Whole-narration word cues intentionally have no beat id:
-                # they include the opener, book transition and CTA as well as
+                # they include the opener, entry transition and CTA as well as
                 # body beats.  Keep their cue positions for the QC receipt
                 # instead of treating their first real STT overlap as a crash.
                 "previous_beat": previous.get("beat_id"),
@@ -782,11 +782,13 @@ def write_ass(
 
 def detect_mixed_media(video_dir: Path) -> bool:
     """Detect Question Harvest mixed-media mode: presence of trimmed opening clips."""
-    # QH stores trimmed clips as question_spark_trimmed.mp4 / book_transition_trimmed.mp4
-    # Legacy stores only raw_beats
+    # QH opening paths are owned by the run's presentation profile. Legacy image-only
+    # projects store only raw_beats.
+    from presentation_runtime import presentation_for_project
+    presentation = presentation_for_project(video_dir)
     for cand in [
-        video_dir / "assets" / "opening" / "question_spark_trimmed.mp4",
-        video_dir / "assets" / "opening" / "book_transition_trimmed.mp4",
+        presentation.artifacts.path(video_dir, "question_trimmed"),
+        presentation.artifacts.path(video_dir, "entry_trimmed"),
         video_dir / "references" / "world_keyframe.png",
     ]:
         if cand.is_file():
@@ -884,8 +886,10 @@ def main() -> None:
     if is_mixed:
         # Only the trimmed clips are render sources (§67-70). The untrimmed source is one
         # second longer by design, so substituting it would desynchronise the whole episode.
-        opening_a = video_dir / "assets" / "opening" / "question_spark_trimmed.mp4"
-        opening_b = video_dir / "assets" / "opening" / "book_transition_trimmed.mp4"
+        from presentation_runtime import presentation_for_project
+        presentation = presentation_for_project(video_dir)
+        opening_a = presentation.artifacts.path(video_dir, "question_trimmed")
+        opening_b = presentation.artifacts.path(video_dir, "entry_trimmed")
         for idx, (path, name) in enumerate([(opening_a, "opening_a"), (opening_b, "opening_b")]):
             if not path.is_file():
                 if args.skip_asset_validation:
@@ -921,12 +925,12 @@ def main() -> None:
         # real position in the finished video. Rescaling them into the "remaining" window —
         # which is what this used to do — moved every image off its own sentence. The images
         # therefore keep their measured boundaries, and the only thing checked is that the two
-        # clips really end where the narration says the book transition ends (§67 step 8).
+        # clips really end where the narration says the entry transition ends (§67 step 8).
         drift = abs(video_total - body_start)
         if drift > OPENING_ALIGNMENT_TOLERANCE:
             raise ValueError(
                 f"The opening clips total {video_total:.3f}s but the narration puts the end of "
-                f"the book transition at {body_start:.3f}s (drift {drift:+.3f}s > "
+                f"the {presentation.entry_kind} transition at {body_start:.3f}s (drift {drift:+.3f}s > "
                 f"{OPENING_ALIGNMENT_TOLERANCE}s). Re-run trim_opening_clips.py: rendering this "
                 "would push every body image off its own sentence."
             )

@@ -2,8 +2,8 @@
 """Typed Ordak job client for the Question Harvest pipeline.
 
 Everything the pipeline sends to a browser provider goes through here, so the explicit
-generation contract (master_prompt §5, §18-21) and the reference-role contract
-(§12-16, §61) are always transmitted — never inferred by the worker and never encoded
+generation contract and the reference-role contract are always transmitted — never
+inferred by the worker and never encoded
 into the prompt text.
 
 There is no provider fallback and no synthetic substitute: a failed provider call raises
@@ -85,7 +85,7 @@ class OrdakJobError(RuntimeError):
 
     @property
     def pipeline_state(self) -> str:
-        """Map the provider error onto a pipeline state (master_prompt §81)."""
+        """Map the provider error onto the pipeline's durable state vocabulary."""
         if self.error_code in PAUSE_ERROR_CODES:
             return PAUSE_ERROR_CODES[self.error_code]
         if self.error_code in FATAL_ERROR_CODES:

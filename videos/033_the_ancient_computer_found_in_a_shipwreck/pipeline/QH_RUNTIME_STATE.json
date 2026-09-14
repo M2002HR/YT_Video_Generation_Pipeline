@@ -6,13 +6,13 @@
   "pipeline_state": "DONE",
   "stages": {
     "visual_plan": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
-      "artifact": "VISUAL_PLAN.json"
+      "status": "DONE",
+      "updated_at": "2026-09-14T18:44:45Z",
+      "beats": 10
     },
     "character_resolution": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:09Z",
+      "updated_at": "2026-09-14T18:43:53Z",
       "requested_mode": "manual",
       "requested_character_id": "moss_cloaked_crone",
       "resolved_character_id": "moss_cloaked_crone",
@@ -22,32 +22,32 @@
     },
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:09Z",
+      "updated_at": "2026-09-14T18:43:53Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:09Z",
+      "updated_at": "2026-09-14T18:43:53Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:09Z",
+      "updated_at": "2026-09-14T18:43:53Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:09Z",
+      "updated_at": "2026-09-14T18:43:53Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:09Z",
+      "updated_at": "2026-09-14T18:43:53Z",
       "artifact": "world_style_anchor.png → catalog/019_verdigris_celestial_mechanism_drawing_00"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-14T12:07:10Z",
+      "updated_at": "2026-09-14T18:43:55Z",
       "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
       "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
       "camera_pattern": "over_shoulder",
@@ -55,42 +55,38 @@
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "orb_design_sheet.png"
     },
     "book_cover_design": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "ENTRY_FRAME_DIRECTION.txt"
     },
     "book_cover": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "orb_entry_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "flow_prompt_question_intro.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:11Z",
+      "updated_at": "2026-09-14T18:44:46Z",
       "artifact": "flow_prompt_orb_transition.txt"
-    },
-    "body_images": {
-      "status": "DONE",
-      "updated_at": "2026-09-14T12:07:16Z"
     },
     "beat_image_001": {
       "status": "REUSED",
@@ -137,11 +133,6 @@
       "updated_at": "2026-09-14T12:07:16Z",
       "artifact": "beat_009.png"
     },
-    "transition_direction": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:17Z",
-      "artifact": "TRANSITION_PLAN.json"
-    },
     "flow_clip_a": {
       "status": "REUSED",
       "updated_at": "2026-09-14T12:07:17Z",
@@ -156,6 +147,10 @@
       "status": "DONE",
       "updated_at": "2026-09-14T12:07:17Z",
       "body_images": 9
+    },
+    "body_images": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-14T18:44:46Z"
     }
   },
   "events": [
@@ -501,7 +496,24 @@
       "status": "DONE",
       "elapsed_seconds": 4.132,
       "at": "2026-09-14T12:07:16Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.455,
+      "at": "2026-09-14T18:43:55Z",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 49.404,
+      "at": "2026-09-14T18:44:45Z",
+      "beats": 10
     }
   ],
-  "updated_at": "2026-09-14T12:07:17Z"
+  "updated_at": "2026-09-14T18:44:46Z"
 }

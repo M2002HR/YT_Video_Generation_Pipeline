@@ -18,7 +18,7 @@ def test_schema_exposes_every_launch_configuration_group() -> None:
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
     ]
     names = {field["name"] for group in schema["groups"] for field in group["fields"]}
-    assert {"topic", "min_duration_seconds", "voice", "music_providers", "sfx_enabled", "motion_enabled", "motion_supersample", "telegram_original"} <= names
+    assert {"topic", "min_duration_seconds", "voice", "narration_gain_db", "music_upload_id", "music_providers", "sfx_enabled", "motion_enabled", "motion_supersample", "telegram_original"} <= names
 
 
 def test_subtitle_controls_are_colocated_and_gated() -> None:
@@ -36,6 +36,8 @@ def test_schema_defaults_match_the_server_launch_contract() -> None:
     assert values["min_duration_seconds"] == 40
     assert values["max_duration_seconds"] == 60
     assert values["music_providers"] == ["freesound", "mixkit", "pixabay"]
+    assert values["music_upload_id"] == ""
+    assert values["narration_gain_db"] == 0
     assert values["word_highlight"] is True
     assert values["reserve_subtitle_space"] is True
     assert values["beat_image_qc_disabled"] is False

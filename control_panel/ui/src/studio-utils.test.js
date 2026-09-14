@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   artifactUrl,
   dependentNodeIds,
+  dbToLinearGain,
   formatBytes,
   label,
   previewCaptionLines,
@@ -17,6 +18,14 @@ import {
   SUBTITLE_POSITION_OFFSETS,
   validateLaunchValues,
 } from "./studio-utils.js";
+
+test("narration preview converts and clamps dB like an audio gain stage", () => {
+  assert.equal(dbToLinearGain(0), 1);
+  assert.ok(Math.abs(dbToLinearGain(6) - 1.9952623149688795) < 1e-12);
+  assert.ok(Math.abs(dbToLinearGain(-6) - 0.5011872336272722) < 1e-12);
+  assert.equal(dbToLinearGain(99), dbToLinearGain(12));
+  assert.equal(dbToLinearGain("bad"), 1);
+});
 
 const clipboardGroup = {
   id: "subtitles",

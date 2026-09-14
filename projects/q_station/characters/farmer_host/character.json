@@ -4,6 +4,7 @@
   "display_name": "Farmer Host",
   "enabled": true,
   "version": 1,
+  "presentation_profile": "book_portal",
   "environment_policy": "dynamic_with_soft_affinity",
   "selection_profile": {
     "archetype": "warm practical hands-on explainer",

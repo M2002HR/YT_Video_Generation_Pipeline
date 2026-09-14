@@ -1,0 +1,144 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "73c1b6ce31189c1f37b3525681c6a589fa0615c2babe9de4599a7512996e5952",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical charcoal-style reference sheet showing rough paper and concrete textures, soot bloom, rubbed graphite haze, water-stain mottling, seven muted palette swatches, industrial silhouette and infrastructure line-treatment examples, scratch and crack marks, overcast gray lighting, dim gloom, and an isolated amber utility-light sample. The overall presentation is a texture-and-palette study rather than a narrative scene, with no characters or logos.",
+    "violations": [
+      "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+      "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+      "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+      "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+      "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+      "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+      "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+      "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+      "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+    ],
+    "observations": [
+      "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+      "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+      "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+      "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+      "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "cabc1c30-dfba-408e-8ef7-d68597770dc1",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/5346c109f53231ac",
+    "submission_fingerprint": null,
+    "reference_roles": [],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=cabc1c30-dfba-408e-8ef7-d68597770dc1_output_1.png 1536x2752 sha256=41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical charcoal-style reference sheet showing rough paper and concrete textures, soot bloom, rubbed graphite haze, water-stain mottling, seven muted palette swatches, industrial silhouette and infrastructure line-treatment examples, scratch and crack marks, overcast gray lighting, dim gloom, and an isolated amber utility-light sample. The overall presentation is a texture-and-palette study rather than a narrative scene, with no characters or logos.",
+      "violations": [
+        "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+        "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+        "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+        "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+        "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+        "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+        "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+        "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+        "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+      ],
+      "observations": [
+        "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+        "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+        "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+        "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+        "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "73c1b6ce31189c1f37b3525681c6a589fa0615c2babe9de4599a7512996e5952",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "cabc1c30-dfba-408e-8ef7-d68597770dc1",
+        "prompt_sha256": "6244206bc6536cd521201e63c42b9c3b2db50c73dfcc953a453164e64b0ee57f",
+        "output_sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical charcoal-style reference sheet showing rough paper and concrete textures, soot bloom, rubbed graphite haze, water-stain mottling, seven muted palette swatches, industrial silhouette and infrastructure line-treatment examples, scratch and crack marks, overcast gray lighting, dim gloom, and an isolated amber utility-light sample. The overall presentation is a texture-and-palette study rather than a narrative scene, with no characters or logos.",
+          "violations": [
+            "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+            "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+            "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+            "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+            "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+            "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+            "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+            "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+            "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+          ],
+          "observations": [
+            "Visible text and labels are present throughout the sheet, including captions such as 'Rough-grained paper', palette names, and line-treatment descriptions, despite the requested no-text direction.",
+            "The sheet contains relatively dense explanatory labeling, conflicting with the request to avoid dense technical labels.",
+            "Some infrastructure demonstration panels read somewhat like clean diagrammatic studies compared with the requested consistently loose cinematic charcoal treatment.",
+            "The bottom-left overcast-light sample has a slightly photographic cloud appearance relative to the otherwise charcoal-rendered sheet.",
+            "A few visible label typos or malformed words reduce polish, including 'ric sillhoueties', 'architecturt edges', and 'mature'."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [],
+  "prompt_sha256": "6244206bc6536cd521201e63c42b9c3b2db50c73dfcc953a453164e64b0ee57f",
+  "prompt": "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, not a scene. Medium: charcoal. Texture family: rough fibrous charcoal paper with weathered concrete-like grain, soft soot bloom, rubbed graphite haze, and restrained water-stain mottling. Palette: desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, and sparse cold amber remnants for failing artificial light. Line treatment: cinematic charcoal silhouettes with broken architectural edges, selective crisp dark contours around important infrastructure, loose rubbed shading in decay zones, and fine scratch marks for cables, weeds, cracks, and rain. Lighting: overcast cinematic daylight shifting into dim emergency-light gloom, with long soft shadows, misty atmospheric falloff, and occasional isolated cold-amber utility glow. Avoid: no photorealism, no glossy 3D CGI, no anime, no neon cyberpunk, no clean vector infographic aesthetic, no cheerful storybook treatment, no excessive gore or animal suffering, no disaster-movie fireball spectacle, no dense technical labels, no visible text or UI inside world imagery, and no beat-by-beat medium switching. No characters, no text, no logos, no photorealism.",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 57.134,
+  "completed_at": "2026-09-14T19:27:33Z"
+}

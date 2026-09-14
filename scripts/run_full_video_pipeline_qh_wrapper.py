@@ -107,10 +107,20 @@ def word_timing_is_usable(project: Path) -> bool:
     if not timing.is_file() or not opening.is_file():
         return False
     try:
-        stt = (json.loads(timing.read_text(encoding="utf-8")).get("stt") or {})
+        payload = json.loads(timing.read_text(encoding="utf-8"))
+        stt = payload.get("stt") or {}
+        from align_beats import parse_beats
+        expected = parse_beats(project / "VISUAL_BEATS.md")
+        actual = payload.get("beats") or []
     except (OSError, ValueError):
         return False
-    return stt.get("backend") in ACCEPTED_STT_BACKENDS and stt.get("timestamp_source") == "word"
+    same_beats = [
+        (item.get("beat_id"), " ".join(str(item.get("narration") or "").split()))
+        for item in actual if isinstance(item, dict)
+    ] == [
+        (item["beat_id"], " ".join(item["narration"].split())) for item in expected
+    ]
+    return same_beats and stt.get("backend") in ACCEPTED_STT_BACKENDS and stt.get("timestamp_source") == "word"
 
 
 def opening_speed_tolerance(project: Path, creative_brief: Path) -> float:
@@ -253,6 +263,13 @@ def main() -> int:
     )
     parser.add_argument("--music-provider", default=None, help="Legacy single music provider.")
     parser.add_argument("--music-providers", default=None, help="Comma-separated music provider priority.")
+    parser.add_argument("--music-file", type=Path, default=None, help="Frozen operator-uploaded music; bypasses provider search.")
+    parser.add_argument("--music-file-sha256", default="", help="Integrity hash for --music-file.")
+    parser.add_argument("--music-source-provider", default="operator_upload")
+    parser.add_argument("--music-source-origin", default="upload")
+    parser.add_argument("--music-source-url", default="")
+    parser.add_argument("--music-source-license", default="")
+    parser.add_argument("--music-source-name", default="")
     parser.add_argument("--publish", action="store_true", help="Publish the finished render.")
     parser.add_argument("--telegram-low-size", action=argparse.BooleanOptionalAction, default=True, help="Send a compressed Telegram copy (default: enabled).")
     parser.add_argument("--telegram-original", action="store_true", help="Also send the polished original to Telegram.")
@@ -298,7 +315,7 @@ def main() -> int:
 
     from flow_gate import blocked_only_on_flow, clips_ready, missing_clips
 
-    # 1. Visual stages: script, plans, world keyframe, book spread, body images, Flow clips.
+    # 1. Visual stages: script, plans, world keyframe, entry frame, body images, Flow clips.
     #    A Flow outage is Google's, not this episode's: when it is the only failure, the
     #    stages that need no video clip still run, and the trim and render wait instead of
     #    the whole episode being thrown away.
@@ -362,7 +379,18 @@ def main() -> int:
     #    timing: when alignment is blocked by its STT provider, the episode should still gain
     #    its music instead of every resume stopping at the same step with nothing to show.
     music_dir = project / "assets" / "music"
-    if music_is_usable(music_dir):
+    operator_music: Path | None = None
+    if args.music_file is not None:
+        from operator_music import audio_duration, install_operator_music
+        operator_music = install_operator_music(
+            project, args.music_file, args.music_file_sha256, audio_duration(narration), {
+                "provider": args.music_source_provider, "origin": args.music_source_origin,
+                "source_url": args.music_source_url or None, "license": args.music_source_license or None,
+                "original_name": args.music_source_name or args.music_file.name,
+            }
+        )
+        print(f"operator music installed: {operator_music}", flush=True)
+    if operator_music is not None or music_is_usable(music_dir):
         print("music reuse", flush=True)
         mark_wrapper_stage(project, "background_music", "REUSED", artifact=str(music_dir.relative_to(project)))
         report_reused(notifier, "background_music", str(music_dir.relative_to(project)))
@@ -427,7 +455,13 @@ def main() -> int:
 
     # 6. Cut the Flow sources to the measured narration boundaries (§67).
     clear_pending_state(project)
-    trim_outputs = [project / "assets/opening/question_spark_trimmed.mp4", project / "assets/opening/book_transition_trimmed.mp4", project / "timing/OPENING_TRIM_REPORT.json"]
+    from presentation_runtime import presentation_for_project
+    presentation = presentation_for_project(project)
+    trim_outputs = [
+        presentation.artifacts.path(project, "question_trimmed"),
+        presentation.artifacts.path(project, "entry_trimmed"),
+        project / "timing/OPENING_TRIM_REPORT.json",
+    ]
     if all(path.is_file() and path.stat().st_size > 0 for path in trim_outputs):
         print("opening trim reuse", flush=True)
         mark_wrapper_stage(project, "opening_trim", "REUSED", artifact="timing/OPENING_TRIM_REPORT.json")
@@ -448,7 +482,13 @@ def main() -> int:
     # 7. Render profiles, then timeline → render → QC → publish.
     from run_full_video_pipeline import ensure_audio_mix_profile, ensure_render_profile
 
-    ensure_audio_mix_profile(project)
+    try:
+        brief_payload = json.loads(args.creative_brief.read_text(encoding="utf-8"))
+        audio_settings = brief_payload.get("_audio") if isinstance(brief_payload.get("_audio"), dict) else {}
+        narration_gain_db = float(audio_settings.get("narration_gain_db", 0))
+    except (OSError, ValueError, TypeError):
+        narration_gain_db = 0.0
+    ensure_audio_mix_profile(project, narration_gain_db)
     apply_render_preferences(ensure_render_profile(project, args.aspect_ratio), args.creative_brief, args.topic)
 
     completion = [

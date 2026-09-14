@@ -545,7 +545,7 @@ def align_beats(
     return aligned
 
 
-SCRIPT_PLAN_SEGMENTS = ("opening_question_spark", "book_transition")
+SCRIPT_PLAN_SEGMENTS = ("opening_question_spark",)
 
 
 def load_script_plan(video_dir: Path) -> dict[str, Any] | None:
@@ -567,6 +567,8 @@ def script_plan_segments(plan: dict[str, Any]) -> list[tuple[str, str]]:
     segments: list[tuple[str, str]] = []
     for key in SCRIPT_PLAN_SEGMENTS:
         segments.append((key, str(plan.get(key) or "").strip()))
+    entry_key = "entry_transition" if "entry_transition" in plan else "book_transition"
+    segments.append((entry_key, str(plan.get(entry_key) or "").strip()))
     body = plan.get("body")
     if isinstance(body, list):
         for index, entry in enumerate(body, start=1):
@@ -648,10 +650,11 @@ def write_opening_timing(
     """
     by_name = {entry["segment"]: entry for entry in aligned_segments}
     spark = by_name.get("opening_question_spark")
-    transition = by_name.get("book_transition")
+    entry_key = "entry_transition" if "entry_transition" in by_name else "book_transition"
+    transition = by_name.get(entry_key)
     if spark is None or transition is None:
         raise ValueError(
-            "Opening timing needs both opening_question_spark and book_transition segments."
+            f"Opening timing needs both opening_question_spark and {entry_key} segments."
         )
     weak = [
         entry["segment"]
@@ -665,7 +668,7 @@ def write_opening_timing(
         )
     if transition["speech_end"] <= spark["speech_end"]:
         raise ValueError(
-            "book_transition ends before opening_question_spark does; the segment order in "
+            f"{entry_key} ends before opening_question_spark does; the segment order in "
             "SCRIPT_PLAN.json does not match the narration."
         )
 
@@ -678,6 +681,7 @@ def write_opening_timing(
         "transition_start": transition["speech_start"],
         "transition_end": transition["speech_end"],
         "transition_duration": round(transition["speech_end"] - transition["speech_start"], 3),
+        "entry_segment": entry_key,
         "clip_a_target_seconds": round(spark["speech_end"], 3),
         "clip_b_target_seconds": round(transition["speech_end"] - spark["speech_end"], 3),
         "body_start": body[0]["speech_start"] if body else transition["speech_end"],

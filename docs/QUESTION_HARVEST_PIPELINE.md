@@ -1,137 +1,99 @@
-# Q Station — the pipeline, end to end
+# Q Station production workflow
 
-Canonical id: `q_station`. The filename is retained as a documentation compatibility path;
-`question_harvest` is now only a legacy alias for resuming historical runs.
+`q_station` is the canonical project id. `question_harvest` is accepted only as a compatibility alias.
+The panel launches `run_full_video_pipeline_qh_wrapper.py`, which runs the creative/visual half,
+narration/music/alignment, opening trim, then timeline/render/QC/delivery.
 
-One launch on the panel produces one episode: a vertical Short whose narration, images and
-opening clips all come from real provider UIs driven through Ordak. This document is the
-map. It says what each stage consumes, what it writes, and what makes it refuse.
+## End-to-end data flow
 
-## Absolute rules (§4, §60-61)
-
-These are not preferences. Code enforces each one, and tests assert the refusal.
-
-| Rule | Enforced by |
-|---|---|
-| text = ChatGPT, image = Gemini, video = Flow — all through Ordak | `validate_provider_locks`, `tests/test_provider_lock.py` |
-| No synthetic media, no provider fallback, no placeholder frame | no fallback path exists; `check_full_stack.py` greps `scripts/` |
-| Flow never receives a style sheet | `flow_reference_policy`, re-checked at the upload boundary |
-| Character identity is registry-driven and independent of visual/world style | `character_runtime`, `characters/registry.json` |
-| WORLD_KEYFRAME and Clip B are host-free | Stage 06/09 prompts and frames-only Flow policy |
-| Frames and Ingredients are exclusive | one Flow tablist, one active mode |
-| `outputs=x1` always | `flow_settings` verifies the control after setting it |
-| Zero blind duplicate Generate | credit guard fingerprint + `_reconcile_pending` |
-| `model_verified` only with UI evidence | `GenerationReceipt` validator rejects a bare claim |
-| No proxy; direct connection | `trust_env=False` on every client |
-
-## The two halves
-
-`run_full_video_pipeline_qh_wrapper.py` is the only entry point the panel uses. It runs
-the visual half, then narration and timing, then the completion half.
-
-```
-panel /launch (Auto or manual Character)
-  └─ run_full_video_pipeline_qh_wrapper.py
-       ├─ run_question_harvest_pipeline.py     17 stages: script → Flow clips → body images
-       ├─ run_elevenlabs_voiceover.py          one continuous narration track (§66)
-       ├─ align_beats.py                       real word timestamps → WORD_TIMINGS.json
-       ├─ trim_opening_clips.py                cut Flow sources to measured boundaries (§67)
-       ├─ run_pixabay_music.py --provider mixkit
-       └─ run_completion_pipeline.py           timeline → render → QC → polish → QC → publish
+```text
+launch topic + frozen config
+  → character + presentation resolution (persisted once)
+  → script draft → retention-edited SCRIPT_PLAN
+  → episode direction + topic-world style plan
+  → style anchor + host-free world keyframe
+  → recurring entry identity + topic/style-aware entry frame
+  → pre-CTA visual plan + sequential beat images
+  → Flow Intro A (question) + Intro B (entry into world)
+  → continuous narration + real word alignment
+  → measured opening trims → shared timeline/render/QC/delivery
 ```
 
-Every stage is resumable. A stage with a valid artifact **and** a recorded `DONE` state is
-reused, which is what makes a failed run cheap to continue: `/resume` on the panel re-runs
-the same command, and paid work is never bought twice.
+## Identity, scenario and style
 
-## Visual half — the 17 stages
+- `characters/<id>/character.json` selects a `presentation_profile` and owns only identity, behavior,
+  selection traits and its canonical character sheet.
+- `presentation_profiles/<id>/profile.json` owns the fixed two-intro progression, entry mechanism,
+  prompt fragments and episode artifact names.
+- `WORLD_STYLE_PLAN.json` owns the topic world's medium, palette, texture, lighting and frame language.
+  It must not redesign the host or recurring entry object.
 
-| # | Stage | Provider | Writes |
-|---|---|---|---|
-| 1 | `script_draft` | ChatGPT | `creative/SCRIPT_DRAFT.json` |
-| 2 | `retention_edit` | ChatGPT | `creative/SCRIPT_PLAN.json`, `SCRIPT_FINAL.md` |
-| — | `character_resolution` | ChatGPT for Auto; local for manual/resume | `creative/CHARACTER_RESOLUTION.json`, launch manifest |
-| 3 | `episode_director` | ChatGPT | `creative/EPISODE_PLAN.json` |
-| 4 | `world_style_director` | ChatGPT | `creative/WORLD_STYLE_PLAN.json` |
-| 5 | `world_style_anchor` | Gemini *or* catalog copy | `references/world_style_anchor.png` |
-| 6 | `episode_history` | — | `projects/<id>/VIDEOS.json` |
-| 7 | `visual_plan` | ChatGPT | `creative/VISUAL_PLAN.json` |
-| 8 | `world_keyframe_prompt` | ChatGPT | prompt text |
-| 9 | `world_keyframe` | Gemini | `references/world_keyframe.png` |
-| 10 | `book_design_sheet` | Gemini | `references/book_design_sheet.png` |
-| 11 | `book_spread` | local compositor | `references/book_spread.png` |
-| 12-13 | `flow_prompt_a` / `_b` | ChatGPT | clip prompts |
-| 14 | `flow_clip_a` | Flow | `assets/opening/question_spark_source.mp4` |
-| 15 | `flow_clip_b` | Flow | `assets/opening/book_transition_source.mp4` |
-| 16 | `beat_prompts` | ChatGPT | per-beat image prompts |
-| 17 | `body_images` | Gemini | `assets/images/beat_*.png` |
+`book_portal` preserves the existing red/farmer workflow: varied question scenario → storybook →
+topic-styled closed cover → opening/page turn → enter the topic world. Its historical artifact names
+remain unchanged.
 
-Stage 6 runs immediately after the style decision rather than at publication, so an episode
-that fails later still constrains the next one instead of vanishing from history (§35).
+`orb_portal` implements: varied question scenario → crone's orb → a readable crone ownership/agency
+cue (hand, fingers, moss-green sleeve, shadow/reflection or raven) → the orb interior gradually adopts
+the topic/style visual language → camera enters the same host-free world keyframe. Its artifacts are
+explicitly orb-named.
 
-## What the operator controls
+## Durable state and compatibility
 
-The panel writes every choice into `launch/CREATIVE_BRIEF.json` under `_qh`, and the wrapper
-turns those into CLI flags. Nothing is inferred from the topic text.
+New runs write `creative/PRESENTATION_RESOLUTION.json` beside `CHARACTER_RESOLUTION.json`. The profile
+id/version, entry kind, narration key and artifact contract are frozen. Runs without that file predate
+multi-presentation support and resolve to `book_portal`; no file is written merely by reading them.
 
-| Panel field | Flag | Effect |
-|---|---|---|
-| Character | `--character-mode`, `--character-id` | Auto resolves once after Stage 02; manual validates an enabled registry id |
-| Min/Max duration | `--min-duration-seconds/--max-duration-seconds` | fills `{{DURATION_RANGE}}`, `{{WORD_RANGE}}`, `{{WORD_TARGET}}` in prompts 01 and 02 |
-| World style | `--world-style-id` | binding reuse of a catalogued `style_id`; validated against the catalog before anything runs |
-| World style policy | `--world-style-policy` | `auto` / `reuse` / `new` |
-| World style hint | `--world-style-hint` | free-text steer for a new style |
-| Gemini image model | `--gemini-model` | verified against the UI, see below |
-| Non-critical image QC corrections | `--image-qc-correction-policy` | `0`, `1`, `2`, or `strict` (three total attempts and then fail unless fully clean) |
-| Flow model / resolution | `--flow-model`, `--flow-resolution` | verified against the Flow settings menu |
-| Opening A/B seconds | `--opening-a-seconds/-b-` | Flow source length, one second of headroom over the planned segment |
+Stage IDs `flow_prompt_a/b`, `flow_clip_a/b`, `book_design_sheet`, `book_cover_design` and
+`book_cover` are retained as durable compatibility IDs. `run_graph.qh_node_specs()` gives them truthful
+profile-aware titles and artifacts. This prevents migration of completed state while keeping runtime
+behavior data-driven. A deliberate character change through Revise is versioned: the prior character
+and presentation branch is archived, their persisted resolutions are invalidated, and resolution plus
+all script/opening/downstream consumers rebuild under the newly requested character.
 
-The duration is binding rather than advisory: `DurationTarget` derives the word range from
-it at 2.3-2.5 words per second, which is the same ratio the format's own 40-60s => 92-150
-word rule encodes.
+Character resolution now precedes writing new narration so the script uses the correct entry segment.
+Book runs retain `book_transition`; orb runs use `entry_transition`. The aligner accepts both and writes
+the chosen key into `OPENING_TIMING.json`. Everything after `opening_trim` is presentation-agnostic.
 
-Every Gemini request verifies Extended Thinking from the live mode picker after model/tool
-selection and immediately before submission. Image QC corrections attach the previous
-candidate as a quality floor, target only the reported findings, and atomically publish the
-best non-blocking candidate. A retry with new regressions cannot displace a better earlier
-candidate; blocking identity, continuity, or wrong-output failures are never accepted.
+The image contract is one-to-one: every `body` entry owns one still image and a non-empty
+`optional_closing` owns one additional final still. CTA is the only allowed exception and may remain
+on the closing image. The planner validator checks exact ordered narration slices, the Markdown
+handoff preserves all units, the aligner verifies current beat text before reuse, and the graph marks
+older plans without the closing beat as `STALE` while exposing the missing beat node.
 
-Farmer Host and Red Horned Everyman are the current packs. Environments are dynamic per
-episode; Farmer's rural affinities are soft and Red has none. Character sheets are
-identity-only. Host-present body beats may receive the selected sheet; host-absent beats do
-not. Clip A uses Ingredients with only that sheet. Clip B uses only first/last Frames and is
-independent of the selected host and opening environment.
+## Reference policy
 
-## Length, and why the word range is derived
+- Intro A: Flow Ingredients = `character_sheet` only.
+- Intro B: Flow Frames = `first_frame` (entry frame) + `last_frame` (world keyframe).
+- Gemini entry-frame generation receives `entry_identity`, `style_reference`, and—only when the
+  profile declares `ownership_cue`—`character_sheet`.
+- Flow never receives style anchors. Frames and Ingredients remain mutually exclusive.
 
-`body_seconds = max(20, word_count × 0.42 − (opening_a + opening_b))`. The 0.42 is the
-inverse of the speaking rate. A 25-30s request therefore asks for ~57-75 words, and the
-retention editor tightens to that range instead of the 40-60s default.
+## Panel and regeneration
 
-## Refusals worth knowing
+The character catalog returns each character's presentation name, shown in the selector. The graph,
+status, prerequisites, descendant calculation, retry/resume and invalidation all consume the same
+profile-aware `NodeSpec` mapping. Changing world style cascades through the entry frame and Intro B;
+body timing/render stages do not become character-aware. Revise exposes character selection and shows
+the full impact before applying it; changing a character intentionally starts at `character_resolution`
+inside the same versioned run, while a topic change still creates a separate run.
 
-* **`aspect_mismatch`** — Gemini has no aspect-ratio control, so the requested ratio is
-  stated in the prompt and the downloaded file is measured. A landscape answer to a 9:16
-  request is rejected, not cropped.
-* **`MODEL_NOT_AVAILABLE`** — the requested image model is not the one the UI names. See
-  `docs/ORDAK_GEMINI_BROWSER_AUTOMATION.md`.
-* **`FAILED_VALIDATION` on the style** — `--world-style-id` was given and the director
-  answered with a different id.
-* **repeated opening** — `stage_episode_director` gets an explicit avoidance note; one
-  retry names the repeat exactly, a second repeat fails the stage.
-* **alignment without word timestamps** — the wrapper stops rather than trimming the
-  opening clips against estimated boundaries.
+## Canonical prompts and assets
 
-## Telegram
+Active shared Q Station prompts are `projects/q_station/prompts/pipeline/01..09`. Presentation-specific
+rules are under each `presentation_profiles/<id>/prompts/`. The crone sheet is
+`characters/moss_cloaked_crone/refs/character_sheet.jpg` and is the only visual identity authority for
+that character. The orb design sheet is generated once, on first real orb run, from its identity-only
+prompt and then receipt-verified/reused. This lazy generation avoids spending provider credits during
+configuration or tests.
 
-Progress notifications and final media delivery share Telegram credentials but have separate
-enablement policies: disabling progress logs never disables a requested final upload. Each
-long-running stage owns one editable message keyed by run/revision and stage ID; resumes edit
-that message instead of creating a duplicate. Fast reuse results are summarized, body images
-use one aggregate counter, and render/upload messages use measured progress. Static global
-step counts are omitted when optional stages make them untrue; completion uses its frozen,
-enabled stage list for exact local positions. Failures and waits close the active message.
+## Validation commands
 
-Message IDs and notification errors are recorded in
-`pipeline/TELEGRAM_NOTIFICATION_STATE.json`. The finished video caption is artifact-grounded
-and includes the correct QC gate for original or compact delivery.
+```bash
+.venv/bin/pytest -q tests
+npm --prefix control_panel/ui test -- --run
+npm --prefix control_panel/ui run build
+```
+
+Provider-free coverage validates profiles, prompt assembly, legacy book fallback, orb artifact paths,
+DAG propagation, stage ordering, state/resume and panel catalog behavior. A real Gemini/Flow smoke is
+deliberately not part of unit tests because it spends credits and requires authenticated browser state.

@@ -540,7 +540,9 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <label>Stability <input name=stability type=number min=0 max=1 step=.01 value=.30 required></label>
    <label>Similarity <input name=similarity type=number min=0 max=1 step=.01 value=.50 required></label>
    <label>Style <input name=style type=number min=0 max=1 step=.01 value=.15 required></label>
+   <label>Narration volume (dB) <input name=narration_gain_db type=number min=-12 max=12 step=.5 value=0 required></label>
   </div>
+  <input name=music_upload_id type=hidden value="">
   <label>Music provider priority
    <input name=music_providers value="freesound,mixkit,pixabay" pattern="(freesound|mixkit|pixabay)(,(freesound|mixkit|pixabay))*" required>
    <small>Comma-separated order. The pipeline tries each provider in order, then uses only a verified cached track if all fail.</small>

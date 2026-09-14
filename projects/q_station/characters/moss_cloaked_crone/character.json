@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "moss_cloaked_crone",
+  "display_name": "Moss-Cloaked Crone",
+  "enabled": true,
+  "version": 1,
+  "presentation_profile": "orb_portal",
+  "environment_policy": "dynamic",
+  "selection_profile": {
+    "archetype": "enigmatic old storyteller who reveals hidden connections",
+    "strong_topics": ["mythology", "folklore", "history", "nature", "mysteries", "symbolism", "psychology", "strange questions"],
+    "tone": ["mysterious", "observant", "dry", "deliberate", "slightly mischievous"],
+    "environment_affinities": []
+  },
+  "references": {
+    "canonical_sheet": "refs/character_sheet.jpg",
+    "reference_mode": "IDENTITY_ONLY",
+    "required": true
+  },
+  "prompt_files": {
+    "appearance": "appearance.md",
+    "behavior": "behavior.md",
+    "negative": "negative.md"
+  }
+}

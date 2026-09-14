@@ -94,7 +94,16 @@ async def send_video(
             except Exception:
                 pass
 
+        async def existing_delivery_id() -> int | None:
+            """Find a previously accepted upload before risking a duplicate send."""
+            recent = await client.get_messages(settings.recipient, limit=20)
+            recovered = next((item for item in recent if artifact_marker in (item.message or "")), None)
+            return int(recovered.id) if recovered is not None else None
+
         try:
+            existing = await existing_delivery_id()
+            if existing is not None:
+                return existing
             message = await client.send_file(
                 settings.recipient,
                 file=str(video),
@@ -107,10 +116,9 @@ async def send_video(
             # Some old Telegram TL schemas can fail while decoding the final
             # update even though the upload was accepted. Confirm the marker
             # before ever allowing a retry to create a duplicate upload.
-            recent = await client.get_messages(settings.recipient, limit=12)
-            recovered = next((item for item in recent if artifact_marker in (item.message or "")), None)
+            recovered = await existing_delivery_id()
             if recovered is not None:
-                return int(recovered.id)
+                return recovered
             raise
     finally:
         await client.disconnect()

@@ -21,9 +21,9 @@ Return ONLY a raw JSON object, no markdown fences, no commentary:
 ```
 {
   "opening_question_spark": "<~5s of narration: the hook, spoken while the hero is mid-activity>",
-  "book_transition": "<~3s of narration: the hero reaches for the book and it opens>",
+  "{{ENTRY_SEGMENT_KEY}}": "<~3–4s of narration for the {{ENTRY_SEGMENT_LABEL}}>",
   "body": ["<one short spoken visual unit: a sentence or a natural clause>", "..."],
-  "optional_closing": "<one short echo sentence, or empty string>",
+  "optional_closing": "<one short echo sentence of at most 16 words, or empty string; if present it owns its own image beat>",
   "cta": "<one CTA of at most 12 words>",
   "full_narration": "<every field above concatenated in order, exactly as it will be spoken>"
 }
@@ -31,7 +31,7 @@ Return ONLY a raw JSON object, no markdown fences, no commentary:
 
 Hard rules for the JSON:
 - `full_narration` MUST be the exact concatenation of `opening_question_spark`,
-  `book_transition`, each `body` entry in order, `optional_closing`, then `cta`, joined by a
+  `{{ENTRY_SEGMENT_KEY}}`, each `body` entry in order, `optional_closing`, then `cta`, joined by a
   single space. No extra words, no repeated words, no re-ordering. The alignment step verifies
   this and rejects the script if it does not hold.
 - `body` must contain between {{BEAT_MIN}} and {{BEAT_MAX}} entries. One entry = one visual beat.
@@ -39,14 +39,13 @@ Hard rules for the JSON:
   turn, or consequence — even when those pieces came from one conventional sentence. A natural
   spoken clause is allowed as a unit; never put two sentences or two separately depictable ideas
   in one entry. This is a hard picture-change boundary.
+- A non-empty `optional_closing` is also one separate pre-CTA visual beat. Keep it to one sentence
+  and at most 16 words. The CTA may remain on that closing image and does not need its own beat.
 - No headings, no timestamps, no scene directions, no speaker labels, no emoji.
 - Plain spoken English only — anything unspeakable (URLs, parentheses, asterisks) is a defect.
 
-## Brand grammar (§33-36, §51)
-Every episode follows: ordinary activity → curiosity trigger → question/hook → protagonist
-reaches for the relevant book → book opens → two-page spread (one page pseudo-writing, one page
-world image) → camera pushes into the world image → body inside the book world → optional
-return/closing.
+## Active presentation contract
+{{PRESENTATION_RULES}}
 
 ## Requirements — hook and structure
 - Hook from SECOND ZERO. The first sentence must stand alone and promise an answer. Do not open
@@ -56,7 +55,7 @@ return/closing.
   chickens/barn, harvest/orchard/greenhouse/well, home maintenance/market prep/rainy-day/winter
   work. The activity must feel natural, never a topic prop dropped into a farm.
 - Tie the hook to that physical activity: curiosity arrives while the hands are busy. The activity or a visible disruption within it must admit a specific, observable link to the topic (literal, causal, ironic, or metaphorical), rather than a generic routine with a topic prop inserted later.
-- Make the book retrieval natural. `book_transition` is roughly 3 seconds of speech.
+- Make the presentation hinge natural. `{{ENTRY_SEGMENT_KEY}}` is roughly 3–4 seconds of speech.
 - `opening_question_spark` is roughly 5 seconds of speech.
 - Every `body` entry must be a short, independently visualisable unit (normally ≤16 words). It
   becomes one unique image prompt. Prefer a brisk sequence of precise moments over generic
@@ -74,8 +73,7 @@ return/closing.
 - No filler, no clichés, no lecture tone.
 - The closing reframes and pays off; the CTA invites like + subscribe in ≤12 words
   (e.g. "Like and subscribe to grow more questions.").
-- Do not mention libraries or books unless the topic genuinely calls for it — the visuals carry
-  that framing.
+- Do not over-explain the entry prop in narration; the visuals carry the presentation framing.
 
 ## Silent self-check before answering
 1. Is the hook strong, honest, topic-specific, and does it promise a payoff?

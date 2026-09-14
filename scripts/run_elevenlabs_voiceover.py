@@ -71,7 +71,14 @@ def setting_label_matches(requested: str | None, observed: str | None) -> bool:
     """Match an exact setting label while allowing ElevenLabs' added descriptor."""
     wanted = re.sub(r"\s+", " ", str(requested or "").strip().casefold())
     actual = re.sub(r"\s+", " ", str(observed or "").strip().casefold())
-    return bool(wanted) and (actual == wanted or (" - " in wanted and actual.startswith(wanted + " ")))
+    # Voice cards use a stable ``Name - Use case`` label, followed by mutable provider
+    # copy.  Depending on the current UI experiment that copy starts with a space,
+    # comma, colon, parenthesis, or an em/en dash.  Match only at one of those word
+    # boundaries so a requested voice can never select a similarly prefixed name.
+    return bool(wanted) and bool(
+        re.match(re.escape(wanted) + r"(?:$|[\s,;:()\[\]—–])", actual)
+        if " - " in wanted else actual == wanted
+    )
 
 
 @dataclass(frozen=True)
@@ -211,7 +218,15 @@ class ElevenLabsUI:
             // participate in matching one requested setting.
             const primary=labelled(e).split(String.fromCharCode(10))[0].trim();
             const actual=identity?compact(primary):normalize(primary);
-            return actual===wanted || (!identity && wanted.includes(' - ') && actual.startsWith(wanted+' '));
+            // The provider appends mutable voice-description copy after the stable
+            // "Name - Use case" label. Keep the match strict at a label boundary:
+            // this accepts its current comma suffix as well as prior whitespace/dash
+            // variants, without confusing similarly prefixed voices.
+            return actual===wanted || (!identity && wanted.includes(' - ') &&
+              (actual.startsWith(wanted+' ') || actual.startsWith(wanted+',') ||
+               actual.startsWith(wanted+';') || actual.startsWith(wanted+':') ||
+               actual.startsWith(wanted+'(') || actual.startsWith(wanted+'[') ||
+               actual.startsWith(wanted+'—') || actual.startsWith(wanted+'–')));
           }});
           const e=matches[0];
           if(!e)return {{ok:false, available:candidates.map(labelled).filter(Boolean).slice(0,80)}};
@@ -255,6 +270,33 @@ class ElevenLabsUI:
             raise RuntimeError(f"Could not pointer-activate ElevenLabs selector {selector!r}: {target.get('reason', 'unknown state')}.")
         self._dispatch_mouse_click(self.tab, float(target["x"]), float(target["y"]))
         return target
+
+    def _pointer_activate_exact_selector(self, selector: str, *, requested: str, identity: bool = False) -> dict[str, Any]:
+        """Click one freshly focused semantic option when its own keyboard action is broken.
+
+        This is intentionally narrower than a general coordinate click: ``_focus_selector``
+        first resolves the requested accessible label, then the coordinates are derived from
+        that exact active element and checked against ``elementFromPoint`` immediately before
+        dispatch. It is used only for the provider's current voice-card overlay buttons.
+        """
+        focused = self._focus_selector(selector, requested=requested, identity=identity)
+        target = self._json("""(() => {
+          const e=document.activeElement;
+          if(!e)return {ok:false,reason:'no focused option'};
+          const r=e.getBoundingClientRect();
+          if(!r.width||!r.height)return {ok:false,reason:'focused option is not rendered'};
+          const x=r.left+r.width/2, y=r.top+r.height/2;
+          const hit=document.elementFromPoint(x,y);
+          // ElevenLabs places the semantic overlay button behind visible card
+          // copy. A hit inside that button's immediate list-item parent is still
+          // the same labelled option and bubbles to its selection handler.
+          if(!hit||!(hit===e||e.contains(hit)||e.parentElement?.contains(hit)))return {ok:false,reason:'focused option is obscured'};
+          return {ok:true,x,y,text:(e.innerText||e.getAttribute('aria-label')||'').trim()};
+        })()""")
+        if not target.get("ok"):
+            raise RuntimeError(f"Could not pointer-activate focused ElevenLabs option: {target.get('reason', 'unknown state')}.")
+        self._dispatch_mouse_click(self.tab, float(target["x"]), float(target["y"]))
+        return {**focused, **target}
 
     def _bring_to_front(self) -> None:
         """Bring the ElevenLabs render widget forward before DOM focus is set."""
@@ -335,6 +377,11 @@ class ElevenLabsUI:
         while time.monotonic() < deadline:
             last = self.snapshot()
             if last.get("ready"):
+                if last.get("captcha"):
+                    raise RuntimeError(
+                        "ElevenLabs requires manual verification in the authenticated browser. "
+                        "Complete the visible verification, then resume the run."
+                    )
                 return last
             if last.get("login_required"):
                 raise RuntimeError("ElevenLabs login is required in the configured Chrome profile.")
@@ -397,6 +444,13 @@ class ElevenLabsUI:
             raise ValueError(f"Unsupported ElevenLabs selection kind: {kind}")
         trigger = VOICE_TRIGGER_SELECTOR if kind == "voice" else MODEL_TRIGGER_SELECTOR
         option = VOICE_OPTION_SELECTOR if kind == "voice" else MODEL_OPTION_SELECTOR
+        # A previous interrupted attempt can leave the voice picker open. In that
+        # state Radix removes the trigger from the active DOM, but the picker is
+        # already the correct place to search and select. Reuse it rather than
+        # treating an already-open control as a provider UI failure.
+        picker_open = kind == "voice" and bool(self._json(
+            f"(() => ({{ok:!!document.querySelector({json.dumps(VOICE_SEARCH_SELECTOR)})}}))()"
+        ).get("ok"))
         probe = f"""(() => {{
           const e=document.querySelector({json.dumps(trigger)});
           return e?{{ok:true,text:(e.innerText||e.getAttribute('aria-label')||'').trim(),open:e.getAttribute('data-state')==='open'}}:{{ok:false}};
@@ -405,20 +459,21 @@ class ElevenLabsUI:
         # is waited for rather than demanded on the first look. Still fails loudly: a
         # control that never appears is a UI change, not something to guess around.
         control: dict[str, Any] = {}
-        deadline = time.monotonic() + self.control_timeout_seconds
-        while time.monotonic() < deadline:
-            control = self._json(probe)
-            if control.get("ok"):
-                break
-            time.sleep(self.poll_seconds)
-        if not control.get("ok"):
-            raise RuntimeError(
-                f"Could not find the ElevenLabs {kind} control for explicit value "
-                f"'{requested}' after {self.control_timeout_seconds:g}s."
-            )
-        if setting_label_matches(requested, str(control.get("text") or "")):
+        if not picker_open:
+            deadline = time.monotonic() + self.control_timeout_seconds
+            while time.monotonic() < deadline:
+                control = self._json(probe)
+                if control.get("ok"):
+                    break
+                time.sleep(self.poll_seconds)
+            if not control.get("ok"):
+                raise RuntimeError(
+                    f"Could not find the ElevenLabs {kind} control for explicit value "
+                    f"'{requested}' after {self.control_timeout_seconds:g}s."
+                )
+        if control.get("ok") and setting_label_matches(requested, str(control.get("text") or "")):
             return
-        if not control.get("open"):
+        if not picker_open and not control.get("open"):
             self._activate_selector(trigger)
         if kind == "voice":
             search_term = search_term_for_voice(requested)
@@ -440,7 +495,13 @@ class ElevenLabsUI:
         last_error = ""
         while time.monotonic() < deadline:
             try:
-                self._activate_selector(option, requested=requested)
+                # Voice-card overlays in the current picker can ignore Space and
+                # Enter. Use an actual click only after resolving and rechecking the
+                # exact labelled card; never use a stored or arbitrary coordinate.
+                if kind == "voice":
+                    self._pointer_activate_exact_selector(option, requested=requested)
+                else:
+                    self._activate_selector(option, requested=requested, key="Enter")
                 break
             except RuntimeError as exc:
                 last_error = str(exc)

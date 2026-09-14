@@ -5,7 +5,7 @@ The single source of truth is `timing/OPENING_TIMING.json`, which `align_beats.p
 from real word timestamps:
 
     Clip A (question spark)  -> 0 .. spark_end
-    Clip B (book transition) -> spark_end .. transition_end
+    Intro B (profile entry transition) -> spark_end .. transition_end
 
 Flow is asked for clips one second longer than the planned segment so there is headroom for
 a narration that runs slightly long. If the narration overruns the source by more than the
@@ -14,8 +14,8 @@ exits non-zero so the pipeline can replan. Within the tolerance (default 10%), t
 opening video is rate-adjusted (slowed down) to land exactly on the measured boundary —
 Flow audio is discarded here (§68), so this changes no voice, only the silent picture.
 
-Sources : assets/opening/question_spark_source.mp4, assets/opening/book_transition_source.mp4
-Outputs : assets/opening/question_spark_trimmed.mp4, assets/opening/book_transition_trimmed.mp4
+Source/output paths come from the run's persisted presentation profile. Historical runs
+without a presentation resolution retain the original question-spark/book paths.
 
 Flow audio is discarded here (§68) — the narration track is the only audio in the render.
 """
@@ -239,13 +239,14 @@ def main() -> int:
     args = parser.parse_args()
 
     video_dir = Path(args.video_dir).resolve()
+    from presentation_runtime import presentation_for_project
+    presentation = presentation_for_project(video_dir)
     max_rate_adjust = resolve_max_rate_adjust(args.max_rate_adjust, video_dir)
     clip_a_target, clip_b_target, timing = read_targets(video_dir)
 
-    opening = video_dir / "assets" / "opening"
     jobs = [
-        ("Clip A", opening / "question_spark_source.mp4", opening / "question_spark_trimmed.mp4", clip_a_target),
-        ("Clip B", opening / "book_transition_source.mp4", opening / "book_transition_trimmed.mp4", clip_b_target),
+        ("Intro A", presentation.artifacts.path(video_dir, "question_source"), presentation.artifacts.path(video_dir, "question_trimmed"), clip_a_target),
+        ("Intro B", presentation.artifacts.path(video_dir, "entry_source"), presentation.artifacts.path(video_dir, "entry_trimmed"), clip_b_target),
     ]
 
     print(
@@ -307,6 +308,7 @@ def main() -> int:
         )
 
     report = {
+        "presentation_profile": presentation.id,
         "spark_end": timing.get("spark_end"),
         "transition_end": timing.get("transition_end"),
         "max_rate_adjust": max_rate_adjust,

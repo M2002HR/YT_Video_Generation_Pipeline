@@ -18,6 +18,7 @@ import os
 import re
 import mimetypes
 import shutil
+import sqlite3
 import subprocess
 import sys
 import threading
@@ -94,6 +95,7 @@ QH_STORED_FIELDS = {
     "chatgpt_fallback_auto": "chatgpt_fallback_mode",
 }
 VOICE_FIELDS = ("voice", "model", "speed", "stability", "similarity", "style")
+AUDIO_FIELDS = ("narration_gain_db",)
 MOTION_FIELDS = {
     "motion_transition_preference": "transition_preference",
     "motion_max_micro_shots": "max_micro_shots_per_beat",
@@ -258,6 +260,11 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
     if values["watermark_font"] not in available_subtitle_font_families():
         values["watermark_font"] = BRANDING_DEFAULTS["watermark_font"]
     values.update({key: voice[key] for key in VOICE_FIELDS if key in voice})
+    audio = brief.get("_audio") if isinstance(brief.get("_audio"), dict) else {}
+    values["narration_gain_db"] = audio.get("narration_gain_db", 0)
+    music_upload = record.get("music_upload") if isinstance(record.get("music_upload"), dict) else {}
+    music_hash = str(music_upload.get("sha256") or "")
+    values["music_upload_id"] = f"existing:{music_hash}" if re.fullmatch(r"[a-f0-9]{64}", music_hash) else ""
     inverse_motion = {stored: field for field, stored in MOTION_FIELDS.items()}
     for key, value in (brief.get("_motion") or {}).items():
         field = inverse_motion.get(key, f"motion_{key}")
@@ -340,7 +347,18 @@ def validate_config_values(values: dict) -> dict:
     if float(normalized["min_duration_seconds"]) > float(normalized["max_duration_seconds"]):
         raise ValueError("Minimum duration cannot be greater than maximum duration.")
     if resolve_project_id(normalized["content_project"]) == "q_station" and normalized["aspect_ratio"] != "9:16":
-        raise ValueError("Q Station currently requires the 9:16 book-world frame format.")
+        raise ValueError("Q Station currently requires the 9:16 presentation/world frame format.")
+    if normalized.get("character_mode") == "manual" and not normalized.get("character_id"):
+        raise ValueError("Choose a character when Manual character mode is selected.")
+    if normalized.get("character_mode") == "auto":
+        # Hidden stale picker state is not part of the semantic Auto request.
+        normalized["character_id"] = ""
+    music_reference = str(normalized.get("music_upload_id") or "")
+    if music_reference and not (
+        MUSIC_UPLOAD_RE.fullmatch(music_reference) or MUSIC_EXISTING_RE.fullmatch(music_reference)
+        or MUSIC_LIBRARY_RE.fullmatch(music_reference)
+    ):
+        raise ValueError("Invalid background-music upload.")
     if not normalized["telegram_low_size"] and not normalized["telegram_original"]:
         raise ValueError("Choose at least one Telegram delivery output.")
     if normalized["show_watermark"] and not normalized["watermark_text"]:
@@ -363,8 +381,6 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     if resolve_project_id(merged["content_project"]) != resolve_project_id(str(record.get("content_project"))):
         raise ValueError("Content project cannot change inside an existing run.")
     changed_fields = [key for key in merged if before.get(key) != merged.get(key)]
-    if any(key in changed_fields for key in ("character_mode", "character_id")):
-        raise ValueError("Resolved character cannot be changed inside an existing run; start a new run instead.")
     roots: set[str] = set()
     brief = {**previous, **{key: merged[key] for key in CREATIVE_FIELDS}}
     qh = dict(previous.get("_qh") or {})
@@ -398,6 +414,11 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         "mode": merged["character_mode"],
         **({"character_id": merged["character_id"]} if merged["character_mode"] == "manual" else {}),
     }
+    if any(key in changed_fields for key in ("character_mode", "character_id")):
+        # Character resolution also freezes the presentation profile. Re-entering at this
+        # root rebuilds every consumer of persona/script/opening while the revision archive
+        # keeps the previous resolution and media recoverable.
+        roots.update(QH_ROOTS["character_mode"])
     if before.get("chatgpt_fallback_auto") != merged.get("chatgpt_fallback_auto"):
         roots.update(QH_ROOTS["chatgpt_fallback_auto"])
     brief["_qh"] = qh
@@ -476,9 +497,32 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     voice = {**voice_before, **{key: merged[key] for key in VOICE_FIELDS}}
     if any(before.get(key) != merged.get(key) for key in VOICE_FIELDS):
         roots.add("elevenlabs_voiceover")
+    brief["_audio"] = {
+        **dict(previous.get("_audio") or {}),
+        "narration_gain_db": merged["narration_gain_db"],
+    }
+    if before.get("narration_gain_db") != merged.get("narration_gain_db"):
+        roots.add("audio_mix_profile")
     launch = {key: merged[key] for key in ("music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
+    music_reference = str(merged.get("music_upload_id") or "")
+    old_music = record.get("music_upload") if isinstance(record.get("music_upload"), dict) else {}
+    old_music_hash = str(old_music.get("sha256") or "")
+    if music_reference:
+        existing_match = MUSIC_EXISTING_RE.fullmatch(music_reference)
+        if existing_match:
+            if existing_match.group(1) != old_music_hash:
+                raise ValueError("Stored background music no longer matches this run.")
+            launch["music_upload"] = dict(old_music)
+        elif MUSIC_UPLOAD_RE.fullmatch(music_reference):
+            launch["_music_upload_id"] = music_reference
+        elif MUSIC_LIBRARY_RE.fullmatch(music_reference):
+            launch["_music_library_id"] = MUSIC_LIBRARY_RE.fullmatch(music_reference).group(1)
+        else:
+            raise ValueError("Invalid background-music upload.")
     launch["_topic"] = merged["topic"]
-    if before.get("music_providers") != merged.get("music_providers"):
+    if before.get("music_upload_id") != music_reference:
+        roots.add("background_music")
+    elif before.get("music_providers") != merged.get("music_providers") and not music_reference:
         roots.add("background_music")
     if before.get("aspect_ratio") != merged.get("aspect_ratio"):
         roots.update(("flow_clip_a", "flow_clip_b", "render_profile"))
@@ -508,6 +552,12 @@ LOGO_EXISTING_RE = re.compile(r"^existing:([a-f0-9]{64})$")
 LOGO_MAX_BYTES = 12 * 1024 * 1024
 LOGO_MAX_PIXELS = 32_000_000
 LOGO_MIN_EDGE = 32
+MUSIC_UPLOAD_RE = re.compile(r"^[a-f0-9]{32}$")
+MUSIC_EXISTING_RE = re.compile(r"^existing:([a-f0-9]{64})$")
+MUSIC_LIBRARY_RE = re.compile(r"^library:([a-f0-9]{64})$")
+MUSIC_UPLOAD_MAX_BYTES = 80 * 1024 * 1024
+MUSIC_EXTENSIONS = {".mp3", ".wav", ".m4a", ".ogg", ".flac"}
+MUSIC_LIBRARY_HASH_CACHE: dict[tuple[str, int, int], str] = {}
 SUBTITLE_FONT_UPLOAD_RE = re.compile(r"^[a-f0-9]{32}$")
 SUBTITLE_FONT_MAX_BYTES = 16 * 1024 * 1024
 
@@ -518,6 +568,10 @@ def style_reference_uploads_dir() -> Path:
 
 def logo_uploads_dir() -> Path:
     return ROOT / "control_panel" / "logo_uploads"
+
+
+def music_uploads_dir() -> Path:
+    return ROOT / "control_panel" / "music_uploads"
 
 
 def subtitle_fonts_dir() -> Path:
@@ -536,6 +590,258 @@ def sha256_path(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def detect_audio_extension(payload: bytes) -> tuple[str, str]:
+    """Accept only the small set of audio containers supported by the mixer."""
+    if not payload or len(payload) > MUSIC_UPLOAD_MAX_BYTES:
+        raise ValueError("Background music must be between 1 byte and 80 MiB.")
+    if payload.startswith(b"RIFF") and payload[8:12] == b"WAVE":
+        return ".wav", "audio/wav"
+    if payload.startswith(b"fLaC"):
+        return ".flac", "audio/flac"
+    if payload.startswith(b"OggS"):
+        return ".ogg", "audio/ogg"
+    if payload.startswith(b"ID3") or (len(payload) > 2 and payload[0] == 0xFF and payload[1] & 0xE0 == 0xE0):
+        return ".mp3", "audio/mpeg"
+    if len(payload) >= 12 and payload[4:8] == b"ftyp":
+        return ".m4a", "audio/mp4"
+    raise ValueError("Background music must be a valid MP3, WAV, M4A, OGG, or FLAC file.")
+
+
+def validate_audio_file(path: Path) -> float:
+    """Have FFprobe decode container metadata before an upload can enter a run."""
+    try:
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=codec_type", "-show_entries", "format=duration", "-of", "json", str(path)],
+            check=True, capture_output=True, text=True, timeout=30,
+        )
+        payload = json.loads(result.stdout)
+        duration = float((payload.get("format") or {}).get("duration") or 0)
+        streams = payload.get("streams") or []
+    except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired, ValueError, json.JSONDecodeError) as exc:
+        raise ValueError("Background music could not be decoded as audio.") from exc
+    if duration < 1 or not any(item.get("codec_type") == "audio" for item in streams if isinstance(item, dict)):
+        raise ValueError("Background music must contain an audio stream at least one second long.")
+    return duration
+
+
+def read_music_upload(upload_id: str) -> tuple[Path, dict]:
+    if not MUSIC_UPLOAD_RE.fullmatch(upload_id):
+        raise ValueError("Invalid background-music upload.")
+    folder = music_uploads_dir()
+    metadata_path = folder / f"{upload_id}.json"
+    try:
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        extension = str(metadata.get("extension") or "")
+        source = folder / f"{upload_id}{extension}"
+    except (OSError, ValueError) as exc:
+        raise ValueError("Background-music upload has expired; upload it again.") from exc
+    if extension not in {".mp3", ".wav", ".m4a", ".ogg", ".flac"} or not source.is_file() or metadata.get("sha256") != sha256_path(source):
+        raise ValueError("Background-music upload failed integrity verification; upload it again.")
+    return source, metadata
+
+
+def _cached_music_hash(path: Path) -> str:
+    stat = path.stat()
+    key = (str(path.resolve()), stat.st_size, stat.st_mtime_ns)
+    cached = MUSIC_LIBRARY_HASH_CACHE.get(key)
+    if cached:
+        return cached
+    digest = sha256_path(path)
+    MUSIC_LIBRARY_HASH_CACHE[key] = digest
+    return digest
+
+
+def music_library_entries() -> list[dict[str, Any]]:
+    """Return saved uploads and provider downloads as one hash-addressed library."""
+    entries: dict[str, dict[str, Any]] = {}
+    upload_folder = music_uploads_dir()
+    for metadata_path in sorted(upload_folder.glob("*.json")):
+        try:
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            extension = str(metadata.get("extension") or "").lower()
+            path = upload_folder / f"{metadata_path.stem}{extension}"
+            digest = str(metadata.get("sha256") or "")
+            if extension not in MUSIC_EXTENSIONS or not path.is_file() or _cached_music_hash(path) != digest:
+                continue
+            entries[digest] = {
+                "id": digest, "name": str(metadata.get("original_name") or path.name),
+                "origin": "upload", "provider": "operator_upload",
+                "bytes": path.stat().st_size, "duration_seconds": metadata.get("duration_seconds"),
+                "mime_type": str(metadata.get("mime_type") or mimetypes.guess_type(path.name)[0] or "application/octet-stream"),
+                "license": "Operator-supplied; publication rights must be verified by the operator.",
+                "source_url": None, "source_video_id": None,
+                "preview_url": f"/api/music-library/{digest}/preview", "_path": path,
+            }
+        except (OSError, ValueError, json.JSONDecodeError):
+            continue
+    # Provider downloaders maintain durable, indexed libraries even for tracks that
+    # were downloaded but not ultimately selected by an episode.
+    for library_root in sorted((ROOT / "runtime").glob("*music_library")):
+        assets = library_root / "assets"
+        metadata_by_hash: dict[str, dict[str, Any]] = {}
+        database = library_root / "index.sqlite3"
+        if database.is_file():
+            try:
+                connection = sqlite3.connect(f"file:{database}?mode=ro", uri=True)
+                connection.row_factory = sqlite3.Row
+                try:
+                    for row in connection.execute(
+                        "SELECT library_id, provider, name, source_url, license, duration, file_size, file, sha256 FROM assets"
+                    ):
+                        metadata_by_hash[str(row["sha256"])] = dict(row)
+                finally:
+                    connection.close()
+            except sqlite3.Error:
+                metadata_by_hash = {}
+        for path in sorted(assets.glob("*")):
+            if not path.is_file() or path.suffix.lower() not in MUSIC_EXTENSIONS:
+                continue
+            try:
+                digest = _cached_music_hash(path)
+                metadata = metadata_by_hash.get(digest, {})
+                recorded_path = str(metadata.get("file") or "")
+                if recorded_path:
+                    try:
+                        if Path(recorded_path).resolve() != path.resolve():
+                            metadata = {}
+                    except (OSError, ValueError):
+                        metadata = {}
+                provider = str(metadata.get("provider") or library_root.name.removesuffix("_music_library"))
+                entries[digest] = {
+                    "id": digest, "name": str(metadata.get("name") or metadata.get("library_id") or path.name),
+                    "origin": "provider", "provider": provider,
+                    "bytes": int(metadata.get("file_size") or path.stat().st_size),
+                    "duration_seconds": metadata.get("duration"),
+                    "mime_type": mimetypes.guess_type(path.name)[0] or "application/octet-stream",
+                    "license": metadata.get("license"), "source_url": metadata.get("source_url"),
+                    "source_video_id": None,
+                    "preview_url": f"/api/music-library/{digest}/preview", "_path": path,
+                }
+            except (OSError, TypeError, ValueError):
+                continue
+    videos = ROOT / "videos"
+    for path in sorted(videos.glob("*/assets/music/*")):
+        if not path.is_file() or path.suffix.lower() not in MUSIC_EXTENSIONS:
+            continue
+        try:
+            digest = _cached_music_hash(path)
+            project = path.parents[2]
+            selection_path = project / "music" / "MUSIC_SELECTION.json"
+            try:
+                selection = json.loads(selection_path.read_text(encoding="utf-8"))
+            except (OSError, ValueError, json.JSONDecodeError):
+                selection = {}
+            selected_file = str(selection.get("file") or "")
+            selection_matches = False
+            if selected_file:
+                try:
+                    selection_matches = (project / selected_file).resolve() == path.resolve()
+                except (OSError, ValueError):
+                    pass
+            provider = str(selection.get("provider") or "saved_run") if selection_matches else "saved_run"
+            candidate = {
+                "id": digest, "name": str(selection.get("title") or selection.get("library_id") or path.name) if selection_matches else path.name,
+                "origin": "provider" if provider not in {"operator_upload", "saved_run"} else "run",
+                "provider": provider, "bytes": path.stat().st_size,
+                "duration_seconds": selection.get("duration_seconds") if selection_matches else None,
+                "mime_type": mimetypes.guess_type(path.name)[0] or "application/octet-stream",
+                "license": selection.get("license") if selection_matches else None,
+                "source_url": selection.get("source_url") if selection_matches else None,
+                "source_video_id": project.name,
+                "preview_url": f"/api/music-library/{digest}/preview", "_path": path,
+            }
+            # Persistent uploads carry the best operator-facing filename; otherwise
+            # prefer the catalog item with actual provider metadata.
+            if digest not in entries or (entries[digest].get("provider") == "saved_run" and provider != "saved_run"):
+                entries[digest] = candidate
+        except OSError:
+            continue
+    return sorted(entries.values(), key=lambda item: (item["origin"] != "upload", str(item["name"]).lower()))
+
+
+def resolve_music_library_asset(digest: str) -> tuple[Path, dict[str, Any]]:
+    if not re.fullmatch(r"[a-f0-9]{64}", digest):
+        raise ValueError("Invalid music-library item.")
+    for item in music_library_entries():
+        if item["id"] == digest:
+            path = item["_path"]
+            if not path.is_file() or _cached_music_hash(path) != digest:
+                break
+            return path, item
+    raise ValueError("This music-library item is no longer available.")
+
+
+def narration_asset_for(project: Path) -> dict[str, Any] | None:
+    """Expose narration only after a real, decodable output exists in this run."""
+    audio_dir = project / "assets" / "audio"
+    for extension in (".mp3", ".wav", ".m4a", ".ogg", ".flac"):
+        path = audio_dir / f"narration{extension}"
+        if not path.is_file() or path.stat().st_size <= 0:
+            continue
+        try:
+            duration = validate_audio_file(path)
+            relative = path.resolve().relative_to(project.resolve())
+        except (OSError, ValueError):
+            continue
+        return {
+            "preview_path": str(relative), "name": path.name,
+            "bytes": path.stat().st_size, "duration_seconds": round(duration, 3),
+        }
+    return None
+
+
+def freeze_music_asset(launch: dict, project: Path, folder: Path) -> None:
+    """Freeze an uploaded bed into immutable launch inputs, never global temp storage."""
+    upload_id = str(launch.pop("_music_upload_id", "") or "")
+    library_id = str(launch.pop("_music_library_id", "") or "")
+    existing = launch.get("music_upload")
+    source: Path | None = None
+    metadata: dict[str, Any] = {}
+    if upload_id:
+        source, metadata = read_music_upload(upload_id)
+    elif library_id:
+        source, library_item = resolve_music_library_asset(library_id)
+        metadata = {
+            "sha256": library_item["id"], "extension": source.suffix.lower(),
+            "mime_type": library_item.get("mime_type"), "original_name": library_item.get("name"),
+            "origin": library_item.get("origin"), "provider": library_item.get("provider"),
+            "license": library_item.get("license"), "source_url": library_item.get("source_url"),
+        }
+    elif isinstance(existing, dict):
+        try:
+            source = (ROOT / str(existing.get("path") or "")).resolve()
+            source.relative_to(project.resolve())
+        except ValueError as exc:
+            raise ValueError("Stored background music has an unsafe path.") from exc
+        expected = str(existing.get("sha256") or "")
+        if not source.is_file() or not re.fullmatch(r"[a-f0-9]{64}", expected) or sha256_path(source) != expected:
+            raise ValueError("Stored background music failed integrity verification.")
+        metadata = dict(existing)
+    if source is None:
+        launch.pop("music_upload", None)
+        return
+    extension = str(metadata.get("extension") or source.suffix.lower())
+    if extension not in {".mp3", ".wav", ".m4a", ".ogg", ".flac"}:
+        raise ValueError("Stored background music has an unsupported format.")
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / f"background_music{extension}"
+    temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        shutil.copyfile(source, temporary)
+        temporary.replace(target)
+    finally:
+        temporary.unlink(missing_ok=True)
+    launch["music_upload"] = {
+        "schema_version": 1, "path": str(target.relative_to(ROOT)),
+        "sha256": sha256_path(target), "extension": extension,
+        "mime_type": str(metadata.get("mime_type") or "application/octet-stream"),
+        "original_name": str(metadata.get("original_name") or source.name)[:255],
+        "origin": str(metadata.get("origin") or "upload"),
+        "provider": str(metadata.get("provider") or "operator_upload"),
+        "license": metadata.get("license"), "source_url": metadata.get("source_url"),
+    }
 
 
 def validate_style_reference_image(payload: bytes) -> tuple[bytes, int, int]:
@@ -1444,6 +1750,26 @@ def pipeline_command(record: dict) -> list[str]:
     creative_brief = ROOT / str(record["creative_brief"])
     voice_profile = ROOT / str(record["voice_profile"])
     music_providers = ",".join(music_provider_priority(record.get("music_providers") or record.get("music_provider") or "mixkit"))
+    music_upload = record.get("music_upload") if isinstance(record.get("music_upload"), dict) else {}
+    music_file: Path | None = None
+    if music_upload:
+        music_file = (ROOT / str(music_upload.get("path") or "")).resolve()
+        try:
+            music_file.relative_to(project.resolve())
+        except ValueError as exc:
+            raise ValueError("Frozen background music must stay inside its video workspace.") from exc
+        if not re.fullmatch(r"[a-f0-9]{64}", str(music_upload.get("sha256") or "")):
+            raise ValueError("Frozen background music is missing its integrity hash.")
+    music_args = []
+    if music_file is not None:
+        music_args = [
+            "--music-file", str(music_file), "--music-file-sha256", str(music_upload.get("sha256") or ""),
+            "--music-source-provider", str(music_upload.get("provider") or "operator_upload"),
+            "--music-source-origin", str(music_upload.get("origin") or "upload"),
+            "--music-source-url", str(music_upload.get("source_url") or ""),
+            "--music-source-license", str(music_upload.get("license") or ""),
+            "--music-source-name", str(music_upload.get("original_name") or music_file.name),
+        ]
     try:
         is_bookworld = load_content_project(content_project).is_question_harvest
     except RuntimeError:
@@ -1459,7 +1785,7 @@ def pipeline_command(record: dict) -> list[str]:
             "--aspect-ratio", str(record.get("aspect_ratio") or "9:16"),
             "--music-providers", music_providers,
             "--publish",
-        ] + (["--commit"] if record.get("commit_artifacts") else []) \
+        ] + music_args + (["--commit"] if record.get("commit_artifacts") else []) \
           + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
           + (["--telegram-original"] if record.get("telegram_original") else [])
         revision = record.get("pending_revision") or {}
@@ -1485,7 +1811,7 @@ def pipeline_command(record: dict) -> list[str]:
         "--voice-profile", str(voice_profile),
         "--creative-brief", str(creative_brief),
         "--music-providers", music_providers,
-    ] + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
+    ] + music_args + ([] if record.get("telegram_low_size", True) else ["--no-telegram-low-size"]) \
       + (["--telegram-original"] if record.get("telegram_original") else []) \
       + (["--commit"] if record.get("commit_artifacts") else ["--no-commit"])
     revision = record.get("pending_revision") or {}
@@ -2336,11 +2662,16 @@ class Handler(BaseHTTPRequestHandler):
         """Serve the locally-built React application; history routes fall back to index."""
         dist = ROOT / "control_panel" / "dist"
         candidate = (dist / route.lstrip("/")).resolve() if route not in ("/", "") else dist / "index.html"
+        is_static_asset = route.startswith("/assets/")
         try:
             candidate.relative_to(dist.resolve())
         except ValueError:
-            candidate = dist / "index.html"
+            self.send_error(HTTPStatus.NOT_FOUND); return
         if not candidate.is_file():
+            if is_static_asset:
+                # Never return index.html as JavaScript/CSS. It turns a clear
+                # missing-asset response into a confusing client-side deploy error.
+                self.send_error(HTTPStatus.NOT_FOUND); return
             candidate = dist / "index.html"
         if not candidate.is_file():
             self.send_html(HTTPStatus.SERVICE_UNAVAILABLE, "<p>Studio UI is not built. Run <code>npm run build</code> in control_panel/ui.</p>"); return
@@ -2434,6 +2765,64 @@ class Handler(BaseHTTPRequestHandler):
             })
         except (ValueError, OSError, UnicodeError) as exc:
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not accept logo image."})
+
+    def handle_music_upload(self) -> None:
+        """Accept one operator-owned audio bed after container and size validation."""
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            content_type = str(self.headers.get("Content-Type") or "")
+            if length <= 0 or length > MUSIC_UPLOAD_MAX_BYTES + 128_000:
+                raise ValueError("Background-music upload is empty or larger than 80 MiB.")
+            if not content_type.lower().startswith("multipart/form-data;"):
+                raise ValueError("Background music must be uploaded as a file.")
+            body = self.rfile.read(length)
+            message = BytesParser(policy=policy.default).parsebytes(
+                f"Content-Type: {content_type}\r\nMIME-Version: 1.0\r\n\r\n".encode("ascii") + body
+            )
+            parts = [item for item in message.iter_parts() if item.get_content_disposition() == "form-data"]
+            files = [item for item in parts if item.get_param("name", header="content-disposition") == "music"]
+            if len(files) != 1:
+                raise ValueError("Choose exactly one background-music file.")
+            item = files[0]
+            raw = item.get_payload(decode=True) or b""
+            extension, mime_type = detect_audio_extension(raw)
+            upload_id = uuid.uuid4().hex
+            folder = music_uploads_dir(); folder.mkdir(parents=True, exist_ok=True)
+            target = folder / f"{upload_id}{extension}"
+            temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+            try:
+                temporary.write_bytes(raw)
+                duration = validate_audio_file(temporary)
+                temporary.replace(target)
+            finally:
+                temporary.unlink(missing_ok=True)
+            original_name = Path(str(item.get_filename() or f"music{extension}")).name[:255]
+            write_json(folder / f"{upload_id}.json", {
+                "schema_version": 1, "sha256": sha256_path(target), "bytes": len(raw),
+                "extension": extension, "mime_type": mime_type,
+                "original_name": original_name, "duration_seconds": round(duration, 3), "created_at": utcnow(),
+            })
+            self.send_json(HTTPStatus.CREATED, {
+                "id": upload_id, "name": original_name, "bytes": len(raw),
+                "sha256": sha256_path(target),
+                "preview_url": f"/api/music-uploads/{upload_id}/preview",
+            })
+        except (ValueError, OSError, UnicodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc) or "Could not accept background music."})
+
+    def serve_music_upload_preview(self, upload_id: str) -> None:
+        try:
+            audio, _metadata = read_music_upload(upload_id)
+        except (ValueError, OSError):
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        self.serve_artifact(audio.parent, audio.name)
+
+    def serve_music_library_preview(self, digest: str) -> None:
+        try:
+            audio, _metadata = resolve_music_library_asset(digest)
+        except (ValueError, OSError):
+            self.send_error(HTTPStatus.NOT_FOUND); return
+        self.serve_artifact(audio.parent, audio.name)
 
     def serve_logo_upload_preview(self, upload_id: str) -> None:
         try:
@@ -2676,7 +3065,7 @@ class Handler(BaseHTTPRequestHandler):
         qh = dict(brief.get("_qh") or {})
         subtitle = dict(brief.get("_subtitle") or {})
         record = {
-            "schema_version": 5,
+            "schema_version": 6,
             "content_project": content_project,
             "job_id": job_id,
             "status": "RUNNING",
@@ -2708,6 +3097,9 @@ class Handler(BaseHTTPRequestHandler):
         request = project / "launch" / "LAUNCH_REQUEST.json"
         freeze_style_reference(brief, project, project / "launch" / "style_references")
         freeze_logo_asset(brief, project, project / "launch" / "branding")
+        freeze_music_asset(launch, project, project / "launch" / "music")
+        if launch.get("music_upload"):
+            record["music_upload"] = launch["music_upload"]
         write_json(profile, voice)
         write_json(creative_brief_path, brief)
         write_json(request, record)
@@ -2817,6 +3209,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         revision_id = str(uuid.uuid4()); folder = project / "launch" / "config_revisions" / revision_id; folder.mkdir(parents=True, exist_ok=True)
         freeze_logo_asset(brief, project, folder / "branding")
+        freeze_music_asset(launch, project, folder / "music")
         write_json(folder / "CREATIVE_BRIEF.json", brief); write_json(folder / "VOICE_PROFILE.json", voice)
         # Derive the narrowest safe root(s). Any unknown editorial launch change begins at
         # the script; this errs toward correct output rather than reusing stale media.
@@ -2858,6 +3251,7 @@ class Handler(BaseHTTPRequestHandler):
         if changed(previous_brief.get("_sfx", {}), brief.get("_sfx", {})): roots.update(("sfx_plan", "sfx_acquire"))
         if changed(previous_brief.get("_subtitle", {}), brief.get("_subtitle", {})): roots.add("render_profile")
         if changed(previous_brief.get("_branding", {}), brief.get("_branding", {})): roots.add("render_profile")
+        if changed(previous_brief.get("_audio", {}), brief.get("_audio", {})): roots.add("audio_mix_profile")
         if changed(previous_voice, voice): roots.add("elevenlabs_voiceover")
         for key in ("music_providers", "music_provider"):
             if launch.get(key) != record.get(key): roots.add("background_music")
@@ -2867,7 +3261,7 @@ class Handler(BaseHTTPRequestHandler):
         if launch.get("telegram_low_size") != record.get("telegram_low_size"): roots.update(("telegram_compress", "publish_telegram"))
         if launch.get("telegram_original") != record.get("telegram_original"): roots.add("publish_telegram")
         if not roots: self.send_json(HTTPStatus.BAD_REQUEST, {"error": "No effective configuration change was found."}); return
-        record.update({k:v for k,v in launch.items() if k in {"music_provider", "music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original"}})
+        record.update({k:v for k,v in launch.items() if k in {"music_provider", "music_providers", "music_upload", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original"}})
         record.update({
             "qh": brief.get("_qh") if isinstance(brief.get("_qh"), dict) else record.get("qh", {}),
             "motion": brief.get("_motion") if isinstance(brief.get("_motion"), dict) else record.get("motion", {}),
@@ -2908,6 +3302,9 @@ class Handler(BaseHTTPRequestHandler):
         revision_id = str(uuid.uuid4())
         folder = project / "launch" / "config_revisions" / revision_id
         old_record = json.loads(json.dumps(record))
+        character_changed = any(key in changed_fields for key in ("character_mode", "character_id"))
+        previous_character = dict(old_record.get("character") or (old_record.get("qh") or {}).get("character") or {})
+        requested_character = dict((brief.get("_qh") or {}).get("character") or {})
         job_path = self.jobs_dir / f"{record['job_id']}.json"
         launch_path = project / "launch" / "LAUNCH_REQUEST.json"
         try:
@@ -2918,9 +3315,12 @@ class Handler(BaseHTTPRequestHandler):
                 folder.mkdir(parents=True, exist_ok=False)
                 freeze_style_reference(brief, project, folder)
                 freeze_logo_asset(brief, project, folder / "branding")
+                freeze_music_asset(launch, project, folder / "music")
                 write_json(folder / "CREATIVE_BRIEF.json", brief)
                 write_json(folder / "VOICE_PROFILE.json", voice)
                 record.update({key: value for key, value in launch.items() if not key.startswith("_")})
+                if not launch.get("music_upload"):
+                    record.pop("music_upload", None)
                 record.update({
                     "topic": str(launch.get("_topic") or record.get("topic")),
                     "qh": brief.get("_qh", {}),
@@ -2931,6 +3331,12 @@ class Handler(BaseHTTPRequestHandler):
                     "creative_brief": str((folder / "CREATIVE_BRIEF.json").relative_to(ROOT)),
                     "voice_profile": str((folder / "VOICE_PROFILE.json").relative_to(ROOT)),
                 })
+                if character_changed:
+                    # A persisted resolution is normally authoritative on resume. A character
+                    # revision is the one explicit operation that must discard that pointer so
+                    # the archived resolution cannot silently win over the new request.
+                    record["character"] = requested_character
+                    record.pop("character_resolution", None)
                 # Publish the frozen inputs before spawning so the child cannot race and
                 # observe the previous launch contract.
                 write_json(job_path, record)
@@ -2964,6 +3370,12 @@ class Handler(BaseHTTPRequestHandler):
             return
         revision["changed_fields"] = changed_fields
         revision["config_revision_id"] = revision_id
+        if character_changed:
+            revision["character_change"] = {
+                "previous_request": previous_character,
+                "requested": requested_character,
+                "previous_resolved_character_id": (old_record.get("character_resolution") or {}).get("resolved_character_id"),
+            }
         revision_path = project / "pipeline" / "revisions" / revision["revision_id"] / "REVISION.json"
         write_json(revision_path, revision)
         record["last_config_revision"] = revision
@@ -3361,6 +3773,20 @@ class Handler(BaseHTTPRequestHandler):
             upload_id = route.removeprefix("/api/logo-uploads/").removesuffix("/preview").strip("/")
             self.serve_logo_upload_preview(upload_id)
             return
+        if route.startswith("/api/music-uploads/") and route.endswith("/preview"):
+            upload_id = route.removeprefix("/api/music-uploads/").removesuffix("/preview").strip("/")
+            self.serve_music_upload_preview(upload_id)
+            return
+        if route == "/api/music-library":
+            tracks = []
+            for entry in music_library_entries():
+                tracks.append({key: value for key, value in entry.items() if key != "_path"})
+            self.send_json(HTTPStatus.OK, {"tracks": tracks})
+            return
+        if route.startswith("/api/music-library/") and route.endswith("/preview"):
+            digest = route.removeprefix("/api/music-library/").removesuffix("/preview").strip("/")
+            self.serve_music_library_preview(digest)
+            return
         if route == "/api/character-catalog":
             content_project = str((query.get("content_project") or [PREFERRED_CONTENT_PROJECT])[0])
             try:
@@ -3434,7 +3860,7 @@ class Handler(BaseHTTPRequestHandler):
                 voice = json.loads((ROOT / str(record["voice_profile"])).read_text(encoding="utf-8"))
             except (OSError, ValueError, KeyError):
                 self.send_json(HTTPStatus.CONFLICT, {"error": "This run's frozen configuration is unavailable."}); return
-            launch = {key: record.get(key) for key in ("music_provider", "music_providers", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
+            launch = {key: record.get(key) for key in ("music_provider", "music_providers", "music_upload", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
             style_reference = (brief.get("_qh") or {}).get("world_style_reference")
             if isinstance(style_reference, dict):
                 style_reference = dict(style_reference)
@@ -3449,6 +3875,13 @@ class Handler(BaseHTTPRequestHandler):
                     logo_asset["preview_path"] = str((ROOT / str(logo_asset.get("path") or "")).resolve().relative_to(_project))
                 except ValueError:
                     logo_asset.pop("preview_path", None)
+            music_asset = record.get("music_upload")
+            if isinstance(music_asset, dict):
+                music_asset = dict(music_asset)
+                try:
+                    music_asset["preview_path"] = str((ROOT / str(music_asset.get("path") or "")).resolve().relative_to(_project))
+                except ValueError:
+                    music_asset.pop("preview_path", None)
             self.send_json(HTTPStatus.OK, {
                 "creative_brief": brief,
                 "voice_profile": voice,
@@ -3456,6 +3889,8 @@ class Handler(BaseHTTPRequestHandler):
                 "values": frozen_values(record, brief, voice),
                 "style_reference": style_reference,
                 "logo_asset": logo_asset,
+                "music_asset": music_asset,
+                "narration_asset": narration_asset_for(_project),
                 "transition_overrides": list((brief.get("_motion") or {}).get("transition_overrides", []) or []),
             }); return
 
@@ -3466,7 +3901,7 @@ class Handler(BaseHTTPRequestHandler):
             if not resolved: self.send_error(HTTPStatus.NOT_FOUND); return
             self.serve_artifact(resolved[1], unquote(parts[5])); return
 
-        if route in {"/", "/favicon.svg"} or route.startswith("/runs/") or route.startswith("/assets/"):
+        if route in {"/", "/new", "/runs", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/assets/"):
             self.serve_studio(route); return
 
         if route == "/api/status":
@@ -3520,7 +3955,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_HEAD(self) -> None:
         """Expose correct metadata for static assets and range-capable previews."""
         route = urlparse(self.path).path
-        if route in {"/", "/favicon.svg"} or route.startswith("/runs/") or route.startswith("/assets/"):
+        if route in {"/", "/new", "/runs", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/assets/"):
             self.serve_studio(route); return
         if route.startswith("/api/styles/"):
             parts = route.split("/")
@@ -3536,6 +3971,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         if self.path == "/api/style-reference-uploads": self.handle_style_reference_upload(); return
         if self.path == "/api/logo-uploads": self.handle_logo_upload(); return
+        if self.path == "/api/music-uploads": self.handle_music_upload(); return
         if self.path == "/api/subtitle-fonts": self.handle_subtitle_font_upload(); return
         if self.path == "/api/credits/check":
             active = active_job(self.jobs_dir)
@@ -3574,7 +4010,9 @@ class Handler(BaseHTTPRequestHandler):
             duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0])
             aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
+            narration_gain_db = float(values.get("narration_gain_db", ["0"])[0])
             providers = music_provider_priority(values.get("music_providers", values.get("music_provider", ["mixkit"]))[0])
+            music_upload_id = values.get("music_upload_id", [""])[0].strip()
             show_subtitles = "show_subtitles" in values
             word_highlight = "word_highlight" in values
             subtitle_font = values.get("subtitle_font", ["DejaVu Sans"])[0].strip() or "DejaVu Sans"
@@ -3700,8 +4138,13 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Invalid opening_speed_tolerance")
             if not topic or content_project not in available_projects or not 15 <= duration_min <= duration_max <= 300 or aspect_ratio not in {"16:9", "9:16"} \
                or not voice or len(voice) > 220 or model not in {"Eleven Multilingual v2", "Eleven v3"} \
-               or not .7 <= speed <= 1.2 or not all(0 <= value <= 1 for value in (stability, similarity, style)):
+               or not .7 <= speed <= 1.2 or not -12 <= narration_gain_db <= 12 \
+               or not all(0 <= value <= 1 for value in (stability, similarity, style)):
                 raise ValueError("Invalid launch values.")
+            if music_upload_id and not (
+                MUSIC_UPLOAD_RE.fullmatch(music_upload_id) or MUSIC_LIBRARY_RE.fullmatch(music_upload_id)
+            ):
+                raise ValueError("Invalid background-music upload.")
             if not telegram_low_size and not telegram_original:
                 raise ValueError("Choose at least one Telegram delivery output.")
             if hero_presence_mode not in {"auto", "opener_only", "limited_in_world", "in_world"}:
@@ -3889,6 +4332,7 @@ class Handler(BaseHTTPRequestHandler):
                 "outline": subtitle_outline,
                 "outline_colour": subtitle_outline_colour,
             }
+            creative_brief["_audio"] = {"narration_gain_db": narration_gain_db}
             creative_brief["_branding"] = {
                 "show_logo": show_logo, "logo_position": logo_position,
                 "show_title": show_title, "title_text": title_text, "title_position": title_position,
@@ -3971,6 +4415,12 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 freeze_style_reference(creative_brief, project, project / "launch" / "style_references")
                 freeze_logo_asset(creative_brief, project, project / "launch" / "branding")
+                music_launch: dict[str, Any] = {}
+                if MUSIC_UPLOAD_RE.fullmatch(music_upload_id):
+                    music_launch["_music_upload_id"] = music_upload_id
+                elif (library_match := MUSIC_LIBRARY_RE.fullmatch(music_upload_id)):
+                    music_launch["_music_library_id"] = library_match.group(1)
+                freeze_music_asset(music_launch, project, project / "launch" / "music")
             except ValueError as exc:
                 self.send_notice(HTTPStatus.BAD_REQUEST, str(exc)); return
             write_json(profile, {"voice": voice, "model": model, "speed": speed, "stability": stability, "similarity": similarity, "style": style, "speaker_boost": False, "output_format": "MP3 44.1 kHz (128kbps)"})
@@ -3979,7 +4429,7 @@ class Handler(BaseHTTPRequestHandler):
             job_id = str(uuid.uuid4())
             subtitles_enabled = show_subtitles
             record = {
-                "schema_version": 5, "content_project": content_project, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(),
+                "schema_version": 6, "content_project": content_project, "job_id": job_id, "status": "RUNNING", "created_at": utcnow(),
                 "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max,
                 "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)),
                 "voice_profile": str(profile.relative_to(ROOT)), "creative_brief": str(creative_brief_path.relative_to(ROOT)),
@@ -3992,6 +4442,7 @@ class Handler(BaseHTTPRequestHandler):
                 # Recorded so a resume rebuilds exactly this command (§78).
                 "music_provider": providers[0],  # legacy readers retain the first choice
                 "music_providers": providers,
+                **({"music_upload": music_launch["music_upload"]} if music_launch.get("music_upload") else {}),
                 "commit_artifacts": commit_artifacts,
                 "telegram_low_size": telegram_low_size,
                 "telegram_original": telegram_original,

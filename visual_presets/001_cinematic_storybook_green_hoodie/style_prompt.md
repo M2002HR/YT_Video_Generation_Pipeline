@@ -4,7 +4,7 @@
 
 Create a reusable **style anchor image** that defines the visual language for this YouTube video series.
 
-This image is not a storyboard scene. It is a canonical visual reference that should be uploaded whenever new storyboard sheets are generated in a fresh chat/session.
+This image is not an episode scene. It is the canonical visual-style reference used when individual beat images are generated in a fresh provider session.
 
 ## Output goal
 

@@ -10,17 +10,10 @@
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>Video Pipeline Studio</title>
-    <script>
-      try {
-        var stored = localStorage.getItem("studio.theme");
-        var theme = stored === "light" || stored === "dark" ? stored
-          : matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-        document.documentElement.dataset.theme = theme;
-      } catch (e) {}
-    </script>
+    <script src="/theme-bootstrap.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><main style="min-height:100vh;display:grid;place-content:center;gap:12px;padding:24px;text-align:center;background:var(--bg,#080c13);color:var(--text,#f4f7fb);font:14px system-ui"><strong>Loading Video Pipeline Studio…</strong><span style="color:var(--muted,#91a0b5)">If this remains visible, <a href="/" style="color:var(--blue,#82aaff)">reload the interface</a>.</span></main></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

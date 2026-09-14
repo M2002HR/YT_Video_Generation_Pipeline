@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-#: The two Flow sources an episode needs, in the order the pipeline makes them.
+#: Historical/default Flow filenames. Runtime checks resolve profile-specific paths.
 FLOW_CLIP_FILES = ("question_spark_source.mp4", "book_transition_source.mp4")
 
 #: Stage names whose failure means "waiting for Flow", not "the episode is wrong".
@@ -29,7 +29,12 @@ FLOW_OUTAGE_MARKERS = (
 
 
 def clip_paths(project: Path) -> list[Path]:
-    return [Path(project) / "assets" / "opening" / name for name in FLOW_CLIP_FILES]
+    from presentation_runtime import presentation_for_project
+    presentation = presentation_for_project(Path(project))
+    return [
+        presentation.artifacts.path(Path(project), "question_source"),
+        presentation.artifacts.path(Path(project), "entry_source"),
+    ]
 
 
 def missing_clips(project: Path) -> list[Path]:

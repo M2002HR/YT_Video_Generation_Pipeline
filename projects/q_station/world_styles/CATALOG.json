@@ -98,7 +98,7 @@
       "status": "ready",
       "path": "010_orchard_sleep_memory_collage_001",
       "anchor": "010_orchard_sleep_memory_collage_001/style_anchor.png",
-      "usage_count": 2
+      "usage_count": 3
     },
     {
       "style_id": "sketch_painting_wrestling_memory_001",
@@ -175,6 +175,28 @@
       "status": "ready",
       "path": "018_soft_graphite_storybook_pencil_001",
       "anchor": "018_soft_graphite_storybook_pencil_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "verdigris_celestial_mechanism_drawing_001",
+      "display_name": "Verdigris Celestial Mechanism Drawing 001",
+      "medium_family": "technical drawing",
+      "texture_family": "aged vellum grain with restrained oxidized-bronze patina speckling",
+      "palette_summary": "deep Aegean blue and charcoal foundations, parchment cream, oxidized copper verdigris, muted antique bronze and ochre, with sparse pale celestial-blue highlights",
+      "status": "ready",
+      "path": "019_verdigris_celestial_mechanism_drawing_00",
+      "anchor": "019_verdigris_celestial_mechanism_drawing_00/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "cinematic_abandoned_world_charcoal_001",
+      "display_name": "Cinematic Abandoned World Charcoal 001",
+      "medium_family": "charcoal",
+      "texture_family": "rough fibrous charcoal paper with weathered concrete-like grain, soft soot bloom, rubbed graphite haze, and restrained water-stain mottling",
+      "palette_summary": "desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, and sparse cold amber remnants for failing artificial light",
+      "status": "ready",
+      "path": "020_cinematic_abandoned_world_charcoal_001",
+      "anchor": "020_cinematic_abandoned_world_charcoal_001/style_anchor.png",
       "usage_count": 1
     }
   ]
