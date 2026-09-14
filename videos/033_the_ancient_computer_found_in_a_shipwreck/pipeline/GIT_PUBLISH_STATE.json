@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "6458a642b87abaffe2c157cd2ac88644ee696141",
+  "started_at": "2026-09-14T13:09:17.661844+00:00",
+  "completed_at": "2026-09-14T13:13:34.222077+00:00",
+  "elapsed_seconds": 256.56,
+  "scope": "videos/033_the_ancient_computer_found_in_a_shipwreck"
+}
