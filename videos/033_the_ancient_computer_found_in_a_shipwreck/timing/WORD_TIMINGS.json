@@ -1,0 +1,652 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 54.57,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 107,
+  "words": [
+    {
+      "text": "Could",
+      "token": "could",
+      "start": 0.04,
+      "end": 0.2
+    },
+    {
+      "text": "these",
+      "token": "these",
+      "start": 0.2,
+      "end": 0.48
+    },
+    {
+      "text": "jammed",
+      "token": "jammed",
+      "start": 0.48,
+      "end": 1.12
+    },
+    {
+      "text": "hand-drill",
+      "token": "handdrill",
+      "start": 1.12,
+      "end": 1.88
+    },
+    {
+      "text": "gears",
+      "token": "gears",
+      "start": 1.88,
+      "end": 2.28
+    },
+    {
+      "text": "explain",
+      "token": "explain",
+      "start": 2.28,
+      "end": 2.96
+    },
+    {
+      "text": "an",
+      "token": "an",
+      "start": 2.96,
+      "end": 3.22
+    },
+    {
+      "text": "ancient",
+      "token": "ancient",
+      "start": 3.22,
+      "end": 3.68
+    },
+    {
+      "text": "machine",
+      "token": "machine",
+      "start": 3.68,
+      "end": 4.22
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 4.22,
+      "end": 4.66
+    },
+    {
+      "text": "predicted",
+      "token": "predicted",
+      "start": 4.66,
+      "end": 5.06
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 5.06,
+      "end": 5.32
+    },
+    {
+      "text": "sky?",
+      "token": "sky",
+      "start": 5.32,
+      "end": 5.64
+    },
+    {
+      "text": "She",
+      "token": "she",
+      "start": 6.94,
+      "end": 7.12
+    },
+    {
+      "text": "turns",
+      "token": "turns",
+      "start": 7.12,
+      "end": 7.52
+    },
+    {
+      "text": "her",
+      "token": "her",
+      "start": 7.52,
+      "end": 7.74
+    },
+    {
+      "text": "orb,",
+      "token": "orb",
+      "start": 7.74,
+      "end": 8.22
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 8.22,
+      "end": 8.36
+    },
+    {
+      "text": "we",
+      "token": "we",
+      "start": 8.36,
+      "end": 8.5
+    },
+    {
+      "text": "plunge",
+      "token": "plunge",
+      "start": 8.5,
+      "end": 8.98
+    },
+    {
+      "text": "through",
+      "token": "through",
+      "start": 8.98,
+      "end": 9.24
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 9.24,
+      "end": 9.4
+    },
+    {
+      "text": "glass.",
+      "token": "glass",
+      "start": 9.4,
+      "end": 10.16
+    },
+    {
+      "text": "In",
+      "token": "in",
+      "start": 10.58,
+      "end": 10.76
+    },
+    {
+      "text": "1900,",
+      "token": "1900",
+      "start": 10.76,
+      "end": 12.32
+    },
+    {
+      "text": "sponge",
+      "token": "sponge",
+      "start": 12.32,
+      "end": 12.96
+    },
+    {
+      "text": "divers",
+      "token": "divers",
+      "start": 12.96,
+      "end": 13.44
+    },
+    {
+      "text": "found",
+      "token": "found",
+      "start": 13.44,
+      "end": 13.94
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 13.94,
+      "end": 14.12
+    },
+    {
+      "text": "wreck",
+      "token": "wreck",
+      "start": 14.12,
+      "end": 14.36
+    },
+    {
+      "text": "off",
+      "token": "off",
+      "start": 14.36,
+      "end": 14.64
+    },
+    {
+      "text": "Antikythera.",
+      "token": "antikythera",
+      "start": 14.64,
+      "end": 15.48
+    },
+    {
+      "text": "Its",
+      "token": "its",
+      "start": 16.4,
+      "end": 16.58
+    },
+    {
+      "text": "cargo",
+      "token": "cargo",
+      "start": 16.58,
+      "end": 17.04
+    },
+    {
+      "text": "included",
+      "token": "included",
+      "start": 17.04,
+      "end": 17.66
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 17.66,
+      "end": 17.9
+    },
+    {
+      "text": "corroded",
+      "token": "corroded",
+      "start": 17.9,
+      "end": 18.54
+    },
+    {
+      "text": "bronze",
+      "token": "bronze",
+      "start": 18.54,
+      "end": 19.1
+    },
+    {
+      "text": "lump.",
+      "token": "lump",
+      "start": 19.1,
+      "end": 19.6
+    },
+    {
+      "text": "Inside",
+      "token": "inside",
+      "start": 20.48,
+      "end": 20.88
+    },
+    {
+      "text": "were",
+      "token": "were",
+      "start": 20.88,
+      "end": 21.24
+    },
+    {
+      "text": "tightly",
+      "token": "tightly",
+      "start": 21.24,
+      "end": 21.66
+    },
+    {
+      "text": "packed,",
+      "token": "packed",
+      "start": 21.66,
+      "end": 22.22
+    },
+    {
+      "text": "precision-cut",
+      "token": "precisioncut",
+      "start": 22.22,
+      "end": 23.54
+    },
+    {
+      "text": "gears.",
+      "token": "gears",
+      "start": 23.54,
+      "end": 24.18
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 24.86,
+      "end": 24.98
+    },
+    {
+      "text": "mechanism",
+      "token": "mechanism",
+      "start": 24.98,
+      "end": 25.36
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 25.36,
+      "end": 25.76
+    },
+    {
+      "text": "built",
+      "token": "built",
+      "start": 25.76,
+      "end": 25.96
+    },
+    {
+      "text": "over",
+      "token": "over",
+      "start": 25.96,
+      "end": 26.2
+    },
+    {
+      "text": "2,000",
+      "token": "2000",
+      "start": 26.2,
+      "end": 26.74
+    },
+    {
+      "text": "years",
+      "token": "years",
+      "start": 26.74,
+      "end": 27.0
+    },
+    {
+      "text": "ago.",
+      "token": "ago",
+      "start": 27.0,
+      "end": 27.32
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 28.18,
+      "end": 28.3
+    },
+    {
+      "text": "hand",
+      "token": "hand",
+      "start": 28.3,
+      "end": 28.66
+    },
+    {
+      "text": "crank",
+      "token": "crank",
+      "start": 28.66,
+      "end": 28.96
+    },
+    {
+      "text": "moved",
+      "token": "moved",
+      "start": 28.96,
+      "end": 29.4
+    },
+    {
+      "text": "pointers",
+      "token": "pointers",
+      "start": 29.4,
+      "end": 29.88
+    },
+    {
+      "text": "across",
+      "token": "across",
+      "start": 29.88,
+      "end": 30.26
+    },
+    {
+      "text": "astronomical",
+      "token": "astronomical",
+      "start": 30.26,
+      "end": 31.0
+    },
+    {
+      "text": "dials.",
+      "token": "dials",
+      "start": 31.0,
+      "end": 32.1
+    },
+    {
+      "text": "One",
+      "token": "one",
+      "start": 32.44,
+      "end": 32.64
+    },
+    {
+      "text": "dial",
+      "token": "dial",
+      "start": 32.64,
+      "end": 33.04
+    },
+    {
+      "text": "tracked",
+      "token": "tracked",
+      "start": 33.04,
+      "end": 33.36
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 33.36,
+      "end": 33.56
+    },
+    {
+      "text": "sun",
+      "token": "sun",
+      "start": 33.56,
+      "end": 33.74
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 33.74,
+      "end": 33.94
+    },
+    {
+      "text": "moon.",
+      "token": "moon",
+      "start": 33.94,
+      "end": 34.38
+    },
+    {
+      "text": "Others",
+      "token": "others",
+      "start": 34.68,
+      "end": 34.94
+    },
+    {
+      "text": "modeled",
+      "token": "modeled",
+      "start": 34.94,
+      "end": 35.42
+    },
+    {
+      "text": "cycles",
+      "token": "cycles",
+      "start": 35.42,
+      "end": 35.94
+    },
+    {
+      "text": "used",
+      "token": "used",
+      "start": 35.94,
+      "end": 36.56
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 36.56,
+      "end": 36.8
+    },
+    {
+      "text": "predict",
+      "token": "predict",
+      "start": 36.8,
+      "end": 37.16
+    },
+    {
+      "text": "eclipses.",
+      "token": "eclipses",
+      "start": 37.16,
+      "end": 38.08
+    },
+    {
+      "text": "Another",
+      "token": "another",
+      "start": 38.44,
+      "end": 38.74
+    },
+    {
+      "text": "tracked",
+      "token": "tracked",
+      "start": 38.74,
+      "end": 39.64
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 39.64,
+      "end": 39.88
+    },
+    {
+      "text": "cycle",
+      "token": "cycle",
+      "start": 39.88,
+      "end": 40.24
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 40.24,
+      "end": 40.44
+    },
+    {
+      "text": "major",
+      "token": "major",
+      "start": 40.44,
+      "end": 40.94
+    },
+    {
+      "text": "Greek",
+      "token": "greek",
+      "start": 40.94,
+      "end": 41.32
+    },
+    {
+      "text": "games.",
+      "token": "games",
+      "start": 41.32,
+      "end": 42.34
+    },
+    {
+      "text": "Inscriptions",
+      "token": "inscriptions",
+      "start": 43.02,
+      "end": 43.38
+    },
+    {
+      "text": "even",
+      "token": "even",
+      "start": 43.38,
+      "end": 43.88
+    },
+    {
+      "text": "explained",
+      "token": "explained",
+      "start": 43.88,
+      "end": 44.54
+    },
+    {
+      "text": "parts",
+      "token": "parts",
+      "start": 44.54,
+      "end": 45.04
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 45.04,
+      "end": 45.2
+    },
+    {
+      "text": "its",
+      "token": "its",
+      "start": 45.2,
+      "end": 45.36
+    },
+    {
+      "text": "operation.",
+      "token": "operation",
+      "start": 45.36,
+      "end": 46.28
+    },
+    {
+      "text": "It",
+      "token": "it",
+      "start": 46.54,
+      "end": 46.7
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 46.7,
+      "end": 46.88
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 46.88,
+      "end": 47.02
+    },
+    {
+      "text": "hand-powered",
+      "token": "handpowered",
+      "start": 47.02,
+      "end": 48.0
+    },
+    {
+      "text": "mechanical",
+      "token": "mechanical",
+      "start": 48.0,
+      "end": 48.72
+    },
+    {
+      "text": "model",
+      "token": "model",
+      "start": 48.72,
+      "end": 49.4
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 49.4,
+      "end": 49.68
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 49.68,
+      "end": 49.82
+    },
+    {
+      "text": "heavens.",
+      "token": "heavens",
+      "start": 49.82,
+      "end": 50.5
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 50.88,
+      "end": 51.08
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 51.08,
+      "end": 51.62
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 51.62,
+      "end": 52.08
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 52.08,
+      "end": 52.64
+    },
+    {
+      "text": "keep",
+      "token": "keep",
+      "start": 52.64,
+      "end": 52.86
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 52.86,
+      "end": 53.02
+    },
+    {
+      "text": "questions",
+      "token": "questions",
+      "start": 53.02,
+      "end": 53.52
+    },
+    {
+      "text": "coming.",
+      "token": "coming",
+      "start": 53.52,
+      "end": 54.02
+    }
+  ]
+}

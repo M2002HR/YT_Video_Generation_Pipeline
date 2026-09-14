@@ -1,0 +1,18 @@
+{
+  "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+  "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+  "opening_environment": "a practical museum prep space with timber mounts, conservation crates, muted work lamps, and nautical artifacts waiting to be installed",
+  "topic_visual_link": "The visibly jammed hand-powered gear train echoes the Antikythera mechanism's tightly packed gears and immediately raises the idea that sophisticated mechanical computation can exist without electricity.",
+  "link_type": "historical_echo",
+  "opening_visual_proof": "In the first seconds, the crone's hand turns the drill crank while two exposed metal gears rotate together, catch abruptly tooth-to-tooth, and freeze the drill bit above the wood.",
+  "curiosity_trigger": "the crank suddenly resists with a dry metallic click while the meshed gears remain visibly locked",
+  "trigger_object": "the exposed gear pair of the hand-cranked drill",
+  "reaction": "She narrows her large eyes at the frozen gears, gives the raven a knowing sideways glance, and tests the crank once more with one long finger.",
+  "entry_retrieval": "She releases the drill, follows the line of its meshed gears with one pointed finger, then reaches beneath a folded protective cloth on the same work surface and reveals her glass orb; her moss-green sleeve and long fingers remain clearly in frame as she turns it toward the camera.",
+  "entry_variant": "hand_reveal",
+  "camera_pattern": "over_shoulder",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "submerged Mediterranean archaeology shifting into precise bronze mechanical cutaways, engraved astronomical dials, and luminous orbital geometry",
+  "reason": "A hand-cranked drill gives the crone a compact, believable task whose suddenly jammed visible gears naturally mirror the ancient mechanism's defining combination of manual power, dense gearing, and unexpected sophistication."
+}

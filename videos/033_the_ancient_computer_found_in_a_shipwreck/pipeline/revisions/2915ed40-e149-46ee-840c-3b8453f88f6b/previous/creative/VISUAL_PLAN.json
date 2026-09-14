@@ -1,0 +1,149 @@
+{
+  "body_duration_seconds": 34.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "In 1901, divers found a wreck near Antikythera.",
+      "visual": "Vertical layered paper-cut underwater scene: two period divers descend toward a broken ancient ship resting on a rocky Mediterranean seabed, with amphorae and timber fragments emerging from cool slate-blue water.",
+      "purpose": "show the 1901 discovery of the Antikythera shipwreck",
+      "visual_fingerprint": "wide underwater establishing shot + two descending divers + wreck and amphorae on rocky seabed + cool slate-blue depth with amber surface light + diagonal top-to-bottom composition",
+      "type": "literal",
+      "continuity": "begin the subject world underwater at the wreck site, fully separate from the opening environment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "A corroded lump hid bronze gears.",
+      "visual": "Close paper-cut archaeological reveal of a diver's gloved hands lifting an irregular green-brown corroded bronze mass, with one small honey-amber gear edge visible through a cracked encrusted surface.",
+      "purpose": "show that an unremarkable corroded fragment concealed geared machinery",
+      "visual_fingerprint": "extreme close-up + encrusted bronze lump in gloved hands + tiny exposed gear teeth + dark wreck shadow behind + centered discovery composition",
+      "type": "literal",
+      "continuity": "move from the wreck overview to one recovered object from the same seabed",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "The mechanism was about two millennia old.",
+      "visual": "Paper-cut time metaphor showing the corroded mechanism fragment in the foreground while a ghosted Hellenistic Greek ship and ancient coastal silhouette appear far behind it in warm cream and muted olive layers.",
+      "purpose": "establish that the mechanism dates back roughly two thousand years",
+      "visual_fingerprint": "foreground artifact silhouette + distant ancient Greek ship and coast + compressed side profile composition + warm amber historical glow replacing underwater blue",
+      "type": "metaphor",
+      "continuity": "shift from physical discovery to the artifact's ancient historical origin",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "A hand crank turned interlocking wheels.",
+      "visual": "Cutaway paper reconstruction of the mechanism viewed three-quarter close, with a simple side crank being turned by the Red Horned Everyman and several bronze gear wheels visibly meshing inside the case.",
+      "purpose": "show how manual cranking drove the interlocking gear train",
+      "visual_fingerprint": "three-quarter mechanical cutaway + host hand on side crank + layered meshing bronze wheels + cream workshop-like void + strong left-to-right mechanical flow",
+      "type": "literal",
+      "continuity": "move from age and origin into a reconstructed explanation of how the mechanism operated",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Pointers tracked the Sun and Moon.",
+      "visual": "Front-facing paper-cut dial with two distinct pointer arms sweeping across a circular celestial face, one ending in a restrained amber Sun disc and the other in a pale cream Moon disc.",
+      "purpose": "show that front pointers represented the positions of the Sun and Moon",
+      "visual_fingerprint": "straight-on circular dial + paired Sun and Moon pointer arms + no host + symmetrical centered composition + cream face with olive and amber celestial accents",
+      "type": "diagram",
+      "continuity": "follow the crank's mechanical motion to what the gearing displayed on the front",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Other gears displayed the Moon’s changing phase.",
+      "visual": "Paper-cut close-up of a small two-tone lunar sphere mounted on the mechanism, half cream and half slate, with compact bronze gears beneath indicating the sphere's rotation from bright to dark.",
+      "purpose": "explain the geared display of lunar phases",
+      "visual_fingerprint": "macro detail + half-light half-dark Moon sphere + compact gear pair beneath + shallow layered backdrop + off-center upper-right composition",
+      "type": "diagram",
+      "continuity": "stay with astronomical outputs but isolate the Moon-phase mechanism from the larger pointer dial",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Rear dials counted calendar cycles.",
+      "visual": "Rear view of the reconstructed mechanism in paper cut, dominated by broad nested circular and spiral tracks with a slender indicator arm moving through repeated calendar divisions, all without readable markings.",
+      "purpose": "show that the back of the mechanism tracked repeating calendar cycles",
+      "visual_fingerprint": "rear elevation + large nested dial tracks + single indicator arm + mechanism casing edges framing both sides + muted olive background with honey-bronze rings",
+      "type": "diagram",
+      "continuity": "rotate conceptually from front astronomical displays to the mechanism's rear dial system",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "A spiral dial predicted eclipses.",
+      "visual": "Tight paper-cut view of one rear spiral dial, with its pointer advancing along the spiral while a stylized dark Moon overlaps an amber Sun above the dial as an eclipse symbol.",
+      "purpose": "show that one spiral cycle was used to forecast eclipses",
+      "visual_fingerprint": "tight spiral-dial crop + advancing pointer + overlapping Sun and dark Moon symbol + diagonal lower-left to upper-right composition + dramatic amber-to-slate contrast",
+      "type": "diagram",
+      "continuity": "zoom from the general rear calendar system into one specific predictive spiral",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Another marked major games, including the Olympics.",
+      "visual": "Paper-cut dial segment beside a symbolic ancient athletic scene: a small laurel wreath, stadium curve, and two simplified Greek runners appear as visual motifs linked to a pointer on the mechanism, with no lettering.",
+      "purpose": "show that a separate cycle indicated major Panhellenic games such as the Olympics",
+      "visual_fingerprint": "mechanism dial on left + laurel wreath and two runners on right + warm sunlit stadium motif + split but unified storybook composition + no eclipse or lunar imagery",
+      "type": "subject_world",
+      "continuity": "move from astronomical prediction to a different rear-dial function tied to civic games",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Researchers reconstructed its hidden gearwork.",
+      "visual": "The Red Horned Everyman stands beside a tabletop exploded reconstruction made of layered paper bronze gears suspended in depth, calmly studying how separated wheels align into one dense mechanism.",
+      "purpose": "show modern reconstruction of the gear arrangement hidden inside the damaged artifact",
+      "visual_fingerprint": "medium three-quarter host view + exploded gear assembly hovering over table + multiple depth layers + warm cream archaeological study setting + host gaze guiding inward",
+      "type": "literal",
+      "continuity": "leave the ancient dial functions and show how researchers inferred the internal machinery",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "Its complexity inspired the nickname ancient computer.",
+      "visual": "Dense paper-cut reconstruction fills the frame like an intricate mechanical brain, dozens of interlocking bronze wheels nested inside the case while the outer silhouette remains unmistakably ancient and non-electronic.",
+      "purpose": "communicate why the mechanism's extraordinary mechanical complexity earned the ancient computer nickname",
+      "visual_fingerprint": "front-on dense gear lattice + mechanism shaped as compact mechanical brain metaphor + no host + dark olive vignette around bright honey gear core + vertically centered complexity focus",
+      "type": "metaphor",
+      "continuity": "compress the reconstructed gearwork into one striking image emphasizing its unusual sophistication",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 12,
+      "narration_slice": "It modeled the sky without electricity.",
+      "visual": "Final paper-cut tableau of the complete bronze mechanism below a layered celestial arc of Sun, Moon, stars, and orbital curves, with the Red Horned Everyman quietly observing from the lower edge and no wires, batteries, or modern components.",
+      "purpose": "show that purely mechanical gearing represented celestial cycles without electrical power",
+      "visual_fingerprint": "low-angle final tableau + complete mechanism beneath sweeping celestial arc + small observing host at lower edge + warm amber sky against slate-blue outer layers + expansive upward composition",
+      "type": "subject_world",
+      "continuity": "resolve the reconstruction sequence by connecting the physical gears directly to the sky they modeled",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    }
+  ]
+}

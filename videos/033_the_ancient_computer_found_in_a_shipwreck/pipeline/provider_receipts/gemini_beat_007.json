@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "abfa4a6c76cf517a82f02a4f3df2a86fd53fab01c4285fef2481b4611716b667",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "ae761c53-a6fc-4b89-bebf-d7681548ce71",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/f740b7b6d0cc2c8c",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=ae761c53-a6fc-4b89-bebf-d7681548ce71_output_1.png 1536x2752 sha256=c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "abfa4a6c76cf517a82f02a4f3df2a86fd53fab01c4285fef2481b4611716b667",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "ae761c53-a6fc-4b89-bebf-d7681548ce71",
+        "prompt_sha256": "fa6247b981a9e67aa0d40bf272eb21f90a2e20d50486cd7afe9a7ce8ba045832",
+        "output_sha256": "c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_style_anchor.png",
+      "sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_keyframe.png",
+      "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/assets/raw_beats/beat_006.png",
+      "sha256": "b750c2447b9f3a54f7ad58dcac7ddbf1ce8c9e00ec1d1ddf97f5caeadde8ca76"
+    }
+  ],
+  "prompt_sha256": "fa6247b981a9e67aa0d40bf272eb21f90a2e20d50486cd7afe9a7ce8ba045832",
+  "prompt": "Create exactly one standalone 9:16 image, not a storyboard, grid, collage, split panel, or multi-frame layout: a vertical abstract eclipse-cycle diagram in the established Antikythera-world visual language, showing nested bronze-and-charcoal orbital rings with repeated Moon positions sweeping through a spiral-like celestial sequence and culminating in a strongly darkened Sun-Moon alignment that clearly suggests an eclipse; visually connect the lower arc of this cycle to one small hand-cut bronze gear segment, implying a mechanical repeating cycle without overcomplicating the composition. Render as simplified hand-drawn 2D educational animation translated into precise compass-and-stylus technical drawing, with clean dark contours, restrained cel shading, subtle archaeological engraving hatching, aged vellum grain, oxidized verdigris speckling, deep Aegean blue and charcoal foundations, parchment cream, muted antique bronze and ochre, and sparse pale celestial-blue accents. Use cool raking archaeological light, soft shadow falloff, warm bronze glints, and the recurring thin irregular patinated-bronze instrument bezel with worn scoring, corrosion, tiny mechanical notches, and an open vellum-like inner illustration window. Fill the full illustration height naturally; do not create any caption reserve, blank strip, empty panel, or low-detail band. The style_reference defines the hand-drawn 2D rendering discipline; the world_keyframe establishes this technical-drawing world, bezel, materials, palette, texture, and lighting; the previous_beat is binding only for recurring frame language, material/edge treatment, inner-window treatment, texture, palette, and lighting, and must not be copied for composition, crop, camera angle, subject placement, or focal object. No host or character. No readable text, letters, numbers, captions, labels, symbols resembling writing, UI, modern machinery, electronics, steampunk, glossy CGI, neon, blueprint grids, or holograms. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_007.png",
+  "output_sha256": "c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.278,
+  "completed_at": "2026-09-14T11:39:50Z"
+}

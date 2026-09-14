@@ -1,0 +1,20 @@
+{
+  "style_id": "orchard_sleep_memory_collage_001",
+  "decision": "reuse",
+  "reuse_of": "orchard_sleep_memory_collage_001",
+  "medium": "paper cut",
+  "secondary_treatment": "subtle collage layering",
+  "texture_family": "hand-layered paper grain with fibrous cut edges",
+  "palette_summary": "warm orchard greens translated toward muted Aegean olive, muted amber sunlight, cream paper layers, soft slate blues for sea and shadow, restrained honey highlights for bronze gears and astronomical signals",
+  "line_treatment": "clean hand-cut silhouettes with softly irregular fibrous edges, sparse drawn detail, layered shapes, and restrained dark contour accents",
+  "lighting": "soft Mediterranean daylight with warm amber highlights and cooler slate-blue underwater or shipwreck shadows",
+  "frame_language": "a recurring vertically layered paper-cut storybook frame built from cream and muted olive fibrous paper, with softly torn or hand-cut outer edges and a centered inset illustration window; archaeological scenes, gears, celestial diagrams and reconstruction imagery remain inside the same layered-paper grammar, while bronze mechanisms receive selective honey-amber emphasis",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "ancient Greek maritime archaeology, Antikythera shipwreck context, corroded bronze fragments, interlocking gears, hand crank mechanisms, pointers, Sun and Moon indicators, lunar phase displays, spiral calendar and eclipse dials, Panhellenic games references, restrained celestial motifs, reconstructed mechanical assemblies, Mediterranean sea and period-appropriate ship elements",
+  "historical_accuracy_note": "Keep the mechanism consistent with the known Antikythera Mechanism: Hellenistic Greek bronze gearing from roughly the 2nd–1st century BCE, recovered from the Antikythera shipwreck in 1901. Avoid modern clockwork styling, steel machinery, electrical components, digital displays, exaggerated steampunk elements, or presenting uncertain reconstructed features as definitively preserved originals.",
+  "hero_rendering_in_world": "if the resolved host appears after entry, translate the existing silhouette and clothing into layered hand-cut paper shapes with fibrous edges, muted cream, olive, slate and amber pigments, and simplified facial detail consistent with the same collage world",
+  "negative_constraints": "no photorealism, no 3D CGI, no anime, no glossy vector art, no neon sci-fi interface, no steampunk exaggeration, no modern electronics, no photographic bronze textures, no mixed-media style switching between beats, no visible typography or labels inside generated imagery",
+  "reason": "The operator directive explicitly requires reuse of orchard_sleep_memory_collage_001, so it overrides the normal recent-usage penalty even though this style appears in the recent styles list and has already been used twice. Its layered paper-cut construction can still fit the episode by treating the corroded mechanism, shipwreck, celestial cycles and reconstructed gearing as tactile archaeological storybook layers, with amber highlights naturally emphasizing bronze and moving gear relationships while maintaining a single coherent visual world.",
+  "style_subtitle_reserve": "a calm lower field occupying only the bottom 8–10% of the 9:16 frame, rendered as low-detail cream, muted slate or softly layered paper texture; keep it free of faces, hands, focal objects, gear mechanisms, critical diagram details and absolutely free of any text, letters, numbers, captions, labels, words or UI",
+  "reserve_subtitle_space": false
+}

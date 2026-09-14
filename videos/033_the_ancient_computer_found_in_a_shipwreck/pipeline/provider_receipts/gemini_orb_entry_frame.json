@@ -1,0 +1,164 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "95f7188eaa7a8f24805910d0325824fc08cc34da0f73de2a020fd91c0c5ba464",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical 9:16 illustration centers the recurring glass orb. Its spherical body, aged-bronze equatorial band, moss-green cord knot, three-claw cradle and crescent brace are visibly preserved. Moss-green sleeves and long aged hands grip the stand, while a black raven perches on the surrounding bronze hoop, making the crone's ownership clear without showing her full face or body. Inside the dark Aegean-blue orb are layered bronze gears, a concentric astronomical dial, corroded shipwreck-like fragments and pale orbital arcs. The presentation uses aged vellum, inked technical linework, antique bronze, verdigris accents and archaeological hatching, with a large quiet parchment area near the bottom.",
+    "violations": [
+      "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+      "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+      "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+      "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+      "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+      "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+      "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+      "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+      "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+    ],
+    "observations": [
+      "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+      "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+      "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+      "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+      "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "c8188ad6-d834-4677-bfd5-b618a3609953",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/d33bd9e60d8dbf69",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=c8188ad6-d834-4677-bfd5-b618a3609953_output_1.png 1536x2752 sha256=f62995b984b8f5ff88d1ff12860b373f06b1066951394502d0c93bf49779aecf"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical 9:16 illustration centers the recurring glass orb. Its spherical body, aged-bronze equatorial band, moss-green cord knot, three-claw cradle and crescent brace are visibly preserved. Moss-green sleeves and long aged hands grip the stand, while a black raven perches on the surrounding bronze hoop, making the crone's ownership clear without showing her full face or body. Inside the dark Aegean-blue orb are layered bronze gears, a concentric astronomical dial, corroded shipwreck-like fragments and pale orbital arcs. The presentation uses aged vellum, inked technical linework, antique bronze, verdigris accents and archaeological hatching, with a large quiet parchment area near the bottom.",
+      "violations": [
+        "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+        "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+        "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+        "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+        "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+        "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+        "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+        "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+        "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+      ],
+      "observations": [
+        "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+        "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+        "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+        "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+        "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "95f7188eaa7a8f24805910d0325824fc08cc34da0f73de2a020fd91c0c5ba464",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "c8188ad6-d834-4677-bfd5-b618a3609953",
+        "prompt_sha256": "73461be73a6def955234e121538194d4ffb3a8c0f313e260798a75610c86842b",
+        "output_sha256": "f62995b984b8f5ff88d1ff12860b373f06b1066951394502d0c93bf49779aecf",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical 9:16 illustration centers the recurring glass orb. Its spherical body, aged-bronze equatorial band, moss-green cord knot, three-claw cradle and crescent brace are visibly preserved. Moss-green sleeves and long aged hands grip the stand, while a black raven perches on the surrounding bronze hoop, making the crone's ownership clear without showing her full face or body. Inside the dark Aegean-blue orb are layered bronze gears, a concentric astronomical dial, corroded shipwreck-like fragments and pale orbital arcs. The presentation uses aged vellum, inked technical linework, antique bronze, verdigris accents and archaeological hatching, with a large quiet parchment area near the bottom.",
+          "violations": [
+            "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+            "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+            "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+            "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+            "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+            "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+            "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+            "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+            "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+          ],
+          "observations": [
+            "The requested museum-prep staging is largely absent: there is no clearly visible hand-cranked geared drill hovering over a timber display base, no frozen exposed drill gear train, and no conservation crates or surrounding nautical preparation artifacts.",
+            "The discovery action is not depicted; the orb is already mounted and prominently displayed rather than being lifted from beneath folded cloth after the crank is released.",
+            "The central astronomical dial contains distinct letter-like and symbol-like markings rather than keeping all inscription texture fully illegible as requested.",
+            "The crone's visible hands are rendered somewhat more anatomically realistic and less exaggeratedly claw-like than the character sheet, though the long fingers, moss-green sleeves and raven still preserve a strong identity cue.",
+            "The surrounding instrument hoop is heavier and more dominant than the thin irregular patinated-bronze bezel language shown in the world style reference, though the overall material and frame vocabulary remains consistent."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/orb_portal/refs/orb_design_sheet.png",
+      "sha256": "4c47c81f9a59c1d45f4be697997af1614d754249a71301f2e80ac5546263899e"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_style_anchor.png",
+      "sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/moss_cloaked_crone/refs/character_sheet.jpg",
+      "sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    }
+  ],
+  "prompt_sha256": "73461be73a6def955234e121538194d4ffb3a8c0f313e260798a75610c86842b",
+  "prompt": "Create one 9:16 first frame centered on the recurring magic orb from the attached identity sheet.\nPreserve its sphere, aged-bronze equatorial band, three-claw cradle, crescent brace and moss-green cord\nknot. Make ownership and agency unmistakably the old crone's using the attached character identity:\nshow one strong cue such as her long fingers touching the cradle, a moss-green sleeve framing it, her\nhunched shadow/reflection, or her black raven beside it; do not require a full face or body. Inside the\norb, stage a still subject-specific glimpse directed by the episode brief, gradually adopting the\nattached world style's palette, texture, atmosphere and frame language. The world style affects the\norb interior and surrounding presentation, never the crone's identity or the orb's locked geometry.\nNo readable text, generic crystal ball, unrelated wizard, UI, 3D CGI or photorealism.\n\nEPISODE TOPIC: The Ancient “Computer” Found in a Shipwreck\nEPISODE DIRECTION: Over-the-shoulder museum-prep view: a hand-cranked geared drill hovers above a timber display base, its exposed metal gears locked tooth-to-tooth after a sudden bind. Beside conservation crates and nautical artifacts, a moss-green sleeve and long pointed fingers release the crank, trace the frozen gear train, then lift a glass orb from beneath folded cloth. Within its curved surface, bronze Antikythera gears, engraved astronomical dials, shipwreck fragments, and luminous orbital geometry begin to emerge.\nTOPIC-WORLD STYLE: {\"style_id\": \"verdigris_celestial_mechanism_drawing_001\", \"decision\": \"new\", \"reuse_of\": null, \"medium\": \"technical drawing\", \"secondary_treatment\": \"subtle historical-engraving hatching\", \"texture_family\": \"aged vellum grain with restrained oxidized-bronze patina speckling\", \"palette_summary\": \"deep Aegean blue and charcoal foundations, parchment cream, oxidized copper verdigris, muted antique bronze and ochre, with sparse pale celestial-blue highlights\", \"line_treatment\": \"precise compass-and-stylus technical linework for gears, pointers and orbital geometry, softened by fine archaeological engraving hatching and occasional worn or broken edges\", \"lighting\": \"cool raking archaeological light with restrained warm bronze glints and soft shadow falloff\", \"frame_language\": \"every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented\", \"subtitle_reserve\": \"no dedicated caption reserve; the scene and matching texture fill the complete illustration height\", \"subject_constraints\": \"world vocabulary may include the Antikythera shipwreck, sponge divers, amphorae and ancient cargo, corroded bronze fragments, interlocking hand-cut gears, hand crank, pointers, concentric astronomical dials, Sun and Moon indicators, eclipse-cycle geometry, Greek-games cycle imagery, fragmentary inscriptions represented only as illegible texture, ancient Mediterranean seascapes, and abstract celestial diagrams consistent with Hellenistic astronomy; exclude modern machinery, electronics and contemporary laboratory interfaces\", \"historical_accuracy_note\": \"Treat the mechanism as a Hellenistic Greek bronze geared instrument more than two millennia old and base reconstructions on surviving fragments and mainstream scholarly reconstructions. Avoid modern clockwork embellishments, steel components, electric illumination, fantasy gears, intact invented inscriptions, or presenting uncertain reconstructed details as archaeologically preserved fact.\", \"hero_rendering_in_world\": \"if the resolved host later appears inside the world, preserve the established silhouette and translate it into precise charcoal-and-verdigris technical linework with sparse engraved hatching and the same vellum/patinated-bronze material language; do not invent new costume or identity details\", \"negative_constraints\": \"no photorealism, no glossy 3D CGI, no steampunk, no cyberpunk or neon sci-fi, no anime, no modern blueprint grids or CAD UI, no holograms, no glowing digital numerals, no modern watches or computers, no pristine fantasy machinery, and no readable generated text anywhere in the artwork\", \"reason\": \"The episode is fundamentally about an ancient geared machine that mechanically models celestial cycles, so a technical-drawing world makes the mechanism, crank, pointers and astronomical relationships immediately legible while aged vellum, verdigris and engraving hatching keep the imagery archaeological rather than modern. A new style is required by the operator directive. It also avoids the four most recent treatments—pop screenprint, monochrome linework, soft graphite storybook and paper collage—and establishes a distinct mechanical-celestial visual identity without reusing the catalog's existing engraving, fresco or luminous-network styles.\", \"style_subtitle_reserve\": \"reserve only the bottom 8–10% of the 9:16 frame as a quiet continuation of the vellum-and-patina field with low-detail mottling and faint non-semantic wear; keep it free of faces, hands, gears, pointers, focal artifacts, fine diagrams and absolutely free of any text, letters, numbers, captions, labels, words or UI\", \"reserve_subtitle_space\": false}",
+  "output_path": "references/orb_entry_frame.png",
+  "output_sha256": "f62995b984b8f5ff88d1ff12860b373f06b1066951394502d0c93bf49779aecf",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.269,
+  "completed_at": "2026-09-14T11:24:54Z"
+}

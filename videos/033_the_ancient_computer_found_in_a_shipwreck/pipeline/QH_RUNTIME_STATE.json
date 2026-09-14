@@ -1,0 +1,507 @@
+{
+  "schema_version": 2,
+  "video_id": "033",
+  "topic": "The Ancient “Computer” Found in a Shipwreck",
+  "created_at": "2026-09-14T10:56:07Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:09Z",
+      "requested_mode": "manual",
+      "requested_character_id": "moss_cloaked_crone",
+      "resolved_character_id": "moss_cloaked_crone",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:09Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:09Z",
+      "artifact": "SCRIPT_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:09Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:09Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:09Z",
+      "artifact": "world_style_anchor.png → catalog/019_verdigris_celestial_mechanism_drawing_00"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T12:07:10Z",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "orb_design_sheet.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "ENTRY_FRAME_DIRECTION.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "orb_entry_frame.png"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "flow_prompt_question_intro.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:11Z",
+      "artifact": "flow_prompt_orb_transition.txt"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T12:07:16Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:14Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:14Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:14Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:15Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:15Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:15Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:15Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:15Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:16Z",
+      "artifact": "beat_009.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:17Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:17Z",
+      "artifact": "question_intro_source.mp4 (8.00s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-14T12:07:17Z",
+      "artifact": "orb_transition_source.mp4 (4.01s)"
+    },
+    "qh_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-14T12:07:17Z",
+      "body_images": 9
+    }
+  },
+  "events": [
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 149.063,
+      "at": "2026-09-14T10:58:37Z",
+      "words": 108
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 85.572,
+      "at": "2026-09-14T11:00:04Z",
+      "words": 110
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 49.199,
+      "at": "2026-09-14T11:00:55Z",
+      "activity": "totaling a small stack of handwritten price tags on a hand-cranked mechanical adding machine when the crank abruptly locks halfway through a turn"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 31.732,
+      "at": "2026-09-14T11:01:28Z",
+      "style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 52.206,
+      "at": "2026-09-14T11:02:21Z",
+      "reuse_of": "orchard_sleep_memory_collage_001",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57",
+      "usage_count": 3
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.115,
+      "at": "2026-09-14T11:02:23Z",
+      "opening_activity": "totaling a small stack of handwritten price tags on a hand-cranked mechanical adding machine when the crank abruptly locks halfway through a turn",
+      "opening_location": "quiet indoor antiques market checkout counter near closing time",
+      "camera_pattern": "static_wide",
+      "world_style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 55.464,
+      "at": "2026-09-14T11:03:20Z",
+      "beats": 12
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 28.303,
+      "at": "2026-09-14T11:03:50Z",
+      "prompt_sha256": "0e02af8bfdb799987fa563225b0ac65916d01825ebd5eb025b0b9191641f31ce"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 67.495,
+      "at": "2026-09-14T11:08:21Z",
+      "words": 112
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 46.431,
+      "at": "2026-09-14T11:09:10Z",
+      "words": 110
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.523,
+      "at": "2026-09-14T11:09:55Z",
+      "activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 40.515,
+      "at": "2026-09-14T11:10:36Z",
+      "style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 395.5,
+      "at": "2026-09-14T11:17:13Z",
+      "sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4",
+      "model": "nano_banana_2",
+      "catalog_path": "019_verdigris_celestial_mechanism_drawing_00"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.195,
+      "at": "2026-09-14T11:17:16Z",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 43.746,
+      "at": "2026-09-14T11:18:01Z",
+      "beats": 9
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 25.234,
+      "at": "2026-09-14T11:18:27Z",
+      "prompt_sha256": "db6ab8807b8bfa080df704b1161da5364b93ccf66ec51186e798d61765f71a29"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 118.993,
+      "at": "2026-09-14T11:20:27Z",
+      "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_design_sheet",
+      "status": "DONE",
+      "elapsed_seconds": 79.661,
+      "at": "2026-09-14T11:21:48Z",
+      "sha256": "4c47c81f9a59c1d45f4be697997af1614d754249a71301f2e80ac5546263899e",
+      "profile_id": "orb_portal"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 19.144,
+      "at": "2026-09-14T11:22:08Z",
+      "profile_id": "orb_portal"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 164.102,
+      "at": "2026-09-14T11:24:54Z",
+      "sha256": "f62995b984b8f5ff88d1ff12860b373f06b1066951394502d0c93bf49779aecf",
+      "model": "nano_banana_2",
+      "profile_id": "orb_portal"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 19.172,
+      "at": "2026-09-14T11:25:14Z",
+      "prompt_sha256": "67a2e5e229568cd7d484a2f1cb24e801be364c60e256cfd2dad758b1fa078156"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 22.164,
+      "at": "2026-09-14T11:25:37Z",
+      "prompt_sha256": "195bf875e21819dcc88b3adcd63d9976cdcd086ed898063492b21122fa4263b5"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 99.7,
+      "at": "2026-09-14T11:27:49Z",
+      "sha256": "5016f6d731beb7339b96055deeff53e0031b78fe343297146272e45cc685f2ea",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 144.949,
+      "at": "2026-09-14T11:30:46Z",
+      "sha256": "aefaee4d349f1326d90648af9b8b481e05f41b7b40a39422bb6ba9c08e148cd5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 72.875,
+      "at": "2026-09-14T11:32:25Z",
+      "sha256": "2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 78.828,
+      "at": "2026-09-14T11:34:12Z",
+      "sha256": "44a2b4c097b2b2f6ff3c45a2833dc9b2f95b91744769fcee1b2c8e731cec4972",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 93.879,
+      "at": "2026-09-14T11:36:18Z",
+      "sha256": "8d5dcd2bb1b9ea624a0d436d486063e45280e7c9d538106b313170ebcefc4284",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 78.83,
+      "at": "2026-09-14T11:38:02Z",
+      "sha256": "b750c2447b9f3a54f7ad58dcac7ddbf1ce8c9e00ec1d1ddf97f5caeadde8ca76",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 78.848,
+      "at": "2026-09-14T11:39:50Z",
+      "sha256": "c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 75.8,
+      "at": "2026-09-14T11:41:28Z",
+      "sha256": "aa5059efd25d81e73ea82d0c90898ae51c047ca11cffc0876f2ce0fd132456eb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 78.811,
+      "at": "2026-09-14T11:43:12Z",
+      "sha256": "61280c23a8a06b576f0010b764b3de6ce3cc77f4a9e500845dc86d86f997c71a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1054.808,
+      "at": "2026-09-14T11:43:13Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.1,
+      "at": "2026-09-14T11:43:15Z",
+      "boundaries": 8
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 94.468,
+      "at": "2026-09-14T11:44:51Z",
+      "duration_seconds": 8.0,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "406fdebe16ec3c506c04e24fb1277e1ab7bb7368a31be602038baf5ba828de4c"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 121.92,
+      "at": "2026-09-14T11:46:54Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "fbd27feea6a5795812ed45c8ff0412df21fd3f264806528fc978b23f66312ca0"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.536,
+      "at": "2026-09-14T11:57:30Z",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.342,
+      "at": "2026-09-14T11:57:36Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.294,
+      "at": "2026-09-14T12:07:10Z",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.132,
+      "at": "2026-09-14T12:07:16Z"
+    }
+  ],
+  "updated_at": "2026-09-14T12:07:17Z"
+}

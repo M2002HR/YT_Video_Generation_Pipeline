@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "63ef29ca08260dd7e0ae06ef2d1ff15dc8b2b58e2acd506bfb3bfd967ed4bf8c",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "c7cfda0e-50c5-4d7e-941e-fe7e1a64a567",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/e29327b82ef430d3",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=c7cfda0e-50c5-4d7e-941e-fe7e1a64a567_output_1.png 1536x2752 sha256=2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "63ef29ca08260dd7e0ae06ef2d1ff15dc8b2b58e2acd506bfb3bfd967ed4bf8c",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "c7cfda0e-50c5-4d7e-941e-fe7e1a64a567",
+        "prompt_sha256": "a8c4b65ae77ab2a54008b741ad5f067ecb54edf7bbbed661a4a8000d8fc6ef71",
+        "output_sha256": "2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_style_anchor.png",
+      "sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_keyframe.png",
+      "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/assets/raw_beats/beat_002.png",
+      "sha256": "aefaee4d349f1326d90648af9b8b481e05f41b7b40a39422bb6ba9c08e148cd5"
+    }
+  ],
+  "prompt_sha256": "a8c4b65ae77ab2a54008b741ad5f067ecb54edf7bbbed661a4a8000d8fc6ef71",
+  "prompt": "Gemini Image Prompt — Beat 3\n\nCreate exactly one standalone 9:16 image: a straight-on macro sectional technical illustration of a corroded Hellenistic Greek bronze mechanism fragment, visually opened to reveal a compact, tightly packed cluster of precision-cut, intermeshing bronze gear wheels inside the broken casing. Concentrate the dense circular gear train in the upper-middle while allowing the full illustration height to continue naturally—no blank lower caption field or low-detail reserve. Render as precise compass-and-stylus technical drawing with clean dark contours, readable silhouettes, restrained cel shading, fine archaeological engraving hatching, occasional worn or broken edges, aged vellum grain and restrained oxidized-bronze patina speckling. Use deep Aegean blue and charcoal foundations, parchment cream, verdigris, muted antique bronze and ochre, with sparse pale celestial-blue edge accents. Light with cool raking archaeological illumination, restrained warm bronze glints and soft shadow falloff. Enclose the illustration in the recurring thin, irregular patinated-bronze instrument bezel with subtle corrosion, tiny mechanical notches and worn circular scoring, keeping the inner scene open and legible. The style_reference governs the simplified hand-drawn 2D educational rendering treatment; the world_keyframe establishes the technical-drawing medium, bezel language, materials, texture, palette and lighting without copying its composition; the previous_beat is binding for recurring frame material, edge treatment, inner illustration window, texture, palette and lighting only—do not copy its crop, camera angle, composition, subject placement or focal object. Show no host or human figure. No labels, inscriptions, letters, numbers, captions or readable text. No storyboard, grid, collage, multiple panels, photorealism, glossy 3D CGI, steampunk, modern machinery, electronics, CAD UI, holograms, fantasy gears or pristine invented mechanisms. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.316,
+  "completed_at": "2026-09-14T11:32:25Z"
+}

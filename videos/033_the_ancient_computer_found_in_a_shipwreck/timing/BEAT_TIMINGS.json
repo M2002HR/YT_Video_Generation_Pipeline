@@ -1,0 +1,106 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 54.57,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Could these jammed hand-drill gears explain an ancient machine that predicted the sky? She turns her orb, and we plunge through the glass. In 1900, sponge divers found a wreck off Antikythera. Its cargo included a corroded bronze lump. Inside were tightly packed, precision-cut gears. The mechanism was built over 2,000 years ago. A hand crank moved pointers across astronomical dials. One dial tracked the sun and moon. Others modeled cycles used to predict eclipses. Another tracked the cycle of major Greek games. Inscriptions even explained parts of its operation. It was a hand-powered mechanical model of the heavens. Like and subscribe to keep the questions coming.",
+  "word_count": 107,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "In 1900, sponge divers found a wreck off Antikythera.",
+      "speech_start": 10.58,
+      "speech_end": 15.48,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 16.4,
+      "display_duration": 16.4
+    },
+    {
+      "beat_id": 2,
+      "narration": "Its cargo included a corroded bronze lump.",
+      "speech_start": 16.4,
+      "speech_end": 19.6,
+      "match_confidence": 1.0,
+      "display_start": 16.4,
+      "display_end": 20.48,
+      "display_duration": 4.08
+    },
+    {
+      "beat_id": 3,
+      "narration": "Inside were tightly packed, precision-cut gears.",
+      "speech_start": 20.48,
+      "speech_end": 24.18,
+      "match_confidence": 0.714,
+      "display_start": 20.48,
+      "display_end": 24.86,
+      "display_duration": 4.38
+    },
+    {
+      "beat_id": 4,
+      "narration": "The mechanism was built over two thousand years ago.",
+      "speech_start": 24.86,
+      "speech_end": 27.32,
+      "match_confidence": 0.778,
+      "display_start": 24.86,
+      "display_end": 28.18,
+      "display_duration": 3.32
+    },
+    {
+      "beat_id": 5,
+      "narration": "A hand crank moved pointers across astronomical dials.",
+      "speech_start": 28.18,
+      "speech_end": 32.1,
+      "match_confidence": 1.0,
+      "display_start": 28.18,
+      "display_end": 32.44,
+      "display_duration": 4.26
+    },
+    {
+      "beat_id": 6,
+      "narration": "One dial tracked the Sun and Moon.",
+      "speech_start": 32.44,
+      "speech_end": 34.38,
+      "match_confidence": 1.0,
+      "display_start": 32.44,
+      "display_end": 34.68,
+      "display_duration": 2.24
+    },
+    {
+      "beat_id": 7,
+      "narration": "Others modeled cycles used to predict eclipses.",
+      "speech_start": 34.68,
+      "speech_end": 38.08,
+      "match_confidence": 1.0,
+      "display_start": 34.68,
+      "display_end": 38.44,
+      "display_duration": 3.76
+    },
+    {
+      "beat_id": 8,
+      "narration": "Another tracked the cycle of major Greek games.",
+      "speech_start": 38.44,
+      "speech_end": 42.34,
+      "match_confidence": 1.0,
+      "display_start": 38.44,
+      "display_end": 43.02,
+      "display_duration": 4.58
+    },
+    {
+      "beat_id": 9,
+      "narration": "Inscriptions even explained parts of its operation.",
+      "speech_start": 43.02,
+      "speech_end": 46.28,
+      "match_confidence": 1.0,
+      "display_start": 43.02,
+      "display_end": 54.57,
+      "display_duration": 11.55
+    }
+  ]
+}

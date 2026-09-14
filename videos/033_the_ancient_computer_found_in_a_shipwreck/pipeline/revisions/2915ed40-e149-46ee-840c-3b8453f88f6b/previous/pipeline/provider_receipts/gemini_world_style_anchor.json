@@ -1,0 +1,37 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "request_fingerprint": "937783dfd97d1656ec1f6bbb52288b9571cda3ff5153a29d36f8ea0833ab685c",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall paper-cut style reference sheet is visible, built from cream fibrous paper with layered torn olive and cream samples at the top, five palette swatches in olive, amber, cream, slate blue, and honey tones, and several cut-paper botanical and anatomical diagram motifs below. The recurring medium is tactile layered paper with soft cast shadows, irregular fibrous edges, sparse ink-like contour drawing, muted Mediterranean colors, and warm directional daylight.",
+    "violations": [
+      "Human anatomical head, brain, torso, and body-diagram motifs are visibly present despite the direction specifying no characters; they read as schematic sample motifs rather than a recurring host, so this is non-blocking.",
+      "The file measures 1143 by 2048 pixels, which is slightly narrower than an exact 9:16 frame at that height; the deviation is small and does not make the reference sheet unusable.",
+      "Some cut-paper elements use pronounced dimensional drop shadows, giving portions of the sheet a mildly sculptural presentation beyond the otherwise restrained flat paper-cut treatment."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Human anatomical head, brain, torso, and body-diagram motifs are visibly present despite the direction specifying no characters; they read as schematic sample motifs rather than a recurring host, so this is non-blocking.",
+      "The file measures 1143 by 2048 pixels, which is slightly narrower than an exact 9:16 frame at that height; the deviation is small and does not make the reference sheet unusable.",
+      "Some cut-paper elements use pronounced dimensional drop shadows, giving portions of the sheet a mildly sculptural presentation beyond the otherwise restrained flat paper-cut treatment."
+    ],
+    "observations": [
+      "Human anatomical head, brain, torso, and body-diagram motifs are visibly present despite the direction specifying no characters; they read as schematic sample motifs rather than a recurring host, so this is non-blocking.",
+      "The file measures 1143 by 2048 pixels, which is slightly narrower than an exact 9:16 frame at that height; the deviation is small and does not make the reference sheet unusable.",
+      "Some cut-paper elements use pronounced dimensional drop shadows, giving portions of the sheet a mildly sculptural presentation beyond the otherwise restrained flat paper-cut treatment."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/010_orchard_sleep_memory_collage_001/style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    }
+  ]
+}

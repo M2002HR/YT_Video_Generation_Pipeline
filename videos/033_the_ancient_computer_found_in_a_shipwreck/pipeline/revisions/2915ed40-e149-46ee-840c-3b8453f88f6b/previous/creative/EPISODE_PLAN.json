@@ -1,0 +1,18 @@
+{
+  "opening_activity": "totaling a small stack of handwritten price tags on a hand-cranked mechanical adding machine when the crank abruptly locks halfway through a turn",
+  "opening_location": "quiet indoor antiques market checkout counter near closing time",
+  "opening_environment": "a narrow second-hand market counter surrounded by mismatched lamps, boxes, ceramics, and old household objects, with the mechanical adding machine centered in the host's working space",
+  "topic_visual_link": "A hand-powered calculating machine visibly failing because of its interlocking gears creates a direct modern echo of the ancient geared mechanism later nicknamed a computer.",
+  "link_type": "historical_echo",
+  "opening_visual_proof": "the adding-machine crank is visibly frozen mid-turn while an exposed brass gear is wedged against the neighboring gear, leaving the number wheels stuck partway between positions",
+  "curiosity_trigger": "the crank stops with a dry metallic catch, and the host notices the single jammed gear holding the entire calculating mechanism motionless",
+  "trigger_object": "the jammed brass gear inside the hand-cranked adding machine",
+  "reaction": "he gives the stuck gear a skeptical stare, lightly tests the crank once more, then tilts his head as the comparison clicks",
+  "entry_retrieval": "after releasing the crank, he reaches to a nearby shelf beneath the counter, pulls out a topic-styled storybook, sets it beside the adding machine, and opens it",
+  "entry_variant": "shelf_reveal",
+  "camera_pattern": "static_wide",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "dreamlike memory-collage imagery of corroded bronze fragments, nested gear trains, astronomical dials, moon phases, eclipse spirals, and a Mediterranean shipwreck",
+  "reason": "A mundane hand-cranked calculator makes gears, computation, and mechanical failure immediately visible, giving the restrained host a natural reason to wonder how far back geared computing might go."
+}

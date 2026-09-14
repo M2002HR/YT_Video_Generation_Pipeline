@@ -1,0 +1,105 @@
+{
+  "schema_version": 2,
+  "revision_id": "2915ed40-e149-46ee-840c-3b8453f88f6b",
+  "kind": "config",
+  "created_at": "2026-09-14T11:07:11.528381+00:00",
+  "roots": [
+    "character_resolution",
+    "episode_director",
+    "world_style_director"
+  ],
+  "affected_nodes": [
+    "character_resolution",
+    "script_draft",
+    "retention_edit",
+    "episode_director",
+    "world_style_director",
+    "world_style_anchor",
+    "episode_history",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_cover_design",
+    "book_cover",
+    "flow_prompt_a",
+    "flow_prompt_b",
+    "flow_clip_a",
+    "flow_clip_b",
+    "elevenlabs_voiceover",
+    "background_music",
+    "ajil_alignment",
+    "opening_trim",
+    "body_images",
+    "transition_direction",
+    "build_timeline",
+    "audio_mix_profile",
+    "render_baseline",
+    "qc_baseline",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "git_commit_push",
+    "publish_telegram",
+    "beat_image_001",
+    "beat_image_002",
+    "beat_image_003",
+    "beat_image_004",
+    "beat_image_005",
+    "beat_image_006",
+    "beat_image_007",
+    "beat_image_008",
+    "beat_image_009",
+    "beat_image_010",
+    "beat_image_011",
+    "beat_image_012"
+  ],
+  "reused_nodes": [
+    "book_design_sheet",
+    "render_profile"
+  ],
+  "skipped_nodes": [
+    "motion_director",
+    "sfx_plan",
+    "sfx_acquire"
+  ],
+  "archived_artifacts": [
+    "creative/CHARACTER_RESOLUTION.json",
+    "creative/PRESENTATION_RESOLUTION.json",
+    "creative/SCRIPT_DRAFT.json",
+    "creative/SCRIPT_PLAN.json",
+    "SCRIPT_FINAL.md",
+    "creative/EPISODE_PLAN.json",
+    "creative/WORLD_STYLE_PLAN.json",
+    "references/world_style_anchor.png",
+    "pipeline/provider_receipts/gemini_world_style_anchor.json",
+    "creative/VISUAL_PLAN.json",
+    "VISUAL_BEATS.md",
+    "references/world_keyframe_prompt.txt"
+  ],
+  "regenerate_beats": [],
+  "feedback": "",
+  "status": "FAILED",
+  "regeneration_mode": "cascade",
+  "use_chatgpt_feedback": false,
+  "started_at": "2026-09-14T11:07:11.530610+00:00",
+  "pid": 1883555,
+  "changed_fields": [
+    "character_id",
+    "hero_presence_mode",
+    "world_style_id",
+    "world_style_policy"
+  ],
+  "config_revision_id": "e9d589f3-a1ee-4c27-a73f-c55b05c2900a",
+  "character_change": {
+    "previous_request": {
+      "mode": "manual",
+      "character_id": "red_horned_everyman"
+    },
+    "requested": {
+      "mode": "manual",
+      "character_id": "moss_cloaked_crone"
+    },
+    "previous_resolved_character_id": null
+  },
+  "completed_at": "2026-09-14T11:58:01.566246+00:00"
+}

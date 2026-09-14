@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "c78c7138d1a784fd484057e38cb4e6786d73dce47b8d158d113360b501e0e30c",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "bbc19264-5eba-4980-b9a5-cd14a75b3e6d",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/baaa8ec7c57fd241",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=bbc19264-5eba-4980-b9a5-cd14a75b3e6d_output_1.png 1536x2752 sha256=61280c23a8a06b576f0010b764b3de6ce3cc77f4a9e500845dc86d86f997c71a"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "c78c7138d1a784fd484057e38cb4e6786d73dce47b8d158d113360b501e0e30c",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "bbc19264-5eba-4980-b9a5-cd14a75b3e6d",
+        "prompt_sha256": "245fe91d2f1156bb59ed31accf250b3ac2f422266437d87bd435643d849e8966",
+        "output_sha256": "61280c23a8a06b576f0010b764b3de6ce3cc77f4a9e500845dc86d86f997c71a",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_style_anchor.png",
+      "sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_keyframe.png",
+      "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/assets/raw_beats/beat_008.png",
+      "sha256": "aa5059efd25d81e73ea82d0c90898ae51c047ca11cffc0876f2ce0fd132456eb"
+    }
+  ],
+  "prompt_sha256": "245fe91d2f1156bb59ed31accf250b3ac2f422266437d87bd435643d849e8966",
+  "prompt": "Beat 9 Gemini Image Prompt\n\nCreate exactly one vertical 9:16 image, not a storyboard, grid, collage, multi-panel layout, or captioned graphic. Render an extreme archaeological close-up of a surviving Antikythera Mechanism bronze plate: the patinated surface dominates the frame, covered with dense, shallow, worn incision-like marks that clearly suggest ancient operational inscriptions while remaining completely illegible and non-semantic—no readable letters, words, numbers, labels, captions, or UI anywhere. Along one cropped edge, reveal only a partial row of hand-cut bronze gear teeth and the tip of a mechanical pointer, enough to connect the inscribed plate to the instrument’s operation without inventing pristine machinery. Use a raking side angle and strongest cool grazing archaeological light to expose scratches, corrosion, shallow cuts, oxidized verdigris, and restrained warm bronze glints. Preserve the world’s technical-drawing medium with precise charcoal-and-stylus linework, subtle historical-engraving hatching, aged vellum grain, deep Aegean blue and charcoal foundations, parchment cream, muted antique bronze and ochre, sparse pale celestial-blue accents, and worn edges. Enclose the full-height illustration in the recurring thin, irregular patinated-bronze instrument bezel with restrained corrosion, tiny mechanical notches, and circular scoring; do not reserve any lower caption field or blank band. The style_reference governs the simplified hand-drawn 2D educational treatment, clean dark contours, readable forms, restrained cel shading, and muted natural palette. The world_keyframe governs the established technical-drawing world, bezel language, materials, texture, palette, and archaeological lighting, but not its composition. The previous_beat is binding only for recurring frame material, edge treatment, inner illustration window, texture, palette, and lighting; do not copy its crop, camera angle, subject placement, layout, or focal object. Avoid photorealism, glossy CGI, steampunk, fantasy gears, modern machinery, electronics, blueprint/CAD interfaces, holograms, or readable generated text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_009.png",
+  "output_sha256": "61280c23a8a06b576f0010b764b3de6ce3cc77f4a9e500845dc86d86f997c71a",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.264,
+  "completed_at": "2026-09-14T11:43:12Z"
+}

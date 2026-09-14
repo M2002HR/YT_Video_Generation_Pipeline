@@ -1,0 +1,1808 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 54.57,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 5.667,
+      "duration": 5.667,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/orb_transition_trimmed.mp4",
+      "start": 5.667,
+      "end": 10.167,
+      "duration": 4.5,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 10.167,
+      "end": 16.4,
+      "duration": 6.233,
+      "speech_start": 10.58,
+      "speech_end": 15.48,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "In 1900, sponge divers found a wreck off Antikythera.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 16.4,
+      "end": 20.48,
+      "duration": 4.08,
+      "speech_start": 16.4,
+      "speech_end": 19.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Its cargo included a corroded bronze lump.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 20.48,
+      "end": 24.86,
+      "duration": 4.38,
+      "speech_start": 20.48,
+      "speech_end": 24.18,
+      "match_confidence": 0.714,
+      "motion": "zoom_in",
+      "narration": "Inside were tightly packed, precision-cut gears.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 24.86,
+      "end": 28.18,
+      "duration": 3.32,
+      "speech_start": 24.86,
+      "speech_end": 27.32,
+      "match_confidence": 0.778,
+      "motion": "zoom_in",
+      "narration": "The mechanism was built over two thousand years ago.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 28.18,
+      "end": 32.44,
+      "duration": 4.26,
+      "speech_start": 28.18,
+      "speech_end": 32.1,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A hand crank moved pointers across astronomical dials.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 32.44,
+      "end": 34.68,
+      "duration": 2.24,
+      "speech_start": 32.44,
+      "speech_end": 34.38,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "One dial tracked the Sun and Moon.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 34.68,
+      "end": 38.44,
+      "duration": 3.76,
+      "speech_start": 34.68,
+      "speech_end": 38.08,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Others modeled cycles used to predict eclipses.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 38.44,
+      "end": 43.02,
+      "duration": 4.58,
+      "speech_start": 38.44,
+      "speech_end": 42.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Another tracked the cycle of major Greek games.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 43.02,
+      "end": 54.57,
+      "duration": 11.55,
+      "speech_start": 43.02,
+      "speech_end": 46.28,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Inscriptions even explained parts of its operation.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.04,
+      "end": 0.2,
+      "text": "Could",
+      "ass_text": "Could",
+      "words": [
+        {
+          "text": "Could",
+          "start": 0.04,
+          "end": 0.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.2,
+      "end": 0.48,
+      "text": "these",
+      "ass_text": "these",
+      "words": [
+        {
+          "text": "these",
+          "start": 0.2,
+          "end": 0.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.48,
+      "end": 1.12,
+      "text": "jammed",
+      "ass_text": "jammed",
+      "words": [
+        {
+          "text": "jammed",
+          "start": 0.48,
+          "end": 1.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.12,
+      "end": 1.88,
+      "text": "hand-drill",
+      "ass_text": "hand-drill",
+      "words": [
+        {
+          "text": "hand-drill",
+          "start": 1.12,
+          "end": 1.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.88,
+      "end": 2.28,
+      "text": "gears",
+      "ass_text": "gears",
+      "words": [
+        {
+          "text": "gears",
+          "start": 1.88,
+          "end": 2.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.28,
+      "end": 2.96,
+      "text": "explain",
+      "ass_text": "explain",
+      "words": [
+        {
+          "text": "explain",
+          "start": 2.28,
+          "end": 2.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.96,
+      "end": 3.22,
+      "text": "an",
+      "ass_text": "an",
+      "words": [
+        {
+          "text": "an",
+          "start": 2.96,
+          "end": 3.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.22,
+      "end": 3.68,
+      "text": "ancient",
+      "ass_text": "ancient",
+      "words": [
+        {
+          "text": "ancient",
+          "start": 3.22,
+          "end": 3.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.68,
+      "end": 4.22,
+      "text": "machine",
+      "ass_text": "machine",
+      "words": [
+        {
+          "text": "machine",
+          "start": 3.68,
+          "end": 4.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.22,
+      "end": 4.66,
+      "text": "that",
+      "ass_text": "that",
+      "words": [
+        {
+          "text": "that",
+          "start": 4.22,
+          "end": 4.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.66,
+      "end": 5.06,
+      "text": "predicted",
+      "ass_text": "predicted",
+      "words": [
+        {
+          "text": "predicted",
+          "start": 4.66,
+          "end": 5.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.06,
+      "end": 5.32,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 5.06,
+          "end": 5.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.32,
+      "end": 5.64,
+      "text": "sky?",
+      "ass_text": "sky?",
+      "words": [
+        {
+          "text": "sky?",
+          "start": 5.32,
+          "end": 5.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 6.94,
+      "end": 7.12,
+      "text": "She",
+      "ass_text": "She",
+      "words": [
+        {
+          "text": "She",
+          "start": 6.94,
+          "end": 7.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.12,
+      "end": 7.52,
+      "text": "turns",
+      "ass_text": "turns",
+      "words": [
+        {
+          "text": "turns",
+          "start": 7.12,
+          "end": 7.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.52,
+      "end": 7.74,
+      "text": "her",
+      "ass_text": "her",
+      "words": [
+        {
+          "text": "her",
+          "start": 7.52,
+          "end": 7.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.74,
+      "end": 8.22,
+      "text": "orb,",
+      "ass_text": "orb,",
+      "words": [
+        {
+          "text": "orb,",
+          "start": 7.74,
+          "end": 8.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.22,
+      "end": 8.36,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 8.22,
+          "end": 8.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.36,
+      "end": 8.5,
+      "text": "we",
+      "ass_text": "we",
+      "words": [
+        {
+          "text": "we",
+          "start": 8.36,
+          "end": 8.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.5,
+      "end": 8.98,
+      "text": "plunge",
+      "ass_text": "plunge",
+      "words": [
+        {
+          "text": "plunge",
+          "start": 8.5,
+          "end": 8.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.98,
+      "end": 9.24,
+      "text": "through",
+      "ass_text": "through",
+      "words": [
+        {
+          "text": "through",
+          "start": 8.98,
+          "end": 9.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.24,
+      "end": 9.4,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 9.24,
+          "end": 9.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.4,
+      "end": 10.16,
+      "text": "glass.",
+      "ass_text": "glass.",
+      "words": [
+        {
+          "text": "glass.",
+          "start": 9.4,
+          "end": 10.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 10.58,
+      "end": 10.76,
+      "text": "In",
+      "ass_text": "In",
+      "words": [
+        {
+          "text": "In",
+          "start": 10.58,
+          "end": 10.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.76,
+      "end": 12.32,
+      "text": "1900,",
+      "ass_text": "1900,",
+      "words": [
+        {
+          "text": "1900,",
+          "start": 10.76,
+          "end": 12.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.32,
+      "end": 12.96,
+      "text": "sponge",
+      "ass_text": "sponge",
+      "words": [
+        {
+          "text": "sponge",
+          "start": 12.32,
+          "end": 12.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.96,
+      "end": 13.44,
+      "text": "divers",
+      "ass_text": "divers",
+      "words": [
+        {
+          "text": "divers",
+          "start": 12.96,
+          "end": 13.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.44,
+      "end": 13.94,
+      "text": "found",
+      "ass_text": "found",
+      "words": [
+        {
+          "text": "found",
+          "start": 13.44,
+          "end": 13.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.94,
+      "end": 14.12,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 13.94,
+          "end": 14.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.12,
+      "end": 14.36,
+      "text": "wreck",
+      "ass_text": "wreck",
+      "words": [
+        {
+          "text": "wreck",
+          "start": 14.12,
+          "end": 14.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.36,
+      "end": 14.64,
+      "text": "off",
+      "ass_text": "off",
+      "words": [
+        {
+          "text": "off",
+          "start": 14.36,
+          "end": 14.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.64,
+      "end": 15.48,
+      "text": "Antikythera.",
+      "ass_text": "Antikythera.",
+      "words": [
+        {
+          "text": "Antikythera.",
+          "start": 14.64,
+          "end": 15.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 16.4,
+      "end": 16.58,
+      "text": "Its",
+      "ass_text": "Its",
+      "words": [
+        {
+          "text": "Its",
+          "start": 16.4,
+          "end": 16.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.58,
+      "end": 17.04,
+      "text": "cargo",
+      "ass_text": "cargo",
+      "words": [
+        {
+          "text": "cargo",
+          "start": 16.58,
+          "end": 17.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.04,
+      "end": 17.66,
+      "text": "included",
+      "ass_text": "included",
+      "words": [
+        {
+          "text": "included",
+          "start": 17.04,
+          "end": 17.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.66,
+      "end": 17.9,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 17.66,
+          "end": 17.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.9,
+      "end": 18.54,
+      "text": "corroded",
+      "ass_text": "corroded",
+      "words": [
+        {
+          "text": "corroded",
+          "start": 17.9,
+          "end": 18.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 18.54,
+      "end": 19.1,
+      "text": "bronze",
+      "ass_text": "bronze",
+      "words": [
+        {
+          "text": "bronze",
+          "start": 18.54,
+          "end": 19.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 19.1,
+      "end": 19.6,
+      "text": "lump.",
+      "ass_text": "lump.",
+      "words": [
+        {
+          "text": "lump.",
+          "start": 19.1,
+          "end": 19.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 20.48,
+      "end": 20.88,
+      "text": "Inside",
+      "ass_text": "Inside",
+      "words": [
+        {
+          "text": "Inside",
+          "start": 20.48,
+          "end": 20.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.88,
+      "end": 21.24,
+      "text": "were",
+      "ass_text": "were",
+      "words": [
+        {
+          "text": "were",
+          "start": 20.88,
+          "end": 21.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.24,
+      "end": 21.66,
+      "text": "tightly",
+      "ass_text": "tightly",
+      "words": [
+        {
+          "text": "tightly",
+          "start": 21.24,
+          "end": 21.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.66,
+      "end": 22.22,
+      "text": "packed,",
+      "ass_text": "packed,",
+      "words": [
+        {
+          "text": "packed,",
+          "start": 21.66,
+          "end": 22.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.22,
+      "end": 23.54,
+      "text": "precision-cut",
+      "ass_text": "precision-cut",
+      "words": [
+        {
+          "text": "precision-cut",
+          "start": 22.22,
+          "end": 23.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 23.54,
+      "end": 24.18,
+      "text": "gears.",
+      "ass_text": "gears.",
+      "words": [
+        {
+          "text": "gears.",
+          "start": 23.54,
+          "end": 24.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 24.86,
+      "end": 24.98,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 24.86,
+          "end": 24.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.98,
+      "end": 25.36,
+      "text": "mechanism",
+      "ass_text": "mechanism",
+      "words": [
+        {
+          "text": "mechanism",
+          "start": 24.98,
+          "end": 25.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.36,
+      "end": 25.76,
+      "text": "was",
+      "ass_text": "was",
+      "words": [
+        {
+          "text": "was",
+          "start": 25.36,
+          "end": 25.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.76,
+      "end": 25.96,
+      "text": "built",
+      "ass_text": "built",
+      "words": [
+        {
+          "text": "built",
+          "start": 25.76,
+          "end": 25.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.96,
+      "end": 26.2,
+      "text": "over",
+      "ass_text": "over",
+      "words": [
+        {
+          "text": "over",
+          "start": 25.96,
+          "end": 26.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 26.2,
+      "end": 26.74,
+      "text": "2,000",
+      "ass_text": "2,000",
+      "words": [
+        {
+          "text": "2,000",
+          "start": 26.2,
+          "end": 26.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 26.74,
+      "end": 27.0,
+      "text": "years",
+      "ass_text": "years",
+      "words": [
+        {
+          "text": "years",
+          "start": 26.74,
+          "end": 27.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 27.0,
+      "end": 27.32,
+      "text": "ago.",
+      "ass_text": "ago.",
+      "words": [
+        {
+          "text": "ago.",
+          "start": 27.0,
+          "end": 27.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 28.18,
+      "end": 28.3,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 28.18,
+          "end": 28.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.3,
+      "end": 28.66,
+      "text": "hand",
+      "ass_text": "hand",
+      "words": [
+        {
+          "text": "hand",
+          "start": 28.3,
+          "end": 28.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.66,
+      "end": 28.96,
+      "text": "crank",
+      "ass_text": "crank",
+      "words": [
+        {
+          "text": "crank",
+          "start": 28.66,
+          "end": 28.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.96,
+      "end": 29.4,
+      "text": "moved",
+      "ass_text": "moved",
+      "words": [
+        {
+          "text": "moved",
+          "start": 28.96,
+          "end": 29.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.4,
+      "end": 29.88,
+      "text": "pointers",
+      "ass_text": "pointers",
+      "words": [
+        {
+          "text": "pointers",
+          "start": 29.4,
+          "end": 29.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.88,
+      "end": 30.26,
+      "text": "across",
+      "ass_text": "across",
+      "words": [
+        {
+          "text": "across",
+          "start": 29.88,
+          "end": 30.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 30.26,
+      "end": 31.0,
+      "text": "astronomical",
+      "ass_text": "astronomical",
+      "words": [
+        {
+          "text": "astronomical",
+          "start": 30.26,
+          "end": 31.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 31.0,
+      "end": 32.1,
+      "text": "dials.",
+      "ass_text": "dials.",
+      "words": [
+        {
+          "text": "dials.",
+          "start": 31.0,
+          "end": 32.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 32.44,
+      "end": 32.64,
+      "text": "One",
+      "ass_text": "One",
+      "words": [
+        {
+          "text": "One",
+          "start": 32.44,
+          "end": 32.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.64,
+      "end": 33.04,
+      "text": "dial",
+      "ass_text": "dial",
+      "words": [
+        {
+          "text": "dial",
+          "start": 32.64,
+          "end": 33.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.04,
+      "end": 33.36,
+      "text": "tracked",
+      "ass_text": "tracked",
+      "words": [
+        {
+          "text": "tracked",
+          "start": 33.04,
+          "end": 33.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.36,
+      "end": 33.56,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 33.36,
+          "end": 33.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.56,
+      "end": 33.74,
+      "text": "sun",
+      "ass_text": "sun",
+      "words": [
+        {
+          "text": "sun",
+          "start": 33.56,
+          "end": 33.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.74,
+      "end": 33.94,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 33.74,
+          "end": 33.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.94,
+      "end": 34.38,
+      "text": "moon.",
+      "ass_text": "moon.",
+      "words": [
+        {
+          "text": "moon.",
+          "start": 33.94,
+          "end": 34.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.68,
+      "end": 34.94,
+      "text": "Others",
+      "ass_text": "Others",
+      "words": [
+        {
+          "text": "Others",
+          "start": 34.68,
+          "end": 34.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.94,
+      "end": 35.42,
+      "text": "modeled",
+      "ass_text": "modeled",
+      "words": [
+        {
+          "text": "modeled",
+          "start": 34.94,
+          "end": 35.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.42,
+      "end": 35.94,
+      "text": "cycles",
+      "ass_text": "cycles",
+      "words": [
+        {
+          "text": "cycles",
+          "start": 35.42,
+          "end": 35.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.94,
+      "end": 36.56,
+      "text": "used",
+      "ass_text": "used",
+      "words": [
+        {
+          "text": "used",
+          "start": 35.94,
+          "end": 36.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.56,
+      "end": 36.8,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 36.56,
+          "end": 36.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.8,
+      "end": 37.16,
+      "text": "predict",
+      "ass_text": "predict",
+      "words": [
+        {
+          "text": "predict",
+          "start": 36.8,
+          "end": 37.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.16,
+      "end": 38.08,
+      "text": "eclipses.",
+      "ass_text": "eclipses.",
+      "words": [
+        {
+          "text": "eclipses.",
+          "start": 37.16,
+          "end": 38.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.44,
+      "end": 38.74,
+      "text": "Another",
+      "ass_text": "Another",
+      "words": [
+        {
+          "text": "Another",
+          "start": 38.44,
+          "end": 38.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.74,
+      "end": 39.64,
+      "text": "tracked",
+      "ass_text": "tracked",
+      "words": [
+        {
+          "text": "tracked",
+          "start": 38.74,
+          "end": 39.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.64,
+      "end": 39.88,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 39.64,
+          "end": 39.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.88,
+      "end": 40.24,
+      "text": "cycle",
+      "ass_text": "cycle",
+      "words": [
+        {
+          "text": "cycle",
+          "start": 39.88,
+          "end": 40.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.24,
+      "end": 40.44,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 40.24,
+          "end": 40.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.44,
+      "end": 40.94,
+      "text": "major",
+      "ass_text": "major",
+      "words": [
+        {
+          "text": "major",
+          "start": 40.44,
+          "end": 40.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.94,
+      "end": 41.32,
+      "text": "Greek",
+      "ass_text": "Greek",
+      "words": [
+        {
+          "text": "Greek",
+          "start": 40.94,
+          "end": 41.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.32,
+      "end": 42.34,
+      "text": "games.",
+      "ass_text": "games.",
+      "words": [
+        {
+          "text": "games.",
+          "start": 41.32,
+          "end": 42.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.02,
+      "end": 43.38,
+      "text": "Inscriptions",
+      "ass_text": "Inscriptions",
+      "words": [
+        {
+          "text": "Inscriptions",
+          "start": 43.02,
+          "end": 43.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.38,
+      "end": 43.88,
+      "text": "even",
+      "ass_text": "even",
+      "words": [
+        {
+          "text": "even",
+          "start": 43.38,
+          "end": 43.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.88,
+      "end": 44.54,
+      "text": "explained",
+      "ass_text": "explained",
+      "words": [
+        {
+          "text": "explained",
+          "start": 43.88,
+          "end": 44.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 44.54,
+      "end": 45.04,
+      "text": "parts",
+      "ass_text": "parts",
+      "words": [
+        {
+          "text": "parts",
+          "start": 44.54,
+          "end": 45.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.04,
+      "end": 45.2,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 45.04,
+          "end": 45.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.2,
+      "end": 45.36,
+      "text": "its",
+      "ass_text": "its",
+      "words": [
+        {
+          "text": "its",
+          "start": 45.2,
+          "end": 45.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.36,
+      "end": 46.28,
+      "text": "operation.",
+      "ass_text": "operation.",
+      "words": [
+        {
+          "text": "operation.",
+          "start": 45.36,
+          "end": 46.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.54,
+      "end": 46.7,
+      "text": "It",
+      "ass_text": "It",
+      "words": [
+        {
+          "text": "It",
+          "start": 46.54,
+          "end": 46.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.7,
+      "end": 46.88,
+      "text": "was",
+      "ass_text": "was",
+      "words": [
+        {
+          "text": "was",
+          "start": 46.7,
+          "end": 46.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.88,
+      "end": 47.02,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 46.88,
+          "end": 47.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 47.02,
+      "end": 48.0,
+      "text": "hand-powered",
+      "ass_text": "hand-powered",
+      "words": [
+        {
+          "text": "hand-powered",
+          "start": 47.02,
+          "end": 48.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 48.0,
+      "end": 48.72,
+      "text": "mechanical",
+      "ass_text": "mechanical",
+      "words": [
+        {
+          "text": "mechanical",
+          "start": 48.0,
+          "end": 48.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 48.72,
+      "end": 49.4,
+      "text": "model",
+      "ass_text": "model",
+      "words": [
+        {
+          "text": "model",
+          "start": 48.72,
+          "end": 49.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 49.4,
+      "end": 49.68,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 49.4,
+          "end": 49.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 49.68,
+      "end": 49.82,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 49.68,
+          "end": 49.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 49.82,
+      "end": 50.5,
+      "text": "heavens.",
+      "ass_text": "heavens.",
+      "words": [
+        {
+          "text": "heavens.",
+          "start": 49.82,
+          "end": 50.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 50.88,
+      "end": 51.08,
+      "text": "Like",
+      "ass_text": "Like",
+      "words": [
+        {
+          "text": "Like",
+          "start": 50.88,
+          "end": 51.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 51.08,
+      "end": 51.62,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 51.08,
+          "end": 51.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 51.62,
+      "end": 52.08,
+      "text": "subscribe",
+      "ass_text": "subscribe",
+      "words": [
+        {
+          "text": "subscribe",
+          "start": 51.62,
+          "end": 52.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 52.08,
+      "end": 52.64,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 52.08,
+          "end": 52.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 52.64,
+      "end": 52.86,
+      "text": "keep",
+      "ass_text": "keep",
+      "words": [
+        {
+          "text": "keep",
+          "start": 52.64,
+          "end": 52.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 52.86,
+      "end": 53.02,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 52.86,
+          "end": 53.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 53.02,
+      "end": 53.52,
+      "text": "questions",
+      "ass_text": "questions",
+      "words": [
+        {
+          "text": "questions",
+          "start": 53.02,
+          "end": 53.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 53.52,
+      "end": 54.02,
+      "text": "coming.",
+      "ass_text": "coming.",
+      "words": [
+        {
+          "text": "coming.",
+          "start": 53.52,
+          "end": 54.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    }
+  ],
+  "qc": {
+    "beat_count": 11,
+    "low_confidence_beats": [
+      3
+    ],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 107,
+    "subtitle_cues_estimated": 0
+  }
+}

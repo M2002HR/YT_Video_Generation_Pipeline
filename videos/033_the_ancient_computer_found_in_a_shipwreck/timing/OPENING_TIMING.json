@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 54.57,
+  "spark_start": 0.04,
+  "spark_end": 5.64,
+  "spark_duration": 5.6,
+  "transition_start": 6.94,
+  "transition_end": 10.16,
+  "transition_duration": 3.22,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 5.64,
+  "clip_b_target_seconds": 4.52,
+  "body_start": 10.58,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Could these jammed hand-drill gears explain an ancient machine that predicted the sky?",
+      "speech_start": 0.04,
+      "speech_end": 5.64,
+      "match_confidence": 0.857
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "She turns her orb, and we plunge through the glass.",
+      "speech_start": 6.94,
+      "speech_end": 10.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "In 1900, sponge divers found a wreck off Antikythera.",
+      "speech_start": 10.58,
+      "speech_end": 15.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Its cargo included a corroded bronze lump.",
+      "speech_start": 16.4,
+      "speech_end": 19.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Inside were tightly packed, precision-cut gears.",
+      "speech_start": 20.48,
+      "speech_end": 24.18,
+      "match_confidence": 0.714
+    },
+    {
+      "segment": "body_04",
+      "narration": "The mechanism was built over two thousand years ago.",
+      "speech_start": 24.86,
+      "speech_end": 27.32,
+      "match_confidence": 0.778
+    },
+    {
+      "segment": "body_05",
+      "narration": "A hand crank moved pointers across astronomical dials.",
+      "speech_start": 28.18,
+      "speech_end": 32.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "One dial tracked the Sun and Moon.",
+      "speech_start": 32.44,
+      "speech_end": 34.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Others modeled cycles used to predict eclipses.",
+      "speech_start": 34.68,
+      "speech_end": 38.08,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Another tracked the cycle of major Greek games.",
+      "speech_start": 38.44,
+      "speech_end": 42.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Inscriptions even explained parts of its operation.",
+      "speech_start": 43.02,
+      "speech_end": 46.28,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "It was a hand-powered mechanical model of the heavens.",
+      "speech_start": 46.54,
+      "speech_end": 50.5,
+      "match_confidence": 0.8
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to keep the questions coming.",
+      "speech_start": 50.88,
+      "speech_end": 54.02,
+      "match_confidence": 1.0
+    }
+  ]
+}

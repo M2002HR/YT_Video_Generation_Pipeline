@@ -1,0 +1,113 @@
+{
+  "body_duration_seconds": 34.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "In 1900, sponge divers found a wreck off Antikythera.",
+      "visual": "Vertical technical-drawing scene of two sponge divers descending toward a broken ancient shipwreck on the rocky seabed, scattered amphorae emerging from deep Aegean blue beneath them, all framed by the recurring patinated-bronze instrument bezel.",
+      "purpose": "show the discovery of the Antikythera shipwreck by sponge divers",
+      "visual_fingerprint": "wide underwater establishing view; two descending divers above a wreck and amphora field; high three-quarter angle; deep blue seafloor setting; cool raking light with faint ochre highlights; composition led diagonally from divers to wreck",
+      "type": "literal",
+      "continuity": "opens the archaeological subject world at the wreck site",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Its cargo included a corroded bronze lump.",
+      "visual": "Close archaeological technical drawing of a rough green-brown bronze fragment lying among broken amphora shards and seabed sediment, isolated as the clear focal object inside the vellum illustration window.",
+      "purpose": "identify the unremarkable-looking corroded bronze object recovered from the wreck",
+      "visual_fingerprint": "tight artifact close-up; single irregular verdigris bronze lump half-buried among pottery fragments; low seabed-level angle; shallow wreck-debris zone; stronger warm bronze glint; centered asymmetrical composition",
+      "type": "literal",
+      "continuity": "moves from the wreck as a whole to one specific piece of recovered cargo",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Inside were tightly packed, precision-cut gears.",
+      "visual": "Cutaway technical illustration of the corroded fragment opened visually to reveal a dense cluster of intermeshing bronze gear wheels, with precise compass-drawn teeth and restrained engraving hatching but no labels.",
+      "purpose": "reveal that the corroded fragment contained a compact system of precision-cut gears",
+      "visual_fingerprint": "macro cutaway reconstruction; overlapping interlocking gear train exposed inside broken bronze casing; straight-on sectional view; neutral vellum field rather than seabed; pale celestial-blue edge accents; dense circular composition concentrated in the upper-middle",
+      "type": "diagram",
+      "continuity": "reveals the mechanical interior of the bronze fragment shown in the previous beat",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "The mechanism was built over two thousand years ago.",
+      "visual": "A restrained historical technical drawing places a reconstructed bronze mechanism on a Hellenistic workbench beside a hand compass, bronze filings and an oil lamp silhouette, with an abstract worn celestial motif behind it and no readable markings.",
+      "purpose": "establish that the geared instrument belongs to the Hellenistic Greek world more than two millennia ago",
+      "visual_fingerprint": "medium workshop tableau; reconstructed mechanism resting beside period hand tools; side-on eye-level angle; Hellenistic craft setting; warmer lamp-like bronze glints against parchment cream; mechanism offset right with tools forming a triangular composition",
+      "type": "subject_world",
+      "continuity": "shifts from internal construction to the ancient context in which the instrument was made",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "A hand crank moved pointers across astronomical dials.",
+      "visual": "Oblique technical reconstruction showing a human hand turning a small side crank while linked gears drive slender bronze pointers around concentric astronomical dials, with motion implied by fine arc lines rather than modern graphics.",
+      "purpose": "show how hand power drove the mechanism's pointers across its dials",
+      "visual_fingerprint": "three-quarter mechanical action view; hand operating crank while pointers sweep concentric dial faces; elevated oblique angle; isolated instrument demonstration on vellum; cool light with focused bronze highlights; strong left-to-right action from crank to pointer tips",
+      "type": "diagram",
+      "continuity": "moves from the ancient object's context to a clear demonstration of its manual operation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "One dial tracked the Sun and Moon.",
+      "visual": "Front-facing technical drawing of a single circular dial with two distinct pointer markers represented by a small sun disk and moon sphere, arranged against restrained orbital geometry with no letters or numerals.",
+      "purpose": "show that one dial represented the positions or cycles of the Sun and Moon",
+      "visual_fingerprint": "clean frontal dial study; paired sun-disk and moon-sphere indicators on one circular face; orthographic angle; abstract celestial vellum setting; sparse pale-blue orbital accents; balanced concentric composition with large negative space around the dial",
+      "type": "diagram",
+      "continuity": "isolates one function from the broader moving-dial mechanism",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Others modeled cycles used to predict eclipses.",
+      "visual": "A vertical eclipse-cycle diagram rendered as nested bronze-and-charcoal orbital rings, with repeated moon positions culminating in a darkened Sun-Moon alignment, visually linked to a small gear segment below and containing no symbols that resemble readable text.",
+      "purpose": "explain that additional geared cycles could indicate repeating patterns associated with eclipses",
+      "visual_fingerprint": "abstract celestial cycle diagram; sequence of moon positions around nested rings ending in eclipse alignment; top-down geometric view; diagrammatic sky field; stronger charcoal shadow at eclipse point; sweeping spiral composition descending toward a small gear segment",
+      "type": "diagram",
+      "continuity": "expands from the simple Sun-and-Moon dial to a more complex repeating astronomical cycle",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Another tracked the cycle of major Greek games.",
+      "visual": "Technical-drawing interpretation of a separate circular cycle dial paired with a small engraved-style olive wreath, stadium turning post and runner silhouette as non-textual visual cues for recurring Greek games.",
+      "purpose": "show that the mechanism also tracked the repeating schedule of major Greek athletic games",
+      "visual_fingerprint": "medium symbolic dial composition; separate cycle wheel accompanied by olive wreath and tiny runner motif; slight low angle; parchment-and-bronze civic festival setting; muted ochre accents replacing celestial blue; dial anchored lower-left with game symbols rising upper-right",
+      "type": "subject_world",
+      "continuity": "shifts from astronomical cycles to a distinct calendrical cycle connected with Greek games",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Inscriptions even explained parts of its operation.",
+      "visual": "Extreme close technical drawing of a surviving bronze plate surface covered in shallow, fragmentary inscription-like incisions rendered only as illegible archaeological texture, beside the edge of a gear and pointer to suggest operating instructions without readable generated text.",
+      "purpose": "show that engraved inscriptions on the mechanism provided explanatory information about its operation",
+      "visual_fingerprint": "extreme archaeological surface close-up; worn bronze plate with dense non-readable incised texture beside partial gear teeth and pointer tip; raking side angle; fragment-study setting; strongest cool grazing light emphasizing scratches; cropped composition dominated by patinated surface texture",
+      "type": "literal",
+      "continuity": "ends on physical evidence from the artifact itself after showing its major modeled cycles",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

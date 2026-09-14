@@ -1,0 +1,134 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "76aab50ae30b540161784d29c8254b95e722c94b9adf267e3b77b3dca767517a",
+  "quality_check": {
+    "passed": true,
+    "description": "A standalone vertical vellum illustration shows a large partially reconstructed Antikythera-like mechanism centered on concentric astronomical dials, with dense interlocking bronze gears, pointer arms, crank-like interfaces, orbital geometry, corroded verdigris fragments, amphora traces, marine encrustation, and engraved construction lines. The scene is fully contained by a thin irregular patinated-bronze bezel with worn corners and corrosion. The palette, aged parchment texture, fine hatching, bronze and verdigris treatment, and open archaeological drawing language closely follow the supplied style reference. No host, person, hand, face, readable text, UI, palette sheet, or modern machinery is visible.",
+    "violations": [
+      "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+      "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+      "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+      "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+      "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+    ],
+    "observations": [
+      "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+      "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+      "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "083369ba-4bbc-4138-aaf0-ff249f76ff08",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/ffd0a8d8037a2d6a",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=083369ba-4bbc-4138-aaf0-ff249f76ff08_output_1.png 1536x2752 sha256=676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A standalone vertical vellum illustration shows a large partially reconstructed Antikythera-like mechanism centered on concentric astronomical dials, with dense interlocking bronze gears, pointer arms, crank-like interfaces, orbital geometry, corroded verdigris fragments, amphora traces, marine encrustation, and engraved construction lines. The scene is fully contained by a thin irregular patinated-bronze bezel with worn corners and corrosion. The palette, aged parchment texture, fine hatching, bronze and verdigris treatment, and open archaeological drawing language closely follow the supplied style reference. No host, person, hand, face, readable text, UI, palette sheet, or modern machinery is visible.",
+      "violations": [
+        "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+        "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+        "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+        "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+        "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+      ],
+      "observations": [
+        "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+        "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+        "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "76aab50ae30b540161784d29c8254b95e722c94b9adf267e3b77b3dca767517a",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "083369ba-4bbc-4138-aaf0-ff249f76ff08",
+        "prompt_sha256": "db6ab8807b8bfa080df704b1161da5364b93ccf66ec51186e798d61765f71a29",
+        "output_sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb",
+        "quality_check": {
+          "passed": true,
+          "description": "A standalone vertical vellum illustration shows a large partially reconstructed Antikythera-like mechanism centered on concentric astronomical dials, with dense interlocking bronze gears, pointer arms, crank-like interfaces, orbital geometry, corroded verdigris fragments, amphora traces, marine encrustation, and engraved construction lines. The scene is fully contained by a thin irregular patinated-bronze bezel with worn corners and corrosion. The palette, aged parchment texture, fine hatching, bronze and verdigris treatment, and open archaeological drawing language closely follow the supplied style reference. No host, person, hand, face, readable text, UI, palette sheet, or modern machinery is visible.",
+          "violations": [
+            "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+            "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+            "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+            "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+            "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+          ],
+          "observations": [
+            "The distinction between surviving corroded fragments and schematic reconstructed mechanism parts is visible but somewhat implicit rather than consistently unmistakable across the full assembly.",
+            "The requested cool raking archaeological light and restrained warm bronze glints are understated; the rendering reads more as evenly lit engraved vellum than strongly directional archaeological illumination.",
+            "The bezel preserves the required patinated frame language, though the requested tiny mechanical notches and worn circular scoring are only subtly expressed."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/references/world_style_anchor.png",
+      "sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4"
+    }
+  ],
+  "prompt_sha256": "db6ab8807b8bfa080df704b1161da5364b93ccf66ec51186e798d61765f71a29",
+  "prompt": "Create one standalone vertical 9:16 WORLD_KEYFRAME establishing the post-entry world of the Antikythera mechanism. Host isolation is absolute: no recurring host, selected host, foreground person, character, hand, face, silhouette, or human figure.\n\nRender as a precise Hellenistic archaeological technical drawing on aged vellum, with subtle historical-engraving hatching. Center the visual story on a partially reconstructed ancient bronze geared mechanism: dense interlocking hand-cut gears, a simple hand-crank interface, pointers, concentric astronomical dials, Sun-and-Moon relationships, eclipse-cycle geometry, and restrained celestial orbital diagrams. Clearly distinguish surviving corroded fragments from schematic reconstructed portions; avoid presenting uncertain details as preserved fact. Add understated contextual traces of ancient Mediterranean archaeology—weathered bronze fragments, amphora shapes, marine encrustation, and faint celestial motifs—without crowding the mechanism.\n\nUse deep Aegean blue and charcoal foundations, parchment cream, oxidized copper verdigris, muted antique bronze and ochre, with sparse pale celestial-blue highlights. Texture: aged vellum grain with restrained verdigris speckling, worn edges, archaeological abrasion, and fine engraved hatch marks. Lighting: cool raking archaeological light, restrained warm bronze glints, soft shadow falloff.\n\nContain the entire image within a recurring thin, irregular patinated-bronze instrument bezel with subtle corrosion, tiny mechanical notches, and worn circular scoring; keep the inner illustration open, legible, and atmospheric. Use the full illustration height naturally—no caption reserve, blank strip, empty panel, or low-detail band.\n\nNo readable text, letters, numbers, labels, inscriptions, UI, grids, sheet layouts, swatches, modern machinery, electronics, CAD graphics, holograms, steampunk, neon sci-fi, glossy CGI, photorealism, or fantasy clockwork. Any inscription-like marks must remain illegible archaeological texture only. Reference image controls medium and material language only, never composition. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI. Binding isolation: no recurring host, no selected host, and no foreground person or character.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.203,
+  "completed_at": "2026-09-14T11:20:27Z"
+}

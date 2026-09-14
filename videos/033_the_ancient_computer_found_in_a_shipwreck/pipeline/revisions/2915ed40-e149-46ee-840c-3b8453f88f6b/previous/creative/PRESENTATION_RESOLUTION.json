@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "profile_id": "book_portal",
+  "profile_version": 1,
+  "entry_kind": "book",
+  "segment_key": "book_transition",
+  "artifacts": {
+    "question_prompt": "references/flow_prompt_opening_a.txt",
+    "entry_prompt": "references/flow_prompt_book_transition.txt",
+    "question_source": "assets/opening/question_spark_source.mp4",
+    "entry_source": "assets/opening/book_transition_source.mp4",
+    "question_trimmed": "assets/opening/question_spark_trimmed.mp4",
+    "entry_trimmed": "assets/opening/book_transition_trimmed.mp4",
+    "entry_direction": "creative/BOOK_COVER_DESIGN.txt",
+    "entry_frame": "references/book_cover_frame.png",
+    "entry_image_receipt": "pipeline/provider_receipts/gemini_book_cover.json"
+  }
+}

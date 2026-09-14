@@ -1,0 +1,135 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "92c23a2747941639e32f3118cbb1bd03d0ad3ee8ac240c95fdce99af9f6868ca",
+  "quality_check": {
+    "passed": true,
+    "description": "A single tall vertical style-reference sheet on aged parchment, presenting rectangular and circular palette swatches, vellum and weathered-bronze texture samples, and precise technical illustrations of compass-like tools, gear segments, pointers, and orbital geometry. The palette visibly uses deep Aegean blue, charcoal, parchment cream, muted bronze and ochre, verdigris turquoise, and pale celestial blue. Fine engraving-style hatching, worn edges, mottling, and patina speckling support the archaeological technical-drawing aesthetic.",
+    "violations": [
+      "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+      "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+      "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+      "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+      "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+      "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+      "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+    ],
+    "observations": [
+      "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+      "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+      "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+      "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "c7bc6beb-5168-48b3-9e1e-3ba8e24c94f0",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/bdeebcc05692d53c",
+    "submission_fingerprint": null,
+    "reference_roles": [],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=c7bc6beb-5168-48b3-9e1e-3ba8e24c94f0_output_1.png 1536x2752 sha256=d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single tall vertical style-reference sheet on aged parchment, presenting rectangular and circular palette swatches, vellum and weathered-bronze texture samples, and precise technical illustrations of compass-like tools, gear segments, pointers, and orbital geometry. The palette visibly uses deep Aegean blue, charcoal, parchment cream, muted bronze and ochre, verdigris turquoise, and pale celestial blue. Fine engraving-style hatching, worn edges, mottling, and patina speckling support the archaeological technical-drawing aesthetic.",
+      "violations": [
+        "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+        "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+        "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+        "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+        "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+        "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+        "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+      ],
+      "observations": [
+        "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+        "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+        "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+        "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "92c23a2747941639e32f3118cbb1bd03d0ad3ee8ac240c95fdce99af9f6868ca",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "c7bc6beb-5168-48b3-9e1e-3ba8e24c94f0",
+        "prompt_sha256": "e13c3f6ca1853dd4f322dc70e440718106c7871cd53c4a094aaf0d0b31ae5805",
+        "output_sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4",
+        "quality_check": {
+          "passed": true,
+          "description": "A single tall vertical style-reference sheet on aged parchment, presenting rectangular and circular palette swatches, vellum and weathered-bronze texture samples, and precise technical illustrations of compass-like tools, gear segments, pointers, and orbital geometry. The palette visibly uses deep Aegean blue, charcoal, parchment cream, muted bronze and ochre, verdigris turquoise, and pale celestial blue. Fine engraving-style hatching, worn edges, mottling, and patina speckling support the archaeological technical-drawing aesthetic.",
+          "violations": [
+            "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+            "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+            "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+            "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+            "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+            "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+            "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+          ],
+          "observations": [
+            "Readable generated text is visibly present despite the no-text requirement, including labels such as 'MATTE', 'VELLUM', 'HIGHLIGHT', and 'WEATHED BRONZE', along with additional pseudo-lettering and glyph-like headings.",
+            "The lighting presentation is mostly flat and illustrative rather than clearly demonstrating the requested cool raking archaeological light with soft shadow falloff.",
+            "The sheet contains decorative glyph-like corner marks and heading symbols that function as text-like graphic elements despite the request for no text or logos.",
+            "The canvas proportions appear slightly narrower than an exact 9:16 ratio, though it remains clearly a vertical reference-sheet deliverable."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [],
+  "prompt_sha256": "e13c3f6ca1853dd4f322dc70e440718106c7871cd53c4a094aaf0d0b31ae5805",
+  "prompt": "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, not a scene. Medium: technical drawing. Texture family: aged vellum grain with restrained oxidized-bronze patina speckling. Palette: deep Aegean blue and charcoal foundations, parchment cream, oxidized copper verdigris, muted antique bronze and ochre, with sparse pale celestial-blue highlights. Line treatment: precise compass-and-stylus technical linework for gears, pointers and orbital geometry, softened by fine archaeological engraving hatching and occasional worn or broken edges. Lighting: cool raking archaeological light with restrained warm bronze glints and soft shadow falloff. Avoid: no photorealism, no glossy 3D CGI, no steampunk, no cyberpunk or neon sci-fi, no anime, no modern blueprint grids or CAD UI, no holograms, no glowing digital numerals, no modern watches or computers, no pristine fantasy machinery, and no readable generated text anywhere in the artwork. No characters, no text, no logos, no photorealism.",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "d5db7ea3a1014c05a2abe34847e8d9f41b7f18918b455f88fd19860d6e12c9c4",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 60.137,
+  "completed_at": "2026-09-14T11:17:13Z"
+}
