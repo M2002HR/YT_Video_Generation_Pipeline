@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-14T12:13:18.864271+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-14T12:13:18.864050+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 14970,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 3006949,
+      "sha256": "c3f544f00e345dc53ff38e47449034d78418e9ccddae4f9fb791c58d3d971450",
+      "duration_seconds": 54.579,
+      "elapsed_seconds": 6.6,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "033_the_ancient_computer_found_in_a_shipwreck",
+        "duration_seconds": 54.57,
+        "beat_count": 11,
+        "video_beat_count": 2,
+        "image_beat_count": 9,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 5.64,
+          "transition_end": 10.16
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 206.707,
+          "realtime_factor": 3.788,
+          "peak_child_rss_mb": 1245.8,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 033_the_ancient_computer_found_in_a_shipwreck\n⏱ Duration: 0:55\n🎞 Beats: 11 (2 video · 9 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:27 wall (3.788x realtime) · 2 thread(s) · peak 1245.8 MB\nArtifact: c3f544f00e34 · Delivery: compressed"
+    }
+  }
+}

@@ -10,8 +10,8 @@
   "duration_max_seconds": "45",
   "aspect_ratio": "9:16",
   "project": "videos/033_the_ancient_computer_found_in_a_shipwreck",
-  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/e9d589f3-a1ee-4c27-a73f-c55b05c2900a/VOICE_PROFILE.json",
-  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/e9d589f3-a1ee-4c27-a73f-c55b05c2900a/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/VOICE_PROFILE.json",
+  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 1927671,
+  "pid": 1934470,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -143,135 +143,40 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/e9d589f3-a1ee-4c27-a73f-c55b05c2900a/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/e9d589f3-a1ee-4c27-a73f-c55b05c2900a/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
     "freesound,mixkit,pixabay",
     "--publish",
-    "--commit"
+    "--commit",
+    "--skip-visual-stages"
   ],
   "started_at": "2026-09-14T10:56:06.346509+00:00",
   "stopped_by": "panel",
-  "pending_revision": {
-    "schema_version": 2,
-    "revision_id": "2915ed40-e149-46ee-840c-3b8453f88f6b",
-    "kind": "config",
-    "created_at": "2026-09-14T11:07:11.528381+00:00",
-    "roots": [
-      "character_resolution",
-      "episode_director",
-      "world_style_director"
-    ],
-    "affected_nodes": [
-      "character_resolution",
-      "script_draft",
-      "retention_edit",
-      "episode_director",
-      "world_style_director",
-      "world_style_anchor",
-      "episode_history",
-      "visual_plan",
-      "world_keyframe_prompt",
-      "world_keyframe",
-      "book_cover_design",
-      "book_cover",
-      "flow_prompt_a",
-      "flow_prompt_b",
-      "flow_clip_a",
-      "flow_clip_b",
-      "elevenlabs_voiceover",
-      "background_music",
-      "ajil_alignment",
-      "opening_trim",
-      "body_images",
-      "transition_direction",
-      "build_timeline",
-      "audio_mix_profile",
-      "render_baseline",
-      "qc_baseline",
-      "polish_audio",
-      "qc_polished",
-      "telegram_compress",
-      "git_commit_push",
-      "publish_telegram",
-      "beat_image_001",
-      "beat_image_002",
-      "beat_image_003",
-      "beat_image_004",
-      "beat_image_005",
-      "beat_image_006",
-      "beat_image_007",
-      "beat_image_008",
-      "beat_image_009",
-      "beat_image_010",
-      "beat_image_011",
-      "beat_image_012"
-    ],
-    "reused_nodes": [
-      "book_design_sheet",
-      "render_profile"
-    ],
-    "skipped_nodes": [
-      "motion_director",
-      "sfx_plan",
-      "sfx_acquire"
-    ],
-    "archived_artifacts": [
-      "creative/CHARACTER_RESOLUTION.json",
-      "creative/PRESENTATION_RESOLUTION.json",
-      "creative/SCRIPT_DRAFT.json",
-      "creative/SCRIPT_PLAN.json",
-      "SCRIPT_FINAL.md",
-      "creative/EPISODE_PLAN.json",
-      "creative/WORLD_STYLE_PLAN.json",
-      "references/world_style_anchor.png",
-      "pipeline/provider_receipts/gemini_world_style_anchor.json",
-      "creative/VISUAL_PLAN.json",
-      "VISUAL_BEATS.md",
-      "references/world_keyframe_prompt.txt"
-    ],
-    "regenerate_beats": [],
-    "feedback": "",
-    "status": "FAILED",
-    "regeneration_mode": "cascade",
-    "use_chatgpt_feedback": false,
-    "started_at": "2026-09-14T11:07:11.530610+00:00",
-    "pid": 1883555,
-    "changed_fields": [
-      "character_id",
-      "hero_presence_mode",
-      "world_style_id",
-      "world_style_policy"
-    ],
-    "config_revision_id": "e9d589f3-a1ee-4c27-a73f-c55b05c2900a",
-    "character_change": {
-      "previous_request": {
-        "mode": "manual",
-        "character_id": "red_horned_everyman"
-      },
-      "requested": {
-        "mode": "manual",
-        "character_id": "moss_cloaked_crone"
-      },
-      "previous_resolved_character_id": null
-    },
-    "completed_at": "2026-09-14T11:58:01.566246+00:00"
-  },
-  "resumed_at": "2026-09-14T12:07:06.852657+00:00",
+  "resumed_at": "2026-09-14T12:19:24.475608+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "2915ed40-e149-46ee-840c-3b8453f88f6b",
+    "revision_id": "a6ae3291-69a2-4eb6-b224-032d1aadc4e6",
     "kind": "config",
-    "created_at": "2026-09-14T11:07:11.528381+00:00",
+    "created_at": "2026-09-14T12:19:24.474766+00:00",
     "roots": [
-      "character_resolution",
-      "episode_director",
-      "world_style_director"
+      "render_profile"
     ],
     "affected_nodes": [
+      "build_timeline",
+      "render_profile",
+      "render_baseline",
+      "qc_baseline",
+      "polish_audio",
+      "qc_polished",
+      "telegram_compress",
+      "git_commit_push",
+      "publish_telegram"
+    ],
+    "reused_nodes": [
       "character_resolution",
       "script_draft",
       "retention_edit",
@@ -282,6 +187,7 @@
       "visual_plan",
       "world_keyframe_prompt",
       "world_keyframe",
+      "book_design_sheet",
       "book_cover_design",
       "book_cover",
       "flow_prompt_a",
@@ -294,15 +200,7 @@
       "opening_trim",
       "body_images",
       "transition_direction",
-      "build_timeline",
       "audio_mix_profile",
-      "render_baseline",
-      "qc_baseline",
-      "polish_audio",
-      "qc_polished",
-      "telegram_compress",
-      "git_commit_push",
-      "publish_telegram",
       "beat_image_001",
       "beat_image_002",
       "beat_image_003",
@@ -311,14 +209,7 @@
       "beat_image_006",
       "beat_image_007",
       "beat_image_008",
-      "beat_image_009",
-      "beat_image_010",
-      "beat_image_011",
-      "beat_image_012"
-    ],
-    "reused_nodes": [
-      "book_design_sheet",
-      "render_profile"
+      "beat_image_009"
     ],
     "skipped_nodes": [
       "motion_director",
@@ -326,47 +217,119 @@
       "sfx_acquire"
     ],
     "archived_artifacts": [
-      "creative/CHARACTER_RESOLUTION.json",
-      "creative/PRESENTATION_RESOLUTION.json",
-      "creative/SCRIPT_DRAFT.json",
-      "creative/SCRIPT_PLAN.json",
-      "SCRIPT_FINAL.md",
-      "creative/EPISODE_PLAN.json",
-      "creative/WORLD_STYLE_PLAN.json",
-      "references/world_style_anchor.png",
-      "pipeline/provider_receipts/gemini_world_style_anchor.json",
-      "creative/VISUAL_PLAN.json",
-      "VISUAL_BEATS.md",
-      "references/world_keyframe_prompt.txt"
+      "timeline/TIMELINE.json",
+      "timeline/SUBTITLES.ass",
+      "render/RENDER_PROFILE.json",
+      "assets/renders/final.mp4",
+      "render/RENDER_STATS.json",
+      "render/QC_REPORT.json",
+      "assets/renders/polished.mp4",
+      "render/QC_REPORT_polished.json",
+      "assets/renders/telegram_low.mp4",
+      "render/TELEGRAM_RENDER_PROGRESS.json",
+      "pipeline/GIT_PUBLISH_STATE.json",
+      "publish/TELEGRAM_PUBLISH_STATE.json"
     ],
     "regenerate_beats": [],
     "feedback": "",
-    "status": "FAILED",
+    "status": "RUNNING",
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
-    "started_at": "2026-09-14T11:07:11.530610+00:00",
-    "pid": 1883555,
+    "skip_visual_stages": true,
+    "started_at": "2026-09-14T12:19:24.475385+00:00",
+    "pid": 1934470,
     "changed_fields": [
-      "character_id",
-      "hero_presence_mode",
-      "world_style_id",
-      "world_style_policy"
+      "subtitle_font"
     ],
-    "config_revision_id": "e9d589f3-a1ee-4c27-a73f-c55b05c2900a",
-    "character_change": {
-      "previous_request": {
-        "mode": "manual",
-        "character_id": "red_horned_everyman"
-      },
-      "requested": {
-        "mode": "manual",
-        "character_id": "moss_cloaked_crone"
-      },
-      "previous_resolved_character_id": null
-    },
-    "completed_at": "2026-09-14T11:58:01.566246+00:00"
+    "config_revision_id": "a96df314-cca0-49b1-9ac8-ef36ac09d019"
   },
-  "exit_code": 1,
-  "process_exited_at": "2026-09-14T11:58:01.564747+00:00",
-  "resume_count": 2
+  "exit_code": 0,
+  "process_exited_at": "2026-09-14T12:13:21.439875+00:00",
+  "resume_count": 2,
+  "pending_revision": {
+    "schema_version": 2,
+    "revision_id": "a6ae3291-69a2-4eb6-b224-032d1aadc4e6",
+    "kind": "config",
+    "created_at": "2026-09-14T12:19:24.474766+00:00",
+    "roots": [
+      "render_profile"
+    ],
+    "affected_nodes": [
+      "build_timeline",
+      "render_profile",
+      "render_baseline",
+      "qc_baseline",
+      "polish_audio",
+      "qc_polished",
+      "telegram_compress",
+      "git_commit_push",
+      "publish_telegram"
+    ],
+    "reused_nodes": [
+      "character_resolution",
+      "script_draft",
+      "retention_edit",
+      "episode_director",
+      "world_style_director",
+      "world_style_anchor",
+      "episode_history",
+      "visual_plan",
+      "world_keyframe_prompt",
+      "world_keyframe",
+      "book_design_sheet",
+      "book_cover_design",
+      "book_cover",
+      "flow_prompt_a",
+      "flow_prompt_b",
+      "flow_clip_a",
+      "flow_clip_b",
+      "elevenlabs_voiceover",
+      "background_music",
+      "ajil_alignment",
+      "opening_trim",
+      "body_images",
+      "transition_direction",
+      "audio_mix_profile",
+      "beat_image_001",
+      "beat_image_002",
+      "beat_image_003",
+      "beat_image_004",
+      "beat_image_005",
+      "beat_image_006",
+      "beat_image_007",
+      "beat_image_008",
+      "beat_image_009"
+    ],
+    "skipped_nodes": [
+      "motion_director",
+      "sfx_plan",
+      "sfx_acquire"
+    ],
+    "archived_artifacts": [
+      "timeline/TIMELINE.json",
+      "timeline/SUBTITLES.ass",
+      "render/RENDER_PROFILE.json",
+      "assets/renders/final.mp4",
+      "render/RENDER_STATS.json",
+      "render/QC_REPORT.json",
+      "assets/renders/polished.mp4",
+      "render/QC_REPORT_polished.json",
+      "assets/renders/telegram_low.mp4",
+      "render/TELEGRAM_RENDER_PROGRESS.json",
+      "pipeline/GIT_PUBLISH_STATE.json",
+      "publish/TELEGRAM_PUBLISH_STATE.json"
+    ],
+    "regenerate_beats": [],
+    "feedback": "",
+    "status": "RUNNING",
+    "regeneration_mode": "cascade",
+    "use_chatgpt_feedback": false,
+    "skip_visual_stages": true,
+    "started_at": "2026-09-14T12:19:24.475385+00:00",
+    "pid": 1934470,
+    "changed_fields": [
+      "subtitle_font"
+    ],
+    "config_revision_id": "a96df314-cca0-49b1-9ac8-ef36ac09d019"
+  }
 }
