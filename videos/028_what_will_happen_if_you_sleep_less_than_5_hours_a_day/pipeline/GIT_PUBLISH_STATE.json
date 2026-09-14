@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "f19c33f85bcb5b69d2f9e9b526f606209b6be3cf",
+  "started_at": "2026-09-14T07:19:21.808151+00:00",
+  "completed_at": "2026-09-14T07:23:41.999493+00:00",
+  "elapsed_seconds": 260.191,
+  "scope": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day"
+}
