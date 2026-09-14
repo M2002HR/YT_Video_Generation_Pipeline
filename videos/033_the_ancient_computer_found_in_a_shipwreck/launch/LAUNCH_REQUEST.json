@@ -10,8 +10,8 @@
   "duration_max_seconds": "45",
   "aspect_ratio": "9:16",
   "project": "videos/033_the_ancient_computer_found_in_a_shipwreck",
-  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/VOICE_PROFILE.json",
-  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a8e54047-f0d8-4d05-bac1-f9c8924caa81/VOICE_PROFILE.json",
+  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a8e54047-f0d8-4d05-bac1-f9c8924caa81/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 1934470,
+  "pid": 1965714,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -143,9 +143,9 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a8e54047-f0d8-4d05-bac1-f9c8924caa81/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a96df314-cca0-49b1-9ac8-ef36ac09d019/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/a8e54047-f0d8-4d05-bac1-f9c8924caa81/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -156,18 +156,20 @@
   ],
   "started_at": "2026-09-14T10:56:06.346509+00:00",
   "stopped_by": "panel",
-  "resumed_at": "2026-09-14T12:19:24.475608+00:00",
+  "resumed_at": "2026-09-14T13:09:15.950964+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "a6ae3291-69a2-4eb6-b224-032d1aadc4e6",
+    "revision_id": "1e080fa0-42a4-4d9c-aea2-f68470113df4",
     "kind": "config",
-    "created_at": "2026-09-14T12:19:24.474766+00:00",
+    "created_at": "2026-09-14T13:09:15.949924+00:00",
     "roots": [
+      "audio_mix_profile",
       "render_profile"
     ],
     "affected_nodes": [
       "build_timeline",
       "render_profile",
+      "audio_mix_profile",
       "render_baseline",
       "qc_baseline",
       "polish_audio",
@@ -200,7 +202,6 @@
       "opening_trim",
       "body_images",
       "transition_direction",
-      "audio_mix_profile",
       "beat_image_001",
       "beat_image_002",
       "beat_image_003",
@@ -209,7 +210,8 @@
       "beat_image_006",
       "beat_image_007",
       "beat_image_008",
-      "beat_image_009"
+      "beat_image_009",
+      "beat_image_010"
     ],
     "skipped_nodes": [
       "motion_director",
@@ -220,6 +222,7 @@
       "timeline/TIMELINE.json",
       "timeline/SUBTITLES.ass",
       "render/RENDER_PROFILE.json",
+      "audio_mix/AUDIO_MIX_PROFILE.json",
       "assets/renders/final.mp4",
       "render/RENDER_STATS.json",
       "render/QC_REPORT.json",
@@ -236,27 +239,30 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-14T12:19:24.475385+00:00",
-    "pid": 1934470,
+    "started_at": "2026-09-14T13:09:15.950765+00:00",
+    "pid": 1965714,
     "changed_fields": [
-      "subtitle_font"
+      "narration_gain_db",
+      "subtitle_font_size"
     ],
-    "config_revision_id": "a96df314-cca0-49b1-9ac8-ef36ac09d019"
+    "config_revision_id": "a8e54047-f0d8-4d05-bac1-f9c8924caa81"
   },
   "exit_code": 0,
-  "process_exited_at": "2026-09-14T12:13:21.439875+00:00",
+  "process_exited_at": "2026-09-14T12:23:57.943849+00:00",
   "resume_count": 2,
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "a6ae3291-69a2-4eb6-b224-032d1aadc4e6",
+    "revision_id": "1e080fa0-42a4-4d9c-aea2-f68470113df4",
     "kind": "config",
-    "created_at": "2026-09-14T12:19:24.474766+00:00",
+    "created_at": "2026-09-14T13:09:15.949924+00:00",
     "roots": [
+      "audio_mix_profile",
       "render_profile"
     ],
     "affected_nodes": [
       "build_timeline",
       "render_profile",
+      "audio_mix_profile",
       "render_baseline",
       "qc_baseline",
       "polish_audio",
@@ -289,7 +295,6 @@
       "opening_trim",
       "body_images",
       "transition_direction",
-      "audio_mix_profile",
       "beat_image_001",
       "beat_image_002",
       "beat_image_003",
@@ -298,7 +303,8 @@
       "beat_image_006",
       "beat_image_007",
       "beat_image_008",
-      "beat_image_009"
+      "beat_image_009",
+      "beat_image_010"
     ],
     "skipped_nodes": [
       "motion_director",
@@ -309,6 +315,7 @@
       "timeline/TIMELINE.json",
       "timeline/SUBTITLES.ass",
       "render/RENDER_PROFILE.json",
+      "audio_mix/AUDIO_MIX_PROFILE.json",
       "assets/renders/final.mp4",
       "render/RENDER_STATS.json",
       "render/QC_REPORT.json",
@@ -325,11 +332,12 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-14T12:19:24.475385+00:00",
-    "pid": 1934470,
+    "started_at": "2026-09-14T13:09:15.950765+00:00",
+    "pid": 1965714,
     "changed_fields": [
-      "subtitle_font"
+      "narration_gain_db",
+      "subtitle_font_size"
     ],
-    "config_revision_id": "a96df314-cca0-49b1-9ac8-ef36ac09d019"
+    "config_revision_id": "a8e54047-f0d8-4d05-bac1-f9c8924caa81"
   }
 }

@@ -1,14 +1,16 @@
 {
   "schema_version": 2,
-  "revision_id": "a6ae3291-69a2-4eb6-b224-032d1aadc4e6",
+  "revision_id": "1e080fa0-42a4-4d9c-aea2-f68470113df4",
   "kind": "config",
-  "created_at": "2026-09-14T12:19:24.474766+00:00",
+  "created_at": "2026-09-14T13:09:15.949924+00:00",
   "roots": [
+    "audio_mix_profile",
     "render_profile"
   ],
   "affected_nodes": [
     "build_timeline",
     "render_profile",
+    "audio_mix_profile",
     "render_baseline",
     "qc_baseline",
     "polish_audio",
@@ -41,7 +43,6 @@
     "opening_trim",
     "body_images",
     "transition_direction",
-    "audio_mix_profile",
     "beat_image_001",
     "beat_image_002",
     "beat_image_003",
@@ -50,7 +51,8 @@
     "beat_image_006",
     "beat_image_007",
     "beat_image_008",
-    "beat_image_009"
+    "beat_image_009",
+    "beat_image_010"
   ],
   "skipped_nodes": [
     "motion_director",
@@ -61,6 +63,7 @@
     "timeline/TIMELINE.json",
     "timeline/SUBTITLES.ass",
     "render/RENDER_PROFILE.json",
+    "audio_mix/AUDIO_MIX_PROFILE.json",
     "assets/renders/final.mp4",
     "render/RENDER_STATS.json",
     "render/QC_REPORT.json",
@@ -73,15 +76,15 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
+  "status": "RUNNING",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "skip_visual_stages": true,
-  "started_at": "2026-09-14T12:19:24.475385+00:00",
-  "pid": 1934470,
+  "started_at": "2026-09-14T13:09:15.950765+00:00",
+  "pid": 1965714,
   "changed_fields": [
-    "subtitle_font"
+    "narration_gain_db",
+    "subtitle_font_size"
   ],
-  "config_revision_id": "a96df314-cca0-49b1-9ac8-ef36ac09d019",
-  "completed_at": "2026-09-14T12:23:57.946302+00:00"
+  "config_revision_id": "a8e54047-f0d8-4d05-bac1-f9c8924caa81"
 }
