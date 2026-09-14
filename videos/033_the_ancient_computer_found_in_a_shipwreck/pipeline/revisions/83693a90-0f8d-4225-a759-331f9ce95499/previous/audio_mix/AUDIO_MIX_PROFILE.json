@@ -3,14 +3,14 @@
   "baseline_video": "assets/renders/final.mp4",
   "output_video": "assets/renders/polished.mp4",
   "narration": {
-    "gain_db": 10.0
+    "gain_db": 4.0
   },
   "music": {
     "enabled": true,
-    "file": "assets/music/operator_background.mp3",
+    "file": "assets/music/freesound_background.mp3",
     "segments": [
       {
-        "file": "assets/music/operator_background.mp3",
+        "file": "assets/music/freesound_background.mp3",
         "start_seconds": 0.0,
         "end_seconds": 54.57,
         "gain_db": -20.0,
