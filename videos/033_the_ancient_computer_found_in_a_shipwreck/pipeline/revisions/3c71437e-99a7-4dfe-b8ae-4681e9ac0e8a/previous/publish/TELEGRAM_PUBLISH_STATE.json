@@ -1,0 +1,15 @@
+{
+  "schema_version": 3,
+  "status": "FAILED",
+  "updated_at": "2026-09-14T18:11:33.375761+00:00",
+  "deliveries": {
+    "compressed": {
+      "status": "FAILED",
+      "updated_at": "2026-09-14T18:11:33.375646+00:00",
+      "file": "assets/renders/telegram_low.mp4",
+      "sha256": "97a98c1b81852b75cb71a6c3823920fdacabf2bbfd41515513bfa507607e137f",
+      "error": "TypeNotFoundError: Could not find a matching Constructor ID for the TLObject that was supposed to be read with ID d49f34c6. See the FAQ for more details. Remaining bytes: b\"\\xc64\\x9f\\xd4``\\x00\\x00\\x08\\x00\\x00\\x00PY\\x1d\\xeb\\x00\\x00\\x00\\x00\\xdb\\x1eK\\xd2\\xef\\x07[\\x99\\x08Kiwi Log\\x00\\x00\\x00\\x0bkiwibot_log\\x11\\x1cn\\x1c\\x02\\x00\\x00\\x00\\x03\\x0bk\\x1b\\x94g\\tL\\x10\\x01\\x08\\x08\\xd1\\xfd\\xe7\\x9d\\xfc]\\x7f\\x0cQE\\x15\\t\\x01\\x00\\x00\\x00\\x01\\x00\\x00\\x00D\\xaf;j\\xd5$\\xb2_?\\xd8\\x03\\x00\\x15\\xc4\\xb5\\x1c\\x01\\x00\\x00\\x00\\x83\\xcc\\xb8\\xb1+@\\x00\\x02\\x10\\x00\\x00\\x00\\x18\\xac'\\x08\\x00\\x00\\x00\\x00\\xe5p\\xa3 @^\\x82\\x03\\x07Channel\\x0bChannel_Bot\\x06\\xf7\\xd1\\x82\\x02\\x00\\x00\\x00\\xa9\\xa71\\x1b\\x18\\xac'\\x08\\x10\\x01\\x08\\x08\\xb1\\xf2\\xf9_\\xedg4QEp3\\xad\\x1f\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x04\\x00\\x00\\x00\"",
+      "elapsed_seconds": 5.839
+    }
+  }
+}

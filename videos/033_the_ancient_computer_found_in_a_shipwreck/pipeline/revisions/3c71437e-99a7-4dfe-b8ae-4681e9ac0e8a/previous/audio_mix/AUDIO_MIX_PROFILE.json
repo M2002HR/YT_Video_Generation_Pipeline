@@ -3,7 +3,7 @@
   "baseline_video": "assets/renders/final.mp4",
   "output_video": "assets/renders/polished.mp4",
   "narration": {
-    "gain_db": 5.0
+    "gain_db": 10.0
   },
   "music": {
     "enabled": true,

@@ -10,8 +10,8 @@
   "duration_max_seconds": "45",
   "aspect_ratio": "9:16",
   "project": "videos/033_the_ancient_computer_found_in_a_shipwreck",
-  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/ea745b8c-2c88-43b7-8634-a84ba0aea4c2/VOICE_PROFILE.json",
-  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/ea745b8c-2c88-43b7-8634-a84ba0aea4c2/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/VOICE_PROFILE.json",
+  "creative_brief": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 2138947,
+  "pid": 2140843,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -143,16 +143,16 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/ea745b8c-2c88-43b7-8634-a84ba0aea4c2/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/ea745b8c-2c88-43b7-8634-a84ba0aea4c2/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
     "freesound,mixkit,pixabay",
     "--publish",
     "--music-file",
-    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/ea745b8c-2c88-43b7-8634-a84ba0aea4c2/music/background_music.mp3",
+    "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/music/background_music.mp3",
     "--music-file-sha256",
     "01d97304c3f291204fdc3043e32d82313ea2cf2bb3204c38d3a87754fb118e49",
     "--music-source-provider",
@@ -170,18 +170,16 @@
   ],
   "started_at": "2026-09-14T10:56:06.346509+00:00",
   "stopped_by": "panel",
-  "resumed_at": "2026-09-14T18:10:39.838111+00:00",
+  "resumed_at": "2026-09-14T18:14:20.082243+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "83693a90-0f8d-4225-a759-331f9ce95499",
+    "revision_id": "3c71437e-99a7-4dfe-b8ae-4681e9ac0e8a",
     "kind": "config",
-    "created_at": "2026-09-14T18:10:39.837118+00:00",
+    "created_at": "2026-09-14T18:14:20.081202+00:00",
     "roots": [
-      "audio_mix_profile",
-      "background_music"
+      "audio_mix_profile"
     ],
     "affected_nodes": [
-      "background_music",
       "audio_mix_profile",
       "polish_audio",
       "qc_polished",
@@ -208,6 +206,7 @@
       "flow_clip_a",
       "flow_clip_b",
       "elevenlabs_voiceover",
+      "background_music",
       "ajil_alignment",
       "opening_trim",
       "body_images",
@@ -232,14 +231,10 @@
     ],
     "skipped_nodes": [],
     "archived_artifacts": [
-      "assets/music/freesound_background.mp3",
-      "music/MUSIC_SELECTION.json",
-      "music/MUSIC_PLAN.json",
       "audio_mix/AUDIO_MIX_PROFILE.json",
       "assets/renders/polished.mp4",
       "render/QC_REPORT_polished.json",
       "assets/renders/telegram_low.mp4",
-      "render/TELEGRAM_RENDER_PROGRESS.json",
       "pipeline/GIT_PUBLISH_STATE.json",
       "publish/TELEGRAM_PUBLISH_STATE.json"
     ],
@@ -249,20 +244,19 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-14T18:10:39.837970+00:00",
-    "pid": 2138947,
+    "started_at": "2026-09-14T18:14:20.082067+00:00",
+    "pid": 2140843,
     "changed_fields": [
-      "narration_gain_db",
-      "music_upload_id"
+      "narration_gain_db"
     ],
-    "config_revision_id": "ea745b8c-2c88-43b7-8634-a84ba0aea4c2"
+    "config_revision_id": "d69a2777-430e-4c45-80a7-b63acab3d444"
   },
-  "exit_code": 0,
-  "process_exited_at": "2026-09-14T13:13:48.291774+00:00",
+  "exit_code": 1,
+  "process_exited_at": "2026-09-14T18:11:34.720132+00:00",
   "resume_count": 2,
   "music_upload": {
     "schema_version": 1,
-    "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/ea745b8c-2c88-43b7-8634-a84ba0aea4c2/music/background_music.mp3",
+    "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/d69a2777-430e-4c45-80a7-b63acab3d444/music/background_music.mp3",
     "sha256": "01d97304c3f291204fdc3043e32d82313ea2cf2bb3204c38d3a87754fb118e49",
     "extension": ".mp3",
     "mime_type": "audio/mpeg",
@@ -274,15 +268,13 @@
   },
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "83693a90-0f8d-4225-a759-331f9ce95499",
+    "revision_id": "3c71437e-99a7-4dfe-b8ae-4681e9ac0e8a",
     "kind": "config",
-    "created_at": "2026-09-14T18:10:39.837118+00:00",
+    "created_at": "2026-09-14T18:14:20.081202+00:00",
     "roots": [
-      "audio_mix_profile",
-      "background_music"
+      "audio_mix_profile"
     ],
     "affected_nodes": [
-      "background_music",
       "audio_mix_profile",
       "polish_audio",
       "qc_polished",
@@ -309,6 +301,7 @@
       "flow_clip_a",
       "flow_clip_b",
       "elevenlabs_voiceover",
+      "background_music",
       "ajil_alignment",
       "opening_trim",
       "body_images",
@@ -333,14 +326,10 @@
     ],
     "skipped_nodes": [],
     "archived_artifacts": [
-      "assets/music/freesound_background.mp3",
-      "music/MUSIC_SELECTION.json",
-      "music/MUSIC_PLAN.json",
       "audio_mix/AUDIO_MIX_PROFILE.json",
       "assets/renders/polished.mp4",
       "render/QC_REPORT_polished.json",
       "assets/renders/telegram_low.mp4",
-      "render/TELEGRAM_RENDER_PROGRESS.json",
       "pipeline/GIT_PUBLISH_STATE.json",
       "publish/TELEGRAM_PUBLISH_STATE.json"
     ],
@@ -350,12 +339,11 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-14T18:10:39.837970+00:00",
-    "pid": 2138947,
+    "started_at": "2026-09-14T18:14:20.082067+00:00",
+    "pid": 2140843,
     "changed_fields": [
-      "narration_gain_db",
-      "music_upload_id"
+      "narration_gain_db"
     ],
-    "config_revision_id": "ea745b8c-2c88-43b7-8634-a84ba0aea4c2"
+    "config_revision_id": "d69a2777-430e-4c45-80a7-b63acab3d444"
   }
 }

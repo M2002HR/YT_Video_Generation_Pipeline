@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "video": "033_the_ancient_computer_found_in_a_shipwreck",
-  "started_at": "2026-09-14T18:10:41.328973+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-14T18:14:21.652189+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
       "status": "REUSED",
-      "ended_at": "2026-09-14T18:10:41.349319+00:00",
+      "ended_at": "2026-09-14T18:14:21.672621+00:00",
       "elapsed_seconds": 0.0,
       "artifact": "timeline/TIMELINE.json"
     },
     {
       "stage": "render_baseline",
       "status": "REUSED",
-      "ended_at": "2026-09-14T18:10:41.349618+00:00",
+      "ended_at": "2026-09-14T18:14:21.672932+00:00",
       "elapsed_seconds": 0.0,
       "artifact": "assets/renders/final.mp4"
     },
     {
       "stage": "qc_baseline",
       "status": "REUSED",
-      "ended_at": "2026-09-14T18:10:41.349819+00:00",
+      "ended_at": "2026-09-14T18:14:21.673137+00:00",
       "elapsed_seconds": 0.0,
       "artifact": "render/QC_REPORT.json"
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-14T18:10:41.350013+00:00",
+      "started_at": "2026-09-14T18:14:21.673361+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -36,14 +36,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-14T18:10:44.974077+00:00",
-      "elapsed_seconds": 3.624,
+      "ended_at": "2026-09-14T18:14:25.193360+00:00",
+      "elapsed_seconds": 3.52,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 63238021
+      "artifact_bytes": 63237524
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-14T18:10:46.172192+00:00",
+      "started_at": "2026-09-14T18:14:26.186916+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -53,14 +53,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-14T18:10:55.495063+00:00",
-      "elapsed_seconds": 9.323,
+      "ended_at": "2026-09-14T18:14:35.803358+00:00",
+      "elapsed_seconds": 9.616,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1558
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-14T18:10:56.890971+00:00",
+      "started_at": "2026-09-14T18:14:36.909874+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -71,14 +71,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-14T18:11:16.021808+00:00",
-      "elapsed_seconds": 19.131,
+      "ended_at": "2026-09-14T18:14:56.303503+00:00",
+      "elapsed_seconds": 19.394,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 2954981
+      "artifact_bytes": 2953070
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-14T18:11:17.111716+00:00",
+      "started_at": "2026-09-14T18:14:58.540642+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -86,21 +86,9 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-14T18:10:41.328973+00:00"
+        "2026-09-14T18:14:21.652189+00:00"
       ],
       "status": "RUNNING"
-    },
-    {
-      "stage": "git_commit_push",
-      "status": "DONE",
-      "started_at": "2026-09-14T18:10:41.328973+00:00",
-      "ended_at": "2026-09-14T18:11:22.505856+00:00",
-      "elapsed_seconds": 41.177,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "8f5abbc56f09600e90cc5190bcf18566e712482d"
     }
-  ],
-  "completed_at": "2026-09-14T18:11:22.505856+00:00",
-  "total_elapsed_seconds": 73.255
+  ]
 }

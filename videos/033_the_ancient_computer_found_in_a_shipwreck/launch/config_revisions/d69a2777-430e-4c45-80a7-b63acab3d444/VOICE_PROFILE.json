@@ -1,0 +1,10 @@
+{
+  "voice": "Seer Morganna - Intimidating",
+  "model": "Eleven Multilingual v2",
+  "speed": 1.0,
+  "stability": 0.4,
+  "similarity": 0.4,
+  "style": 0.25,
+  "speaker_boost": false,
+  "output_format": "MP3 44.1 kHz (128kbps)"
+}

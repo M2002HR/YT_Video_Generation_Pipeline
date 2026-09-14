@@ -131,8 +131,38 @@
       "status": "REUSED",
       "started_at": "2026-09-14T18:10:41.262436+00:00",
       "artifact": "timing/OPENING_TRIM_REPORT.json"
+    },
+    {
+      "stage": "visual_generation",
+      "status": "REUSED",
+      "started_at": "2026-09-14T18:14:21.465264+00:00",
+      "reason": "render-only configuration revision"
+    },
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "REUSED",
+      "started_at": "2026-09-14T18:14:21.465661+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "REUSED",
+      "started_at": "2026-09-14T18:14:21.528991+00:00",
+      "artifact": "assets/music"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "REUSED",
+      "started_at": "2026-09-14T18:14:21.578024+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_trim",
+      "status": "REUSED",
+      "started_at": "2026-09-14T18:14:21.582435+00:00",
+      "artifact": "timing/OPENING_TRIM_REPORT.json"
     }
   ],
   "status": "REUSED",
-  "updated_at": "2026-09-14T18:10:41.262436+00:00"
+  "updated_at": "2026-09-14T18:14:21.582435+00:00"
 }
