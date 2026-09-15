@@ -1,6 +1,6 @@
 {
   "contract_version": 1,
-  "request_fingerprint": "63ef29ca08260dd7e0ae06ef2d1ff15dc8b2b58e2acd506bfb3bfd967ed4bf8c",
+  "request_fingerprint": "38ca8ee9ccc96c72dc78ec7a1909932110fd1655f331741292c278e0d8481c5f",
   "quality_check": {
     "passed": true,
     "raw_passed": null,
@@ -14,7 +14,7 @@
     "review_provider": null
   },
   "provider": "gemini",
-  "job_id": "c7cfda0e-50c5-4d7e-941e-fe7e1a64a567",
+  "job_id": "c91607cb-befe-4182-8f95-040cfdb4acc3",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Open mode picker, currently Flash",
   "model_verified": true,
@@ -32,7 +32,7 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/e29327b82ef430d3",
+    "workspace_url": "https://gemini.google.com/app/d68f3e48074bafea",
     "submission_fingerprint": null,
     "reference_roles": [
       "style_reference",
@@ -43,7 +43,7 @@
       "model_label_source=mode-picker",
       "extended_thinking_mode=Open mode picker, currently Flash Extended",
       "artifact_source=download",
-      "image=c7cfda0e-50c5-4d7e-941e-fe7e1a64a567_output_1.png 1536x2752 sha256=2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec"
+      "image=c91607cb-befe-4182-8f95-040cfdb4acc3_output_1.png 1536x2752 sha256=f085615f957f4d41eae4a998b462310eca4de6628d3581ac7239f4723601286e"
     ],
     "quality_check": {
       "passed": true,
@@ -57,13 +57,13 @@
       "regressions": [],
       "review_provider": null
     },
-    "request_fingerprint": "63ef29ca08260dd7e0ae06ef2d1ff15dc8b2b58e2acd506bfb3bfd967ed4bf8c",
+    "request_fingerprint": "38ca8ee9ccc96c72dc78ec7a1909932110fd1655f331741292c278e0d8481c5f",
     "quality_iterations": [
       {
         "attempt": 1,
-        "job_id": "c7cfda0e-50c5-4d7e-941e-fe7e1a64a567",
-        "prompt_sha256": "a8c4b65ae77ab2a54008b741ad5f067ecb54edf7bbbed661a4a8000d8fc6ef71",
-        "output_sha256": "2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec",
+        "job_id": "c91607cb-befe-4182-8f95-040cfdb4acc3",
+        "prompt_sha256": "9c0dec1fb47e1c83c2991da59922a278431b89c21a2c1a03dbb08f454a0829f4",
+        "output_sha256": "f085615f957f4d41eae4a998b462310eca4de6628d3581ac7239f4723601286e",
         "quality_check": {
           "passed": true,
           "raw_passed": null,
@@ -97,17 +97,17 @@
     {
       "role": "previous_beat",
       "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/assets/raw_beats/beat_002.png",
-      "sha256": "aefaee4d349f1326d90648af9b8b481e05f41b7b40a39422bb6ba9c08e148cd5"
+      "sha256": "a7f6f891b27c255ff8584b102b5db1cb7b3e85bee14b32a320cdce7176e227f4"
     }
   ],
-  "prompt_sha256": "a8c4b65ae77ab2a54008b741ad5f067ecb54edf7bbbed661a4a8000d8fc6ef71",
-  "prompt": "Gemini Image Prompt — Beat 3\n\nCreate exactly one standalone 9:16 image: a straight-on macro sectional technical illustration of a corroded Hellenistic Greek bronze mechanism fragment, visually opened to reveal a compact, tightly packed cluster of precision-cut, intermeshing bronze gear wheels inside the broken casing. Concentrate the dense circular gear train in the upper-middle while allowing the full illustration height to continue naturally—no blank lower caption field or low-detail reserve. Render as precise compass-and-stylus technical drawing with clean dark contours, readable silhouettes, restrained cel shading, fine archaeological engraving hatching, occasional worn or broken edges, aged vellum grain and restrained oxidized-bronze patina speckling. Use deep Aegean blue and charcoal foundations, parchment cream, verdigris, muted antique bronze and ochre, with sparse pale celestial-blue edge accents. Light with cool raking archaeological illumination, restrained warm bronze glints and soft shadow falloff. Enclose the illustration in the recurring thin, irregular patinated-bronze instrument bezel with subtle corrosion, tiny mechanical notches and worn circular scoring, keeping the inner scene open and legible. The style_reference governs the simplified hand-drawn 2D educational rendering treatment; the world_keyframe establishes the technical-drawing medium, bezel language, materials, texture, palette and lighting without copying its composition; the previous_beat is binding for recurring frame material, edge treatment, inner illustration window, texture, palette and lighting only—do not copy its crop, camera angle, composition, subject placement or focal object. Show no host or human figure. No labels, inscriptions, letters, numbers, captions or readable text. No storyboard, grid, collage, multiple panels, photorealism, glossy 3D CGI, steampunk, modern machinery, electronics, CAD UI, holograms, fantasy gears or pristine invented mechanisms. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "prompt_sha256": "9c0dec1fb47e1c83c2991da59922a278431b89c21a2c1a03dbb08f454a0829f4",
+  "prompt": "Gemini Image Prompt — Beat 3\n\nCreate exactly one vertical 9:16 image: an extreme-macro archaeological cutaway technical drawing of the corroded Antikythera bronze fragment, visually opened to reveal a dense, compact cluster of tightly packed, precision-cut hand-made bronze gears. Interlocking gear teeth dominate the frame in layered depth, with surviving jagged corroded shell edges forming an irregular border around the exposed mechanism; clearly distinguish archaeologically preserved broken outer material from cautiously reconstructed internal gear geometry without implying uncertain parts are original. Render in the established world medium of precise compass-and-stylus technical linework with subtle historical-engraving hatching, aged vellum grain, restrained oxidized-bronze patina speckling, deep Aegean blue and charcoal foundations, parchment cream, verdigris, muted antique bronze and ochre, plus sparse pale celestial-blue accents. Use cool raking archaeological side light so several tooth edges catch restrained warm bronze glints while soft shadows clarify depth. Preserve the recurring thin irregular patinated-bronze instrument bezel, worn circular scoring, tiny mechanical notches, corrosion, and vellum-like inner illustration window, while using the full illustration height naturally with no caption reserve or blank lower band. Reference roles: style_reference governs rendering medium and graphic treatment; world_keyframe anchors the established archaeological-mechanical vocabulary and materials only; previous_beat is binding for bezel/frame language, material and edge treatment, inner-window texture, palette, and lighting only—do not copy its composition, crop, camera angle, subject placement, or focal arrangement. No host or character. No modern machinery, steel, electronics, CAD UI, steampunk, fantasy gears, photorealism, glossy 3D CGI, storyboard, grid, collage, panels, captions, labels, letters, numbers, inscriptions, or any readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
   "output_path": "assets/raw_beats/beat_003.png",
-  "output_sha256": "2c92d42c8bfad4f21b25669f1f58fa3136b28aebfdc9893d88e9fee3e22087ec",
+  "output_sha256": "f085615f957f4d41eae4a998b462310eca4de6628d3581ac7239f4723601286e",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 72.316,
-  "completed_at": "2026-09-14T11:32:25Z"
+  "elapsed_seconds": 75.322,
+  "completed_at": "2026-09-15T03:58:37Z"
 }

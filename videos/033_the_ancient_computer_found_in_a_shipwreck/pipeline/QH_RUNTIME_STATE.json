@@ -6,13 +6,13 @@
   "pipeline_state": "DONE",
   "stages": {
     "visual_plan": {
-      "status": "DONE",
-      "updated_at": "2026-09-14T18:44:45Z",
-      "beats": 10
+      "status": "REUSED",
+      "updated_at": "2026-09-15T03:53:23Z",
+      "artifact": "VISUAL_PLAN.json"
     },
     "character_resolution": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:43:53Z",
+      "updated_at": "2026-09-15T03:53:20Z",
       "requested_mode": "manual",
       "requested_character_id": "moss_cloaked_crone",
       "resolved_character_id": "moss_cloaked_crone",
@@ -22,32 +22,32 @@
     },
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:43:53Z",
+      "updated_at": "2026-09-15T03:53:20Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:43:53Z",
+      "updated_at": "2026-09-15T03:53:20Z",
       "artifact": "SCRIPT_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:43:53Z",
+      "updated_at": "2026-09-15T03:53:20Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:43:53Z",
+      "updated_at": "2026-09-15T03:53:20Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:43:53Z",
+      "updated_at": "2026-09-15T03:53:20Z",
       "artifact": "world_style_anchor.png → catalog/019_verdigris_celestial_mechanism_drawing_00"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-14T18:43:55Z",
+      "updated_at": "2026-09-15T03:53:21Z",
       "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
       "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
       "camera_pattern": "over_shoulder",
@@ -55,102 +55,161 @@
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "world_keyframe.png"
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "orb_design_sheet.png"
     },
     "book_cover_design": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "ENTRY_FRAME_DIRECTION.txt"
     },
     "book_cover": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "orb_entry_frame.png"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "flow_prompt_question_intro.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T18:44:46Z",
+      "updated_at": "2026-09-15T03:53:23Z",
       "artifact": "flow_prompt_orb_transition.txt"
     },
     "beat_image_001": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:14Z",
-      "artifact": "beat_001.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T03:54:59Z",
+      "sha256": "a5e664f809c6e85f3337734660adffad8904e161b0ec16a12d4477f7d18e47c2",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
     },
     "beat_image_002": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:14Z",
-      "artifact": "beat_002.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T03:56:53Z",
+      "sha256": "a7f6f891b27c255ff8584b102b5db1cb7b3e85bee14b32a320cdce7176e227f4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_003": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:14Z",
-      "artifact": "beat_003.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T03:58:37Z",
+      "sha256": "f085615f957f4d41eae4a998b462310eca4de6628d3581ac7239f4723601286e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_004": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:15Z",
-      "artifact": "beat_004.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:00:21Z",
+      "sha256": "24864b64d558cb3e1c641db79213ad5510349b71a546bf87fb0913bc33d49540",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_005": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:15Z",
-      "artifact": "beat_005.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:02:05Z",
+      "sha256": "ce239bcfcb1763d8f73b2567185bdcbd81bbf652a33624ed340255de5e0b1fd2",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_006": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:15Z",
-      "artifact": "beat_006.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:03:50Z",
+      "sha256": "21f86f1c03aee986b4817d9832a5821f12c99c5117095cfa95a8086ac8c3fc0c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_007": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:15Z",
-      "artifact": "beat_007.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:05:37Z",
+      "sha256": "297ae90f81b40f2fd2df61f97289223e91b6670a69fd2c3de4ea9d349b3c8b22",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_008": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:15Z",
-      "artifact": "beat_008.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:10:19Z",
+      "sha256": "8cf9c4522e79ac974f86a3c6b34e1227d9888d675844f10dc1e7a273e5b9038b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "beat_image_009": {
-      "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:16Z",
-      "artifact": "beat_009.png"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:12:07Z",
+      "sha256": "55d8cc8db8df88a9a1a4b6db35ed2fced44ef482dc96c97e5f2e210b9eb27624",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
     },
     "flow_clip_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:17Z",
+      "updated_at": "2026-09-15T04:14:26Z",
       "artifact": "question_intro_source.mp4 (8.00s)"
     },
     "flow_clip_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-14T12:07:17Z",
+      "updated_at": "2026-09-15T04:14:26Z",
       "artifact": "orb_transition_source.mp4 (4.01s)"
     },
     "qh_visual_complete": {
       "status": "DONE",
-      "updated_at": "2026-09-14T12:07:17Z",
-      "body_images": 9
+      "updated_at": "2026-09-15T04:14:26Z",
+      "body_images": 10
     },
     "body_images": {
-      "status": "RUNNING",
-      "updated_at": "2026-09-14T18:44:46Z"
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:14:22Z"
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:14:21Z",
+      "sha256": "ea7293c4ac1a06aacfae45cd4fbd8243840ffc3a15d689b635f4ea2be64b31b6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-15T04:14:25Z",
+      "boundaries": 9
     }
   },
   "events": [
@@ -513,7 +572,149 @@
       "elapsed_seconds": 49.404,
       "at": "2026-09-14T18:44:45Z",
       "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.626,
+      "at": "2026-09-15T03:53:21Z",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "verdigris_celestial_mechanism_drawing_001"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 66.52,
+      "at": "2026-09-15T03:54:59Z",
+      "sha256": "a5e664f809c6e85f3337734660adffad8904e161b0ec16a12d4477f7d18e47c2",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 87.769,
+      "at": "2026-09-15T03:56:53Z",
+      "sha256": "a7f6f891b27c255ff8584b102b5db1cb7b3e85bee14b32a320cdce7176e227f4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 75.86,
+      "at": "2026-09-15T03:58:37Z",
+      "sha256": "f085615f957f4d41eae4a998b462310eca4de6628d3581ac7239f4723601286e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 72.698,
+      "at": "2026-09-15T04:00:21Z",
+      "sha256": "24864b64d558cb3e1c641db79213ad5510349b71a546bf87fb0913bc33d49540",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 75.745,
+      "at": "2026-09-15T04:02:05Z",
+      "sha256": "ce239bcfcb1763d8f73b2567185bdcbd81bbf652a33624ed340255de5e0b1fd2",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 75.876,
+      "at": "2026-09-15T04:03:50Z",
+      "sha256": "21f86f1c03aee986b4817d9832a5821f12c99c5117095cfa95a8086ac8c3fc0c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 81.812,
+      "at": "2026-09-15T04:05:37Z",
+      "sha256": "297ae90f81b40f2fd2df61f97289223e91b6670a69fd2c3de4ea9d349b3c8b22",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 253.39,
+      "at": "2026-09-15T04:10:19Z",
+      "sha256": "8cf9c4522e79ac974f86a3c6b34e1227d9888d675844f10dc1e7a273e5b9038b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 81.867,
+      "at": "2026-09-15T04:12:07Z",
+      "sha256": "55d8cc8db8df88a9a1a4b6db35ed2fced44ef482dc96c97e5f2e210b9eb27624",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 105.867,
+      "at": "2026-09-15T04:14:21Z",
+      "sha256": "ea7293c4ac1a06aacfae45cd4fbd8243840ffc3a15d689b635f4ea2be64b31b6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1259.25,
+      "at": "2026-09-15T04:14:22Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.257,
+      "at": "2026-09-15T04:14:25Z",
+      "boundaries": 9
     }
   ],
-  "updated_at": "2026-09-14T18:44:46Z"
+  "updated_at": "2026-09-15T04:14:26Z"
 }

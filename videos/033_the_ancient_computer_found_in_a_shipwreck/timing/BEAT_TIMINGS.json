@@ -99,8 +99,18 @@
       "speech_end": 46.28,
       "match_confidence": 1.0,
       "display_start": 43.02,
+      "display_end": 46.54,
+      "display_duration": 3.52
+    },
+    {
+      "beat_id": 10,
+      "narration": "It was a hand-powered mechanical model of the heavens.",
+      "speech_start": 46.54,
+      "speech_end": 50.5,
+      "match_confidence": 0.8,
+      "display_start": 46.54,
       "display_end": 54.57,
-      "display_duration": 11.55
+      "display_duration": 8.03
     }
   ]
 }

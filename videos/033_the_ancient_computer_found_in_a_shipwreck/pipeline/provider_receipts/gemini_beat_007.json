@@ -1,6 +1,6 @@
 {
   "contract_version": 1,
-  "request_fingerprint": "abfa4a6c76cf517a82f02a4f3df2a86fd53fab01c4285fef2481b4611716b667",
+  "request_fingerprint": "525c9c134bd607316b6d06a7b195570d4893324d6e56283a57e541faa1060017",
   "quality_check": {
     "passed": true,
     "raw_passed": null,
@@ -14,7 +14,7 @@
     "review_provider": null
   },
   "provider": "gemini",
-  "job_id": "ae761c53-a6fc-4b89-bebf-d7681548ce71",
+  "job_id": "43292bac-0845-43a1-b92a-6a8e238d498b",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Open mode picker, currently Flash",
   "model_verified": true,
@@ -32,7 +32,7 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/f740b7b6d0cc2c8c",
+    "workspace_url": "https://gemini.google.com/app/cfb2a36e086230d1",
     "submission_fingerprint": null,
     "reference_roles": [
       "style_reference",
@@ -43,7 +43,7 @@
       "model_label_source=mode-picker",
       "extended_thinking_mode=Open mode picker, currently Flash Extended",
       "artifact_source=download",
-      "image=ae761c53-a6fc-4b89-bebf-d7681548ce71_output_1.png 1536x2752 sha256=c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa"
+      "image=43292bac-0845-43a1-b92a-6a8e238d498b_output_1.png 1536x2752 sha256=297ae90f81b40f2fd2df61f97289223e91b6670a69fd2c3de4ea9d349b3c8b22"
     ],
     "quality_check": {
       "passed": true,
@@ -57,13 +57,13 @@
       "regressions": [],
       "review_provider": null
     },
-    "request_fingerprint": "abfa4a6c76cf517a82f02a4f3df2a86fd53fab01c4285fef2481b4611716b667",
+    "request_fingerprint": "525c9c134bd607316b6d06a7b195570d4893324d6e56283a57e541faa1060017",
     "quality_iterations": [
       {
         "attempt": 1,
-        "job_id": "ae761c53-a6fc-4b89-bebf-d7681548ce71",
-        "prompt_sha256": "fa6247b981a9e67aa0d40bf272eb21f90a2e20d50486cd7afe9a7ce8ba045832",
-        "output_sha256": "c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa",
+        "job_id": "43292bac-0845-43a1-b92a-6a8e238d498b",
+        "prompt_sha256": "ab982695818ee0a5406f4e316d2b79348be0747e35eaf8bb89105822bdd06ec9",
+        "output_sha256": "297ae90f81b40f2fd2df61f97289223e91b6670a69fd2c3de4ea9d349b3c8b22",
         "quality_check": {
           "passed": true,
           "raw_passed": null,
@@ -97,17 +97,17 @@
     {
       "role": "previous_beat",
       "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/assets/raw_beats/beat_006.png",
-      "sha256": "b750c2447b9f3a54f7ad58dcac7ddbf1ce8c9e00ec1d1ddf97f5caeadde8ca76"
+      "sha256": "21f86f1c03aee986b4817d9832a5821f12c99c5117095cfa95a8086ac8c3fc0c"
     }
   ],
-  "prompt_sha256": "fa6247b981a9e67aa0d40bf272eb21f90a2e20d50486cd7afe9a7ce8ba045832",
-  "prompt": "Create exactly one standalone 9:16 image, not a storyboard, grid, collage, split panel, or multi-frame layout: a vertical abstract eclipse-cycle diagram in the established Antikythera-world visual language, showing nested bronze-and-charcoal orbital rings with repeated Moon positions sweeping through a spiral-like celestial sequence and culminating in a strongly darkened Sun-Moon alignment that clearly suggests an eclipse; visually connect the lower arc of this cycle to one small hand-cut bronze gear segment, implying a mechanical repeating cycle without overcomplicating the composition. Render as simplified hand-drawn 2D educational animation translated into precise compass-and-stylus technical drawing, with clean dark contours, restrained cel shading, subtle archaeological engraving hatching, aged vellum grain, oxidized verdigris speckling, deep Aegean blue and charcoal foundations, parchment cream, muted antique bronze and ochre, and sparse pale celestial-blue accents. Use cool raking archaeological light, soft shadow falloff, warm bronze glints, and the recurring thin irregular patinated-bronze instrument bezel with worn scoring, corrosion, tiny mechanical notches, and an open vellum-like inner illustration window. Fill the full illustration height naturally; do not create any caption reserve, blank strip, empty panel, or low-detail band. The style_reference defines the hand-drawn 2D rendering discipline; the world_keyframe establishes this technical-drawing world, bezel, materials, palette, texture, and lighting; the previous_beat is binding only for recurring frame language, material/edge treatment, inner-window treatment, texture, palette, and lighting, and must not be copied for composition, crop, camera angle, subject placement, or focal object. No host or character. No readable text, letters, numbers, captions, labels, symbols resembling writing, UI, modern machinery, electronics, steampunk, glossy CGI, neon, blueprint grids, or holograms. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "prompt_sha256": "ab982695818ee0a5406f4e316d2b79348be0747e35eaf8bb89105822bdd06ec9",
+  "prompt": "Gemini Image Prompt — Beat 7\n\nCreate exactly one standalone 9:16 image, not a storyboard, grid, collage, multi-panel layout, captioned graphic, or text-bearing design. Render an abstract but historically grounded eclipse-cycle diagram in the established Antikythera world: nested gear-linked arcs and precise orbital geometry form a diagrammatic oblique composition, with a darkened eclipsed disc near the upper third, simple Sun and crescent Moon forms aligned diagonally, and a spiral-like cycle path sweeping dynamically from bottom right toward top left. Use simplified hand-drawn 2D educational animation translated into a technical drawing on aged vellum, with precise compass-and-stylus charcoal linework, subtle historical-engraving hatching, restrained cel shading, worn edges, verdigris speckling, deep Aegean blue and charcoal foundations, parchment cream, oxidized copper, muted antique bronze and ochre, plus sparse pale celestial-blue accents. Preserve the recurring thin irregular patinated-bronze instrument bezel around the full-height vellum illustration window, including restrained corrosion, tiny mechanical notches and worn circular scoring. Cool raking archaeological light, warm bronze glints, and soft shadow falloff; emphasize charcoal-heavy shadow around the eclipse alignment while keeping the celestial mechanics readable. Fill the entire illustration height naturally with no lower caption reserve, blank strip, empty panel, or low-detail band. The style_reference defines rendering language and palette; the world_keyframe defines the recurring bezel, material vocabulary and archaeological-celestial world treatment; the previous_beat is binding only for frame language, texture, edge treatment, palette and lighting, never its composition, crop, camera angle, subject placement or focal object. No host or human figure. No readable text, letters, numerals, labels, UI, modern machinery, CAD grids, holograms, steampunk, photorealism, glossy CGI, anime or fantasy gears. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
   "output_path": "assets/raw_beats/beat_007.png",
-  "output_sha256": "c8eb42812a749b9010ef0ec8ce35b36b32efe6e168f340359171204c1d6796aa",
+  "output_sha256": "297ae90f81b40f2fd2df61f97289223e91b6670a69fd2c3de4ea9d349b3c8b22",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 78.278,
-  "completed_at": "2026-09-14T11:39:50Z"
+  "elapsed_seconds": 81.284,
+  "completed_at": "2026-09-15T04:05:37Z"
 }

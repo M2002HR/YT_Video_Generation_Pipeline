@@ -1,6 +1,6 @@
 {
   "contract_version": 1,
-  "request_fingerprint": "e982e39e840cbcb53c2fb0a69b4a08a6cb4e7c1736222e4cdd438ad595e4d912",
+  "request_fingerprint": "1751114cb331fba85eca1f20a3c1715e87ca2b97af4251c73ec082d788f36c28",
   "quality_check": {
     "passed": true,
     "raw_passed": null,
@@ -14,7 +14,7 @@
     "review_provider": null
   },
   "provider": "gemini",
-  "job_id": "e47eede5-6949-4da3-8361-8e4bdc948339",
+  "job_id": "ab4f6cbc-c0b3-4942-821f-0a897414765c",
   "requested_model": "nano_banana_2",
   "actual_model_label": "Open mode picker, currently Flash",
   "model_verified": true,
@@ -32,7 +32,7 @@
     "actual_duration_seconds": null,
     "requested_resolution": null,
     "actual_resolution": null,
-    "workspace_url": "https://gemini.google.com/app/8f228cd2d3a54cef",
+    "workspace_url": "https://gemini.google.com/app/66799415b43f1a00",
     "submission_fingerprint": null,
     "reference_roles": [
       "style_reference",
@@ -43,7 +43,7 @@
       "model_label_source=mode-picker",
       "extended_thinking_mode=Open mode picker, currently Flash Extended",
       "artifact_source=download",
-      "image=e47eede5-6949-4da3-8361-8e4bdc948339_output_1.png 1536x2752 sha256=b750c2447b9f3a54f7ad58dcac7ddbf1ce8c9e00ec1d1ddf97f5caeadde8ca76"
+      "image=ab4f6cbc-c0b3-4942-821f-0a897414765c_output_1.png 1536x2752 sha256=21f86f1c03aee986b4817d9832a5821f12c99c5117095cfa95a8086ac8c3fc0c"
     ],
     "quality_check": {
       "passed": true,
@@ -57,13 +57,13 @@
       "regressions": [],
       "review_provider": null
     },
-    "request_fingerprint": "e982e39e840cbcb53c2fb0a69b4a08a6cb4e7c1736222e4cdd438ad595e4d912",
+    "request_fingerprint": "1751114cb331fba85eca1f20a3c1715e87ca2b97af4251c73ec082d788f36c28",
     "quality_iterations": [
       {
         "attempt": 1,
-        "job_id": "e47eede5-6949-4da3-8361-8e4bdc948339",
-        "prompt_sha256": "c9df7ac0045c38d0b1b738951decbfd5c5bdbe628431cc3988aa9e65152297cc",
-        "output_sha256": "b750c2447b9f3a54f7ad58dcac7ddbf1ce8c9e00ec1d1ddf97f5caeadde8ca76",
+        "job_id": "ab4f6cbc-c0b3-4942-821f-0a897414765c",
+        "prompt_sha256": "394121a36dea4e8993c34ad53b2f9b3966e353d3d710fe112de4fc23f4adca65",
+        "output_sha256": "21f86f1c03aee986b4817d9832a5821f12c99c5117095cfa95a8086ac8c3fc0c",
         "quality_check": {
           "passed": true,
           "raw_passed": null,
@@ -97,17 +97,17 @@
     {
       "role": "previous_beat",
       "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/assets/raw_beats/beat_005.png",
-      "sha256": "8d5dcd2bb1b9ea624a0d436d486063e45280e7c9d538106b313170ebcefc4284"
+      "sha256": "ce239bcfcb1763d8f73b2567185bdcbd81bbf652a33624ed340255de5e0b1fd2"
     }
   ],
-  "prompt_sha256": "c9df7ac0045c38d0b1b738951decbfd5c5bdbe628431cc3988aa9e65152297cc",
-  "prompt": "Gemini Image Prompt — Beat 6\n\nCreate exactly one 9:16 image: a clean, front-facing orthographic technical drawing of a single circular astronomical dial showing two distinct pointer indicators on the same face—one marked only by a small stylized sun disk, the other by a small moon sphere—set within restrained concentric orbital geometry that clearly communicates tracking the Sun and Moon. Render in precise compass-and-stylus linework with subtle historical-engraving hatching, aged vellum grain, restrained oxidized-bronze patina speckling, worn edges, and a muted palette of deep Aegean blue, charcoal, parchment cream, verdigris copper, antique bronze, ochre, and sparse pale celestial-blue orbital accents. Use cool raking archaeological light, restrained warm bronze glints, and soft shadow falloff. Surround the full-height illustration with the recurring thin, irregular patinated-bronze instrument bezel, including subtle corrosion, tiny mechanical notches, and worn circular scoring; keep the central dial balanced, legible, and isolated with generous negative space. Fill the entire illustration height naturally—no lower caption field, blank strip, empty panel, or low-detail reserve. Use style_reference only to preserve the established rendering style; use world_keyframe only for the world's technical-drawing medium, materials, bezel language, texture, palette, and lighting; use previous_beat as binding continuity for those same recurring visual properties, but do not copy its composition, crop, camera angle, subject placement, or focal object. Do not carry over any unrelated opening environment or entry mechanism. No photorealism, glossy 3D, steampunk, modern machinery, electronics, CAD UI, holograms, fantasy gears, readable inscriptions, letters, numerals, labels, captions, or generated text. No storyboard, grid, collage, split screen, or multiple panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "prompt_sha256": "394121a36dea4e8993c34ad53b2f9b3966e353d3d710fe112de4fc23f4adca65",
+  "prompt": "Gemini Image Prompt — Beat 6\n\nCreate exactly one 9:16 image: a symmetrical, front-facing close-up of a Hellenistic Greek astronomical dial showing that one dial tracked the Sun and Moon, rendered as a precise technical drawing on aged vellum with subtle historical-engraving hatching. Center concentric circular rings vertically; place a small radiant symbolic Sun disc at upper right and a crescent Moon indicator at lower left on the same circular path, with sparse pale celestial-blue orbital arcs behind them and no labels. Use deep Aegean blue and charcoal foundations, parchment cream, oxidized-copper verdigris, muted antique bronze and ochre, with cool raking archaeological light, restrained warm bronze glints and soft shadow falloff. Enclose the illustration in the recurring thin, irregular patinated-bronze instrument bezel with restrained corrosion, tiny mechanical notches, worn circular scoring and occasional broken edges; fill the full illustration height naturally with matching texture and detail, with no caption reserve or blank lower strip. Keep the mechanism archaeologically plausible: hand-cut bronze geometry, no modern clockwork, electronics, fantasy machinery or pristine components. Reference roles: style_reference guides clean readable silhouettes, dark contours, restrained cel shading and educational clarity only; world_keyframe establishes the technical-drawing medium, bezel, vellum grain, verdigris material language, palette and lighting; previous_beat is binding for those recurring materials, edge treatment, inner-window texture, palette and light, but do not copy its composition, crop, camera angle, subject placement or focal object. No host. No photorealism, glossy 3D CGI, steampunk, anime, CAD UI, holograms, modern devices, storyboard, grid, collage, panels, captions, letters, numbers, labels, words or any readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every body image is contained within a recurring thin, irregular patinated-bronze instrument bezel surrounding a vellum-like inner illustration window; corners show restrained corrosion, tiny mechanical notches and worn circular scoring, while the main scene remains open and readable rather than densely ornamented. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
   "output_path": "assets/raw_beats/beat_006.png",
-  "output_sha256": "b750c2447b9f3a54f7ad58dcac7ddbf1ce8c9e00ec1d1ddf97f5caeadde8ca76",
+  "output_sha256": "21f86f1c03aee986b4817d9832a5821f12c99c5117095cfa95a8086ac8c3fc0c",
   "output_dimensions": [
     1536,
     2752
   ],
-  "elapsed_seconds": 78.271,
-  "completed_at": "2026-09-14T11:38:02Z"
+  "elapsed_seconds": 75.32,
+  "completed_at": "2026-09-15T04:03:50Z"
 }

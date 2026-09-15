@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-15T04:18:11.616626+00:00",
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/assets/renders/final.mp4",
+  "output_bytes": 65785801,
+  "target_duration_seconds": 54.57,
+  "actual_duration_seconds": 54.57,
+  "duration_drift_seconds": 0.0,
+  "wall_seconds": 215.434,
+  "realtime_factor": 3.948,
+  "beats": 12,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "subtitles": true,
+  "branding": {
+    "logo": false,
+    "title": true
+  },
+  "resource_budget": 0.8,
+  "cpus_available": 2,
+  "threads": {
+    "encoder": 2,
+    "filter": 2,
+    "filter_complex": 2,
+    "source": "render profile"
+  },
+  "nice": 10,
+  "ionice": true,
+  "supersample": 2,
+  "supersample_note": "",
+  "motion_render_backend": "single_graph",
+  "motion_segments_rendered": 0,
+  "motion_segments_reused": 0,
+  "peak_child_rss_mb": 1319.0
+}

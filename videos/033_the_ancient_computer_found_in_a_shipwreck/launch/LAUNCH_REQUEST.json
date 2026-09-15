@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "q_station",
   "job_id": "05e326d1-cf5d-48be-928c-3d2635399ea8",
-  "status": "STOPPED",
+  "status": "RUNNING",
   "created_at": "2026-09-14T10:56:06.344951+00:00",
   "topic": "The Ancient “Computer” Found in a Shipwreck",
   "video_id": "033",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "7642c078-625b-42a0-aa51-4977592c78f2",
   "launched_from_video_id": "028",
   "launch_reason": "topic_change",
-  "pid": 2159061,
+  "pid": 2451956,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -171,7 +171,7 @@
   ],
   "started_at": "2026-09-14T10:56:06.346509+00:00",
   "stopped_by": "panel",
-  "resumed_at": "2026-09-14T18:43:51.595244+00:00",
+  "resumed_at": "2026-09-15T03:53:17.723649+00:00",
   "last_config_revision": {
     "schema_version": 2,
     "revision_id": "6bb649d5-5852-4315-94f3-04162077426c",
@@ -255,7 +255,7 @@
   },
   "exit_code": 0,
   "process_exited_at": "2026-09-14T18:42:35.674019+00:00",
-  "resume_count": 3,
+  "resume_count": 4,
   "music_upload": {
     "schema_version": 1,
     "path": "videos/033_the_ancient_computer_found_in_a_shipwreck/launch/config_revisions/737af624-f73c-4a9c-a842-ef3e6841e502/music/background_music.mp3",
@@ -347,6 +347,5 @@
     "started_at": "2026-09-14T18:43:51.595054+00:00",
     "pid": 2159061,
     "completed_at": "2026-09-14T18:45:01.573849+00:00"
-  },
-  "completed_at": "2026-09-14T18:45:01.573849+00:00"
+  }
 }

@@ -17,7 +17,8 @@ Timestamp source: word
 | 06 | 00:32.440 → 00:34.680 | 2.240s | 00:32.440 → 00:34.380 | 100% | One dial tracked the Sun and Moon. |
 | 07 | 00:34.680 → 00:38.440 | 3.760s | 00:34.680 → 00:38.080 | 100% | Others modeled cycles used to predict eclipses. |
 | 08 | 00:38.440 → 00:43.020 | 4.580s | 00:38.440 → 00:42.340 | 100% | Another tracked the cycle of major Greek games. |
-| 09 | 00:43.020 → 00:54.570 | 11.550s | 00:43.020 → 00:46.280 | 100% | Inscriptions even explained parts of its operation. |
+| 09 | 00:43.020 → 00:46.540 | 3.520s | 00:43.020 → 00:46.280 | 100% | Inscriptions even explained parts of its operation. |
+| 10 | 00:46.540 → 00:54.570 | 8.030s | 00:46.540 → 00:50.500 | 80% | It was a hand-powered mechanical model of the heavens. |
 
 ## QC
 
