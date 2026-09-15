@@ -1,0 +1,1926 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 59.167,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.708,
+      "duration": 4.708,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/orb_transition_trimmed.mp4",
+      "start": 4.708,
+      "end": 10.25,
+      "duration": 5.542,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 10.25,
+      "end": 16.02,
+      "duration": 5.77,
+      "speech_start": 11.28,
+      "speech_end": 15.02,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Within hours, roads empty and power grids begin failing.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 16.02,
+      "end": 20.5,
+      "duration": 4.48,
+      "speech_start": 16.02,
+      "speech_end": 19.74,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Without operators, pumps stop and tunnels start flooding.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 20.5,
+      "end": 23.72,
+      "duration": 3.22,
+      "speech_start": 20.5,
+      "speech_end": 22.96,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pets trapped indoors face danger first.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 23.72,
+      "end": 27.02,
+      "duration": 3.3,
+      "speech_start": 23.72,
+      "speech_end": 26.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Livestock escape fences or die without care.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 27.02,
+      "end": 29.82,
+      "duration": 2.8,
+      "speech_start": 27.02,
+      "speech_end": 29.32,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Unattended fires can burn unchecked.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 29.82,
+      "end": 32.98,
+      "duration": 3.16,
+      "speech_start": 29.82,
+      "speech_end": 32.98,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Weeds crack pavement; vines climb buildings.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 32.98,
+      "end": 36.96,
+      "duration": 3.98,
+      "speech_start": 32.98,
+      "speech_end": 36.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Rust, leaks, and frost weaken roofs.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 36.96,
+      "end": 40.36,
+      "duration": 3.4,
+      "speech_start": 36.96,
+      "speech_end": 39.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Wild animals spread through quieter towns.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 40.36,
+      "end": 44.48,
+      "duration": 4.12,
+      "speech_start": 40.36,
+      "speech_end": 43.86,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Satellites eventually fail or fall from orbit.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 44.48,
+      "end": 50.2,
+      "duration": 5.72,
+      "speech_start": 44.48,
+      "speech_end": 49.08,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Stone, glass, plastic, and monuments can outlast generations.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 50.2,
+      "end": 59.167,
+      "duration": 8.967,
+      "speech_start": 50.2,
+      "speech_end": 54.9,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Nature wouldn't erase us quickly; it would build over us.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 0.16,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.02,
+          "end": 0.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.16,
+      "end": 0.4,
+      "text": "every",
+      "ass_text": "every",
+      "words": [
+        {
+          "text": "every",
+          "start": 0.16,
+          "end": 0.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.4,
+      "end": 0.7,
+      "text": "human",
+      "ass_text": "human",
+      "words": [
+        {
+          "text": "human",
+          "start": 0.4,
+          "end": 0.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.7,
+      "end": 1.3,
+      "text": "vanished",
+      "ass_text": "vanished",
+      "words": [
+        {
+          "text": "vanished",
+          "start": 0.7,
+          "end": 1.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.3,
+      "end": 1.98,
+      "text": "tomorrow,",
+      "ass_text": "tomorrow,",
+      "words": [
+        {
+          "text": "tomorrow,",
+          "start": 1.3,
+          "end": 1.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.98,
+      "end": 2.1,
+      "text": "how",
+      "ass_text": "how",
+      "words": [
+        {
+          "text": "how",
+          "start": 1.98,
+          "end": 2.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.1,
+      "end": 2.42,
+      "text": "long",
+      "ass_text": "long",
+      "words": [
+        {
+          "text": "long",
+          "start": 2.1,
+          "end": 2.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.42,
+      "end": 2.66,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 2.42,
+          "end": 2.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.66,
+      "end": 2.86,
+      "text": "this",
+      "ass_text": "this",
+      "words": [
+        {
+          "text": "this",
+          "start": 2.66,
+          "end": 2.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.86,
+      "end": 3.2,
+      "text": "garden",
+      "ass_text": "garden",
+      "words": [
+        {
+          "text": "garden",
+          "start": 2.86,
+          "end": 3.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.2,
+      "end": 3.56,
+      "text": "keep",
+      "ass_text": "keep",
+      "words": [
+        {
+          "text": "keep",
+          "start": 3.2,
+          "end": 3.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.56,
+      "end": 4.0,
+      "text": "watering",
+      "ass_text": "watering",
+      "words": [
+        {
+          "text": "watering",
+          "start": 3.56,
+          "end": 4.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.0,
+      "end": 4.7,
+      "text": "itself?",
+      "ass_text": "itself?",
+      "words": [
+        {
+          "text": "itself?",
+          "start": 4.0,
+          "end": 4.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.84,
+      "end": 6.04,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 5.84,
+          "end": 6.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.04,
+      "end": 6.38,
+      "text": "crone",
+      "ass_text": "crone",
+      "words": [
+        {
+          "text": "crone",
+          "start": 6.04,
+          "end": 6.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.38,
+      "end": 6.88,
+      "text": "raises",
+      "ass_text": "raises",
+      "words": [
+        {
+          "text": "raises",
+          "start": 6.38,
+          "end": 6.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.88,
+      "end": 7.28,
+      "text": "her",
+      "ass_text": "her",
+      "words": [
+        {
+          "text": "her",
+          "start": 6.88,
+          "end": 7.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.28,
+      "end": 7.78,
+      "text": "orb,",
+      "ass_text": "orb,",
+      "words": [
+        {
+          "text": "orb,",
+          "start": 7.28,
+          "end": 7.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.78,
+      "end": 8.0,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 7.78,
+          "end": 8.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.0,
+      "end": 8.14,
+      "text": "we",
+      "ass_text": "we",
+      "words": [
+        {
+          "text": "we",
+          "start": 8.0,
+          "end": 8.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.14,
+      "end": 8.46,
+      "text": "dive",
+      "ass_text": "dive",
+      "words": [
+        {
+          "text": "dive",
+          "start": 8.14,
+          "end": 8.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.46,
+      "end": 8.98,
+      "text": "inside",
+      "ass_text": "inside",
+      "words": [
+        {
+          "text": "inside",
+          "start": 8.46,
+          "end": 8.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.98,
+      "end": 9.28,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 8.98,
+          "end": 9.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.28,
+      "end": 9.52,
+      "text": "watch",
+      "ass_text": "watch",
+      "words": [
+        {
+          "text": "watch",
+          "start": 9.28,
+          "end": 9.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.52,
+      "end": 9.74,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 9.52,
+          "end": 9.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.74,
+      "end": 10.22,
+      "text": "aftermath.",
+      "ass_text": "aftermath.",
+      "words": [
+        {
+          "text": "aftermath.",
+          "start": 9.74,
+          "end": 10.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 11.28,
+      "end": 11.54,
+      "text": "Within",
+      "ass_text": "Within",
+      "words": [
+        {
+          "text": "Within",
+          "start": 11.28,
+          "end": 11.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.54,
+      "end": 12.22,
+      "text": "hours,",
+      "ass_text": "hours,",
+      "words": [
+        {
+          "text": "hours,",
+          "start": 11.54,
+          "end": 12.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.22,
+      "end": 12.56,
+      "text": "roads",
+      "ass_text": "roads",
+      "words": [
+        {
+          "text": "roads",
+          "start": 12.22,
+          "end": 12.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.56,
+      "end": 12.98,
+      "text": "empty",
+      "ass_text": "empty",
+      "words": [
+        {
+          "text": "empty",
+          "start": 12.56,
+          "end": 12.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.98,
+      "end": 13.26,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 12.98,
+          "end": 13.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.26,
+      "end": 13.78,
+      "text": "power",
+      "ass_text": "power",
+      "words": [
+        {
+          "text": "power",
+          "start": 13.26,
+          "end": 13.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.78,
+      "end": 14.18,
+      "text": "grids",
+      "ass_text": "grids",
+      "words": [
+        {
+          "text": "grids",
+          "start": 13.78,
+          "end": 14.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.18,
+      "end": 14.5,
+      "text": "begin",
+      "ass_text": "begin",
+      "words": [
+        {
+          "text": "begin",
+          "start": 14.18,
+          "end": 14.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.5,
+      "end": 15.02,
+      "text": "failing.",
+      "ass_text": "failing.",
+      "words": [
+        {
+          "text": "failing.",
+          "start": 14.5,
+          "end": 15.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 16.02,
+      "end": 16.34,
+      "text": "Without",
+      "ass_text": "Without",
+      "words": [
+        {
+          "text": "Without",
+          "start": 16.02,
+          "end": 16.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.34,
+      "end": 17.28,
+      "text": "operators,",
+      "ass_text": "operators,",
+      "words": [
+        {
+          "text": "operators,",
+          "start": 16.34,
+          "end": 17.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.28,
+      "end": 17.58,
+      "text": "pumps",
+      "ass_text": "pumps",
+      "words": [
+        {
+          "text": "pumps",
+          "start": 17.28,
+          "end": 17.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.58,
+      "end": 18.06,
+      "text": "stop",
+      "ass_text": "stop",
+      "words": [
+        {
+          "text": "stop",
+          "start": 17.58,
+          "end": 18.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 18.06,
+      "end": 18.38,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 18.06,
+          "end": 18.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 18.38,
+      "end": 18.74,
+      "text": "tunnels",
+      "ass_text": "tunnels",
+      "words": [
+        {
+          "text": "tunnels",
+          "start": 18.38,
+          "end": 18.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 18.74,
+      "end": 19.3,
+      "text": "start",
+      "ass_text": "start",
+      "words": [
+        {
+          "text": "start",
+          "start": 18.74,
+          "end": 19.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 19.3,
+      "end": 19.74,
+      "text": "flooding.",
+      "ass_text": "flooding.",
+      "words": [
+        {
+          "text": "flooding.",
+          "start": 19.3,
+          "end": 19.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 20.5,
+      "end": 20.84,
+      "text": "Pets",
+      "ass_text": "Pets",
+      "words": [
+        {
+          "text": "Pets",
+          "start": 20.5,
+          "end": 20.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.84,
+      "end": 21.24,
+      "text": "trapped",
+      "ass_text": "trapped",
+      "words": [
+        {
+          "text": "trapped",
+          "start": 20.84,
+          "end": 21.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.24,
+      "end": 21.66,
+      "text": "indoors",
+      "ass_text": "indoors",
+      "words": [
+        {
+          "text": "indoors",
+          "start": 21.24,
+          "end": 21.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.66,
+      "end": 22.1,
+      "text": "face",
+      "ass_text": "face",
+      "words": [
+        {
+          "text": "face",
+          "start": 21.66,
+          "end": 22.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.1,
+      "end": 22.5,
+      "text": "danger",
+      "ass_text": "danger",
+      "words": [
+        {
+          "text": "danger",
+          "start": 22.1,
+          "end": 22.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.5,
+      "end": 22.96,
+      "text": "first.",
+      "ass_text": "first.",
+      "words": [
+        {
+          "text": "first.",
+          "start": 22.5,
+          "end": 22.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 23.72,
+      "end": 24.22,
+      "text": "Livestock",
+      "ass_text": "Livestock",
+      "words": [
+        {
+          "text": "Livestock",
+          "start": 23.72,
+          "end": 24.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.22,
+      "end": 24.56,
+      "text": "escape",
+      "ass_text": "escape",
+      "words": [
+        {
+          "text": "escape",
+          "start": 24.22,
+          "end": 24.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.56,
+      "end": 25.0,
+      "text": "fences",
+      "ass_text": "fences",
+      "words": [
+        {
+          "text": "fences",
+          "start": 24.56,
+          "end": 25.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.0,
+      "end": 25.34,
+      "text": "or",
+      "ass_text": "or",
+      "words": [
+        {
+          "text": "or",
+          "start": 25.0,
+          "end": 25.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.34,
+      "end": 25.66,
+      "text": "die",
+      "ass_text": "die",
+      "words": [
+        {
+          "text": "die",
+          "start": 25.34,
+          "end": 25.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.66,
+      "end": 25.94,
+      "text": "without",
+      "ass_text": "without",
+      "words": [
+        {
+          "text": "without",
+          "start": 25.66,
+          "end": 25.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.94,
+      "end": 26.34,
+      "text": "care.",
+      "ass_text": "care.",
+      "words": [
+        {
+          "text": "care.",
+          "start": 25.94,
+          "end": 26.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 27.02,
+      "end": 27.5,
+      "text": "Unattended",
+      "ass_text": "Unattended",
+      "words": [
+        {
+          "text": "Unattended",
+          "start": 27.02,
+          "end": 27.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.5,
+      "end": 27.96,
+      "text": "fires",
+      "ass_text": "fires",
+      "words": [
+        {
+          "text": "fires",
+          "start": 27.5,
+          "end": 27.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.96,
+      "end": 28.24,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 27.96,
+          "end": 28.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.24,
+      "end": 28.54,
+      "text": "burn",
+      "ass_text": "burn",
+      "words": [
+        {
+          "text": "burn",
+          "start": 28.24,
+          "end": 28.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.54,
+      "end": 29.32,
+      "text": "unchecked.",
+      "ass_text": "unchecked.",
+      "words": [
+        {
+          "text": "unchecked.",
+          "start": 28.54,
+          "end": 29.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.82,
+      "end": 30.2,
+      "text": "Weeds",
+      "ass_text": "Weeds",
+      "words": [
+        {
+          "text": "Weeds",
+          "start": 29.82,
+          "end": 30.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.2,
+      "end": 30.54,
+      "text": "crack",
+      "ass_text": "crack",
+      "words": [
+        {
+          "text": "crack",
+          "start": 30.2,
+          "end": 30.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.54,
+      "end": 31.28,
+      "text": "pavement,",
+      "ass_text": "pavement,",
+      "words": [
+        {
+          "text": "pavement,",
+          "start": 30.54,
+          "end": 31.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.28,
+      "end": 31.7,
+      "text": "vines",
+      "ass_text": "vines",
+      "words": [
+        {
+          "text": "vines",
+          "start": 31.28,
+          "end": 31.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.7,
+      "end": 32.1,
+      "text": "climb",
+      "ass_text": "climb",
+      "words": [
+        {
+          "text": "climb",
+          "start": 31.7,
+          "end": 32.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.1,
+      "end": 32.98,
+      "text": "buildings,",
+      "ass_text": "buildings,",
+      "words": [
+        {
+          "text": "buildings,",
+          "start": 32.1,
+          "end": 32.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.98,
+      "end": 33.9,
+      "text": "rust,",
+      "ass_text": "rust,",
+      "words": [
+        {
+          "text": "rust,",
+          "start": 32.98,
+          "end": 33.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 33.9,
+      "end": 34.62,
+      "text": "leaks,",
+      "ass_text": "leaks,",
+      "words": [
+        {
+          "text": "leaks,",
+          "start": 33.9,
+          "end": 34.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.62,
+      "end": 34.96,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 34.62,
+          "end": 34.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.96,
+      "end": 35.38,
+      "text": "frost",
+      "ass_text": "frost",
+      "words": [
+        {
+          "text": "frost",
+          "start": 34.96,
+          "end": 35.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.38,
+      "end": 35.78,
+      "text": "weaken",
+      "ass_text": "weaken",
+      "words": [
+        {
+          "text": "weaken",
+          "start": 35.38,
+          "end": 35.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.78,
+      "end": 36.52,
+      "text": "roofs.",
+      "ass_text": "roofs.",
+      "words": [
+        {
+          "text": "roofs.",
+          "start": 35.78,
+          "end": 36.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.96,
+      "end": 37.26,
+      "text": "Wild",
+      "ass_text": "Wild",
+      "words": [
+        {
+          "text": "Wild",
+          "start": 36.96,
+          "end": 37.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 37.26,
+      "end": 37.78,
+      "text": "animals",
+      "ass_text": "animals",
+      "words": [
+        {
+          "text": "animals",
+          "start": 37.26,
+          "end": 37.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 37.78,
+      "end": 38.22,
+      "text": "spread",
+      "ass_text": "spread",
+      "words": [
+        {
+          "text": "spread",
+          "start": 37.78,
+          "end": 38.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.22,
+      "end": 38.48,
+      "text": "through",
+      "ass_text": "through",
+      "words": [
+        {
+          "text": "through",
+          "start": 38.22,
+          "end": 38.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.48,
+      "end": 38.94,
+      "text": "quieter",
+      "ass_text": "quieter",
+      "words": [
+        {
+          "text": "quieter",
+          "start": 38.48,
+          "end": 38.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.94,
+      "end": 39.52,
+      "text": "towns.",
+      "ass_text": "towns.",
+      "words": [
+        {
+          "text": "towns.",
+          "start": 38.94,
+          "end": 39.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.36,
+      "end": 40.96,
+      "text": "Satellites",
+      "ass_text": "Satellites",
+      "words": [
+        {
+          "text": "Satellites",
+          "start": 40.36,
+          "end": 40.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 40.96,
+      "end": 41.48,
+      "text": "eventually",
+      "ass_text": "eventually",
+      "words": [
+        {
+          "text": "eventually",
+          "start": 40.96,
+          "end": 41.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 41.48,
+      "end": 42.12,
+      "text": "fail",
+      "ass_text": "fail",
+      "words": [
+        {
+          "text": "fail",
+          "start": 41.48,
+          "end": 42.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.12,
+      "end": 42.4,
+      "text": "or",
+      "ass_text": "or",
+      "words": [
+        {
+          "text": "or",
+          "start": 42.12,
+          "end": 42.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.4,
+      "end": 42.76,
+      "text": "fall",
+      "ass_text": "fall",
+      "words": [
+        {
+          "text": "fall",
+          "start": 42.4,
+          "end": 42.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.76,
+      "end": 43.02,
+      "text": "from",
+      "ass_text": "from",
+      "words": [
+        {
+          "text": "from",
+          "start": 42.76,
+          "end": 43.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.02,
+      "end": 43.86,
+      "text": "orbit.",
+      "ass_text": "orbit.",
+      "words": [
+        {
+          "text": "orbit.",
+          "start": 43.02,
+          "end": 43.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 44.48,
+      "end": 45.16,
+      "text": "Stone,",
+      "ass_text": "Stone,",
+      "words": [
+        {
+          "text": "Stone,",
+          "start": 44.48,
+          "end": 45.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.16,
+      "end": 45.74,
+      "text": "glass,",
+      "ass_text": "glass,",
+      "words": [
+        {
+          "text": "glass,",
+          "start": 45.16,
+          "end": 45.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.74,
+      "end": 46.6,
+      "text": "plastic,",
+      "ass_text": "plastic,",
+      "words": [
+        {
+          "text": "plastic,",
+          "start": 45.74,
+          "end": 46.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 46.6,
+      "end": 46.74,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 46.6,
+          "end": 46.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 46.74,
+      "end": 47.3,
+      "text": "monuments",
+      "ass_text": "monuments",
+      "words": [
+        {
+          "text": "monuments",
+          "start": 46.74,
+          "end": 47.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 47.3,
+      "end": 47.72,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 47.3,
+          "end": 47.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 47.72,
+      "end": 48.28,
+      "text": "outlast",
+      "ass_text": "outlast",
+      "words": [
+        {
+          "text": "outlast",
+          "start": 47.72,
+          "end": 48.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.28,
+      "end": 49.08,
+      "text": "generations.",
+      "ass_text": "generations.",
+      "words": [
+        {
+          "text": "generations.",
+          "start": 48.28,
+          "end": 49.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 50.2,
+      "end": 50.6,
+      "text": "Nature",
+      "ass_text": "Nature",
+      "words": [
+        {
+          "text": "Nature",
+          "start": 50.2,
+          "end": 50.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 50.6,
+      "end": 51.6,
+      "text": "wouldn't",
+      "ass_text": "wouldn't",
+      "words": [
+        {
+          "text": "wouldn't",
+          "start": 50.6,
+          "end": 51.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 51.6,
+      "end": 52.06,
+      "text": "erase",
+      "ass_text": "erase",
+      "words": [
+        {
+          "text": "erase",
+          "start": 51.6,
+          "end": 52.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 52.06,
+      "end": 52.38,
+      "text": "us",
+      "ass_text": "us",
+      "words": [
+        {
+          "text": "us",
+          "start": 52.06,
+          "end": 52.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 52.38,
+      "end": 52.78,
+      "text": "quickly.",
+      "ass_text": "quickly.",
+      "words": [
+        {
+          "text": "quickly.",
+          "start": 52.38,
+          "end": 52.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 53.28,
+      "end": 53.44,
+      "text": "It",
+      "ass_text": "It",
+      "words": [
+        {
+          "text": "It",
+          "start": 53.28,
+          "end": 53.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 53.44,
+      "end": 53.58,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 53.44,
+          "end": 53.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 53.58,
+      "end": 54.0,
+      "text": "build",
+      "ass_text": "build",
+      "words": [
+        {
+          "text": "build",
+          "start": 53.58,
+          "end": 54.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 54.0,
+      "end": 54.4,
+      "text": "over",
+      "ass_text": "over",
+      "words": [
+        {
+          "text": "over",
+          "start": 54.0,
+          "end": 54.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 54.4,
+      "end": 54.65,
+      "text": "us.",
+      "ass_text": "us.",
+      "words": [
+        {
+          "text": "us.",
+          "start": 54.4,
+          "end": 54.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 54.65,
+      "end": 55.74,
+      "text": "Like",
+      "ass_text": "Like",
+      "words": [
+        {
+          "text": "Like",
+          "start": 54.4,
+          "end": 55.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 55.74,
+      "end": 55.98,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 55.74,
+          "end": 55.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 55.98,
+      "end": 56.58,
+      "text": "subscribe",
+      "ass_text": "subscribe",
+      "words": [
+        {
+          "text": "subscribe",
+          "start": 55.98,
+          "end": 56.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 56.58,
+      "end": 57.14,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 56.58,
+          "end": 57.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 57.14,
+      "end": 57.34,
+      "text": "keep",
+      "ass_text": "keep",
+      "words": [
+        {
+          "text": "keep",
+          "start": 57.14,
+          "end": 57.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 57.34,
+      "end": 57.5,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 57.34,
+          "end": 57.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 57.5,
+      "end": 58.02,
+      "text": "questions",
+      "ass_text": "questions",
+      "words": [
+        {
+          "text": "questions",
+          "start": 57.5,
+          "end": 58.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 58.02,
+      "end": 58.58,
+      "text": "growing.",
+      "ass_text": "growing.",
+      "words": [
+        {
+          "text": "growing.",
+          "start": 58.02,
+          "end": 58.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    }
+  ],
+  "qc": {
+    "beat_count": 13,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 103,
+        "current_cue": 104,
+        "previous_end": 54.9,
+        "current_start": 54.4,
+        "overlap_seconds": 0.5,
+        "chosen_boundary": 54.65
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 112,
+    "subtitle_cues_estimated": 0
+  }
+}
