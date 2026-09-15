@@ -42,7 +42,7 @@
   },
   "subtitles": {
     "enabled": true,
-    "font_name": "Wonderbar",
+    "font_name": "North Eternal",
     "font_size": 140,
     "bold": false,
     "outline": 8.0,
@@ -56,7 +56,7 @@
       "inactive_colour": "&H00F5F5F5",
       "outline_colour": "&H00130D09"
     },
-    "italic": false,
+    "italic": true,
     "position": "custom",
     "custom_offset_value": 25.0,
     "custom_offset_unit": "percent",
