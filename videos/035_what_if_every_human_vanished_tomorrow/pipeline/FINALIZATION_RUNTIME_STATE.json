@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "035_what_if_every_human_vanished_tomorrow",
   "started_at": "2026-09-15T13:15:40.389963+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -89,6 +89,18 @@
         "2026-09-15T13:15:40.389963+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-15T13:15:40.389963+00:00",
+      "ended_at": "2026-09-15T13:16:26.686336+00:00",
+      "elapsed_seconds": 46.296,
+      "branch": "ordak",
+      "remote": "origin",
+      "artifact_commit": "c33644bab3bec16fb2a8bf352020cbe4fbbfa539"
     }
-  ]
+  ],
+  "completed_at": "2026-09-15T13:16:26.686336+00:00",
+  "total_elapsed_seconds": 84.237
 }
