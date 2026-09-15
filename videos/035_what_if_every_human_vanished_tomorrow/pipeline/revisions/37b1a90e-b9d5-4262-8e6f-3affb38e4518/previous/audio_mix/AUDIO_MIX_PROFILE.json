@@ -7,10 +7,10 @@
   },
   "music": {
     "enabled": true,
-    "file": "assets/music/operator_background.mp3",
+    "file": "assets/music/freesound_background.mp3",
     "segments": [
       {
-        "file": "assets/music/operator_background.mp3",
+        "file": "assets/music/freesound_background.mp3",
         "start_seconds": 0.0,
         "end_seconds": 59.167,
         "gain_db": -20.0,
