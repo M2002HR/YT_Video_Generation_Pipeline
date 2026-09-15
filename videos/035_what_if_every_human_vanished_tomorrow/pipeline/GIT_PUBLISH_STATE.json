@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "ordak",
+  "remote": "origin",
+  "artifact_commit": "3a8515586e0e207158f0f22506e3504111b71721",
+  "started_at": "2026-09-15T13:09:29.837297+00:00",
+  "completed_at": "2026-09-15T13:14:05.503239+00:00",
+  "elapsed_seconds": 275.666,
+  "scope": "videos/035_what_if_every_human_vanished_tomorrow"
+}
