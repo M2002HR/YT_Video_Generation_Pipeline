@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "027_video",
-  "started_at": "2026-09-15T03:13:36.785967+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-15T03:19:13.100740+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-15T03:13:36.805412+00:00",
+      "started_at": "2026-09-15T03:19:13.122181+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/027_video"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-15T03:13:38.298379+00:00",
-      "elapsed_seconds": 1.493,
+      "ended_at": "2026-09-15T03:19:14.691400+00:00",
+      "elapsed_seconds": 1.569,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 39289
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-15T03:13:39.421418+00:00",
+      "started_at": "2026-09-15T03:19:15.723405+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -33,14 +33,14 @@
         "step 2/8 · Render Baseline"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-15T03:17:14.150480+00:00",
-      "elapsed_seconds": 214.729,
+      "ended_at": "2026-09-15T03:22:48.758802+00:00",
+      "elapsed_seconds": 213.035,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 44091802
+      "artifact_bytes": 44016296
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-15T03:17:14.151046+00:00",
+      "started_at": "2026-09-15T03:22:48.759273+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -50,14 +50,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-15T03:17:23.143042+00:00",
-      "elapsed_seconds": 8.992,
+      "ended_at": "2026-09-15T03:22:57.506356+00:00",
+      "elapsed_seconds": 8.747,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-15T03:17:24.244879+00:00",
+      "started_at": "2026-09-15T03:22:58.720678+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -66,14 +66,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-15T03:17:28.576129+00:00",
-      "elapsed_seconds": 4.331,
+      "ended_at": "2026-09-15T03:23:03.048447+00:00",
+      "elapsed_seconds": 4.328,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 44430852
+      "artifact_bytes": 44355346
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-15T03:17:29.600049+00:00",
+      "started_at": "2026-09-15T03:23:04.356168+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -83,14 +83,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-15T03:17:38.613963+00:00",
-      "elapsed_seconds": 9.014,
+      "ended_at": "2026-09-15T03:23:12.927116+00:00",
+      "elapsed_seconds": 8.571,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-15T03:17:39.930689+00:00",
+      "started_at": "2026-09-15T03:23:14.152025+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -101,14 +101,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/027_video/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-15T03:17:59.558689+00:00",
-      "elapsed_seconds": 19.628,
+      "ended_at": "2026-09-15T03:23:33.751991+00:00",
+      "elapsed_seconds": 19.6,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 2739833
+      "artifact_bytes": 2716806
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-15T03:18:00.628294+00:00",
+      "started_at": "2026-09-15T03:23:35.193632+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -116,21 +116,9 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/027_video/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-15T03:13:36.785967+00:00"
+        "2026-09-15T03:19:13.100740+00:00"
       ],
       "status": "RUNNING"
-    },
-    {
-      "stage": "git_commit_push",
-      "status": "DONE",
-      "started_at": "2026-09-15T03:13:36.785967+00:00",
-      "ended_at": "2026-09-15T03:18:03.710655+00:00",
-      "elapsed_seconds": 266.925,
-      "branch": "ordak",
-      "remote": "origin",
-      "artifact_commit": "7f71b5078b13532682a801e187df2a7125b1669a"
     }
-  ],
-  "completed_at": "2026-09-15T03:18:03.710655+00:00",
-  "total_elapsed_seconds": 525.112
+  ]
 }

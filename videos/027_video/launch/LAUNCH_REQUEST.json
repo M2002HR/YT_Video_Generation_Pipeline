@@ -10,8 +10,8 @@
   "duration_max_seconds": 50.0,
   "aspect_ratio": "9:16",
   "project": "videos/027_video",
-  "voice_profile": "videos/027_video/launch/config_revisions/72422a2b-2618-4e45-b4ce-bd39b9fe151f/VOICE_PROFILE.json",
-  "creative_brief": "videos/027_video/launch/config_revisions/72422a2b-2618-4e45-b4ce-bd39b9fe151f/CREATIVE_BRIEF.json",
+  "voice_profile": "videos/027_video/launch/config_revisions/c2b2efd8-5f42-4431-9795-f67a73f049c0/VOICE_PROFILE.json",
+  "creative_brief": "videos/027_video/launch/config_revisions/c2b2efd8-5f42-4431-9795-f67a73f049c0/CREATIVE_BRIEF.json",
   "qh": {
     "character": {
       "mode": "manual",
@@ -128,7 +128,7 @@
   "commit_artifacts": true,
   "telegram_low_size": true,
   "telegram_original": false,
-  "pid": 2426929,
+  "pid": 2430222,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -140,9 +140,9 @@
     "--content-project",
     "q_station",
     "--creative-brief",
-    "/opt/YT_Video_Generation_Pipeline/videos/027_video/launch/config_revisions/72422a2b-2618-4e45-b4ce-bd39b9fe151f/CREATIVE_BRIEF.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/027_video/launch/config_revisions/c2b2efd8-5f42-4431-9795-f67a73f049c0/CREATIVE_BRIEF.json",
     "--voice-profile",
-    "/opt/YT_Video_Generation_Pipeline/videos/027_video/launch/config_revisions/72422a2b-2618-4e45-b4ce-bd39b9fe151f/VOICE_PROFILE.json",
+    "/opt/YT_Video_Generation_Pipeline/videos/027_video/launch/config_revisions/c2b2efd8-5f42-4431-9795-f67a73f049c0/VOICE_PROFILE.json",
     "--aspect-ratio",
     "9:16",
     "--music-providers",
@@ -153,12 +153,12 @@
   ],
   "started_at": "2026-09-11T13:10:55.032500+00:00",
   "stopped_by": "panel",
-  "resumed_at": "2026-09-15T03:13:35.313799+00:00",
+  "resumed_at": "2026-09-15T03:19:11.674965+00:00",
   "last_config_revision": {
     "schema_version": 2,
-    "revision_id": "e9bc4ce0-e344-44be-9cfc-c038e5d391de",
+    "revision_id": "a822c1e3-5181-42a3-b7e6-ef21290bf0bf",
     "kind": "config",
-    "created_at": "2026-09-15T03:13:35.310841+00:00",
+    "created_at": "2026-09-15T03:19:11.674005+00:00",
     "roots": [
       "render_profile"
     ],
@@ -235,17 +235,16 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-15T03:13:35.313602+00:00",
-    "pid": 2426929,
+    "started_at": "2026-09-15T03:19:11.674668+00:00",
+    "pid": 2430222,
     "changed_fields": [
-      "subtitle_font",
-      "subtitle_italic"
+      "subtitle_font_size"
     ],
-    "config_revision_id": "72422a2b-2618-4e45-b4ce-bd39b9fe151f"
+    "config_revision_id": "c2b2efd8-5f42-4431-9795-f67a73f049c0"
   },
   "resume_count": 9,
   "exit_code": 0,
-  "process_exited_at": "2026-09-15T03:09:12.421118+00:00",
+  "process_exited_at": "2026-09-15T03:18:16.946696+00:00",
   "release": {
     "status": "DONE",
     "pid": 1439648,
@@ -265,9 +264,9 @@
   },
   "pending_revision": {
     "schema_version": 2,
-    "revision_id": "e9bc4ce0-e344-44be-9cfc-c038e5d391de",
+    "revision_id": "a822c1e3-5181-42a3-b7e6-ef21290bf0bf",
     "kind": "config",
-    "created_at": "2026-09-15T03:13:35.310841+00:00",
+    "created_at": "2026-09-15T03:19:11.674005+00:00",
     "roots": [
       "render_profile"
     ],
@@ -344,12 +343,11 @@
     "regeneration_mode": "cascade",
     "use_chatgpt_feedback": false,
     "skip_visual_stages": true,
-    "started_at": "2026-09-15T03:13:35.313602+00:00",
-    "pid": 2426929,
+    "started_at": "2026-09-15T03:19:11.674668+00:00",
+    "pid": 2430222,
     "changed_fields": [
-      "subtitle_font",
-      "subtitle_italic"
+      "subtitle_font_size"
     ],
-    "config_revision_id": "72422a2b-2618-4e45-b4ce-bd39b9fe151f"
+    "config_revision_id": "c2b2efd8-5f42-4431-9795-f67a73f049c0"
   }
 }

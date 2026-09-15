@@ -43,7 +43,7 @@
   "subtitles": {
     "enabled": true,
     "font_name": "Wonderbar",
-    "font_size": 120,
+    "font_size": 140,
     "bold": false,
     "outline": 8.0,
     "shadow": 0,
