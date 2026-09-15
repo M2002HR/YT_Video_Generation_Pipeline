@@ -216,12 +216,12 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
                 hideWhenGated=True,
             ),
         ]},
-        {"id": "opening", "title": "Opening clips", "description": "Flow model, source quality and narration-sync headroom.", "projects": ["q_station"], "fields": [
+        {"id": "opening", "title": "Opening clips", "description": "Flow model and preferred source lengths. Final supported lengths are selected after real narration alignment.", "projects": ["q_station"], "fields": [
             _field("flow_video_model", "Flow video model", "select", default="gemini_omni_1_1_flash", options=select([("gemini_omni_1_1_flash", "Gemini Omni 1.1 Flash"), ("veo_3_1_quality", "Veo 3.1 Quality"), ("veo_3_1_fast", "Veo 3.1 Fast"), ("veo_3_1_lite", "Veo 3.1 Lite")]), width="half"),
             _field("flow_resolution", "Flow resolution", "select", default="720p", options=select([("720p", "720p"), ("360p", "360p draft")]), width="half"),
-            _field("opening_a_seconds", "Clip A source seconds", "select", default="6", options=select([("4", "4s"), ("5", "5s"), ("6", "6s"), ("8", "8s")]), width="half"),
-            _field("opening_b_seconds", "Clip B source seconds", "select", default="4", options=select([("3", "3s"), ("4", "4s"), ("6", "6s"), ("8", "8s")]), width="half"),
-            _field("opening_speed_tolerance", "Opening sync tolerance", "number", default=0.1, min=0, max=0.5, step=0.01, help="Max fraction a silent opening clip may be slowed to meet narration."),
+            _field("opening_a_seconds", "Preferred Clip A seconds", "select", default="6", options=select([("4", "4s"), ("6", "6s"), ("8", "8s"), ("10", "10s")]), width="half"),
+            _field("opening_b_seconds", "Preferred Clip B seconds", "select", default="4", options=select([("4", "4s"), ("6", "6s"), ("8", "8s"), ("10", "10s")]), width="half"),
+            _field("opening_speed_tolerance", "Opening sync tolerance", "number", default=0.1, min=0, max=0.5, step=0.01, help="After narration alignment, the planner chooses the closest supported Flow duration; silent video may slow by at most this fraction."),
         ]},
         {"id": "voice", "title": "Narration", "description": "ElevenLabs voice and delivery controls.", "fields": [
             _field("voice", "Voice", required=True, default="Mark - Natural Conversations"),

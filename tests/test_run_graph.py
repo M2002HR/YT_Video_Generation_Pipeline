@@ -172,7 +172,9 @@ def test_episode_direction_regenerates_its_world_style_and_visual_descendants(tm
         "render_baseline",
     } <= affected
     assert "world_style_director" not in affected
-    assert "flow_prompt_b" not in affected
+    # The opening source contract comes from measured word timing. A changed visual plan
+    # re-aligns narration, so both opening prompts must be reconsidered under that contract.
+    assert "flow_prompt_b" in affected
 
 
 def test_graph_hides_stages_disabled_by_the_frozen_run(tmp_path: Path) -> None:

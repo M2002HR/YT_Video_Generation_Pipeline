@@ -41,8 +41,9 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "book_design_sheet": NodeSpec("Canonical book design", "image", description="Shared project-level book identity; inspected here but not owned by this episode.", phase="visual", regeneratable=False),
     "book_cover_design": NodeSpec("Book-cover direction", "text", ("episode_director",), ("creative/BOOK_COVER_DESIGN.txt",), description="Topic-specific entry-frame motifs and staging.", phase="visual"),
     "book_cover": NodeSpec("Book cover", "image", ("book_cover_design", "book_design_sheet", "world_style_anchor", "episode_director", "character_resolution"), ("references/book_cover_frame.png",), ("pipeline/provider_receipts/gemini_book_cover.json",), phase="visual"),
-    "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "character_resolution", "retention_edit"), ("references/flow_prompt_opening_a.txt",), phase="opening"),
-    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit", "character_resolution"), ("references/flow_prompt_book_transition.txt",), phase="opening"),
+    "opening_source_plan": NodeSpec("Opening source plan", "data", ("ajil_alignment",), ("timing/OPENING_SOURCE_PLAN.json",), description="Measured narration boundaries mapped to supported Flow source durations.", phase="audio"),
+    "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "character_resolution", "retention_edit", "opening_source_plan"), ("references/flow_prompt_opening_a.txt",), ("references/flow_prompt_question_intro.txt.inputs.json",), phase="opening"),
+    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit", "character_resolution", "opening_source_plan"), ("references/flow_prompt_book_transition.txt",), ("references/flow_prompt_orb_transition.txt.inputs.json",), phase="opening"),
     "flow_clip_a": NodeSpec("Opening A", "video", ("flow_prompt_a",), ("assets/opening/question_spark_source.mp4",), ("pipeline/provider_receipts/flow_opening_a.json",), phase="opening"),
     "flow_clip_b": NodeSpec("Opening B", "video", ("flow_prompt_b", "book_cover", "world_keyframe"), ("assets/opening/book_transition_source.mp4",), ("pipeline/provider_receipts/flow_opening_b.json",), phase="opening"),
     "elevenlabs_voiceover": NodeSpec("Narration", "audio", ("retention_edit",), ("assets/audio/narration.mp3",), ("voiceover/ELEVENLABS_RUNTIME_STATE.json",), phase="audio"),
@@ -221,8 +222,8 @@ def qh_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict
     specs["book_design_sheet"] = replace(specs["book_design_sheet"], title=f"{label} identity", description="Shared recurring entry-object identity; not owned by this episode.")
     specs["book_cover_design"] = replace(specs["book_cover_design"], title=f"{label} frame direction", artifacts=(a.entry_direction,))
     specs["book_cover"] = replace(specs["book_cover"], title=f"Topic-styled {presentation.entry_kind} frame", artifacts=(a.entry_frame,), optional_artifacts=(a.entry_image_receipt,))
-    specs["flow_prompt_a"] = replace(specs["flow_prompt_a"], title="Question intro prompt", artifacts=(a.question_prompt,))
-    specs["flow_prompt_b"] = replace(specs["flow_prompt_b"], title=f"{label} entry prompt", artifacts=(a.entry_prompt,))
+    specs["flow_prompt_a"] = replace(specs["flow_prompt_a"], title="Question intro prompt", artifacts=(a.question_prompt,), optional_artifacts=(f"{a.question_prompt}.inputs.json",))
+    specs["flow_prompt_b"] = replace(specs["flow_prompt_b"], title=f"{label} entry prompt", artifacts=(a.entry_prompt,), optional_artifacts=(f"{a.entry_prompt}.inputs.json",))
     specs["flow_clip_a"] = replace(specs["flow_clip_a"], title="Question intro", artifacts=(a.question_source,))
     specs["flow_clip_b"] = replace(specs["flow_clip_b"], title=f"{label} entry", artifacts=(a.entry_source,))
     specs["opening_trim"] = replace(specs["opening_trim"], artifacts=(a.question_trimmed, a.entry_trimmed))

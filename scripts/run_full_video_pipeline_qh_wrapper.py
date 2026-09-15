@@ -8,10 +8,12 @@ pipeline failure to fix, not a gap to fill with something that merely renders.
 
 Stage order (§57):
 
-    run_question_harvest_pipeline.py   script → images → Flow clips
+    run_question_harvest_pipeline.py   script → images (Flow deferred)
     run_elevenlabs_voiceover.py        one continuous narration track (§66)
     run_pixabay_music.py               background track (needs only narration + brief)
-    align_beats.py                     Ajil word timestamps → BEAT_TIMINGS + OPENING_TIMING
+    align_beats.py                     Ajil word timestamps → OPENING_TIMING
+    plan_opening_sources.py            select supported Flow durations from real timings
+    run_question_harvest_pipeline.py   Flow clips using the selected source contract
     trim_opening_clips.py              cut the Flow sources to the measured boundaries (§67)
     run_completion_pipeline.py         timeline → render → QC → publish
 """
@@ -244,6 +246,22 @@ def clear_pending_state(project: Path) -> None:
         pass
 
 
+def clear_opening_trim_outputs(project: Path) -> None:
+    """A changed narration/source plan makes every old trim unsafe to reuse."""
+    from presentation_runtime import presentation_for_project
+
+    presentation = presentation_for_project(project)
+    for path in (
+        presentation.artifacts.path(project, "question_trimmed"),
+        presentation.artifacts.path(project, "entry_trimmed"),
+        project / "timing" / "OPENING_TRIM_REPORT.json",
+    ):
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Q Station end-to-end pipeline")
     parser.add_argument("--topic", required=True)
@@ -315,10 +333,9 @@ def main() -> int:
 
     from flow_gate import blocked_only_on_flow, clips_ready, missing_clips
 
-    # 1. Visual stages: script, plans, world keyframe, entry frame, body images, Flow clips.
-    #    A Flow outage is Google's, not this episode's: when it is the only failure, the
-    #    stages that need no video clip still run, and the trim and render wait instead of
-    #    the whole episode being thrown away.
+    # 1. Prepare every visual artifact that does not depend on the measured narration.
+    #    Flow is intentionally deferred: its source-duration contract is selected only after
+    #    ElevenLabs audio has real word timestamps.
     flow_pending_reason = ""
     if args.skip_visual_stages:
         # A subtitle/render/audio/publish config revision must be incapable of making a
@@ -339,6 +356,7 @@ def main() -> int:
                     "--aspect-ratio", args.aspect_ratio,
                 ]
                 + qh_overrides(args.creative_brief)
+                + ["--defer-flow-clips"]
                 + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
                 + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
                 + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
@@ -349,12 +367,9 @@ def main() -> int:
             if not only_flow:
                 raise
             flow_pending_reason = reason
-            print(
-                "FLOW PENDING: the visual stages are complete except the Flow clips "
-                f"({reason}). Continuing with narration, timing and music; the trim and render "
-                "wait for the clips.",
-                flush=True,
-            )
+            # --defer-flow-clips never contacts Flow, but retain this guard for a partially
+            # upgraded run whose state was produced by an earlier wrapper.
+            flow_pending_reason = reason
 
     # 2. One continuous narration track (§66).
     narration = project / "assets" / "audio" / "narration.mp3"
@@ -432,7 +447,62 @@ def main() -> int:
             return 2
         mark_wrapper_stage(project, "ajil_alignment", "DONE", artifact="timing/BEAT_TIMINGS.json")
 
-    # 5. Everything past here needs the Flow sources. Park the run rather than render an
+    # 5. Convert the measured opening boundaries into supported Flow durations, then create
+    #    both clips under that durable contract.  The preferred launch durations remain a
+    #    tie-breaker in the planner; they never override an incapable source length.
+    if not args.skip_visual_stages:
+        plan_path = project / "timing" / "OPENING_SOURCE_PLAN.json"
+        mark_wrapper_stage(project, "opening_source_plan", "RUNNING")
+        try:
+            run_owned_stage(
+                [python, "scripts/plan_opening_sources.py", str(project)],
+                notifier,
+                "opening_source_plan",
+                plan_path,
+                project,
+            )
+        except subprocess.CalledProcessError as exc:
+            mark_wrapper_stage(project, "opening_source_plan", "FAILED", returncode=exc.returncode)
+            raise
+        try:
+            source_plan = json.loads(plan_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            mark_wrapper_stage(project, "opening_source_plan", "FAILED_VALIDATION", message=str(exc))
+            raise RuntimeError("Opening-source planner returned without a usable plan.") from exc
+        plan_status = str(source_plan.get("status") or "")
+        if plan_status == "REUSED":
+            mark_wrapper_stage(project, "opening_source_plan", "REUSED", artifact="timing/OPENING_SOURCE_PLAN.json")
+        else:
+            # A new timing fingerprint or selected source length invalidates only rendered
+            # opening derivatives. Source clips are independently checked against their
+            # requested-length receipts by the QH runner below.
+            clear_opening_trim_outputs(project)
+            mark_wrapper_stage(project, "opening_source_plan", "DONE", artifact="timing/OPENING_SOURCE_PLAN.json")
+        try:
+            run(
+                [
+                    python, "-u", "scripts/run_question_harvest_pipeline.py",
+                    "--topic", args.topic,
+                    "--video-id", args.video_id,
+                    "--content-project", args.content_project,
+                    "--creative-brief", str(args.creative_brief),
+                    "--voice-profile", str(args.voice_profile),
+                    "--aspect-ratio", args.aspect_ratio,
+                    "--use-opening-source-plan",
+                ]
+                + qh_overrides(args.creative_brief)
+                + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
+                + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
+                + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
+                + (["--chatgpt-revision-feedback-json", str(args.chatgpt_revision_feedback_json)] if args.chatgpt_revision_feedback_json else [])
+            )
+        except subprocess.CalledProcessError:
+            only_flow, reason = blocked_only_on_flow(project)
+            if not only_flow:
+                raise
+            flow_pending_reason = reason
+
+    # 6. Everything past here needs the Flow sources. Park the run rather than render an
     #    episode without its opening, and let the watcher resume when Flow answers again.
     if not clips_ready(project):
         absent = ", ".join(path.name for path in missing_clips(project))
@@ -453,7 +523,7 @@ def main() -> int:
         )
         return 4
 
-    # 6. Cut the Flow sources to the measured narration boundaries (§67).
+    # 7. Cut the Flow sources to the measured narration boundaries (§67).
     clear_pending_state(project)
     from presentation_runtime import presentation_for_project
     presentation = presentation_for_project(project)
@@ -479,7 +549,7 @@ def main() -> int:
             raise RuntimeError("Opening trim did not produce both clips and its report.")
         mark_wrapper_stage(project, "opening_trim", "DONE", artifact="timing/OPENING_TRIM_REPORT.json")
 
-    # 7. Render profiles, then timeline → render → QC → publish.
+    # 8. Render profiles, then timeline → render → QC → publish.
     from run_full_video_pipeline import ensure_audio_mix_profile, ensure_render_profile
 
     try:

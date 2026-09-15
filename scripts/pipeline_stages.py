@@ -4,9 +4,9 @@ from __future__ import annotations
 PIPELINE_STAGE_SEQUENCE = (
     "character_resolution", "script_draft", "retention_edit", "episode_director", "world_style_director",
     "world_style_anchor", "episode_history", "visual_plan", "world_keyframe_prompt",
-    "world_keyframe", "book_design_sheet", "book_cover_design", "book_cover", "flow_prompt_a", "flow_prompt_b",
-    "body_images", "transition_direction", "flow_clip_a", "flow_clip_b", "elevenlabs_voiceover", "background_music",
-    "ajil_alignment", "opening_trim", "audio_mix_profile", "render_profile", "build_timeline", "motion_director", "sfx_plan", "render_baseline", "qc_baseline", "sfx_acquire",
+    "world_keyframe", "book_design_sheet", "book_cover_design", "book_cover",
+    "body_images", "transition_direction", "elevenlabs_voiceover", "background_music", "ajil_alignment", "opening_source_plan",
+    "flow_prompt_a", "flow_prompt_b", "flow_clip_a", "flow_clip_b", "opening_trim", "audio_mix_profile", "render_profile", "build_timeline", "motion_director", "sfx_plan", "render_baseline", "qc_baseline", "sfx_acquire",
     "polish_audio", "qc_polished", "telegram_compress", "git_commit_push", "publish_telegram",
 )
 
@@ -23,7 +23,7 @@ STAGE_PHASES = {
         "flow_prompt_a", "flow_prompt_b", "flow_clip_a", "flow_clip_b", "opening_trim",
     )},
     **{stage: "audio" for stage in (
-        "elevenlabs_voiceover", "background_music", "ajil_alignment", "audio_mix_profile",
+        "elevenlabs_voiceover", "background_music", "ajil_alignment", "opening_source_plan", "audio_mix_profile",
         "sfx_plan", "sfx_acquire",
     )},
     **{stage: "edit" for stage in (

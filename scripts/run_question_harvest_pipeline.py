@@ -2467,14 +2467,20 @@ def stage_flow_prompt(
     world_style_plan: dict[str, Any],
     world_keyframe_description: str,
     topic: str,
-    source_seconds: int, *, force: bool = False,
+    source_seconds: int, *, force: bool = False, require_source_contract: bool = False,
     character: CharacterContext | None = None,
 ) -> str:
     """Every Flow prompt comes from ChatGPT; none of them is hardcoded (§194)."""
     presentation = (character or _coerce_character_context(content_project)).presentation
     stage = f"flow_prompt_{'a' if clip == 'A' else 'b'}"
     target = presentation.artifacts.path(project, "question_prompt" if clip == "A" else "entry_prompt")
-    if not force and runner.state.done(stage) and target.is_file():
+    contract_path = target.with_suffix(target.suffix + ".inputs.json")
+    contract_matches = False
+    try:
+        contract_matches = int(load_json(contract_path).get("source_seconds")) == int(source_seconds)
+    except (OSError, ValueError, TypeError):
+        pass
+    if not force and runner.state.done(stage) and target.is_file() and (not require_source_contract or contract_matches):
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
@@ -2508,6 +2514,10 @@ def stage_flow_prompt(
     text = runner.text(stage, prompt)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text.strip() + "\n", encoding="utf-8")
+    contract_path.write_text(
+        json.dumps({"schema_version": 1, "source_seconds": int(source_seconds), "prompt_sha256": sha256_text(text)}, indent=2) + "\n",
+        encoding="utf-8",
+    )
     runner.stage_done(stage, started, target.name, prompt_sha256=sha256_text(text))
     return text
 
@@ -3314,6 +3324,28 @@ def ensure_launch_request(
     return data
 
 
+def resolved_opening_source_seconds(project: Path) -> tuple[int, int]:
+    """Read the post-narration Flow contract written by plan_opening_sources.py."""
+    path = project / "timing" / "OPENING_SOURCE_PLAN.json"
+    try:
+        plan = load_json(path)
+        clips = plan.get("clips") if isinstance(plan.get("clips"), dict) else {}
+        first = int((clips.get("A") or {}).get("selected_source_seconds"))
+        second = int((clips.get("B") or {}).get("selected_source_seconds"))
+    except (OSError, ValueError, TypeError, AttributeError) as exc:
+        raise StageFailure(
+            "opening_source_plan",
+            "FAILED_VALIDATION",
+            f"The post-narration opening source plan is missing or invalid: {exc}",
+        ) from exc
+    from flow_capabilities import durations_for_model
+    model = str(plan.get("flow_model") or "")
+    verified = durations_for_model(model)
+    if not verified or first not in verified or second not in verified:
+        raise StageFailure("opening_source_plan", "FAILED_VALIDATION", "The opening source plan selected unsupported Flow durations.")
+    return first, second
+
+
 def write_visual_beats_markdown(project: Path, plan: dict[str, Any], visual_plan: dict[str, Any]) -> Path:
     """VISUAL_BEATS.md is what align_beats.py reads, so it must carry the spoken words."""
     lines = ["# Visual Beats", ""]
@@ -3385,6 +3417,16 @@ def main() -> int:
     parser.add_argument("--flow-model", default="gemini_omni_1_1_flash")
     parser.add_argument("--flow-resolution", default="720p")
     parser.add_argument("--aspect-ratio", default="9:16")
+    parser.add_argument(
+        "--defer-flow-clips",
+        action="store_true",
+        help="Prepare script/images only. The wrapper will generate Flow clips after narration alignment.",
+    )
+    parser.add_argument(
+        "--use-opening-source-plan",
+        action="store_true",
+        help="Use timing/OPENING_SOURCE_PLAN.json as the authoritative post-narration Flow duration contract.",
+    )
     parser.add_argument(
         "--opening-a-seconds",
         type=int,
@@ -3627,6 +3669,10 @@ def main() -> int:
     flow_resolution = str(video_generation.get("resolution") or args.flow_resolution)
     opening_a_seconds = int(video_generation.get("opening_a_source_seconds") or args.opening_a_seconds)
     opening_b_seconds = int(video_generation.get("opening_b_source_seconds") or args.opening_b_seconds)
+    if args.defer_flow_clips and args.use_opening_source_plan:
+        parser.error("--defer-flow-clips and --use-opening-source-plan cannot be combined.")
+    if args.use_opening_source_plan:
+        opening_a_seconds, opening_b_seconds = resolved_opening_source_seconds(project)
 
     with OrdakJobs() as jobs:
         runner = Runner(
@@ -3640,7 +3686,7 @@ def main() -> int:
         current_stage = "preflight"
         try:
             # Fail before spending anything if the browser stack is not usable (§65).
-            jobs.require_ready(["chatgpt", "gemini", "flow"])
+            jobs.require_ready(["chatgpt"] if args.defer_flow_clips else ["chatgpt", "gemini", "flow"])
             brief = build_brief(project, args.topic, content_project, duration)
 
             _resolution, character = stage_character_resolution(
@@ -3682,7 +3728,6 @@ def main() -> int:
                     f"The operator asked for style {requested_style_id!r} but the director "
                     f"answered {world_style_plan.get('style_id')!r}.",
                 )
-            world_style_anchor = stage_world_style_anchor(runner, project, content_project, world_style_plan)
             stage_record_history(runner, content_project, args.video_id, episode_plan, world_style_plan)
 
             body_seconds = max(20.0, plan["word_count"] * 0.42 - (opening_a_seconds + opening_b_seconds))
@@ -3690,6 +3735,31 @@ def main() -> int:
                 runner, project, content_project, plan, episode_plan, world_style_plan, body_seconds, character
             )
             write_visual_beats_markdown(project, plan, visual_plan)
+
+            # The final script and visual beat boundaries are sufficient for ElevenLabs and
+            # word alignment. Stop here on the first wrapper pass: no generated visual media
+            # (including Flow) is allowed to choose a duration before real narration exists.
+            if args.defer_flow_clips:
+                state.mark(
+                    "qh_narration_ready",
+                    STATE_DONE,
+                    body_beats=len(visual_plan.get("beats") or []),
+                    visual_media="deferred_until_narration_alignment",
+                )
+                state.finish()
+                if notifier is not None:
+                    notifier.send(
+                        "Narration preparation complete",
+                        [
+                            "✅ Final script and visual beat text are ready",
+                            "▶ Next: narration, word alignment, Flow-duration planning",
+                            "⏸️ Visual media is intentionally deferred until that plan exists",
+                        ],
+                    )
+                print("VISUAL MEDIA DEFERRED: waiting for narration alignment", flush=True)
+                return 0
+
+            world_style_anchor = stage_world_style_anchor(runner, project, content_project, world_style_plan)
 
             keyframe_prompt = stage_world_keyframe_prompt(
                 runner, project, content_project, plan, world_style_plan
@@ -3701,17 +3771,6 @@ def main() -> int:
             entry_frame = stage_entry_frame(
                 runner, project, content_project, args.topic, world_style_anchor,
                 entry_identity, episode_plan, character,
-            )
-
-            clip_a_prompt = stage_flow_prompt(
-                runner, project, content_project, "A", plan["opening_question_spark"],
-                episode_plan, world_style_plan, keyframe_prompt, args.topic, opening_a_seconds,
-                character=character,
-            )
-            clip_b_prompt = stage_flow_prompt(
-                runner, project, content_project, "B", plan[presentation.segment_key],
-                None, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
-                character=character,
             )
 
             # The body images depend only on the plan, the style anchor and the world
@@ -3735,6 +3794,17 @@ def main() -> int:
                 body_images,
                 settings=brief_settings.get("_motion") if isinstance(brief_settings.get("_motion"), dict) else None,
                 force=bool(regenerate_beats),
+            )
+
+            clip_a_prompt = stage_flow_prompt(
+                runner, project, content_project, "A", plan["opening_question_spark"],
+                episode_plan, world_style_plan, keyframe_prompt, args.topic, opening_a_seconds,
+                character=character, require_source_contract=args.use_opening_source_plan,
+            )
+            clip_b_prompt = stage_flow_prompt(
+                runner, project, content_project, "B", plan[presentation.segment_key],
+                None, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
+                character=character, require_source_contract=args.use_opening_source_plan,
             )
 
             clip_a = stage_flow_clip_with_policy_recovery(

@@ -930,7 +930,7 @@ def test_structured_config_revision_maps_caption_layout_to_body_images() -> None
 
 
 def test_structured_config_revision_persists_opening_speed_tolerance() -> None:
-    """Trim-only tolerance must reach the brief without invalidating any stage."""
+    """Tolerance reaches the post-narration planner and invalidates its descendants."""
     record = _record(
         music_providers=["pixabay"], telegram_low_size=True, telegram_original=False,
         commit_artifacts=False, motion={"enabled": False}, sfx={"enabled": False},
@@ -949,7 +949,7 @@ def test_structured_config_revision_persists_opening_speed_tolerance() -> None:
         record, brief, voice, values
     )
 
-    assert roots == set()
+    assert roots == {"opening_source_plan"}
     assert revised_brief["_qh"]["opening_speed_tolerance"] == 0.2
     assert changed == ["opening_speed_tolerance"]
 

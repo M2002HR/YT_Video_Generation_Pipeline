@@ -71,10 +71,13 @@ QH_ROOTS = {
     "image_qc_correction_policy": (),
     # Same scope: existing beat pixels stay valid; future/regenerated beats skip review.
     "beat_image_qc_disabled": (),
-    "flow_video_model": ("flow_clip_a", "flow_clip_b"),
+    # Model capability determines which source durations the post-narration planner may use.
+    "flow_video_model": ("opening_source_plan",),
     "flow_resolution": ("flow_clip_a", "flow_clip_b"),
-    "opening_a_seconds": ("flow_clip_a",),
-    "opening_b_seconds": ("flow_clip_b",),
+    # Preferred lengths feed the post-narration source planner. Its descendants are both
+    # Flow prompts/clips and every opening-derived render artifact.
+    "opening_a_seconds": ("opening_source_plan",),
+    "opening_b_seconds": ("opening_source_plan",),
     "min_duration_seconds": ("retention_edit",),
     "max_duration_seconds": ("retention_edit",),
     "show_subtitles": ("render_profile",),
@@ -83,9 +86,9 @@ QH_ROOTS = {
     # opening clips and the world keyframe remain stable during a revision.
     "reserve_subtitle_space": ("beat_image_001",),
     "chatgpt_fallback_auto": (),
-    # Trim-only rule: changing the opening sync tolerance never invalidates Flow
-    # clips or images; the wrapper simply re-runs the trim on resume.
-    "opening_speed_tolerance": (),
+    # The tolerance is also used to choose a truthful supported Flow source duration after
+    # alignment, so it invalidates the durable source plan and its descendants.
+    "opening_speed_tolerance": ("opening_source_plan",),
 }
 QH_FIELDS = tuple(QH_ROOTS)
 QH_STORED_FIELDS = {
@@ -3231,10 +3234,10 @@ class Handler(BaseHTTPRequestHandler):
                 # Policy changes apply to subsequent image attempts and isolated
                 # regenerations; they do not invalidate already accepted pixels.
                 known_qh.update(("image_qc_correction_policy", "beat_image_qc_disabled"))
-                if any(old_qh.get(k) != new_qh.get(k) for k in ("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds")): roots.update(("flow_clip_a", "flow_clip_b"))
+                if old_qh.get("flow_video_model") != new_qh.get("flow_video_model"): roots.add("opening_source_plan")
+                if old_qh.get("flow_resolution") != new_qh.get("flow_resolution"): roots.update(("flow_clip_a", "flow_clip_b"))
+                if any(old_qh.get(k) != new_qh.get(k) for k in ("opening_a_source_seconds", "opening_b_source_seconds", "opening_speed_tolerance")): roots.add("opening_source_plan")
                 known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds"))
-                # Trim-only rule: changing the 10% sync tolerance never invalidates Flow
-                # clips or images; the wrapper simply re-runs the trim on resume.
                 known_qh.add("opening_speed_tolerance")
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("retention_edit")
                 known_qh.update(("min_duration_seconds", "max_duration_seconds"))
@@ -4169,7 +4172,7 @@ class Handler(BaseHTTPRequestHandler):
                     raise ValueError(f"Invalid flow_video_model: {flow_video_model}")
             if flow_resolution not in {"720p", "360p"}:
                 raise ValueError("Invalid flow_resolution")
-            if opening_a_seconds not in {4,5,6,8} or opening_b_seconds not in {3,4,6,8}:
+            if opening_a_seconds not in {4,6,8,10} or opening_b_seconds not in {4,6,8,10}:
                 raise ValueError("Invalid opening durations")
             if subtitle_font not in available_subtitle_font_families():
                 raise ValueError("Invalid subtitle font.")
