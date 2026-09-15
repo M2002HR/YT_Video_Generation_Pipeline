@@ -1,0 +1,137 @@
+{
+  "body_duration_seconds": 35.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Within hours, roads empty and power grids begin failing.",
+      "visual": "Charcoal-and-graphite high-angle view of a deserted urban avenue with stalled vehicles below and dark utility poles receding toward a hazy skyline, while one distant transformer gives off a faint cold-amber dying glow.",
+      "purpose": "show the immediate emptying of roads and the first visible signs of electrical-grid failure",
+      "visual_fingerprint": "high-angle deserted city avenue + stalled vehicles + failing transformer + long vanishing-point composition in overcast daylight",
+      "type": "literal",
+      "continuity": "establish the abandoned post-human world immediately after the Flow sequence",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Without operators, pumps stop and tunnels start flooding.",
+      "visual": "Low interior charcoal view inside a silent underground pumping chamber, with inactive machinery looming on one side as dark water spills through a tunnel mouth and spreads across the foreground floor.",
+      "purpose": "show how unattended pumping infrastructure fails and allows underground spaces to flood",
+      "visual_fingerprint": "low-angle underground pump chamber + stopped machinery + advancing floodwater + enclosed tunnel setting",
+      "type": "literal",
+      "continuity": "move from surface infrastructure failure down into a dependent underground system",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Pets trapped indoors face danger first.",
+      "visual": "Intimate charcoal interior of a dim abandoned apartment, centered on a worried house cat beside an empty tipped water bowl near a closed doorway, with soft window haze isolating the animal.",
+      "purpose": "show why dependent indoor pets become vulnerable very quickly",
+      "visual_fingerprint": "close apartment interior + isolated house cat + empty tipped bowl + closed-door composition with soft window light",
+      "type": "literal",
+      "continuity": "shift from failing civic systems to the earliest consequences for animals dependent on humans",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Livestock escape fences or die without care.",
+      "visual": "Wide charcoal rural scene of cattle pushing through a broken pasture fence into an overgrown roadside, with an abandoned barn receding behind them beneath a heavy gray sky.",
+      "purpose": "show livestock escaping human-controlled enclosures once routine care disappears",
+      "visual_fingerprint": "wide rural pasture + cattle crossing broken fence + abandoned barn + lateral movement toward overgrown roadside",
+      "type": "literal",
+      "continuity": "expand from confined domestic pets to larger managed animals breaking out into the landscape",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Unattended fires can burn unchecked.",
+      "visual": "Dramatic charcoal street-level view of flames consuming the upper floor of an empty building, smoke smearing into the soot-dark sky while no firefighters or people appear anywhere in the street.",
+      "purpose": "show how ordinary fires become destructive when nobody remains to suppress them",
+      "visual_fingerprint": "street-level burning building + empty foreground street + heavy diagonal smoke plume + sparse amber flame against soot-black charcoal",
+      "type": "literal",
+      "continuity": "escalate from passive neglect to an acute hazard that spreads without intervention",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Weeds crack pavement; vines climb buildings.",
+      "visual": "Ground-level charcoal composition focused on thick weeds forcing apart fractured asphalt in the foreground while a vine-covered building facade rises vertically behind them.",
+      "purpose": "show plant growth physically reclaiming streets and architecture",
+      "visual_fingerprint": "ground-level cracked pavement + weeds erupting through asphalt + towering vine-covered facade + strong foreground-to-background vertical contrast",
+      "type": "literal",
+      "continuity": "move from sudden destructive fire to slower biological takeover of damaged urban surfaces",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Rust, leaks, and frost weaken roofs.",
+      "visual": "Upward-looking charcoal view beneath a decaying industrial roof, where rusted beams frame a jagged leak, water stains spread across concrete, and frost has split the roof edge around a sagging section.",
+      "purpose": "show weather and corrosion progressively weakening unattended structures",
+      "visual_fingerprint": "upward interior roof angle + rusted beams + leaking ceiling + frost-split sagging edge + tight structural composition",
+      "type": "literal",
+      "continuity": "continue the decay sequence by moving from exterior plant damage to structural deterioration from weather",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Wild animals spread through quieter towns.",
+      "visual": "Long-lens charcoal view down a silent suburban street where a small group of deer walks between abandoned cars, framed by dark hedges and distant houses softened by graphite haze.",
+      "purpose": "show wildlife occupying human spaces once noise, traffic, and disturbance disappear",
+      "visual_fingerprint": "compressed suburban street + deer among abandoned cars + eye-level distant observation + quiet graphite-haze depth",
+      "type": "literal",
+      "continuity": "show living ecosystems taking advantage of the increasingly damaged and quiet built environment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Satellites eventually fail or fall from orbit.",
+      "visual": "Charcoal orbital scene above the curved dark Earth, with one powerless satellite tumbling at a steep angle while a few small debris fragments trail away into black graphite space.",
+      "purpose": "show that even distant human technology eventually stops functioning and decays",
+      "visual_fingerprint": "orbital wide shot + tumbling dead satellite + curved Earth horizon + sparse debris against near-black graphite field",
+      "type": "literal",
+      "continuity": "jump outward from reclaimed towns to the farthest unattended systems humans left behind",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Stone, glass, plastic, and monuments can outlast generations.",
+      "visual": "Low wide charcoal view of a weathered stone monument standing amid collapsed modern structures, with broken glass catching pale light and tangled plastic remnants lodged among rubble and dead moss.",
+      "purpose": "show which durable human-made materials and structures can remain long after everyday systems collapse",
+      "visual_fingerprint": "low wide ruin field + enduring stone monument + scattered glass and plastic remnants + collapsed modern architecture surrounding central survivor",
+      "type": "literal",
+      "continuity": "return from orbit to Earth and contrast fast system failures with materials that persist for generations",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "Nature wouldn't erase us quickly; it would build over us.",
+      "visual": "Reflective charcoal vista of a partially collapsed city block almost engulfed by mature trees, vines, moss, and layered vegetation, with recognizable stone and concrete ruins still visible beneath the growth.",
+      "purpose": "summarize the long-term outcome as ecological succession building over persistent human remains rather than instantly erasing them",
+      "visual_fingerprint": "wide elevated ruin vista + mature forest overtaking city block + architecture visibly layered beneath vegetation + diffuse late-day haze",
+      "type": "subject_world",
+      "continuity": "resolve the sequence by combining persistent ruins with advanced ecological reclamation while staying entirely inside the abandoned world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

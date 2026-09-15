@@ -1,0 +1,37 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "request_fingerprint": "33c3a5de5b71842eae17901c0ceb07968c697479c85c2c8e57c81c1cd521d7f3",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical charcoal-style reference sheet showing rough-grained paper, concrete-like abrasion, soot bloom, rubbed graphite haze, water-stain mottling, seven muted palette swatches, industrial silhouette and architectural-line studies, machinery and decay mark-making samples, and three atmospheric lighting studies. The overall visual language is monochrome-to-muted charcoal with storm gray, black, beige, oxidized blue-green, moss green, ivory, and restrained amber accents.",
+    "violations": [
+      "Extensive visible text and labels are present throughout the sheet despite the direction requiring no visible text, letters, labels, or captions.",
+      "Several lower-half samples depict recognizable industrial structures and machinery rather than remaining purely texture-and-palette abstractions, though they still function as style-reference examples.",
+      "Some lighting and stain samples have a softly digital or photographic tonal smoothness that slightly weakens the requested uniformly fibrous charcoal-paper treatment."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Extensive visible text and labels are present throughout the sheet despite the direction requiring no visible text, letters, labels, or captions.",
+      "Several lower-half samples depict recognizable industrial structures and machinery rather than remaining purely texture-and-palette abstractions, though they still function as style-reference examples.",
+      "Some lighting and stain samples have a softly digital or photographic tonal smoothness that slightly weakens the requested uniformly fibrous charcoal-paper treatment."
+    ],
+    "observations": [
+      "Extensive visible text and labels are present throughout the sheet despite the direction requiring no visible text, letters, labels, or captions.",
+      "Several lower-half samples depict recognizable industrial structures and machinery rather than remaining purely texture-and-palette abstractions, though they still function as style-reference examples.",
+      "Some lighting and stain samples have a softly digital or photographic tonal smoothness that slightly weakens the requested uniformly fibrous charcoal-paper treatment."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/020_cinematic_abandoned_world_charcoal_001/style_anchor.png",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    }
+  ]
+}

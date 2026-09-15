@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "revision_id": "4357b96a-09f5-4fe4-b286-d6d6f31d46ad",
+  "kind": "config",
+  "created_at": "2026-09-15T10:05:07.038743+00:00",
+  "roots": [
+    "world_style_director"
+  ],
+  "affected_nodes": [
+    "world_style_director",
+    "world_style_anchor",
+    "episode_history",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_cover",
+    "flow_prompt_b",
+    "flow_clip_b",
+    "ajil_alignment",
+    "opening_trim",
+    "body_images",
+    "transition_direction",
+    "build_timeline",
+    "render_baseline",
+    "qc_baseline",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "git_commit_push",
+    "publish_telegram",
+    "beat_image_001",
+    "beat_image_002",
+    "beat_image_003",
+    "beat_image_004",
+    "beat_image_005",
+    "beat_image_006",
+    "beat_image_007",
+    "beat_image_008",
+    "beat_image_009",
+    "beat_image_010",
+    "beat_image_011"
+  ],
+  "reused_nodes": [
+    "character_resolution",
+    "script_draft",
+    "retention_edit",
+    "episode_director",
+    "book_design_sheet",
+    "book_cover_design",
+    "flow_prompt_a",
+    "flow_clip_a",
+    "elevenlabs_voiceover",
+    "background_music",
+    "render_profile",
+    "audio_mix_profile"
+  ],
+  "skipped_nodes": [
+    "motion_director",
+    "sfx_plan",
+    "sfx_acquire"
+  ],
+  "archived_artifacts": [
+    "creative/WORLD_STYLE_PLAN.json"
+  ],
+  "regenerate_beats": [],
+  "feedback": "",
+  "status": "FAILED",
+  "regeneration_mode": "cascade",
+  "use_chatgpt_feedback": false,
+  "started_at": "2026-09-15T10:05:07.041692+00:00",
+  "pid": 2648957,
+  "changed_fields": [
+    "world_style_id",
+    "world_style_policy"
+  ],
+  "config_revision_id": "121eb7fd-2947-4eed-a46e-7593c5f10eb9",
+  "completed_at": "2026-09-15T10:37:16.067892+00:00"
+}

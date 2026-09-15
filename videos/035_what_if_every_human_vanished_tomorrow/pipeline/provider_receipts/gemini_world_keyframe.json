@@ -1,0 +1,152 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "2a77e635a8a154b765bc793190f34b6a0d4bb0668f36ebfc96b777d532f18f9d",
+  "quality_check": {
+    "passed": true,
+    "description": "A standalone vertical post-human city keyframe shows a deserted modern street canyon with stalled cars and a delivery truck, sagging dark utility lines, cracked pavement with weeds, vines climbing weathered facades, rust and water damage, diffuse overcast haze, a fox and deer reclaiming the street, and a flooded stair-and-tunnel entrance dominating the foreground. The image uses rough charcoal and graphite-like contours, smudged atmospheric shading, fibrous stained paper texture, restrained gray-beige-green coloration, and sparse amber utility light. A soot-darkened irregular outer card edge surrounds a vertically inset illustration window, and the scene continues through the full usable height without a caption panel or human figure.",
+    "violations": [
+      "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+      "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+      "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+      "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+      "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+      "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+      "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+      "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+      "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+    ],
+    "observations": [
+      "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+      "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+      "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+      "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+      "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "9a5e4d42-fe4f-45e2-a0b6-6c63f3b46eba",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/6d3fb6bad085ee17",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=9a5e4d42-fe4f-45e2-a0b6-6c63f3b46eba_output_1.png 1536x2752 sha256=ef19e101265baaca99b836895d015bb6049a8f9d337a1bf58f195093eab6ef4e"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A standalone vertical post-human city keyframe shows a deserted modern street canyon with stalled cars and a delivery truck, sagging dark utility lines, cracked pavement with weeds, vines climbing weathered facades, rust and water damage, diffuse overcast haze, a fox and deer reclaiming the street, and a flooded stair-and-tunnel entrance dominating the foreground. The image uses rough charcoal and graphite-like contours, smudged atmospheric shading, fibrous stained paper texture, restrained gray-beige-green coloration, and sparse amber utility light. A soot-darkened irregular outer card edge surrounds a vertically inset illustration window, and the scene continues through the full usable height without a caption panel or human figure.",
+      "violations": [
+        "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+        "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+        "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+        "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+        "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+        "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+        "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+        "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+        "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+      ],
+      "observations": [
+        "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+        "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+        "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+        "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+        "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "2a77e635a8a154b765bc793190f34b6a0d4bb0668f36ebfc96b777d532f18f9d",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "9a5e4d42-fe4f-45e2-a0b6-6c63f3b46eba",
+        "prompt_sha256": "6dba2063cc187ebd72fed52ec47236500a24a2a16fbaf6758a45c8de99b8fa52",
+        "output_sha256": "ef19e101265baaca99b836895d015bb6049a8f9d337a1bf58f195093eab6ef4e",
+        "quality_check": {
+          "passed": true,
+          "description": "A standalone vertical post-human city keyframe shows a deserted modern street canyon with stalled cars and a delivery truck, sagging dark utility lines, cracked pavement with weeds, vines climbing weathered facades, rust and water damage, diffuse overcast haze, a fox and deer reclaiming the street, and a flooded stair-and-tunnel entrance dominating the foreground. The image uses rough charcoal and graphite-like contours, smudged atmospheric shading, fibrous stained paper texture, restrained gray-beige-green coloration, and sparse amber utility light. A soot-darkened irregular outer card edge surrounds a vertically inset illustration window, and the scene continues through the full usable height without a caption panel or human figure.",
+          "violations": [
+            "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+            "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+            "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+            "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+            "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+            "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+            "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+            "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+            "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+          ],
+          "observations": [
+            "A small number-like marking is visible on the left utility pole, conflicting with the no readable letters or numbers requirement.",
+            "Some building and vehicle contours are cleaner and more uniformly ink-like than the style reference's looser broken charcoal architecture.",
+            "The candidate has somewhat less pronounced soot bloom, rubbed graphite haze, and water-stain mottling inside the scene than the reference sheet calls for.",
+            "Oxidized blue-green is only faintly represented, so the requested palette logic leans more heavily toward gray, beige, moss green, and muted brown.",
+            "The amber lamp and small warm facade remnant are slightly more visually prominent than the requested sparse cold-amber remnants, though they remain restrained."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/035_what_if_every_human_vanished_tomorrow/references/world_style_anchor.png",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    }
+  ],
+  "prompt_sha256": "6dba2063cc187ebd72fed52ec47236500a24a2a16fbaf6758a45c8de99b8fa52",
+  "prompt": "Create one standalone vertical 9:16 WORLD_KEYFRAME showing the post-human world with absolute host isolation: no recurring host, selected host, foreground person, human figure, or character anywhere. Depict a deserted modern city corridor after humanity has vanished: empty roads with stalled vehicles, darkened power infrastructure, a subway or tunnel entrance beginning to flood, cracked pavement pushing up weeds, vines starting to climb weathered buildings, rust and water damage spreading across exposed structures, and a few wild or escaped animals cautiously reclaiming the silent streets. Suggest unattended decay and nature beginning to build over civilization, not total collapse yet.\n\nRender entirely in cinematic rough charcoal and graphite on fibrous, weathered paper with concrete-like grain, soot bloom, rubbed graphite haze, faint water-stain mottling, expressive charcoal contours, broken architectural marks, atmospheric smudging, and selective sharper detail on decay, vegetation, animals, and machinery. Palette: desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, with only sparse cold amber remnants of failing artificial light. Lighting: overcast abandoned-world daylight, deep charcoal shadows, diffuse haze.\n\nUse the recurring weathered charcoal-card frame: irregular soot-darkened outer edges, rubbed graphite corners, faint stains, and a vertically inset illustration window worn into concrete-like paper. Fill the full illustration height naturally—no caption reserve, blank strip, low-detail band, or empty panel. No readable text, letters, numbers, labels, signage emphasis, captions, UI, grid, sheet layout, or swatches. Use the world-style anchor only for medium/style continuity, never composition. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: A recurring weathered charcoal-card frame on rough fibrous stock, with irregular soot-darkened outer edges, faint water-stain blooms, rubbed graphite corners, and a vertically inset illustration window whose boundaries feel worn into concrete-like paper. The same distressed edge grammar and charcoal vignette persist across every body image while the inner scene shifts from infrastructure failure to flooding, fire, ecological overgrowth, wildlife return, orbital decay, and long-lived ruins.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI. Binding isolation: no recurring host, no selected host, and no foreground person or character.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "ef19e101265baaca99b836895d015bb6049a8f9d337a1bf58f195093eab6ef4e",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.16,
+  "completed_at": "2026-09-15T10:11:06Z"
+}

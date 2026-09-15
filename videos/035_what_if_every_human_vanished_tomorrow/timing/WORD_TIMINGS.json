@@ -1,0 +1,682 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 59.167,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 112,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.02,
+      "end": 0.16
+    },
+    {
+      "text": "every",
+      "token": "every",
+      "start": 0.16,
+      "end": 0.4
+    },
+    {
+      "text": "human",
+      "token": "human",
+      "start": 0.4,
+      "end": 0.7
+    },
+    {
+      "text": "vanished",
+      "token": "vanished",
+      "start": 0.7,
+      "end": 1.3
+    },
+    {
+      "text": "tomorrow,",
+      "token": "tomorrow",
+      "start": 1.3,
+      "end": 1.98
+    },
+    {
+      "text": "how",
+      "token": "how",
+      "start": 1.98,
+      "end": 2.1
+    },
+    {
+      "text": "long",
+      "token": "long",
+      "start": 2.1,
+      "end": 2.42
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 2.42,
+      "end": 2.66
+    },
+    {
+      "text": "this",
+      "token": "this",
+      "start": 2.66,
+      "end": 2.86
+    },
+    {
+      "text": "garden",
+      "token": "garden",
+      "start": 2.86,
+      "end": 3.2
+    },
+    {
+      "text": "keep",
+      "token": "keep",
+      "start": 3.2,
+      "end": 3.56
+    },
+    {
+      "text": "watering",
+      "token": "watering",
+      "start": 3.56,
+      "end": 4.0
+    },
+    {
+      "text": "itself?",
+      "token": "itself",
+      "start": 4.0,
+      "end": 4.7
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 5.84,
+      "end": 6.04
+    },
+    {
+      "text": "crone",
+      "token": "crone",
+      "start": 6.04,
+      "end": 6.38
+    },
+    {
+      "text": "raises",
+      "token": "raises",
+      "start": 6.38,
+      "end": 6.88
+    },
+    {
+      "text": "her",
+      "token": "her",
+      "start": 6.88,
+      "end": 7.28
+    },
+    {
+      "text": "orb,",
+      "token": "orb",
+      "start": 7.28,
+      "end": 7.78
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 7.78,
+      "end": 8.0
+    },
+    {
+      "text": "we",
+      "token": "we",
+      "start": 8.0,
+      "end": 8.14
+    },
+    {
+      "text": "dive",
+      "token": "dive",
+      "start": 8.14,
+      "end": 8.46
+    },
+    {
+      "text": "inside",
+      "token": "inside",
+      "start": 8.46,
+      "end": 8.98
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 8.98,
+      "end": 9.28
+    },
+    {
+      "text": "watch",
+      "token": "watch",
+      "start": 9.28,
+      "end": 9.52
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 9.52,
+      "end": 9.74
+    },
+    {
+      "text": "aftermath.",
+      "token": "aftermath",
+      "start": 9.74,
+      "end": 10.22
+    },
+    {
+      "text": "Within",
+      "token": "within",
+      "start": 11.28,
+      "end": 11.54
+    },
+    {
+      "text": "hours,",
+      "token": "hours",
+      "start": 11.54,
+      "end": 12.22
+    },
+    {
+      "text": "roads",
+      "token": "roads",
+      "start": 12.22,
+      "end": 12.56
+    },
+    {
+      "text": "empty",
+      "token": "empty",
+      "start": 12.56,
+      "end": 12.98
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 12.98,
+      "end": 13.26
+    },
+    {
+      "text": "power",
+      "token": "power",
+      "start": 13.26,
+      "end": 13.78
+    },
+    {
+      "text": "grids",
+      "token": "grids",
+      "start": 13.78,
+      "end": 14.18
+    },
+    {
+      "text": "begin",
+      "token": "begin",
+      "start": 14.18,
+      "end": 14.5
+    },
+    {
+      "text": "failing.",
+      "token": "failing",
+      "start": 14.5,
+      "end": 15.02
+    },
+    {
+      "text": "Without",
+      "token": "without",
+      "start": 16.02,
+      "end": 16.34
+    },
+    {
+      "text": "operators,",
+      "token": "operators",
+      "start": 16.34,
+      "end": 17.28
+    },
+    {
+      "text": "pumps",
+      "token": "pumps",
+      "start": 17.28,
+      "end": 17.58
+    },
+    {
+      "text": "stop",
+      "token": "stop",
+      "start": 17.58,
+      "end": 18.06
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 18.06,
+      "end": 18.38
+    },
+    {
+      "text": "tunnels",
+      "token": "tunnels",
+      "start": 18.38,
+      "end": 18.74
+    },
+    {
+      "text": "start",
+      "token": "start",
+      "start": 18.74,
+      "end": 19.3
+    },
+    {
+      "text": "flooding.",
+      "token": "flooding",
+      "start": 19.3,
+      "end": 19.74
+    },
+    {
+      "text": "Pets",
+      "token": "pets",
+      "start": 20.5,
+      "end": 20.84
+    },
+    {
+      "text": "trapped",
+      "token": "trapped",
+      "start": 20.84,
+      "end": 21.24
+    },
+    {
+      "text": "indoors",
+      "token": "indoors",
+      "start": 21.24,
+      "end": 21.66
+    },
+    {
+      "text": "face",
+      "token": "face",
+      "start": 21.66,
+      "end": 22.1
+    },
+    {
+      "text": "danger",
+      "token": "danger",
+      "start": 22.1,
+      "end": 22.5
+    },
+    {
+      "text": "first.",
+      "token": "first",
+      "start": 22.5,
+      "end": 22.96
+    },
+    {
+      "text": "Livestock",
+      "token": "livestock",
+      "start": 23.72,
+      "end": 24.22
+    },
+    {
+      "text": "escape",
+      "token": "escape",
+      "start": 24.22,
+      "end": 24.56
+    },
+    {
+      "text": "fences",
+      "token": "fences",
+      "start": 24.56,
+      "end": 25.0
+    },
+    {
+      "text": "or",
+      "token": "or",
+      "start": 25.0,
+      "end": 25.34
+    },
+    {
+      "text": "die",
+      "token": "die",
+      "start": 25.34,
+      "end": 25.66
+    },
+    {
+      "text": "without",
+      "token": "without",
+      "start": 25.66,
+      "end": 25.94
+    },
+    {
+      "text": "care.",
+      "token": "care",
+      "start": 25.94,
+      "end": 26.34
+    },
+    {
+      "text": "Unattended",
+      "token": "unattended",
+      "start": 27.02,
+      "end": 27.5
+    },
+    {
+      "text": "fires",
+      "token": "fires",
+      "start": 27.5,
+      "end": 27.96
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 27.96,
+      "end": 28.24
+    },
+    {
+      "text": "burn",
+      "token": "burn",
+      "start": 28.24,
+      "end": 28.54
+    },
+    {
+      "text": "unchecked.",
+      "token": "unchecked",
+      "start": 28.54,
+      "end": 29.32
+    },
+    {
+      "text": "Weeds",
+      "token": "weeds",
+      "start": 29.82,
+      "end": 30.2
+    },
+    {
+      "text": "crack",
+      "token": "crack",
+      "start": 30.2,
+      "end": 30.54
+    },
+    {
+      "text": "pavement,",
+      "token": "pavement",
+      "start": 30.54,
+      "end": 31.28
+    },
+    {
+      "text": "vines",
+      "token": "vines",
+      "start": 31.28,
+      "end": 31.7
+    },
+    {
+      "text": "climb",
+      "token": "climb",
+      "start": 31.7,
+      "end": 32.1
+    },
+    {
+      "text": "buildings,",
+      "token": "buildings",
+      "start": 32.1,
+      "end": 32.98
+    },
+    {
+      "text": "rust,",
+      "token": "rust",
+      "start": 32.98,
+      "end": 33.9
+    },
+    {
+      "text": "leaks,",
+      "token": "leaks",
+      "start": 33.9,
+      "end": 34.62
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 34.62,
+      "end": 34.96
+    },
+    {
+      "text": "frost",
+      "token": "frost",
+      "start": 34.96,
+      "end": 35.38
+    },
+    {
+      "text": "weaken",
+      "token": "weaken",
+      "start": 35.38,
+      "end": 35.78
+    },
+    {
+      "text": "roofs.",
+      "token": "roofs",
+      "start": 35.78,
+      "end": 36.52
+    },
+    {
+      "text": "Wild",
+      "token": "wild",
+      "start": 36.96,
+      "end": 37.26
+    },
+    {
+      "text": "animals",
+      "token": "animals",
+      "start": 37.26,
+      "end": 37.78
+    },
+    {
+      "text": "spread",
+      "token": "spread",
+      "start": 37.78,
+      "end": 38.22
+    },
+    {
+      "text": "through",
+      "token": "through",
+      "start": 38.22,
+      "end": 38.48
+    },
+    {
+      "text": "quieter",
+      "token": "quieter",
+      "start": 38.48,
+      "end": 38.94
+    },
+    {
+      "text": "towns.",
+      "token": "towns",
+      "start": 38.94,
+      "end": 39.52
+    },
+    {
+      "text": "Satellites",
+      "token": "satellites",
+      "start": 40.36,
+      "end": 40.96
+    },
+    {
+      "text": "eventually",
+      "token": "eventually",
+      "start": 40.96,
+      "end": 41.48
+    },
+    {
+      "text": "fail",
+      "token": "fail",
+      "start": 41.48,
+      "end": 42.12
+    },
+    {
+      "text": "or",
+      "token": "or",
+      "start": 42.12,
+      "end": 42.4
+    },
+    {
+      "text": "fall",
+      "token": "fall",
+      "start": 42.4,
+      "end": 42.76
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 42.76,
+      "end": 43.02
+    },
+    {
+      "text": "orbit.",
+      "token": "orbit",
+      "start": 43.02,
+      "end": 43.86
+    },
+    {
+      "text": "Stone,",
+      "token": "stone",
+      "start": 44.48,
+      "end": 45.16
+    },
+    {
+      "text": "glass,",
+      "token": "glass",
+      "start": 45.16,
+      "end": 45.74
+    },
+    {
+      "text": "plastic,",
+      "token": "plastic",
+      "start": 45.74,
+      "end": 46.6
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 46.6,
+      "end": 46.74
+    },
+    {
+      "text": "monuments",
+      "token": "monuments",
+      "start": 46.74,
+      "end": 47.3
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 47.3,
+      "end": 47.72
+    },
+    {
+      "text": "outlast",
+      "token": "outlast",
+      "start": 47.72,
+      "end": 48.28
+    },
+    {
+      "text": "generations.",
+      "token": "generations",
+      "start": 48.28,
+      "end": 49.08
+    },
+    {
+      "text": "Nature",
+      "token": "nature",
+      "start": 50.2,
+      "end": 50.6
+    },
+    {
+      "text": "wouldn't",
+      "token": "wouldn't",
+      "start": 50.6,
+      "end": 51.6
+    },
+    {
+      "text": "erase",
+      "token": "erase",
+      "start": 51.6,
+      "end": 52.06
+    },
+    {
+      "text": "us",
+      "token": "us",
+      "start": 52.06,
+      "end": 52.38
+    },
+    {
+      "text": "quickly.",
+      "token": "quickly",
+      "start": 52.38,
+      "end": 52.78
+    },
+    {
+      "text": "It",
+      "token": "it",
+      "start": 53.28,
+      "end": 53.44
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 53.44,
+      "end": 53.58
+    },
+    {
+      "text": "build",
+      "token": "build",
+      "start": 53.58,
+      "end": 54.0
+    },
+    {
+      "text": "over",
+      "token": "over",
+      "start": 54.0,
+      "end": 54.4
+    },
+    {
+      "text": "us.",
+      "token": "us",
+      "start": 54.4,
+      "end": 54.9
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 54.4,
+      "end": 55.74
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 55.74,
+      "end": 55.98
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 55.98,
+      "end": 56.58
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 56.58,
+      "end": 57.14
+    },
+    {
+      "text": "keep",
+      "token": "keep",
+      "start": 57.14,
+      "end": 57.34
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 57.34,
+      "end": 57.5
+    },
+    {
+      "text": "questions",
+      "token": "questions",
+      "start": 57.5,
+      "end": 58.02
+    },
+    {
+      "text": "growing.",
+      "token": "growing",
+      "start": 58.02,
+      "end": 58.58
+    }
+  ]
+}

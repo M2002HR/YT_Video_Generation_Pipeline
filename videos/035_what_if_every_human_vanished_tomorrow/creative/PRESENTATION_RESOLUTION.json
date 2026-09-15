@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "profile_id": "orb_portal",
+  "profile_version": 1,
+  "entry_kind": "orb",
+  "segment_key": "entry_transition",
+  "artifacts": {
+    "question_prompt": "references/flow_prompt_question_intro.txt",
+    "entry_prompt": "references/flow_prompt_orb_transition.txt",
+    "question_source": "assets/opening/question_intro_source.mp4",
+    "entry_source": "assets/opening/orb_transition_source.mp4",
+    "question_trimmed": "assets/opening/question_intro_trimmed.mp4",
+    "entry_trimmed": "assets/opening/orb_transition_trimmed.mp4",
+    "entry_direction": "creative/ENTRY_FRAME_DIRECTION.txt",
+    "entry_frame": "references/orb_entry_frame.png",
+    "entry_image_receipt": "pipeline/provider_receipts/gemini_orb_entry_frame.json"
+  }
+}

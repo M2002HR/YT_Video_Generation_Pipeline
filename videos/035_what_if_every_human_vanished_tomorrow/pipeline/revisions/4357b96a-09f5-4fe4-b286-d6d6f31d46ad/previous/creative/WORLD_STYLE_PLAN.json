@@ -1,0 +1,20 @@
+{
+  "style_id": "ruined_ecology_inkwash_charcoal_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "ink wash",
+  "secondary_treatment": "subtle dry charcoal abrasion for structural decay, soot, and deep shadow",
+  "texture_family": "rough fibrous paper with weathered concrete grain, water-stain blooms, soot smudging, oxidized speckling, and faint moss-like pigment bleed",
+  "palette_summary": "desaturated concrete gray, dirty ivory, soot black, oxidized blue-green, dead moss and invasive vine greens, rust brown, muted earth ochre, with extremely sparse cold amber remnants for failing artificial light",
+  "line_treatment": "loose cinematic ink contours with broken dry-brush edges, charcoal-dark structural accents, softened atmospheric silhouettes, and irregular weathered marks that become increasingly organic as nature reclaims the scene",
+  "lighting": "overcast post-human daylight with deep soft shadows, occasional shafts of pale natural light, and sparse dying amber artificial illumination in early aftermath scenes",
+  "frame_language": "a recurring vertical weathered-concrete-and-fibrous-paper surround with irregular stained edges, subtle cracks, soot rubs, oxidized flecks, and creeping moss pigment; the inner illustration window feels like a cinematic abandoned-world vignette washed directly into the distressed surface, with architecture and vegetation occasionally crossing the inner boundary while the same material edge grammar persists across every body image",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "post-human contemporary environments only: empty roads, stalled vehicles, darkened buildings, failing electrical infrastructure, pumps and flooded tunnels, abandoned homes, escaped livestock, endangered household pets, unattended fires, cracked pavement, vines and weeds, rusting roofs, leaking structures, wildlife entering towns, distant satellites or orbital debris, weathered monuments, stone, glass, plastic, and long-term ecological succession; emphasize believable physical decay and gradual biological overgrowth rather than fantastical apocalypse imagery",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears later, translate only the established silhouette and costume shapes into the same broken ink-wash contours, desaturated pigments, charcoal shadow accents, and weathered paper texture without introducing a new rendering style",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime or manga styling, no clean vector art, no neon cyberpunk palette, no pristine futuristic ruins, no zombies, no monsters, no supernatural destruction, no exaggerated disaster spectacle, no dense infographic labeling, no readable signage or typography, and no beat-to-beat medium changes",
+  "reason": "A new style is required by the operator directive. The episode needs a cinematic abandoned-world mood capable of showing both rapid infrastructure failure and decades of ecological succession, so distressed ink wash with restrained charcoal abrasion provides atmospheric scale, decay, moisture, soot, rust, and encroaching vegetation without becoming photorealistic. It deliberately avoids reusing cinematic_abandoned_world_charcoal_001, which is among the most recent styles, and also avoids repeating its charcoal-primary treatment by making ink wash the dominant medium while preserving the requested abandoned-world texture.",
+  "style_subtitle_reserve": "a quiet lower field confined to the bottom 8–10% of the 9:16 frame, rendered as low-detail stained paper and soft concrete-gray wash with restrained atmospheric texture; keep it free of faces, hands, focal objects, vines carrying narrative action, fine structural detail, and absolutely free of any text, letters, numbers, captions, labels, words or UI",
+  "reserve_subtitle_space": false
+}

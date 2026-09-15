@@ -1,0 +1,113 @@
+{
+  "audio_duration_seconds": 59.167,
+  "spark_start": 0.02,
+  "spark_end": 4.7,
+  "spark_duration": 4.68,
+  "transition_start": 5.84,
+  "transition_end": 10.22,
+  "transition_duration": 4.38,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 4.7,
+  "clip_b_target_seconds": 5.52,
+  "body_start": 11.28,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If every human vanished tomorrow, how long would this garden keep watering itself?",
+      "speech_start": 0.02,
+      "speech_end": 4.7,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "The crone raises her orb, and we dive inside to watch the aftermath.",
+      "speech_start": 5.84,
+      "speech_end": 10.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Within hours, roads empty and power grids begin failing.",
+      "speech_start": 11.28,
+      "speech_end": 15.02,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Without operators, pumps stop and tunnels start flooding.",
+      "speech_start": 16.02,
+      "speech_end": 19.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Pets trapped indoors face danger first.",
+      "speech_start": 20.5,
+      "speech_end": 22.96,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Livestock escape fences or die without care.",
+      "speech_start": 23.72,
+      "speech_end": 26.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Unattended fires can burn unchecked.",
+      "speech_start": 27.02,
+      "speech_end": 29.32,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Weeds crack pavement; vines climb buildings.",
+      "speech_start": 29.82,
+      "speech_end": 32.98,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Rust, leaks, and frost weaken roofs.",
+      "speech_start": 32.98,
+      "speech_end": 36.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Wild animals spread through quieter towns.",
+      "speech_start": 36.96,
+      "speech_end": 39.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Satellites eventually fail or fall from orbit.",
+      "speech_start": 40.36,
+      "speech_end": 43.86,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "Stone, glass, plastic, and monuments can outlast generations.",
+      "speech_start": 44.48,
+      "speech_end": 49.08,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Nature wouldn't erase us quickly; it would build over us.",
+      "speech_start": 50.2,
+      "speech_end": 54.9,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe to keep the questions growing.",
+      "speech_start": 54.4,
+      "speech_end": 58.58,
+      "match_confidence": 1.0
+    }
+  ]
+}

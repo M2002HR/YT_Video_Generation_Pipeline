@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "4150008bcd34e3ad73ef4861666a6bff681ec069e8cec1ea107e2274f11b9435",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "a5058434-2411-4ff9-aedc-b7ca24238dc5",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/5a063a1dc2c47593",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=a5058434-2411-4ff9-aedc-b7ca24238dc5_output_1.png 1536x2752 sha256=56ebdf791eb83f996f8f7f44c36fb70565b428ef5ac6e12292c012ea4064db3f"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "4150008bcd34e3ad73ef4861666a6bff681ec069e8cec1ea107e2274f11b9435",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "a5058434-2411-4ff9-aedc-b7ca24238dc5",
+        "prompt_sha256": "46ddd6f1b324b4073e83cadc7683c4b6fc92570acbd77ba51323b25032fd055f",
+        "output_sha256": "56ebdf791eb83f996f8f7f44c36fb70565b428ef5ac6e12292c012ea4064db3f",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/035_what_if_every_human_vanished_tomorrow/references/world_style_anchor.png",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/035_what_if_every_human_vanished_tomorrow/references/world_keyframe.png",
+      "sha256": "ef19e101265baaca99b836895d015bb6049a8f9d337a1bf58f195093eab6ef4e"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/035_what_if_every_human_vanished_tomorrow/assets/raw_beats/beat_004.png",
+      "sha256": "47875230fabdb7dc3e5afe103c943d306f4da381daee245daca6ee1bdeb8e22f"
+    }
+  ],
+  "prompt_sha256": "46ddd6f1b324b4073e83cadc7683c4b6fc92570acbd77ba51323b25032fd055f",
+  "prompt": "Gemini Image Prompt — Beat 5\n\nCreate exactly one 9:16 image: a dramatic street-level view of an abandoned urban building with its upper floor actively burning, sparse cold-amber flames breaking through soot-black charcoal while a heavy diagonal plume of smoke smears across a storm-gray sky; the empty foreground street must clearly show that no one is present to suppress the fire. Render entirely in the established cinematic abandoned-world charcoal medium: expressive charcoal contours, rubbed graphite edges, rough fibrous paper, weathered concrete-like grain, soot bloom, graphite haze, subtle water stains, desaturated storm gray, concrete beige, oxidized blue-green, dead moss green, dirty ivory, deep charcoal shadows, diffuse overcast daylight, and restrained amber firelight. Preserve the recurring weathered charcoal-card frame, irregular soot-darkened edges, rubbed corners, worn vertical illustration window, texture, palette, and lighting across the full illustration height; do not reserve any lower caption strip, blank field, panel, or low-detail subtitle band. Show fire damage, cracked surfaces, smoke, and believable architectural decay with readable silhouettes, but no people anywhere. The style_reference supplies compatibility-level rendering discipline only and must not introduce the unrelated Q Station opening environment or entry mechanism; the world_keyframe defines the abandoned-world charcoal medium, frame language, material texture, palette, and lighting; the previous_beat is binding only for those recurring visual properties and must not be copied for composition, crop, camera angle, subject placement, or focal object. No photorealism, glossy 3D CGI, anime, clean vector art, neon, saturated colors, polished digital concept art, collage, storyboard, grid, multiple panels, captions, UI, signage emphasis, or readable text, letters, numbers, labels, or symbols.\n\nMake the smoke plume more visually dominant\nReduce repeated style constraints NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: A recurring weathered charcoal-card frame on rough fibrous stock, with irregular soot-darkened outer edges, faint water-stain blooms, rubbed graphite corners, and a vertically inset illustration window whose boundaries feel worn into concrete-like paper. The same distressed edge grammar and charcoal vignette persist across every body image while the inner scene shifts from infrastructure failure to flooding, fire, ecological overgrowth, wildlife return, orbital decay, and long-lived ruins.. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "56ebdf791eb83f996f8f7f44c36fb70565b428ef5ac6e12292c012ea4064db3f",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 90.317,
+  "completed_at": "2026-09-15T10:24:01Z"
+}

@@ -1,0 +1,18 @@
+{
+  "opening_activity": "tying a sagging tomato vine back onto its trellis with her long fingers as the greenhouse's timed overhead misters suddenly activate across the surrounding beds without anyone operating them",
+  "opening_location": "rooftop greenhouse garden above a quiet high-rise district at early morning",
+  "opening_environment": "a weathered glass rooftop greenhouse filled with vegetable beds, trellises, irrigation tubing, damp concrete paths, and a muted city skyline beyond the panes",
+  "topic_visual_link": "The garden visibly continues watering itself without a human operator, immediately posing how long automated systems would keep functioning if humanity suddenly disappeared.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "At frame zero, fine mist is already sweeping across multiple unattended planting rows from automatic ceiling nozzles while the crone alone ties a vine beneath them.",
+  "curiosity_trigger": "a sharp valve click followed by the hiss of mist moving down the otherwise silent greenhouse",
+  "trigger_object": "automated overhead irrigation nozzles activating in sequence",
+  "reaction": "She stops mid-knot, follows the advancing spray with a narrow side-eye, then gives the raven a small knowing glance.",
+  "entry_retrieval": "As the question lands, she releases the vine, wipes a bead of irrigation water from one long fingertip, then slips that hand beneath a fold of her moss-green cloak and deliberately draws out her orb; the raven leans toward it as she raises it into the camera's path.",
+  "entry_variant": "sleeve_reveal",
+  "camera_pattern": "pan_right",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "cinematic abandoned-world texture showing modern infrastructure failing in stages as vegetation, weather, animals, and decay reclaim human spaces",
+  "reason": "An automatically watered rooftop garden directly supports the script's opening question while giving the crone a quiet, tactile task and a believable mechanical interruption that naturally leads into her orb."
+}

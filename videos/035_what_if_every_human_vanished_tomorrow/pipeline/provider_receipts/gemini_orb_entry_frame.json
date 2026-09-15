@@ -1,0 +1,155 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "c1307b047bf705d49eae32554892e7101d4982f5d70af20b9a9dd2ee5152de20",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical first-frame illustration centers the recurring glass orb inside a damp rooftop greenhouse. The orb preserves the spherical glass body, aged-bronze equatorial band, three-claw cradle, crescent brace and moss-green cord knot. Two long-fingered crone hands and moss-green sleeves physically hold and touch it, while a black raven watches from the left. Inside the orb is an abandoned urban glimpse with empty streets, stalled cars, dark towers, encroaching vegetation, roaming deer and a flooded or descending transit entrance. The surrounding greenhouse includes weathered glass, tomato trellises, wet concrete and distant high-rises, all presented with a distressed charcoal-and-graphite illustration feel and weathered paper frame.",
+    "violations": [
+      "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+      "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+      "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+      "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+      "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+      "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+      "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+    ],
+    "observations": [
+      "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+      "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+      "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+      "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "e0e31b4a-81f3-42c6-b4d2-3ca3fb44b59d",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/f8a74f1676bd77d5",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=e0e31b4a-81f3-42c6-b4d2-3ca3fb44b59d_output_1.png 1536x2752 sha256=7d877510bb1803ab3a499cb9b1c0146d9cc08634b90bdec88d6f4d4da5f247f4"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical first-frame illustration centers the recurring glass orb inside a damp rooftop greenhouse. The orb preserves the spherical glass body, aged-bronze equatorial band, three-claw cradle, crescent brace and moss-green cord knot. Two long-fingered crone hands and moss-green sleeves physically hold and touch it, while a black raven watches from the left. Inside the orb is an abandoned urban glimpse with empty streets, stalled cars, dark towers, encroaching vegetation, roaming deer and a flooded or descending transit entrance. The surrounding greenhouse includes weathered glass, tomato trellises, wet concrete and distant high-rises, all presented with a distressed charcoal-and-graphite illustration feel and weathered paper frame.",
+      "violations": [
+        "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+        "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+        "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+        "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+        "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+        "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+        "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+      ],
+      "observations": [
+        "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+        "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+        "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+        "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "c1307b047bf705d49eae32554892e7101d4982f5d70af20b9a9dd2ee5152de20",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "e0e31b4a-81f3-42c6-b4d2-3ca3fb44b59d",
+        "prompt_sha256": "f37fda696a05a932fe526208d8d8ed8f1e03eb89847e7496871dc42389ae54cf",
+        "output_sha256": "7d877510bb1803ab3a499cb9b1c0146d9cc08634b90bdec88d6f4d4da5f247f4",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical first-frame illustration centers the recurring glass orb inside a damp rooftop greenhouse. The orb preserves the spherical glass body, aged-bronze equatorial band, three-claw cradle, crescent brace and moss-green cord knot. Two long-fingered crone hands and moss-green sleeves physically hold and touch it, while a black raven watches from the left. Inside the orb is an abandoned urban glimpse with empty streets, stalled cars, dark towers, encroaching vegetation, roaming deer and a flooded or descending transit entrance. The surrounding greenhouse includes weathered glass, tomato trellises, wet concrete and distant high-rises, all presented with a distressed charcoal-and-graphite illustration feel and weathered paper frame.",
+          "violations": [
+            "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+            "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+            "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+            "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+            "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+            "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+            "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+          ],
+          "observations": [
+            "The requested unattended irrigation sequence is not clearly staged; the greenhouse is visibly wet and streaked, but active ceiling-nozzle mist sweeping the vegetable rows is not strongly legible.",
+            "The requested narrow side-eye from the crone is absent because her face is kept out of frame, although ownership remains unmistakable through her hands, sleeves and direct handling of the orb.",
+            "The greenhouse and character-adjacent rendering is somewhat cleaner and more ink-illustrative than the style reference's strongest rough charcoal abrasion, soot bloom and rubbed graphite haze, though the overall palette, distressed texture and frame language remain substantially continuous.",
+            "A tiny sign-like marking appears on the transit entrance inside the orb and risks reading as lettering, contrary to the no-readable-text direction."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/orb_portal/refs/orb_design_sheet.png",
+      "sha256": "4c47c81f9a59c1d45f4be697997af1614d754249a71301f2e80ac5546263899e"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/035_what_if_every_human_vanished_tomorrow/references/world_style_anchor.png",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/moss_cloaked_crone/refs/character_sheet.jpg",
+      "sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    }
+  ],
+  "prompt_sha256": "f37fda696a05a932fe526208d8d8ed8f1e03eb89847e7496871dc42389ae54cf",
+  "prompt": "Create one 9:16 first frame centered on the recurring magic orb from the attached identity sheet.\nPreserve its sphere, aged-bronze equatorial band, three-claw cradle, crescent brace and moss-green cord\nknot. Make ownership and agency unmistakably the old crone's using the attached character identity:\nshow one strong cue such as her long fingers touching the cradle, a moss-green sleeve framing it, her\nhunched shadow/reflection, or her black raven beside it; do not require a full face or body. Inside the\norb, stage a still subject-specific glimpse directed by the episode brief, gradually adopting the\nattached world style's palette, texture, atmosphere and frame language. The world style affects the\norb interior and surrounding presentation, never the crone's identity or the orb's locked geometry.\nNo readable text, generic crystal ball, unrelated wizard, UI, 3D CGI or photorealism.\n\nEPISODE TOPIC: What If Every Human Vanished Tomorrow??\nEPISODE DIRECTION: Early-morning rooftop greenhouse, weathered glass panes, damp concrete, sagging tomato trellises, irrigation tubing, silent high-rises beyond. Fine mist already sweeps unattended vegetable rows as ceiling nozzles activate in sequence. The crone pauses mid-knot, narrow side-eye tracking the spray; raven watches. Her moss-green sleeve enters foreground, long fingers wiping one water bead before deliberately revealing and raising her orb toward camera, clearly establishing ownership. Within its glass: empty streets, dark towers, encroaching vines, roaming animals, flooded infrastructure.\nTOPIC-WORLD STYLE: {\"style_id\": \"cinematic_abandoned_world_charcoal_001\", \"decision\": \"reuse\", \"reuse_of\": \"cinematic_abandoned_world_charcoal_001\", \"medium\": \"charcoal\", \"secondary_treatment\": null, \"texture_family\": \"rough fibrous charcoal paper with weathered concrete-like grain, soft soot bloom, rubbed graphite haze, and restrained water-stain mottling\", \"palette_summary\": \"desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, and sparse cold amber remnants for failing artificial light\", \"line_treatment\": \"expressive charcoal contours with rubbed graphite edges, broken soot-black architectural lines, softened atmospheric smudging, and selective sharper marks on structural decay, vines, animals, and machinery\", \"lighting\": \"overcast abandoned-world daylight with deep charcoal shadows, diffuse haze, and sparse cold amber remnants from failing artificial lights\", \"frame_language\": \"A recurring weathered charcoal-card frame on rough fibrous stock, with irregular soot-darkened outer edges, faint water-stain blooms, rubbed graphite corners, and a vertically inset illustration window whose boundaries feel worn into concrete-like paper. The same distressed edge grammar and charcoal vignette persist across every body image while the inner scene shifts from infrastructure failure to flooding, fire, ecological overgrowth, wildlife return, orbital decay, and long-lived ruins.\", \"subtitle_reserve\": \"no dedicated caption reserve; the scene and matching texture fill the complete illustration height\", \"subject_constraints\": \"Allowed world vocabulary includes deserted roads, stalled vehicles, darkened power infrastructure, silent pumping stations, flooding tunnels and subways, abandoned homes, vulnerable domestic animals, escaped livestock, unattended structural and vegetation fires, cracked pavement, invasive weeds and vines, rusting steel, leaking roofs, frost damage, collapsing modern buildings, wild animals reclaiming suburbs and city streets, distant failing satellites or orbital debris, weathered stone monuments, glass remnants, persistent plastics, and layered ecological succession. Human figures should be absent from the post-vanishing world except for a later resolved host appearance if explicitly required by another beat.\", \"historical_accuracy_note\": null, \"hero_rendering_in_world\": \"If the resolved protagonist appears in a later world beat, translate only that established silhouette and wardrobe into the same rough charcoal-and-graphite language, using soot-softened contours, weathered paper texture, subdued abandoned-world palette, and matching diffuse lighting without changing identity or inventing new costume details.\", \"negative_constraints\": \"No photorealism, no glossy 3D CGI, no anime or manga styling, no clean vector art, no neon cyberpunk treatment, no bright saturated palette, no polished digital concept-art finish, no comic halftone pop-art language, no mixed-media switching between beats, no oversized blank subtitle panel, and no visible text, letters, numbers, labels, captions, signage emphasis, or UI elements in the artwork.\", \"reason\": \"The abandoned-world charcoal treatment directly supports the script's progression from infrastructure failure and flooding through fire, decay, ecological reclamation, wildlife return, orbital failure, and long-lived ruins. Its soot, concrete-like grain, oxidized tones, and subdued artificial-light remnants make the absence of humans feel immediate while remaining legible as nature gradually builds over civilization. This style appears in the recent-style list and would normally incur a reuse penalty, especially because recent diversity heuristics discourage repeating one of the last two styles; however, the operator directive explicitly requires reuse of cinematic_abandoned_world_charcoal_001 and outranks those penalties.\", \"style_subtitle_reserve\": \"Maintain a quiet lower field inside only the bottom 8–10% of every 9:16 frame, rendered as calm low-detail charcoal-paper texture, soft graphite haze, or subdued concrete-gray atmosphere. Keep it free of faces, hands, focal objects, vines crossing key silhouettes, animals, machinery, fine structural detail, and absolutely free of any text, letters, numbers, captions, labels, words, symbols, or UI. It must comfortably hold two subtitle lines without becoming an oversized empty void.\", \"reserve_subtitle_space\": false}",
+  "output_path": "references/orb_entry_frame.png",
+  "output_sha256": "7d877510bb1803ab3a499cb9b1c0146d9cc08634b90bdec88d6f4d4da5f247f4",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 87.331,
+  "completed_at": "2026-09-15T10:14:22Z"
+}

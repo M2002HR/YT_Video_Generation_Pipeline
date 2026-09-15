@@ -1,0 +1,16 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Seer Morganna - Intimidating",
+    "model": "Eleven Multilingual v2",
+    "speed": 1.0,
+    "stability": 0.4,
+    "similarity": 0.4,
+    "style": 0.25,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "918b4ddf00cde22defc763997e9a134a0f553d89f060ccac0b172b0ff8a39068",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-09-15T10:07:26.209453+00:00"
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "video": "035_what_if_every_human_vanished_tomorrow",
+  "started_at": "2026-09-15T12:26:04.886054+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-15T12:26:04.909199+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-15T12:26:06.541439+00:00",
+      "elapsed_seconds": 1.632,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 38499
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-15T12:26:07.693109+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 2/8 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-15T12:29:49.424912+00:00",
+      "elapsed_seconds": 221.732,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 85747227
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-15T12:29:49.425452+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-15T12:30:02.214760+00:00",
+      "elapsed_seconds": 12.789,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-15T12:30:03.248036+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-15T12:30:07.583058+00:00",
+      "elapsed_seconds": 4.335,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 86098971
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-15T12:30:08.760942+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-15T12:30:22.435002+00:00",
+      "elapsed_seconds": 13.674,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-15T12:30:23.696480+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-15T12:30:46.769160+00:00",
+      "elapsed_seconds": 23.073,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 3384363
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-15T12:30:47.853572+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-15T12:26:04.886054+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ]
+}
