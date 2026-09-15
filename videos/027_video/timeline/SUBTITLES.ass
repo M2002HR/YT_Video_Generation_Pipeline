@@ -7,70 +7,124 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Rubik,110,&H00A9FEFE,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5.0,0.0,2,60,60,326,1
-Style: Karaoke,Rubik,110,&H0000D7FF,&H00A9FEFE,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5.0,0.0,2,60,60,326,1
+Style: Default,North Eternal,319.9,&H0000FFB6,&H000000FF,&H00471A3C,&H80000000,0,-1,0,0,100,100,0,0,1,8.0,0.0,2,60,60,416,1
+Style: Karaoke,North Eternal,319.9,&H0000D7FF,&H0000FFB6,&H00471A3C,&H80000000,0,-1,0,0,100,100,0,0,1,8.0,0.0,2,60,60,416,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.04,0:00:00.60,Default,,0,0,0,,When money
-Dialogue: 0,0:00:00.60,0:00:01.54,Default,,0,0,0,,gets tight,
-Dialogue: 0,0:00:01.54,0:00:02.38,Default,,0,0,0,,why can
-Dialogue: 0,0:00:02.38,0:00:03.22,Default,,0,0,0,,one tiny
-Dialogue: 0,0:00:03.22,0:00:04.22,Default,,0,0,0,,luxury survive?
-Dialogue: 0,0:00:04.90,0:00:05.74,Default,,0,0,0,,Here's why.
-Dialogue: 0,0:00:06.64,0:00:07.46,Default,,0,0,0,,That contradiction
-Dialogue: 0,0:00:07.46,0:00:08.30,Default,,0,0,0,,sends me
-Dialogue: 0,0:00:08.30,0:00:08.98,Default,,0,0,0,,reaching for
-Dialogue: 0,0:00:08.98,0:00:09.38,Default,,0,0,0,,the book.
-Dialogue: 0,0:00:09.86,0:00:10.40,Default,,0,0,0,,It's often
-Dialogue: 0,0:00:10.40,0:00:11.26,Default,,0,0,0,,called the
-Dialogue: 0,0:00:11.26,0:00:12.20,Default,,0,0,0,,lipstick effect.
-Dialogue: 0,0:00:12.94,0:00:13.60,Default,,0,0,0,,Tight budgets
-Dialogue: 0,0:00:13.60,0:00:14.20,Default,,0,0,0,,can push
-Dialogue: 0,0:00:14.20,0:00:15.08,Default,,0,0,0,,bigger luxuries
+Dialogue: 0,0:00:00.04,0:00:00.26,Default,,0,0,0,,When
+Dialogue: 0,0:00:00.26,0:00:00.60,Default,,0,0,0,,money
+Dialogue: 0,0:00:00.60,0:00:00.92,Default,,0,0,0,,gets
+Dialogue: 0,0:00:00.92,0:00:01.54,Default,,0,0,0,,tight,
+Dialogue: 0,0:00:01.54,0:00:02.08,Default,,0,0,0,,why
+Dialogue: 0,0:00:02.08,0:00:02.38,Default,,0,0,0,,can
+Dialogue: 0,0:00:02.38,0:00:02.76,Default,,0,0,0,,one
+Dialogue: 0,0:00:02.76,0:00:03.22,Default,,0,0,0,,tiny
+Dialogue: 0,0:00:03.22,0:00:03.70,Default,,0,0,0,,luxury
+Dialogue: 0,0:00:03.70,0:00:04.22,Default,,0,0,0,,survive?
+Dialogue: 0,0:00:04.90,0:00:05.28,Default,,0,0,0,,Here's
+Dialogue: 0,0:00:05.28,0:00:05.74,Default,,0,0,0,,why.
+Dialogue: 0,0:00:06.64,0:00:06.94,Default,,0,0,0,,That
+Dialogue: 0,0:00:06.94,0:00:07.46,Default,,0,0,0,,contradiction
+Dialogue: 0,0:00:07.46,0:00:08.08,Default,,0,0,0,,sends
+Dialogue: 0,0:00:08.08,0:00:08.30,Default,,0,0,0,,me
+Dialogue: 0,0:00:08.30,0:00:08.72,Default,,0,0,0,,reaching
+Dialogue: 0,0:00:08.72,0:00:08.98,Default,,0,0,0,,for
+Dialogue: 0,0:00:08.98,0:00:09.14,Default,,0,0,0,,the
+Dialogue: 0,0:00:09.14,0:00:09.38,Default,,0,0,0,,book.
+Dialogue: 0,0:00:09.86,0:00:10.12,Default,,0,0,0,,It's
+Dialogue: 0,0:00:10.12,0:00:10.40,Default,,0,0,0,,often
+Dialogue: 0,0:00:10.40,0:00:10.86,Default,,0,0,0,,called
+Dialogue: 0,0:00:10.86,0:00:11.26,Default,,0,0,0,,the
+Dialogue: 0,0:00:11.26,0:00:11.66,Default,,0,0,0,,lipstick
+Dialogue: 0,0:00:11.66,0:00:12.20,Default,,0,0,0,,effect.
+Dialogue: 0,0:00:12.94,0:00:13.20,Default,,0,0,0,,Tight
+Dialogue: 0,0:00:13.20,0:00:13.60,Default,,0,0,0,,budgets
+Dialogue: 0,0:00:13.60,0:00:13.86,Default,,0,0,0,,can
+Dialogue: 0,0:00:13.86,0:00:14.20,Default,,0,0,0,,push
+Dialogue: 0,0:00:14.20,0:00:14.58,Default,,0,0,0,,bigger
+Dialogue: 0,0:00:14.58,0:00:15.08,Default,,0,0,0,,luxuries
 Dialogue: 0,0:00:15.08,0:00:15.54,Default,,0,0,0,,aside.
-Dialogue: 0,0:00:16.50,0:00:17.30,Default,,0,0,0,,Lipstick can
-Dialogue: 0,0:00:17.30,0:00:18.16,Default,,0,0,0,,still feel
-Dialogue: 0,0:00:18.16,0:00:19.10,Default,,0,0,0,,like affordable
+Dialogue: 0,0:00:16.50,0:00:16.98,Default,,0,0,0,,Lipstick
+Dialogue: 0,0:00:16.98,0:00:17.30,Default,,0,0,0,,can
+Dialogue: 0,0:00:17.30,0:00:17.66,Default,,0,0,0,,still
+Dialogue: 0,0:00:17.66,0:00:18.16,Default,,0,0,0,,feel
+Dialogue: 0,0:00:18.16,0:00:18.54,Default,,0,0,0,,like
+Dialogue: 0,0:00:18.54,0:00:19.10,Default,,0,0,0,,affordable
 Dialogue: 0,0:00:19.10,0:00:19.72,Default,,0,0,0,,comfort.
-Dialogue: 0,0:00:20.62,0:00:21.54,Default,,0,0,0,,Juliet Shore
-Dialogue: 0,0:00:21.54,0:00:22.48,Default,,0,0,0,,described this
-Dialogue: 0,0:00:22.48,0:00:23.32,Default,,0,0,0,,behavior in
+Dialogue: 0,0:00:20.62,0:00:21.02,Default,,0,0,0,,Juliet
+Dialogue: 0,0:00:21.02,0:00:21.54,Default,,0,0,0,,Shore
+Dialogue: 0,0:00:21.54,0:00:22.08,Default,,0,0,0,,described
+Dialogue: 0,0:00:22.08,0:00:22.48,Default,,0,0,0,,this
+Dialogue: 0,0:00:22.48,0:00:22.90,Default,,0,0,0,,behavior
+Dialogue: 0,0:00:22.90,0:00:23.32,Default,,0,0,0,,in
 Dialogue: 0,0:00:23.32,0:00:24.22,Default,,0,0,0,,1998.
-Dialogue: 0,0:00:25.30,0:00:25.98,Default,,0,0,0,,Leonard Lauder
-Dialogue: 0,0:00:25.98,0:00:27.12,Default,,0,0,0,,popularized the
-Dialogue: 0,0:00:27.12,0:00:27.90,Default,,0,0,0,,lipstick index
-Dialogue: 0,0:00:27.90,0:00:29.60,Default,,0,0,0,,in 2001.
-Dialogue: 0,0:00:30.02,0:00:30.88,Default,,0,0,0,,He suggested
-Dialogue: 0,0:00:30.88,0:00:31.82,Default,,0,0,0,,lipstick sales
-Dialogue: 0,0:00:31.82,0:00:32.62,Default,,0,0,0,,might rise
-Dialogue: 0,0:00:32.62,0:00:33.16,Default,,0,0,0,,when the
-Dialogue: 0,0:00:33.16,0:00:34.56,Default,,0,0,0,,economy weakens.
-Dialogue: 0,0:00:35.08,0:00:35.70,Default,,0,0,0,,The idea
-Dialogue: 0,0:00:35.70,0:00:36.42,Default,,0,0,0,,became a
-Dialogue: 0,0:00:36.42,0:00:37.60,Default,,0,0,0,,quirky recession
+Dialogue: 0,0:00:25.30,0:00:25.58,Default,,0,0,0,,Leonard
+Dialogue: 0,0:00:25.58,0:00:25.98,Default,,0,0,0,,Lauder
+Dialogue: 0,0:00:25.98,0:00:26.96,Default,,0,0,0,,popularized
+Dialogue: 0,0:00:26.96,0:00:27.12,Default,,0,0,0,,the
+Dialogue: 0,0:00:27.12,0:00:27.40,Default,,0,0,0,,lipstick
+Dialogue: 0,0:00:27.40,0:00:27.90,Default,,0,0,0,,index
+Dialogue: 0,0:00:27.90,0:00:28.26,Default,,0,0,0,,in
+Dialogue: 0,0:00:28.26,0:00:29.60,Default,,0,0,0,,2001.
+Dialogue: 0,0:00:30.02,0:00:30.24,Default,,0,0,0,,He
+Dialogue: 0,0:00:30.24,0:00:30.88,Default,,0,0,0,,suggested
+Dialogue: 0,0:00:30.88,0:00:31.32,Default,,0,0,0,,lipstick
+Dialogue: 0,0:00:31.32,0:00:31.82,Default,,0,0,0,,sales
+Dialogue: 0,0:00:31.82,0:00:32.16,Default,,0,0,0,,might
+Dialogue: 0,0:00:32.16,0:00:32.62,Default,,0,0,0,,rise
+Dialogue: 0,0:00:32.62,0:00:32.96,Default,,0,0,0,,when
+Dialogue: 0,0:00:32.96,0:00:33.16,Default,,0,0,0,,the
+Dialogue: 0,0:00:33.16,0:00:33.68,Default,,0,0,0,,economy
+Dialogue: 0,0:00:33.68,0:00:34.56,Default,,0,0,0,,weakens.
+Dialogue: 0,0:00:35.08,0:00:35.26,Default,,0,0,0,,The
+Dialogue: 0,0:00:35.26,0:00:35.70,Default,,0,0,0,,idea
+Dialogue: 0,0:00:35.70,0:00:36.22,Default,,0,0,0,,became
+Dialogue: 0,0:00:36.22,0:00:36.42,Default,,0,0,0,,a
+Dialogue: 0,0:00:36.42,0:00:36.94,Default,,0,0,0,,quirky
+Dialogue: 0,0:00:36.94,0:00:37.60,Default,,0,0,0,,recession
 Dialogue: 0,0:00:37.60,0:00:38.16,Default,,0,0,0,,signal.
-Dialogue: 0,0:00:38.96,0:00:40.02,Default,,0,0,0,,Later, downturns
-Dialogue: 0,0:00:40.02,0:00:40.52,Default,,0,0,0,,did not
-Dialogue: 0,0:00:40.52,0:00:41.30,Default,,0,0,0,,repeat the
-Dialogue: 0,0:00:41.30,0:00:42.46,Default,,0,0,0,,pattern reliably.
-Dialogue: 0,0:00:43.34,0:00:43.90,Default,,0,0,0,,So, lipstick
-Dialogue: 0,0:00:43.90,0:00:44.60,Default,,0,0,0,,sales are
-Dialogue: 0,0:00:44.60,0:00:45.04,Default,,0,0,0,,not a
-Dialogue: 0,0:00:45.04,0:00:46.36,Default,,0,0,0,,dependable economic
+Dialogue: 0,0:00:38.96,0:00:39.28,Default,,0,0,0,,Later,
+Dialogue: 0,0:00:39.28,0:00:40.02,Default,,0,0,0,,downturns
+Dialogue: 0,0:00:40.02,0:00:40.18,Default,,0,0,0,,did
+Dialogue: 0,0:00:40.18,0:00:40.52,Default,,0,0,0,,not
+Dialogue: 0,0:00:40.52,0:00:41.02,Default,,0,0,0,,repeat
+Dialogue: 0,0:00:41.02,0:00:41.30,Default,,0,0,0,,the
+Dialogue: 0,0:00:41.30,0:00:41.72,Default,,0,0,0,,pattern
+Dialogue: 0,0:00:41.72,0:00:42.46,Default,,0,0,0,,reliably.
+Dialogue: 0,0:00:43.34,0:00:43.52,Default,,0,0,0,,So,
+Dialogue: 0,0:00:43.52,0:00:43.90,Default,,0,0,0,,lipstick
+Dialogue: 0,0:00:43.90,0:00:44.32,Default,,0,0,0,,sales
+Dialogue: 0,0:00:44.32,0:00:44.60,Default,,0,0,0,,are
+Dialogue: 0,0:00:44.60,0:00:44.86,Default,,0,0,0,,not
+Dialogue: 0,0:00:44.86,0:00:45.04,Default,,0,0,0,,a
+Dialogue: 0,0:00:45.04,0:00:45.72,Default,,0,0,0,,dependable
+Dialogue: 0,0:00:45.72,0:00:46.36,Default,,0,0,0,,economic
 Dialogue: 0,0:00:46.36,0:00:47.10,Default,,0,0,0,,indicator.
-Dialogue: 0,0:00:47.10,0:00:48.74,Default,,0,0,0,,And lipstick
-Dialogue: 0,0:00:48.74,0:00:49.90,Default,,0,0,0,,syndrome is
-Dialogue: 0,0:00:49.90,0:00:50.48,Default,,0,0,0,,not a
-Dialogue: 0,0:00:50.48,0:00:51.62,Default,,0,0,0,,recognized medical
+Dialogue: 0,0:00:47.10,0:00:48.26,Default,,0,0,0,,And
+Dialogue: 0,0:00:48.26,0:00:48.74,Default,,0,0,0,,lipstick
+Dialogue: 0,0:00:48.74,0:00:49.20,Default,,0,0,0,,syndrome
+Dialogue: 0,0:00:49.20,0:00:49.90,Default,,0,0,0,,is
+Dialogue: 0,0:00:49.90,0:00:50.24,Default,,0,0,0,,not
+Dialogue: 0,0:00:50.24,0:00:50.48,Default,,0,0,0,,a
+Dialogue: 0,0:00:50.48,0:00:50.92,Default,,0,0,0,,recognized
+Dialogue: 0,0:00:50.92,0:00:51.62,Default,,0,0,0,,medical
 Dialogue: 0,0:00:51.62,0:00:52.42,Default,,0,0,0,,diagnosis.
-Dialogue: 0,0:00:53.26,0:00:53.62,Default,,0,0,0,,It's an
-Dialogue: 0,0:00:53.62,0:00:54.54,Default,,0,0,0,,informal label
-Dialogue: 0,0:00:54.54,0:00:55.28,Default,,0,0,0,,for small
-Dialogue: 0,0:00:55.28,0:00:56.26,Default,,0,0,0,,comforts under
+Dialogue: 0,0:00:53.26,0:00:53.50,Default,,0,0,0,,It's
+Dialogue: 0,0:00:53.50,0:00:53.62,Default,,0,0,0,,an
+Dialogue: 0,0:00:53.62,0:00:54.12,Default,,0,0,0,,informal
+Dialogue: 0,0:00:54.12,0:00:54.54,Default,,0,0,0,,label
+Dialogue: 0,0:00:54.54,0:00:54.80,Default,,0,0,0,,for
+Dialogue: 0,0:00:54.80,0:00:55.28,Default,,0,0,0,,small
+Dialogue: 0,0:00:55.28,0:00:55.88,Default,,0,0,0,,comforts
+Dialogue: 0,0:00:55.88,0:00:56.26,Default,,0,0,0,,under
 Dialogue: 0,0:00:56.26,0:00:56.70,Default,,0,0,0,,pressure.
-Dialogue: 0,0:00:58.00,0:00:58.42,Default,,0,0,0,,Like and
-Dialogue: 0,0:00:58.42,0:00:59.22,Default,,0,0,0,,subscribe for
-Dialogue: 0,0:00:59.22,0:01:00.00,Default,,0,0,0,,more questions
-Dialogue: 0,0:01:00.00,0:01:01.06,Default,,0,0,0,,with surprising
+Dialogue: 0,0:00:58.00,0:00:58.16,Default,,0,0,0,,Like
+Dialogue: 0,0:00:58.16,0:00:58.42,Default,,0,0,0,,and
+Dialogue: 0,0:00:58.42,0:00:58.78,Default,,0,0,0,,subscribe
+Dialogue: 0,0:00:58.78,0:00:59.22,Default,,0,0,0,,for
+Dialogue: 0,0:00:59.22,0:00:59.46,Default,,0,0,0,,more
+Dialogue: 0,0:00:59.46,0:01:00.00,Default,,0,0,0,,questions
+Dialogue: 0,0:01:00.00,0:01:00.38,Default,,0,0,0,,with
+Dialogue: 0,0:01:00.38,0:01:01.06,Default,,0,0,0,,surprising
 Dialogue: 0,0:01:01.06,0:01:01.72,Default,,0,0,0,,answers.
