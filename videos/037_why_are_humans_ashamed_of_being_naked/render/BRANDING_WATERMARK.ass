@@ -7,8 +7,8 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding
-Style: VideoWatermark,Gruze Drip,120,&HA6FFFFFF,&HA6FFFFFF,&HA6000000,&H00000000,0,0,0,0,100,100,0,0,1,2,0,8,0,0,0,1
+Style: VideoWatermark,Gruze Drip,150,&HA6FFFFFF,&HA6FFFFFF,&HA6000000,&H00000000,0,0,0,0,100,100,0,0,1,2,0,8,0,0,0,1
 
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
-Dialogue: 1,0:00:00.00,0:00:44.67,VideoWatermark,,0,0,0,,{\an8\q2\pos(540.00,1637.00)}Q Station
+Dialogue: 1,0:00:00.00,0:00:44.67,VideoWatermark,,0,0,0,,{\an8\q2\pos(540.00,1607.00)}Q Station

@@ -1,0 +1,1564 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 44.669,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.917,
+      "duration": 4.917,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/orb_transition_trimmed.mp4",
+      "start": 4.917,
+      "end": 11.083,
+      "duration": 6.167,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 11.1,
+      "end": 14.58,
+      "duration": 3.48,
+      "speech_start": 11.44,
+      "speech_end": 14.06,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Families and customs teach rules about modesty.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 14.58,
+      "end": 17.88,
+      "duration": 3.3,
+      "speech_start": 14.58,
+      "speech_end": 16.92,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Those rules vary across cultures and history.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 17.88,
+      "end": 22.16,
+      "duration": 4.28,
+      "speech_start": 17.88,
+      "speech_end": 21.7,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Chosen privacy differs from unexpected exposure.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 22.16,
+      "end": 26.08,
+      "duration": 3.92,
+      "speech_start": 22.16,
+      "speech_end": 25.04,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Context can also make nudity feel sexual.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 26.08,
+      "end": 29.64,
+      "duration": 3.56,
+      "speech_start": 26.08,
+      "speech_end": 29.0,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Expected staring or judgment can trigger shame.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 29.64,
+      "end": 33.16,
+      "duration": 3.52,
+      "speech_start": 29.64,
+      "speech_end": 32.82,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Galleries may present nude statues as ordinary art.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 33.16,
+      "end": 37.11,
+      "duration": 3.95,
+      "speech_start": 33.16,
+      "speech_end": 37.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Changing booths usually signal concealment from strangers.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 37.11,
+      "end": 44.669,
+      "duration": 7.559,
+      "speech_start": 37.06,
+      "speech_end": 40.62,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "The skin stays ordinary; the social meaning changes.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.04,
+      "end": 0.24,
+      "text": "Why",
+      "ass_text": "Why",
+      "words": [
+        {
+          "text": "Why",
+          "start": 0.04,
+          "end": 0.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.24,
+      "end": 0.5,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 0.24,
+          "end": 0.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.5,
+      "end": 0.64,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 0.5,
+          "end": 0.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.64,
+      "end": 0.86,
+      "text": "naked",
+      "ass_text": "naked",
+      "words": [
+        {
+          "text": "naked",
+          "start": 0.64,
+          "end": 0.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.86,
+      "end": 1.56,
+      "text": "statue",
+      "ass_text": "statue",
+      "words": [
+        {
+          "text": "statue",
+          "start": 0.86,
+          "end": 1.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.56,
+      "end": 2.08,
+      "text": "feel",
+      "ass_text": "feel",
+      "words": [
+        {
+          "text": "feel",
+          "start": 1.56,
+          "end": 2.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.08,
+      "end": 2.68,
+      "text": "proper",
+      "ass_text": "proper",
+      "words": [
+        {
+          "text": "proper",
+          "start": 2.08,
+          "end": 2.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.68,
+      "end": 3.22,
+      "text": "when",
+      "ass_text": "when",
+      "words": [
+        {
+          "text": "when",
+          "start": 2.68,
+          "end": 3.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.22,
+      "end": 3.34,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 3.22,
+          "end": 3.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.34,
+      "end": 3.56,
+      "text": "naked",
+      "ass_text": "naked",
+      "words": [
+        {
+          "text": "naked",
+          "start": 3.34,
+          "end": 3.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.56,
+      "end": 4.02,
+      "text": "person",
+      "ass_text": "person",
+      "words": [
+        {
+          "text": "person",
+          "start": 3.56,
+          "end": 4.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.02,
+      "end": 4.36,
+      "text": "feels",
+      "ass_text": "feels",
+      "words": [
+        {
+          "text": "feels",
+          "start": 4.02,
+          "end": 4.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.36,
+      "end": 4.9,
+      "text": "exposed?",
+      "ass_text": "exposed?",
+      "words": [
+        {
+          "text": "exposed?",
+          "start": 4.36,
+          "end": 4.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.76,
+      "end": 6.02,
+      "text": "Because",
+      "ass_text": "Because",
+      "words": [
+        {
+          "text": "Because",
+          "start": 5.76,
+          "end": 6.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.02,
+      "end": 6.42,
+      "text": "shame",
+      "ass_text": "shame",
+      "words": [
+        {
+          "text": "shame",
+          "start": 6.02,
+          "end": 6.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.42,
+      "end": 6.9,
+      "text": "often",
+      "ass_text": "often",
+      "words": [
+        {
+          "text": "often",
+          "start": 6.42,
+          "end": 6.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.9,
+      "end": 7.44,
+      "text": "follows",
+      "ass_text": "follows",
+      "words": [
+        {
+          "text": "follows",
+          "start": 6.9,
+          "end": 7.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.44,
+      "end": 7.9,
+      "text": "learned",
+      "ass_text": "learned",
+      "words": [
+        {
+          "text": "learned",
+          "start": 7.44,
+          "end": 7.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.9,
+      "end": 8.58,
+      "text": "expectations",
+      "ass_text": "expectations",
+      "words": [
+        {
+          "text": "expectations",
+          "start": 7.9,
+          "end": 8.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.58,
+      "end": 9.34,
+      "text": "about",
+      "ass_text": "about",
+      "words": [
+        {
+          "text": "about",
+          "start": 8.58,
+          "end": 9.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.34,
+      "end": 9.58,
+      "text": "where",
+      "ass_text": "where",
+      "words": [
+        {
+          "text": "where",
+          "start": 9.34,
+          "end": 9.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.58,
+      "end": 10.24,
+      "text": "nakedness",
+      "ass_text": "nakedness",
+      "words": [
+        {
+          "text": "nakedness",
+          "start": 9.58,
+          "end": 10.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 10.24,
+      "end": 11.1,
+      "text": "belongs.",
+      "ass_text": "belongs.",
+      "words": [
+        {
+          "text": "belongs.",
+          "start": 10.24,
+          "end": 11.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 11.44,
+      "end": 11.9,
+      "text": "Families",
+      "ass_text": "Families",
+      "words": [
+        {
+          "text": "Families",
+          "start": 11.44,
+          "end": 11.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.9,
+      "end": 12.16,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 11.9,
+          "end": 12.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.16,
+      "end": 12.5,
+      "text": "customs",
+      "ass_text": "customs",
+      "words": [
+        {
+          "text": "customs",
+          "start": 12.16,
+          "end": 12.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.5,
+      "end": 12.88,
+      "text": "teach",
+      "ass_text": "teach",
+      "words": [
+        {
+          "text": "teach",
+          "start": 12.5,
+          "end": 12.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.88,
+      "end": 13.2,
+      "text": "rules",
+      "ass_text": "rules",
+      "words": [
+        {
+          "text": "rules",
+          "start": 12.88,
+          "end": 13.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.2,
+      "end": 13.48,
+      "text": "about",
+      "ass_text": "about",
+      "words": [
+        {
+          "text": "about",
+          "start": 13.2,
+          "end": 13.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 13.48,
+      "end": 14.06,
+      "text": "modesty.",
+      "ass_text": "modesty.",
+      "words": [
+        {
+          "text": "modesty.",
+          "start": 13.48,
+          "end": 14.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 14.58,
+      "end": 14.82,
+      "text": "Those",
+      "ass_text": "Those",
+      "words": [
+        {
+          "text": "Those",
+          "start": 14.58,
+          "end": 14.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.82,
+      "end": 15.08,
+      "text": "rules",
+      "ass_text": "rules",
+      "words": [
+        {
+          "text": "rules",
+          "start": 14.82,
+          "end": 15.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.08,
+      "end": 15.4,
+      "text": "vary",
+      "ass_text": "vary",
+      "words": [
+        {
+          "text": "vary",
+          "start": 15.08,
+          "end": 15.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.4,
+      "end": 15.78,
+      "text": "across",
+      "ass_text": "across",
+      "words": [
+        {
+          "text": "across",
+          "start": 15.4,
+          "end": 15.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.78,
+      "end": 16.3,
+      "text": "cultures",
+      "ass_text": "cultures",
+      "words": [
+        {
+          "text": "cultures",
+          "start": 15.78,
+          "end": 16.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.3,
+      "end": 16.54,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 16.3,
+          "end": 16.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.54,
+      "end": 16.92,
+      "text": "history.",
+      "ass_text": "history.",
+      "words": [
+        {
+          "text": "history.",
+          "start": 16.54,
+          "end": 16.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.88,
+      "end": 18.32,
+      "text": "Chosen",
+      "ass_text": "Chosen",
+      "words": [
+        {
+          "text": "Chosen",
+          "start": 17.88,
+          "end": 18.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.32,
+      "end": 19.06,
+      "text": "privacy",
+      "ass_text": "privacy",
+      "words": [
+        {
+          "text": "privacy",
+          "start": 18.32,
+          "end": 19.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.06,
+      "end": 19.56,
+      "text": "differs",
+      "ass_text": "differs",
+      "words": [
+        {
+          "text": "differs",
+          "start": 19.06,
+          "end": 19.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.56,
+      "end": 19.9,
+      "text": "from",
+      "ass_text": "from",
+      "words": [
+        {
+          "text": "from",
+          "start": 19.56,
+          "end": 19.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.9,
+      "end": 20.46,
+      "text": "unexpected",
+      "ass_text": "unexpected",
+      "words": [
+        {
+          "text": "unexpected",
+          "start": 19.9,
+          "end": 20.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.46,
+      "end": 21.7,
+      "text": "exposure.",
+      "ass_text": "exposure.",
+      "words": [
+        {
+          "text": "exposure.",
+          "start": 20.46,
+          "end": 21.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.16,
+      "end": 22.8,
+      "text": "Context",
+      "ass_text": "Context",
+      "words": [
+        {
+          "text": "Context",
+          "start": 22.16,
+          "end": 22.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.8,
+      "end": 23.14,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 22.8,
+          "end": 23.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.14,
+      "end": 23.4,
+      "text": "also",
+      "ass_text": "also",
+      "words": [
+        {
+          "text": "also",
+          "start": 23.14,
+          "end": 23.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.4,
+      "end": 23.66,
+      "text": "make",
+      "ass_text": "make",
+      "words": [
+        {
+          "text": "make",
+          "start": 23.4,
+          "end": 23.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.66,
+      "end": 24.22,
+      "text": "nudity",
+      "ass_text": "nudity",
+      "words": [
+        {
+          "text": "nudity",
+          "start": 23.66,
+          "end": 24.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.22,
+      "end": 24.54,
+      "text": "feel",
+      "ass_text": "feel",
+      "words": [
+        {
+          "text": "feel",
+          "start": 24.22,
+          "end": 24.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.54,
+      "end": 25.04,
+      "text": "sexual.",
+      "ass_text": "sexual.",
+      "words": [
+        {
+          "text": "sexual.",
+          "start": 24.54,
+          "end": 25.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 26.08,
+      "end": 26.44,
+      "text": "Expected",
+      "ass_text": "Expected",
+      "words": [
+        {
+          "text": "Expected",
+          "start": 26.08,
+          "end": 26.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 26.44,
+      "end": 27.06,
+      "text": "staring",
+      "ass_text": "staring",
+      "words": [
+        {
+          "text": "staring",
+          "start": 26.44,
+          "end": 27.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.06,
+      "end": 27.5,
+      "text": "or",
+      "ass_text": "or",
+      "words": [
+        {
+          "text": "or",
+          "start": 27.06,
+          "end": 27.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.5,
+      "end": 27.8,
+      "text": "judgment",
+      "ass_text": "judgment",
+      "words": [
+        {
+          "text": "judgment",
+          "start": 27.5,
+          "end": 27.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.8,
+      "end": 28.14,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 27.8,
+          "end": 28.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.14,
+      "end": 28.44,
+      "text": "trigger",
+      "ass_text": "trigger",
+      "words": [
+        {
+          "text": "trigger",
+          "start": 28.14,
+          "end": 28.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.44,
+      "end": 29.0,
+      "text": "shame.",
+      "ass_text": "shame.",
+      "words": [
+        {
+          "text": "shame.",
+          "start": 28.44,
+          "end": 29.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.64,
+      "end": 30.06,
+      "text": "Galleries",
+      "ass_text": "Galleries",
+      "words": [
+        {
+          "text": "Galleries",
+          "start": 29.64,
+          "end": 30.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.06,
+      "end": 30.28,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 30.06,
+          "end": 30.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.28,
+      "end": 30.58,
+      "text": "present",
+      "ass_text": "present",
+      "words": [
+        {
+          "text": "present",
+          "start": 30.28,
+          "end": 30.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.58,
+      "end": 30.86,
+      "text": "nude",
+      "ass_text": "nude",
+      "words": [
+        {
+          "text": "nude",
+          "start": 30.58,
+          "end": 30.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.86,
+      "end": 31.36,
+      "text": "statues",
+      "ass_text": "statues",
+      "words": [
+        {
+          "text": "statues",
+          "start": 30.86,
+          "end": 31.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.36,
+      "end": 31.76,
+      "text": "as",
+      "ass_text": "as",
+      "words": [
+        {
+          "text": "as",
+          "start": 31.36,
+          "end": 31.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.76,
+      "end": 32.1,
+      "text": "ordinary",
+      "ass_text": "ordinary",
+      "words": [
+        {
+          "text": "ordinary",
+          "start": 31.76,
+          "end": 32.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.1,
+      "end": 32.82,
+      "text": "art.",
+      "ass_text": "art.",
+      "words": [
+        {
+          "text": "art.",
+          "start": 32.1,
+          "end": 32.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.16,
+      "end": 33.62,
+      "text": "Changing",
+      "ass_text": "Changing",
+      "words": [
+        {
+          "text": "Changing",
+          "start": 33.16,
+          "end": 33.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 33.62,
+      "end": 34.3,
+      "text": "booths",
+      "ass_text": "booths",
+      "words": [
+        {
+          "text": "booths",
+          "start": 33.62,
+          "end": 34.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.3,
+      "end": 34.68,
+      "text": "usually",
+      "ass_text": "usually",
+      "words": [
+        {
+          "text": "usually",
+          "start": 34.3,
+          "end": 34.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.68,
+      "end": 35.26,
+      "text": "signal",
+      "ass_text": "signal",
+      "words": [
+        {
+          "text": "signal",
+          "start": 34.68,
+          "end": 35.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.26,
+      "end": 36.2,
+      "text": "concealment",
+      "ass_text": "concealment",
+      "words": [
+        {
+          "text": "concealment",
+          "start": 35.26,
+          "end": 36.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.2,
+      "end": 36.42,
+      "text": "from",
+      "ass_text": "from",
+      "words": [
+        {
+          "text": "from",
+          "start": 36.2,
+          "end": 36.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.42,
+      "end": 37.11,
+      "text": "strangers.",
+      "ass_text": "strangers.",
+      "words": [
+        {
+          "text": "strangers.",
+          "start": 36.42,
+          "end": 37.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.11,
+      "end": 37.46,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 37.06,
+          "end": 37.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 37.46,
+      "end": 37.78,
+      "text": "skin",
+      "ass_text": "skin",
+      "words": [
+        {
+          "text": "skin",
+          "start": 37.46,
+          "end": 37.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 37.78,
+      "end": 38.18,
+      "text": "stays",
+      "ass_text": "stays",
+      "words": [
+        {
+          "text": "stays",
+          "start": 37.78,
+          "end": 38.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.18,
+      "end": 38.85,
+      "text": "ordinary.",
+      "ass_text": "ordinary.",
+      "words": [
+        {
+          "text": "ordinary.",
+          "start": 38.18,
+          "end": 38.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.85,
+      "end": 39.02,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 38.8,
+          "end": 39.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.02,
+      "end": 39.42,
+      "text": "social",
+      "ass_text": "social",
+      "words": [
+        {
+          "text": "social",
+          "start": 39.02,
+          "end": 39.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.42,
+      "end": 39.84,
+      "text": "meaning",
+      "ass_text": "meaning",
+      "words": [
+        {
+          "text": "meaning",
+          "start": 39.42,
+          "end": 39.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.84,
+      "end": 40.62,
+      "text": "changes.",
+      "ass_text": "changes.",
+      "words": [
+        {
+          "text": "changes.",
+          "start": 39.84,
+          "end": 40.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.24,
+      "end": 41.42,
+      "text": "What",
+      "ass_text": "What",
+      "words": [
+        {
+          "text": "What",
+          "start": 41.24,
+          "end": 41.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.42,
+      "end": 41.6,
+      "text": "do",
+      "ass_text": "do",
+      "words": [
+        {
+          "text": "do",
+          "start": 41.42,
+          "end": 41.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.6,
+      "end": 41.72,
+      "text": "you",
+      "ass_text": "you",
+      "words": [
+        {
+          "text": "you",
+          "start": 41.6,
+          "end": 41.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.72,
+      "end": 41.96,
+      "text": "think",
+      "ass_text": "think",
+      "words": [
+        {
+          "text": "think",
+          "start": 41.72,
+          "end": 41.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.96,
+      "end": 42.36,
+      "text": "shapes",
+      "ass_text": "shapes",
+      "words": [
+        {
+          "text": "shapes",
+          "start": 41.96,
+          "end": 42.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.36,
+      "end": 42.62,
+      "text": "our",
+      "ass_text": "our",
+      "words": [
+        {
+          "text": "our",
+          "start": 42.36,
+          "end": 42.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.62,
+      "end": 43.02,
+      "text": "feelings",
+      "ass_text": "feelings",
+      "words": [
+        {
+          "text": "feelings",
+          "start": 42.62,
+          "end": 43.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.02,
+      "end": 43.3,
+      "text": "about",
+      "ass_text": "about",
+      "words": [
+        {
+          "text": "about",
+          "start": 43.02,
+          "end": 43.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.3,
+      "end": 43.78,
+      "text": "nudity",
+      "ass_text": "nudity",
+      "words": [
+        {
+          "text": "nudity",
+          "start": 43.3,
+          "end": 43.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.78,
+      "end": 44.7,
+      "text": "most?",
+      "ass_text": "most?",
+      "words": [
+        {
+          "text": "most?",
+          "start": 43.78,
+          "end": 44.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    }
+  ],
+  "qc": {
+    "beat_count": 10,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 7,
+        "before_beat": 8,
+        "current_speech_end": 37.16,
+        "next_speech_start": 37.06,
+        "overlap_seconds": 0.1,
+        "chosen_boundary": 37.11
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 71,
+        "current_cue": 72,
+        "previous_end": 37.16,
+        "current_start": 37.06,
+        "overlap_seconds": 0.1,
+        "chosen_boundary": 37.11
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 75,
+        "current_cue": 76,
+        "previous_end": 38.9,
+        "current_start": 38.8,
+        "overlap_seconds": 0.1,
+        "chosen_boundary": 38.85
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 90,
+    "subtitle_cues_estimated": 0
+  }
+}
