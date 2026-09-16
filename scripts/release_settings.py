@@ -33,7 +33,7 @@ THUMBNAIL_DEFAULTS: dict[str, Any] = {
     "badge_enabled": True, "badge_asset_id": "q_station_mark", "badge_position": "bottom_right", "badge_scale": 0.07,
     "reference_mode": "master", "reference_timestamps": [], "max_references": 5,
     "corrections_per_candidate": 1, "max_image_generations": 6,
-    "review_preset": "balanced", "export_format": "png", "jpeg_quality": 90,
+    "review_preset": "balanced", "review_enabled": True, "export_format": "png", "jpeg_quality": 90,
     "preview_small": True, "comparison_sheet": True, "send_previews": True,
     "send_comparison_sheet": True, "send_report_json": True, "send_raw_artwork": False,
     "delivery_mode": "all_final_candidates", "resend": False,
@@ -121,7 +121,7 @@ def normalize_release_settings(value: Any) -> dict[str, Any]:
     for name, low, high in (("outline_width", 0, .04), ("line_spacing", 0, .2), ("text_box_width", .3, .95), ("safe_margin", .02, .2), ("text_min_scale", .03, .12), ("text_max_scale", .04, .2), ("badge_scale", .03, .18)):
         thumb[name] = _number(thumb[name], f"thumbnail.{name}", low, high)
     if thumb["text_min_scale"] > thumb["text_max_scale"]: raise ValueError("Release setting thumbnail text minimum cannot exceed maximum.")
-    for name in ("shadow", "text_background", "badge_enabled", "preview_small", "comparison_sheet", "send_previews", "send_comparison_sheet", "send_report_json", "send_raw_artwork", "resend"):
+    for name in ("shadow", "text_background", "badge_enabled", "preview_small", "comparison_sheet", "send_previews", "send_comparison_sheet", "send_report_json", "send_raw_artwork", "resend", "review_enabled"):
         if not isinstance(thumb[name], bool): raise ValueError(f"Release setting thumbnail.{name} must be on or off.")
     for name in ("text_fill", "text_outline"):
         if not isinstance(thumb[name], str) or not __import__("re").fullmatch(r"#[0-9A-Fa-f]{6}", thumb[name]): raise ValueError(f"Release setting thumbnail.{name} must be a hex color.")

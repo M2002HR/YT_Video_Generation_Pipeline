@@ -2983,7 +2983,7 @@ const RELEASE_DEFAULTS = {
     tension: "strong", brand_profile: "q_station_v1", aspect_ratio: "9:16", image_model: "inherit_episode", quality: "native",
     thumbnail_note: "", must_include: "", must_avoid: "", text_mode: "auto", manual_text: "", font_id: "dejavu_sans_bold",
     case_mode: "auto", text_position: "auto", max_words: 6, max_lines: 2, corrections_per_candidate: 1, max_image_generations: 6,
-    review_preset: "balanced", export_format: "png", preview_small: true, comparison_sheet: true, send_comparison_sheet: true,
+    review_preset: "balanced", review_enabled: true, export_format: "png", preview_small: true, comparison_sheet: true, send_comparison_sheet: true,
     send_report_json: true, send_raw_artwork: false, delivery_mode: "all_final_candidates", resend: false,
   },
 };
@@ -3081,7 +3081,7 @@ function ReleaseModal({ jobId, close, started }) {
           <label className="field"><span>Maximum image submissions</span><input type="number" min="1" max="18" value={settings.thumbnail.max_image_generations} onChange={(event) => thumb("max_image_generations", Number(event.target.value))} /></label>
           <label className="field"><span>Must include</span><input maxLength="500" value={settings.thumbnail.must_include || ""} onChange={(event) => thumb("must_include", event.target.value)} /></label>
           <label className="field"><span>Must avoid</span><input maxLength="500" value={settings.thumbnail.must_avoid || ""} onChange={(event) => thumb("must_avoid", event.target.value)} /></label>
-        </div><small>Brand: Q Station v1 · Font: DejaVu Sans Bold · Actual supported ratio: 9:16. Wireframe/layout previews are not generated artwork.</small></details>
+        </div><label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.review_enabled} onChange={(event) => thumb("review_enabled", event.target.checked)} /><span className="switch" /><span><b>Run thumbnail QC and final visual review</b><small>When off, Gemini artwork is not sent to ChatGPT for image QC or final-thumbnail review. File decoding, dimensions, font rendering, and text bounds still run locally; the recommendation is marked as skipped.</small></span></label><small>Brand: Q Station v1 · Font: DejaVu Sans Bold · Actual supported ratio: 9:16. Wireframe/layout previews are not generated artwork.</small></details>
         <details className="release-editorial"><summary><b>Delivery</b></summary>
           <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.send_comparison_sheet} onChange={(event) => thumb("send_comparison_sheet", event.target.checked)} /><span className="switch" /><span><b>Send comparison sheet</b><small>Preview only; original candidates are always sent as documents.</small></span></label>
           <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.send_report_json} onChange={(event) => thumb("send_report_json", event.target.checked)} /><span className="switch" /><span><b>Send selection report</b><small>Contains the reviewer recommendation and final-file hashes.</small></span></label>

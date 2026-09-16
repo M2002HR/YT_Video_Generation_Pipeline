@@ -22,6 +22,13 @@ Artwork and final thumbnails are intentionally separate:
 3. The final PNG and its small preview go to the final reviewer. The reviewer recommendation
    is an editorial score, not a CTR estimate or a YouTube A/B result.
 
+The Advanced **Run thumbnail QC and final visual review** switch is on by default. When an
+operator turns it off, `Runner.image(..., skip_content_qc=True)` prevents Gemini artwork from
+being uploaded to ChatGPT for shared image QC, and the final composed-file reviewer is not
+called. Decode/dimension checks, canonical-reference preflight, local font rendering, and text
+bounds checks remain mandatory. The persisted candidate review explicitly says
+`SKIPPED_OPERATOR`; its recommendation score is zero, rather than pretending a visual review ran.
+
 The character is loaded through `character_runtime.load_character_registry`; a missing,
 corrupt, or escaped canonical sheet stops preflight. `hero_presence_mode=opener_only`
 does not remove the resolved episode host from this Release-only operation.

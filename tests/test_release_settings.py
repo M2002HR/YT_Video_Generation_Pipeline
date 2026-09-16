@@ -33,3 +33,10 @@ def test_legacy_thumbnail_note_round_trips_into_nested_contract() -> None:
     settings = normalize_release_settings({"thumbnail_note": "Show the real consequence."})
     assert settings["thumbnail"]["thumbnail_note"] == "Show the real consequence."
     assert settings["thumbnail_note"] == "Show the real consequence."
+
+
+def test_thumbnail_review_bypass_is_a_typed_release_setting() -> None:
+    settings = normalize_release_settings({"thumbnail": {"review_enabled": False}})
+    assert settings["thumbnail"]["review_enabled"] is False
+    with pytest.raises(ValueError, match="on or off"):
+        normalize_release_settings({"thumbnail": {"review_enabled": "false"}})

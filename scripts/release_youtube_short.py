@@ -34,7 +34,7 @@ from pipeline_notifier import NotifierSettings  # noqa: E402
 from run_question_harvest_pipeline import Runner  # noqa: E402
 from release_settings import RELEASE_DEFAULTS as SHARED_RELEASE_DEFAULTS, normalize_release_settings, settings_fingerprint  # noqa: E402
 from thumbnail_runtime import (  # noqa: E402
-    artwork_prompt, build_comparison, final_review_prompt, local_plan, normalize_review,
+    artwork_prompt, build_comparison, final_review_prompt, local_plan, normalize_review, review_skipped,
     preflight as thumbnail_preflight, resolve_episode_character, select as select_thumbnail,
 )
 from thumbnail_compositor import compose  # noqa: E402
@@ -696,14 +696,17 @@ def generate_thumbnail_batch(
         runner = Runner(jobs, None, ReleaseImageState(paths["root"]), chatgpt_fallback_mode=image_contract["chatgpt_fallback_mode"], image_qc_correction_policy=str(thumbnail_settings["corrections_per_candidate"]))
         # Runner owns Ordak Generation and attachment roles.  The artwork destination is
         # candidate-local, so corrective attempts are never confused with another concept.
-        result = runner.image("release_thumbnail_" + plan["candidate_id"], prompt, visual_references, model=image_contract["model"], destination=artwork, retain_candidates_dir=candidate_dir / "attempts")
+        result = runner.image("release_thumbnail_" + plan["candidate_id"], prompt, visual_references, model=image_contract["model"], destination=artwork, retain_candidates_dir=candidate_dir / "attempts", skip_content_qc=not thumbnail_settings["review_enabled"])
         artwork_info = validate_thumbnail(artwork)
         layout = compose(artwork, final, plan["headline"], thumbnail_settings, plan["layout_id"])
         final_info = validate_thumbnail(final)
         write_json(candidate_dir / "layout.json", layout)
-        review_raw, review_job_id = ask_json(jobs, final_review_prompt(plan, metadata), "thumbnail final review", [Reference(role="thumbnail_final", path=final), Reference(role="thumbnail_small_preview", path=final.with_name("preview_small.jpg")), Reference(role="thumbnail_character_identity", path=character["sheet_path"])])
-        review = normalize_review(review_raw)
-        review.update({"review_job_id": review_job_id, "final_sha256": final_info["sha256"]})
+        if thumbnail_settings["review_enabled"]:
+            review_raw, review_job_id = ask_json(jobs, final_review_prompt(plan, metadata), "thumbnail final review", [Reference(role="thumbnail_final", path=final), Reference(role="thumbnail_small_preview", path=final.with_name("preview_small.jpg")), Reference(role="thumbnail_character_identity", path=character["sheet_path"])])
+            review = normalize_review(review_raw)
+            review.update({"review_job_id": review_job_id, "final_sha256": final_info["sha256"]})
+        else:
+            review = review_skipped(final_info["sha256"])
         write_json(candidate_dir / "review.json", review)
         results.append({"candidate_id": plan["candidate_id"], "layout_id": plan["layout_id"], "headline": plan["headline"], "evidence_anchor": plan["evidence_anchor"], "artwork_path": str(artwork), "final_path": str(final), "preview_path": str(final.with_name("preview_small.jpg")), "artwork": artwork_info, "final": final_info, "review": review, "gemini_job_id": result.job_id, "gemini_receipt": result.generation_receipt})
     selection = select_thumbnail(results, thumbnail_settings["review_preset"])

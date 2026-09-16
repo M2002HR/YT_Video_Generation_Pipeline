@@ -75,6 +75,11 @@ def normalize_review(value: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(value, dict) or not isinstance(value.get("eligible"), bool) or isinstance(value.get("score"), bool) or not isinstance(value.get("score"), int): raise RuntimeError("Thumbnail final reviewer returned an invalid review.")
     return {"eligible": value["eligible"], "score": max(0, min(100, value["score"])), "reasons": [str(x)[:240] for x in value.get("reasons", []) if str(x).strip()], "blocking_violations": [str(x)[:240] for x in value.get("blocking_violations", []) if str(x).strip()], "warnings": [str(x)[:240] for x in value.get("warnings", []) if str(x).strip()]}
 
+
+def review_skipped(final_sha256: str) -> dict[str, Any]:
+    """Explicit non-provider result for the operator-approved review bypass."""
+    return {"eligible": True, "score": 0, "reasons": ["Thumbnail QC and final visual review were disabled by the Release operator."], "blocking_violations": [], "warnings": ["No ChatGPT visual review was requested."], "review_status": "SKIPPED_OPERATOR", "final_sha256": final_sha256}
+
 def select(candidates: list[dict[str, Any]], preset: str) -> dict[str, Any]:
     eligible = [x for x in candidates if x["review"]["eligible"]]
     weights = {"balanced": (1, 0), "clarity_first": (1, 0), "brand_first": (1, 0)}
