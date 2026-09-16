@@ -205,3 +205,10 @@ def test_panel_release_settings_require_at_least_one_step() -> None:
             "generate_metadata": False, "generate_thumbnail": False,
             "create_upload_guide": False, "send_telegram": False,
         })
+
+
+def test_panel_persists_last_release_settings_separately_from_episode(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(panel, "RELEASE_LAST_SETTINGS_PATH", tmp_path / "release_last_settings.json")
+    settings = panel.normalize_release_settings({"thumbnail": {"count": 4, "font_id": "bebas_neue"}})
+    panel.save_release_settings(settings)
+    assert panel.saved_release_settings() == settings

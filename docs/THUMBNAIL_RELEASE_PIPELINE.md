@@ -54,6 +54,11 @@ publish/youtube_short/releases/<release_id>/
 hash is recorded. If no candidate is eligible, selection is null and status is
 `NEEDS_REVIEW`; no previous winner is presented as this batch's winner.
 
+The panel stores the most recently successfully started Release configuration in
+`control_panel/release_last_settings.json`. It is a validated panel preference, separate
+from episode files and from each immutable `RELEASE_REQUEST.json`; therefore it is offered
+when opening Release for either a new or an older run. It contains no credentials or binary data.
+
 ## Example request
 
 ```json

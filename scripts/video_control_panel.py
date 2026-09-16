@@ -2211,11 +2211,29 @@ def release_eligibility(record: dict, project: Path) -> tuple[bool, str]:
 
 
 RELEASE_SETTING_DEFAULTS = release_public_schema()["defaults"]
+RELEASE_LAST_SETTINGS_PATH = ROOT / "control_panel" / "release_last_settings.json"
 
 
 def normalize_release_settings(value: Any) -> dict[str, Any]:
     """Validate the bounded, post-render choices exposed by the Release modal."""
     return shared_normalize_release_settings(value)
+
+
+def saved_release_settings() -> dict[str, Any] | None:
+    """Return only a fully valid panel-wide Release snapshot, never stale/untrusted JSON."""
+    try:
+        payload = json.loads(RELEASE_LAST_SETTINGS_PATH.read_text(encoding="utf-8"))
+        raw = payload.get("settings") if isinstance(payload, dict) else None
+        return normalize_release_settings(raw) if isinstance(raw, dict) else None
+    except (OSError, ValueError, json.JSONDecodeError):
+        return None
+
+
+def save_release_settings(settings: dict[str, Any]) -> None:
+    """Persist the last successfully started Release settings outside every episode."""
+    write_json(RELEASE_LAST_SETTINGS_PATH, {
+        "schema_version": 1, "saved_at": utcnow(), "settings": settings,
+    })
 
 
 def active_release(jobs_dir: Path) -> dict | None:
@@ -3715,6 +3733,7 @@ class Handler(BaseHTTPRequestHandler):
             }
             record["release"] = release
             write_json(record_path, record)
+            save_release_settings(settings)
 
         def monitor() -> None:
             code = process.wait()
@@ -3788,6 +3807,9 @@ class Handler(BaseHTTPRequestHandler):
 
         if route == "/api/release-schema":
             self.send_json(HTTPStatus.OK, release_public_schema())
+            return
+        if route == "/api/release-settings":
+            self.send_json(HTTPStatus.OK, {"settings": saved_release_settings()})
             return
 
         if route == "/api/ws":

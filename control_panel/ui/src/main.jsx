@@ -2997,10 +2997,10 @@ function ReleaseModal({ jobId, close, started }) {
   const thumb = (name, value) => setSettings((current) => ({ ...current, thumbnail: { ...current.thumbnail, [name]: value } }));
   useEffect(() => {
     let active = true;
-    request("/api/release-schema").then((schema) => {
+    Promise.all([request("/api/release-schema"), request("/api/release-settings")]).then(([schema, saved]) => {
       if (!active || !schema?.defaults) return;
       setCapabilities(schema.capabilities || null);
-      setSettings(schema.defaults);
+      setSettings(saved?.settings || schema.defaults);
     }).catch(() => {});
     return () => { active = false; };
   }, []);
