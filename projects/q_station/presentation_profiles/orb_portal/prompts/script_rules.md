@@ -3,3 +3,7 @@ to the old crone's recognizable magic orb; the second intro makes her ownership 
 the camera enters the orb; the factual body begins inside the topic world. The orb is not a generic
 prop. The second narration segment should take roughly 3–4 seconds and support the reveal/entry
 without claiming that the orb's inner world has a fixed style.
+
+The spoken entry is not a report of camera movement or prop retrieval. It must advance the
+selected question with a supported clue. Preserve the entry mechanics; vary the specific story,
+not the identity of the portal. Never give the host unconfigured magical powers or a fixed job.

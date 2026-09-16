@@ -4,7 +4,10 @@
   "display_name": "Question → Storybook → Topic World",
   "version": 1,
   "entry_kind": "book",
-  "narration_segment": {"key": "book_transition", "label": "book transition"},
+  "narration_segment": {
+    "key": "book_transition",
+    "label": "book transition"
+  },
   "entry_frame_character_presence": "none",
   "identity": {
     "canonical_sheet": "../../visual_presets/001_home_world/book_design_sheet_v2.png",
@@ -28,5 +31,12 @@
     "entry_direction": "creative/BOOK_COVER_DESIGN.txt",
     "entry_frame": "references/book_cover_frame.png",
     "entry_image_receipt": "pipeline/provider_receipts/gemini_book_cover.json"
-  }
+  },
+  "entry_variants": [
+    "desk_reach",
+    "shelf_reveal",
+    "pocket_reveal",
+    "object_transformation",
+    "discovered_book"
+  ]
 }

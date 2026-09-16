@@ -27,8 +27,12 @@ Return ONLY a raw JSON object with exactly these keys, no markdown fences, no co
 script if it does not hold, so an edit that changes a segment must also update
 `full_narration`.
 
+## Selected opening and character
+CHARACTER STORY CONTEXT: {{CHARACTER_STORY_CONTEXT}}
+SELECTED OPENING CONCEPT: {{OPENING_CONCEPT}}
+
 ## Must preserve
-- the same ordinary opening activity and curiosity trigger
+- the selected premise, its frame-zero evidence, and supported promise/payoff; do not preserve an unrelated chore merely because a draft invented it
 - the active presentation progression and the ~3–4s `{{ENTRY_SEGMENT_KEY}}` beat
 - factual integrity: do not strengthen uncertain claims, never add statistics
 - a hook that works from second zero
@@ -45,7 +49,7 @@ script if it does not hold, so an edit that changes a segment must also update
 - word count tightened to {{WORD_RANGE}} for a {{DURATION_RANGE}} Short
 - TTS rhythm and visual translatability
 - removing generic openers such as "Have you ever wondered"
-- making the {{ENTRY_SEGMENT_LABEL}} sentence a more natural hinge
+- making the {{ENTRY_SEGMENT_LABEL}} carry a concrete clue while visuals handle the entry mechanics; never merely announce that we enter the prop
 - replacing vague summaries with supported, concrete named details (people, place, origin,
   mechanism, or consequence) when the brief's Source notes support them; if they are absent,
   retain only conservative, widely-established canonical details

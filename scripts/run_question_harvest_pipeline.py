@@ -72,6 +72,7 @@ from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
 from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprint
 from presentation_runtime import PresentationContext
+import opening_runtime as openings
 
 # Initialized from the resolved project in main. Kept as module globals for compatibility
 # with existing helpers/tests that monkeypatch catalog roots.
@@ -511,6 +512,10 @@ class Runner:
     @staticmethod
     def _fallback_stage(stage: str) -> str:
         """Map internal JSON-attempt labels back to the visible pipeline node."""
+        if stage.startswith("opening_concept_"):
+            return "opening_concept"
+        if stage.startswith("episode_director_story_review_"):
+            return "episode_director"
         stage = re.sub(r"_json\d+(?:_repair)?$", "", stage)
         stage = re.sub(r"_try\d+$", "", stage)
         return re.sub(r"_\d{3}(?:_repair)?$", "", stage)
@@ -1311,13 +1316,139 @@ def ask_for_script(
     )
 
 
+def load_opening_concept(project: Path) -> dict[str, Any] | None:
+    path = project / "creative" / "OPENING_CONCEPT.json"
+    if not path.is_file():
+        return None
+    data = load_json(path)
+    if not isinstance(data, dict) or data.get("policy_version") != openings.POLICY_VERSION or not isinstance(data.get("selected"), dict):
+        raise StageFailure("opening_concept", "FAILED_VALIDATION", "Invalid stored opening concept; explicitly regenerate opening_concept.")
+    return data
+
+
+def load_entry_story_context(project: Path) -> dict[str, Any]:
+    episode_path = project / "creative/EPISODE_PLAN.json"
+    episode = load_json(episode_path) if episode_path.is_file() else None
+    return openings.entry_context(load_opening_concept(project), episode)
+
+
+def stage_opening_concept(
+    runner: Runner, project: Path, content_project: Any, topic: str,
+    duration: DurationTarget, character: CharacterContext,
+) -> dict[str, Any] | None:
+    """Choose a reviewed topic/character mini-story before a word of narration is fixed."""
+    stage = "opening_concept"
+    target = project / "creative" / "OPENING_CONCEPT.json"
+    # Old paid work can resume unchanged. New runs always take the v2 path.
+    if not target.exists() and runner.state.done("script_draft") and (project / "creative/SCRIPT_DRAFT.json").is_file():
+        return None
+    try:
+        raw = load_json(project / "launch/CREATIVE_BRIEF.json")
+        editorial = openings.narrative_brief(raw, topic, duration)
+        character_context = openings.character_story_context(character)
+        presentation_context = character.presentation.prompt_context()
+        writer = resolve_prompt(content_project, "00_opening_concept_director.md")
+        reviewer = resolve_prompt(content_project, "00_opening_candidate_reviewer.md")
+        base_inputs = {
+            "policy_version": openings.POLICY_VERSION, "brief": editorial,
+            "character": character_context, "presentation": presentation_context,
+            "writer_sha256": sha256_text(writer), "reviewer_sha256": sha256_text(reviewer),
+        }
+        input_hash = openings.fingerprint(base_inputs)
+        if target.is_file() and runner.state.done(stage):
+            saved = load_opening_concept(project)
+            if saved.get("input_fingerprint") != input_hash:
+                raise StageFailure(stage, "FAILED_VALIDATION", "Opening inputs changed. Use Revise/regenerate opening_concept so narration and dependent media invalidate together.")
+            runner.stage_reused(stage, target.name)
+            return saved
+        started = runner.stage_start(stage)
+        context_path = project / "creative/OPENING_CONTEXT.json"
+        frozen = load_json(context_path) if context_path.is_file() else {}
+        if not isinstance(frozen, dict) or frozen.get("input_fingerprint") != input_hash:
+            from episode_history import opening_history
+            history = opening_history(content_project.project_id, project.name, character.id)
+            frozen = {**base_inputs, "input_fingerprint": input_hash, "history": history}
+            save_json(context_path, frozen)
+        history = frozen.get("history") or []
+        # A frozen snapshot means another episode completing cannot change this run on resume.
+        common = {
+            "EDITORIAL_BRIEF": editorial, "CHARACTER_STORY_CONTEXT": character_context,
+            "PRESENTATION_CONTEXT": presentation_context, "RECENT_OPENINGS": history,
+        }
+        feedback = ""
+        attempts: list[dict[str, Any]] = []
+        for attempt in range(openings.MAX_ATTEMPTS):
+            record: dict[str, Any] = {"attempt": attempt + 1}
+            try:
+                suffix = ("\nPrevious design failure; redesign the weak premises, not just their wording:\n" + feedback[:1800]) if feedback else ""
+                prompt, writer_history = openings.fill_history_prompt(writer, suffix=suffix, **common)
+                record["writer_history_ids"] = [item.get("video_id") for item in writer_history]
+                record["writer_prompt_sha256"] = sha256_text(prompt)
+                raw_candidates = runner.json(f"{stage}_candidates_{attempt + 1}", prompt)
+                record["candidate_response"] = raw_candidates
+                candidates = openings.validate_candidates(raw_candidates, character.presentation.entry_variants)
+                review_prompt, reviewer_history = openings.fill_history_prompt(reviewer, **common, CANDIDATES=candidates)
+                record["reviewer_history_ids"] = [item.get("video_id") for item in reviewer_history]
+                record["reviewer_prompt_sha256"] = sha256_text(review_prompt)
+                raw_review = runner.json(f"{stage}_selection_{attempt + 1}", review_prompt)
+                record["review_response"] = raw_review
+                selected, decisions = openings.select_candidate(raw_review, candidates, history)
+                record["decisions"] = decisions
+                record["selected_id"] = selected["id"]
+                attempts.append(record)
+                save_json(project / "creative/OPENING_CANDIDATES.json", {"input_fingerprint": input_hash, "attempts": attempts})
+                result = {
+                    "policy_version": openings.POLICY_VERSION, "input_fingerprint": input_hash,
+                    "concept_id": openings.fingerprint({"input": input_hash, "selected": selected})[:20],
+                    "character_id": character.id, "presentation_id": character.presentation.id,
+                    "selected": selected, "created_at": utcnow(),
+                }
+                save_json(target, result)
+                runner.stage_done(stage, started, selected["hook_line"], selected_id=selected["id"], concept_id=result["concept_id"])
+                return result
+            except openings.OpeningContractError as exc:
+                feedback = str(exc)
+                record["rejected"] = feedback
+                attempts.append(record)
+                save_json(project / "creative/OPENING_CANDIDATES.json", {"input_fingerprint": input_hash, "attempts": attempts})
+        raise openings.OpeningContractError("No acceptable opening after bounded text-only corrections. " + feedback)
+    except openings.OpeningContractError as exc:
+        raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
+
+
+def opening_writer_values(character: CharacterContext | None, concept: dict[str, Any] | None) -> dict[str, str]:
+    return {
+        "CHARACTER_STORY_CONTEXT": openings.compact(openings.character_story_context(character)) if character is not None else "Use the supplied presentation; do not infer a job, home or powers.",
+        "OPENING_CONCEPT": openings.compact(openings.selected_context(concept)),
+    }
+
+
+def _record_text_input(project: Path, stage: str, prompt: str, concept: dict[str, Any] | None) -> None:
+    if concept:
+        save_json(project / "creative" / f"{stage}.inputs.json", {
+            "policy_version": openings.POLICY_VERSION, "concept_id": concept["concept_id"],
+            "prompt_sha256": sha256_text(prompt),
+        })
+
+
+def _check_text_concept(project: Path, stage: str, concept: dict[str, Any] | None) -> None:
+    if not concept:
+        return
+    path = project / "creative" / f"{stage}.inputs.json"
+    data = load_json(path) if path.is_file() else {}
+    if not isinstance(data, dict) or data.get("concept_id") != concept["concept_id"]:
+        raise StageFailure(stage, "FAILED_VALIDATION", "Stored narration belongs to another opening concept. Regenerate opening_concept with its descendants.")
+
+
 def stage_script(
     runner: Runner, project: Path, content_project: Any, brief: str, duration: DurationTarget,
     presentation: PresentationContext | None = None,
+    *, character: CharacterContext | None = None, opening_concept: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     stage = "script_draft"
     target = project / "creative" / "SCRIPT_DRAFT.json"
     if runner.state.done(stage) and target.is_file():
+        _check_text_concept(project, stage, opening_concept)
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
@@ -1328,10 +1459,12 @@ def stage_script(
         ENTRY_SEGMENT_KEY=presentation.segment_key,
         ENTRY_SEGMENT_LABEL=presentation.segment_label,
         PRESENTATION_RULES=presentation.script_rules,
+        **opening_writer_values(character, opening_concept),
         **duration.as_prompt_values(),
     )
     plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
     save_json(target, plan)
+    _record_text_input(project, stage, prompt, opening_concept)
     runner.stage_done(stage, started, f"{plan['word_count']} words, {len(plan['body'])} beats", words=plan["word_count"])
     return plan
 
@@ -1344,6 +1477,7 @@ def stage_retention(
     draft: dict[str, Any],
     duration: DurationTarget,
     presentation: PresentationContext | None = None,
+    *, character: CharacterContext | None = None, opening_concept: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     stage = "retention_edit"
     # The retention editor owns the editorial core.  The following call_to_action stage owns
@@ -1351,6 +1485,7 @@ def stage_retention(
     target = project / "creative" / "SCRIPT_CORE_PLAN.json"
     legacy_target = project / "creative" / "SCRIPT_PLAN.json"
     if runner.state.done(stage) and target.is_file():
+        _check_text_concept(project, stage, opening_concept)
         runner.stage_reused(stage, target.name)
         return load_json(target)
     if runner.state.done(stage) and legacy_target.is_file():
@@ -1370,10 +1505,12 @@ def stage_retention(
         ENTRY_SEGMENT_KEY=presentation.segment_key,
         ENTRY_SEGMENT_LABEL=presentation.segment_label,
         PRESENTATION_RULES=presentation.script_rules,
+        **opening_writer_values(character, opening_concept),
         **duration.as_prompt_values(),
     )
     plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
     save_json(target, plan)
+    _record_text_input(project, stage, prompt, opening_concept)
     runner.stage_done(stage, started, f"{plan['word_count']} words", words=plan["word_count"])
     return plan
 
@@ -1690,54 +1827,103 @@ def validate_episode_opening_contract(data: Any) -> dict[str, Any]:
 def stage_episode_director(
     runner: Runner, project: Path, content_project: Any, topic: str, brief: str,
     plan: dict[str, Any], character: CharacterContext | None = None,
+    *, opening_concept: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     character = _coerce_character_context(character or content_project)
     stage = "episode_director"
     target = project / "creative" / "EPISODE_PLAN.json"
     if runner.state.done(stage) and target.is_file():
+        if opening_concept:
+            saved = load_json(target)
+            review_path = project / "creative/OPENING_REVIEW.json"
+            review = load_json(review_path) if review_path.is_file() else {}
+            expected = openings.fingerprint({"concept": openings.selected_context(opening_concept), "script": cta_source_context(plan, character.presentation), "episode": saved})
+            if review.get("input_fingerprint") != expected or review.get("passed") is not True:
+                raise StageFailure(stage, "FAILED_VALIDATION", "Stored opening review is stale; regenerate episode_director before narration/media.")
         runner.stage_reused(stage, target.name)
         return load_json(target)
     started = runner.stage_start(stage)
     from episode_history import avoidance_note, repeated_traits
 
     history = _recent_history(getattr(content_project, "project_id", "q_station"))
-    base_prompt = fill(
-        resolve_prompt(content_project, "03_episode_director.md"),
-        TOPIC=topic,
-        CREATIVE_BRIEF=brief,
-        FINAL_SCRIPT=plan["full_narration"],
-        CHARACTER_CONTEXT=_character_prompt_context(character),
-        PRESENTATION_CONTEXT=json.dumps(character.presentation.prompt_context(), ensure_ascii=False),
-        PRESENTATION_RULES=character.presentation.episode_rules,
-        RECENT_HISTORY=json.dumps(history, ensure_ascii=False),
-    )
+    if opening_concept:
+        history = load_json(project / "creative/OPENING_CONTEXT.json").get("history") or []
+    template = resolve_prompt(content_project, "03_episode_director.md")
+    director_values = {
+        "TOPIC": topic, "CREATIVE_BRIEF": brief, "FINAL_SCRIPT": plan["full_narration"],
+        "CHARACTER_CONTEXT": (openings.compact(openings.character_story_context(character))
+                              if opening_concept else _character_prompt_context(character)),
+        "PRESENTATION_CONTEXT": openings.compact(character.presentation.prompt_context()),
+        "PRESENTATION_RULES": character.presentation.episode_rules,
+        "OPENING_CONCEPT": openings.compact(openings.selected_context(opening_concept)),
+    }
+    def director_prompt(suffix: str = "") -> str:
+        if opening_concept:
+            try:
+                result, _ = openings.fill_history_prompt(
+                    template, history_key="RECENT_HISTORY", suffix=suffix,
+                    RECENT_HISTORY=history, **director_values,
+                )
+                return result
+            except openings.OpeningContractError as exc:
+                raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
+        return fill(template, RECENT_HISTORY=json.dumps(history, ensure_ascii=False), **director_values) + suffix
+    base_prompt = director_prompt()
     prompt = base_prompt
-    if history:
+    if history and not opening_concept:
         prompt = f"{base_prompt}\n\n{avoidance_note(history)}"
 
-    # §35 is a hard rule, not a hint: an opening that repeats a recent episode is sent back
-    # once with the specific repeat named, and only then treated as a validation failure.
+    # Legacy direct calls preserve their exact-match contract. New runs are selected and
+    # independently reviewed semantically; a camera repeat is never a blocking defect.
+    attempts = openings.MAX_ATTEMPTS if opening_concept else 2
     data: Any = None
     repeats: dict[str, str] = {}
-    for attempt in range(2):
+    final_review: dict[str, Any] | None = None
+    failure = ""
+    for attempt in range(attempts):
         data = runner.json(f"{stage}_try{attempt + 1}" if attempt else stage, prompt)
-        data = validate_episode_opening_contract(data)
-        repeats = repeated_traits(data, history)
-        if not repeats:
+        try:
+            data = validate_episode_opening_contract(data)
+        except StageFailure as exc:
+            if not opening_concept:
+                raise
+            failure = exc.message
+            prompt = director_prompt("\nCorrect the missing structural fields: " + failure[:1600])
+            continue
+        if not opening_concept:
+            repeats = repeated_traits(data, history)
+            if not repeats:
+                break
+            named = ", ".join(f"{key}={value!r}" for key, value in repeats.items())
+            prompt = f"{base_prompt}\n\n{avoidance_note(history)}\nYour previous plan repeated: {named}. Choose different ones and return the same JSON shape."
+            continue
+        try:
+            openings.validate_episode_seam(data, opening_concept, character.presentation.entry_variants)
+            review_prompt, reviewed_history = openings.fill_history_prompt(
+                resolve_prompt(content_project, "03_opening_story_reviewer.md"),
+                OPENING_CONCEPT=openings.selected_context(opening_concept),
+                SCRIPT_CORE=cta_source_context(plan, character.presentation), EPISODE_PLAN=data,
+                CHARACTER_STORY_CONTEXT=openings.character_story_context(character),
+                PRESENTATION_CONTEXT=character.presentation.prompt_context(), RECENT_OPENINGS=history,
+            )
+            response = runner.json(f"{stage}_story_review_{attempt + 1}", review_prompt)
+            final_review = openings.validate_review(response)
+            final_review["history_ids"] = [item.get("video_id") for item in reviewed_history]
+            final_review["prompt_sha256"] = sha256_text(review_prompt)
             break
-        named = ", ".join(f"{key}={value!r}" for key, value in repeats.items())
-        prompt = (
-            f"{base_prompt}\n\n{avoidance_note(history)}\n\n"
-            f"Your previous plan repeated: {named}. Choose different ones and return the same JSON shape."
-        )
+        except openings.OpeningContractError as exc:
+            failure = str(exc)
+            save_json(project / "creative/OPENING_REVIEW.json", {"passed": False, "attempt": attempt + 1, "failure": failure})
+            prompt = director_prompt("\nCorrect these material staging/continuity defects without changing the spoken script or the selected premise:\n" + failure[:1600])
     if repeats:
-        raise StageFailure(
-            stage,
-            "FAILED_VALIDATION",
-            "The episode plan still repeats a recent episode after a correction attempt: "
-            + ", ".join(f"{key}={value!r}" for key, value in repeats.items()),
-        )
+        raise StageFailure(stage, "FAILED_VALIDATION", "The episode plan still repeats a recent episode after a correction attempt: " + ", ".join(f"{key}={value!r}" for key, value in repeats.items()))
+    if opening_concept and final_review is None:
+        raise StageFailure(stage, "FAILED_VALIDATION", "Opening failed text-only story review before narration/media: " + failure)
     save_json(target, data)
+    if final_review is not None:
+        final_review["input_fingerprint"] = openings.fingerprint({"concept": openings.selected_context(opening_concept), "script": cta_source_context(plan, character.presentation), "episode": data})
+        final_review["concept_id"] = opening_concept["concept_id"]
+        save_json(project / "creative/OPENING_REVIEW.json", final_review)
     runner.stage_done(stage, started, str(data.get("opening_activity")), activity=data.get("opening_activity"))
     return data
 
@@ -1861,6 +2047,10 @@ def stage_record_history(
     started = runner.stage_start(stage)
     project_id = getattr(content_project, "project_id", "q_station")
     traits = traits_from_plans(episode_plan, world_style_plan)
+    concept_id = episode_plan.get("concept_id")
+    if concept_id:
+        # Direction carries the frozen fingerprint supplied by main; no extra provider call.
+        traits.update(episode_plan.get("opening_history_traits") or {})
     try:
         path = record_traits(project_id, video_id, traits)
     except (EpisodeHistoryError, OSError) as exc:
@@ -2161,6 +2351,11 @@ def stage_visual_plan(
         for key in ("hero_presence_mode", "closing_mode")
         if episode_plan.get(key) is not None
     }
+    concept = load_opening_concept(project)
+    if concept:
+        body_episode_context["opening_promise"] = {
+            "hook": plan["opening_question_spark"], "payoff": concept["selected"]["payoff"],
+        }
     prompt = fill(
         resolve_prompt(content_project, "05_visual_beat_planner.md"),
         FINAL_SCRIPT=json.dumps(
@@ -2244,6 +2439,7 @@ def stage_world_keyframe_prompt(
         FINAL_SCRIPT=plan["full_narration"],
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         CAPTION_LAYOUT_RULE=caption_layout_rule(world_style_plan),
+        WORLD_ENTRY_DISCOVERY=openings.world_entry_context(load_opening_concept(project)),
     )
     text = runner.text(stage, prompt).strip()
     # The world keyframe is the visual constitution for every body frame, so make its
@@ -2490,7 +2686,7 @@ def stage_topic_book_cover(
         brief_started = runner.stage_start(brief_stage)
         brief_prompt = (
             "Create a compact visual art-direction brief (55–90 words) for a CLOSED illustrated book cover "
-            f"about this episode topic: {cover_topic!r}. Name exactly 3–5 concrete, non-textual motifs, materials or "
+            f"about this episode topic: {cover_topic!r}. Selected story handoff: {openings.compact(load_entry_story_context(project))}. Name exactly 3–5 concrete, non-textual motifs, materials or "
             "ornaments unmistakably tied to this topic, plus their arrangement on a cover. If the topic mentions "
             "a real person, represent only their era, field, tools, place, or values indirectly: never their face, "
             "body, name, initials, signature, or likeness. Do not use generic compass, globe, ship, starfield, "
@@ -2638,12 +2834,34 @@ def stage_flow_prompt(
     stage = f"flow_prompt_{'a' if clip == 'A' else 'b'}"
     target = presentation.artifacts.path(project, "question_prompt" if clip == "A" else "entry_prompt")
     contract_path = target.with_suffix(target.suffix + ".inputs.json")
+    concept = load_opening_concept(project)
+    measured_seconds = float(source_seconds)
+    timing_path = project / "timing/OPENING_SOURCE_PLAN.json"
+    if timing_path.is_file():
+        timing = load_json(timing_path)
+        measured_seconds = float(((timing.get("clips") or {}).get(clip) or {}).get("target_seconds") or source_seconds)
+    direction_path = presentation.artifacts.path(project, "entry_direction")
+    entry_direction = direction_path.read_text(encoding="utf-8") if direction_path.is_file() else "Use the supplied configured first frame."
+    template_name = "08_opening_video_prompt_writer.md" if clip == "A" else "09_entry_transition_video_prompt_writer.md"
+    input_hash = openings.fingerprint({
+        "template_sha256": sha256_text(resolve_prompt(content_project, template_name)),
+        "episode": episode_plan if clip == "A" else openings.entry_context(concept, episode_plan),
+        "style": world_style_plan if clip == "B" else None,
+        "world_keyframe_description": world_keyframe_description if clip == "B" else None,
+        "entry_direction": entry_direction if clip == "B" else None,
+        "presentation": presentation.prompt_context(),
+        "source_seconds": source_seconds, "target_seconds": measured_seconds,
+        "narration": narration, "concept_id": (concept or {}).get("concept_id"),
+        "entry_bridge": openings.entry_context(concept, episode_plan),
+    })
     contract_matches = False
     try:
-        contract_matches = int(load_json(contract_path).get("source_seconds")) == int(source_seconds)
+        existing = load_json(contract_path)
+        contract_matches = (int(existing.get("source_seconds")) == int(source_seconds) and
+                            (not concept or existing.get("input_fingerprint") == input_hash))
     except (OSError, ValueError, TypeError):
         pass
-    if not force and runner.state.done(stage) and target.is_file() and (not require_source_contract or contract_matches):
+    if not force and runner.state.done(stage) and target.is_file() and (not require_source_contract and not concept or contract_matches):
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
@@ -2662,6 +2880,9 @@ def stage_flow_prompt(
             VISUAL_PRESET_RULES=preset_rules,
             CHARACTER_CONTEXT=_character_prompt_context(character),
             PRESENTATION_RULES=presentation.question_prompt_rules,
+            OPENING_CONCEPT=openings.compact(openings.selected_context(concept)),
+            SOURCE_DURATION_SECONDS=str(source_seconds),
+            NARRATION_DURATION_SECONDS=str(measured_seconds),
         )
     else:
         prompt = fill(
@@ -2673,12 +2894,21 @@ def stage_flow_prompt(
             WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
             WORLD_KEYFRAME_DESC=world_keyframe_description,
             SOURCE_DURATION_SECONDS=str(source_seconds),
+            NARRATION_DURATION_SECONDS=str(measured_seconds),
+            ENTRY_BRIDGE=openings.compact(openings.entry_context(concept, episode_plan)),
+            ENTRY_FRAME_DIRECTION=entry_direction,
         )
-    text = runner.text(stage, prompt)
+    text = runner.text(stage, prompt).strip()
+    for correction in range(2):
+        if text and (clip != "A" or len(text) <= 1800):
+            break
+        text = runner.text(stage + f"_compact{correction + 1}", prompt + "\nReturn a non-empty production prompt. Intro A must fit 1800 characters: retain the first-frame event, essential identity and handoff; compress decoration.").strip()
+    if not text or (clip == "A" and len(text) > 1800):
+        raise StageFailure(stage, "FAILED_VALIDATION", "Opening prompt did not satisfy its production budget.")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text.strip() + "\n", encoding="utf-8")
     contract_path.write_text(
-        json.dumps({"schema_version": 1, "source_seconds": int(source_seconds), "prompt_sha256": sha256_text(text)}, indent=2) + "\n",
+        json.dumps({"schema_version": 2, "source_seconds": int(source_seconds), "target_seconds": measured_seconds, "input_fingerprint": input_hash, "prompt_sha256": sha256_text(text)}, indent=2) + "\n",
         encoding="utf-8",
     )
     runner.stage_done(stage, started, target.name, prompt_sha256=sha256_text(text))
@@ -2714,9 +2944,12 @@ def stage_flow_clip(
     receipt_name = "flow_opening_a" if clip == "A" else "flow_opening_b"
     receipt = project / "pipeline" / "provider_receipts" / f"{receipt_name}.json"
     receipt_duration = None
+    receipt_prompt = None
     if receipt.is_file():
         try:
-            receipt_duration = int((load_json(receipt).get("requested") or {}).get("duration_seconds") or 0)
+            stored_receipt = load_json(receipt)
+            receipt_duration = int((stored_receipt.get("requested") or {}).get("duration_seconds") or 0)
+            receipt_prompt = stored_receipt.get("prompt_sha256")
         except (OSError, ValueError, TypeError):
             pass
     # A recovered episode may need a longer opening source after real narration
@@ -2730,6 +2963,7 @@ def stage_flow_clip(
         and receipt.is_file()
         and runner.state.done(stage)
         and receipt_duration in (None, 0, source_seconds)
+        and receipt_prompt in (None, sha256_text(prompt))
     ):
         runner.stage_reused(stage, f"{filename} ({ffprobe_duration(target):.2f}s)")
         return target
@@ -3541,15 +3775,12 @@ def build_brief(
     project: Path, topic: str, content_project: Any, duration: DurationTarget
 ) -> str:
     brief_path = project / "launch" / "CREATIVE_BRIEF.json"
-    brief_json = brief_path.read_text(encoding="utf-8") if brief_path.is_file() else "{}"
-    return (
-        f"Topic: {topic}\n"
-        "Language: English\n"
-        f"Target: {duration.duration_range} vertical Short, aspect 9:16 "
-        f"({duration.word_range} spoken words, aim near {duration.word_target})\n"
-        f"Content project: {content_project.display_name}\n"
-        f"Brief JSON: {brief_json}"
-    )
+    raw = load_json(brief_path) if brief_path.is_file() else {}
+    try:
+        context = openings.narrative_brief(raw, topic, duration)
+    except openings.OpeningContractError as exc:
+        raise StageFailure("opening_concept", "FAILED_VALIDATION", str(exc)) from exc
+    return openings.compact(context)
 
 
 def main() -> int:
@@ -3857,12 +4088,27 @@ def main() -> int:
                 is_legacy_run=is_legacy_run,
             )
             presentation = character.presentation
-            draft = stage_script(runner, project, content_project, brief, duration, presentation)
-            plan = stage_retention(runner, project, content_project, brief, draft, duration, presentation)
-            plan = stage_call_to_action(runner, project, content_project, brief, plan, duration, presentation)
+            opening_concept = stage_opening_concept(runner, project, content_project, args.topic, duration, character)
+            if opening_concept:
+                # Drop unrelated subtitle/style/provider payload from creative reasoning.
+                brief = openings.compact(load_json(project / "creative/OPENING_CONTEXT.json")["brief"])
+            draft = stage_script(runner, project, content_project, brief, duration, presentation,
+                                 character=character, opening_concept=opening_concept)
+            plan = stage_retention(runner, project, content_project, brief, draft, duration, presentation,
+                                   character=character, opening_concept=opening_concept)
             episode_plan = stage_episode_director(
-                runner, project, content_project, args.topic, brief, plan, character
+                runner, project, content_project, args.topic, brief, plan, character,
+                opening_concept=opening_concept,
             )
+            if opening_concept:
+                selected = opening_concept["selected"]
+                episode_plan["opening_history_traits"] = {
+                    "character_id": character.id, "presentation_id": presentation.id,
+                    "opening_signature": selected["novelty"], "situation_summary": selected["visible_contradiction"],
+                    "hook_line": plan["opening_question_spark"], "entry_variant": episode_plan["entry_variant"],
+                    "opening_policy_version": openings.POLICY_VERSION,
+                }
+            plan = stage_call_to_action(runner, project, content_project, brief, plan, duration, presentation)
             world_style_plan = stage_world_style_director(
                 runner, project, content_project, args.topic, plan, directive
             )
@@ -3967,7 +4213,7 @@ def main() -> int:
             )
             clip_b_prompt = stage_flow_prompt(
                 runner, project, content_project, "B", plan[presentation.segment_key],
-                None, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
+                episode_plan, world_style_plan, keyframe_prompt, args.topic, opening_b_seconds,
                 character=character, require_source_contract=args.use_opening_source_plan,
             )
 

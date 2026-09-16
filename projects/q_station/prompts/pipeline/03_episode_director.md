@@ -1,6 +1,6 @@
 # Prompt 03 — Episode Director (Q Station)
 
-Choose a natural opening activity, location and staging after the host has been resolved.
+Stage the selected topic-first mini-story after narration is retained. Do not select a replacement routine.
 
 Inputs:
 - TOPIC: {{TOPIC}}
@@ -10,10 +10,14 @@ Inputs:
 - PRESENTATION CONTEXT: {{PRESENTATION_CONTEXT}}
 - PRESENTATION RULES: {{PRESENTATION_RULES}}
 - RECENT HISTORY: {{RECENT_HISTORY}}
+- SELECTED OPENING CONCEPT: {{OPENING_CONCEPT}}
 
 Return raw JSON only:
 ```json
 {
+  "concept_id": "copy the selected concept_id, or empty for a legacy caller",
+  "opening_actions": ["one to three concise physical actions, in order"],
+  "entry_bridge": {"a_end": "last state of A", "b_start": "compatible profile-specific first frame of B", "reveal": "informational discovery during entry", "world_entry": "host-free first factual discovery"},
   "opening_activity": "free semantic description",
   "opening_location": "free semantic description",
   "opening_environment": "concise episode-specific setting description",
@@ -43,6 +47,13 @@ Rules:
 - `dynamic` means no inherited home or environment. Never infer fire, an infernal setting, a lair, underground space or fantasy realm from appearance.
 - The character influences readable acting and opening action, not the factual script or topic-world style.
 - Follow PRESENTATION RULES exactly. They own the fixed entry mechanism and allowed variations.
-- Avoid repeating recent activity/location/camera traits. Fields remain free semantic text except the stated camera modes.
+- Use the selected concept's discrepancy, action, payoff and entry variant. Refine staging, not
+  the premise. One location and at most three physically readable actions; no mandatory busy hands.
+- Keep A/B an explicit editorial seam, not an unsupported promise of pixel-perfect continuity.
+  The configured B first-frame contract wins: no hand/host on a book frame, ownership cue on an orb.
+- Avoid repeating a recent dramatic mechanism, not just its words. Camera variety is a soft
+  preference and must never force a worse topic-specific opening. The recurring entry is allowed.
+- A weak routine cannot be rescued by a persuasive `reason`. Staging must show the link itself.
+- All beat timings here are planning targets; real narration timestamps remain authoritative.
 
 Return ONLY JSON.

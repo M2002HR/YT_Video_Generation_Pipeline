@@ -246,9 +246,9 @@ def test_q_station_and_alias_use_bookworld_wrapper() -> None:
         assert "scripts/run_full_video_pipeline_qh_wrapper.py" in command
 
 
-def test_stage_01_and_02_are_character_agnostic() -> None:
-    assert "character" not in inspect.signature(qh.stage_script).parameters
-    assert "character" not in inspect.signature(qh.stage_retention).parameters
+def test_writers_receive_story_context_while_world_style_stays_character_agnostic() -> None:
+    assert {"character", "opening_concept"} <= set(inspect.signature(qh.stage_script).parameters)
+    assert {"character", "opening_concept"} <= set(inspect.signature(qh.stage_retention).parameters)
     assert "character" not in inspect.signature(qh.stage_world_style_director).parameters
 
 

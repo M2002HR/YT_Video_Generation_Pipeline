@@ -81,7 +81,7 @@ def test_orb_artifact_contract_reaches_gate_and_graph(tmp_path: Path, registry) 
     graph = graph_for(tmp_path, include_disabled=True)
     nodes = {node["id"]: node for node in graph["nodes"]}
     episode_inputs = {edge["source"] for edge in graph["edges"] if edge["target"] == "episode_director"}
-    assert episode_inputs == {"retention_edit", "character_resolution"}
+    assert episode_inputs == {"retention_edit", "character_resolution", "opening_concept"}
     assert nodes["book_cover"]["title"] == "Topic-styled orb frame"
     assert nodes["book_cover"]["artifacts"][0]["path"] == "references/orb_entry_frame.png"
     affected = affected_nodes(graph, ["world_style_director"])

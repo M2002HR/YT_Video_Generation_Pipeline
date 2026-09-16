@@ -1,7 +1,7 @@
 # Prompt 05 — Visual Beat Planner (Q Station)
 
 ## Purpose
-Plan every pre-CTA still-image beat. First ~8 seconds are Flow video (Clip A ~5s + Clip B ~3s) and are NOT counted as still-image beats. The script has already split BODY into short spoken visual units. If `optional_closing` is non-empty, it is one additional final visual unit. Produce exactly one unique still-image beat for every BODY unit plus that optional closing; CTA never creates an extra beat.
+Plan every pre-CTA still-image beat. The opening-question and entry narration segments are Flow video (planning targets only; measured word timestamps determine their lengths) and are NOT counted as still-image beats. The script has already split BODY into short spoken visual units. If `optional_closing` is non-empty, it is one additional final visual unit. Produce exactly one unique still-image beat for every BODY unit plus that optional closing; CTA never creates an extra beat.
 
 ## Inputs
 - FINAL SCRIPT (segmented): {{FINAL_SCRIPT}}
@@ -48,3 +48,5 @@ Return RAW JSON:
 Narration slices must concatenate to exactly the body narration (no missing or overlapping text).
 
 Return ONLY JSON.
+
+The episode direction carries a selected opening promise. Ensure its factual answer is visually paid off at the corresponding spoken unit. Do not add words, reuse the world keyframe as a body beat or change the one-image-per-unit contract.

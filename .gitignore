@@ -63,3 +63,7 @@ videos/**/pipeline/TELEGRAM_NOTIFICATION_STATE.json.lock
 # eligible for Git even when generated media itself is ignored.
 !videos/**/visual_pipeline/
 !videos/**/visual_pipeline/*.json
+
+# Atomic semantic-opening registry updates
+projects/*/VIDEOS.json.lock
+projects/*/.VIDEOS.*.tmp

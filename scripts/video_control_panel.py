@@ -80,10 +80,10 @@ QH_ROOTS = {
     # Flow prompts/clips and every opening-derived render artifact.
     "opening_a_seconds": ("opening_source_plan",),
     "opening_b_seconds": ("opening_source_plan",),
-    "min_duration_seconds": ("retention_edit",),
-    "max_duration_seconds": ("retention_edit",),
+    "min_duration_seconds": ("opening_concept",),
+    "max_duration_seconds": ("opening_concept",),
     "show_subtitles": ("render_profile",),
-    "hero_presence_mode": ("episode_director",),
+    "hero_presence_mode": ("opening_concept",),
     # This layout choice changes the paid body-image continuity chain only. Existing
     # opening clips and the world keyframe remain stable during a revision.
     "reserve_subtitle_space": ("beat_image_001",),
@@ -538,7 +538,11 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     if before.get("telegram_original") != merged.get("telegram_original"):
         roots.add("publish_telegram")
     if before.get("topic") != merged.get("topic") or any(before.get(key) != merged.get(key) for key in CREATIVE_FIELDS):
-        roots.add("script_draft")
+        try:
+            is_qh = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)).is_question_harvest
+        except RuntimeError:
+            is_qh = False
+        roots.add("opening_concept" if is_qh else "script_draft")
     return roots, brief, voice, launch, changed_fields
 
 #: Where Ordak answers, for the provider badges.
@@ -1724,7 +1728,7 @@ def reconcile_scheduled_resumes() -> None:
 # continuity receipt and spend Gemini credits despite the DAG saying every image is
 # reusable.  Render/audio/publish roots are owned by the wrapper's later stages.
 QH_VISUAL_REGENERATION_ROOTS = frozenset({
-    "script_draft", "retention_edit", "call_to_action", "character_resolution", "episode_director",
+    "opening_concept", "script_draft", "retention_edit", "call_to_action", "character_resolution", "episode_director",
     "world_style_director", "world_style_anchor", "visual_plan",
     "world_keyframe_prompt", "world_keyframe", "book_cover_design", "book_cover",
     "flow_prompt_a", "flow_prompt_b", "flow_clip_a", "flow_clip_b",
@@ -3224,7 +3228,7 @@ class Handler(BaseHTTPRequestHandler):
         except RuntimeError:
             is_qh = False
         changed = lambda a, b: json.dumps(a, sort_keys=True) != json.dumps(b, sort_keys=True)
-        if changed({k:v for k,v in previous_brief.items() if not k.startswith("_")}, {k:v for k,v in brief.items() if not k.startswith("_")}): roots.add("script_draft")
+        if changed({k:v for k,v in previous_brief.items() if not k.startswith("_")}, {k:v for k,v in brief.items() if not k.startswith("_")}): roots.add("opening_concept" if is_qh else "script_draft")
         old_qh, new_qh = previous_brief.get("_qh", {}), brief.get("_qh", {})
         if changed(old_qh, new_qh):
             if is_qh:
@@ -3242,15 +3246,15 @@ class Handler(BaseHTTPRequestHandler):
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("opening_a_source_seconds", "opening_b_source_seconds", "opening_speed_tolerance")): roots.add("opening_source_plan")
                 known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds", "cta_hint"))
                 known_qh.add("opening_speed_tolerance")
-                if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("retention_edit")
+                if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("opening_concept")
                 known_qh.update(("min_duration_seconds", "max_duration_seconds"))
                 if old_qh.get("show_subtitles") != new_qh.get("show_subtitles"): roots.add("render_profile")
                 known_qh.add("show_subtitles")
                 if old_qh.get("reserve_subtitle_space", True) != new_qh.get("reserve_subtitle_space", True): roots.add("beat_image_001")
                 known_qh.add("reserve_subtitle_space")
-                if old_qh.get("hero_presence_mode") != new_qh.get("hero_presence_mode"): roots.add("episode_director")
+                if old_qh.get("hero_presence_mode") != new_qh.get("hero_presence_mode"): roots.add("opening_concept")
                 known_qh.add("hero_presence_mode")
-                if any(old_qh.get(key) != new_qh.get(key) for key in set(old_qh) | set(new_qh) if key not in known_qh): roots.add("script_draft")
+                if any(old_qh.get(key) != new_qh.get(key) for key in set(old_qh) | set(new_qh) if key not in known_qh): roots.add("opening_concept")
             elif old_qh.get("show_subtitles") != new_qh.get("show_subtitles"):
                 roots.add("render_profile")
         if changed(previous_brief.get("_motion", {}), brief.get("_motion", {})): roots.add("motion_director")

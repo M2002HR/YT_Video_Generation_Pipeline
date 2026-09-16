@@ -12,6 +12,9 @@ Legacy registries listed bare directory names. Those entries are preserved and u
 from __future__ import annotations
 
 import json
+import os
+import tempfile
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
@@ -26,6 +29,26 @@ HISTORY_KEYS = (
     "book_template_id",
     "world_style_id",
 )
+
+OPENING_HISTORY_KEYS = (
+    "character_id", "presentation_id", "opening_signature", "situation_summary",
+    "hook_line", "entry_variant", "opening_policy_version",
+)
+
+
+@contextmanager
+def _registry_lock(project_id: str):
+    """Serialize read/modify/write across pipeline processes on the Linux server."""
+    import fcntl
+    path = registry_path(project_id).with_suffix(".json.lock")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a") as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle, fcntl.LOCK_UN)
+
 
 #: How many previous episodes a trait must stay away from.
 DEFAULT_LOOKBACK = 4
@@ -57,7 +80,16 @@ def load_registry(project_id: str) -> dict[str, Any]:
 def save_registry(project_id: str, payload: dict[str, Any]) -> Path:
     path = registry_path(project_id)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    fd, temporary = tempfile.mkstemp(prefix=".VIDEOS.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
     return path
 
 
@@ -69,20 +101,21 @@ def _sort_key(entry: dict[str, Any]) -> tuple[int, str]:
 
 def record_traits(project_id: str, video_id: str, traits: dict[str, Any]) -> Path:
     """Upsert one episode's anti-repetition traits. Re-running changes nothing new."""
-    payload = load_registry(project_id)
-    recorded = {key: traits.get(key) for key in HISTORY_KEYS if traits.get(key) is not None}
-    entry = {"video_id": str(video_id), **recorded, "updated_at": datetime.now(timezone.utc).isoformat()}
-    videos = [item for item in payload["videos"] if str(item.get("video_id")) != str(video_id)]
-    existing = next(
-        (item for item in payload["videos"] if str(item.get("video_id")) == str(video_id)), None
-    )
-    if existing is not None:
-        merged = {**existing, **entry}
-        # A trait already on record is not dropped by a later partial update.
-        entry = merged
-    videos.append(entry)
-    payload["videos"] = sorted(videos, key=_sort_key)
-    return save_registry(project_id, payload)
+    with _registry_lock(project_id):
+        payload = load_registry(project_id)
+        recorded = {key: traits.get(key) for key in (*HISTORY_KEYS, *OPENING_HISTORY_KEYS) if traits.get(key) is not None}
+        entry = {"video_id": str(video_id), **recorded, "updated_at": datetime.now(timezone.utc).isoformat()}
+        videos = [item for item in payload["videos"] if str(item.get("video_id")) != str(video_id)]
+        existing = next(
+            (item for item in payload["videos"] if str(item.get("video_id")) == str(video_id)), None
+        )
+        if existing is not None:
+            merged = {**existing, **entry}
+            # A trait already on record is not dropped by a later partial update.
+            entry = merged
+        videos.append(entry)
+        payload["videos"] = sorted(videos, key=_sort_key)
+        return save_registry(project_id, payload)
 
 
 def recent(project_id: str, limit: int = DEFAULT_LOOKBACK) -> list[dict[str, Any]]:
@@ -91,7 +124,7 @@ def recent(project_id: str, limit: int = DEFAULT_LOOKBACK) -> list[dict[str, Any
         payload = load_registry(project_id)
     except (OSError, ValueError):
         return []
-    entries = payload["videos"][-max(0, limit):]
+    entries = payload["videos"][-limit:] if limit > 0 else []
     return [
         {
             "video_id": entry.get("video_id"),
@@ -157,6 +190,43 @@ def traits_from_plans(
         "book_template_id": episode_plan.get("book_template_id"),
         "world_style_id": style.get("style_id") or style.get("reuse_of"),
     }
+
+
+def opening_history(
+    project_id: str, video_id: str, character_id: str, *,
+    global_limit: int = 8, character_limit: int = 5, budget: int = 4200,
+) -> list[dict[str, Any]]:
+    """Frozen by the concept stage, with global and same-character semantic context.
+
+    Legacy prose stays useful to the independent reviewer. Never infer a character for an
+    old entry. Exclude the current id even when a retry uses its full directory name.
+    """
+    try:
+        entries = load_registry(project_id)["videos"]
+    except (OSError, ValueError):
+        return []
+    def identity(value: Any) -> str:
+        key = str(value or "").split("_", 1)[0]
+        return str(int(key)) if key.isdigit() else key
+    entries = [item for item in entries if identity(item.get("video_id")) != identity(video_id)]
+    same = [item for item in entries if item.get("character_id") == character_id]
+    selected = {str(item.get("video_id")): item for item in
+                ((entries[-global_limit:] if global_limit > 0 else []) + (same[-character_limit:] if character_limit > 0 else []))}
+    output: list[dict[str, Any]] = []
+    size = 2
+    for item in reversed(sorted(selected.values(), key=_sort_key)):
+        row: dict[str, Any] = {"video_id": str(item.get("video_id"))}
+        for key in ("character_id", "opening_activity", "opening_location", "situation_summary", "hook_line", "entry_variant"):
+            if item.get(key):
+                row[key] = str(item[key])[:180]
+        if isinstance(item.get("opening_signature"), dict):
+            row["opening_signature"] = {str(key): str(value)[:70] for key, value in item["opening_signature"].items()}
+        encoded = json.dumps(row, ensure_ascii=False)
+        if size + len(encoded) + 1 > budget:
+            continue
+        output.append(row)
+        size += len(encoded) + 1
+    return list(reversed(output))
 
 
 def main() -> None:

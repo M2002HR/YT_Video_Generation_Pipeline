@@ -29,12 +29,13 @@ class NodeSpec:
 # graph renderer and regeneration handler. Beat-image nodes are expanded dynamically.
 NODE_SPECS: dict[str, NodeSpec] = {
     "character_resolution": NodeSpec("Character & presentation resolution", "data", (), ("creative/CHARACTER_RESOLUTION.json",), ("creative/PRESENTATION_RESOLUTION.json",), description="One-time Auto/manual host and opening-format resolution.", phase="creative"),
-    "script_draft": NodeSpec("Script draft", "text", ("character_resolution",), ("creative/SCRIPT_DRAFT.json",), description="Initial script using the resolved presentation grammar.", phase="creative"),
-    "retention_edit": NodeSpec("Retained script core", "text", ("script_draft",), ("creative/SCRIPT_CORE_PLAN.json",), description="Retention-edited core narration and visual beat plan before the final CTA.", phase="creative"),
+    "opening_concept": NodeSpec("Opening story selection", "data", ("character_resolution",), ("creative/OPENING_CONCEPT.json", "creative/OPENING_CONTEXT.json", "creative/OPENING_CANDIDATES.json"), description="Three topic-first mini-stories, independent selection and frozen semantic history.", phase="creative"),
+    "script_draft": NodeSpec("Script draft", "text", ("opening_concept", "character_resolution"), ("creative/SCRIPT_DRAFT.json",), ("creative/script_draft.inputs.json",), description="Initial script using the resolved presentation grammar.", phase="creative"),
+    "retention_edit": NodeSpec("Retained script core", "text", ("script_draft",), ("creative/SCRIPT_CORE_PLAN.json",), ("creative/retention_edit.inputs.json",), description="Retention-edited core narration and visual beat plan before the final CTA.", phase="creative"),
     "call_to_action": NodeSpec("Call to action", "text", ("retention_edit",), ("creative/CALL_TO_ACTION.json", "creative/SCRIPT_PLAN.json", "SCRIPT_FINAL.md"), description="Topic-aware closing CTA, optionally steered by the operator without copying their wording.", phase="creative"),
     # CTA wording is spoken only after the visual story is complete. Keeping it out of the
     # episode-direction branch lets a CTA revision preserve valid visual planning and images.
-    "episode_director": NodeSpec("Episode direction", "data", ("retention_edit", "character_resolution"), ("creative/EPISODE_PLAN.json",), phase="creative"),
+    "episode_director": NodeSpec("Episode direction", "data", ("retention_edit", "character_resolution", "opening_concept"), ("creative/EPISODE_PLAN.json",), ("creative/OPENING_REVIEW.json",), description="Staging and a blocking story-consistency review before narration/media.", phase="creative"),
     "world_style_director": NodeSpec("World style", "data", ("retention_edit",), ("creative/WORLD_STYLE_PLAN.json",), phase="creative"),
     "world_style_anchor": NodeSpec("Style anchor", "image", ("world_style_director",), ("references/world_style_anchor.png",), ("pipeline/provider_receipts/gemini_world_style_anchor.json",), phase="visual"),
     "episode_history": NodeSpec("Episode history", "data", ("episode_director", "world_style_director"), description="Records anti-repetition traits for future episodes.", phase="creative", regeneratable=False),
@@ -46,7 +47,7 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "book_cover": NodeSpec("Book cover", "image", ("book_cover_design", "book_design_sheet", "world_style_anchor", "episode_director", "character_resolution"), ("references/book_cover_frame.png",), ("pipeline/provider_receipts/gemini_book_cover.json",), phase="visual"),
     "opening_source_plan": NodeSpec("Opening source plan", "data", ("ajil_alignment",), ("timing/OPENING_SOURCE_PLAN.json",), description="Measured narration boundaries mapped to supported Flow source durations.", phase="audio"),
     "flow_prompt_a": NodeSpec("Opening A prompt", "text", ("episode_director", "character_resolution", "retention_edit", "opening_source_plan"), ("references/flow_prompt_opening_a.txt",), ("references/flow_prompt_question_intro.txt.inputs.json",), phase="opening"),
-    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit", "character_resolution", "opening_source_plan"), ("references/flow_prompt_book_transition.txt",), ("references/flow_prompt_orb_transition.txt.inputs.json",), phase="opening"),
+    "flow_prompt_b": NodeSpec("Opening B prompt", "text", ("world_style_director", "world_keyframe_prompt", "retention_edit", "character_resolution", "opening_source_plan", "episode_director", "book_cover_design"), ("references/flow_prompt_book_transition.txt",), ("references/flow_prompt_orb_transition.txt.inputs.json",), phase="opening"),
     "flow_clip_a": NodeSpec("Opening A", "video", ("flow_prompt_a",), ("assets/opening/question_spark_source.mp4",), ("pipeline/provider_receipts/flow_opening_a.json",), phase="opening"),
     "flow_clip_b": NodeSpec("Opening B", "video", ("flow_prompt_b", "book_cover", "world_keyframe"), ("assets/opening/book_transition_source.mp4",), ("pipeline/provider_receipts/flow_opening_b.json",), phase="opening"),
     "elevenlabs_voiceover": NodeSpec("Narration", "audio", ("call_to_action",), ("assets/audio/narration.mp3",), ("voiceover/ELEVENLABS_RUNTIME_STATE.json",), phase="audio"),
@@ -222,6 +223,12 @@ def qh_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict
     a = presentation.artifacts
     label = presentation.entry_kind.title()
     specs = dict(NODE_SPECS)
+    if (project / "creative/SCRIPT_DRAFT.json").is_file() and not (project / "creative/OPENING_CONCEPT.json").is_file():
+        specs["opening_concept"] = replace(specs["opening_concept"], artifacts=(), description="Legacy retained opening; new runs use reviewed story selection.")
+    else:
+        # A new direction is usable only with its actual story review, not a bare plan.
+        specs["episode_director"] = replace(specs["episode_director"], artifacts=("creative/EPISODE_PLAN.json", "creative/OPENING_REVIEW.json"), optional_artifacts=())
+
     specs["book_design_sheet"] = replace(specs["book_design_sheet"], title=f"{label} identity", description="Shared recurring entry-object identity; not owned by this episode.")
     specs["book_cover_design"] = replace(specs["book_cover_design"], title=f"{label} frame direction", artifacts=(a.entry_direction,))
     specs["book_cover"] = replace(specs["book_cover"], title=f"Topic-styled {presentation.entry_kind} frame", artifacts=(a.entry_frame,), optional_artifacts=(a.entry_image_receipt,))

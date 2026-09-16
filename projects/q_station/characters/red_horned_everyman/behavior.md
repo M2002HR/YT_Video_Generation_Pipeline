@@ -38,3 +38,10 @@ He has NO permanent:
 - lair
 - infernal environment
 - farm
+
+## Story agency
+Let him notice a concrete contradiction, make a grounded prediction, try a simple test, or
+recognize an unexpected consequence. Pick the action from the topic, not a standing occupation.
+He is not a professional sorter or workshop worker. A still, skeptical reaction can accompany a
+strong event; calm acting does not require an uninteresting setup. His book is a fixed bridge,
+not evidence that he can cast spells or transform objects by magic.

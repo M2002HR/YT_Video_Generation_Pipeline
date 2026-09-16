@@ -8,15 +8,16 @@ narration/music/alignment, opening trim, then timeline/render/QC/delivery.
 
 ```text
 launch topic + frozen config
-  → character + presentation resolution (persisted once)
-  → script draft → retention-edited SCRIPT_PLAN
-  → episode direction + topic-world style plan
-  → style anchor + host-free world keyframe
-  → recurring entry identity + topic/style-aware entry frame
-  → pre-CTA visual plan + sequential beat images
-  → Flow Intro A (question) + Intro B (entry into world)
-  → continuous narration + real word alignment
-  → measured opening trims → shared timeline/render/QC/delivery
+  -> character + presentation resolution
+  -> opening_concept: three mini-stories + independent selection
+  -> script draft -> retained SCRIPT_CORE_PLAN
+  -> episode direction + blocking opening story review
+  -> final CTA -> SCRIPT_PLAN + SCRIPT_FINAL
+  -> topic-world style plan + pre-CTA visual plan
+  -> continuous narration + real word alignment + opening source plan
+  -> style anchor + host-free world keyframe + configured entry frame
+  -> sequential body images + Flow Intro A/B with measured timing
+  -> measured trims -> shared timeline/render/QC/delivery
 ```
 
 ## Identity, scenario and style
@@ -79,7 +80,8 @@ inside the same versioned run, while a topic change still creates a separate run
 
 ## Canonical prompts and assets
 
-Active shared Q Station prompts are `projects/q_station/prompts/pipeline/01..09`. Presentation-specific
+Active Q Station prompts are enumerated by `QH_PIPELINE_PROMPTS` in `scripts/content_projects.py`,
+including the opening designer, independent candidate reviewer and story-consistency reviewer. Presentation-specific
 rules are under each `presentation_profiles/<id>/prompts/`. The crone sheet is
 `characters/moss_cloaked_crone/refs/character_sheet.jpg` and is the only visual identity authority for
 that character. The orb design sheet is generated once, on first real orb run, from its identity-only
@@ -97,3 +99,9 @@ npm --prefix control_panel/ui run build
 Provider-free coverage validates profiles, prompt assembly, legacy book fallback, orb artifact paths,
 DAG propagation, stage ordering, state/resume and panel catalog behavior. A real Gemini/Flow smoke is
 deliberately not part of unit tests because it spends credits and requires authenticated browser state.
+
+## Opening quality and deployment
+
+See [OPENING_STORY_PIPELINE.md](OPENING_STORY_PIPELINE.md) for the v2 decision contract, semantic
+history, panel invalidation and provider-free deployment checks. New opening rules are enabled for
+new runs on dev without changing character sheets, artifact names or provider input roles.

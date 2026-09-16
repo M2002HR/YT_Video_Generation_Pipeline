@@ -20,7 +20,7 @@ Return ONLY a raw JSON object, no markdown fences, no commentary:
 
 ```
 {
-  "opening_question_spark": "<~5s of narration: the hook, spoken while the hero is mid-activity>",
+  "opening_question_spark": "<~5s of narration: the topic-specific hook, paired with the selected first-frame event>",
   "{{ENTRY_SEGMENT_KEY}}": "<~3–4s of narration for the {{ENTRY_SEGMENT_LABEL}}>",
   "body": ["<one short spoken visual unit: a sentence or a natural clause>", "..."],
   "optional_closing": "<one short echo sentence of at most 16 words, or empty string; if present it owns its own image beat>",
@@ -44,17 +44,26 @@ Hard rules for the JSON:
 - No headings, no timestamps, no scene directions, no speaker labels, no emoji.
 - Plain spoken English only — anything unspeakable (URLs, parentheses, asterisks) is a defect.
 
+## Selected opening and character
+CHARACTER STORY CONTEXT: {{CHARACTER_STORY_CONTEXT}}
+SELECTED OPENING CONCEPT: {{OPENING_CONCEPT}}
+
 ## Active presentation contract
 {{PRESENTATION_RULES}}
 
 ## Requirements — hook and structure
 - Hook from SECOND ZERO. The first sentence must stand alone and promise an answer. Do not open
   with "Have you ever wondered".
-- Choose one **ordinary home-world activity** that suits the topic and reads well on camera:
-  gardening/digging/planting/watering, workshop repair/sorting tools/rope, feeding
-  chickens/barn, harvest/orchard/greenhouse/well, home maintenance/market prep/rainy-day/winter
-  work. The activity must feel natural, never a topic prop dropped into a farm.
-- Tie the hook to that physical activity: curiosity arrives while the hands are busy. The activity or a visible disruption within it must admit a specific, observable link to the topic (literal, causal, ironic, or metaphorical), rather than a generic routine with a topic prop inserted later.
+- Execute the SELECTED OPENING CONCEPT; do not independently choose a chore or location. Begin
+  with its visible discrepancy or consequence, not scene-setting or a topic announcement.
+- Keep the hook short and honest. It need not be grammatically a question. The host's reaction
+  follows CHARACTER STORY CONTEXT; appearance never grants powers, a job or a permanent home.
+- Preserve the selected premise, supported factual anchor and promised payoff. The body must
+  actually resolve that promise. Do not hide the complete answer until the last second.
+- During entry, give the first clue or deepen the precise question instead of narrating prop
+  retrieval. The visual transition must remain physically compatible with the active profile.
+- If no concept is supplied for a legacy/direct caller, design a topic-first, character-consistent
+  situation; never fall back to a fixed catalogue of work, repairs, sorting, farming or busy hands.
 - Make the presentation hinge natural. `{{ENTRY_SEGMENT_KEY}}` is roughly 3–4 seconds of speech.
 - `opening_question_spark` is roughly 5 seconds of speech.
 - Every `body` entry must be a short, independently visualisable unit (normally ≤16 words). It
@@ -78,8 +87,8 @@ Hard rules for the JSON:
 
 ## Silent self-check before answering
 1. Is the hook strong, honest, topic-specific, and does it promise a payoff?
-2. Is one opening activity chosen and kept consistent?
-3. Is the total spoken word count between 92 and 150?
+2. Do first-frame event, hook, entry clue and factual payoff describe the same selected premise?
+3. Is the spoken word count within {{WORD_RANGE}} for {{DURATION_RANGE}}?
 4. Are there no invented statistics?
 5. Did I split every picturable sub-action or reveal into its own short visual unit?
 6. Does `full_narration` concatenate the segments exactly, with nothing added or dropped?

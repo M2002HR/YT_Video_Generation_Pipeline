@@ -11,6 +11,7 @@ especially `videos/032_*`, are the behavioral regression reference—not the del
 - Q Station creative/visual runtime: `scripts/run_question_harvest_pipeline.py`
 - Stage/DAG/artifacts/invalidation: `scripts/pipeline_stages.py`, `scripts/run_graph.py`
 - Character identity: `scripts/character_runtime.py`, `projects/q_station/characters/`
+- Opening story selection and validation: `scripts/opening_runtime.py`, `creative/OPENING_CONCEPT.json`
 - Opening/entry formats: `scripts/presentation_runtime.py`, `projects/q_station/presentation_profiles/`
 - Topic-world style: `projects/q_station/world_styles/` and `creative/WORLD_STYLE_PLAN.json`
 - Timing/edit/render: `align_beats.py` → `trim_opening_clips.py` → `build_timeline.py` → completion pipeline
@@ -63,3 +64,14 @@ panel and invalidation logic resolve that shared contract automatically.
 
 Project-specific prompts live only under `projects/<id>/prompts/`. The removed root prompt copies and
 historical Codex implementation briefs are not runtime inputs; Git history is their archive.
+
+## Topic-first opening policy v2
+
+New runs: character/presentation -> opening_concept (three candidates plus independent selection)
+-> script draft -> retention core -> episode direction and story review -> final CTA -> shared
+visual planning. Real narration/alignment still precede all generated visual media in the wrapper.
+Writers now receive character behavior and the selected premise. This must not leak host identity
+into topic-world style or the host-free endpoint. No default chores/busy-hands requirement remains.
+
+Read `docs/OPENING_STORY_PIPELINE.md` for history, artifact ownership, failure/retry semantics,
+validation and deployment on dev. Main is the pre-upgrade baseline; development commits go to dev.

@@ -1,0 +1,26 @@
+# Opening story consistency gate - before narration or paid visual media
+
+SELECTED CONCEPT: {{OPENING_CONCEPT}}
+SCRIPT CORE: {{SCRIPT_CORE}}
+EPISODE DIRECTION: {{EPISODE_PLAN}}
+CHARACTER: {{CHARACTER_STORY_CONTEXT}}
+PRESENTATION: {{PRESENTATION_CONTEXT}}
+HISTORY: {{RECENT_OPENINGS}}
+
+Check the actual narration and staging, not the author's confident rationale. The selected premise
+must survive through frame-zero evidence, host action, the A/B seam and a concrete answer in the
+spoken body or closing. The director may improve blocking, but may not replace the premise.
+A book remains closed/host-free at B's first frame and an orb retains its ownership cue, according
+to the active profile. The first subject-world discovery stays host-free. No requirement that the
+host physically travels into that world. Do not confuse a legitimate visual metaphor with a literal
+scientific claim. Do not penalize a repeated brand prop, restrained reaction or camera alone.
+Do not demand a particular chore/location, flashy action, a forced 'shock', or an invented fact.
+The opening is a few seconds: at most three clear actions, evidence immediately visible, no delayed
+reveal depending on frames the trim will discard. The body must pay off the actual spoken promise.
+
+Return raw JSON only:
+{"checks":{"topic_specific":true,"visible_from_start":true,"character_consistent":true,
+"honest_claims":true,"hook_paid_off":true,"entry_continuity":true,"production_feasible":true,
+"meaningfully_distinct":true},"issues":[]}
+Set false only for a material failure, and describe its exact fix in issues. Check booleans must be
+explicit. An all-true result requires an empty issues array. This review is not a creativity score.

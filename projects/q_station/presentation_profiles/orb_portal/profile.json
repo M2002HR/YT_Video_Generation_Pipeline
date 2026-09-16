@@ -4,9 +4,15 @@
   "display_name": "Question → Crone's Orb → Topic World",
   "version": 1,
   "entry_kind": "orb",
-  "narration_segment": {"key": "entry_transition", "label": "orb transition"},
+  "narration_segment": {
+    "key": "entry_transition",
+    "label": "orb transition"
+  },
   "entry_frame_character_presence": "ownership_cue",
-  "identity": {"canonical_sheet": "refs/orb_design_sheet.png", "required_at_preflight": false},
+  "identity": {
+    "canonical_sheet": "refs/orb_design_sheet.png",
+    "required_at_preflight": false
+  },
   "prompt_files": {
     "script_rules": "prompts/script_rules.md",
     "episode_rules": "prompts/episode_rules.md",
@@ -25,5 +31,13 @@
     "entry_direction": "creative/ENTRY_FRAME_DIRECTION.txt",
     "entry_frame": "references/orb_entry_frame.png",
     "entry_image_receipt": "pipeline/provider_receipts/gemini_orb_entry_frame.json"
-  }
+  },
+  "entry_variants": [
+    "hand_reveal",
+    "sleeve_reveal",
+    "raven_leads",
+    "reflection_reveal",
+    "shadow_guides",
+    "tabletop_orb"
+  ]
 }

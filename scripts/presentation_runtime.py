@@ -70,6 +70,7 @@ class PresentationContext:
     entry_frame_character_presence: str
     artifacts: OpeningArtifacts
     profile_path: Path
+    entry_variants: tuple[str, ...] = ()
 
     def prompt_context(self) -> dict[str, Any]:
         return {
@@ -81,6 +82,7 @@ class PresentationContext:
             "script_rules": self.script_rules,
             "episode_rules": self.episode_rules,
             "entry_frame_character_presence": self.entry_frame_character_presence,
+            "entry_variants": list(self.entry_variants),
         }
 
     def to_resolution(self) -> dict[str, Any]:
@@ -141,6 +143,9 @@ def _load_cached(path_string: str, mtime_ns: int) -> PresentationContext:
         raise PresentationProfileError(f"identity.canonical_sheet escapes the content project: {identity_rel!r}")
     if bool(identity.get("required_at_preflight", False)) and not identity_path.is_file():
         raise PresentationProfileError(f"Required entry identity sheet is missing: {identity_path}")
+    variants = data.get("entry_variants", [])
+    if not isinstance(variants, list) or any(not isinstance(item, str) or not _ID_RE.fullmatch(item) for item in variants):
+        raise PresentationProfileError("entry_variants must be a list of simple identifiers.")
     raw_artifacts = data.get("artifacts") or {}
     fields = tuple(OpeningArtifacts.__dataclass_fields__)
     missing = [field for field in fields if not str(raw_artifacts.get(field) or "").strip()]
@@ -168,6 +173,7 @@ def _load_cached(path_string: str, mtime_ns: int) -> PresentationContext:
         entry_frame_character_presence=presence,
         artifacts=OpeningArtifacts(**{field: str(raw_artifacts[field]) for field in fields}),
         profile_path=path,
+        entry_variants=tuple(variants),
     )
 
 
