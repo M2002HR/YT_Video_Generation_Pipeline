@@ -46,4 +46,4 @@ def test_chatgpt_image_fallback_is_explicit_and_opt_in() -> None:
     settings = normalize_release_settings({"thumbnail": {"image_fallback": "chatgpt_on_gemini_failure"}})
     assert settings["thumbnail"]["image_fallback"] == "chatgpt_on_gemini_failure"
     with pytest.raises(ValueError, match="image_fallback"):
-        normalize_release_settings({"thumbnail": {"image_fallback": "automatic"}})
+        normalize_release_settings({"thumbnail": {"image_fallback": "off"}})

@@ -701,11 +701,9 @@ def generate_thumbnail_batch(
         try:
             result = runner.image("release_thumbnail_" + plan["candidate_id"], prompt, visual_references, model=image_contract["model"], destination=artwork, retain_candidates_dir=candidate_dir / "attempts", skip_content_qc=not thumbnail_settings["review_enabled"])
         except Exception as gemini_error:
-            if thumbnail_settings["image_fallback"] != "chatgpt_on_gemini_failure":
-                raise
-            # This is opt-in and auditable—not a hidden provider substitution. ChatGPT
-            # receives the same bounded references through Ordak, and no placeholder is
-            # ever treated as a generated image.
+            # Mandatory, auditable fallback: Gemini remains primary, but every unusable
+            # Gemini artwork failure continues through Ordak's ChatGPT image generator.
+            # No placeholder is ever treated as a generated image.
             fallback_from = {"provider": "gemini", "error": f"{type(gemini_error).__name__}: {gemini_error}"[:1200]}
             try:
                 result = jobs.run(

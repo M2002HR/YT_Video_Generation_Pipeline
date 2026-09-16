@@ -29,9 +29,9 @@ called. Decode/dimension checks, canonical-reference preflight, local font rende
 bounds checks remain mandatory. The persisted candidate review explicitly says
 `SKIPPED_OPERATOR`; its recommendation score is zero, rather than pretending a visual review ran.
 
-The Advanced **Image-generation fallback** setting defaults to **Off — Gemini only**. With
-**ChatGPT if Gemini fails** selected, a failed Gemini artwork request triggers one ChatGPT
-`image_generate` request through Ordak using the same references. The candidate manifest records
+Release always uses Gemini as its primary artwork provider and automatically falls back to one
+ChatGPT `image_generate` request through Ordak when Gemini cannot produce usable artwork. Both
+providers receive the same references. The candidate manifest records
 `generated_provider`, the ChatGPT receipt, and the originating Gemini error. If both providers
 fail, Release stops with both errors; it never creates a placeholder or silently substitutes a provider.
 
