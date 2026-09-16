@@ -24,6 +24,12 @@ def test_compositor_renders_final_text_and_preview(tmp_path: Path) -> None:
     assert layout["text_bounds"]["width"] > 0
 
 
+def test_compositor_reduces_from_preferred_size_before_rejecting_valid_copy(tmp_path: Path) -> None:
+    artwork = tmp_path / "artwork.png"; Image.new("RGB", (1536, 2752), "#315a73").save(artwork)
+    settings = normalize_release_settings({"thumbnail": {"text_mode": "manual", "manual_text": "Why Nakedness Feels Different"}})["thumbnail"]
+    assert compose(artwork, tmp_path / "final.png", "Why Nakedness Feels Different", settings, "character_left")["text_bounds"]["height"] > 0
+
+
 def test_compositor_refuses_to_silently_truncate_unfit_manual_copy(tmp_path: Path) -> None:
     artwork = tmp_path / "artwork.png"; Image.new("RGB", (1080, 1920), "#315a73").save(artwork)
     settings = normalize_release_settings({"thumbnail": {"text_mode": "manual", "manual_text": "ONE TWO THREE FOUR FIVE SIX", "max_lines": 1, "text_box_width": .3}})["thumbnail"]

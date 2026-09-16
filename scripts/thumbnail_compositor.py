@@ -69,7 +69,13 @@ def compose(artwork: Path, output: Path, text: str, settings: dict[str, Any], la
     chosen: tuple[ImageFont.FreeTypeFont, list[str], int] | None = None
     for point in range(int(width * settings["text_max_scale"]), int(width * settings["text_min_scale"]) - 1, -2):
         font = ImageFont.truetype(str(font_path), point)
-        lines = _wrap(draw, text, font, box_w - stroke * 4, stroke, settings["max_lines"])
+        # A large preferred font may need three lines; keep trying smaller sizes before
+        # declaring the operator's text impossible.  The old immediate exception made
+        # ordinary four-word headlines fail even though they fit at the readable floor.
+        try:
+            lines = _wrap(draw, text, font, box_w - stroke * 4, stroke, settings["max_lines"])
+        except ValueError:
+            continue
         boxes = [draw.textbbox((0, 0), line, font=font, stroke_width=stroke) for line in lines]
         line_h = max(box[3] - box[1] for box in boxes)
         total = line_h * len(lines) + int(point * settings["line_spacing"]) * max(0, len(lines) - 1) + stroke * 2

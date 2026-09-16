@@ -26,7 +26,9 @@ THUMBNAIL_DEFAULTS: dict[str, Any] = {
     "text_fill": "#FFFFFF", "text_outline": "#111827", "outline_width": 0.012,
     "shadow": True, "text_background": False, "line_spacing": 0.04,
     "text_position": "auto", "text_box_width": 0.82, "safe_margin": 0.055,
-    "text_min_scale": 0.055, "text_max_scale": 0.115, "max_words": 6,
+    # A 9:16 native 2160px canvas needs a lower floor than a 1080px preview: this
+    # still yields a 65px font while allowing ordinary four-to-six word headlines to wrap.
+    "text_min_scale": 0.03, "text_max_scale": 0.115, "max_words": 6,
     "max_characters": 40, "max_lines": 2, "coordinates": None,
     "badge_enabled": True, "badge_asset_id": "q_station_mark", "badge_position": "bottom_right", "badge_scale": 0.07,
     "reference_mode": "master", "reference_timestamps": [], "max_references": 5,
