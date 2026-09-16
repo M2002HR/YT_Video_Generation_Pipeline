@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "49ed66b1708e7ce0875059b65c73a2311737b5ab96e2f062fc0c343d0f015d8a",
+  "concept_id": "1145ffca637fdead4004",
+  "character_id": "moss_cloaked_crone",
+  "presentation_id": "orb_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If nakedness itself causes shame, why did this statue need a removable fig leaf?",
+    "viewer_expectation": "If exposed genitals are inherently shameful, the statue should always have needed covering.",
+    "visible_contradiction": "A nude David cast stands uncovered while its custom plaster fig leaf rests separately beside it.",
+    "frame_zero": "The full nude David cast and the detached plaster fig leaf are visible together at once.",
+    "character_action": "She points from the unused leaf to David, then closes her long fingers around her orb.",
+    "reaction": "A dry side-eye at the leaf, then a restrained crooked grin.",
+    "activity": "Testing whether the objection belonged to the body or to a changing rule.",
+    "location": "Quiet sculpture-cast gallery beside a full-scale David replica.",
+    "topic_link": "The body stayed the same while the rule about acceptable exposure changed.",
+    "factual_anchor": "V&A: its 1857 David cast had a proportional fig leaf made after Queen Victoria reportedly objected to the nudity; it was later hung for royal visits.",
+    "payoff": "Shame around nakedness is not just a skin reflex; social rules help define when exposure feels improper.",
+    "claim_mode": "source_supported",
+    "entry_variant": "reflection_reveal",
+    "entry_bridge": {
+      "a_end": "Her fingers settle on the orb as it reflects David and the detached leaf in one curved image.",
+      "b_start": "Tight orb reflection framed by her long fingers and moss-green sleeve.",
+      "reveal": "The covering was added later, so acceptability changed without the body changing.",
+      "world_entry": "Host-free museum reenactment: David's cast stands nude while the commissioned plaster fig leaf waits nearby."
+    },
+    "novelty": {
+      "action_family": "historical rule test",
+      "tension_family": "same body, changing taboo",
+      "prop_family": "detached plaster fig leaf",
+      "reveal_family": "artifact exposes a later rule"
+    }
+  },
+  "created_at": "2026-09-16T08:45:55Z"
+}

@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "b2deffb71e7b2dfab4ea2eacf721a7389365103f89456bf60a851f14a7feb39b",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "409ea41e-49f1-498e-a3ac-270b204f3c79",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/2d282a0ee1256a86",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=409ea41e-49f1-498e-a3ac-270b204f3c79_output_1.png 1536x2752 sha256=354f0c285088fbecdbf901c7061f85137212a11a93c342445900d066791dd115"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "b2deffb71e7b2dfab4ea2eacf721a7389365103f89456bf60a851f14a7feb39b",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "409ea41e-49f1-498e-a3ac-270b204f3c79",
+        "prompt_sha256": "5f03abaaf45687618788c03818196e946ef3fdbacc74ee86b2a5d74909db85fa",
+        "output_sha256": "354f0c285088fbecdbf901c7061f85137212a11a93c342445900d066791dd115",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/references/world_style_anchor.png",
+      "sha256": "f2b566c8f416a26dbbc50f1140a48d7d913cf3a2f7fd60c3de4fc6a72cf6ed86"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/references/world_keyframe.png",
+      "sha256": "1d5587ffa131631cee58794f9c3659d893f7c28112617313e7e493d99ca8ffb0"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/launch/config_revisions/41950fd9-56ed-4a52-854c-4f24bf9ae5c0/style_reference.png",
+      "sha256": "c9778ca6d57abf4cbc6318353d0fa56e334b3e4b75c384345b66c9d23ac1ca3f"
+    }
+  ],
+  "prompt_sha256": "5f03abaaf45687618788c03818196e946ef3fdbacc74ee86b2a5d74909db85fa",
+  "prompt": "Create exactly one 9:16 image: a medium-wide mineral fresco scene of an ancestral family gathered beside a cave hearth, shown side-on under subtle warm firelight, where an elder gently demonstrates modesty by drawing a natural hide wrap around a younger figure while nearby family members observe and imitate; add a few simple ochre gesture marks around the action to suggest learned custom and repetition, never written rules. Render as simplified hand-drawn 2D educational animation translated into a weathered cave-wall fresco: expressive primitive silhouettes, clean dark charcoal contours, restrained cel-like shading, dry iron-oxide pigment rubbing, abraded brush edges, pitted limestone grain, and authentic limestone cream, raw ochre, burnt sienna, deep umber, soot black, and muted terracotta. Frame the full-height scene through a persistent rough-hewn cave-stone aperture with chipped mineral edges around a flatter limestone drawing ground; include clustered ancestral silhouettes, hanging hides, hearth stones, and natural partitions without crowding the focal teaching gesture. Use style_reference only to anchor the simplified hand-drawn rendering language, world_keyframe only to preserve the established cave-world medium, frame material, texture, palette, and lighting, and operator_style_reference as the primary mineral-fresco aesthetic reference; do not copy any reference pose, layout, or composition. Do not depict or imply any recurring host. No opening-environment carryover or entry mechanism. Fill the complete illustration height naturally with no caption reserve, blank strip, empty panel, or low-detail band. No photorealism, 3D CGI, slick vector art, neon colors, lens flare, modern clothing, storyboard, grid, collage, panels, captions, letters, numbers, UI, or readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent rough-hewn cave stone aperture with organic, chipped mineral edges framing a slightly flatter interior limestone drawing ground. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_001.png",
+  "output_sha256": "354f0c285088fbecdbf901c7061f85137212a11a93c342445900d066791dd115",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.261,
+  "completed_at": "2026-09-16T10:33:50Z"
+}

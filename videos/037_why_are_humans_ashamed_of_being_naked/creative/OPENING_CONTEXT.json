@@ -1,0 +1,90 @@
+{
+  "policy_version": 2,
+  "brief": {
+    "topic": "Why Are Humans Ashamed of Being Naked?",
+    "language": "English",
+    "duration_seconds": [
+      23.0,
+      40.0
+    ],
+    "hero_presence_mode": "opener_only"
+  },
+  "character": {
+    "id": "moss_cloaked_crone",
+    "archetype": "enigmatic old storyteller who reveals hidden connections",
+    "tone": [
+      "mysterious",
+      "observant",
+      "dry",
+      "deliberate",
+      "slightly mischievous"
+    ],
+    "behavior": "# Performance\n\nMoves with compact, deliberate gestures and a low forward hunch. Her long fingers lead attention before her body does. She observes first, reacts with a knowing side-eye or restrained crooked grin, and guides discoveries without broad theatrical spell-casting. The raven may anticipate, point, watch, hop, or mirror her attention, but never replaces her agency. Keep acting readable and economical; mystery comes from timing and composition, not generic magical spectacle.\n\n## Story agency\nLet her recognize an overlooked clue, direct a comparison, or deliberately reveal what the viewer\nmisread. The raven may draw attention but she owns the discovery. Choose a scene for the question,\nnot a habitual chore. A knowing reaction is not the entire story. Her orb carries the visual entry;\nits magic never counts as evidence for the scientific or historical claim explained inside it.",
+    "negative_constraints": "# Negative identity constraints\n\nNo young woman, elegant queen, generic witch hat, staff, broom, unrelated wizard, glamorous sorceress, straight posture, smooth tailored cloak, bright emerald costume, extra birds, crow replacing the crone, photoreal human, 3D character, anime styling, turnaround grid in scene output, copied sheet labels, or readable text. Do not remove the severe hunch, white bun, moss-mottled ragged cloak, hooked nose, long fingers, worn shoes, or the single black raven with amber eye. Magic must not redesign her anatomy or costume.",
+    "environment_policy": "dynamic",
+    "environment_affinities": []
+  },
+  "presentation": {
+    "profile_id": "orb_portal",
+    "display_name": "Question → Crone's Orb → Topic World",
+    "entry_kind": "orb",
+    "entry_segment_key": "entry_transition",
+    "entry_segment_label": "orb transition",
+    "script_rules": "The fixed show progression is: a varied situation makes the question visible; that progression leads\nto the old crone's recognizable magic orb; the second intro makes her ownership and agency clear;\nthe camera enters the orb; the factual body begins inside the topic world. The orb is not a generic\nprop. The second narration segment should take roughly 3–4 seconds and support the reveal/entry\nwithout claiming that the orb's inner world has a fixed style.\n\nThe spoken entry is not a report of camera movement or prop retrieval. It must advance the\nselected question with a supported clue. Preserve the entry mechanics; vary the specific story,\nnot the identity of the portal. Never give the host unconfigured magical powers or a fixed job.",
+    "episode_rules": "The question scenario may vary freely, but it must end at the crone's magic orb. Return\n`entry_retrieval` as the physical progression that brings the scene to her orb, and `entry_variant`\nas one of hand_reveal, sleeve_reveal, raven_leads, reflection_reveal, shadow_guides, or tabletop_orb.\nThe second intro must visually prove the orb belongs to her and that she is guiding the event through\nat least one unmistakable ownership cue: her long fingers, moss-green sleeve/cloak, silhouette,\nreflection, or black raven. A full face/body is optional. Do not make her opening environment dictate\nthe topic-world style.",
+    "entry_frame_character_presence": "ownership_cue",
+    "entry_variants": [
+      "hand_reveal",
+      "sleeve_reveal",
+      "raven_leads",
+      "reflection_reveal",
+      "shadow_guides",
+      "tabletop_orb"
+    ]
+  },
+  "writer_sha256": "015a33c86eede0a264e99857cb918ac1ebc3a6b3b80abe5685743fd68a09820e",
+  "reviewer_sha256": "8e4b101be765bbd7bae580118d286505e66b5609440300ec534bc1dc57a5b5d8",
+  "input_fingerprint": "94f56a3220193c2f90a2bbad3e20268f15debde0e185756323597633bb9618f8",
+  "history": [
+    {
+      "video_id": "027",
+      "opening_activity": "paring down a cosmetics-counter purchase by setting aside a larger luxury item while keeping one small lipstick",
+      "opening_location": "department-store cosmetics checkout counter"
+    },
+    {
+      "video_id": "028",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed"
+    },
+    {
+      "video_id": "029",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup"
+    },
+    {
+      "video_id": "030",
+      "opening_activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot",
+      "opening_location": "weathered public marina dock beside a small tied skiff"
+    },
+    {
+      "video_id": "032",
+      "opening_activity": "sorting mismatched hand tools back onto a wall-mounted tool rack after a community repair session while another volunteer works at the neighboring bench",
+      "opening_location": "quiet late-afternoon community repair workshop"
+    },
+    {
+      "video_id": "033",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display"
+    },
+    {
+      "video_id": "034",
+      "opening_activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot",
+      "opening_location": "quiet early-morning urban community garden with several adjacent raised beds"
+    },
+    {
+      "video_id": "035",
+      "opening_activity": "tying a sagging tomato vine back onto its trellis with her long fingers as the greenhouse's timed overhead misters suddenly activate across the surrounding beds without anyone oper",
+      "opening_location": "rooftop greenhouse garden above a quiet high-rise district at early morning"
+    }
+  ]
+}

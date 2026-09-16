@@ -1,0 +1,119 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "efee9fb987a509b4fc04806b34615c340877d59b3510a9907368b12a3a2029ca",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "660818da-7548-4c75-9b99-fd3724e5d1db",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/4cb097aada6844ff",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=660818da-7548-4c75-9b99-fd3724e5d1db_output_1.png 1536x2752 sha256=4ad56022f7e3d30783b1d2ef62fc950f61b6fe9dcb242c52cba238158ea298f9"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "efee9fb987a509b4fc04806b34615c340877d59b3510a9907368b12a3a2029ca",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "660818da-7548-4c75-9b99-fd3724e5d1db",
+        "prompt_sha256": "0a886a906b1d3391f850c8c0c84573e8872d091b9e757408418faf7c042d31d0",
+        "output_sha256": "4ad56022f7e3d30783b1d2ef62fc950f61b6fe9dcb242c52cba238158ea298f9",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/references/world_style_anchor.png",
+      "sha256": "f2b566c8f416a26dbbc50f1140a48d7d913cf3a2f7fd60c3de4fc6a72cf6ed86"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/references/world_keyframe.png",
+      "sha256": "1d5587ffa131631cee58794f9c3659d893f7c28112617313e7e493d99ca8ffb0"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/launch/config_revisions/41950fd9-56ed-4a52-854c-4f24bf9ae5c0/style_reference.png",
+      "sha256": "c9778ca6d57abf4cbc6318353d0fa56e334b3e4b75c384345b66c9d23ac1ca3f"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/037_why_are_humans_ashamed_of_being_naked/assets/raw_beats/beat_003.png",
+      "sha256": "8a276abcf746a98fbe2bd0133be032b54f8dcbdcf5f300510aefcf28fd271adc"
+    }
+  ],
+  "prompt_sha256": "0a886a906b1d3391f850c8c0c84573e8872d091b9e757408418faf7c042d31d0",
+  "prompt": "Create exactly one standalone 9:16 image in the established cave pictograph mineral-fresco world: a close, compressed view of two clearly adult, non-explicit human silhouettes standing at the threshold of an intimate curtained sleeping alcove, with natural hide/textile partitions, subtle paired ochre motifs, and warmer terracotta pigment making the surrounding setting—not anatomy—the dominant cue that gives nudity an intimate or sexual context. Keep bodies simplified, modestly posed, primitive and symbolic, with no explicit anatomy, sexual act, or graphic detail. Render as fresco on weathered pitted limestone with coarse charcoal linework, dry iron-oxide rubbing, abraded brush contours, and expressive prehistoric silhouettes; palette of limestone cream, raw ochre, burnt sienna, deep umber, soot black, and muted terracotta red; subtle warm firelight glow with soft diffused shadows. Preserve the persistent rough-hewn chipped cave-stone aperture framing a flatter interior limestone drawing ground, and fill the complete illustration height naturally—no lower caption reserve, blank strip, empty panel, or low-detail band. Use style_reference only for simplified hand-drawn 2D educational clarity and readable silhouettes; use world_keyframe for established world material, frame language, texture, palette, and lighting; use operator_style_reference for the intended mineral-fresco/primitive pigment character; use previous_beat as binding continuity for frame edges, material treatment, texture, palette, and lighting only, never its composition, crop, camera angle, pose, placement, or focal object. Do not carry any unrelated opening environment or entry mechanism into this body beat. No photorealism, 3D CGI, slick vector art, neon colors, lens flare, modern clothing, storyboard, grid, collage, panels, captions, UI, letters, numbers, or readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a persistent rough-hewn cave stone aperture with organic, chipped mineral edges framing a slightly flatter interior limestone drawing ground. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "4ad56022f7e3d30783b1d2ef62fc950f61b6fe9dcb242c52cba238158ea298f9",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.284,
+  "completed_at": "2026-09-16T10:39:34Z"
+}

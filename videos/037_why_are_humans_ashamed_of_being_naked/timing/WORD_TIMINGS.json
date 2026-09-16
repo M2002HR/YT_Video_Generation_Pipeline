@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 44.669,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 90,
+  "words": [
+    {
+      "text": "Why",
+      "token": "why",
+      "start": 0.04,
+      "end": 0.24
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 0.24,
+      "end": 0.5
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 0.5,
+      "end": 0.64
+    },
+    {
+      "text": "naked",
+      "token": "naked",
+      "start": 0.64,
+      "end": 0.86
+    },
+    {
+      "text": "statue",
+      "token": "statue",
+      "start": 0.86,
+      "end": 1.56
+    },
+    {
+      "text": "feel",
+      "token": "feel",
+      "start": 1.56,
+      "end": 2.08
+    },
+    {
+      "text": "proper",
+      "token": "proper",
+      "start": 2.08,
+      "end": 2.68
+    },
+    {
+      "text": "when",
+      "token": "when",
+      "start": 2.68,
+      "end": 3.22
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 3.22,
+      "end": 3.34
+    },
+    {
+      "text": "naked",
+      "token": "naked",
+      "start": 3.34,
+      "end": 3.56
+    },
+    {
+      "text": "person",
+      "token": "person",
+      "start": 3.56,
+      "end": 4.02
+    },
+    {
+      "text": "feels",
+      "token": "feels",
+      "start": 4.02,
+      "end": 4.36
+    },
+    {
+      "text": "exposed?",
+      "token": "exposed",
+      "start": 4.36,
+      "end": 4.9
+    },
+    {
+      "text": "Because",
+      "token": "because",
+      "start": 5.76,
+      "end": 6.02
+    },
+    {
+      "text": "shame",
+      "token": "shame",
+      "start": 6.02,
+      "end": 6.42
+    },
+    {
+      "text": "often",
+      "token": "often",
+      "start": 6.42,
+      "end": 6.9
+    },
+    {
+      "text": "follows",
+      "token": "follows",
+      "start": 6.9,
+      "end": 7.44
+    },
+    {
+      "text": "learned",
+      "token": "learned",
+      "start": 7.44,
+      "end": 7.9
+    },
+    {
+      "text": "expectations",
+      "token": "expectations",
+      "start": 7.9,
+      "end": 8.58
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 8.58,
+      "end": 9.34
+    },
+    {
+      "text": "where",
+      "token": "where",
+      "start": 9.34,
+      "end": 9.58
+    },
+    {
+      "text": "nakedness",
+      "token": "nakedness",
+      "start": 9.58,
+      "end": 10.24
+    },
+    {
+      "text": "belongs.",
+      "token": "belongs",
+      "start": 10.24,
+      "end": 11.1
+    },
+    {
+      "text": "Families",
+      "token": "families",
+      "start": 11.44,
+      "end": 11.9
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 11.9,
+      "end": 12.16
+    },
+    {
+      "text": "customs",
+      "token": "customs",
+      "start": 12.16,
+      "end": 12.5
+    },
+    {
+      "text": "teach",
+      "token": "teach",
+      "start": 12.5,
+      "end": 12.88
+    },
+    {
+      "text": "rules",
+      "token": "rules",
+      "start": 12.88,
+      "end": 13.2
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 13.2,
+      "end": 13.48
+    },
+    {
+      "text": "modesty.",
+      "token": "modesty",
+      "start": 13.48,
+      "end": 14.06
+    },
+    {
+      "text": "Those",
+      "token": "those",
+      "start": 14.58,
+      "end": 14.82
+    },
+    {
+      "text": "rules",
+      "token": "rules",
+      "start": 14.82,
+      "end": 15.08
+    },
+    {
+      "text": "vary",
+      "token": "vary",
+      "start": 15.08,
+      "end": 15.4
+    },
+    {
+      "text": "across",
+      "token": "across",
+      "start": 15.4,
+      "end": 15.78
+    },
+    {
+      "text": "cultures",
+      "token": "cultures",
+      "start": 15.78,
+      "end": 16.3
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 16.3,
+      "end": 16.54
+    },
+    {
+      "text": "history.",
+      "token": "history",
+      "start": 16.54,
+      "end": 16.92
+    },
+    {
+      "text": "Chosen",
+      "token": "chosen",
+      "start": 17.88,
+      "end": 18.32
+    },
+    {
+      "text": "privacy",
+      "token": "privacy",
+      "start": 18.32,
+      "end": 19.06
+    },
+    {
+      "text": "differs",
+      "token": "differs",
+      "start": 19.06,
+      "end": 19.56
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 19.56,
+      "end": 19.9
+    },
+    {
+      "text": "unexpected",
+      "token": "unexpected",
+      "start": 19.9,
+      "end": 20.46
+    },
+    {
+      "text": "exposure.",
+      "token": "exposure",
+      "start": 20.46,
+      "end": 21.7
+    },
+    {
+      "text": "Context",
+      "token": "context",
+      "start": 22.16,
+      "end": 22.8
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 22.8,
+      "end": 23.14
+    },
+    {
+      "text": "also",
+      "token": "also",
+      "start": 23.14,
+      "end": 23.4
+    },
+    {
+      "text": "make",
+      "token": "make",
+      "start": 23.4,
+      "end": 23.66
+    },
+    {
+      "text": "nudity",
+      "token": "nudity",
+      "start": 23.66,
+      "end": 24.22
+    },
+    {
+      "text": "feel",
+      "token": "feel",
+      "start": 24.22,
+      "end": 24.54
+    },
+    {
+      "text": "sexual.",
+      "token": "sexual",
+      "start": 24.54,
+      "end": 25.04
+    },
+    {
+      "text": "Expected",
+      "token": "expected",
+      "start": 26.08,
+      "end": 26.44
+    },
+    {
+      "text": "staring",
+      "token": "staring",
+      "start": 26.44,
+      "end": 27.06
+    },
+    {
+      "text": "or",
+      "token": "or",
+      "start": 27.06,
+      "end": 27.5
+    },
+    {
+      "text": "judgment",
+      "token": "judgment",
+      "start": 27.5,
+      "end": 27.8
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 27.8,
+      "end": 28.14
+    },
+    {
+      "text": "trigger",
+      "token": "trigger",
+      "start": 28.14,
+      "end": 28.44
+    },
+    {
+      "text": "shame.",
+      "token": "shame",
+      "start": 28.44,
+      "end": 29.0
+    },
+    {
+      "text": "Galleries",
+      "token": "galleries",
+      "start": 29.64,
+      "end": 30.06
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 30.06,
+      "end": 30.28
+    },
+    {
+      "text": "present",
+      "token": "present",
+      "start": 30.28,
+      "end": 30.58
+    },
+    {
+      "text": "nude",
+      "token": "nude",
+      "start": 30.58,
+      "end": 30.86
+    },
+    {
+      "text": "statues",
+      "token": "statues",
+      "start": 30.86,
+      "end": 31.36
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 31.36,
+      "end": 31.76
+    },
+    {
+      "text": "ordinary",
+      "token": "ordinary",
+      "start": 31.76,
+      "end": 32.1
+    },
+    {
+      "text": "art.",
+      "token": "art",
+      "start": 32.1,
+      "end": 32.82
+    },
+    {
+      "text": "Changing",
+      "token": "changing",
+      "start": 33.16,
+      "end": 33.62
+    },
+    {
+      "text": "booths",
+      "token": "booths",
+      "start": 33.62,
+      "end": 34.3
+    },
+    {
+      "text": "usually",
+      "token": "usually",
+      "start": 34.3,
+      "end": 34.68
+    },
+    {
+      "text": "signal",
+      "token": "signal",
+      "start": 34.68,
+      "end": 35.26
+    },
+    {
+      "text": "concealment",
+      "token": "concealment",
+      "start": 35.26,
+      "end": 36.2
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 36.2,
+      "end": 36.42
+    },
+    {
+      "text": "strangers.",
+      "token": "strangers",
+      "start": 36.42,
+      "end": 37.16
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 37.06,
+      "end": 37.46
+    },
+    {
+      "text": "skin",
+      "token": "skin",
+      "start": 37.46,
+      "end": 37.78
+    },
+    {
+      "text": "stays",
+      "token": "stays",
+      "start": 37.78,
+      "end": 38.18
+    },
+    {
+      "text": "ordinary.",
+      "token": "ordinary",
+      "start": 38.18,
+      "end": 38.9
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 38.8,
+      "end": 39.02
+    },
+    {
+      "text": "social",
+      "token": "social",
+      "start": 39.02,
+      "end": 39.42
+    },
+    {
+      "text": "meaning",
+      "token": "meaning",
+      "start": 39.42,
+      "end": 39.84
+    },
+    {
+      "text": "changes.",
+      "token": "changes",
+      "start": 39.84,
+      "end": 40.62
+    },
+    {
+      "text": "What",
+      "token": "what",
+      "start": 41.24,
+      "end": 41.42
+    },
+    {
+      "text": "do",
+      "token": "do",
+      "start": 41.42,
+      "end": 41.6
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 41.6,
+      "end": 41.72
+    },
+    {
+      "text": "think",
+      "token": "think",
+      "start": 41.72,
+      "end": 41.96
+    },
+    {
+      "text": "shapes",
+      "token": "shapes",
+      "start": 41.96,
+      "end": 42.36
+    },
+    {
+      "text": "our",
+      "token": "our",
+      "start": 42.36,
+      "end": 42.62
+    },
+    {
+      "text": "feelings",
+      "token": "feelings",
+      "start": 42.62,
+      "end": 43.02
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 43.02,
+      "end": 43.3
+    },
+    {
+      "text": "nudity",
+      "token": "nudity",
+      "start": 43.3,
+      "end": 43.78
+    },
+    {
+      "text": "most?",
+      "token": "most",
+      "start": 43.78,
+      "end": 44.7
+    }
+  ]
+}

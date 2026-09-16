@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "video_id": "037",
+  "created_at": "2026-09-16T10:22:49.001785+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/037_why_are_humans_ashamed_of_being_naked/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "ba61c2a10c9403008f009b77e2bf65bb8ca5dbd92128ba7eca434f4161095668",
+  "settings": {
+    "voice": "Seer Morganna - Intimidating",
+    "model": "Eleven Multilingual v2",
+    "speed": 1.1,
+    "stability": 0.4,
+    "similarity": 0.4,
+    "style": 0.25,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-16T10:22:55.757150+00:00",
+      "elapsed_seconds": 6.733
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-16T10:23:15.613860+00:00",
+      "elapsed_seconds": 19.857,
+      "settings": {
+        "voice": "Seer Morganna - Intimidating",
+        "model": "Eleven Multilingual v2",
+        "speed": 1.1,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.25,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Seer Morganna - Intimidating, and Clear",
+        "model": "Eleven Multilingual v2",
+        "speed": 1.1,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.25,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-16T10:23:15.706773+00:00",
+      "elapsed_seconds": 19.949,
+      "characters": 603
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-16T10:23:16.852269+00:00",
+      "elapsed_seconds": 1.145,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "selector_keyboard",
+        "delay_seconds": 0.653,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-16T10:23:28.982468+00:00",
+      "elapsed_seconds": 13.275,
+      "choice": "Download latest",
+      "retry": false
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-09-16T10:23:35.253673+00:00",
+      "elapsed_seconds": 19.547,
+      "bytes": 731358,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-09-16T10:23:35.253680+00:00",
+  "submitted_at": "2026-09-16T10:23:16.851470+00:00",
+  "download_choice": "Download latest",
+  "download_requested_at": 1789554208.9820466,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-16T10:23:35.253606+00:00"
+}

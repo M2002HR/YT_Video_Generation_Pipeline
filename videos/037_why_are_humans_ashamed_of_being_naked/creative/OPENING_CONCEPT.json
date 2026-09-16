@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "94f56a3220193c2f90a2bbad3e20268f15debde0e185756323597633bb9618f8",
+  "concept_id": "55c5658c6c8a234818e7",
+  "character_id": "moss_cloaked_crone",
+  "presentation_id": "orb_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "Why can a naked statue feel proper when a naked person feels exposed?",
+    "viewer_expectation": "If bare skin itself causes shame, public nudity should feel inappropriate regardless of what is naked.",
+    "visible_contradiction": "A nude marble figure is openly displayed while a nearby person urgently pulls a changing curtain shut.",
+    "frame_zero": "The nude statue and the snapping privacy curtain share the frame immediately.",
+    "character_action": "The crone traces one long finger from the exposed statue to the closed curtain, then draws her orb from inside her mossy sleeve.",
+    "reaction": "A restrained side-eye and tiny crooked grin acknowledge that the body stayed ordinary while the rule changed.",
+    "activity": "deliberately comparing public display with private concealment",
+    "location": "quiet sculpture gallery beside a temporary changing booth",
+    "topic_link": "The contrast separates naked skin from the social rules deciding when exposure is acceptable.",
+    "factual_anchor": "Nudity is not automatically shameful; learned social rules make some contexts acceptable and others exposing.",
+    "payoff": "The body must explain how modesty norms, privacy, sexuality, and anticipated judgment can turn ordinary nakedness into shame.",
+    "claim_mode": "conservative",
+    "entry_variant": "sleeve_reveal",
+    "entry_bridge": {
+      "a_end": "Her finger stops between the statue and closed curtain as the orb emerges beneath her moss-green sleeve.",
+      "b_start": "Long fingers and the same ragged sleeve visibly cradle the orb, making her ownership unmistakable.",
+      "reveal": "The entry states that the discomfort comes from learned expectations about where nakedness belongs, not from skin alone.",
+      "world_entry": "Matched scenes show comparable human exposure treated differently at a beach, in private changing, and in accepted public art."
+    },
+    "novelty": {
+      "action_family": "context comparison",
+      "tension_family": "public display versus concealment",
+      "prop_family": "nude marble statue and privacy curtain",
+      "reveal_family": "same body category, different social rule"
+    }
+  },
+  "created_at": "2026-09-16T10:11:40Z"
+}

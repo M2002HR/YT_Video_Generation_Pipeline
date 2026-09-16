@@ -1,0 +1,221 @@
+{
+  "input_fingerprint": "94f56a3220193c2f90a2bbad3e20268f15debde0e185756323597633bb9618f8",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "027",
+        "028",
+        "029",
+        "030",
+        "032",
+        "033",
+        "034",
+        "035"
+      ],
+      "writer_prompt_sha256": "b0e4726f84d37fe9323fc16d9a2b647e849b48f86b2ec3e6f10839114370fc59",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "Why can a naked statue feel proper when a naked person feels exposed?",
+            "viewer_expectation": "If bare skin itself causes shame, public nudity should feel inappropriate regardless of what is naked.",
+            "visible_contradiction": "A nude marble figure is openly displayed while a nearby person urgently pulls a changing curtain shut.",
+            "frame_zero": "The nude statue and the snapping privacy curtain share the frame immediately.",
+            "character_action": "The crone traces one long finger from the exposed statue to the closed curtain, then draws her orb from inside her mossy sleeve.",
+            "reaction": "A restrained side-eye and tiny crooked grin acknowledge that the body stayed ordinary while the rule changed.",
+            "activity": "deliberately comparing public display with private concealment",
+            "location": "quiet sculpture gallery beside a temporary changing booth",
+            "topic_link": "The contrast separates naked skin from the social rules deciding when exposure is acceptable.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Nudity is not automatically shameful; learned social rules make some contexts acceptable and others exposing.",
+            "payoff": "The body must explain how modesty norms, privacy, sexuality, and anticipated judgment can turn ordinary nakedness into shame.",
+            "entry_variant": "sleeve_reveal",
+            "entry_bridge": {
+              "a_end": "Her finger stops between the statue and closed curtain as the orb emerges beneath her moss-green sleeve.",
+              "b_start": "Long fingers and the same ragged sleeve visibly cradle the orb, making her ownership unmistakable.",
+              "reveal": "The entry states that the discomfort comes from learned expectations about where nakedness belongs, not from skin alone.",
+              "world_entry": "Matched scenes show comparable human exposure treated differently at a beach, in private changing, and in accepted public art."
+            },
+            "novelty": {
+              "action_family": "context comparison",
+              "tension_family": "public display versus concealment",
+              "prop_family": "nude marble statue and privacy curtain",
+              "reveal_family": "same body category, different social rule"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "Why can a bikini feel public while nearly identical underwear feels private?",
+            "viewer_expectation": "Embarrassment should increase mainly with how much of the body is uncovered.",
+            "visible_contradiction": "A bikini and underwear cover nearly the same areas, yet one hangs openly while the other is concealed behind a screen.",
+            "frame_zero": "Both garments are visible at once, making their similar coverage obvious before anyone moves.",
+            "character_action": "The crone aligns the two garments by eye, taps their matching outlines, then turns the nearby mirror toward her waiting orb.",
+            "reaction": "She gives the raven a dry sideways look as if the difference has failed a very simple test.",
+            "activity": "testing whether amount of coverage explains embarrassment",
+            "location": "simple seaside changing cabana",
+            "topic_link": "Nearly equal coverage produces different reactions because setting and social meaning alter what exposure signifies.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Embarrassment follows social meaning more than skin coverage alone; similar exposure can be judged differently in different settings.",
+            "payoff": "The body must show why learned categories such as swimwear, underwear, public, and private can matter more than exposed surface area.",
+            "entry_variant": "reflection_reveal",
+            "entry_bridge": {
+              "a_end": "The matching garments remain aligned as she angles the mirror toward them.",
+              "b_start": "The mirror catches her long fingers, moss-green sleeve, raven, and the orb she is deliberately holding.",
+              "reveal": "The entry explains that shame tracks what exposure means in a setting, not a simple percentage of uncovered skin.",
+              "world_entry": "Two near-identical coverage patterns stay fixed on one body silhouette while the surrounding context changes from beach to private dressing."
+            },
+            "novelty": {
+              "action_family": "coverage test",
+              "tension_family": "same exposure, different acceptability",
+              "prop_family": "bikini and underwear",
+              "reveal_family": "meaning changes while coverage stays constant"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "Why can the same naked body feel fine until the audience suddenly changes?",
+            "viewer_expectation": "If nakedness itself causes shame, changing who sees it should not radically change the feeling.",
+            "visible_contradiction": "A life model poses calmly for one consenting artist but reaches for a robe when an unexpected doorway opens.",
+            "frame_zero": "The calm model, single artist, open doorway, and waiting robe are readable in the first composition.",
+            "character_action": "The crone shuts the stray sightline with two long fingers, then deliberately indicates the intended viewer before uncovering her orb.",
+            "reaction": "Her narrowed eyes and restrained grin mark the audience change as the overlooked clue.",
+            "activity": "isolating the effect of an expected versus unexpected observer",
+            "location": "small life-drawing studio",
+            "topic_link": "The amount of exposed skin stays constant while consent, audience, and anticipated judgment change.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Shame depends partly on perceived social judgment, so the same degree of undress can feel different when the audience or context changes.",
+            "payoff": "The body must explain nakedness shame as a social emotion shaped by privacy, consent, cultural expectations, and how we imagine others will judge us.",
+            "entry_variant": "hand_reveal",
+            "entry_bridge": {
+              "a_end": "Her long fingers remain between the unexpected doorway and model, then separate to reveal the orb already in her palm.",
+              "b_start": "The orb rests unmistakably in her long hand beneath the moss-green sleeve as she directs attention into it.",
+              "reveal": "The entry identifies anticipated judgment and breached expectations as key ingredients that can transform nudity into embarrassment.",
+              "world_entry": "One equally unclothed figure remains fixed while the surrounding observers shift from an expected consenting setting to an unexpected outsider."
+            },
+            "novelty": {
+              "action_family": "observer-change test",
+              "tension_family": "consented gaze versus unexpected gaze",
+              "prop_family": "robe and open doorway",
+              "reveal_family": "audience changes while the body does not"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "027",
+        "028",
+        "029",
+        "030",
+        "032",
+        "033",
+        "034",
+        "035"
+      ],
+      "reviewer_prompt_sha256": "772ce70a1afabaf34ff289711180b8e042ec6bc0d84a5a4a7f5ae96263b5a39e",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4
+            },
+            "blocking_issues": [],
+            "reason": "The statue/curtain contrast makes the question legible before explanation: comparable nakedness is publicly acceptable in one case and urgently concealed in the other. The crone actively identifies that mismatch and owns the orb reveal in only two meaningful actions. The factual promise stays appropriately contextual rather than claiming an innate or universal cause of shame. The main weakness is staging plausibility: a temporary changing booth beside a nude sculpture is somewhat engineered, and the human side must communicate exposure without requiring explicit nudity. It is nevertheless filmable and materially unlike the recent routine-based openings."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 3,
+              "honesty": 3,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4
+            },
+            "blocking_issues": [],
+            "reason": "The coverage comparison directly tests a common intuitive explanation and supports the intended point that social categories can matter more than exposed area. However, two garments by themselves communicate a conceptual comparison more readily than actual embarrassment, so the visible event needs the spoken hook more than c1 or c3 does. The proposal also slightly conflicts with itself by requiring both garments to be immediately visible while describing the underwear as concealed behind a screen. The 'nearly identical' premise should remain illustrative rather than implying bikinis and underwear are generally equivalent. Three pre-entry actions are just within the limit, and the reflection provides a clear ownership seam."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4
+            },
+            "blocking_issues": [],
+            "reason": "Changing the observer while holding the body constant is a strong visible test of whether naked skin alone explains embarrassment, and it naturally opens consent, privacy, expectation, and anticipated judgment. The crone has genuine agency: she notices the stray sightline, distinguishes the intended observer, and then reveals her orb. The factual anchor is cautious and does not claim audience change is the sole cause of shame. The principal execution weakness is continuity: frame zero specifies an open doorway even though the contradiction depends on an unexpected doorway opening; the staging should preserve a clear before/after observer change. Modest framing of the life model also requires care but does not make the concept unfilmable."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4
+          },
+          "blocking_issues": [],
+          "reason": "The statue/curtain contrast makes the question legible before explanation: comparable nakedness is publicly acceptable in one case and urgently concealed in the other. The crone actively identifies that mismatch and owns the orb reveal in only two meaningful actions. The factual promise stays appropriately contextual rather than claiming an innate or universal cause of shame. The main weakness is staging plausibility: a temporary changing booth beside a nude sculpture is somewhat engineered, and the human side must communicate exposure without requiring explicit nudity. It is nevertheless filmable and materially unlike the recent routine-based openings.",
+          "repetition_evidence": [],
+          "weighted_score": 78
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 3,
+            "honesty": 3,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4
+          },
+          "blocking_issues": [],
+          "reason": "The coverage comparison directly tests a common intuitive explanation and supports the intended point that social categories can matter more than exposed area. However, two garments by themselves communicate a conceptual comparison more readily than actual embarrassment, so the visible event needs the spoken hook more than c1 or c3 does. The proposal also slightly conflicts with itself by requiring both garments to be immediately visible while describing the underwear as concealed behind a screen. The 'nearly identical' premise should remain illustrative rather than implying bikinis and underwear are generally equivalent. Three pre-entry actions are just within the limit, and the reflection provides a clear ownership seam.",
+          "repetition_evidence": [],
+          "weighted_score": 70
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4
+          },
+          "blocking_issues": [],
+          "reason": "Changing the observer while holding the body constant is a strong visible test of whether naked skin alone explains embarrassment, and it naturally opens consent, privacy, expectation, and anticipated judgment. The crone has genuine agency: she notices the stray sightline, distinguishes the intended observer, and then reveals her orb. The factual anchor is cautious and does not claim audience change is the sole cause of shame. The principal execution weakness is continuity: frame zero specifies an open doorway even though the contradiction depends on an unexpected doorway opening; the staging should preserve a clear before/after observer change. Modest framing of the life model also requires care but does not make the concept unfilmable.",
+          "repetition_evidence": [],
+          "weighted_score": 78
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

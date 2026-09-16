@@ -1,0 +1,30 @@
+{
+  "concept_id": "55c5658c6c8a234818e7",
+  "opening_actions": [
+    "The crone studies a nude marble statue openly displayed beside a changing booth as an unseen person sharply pulls the privacy curtain closed.",
+    "She traces one long finger from the exposed statue toward the shut curtain and gives a restrained side-eye.",
+    "Her finger stops between them as she draws her orb from inside her moss-green sleeve."
+  ],
+  "entry_bridge": {
+    "a_end": "Her long finger hangs between the openly displayed nude statue and the closed privacy curtain while the orb emerges beneath her moss-green sleeve.",
+    "b_start": "Long fingers and the same ragged moss-green sleeve visibly cradle the orb, making her ownership and guidance unmistakable.",
+    "reveal": "The entry reveals that discomfort around nakedness often follows learned expectations about where nudity belongs rather than naked skin itself.",
+    "world_entry": "Host-free matched scenes compare similar human exposure treated as ordinary in accepted public art, private in a changing space, and differently expected at a beach."
+  },
+  "opening_activity": "deliberately comparing public display with private concealment",
+  "opening_location": "quiet sculpture gallery beside a temporary changing booth",
+  "opening_environment": "a calm gallery alcove where an openly displayed nude marble figure stands only a few steps from a fabric changing booth",
+  "topic_visual_link": "The same category of exposed human form is openly accepted in the statue while a living person immediately conceals themselves, making the social rule around nakedness visible.",
+  "link_type": "direct",
+  "opening_visual_proof": "A nude marble figure remains fully exposed in public view while, in the same frame, a nearby changing curtain snaps shut to hide a person.",
+  "curiosity_trigger": "The sudden rasp and snap of the closing curtain interrupts the stillness of the gallery while the uncovered statue remains calmly on display.",
+  "trigger_object": "the exposed nude statue beside the abruptly closed privacy curtain",
+  "reaction": "She gives the contrast a knowing side-eye and the smallest crooked grin before directing attention between the two.",
+  "entry_retrieval": "After tracing the visible contrast from statue to curtain, she halts her finger between them, slips that hand beneath her ragged moss-green sleeve, and deliberately draws out her orb.",
+  "entry_variant": "sleeve_reveal",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "grounded observational comparisons of nudity, privacy, art, and social context across ordinary human settings",
+  "reason": "The gallery-and-changing-booth contrast makes the script's central distinction immediately visible: the body remains ordinary while learned expectations about context change whether exposure feels acceptable or shameful."
+}

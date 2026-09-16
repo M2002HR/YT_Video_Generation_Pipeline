@@ -1,0 +1,96 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 44.669,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Why can a naked statue feel proper when a naked person feels exposed? Because shame often follows learned expectations about where nakedness belongs. Families and customs teach rules about modesty. Those rules vary across cultures and history. Chosen privacy differs from unexpected exposure. Context can also make nudity feel sexual. Expected staring or judgment can trigger shame. Galleries may present nude statues as ordinary art. Changing booths usually signal concealment from strangers. The skin stays ordinary. The social meaning changes. What do you think shapes our feelings about nudity most?",
+  "word_count": 90,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Families and customs teach rules about modesty.",
+      "speech_start": 11.44,
+      "speech_end": 14.06,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 14.58,
+      "display_duration": 14.58
+    },
+    {
+      "beat_id": 2,
+      "narration": "Those rules vary across cultures and history.",
+      "speech_start": 14.58,
+      "speech_end": 16.92,
+      "match_confidence": 1.0,
+      "display_start": 14.58,
+      "display_end": 17.88,
+      "display_duration": 3.3
+    },
+    {
+      "beat_id": 3,
+      "narration": "Chosen privacy differs from unexpected exposure.",
+      "speech_start": 17.88,
+      "speech_end": 21.7,
+      "match_confidence": 1.0,
+      "display_start": 17.88,
+      "display_end": 22.16,
+      "display_duration": 4.28
+    },
+    {
+      "beat_id": 4,
+      "narration": "Context can also make nudity feel sexual.",
+      "speech_start": 22.16,
+      "speech_end": 25.04,
+      "match_confidence": 1.0,
+      "display_start": 22.16,
+      "display_end": 26.08,
+      "display_duration": 3.92
+    },
+    {
+      "beat_id": 5,
+      "narration": "Expected staring or judgment can trigger shame.",
+      "speech_start": 26.08,
+      "speech_end": 29.0,
+      "match_confidence": 1.0,
+      "display_start": 26.08,
+      "display_end": 29.64,
+      "display_duration": 3.56
+    },
+    {
+      "beat_id": 6,
+      "narration": "Galleries may present nude statues as ordinary art.",
+      "speech_start": 29.64,
+      "speech_end": 32.82,
+      "match_confidence": 1.0,
+      "display_start": 29.64,
+      "display_end": 33.16,
+      "display_duration": 3.52
+    },
+    {
+      "beat_id": 7,
+      "narration": "Changing booths usually signal concealment from strangers.",
+      "speech_start": 33.16,
+      "speech_end": 37.16,
+      "match_confidence": 1.0,
+      "display_start": 33.16,
+      "display_end": 37.06,
+      "display_duration": 3.9
+    },
+    {
+      "beat_id": 8,
+      "narration": "The skin stays ordinary; the social meaning changes.",
+      "speech_start": 37.06,
+      "speech_end": 40.62,
+      "match_confidence": 1.0,
+      "display_start": 37.06,
+      "display_end": 44.669,
+      "display_duration": 7.609
+    }
+  ]
+}

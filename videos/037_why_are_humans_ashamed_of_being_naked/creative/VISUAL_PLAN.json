@@ -1,0 +1,101 @@
+{
+  "body_duration_seconds": 26.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Families and customs teach rules about modesty.",
+      "visual": "Mineral fresco of an ancestral family group beside a cave hearth as an elder gently draws a hide wrap around a younger figure, with simple ochre gesture marks suggesting learned imitation rather than written rules.",
+      "purpose": "show modesty norms being socially taught within families and customs",
+      "visual_fingerprint": "medium-wide family hearth scene; elder actively demonstrates a hide covering to a younger figure; side-on composition beneath warm firelight; clustered ancestral silhouettes and hanging hides",
+      "type": "literal",
+      "continuity": "begins the subject world independently from the opener, grounding the explanation in learned social behavior",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Those rules vary across cultures and history.",
+      "visual": "Wide limestone fresco showing a winding procession across three ancient architectural zones, with different groups using distinct combinations of draped textile, hide, ornament, and uncovered stylized silhouettes, all rendered without text.",
+      "purpose": "show that modesty conventions differ between societies and historical periods",
+      "visual_fingerprint": "very wide processional panorama; multiple cultural groups walking through cave shelter, columned courtyard, and stone settlement zones; varied coverings and symbolic motifs; horizontal journey composition",
+      "type": "subject_world",
+      "continuity": "expands from one family's learned custom to visibly different conventions across places and eras",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Chosen privacy differs from unexpected exposure.",
+      "visual": "Top-down ochre fresco of one stylized figure calmly stepping behind a suspended hide partition while, elsewhere in the same simple scene, another figure recoils as a separate partition is suddenly pulled aside by wind.",
+      "purpose": "contrast voluntary privacy with unwanted or surprising exposure",
+      "visual_fingerprint": "high-angle privacy scene; two spatially separated figures with opposite reactions; one deliberately enters concealment while another is unexpectedly revealed by a lifted hide; diagonal partition composition",
+      "type": "literal",
+      "continuity": "moves from broad social variation to the individual's control over who can see the body",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Context can also make nudity feel sexual.",
+      "visual": "Close mineral-fresco view of two non-explicit adult silhouettes at the edge of an intimate curtained sleeping alcove, surrounded by subtle paired ochre motifs and warmer terracotta pigment, making the setting—not anatomy—the dominant cue.",
+      "purpose": "show how an intimate setting can give nudity sexual meaning",
+      "visual_fingerprint": "close two-person adult silhouette scene; curtained sleeping alcove; warm terracotta emphasis and paired symbolic motifs; compressed intimate composition with no explicit anatomy",
+      "type": "literal",
+      "continuity": "shifts from control of visibility to how surrounding circumstances alter interpretation of the same bodily state",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Expected staring or judgment can trigger shame.",
+      "visual": "Low-angle charcoal-and-ochre fresco of a lone figure curling inward and covering their torso while several distant faces appear only as dark eye-like silhouettes along a cave ledge, all gazes converging toward the central person.",
+      "purpose": "show anticipated scrutiny and judgment producing a shame response",
+      "visual_fingerprint": "low-angle isolated figure; hunched self-covering posture; distant semicircle of staring silhouettes above; converging charcoal gaze marks and strong empty stone around the subject",
+      "type": "metaphor",
+      "continuity": "turns from contextual sexual meaning to the emotional effect of believing others are watching and judging",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Galleries may present nude statues as ordinary art.",
+      "visual": "Frontal fresco of a simplified classical nude marble statue on a stone plinth inside an ancient gallery-like colonnade, with relaxed visitors calmly passing on either side and no one reacting with alarm.",
+      "purpose": "show a setting where the nude body is conventionally framed as ordinary art",
+      "visual_fingerprint": "symmetrical frontal gallery composition; pale classical statue centered on plinth; calm passing visitors; columned stone setting and cooler limestone-dominant pigment balance",
+      "type": "literal",
+      "continuity": "provides a contrasting social context in which visible nudity attracts routine aesthetic attention rather than personal judgment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Changing booths usually signal concealment from strangers.",
+      "visual": "Oblique mineral-fresco view down a row of primitive textile changing stalls, with one person fully hidden behind a closed hide curtain while anonymous passersby remain outside the partitioned space.",
+      "purpose": "show that changing spaces conventionally communicate privacy from strangers",
+      "visual_fingerprint": "oblique corridor perspective; repeating hide-and-textile booths receding into depth; one firmly closed curtain as focal object; strangers kept outside the concealed interior",
+      "type": "literal",
+      "continuity": "contrasts the open gallery with a setting whose physical design explicitly signals expected concealment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "The skin stays ordinary; the social meaning changes.",
+      "visual": "Single central human silhouette painted in neutral ochre on bare limestone while surrounding contextual symbols form a loose ring: family hearth, hide curtain, watching eyes, intimate alcove motif, statue plinth, and changing partition, emphasizing that the body itself remains unchanged.",
+      "purpose": "summarize that shame comes from changing social meaning and context rather than from skin itself",
+      "visual_fingerprint": "centered solitary unchanged body silhouette; circular constellation of six contextual symbols around it; flat symbolic limestone field; balanced summary composition with no surrounding crowd",
+      "type": "diagram",
+      "continuity": "synthesizes the preceding family, privacy, sexuality, judgment, gallery, and changing-space examples into the promised explanation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ]
+}

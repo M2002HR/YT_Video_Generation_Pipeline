@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "revision_id": "1750d3d8-768c-4cfe-b9c6-1cef6f00b77b",
+  "kind": "config",
+  "created_at": "2026-09-16T09:17:15.656450+00:00",
+  "roots": [
+    "opening_concept"
+  ],
+  "affected_nodes": [
+    "opening_concept",
+    "script_draft",
+    "retention_edit",
+    "call_to_action",
+    "episode_director",
+    "world_style_director",
+    "world_style_anchor",
+    "episode_history",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_cover_design",
+    "book_cover",
+    "opening_source_plan",
+    "flow_prompt_a",
+    "flow_prompt_b",
+    "flow_clip_a",
+    "flow_clip_b",
+    "elevenlabs_voiceover",
+    "background_music",
+    "ajil_alignment",
+    "opening_trim",
+    "body_images",
+    "transition_direction",
+    "build_timeline",
+    "audio_mix_profile",
+    "render_baseline",
+    "qc_baseline",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "git_commit_push",
+    "publish_telegram"
+  ],
+  "reused_nodes": [
+    "character_resolution",
+    "book_design_sheet",
+    "render_profile"
+  ],
+  "skipped_nodes": [
+    "motion_director",
+    "sfx_plan",
+    "sfx_acquire"
+  ],
+  "archived_artifacts": [
+    "creative/OPENING_CONCEPT.json",
+    "creative/OPENING_CONTEXT.json",
+    "creative/OPENING_CANDIDATES.json",
+    "creative/SCRIPT_DRAFT.json",
+    "creative/script_draft.inputs.json"
+  ],
+  "regenerate_beats": [],
+  "feedback": "",
+  "status": "FAILED",
+  "regeneration_mode": "cascade",
+  "use_chatgpt_feedback": false,
+  "started_at": "2026-09-16T09:17:15.657260+00:00",
+  "pid": 3238134,
+  "changed_fields": [
+    "max_duration_seconds"
+  ],
+  "config_revision_id": "41950fd9-56ed-4a52-854c-4f24bf9ae5c0",
+  "completed_at": "2026-09-16T09:24:34.099038+00:00"
+}

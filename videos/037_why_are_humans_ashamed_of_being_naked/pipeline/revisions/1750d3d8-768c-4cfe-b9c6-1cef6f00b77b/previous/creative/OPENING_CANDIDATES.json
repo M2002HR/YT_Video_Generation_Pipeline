@@ -1,0 +1,226 @@
+{
+  "input_fingerprint": "49ed66b1708e7ce0875059b65c73a2311737b5ab96e2f062fc0c343d0f015d8a",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "027",
+        "028",
+        "029",
+        "030",
+        "032",
+        "033",
+        "034",
+        "035"
+      ],
+      "writer_prompt_sha256": "f395e50440a221bcc658cb9e175173c8cabb7a9015e519323dcafad6c24440cb",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If nakedness itself causes shame, why did this statue need a removable fig leaf?",
+            "viewer_expectation": "If exposed genitals are inherently shameful, the statue should always have needed covering.",
+            "visible_contradiction": "A nude David cast stands uncovered while its custom plaster fig leaf rests separately beside it.",
+            "frame_zero": "The full nude David cast and the detached plaster fig leaf are visible together at once.",
+            "character_action": "She points from the unused leaf to David, then closes her long fingers around her orb.",
+            "reaction": "A dry side-eye at the leaf, then a restrained crooked grin.",
+            "activity": "Testing whether the objection belonged to the body or to a changing rule.",
+            "location": "Quiet sculpture-cast gallery beside a full-scale David replica.",
+            "topic_link": "The body stayed the same while the rule about acceptable exposure changed.",
+            "claim_mode": "source_supported",
+            "factual_anchor": "V&A: its 1857 David cast had a proportional fig leaf made after Queen Victoria reportedly objected to the nudity; it was later hung for royal visits.",
+            "payoff": "Shame around nakedness is not just a skin reflex; social rules help define when exposure feels improper.",
+            "entry_variant": "reflection_reveal",
+            "entry_bridge": {
+              "a_end": "Her fingers settle on the orb as it reflects David and the detached leaf in one curved image.",
+              "b_start": "Tight orb reflection framed by her long fingers and moss-green sleeve.",
+              "reveal": "The covering was added later, so acceptability changed without the body changing.",
+              "world_entry": "Host-free museum reenactment: David's cast stands nude while the commissioned plaster fig leaf waits nearby."
+            },
+            "novelty": {
+              "action_family": "historical rule test",
+              "tension_family": "same body, changing taboo",
+              "prop_family": "detached plaster fig leaf",
+              "reveal_family": "artifact exposes a later rule"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "Why can one audience feel safe, then one extra person suddenly make nakedness embarrassing?",
+            "viewer_expectation": "If nudity itself creates shame, adding one observer should not change the feeling.",
+            "visible_contradiction": "A nude life model poses calmly before artists but grabs a robe when an unexpected visitor appears at the open door.",
+            "frame_zero": "The model reaches for a robe as artists keep drawing and one surprised outsider stands in the doorway.",
+            "character_action": "She glances from the calm class to the doorway, eases it shut, then reveals the orb in her palm.",
+            "reaction": "One knowing side-eye toward the doorway, with no broad surprise.",
+            "activity": "Isolating the audience change as the only thing that altered the model's reaction.",
+            "location": "Small evening life-drawing studio with one open hallway door.",
+            "topic_link": "The exposure is unchanged; what changes is who is watching and what that setting permits.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Thought experiment: hold the body and room constant, change only the audience, and test whether perceived judgment changes the reaction.",
+            "payoff": "Nudity shame often depends on social evaluation, privacy, and context rather than naked skin alone.",
+            "entry_variant": "hand_reveal",
+            "entry_bridge": {
+              "a_end": "With the door nearly closed, her palm turns up to reveal the orb beneath her long fingers.",
+              "b_start": "Close view of the orb cradled by her long fingers and moss-green sleeve.",
+              "reveal": "Only the audience changed, making social judgment the variable to investigate.",
+              "world_entry": "Host-free comparison: the same unclothed adult stands in identical rooms while only the observing audience differs."
+            },
+            "novelty": {
+              "action_family": "single-variable social test",
+              "tension_family": "safe audience, unsafe audience",
+              "prop_family": "open studio doorway",
+              "reveal_family": "audience swap isolates context"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If nakedness is naturally shameful, why do some communities make it ordinary in shared bathing?",
+            "viewer_expectation": "People should avoid being naked around others even when the setting is nonsexual.",
+            "visible_contradiction": "Several adults leave swimsuits on pegs before entering a communal sauna, treating undress as routine rather than scandalous.",
+            "frame_zero": "Swimsuits hang unused on pegs while steam silhouettes adults already inside the shared sauna.",
+            "character_action": "She compares the unused suits with the calm sauna doorway, then draws her orb from her sleeve.",
+            "reaction": "A faint crooked grin at the unused suits, followed by a measured look toward the steam.",
+            "activity": "Comparing a strong modesty expectation with a setting where shared nudity is conventional.",
+            "location": "Quiet Nordic-style communal sauna anteroom with a clear view into the steam room.",
+            "topic_link": "A setting can recode the same exposure from improper to ordinary when its social rules differ.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Conservative anchor: communal bathing and sauna traditions can normalize nonsexual nudity in bounded settings; exact rules vary across cultures and venues.",
+            "payoff": "Human nakedness shame is strongly shaped by learned norms, audience expectations, and the meaning a culture gives exposure.",
+            "entry_variant": "sleeve_reveal",
+            "entry_bridge": {
+              "a_end": "Her sleeve parts beside the hanging suits, exposing the orb while the sauna stays calm in the background.",
+              "b_start": "The orb rests against her moss-green sleeve, held by two long fingers.",
+              "reveal": "The same naked body can feel ordinary when a community's rules define the setting differently.",
+              "world_entry": "Host-free communal bath: adults follow a local custom where shared nudity is routine, nonsexual, and socially permitted."
+            },
+            "novelty": {
+              "action_family": "cross-cultural norm contrast",
+              "tension_family": "taboo here, ordinary there",
+              "prop_family": "unused swimsuits on pegs",
+              "reveal_family": "custom changes the meaning"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "027",
+        "028",
+        "029",
+        "030",
+        "032",
+        "033",
+        "034",
+        "035"
+      ],
+      "reviewer_prompt_sha256": "84c6ae256d463f92d41f016b7a515a4bd781fc30600a364b4bc6d1c7c0a50a39",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4
+            },
+            "blocking_issues": [],
+            "reason": "The first frame itself contains an intelligible discrepancy: an uncovered nude David beside a purpose-made detachable fig leaf. That visibly raises the question of why the same body becomes unacceptable under a changed social rule, rather than relying on explanatory prose to manufacture relevance. The supplied V&A anchor supports the key historical sequence and keeps the claim narrower than a universal theory of shame. Pointing between two objects and taking the orb is communicable within three actions, the reflection gives a clean ownership cue across the A/B seam, and the entry contributes the useful fact that the covering was added later. The historical-rule test is materially distinct from the recent routine-based openings and from the other candidates."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 2,
+              "payoff": 2,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4
+            },
+            "blocking_issues": [
+              "The factual anchor is only a thought experiment, but the payoff upgrades its result into the empirical generalization that nudity shame 'often depends on social evaluation, privacy, and context.' The proposed evidence can isolate a variable conceptually; it cannot establish how human shame actually behaves or how often those factors determine it."
+            ],
+            "reason": "Visually, this is very clear: the unchanged nude model, drawing class, unexpected outsider, and robe-reaching reaction make the social-context question legible without the rationale. The crone's glance, door-close, and palm reveal are economical, in character, and compatible with the three-action limit; the orb ownership cue and A/B seam are also strong. The entry wording appropriately says the changed audience is a variable 'to investigate,' but the later payoff goes beyond what the hypothetical anchor can support. Its meaning is novel despite another recent opening occurring in a rehearsal studio, because neither the discrepancy nor the causal question is similar."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 3,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4
+            },
+            "blocking_issues": [],
+            "reason": "The communal-sauna contrast directly addresses learned modesty rules, and the conservative anchor appropriately acknowledges that practices vary by culture and venue. The first frame is somewhat less self-explanatory than c1 or c2: unused swimsuits plus steam-obscured adults imply conventional nudity, but the discrepancy depends on viewers correctly reading silhouettes and the bathing custom rather than seeing an unmistakable behavioral contradiction. The crone can compare the pegs and doorway and reveal the orb within three actions, and the sleeve reveal supplies a strong ownership cue and useful entry information. The payoff's phrase 'strongly shaped' is broader than the supplied anchor demonstrates, though the narrower claim that bounded social rules can make nudity ordinary is supported. Filming or generating several nude adults also requires careful staging or obscuration, reducing feasibility slightly without making the sequence unfilmable. Its cultural-norm contrast remains materially distinct from both recent openings and c2's unexpected-observer test."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4
+          },
+          "blocking_issues": [],
+          "reason": "The first frame itself contains an intelligible discrepancy: an uncovered nude David beside a purpose-made detachable fig leaf. That visibly raises the question of why the same body becomes unacceptable under a changed social rule, rather than relying on explanatory prose to manufacture relevance. The supplied V&A anchor supports the key historical sequence and keeps the claim narrower than a universal theory of shame. Pointing between two objects and taking the orb is communicable within three actions, the reflection gives a clean ownership cue across the A/B seam, and the entry contributes the useful fact that the covering was added later. The historical-rule test is materially distinct from the recent routine-based openings and from the other candidates.",
+          "repetition_evidence": [],
+          "weighted_score": 80
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 2,
+            "payoff": 2,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4
+          },
+          "blocking_issues": [
+            "The factual anchor is only a thought experiment, but the payoff upgrades its result into the empirical generalization that nudity shame 'often depends on social evaluation, privacy, and context.' The proposed evidence can isolate a variable conceptually; it cannot establish how human shame actually behaves or how often those factors determine it.",
+            "Insufficient topic fit, honesty, payoff, entry feasibility or visible hook."
+          ],
+          "reason": "Visually, this is very clear: the unchanged nude model, drawing class, unexpected outsider, and robe-reaching reaction make the social-context question legible without the rationale. The crone's glance, door-close, and palm reveal are economical, in character, and compatible with the three-action limit; the orb ownership cue and A/B seam are also strong. The entry wording appropriately says the changed audience is a variable 'to investigate,' but the later payoff goes beyond what the hypothetical anchor can support. Its meaning is novel despite another recent opening occurring in a rehearsal studio, because neither the discrepancy nor the causal question is similar.",
+          "repetition_evidence": [],
+          "weighted_score": 68
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 3,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4
+          },
+          "blocking_issues": [],
+          "reason": "The communal-sauna contrast directly addresses learned modesty rules, and the conservative anchor appropriately acknowledges that practices vary by culture and venue. The first frame is somewhat less self-explanatory than c1 or c2: unused swimsuits plus steam-obscured adults imply conventional nudity, but the discrepancy depends on viewers correctly reading silhouettes and the bathing custom rather than seeing an unmistakable behavioral contradiction. The crone can compare the pegs and doorway and reveal the orb within three actions, and the sleeve reveal supplies a strong ownership cue and useful entry information. The payoff's phrase 'strongly shaped' is broader than the supplied anchor demonstrates, though the narrower claim that bounded social rules can make nudity ordinary is supported. Filming or generating several nude adults also requires careful staging or obscuration, reducing feasibility slightly without making the sequence unfilmable. Its cultural-norm contrast remains materially distinct from both recent openings and c2's unexpected-observer test.",
+          "repetition_evidence": [],
+          "weighted_score": 69
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

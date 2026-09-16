@@ -1,0 +1,25 @@
+{
+  "style_id": "cave_pictograph_mineral_fresco_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "fresco",
+  "secondary_treatment": "coarse charcoal linework and dry iron-oxide pigment rubbing",
+  "texture_family": "weathered cave rock and pitted limestone grain",
+  "palette_summary": "limestone cream, warm raw ochre, burnt sienna, deep umber, soot charcoal black, and muted terracotta red",
+  "line_treatment": "expressive primitive silhouettes and abraded brush contours reminiscent of prehistoric rock wall pigment",
+  "lighting": "subtle warm ambient firelight glow across raw earthen stone with soft diffused shadows",
+  "frame_language": "a persistent rough-hewn cave stone aperture with organic, chipped mineral edges framing a slightly flatter interior limestone drawing ground",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "paleolithic figurative silhouettes, ancestral human gestures, classical statues, natural hide and textile partitions, symbolic cultural motifs, and ancient architecture",
+  "historical_accuracy_note": "evokes early human rock art traditions using authentic mineral pigment hues (hematite, charcoal, ochre) while remaining versatile enough to depict historical statues and changing spaces",
+  "hero_rendering_in_world": "rendered as a stylized, expressive charcoal and ochre silhouette integrated directly into the tactile stone texture",
+  "negative_constraints": "no photorealism, no 3D CGI, no slick vector art, no modern synthetic neon colors, no digital lens flare, no modern clothing",
+  "reason": "Directly requested by operator steer for a new 'cave human' visual style. Perfectly matches the script's exploration of primal and cultural origins of human modesty, while deliberately shifting to mineral fresco to introduce variety after recent consecutive charcoal selections.",
+  "operator_style_reference": {
+    "path": "videos/037_why_are_humans_ashamed_of_being_naked/launch/config_revisions/41950fd9-56ed-4a52-854c-4f24bf9ae5c0/style_reference.png",
+    "sha256": "c9778ca6d57abf4cbc6318353d0fa56e334b3e4b75c384345b66c9d23ac1ca3f",
+    "role": "operator_style_reference"
+  },
+  "style_subtitle_reserve": "a calm, low-contrast horizontal band of flat stone ground occupying only the bottom 8–10% of the 9:16 frame, kept completely free of figures, focal objects, and strictly devoid of text, letters, numbers, captions, or UI elements",
+  "reserve_subtitle_space": false
+}
