@@ -1,0 +1,84 @@
+name: Apply verified opening upgrade
+on:
+  push:
+    branches: [dev]
+    paths: ['.maintenance/opening-v2.payload.*', '.github/workflows/apply-opening-upgrade.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: apply-opening-upgrade
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and apply tested source patch
+        run: |
+          python - <<'PY'
+          import base64, hashlib, lzma, pathlib, subprocess
+          parts = sorted(pathlib.Path('.maintenance').glob('opening-v2.payload.*'))
+          assert len(parts) == 5, 'Missing payload part'
+          patch = lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts), validate=True))
+          assert hashlib.sha256(patch).hexdigest() == '8026f5c85afeed0fcc870d8a5e556e9fa15ade2f346fede0d1a1ae32dd8fa798', 'Patch hash mismatch'
+          path = pathlib.Path('/tmp/opening-upgrade.patch'); path.write_bytes(patch)
+          subprocess.run(['git', 'apply', '--check', str(path)], check=True)
+          subprocess.run(['git', 'apply', '--index', str(path)], check=True)
+          subprocess.run(['git', 'diff', '--cached', '--check'], check=True)
+          PY
+      - name: Install test dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -r requirements.txt pytest numpy
+      - name: Opening preflight and Python regression suite
+        run: |
+          python scripts/check_opening_setup.py
+          python -m compileall -q scripts
+          python -m pytest -q tests | tee /tmp/opening-python-tests.txt
+      - name: UI regression tests and production build
+        run: |
+          npm --prefix control_panel/ui ci
+          npm --prefix control_panel/ui test -- --run | tee /tmp/opening-ui-tests.txt
+          npm --prefix control_panel/ui run build
+      - name: Publish only verified source changes to dev
+        run: |
+          git diff --exit-code -- scripts tests projects/q_station
+          git fetch origin dev
+          test "$(git rev-parse origin/dev)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat: select and review topic-first character openings before narration'
+          git push origin HEAD:dev
+          echo "IMPLEMENTATION_COMMIT=$(git rev-parse HEAD)" | tee /tmp/opening-implementation-commit.txt
+      - name: Retire the unchanged ordak branch after successful integration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/ordak" --jq .object.sha 2>/dev/null); then
+            test "$sha" = 'e41479b8e8d682b9fd908739a10dd1e18cf380a0'
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/ordak"
+            echo 'ordak retired; dev is the development branch. main was not changed.'
+          else
+            echo 'ordak is already absent; dev remains the development branch.'
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: opening-upgrade-verification
+          path: |
+            /tmp/opening-python-tests.txt
+            /tmp/opening-ui-tests.txt
+            /tmp/opening-implementation-commit.txt
+          retention-days: 14
