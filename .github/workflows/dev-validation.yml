@@ -1,0 +1,57 @@
+name: Dev validation
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dev-validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source snapshot for reproducible offline verification
+        run: |
+          python - <<'PY'
+          import pathlib, subprocess, zipfile
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          with zipfile.ZipFile('/tmp/verification-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in paths:
+                  path = pathlib.Path(name)
+                  if not path.is_file() or path.is_symlink():
+                      continue
+                  if name.startswith('videos/') and path.suffix.lower() in {'.mp4', '.mov', '.webm', '.mp3', '.wav', '.m4a', '.png', '.jpg', '.jpeg', '.webp', '.ogg', '.flac', '.ttf', '.otf'}:
+                      continue
+                  if path.stat().st_size > 20000000:
+                      continue
+                  archive.write(path, name)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verification-source
+          path: /tmp/verification-source.zip
+          retention-days: 3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -r requirements.txt pytest numpy
+      - name: Python tests (no paid providers)
+        run: python -m pytest -q tests
+      - name: UI tests and build
+        run: |
+          npm --prefix control_panel/ui ci
+          npm --prefix control_panel/ui test -- --run
+          npm --prefix control_panel/ui run build
