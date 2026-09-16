@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "dev",
+  "remote": "origin",
+  "artifact_commit": "e0e1ce5fea9a89d4e70e6501ce2dd7db74ccc7fa",
+  "started_at": "2026-09-16T10:53:05.491514+00:00",
+  "completed_at": "2026-09-16T10:56:40.300722+00:00",
+  "elapsed_seconds": 214.809,
+  "scope": "videos/037_why_are_humans_ashamed_of_being_naked"
+}
