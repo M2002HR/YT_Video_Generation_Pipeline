@@ -3205,6 +3205,18 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
       notify(`${title} failed`, failure.message, "bad");
     }
   }
+  async function stopRelease() {
+    if (!confirm("Stop this Release? Its partial package stays available for inspection, and no automatic Telegram resend will occur.")) return;
+    try {
+      await request("/api/releases/stop", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ job_id: jobId }),
+      });
+      notify("Release stopped", "The partial release revision was preserved. Start Release again to create a new revision.");
+      setTimeout(load, 400);
+    } catch (failure) {
+      notify("Release stop failed", failure.message, "bad");
+    }
+  }
   async function resolveFallback(action) {
     try {
       const body = new URLSearchParams({ job_id: jobId, fallback_action: action });
@@ -3259,6 +3271,7 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
   const release = run.job.release || {};
   const releaseRunning = release.status === "RUNNING";
   const releaseDone = release.status === "DONE";
+  const releaseRetryable = ["FAILED", "STOPPED", "NEEDS_REVIEW"].includes(release.status);
   return (
     <main className="run-page">
       <header className="run-header">
@@ -3302,7 +3315,9 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
               Resume
             </button>
           )}
-          {(run.job.release_available || releaseRunning || releaseDone) && (
+          {(run.job.release_available || releaseRunning || releaseDone || releaseRetryable) && (
+            <>
+            {releaseRunning && <button className="secondary danger" onClick={stopRelease}>Stop Release</button>}
             <button
               className="primary"
               disabled={!run.job.release_available || releaseRunning}
@@ -3319,8 +3334,11 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
                 ? "Release in progress…"
                 : releaseDone
                   ? "Release delivered"
-                  : "Release →"}
+                  : releaseRetryable
+                    ? "Rerun Release →"
+                    : "Release →"}
             </button>
+            </>
           )}
           {!run.job.live && !run.job.read_only && (
             <button className="secondary danger" onClick={archiveRun}>

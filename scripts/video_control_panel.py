@@ -3728,6 +3728,11 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError):
                 worker = {}
             result = dict(current.get("release") or {})
+            if result.get("status") == "STOPPED":
+                # The panel deliberately terminated this worker; its non-zero exit is
+                # expected and must not hide the preserved partial Release revision.
+                write_json(record_path, current)
+                return
             worker_status = str(worker.get("status") or "")
             succeeded = code == 0 and worker_status == "DONE"
             needs_review = code == 0 and worker_status == "NEEDS_REVIEW"
@@ -3744,6 +3749,37 @@ class Handler(BaseHTTPRequestHandler):
 
         threading.Thread(target=monitor, daemon=True, name=f"release-{job_id[:8]}").start()
         self.send_json(HTTPStatus.ACCEPTED, {"message": "Release started with the selected steps.", "release": release})
+
+    def handle_release_stop(self) -> None:
+        """Stop only a running Release worker; its partial revision is never deleted."""
+        try:
+            payload = self.read_json_payload(limit=4_000)
+            job_id = str(payload.get("job_id") or "")
+            if not JOB_ID_RE.fullmatch(job_id):
+                raise ValueError("Unknown job id.")
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+        record_path = self.jobs_dir / f"{job_id}.json"
+        try:
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
+        release = record.get("release") if isinstance(record.get("release"), dict) else {}
+        if release.get("status") != "RUNNING":
+            self.send_json(HTTPStatus.CONFLICT, {"error": "This Release is not running."}); return
+        stopped = terminate_job(release)
+        stopped_at = utcnow()
+        release.update({"status": "STOPPED", "stopped_at": stopped_at, "completed_at": stopped_at, "stopped_by": "panel"})
+        record["release"] = release
+        write_json(record_path, record)
+        release_id = str(release.get("release_id") or "")
+        state_path = ROOT / str(record.get("project") or "") / "publish" / "youtube_short" / "releases" / release_id / "RELEASE_STATE.json"
+        state = load_json(state_path) if state_path.is_file() else {}
+        if state:
+            state.setdefault("events", []).append({"stage": "release", "status": "STOPPED", "at": stopped_at, "stopped_by": "panel"})
+            state.update({"status": "STOPPED", "stopped_at": stopped_at})
+            write_json(state_path, state)
+        self.send_json(HTTPStatus.ACCEPTED, {"message": "Release stopped; its partial revision was preserved.", "stopped": stopped, "release": release})
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -4004,6 +4040,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/config-revisions/preview": self.handle_config_preview(); return
         if self.path == "/api/config-revisions": self.handle_config_revision(); return
         if self.path == "/api/releases": self.handle_release(); return
+        if self.path == "/api/releases/stop": self.handle_release_stop(); return
         if self.path in {"/resume", "/api/fallback-action"}: self.handle_resume(); return
         if self.path == "/stop": self.handle_stop(); return
         if self.path == "/delete": self.handle_delete(); return
