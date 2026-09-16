@@ -99,6 +99,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("must_include", "Must include", "textarea", maxLength=2000),
             _field("must_avoid", "Must avoid", "textarea", maxLength=2000),
             _field("source_notes", "Source notes / verified facts", "textarea", maxLength=4000),
+            _field("cta_hint", "Call-to-action hint", "textarea", maxLength=500, placeholder="Optional intent, e.g. invite viewers to share their experience or suggest the next question.", help="A direction for the separate CTA stage, not copy to be read verbatim. Leave blank for a natural topic-aware CTA."),
         ]},
         {"id": "format", "title": "Length & output", "description": "Binding duration and canvas format.", "fields": [
             _field("min_duration_seconds", "Minimum seconds", "number", required=True, default=40, min=15, max=300, step=1, width="half"),

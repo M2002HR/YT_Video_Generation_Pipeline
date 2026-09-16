@@ -1,0 +1,113 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "18705d0592dd4ab341f6f3f5c1abce9a6db6a0ecf441b7b278f55808f89dc028",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "bc87b34c-e8fd-41ee-9374-314f023a81e8",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a503f4659d355f28",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=bc87b34c-e8fd-41ee-9374-314f023a81e8_output_1.png 1536x2752 sha256=1e5a14ac29dd9c418425596fc113eda23217ea1f05025816a9f218b7daa7a21a"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "18705d0592dd4ab341f6f3f5c1abce9a6db6a0ecf441b7b278f55808f89dc028",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "bc87b34c-e8fd-41ee-9374-314f023a81e8",
+        "prompt_sha256": "3134ce34143b34c2564515e0dfab97851f298c6540328cc662ae5800bb42ba63",
+        "output_sha256": "1e5a14ac29dd9c418425596fc113eda23217ea1f05025816a9f218b7daa7a21a",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/034_what_if_every_human_vanished_tomorrow/references/world_style_anchor.png",
+      "sha256": "41dc3114356b39b1673fe8da524380aae8dbf5adae22bbed873d1e371e4d062d"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/034_what_if_every_human_vanished_tomorrow/references/world_keyframe.png",
+      "sha256": "1d83cd7bed98578b225fef1e36141db46a02619586cf4cb4d2e47ee7d3ee4721"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/034_what_if_every_human_vanished_tomorrow/assets/raw_beats/beat_009.png",
+      "sha256": "7a468dc794c6aeb721f7af74c618b1fa4147e1d2777f5682619437d3040578cc"
+    }
+  ],
+  "prompt_sha256": "3134ce34143b34c2564515e0dfab97851f298c6540328cc662ae5800bb42ba63",
+  "prompt": "Create exactly one 9:16 vertical image: a quiet, contemplative panoramic charcoal vista of a reclaimed modern city edge in dawn-gray overcast light, where dense young trees and tall wind-bent grasses overtake a silent cracked roadway across the foreground, while corroded towers, broken transmission structures, and collapsed utility lines recede toward a wide horizon in soft diluted ink-wash mist, expressing that natural processes continue as human-built systems decay. Render in cinematic charcoal on rough fibrous paper with concrete-like grain, soot bloom, rubbed graphite haze, restrained water-stain mottling, broken architectural edges, selective crisp dark infrastructure contours, and fine scratches for weeds, cables, cracks, and debris. Use desaturated storm gray, soot black, concrete beige, oxidized blue-green, dead moss green, dirty ivory, with only sparse cold-amber remnants if any failing utility light remains. Maintain the recurring weathered charcoal-and-concrete outer field, irregular soot-darkened perimeter, softly abraded inner illustration window, cinematic foreground/midground/hazed-background depth, and full-height scene with no caption reserve or empty lower strip. The style_reference informs only readable silhouette and restrained contour discipline; the world_keyframe establishes the charcoal-and-ink world medium, texture, palette, and atmospheric depth; the previous_beat is binding only for recurring frame material, edge treatment, texture, palette, and lighting—do not copy its composition, crop, camera angle, subject placement, or focal object. No host or people. No photorealism, glossy CGI, anime, neon, vector infographic styling, gore, spectacle, technical labels, UI, captions, letters, numbers, or readable text; no storyboard, grid, collage, or panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: every 9:16 body image sits inside a recurring weathered charcoal-and-concrete outer field with irregular soot-darkened edges and a softly abraded inner illustration window, as if the abandoned scene has been rubbed into a stained architectural drawing board; the central image retains cinematic depth with foreground debris or vegetation, a readable midground event, and hazed infrastructure beyond, while the same worn perimeter and charcoal vignette grammar persist throughout the episode. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_010.png",
+  "output_sha256": "1e5a14ac29dd9c418425596fc113eda23217ea1f05025816a9f218b7daa7a21a",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.302,
+  "completed_at": "2026-09-14T19:52:50Z"
+}

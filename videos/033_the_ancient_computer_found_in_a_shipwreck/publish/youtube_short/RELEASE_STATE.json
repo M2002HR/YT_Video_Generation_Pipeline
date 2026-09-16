@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "started_at": "2026-09-15T08:18:43.359641+00:00",
+  "video": "033_the_ancient_computer_found_in_a_shipwreck",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "987e65cf0692c983d5fb0962ab2d8522b962be902f5f6f15063ea958b78845ce",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-15T08:18:46.528357+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-15T08:20:49.991916+00:00",
+      "chatgpt_job_id": "0d30e6d2-166b-4159-856b-5b7a411f133f"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-15T08:20:49.991928+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-15T08:22:29.424815+00:00",
+      "chatgpt_job_id": "f19db41c-163f-412c-ac74-d874079be72a",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-15T08:22:29.448190+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-15T08:27:40.327949+00:00",
+      "selected_attempt": 1,
+      "qc_passed": true
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-15T08:27:40.328177+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-15T08:27:40.328184+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-15T08:29:39.836748+00:00",
+      "messages": {
+        "master": 15095,
+        "thumbnail": 15096,
+        "upload_markdown": 15098,
+        "summary": 15097,
+        "metadata_json": 15099
+      }
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": ""
+  },
+  "completed_at": "2026-09-15T08:29:39.836756+00:00",
+  "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "master": 15095,
+    "thumbnail": 15096,
+    "upload_markdown": 15098,
+    "summary": 15097,
+    "metadata_json": 15099
+  },
+  "thumbnail": "publish/youtube_short/thumbnail.png",
+  "upload": "publish/youtube_short/YOUTUBE_SHORT_UPLOAD.md"
+}

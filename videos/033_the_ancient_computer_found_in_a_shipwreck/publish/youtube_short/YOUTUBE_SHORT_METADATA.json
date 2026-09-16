@@ -1,0 +1,478 @@
+{
+  "title": "ANTIKYTHERA MECHANISM The 2,000-Year-Old Machine That Modeled the Sky #shorts ⚙️",
+  "title_options": [
+    "ANCIENT GEARS A Hand Crank Moved the Sun and Moon Pointers #shorts 🌙",
+    "SHIPWRECK MACHINE The Bronze Gears Found off Antikythera #shorts ⚙️",
+    "ECLIPSE GEARS How Ancient Dials Modeled Eclipse Cycles #shorts 🌘"
+  ],
+  "description": "Found in a wreck off Antikythera, this hand-cranked mechanism used gears and dials to model astronomical cycles.\nKeywords: Antikythera mechanism, ancient Greek technology, ancient astronomy, bronze gears, eclipse cycles, shipwreck archaeology\n#shorts #viralshorts #AntikytheraMechanism #AncientTechnology #Archaeology",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "Antikythera mechanism",
+    "ancient Greek technology",
+    "ancient astronomy",
+    "shipwreck archaeology",
+    "bronze gears",
+    "eclipse cycles",
+    "astronomical dials",
+    "hand cranked mechanism",
+    "history shorts",
+    "archaeology shorts",
+    "ancient engineering"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Uploader must review and make the final made-for-kids declaration before publishing.",
+      "reason": "The supplied source recommends not_made_for_kids and presents the episode as general historical education, but this platform declaration must be made by the uploader."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "Uploader must review the final video and make the age-restriction declaration.",
+      "reason": "The supplied context describes historical machinery and archaeology without mature or graphic material, but the editor does not make this platform declaration."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Uploader must verify whether any paid promotion is present and make the final declaration.",
+      "reason": "No sponsorship, endorsement, or product placement is identified in the supplied context, but the editor does not make this platform declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Uploader must review the final rendered video and decide whether an altered-or-synthetic-content disclosure is required.",
+      "reason": "The supplied frames are visibly stylized and illustrated, but disclosure depends on the final video and the uploader's platform declaration."
+    },
+    {
+      "field": "license_and_music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before release.",
+      "reason": "The source context states that publication rights for the music must be verified by the operator; the YouTube license setting does not establish those music rights."
+    },
+    {
+      "field": "Audience",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm the audience declaration in YouTube Studio; only the uploader can make the final Made for Kids decision."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Gemini: create one instantly readable vertical 9:16 thumbnail scene for this exact Antikythera mechanism episode. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Treat any world keyframe as supporting continuity only and never let it override the final rendered frames. If any character sheet is supplied, use it for identity only; it must not cause a character to appear unless that character belongs in this episode's thumbnail. Use one dominant focal subject: a large corroded bronze Antikythera mechanism fragment with turquoise-green patina, visibly revealing a dense cluster of precise interlocking gears and part of a circular astronomical dial. Make the tension immediately clear on a phone screen: a battered ancient shipwreck artifact containing unexpectedly intricate hand-powered machinery. Match the illustrated, hand-drawn ink-and-bronze aesthetic, aged cream surfaces, muted maritime tones, patina texture, and mechanical linework visible in the rendered frames rather than photorealism or generic stock art. Use strong contrast, a crisp focal silhouette, clear hierarchy, minimal secondary detail, and deliberate clean negative space in the upper-right area for optional text added later by a human. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Ancient Sky Machine",
+  "related_video_note": "No related video is identified in the supplied source context; leave this unset unless the uploader selects an existing relevant Q Station video.",
+  "schema_version": 1,
+  "created_at": "2026-09-15T08:22:29.424796+00:00",
+  "source_master_sha256": "987e65cf0692c983d5fb0962ab2d8522b962be902f5f6f15063ea958b78845ce",
+  "chatgpt_jobs": {
+    "draft": "0d30e6d2-166b-4159-856b-5b7a411f133f",
+    "review": "f19db41c-163f-412c-ac74-d874079be72a",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "unlisted",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "033_the_ancient_computer_found_in_a_shipwreck",
+      "duration_seconds": 54.57,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display",
+      "opening_environment": "a practical museum prep space with timber mounts, conservation crates, muted work lamps, and nautical artifacts waiting to be installed",
+      "topic_visual_link": "The visibly jammed hand-powered gear train echoes the Antikythera mechanism's tightly packed gears and immediately raises the idea that sophisticated mechanical computation can exist without electricity.",
+      "link_type": "historical_echo",
+      "opening_visual_proof": "In the first seconds, the crone's hand turns the drill crank while two exposed metal gears rotate together, catch abruptly tooth-to-tooth, and freeze the drill bit above the wood.",
+      "curiosity_trigger": "the crank suddenly resists with a dry metallic click while the meshed gears remain visibly locked",
+      "trigger_object": "the exposed gear pair of the hand-cranked drill",
+      "reaction": "She narrows her large eyes at the frozen gears, gives the raven a knowing sideways glance, and tests the crank once more with one long finger.",
+      "entry_retrieval": "She releases the drill, follows the line of its meshed gears with one pointed finger, then reaches beneath a folded protective cloth on the same work surface and reveals her glass orb; her moss-green sleeve and long fingers remain clearly in frame as she turns it toward the camera.",
+      "entry_variant": "hand_reveal",
+      "camera_pattern": "over_shoulder",
+      "hero_presence_mode": "opener_only",
+      "closing_mode": "stay_in_world",
+      "world_style_hint": "submerged Mediterranean archaeology shifting into precise bronze mechanical cutaways, engraved astronomical dials, and luminous orbital geometry",
+      "reason": "A hand-cranked drill gives the crone a compact, believable task whose suddenly jammed visible gears naturally mirror the ancient mechanism's defining combination of manual power, dense gearing, and unexpected sophistication."
+    },
+    "script_plan": {
+      "opening_question_spark": "Could these jammed hand-drill gears explain an ancient machine that predicted the sky?",
+      "entry_transition": "She turns her orb, and we plunge through the glass.",
+      "cta": "Like and subscribe to keep the questions coming.",
+      "body": [
+        "In 1900, sponge divers found a wreck off Antikythera.",
+        "Its cargo included a corroded bronze lump.",
+        "Inside were tightly packed, precision-cut gears.",
+        "The mechanism was built over two thousand years ago.",
+        "A hand crank moved pointers across astronomical dials.",
+        "One dial tracked the Sun and Moon.",
+        "Others modeled cycles used to predict eclipses.",
+        "Another tracked the cycle of major Greek games.",
+        "Inscriptions even explained parts of its operation."
+      ],
+      "optional_closing": "It was a hand-powered mechanical model of the heavens.",
+      "full_narration": "Could these jammed hand-drill gears explain an ancient machine that predicted the sky? She turns her orb, and we plunge through the glass. In 1900, sponge divers found a wreck off Antikythera. Its cargo included a corroded bronze lump. Inside were tightly packed, precision-cut gears. The mechanism was built over two thousand years ago. A hand crank moved pointers across astronomical dials. One dial tracked the Sun and Moon. Others modeled cycles used to predict eclipses. Another tracked the cycle of major Greek games. Inscriptions even explained parts of its operation. It was a hand-powered mechanical model of the heavens. Like and subscribe to keep the questions coming.",
+      "word_count": 110,
+      "created_at": "2026-09-14T11:09:10Z"
+    },
+    "narration": "Could these jammed hand-drill gears explain an ancient machine that predicted the sky? She turns her orb, and we plunge through the glass. In 1900, sponge divers found a wreck off Antikythera. Its cargo included a corroded bronze lump. Inside were tightly packed, precision-cut gears. The mechanism was built over two thousand years ago. A hand crank moved pointers across astronomical dials. One dial tracked the Sun and Moon. Others modeled cycles used to predict eclipses. Another tracked the cycle of major Greek games. Inscriptions even explained parts of its operation. It was a hand-powered mechanical model of the heavens. Like and subscribe to keep the questions coming.",
+    "music": {
+      "provider": "operator_upload",
+      "source_url": null,
+      "license": "Operator-supplied; publication rights must be verified by the operator."
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1918817,
+          "sha256": "84853a610f73443d0a79ddd8e72aa280383c7c4fabb7f8ba53640b92657e2f02",
+          "time_seconds": 5.457
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3048610,
+          "sha256": "bdc187727e76805c0c4adacab5552b6109d2a86bbdf8c82318e2bccc7859c340",
+          "time_seconds": 27.285
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 4263495,
+          "sha256": "68b7de32459fa5f0e56f231a134962ff3403ad246abdf3e2cc4259958750c5c3",
+          "time_seconds": 45.839
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3223110,
+          "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1536,
+      "height": 2752,
+      "bytes": 3028178,
+      "sha256": "c0c60959824a670e4e7e97c27e54154d8f21865c1c323fe2477fe4275b3bbb19"
+    },
+    "selected_attempt": 1,
+    "quality_check": {
+      "passed": true,
+      "description": "A vertical illustrated hero composition centered on a large irregular corroded bronze Antikythera mechanism fragment with turquoise-green patina. The broken shell visibly exposes a dense cluster of interlocking gears and a curved astronomical dial, with large circular instrument geometry behind it. The image uses aged cream parchment, dark hand-inked mechanical linework, muted bronze and teal corrosion, and lightly sketched amphora and archaeological motifs. The upper-right remains largely open and light for optional later text, and there is no host character, logo, watermark, UI, collage, or stock-photo treatment.",
+      "violations": [
+        "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+        "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+        "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+        "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+        "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+        "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+        "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+      ],
+      "observations": [
+        "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+        "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+        "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+        "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "candidates": [
+      {
+        "attempt": 1,
+        "job_id": "565aec33-c4cc-4884-82c9-a02fb12c440b",
+        "prompt_sha256": "927a3d978fa81ad5b73ee8758c135a9eca9269e6d42c633cb449f4902388cdd5",
+        "output_sha256": "c0c60959824a670e4e7e97c27e54154d8f21865c1c323fe2477fe4275b3bbb19",
+        "quality_check": {
+          "passed": true,
+          "description": "A vertical illustrated hero composition centered on a large irregular corroded bronze Antikythera mechanism fragment with turquoise-green patina. The broken shell visibly exposes a dense cluster of interlocking gears and a curved astronomical dial, with large circular instrument geometry behind it. The image uses aged cream parchment, dark hand-inked mechanical linework, muted bronze and teal corrosion, and lightly sketched amphora and archaeological motifs. The upper-right remains largely open and light for optional later text, and there is no host character, logo, watermark, UI, collage, or stock-photo treatment.",
+          "violations": [
+            "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+            "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+            "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+            "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+            "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+            "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+            "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+          ],
+          "observations": [
+            "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+            "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+            "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+            "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+        "selected": true,
+        "file": "thumbnail_candidates/thumbnail.attempt_1.png",
+        "image": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3028178,
+          "sha256": "c0c60959824a670e4e7e97c27e54154d8f21865c1c323fe2477fe4275b3bbb19"
+        },
+        "visual_references": [
+          {
+            "role": "thumbnail_rendered_opening_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_opening.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 1918817,
+            "sha256": "84853a610f73443d0a79ddd8e72aa280383c7c4fabb7f8ba53640b92657e2f02",
+            "time_seconds": 5.457
+          },
+          {
+            "role": "thumbnail_rendered_body_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_body.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 3048610,
+            "sha256": "bdc187727e76805c0c4adacab5552b6109d2a86bbdf8c82318e2bccc7859c340",
+            "time_seconds": 27.285
+          },
+          {
+            "role": "thumbnail_rendered_closing_frame",
+            "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+            "file": "publish/youtube_short/visual_references/render_closing.png",
+            "width": 1080,
+            "height": 1920,
+            "bytes": 4263495,
+            "sha256": "68b7de32459fa5f0e56f231a134962ff3403ad246abdf3e2cc4259958750c5c3",
+            "time_seconds": 45.839
+          },
+          {
+            "role": "thumbnail_world_keyframe",
+            "purpose": "Supporting world continuity only; never overrides final rendered frames",
+            "file": "references/world_keyframe.png",
+            "width": 1536,
+            "height": 2752,
+            "bytes": 3223110,
+            "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+          }
+        ]
+      }
+    ],
+    "visual_references": [
+      {
+        "role": "thumbnail_rendered_opening_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_opening.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 1918817,
+        "sha256": "84853a610f73443d0a79ddd8e72aa280383c7c4fabb7f8ba53640b92657e2f02",
+        "time_seconds": 5.457
+      },
+      {
+        "role": "thumbnail_rendered_body_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_body.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 3048610,
+        "sha256": "bdc187727e76805c0c4adacab5552b6109d2a86bbdf8c82318e2bccc7859c340",
+        "time_seconds": 27.285
+      },
+      {
+        "role": "thumbnail_rendered_closing_frame",
+        "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+        "file": "publish/youtube_short/visual_references/render_closing.png",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 4263495,
+        "sha256": "68b7de32459fa5f0e56f231a134962ff3403ad246abdf3e2cc4259958750c5c3",
+        "time_seconds": 45.839
+      },
+      {
+        "role": "thumbnail_world_keyframe",
+        "purpose": "Supporting world continuity only; never overrides final rendered frames",
+        "file": "references/world_keyframe.png",
+        "width": 1536,
+        "height": 2752,
+        "bytes": 3223110,
+        "sha256": "676918b9b0034d0bfc870e34f9e4a1150943d21f1f5910087eb5229577a8c4eb"
+      }
+    ],
+    "requested_model": "nano_banana_2",
+    "source_image_contract": {
+      "model": "nano_banana_2",
+      "qc_correction_policy": "0",
+      "chatgpt_fallback_mode": "auto"
+    },
+    "gemini_job_id": "565aec33-c4cc-4884-82c9-a02fb12c440b",
+    "gemini_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/480c2dcb454e8f95",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "thumbnail_rendered_opening_frame",
+        "thumbnail_rendered_body_frame",
+        "thumbnail_rendered_closing_frame",
+        "thumbnail_world_keyframe"
+      ],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=565aec33-c4cc-4884-82c9-a02fb12c440b_output_1.png 1536x2752 sha256=c0c60959824a670e4e7e97c27e54154d8f21865c1c323fe2477fe4275b3bbb19"
+      ],
+      "quality_check": {
+        "passed": true,
+        "description": "A vertical illustrated hero composition centered on a large irregular corroded bronze Antikythera mechanism fragment with turquoise-green patina. The broken shell visibly exposes a dense cluster of interlocking gears and a curved astronomical dial, with large circular instrument geometry behind it. The image uses aged cream parchment, dark hand-inked mechanical linework, muted bronze and teal corrosion, and lightly sketched amphora and archaeological motifs. The upper-right remains largely open and light for optional later text, and there is no host character, logo, watermark, UI, collage, or stock-photo treatment.",
+        "violations": [
+          "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+          "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+          "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+          "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+        ],
+        "blocking_violations": [],
+        "regressions": [],
+        "raw_passed": true,
+        "raw_violations": [
+          "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+          "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+          "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+          "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+        ],
+        "observations": [
+          "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+          "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+          "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+          "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+        ],
+        "review_status": "passed_with_warnings"
+      },
+      "request_fingerprint": "b4f92e6e0a7ce4fb3a4201c34c95eab825c3a1d2f1646cc8d7fe0b940359575c",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "job_id": "565aec33-c4cc-4884-82c9-a02fb12c440b",
+          "prompt_sha256": "927a3d978fa81ad5b73ee8758c135a9eca9269e6d42c633cb449f4902388cdd5",
+          "output_sha256": "c0c60959824a670e4e7e97c27e54154d8f21865c1c323fe2477fe4275b3bbb19",
+          "quality_check": {
+            "passed": true,
+            "description": "A vertical illustrated hero composition centered on a large irregular corroded bronze Antikythera mechanism fragment with turquoise-green patina. The broken shell visibly exposes a dense cluster of interlocking gears and a curved astronomical dial, with large circular instrument geometry behind it. The image uses aged cream parchment, dark hand-inked mechanical linework, muted bronze and teal corrosion, and lightly sketched amphora and archaeological motifs. The upper-right remains largely open and light for optional later text, and there is no host character, logo, watermark, UI, collage, or stock-photo treatment.",
+            "violations": [
+              "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+              "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+              "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+              "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+            ],
+            "blocking_violations": [],
+            "regressions": [],
+            "raw_passed": true,
+            "raw_violations": [
+              "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+              "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+              "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+              "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+            ],
+            "observations": [
+              "The exposed curved dial contains clearly readable inscription-like Greek or Latin characters and numeral-like marks, conflicting with the requirement for no written words or letters.",
+              "The delivered PNG is 1143x2048, which is slightly narrower than an exact 9:16 frame and below the stated 2160x3840 target resolution.",
+              "The shipwreck context is conveyed only subtly through corrosion, encrustation, and faint amphora sketches rather than an immediately explicit wreck setting.",
+              "Some background circular construction lines and archaeological sketches add secondary detail around the hero subject, making the composition somewhat busier than the requested minimal-secondary-detail treatment."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/033_the_ancient_computer_found_in_a_shipwreck/publish/youtube_short/thumbnail_candidates/thumbnail.attempt_1.png",
+          "selected": true
+        }
+      ],
+      "qc_policy": "0",
+      "qc_selected_attempt": 1
+    }
+  }
+}

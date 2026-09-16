@@ -2,7 +2,7 @@
   "schema_version": 5,
   "content_project": "q_station",
   "job_id": "05e326d1-cf5d-48be-928c-3d2635399ea8",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-14T10:56:06.344951+00:00",
   "topic": "The Ancient “Computer” Found in a Shipwreck",
   "video_id": "033",
@@ -347,5 +347,6 @@
     "started_at": "2026-09-14T18:43:51.595054+00:00",
     "pid": 2159061,
     "completed_at": "2026-09-14T18:45:01.573849+00:00"
-  }
+  },
+  "completed_at": "2026-09-15T04:19:23.576504+00:00"
 }

@@ -18,10 +18,12 @@ PIPELINE_PROMPTS = (
     "04_single_beat_image_prompt_writer.md",
 )
 
-# Q Station / legacy Question Harvest (bookworld_mixed_media) uses 9 prompts per §46
+# Q Station / legacy Question Harvest (bookworld_mixed_media) uses dedicated pipeline prompts,
+# including the final CTA writer so editorial intent never leaks into an unrelated stage.
 QH_PIPELINE_PROMPTS = (
     "01_script_writer.md",
     "02_retention_editor.md",
+    "03_call_to_action_writer.md",
     "03_episode_director.md",
     "04_world_style_director.md",
     "05_visual_beat_planner.md",

@@ -2,7 +2,7 @@
   "schema_version": 6,
   "content_project": "q_station",
   "job_id": "3d187b19-e98d-4abf-ac46-672e91952990",
-  "status": "RUNNING",
+  "status": "FAILED",
   "created_at": "2026-09-14T19:21:06.950364+00:00",
   "topic": "What If Every Human Vanished Tomorrow?",
   "video_id": "034",
@@ -131,7 +131,7 @@
   "launched_from_job_id": "05e326d1-cf5d-48be-928c-3d2635399ea8",
   "launched_from_video_id": "033",
   "launch_reason": "topic_change",
-  "pid": 2176460,
+  "pid": 2622593,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -154,12 +154,9 @@
     "--commit"
   ],
   "started_at": "2026-09-14T19:21:06.951912+00:00",
-  "character_resolution": {
-    "requested_mode": "manual",
-    "requested_character_id": "moss_cloaked_crone",
-    "resolved_character_id": "moss_cloaked_crone",
-    "resolution_source": "manual",
-    "character_version": 1,
-    "character_sheet_sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
-  }
+  "exit_code": 1,
+  "process_exited_at": "2026-09-15T08:44:19.672794+00:00",
+  "resumed_at": "2026-09-15T09:16:26.932683+00:00",
+  "resume_count": 2,
+  "completed_at": "2026-09-15T09:16:45.983089+00:00"
 }

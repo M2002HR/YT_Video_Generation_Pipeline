@@ -1346,10 +1346,21 @@ def stage_retention(
     presentation: PresentationContext | None = None,
 ) -> dict[str, Any]:
     stage = "retention_edit"
-    target = project / "creative" / "SCRIPT_PLAN.json"
+    # The retention editor owns the editorial core.  The following call_to_action stage owns
+    # the spoken final plan, so an operator CTA revision never has to rerun retention.
+    target = project / "creative" / "SCRIPT_CORE_PLAN.json"
+    legacy_target = project / "creative" / "SCRIPT_PLAN.json"
     if runner.state.done(stage) and target.is_file():
         runner.stage_reused(stage, target.name)
         return load_json(target)
+    if runner.state.done(stage) and legacy_target.is_file():
+        # Existing episodes predate the dedicated CTA stage. Preserve their retained script as
+        # a one-time core migration instead of calling the text provider merely to resume.
+        migrated = load_json(legacy_target)
+        validate_script_plan(stage, migrated, duration, presentation)
+        save_json(target, migrated)
+        runner.stage_reused(stage, f"{target.name} (migrated from SCRIPT_PLAN.json)")
+        return migrated
     started = runner.stage_start(stage)
     presentation = presentation or _coerce_character_context(content_project).presentation
     prompt = fill(
@@ -1363,10 +1374,162 @@ def stage_retention(
     )
     plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
     save_json(target, plan)
-    # The plain-text narration is what ElevenLabs speaks; it must be the same words.
-    (project / "SCRIPT_FINAL.md").write_text(plan["full_narration"] + "\n", encoding="utf-8")
     runner.stage_done(stage, started, f"{plan['word_count']} words", words=plan["word_count"])
     return plan
+
+
+CTA_HINT_MAX_CHARS = 500
+
+
+def cta_hint(project: Path) -> str:
+    """Read the frozen, optional CTA intent without treating it as narration text."""
+    try:
+        settings = load_json(project / "launch" / "CREATIVE_BRIEF.json").get("_qh") or {}
+    except (OSError, ValueError, TypeError) as exc:
+        raise StageFailure("call_to_action", "FAILED_VALIDATION", f"Cannot read the CTA hint: {exc}") from exc
+    hint = str(settings.get("cta_hint") or "").strip()
+    if len(hint) > CTA_HINT_MAX_CHARS:
+        raise StageFailure(
+            "call_to_action", "FAILED_VALIDATION",
+            f"CTA hint exceeds {CTA_HINT_MAX_CHARS} characters.",
+        )
+    return hint
+
+
+def cta_source_context(plan: dict[str, Any], presentation: PresentationContext) -> dict[str, Any]:
+    """The editorial script that the CTA may respond to, deliberately excluding its draft CTA."""
+    return {
+        "opening_question_spark": str(plan.get("opening_question_spark") or "").strip(),
+        presentation.segment_key: str(plan.get(presentation.segment_key) or "").strip(),
+        "body": [str(item).strip() for item in plan.get("body") or []],
+        "optional_closing": str(plan.get("optional_closing") or "").strip(),
+    }
+
+
+def cta_input_fingerprint(plan: dict[str, Any], hint: str, presentation: PresentationContext) -> str:
+    """Reuse a CTA only when both the core script and its operator intent are identical."""
+    payload = {
+        "schema_version": 1,
+        "script": cta_source_context(plan, presentation),
+        "hint": hint,
+    }
+    return sha256_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
+
+
+def cta_copies_hint(cta: str, hint: str) -> bool:
+    """Catch literal hint echoes while allowing the model to preserve the requested intent.
+
+    A semantic request such as "ask for viewers' experience" is expected to influence the
+    result.  What is not acceptable is pasting the operator's wording into spoken narration.
+    We reject an exact echo and any long contiguous copied phrase; a correction retry asks for
+    a fresh expression of the same intent.
+    """
+    cta_tokens, hint_tokens = _plan_tokens(cta), _plan_tokens(hint)
+    if not hint_tokens:
+        return False
+    if cta_tokens == hint_tokens:
+        return True
+    phrase_size = min(4, len(hint_tokens))
+    if phrase_size < 3:
+        return False
+    hint_phrases = {tuple(hint_tokens[index:index + phrase_size]) for index in range(len(hint_tokens) - phrase_size + 1)}
+    cta_phrases = {tuple(cta_tokens[index:index + phrase_size]) for index in range(len(cta_tokens) - phrase_size + 1)}
+    return bool(hint_phrases & cta_phrases)
+
+
+def validate_cta(
+    stage: str,
+    payload: Any,
+    hint: str,
+    plan: dict[str, Any],
+    duration: DurationTarget,
+    presentation: PresentationContext,
+) -> dict[str, Any]:
+    """Validate one fresh spoken CTA and merge it into the authoritative final script."""
+    if not isinstance(payload, dict) or not isinstance(payload.get("cta"), str):
+        raise StageFailure(stage, "FAILED_VALIDATION", "CTA writer must return a JSON object with a string `cta`.")
+    line = payload["cta"].strip()
+    tokens = _plan_tokens(line)
+    if not 4 <= len(tokens) <= 16:
+        raise StageFailure(stage, "FAILED_VALIDATION", "CTA must contain 4–16 spoken words.")
+    if len(re.findall(r"[.!?…](?:[\"')\]]|\s)*", line)) > 1:
+        raise StageFailure(stage, "FAILED_VALIDATION", "CTA must be one atomic spoken sentence.")
+    if re.search(r"https?://|www\.|[#*_]", line, flags=re.IGNORECASE):
+        raise StageFailure(stage, "FAILED_VALIDATION", "CTA contains non-spoken formatting or a URL.")
+    if cta_copies_hint(line, hint):
+        raise StageFailure(stage, "FAILED_VALIDATION", "CTA copied the operator hint too literally; preserve its intent in fresh wording.")
+    final = dict(plan)
+    final["cta"] = line
+    ordered = [
+        str(final.get("opening_question_spark") or "").strip(),
+        str(final.get(presentation.segment_key) or "").strip(),
+        *[str(item).strip() for item in final.get("body") or []],
+        str(final.get("optional_closing") or "").strip(),
+        line,
+    ]
+    final["full_narration"] = " ".join(part for part in ordered if part)
+    return validate_script_plan(stage, final, duration, presentation)
+
+
+def stage_call_to_action(
+    runner: Runner,
+    project: Path,
+    content_project: Any,
+    brief: str,
+    plan: dict[str, Any],
+    duration: DurationTarget,
+    presentation: PresentationContext,
+) -> dict[str, Any]:
+    """Generate the final CTA after editorial retention, with an optional intent hint.
+
+    The stage owns a small receipt and rewrites only ``cta`` plus ``full_narration`` in the
+    final script.  Its graph descendants begin at narration, so a CTA revision cannot spend
+    credits rebuilding otherwise valid body images while it still refreshes every timed/rendered
+    artifact that speaks the new line.
+    """
+    stage = "call_to_action"
+    target = project / "creative" / "CALL_TO_ACTION.json"
+    hint = cta_hint(project)
+    fingerprint = cta_input_fingerprint(plan, hint, presentation)
+    if runner.state.done(stage) and target.is_file():
+        try:
+            existing = load_json(target)
+            if str(existing.get("input_fingerprint") or "") == fingerprint:
+                final = validate_cta(stage, {"cta": existing.get("cta")}, hint, plan, duration, presentation)
+                save_json(project / "creative" / "SCRIPT_PLAN.json", final)
+                (project / "SCRIPT_FINAL.md").write_text(final["full_narration"] + "\n", encoding="utf-8")
+                runner.stage_reused(stage, target.name)
+                return final
+        except (OSError, ValueError, TypeError, StageFailure):
+            pass
+    started = runner.stage_start(stage)
+    prompt = fill(
+        resolve_prompt(content_project, "03_call_to_action_writer.md"),
+        VIDEO_BRIEF=brief,
+        SCRIPT_CONTEXT=json.dumps(cta_source_context(plan, presentation), ensure_ascii=False, indent=2),
+        CTA_HINT=hint or "No additional operator direction; choose the most natural topic-aware engagement intent.",
+    )
+    final = ask_with_correction(
+        runner,
+        stage,
+        prompt,
+        lambda data: validate_cta(stage, data, hint, plan, duration, presentation),
+        hint="Return only a fresh one-sentence CTA. Do not copy the optional operator hint verbatim.",
+    )
+    target.parent.mkdir(parents=True, exist_ok=True)
+    save_json(target, {
+        "schema_version": 1,
+        "input_fingerprint": fingerprint,
+        "hint_sha256": sha256_text(hint),
+        "hint_provided": bool(hint),
+        "cta": final["cta"],
+        "word_count": len(_plan_tokens(final["cta"])),
+        "created_at": utcnow(),
+    })
+    save_json(project / "creative" / "SCRIPT_PLAN.json", final)
+    (project / "SCRIPT_FINAL.md").write_text(final["full_narration"] + "\n", encoding="utf-8")
+    runner.stage_done(stage, started, f"{len(_plan_tokens(final['cta']))} words", hint_provided=bool(hint))
+    return final
 
 
 def _character_prompt_context(character: CharacterContext) -> str:
@@ -3696,6 +3859,7 @@ def main() -> int:
             presentation = character.presentation
             draft = stage_script(runner, project, content_project, brief, duration, presentation)
             plan = stage_retention(runner, project, content_project, brief, draft, duration, presentation)
+            plan = stage_call_to_action(runner, project, content_project, brief, plan, duration, presentation)
             episode_plan = stage_episode_director(
                 runner, project, content_project, args.topic, brief, plan, character
             )

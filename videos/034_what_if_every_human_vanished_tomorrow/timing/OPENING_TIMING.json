@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 58.331,
+  "spark_start": 0.0,
+  "spark_end": 5.76,
+  "spark_duration": 5.76,
+  "transition_start": 7.16,
+  "transition_end": 12.0,
+  "transition_duration": 4.84,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 5.76,
+  "clip_b_target_seconds": 6.24,
+  "body_start": 13.02,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If everyone vanished tomorrow, what happens first while your garden hose keeps running?",
+      "speech_start": 0.0,
+      "speech_end": 5.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "The question reaches the old crone; she raises her orb, and we dive inside.",
+      "speech_start": 7.16,
+      "speech_end": 12.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "At first, your hose might keep flowing from stored water pressure.",
+      "speech_start": 13.02,
+      "speech_end": 17.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Within hours, unattended power grids would begin failing.",
+      "speech_start": 18.36,
+      "speech_end": 21.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Many nuclear reactors would shut down automatically.",
+      "speech_start": 22.56,
+      "speech_end": 25.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Cooling systems would still need power.",
+      "speech_start": 26.5,
+      "speech_end": 28.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Pets trapped indoors would face danger quickly.",
+      "speech_start": 29.7,
+      "speech_end": 32.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Some farm animals would escape or starve.",
+      "speech_start": 32.56,
+      "speech_end": 36.2,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Without pumps, subways could begin flooding within days.",
+      "speech_start": 36.2,
+      "speech_end": 40.98,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Weeks later, weeds would spread across untended roads.",
+      "speech_start": 40.98,
+      "speech_end": 45.28,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Years later, weather would weaken empty buildings.",
+      "speech_start": 45.28,
+      "speech_end": 49.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Earth would keep going; our systems would not.",
+      "speech_start": 49.42,
+      "speech_end": 53.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more questions like this.",
+      "speech_start": 53.46,
+      "speech_end": 57.84,
+      "match_confidence": 1.0
+    }
+  ]
+}

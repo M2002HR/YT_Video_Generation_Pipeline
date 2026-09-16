@@ -71,8 +71,9 @@ Hard rules for the JSON:
 ## Style
 - Short sentences for TTS, conversational, forward momentum.
 - No filler, no clichés, no lecture tone.
-- The closing reframes and pays off; the CTA invites like + subscribe in ≤12 words
-  (e.g. "Like and subscribe to grow more questions.").
+- The closing reframes and pays off. Provide a brief provisional CTA so this draft has a
+  complete narration shape; a dedicated downstream CTA stage replaces it with the final
+  topic-aware spoken CTA.
 - Do not over-explain the entry prop in narration; the visuals carry the presentation framing.
 
 ## Silent self-check before answering

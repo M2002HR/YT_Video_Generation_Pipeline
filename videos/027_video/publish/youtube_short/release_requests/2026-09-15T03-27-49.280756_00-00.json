@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "job_id": "494496ee-50e2-4a7b-8235-c117e59bd7a4",
+  "created_at": "2026-09-15T03:27:49.280780+00:00",
+  "settings": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": ""
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 58.331,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If everyone vanished tomorrow, what happens first while your garden hose keeps running? The question reaches the old crone. She raises her orb and we dive inside. At first, your hose might keep flowing from stored water pressure. Within hours, unattended power grids would begin failing. Many nuclear reactors would shut down automatically. Cooling systems would still need power. pets trapped indoors would face danger quickly some farm animals would escape or starve without pumps subways could begin flooding within days weeks later weeds would spread across untended roads years later weather would weaken empty buildings earth would keep going our systems would not like and subscribe for more questions like this",
+  "word_count": 112,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "At first, your hose might keep flowing from stored water pressure.",
+      "speech_start": 13.02,
+      "speech_end": 17.46,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 18.36,
+      "display_duration": 18.36
+    },
+    {
+      "beat_id": 2,
+      "narration": "Within hours, unattended power grids would begin failing.",
+      "speech_start": 18.36,
+      "speech_end": 21.68,
+      "match_confidence": 1.0,
+      "display_start": 18.36,
+      "display_end": 22.56,
+      "display_duration": 4.2
+    },
+    {
+      "beat_id": 3,
+      "narration": "Many nuclear reactors would shut down automatically.",
+      "speech_start": 22.56,
+      "speech_end": 25.58,
+      "match_confidence": 1.0,
+      "display_start": 22.56,
+      "display_end": 26.5,
+      "display_duration": 3.94
+    },
+    {
+      "beat_id": 4,
+      "narration": "Cooling systems would still need power.",
+      "speech_start": 26.5,
+      "speech_end": 28.62,
+      "match_confidence": 1.0,
+      "display_start": 26.5,
+      "display_end": 29.7,
+      "display_duration": 3.2
+    },
+    {
+      "beat_id": 5,
+      "narration": "Pets trapped indoors would face danger quickly.",
+      "speech_start": 29.7,
+      "speech_end": 32.56,
+      "match_confidence": 1.0,
+      "display_start": 29.7,
+      "display_end": 32.56,
+      "display_duration": 2.86
+    },
+    {
+      "beat_id": 6,
+      "narration": "Some farm animals would escape or starve.",
+      "speech_start": 32.56,
+      "speech_end": 36.2,
+      "match_confidence": 1.0,
+      "display_start": 32.56,
+      "display_end": 36.2,
+      "display_duration": 3.64
+    },
+    {
+      "beat_id": 7,
+      "narration": "Without pumps, subways could begin flooding within days.",
+      "speech_start": 36.2,
+      "speech_end": 40.98,
+      "match_confidence": 1.0,
+      "display_start": 36.2,
+      "display_end": 40.98,
+      "display_duration": 4.78
+    },
+    {
+      "beat_id": 8,
+      "narration": "Weeks later, weeds would spread across untended roads.",
+      "speech_start": 40.98,
+      "speech_end": 45.28,
+      "match_confidence": 1.0,
+      "display_start": 40.98,
+      "display_end": 45.28,
+      "display_duration": 4.3
+    },
+    {
+      "beat_id": 9,
+      "narration": "Years later, weather would weaken empty buildings.",
+      "speech_start": 45.28,
+      "speech_end": 49.42,
+      "match_confidence": 1.0,
+      "display_start": 45.28,
+      "display_end": 49.42,
+      "display_duration": 4.14
+    },
+    {
+      "beat_id": 10,
+      "narration": "Earth would keep going; our systems would not.",
+      "speech_start": 49.42,
+      "speech_end": 53.46,
+      "match_confidence": 1.0,
+      "display_start": 49.42,
+      "display_end": 58.331,
+      "display_duration": 8.911
+    }
+  ]
+}

@@ -65,6 +65,8 @@ QH_ROOTS = {
     "world_style_id": ("world_style_director",),
     "world_style_hint": ("world_style_director",),
     "world_style_reference_id": ("world_style_director",),
+    # The hint only changes the final spoken CTA and its narration/render descendants.
+    "cta_hint": ("call_to_action",),
     "gemini_image_model": ("world_style_anchor",),
     # Affects only future image attempts; saving it must not spend credits rebuilding
     # already accepted artifacts.
@@ -1722,7 +1724,7 @@ def reconcile_scheduled_resumes() -> None:
 # continuity receipt and spend Gemini credits despite the DAG saying every image is
 # reusable.  Render/audio/publish roots are owned by the wrapper's later stages.
 QH_VISUAL_REGENERATION_ROOTS = frozenset({
-    "script_draft", "retention_edit", "character_resolution", "episode_director",
+    "script_draft", "retention_edit", "call_to_action", "character_resolution", "episode_director",
     "world_style_director", "world_style_anchor", "visual_plan",
     "world_keyframe_prompt", "world_keyframe", "book_cover_design", "book_cover",
     "flow_prompt_a", "flow_prompt_b", "flow_clip_a", "flow_clip_b",
@@ -3235,9 +3237,10 @@ class Handler(BaseHTTPRequestHandler):
                 # regenerations; they do not invalidate already accepted pixels.
                 known_qh.update(("image_qc_correction_policy", "beat_image_qc_disabled"))
                 if old_qh.get("flow_video_model") != new_qh.get("flow_video_model"): roots.add("opening_source_plan")
+                if old_qh.get("cta_hint", "") != new_qh.get("cta_hint", ""): roots.add("call_to_action")
                 if old_qh.get("flow_resolution") != new_qh.get("flow_resolution"): roots.update(("flow_clip_a", "flow_clip_b"))
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("opening_a_source_seconds", "opening_b_source_seconds", "opening_speed_tolerance")): roots.add("opening_source_plan")
-                known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds"))
+                known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds", "cta_hint"))
                 known_qh.add("opening_speed_tolerance")
                 if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("retention_edit")
                 known_qh.update(("min_duration_seconds", "max_duration_seconds"))
@@ -4121,6 +4124,7 @@ class Handler(BaseHTTPRequestHandler):
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
             world_style_policy = values.get("world_style_policy", ["auto"])[0].strip() or "auto"
             world_style_hint = form_text(values, "world_style_hint", 500) if values.get("world_style_hint") else ""
+            cta_hint = form_text(values, "cta_hint", 500) if values.get("cta_hint") else ""
             world_style_reference_id = values.get("world_style_reference_id", [""])[0].strip()
             reserve_subtitle_space = "reserve_subtitle_space" in values
             chatgpt_fallback_auto = "chatgpt_fallback_auto" in values
@@ -4303,6 +4307,7 @@ class Handler(BaseHTTPRequestHandler):
                 "world_style_policy": world_style_policy,
                 "world_style_id": world_style_id,
                 "world_style_hint": world_style_hint,
+                "cta_hint": cta_hint,
                 "min_duration_seconds": duration_min,
                 "max_duration_seconds": duration_max,
                 "gemini_image_model": gemini_image_model,

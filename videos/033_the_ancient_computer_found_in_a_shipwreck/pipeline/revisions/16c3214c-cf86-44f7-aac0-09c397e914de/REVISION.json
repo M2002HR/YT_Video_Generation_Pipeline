@@ -71,10 +71,10 @@
     10
   ],
   "feedback": "",
-  "status": "STOPPED",
+  "status": "DONE",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "started_at": "2026-09-14T18:43:51.595054+00:00",
   "pid": 2159061,
-  "completed_at": "2026-09-14T18:45:01.573849+00:00"
+  "completed_at": "2026-09-15T04:19:23.576504+00:00"
 }

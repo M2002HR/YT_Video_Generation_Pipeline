@@ -70,6 +70,17 @@ def test_render_only_config_revision_locks_out_visual_generation_even_on_resume(
     assert panel.config_revision_skips_qh_visual_stages(visual["pending_revision"]) is False
 
 
+def test_call_to_action_config_revision_runs_the_question_harvest_pipeline() -> None:
+    """CTA revisions must regenerate narration before the wrapper renders anything."""
+    record = _record(pending_revision={
+        "kind": "config",
+        "roots": ["call_to_action"],
+    })
+
+    assert "--skip-visual-stages" not in panel.pipeline_command(record)
+    assert panel.config_revision_skips_qh_visual_stages(record["pending_revision"]) is False
+
+
 def test_style_reference_is_hash_pinned_and_frozen_inside_the_run(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """An upload token must never leak into the launch brief or point outside its run."""
     from PIL import Image
@@ -952,6 +963,27 @@ def test_structured_config_revision_persists_opening_speed_tolerance() -> None:
     assert roots == {"opening_source_plan"}
     assert revised_brief["_qh"]["opening_speed_tolerance"] == 0.2
     assert changed == ["opening_speed_tolerance"]
+
+
+def test_structured_config_revision_maps_cta_hint_to_its_own_stage() -> None:
+    record = _record(
+        content_project="q_station", music_providers=["pixabay"], telegram_low_size=True,
+        telegram_original=False, commit_artifacts=False, motion={"enabled": False}, sfx={"enabled": False},
+    )
+    brief = {
+        "_qh": {"cta_hint": ""},
+        "_motion": {"enabled": False}, "_sfx": {"enabled": False},
+        "_subtitle": {"word_highlight": True},
+    }
+    voice = {"voice": "Mark - Natural Conversations", "model": "Eleven Multilingual v2"}
+    values = panel.frozen_values(record, brief, voice)
+    values["cta_hint"] = "Invite viewers to share their own experiences in the comments."
+
+    roots, revised_brief, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+
+    assert roots == {"call_to_action"}
+    assert revised_brief["_qh"]["cta_hint"] == values["cta_hint"]
+    assert changed == ["cta_hint"]
 
 
 def test_character_revision_starts_at_resolution_and_updates_profile_request() -> None:

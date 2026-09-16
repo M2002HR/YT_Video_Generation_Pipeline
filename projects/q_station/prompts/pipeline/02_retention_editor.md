@@ -53,7 +53,8 @@ script if it does not hold, so an edit that changes a segment must also update
 ## Checks before answering
 1. Is the hook still topic-specific rather than generic?
 2. Does the body pay off the hook?
-3. Is the CTA a single sentence of at most 12 words inviting like + subscribe?
+3. Is the CTA a single concise provisional sentence? A dedicated downstream CTA stage will
+   replace it with the final topic-aware spoken CTA.
 4. Are there no invented numbers?
 5. Does `full_narration` still concatenate the segments exactly?
 6. Is the output raw JSON with no fences?

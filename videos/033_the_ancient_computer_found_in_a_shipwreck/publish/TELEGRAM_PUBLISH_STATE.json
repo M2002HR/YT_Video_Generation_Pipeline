@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-15T04:19:19.644724+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-15T04:19:19.644496+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15093,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 3328087,
+      "sha256": "e405d29fd504eea0c9926501d96cd686214b93d0994df210b6d2de1400cddc22",
+      "duration_seconds": 54.579,
+      "elapsed_seconds": 7.268,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "033_the_ancient_computer_found_in_a_shipwreck",
+        "duration_seconds": 54.57,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 5.64,
+          "transition_end": 10.16
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 215.434,
+          "realtime_factor": 3.948,
+          "peak_child_rss_mb": 1319.0,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 033_the_ancient_computer_found_in_a_shipwreck\n⏱ Duration: 0:55\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:35 wall (3.948x realtime) · 2 thread(s) · peak 1319.0 MB\nArtifact: e405d29fd504 · Delivery: compressed"
+    }
+  }
+}

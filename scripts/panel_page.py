@@ -350,6 +350,8 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <textarea name=must_avoid maxlength=2000 placeholder="Claims, framing, spoilers or visual motifs to avoid."></textarea></label>
   <label>Source notes / verified facts <small>recommended for factual topics</small>
    <textarea name=source_notes maxlength=4000 placeholder="Paste only facts, links or quotations you have verified."></textarea></label>
+  <label>Call-to-action hint <small>optional direction for the final CTA; it is rewritten naturally, not read verbatim</small>
+   <textarea name=cta_hint maxlength=500 placeholder="e.g. invite viewers to share their experiences or suggest the next question"></textarea></label>
  </fieldset>
 
  <fieldset><legend>Length &amp; format</legend>

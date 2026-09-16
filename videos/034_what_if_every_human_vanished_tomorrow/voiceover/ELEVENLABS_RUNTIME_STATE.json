@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "video_id": "034",
+  "created_at": "2026-09-14T19:56:32.598784+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/034_what_if_every_human_vanished_tomorrow/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "dcf3378b4aa0fb5f57abc7e84b8f9bf4d8ccdceabd700813ef1268e837a25b51",
+  "settings": {
+    "voice": "Seer Morganna - Intimidating",
+    "model": "Eleven Multilingual v2",
+    "speed": 1.0,
+    "stability": 0.4,
+    "similarity": 0.4,
+    "style": 0.25,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-14T19:56:40.001884+00:00",
+      "elapsed_seconds": 7.382
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-14T19:56:55.817942+00:00",
+      "elapsed_seconds": 15.816,
+      "settings": {
+        "voice": "Seer Morganna - Intimidating",
+        "model": "Eleven Multilingual v2",
+        "speed": 1.0,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.25,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Seer Morganna - Intimidating, and Clear",
+        "model": "Eleven Multilingual v2",
+        "speed": 1,
+        "stability": 0.4,
+        "similarity": 0.4,
+        "style": 0.25,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "ui_capabilities": {
+        "speaker_boost": {
+          "requested": false,
+          "available_in_current_ui": false,
+          "effective": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-14T19:56:55.916302+00:00",
+      "elapsed_seconds": 15.914,
+      "characters": 730
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-14T19:56:57.235725+00:00",
+      "elapsed_seconds": 1.319,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "selector_keyboard",
+        "delay_seconds": 0.814,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-14T19:57:14.426197+00:00",
+      "elapsed_seconds": 18.509,
+      "choice": "Download latest",
+      "retry": false
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-09-14T19:57:20.465424+00:00",
+      "elapsed_seconds": 24.549,
+      "bytes": 949950,
+      "output": "assets/audio/narration.mp3"
+    }
+  ],
+  "updated_at": "2026-09-14T19:57:20.465432+00:00",
+  "submitted_at": "2026-09-14T19:56:57.235246+00:00",
+  "download_choice": "Download latest",
+  "download_requested_at": 1789415834.4258614,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-14T19:57:20.465359+00:00"
+}

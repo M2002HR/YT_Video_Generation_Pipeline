@@ -115,6 +115,15 @@ def test_graph_marks_pre_cta_closing_gap_stale_and_exposes_missing_beat(tmp_path
     assert nodes["beat_image_003"]["status"] == "PENDING"
 
 
+def test_cta_regeneration_rebuilds_spoken_delivery_without_rebuilding_body_images(tmp_path: Path) -> None:
+    project = project_with_beats(tmp_path)
+    write_json(project / "launch/LAUNCH_REQUEST.json", {"content_project": "q_station"})
+    plan = regeneration_plan(project, ["call_to_action"])
+    affected, reused = set(plan["affected_nodes"]), set(plan["reused_nodes"])
+    assert {"call_to_action", "elevenlabs_voiceover", "ajil_alignment", "opening_source_plan", "flow_clip_a", "build_timeline", "render_baseline"} <= affected
+    assert {"visual_plan", "body_images", "beat_image_001", "world_keyframe", "episode_director"} <= reused
+
+
 def test_beat_regeneration_cascades_continuity_but_reuses_independent_audio(tmp_path: Path) -> None:
     project = project_with_beats(tmp_path)
     plan = regeneration_plan(project, ["beat_image_002"])

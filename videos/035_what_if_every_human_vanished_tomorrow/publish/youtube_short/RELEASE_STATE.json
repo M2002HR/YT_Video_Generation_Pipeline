@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "started_at": "2026-09-15T17:20:27.157207+00:00",
+  "video": "035_what_if_every_human_vanished_tomorrow",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "5dc099f2d43e8b13a5f6309dad67755fb8394bafe20a1f0acbae8aa5b5a8f1ae",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-15T17:20:31.677133+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-15T17:22:14.056088+00:00",
+      "chatgpt_job_id": "eb43ee7b-9abd-4492-a9e8-17c68501bcd8"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-15T17:22:14.056098+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-15T17:23:47.408474+00:00",
+      "chatgpt_job_id": "c6d8e0a4-cf68-4f4c-8e80-b3b6998670a8",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "SKIPPED",
+      "at": "2026-09-15T17:23:47.409298+00:00"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-15T17:23:47.409433+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-15T17:23:47.409438+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-15T17:25:49.255372+00:00",
+      "messages": {
+        "master": 15167,
+        "upload_markdown": 15169,
+        "summary": 15168,
+        "metadata_json": 15170
+      }
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": false,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": ""
+  },
+  "completed_at": "2026-09-15T17:25:49.255379+00:00",
+  "metadata": "publish/youtube_short/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "master": 15167,
+    "upload_markdown": 15169,
+    "summary": 15168,
+    "metadata_json": 15170
+  },
+  "upload": "publish/youtube_short/YOUTUBE_SHORT_UPLOAD.md"
+}
