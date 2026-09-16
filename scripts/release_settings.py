@@ -20,6 +20,7 @@ THUMBNAIL_DEFAULTS: dict[str, Any] = {
     "concept_count": "auto", "diversity": "high", "layout_mode": "auto",
     "allowed_layouts": list(LAYOUTS), "tension": "strong", "brand_profile": "q_station_v1",
     "aspect_ratio": "9:16", "image_model": "inherit_episode", "quality": "native",
+    "image_fallback": "off",
     "thumbnail_note": "", "must_include": "", "must_avoid": "",
     "text_mode": "auto", "manual_text": "", "candidate_text_overrides": {},
     "text_renderer": "local", "font_id": "dejavu_sans_bold", "case_mode": "auto",
@@ -101,7 +102,7 @@ def normalize_release_settings(value: Any) -> dict[str, Any]:
     if thumb["auto_min"] > thumb["auto_max"]:
         raise ValueError("Release setting thumbnail.auto_min cannot exceed auto_max.")
     if thumb["concept_count"] != "auto": thumb["concept_count"] = _integer(thumb["concept_count"], "thumbnail.concept_count", thumb["count"] if thumb["count_mode"] == "fixed" else thumb["auto_min"], 12)
-    for name, allowed in {"diversity": ("low", "medium", "high"), "layout_mode": ("auto", *LAYOUTS), "tension": ("restrained", "strong", "dramatic"), "brand_profile": BRAND_PROFILES, "aspect_ratio": ("9:16",), "image_model": ("inherit_episode",), "quality": ("native",), "text_mode": ("auto", "manual", "candidate_overrides"), "text_renderer": ("local",), "font_id": ("dejavu_sans_bold",), "case_mode": ("auto", "uppercase", "sentence_case"), "text_position": ("auto", "top", "bottom", "left", "right"), "badge_asset_id": ("q_station_mark",), "badge_position": ("top_left", "top_right", "bottom_left", "bottom_right"), "reference_mode": ("master", "timestamps"), "review_preset": ("balanced", "clarity_first", "brand_first"), "export_format": ("png", "jpeg", "both"), "delivery_mode": ("all_final_candidates",)}.items():
+    for name, allowed in {"diversity": ("low", "medium", "high"), "layout_mode": ("auto", *LAYOUTS), "tension": ("restrained", "strong", "dramatic"), "brand_profile": BRAND_PROFILES, "aspect_ratio": ("9:16",), "image_model": ("inherit_episode",), "quality": ("native",), "image_fallback": ("off", "chatgpt_on_gemini_failure"), "text_mode": ("auto", "manual", "candidate_overrides"), "text_renderer": ("local",), "font_id": ("dejavu_sans_bold",), "case_mode": ("auto", "uppercase", "sentence_case"), "text_position": ("auto", "top", "bottom", "left", "right"), "badge_asset_id": ("q_station_mark",), "badge_position": ("top_left", "top_right", "bottom_left", "bottom_right"), "reference_mode": ("master", "timestamps"), "review_preset": ("balanced", "clarity_first", "brand_first"), "export_format": ("png", "jpeg", "both"), "delivery_mode": ("all_final_candidates",)}.items():
         thumb[name] = _enum(thumb[name], f"thumbnail.{name}", tuple(allowed))
     layouts = thumb["allowed_layouts"]
     if not isinstance(layouts, list) or not layouts or any(item not in LAYOUTS for item in layouts):

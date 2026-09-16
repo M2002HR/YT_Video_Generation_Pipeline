@@ -29,7 +29,7 @@ if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
 from content_projects import load_content_project, normalize_gemini_model  # noqa: E402
-from ordak_jobs import OrdakJobs, OrdakJobError, Reference, sha256_file  # noqa: E402
+from ordak_jobs import Generation, OrdakJobs, OrdakJobError, Reference, sha256_file  # noqa: E402
 from pipeline_notifier import NotifierSettings  # noqa: E402
 from run_question_harvest_pipeline import Runner  # noqa: E402
 from release_settings import RELEASE_DEFAULTS as SHARED_RELEASE_DEFAULTS, normalize_release_settings, settings_fingerprint  # noqa: E402
@@ -696,7 +696,32 @@ def generate_thumbnail_batch(
         runner = Runner(jobs, None, ReleaseImageState(paths["root"]), chatgpt_fallback_mode=image_contract["chatgpt_fallback_mode"], image_qc_correction_policy=str(thumbnail_settings["corrections_per_candidate"]))
         # Runner owns Ordak Generation and attachment roles.  The artwork destination is
         # candidate-local, so corrective attempts are never confused with another concept.
-        result = runner.image("release_thumbnail_" + plan["candidate_id"], prompt, visual_references, model=image_contract["model"], destination=artwork, retain_candidates_dir=candidate_dir / "attempts", skip_content_qc=not thumbnail_settings["review_enabled"])
+        generated_provider = "gemini"
+        fallback_from: dict[str, str] | None = None
+        try:
+            result = runner.image("release_thumbnail_" + plan["candidate_id"], prompt, visual_references, model=image_contract["model"], destination=artwork, retain_candidates_dir=candidate_dir / "attempts", skip_content_qc=not thumbnail_settings["review_enabled"])
+        except Exception as gemini_error:
+            if thumbnail_settings["image_fallback"] != "chatgpt_on_gemini_failure":
+                raise
+            # This is opt-in and auditable—not a hidden provider substitution. ChatGPT
+            # receives the same bounded references through Ordak, and no placeholder is
+            # ever treated as a generated image.
+            fallback_from = {"provider": "gemini", "error": f"{type(gemini_error).__name__}: {gemini_error}"[:1200]}
+            try:
+                result = jobs.run(
+                    prompt, provider="chatgpt", mode="image_generate",
+                    generation=Generation(quality="best", aspect_ratio=thumbnail_settings["aspect_ratio"]),
+                    references=visual_references, start_new_chat=True, attempts=1,
+                )
+                if len(result.output_images) != 1:
+                    raise RuntimeError(f"ChatGPT fallback returned {len(result.output_images)} images, expected exactly one.")
+                jobs.download(result.output_images[0], artwork)
+                generated_provider = "chatgpt"
+            except Exception as fallback_error:
+                raise RuntimeError(
+                    "Gemini thumbnail generation failed and the enabled ChatGPT image fallback also failed: "
+                    f"Gemini={fallback_from['error']}; ChatGPT={type(fallback_error).__name__}: {fallback_error}"
+                ) from fallback_error
         artwork_info = validate_thumbnail(artwork)
         layout = compose(artwork, final, plan["headline"], thumbnail_settings, plan["layout_id"])
         final_info = validate_thumbnail(final)
@@ -708,7 +733,7 @@ def generate_thumbnail_batch(
         else:
             review = review_skipped(final_info["sha256"])
         write_json(candidate_dir / "review.json", review)
-        results.append({"candidate_id": plan["candidate_id"], "layout_id": plan["layout_id"], "headline": plan["headline"], "evidence_anchor": plan["evidence_anchor"], "artwork_path": str(artwork), "final_path": str(final), "preview_path": str(final.with_name("preview_small.jpg")), "artwork": artwork_info, "final": final_info, "review": review, "gemini_job_id": result.job_id, "gemini_receipt": result.generation_receipt})
+        results.append({"candidate_id": plan["candidate_id"], "layout_id": plan["layout_id"], "headline": plan["headline"], "evidence_anchor": plan["evidence_anchor"], "artwork_path": str(artwork), "final_path": str(final), "preview_path": str(final.with_name("preview_small.jpg")), "artwork": artwork_info, "final": final_info, "review": review, "generated_provider": generated_provider, "generation_job_id": result.job_id, "generation_receipt": result.generation_receipt, "fallback_from": fallback_from})
     selection = select_thumbnail(results, thumbnail_settings["review_preset"])
     selection.update({"requested_count": len(plans), "generated_count": len(results), "eligible_count": sum(1 for x in results if x["review"]["eligible"]), "delivery_mode": "all_final_candidates"})
     write_json(paths["review"], {"schema_version": 2, "candidates": results})
