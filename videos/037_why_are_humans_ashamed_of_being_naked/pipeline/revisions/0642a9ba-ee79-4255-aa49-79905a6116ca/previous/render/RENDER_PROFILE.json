@@ -68,30 +68,6 @@
         "to_beat_id": "4",
         "type": "fade",
         "duration": 0.2
-      },
-      {
-        "from_beat_id": "4",
-        "to_beat_id": "5",
-        "type": "fade",
-        "duration": 0.2
-      },
-      {
-        "from_beat_id": "5",
-        "to_beat_id": "6",
-        "type": "fade",
-        "duration": 0.2
-      },
-      {
-        "from_beat_id": "6",
-        "to_beat_id": "7",
-        "type": "fade",
-        "duration": 0.2
-      },
-      {
-        "from_beat_id": "7",
-        "to_beat_id": "8",
-        "type": "fade",
-        "duration": 0.2
       }
     ]
   },
@@ -136,15 +112,15 @@
       "text": "Why Are Humans Ashamed of Being Naked?",
       "position": "top_center",
       "font_name": "Wonderbar",
-      "font_size": 110,
+      "font_size": 90,
       "bold": false,
       "italic": false,
       "text_align": "center",
-      "max_characters_per_line": 24,
+      "max_characters_per_line": 18,
       "line_spacing": 0.0,
       "max_width_percent": 90.0,
       "margin_x_percent": 0.0,
-      "margin_y_percent": 6.0,
+      "margin_y_percent": 4.0,
       "logo_gap_percent": 1.0,
       "custom_x_percent": 23.0,
       "custom_y_percent": 2.5,
@@ -156,7 +132,7 @@
       "enabled": true,
       "text": "Q Station",
       "position": "bottom_center",
-      "font_name": "Roleo",
+      "font_name": "Gruze Drip",
       "font_size": 150,
       "opacity": 0.35,
       "bold": false,
@@ -166,7 +142,7 @@
       "line_spacing": 6.0,
       "max_width_percent": 90.0,
       "margin_x_percent": 3.0,
-      "margin_y_percent": 9.0,
+      "margin_y_percent": 8.5,
       "logo_gap_percent": 1.0,
       "custom_x_percent": 80.0,
       "custom_y_percent": 88.0,

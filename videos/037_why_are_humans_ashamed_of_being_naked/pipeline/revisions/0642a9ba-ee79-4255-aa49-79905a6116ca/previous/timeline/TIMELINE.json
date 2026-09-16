@@ -115,8 +115,8 @@
       "motion": "zoom_in",
       "narration": "Expected staring or judgment can trigger shame.",
       "transition_in": "fade",
-      "transition_seconds": 0.2,
-      "transition_source": "manual"
+      "transition_seconds": 0.3,
+      "transition_source": "default"
     },
     {
       "beat_id": 6,
@@ -132,8 +132,8 @@
       "motion": "zoom_in",
       "narration": "Galleries may present nude statues as ordinary art.",
       "transition_in": "fade",
-      "transition_seconds": 0.2,
-      "transition_source": "manual"
+      "transition_seconds": 0.3,
+      "transition_source": "default"
     },
     {
       "beat_id": 7,
@@ -149,8 +149,8 @@
       "motion": "zoom_in",
       "narration": "Changing booths usually signal concealment from strangers.",
       "transition_in": "fade",
-      "transition_seconds": 0.2,
-      "transition_source": "manual"
+      "transition_seconds": 0.3,
+      "transition_source": "default"
     },
     {
       "beat_id": 8,
@@ -166,8 +166,8 @@
       "motion": "zoom_out",
       "narration": "The skin stays ordinary; the social meaning changes.",
       "transition_in": "fade",
-      "transition_seconds": 0.2,
-      "transition_source": "manual"
+      "transition_seconds": 0.3,
+      "transition_source": "default"
     }
   ],
   "subtitles": [

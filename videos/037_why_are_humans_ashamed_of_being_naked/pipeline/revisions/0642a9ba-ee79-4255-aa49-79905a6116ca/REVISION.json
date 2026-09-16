@@ -1,17 +1,14 @@
 {
   "schema_version": 2,
-  "revision_id": "1a051d45-b014-4293-bec0-052753a9c305",
+  "revision_id": "0642a9ba-ee79-4255-aa49-79905a6116ca",
   "kind": "config",
-  "created_at": "2026-09-16T12:57:14.075602+00:00",
+  "created_at": "2026-09-16T13:23:15.119301+00:00",
   "roots": [
-    "background_music",
     "render_profile"
   ],
   "affected_nodes": [
-    "background_music",
     "build_timeline",
     "render_profile",
-    "audio_mix_profile",
     "render_baseline",
     "qc_baseline",
     "polish_audio",
@@ -42,10 +39,12 @@
     "flow_clip_a",
     "flow_clip_b",
     "elevenlabs_voiceover",
+    "background_music",
     "ajil_alignment",
     "opening_trim",
     "body_images",
     "transition_direction",
+    "audio_mix_profile",
     "beat_image_001",
     "beat_image_002",
     "beat_image_003",
@@ -61,13 +60,9 @@
     "sfx_acquire"
   ],
   "archived_artifacts": [
-    "assets/music/freesound_background.mp3",
-    "music/MUSIC_SELECTION.json",
-    "music/MUSIC_PLAN.json",
     "timeline/TIMELINE.json",
     "timeline/SUBTITLES.ass",
     "render/RENDER_PROFILE.json",
-    "audio_mix/AUDIO_MIX_PROFILE.json",
     "assets/renders/final.mp4",
     "render/RENDER_STATS.json",
     "render/QC_REPORT.json",
@@ -80,20 +75,19 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "DONE",
+  "status": "RUNNING",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "skip_visual_stages": true,
-  "started_at": "2026-09-16T12:57:14.077031+00:00",
-  "pid": 3349821,
+  "started_at": "2026-09-16T13:23:15.120187+00:00",
+  "pid": 3361877,
   "changed_fields": [
-    "title_font",
     "title_font_size",
     "title_max_characters_per_line",
-    "watermark_font_size",
-    "watermark_max_words_per_line",
-    "music_upload_id"
+    "title_margin_y_percent",
+    "watermark_font",
+    "watermark_margin_y_percent",
+    "motion_transition_overrides"
   ],
-  "config_revision_id": "791a0fba-5022-4f6b-b7c0-ebfe4d8fb333",
-  "completed_at": "2026-09-16T13:01:05.859018+00:00"
+  "config_revision_id": "47d3c396-8ce2-4d2c-8fb5-b5ee0e5abe45"
 }
