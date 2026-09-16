@@ -15,7 +15,8 @@ subject interesting and the tone adult; simplify the language, not the facts or 
 - Preserve facts, numbers, units, scope, negation and uncertainty (may/can/often/some). Never turn
   a possibility into certainty, erase an important distinction, or invent an explanatory fact.
 - The hook, entry clue, body, closing and CTA all follow this policy. Use the actual scene or
-  a concrete comparison, not vague 'social meaning' language. Ask a specific, easy CTA question.
+  a concrete comparison, not vague 'social meaning' language. Make the CTA easy to answer or
+  act on; preserve the requested engagement intent instead of forcing a comment question.
 - Preserve the selected story, character tone, narration keys and visual-beat contract. A richer
   visual-direction vocabulary is allowed: this policy targets ONLY words the viewer hears.
 
