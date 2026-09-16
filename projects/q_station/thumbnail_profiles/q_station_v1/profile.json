@@ -3,7 +3,7 @@
   "id": "q_station_v1",
   "display_name": "Q Station v1",
   "layouts": ["character_left", "character_right", "contrast_split", "discovery_focus"],
-  "font_id": "dejavu_sans_bold",
+  "font_id": "montserrat_bold",
   "palette": {"text_fill": "#FFFFFF", "text_outline": "#111827", "accent": "#FFD166"},
   "badge_asset_id": "q_station_mark",
   "contract": "Artwork is text-free; the local compositor renders headline, badge and frame."

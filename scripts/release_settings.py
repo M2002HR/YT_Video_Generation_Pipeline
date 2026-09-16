@@ -14,6 +14,13 @@ from typing import Any
 
 LAYOUTS = ("character_left", "character_right", "contrast_split", "discovery_focus")
 BRAND_PROFILES = ("q_station_v1",)
+THUMBNAIL_FONTS = (
+    ("dejavu_sans_bold", "DejaVu Sans Bold"), ("montserrat_bold", "Montserrat Bold"),
+    ("poppins", "Poppins"), ("roboto_bold", "Roboto Bold"), ("open_sans_bold", "Open Sans Bold"),
+    ("source_sans_3_bold", "Source Sans 3 Bold"), ("atkinson_hyperlegible_bold", "Atkinson Hyperlegible Bold"),
+    ("bebas_neue", "Bebas Neue"), ("oswald_bold", "Oswald Bold"),
+)
+THUMBNAIL_FONT_IDS = tuple(font_id for font_id, _name in THUMBNAIL_FONTS)
 
 THUMBNAIL_DEFAULTS: dict[str, Any] = {
     "count_mode": "fixed", "count": 3, "auto_min": 2, "auto_max": 4,
@@ -23,14 +30,14 @@ THUMBNAIL_DEFAULTS: dict[str, Any] = {
     "image_fallback": "off",
     "thumbnail_note": "", "must_include": "", "must_avoid": "",
     "text_mode": "auto", "manual_text": "", "candidate_text_overrides": {},
-    "text_renderer": "local", "font_id": "dejavu_sans_bold", "case_mode": "auto",
+    "text_renderer": "local", "font_id": "montserrat_bold", "case_mode": "auto",
     "text_fill": "#FFFFFF", "text_outline": "#111827", "outline_width": 0.012,
-    "shadow": True, "text_background": False, "line_spacing": 0.04,
+    "shadow": True, "text_background": True, "line_spacing": 0.035,
     "text_position": "auto", "text_box_width": 0.82, "safe_margin": 0.055,
     # A 9:16 native 2160px canvas needs a lower floor than a 1080px preview: this
     # still yields a 65px font while allowing ordinary four-to-six word headlines to wrap.
-    "text_min_scale": 0.03, "text_max_scale": 0.115, "max_words": 6,
-    "max_characters": 40, "max_lines": 2, "coordinates": None,
+    "text_min_scale": 0.04, "text_max_scale": 0.15, "max_words": 6,
+    "max_characters": 40, "max_lines": 3, "coordinates": None,
     "badge_enabled": True, "badge_asset_id": "q_station_mark", "badge_position": "bottom_right", "badge_scale": 0.07,
     "reference_mode": "master", "reference_timestamps": [], "max_references": 5,
     "corrections_per_candidate": 1, "max_image_generations": 6,
@@ -102,7 +109,7 @@ def normalize_release_settings(value: Any) -> dict[str, Any]:
     if thumb["auto_min"] > thumb["auto_max"]:
         raise ValueError("Release setting thumbnail.auto_min cannot exceed auto_max.")
     if thumb["concept_count"] != "auto": thumb["concept_count"] = _integer(thumb["concept_count"], "thumbnail.concept_count", thumb["count"] if thumb["count_mode"] == "fixed" else thumb["auto_min"], 12)
-    for name, allowed in {"diversity": ("low", "medium", "high"), "layout_mode": ("auto", *LAYOUTS), "tension": ("restrained", "strong", "dramatic"), "brand_profile": BRAND_PROFILES, "aspect_ratio": ("9:16",), "image_model": ("inherit_episode",), "quality": ("native",), "image_fallback": ("off", "chatgpt_on_gemini_failure"), "text_mode": ("auto", "manual", "candidate_overrides"), "text_renderer": ("local",), "font_id": ("dejavu_sans_bold",), "case_mode": ("auto", "uppercase", "sentence_case"), "text_position": ("auto", "top", "bottom", "left", "right"), "badge_asset_id": ("q_station_mark",), "badge_position": ("top_left", "top_right", "bottom_left", "bottom_right"), "reference_mode": ("master", "timestamps"), "review_preset": ("balanced", "clarity_first", "brand_first"), "export_format": ("png", "jpeg", "both"), "delivery_mode": ("all_final_candidates",)}.items():
+    for name, allowed in {"diversity": ("low", "medium", "high"), "layout_mode": ("auto", *LAYOUTS), "tension": ("restrained", "strong", "dramatic"), "brand_profile": BRAND_PROFILES, "aspect_ratio": ("9:16",), "image_model": ("inherit_episode",), "quality": ("native",), "image_fallback": ("off", "chatgpt_on_gemini_failure"), "text_mode": ("auto", "manual", "candidate_overrides"), "text_renderer": ("local",), "font_id": THUMBNAIL_FONT_IDS, "case_mode": ("auto", "uppercase", "sentence_case"), "text_position": ("auto", "top", "bottom", "left", "right"), "badge_asset_id": ("q_station_mark",), "badge_position": ("top_left", "top_right", "bottom_left", "bottom_right"), "reference_mode": ("master", "timestamps"), "review_preset": ("balanced", "clarity_first", "brand_first"), "export_format": ("png", "jpeg", "both"), "delivery_mode": ("all_final_candidates",)}.items():
         thumb[name] = _enum(thumb[name], f"thumbnail.{name}", tuple(allowed))
     layouts = thumb["allowed_layouts"]
     if not isinstance(layouts, list) or not layouts or any(item not in LAYOUTS for item in layouts):
@@ -148,4 +155,4 @@ def settings_fingerprint(settings: dict[str, Any]) -> str:
 
 def public_schema() -> dict[str, Any]:
     """A compact UI contract; validation remains server-side."""
-    return {"schema_version": 2, "defaults": copy.deepcopy(RELEASE_DEFAULTS), "capabilities": {"aspect_ratios": ["9:16"], "layouts": list(LAYOUTS), "brand_profiles": list(BRAND_PROFILES), "fonts": [{"id": "dejavu_sans_bold", "name": "DejaVu Sans Bold", "fallback": "DejaVu Sans"}], "delivery_mode": "all_final_candidates", "max_candidates": 6, "max_concepts": 12}}
+    return {"schema_version": 2, "defaults": copy.deepcopy(RELEASE_DEFAULTS), "capabilities": {"aspect_ratios": ["9:16"], "layouts": list(LAYOUTS), "brand_profiles": list(BRAND_PROFILES), "fonts": [{"id": font_id, "name": name, "fallback": "DejaVu Sans Bold"} for font_id, name in THUMBNAIL_FONTS], "delivery_mode": "all_final_candidates", "max_candidates": 6, "max_concepts": 12}}

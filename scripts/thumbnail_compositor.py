@@ -11,18 +11,25 @@ from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
-FONT_CANDIDATES = (
-    Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
-    Path("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf"),
-)
+FONT_FILES = {
+    "dejavu_sans_bold": Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+    "montserrat_bold": Path("/usr/share/fonts/subtitle/Montserrat-Bold.ttf"),
+    "poppins": Path("/usr/share/fonts/subtitle/poppins-v24-latin-regular.ttf"),
+    "roboto_bold": Path("/usr/share/fonts/subtitle/roboto-v51-latin-700.ttf"),
+    "open_sans_bold": Path("/usr/share/fonts/subtitle/open-sans-v44-latin-700.ttf"),
+    "source_sans_3_bold": Path("/usr/share/fonts/subtitle/SourceSans3-Bold.ttf"),
+    "atkinson_hyperlegible_bold": Path("/usr/share/fonts/subtitle/atkinson-hyperlegible-v12-latin-700.ttf"),
+    "bebas_neue": Path("/usr/share/fonts/subtitle/bebas-neue-v16-latin-regular.ttf"),
+    "oswald_bold": Path("/usr/share/fonts/subtitle/oswald-v57-latin-700.ttf"),
+}
 
 def resolve_font(font_id: str = "dejavu_sans_bold") -> tuple[Path, str]:
-    if font_id != "dejavu_sans_bold":
+    path = FONT_FILES.get(font_id)
+    if path is None:
         raise ValueError("Unknown thumbnail font.")
-    for path in FONT_CANDIDATES:
-        if path.is_file():
-            return path, hashlib.sha256(path.read_bytes()).hexdigest()
-    raise RuntimeError("Thumbnail font DejaVu Sans Bold is not installed; install a licensed font before Release.")
+    if not path.is_file():
+        raise RuntimeError(f"Thumbnail font {font_id} is not installed; choose another catalogued font before Release.")
+    return path, hashlib.sha256(path.read_bytes()).hexdigest()
 
 def _wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, width: int, stroke: int, max_lines: int) -> list[str]:
     words = text.split()
