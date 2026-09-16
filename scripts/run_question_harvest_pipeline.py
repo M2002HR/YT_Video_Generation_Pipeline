@@ -73,6 +73,7 @@ from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprint
 from presentation_runtime import PresentationContext
 import opening_runtime as openings
+import narration_language as language
 
 # Initialized from the resolved project in main. Kept as module globals for compatibility
 # with existing helpers/tests that monkeypatch catalog roots.
@@ -586,6 +587,9 @@ class Runner:
     @staticmethod
     def _fallback_stage(stage: str) -> str:
         """Map internal JSON-attempt labels back to the visible pipeline node."""
+        for owner in ("retention_edit", "call_to_action"):
+            if stage.startswith(owner + "_language_review_"):
+                return owner
         if stage.startswith("opening_concept_"):
             return "opening_concept"
         if stage.startswith("episode_director_story_review_"):
@@ -1311,7 +1315,11 @@ def validate_script_plan(
 def resolve_prompt(content_project: Any, name: str) -> str:
     from content_projects import resolve_pipeline_prompt
 
-    return resolve_pipeline_prompt(content_project, name).read_text(encoding="utf-8")
+    path = resolve_pipeline_prompt(content_project, name)
+    try:
+        return language.expand_policy(path.read_text(encoding="utf-8"), path.parent)
+    except (OSError, language.LanguageContractError) as exc:
+        raise StageFailure("prompt_fill", "FAILED_VALIDATION", f"Cannot load spoken-English policy: {exc}") from exc
 
 
 def fill(template: str, **values: str) -> str:
@@ -1427,12 +1435,26 @@ def stage_opening_concept(
             "policy_version": openings.POLICY_VERSION, "brief": editorial,
             "character": character_context, "presentation": presentation_context,
             "writer_sha256": sha256_text(writer), "reviewer_sha256": sha256_text(reviewer),
+            "language_policy_version": language.POLICY_VERSION,
         }
         input_hash = openings.fingerprint(base_inputs)
         if target.is_file() and runner.state.done(stage):
             saved = load_opening_concept(project)
             if saved.get("input_fingerprint") != input_hash:
-                raise StageFailure(stage, "FAILED_VALIDATION", "Opening inputs changed. Use Revise/regenerate opening_concept so narration and dependent media invalidate together.")
+                # A language-policy rollout is not permission to rewrite already approved
+                # stories/audio. Preserve pre-policy concepts only when their verified frozen
+                # editorial/character/presentation inputs still match exactly.
+                context_file = project / "creative/OPENING_CONTEXT.json"
+                frozen = load_json(context_file) if context_file.is_file() else {}
+                old_keys = ("policy_version", "brief", "character", "presentation", "writer_sha256", "reviewer_sha256")
+                unchanged_legacy = (
+                    isinstance(frozen, dict) and "language_policy_version" not in frozen
+                    and all(key in frozen for key in old_keys)
+                    and openings.fingerprint({key: frozen[key] for key in old_keys}) == saved.get("input_fingerprint")
+                    and all(frozen.get(key) == base_inputs[key] for key in ("policy_version", "brief", "character", "presentation"))
+                )
+                if not unchanged_legacy:
+                    raise StageFailure(stage, "FAILED_VALIDATION", "Opening inputs changed. Use Revise/regenerate opening_concept so narration and dependent media invalidate together.")
             runner.stage_reused(stage, target.name)
             return saved
         started = runner.stage_start(stage)
@@ -1497,12 +1519,97 @@ def opening_writer_values(character: CharacterContext | None, concept: dict[str,
     }
 
 
-def _record_text_input(project: Path, stage: str, prompt: str, concept: dict[str, Any] | None) -> None:
+def _record_text_input(
+    project: Path, stage: str, prompt: str, concept: dict[str, Any] | None,
+    *, language_review_required: bool = False,
+) -> None:
+    metadata = {
+        "prompt_sha256": sha256_text(prompt),
+        "language_policy_version": language.POLICY_VERSION,
+        "language_review_required": language_review_required,
+    }
     if concept:
-        save_json(project / "creative" / f"{stage}.inputs.json", {
-            "policy_version": openings.POLICY_VERSION, "concept_id": concept["concept_id"],
-            "prompt_sha256": sha256_text(prompt),
-        })
+        metadata.update({"policy_version": openings.POLICY_VERSION, "concept_id": concept["concept_id"]})
+    save_json(project / "creative" / f"{stage}.inputs.json", metadata)
+
+
+def _require_language_receipt(
+    project: Path, stage: str, plan: dict[str, Any], entry_key: str, scope: str,
+    *, reference: dict[str, Any] | None = None,
+) -> None:
+    """Never silently regenerate approved speech because a new review receipt is missing.
+
+    Old completed work has no marker and remains resumable. New work must keep the proof that
+    its exact spoken words passed review. Explicit Revise owns rebuilding timed descendants.
+    """
+    metadata_path = project / ("creative/retention_edit.inputs.json" if scope == "core" else "creative/CALL_TO_ACTION.json")
+    metadata = load_json(metadata_path) if metadata_path.is_file() else {}
+    if not isinstance(metadata, dict) or not metadata.get("language_review_required"):
+        return
+    try:
+        report = load_json(project / language.REPORT_PATHS[scope])
+    except (OSError, ValueError):
+        report = None
+    segments = language.spoken_segments(plan, entry_key, scope)
+    if (not language.report_matches(report, segments, scope)
+            or (reference is not None and report.get("reference_fingerprint") != language.fingerprint(reference))):
+        raise StageFailure(stage, "FAILED_VALIDATION", f"Stored {scope} language review is missing or stale. Use Revise from {stage} before rebuilding narration/media.", error_code="language_review_stale")
+
+
+def core_language_reference(draft: dict[str, Any], entry_key: str, concept: dict[str, Any] | None) -> dict[str, Any]:
+    reference = {"original_core": language.spoken_segments(draft, entry_key, "core")}
+    if concept:
+        selected = concept.get("selected") or {}
+        reference["selected_promise"] = {key: selected.get(key) for key in ("factual_anchor", "payoff", "claim_mode")}
+    return reference
+
+
+def _language_correction_prompt(base: str, instruction: str, report: dict[str, Any], stage: str) -> str:
+    prefix = base + "\n\n" + instruction + "\nRequired fixes:\n"
+    try:
+        # Feedback is optional review context: fit whole issues, never truncate source notes.
+        feedback = language.correction_feedback(report, max_chars=ORDAK_QUESTION_LIMIT - len(prefix))
+    except language.LanguageContractError as exc:
+        raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
+    return prefix + feedback
+
+
+def review_spoken_language(
+    runner: Runner, project: Path, content_project: Any, stage: str, scope: str,
+    plan: dict[str, Any], presentation: PresentationContext, brief: str,
+    reference: dict[str, Any], attempts: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Independent, evidence-based text review owned by the editor/CTA stage, not staging.
+
+    The checker can request wording changes but cannot modify the script itself. The normal
+    script validator checks every edited result before it may reach audio or visual generation.
+    """
+    segments = language.spoken_segments(plan, presentation.segment_key, scope)
+    template = resolve_prompt(content_project, language.REVIEWER_FILE)
+    prompt = fill(
+        template, LANGUAGE_SCOPE=scope, VIDEO_BRIEF=brief,
+        REFERENCE_SCRIPT=openings.compact(reference), SPOKEN_SEGMENTS=openings.compact(segments),
+    )
+    def validate(data: Any) -> dict[str, Any]:
+        try:
+            return language.validate_review(data, segments)
+        except language.LanguageContractError as exc:
+            raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
+    checked = ask_with_correction(
+        runner, f"{stage}_language_review_{len(attempts) + 1}", prompt, validate, attempts=2,
+        hint="Review actual supplied segment text and return evidence, not a rewritten script.",
+    )
+    attempts.append({"attempt": len(attempts) + 1, "segments": segments, **checked})
+    report = {
+        **checked, "policy_version": language.POLICY_VERSION, "scope": scope,
+        "content_fingerprint": language.fingerprint(segments),
+        "reference_fingerprint": language.fingerprint(reference),
+        "policy_sha256": sha256_text(language.policy_text(content_project.root / "prompts/pipeline")),
+        "reviewer_prompt_sha256": sha256_text(template), "input_fingerprint": sha256_text(prompt),
+        "attempts": attempts, "created_at": utcnow(),
+    }
+    save_json(project / language.REPORT_PATHS[scope], report)
+    return report
 
 
 def _check_text_concept(project: Path, stage: str, concept: dict[str, Any] | None) -> None:
@@ -1558,10 +1665,18 @@ def stage_retention(
     # the spoken final plan, so an operator CTA revision never has to rerun retention.
     target = project / "creative" / "SCRIPT_CORE_PLAN.json"
     legacy_target = project / "creative" / "SCRIPT_PLAN.json"
+    metadata_path = project / "creative/retention_edit.inputs.json"
+    metadata = load_json(metadata_path) if metadata_path.is_file() else {}
+    if runner.state.done(stage) and not target.is_file() and isinstance(metadata, dict) and metadata.get("language_review_required"):
+        raise StageFailure(stage, "FAILED_VALIDATION", "Reviewed core is missing. Use Revise from retention_edit; a final script cannot replace its approved core.")
     if runner.state.done(stage) and target.is_file():
         _check_text_concept(project, stage, opening_concept)
+        saved = load_json(target)
+        entry_key = presentation.segment_key if presentation else ("entry_transition" if "entry_transition" in saved else "book_transition")
+        _require_language_receipt(project, stage, saved, entry_key, "core",
+                                  reference=core_language_reference(draft, entry_key, opening_concept))
         runner.stage_reused(stage, target.name)
-        return load_json(target)
+        return saved
     if runner.state.done(stage) and legacy_target.is_file():
         # Existing episodes predate the dedicated CTA stage. Preserve their retained script as
         # a one-time core migration instead of calling the text provider merely to resume.
@@ -1572,20 +1687,37 @@ def stage_retention(
         return migrated
     started = runner.stage_start(stage)
     presentation = presentation or _coerce_character_context(content_project).presentation
-    prompt = fill(
-        resolve_prompt(content_project, "02_retention_editor.md"),
-        VIDEO_BRIEF=brief,
-        CURRENT_SCRIPT=json.dumps(draft, ensure_ascii=False, indent=2),
-        ENTRY_SEGMENT_KEY=presentation.segment_key,
-        ENTRY_SEGMENT_LABEL=presentation.segment_label,
-        PRESENTATION_RULES=presentation.script_rules,
-        **opening_writer_values(character, opening_concept),
-        **duration.as_prompt_values(),
-    )
-    plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
+    template = resolve_prompt(content_project, "02_retention_editor.md")
+    def edit_prompt(current: dict[str, Any]) -> str:
+        return fill(
+            template, VIDEO_BRIEF=brief, CURRENT_SCRIPT=openings.compact(current),
+            ENTRY_SEGMENT_KEY=presentation.segment_key,
+            ENTRY_SEGMENT_LABEL=presentation.segment_label,
+            PRESENTATION_RULES=presentation.script_rules,
+            **opening_writer_values(character, opening_concept), **duration.as_prompt_values(),
+        )
+    prompt = edit_prompt(draft)
+    reference = core_language_reference(draft, presentation.segment_key, opening_concept)
+    language_attempts: list[dict[str, Any]] = []
+    for attempt in range(language.MAX_EDIT_ATTEMPTS):
+        plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
+        report = review_spoken_language(
+            runner, project, content_project, stage, "core", plan, presentation,
+            brief, reference, language_attempts,
+        )
+        if report["passed"]:
+            break
+        # Crucially, return to the NARRATION editor. The episode director cannot fix words.
+        prompt = _language_correction_prompt(
+            edit_prompt(plan), "Revise the current candidate ONLY to fix the language review. "
+            "Preserve the original meaning, uncertainty, selected premise and all segment rules. "
+            "Return the complete validated narration JSON, not a list of replacements.", report, stage,
+        )
+    else:
+        raise StageFailure(stage, "FAILED_VALIDATION", "Spoken-English review failed after bounded text edits; see creative/CORE_LANGUAGE_REVIEW.json.")
     save_json(target, plan)
-    _record_text_input(project, stage, prompt, opening_concept)
-    runner.stage_done(stage, started, f"{plan['word_count']} words", words=plan["word_count"])
+    _record_text_input(project, stage, prompt, opening_concept, language_review_required=True)
+    runner.stage_done(stage, started, f"{plan['word_count']} words; language reviewed", words=plan["word_count"])
     return plan
 
 
@@ -1706,12 +1838,17 @@ def stage_call_to_action(
         try:
             existing = load_json(target)
             if str(existing.get("input_fingerprint") or "") == fingerprint:
+                if existing.get("language_review_required"):
+                    _require_language_receipt(project, stage, {**plan, "cta": existing.get("cta")}, presentation.segment_key, "cta")
                 final = validate_cta(stage, {"cta": existing.get("cta")}, hint, plan, duration, presentation)
                 save_json(project / "creative" / "SCRIPT_PLAN.json", final)
                 (project / "SCRIPT_FINAL.md").write_text(final["full_narration"] + "\n", encoding="utf-8")
                 runner.stage_reused(stage, target.name)
                 return final
-        except (OSError, ValueError, TypeError, StageFailure):
+        except StageFailure as exc:
+            if exc.error_code == "language_review_stale":
+                raise
+        except (OSError, ValueError, TypeError):
             pass
     started = runner.stage_start(stage)
     prompt = fill(
@@ -1720,16 +1857,33 @@ def stage_call_to_action(
         SCRIPT_CONTEXT=json.dumps(cta_source_context(plan, presentation), ensure_ascii=False, indent=2),
         CTA_HINT=hint or "No additional operator direction; choose the most natural topic-aware engagement intent.",
     )
-    final = ask_with_correction(
-        runner,
-        stage,
-        prompt,
-        lambda data: validate_cta(stage, data, hint, plan, duration, presentation),
-        hint="Return only a fresh one-sentence CTA. Do not copy the optional operator hint verbatim.",
-    )
+    original_prompt = prompt
+    language_attempts: list[dict[str, Any]] = []
+    reference = {"unchanged_core": cta_source_context(plan, presentation), "engagement_intent": hint}
+    for attempt in range(language.MAX_EDIT_ATTEMPTS):
+        final = ask_with_correction(
+            runner, stage, prompt,
+            lambda data: validate_cta(stage, data, hint, plan, duration, presentation),
+            hint="Return only a fresh one-sentence CTA. Do not copy the optional operator hint verbatim.",
+        )
+        report = review_spoken_language(
+            runner, project, content_project, stage, "cta", final, presentation,
+            brief, reference, language_attempts,
+        )
+        if report["passed"]:
+            break
+        prompt = _language_correction_prompt(
+            original_prompt, "Simplify ONLY this CTA, preserving the engagement intent and factual scope. "
+            "Do not change the approved core. Return only the cta JSON object. Current CTA: "
+            + final["cta"], report, stage,
+        )
+    else:
+        raise StageFailure(stage, "FAILED_VALIDATION", "CTA English review failed after bounded text edits; see creative/CTA_LANGUAGE_REVIEW.json.")
     target.parent.mkdir(parents=True, exist_ok=True)
     save_json(target, {
         "schema_version": 1,
+        "language_review_required": True,
+        "language_policy_version": language.POLICY_VERSION,
         "input_fingerprint": fingerprint,
         "hint_sha256": sha256_text(hint),
         "hint_provided": bool(hint),

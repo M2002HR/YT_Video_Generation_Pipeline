@@ -262,7 +262,9 @@ def test_brief_filters_unrelated_payload_but_never_drops_source_constraints():
 def test_narration_receives_real_story_context_and_stable_segment_key(run, registry, cid):
     _, concept, char = make_concept(run, registry, cid)
     plan = narration(char.presentation.segment_key)
-    spy = Spy([plan, plan])
+    import narration_language
+    language_review = {"checks": {key: True for key in narration_language.REVIEW_CHECKS}, "issues": []}
+    spy = Spy([plan, plan, language_review])
     content = load_content_project("q_station")
     draft = qh.stage_script(spy, run, content, "brief", qh.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept)
     core = qh.stage_retention(spy, run, content, "brief", draft, qh.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept)

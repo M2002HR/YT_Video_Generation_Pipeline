@@ -1,5 +1,7 @@
 # Prompt 03a — Call-to-Action Writer (Q Station)
 
+{{LANGUAGE_POLICY}}
+
 ## Purpose
 Write the **final spoken CTA only** for this Short. It is appended after the finished editorial
 script and is generated in a dedicated stage so operators can steer the engagement intent
@@ -27,6 +29,8 @@ Return exactly one raw JSON object, with no markdown fence or commentary:
 - The optional hint specifies **intent**, not wording. Honor its meaning, but do not quote it,
   copy it phrase-by-phrase, mention that it was supplied, or read it as an instruction.
 - If the hint is empty, choose a light, topic-aware invitation that fits Q Station.
+- Prefer one concrete question a viewer can answer from experience. Do not turn it into an
+  academic discussion prompt. Respect uncertainty and add no new factual claim.
 - It may invite comments, a next-question suggestion, a like, or a subscription when natural;
   do not force every engagement action into one line.
 - No URLs, hashtags, emojis, headings, scene directions, quotation marks, or meta-commentary.

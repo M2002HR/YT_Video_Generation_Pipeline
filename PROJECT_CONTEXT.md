@@ -75,3 +75,11 @@ into topic-world style or the host-free endpoint. No default chores/busy-hands r
 
 Read `docs/OPENING_STORY_PIPELINE.md` for history, artifact ownership, failure/retry semantics,
 validation and deployment on dev. Main is the pre-upgrade baseline; development commits go to dev.
+
+## Spoken English
+
+New narration uses the shared `PLAIN_ENGLISH_POLICY.md` via explicit runtime prompt expansion.
+The opening selector scores spoken clarity; retention and final CTA each own independent,
+quoted-evidence language review before their accepted output reaches narration/media. Keep
+technical visual prompts and subtitle/voice settings separate. See `docs/SPOKEN_ENGLISH_POLICY.md`
+for review artifacts, correction ownership, resume compatibility and validation commands.

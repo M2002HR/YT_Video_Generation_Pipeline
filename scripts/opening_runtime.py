@@ -21,8 +21,8 @@ CONCEPT_FIELDS = (
 )
 BRIDGE_FIELDS = ("a_end", "b_start", "reveal", "world_entry")
 SIGNATURE_FIELDS = ("action_family", "tension_family", "prop_family", "reveal_family")
-CRITERIA = ("topic_fit", "visible_hook", "character_fit", "honesty", "payoff", "entry_fit", "feasibility", "novelty")
-WEIGHTS = {"topic_fit": 3, "visible_hook": 3, "character_fit": 2, "honesty": 3, "payoff": 3, "entry_fit": 2, "feasibility": 2, "novelty": 2}
+CRITERIA = ("topic_fit", "visible_hook", "character_fit", "honesty", "payoff", "entry_fit", "feasibility", "novelty", "spoken_clarity")
+WEIGHTS = {"topic_fit": 3, "visible_hook": 3, "character_fit": 2, "honesty": 3, "payoff": 3, "entry_fit": 2, "feasibility": 2, "novelty": 2, "spoken_clarity": 3}
 REVIEW_CHECKS = (
     "topic_specific", "visible_from_start", "character_consistent", "honest_claims",
     "hook_paid_off", "entry_continuity", "production_feasible", "meaningfully_distinct",
@@ -222,8 +222,8 @@ def select_candidate(payload: Any, candidates: list[dict[str, Any]], history: li
         collision = repetition_evidence(indexed[key], history)
         if any(item["hard_collision"] for item in collision):
             issues.append("Near-identical recent premise: " + ", ".join(str(item["video_id"]) for item in collision if item["hard_collision"]))
-        if any(scores[name] < 3 for name in ("topic_fit", "honesty", "payoff", "entry_fit", "feasibility")) or scores["visible_hook"] < 2 or scores["character_fit"] < 2 or scores["novelty"] < 2:
-            issues.append("Insufficient topic fit, honesty, payoff, entry feasibility or visible hook.")
+        if any(scores[name] < 3 for name in ("topic_fit", "honesty", "payoff", "entry_fit", "feasibility")) or scores["visible_hook"] < 2 or scores["character_fit"] < 2 or scores["novelty"] < 2 or scores["spoken_clarity"] < 3:
+            issues.append("Insufficient topic fit, honesty, payoff, entry feasibility, visible hook or spoken clarity.")
         decisions.append({"id": key, "scores": scores, "blocking_issues": issues,
                           "reason": _text(raw, "reason", None), "repetition_evidence": collision,
                           "weighted_score": sum(scores[name] * WEIGHTS[name] for name in CRITERIA)})

@@ -1,5 +1,7 @@
 # Prompt 02 — Retention Editor (Q Station)
 
+{{LANGUAGE_POLICY}}
+
 ## Purpose
 Sharpen the draft narration for retention without breaking visual logic or narration timing.
 
@@ -45,8 +47,10 @@ SELECTED OPENING CONCEPT: {{OPENING_CONCEPT}}
   be one sentence of at most 16 words; CTA may share that final image.
 
 ## May sharpen
-- hook compression and curiosity payoff
-- word count tightened to {{WORD_RANGE}} for a {{DURATION_RANGE}} Short
+- clearer hook wording and curiosity payoff; preserve the premise, not the candidate's exact words
+- remove unnecessary jargon and abstract noun piles; explain necessary terms in context
+- clarity before compression: never replace everyday wording with a formal synonym just to save words
+- keep word count within {{WORD_RANGE}} for a {{DURATION_RANGE}} Short
 - TTS rhythm and visual translatability
 - removing generic openers such as "Have you ever wondered"
 - making the {{ENTRY_SEGMENT_LABEL}} carry a concrete clue while visuals handle the entry mechanics; never merely announce that we enter the prop

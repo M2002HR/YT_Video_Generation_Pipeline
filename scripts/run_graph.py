@@ -31,8 +31,8 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "character_resolution": NodeSpec("Character & presentation resolution", "data", (), ("creative/CHARACTER_RESOLUTION.json",), ("creative/PRESENTATION_RESOLUTION.json",), description="One-time Auto/manual host and opening-format resolution.", phase="creative"),
     "opening_concept": NodeSpec("Opening story selection", "data", ("character_resolution",), ("creative/OPENING_CONCEPT.json", "creative/OPENING_CONTEXT.json", "creative/OPENING_CANDIDATES.json"), description="Three topic-first mini-stories, independent selection and frozen semantic history.", phase="creative"),
     "script_draft": NodeSpec("Script draft", "text", ("opening_concept", "character_resolution"), ("creative/SCRIPT_DRAFT.json",), ("creative/script_draft.inputs.json",), description="Initial script using the resolved presentation grammar.", phase="creative"),
-    "retention_edit": NodeSpec("Retained script core", "text", ("script_draft",), ("creative/SCRIPT_CORE_PLAN.json",), ("creative/retention_edit.inputs.json",), description="Retention-edited core narration and visual beat plan before the final CTA.", phase="creative"),
-    "call_to_action": NodeSpec("Call to action", "text", ("retention_edit",), ("creative/CALL_TO_ACTION.json", "creative/SCRIPT_PLAN.json", "SCRIPT_FINAL.md"), description="Topic-aware closing CTA, optionally steered by the operator without copying their wording.", phase="creative"),
+    "retention_edit": NodeSpec("Retained script core", "text", ("script_draft",), ("creative/SCRIPT_CORE_PLAN.json",), ("creative/retention_edit.inputs.json", "creative/CORE_LANGUAGE_REVIEW.json"), description="Retention-edited, plain-English-reviewed core before the final CTA.", phase="creative"),
+    "call_to_action": NodeSpec("Call to action", "text", ("retention_edit",), ("creative/CALL_TO_ACTION.json", "creative/SCRIPT_PLAN.json", "SCRIPT_FINAL.md"), ("creative/CTA_LANGUAGE_REVIEW.json",), description="Plain-English-reviewed, topic-aware closing CTA, optionally steered by the operator without copying their wording.", phase="creative"),
     # CTA wording is spoken only after the visual story is complete. Keeping it out of the
     # episode-direction branch lets a CTA revision preserve valid visual planning and images.
     "episode_director": NodeSpec("Episode direction", "data", ("retention_edit", "character_resolution", "opening_concept"), ("creative/EPISODE_PLAN.json",), ("creative/OPENING_REVIEW.json",), description="Staging and a blocking story-consistency review before narration/media.", phase="creative"),
@@ -228,6 +228,16 @@ def qh_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict
     else:
         # A new direction is usable only with its actual story review, not a bare plan.
         specs["episode_director"] = replace(specs["episode_director"], artifacts=("creative/EPISODE_PLAN.json", "creative/OPENING_REVIEW.json"), optional_artifacts=())
+
+    # New language-reviewed work owns its receipt. Legacy completed work has no marker.
+    for owner, metadata_path, receipt in (
+        ("retention_edit", "creative/retention_edit.inputs.json", "creative/CORE_LANGUAGE_REVIEW.json"),
+        ("call_to_action", "creative/CALL_TO_ACTION.json", "creative/CTA_LANGUAGE_REVIEW.json"),
+    ):
+        if load(project / metadata_path).get("language_review_required"):
+            spec = specs[owner]
+            specs[owner] = replace(spec, artifacts=(*spec.artifacts, receipt),
+                                   optional_artifacts=tuple(p for p in spec.optional_artifacts if p != receipt))
 
     specs["book_design_sheet"] = replace(specs["book_design_sheet"], title=f"{label} identity", description="Shared recurring entry-object identity; not owned by this episode.")
     specs["book_cover_design"] = replace(specs["book_cover_design"], title=f"{label} frame direction", artifacts=(a.entry_direction,))

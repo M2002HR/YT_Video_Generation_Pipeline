@@ -21,6 +21,8 @@ PIPELINE_PROMPTS = (
 # Q Station / legacy Question Harvest (bookworld_mixed_media) uses dedicated pipeline prompts,
 # including the final CTA writer so editorial intent never leaks into an unrelated stage.
 QH_PIPELINE_PROMPTS = (
+    "PLAIN_ENGLISH_POLICY.md",
+    "02_plain_english_reviewer.md",
     "00_opening_concept_director.md",
     "00_opening_candidate_reviewer.md",
     "03_opening_story_reviewer.md",

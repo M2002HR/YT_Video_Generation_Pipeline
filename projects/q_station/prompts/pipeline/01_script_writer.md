@@ -1,5 +1,7 @@
 # Prompt 01 — Q Station Script Writer
 
+{{LANGUAGE_POLICY}}
+
 ## Purpose
 Turn a video brief into the spoken narration for a **Q Station** short ({{DURATION_RANGE}}, 9:16,
 vertical). This is the ONLY narration source for the episode.
@@ -78,6 +80,8 @@ SELECTED OPENING CONCEPT: {{OPENING_CONCEPT}}
   citations, or disputed facts.
 
 ## Style
+- Write for first-listen understanding, not the fewest words. Keep sentences within the existing
+  beat limits, but prefer a clear familiar phrase over a shorter abstract/formal substitute.
 - Short sentences for TTS, conversational, forward momentum.
 - No filler, no clichés, no lecture tone.
 - The closing reframes and pays off. Provide a brief provisional CTA so this draft has a

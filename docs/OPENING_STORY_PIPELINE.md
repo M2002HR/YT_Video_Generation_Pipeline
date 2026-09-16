@@ -105,3 +105,10 @@ cascades, review persistence, CTA isolation, frame-role isolation and measured F
 The full Python suite and UI test/build run on GitHub Actions. Offline tests do not validate the
 current browser login, account credits, provider availability, actual model output quality or the
 resulting audience retention. A real end-to-end generation remains a separate paid smoke test.
+
+## International spoken English
+
+The shared spoken-language policy now reaches concept selection, narration and CTA. Selection
+adds a validated `spoken_clarity` criterion. Retention owns its independent language review and
+wording corrections; staging does not try to repair narration. The final CTA is reviewed in its
+own scope without invalidating the visual story. See `SPOKEN_ENGLISH_POLICY.md` for details.

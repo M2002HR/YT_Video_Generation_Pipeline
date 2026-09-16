@@ -8,6 +8,7 @@ from pathlib import Path
 from character_runtime import load_character_registry
 from content_projects import QH_PIPELINE_PROMPTS, load_content_project, validate_content_project
 from opening_runtime import POLICY_VERSION
+from narration_language import POLICY_VERSION as LANGUAGE_POLICY_VERSION
 from pipeline_stages import PIPELINE_STAGE_SEQUENCE
 from run_graph import NODE_SPECS
 
@@ -23,7 +24,7 @@ TOKENS = {
     "OPENING_A_NARRATION", "VISUAL_PRESET_RULES", "SOURCE_DURATION_SECONDS", "NARRATION_DURATION_SECONDS",
     "ENTRY_TRANSITION_NARRATION", "ENTRY_TRANSITION_RULES", "ENTRY_BRIDGE", "ENTRY_FRAME_DIRECTION",
     "SCRIPT_CONTEXT", "CTA_HINT", "ASPECT_RATIO", "PREVIOUS_BEAT", "REFERENCE_IMAGES",
-    "STYLE_RULES", "VISUAL_BEAT",
+    "STYLE_RULES", "VISUAL_BEAT", "LANGUAGE_POLICY", "LANGUAGE_SCOPE", "REFERENCE_SCRIPT", "SPOKEN_SEGMENTS",
 }
 
 
@@ -40,6 +41,12 @@ def check() -> list[str]:
         unknown = set(re.findall(r"\{\{([A-Z_]+)\}\}", text)) - TOKENS
         if unknown:
             raise RuntimeError(f"Unknown template inputs in {name}: {sorted(unknown)}")
+    from narration_language import policy_text
+    policy_text(project.root / "prompts/pipeline")
+    from run_question_harvest_pipeline import resolve_prompt
+    for name in QH_PIPELINE_PROMPTS:
+        if "{{LANGUAGE_POLICY}}" in resolve_prompt(project, name):
+            raise RuntimeError(f"Unexpanded spoken-language policy in {name}")
     descriptions = []
     for identifier in registry.enabled_ids():
         char = registry.get(identifier)
@@ -56,6 +63,7 @@ def main() -> int:
         print(f"Opening preflight FAILED: {exc}")
         return 1
     print(f"Opening policy v{POLICY_VERSION}: configuration, prompt inputs and stage graph OK")
+    print(f"Spoken English policy v{LANGUAGE_POLICY_VERSION}: shared prompts and review contracts available")
     for row in rows:
         print("  " + row)
     print("No providers called; no generated media or existing run state changed.")

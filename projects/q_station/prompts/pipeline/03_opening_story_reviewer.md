@@ -24,3 +24,7 @@ Return raw JSON only:
 "meaningfully_distinct":true},"issues":[]}
 Set false only for a material failure, and describe its exact fix in issues. Check booleans must be
 explicit. An all-true result requires an empty issues array. This review is not a creativity score.
+
+The retention stage independently reviews spoken English before this gate. Judge the selected
+premise, not an exact wording match to hook_line: plain-English rephrasing is legitimate. Do not
+request more academic terms or send a language-only preference into a staging-only correction.
