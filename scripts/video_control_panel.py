@@ -47,6 +47,7 @@ from content_projects import (
     normalize_gemini_model, normalize_flow_model, video_slug, character_registry_path,
 )
 from character_runtime import CharacterSelectionError, load_character_registry
+from release_settings import normalize_release_settings as shared_normalize_release_settings, public_schema as release_public_schema
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
@@ -2209,38 +2210,12 @@ def release_eligibility(record: dict, project: Path) -> tuple[bool, str]:
     return True, ""
 
 
-RELEASE_SETTING_DEFAULTS = {
-    "generate_metadata": True,
-    "generate_thumbnail": True,
-    "create_upload_guide": True,
-    "send_telegram": True,
-    "force": False,
-    "metadata_note": "",
-    "thumbnail_note": "",
-    "title_override": "",
-}
+RELEASE_SETTING_DEFAULTS = release_public_schema()["defaults"]
 
 
 def normalize_release_settings(value: Any) -> dict[str, Any]:
     """Validate the bounded, post-render choices exposed by the Release modal."""
-    if not isinstance(value, dict):
-        raise ValueError("Release settings must be an object.")
-    unknown = set(value) - set(RELEASE_SETTING_DEFAULTS)
-    if unknown:
-        raise ValueError("Unknown Release setting(s): " + ", ".join(sorted(unknown)))
-    settings = dict(RELEASE_SETTING_DEFAULTS)
-    for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram", "force"):
-        if key in value and not isinstance(value[key], bool):
-            raise ValueError(f"Release setting {key} must be on or off.")
-        settings[key] = bool(value.get(key, settings[key]))
-    for key, limit in (("metadata_note", 2_000), ("thumbnail_note", 2_000), ("title_override", 100)):
-        text = str(value.get(key, "") or "").strip()
-        if len(text) > limit:
-            raise ValueError(f"Release setting {key} is too long.")
-        settings[key] = text
-    if not any(settings[key] for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram")):
-        raise ValueError("Choose at least one Release step.")
-    return settings
+    return shared_normalize_release_settings(value)
 
 
 def active_release(jobs_dir: Path) -> dict | None:
@@ -3715,7 +3690,8 @@ class Handler(BaseHTTPRequestHandler):
             request_dir = project / "publish" / "youtube_short" / "release_requests"
             request_dir.mkdir(parents=True, exist_ok=True)
             request_path = request_dir / f"{utcnow().replace(':', '-').replace('+', '_')}.json"
-            write_json(request_path, {"schema_version": 1, "job_id": job_id, "created_at": utcnow(), "settings": settings})
+            release_id = "rel_" + uuid.uuid4().hex
+            write_json(request_path, {"schema_version": 2, "release_id": release_id, "job_id": job_id, "created_at": utcnow(), "settings": settings})
             command = [
                 sys.executable, "-u", "scripts/release_youtube_short.py", str(project),
                 "--content-project", str(record.get("content_project") or DEFAULT_CONTENT_PROJECT),
@@ -3735,7 +3711,7 @@ class Handler(BaseHTTPRequestHandler):
             release = {
                 "status": "RUNNING", "pid": process.pid, "started_at": utcnow(),
                 "command": command, "log": str(log.relative_to(ROOT)),
-                "settings": settings, "request": str(request_path.relative_to(ROOT)),
+                "settings": settings, "request": str(request_path.relative_to(ROOT)), "release_id": release_id,
             }
             record["release"] = release
             write_json(record_path, record)
@@ -3752,13 +3728,17 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError):
                 worker = {}
             result = dict(current.get("release") or {})
-            succeeded = code == 0 and worker.get("status") == "DONE"
+            worker_status = str(worker.get("status") or "")
+            succeeded = code == 0 and worker_status == "DONE"
+            needs_review = code == 0 and worker_status == "NEEDS_REVIEW"
             result.update({
-                "status": "DONE" if succeeded else "FAILED", "exit_code": code,
+                "status": "DONE" if succeeded else "NEEDS_REVIEW" if needs_review else "FAILED", "exit_code": code,
                 "completed_at": utcnow(), "state": str(package_state.relative_to(ROOT)),
             })
-            if not succeeded:
+            if not succeeded and not needs_review:
                 result["error"] = str(worker.get("error") or f"Release worker exited with code {code}.")[:1000]
+            if needs_review:
+                result["message"] = "Release package is complete but no final thumbnail is eligible; review the visible candidates."
             current["release"] = result
             write_json(record_path, current)
 
@@ -3769,6 +3749,10 @@ class Handler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         route = parsed.path
         query = parse_qs(parsed.query)
+
+        if route == "/api/release-schema":
+            self.send_json(HTTPStatus.OK, release_public_schema())
+            return
 
         if route == "/api/ws":
             self.handle_websocket(query)

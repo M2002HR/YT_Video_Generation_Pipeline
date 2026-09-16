@@ -16,6 +16,8 @@ import re
 import subprocess
 import sys
 import time
+import shutil
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -27,9 +29,15 @@ if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
 from content_projects import load_content_project, normalize_gemini_model  # noqa: E402
-from ordak_jobs import OrdakJobs, Reference, sha256_file  # noqa: E402
+from ordak_jobs import OrdakJobs, OrdakJobError, Reference, sha256_file  # noqa: E402
 from pipeline_notifier import NotifierSettings  # noqa: E402
 from run_question_harvest_pipeline import Runner  # noqa: E402
+from release_settings import RELEASE_DEFAULTS as SHARED_RELEASE_DEFAULTS, normalize_release_settings, settings_fingerprint  # noqa: E402
+from thumbnail_runtime import (  # noqa: E402
+    artwork_prompt, build_comparison, final_review_prompt, local_plan, normalize_review,
+    preflight as thumbnail_preflight, resolve_episode_character, select as select_thumbnail,
+)
+from thumbnail_compositor import compose  # noqa: E402
 
 
 CHANNEL_DEFAULTS = {
@@ -47,11 +55,7 @@ CHANNEL_DEFAULTS = {
 
 # Every switch maps to a real, isolated post-render operation.  This file is
 # deliberately limited to the release package: it cannot change the finished movie.
-RELEASE_REQUEST_DEFAULTS = {
-    "generate_metadata": True, "generate_thumbnail": True,
-    "create_upload_guide": True, "send_telegram": True, "force": False,
-    "metadata_note": "", "thumbnail_note": "", "title_override": "",
-}
+RELEASE_REQUEST_DEFAULTS = SHARED_RELEASE_DEFAULTS
 
 METADATA_QUALITY_ADDENDUM = """
 YOUTUBE SHORTS METADATA FORMAT (mandatory):
@@ -112,39 +116,30 @@ def write_text(path: Path, value: str) -> None:
         temporary.unlink(missing_ok=True)
 
 
-def package_paths(video: Path) -> dict[str, Path]:
-    root = video / "publish" / "youtube_short"
+def package_paths(video: Path, release_id: str | None = None) -> dict[str, Path]:
+    base = video / "publish" / "youtube_short"
+    root = base / "releases" / release_id if release_id else base
     return {
-        "root": root,
+        "root": root, "base": base,
         "state": root / "RELEASE_STATE.json",
         "metadata": root / "YOUTUBE_SHORT_METADATA.json",
         "upload": root / "YOUTUBE_SHORT_UPLOAD.md",
         "thumbnail": root / "thumbnail.png",
         "candidates": root / "thumbnail_candidates",
         "visual_references": root / "visual_references",
+        "plan": root / "THUMBNAIL_PLAN.json", "context": root / "THUMBNAIL_CONTEXT.json",
+        "review": root / "THUMBNAIL_REVIEW.json", "selection": root / "THUMBNAIL_SELECTION.json",
+        "request": root / "RELEASE_REQUEST.json", "delivery": root / "DELIVERY_STATE.json",
     }
 
 
 def release_request(path: Path | None) -> dict[str, Any]:
     payload = load_json(path) if path else {}
     raw = payload.get("settings") if isinstance(payload.get("settings"), dict) else payload
-    if not isinstance(raw, dict):
-        raise RuntimeError("Release request settings must be an object.")
-    unknown = set(raw) - set(RELEASE_REQUEST_DEFAULTS)
-    if unknown:
-        raise RuntimeError("Unknown Release request setting(s): " + ", ".join(sorted(unknown)))
-    result = dict(RELEASE_REQUEST_DEFAULTS)
-    for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram", "force"):
-        if key in raw and not isinstance(raw[key], bool):
-            raise RuntimeError(f"Release request {key} must be boolean.")
-        result[key] = bool(raw.get(key, result[key]))
-    for key, limit in (("metadata_note", 2_000), ("thumbnail_note", 2_000), ("title_override", 100)):
-        result[key] = str(raw.get(key, "") or "").strip()
-        if len(result[key]) > limit:
-            raise RuntimeError(f"Release request {key} is too long.")
-    if not any(result[key] for key in ("generate_metadata", "generate_thumbnail", "create_upload_guide", "send_telegram")):
-        raise RuntimeError("Release request selected no steps.")
-    return result
+    try:
+        return normalize_release_settings(raw)
+    except ValueError as exc:
+        raise RuntimeError(str(exc)) from exc
 
 
 def must_be_release_ready(video: Path) -> Path:
@@ -345,6 +340,12 @@ safe empty space for optional later text; explicitly say no written words, lette
 watermark, UI, border, collage, or split-screen), thumbnail_overlay_text (string, <=5 words,
 optional text for the human to add later), related_video_note (string).
 
+THUMBNAIL HEADLINE PLAIN-ENGLISH POLICY: thumbnail_overlay_text is a real final-file
+headline, not a generic slogan. Use 2–5 familiar English words (six maximum), concrete
+actions or consequences, and the source's actual uncertainty. Preserve essential names,
+negation and scope. Do not invent a fact, turn possibility into certainty, use academic
+jargon, regional slang, empty bait, or a repeated channel catchphrase.
+
 For audience, paid promotion, age restriction and altered/synthetic disclosure, give a cautious
 recommendation but always include a manual_review item: the uploader, not you, makes the legal
 declaration. The pipeline uses AI imagery, but disclosure is only required when its visual output
@@ -538,33 +539,19 @@ def extract_rendered_frame(master: Path, output: Path, seconds: float) -> dict[s
 
 
 def character_sheet_for_thumbnail(video: Path, content_project: str) -> Path | None:
-    """Return the canonical sheet only when this episode actually uses a host."""
-    resolution = load_json(video / "creative" / "CHARACTER_RESOLUTION.json")
-    episode = load_json(video / "creative" / "EPISODE_PLAN.json")
-    character_id = str(resolution.get("resolved_character_id") or "").strip()
-    presence = str(episode.get("hero_presence_mode") or "").strip().lower()
-    if not character_id or presence in {"", "none", "absent", "off", "false"}:
-        return None
+    """Resolve the canonical sheet through the validated registry, never config paths by hand.
+
+    A release thumbnail deliberately uses the episode character even when the body uses
+    ``opener_only``; body-presence settings do not rewrite the Release contract.
+    """
     try:
-        project = load_content_project(content_project)
-        registry_rel = str((project.config.get("characters") or {}).get("registry") or "").strip()
-        registry = load_json(project.root / registry_rel) if registry_rel else {}
-        entry = next(
-            (item for item in registry.get("characters", []) if isinstance(item, dict) and item.get("id") == character_id),
-            None,
-        )
-        config_rel = str((entry or {}).get("config") or "").strip()
-        config_path = project.root / config_rel
-        character = load_json(config_path)
-        sheet_rel = str((character.get("references") or {}).get("canonical_sheet") or "").strip()
-        sheet = config_path.parent / sheet_rel
-        return sheet if sheet.is_file() else None
-    except Exception:
-        return None
+        return Path(resolve_episode_character(video, content_project)["sheet_path"])
+    except Exception as exc:
+        raise RuntimeError(f"Thumbnail character reference preflight failed: {exc}") from exc
 
 
 def thumbnail_visual_references(
-    video: Path, master: Path, paths: dict[str, Path], content_project: str, context: dict[str, Any],
+    video: Path, master: Path, paths: dict[str, Path], content_project: str, context: dict[str, Any], *, include_character: bool = True,
 ) -> tuple[list[Reference], list[dict[str, Any]]]:
     """Create the small, explicit visual-reference stack sent with every Gemini thumbnail job."""
     duration = rendered_duration_seconds(master, (context.get("run") or {}).get("duration_seconds"))
@@ -593,9 +580,15 @@ def thumbnail_visual_references(
             "file": str(world.relative_to(video)), **details,
         })
 
-    sheet = character_sheet_for_thumbnail(video, content_project)
+    sheet = character_sheet_for_thumbnail(video, content_project) if include_character else None
     if sheet:
-        details = validate_thumbnail(sheet)
+        # Identity sheets can be horizontal or square; only integrity is relevant here.
+        if not sheet.is_file() or sheet.stat().st_size < 1024:
+            raise RuntimeError("Thumbnail character reference sheet is missing or empty.")
+        from PIL import Image
+        with Image.open(sheet) as reference_image:
+            reference_image.load(); sw, sh = reference_image.size
+        details = {"width": sw, "height": sh, "bytes": sheet.stat().st_size, "sha256": sha256_file(sheet)}
         role = "thumbnail_character_identity"
         references.append(Reference(role=role, path=sheet))
         manifest.append({
@@ -676,6 +669,56 @@ def generate_thumbnail(
     }
 
 
+def generate_thumbnail_batch(
+    jobs: OrdakJobs, metadata: dict[str, Any], image_contract: dict[str, str], paths: dict[str, Path],
+    visual_references: list[Reference], manifest: list[dict[str, Any]], direction: str,
+    video: Path, content_project: str, thumbnail_settings: dict[str, Any], context: dict[str, Any],
+) -> dict[str, Any]:
+    """Create independent text-free artworks, then compose/review their actual final PNGs.
+
+    The generic body-image QC remains untouched.  Its result is transport/identity input;
+    this release-specific reviewer decides final typography, claim fidelity and selection.
+    """
+    preflight_data = thumbnail_preflight(video, content_project, thumbnail_settings)
+    character = resolve_episode_character(video, content_project)
+    write_json(paths["context"], {"preflight": preflight_data, "visual_references": manifest, "source_master_sha256": sha256_file(video / "assets" / "renders" / "polished.mp4")})
+    plans = local_plan(metadata, context, thumbnail_settings, character)
+    write_json(paths["plan"], {"schema_version": 2, "requested_count": len(plans), "plans": plans})
+    results: list[dict[str, Any]] = []
+    # Reserve one primary submission for every requested independent plan before any
+    # optional visual correction can consume spare capacity.
+    for plan in plans:
+        candidate_dir = paths["candidates"] / plan["candidate_id"]
+        artwork = candidate_dir / "artwork.png"; final = candidate_dir / "final.png"
+        candidate_dir.mkdir(parents=True, exist_ok=True)
+        prompt = artwork_prompt(plan, character, manifest, direction)
+        write_json(candidate_dir / "concept.json", {**plan, "prompt_artwork": prompt, "character_id": character["character_id"]})
+        runner = Runner(jobs, None, ReleaseImageState(paths["root"]), chatgpt_fallback_mode=image_contract["chatgpt_fallback_mode"], image_qc_correction_policy=str(thumbnail_settings["corrections_per_candidate"]))
+        # Runner owns Ordak Generation and attachment roles.  The artwork destination is
+        # candidate-local, so corrective attempts are never confused with another concept.
+        result = runner.image("release_thumbnail_" + plan["candidate_id"], prompt, visual_references, model=image_contract["model"], destination=artwork, retain_candidates_dir=candidate_dir / "attempts")
+        artwork_info = validate_thumbnail(artwork)
+        layout = compose(artwork, final, plan["headline"], thumbnail_settings, plan["layout_id"])
+        final_info = validate_thumbnail(final)
+        write_json(candidate_dir / "layout.json", layout)
+        review_raw, review_job_id = ask_json(jobs, final_review_prompt(plan, metadata), "thumbnail final review", [Reference(role="thumbnail_final", path=final), Reference(role="thumbnail_small_preview", path=final.with_name("preview_small.jpg")), Reference(role="thumbnail_character_identity", path=character["sheet_path"])])
+        review = normalize_review(review_raw)
+        review.update({"review_job_id": review_job_id, "final_sha256": final_info["sha256"]})
+        write_json(candidate_dir / "review.json", review)
+        results.append({"candidate_id": plan["candidate_id"], "layout_id": plan["layout_id"], "headline": plan["headline"], "evidence_anchor": plan["evidence_anchor"], "artwork_path": str(artwork), "final_path": str(final), "preview_path": str(final.with_name("preview_small.jpg")), "artwork": artwork_info, "final": final_info, "review": review, "gemini_job_id": result.job_id, "gemini_receipt": result.generation_receipt})
+    selection = select_thumbnail(results, thumbnail_settings["review_preset"])
+    selection.update({"requested_count": len(plans), "generated_count": len(results), "eligible_count": sum(1 for x in results if x["review"]["eligible"]), "delivery_mode": "all_final_candidates"})
+    write_json(paths["review"], {"schema_version": 2, "candidates": results})
+    write_json(paths["selection"], selection)
+    if thumbnail_settings["comparison_sheet"]: build_comparison(results, paths["root"] / "comparison.jpg")
+    selected = next((item for item in results if item["candidate_id"] == selection["selected_candidate_id"]), None)
+    # Compatibility alias is exactly the reviewed/selected bytes, never an attempt image.
+    if selected:
+        paths["thumbnail"].parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(selected["final_path"], paths["thumbnail"])
+        if sha256_file(paths["thumbnail"]) != selected["final"]["sha256"]: raise RuntimeError("Thumbnail alias did not preserve selected final bytes.")
+    return {"schema_version": 2, "selection": selection, "candidates": results, "selected_file": str(paths["thumbnail"].relative_to(paths["root"])) if selected else None, "selected": selected["final"] if selected else None, "quality_check": {"passed": bool(selected)}, "requested_model": image_contract["model"], "all_final_candidates": True}
+
+
 def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any] | None, context: dict[str, Any]) -> str:
     settings = metadata["upload_settings"]
     tags = ", ".join(metadata["tags"])
@@ -689,16 +732,16 @@ def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any] | 
     if music.get("license"):
         music_warning = f"\nMusic provenance: {music.get('provider') or 'unknown'} — {music['license']}\n"
     thumbnail_section = (
-        f"""File: `thumbnail.png` ({thumbnail['selected']['width']}×{thumbnail['selected']['height']}, 9:16)
-Optional human-added overlay text: `{metadata['thumbnail_overlay_text'] or 'None'}`
-Select the strongest frame in the official YouTube mobile app. If no frame works, append this
-thumbnail image as a 0.3-second final frame before upload, then select that frame in the app.
-Do not ask Gemini to render words into it.
-It was generated against final-render reference frames (plus only relevant continuity/identity references)
-and QC checked for visual fidelity, legibility and policy issues."""
-        if thumbnail else "No thumbnail was generated or selected for this release request."
+        f"""Recommended file: `thumbnail.png` ({thumbnail['selected']['width']}×{thumbnail['selected']['height']}, 9:16)
+This is a finished thumbnail: its English headline, badge and frame were rendered locally into the final file.
+The release package also contains every final candidate and the reviewer recommendation; they are editorial
+alternatives, not a YouTube A/B test. Do not append a thumbnail frame to the master or re-encode the video.
+Custom Shorts-thumbnail availability depends on the account and current YouTube mobile/Studio capability.
+If the account cannot upload a custom thumbnail, choose an existing video frame and record that limitation.
+It was generated against final-render reference frames (plus relevant identity references) and final-file reviewed."""
+        if thumbnail and thumbnail.get("selected") else "No eligible thumbnail was selected for this release request; inspect visible candidates before upload."
     )
-    thumbnail_qc = "passed" if thumbnail and thumbnail["quality_check"].get("passed") else "not generated for this release request"
+    thumbnail_qc = "passed" if thumbnail and thumbnail.get("quality_check", {}).get("passed") else "not selected / needs review"
     return f"""# YouTube Shorts release package
 
 ## Recommended title
@@ -735,12 +778,11 @@ Alternatives:
 
 ## Mobile upload workflow
 
-1. Before every upload, update the official YouTube and YouTube Studio mobile apps from the Play Store. Do not upload through a desktop or mobile browser.
-2. In YouTube: tap **+** → **Add**, select `assets/renders/polished.mp4`, wait for processing, then tap **Done**.
-3. Add a currently trending/viral song where it fits the video; use **Adjust** to balance original and music volume. Select the thumbnail frame with the pencil icon.
-4. Paste the title and set visibility to **Unlisted**, then upload the Short.
-5. In YT Studio, open the Unlisted video → pencil → **More options**. Paste the tags, choose the category above, turn off **Show how many viewers like this video**, and keep **Allow video and audio remixing** enabled.
-6. Recheck the description, tags, audience and all declarations below. Change visibility from **Unlisted** to **Public** and tap **Save** only when ready.
+1. Upload `assets/renders/polished.mp4` as **Unlisted** and paste the title and description.
+2. If this verified account has custom Shorts thumbnails, open YouTube Studio on a computer → Content → Shorts → the Short → Thumbnail → **Upload file**, select the recommended final PNG, then Save. YouTube's current guidance recommends 9:16 for Shorts.
+3. If that control is unavailable for this account, select an existing frame in the YouTube mobile app instead; do not alter or append frames to the master merely to work around the limitation.
+4. In Studio, paste tags, choose the category above, and review remixing, audience, age, paid-promotion, and altered/synthetic declarations.
+5. Recheck all manual-review items. Change visibility from **Unlisted** to **Public** only when ready.
 
 ## Timing suggestion
 
@@ -778,8 +820,9 @@ def video_caption(metadata: dict[str, Any], thumbnail: dict[str, Any] | None) ->
 
 async def deliver_bundle(
     settings: NotifierSettings, master: Path, thumbnail: Path | None, upload: Path | None, metadata: Path,
-    caption: str, title: str,
-) -> dict[str, int]:
+    caption: str, title: str, *, candidates: list[dict[str, Any]] | None = None,
+    comparison: Path | None = None, report: Path | None = None,
+) -> dict[str, Any]:
     from telethon import TelegramClient
     from telethon.sessions import StringSession
 
@@ -796,13 +839,25 @@ async def deliver_bundle(
             settings.recipient, str(master), caption=caption, force_document=True,
             supports_streaming=False,
         )
-        messages = {"master": int(video_message.id)}
-        if thumbnail and thumbnail.is_file():
-            thumbnail_message = await client.send_file(
-                settings.recipient, str(thumbnail), caption="YouTube Shorts thumbnail — original PNG (9:16)",
+        messages: dict[str, Any] = {"master": int(video_message.id), "candidates": {}}
+        deliverables = candidates or ([] if thumbnail is None else [{"candidate_id": "thumbnail", "final_path": str(thumbnail), "headline": "", "review": {"eligible": True, "score": 0}, "final": {}}])
+        selected_id = next((item.get("candidate_id") for item in deliverables if item.get("selected")), None)
+        for item in deliverables:
+            final = Path(str(item.get("final_path") or ""))
+            if not final.is_file():
+                continue
+            review = item.get("review") if isinstance(item.get("review"), dict) else {}
+            blocking = " ".join(str(x) for x in review.get("blocking_violations", []))
+            if re.search(r"\b(?:safety|sexual|nudity|graphic|self-harm|violent)\b", blocking, re.I):
+                messages["candidates"][str(item.get("candidate_id"))] = {"status": "blocked", "reason": "Safety-blocked by final review."}
+                continue
+            status = "recommended" if item.get("candidate_id") == selected_id else ("eligible" if review.get("eligible") else "not recommended")
+            message = await client.send_file(
+                settings.recipient, str(final),
+                caption=(f"Thumbnail {item.get('candidate_id')} · {status}\nText: {item.get('headline') or 'none'}\nEditorial score: {review.get('score', 'n/a')}")[:1024],
                 force_document=True, reply_to=video_message.id,
             )
-            messages["thumbnail"] = int(thumbnail_message.id)
+            messages["candidates"][str(item.get("candidate_id"))] = {"message_id": int(message.id), "sha256": (item.get("final") or {}).get("sha256")}
         text = (
             f"YouTube release ready: {title}\n"
             "Attached files: original master MP4, original thumbnail PNG, copy-ready Markdown, and JSON metadata.\n"
@@ -819,6 +874,12 @@ async def deliver_bundle(
             settings.recipient, str(metadata), caption="Machine-readable YouTube metadata (.json)",
             force_document=True, reply_to=video_message.id,
         )
+        if comparison and comparison.is_file():
+            comparison_message = await client.send_file(settings.recipient, str(comparison), caption="Thumbnail comparison sheet — preview only", force_document=True, reply_to=video_message.id)
+            messages["comparison"] = int(comparison_message.id)
+        if report and report.is_file():
+            report_message = await client.send_file(settings.recipient, str(report), caption="Thumbnail selection report (.json)", force_document=True, reply_to=video_message.id)
+            messages["thumbnail_report"] = int(report_message.id)
         return {**messages, "summary": int(text_message.id), "metadata_json": int(metadata_message.id)}
     finally:
         await client.disconnect()
@@ -834,27 +895,43 @@ def main() -> None:
     parser.add_argument("--content-project", default="q_station")
     parser.add_argument("--force", action="store_true", help="Create and deliver a new package even when this master was already delivered.")
     parser.add_argument("--request-file", type=Path, help="Validated Release-modal request JSON.")
+    parser.add_argument("--dry-run", action="store_true", help="Validate Release/thumbnail preflight and report possible calls without generation or delivery.")
     args = parser.parse_args()
     load_dotenv(ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
     video = args.video_dir.expanduser().resolve()
     if not video.is_dir() or video.parent != (ROOT / "videos").resolve():
         raise SystemExit("video_dir must be one direct episode directory below videos/.")
     master = must_be_release_ready(video)
-    paths = package_paths(video)
+    raw_request = load_json(args.request_file) if args.request_file else {}
+    release_id = str(raw_request.get("release_id") or "").strip()
+    if not re.fullmatch(r"[a-zA-Z0-9_-]{8,80}", release_id):
+        release_id = "rel_" + uuid.uuid4().hex
+    paths = package_paths(video, release_id)
+    current_paths = package_paths(video)
     request = release_request(args.request_file)
+    if args.dry_run:
+        dry: dict[str, Any] = {"release_id": release_id, "valid": True, "settings_fingerprint": settings_fingerprint(request), "provider_calls": {"metadata_text": 2 if request["generate_metadata"] else 0, "thumbnail_images": 0, "thumbnail_reviews": 0, "telegram": 0}}
+        if request["generate_thumbnail"]:
+            dry["thumbnail_preflight"] = thumbnail_preflight(video, args.content_project, request["thumbnail"])
+            count = request["thumbnail"]["count"] if request["thumbnail"]["count_mode"] == "fixed" else request["thumbnail"]["auto_max"]
+            dry["provider_calls"].update({"thumbnail_images": count, "thumbnail_reviews": count, "maximum_image_submissions": request["thumbnail"]["max_image_generations"]})
+        print(json.dumps(dry, indent=2))
+        return
     previous = load_json(paths["state"])
     master_sha = sha256_file(master)
     if (
-        not (args.force or request["force"]) and request == RELEASE_REQUEST_DEFAULTS
+        not (args.force or request["force"]) and previous.get("settings_fingerprint") == settings_fingerprint(request)
         and previous.get("status") == "DONE" and previous.get("master_sha256") == master_sha
         and (paths["metadata"].is_file()) and paths["thumbnail"].is_file()
     ):
         print("YOUTUBE RELEASE: ALREADY DONE")
         return
     state: dict[str, Any] = {
-        "schema_version": 1, "status": "RUNNING", "started_at": now(), "video": video.name,
+        "schema_version": 2, "release_id": release_id, "status": "RUNNING", "started_at": now(), "video": video.name,
         "master": str(master.relative_to(video)), "master_sha256": master_sha, "events": [], "request": request,
+        "settings_fingerprint": settings_fingerprint(request),
     }
+    write_json(paths["request"], {"schema_version": 2, "release_id": release_id, "settings": request, "settings_fingerprint": settings_fingerprint(request)})
     write_json(paths["state"], state)
     try:
         policy = channel_policy(args.content_project)
@@ -867,7 +944,7 @@ def main() -> None:
         visual_manifest: list[dict[str, Any]] = []
         if needs_references:
             visual_references, visual_manifest = thumbnail_visual_references(
-                video, master, paths, args.content_project, context,
+                video, master, paths, args.content_project, context, include_character=needs_thumbnail,
             )
             context["thumbnail_visual_references"] = {
                 "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
@@ -893,7 +970,7 @@ def main() -> None:
                     "source_context": context})
                 event(state, "metadata_review", "DONE", chatgpt_job_id=review_job_id, schema_repair_job_ids=schema_repair_job_ids)
         else:
-            metadata = load_json(paths["metadata"])
+            metadata = load_json(current_paths["metadata"])
             if not metadata and any(request[key] for key in ("generate_thumbnail", "create_upload_guide", "send_telegram")):
                 raise RuntimeError("Selected Release steps require existing metadata; enable Generate metadata first.")
             event(state, "metadata", "REUSED")
@@ -901,21 +978,25 @@ def main() -> None:
             metadata["title"] = request["title_override"]
         # Enforce the same current release contract for generated, reused, and manually overridden metadata.
         metadata = validate_metadata(metadata, policy)
-        if needs_metadata or request["title_override"]:
-            write_json(paths["metadata"], metadata)
+        # Every revision owns a snapshot, including send-only/guide-only releases that
+        # reuse current metadata.  This prevents a later request changing its evidence.
+        write_json(paths["metadata"], metadata)
 
         saved_thumbnail = metadata.get("thumbnail") if isinstance(metadata.get("thumbnail"), dict) else None
-        thumbnail = saved_thumbnail if saved_thumbnail and paths["thumbnail"].is_file() else None
+        thumbnail = saved_thumbnail if saved_thumbnail and current_paths["thumbnail"].is_file() else None
         if needs_thumbnail:
             image_contract = original_image_contract(video, args.content_project)
             with OrdakJobs() as jobs:
                 event(state, "thumbnail", "RUNNING"); write_json(paths["state"], state)
-                thumbnail = generate_thumbnail(jobs, metadata, image_contract, paths, visual_references, visual_manifest, request["thumbnail_note"])
+                thumbnail = generate_thumbnail_batch(jobs, metadata, image_contract, paths, visual_references, visual_manifest, request["thumbnail"]["thumbnail_note"], video, args.content_project, request["thumbnail"], context)
             metadata["thumbnail"] = thumbnail
             write_json(paths["metadata"], metadata)
-            event(state, "thumbnail", "DONE", selected_attempt=thumbnail["selected_attempt"], qc_passed=thumbnail["quality_check"].get("passed"))
+            event(state, "thumbnail", thumbnail["selection"]["status"], selected_candidate_id=thumbnail["selection"]["selected_candidate_id"], qc_passed=thumbnail["quality_check"].get("passed"))
         else:
-            event(state, "thumbnail", "REUSED" if thumbnail and paths["thumbnail"].is_file() else "SKIPPED")
+            if thumbnail and current_paths["thumbnail"].is_file():
+                shutil.copyfile(current_paths["thumbnail"], paths["thumbnail"])
+                event(state, "thumbnail", "REUSED")
+            else: event(state, "thumbnail", "SKIPPED")
 
         if request["create_upload_guide"]:
             write_text(paths["upload"], build_upload_markdown(metadata, thumbnail, context))
@@ -929,25 +1010,42 @@ def main() -> None:
             delivery_settings = NotifierSettings.from_environment()
             if not delivery_settings.delivery_configured:
                 raise RuntimeError("Telegram delivery is not configured. Set YT_PIPELINE_TELEGRAM_* in .env.")
+            candidate_items = list((thumbnail or {}).get("candidates") or [])
+            selected_id = ((thumbnail or {}).get("selection") or {}).get("selected_candidate_id")
+            for item in candidate_items: item["selected"] = item.get("candidate_id") == selected_id
             messages = asyncio.run(deliver_bundle(
                 delivery_settings, master, paths["thumbnail"] if thumbnail and paths["thumbnail"].is_file() else None,
                 paths["upload"] if paths["upload"].is_file() else None, paths["metadata"],
-                video_caption(metadata, thumbnail), metadata["title"],
+                video_caption(metadata, thumbnail), metadata["title"], candidates=candidate_items,
+                comparison=(paths["root"] / "comparison.jpg") if request["thumbnail"]["send_comparison_sheet"] else None,
+                report=paths["selection"] if request["thumbnail"]["send_report_json"] else None,
             ))
+            write_json(paths["delivery"], {"status": "DONE", "messages": messages, "delivered_count": len((messages.get("candidates") or {}))})
             event(state, "telegram_delivery", "DONE", messages=messages)
         else:
             event(state, "telegram_delivery", "SKIPPED")
         state.update({
-            "status": "DONE", "completed_at": now(), "metadata": str(paths["metadata"].relative_to(video)),
+            "status": "DONE" if not thumbnail or thumbnail.get("selection", {}).get("status") == "DONE" else "NEEDS_REVIEW", "completed_at": now(), "metadata": str(paths["metadata"].relative_to(video)),
             "messages": messages,
             **({"thumbnail": str(paths["thumbnail"].relative_to(video))} if thumbnail else {}),
             **({"upload": str(paths["upload"].relative_to(video))} if paths["upload"].is_file() else {}),
         })
         write_json(paths["state"], state)
+        # Current pointers preserve old consumers without pretending a non-selected image won.
+        current_paths["base"].mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(paths["state"], current_paths["state"])
+        shutil.copyfile(paths["metadata"], current_paths["metadata"])
+        if paths["upload"].is_file(): shutil.copyfile(paths["upload"], current_paths["upload"])
+        if thumbnail and paths["thumbnail"].is_file():
+            shutil.copyfile(paths["thumbnail"], current_paths["thumbnail"])
+            if sha256_file(paths["thumbnail"]) != sha256_file(current_paths["thumbnail"]):
+                raise RuntimeError("Current thumbnail pointer did not preserve selected final bytes.")
+        write_json(current_paths["base"] / "CURRENT_RELEASE.json", {"release_id": release_id, "release_root": str(paths["root"].relative_to(video)), "selected_candidate_id": (thumbnail or {}).get("selection", {}).get("selected_candidate_id"), "thumbnail_sha256": ((thumbnail or {}).get("selected") or {}).get("sha256")})
         print("YOUTUBE RELEASE: PASS")
     except Exception as exc:
         event(state, "release", "FAILED", error=f"{type(exc).__name__}: {exc}")
-        state.update({"status": "FAILED", "failed_at": now(), "error": f"{type(exc).__name__}: {exc}"})
+        status = exc.pipeline_state if isinstance(exc, OrdakJobError) and exc.needs_human else "FAILED"
+        state.update({"status": status, "failed_at": now(), "error": f"{type(exc).__name__}: {exc}"})
         write_json(paths["state"], state)
         print(f"YOUTUBE RELEASE: FAILED\n{state['error']}", file=sys.stderr)
         raise

@@ -2977,18 +2977,38 @@ const RELEASE_DEFAULTS = {
   metadata_note: "",
   thumbnail_note: "",
   title_override: "",
+  thumbnail: {
+    count_mode: "fixed", count: 3, auto_min: 2, auto_max: 4, concept_count: "auto",
+    diversity: "high", layout_mode: "auto", allowed_layouts: ["character_left", "character_right", "contrast_split", "discovery_focus"],
+    tension: "strong", brand_profile: "q_station_v1", aspect_ratio: "9:16", image_model: "inherit_episode", quality: "native",
+    thumbnail_note: "", must_include: "", must_avoid: "", text_mode: "auto", manual_text: "", font_id: "dejavu_sans_bold",
+    case_mode: "auto", text_position: "auto", max_words: 6, max_lines: 2, corrections_per_candidate: 1, max_image_generations: 6,
+    review_preset: "balanced", export_format: "png", preview_small: true, comparison_sheet: true, send_comparison_sheet: true,
+    send_report_json: true, send_raw_artwork: false, delivery_mode: "all_final_candidates", resend: false,
+  },
 };
 
 function ReleaseModal({ jobId, close, started }) {
   const [settings, setSettings] = useState(RELEASE_DEFAULTS);
+  const [capabilities, setCapabilities] = useState(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const change = (name, value) => setSettings((current) => ({ ...current, [name]: value }));
+  const thumb = (name, value) => setSettings((current) => ({ ...current, thumbnail: { ...current.thumbnail, [name]: value } }));
+  useEffect(() => {
+    let active = true;
+    request("/api/release-schema").then((schema) => {
+      if (!active || !schema?.defaults) return;
+      setCapabilities(schema.capabilities || null);
+      setSettings(schema.defaults);
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
   const tasks = [
     ["generate_metadata", "Generate YouTube metadata", "Creates title alternatives, description, tags, upload recommendations, and a thumbnail brief."],
-    ["generate_thumbnail", "Generate thumbnail", "Creates and quality-checks a new 9:16 thumbnail from final-render reference frames."],
+    ["generate_thumbnail", "Generate thumbnail candidates", "Creates independent text-free artworks, composites real English text locally, reviews final files, and recommends one."],
     ["create_upload_guide", "Create upload guide", "Writes copy-ready YouTube instructions and manual-review reminders."],
-    ["send_telegram", "Send selected release files to Telegram", "Always sends the QC-passed master; attaches metadata, guide, and thumbnail only when available."],
+    ["send_telegram", "Send release files to Telegram", "Always sends the QC-passed master and every visible final thumbnail candidate as original documents."],
   ];
   async function submit(event) {
     event.preventDefault();
@@ -3026,7 +3046,7 @@ function ReleaseModal({ jobId, close, started }) {
           ))}
         </section>
         <section className="release-editorial">
-          <h3>Optional direction</h3>
+          <h3>Basic</h3>
           <label className="field">
             <span>Custom final title</span>
             <input value={settings.title_override} maxLength="100" placeholder="Leave empty to use generated or saved metadata" disabled={busy} onChange={(event) => change("title_override", event.target.value)} />
@@ -3038,17 +3058,41 @@ function ReleaseModal({ jobId, close, started }) {
             <small>Used only when generating metadata; it cannot override the source facts.</small>
           </label>
           <label className="field">
-            <span>Thumbnail direction</span>
-            <textarea value={settings.thumbnail_note} maxLength="2000" placeholder="Desired visual emphasis, focal subject, composition, or constraints…" disabled={busy} onChange={(event) => change("thumbnail_note", event.target.value)} />
-            <small>Used only when generating a thumbnail; final-video frames remain the visual source of truth.</small>
+            <span>Candidate count</span>
+            <select value={settings.thumbnail.count_mode} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("count_mode", event.target.value)}><option value="fixed">Fixed</option><option value="auto">Auto within range</option></select>
+            {settings.thumbnail.count_mode === "fixed" ? <input type="number" min="1" max="6" value={settings.thumbnail.count} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("count", Number(event.target.value))} /> : <span className="field-grid"><input aria-label="Minimum candidates" type="number" min="1" max="6" value={settings.thumbnail.auto_min} onChange={(event) => thumb("auto_min", Number(event.target.value))} /><input aria-label="Maximum candidates" type="number" min="1" max="6" value={settings.thumbnail.auto_max} onChange={(event) => thumb("auto_max", Number(event.target.value))} /></span>}
+            <small>{settings.thumbnail.count_mode === "fixed" ? `${settings.thumbnail.count} independent final candidates` : `${settings.thumbnail.auto_min}–${settings.thumbnail.auto_max} independently planned candidates`}; all visible final candidates are delivered.</small>
+          </label>
+          <label className="field"><span>Layout family</span><select value={settings.thumbnail.layout_mode} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("layout_mode", event.target.value)}><option value="auto">Auto — diverse layouts</option><option value="character_left">Character left</option><option value="character_right">Character right</option><option value="contrast_split">Contrast split</option><option value="discovery_focus">Discovery focus</option></select></label>
+          <label className="field"><span>Text</span><select value={settings.thumbnail.text_mode} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("text_mode", event.target.value)}><option value="auto">Auto from the factual release brief</option><option value="manual">One manual headline</option></select>{settings.thumbnail.text_mode === "manual" && <input value={settings.thumbnail.manual_text} maxLength="40" placeholder="2–6 English words" onChange={(event) => thumb("manual_text", event.target.value)} />}</label>
+          <label className="field">
+            <span>Thumbnail art direction</span>
+            <textarea value={settings.thumbnail.thumbnail_note} maxLength="2000" placeholder="Desired visual emphasis, factual scene, composition, or constraints…" disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("thumbnail_note", event.target.value)} />
+            <small>Gemini creates artwork without text. The final headline, badge, and frame are rendered locally and reviewed on the final file.</small>
           </label>
         </section>
+        <details className="release-editorial"><summary><b>Advanced thumbnail settings</b></summary><div className="field-grid">
+          <label className="field"><span>Tension</span><select value={settings.thumbnail.tension} onChange={(event) => thumb("tension", event.target.value)}><option value="restrained">Restrained</option><option value="strong">Strong</option><option value="dramatic">Dramatic</option></select></label>
+          <label className="field"><span>Diversity</span><select value={settings.thumbnail.diversity} onChange={(event) => thumb("diversity", event.target.value)}><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
+          <label className="field"><span>Final reviewer</span><select value={settings.thumbnail.review_preset} onChange={(event) => thumb("review_preset", event.target.value)}><option value="balanced">Balanced</option><option value="clarity_first">Clarity first</option><option value="brand_first">Brand first</option></select></label>
+          <label className="field"><span>Text case</span><select value={settings.thumbnail.case_mode} onChange={(event) => thumb("case_mode", event.target.value)}><option value="auto">Auto</option><option value="uppercase">Uppercase</option><option value="sentence_case">Sentence case</option></select></label>
+          <label className="field"><span>Text position</span><select value={settings.thumbnail.text_position} onChange={(event) => thumb("text_position", event.target.value)}><option value="auto">Auto</option><option value="top">Top</option><option value="bottom">Bottom</option><option value="left">Left</option><option value="right">Right</option></select></label>
+          <label className="field"><span>Quality corrections per candidate</span><input type="number" min="0" max="2" value={settings.thumbnail.corrections_per_candidate} onChange={(event) => thumb("corrections_per_candidate", Number(event.target.value))} /></label>
+          <label className="field"><span>Maximum image submissions</span><input type="number" min="1" max="18" value={settings.thumbnail.max_image_generations} onChange={(event) => thumb("max_image_generations", Number(event.target.value))} /></label>
+          <label className="field"><span>Must include</span><input maxLength="500" value={settings.thumbnail.must_include || ""} onChange={(event) => thumb("must_include", event.target.value)} /></label>
+          <label className="field"><span>Must avoid</span><input maxLength="500" value={settings.thumbnail.must_avoid || ""} onChange={(event) => thumb("must_avoid", event.target.value)} /></label>
+        </div><small>Brand: Q Station v1 · Font: DejaVu Sans Bold · Actual supported ratio: 9:16. Wireframe/layout previews are not generated artwork.</small></details>
+        <details className="release-editorial"><summary><b>Delivery</b></summary>
+          <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.send_comparison_sheet} onChange={(event) => thumb("send_comparison_sheet", event.target.checked)} /><span className="switch" /><span><b>Send comparison sheet</b><small>Preview only; original candidates are always sent as documents.</small></span></label>
+          <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.send_report_json} onChange={(event) => thumb("send_report_json", event.target.checked)} /><span className="switch" /><span><b>Send selection report</b><small>Contains the reviewer recommendation and final-file hashes.</small></span></label>
+          <p className="release-dependency">Delivery mode: <b>all final candidates</b> (locked for this release version). A reviewer recommendation is editorial guidance, not a YouTube A/B test.</p>
+        </details>
         <label className="toggle-field release-force">
           <input type="checkbox" checked={settings.force} onChange={(event) => change("force", event.target.checked)} disabled={busy} />
           <span className="switch" />
           <span><b>Replace already completed selected outputs</b><small>Use for an intentional new metadata or thumbnail version. Existing files remain in the project history where retained.</small></span>
         </label>
-        <small className="release-dependency">If Metadata is off, Thumbnail, Guide, and Telegram reuse saved metadata; the request stops safely before any provider call if it is unavailable.</small>
+        <small className="release-dependency">Start summary: {settings.generate_thumbnail ? `${settings.thumbnail.count_mode === "fixed" ? settings.thumbnail.count : `${settings.thumbnail.auto_min}–${settings.thumbnail.auto_max}`} candidates, up to ${settings.thumbnail.max_image_generations} image submissions, ${settings.thumbnail.image_model}, ${settings.thumbnail.aspect_ratio}; every visible final candidate is sent when Telegram delivery is on.` : "Thumbnail generation is off: no thumbnail provider call or thumbnail preflight runs."} If Metadata is off, dependent steps reuse saved metadata and stop before any provider call when it is unavailable.</small>
         {error && <div className="inline-error" role="alert">{error}</div>}
         <button className="primary" disabled={busy}>{busy ? "Starting Release…" : "Start selected Release steps →"}</button>
       </form>
