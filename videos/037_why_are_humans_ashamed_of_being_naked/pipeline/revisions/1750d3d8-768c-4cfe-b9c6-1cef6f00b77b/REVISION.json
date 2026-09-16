@@ -60,7 +60,7 @@
   ],
   "regenerate_beats": [],
   "feedback": "",
-  "status": "FAILED",
+  "status": "DONE",
   "regeneration_mode": "cascade",
   "use_chatgpt_feedback": false,
   "started_at": "2026-09-16T09:17:15.657260+00:00",
@@ -69,5 +69,5 @@
     "max_duration_seconds"
   ],
   "config_revision_id": "41950fd9-56ed-4a52-854c-4f24bf9ae5c0",
-  "completed_at": "2026-09-16T09:24:34.099038+00:00"
+  "completed_at": "2026-09-16T10:56:54.927481+00:00"
 }

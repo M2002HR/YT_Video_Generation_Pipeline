@@ -57,8 +57,8 @@ def test_branding_defaults_put_the_question_below_a_top_right_logo() -> None:
     assert fields["title_text"]["default"] == ""
     assert fields["title_text"]["maxLength"] == 220
     assert fields["title_position"]["default"] == "below_logo"
-    assert fields["title_max_words_per_line"]["default"] == 7
-    assert fields["title_max_words_per_line"]["max"] == 100
+    assert fields["title_max_characters_per_line"]["default"] == 42
+    assert fields["title_max_characters_per_line"]["max"] == 220
     assert fields["title_line_spacing"]["default"] == 6
     assert {option["value"] for option in fields["title_font"]["options"]} >= {"Roboto", "Rubik", "DejaVu Sans"}
     assert fields["logo_custom_x_percent"]["requires"][1] == {"field": "logo_position", "value": "custom"}

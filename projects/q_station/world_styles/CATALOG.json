@@ -198,6 +198,17 @@
       "path": "020_cinematic_abandoned_world_charcoal_001",
       "anchor": "020_cinematic_abandoned_world_charcoal_001/style_anchor.png",
       "usage_count": 2
+    },
+    {
+      "style_id": "cave_pictograph_mineral_fresco_001",
+      "display_name": "Cave Pictograph Mineral Fresco 001",
+      "medium_family": "fresco",
+      "texture_family": "weathered cave rock and pitted limestone grain",
+      "palette_summary": "limestone cream, warm raw ochre, burnt sienna, deep umber, soot charcoal black, and muted terracotta red",
+      "status": "ready",
+      "path": "021_cave_pictograph_mineral_fresco_001",
+      "anchor": "021_cave_pictograph_mineral_fresco_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

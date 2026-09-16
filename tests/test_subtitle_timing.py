@@ -361,7 +361,7 @@ def test_branding_profile_uses_custom_title_or_topic_fallback_and_freezes_panel_
         "logo_position": "custom", "logo_custom_x_percent": 72,
         "title_text": "A custom title", "title_position": "below_logo", "title_font": "Rubik",
         "title_font_colour": "#FFD700", "title_outline": 3,
-        "title_max_words_per_line": 9, "title_line_spacing": 11,
+        "title_max_characters_per_line": 42, "title_line_spacing": 11,
         "show_watermark": True, "watermark_text": "© Q Station",
         "watermark_position": "bottom_left", "watermark_font": "Roboto",
         "watermark_opacity": .63, "watermark_max_words_per_line": 2,
@@ -375,7 +375,7 @@ def test_branding_profile_uses_custom_title_or_topic_fallback_and_freezes_panel_
     assert branding["title"]["text"] == "A custom title"
     assert branding["title"]["font_name"] == "Rubik"
     assert branding["title"]["font_colour"] == "#FFD700"
-    assert branding["title"]["max_words_per_line"] == 9
+    assert branding["title"]["max_characters_per_line"] == 42
     assert branding["title"]["line_spacing"] == 11
     assert branding["watermark"]["enabled"] is True
     assert branding["watermark"]["text"] == "© Q Station"

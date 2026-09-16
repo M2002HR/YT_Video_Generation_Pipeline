@@ -283,14 +283,57 @@ def ass_timestamp(seconds: float) -> str:
     return f"{hours}:{minutes:02d}:{whole:02d}.{fraction:02d}"
 
 
+def wrap_text_by_characters(text: str, max_characters: int) -> list[str]:
+    """Wrap normalized text without exceeding a code-point character limit.
+
+    Separators between words count as characters.  Prefer a word boundary, while
+    still splitting an individual overlong word so every emitted line obeys the
+    configured maximum.  Python's ``len`` counts Unicode code points, matching
+    the browser preview's ``Array.from`` behavior.
+    """
+    limit = max(1, int(max_characters))
+    lines: list[str] = []
+    line = ""
+    for word in str(text or "").split():
+        if not line:
+            if len(word) <= limit:
+                line = word
+            else:
+                while len(word) > limit:
+                    lines.append(word[:limit])
+                    word = word[limit:]
+                line = word
+            continue
+        if len(line) + 1 + len(word) <= limit:
+            line = f"{line} {word}"
+        else:
+            lines.append(line)
+            if len(word) <= limit:
+                line = word
+            else:
+                while len(word) > limit:
+                    lines.append(word[:limit])
+                    word = word[limit:]
+                line = word
+    if line:
+        lines.append(line)
+    return lines
+
+
 def write_brand_title_ass(path: Path, config: dict[str, Any], logo_box: tuple[int, int, int, int] | None, width: int, height: int, duration: float, *, style_name: str = "VideoTitle", layer_name: str = "title") -> None:
     """Write one explicitly wrapped, independently positioned branding text layer."""
     text = " ".join(str(config.get("text") or "").split())
     if not text:
         raise ValueError(f"Enabled {layer_name} has no text.")
-    max_words = round(_bounded_number(config, "max_words_per_line", 7, 1, 100))
-    words = text.split()
-    lines = [" ".join(words[index:index + max_words]) for index in range(0, len(words), max_words)]
+    if "max_characters_per_line" in config:
+        max_characters = round(_bounded_number(config, "max_characters_per_line", 42, 1, 220))
+        lines = wrap_text_by_characters(text, max_characters)
+    else:
+        # Profiles frozen before the character-limit setting keep their original
+        # word-count behavior, so an unrelated render remains visually stable.
+        max_words = round(_bounded_number(config, "max_words_per_line", 7, 1, 100))
+        words = text.split()
+        lines = [" ".join(words[index:index + max_words]) for index in range(0, len(words), max_words)]
     position = str(config.get("position", "below_logo")).strip().lower()
     if position not in BRAND_POSITIONS | {"below_logo"}:
         raise ValueError(f"Invalid {layer_name} position in render profile.")

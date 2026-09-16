@@ -411,19 +411,93 @@ def repair_unescaped_json_string_quotes(text: str) -> str:
     return "".join(output)
 
 
+def repair_unescaped_json_string_controls(text: str) -> str:
+    """Replace DOM-inserted control characters inside JSON strings with spaces.
+
+    ChatGPT source chips can be included by ``innerText`` as extra lines within a
+    quoted value.  Raw newlines are invalid in JSON strings.  This does not alter
+    formatting newlines outside strings, or escaped JSON controls such as ``\\n``.
+    """
+    output: list[str] = []
+    inside_string = False
+    escaped = False
+    for char in text:
+        if inside_string and ord(char) < 0x20:
+            output.append(" ")
+            continue
+        output.append(char)
+        if escaped:
+            escaped = False
+        elif char == "\\":
+            escaped = True
+        elif char == '"':
+            inside_string = not inside_string
+    return "".join(output)
+
+
+def repair_final_candidate_closer(text: str) -> str:
+    """Recover exactly one omitted final candidate ``}`` in a root candidates array.
+
+    A completion is allowed only for the unambiguous terminal shape
+    ``{"candidates":[{...}]}``, where the candidate object alone remains open
+    immediately before the final array/root closers.  Other malformed JSON is left
+    untouched for the provider correction loop.
+    """
+    stack: list[str] = []
+    inside_string = False
+    escaped = False
+    for index, char in enumerate(text):
+        if inside_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                inside_string = False
+            continue
+        if char == '"':
+            inside_string = True
+        elif char in "{[":
+            stack.append(char)
+        elif char in "}]":
+            expected = "{" if char == "}" else "["
+            if stack and stack[-1] == expected:
+                stack.pop()
+                continue
+            if (
+                char == "]"
+                and stack == ["{", "[", "{"]
+                and re.fullmatch(r"\]\s*\}", text[index:]) is not None
+            ):
+                return text[:index] + "}" + text[index:]
+            return text
+    return text
+
+
 def parse_structured_json(text: str) -> tuple[Any, bool]:
-    """Parse a provider's JSON, recovering only unescaped prose quotes when safe."""
+    """Parse provider JSON with narrowly-scoped recovery for known DOM artifacts."""
     raw = strip_fences(text)
     try:
         return json.loads(raw), False
     except json.JSONDecodeError as original_error:
-        repaired = repair_unescaped_json_string_quotes(raw)
+        repaired = repair_unescaped_json_string_controls(raw)
+        repaired = repair_unescaped_json_string_quotes(repaired)
+        repaired = repair_final_candidate_closer(repaired)
         if repaired == raw:
             raise original_error
         try:
             return json.loads(repaired), True
         except json.JSONDecodeError:
             raise original_error
+
+
+def json_repair_excerpt(raw: str, limit: int = 2_000) -> str:
+    """Give a correction turn both ends of an invalid response without bloating its prompt."""
+    if len(raw) <= limit:
+        return raw
+    head = limit // 2
+    tail = limit - head
+    return raw[:head] + "\n...[middle omitted]...\n" + raw[-tail:]
 
 
 def word_count(text: str) -> int:
@@ -683,7 +757,7 @@ class Runner:
                 parsed, repaired = parse_structured_json(last_raw)
                 if repaired:
                     print(
-                        f"    [{stage}] recovered unescaped quotes in provider JSON; preserving the raw response for audit.",
+                        f"    [{stage}] recovered a safe JSON formatting defect; preserving the raw response for audit.",
                         flush=True,
                     )
                 return parsed
@@ -692,7 +766,7 @@ class Runner:
                 current = (
                     f"Your previous output was not valid JSON ({exc}). Return ONLY raw JSON with "
                     f"no markdown fences and no commentary.\n\nOriginal task:\n{prompt}\n\n"
-                    f"Your previous output:\n{last_raw[:2000]}"
+                    f"Your previous output:\n{json_repair_excerpt(last_raw)}"
                 )
         raise StageFailure(
             stage,

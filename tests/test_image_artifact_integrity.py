@@ -325,6 +325,33 @@ def test_structured_json_keeps_valid_json_unchanged():
     assert parsed == {"passed": True, "description": "scene", "violations": []}
 
 
+def test_structured_json_recovers_citation_newline_and_one_final_candidate_closer():
+    raw = (
+        '{"candidates":[{"id":"c3","factual_anchor":"Supported source.\n'
+        'Museum citation\n+1","novelty":{"action_family":"comparison"}\n]}'
+    )
+
+    parsed, repaired = qh.parse_structured_json(raw)
+
+    assert repaired is True
+    assert parsed == {
+        "candidates": [{
+            "id": "c3",
+            "factual_anchor": "Supported source. Museum citation +1",
+            "novelty": {"action_family": "comparison"},
+        }],
+    }
+
+
+def test_json_repair_excerpt_includes_the_invalid_response_ending():
+    raw = "start" + "x" * 2_100 + "missing-final-closer"
+    excerpt = qh.json_repair_excerpt(raw)
+
+    assert excerpt.startswith("start")
+    assert excerpt.endswith("missing-final-closer")
+    assert "[middle omitted]" in excerpt
+
+
 def test_structured_json_does_not_accept_unrelated_malformed_json():
     with pytest.raises(json.JSONDecodeError):
         qh.parse_structured_json('{"passed": false "violations": []}')

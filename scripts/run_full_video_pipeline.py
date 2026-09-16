@@ -444,7 +444,7 @@ def apply_branding_preferences(profile_path: Path, creative_brief: dict[str, Any
         "font_name": str(requested.get("title_font", "Roboto")).strip() or "Roboto",
         "font_size": font_size, "bold": bool(requested.get("title_bold", True)),
         "italic": bool(requested.get("title_italic", False)), "text_align": align,
-        "max_words_per_line": int(number("title_max_words_per_line", 7, 1, 100)),
+        "max_characters_per_line": int(number("title_max_characters_per_line", 42, 1, 220)),
         "line_spacing": number("title_line_spacing", 6, -10, 100),
         "max_width_percent": number("title_max_width_percent", 34, 12, 90),
         "margin_x_percent": number("title_margin_x_percent", 3, 0, 25),

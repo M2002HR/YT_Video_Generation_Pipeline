@@ -17,6 +17,7 @@ import {
   SUBTITLE_FONT_SUPPORTS_PERSIAN,
   SUBTITLE_POSITION_OFFSETS,
   validateLaunchValues,
+  wrapTextByCharacterLimit,
 } from "./studio-utils.js";
 
 test("narration preview converts and clamps dB like an audio gain stage", () => {
@@ -196,6 +197,19 @@ test("subtitle preview wraps the first caption like the ASS writer", () => {
     "low",
     "standard",
   ]);
+});
+
+test("title preview wraps by characters and counts the spaces between words", () => {
+  assert.deepEqual(wrapTextByCharacterLimit("Why does time feel faster?", 13), [
+    "Why does time", "feel faster?",
+  ]);
+  assert.deepEqual(wrapTextByCharacterLimit("extraordinary", 5), [
+    "extra", "ordin", "ary",
+  ]);
+  assert.deepEqual(wrapTextByCharacterLimit("A  😀 B", 3), ["A 😀", "B"]);
+  assert.ok(wrapTextByCharacterLimit("Why does time feel faster?", 13).every(
+    (line) => Array.from(line).length <= 13,
+  ));
 });
 
 test("subtitle revision preview re-chunks measured words before render", () => {

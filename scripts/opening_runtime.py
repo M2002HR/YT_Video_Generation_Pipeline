@@ -107,12 +107,12 @@ def character_story_context(character: Any) -> dict[str, Any]:
     }
 
 
-def _text(obj: dict[str, Any], key: str, limit: int = 240) -> str:
+def _text(obj: dict[str, Any], key: str, limit: int | None = 240) -> str:
     value = obj.get(key)
     if not isinstance(value, str) or not value.strip():
         raise OpeningContractError(f"Opening field {key!r} must be a non-empty string.")
     value = value.strip()
-    if len(value) > limit:
+    if limit is not None and len(value) > limit:
         raise OpeningContractError(f"Opening field {key!r} exceeds {limit} characters; be concrete and concise.")
     return value
 
@@ -225,7 +225,7 @@ def select_candidate(payload: Any, candidates: list[dict[str, Any]], history: li
         if any(scores[name] < 3 for name in ("topic_fit", "honesty", "payoff", "entry_fit", "feasibility")) or scores["visible_hook"] < 2 or scores["character_fit"] < 2 or scores["novelty"] < 2:
             issues.append("Insufficient topic fit, honesty, payoff, entry feasibility or visible hook.")
         decisions.append({"id": key, "scores": scores, "blocking_issues": issues,
-                          "reason": _text(raw, "reason", 500), "repetition_evidence": collision,
+                          "reason": _text(raw, "reason", None), "repetition_evidence": collision,
                           "weighted_score": sum(scores[name] * WEIGHTS[name] for name in CRITERIA)})
     eligible = [item for item in decisions if not item["blocking_issues"]]
     if not eligible:

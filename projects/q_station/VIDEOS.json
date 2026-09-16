@@ -214,6 +214,26 @@
       "camera_pattern": "pan_right",
       "world_style_id": "cinematic_abandoned_world_charcoal_001",
       "updated_at": "2026-09-15T12:20:59.648117+00:00"
+    },
+    {
+      "video_id": "037",
+      "opening_activity": "deliberately comparing public display with private concealment",
+      "opening_location": "quiet sculpture gallery beside a temporary changing booth",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "cave_pictograph_mineral_fresco_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "context comparison",
+        "tension_family": "public display versus concealment",
+        "prop_family": "nude marble statue and privacy curtain",
+        "reveal_family": "same body category, different social rule"
+      },
+      "situation_summary": "A nude marble figure is openly displayed while a nearby person urgently pulls a changing curtain shut.",
+      "hook_line": "Why can a naked statue feel proper when a naked person feels exposed?",
+      "entry_variant": "sleeve_reveal",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-16T10:24:08.344267+00:00"
     }
   ]
 }

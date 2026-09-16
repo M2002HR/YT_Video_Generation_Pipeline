@@ -29,6 +29,7 @@ import {
   SUBTITLE_FONT_SUPPORTS_PERSIAN,
   SUBTITLE_PREVIEW_TEXT,
   validateLaunchValues,
+  wrapTextByCharacterLimit,
 } from "./studio-utils.js";
 
 async function writeClipboardText(text) {
@@ -410,12 +411,9 @@ function BrandPreview({ values, fontSources = {}, frames = [], backdropLabel = "
   const titleOutline = /^#[0-9a-fA-F]{6}$/.test(values.title_outline_colour || "") ? values.title_outline_colour : "#000000";
   const outline = Math.min(8, Math.max(0, Number(values.title_outline) || 0)) * .25;
   const titleFontSize = Math.max(16, Math.min(200, Number(values.title_font_size) || 38));
-  const wordsPerLine = Math.max(1, Math.min(100, Math.round(Number(values.title_max_words_per_line) || 7)));
+  const titleCharactersPerLine = Math.max(1, Math.min(220, Math.round(Number(values.title_max_characters_per_line) || 42)));
   const titleText = String(values.title_text || values.topic || "Your video question appears here").trim();
-  const titleWords = titleText.split(/\s+/).filter(Boolean);
-  const titleLines = [];
-  for (let index = 0; index < titleWords.length; index += wordsPerLine)
-    titleLines.push(titleWords.slice(index, index + wordsPerLine).join(" "));
+  const titleLines = wrapTextByCharacterLimit(titleText, titleCharactersPerLine);
   const lineSpacing = Math.max(-10, Math.min(100, Number(values.title_line_spacing) || 0));
   const watermarkText = String(values.watermark_text || "").trim();
   const watermarkWidth = frameWidth * Math.min(90, Math.max(12, Number(values.watermark_max_width_percent) || 34)) / 100;

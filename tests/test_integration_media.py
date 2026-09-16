@@ -277,7 +277,7 @@ def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path
         "title": {
             "enabled": True, "text": "Why does time feel faster?", "position": "below_logo",
             "font_name": "DejaVu Sans", "font_size": 20, "max_width_percent": 40,
-            "max_words_per_line": 2, "line_spacing": 8,
+            "max_characters_per_line": 13, "line_spacing": 8,
             "font_colour": "#FFFFFF", "outline_colour": "#000000", "outline": 2,
         },
         "watermark": {
@@ -299,10 +299,9 @@ def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path
     assert "Branding: logo=on, title=on, watermark=on" in dry.stdout
     title_ass = (video_dir / "render" / "BRANDING_TITLE.ass").read_text()
     dialogue = [line for line in title_ass.splitlines() if line.startswith("Dialogue:")]
-    assert len(dialogue) == 3
-    assert dialogue[0].endswith("Why does")
-    assert dialogue[1].endswith("time feel")
-    assert dialogue[2].endswith("faster?")
+    assert len(dialogue) == 2
+    assert dialogue[0].endswith("Why does time")
+    assert dialogue[1].endswith("feel faster?")
     y_positions = [float(line.split("\\pos(", 1)[1].split(")", 1)[0].split(",")[1]) for line in dialogue]
     assert y_positions[1] - y_positions[0] == 28
     watermark_ass = (video_dir / "render" / "BRANDING_WATERMARK.ass").read_text()
@@ -318,7 +317,7 @@ def test_logo_and_question_title_are_composited_without_subtitles(tmp_path: Path
     assert result.returncode == 0, result.stdout + result.stderr
     assert (video_dir / "assets" / "renders" / "preview.mp4").is_file()
 
-    profile["branding"]["title"]["max_words_per_line"] = 100
+    profile["branding"]["title"]["max_characters_per_line"] = 220
     profile_path.write_text(json.dumps(profile))
     one_line = _render(video_dir, "--dry-run")
     assert one_line.returncode == 0, one_line.stdout + one_line.stderr

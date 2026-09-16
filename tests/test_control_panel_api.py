@@ -52,6 +52,22 @@ def test_launch_and_resume_build_the_same_command() -> None:
     assert panel.pipeline_command(record) == command, "the builder must be deterministic"
 
 
+def test_unchanged_frozen_transition_overrides_do_not_require_a_timeline(tmp_path: Path) -> None:
+    overrides = [{
+        "from_beat_id": "video_opening_a", "to_beat_id": "video_opening_b",
+        "type": "fade", "duration": .2,
+    }]
+
+    resolved, changed = panel.revised_transition_overrides(overrides, overrides, tmp_path)
+
+    assert resolved == overrides
+    assert changed is False
+    with pytest.raises(ValueError, match="after this run has a timeline"):
+        panel.revised_transition_overrides([
+            {**overrides[0], "type": "dissolve"},
+        ], overrides, tmp_path)
+
+
 def test_render_only_config_revision_locks_out_visual_generation_even_on_resume() -> None:
     """Subtitle style edits must never reach Gemini after an isolated beat revision."""
     record = _record(pending_revision={
@@ -1187,7 +1203,7 @@ def test_branding_revision_is_render_only_and_persists_the_shared_font_style() -
         "title_position": "custom",
         "title_custom_x_percent": 62,
         "title_custom_y_percent": 21,
-        "title_max_words_per_line": 12,
+        "title_max_characters_per_line": 42,
         "title_line_spacing": 14,
     })
 
@@ -1198,7 +1214,8 @@ def test_branding_revision_is_render_only_and_persists_the_shared_font_style() -
     assert revised["_branding"]["logo_position"] == "bottom_left"
     assert revised["_branding"]["title_font"] == "Rubik"
     assert revised["_branding"]["title_font_colour"] == "#FFD700"
-    assert revised["_branding"]["title_max_words_per_line"] == 12
+    assert revised["_branding"]["title_max_characters_per_line"] == 42
+    assert "title_max_words_per_line" not in revised["_branding"]
     assert revised["_branding"]["title_line_spacing"] == 14
     assert {"logo_width_percent", "logo_position", "title_font", "title_position"} <= set(changed)
 

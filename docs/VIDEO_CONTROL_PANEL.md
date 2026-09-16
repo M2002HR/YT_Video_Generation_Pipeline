@@ -182,8 +182,9 @@ The title text can be entered directly by the operator. When left empty, it uses
 episode topic/question rather than generated copy. Its
 default placement follows immediately below the logo. It can instead use any anchor preset
 or custom percentage coordinates, with an adjustable box width, alignment, font size,
-weight, italics, colour, outline, maximum words per line, and exact pixel line spacing.
-Raising the words-per-line limit keeps the complete question on one explicit line. It
+weight, italics, colour, outline, maximum characters per line (including spaces), and exact pixel line spacing.
+Raising the character limit keeps more of the complete question on one explicit line; a
+long individual word is split when necessary so no line can exceed the configured limit. It
 shares the subtitle font catalogue and uploaded font store. Unicode shaping and wrapping
 are rendered through libass. A branding-only
 revision starts at `render_profile`, so accepted images and Flow clips remain untouched.

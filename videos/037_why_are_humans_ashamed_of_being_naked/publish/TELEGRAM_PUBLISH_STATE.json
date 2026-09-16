@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-16T10:56:52.196750+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-16T10:56:52.196548+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15211,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2753917,
+      "sha256": "840d66a32bf55f77ff2b2b96eb70a3daa23bd442a9473ce527f4558843f1fafa",
+      "duration_seconds": 44.667,
+      "elapsed_seconds": 7.159,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "037_why_are_humans_ashamed_of_being_naked",
+        "duration_seconds": 44.669,
+        "beat_count": 10,
+        "video_beat_count": 2,
+        "image_beat_count": 8,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.9,
+          "transition_end": 11.1
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 158.674,
+          "realtime_factor": 3.552,
+          "peak_child_rss_mb": 1223.5,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 037_why_are_humans_ashamed_of_being_naked\n⏱ Duration: 0:45\n🎞 Beats: 10 (2 video · 8 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 2:39 wall (3.552x realtime) · 2 thread(s) · peak 1223.5 MB\nArtifact: 840d66a32bf5 · Delivery: compressed"
+    }
+  }
+}

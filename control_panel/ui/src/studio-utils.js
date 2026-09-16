@@ -233,6 +233,41 @@ export function previewFramesFromTimeline(timeline, base, count = 10) {
 export const SUBTITLE_PREVIEW_TEXT =
   "This a subtitle preview for test, thank you for your attention to this matter!";
 
+// This deliberately wraps on word boundaries where possible, but never permits a
+// line longer than the configured character limit. Array.from counts Unicode code
+// points (rather than UTF-16 code units), matching Python's len() in the renderer.
+// The one space inserted between adjacent words is part of the candidate line and
+// therefore counts toward the limit.
+export function wrapTextByCharacterLimit(value, maxCharacters = 42) {
+  const limit = Math.max(1, Math.min(220, Math.round(Number(maxCharacters) || 42)));
+  const words = String(value || "").trim().split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = "";
+
+  const placeWord = (word) => {
+    const characters = Array.from(word);
+    while (characters.length > limit)
+      lines.push(characters.splice(0, limit).join(""));
+    line = characters.join("");
+  };
+
+  for (const word of words) {
+    if (!line) {
+      placeWord(word);
+      continue;
+    }
+    if (Array.from(line).length + 1 + Array.from(word).length <= limit) {
+      line = `${line} ${word}`;
+      continue;
+    }
+    lines.push(line);
+    line = "";
+    placeWord(word);
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
 // Bottom offsets mirroring build_timeline.SUBTITLE_POSITION_FRACTIONS (of frame height).
 export const SUBTITLE_POSITION_OFFSETS = { low: 0.045, standard: 0.075, high: 0.13 };
 

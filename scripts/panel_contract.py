@@ -127,7 +127,7 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
                 for name in ALL_SUBTITLE_FONTS
             ], searchable=True, help="Uses the same installed and uploaded font library as subtitles.", requires={"field": "show_title", "value": True}),
             _field("title_font_size", "Title font size", "number", default=38, min=TITLE_FONT_SIZE_MIN, max=TITLE_FONT_SIZE_MAX, step=1, width="half", requires={"field": "show_title", "value": True}),
-            _field("title_max_words_per_line", "Maximum words per line", "number", default=7, min=1, max=100, step=1, width="half", help="Set this high enough to keep the complete question on one line.", requires={"field": "show_title", "value": True}),
+            _field("title_max_characters_per_line", "Maximum characters per line", "number", default=42, min=1, max=220, step=1, width="half", help="Spaces count toward this limit. Long words are split so no title line exceeds it.", requires={"field": "show_title", "value": True}),
             _field("title_line_spacing", "Line spacing (px)", "number", default=6, min=-10, max=100, step=1, width="half", help="Extra vertical space between title lines at final render resolution.", requires={"field": "show_title", "value": True}),
             _field("title_max_width_percent", "Title box width %", "number", default=34, min=12, max=90, step=1, width="half", requires={"field": "show_title", "value": True}),
             _field("title_bold", "Title bold", "toggle", default=True, requires={"field": "show_title", "value": True}),

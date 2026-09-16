@@ -429,7 +429,7 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <label>Title position <select name=title_position><option value=below_logo selected>Below logo</option><option value=top_left>Top left</option><option value=top_center>Top centre</option><option value=top_right>Top right</option><option value=center>Centre</option><option value=bottom_left>Bottom left</option><option value=bottom_center>Bottom centre</option><option value=bottom_right>Bottom right</option><option value=custom>Custom</option></select></label>
    <label>Title font <select name=title_font><option selected>Roboto</option><option>Open Sans</option><option>Rubik</option><option>DejaVu Sans</option></select></label>
    <label>Title font size <input name=title_font_size type=number min=16 max=200 value=38></label>
-   <label>Maximum words per line <input name=title_max_words_per_line type=number min=1 max=100 value=7></label>
+   <label>Maximum characters per line (spaces count) <input name=title_max_characters_per_line type=number min=1 max=220 value=42></label>
    <label>Line spacing (px) <input name=title_line_spacing type=number min=-10 max=100 value=6></label>
    <label>Title box width % <input name=title_max_width_percent type=number min=12 max=90 value=34></label>
    <label>Text alignment <select name=title_text_align><option value=right selected>Right</option><option value=center>Centre</option><option value=left>Left</option></select></label>

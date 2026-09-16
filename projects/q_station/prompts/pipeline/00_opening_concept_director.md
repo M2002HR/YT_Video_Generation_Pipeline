@@ -33,8 +33,9 @@ Intro A and B are separate clips: design a plausible editorial/match seam, not g
 pixel identity. The world_entry field describes ONLY a host-free first discovery in the subject
 world: no host, opening location, book, orb, frame transition or presentation styling.
 
-Return raw JSON only, exactly three candidates. Use concise strings, each at most 240 characters
-(bridge strings at most 200; novelty tags at most 80). No scores or self-declared winner.
+Return raw JSON only, exactly three complete candidates. Use concise strings, each at most 240 characters
+(bridge strings at most 200; novelty tags at most 80). No scores, citations, links, source cards,
+or self-declared winner. Use only plain prose from the supplied brief for `factual_anchor`.
 {
   "candidates": [
     {
@@ -67,4 +68,6 @@ Return raw JSON only, exactly three candidates. Use concise strings, each at mos
     }
   ]
 }
-Use c1, c2, c3 with different dramatic mechanisms, not three wordings of one hook.
+Use c1, c2, c3 with different dramatic mechanisms, not three wordings of one hook. The sample
+shows the fields of one candidate only: the actual `candidates` array must contain three complete
+objects, separated by commas, and each object (including c3) must close with `}` before `]}`.

@@ -197,6 +197,19 @@ def normalize_transition_overrides(value: Any, project: Path) -> list[dict[str, 
     return normalized
 
 
+def revised_transition_overrides(value: Any, previous: Any, project: Path) -> tuple[list[dict[str, Any]], bool]:
+    """Keep frozen overrides unchanged until a timeline exists.
+
+    Revise always sends the form's current overrides, including launch-time defaults that
+    predate a timeline.  They are not an edit merely because the run has not built its
+    timeline yet.  A real change still goes through timeline-boundary validation.
+    """
+    old = previous if isinstance(previous, list) else []
+    if value is None or value == old:
+        return old, False
+    return normalize_transition_overrides(value, project), True
+
+
 def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
     """Flatten a run's versioned files into the launch form's typed field names."""
     values = dict(launch_defaults(studio_schema()))
@@ -453,6 +466,11 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         **dict(previous.get("_branding") or {}),
         **{key: merged[key] for key in BRANDING_FIELDS},
     }
+    # The character limit supersedes the historical word-count setting. Remove it
+    # when a branding revision is saved so future profiles have one unambiguous
+    # wrapping rule. Old frozen profiles remain renderable through the renderer's
+    # compatibility path.
+    brief["_branding"].pop("title_max_words_per_line", None)
     logo_reference = str(merged.get("logo_upload_id") or "")
     branding_before = previous.get("_branding") if isinstance(previous.get("_branding"), dict) else {}
     old_logo_asset = branding_before.get("logo_asset") if isinstance(branding_before.get("logo_asset"), dict) else {}
@@ -1145,7 +1163,7 @@ BRANDING_DEFAULTS = {
     "logo_opacity": 1, "logo_margin_x_percent": 3, "logo_margin_y_percent": 2.5,
     "logo_custom_x_percent": 85, "logo_custom_y_percent": 10,
     "show_title": True, "title_text": "", "title_position": "below_logo", "title_font": "Roboto",
-    "title_font_size": 38, "title_max_words_per_line": 7, "title_line_spacing": 6,
+    "title_font_size": 38, "title_max_characters_per_line": 42, "title_line_spacing": 6,
     "title_max_width_percent": 34, "title_bold": True,
     "title_italic": False, "title_text_align": "right", "title_margin_x_percent": 3,
     "title_margin_y_percent": 2.5, "title_logo_gap_percent": 1,
@@ -3183,10 +3201,12 @@ class Handler(BaseHTTPRequestHandler):
                     record, previous_brief, previous_voice, values
                 )
                 if transition_overrides is not None:
-                    overrides = normalize_transition_overrides(transition_overrides, project)
                     old_overrides = (previous_brief.get("_motion") or {}).get("transition_overrides", [])
+                    overrides, overrides_changed = revised_transition_overrides(
+                        transition_overrides, old_overrides, project
+                    )
                     brief.setdefault("_motion", {})["transition_overrides"] = overrides
-                    if json.dumps(old_overrides, sort_keys=True) != json.dumps(overrides, sort_keys=True):
+                    if overrides_changed:
                         roots.add("render_profile")
                         changed_fields.append("motion_transition_overrides")
             except ValueError as exc:
@@ -3414,10 +3434,12 @@ class Handler(BaseHTTPRequestHandler):
                 record, old_brief, old_voice, values
             )
             if transition_overrides is not None:
-                overrides = normalize_transition_overrides(transition_overrides, project)
                 old_overrides = (old_brief.get("_motion") or {}).get("transition_overrides", [])
+                overrides, overrides_changed = revised_transition_overrides(
+                    transition_overrides, old_overrides, project
+                )
                 brief.setdefault("_motion", {})["transition_overrides"] = overrides
-                if json.dumps(old_overrides, sort_keys=True) != json.dumps(overrides, sort_keys=True):
+                if overrides_changed:
                     roots.add("render_profile")
                     changed_fields.append("motion_transition_overrides")
             topic_changed = not same_topic(record.get("topic"), launch.get("_topic"))
@@ -4228,7 +4250,7 @@ class Handler(BaseHTTPRequestHandler):
                 "logo_margin_x_percent": (0, 25), "logo_margin_y_percent": (0, 25),
                 "logo_custom_x_percent": (0, 100), "logo_custom_y_percent": (0, 100),
                 "title_font_size": (TITLE_FONT_SIZE_MIN, TITLE_FONT_SIZE_MAX),
-                "title_max_words_per_line": (1, 100), "title_line_spacing": (-10, 100),
+                "title_max_characters_per_line": (1, 220), "title_line_spacing": (-10, 100),
                 "title_max_width_percent": (12, 90), "title_margin_x_percent": (0, 25),
                 "title_margin_y_percent": (0, 25), "title_logo_gap_percent": (0, 15),
                 "title_custom_x_percent": (0, 100), "title_custom_y_percent": (0, 100),

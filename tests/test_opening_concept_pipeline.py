@@ -175,6 +175,15 @@ def test_candidate_reviewer_cannot_pass_malformed_scores():
         opening.select_candidate(raw, proposals, [])
 
 
+def test_candidate_reviewer_reason_has_no_character_limit():
+    proposals = opening.validate_candidates(candidates(), ("desk_reach",))
+    raw = reviews()
+    raw["reviews"][0]["reason"] = "Detailed evidence. " * 100
+    selected, decisions = opening.select_candidate(raw, proposals, [])
+    assert selected["id"] == "c1"
+    assert len(decisions[0]["reason"]) > 500
+
+
 def test_no_usable_candidate_causes_bounded_redesign(run, registry):
     rejected = reviews()
     for row in rejected["reviews"]:
