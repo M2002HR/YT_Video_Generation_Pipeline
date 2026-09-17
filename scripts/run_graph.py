@@ -136,15 +136,15 @@ def project_mode(project: Path) -> str:
     if content_project:
         try:
             from content_projects import load_content_project
-            if not load_content_project(content_project).is_question_harvest:
+            if not load_content_project(content_project).is_q_station:
                 return "generic"
         except RuntimeError:
             return "generic"
     if (project / "visual_pipeline/RUNTIME_STATE.json").is_file() and not (
-        project / "pipeline/QH_RUNTIME_STATE.json"
+        project / "pipeline/Q_STATION_RUNTIME_STATE.json"
     ).is_file():
         return "generic"
-    return "question_harvest"
+    return "q_station"
 
 
 def _safe_relative_file(project: Path, value: object) -> str | None:
@@ -201,8 +201,8 @@ def artifacts_for(project: Path, node_id: str, spec: NodeSpec | None = None) -> 
     return result
 
 
-def qh_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict[str, NodeSpec]:
-    """Profile-aware QH specs while retaining durable historical stage ids.
+def q_station_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict[str, NodeSpec]:
+    """Profile-aware QStation specs while retaining durable historical stage ids.
 
     A manual character change can preview its destination presentation before the old
     resolution is archived. Auto intentionally keeps the current profile until its selector
@@ -211,8 +211,8 @@ def qh_node_specs(project: Path, settings: dict[str, Any] | None = None) -> dict
     from presentation_runtime import presentation_for_project
     presentation = presentation_for_project(project)
     if isinstance(settings, dict):
-        qh = settings.get("qh") if isinstance(settings.get("qh"), dict) else {}
-        request = qh.get("character") if isinstance(qh.get("character"), dict) else settings.get("character")
+        qstation = settings.get("qstation") if isinstance(settings.get("qstation"), dict) else {}
+        request = qstation.get("character") if isinstance(qstation.get("character"), dict) else settings.get("character")
         if isinstance(request, dict) and request.get("mode") == "manual" and request.get("character_id"):
             from character_runtime import load_character_registry
             from content_projects import character_registry_path, load_content_project
@@ -321,7 +321,7 @@ def _generic_graph_for(
     launch = settings if isinstance(settings, dict) else load(project / "launch/LAUNCH_REQUEST.json")
     content_project = str(launch.get("content_project") or "default")
     specs = dict(GENERIC_NODE_SPECS)
-    if content_project != "world_behind_the_question" and not (project / "WORLD_DESIGN.md").is_file():
+    if content_project != "q_station" and not (project / "WORLD_DESIGN.md").is_file():
         specs.pop("episode_world_design", None)
     visual_dependencies = ("retention_edit", "episode_world_design") if "episode_world_design" in specs else ("retention_edit",)
     specs["visual_plan"] = NodeSpec("Visual beats", "text", visual_dependencies, ("VISUAL_BEATS.md",), phase="creative")
@@ -398,10 +398,10 @@ def graph_for(
             include_disabled=include_disabled,
             settings=settings,
         )
-    qh = load(project / "pipeline/QH_RUNTIME_STATE.json")
+    qstation = load(project / "pipeline/Q_STATION_RUNTIME_STATE.json")
     wrapper = load(project / "pipeline/WRAPPER_RUNTIME_STATE.json")
     final = load(project / "pipeline/FINALIZATION_RUNTIME_STATE.json")
-    stages = dict(qh.get("stages") or {})
+    stages = dict(qstation.get("stages") or {})
     for item in wrapper.get("events") or []:
         if item.get("stage"):
             stages[str(item["stage"])] = {**item, "status": item.get("status", "PENDING")}
@@ -409,7 +409,7 @@ def graph_for(
         if item.get("stage"):
             stages[str(item["stage"])] = {**item, "status": item.get("status", "PENDING")}
     count = _beat_count(project)
-    specs = qh_node_specs(project, settings)
+    specs = q_station_node_specs(project, settings)
     dependencies: dict[str, tuple[str, ...]] = {name: spec.dependencies for name, spec in specs.items()}
     if count:
         beats = tuple(f"beat_image_{number:03d}" for number in range(1, count + 1))
@@ -455,7 +455,7 @@ def graph_for(
         nodes = [node for node in nodes if node["id"] not in disabled]
         visible = {node["id"] for node in nodes}
         edges = [edge for edge in edges if edge["source"] in visible and edge["target"] in visible]
-    return {"schema_version": 2, "mode": "question_harvest", "nodes": nodes, "edges": edges, "phases": ["creative", "visual", "opening", "audio", "edit", "render", "publish"]}
+    return {"schema_version": 2, "mode": "q_station", "nodes": nodes, "edges": edges, "phases": ["creative", "visual", "opening", "audio", "edit", "render", "publish"]}
 
 
 def descendants(graph: dict[str, Any], root: str) -> set[str]:
@@ -527,7 +527,7 @@ def regeneration_plan(
 def invalidation_paths(project: Path, node_ids: Iterable[str]) -> list[str]:
     """All existing project-local files owned by the selected nodes."""
     paths: list[str] = []
-    specs = GENERIC_NODE_SPECS if project_mode(project) == "generic" else qh_node_specs(project)
+    specs = GENERIC_NODE_SPECS if project_mode(project) == "generic" else q_station_node_specs(project)
     for node_id in node_ids:
         for artifact in artifacts_for(project, node_id, specs.get(node_id)):
             if artifact["present"] and artifact["path"] not in paths:

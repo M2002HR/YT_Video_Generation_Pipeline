@@ -252,11 +252,11 @@ def check_q_station_assets(report: Report) -> None:
         report.check("Q Station project loads", False, f"{type(exc).__name__}: {exc}")
         return
     report.check(
-        "QH image provider is gemini", project.get_provider("image") == "gemini",
+        "QStation image provider is gemini", project.get_provider("image") == "gemini",
         str(project.get_provider("image")),
     )
     report.check(
-        "QH video provider is flow", project.get_provider("video") == "flow",
+        "QStation video provider is flow", project.get_provider("video") == "flow",
         str(project.get_provider("video")),
     )
 

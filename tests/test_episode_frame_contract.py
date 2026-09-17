@@ -10,11 +10,11 @@ SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-import run_question_harvest_pipeline as qh
+import run_q_station_pipeline as qstation
 
 
 def test_episode_frame_contract_keeps_a_balanced_lower_caption_field() -> None:
-    contract = qh.episode_frame_contract(
+    contract = qstation.episode_frame_contract(
         {
             "frame_language": "a fibrous deckled-paper border around a painted inner window",
             "subtitle_reserve": "a quiet lower field occupying 15% of the vertical frame",
@@ -27,13 +27,13 @@ def test_episode_frame_contract_keeps_a_balanced_lower_caption_field() -> None:
 
 
 def test_episode_frame_contract_has_safe_defaults_for_older_style_plans() -> None:
-    contract = qh.episode_frame_contract({})
+    contract = qstation.episode_frame_contract({})
     assert "8–10%" in contract
     assert "recurring outer material" in contract
 
 
 def test_episode_frame_contract_can_fill_the_lower_area() -> None:
-    contract = qh.episode_frame_contract({
+    contract = qstation.episode_frame_contract({
         "reserve_subtitle_space": False,
         "frame_language": "fibrous paper edges around a painted window",
     })
@@ -44,5 +44,5 @@ def test_episode_frame_contract_can_fill_the_lower_area() -> None:
 
 
 def test_caption_layout_rule_preserves_legacy_default() -> None:
-    assert "bottom 8–10%" in qh.caption_layout_rule({})
-    assert "full illustration height" in qh.caption_layout_rule({"reserve_subtitle_space": False})
+    assert "bottom 8–10%" in qstation.caption_layout_rule({})
+    assert "full illustration height" in qstation.caption_layout_rule({"reserve_subtitle_space": False})

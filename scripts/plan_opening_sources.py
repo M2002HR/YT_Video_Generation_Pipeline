@@ -88,7 +88,7 @@ def build_plan(project: Path) -> dict[str, Any]:
     brief_path = project / "launch" / "CREATIVE_BRIEF.json"
     timing = _load_object(timing_path)
     brief = _load_object(brief_path)
-    settings = brief.get("_qh") if isinstance(brief.get("_qh"), dict) else {}
+    settings = brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else {}
     try:
         tolerance = float(settings.get("opening_speed_tolerance", 0.1))
     except (TypeError, ValueError) as exc:

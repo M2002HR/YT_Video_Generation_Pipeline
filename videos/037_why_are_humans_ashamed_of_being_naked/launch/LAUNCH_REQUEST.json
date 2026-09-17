@@ -12,7 +12,7 @@
   "project": "videos/037_why_are_humans_ashamed_of_being_naked",
   "voice_profile": "videos/037_why_are_humans_ashamed_of_being_naked/launch/config_revisions/47d3c396-8ce2-4d2c-8fb5-b5ee0e5abe45/VOICE_PROFILE.json",
   "creative_brief": "videos/037_why_are_humans_ashamed_of_being_naked/launch/config_revisions/47d3c396-8ce2-4d2c-8fb5-b5ee0e5abe45/CREATIVE_BRIEF.json",
-  "qh": {
+  "qstation": {
     "character": {
       "mode": "manual",
       "character_id": "moss_cloaked_crone"
@@ -199,7 +199,7 @@
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
+    "scripts/run_full_video_pipeline_q_station_wrapper.py",
     "--topic",
     "Why Are Humans Ashamed of Being Naked?",
     "--video-id",

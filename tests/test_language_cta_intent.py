@@ -14,7 +14,7 @@ from test_opening_concept_pipeline import Spy, narration
 ])
 def test_plain_language_keeps_operator_engagement_intent(project, character, intent, line):
     path = project / 'launch/CREATIVE_BRIEF.json'
-    path.write_text(json.dumps({'_qh': {'cta_hint': intent}}))
+    path.write_text(json.dumps({'_q_station': {'cta_hint': intent}}))
     core = narration(character.presentation.segment_key)
     before = copy.deepcopy(core)
     spy = Spy([{'cta': line}, passed()])

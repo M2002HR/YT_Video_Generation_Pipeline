@@ -1,12 +1,13 @@
 # Q Station
 
-Every question opens a world. The production architecture is documented in
-`../../docs/QUESTION_HARVEST_PIPELINE.md`.
+Q Station is the sole content project in this repository. It produces short English question-driven videos with a topic-first opening, continuous narration, generated topic-world imagery, and a two-clip entry transition.
 
-Canonical configuration lives in `PROJECT.json`. Character identity packs live in `characters/`;
-two-intro/entry formats live separately in `presentation_profiles/`; per-episode topic styles live in
-`world_styles/`. Current production characters are Farmer Host, Red Horned Everyman and Moss-Cloaked
-Crone. The first two use the backward-compatible book presentation; the crone uses her orb presentation.
+## Hosts
 
-Do not use old video prompt sheets or historical implementation tasks as architecture. Use the latest
-completed Q Station run plus the runtime/graph modules named in `../../PROJECT_CONTEXT.md`.
+- `red_horned_everyman` — `book_portal`
+- `moss_cloaked_crone` — `orb_portal`
+- `sea_captain` — `spyglass_portal`
+
+Host identity is resolved from `characters/registry.json`; presentation mechanics are resolved from `presentation_profiles/`. Topic-world style is independent of host identity. The red host is both automatic fallback and compatibility default.
+
+Runtime entry points are `scripts/run_q_station_pipeline.py` and `scripts/run_full_video_pipeline_q_station_wrapper.py`. See `docs/Q_STATION_PIPELINE.md`, `docs/OPENING_STORY_PIPELINE.md`, `docs/SPOKEN_ENGLISH_POLICY.md`, and `docs/SEA_CAPTAIN_INTEGRATION.md`.

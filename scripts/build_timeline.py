@@ -781,8 +781,8 @@ def write_ass(
 
 
 def detect_mixed_media(video_dir: Path) -> bool:
-    """Detect Question Harvest mixed-media mode: presence of trimmed opening clips."""
-    # QH opening paths are owned by the run's presentation profile. Legacy image-only
+    """Detect Q Station mixed-media mode: presence of trimmed opening clips."""
+    # QStation opening paths are owned by the run's presentation profile. Legacy image-only
     # projects store only raw_beats.
     from presentation_runtime import presentation_for_project
     presentation = presentation_for_project(video_dir)
@@ -799,7 +799,7 @@ def detect_mixed_media(video_dir: Path) -> bool:
         match = re.search(r"Project:\s*`([^`]+)`", pm)
         if match:
             from content_projects import load_content_project
-            if load_content_project(match.group(1)).is_question_harvest:
+            if load_content_project(match.group(1)).is_q_station:
                 return True
     except Exception:
         pass
@@ -829,7 +829,7 @@ def main() -> None:
     parser.add_argument(
         "--mixed-media",
         action="store_true",
-        help="Force mixed-media mode (video+image). Auto-detected for question_harvest.",
+        help="Force mixed-media mode (video+image). Auto-detected for q_station.",
     )
     args = parser.parse_args()
 
@@ -869,7 +869,7 @@ def main() -> None:
 
     is_mixed = args.mixed_media or detect_mixed_media(video_dir)
 
-    # For mixed-media (Question Harvest) the two Flow clips are real video beats whose
+    # For mixed-media (Q Station) the two Flow clips are real video beats whose
     # boundaries were measured from the narration, not estimated (§67).
     opening_timing: dict[str, Any] = {}
     if is_mixed:

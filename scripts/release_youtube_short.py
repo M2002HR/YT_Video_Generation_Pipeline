@@ -31,7 +31,7 @@ if str(ROOT / "scripts") not in sys.path:
 from content_projects import load_content_project, normalize_gemini_model  # noqa: E402
 from ordak_jobs import Generation, OrdakJobs, OrdakJobError, Reference, sha256_file  # noqa: E402
 from pipeline_notifier import NotifierSettings  # noqa: E402
-from run_question_harvest_pipeline import Runner  # noqa: E402
+from run_q_station_pipeline import Runner  # noqa: E402
 from release_settings import RELEASE_DEFAULTS as SHARED_RELEASE_DEFAULTS, normalize_release_settings, settings_fingerprint  # noqa: E402
 from thumbnail_runtime import (  # noqa: E402
     artwork_prompt, build_comparison, final_review_prompt, local_plan, normalize_review, review_skipped,
@@ -184,9 +184,9 @@ def channel_policy(content_project: str) -> dict[str, Any]:
 def original_image_contract(video: Path, content_project: str) -> dict[str, str]:
     """Reuse the exact image-model/QC contract that created this episode's visuals."""
     launch = load_json(video / "launch" / "LAUNCH_REQUEST.json")
-    qh = launch.get("qh") if isinstance(launch.get("qh"), dict) else {}
+    qstation = launch.get("qstation") if isinstance(launch.get("qstation"), dict) else {}
     image = launch.get("image_generation") if isinstance(launch.get("image_generation"), dict) else {}
-    brief_qh: dict[str, Any] = {}
+    brief_q_station: dict[str, Any] = {}
     brief_raw = str(launch.get("creative_brief") or "").strip()
     if brief_raw:
         brief_path = Path(brief_raw)
@@ -194,16 +194,16 @@ def original_image_contract(video: Path, content_project: str) -> dict[str, str]
             brief_path = ROOT / brief_path
         if brief_path.is_file() and brief_path.resolve().is_relative_to(ROOT):
             brief = load_json(brief_path)
-            brief_qh = brief.get("_qh") if isinstance(brief.get("_qh"), dict) else {}
+            brief_q_station = brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else {}
     requested = (
-        image.get("model") or qh.get("gemini_image_model") or brief_qh.get("gemini_image_model")
+        image.get("model") or qstation.get("gemini_image_model") or brief_q_station.get("gemini_image_model")
         or "nano_banana_2"
     )
     qc_policy = (
-        image.get("qc_correction_policy") or qh.get("image_qc_correction_policy")
-        or brief_qh.get("image_qc_correction_policy") or "0"
+        image.get("qc_correction_policy") or qstation.get("image_qc_correction_policy")
+        or brief_q_station.get("image_qc_correction_policy") or "0"
     )
-    fallback = qh.get("chatgpt_fallback_mode") or brief_qh.get("chatgpt_fallback_mode") or "approval"
+    fallback = qstation.get("chatgpt_fallback_mode") or brief_q_station.get("chatgpt_fallback_mode") or "approval"
     return {
         "model": normalize_gemini_model(str(requested)),
         "qc_correction_policy": str(qc_policy),

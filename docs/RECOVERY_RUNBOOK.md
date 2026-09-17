@@ -12,7 +12,7 @@ panel → Resume on the run's row     (or)     POST /resume  job_id=<id>
 
 | Question | Where |
 |---|---|
-| Which stage stopped, and why | `videos/<id>/pipeline/QH_RUNTIME_STATE.json` → `stages` |
+| Which stage stopped, and why | `videos/<id>/pipeline/Q_STATION_RUNTIME_STATE.json` → `stages` |
 | The full console log | `control_panel/jobs/<job_id>.log` |
 | Completion half | `videos/<id>/pipeline/FINALIZATION_RUNTIME_STATE.json` |
 | What a provider actually did | `videos/<id>/pipeline/provider_receipts/*.json` |

@@ -20,7 +20,7 @@ def write_json(path: Path, payload: dict) -> None:
 
 def test_planner_uses_real_boundaries_and_supported_durations(tmp_path: Path) -> None:
     write_json(tmp_path / "timing/OPENING_TIMING.json", {"spark_end": 5.76, "transition_end": 12.0})
-    write_json(tmp_path / "launch/CREATIVE_BRIEF.json", {"_qh": {
+    write_json(tmp_path / "launch/CREATIVE_BRIEF.json", {"_q_station": {
         "flow_video_model": "gemini_omni_1_1_flash",
         "opening_a_source_seconds": 6,
         "opening_b_source_seconds": 4,
@@ -35,7 +35,7 @@ def test_planner_uses_real_boundaries_and_supported_durations(tmp_path: Path) ->
 
 def test_planner_never_selects_an_unverified_five_second_duration(tmp_path: Path) -> None:
     write_json(tmp_path / "timing/OPENING_TIMING.json", {"spark_end": 4.7, "transition_end": 10.22})
-    write_json(tmp_path / "launch/CREATIVE_BRIEF.json", {"_qh": {
+    write_json(tmp_path / "launch/CREATIVE_BRIEF.json", {"_q_station": {
         "flow_video_model": "gemini_omni_1_1_flash",
         "opening_a_source_seconds": 4,
         "opening_b_source_seconds": 4,
@@ -48,7 +48,7 @@ def test_planner_never_selects_an_unverified_five_second_duration(tmp_path: Path
 
 def test_unknown_model_stops_before_any_flow_request(tmp_path: Path) -> None:
     write_json(tmp_path / "timing/OPENING_TIMING.json", {"spark_end": 4.0, "transition_end": 8.0})
-    write_json(tmp_path / "launch/CREATIVE_BRIEF.json", {"_qh": {
+    write_json(tmp_path / "launch/CREATIVE_BRIEF.json", {"_q_station": {
         "flow_video_model": "veo_3_1_fast",
         "opening_a_source_seconds": 4,
         "opening_b_source_seconds": 4,

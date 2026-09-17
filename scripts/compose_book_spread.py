@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic book spread compositor for Question Harvest (§37).
+"""Deterministic book spread compositor for Q Station (§37).
 
 Writes ``videos/<id>/references/book_spread_frame.png`` — the Start frame Clip B opens
 on, and the image the camera pushes into.

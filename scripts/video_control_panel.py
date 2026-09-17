@@ -59,7 +59,7 @@ CREDIT_CHECK_ACTIVE_ID: str | None = None
 PREFERRED_CONTENT_PROJECT = "q_station"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
 
-QH_ROOTS = {
+Q_STATION_ROOTS = {
     "character_mode": ("character_resolution",),
     "character_id": ("character_resolution",),
     "world_style_policy": ("world_style_director",),
@@ -93,9 +93,9 @@ QH_ROOTS = {
     # alignment, so it invalidates the durable source plan and its descendants.
     "opening_speed_tolerance": ("opening_source_plan",),
 }
-QH_FIELDS = tuple(QH_ROOTS)
-QH_STORED_FIELDS = {
-    **{key: key for key in QH_FIELDS if key not in {"character_mode", "character_id"}},
+Q_STATION_FIELDS = tuple(Q_STATION_ROOTS)
+Q_STATION_STORED_FIELDS = {
+    **{key: key for key in Q_STATION_FIELDS if key not in {"character_mode", "character_id"}},
     "opening_a_seconds": "opening_a_source_seconds",
     "opening_b_seconds": "opening_b_source_seconds",
     "chatgpt_fallback_auto": "chatgpt_fallback_mode",
@@ -219,20 +219,20 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         "topic": record.get("topic", ""),
         "content_project": resolve_project_id(str(record.get("content_project", DEFAULT_CONTENT_PROJECT))),
     })
-    qh = brief.get("_qh") if isinstance(brief.get("_qh"), dict) else {}
+    qstation = brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else {}
     values.update({
-        field: qh[stored]
-        for field, stored in QH_STORED_FIELDS.items()
-        if field != "chatgpt_fallback_auto" and stored in qh
+        field: qstation[stored]
+        for field, stored in Q_STATION_STORED_FIELDS.items()
+        if field != "chatgpt_fallback_auto" and stored in qstation
     })
-    values["chatgpt_fallback_auto"] = qh.get("chatgpt_fallback_mode", "approval") == "auto"
-    reference = qh.get("world_style_reference") if isinstance(qh.get("world_style_reference"), dict) else {}
+    values["chatgpt_fallback_auto"] = qstation.get("chatgpt_fallback_mode", "approval") == "auto"
+    reference = qstation.get("world_style_reference") if isinstance(qstation.get("world_style_reference"), dict) else {}
     reference_hash = str(reference.get("sha256") or "")
     values["world_style_reference_id"] = f"existing:{reference_hash}" if re.fullmatch(r"[a-f0-9]{64}", reference_hash) else ""
-    character = qh.get("character") if isinstance(qh.get("character"), dict) else record.get("character") or {}
+    character = qstation.get("character") if isinstance(qstation.get("character"), dict) else record.get("character") or {}
     values["character_mode"] = str(character.get("mode") or "auto")
     values["character_id"] = str(character.get("character_id") or "")
-    values["reserve_subtitle_space"] = bool(qh.get("reserve_subtitle_space", True))
+    values["reserve_subtitle_space"] = bool(qstation.get("reserve_subtitle_space", True))
     values["word_highlight"] = bool((brief.get("_subtitle") or {}).get("word_highlight", True))
     _subtitle = brief.get("_subtitle") if isinstance(brief.get("_subtitle"), dict) else {}
     values["subtitle_font"] = str(_subtitle.get("font_name", SUBTITLE_STYLE_DEFAULTS["font_name"]))
@@ -402,15 +402,15 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     changed_fields = [key for key in merged if before.get(key) != merged.get(key)]
     roots: set[str] = set()
     brief = {**previous, **{key: merged[key] for key in CREATIVE_FIELDS}}
-    qh = dict(previous.get("_qh") or {})
-    for key in QH_FIELDS:
+    qstation = dict(previous.get("_q_station") or {})
+    for key in Q_STATION_FIELDS:
         if key in {"chatgpt_fallback_auto", "character_mode", "character_id", "world_style_reference_id"}:
             continue
-        qh[QH_STORED_FIELDS[key]] = merged[key]
+        qstation[Q_STATION_STORED_FIELDS[key]] = merged[key]
         if before.get(key) != merged.get(key):
-            roots.update(QH_ROOTS[key])
+            roots.update(Q_STATION_ROOTS[key])
     reference_id = str(merged.get("world_style_reference_id") or "")
-    old_reference = qh.get("world_style_reference") if isinstance(qh.get("world_style_reference"), dict) else None
+    old_reference = qstation.get("world_style_reference") if isinstance(qstation.get("world_style_reference"), dict) else None
     old_hash = str((old_reference or {}).get("sha256") or "")
     if reference_id:
         existing_match = STYLE_REFERENCE_EXISTING_RE.fullmatch(reference_id)
@@ -420,16 +420,16 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         elif not STYLE_REFERENCE_UPLOAD_RE.fullmatch(reference_id):
             raise ValueError("Invalid style reference upload.")
         else:
-            qh["_style_reference_upload_id"] = reference_id
+            qstation["_style_reference_upload_id"] = reference_id
     else:
-        qh.pop("world_style_reference", None)
-        qh.pop("_style_reference_upload_id", None)
+        qstation.pop("world_style_reference", None)
+        qstation.pop("_style_reference_upload_id", None)
     if before.get("world_style_reference_id") != reference_id:
-        roots.update(QH_ROOTS["world_style_reference_id"])
+        roots.update(Q_STATION_ROOTS["world_style_reference_id"])
     if reference_id and merged["world_style_policy"] != "new":
         raise ValueError("A style reference can only be used when creating a new style.")
-    qh["chatgpt_fallback_mode"] = "auto" if merged["chatgpt_fallback_auto"] else "approval"
-    qh["character"] = {
+    qstation["chatgpt_fallback_mode"] = "auto" if merged["chatgpt_fallback_auto"] else "approval"
+    qstation["character"] = {
         "mode": merged["character_mode"],
         **({"character_id": merged["character_id"]} if merged["character_mode"] == "manual" else {}),
     }
@@ -437,10 +437,10 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         # Character resolution also freezes the presentation profile. Re-entering at this
         # root rebuilds every consumer of persona/script/opening while the revision archive
         # keeps the previous resolution and media recoverable.
-        roots.update(QH_ROOTS["character_mode"])
+        roots.update(Q_STATION_ROOTS["character_mode"])
     if before.get("chatgpt_fallback_auto") != merged.get("chatgpt_fallback_auto"):
-        roots.update(QH_ROOTS["chatgpt_fallback_auto"])
-    brief["_qh"] = qh
+        roots.update(Q_STATION_ROOTS["chatgpt_fallback_auto"])
+    brief["_q_station"] = qstation
     new_subtitle = {
         "word_highlight": merged["word_highlight"],
         "font_name": merged["subtitle_font"],
@@ -558,10 +558,10 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
         roots.add("publish_telegram")
     if before.get("topic") != merged.get("topic") or any(before.get(key) != merged.get(key) for key in CREATIVE_FIELDS):
         try:
-            is_qh = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)).is_question_harvest
+            is_q_station = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)).is_q_station
         except RuntimeError:
-            is_qh = False
-        roots.add("opening_concept" if is_qh else "script_draft")
+            is_q_station = False
+        roots.add("opening_concept" if is_q_station else "script_draft")
     return roots, brief, voice, launch, changed_fields
 
 #: Where Ordak answers, for the provider badges.
@@ -915,11 +915,11 @@ def read_style_reference_upload(upload_id: str) -> tuple[Path, dict]:
 
 def freeze_style_reference(brief: dict, project: Path, folder: Path) -> None:
     """Turn an ephemeral upload into an immutable, run-owned reference manifest."""
-    qh = brief.setdefault("_qh", {})
-    if not isinstance(qh, dict):
+    qstation = brief.setdefault("_q_station", {})
+    if not isinstance(qstation, dict):
         raise ValueError("Invalid Q Station settings.")
-    upload_id = str(qh.pop("_style_reference_upload_id", "") or "")
-    existing = qh.get("world_style_reference")
+    upload_id = str(qstation.pop("_style_reference_upload_id", "") or "")
+    existing = qstation.get("world_style_reference")
     source: Path | None = None
     metadata: dict[str, Any] = {}
     if upload_id:
@@ -936,7 +936,7 @@ def freeze_style_reference(brief: dict, project: Path, folder: Path) -> None:
         source = candidate
         metadata = dict(existing)
     if source is None:
-        qh.pop("world_style_reference", None)
+        qstation.pop("world_style_reference", None)
         return
     folder.mkdir(parents=True, exist_ok=True)
     target = folder / "style_reference.png"
@@ -946,7 +946,7 @@ def freeze_style_reference(brief: dict, project: Path, folder: Path) -> None:
         temporary.replace(target)
     finally:
         temporary.unlink(missing_ok=True)
-    qh["world_style_reference"] = {
+    qstation["world_style_reference"] = {
         "schema_version": 1,
         "path": str(target.relative_to(ROOT)),
         "sha256": sha256_path(target),
@@ -1207,15 +1207,15 @@ def activity_for(record: dict, project: Path) -> list[dict]:
     """Normalize durable runner state into stable, de-duplicatable UI events."""
     events: list[dict] = []
     try:
-        qh = json.loads((project / "pipeline/QH_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+        qstation = json.loads((project / "pipeline/Q_STATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        qh = {}
-    for stage, entry in (qh.get("stages") or {}).items():
+        qstation = {}
+    for stage, entry in (qstation.get("stages") or {}).items():
         if not isinstance(entry, dict):
             continue
-        at = entry.get("updated_at") or qh.get("updated_at") or record.get("created_at")
+        at = entry.get("updated_at") or qstation.get("updated_at") or record.get("created_at")
         status = str(entry.get("status") or "PENDING")
-        events.append({"id": f"qh:{stage}:{status}:{at}", "stage": stage, "status": status, "at": at, "message": entry.get("message"), "elapsed_seconds": entry.get("elapsed_seconds")})
+        events.append({"id": f"qstation:{stage}:{status}:{at}", "stage": stage, "status": status, "at": at, "message": entry.get("message"), "elapsed_seconds": entry.get("elapsed_seconds")})
     try:
         visual = json.loads((project / "visual_pipeline/RUNTIME_STATE.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -1362,7 +1362,7 @@ def style_sample_for(style_id: str, content_project: str = "q_station") -> Path 
                 plan = json.loads((project / "creative/WORLD_STYLE_PLAN.json").read_text())
                 launch_path = project / "launch/LAUNCH_REQUEST.json"
                 launch = json.loads(launch_path.read_text()) if launch_path.is_file() else {}
-                if resolve_project_id(str(launch.get("content_project") or "question_harvest")) != resolve_project_id(content_project):
+                if resolve_project_id(str(launch.get("content_project") or "q_station")) != resolve_project_id(content_project):
                     continue
                 chosen = str(plan.get("style_id") or "")
                 for candidate in (project / "assets/raw_beats").glob("beat_*.png"):
@@ -1670,7 +1670,7 @@ def reconcile_stuck_jobs_once() -> None:
             if job.get("exit_code") not in (None, 0):
                 job["status"] = "FAILED"
             # consider success only if pipeline explicitly reported PASS
-            elif "FULL VIDEO PIPELINE: PASS" in text or "QH CORE STAGES DONE" in text or "FULL QH PIPELINE: PASS" in text or "COMPLETION PIPELINE: PASS" in text or "QH PIPELINE BODY IMAGES" in text:
+            elif "FULL VIDEO PIPELINE: PASS" in text or "QStation CORE STAGES DONE" in text or "FULL QStation PIPELINE: PASS" in text or "COMPLETION PIPELINE: PASS" in text or "QStation PIPELINE BODY IMAGES" in text:
                 # body images done but wrapper may have failed later — still mark DONE only if final reports exist
                 # check for final.mp4 QC pass
                 try:
@@ -1742,11 +1742,11 @@ def reconcile_scheduled_resumes() -> None:
             continue
 
 
-# These roots are owned by ``run_question_harvest_pipeline.py``.  A config revision
+# These roots are owned by ``run_q_station_pipeline.py``.  A config revision
 # without one of them must never invoke that executable: it could inspect a stale
 # continuity receipt and spend Gemini credits despite the DAG saying every image is
 # reusable.  Render/audio/publish roots are owned by the wrapper's later stages.
-QH_VISUAL_REGENERATION_ROOTS = frozenset({
+Q_STATION_VISUAL_REGENERATION_ROOTS = frozenset({
     "opening_concept", "script_draft", "retention_edit", "call_to_action", "character_resolution", "episode_director",
     "world_style_director", "world_style_anchor", "visual_plan",
     "world_keyframe_prompt", "world_keyframe", "book_cover_design", "book_cover",
@@ -1755,7 +1755,7 @@ QH_VISUAL_REGENERATION_ROOTS = frozenset({
 })
 
 
-def config_revision_skips_qh_visual_stages(revision: dict | object) -> bool:
+def config_revision_skips_q_station_visual_stages(revision: dict | object) -> bool:
     """Whether a config revision is prohibited from entering the visual generator.
 
     This is deliberately based on persisted roots rather than a frontend field, so a
@@ -1767,7 +1767,7 @@ def config_revision_skips_qh_visual_stages(revision: dict | object) -> bool:
     if not isinstance(roots, list) or not roots or not all(isinstance(root, str) for root in roots):
         return False
     return not bool(
-        set(roots) & QH_VISUAL_REGENERATION_ROOTS
+        set(roots) & Q_STATION_VISUAL_REGENERATION_ROOTS
         or any(root.startswith("beat_image_") for root in roots)
     )
 
@@ -1799,12 +1799,12 @@ def pipeline_command(record: dict) -> list[str]:
             "--music-source-name", str(music_upload.get("original_name") or music_file.name),
         ]
     try:
-        is_bookworld = load_content_project(content_project).is_question_harvest
+        is_bookworld = load_content_project(content_project).is_q_station
     except RuntimeError:
         is_bookworld = False
     if is_bookworld:
         command = [
-            sys.executable, "-u", "scripts/run_full_video_pipeline_qh_wrapper.py",
+            sys.executable, "-u", "scripts/run_full_video_pipeline_q_station_wrapper.py",
             "--topic", str(record["topic"]),
             "--video-id", str(record["video_id"]),
             "--content-project", content_project,
@@ -1825,7 +1825,7 @@ def pipeline_command(record: dict) -> list[str]:
             command += ["--beat-feedback-json", str(ROOT / str(revision["feedback_path"]))]
         if revision.get("chatgpt_feedback_path"):
             command += ["--chatgpt-revision-feedback-json", str(ROOT / str(revision["chatgpt_feedback_path"]))]
-        if config_revision_skips_qh_visual_stages(revision):
+        if config_revision_skips_q_station_visual_stages(revision):
             command.append("--skip-visual-stages")
         return command
     command = [
@@ -1988,7 +1988,7 @@ def pipeline_state_of(record: dict) -> dict:
     project = ROOT / str(record.get("project") or "")
     state: dict = {}
     for path in (
-        project / "pipeline/QH_RUNTIME_STATE.json",
+        project / "pipeline/Q_STATION_RUNTIME_STATE.json",
         project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
     ):
         try:
@@ -2008,7 +2008,7 @@ def pipeline_state_of(record: dict) -> dict:
     running = [str(node["id"]) for node in visible if node.get("status") == "RUNNING"]
     is_live = bool(record.get("_live")) or bool(running)
     return {
-        # The PID is the source of truth during a direct resume: QH's durable
+        # The PID is the source of truth during a direct resume: QStation's durable
         # state is intentionally only checkpointed at stage boundaries and can
         # still contain the prior failure for a short time.
         "pipeline_state": "RUNNING" if is_live else record.get("status") or state.get("pipeline_state"),
@@ -2055,7 +2055,7 @@ def external_pipeline_pid(project: Path) -> int | None:
         except OSError:
             continue
         if (
-            ("run_question_harvest_pipeline.py" in command or "run_full_video_pipeline_qh_wrapper.py" in command or "run_full_video_pipeline.py" in command)
+            ("run_q_station_pipeline.py" in command or "run_full_video_pipeline_q_station_wrapper.py" in command or "run_full_video_pipeline.py" in command)
             and needle in command
         ):
             return int(proc.name)
@@ -2066,7 +2066,7 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
     """Expose active pipelines started outside the panel as read-only live rows.
 
     Operators and recovery tooling can legitimately invoke a runner from the terminal.
-    Those runs still persist a QH runtime state, but historically became invisible because
+    Those runs still persist a QStation runtime state, but historically became invisible because
     the panel only listed its own launch-record files.  Discovering them here preserves a
     single truthful monitoring view without taking ownership of their process or log file.
     """
@@ -2082,7 +2082,7 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
             continue
         state = {}
         for state_path in (
-            project / "pipeline/QH_RUNTIME_STATE.json",
+            project / "pipeline/Q_STATION_RUNTIME_STATE.json",
             project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
         ):
             try:
@@ -2108,7 +2108,7 @@ def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[
                 "job_id": str(uuid.uuid5(uuid.NAMESPACE_URL, f"external-panel:{relative_project}")),
                 "kind": "external_episode",
                 "video_id": video_id,
-                "content_project": str(state.get("content_project") or ("q_station" if (project / "pipeline/QH_RUNTIME_STATE.json").is_file() else DEFAULT_CONTENT_PROJECT)),
+                "content_project": str(state.get("content_project") or ("q_station" if (project / "pipeline/Q_STATION_RUNTIME_STATE.json").is_file() else DEFAULT_CONTENT_PROJECT)),
                 "topic": str(state.get("topic") or project.name),
                 # A resumed direct runner may retain the prior terminal state until it
                 # reaches its next durable checkpoint. The live PID is authoritative.
@@ -2323,7 +2323,7 @@ class Handler(BaseHTTPRequestHandler):
                 return "missing"
             record, project = resolved
             files = [
-                project / "pipeline/QH_RUNTIME_STATE.json",
+                project / "pipeline/Q_STATION_RUNTIME_STATE.json",
                 project / "visual_pipeline/RUNTIME_STATE.json",
                 project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
                 project / "pipeline/FINALIZATION_RUNTIME_STATE.json",
@@ -2348,7 +2348,7 @@ class Handler(BaseHTTPRequestHandler):
                     record = json.loads(path.read_text(encoding="utf-8"))
                     project = ROOT / str(record.get("project") or "")
                     state.append((path.name, pipeline_state_of(record)))
-                    for relative in ("pipeline/QH_RUNTIME_STATE.json", "visual_pipeline/RUNTIME_STATE.json", "pipeline/FULL_PIPELINE_RUNTIME_STATE.json"):
+                    for relative in ("pipeline/Q_STATION_RUNTIME_STATE.json", "visual_pipeline/RUNTIME_STATE.json", "pipeline/FULL_PIPELINE_RUNTIME_STATE.json"):
                         runtime = project / relative
                         if runtime.is_file():
                             state.append((path.name, relative, runtime.stat().st_mtime_ns, runtime.stat().st_size))
@@ -2440,7 +2440,7 @@ class Handler(BaseHTTPRequestHandler):
             if external_id != job_id:
                 continue
             state = {}
-            try: state = json.loads((project / "pipeline/QH_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+            try: state = json.loads((project / "pipeline/Q_STATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
             except (OSError, ValueError): pass
             return ({"job_id": job_id, "video_id": state.get("video_id") or project.name.split("_", 1)[0], "topic": state.get("topic") or project.name, "status": state.get("pipeline_state") or "UNKNOWN", "project": relative_project, "external": True}, project.resolve())
         return None
@@ -2921,7 +2921,7 @@ class Handler(BaseHTTPRequestHandler):
             if not roots or any(not root.startswith("beat_image_") for root in roots):
                 raise ValueError("ChatGPT revision feedback is available only for beat images.")
             content_project = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT))
-            if not content_project.is_question_harvest:
+            if not content_project.is_q_station:
                 raise ValueError("ChatGPT-to-Gemini revision feedback is available only for Gemini beat-image runs.")
         plan = regeneration_plan(
             project,
@@ -2941,7 +2941,7 @@ class Handler(BaseHTTPRequestHandler):
             write_json(feedback_path, beat_feedback)
         archived: list[str] = []
         state_before: dict[Path, dict] = {}
-        state_paths = [project / "pipeline/QH_RUNTIME_STATE.json", project / "visual_pipeline/RUNTIME_STATE.json"]
+        state_paths = [project / "pipeline/Q_STATION_RUNTIME_STATE.json", project / "visual_pipeline/RUNTIME_STATE.json"]
         try:
             for relative in invalidation_paths(project, plan["affected_nodes"]):
                 source, destination = project / relative, folder / "previous" / relative
@@ -2987,7 +2987,7 @@ class Handler(BaseHTTPRequestHandler):
                 "regeneration_mode": regeneration_mode,
                 "use_chatgpt_feedback": bool(use_chatgpt_feedback),
             }
-            if config_revision_skips_qh_visual_stages(revision):
+            if config_revision_skips_q_station_visual_stages(revision):
                 revision["skip_visual_stages"] = True
             if beat_feedback:
                 revision["feedback_path"] = str(feedback_path.relative_to(ROOT))
@@ -3082,7 +3082,7 @@ class Handler(BaseHTTPRequestHandler):
         job_id = str(uuid.uuid4())
         profile = project / "voiceover" / "REQUESTED_VOICE_PROFILE.json"
         creative_brief_path = project / "launch" / "CREATIVE_BRIEF.json"
-        qh = dict(brief.get("_qh") or {})
+        qstation = dict(brief.get("_q_station") or {})
         subtitle = dict(brief.get("_subtitle") or {})
         record = {
             "schema_version": 6,
@@ -3098,9 +3098,9 @@ class Handler(BaseHTTPRequestHandler):
             "project": str(project.relative_to(ROOT)),
             "voice_profile": str(profile.relative_to(ROOT)),
             "creative_brief": str(creative_brief_path.relative_to(ROOT)),
-            "qh": qh,
-            "character": dict(qh.get("character") or {}),
-            "subtitles": bool(qh.get("show_subtitles", False)),
+            "qstation": qstation,
+            "character": dict(qstation.get("character") or {}),
+            "subtitles": bool(qstation.get("show_subtitles", False)),
             "word_highlight": bool(subtitle.get("word_highlight", True)),
             "sfx": dict(brief.get("_sfx") or {}),
             "motion": dict(brief.get("_motion") or {}),
@@ -3165,7 +3165,7 @@ class Handler(BaseHTTPRequestHandler):
             not isinstance(values, dict) and not all(isinstance(x, dict) for x in (brief, voice, launch))
         ):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "All configuration sections must be JSON objects."}); return
-        if not isinstance(values, dict) and any(key in brief and not isinstance(brief[key], dict) for key in ("_qh", "_motion", "_sfx", "_subtitle", "_branding")):
+        if not isinstance(values, dict) and any(key in brief and not isinstance(brief[key], dict) for key in ("_q_station", "_motion", "_sfx", "_subtitle", "_branding")):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Nested launch settings must be JSON objects."}); return
         try:
             if not isinstance(values, dict) and ("music_providers" in launch or "music_provider" in launch):
@@ -3237,38 +3237,38 @@ class Handler(BaseHTTPRequestHandler):
         # the script; this errs toward correct output rather than reusing stale media.
         roots: set[str] = set()
         try:
-            is_qh = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)).is_question_harvest
+            is_q_station = load_content_project(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)).is_q_station
         except RuntimeError:
-            is_qh = False
+            is_q_station = False
         changed = lambda a, b: json.dumps(a, sort_keys=True) != json.dumps(b, sort_keys=True)
-        if changed({k:v for k,v in previous_brief.items() if not k.startswith("_")}, {k:v for k,v in brief.items() if not k.startswith("_")}): roots.add("opening_concept" if is_qh else "script_draft")
-        old_qh, new_qh = previous_brief.get("_qh", {}), brief.get("_qh", {})
-        if changed(old_qh, new_qh):
-            if is_qh:
-                known_qh: set[str] = set()
-                if any(old_qh.get(k) != new_qh.get(k) for k in ("world_style_policy", "world_style_id", "world_style_hint")): roots.add("world_style_director")
-                known_qh.update(("world_style_policy", "world_style_id", "world_style_hint"))
-                if any(old_qh.get(k) != new_qh.get(k) for k in ("gemini_image_model",)): roots.add("world_style_anchor")
-                known_qh.add("gemini_image_model")
+        if changed({k:v for k,v in previous_brief.items() if not k.startswith("_")}, {k:v for k,v in brief.items() if not k.startswith("_")}): roots.add("opening_concept" if is_q_station else "script_draft")
+        old_q_station, new_q_station = previous_brief.get("_q_station", {}), brief.get("_q_station", {})
+        if changed(old_q_station, new_q_station):
+            if is_q_station:
+                known_q_station: set[str] = set()
+                if any(old_q_station.get(k) != new_q_station.get(k) for k in ("world_style_policy", "world_style_id", "world_style_hint")): roots.add("world_style_director")
+                known_q_station.update(("world_style_policy", "world_style_id", "world_style_hint"))
+                if any(old_q_station.get(k) != new_q_station.get(k) for k in ("gemini_image_model",)): roots.add("world_style_anchor")
+                known_q_station.add("gemini_image_model")
                 # Policy changes apply to subsequent image attempts and isolated
                 # regenerations; they do not invalidate already accepted pixels.
-                known_qh.update(("image_qc_correction_policy", "beat_image_qc_disabled"))
-                if old_qh.get("flow_video_model") != new_qh.get("flow_video_model"): roots.add("opening_source_plan")
-                if old_qh.get("cta_hint", "") != new_qh.get("cta_hint", ""): roots.add("call_to_action")
-                if old_qh.get("flow_resolution") != new_qh.get("flow_resolution"): roots.update(("flow_clip_a", "flow_clip_b"))
-                if any(old_qh.get(k) != new_qh.get(k) for k in ("opening_a_source_seconds", "opening_b_source_seconds", "opening_speed_tolerance")): roots.add("opening_source_plan")
-                known_qh.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds", "cta_hint"))
-                known_qh.add("opening_speed_tolerance")
-                if any(old_qh.get(k) != new_qh.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("opening_concept")
-                known_qh.update(("min_duration_seconds", "max_duration_seconds"))
-                if old_qh.get("show_subtitles") != new_qh.get("show_subtitles"): roots.add("render_profile")
-                known_qh.add("show_subtitles")
-                if old_qh.get("reserve_subtitle_space", True) != new_qh.get("reserve_subtitle_space", True): roots.add("beat_image_001")
-                known_qh.add("reserve_subtitle_space")
-                if old_qh.get("hero_presence_mode") != new_qh.get("hero_presence_mode"): roots.add("opening_concept")
-                known_qh.add("hero_presence_mode")
-                if any(old_qh.get(key) != new_qh.get(key) for key in set(old_qh) | set(new_qh) if key not in known_qh): roots.add("opening_concept")
-            elif old_qh.get("show_subtitles") != new_qh.get("show_subtitles"):
+                known_q_station.update(("image_qc_correction_policy", "beat_image_qc_disabled"))
+                if old_q_station.get("flow_video_model") != new_q_station.get("flow_video_model"): roots.add("opening_source_plan")
+                if old_q_station.get("cta_hint", "") != new_q_station.get("cta_hint", ""): roots.add("call_to_action")
+                if old_q_station.get("flow_resolution") != new_q_station.get("flow_resolution"): roots.update(("flow_clip_a", "flow_clip_b"))
+                if any(old_q_station.get(k) != new_q_station.get(k) for k in ("opening_a_source_seconds", "opening_b_source_seconds", "opening_speed_tolerance")): roots.add("opening_source_plan")
+                known_q_station.update(("flow_video_model", "flow_resolution", "opening_a_source_seconds", "opening_b_source_seconds", "cta_hint"))
+                known_q_station.add("opening_speed_tolerance")
+                if any(old_q_station.get(k) != new_q_station.get(k) for k in ("min_duration_seconds", "max_duration_seconds")): roots.add("opening_concept")
+                known_q_station.update(("min_duration_seconds", "max_duration_seconds"))
+                if old_q_station.get("show_subtitles") != new_q_station.get("show_subtitles"): roots.add("render_profile")
+                known_q_station.add("show_subtitles")
+                if old_q_station.get("reserve_subtitle_space", True) != new_q_station.get("reserve_subtitle_space", True): roots.add("beat_image_001")
+                known_q_station.add("reserve_subtitle_space")
+                if old_q_station.get("hero_presence_mode") != new_q_station.get("hero_presence_mode"): roots.add("opening_concept")
+                known_q_station.add("hero_presence_mode")
+                if any(old_q_station.get(key) != new_q_station.get(key) for key in set(old_q_station) | set(new_q_station) if key not in known_q_station): roots.add("opening_concept")
+            elif old_q_station.get("show_subtitles") != new_q_station.get("show_subtitles"):
                 roots.add("render_profile")
         if changed(previous_brief.get("_motion", {}), brief.get("_motion", {})): roots.add("motion_director")
         if changed(previous_brief.get("_sfx", {}), brief.get("_sfx", {})): roots.update(("sfx_plan", "sfx_acquire"))
@@ -3279,18 +3279,18 @@ class Handler(BaseHTTPRequestHandler):
         for key in ("music_providers", "music_provider"):
             if launch.get(key) != record.get(key): roots.add("background_music")
         if launch.get("aspect_ratio") != record.get("aspect_ratio"):
-            roots.update(("flow_clip_a", "flow_clip_b", "render_profile") if is_qh else ("visual_plan", "render_profile"))
+            roots.update(("flow_clip_a", "flow_clip_b", "render_profile") if is_q_station else ("visual_plan", "render_profile"))
         if launch.get("commit_artifacts") != record.get("commit_artifacts"): roots.add("git_commit_push")
         if launch.get("telegram_low_size") != record.get("telegram_low_size"): roots.update(("telegram_compress", "publish_telegram"))
         if launch.get("telegram_original") != record.get("telegram_original"): roots.add("publish_telegram")
         if not roots: self.send_json(HTTPStatus.BAD_REQUEST, {"error": "No effective configuration change was found."}); return
         record.update({k:v for k,v in launch.items() if k in {"music_provider", "music_providers", "music_upload", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original"}})
         record.update({
-            "qh": brief.get("_qh") if isinstance(brief.get("_qh"), dict) else record.get("qh", {}),
+            "qstation": brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else record.get("qstation", {}),
             "motion": brief.get("_motion") if isinstance(brief.get("_motion"), dict) else record.get("motion", {}),
             "sfx": brief.get("_sfx") if isinstance(brief.get("_sfx"), dict) else record.get("sfx", {}),
             "word_highlight": bool((brief.get("_subtitle") or {}).get("word_highlight", record.get("word_highlight", True))),
-            "subtitles": bool((brief.get("_qh") or {}).get("show_subtitles", record.get("subtitles", False))),
+            "subtitles": bool((brief.get("_q_station") or {}).get("show_subtitles", record.get("subtitles", False))),
             "creative_brief": str((folder / "CREATIVE_BRIEF.json").relative_to(ROOT)),
             "voice_profile": str((folder / "VOICE_PROFILE.json").relative_to(ROOT)),
         })
@@ -3326,8 +3326,8 @@ class Handler(BaseHTTPRequestHandler):
         folder = project / "launch" / "config_revisions" / revision_id
         old_record = json.loads(json.dumps(record))
         character_changed = any(key in changed_fields for key in ("character_mode", "character_id"))
-        previous_character = dict(old_record.get("character") or (old_record.get("qh") or {}).get("character") or {})
-        requested_character = dict((brief.get("_qh") or {}).get("character") or {})
+        previous_character = dict(old_record.get("character") or (old_record.get("qstation") or {}).get("character") or {})
+        requested_character = dict((brief.get("_q_station") or {}).get("character") or {})
         job_path = self.jobs_dir / f"{record['job_id']}.json"
         launch_path = project / "launch" / "LAUNCH_REQUEST.json"
         try:
@@ -3346,11 +3346,11 @@ class Handler(BaseHTTPRequestHandler):
                     record.pop("music_upload", None)
                 record.update({
                     "topic": str(launch.get("_topic") or record.get("topic")),
-                    "qh": brief.get("_qh", {}),
+                    "qstation": brief.get("_q_station", {}),
                     "motion": brief.get("_motion", {}),
                     "sfx": brief.get("_sfx", {}),
                     "word_highlight": bool((brief.get("_subtitle") or {}).get("word_highlight", True)),
-                    "subtitles": bool((brief.get("_qh") or {}).get("show_subtitles", False)),
+                    "subtitles": bool((brief.get("_q_station") or {}).get("show_subtitles", False)),
                     "creative_brief": str((folder / "CREATIVE_BRIEF.json").relative_to(ROOT)),
                     "voice_profile": str((folder / "VOICE_PROFILE.json").relative_to(ROOT)),
                 })
@@ -3439,7 +3439,7 @@ class Handler(BaseHTTPRequestHandler):
             candidate = {
                 **record,
                 **launch,
-                "qh": brief.get("_qh", {}),
+                "qstation": brief.get("_q_station", {}),
                 "motion": brief.get("_motion", {}),
                 "sfx": brief.get("_sfx", {}),
             }
@@ -3935,7 +3935,7 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError, KeyError):
                 self.send_json(HTTPStatus.CONFLICT, {"error": "This run's frozen configuration is unavailable."}); return
             launch = {key: record.get(key) for key in ("music_provider", "music_providers", "music_upload", "aspect_ratio", "commit_artifacts", "telegram_low_size", "telegram_original")}
-            style_reference = (brief.get("_qh") or {}).get("world_style_reference")
+            style_reference = (brief.get("_q_station") or {}).get("world_style_reference")
             if isinstance(style_reference, dict):
                 style_reference = dict(style_reference)
                 try:
@@ -4187,7 +4187,7 @@ class Handler(BaseHTTPRequestHandler):
             motion_word_sync_tolerance = int(values.get("motion_word_sync_tolerance", ["50"])[0])
             motion_face_padding = float(values.get("motion_face_padding", [".18"])[0])
             motion_supersample = int(values.get("motion_supersample", ["2"])[0])
-            # QH advanced
+            # QStation advanced
             character_mode = values.get("character_mode", ["auto"])[0].strip() or "auto"
             character_id = values.get("character_id", [""])[0].strip()
             hero_presence_mode = values.get("hero_presence_mode", ["auto"])[0].strip() or "auto"
@@ -4351,7 +4351,7 @@ class Handler(BaseHTTPRequestHandler):
             validate_provider_locks(cp)
             # Validate project assets, including the Q Station character registry.
             validate_content_project(cp)
-            if cp.is_question_harvest:
+            if cp.is_q_station:
                 if character_mode not in {"auto", "manual"}:
                     raise ValueError("Invalid character mode.")
                 registry_path = character_registry_path(cp)
@@ -4367,7 +4367,7 @@ class Handler(BaseHTTPRequestHandler):
                     raise ValueError("Auto character selection must not include a manual character id.")
             creative_brief = {key: form_text(values, key) for key in CREATIVE_FIELDS}
             # Store bookworld/Q Station settings for the downstream pipeline.
-            creative_brief["_qh"] = {
+            creative_brief["_q_station"] = {
                 "character": {
                     "mode": character_mode,
                     **({"character_id": character_id} if character_mode == "manual" else {}),
@@ -4392,8 +4392,8 @@ class Handler(BaseHTTPRequestHandler):
                 "chatgpt_fallback_mode": "auto" if chatgpt_fallback_auto else "approval",
             }
             if world_style_reference_id:
-                creative_brief["_qh"]["_style_reference_upload_id"] = world_style_reference_id
-            # Kept outside the QH-only settings so legacy content projects use the same
+                creative_brief["_q_station"]["_style_reference_upload_id"] = world_style_reference_id
+            # Kept outside the QStation-only settings so legacy content projects use the same
             # visible panel choice when their render profile is created.
             creative_brief["_subtitle"] = {
                 "word_highlight": word_highlight,
@@ -4510,8 +4510,8 @@ class Handler(BaseHTTPRequestHandler):
                 "topic": topic, "video_id": video_id, "duration_min_seconds": duration_min, "duration_max_seconds": duration_max,
                 "aspect_ratio": aspect_ratio, "project": str(project.relative_to(ROOT)),
                 "voice_profile": str(profile.relative_to(ROOT)), "creative_brief": str(creative_brief_path.relative_to(ROOT)),
-                "qh": creative_brief["_qh"],
-                "character": creative_brief["_qh"]["character"],
+                "qstation": creative_brief["_q_station"],
+                "character": creative_brief["_q_station"]["character"],
                 "subtitles": subtitles_enabled,
                 "word_highlight": word_highlight,
                 "sfx": creative_brief["_sfx"],
@@ -4526,7 +4526,7 @@ class Handler(BaseHTTPRequestHandler):
             }
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
-            # One builder for launch and resume: the QH wrapper owns the whole episode
+            # One builder for launch and resume: the QStation wrapper owns the whole episode
             # (visual stages, narration, measured timing, trims, music, render, QC, publish).
             command = pipeline_command(record)
             try:

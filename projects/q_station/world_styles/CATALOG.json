@@ -2,94 +2,6 @@
   "schema_version": 1,
   "styles": [
     {
-      "style_id": "ink_wash_vintage_animation_001",
-      "display_name": "Ink Wash Vintage Animation 001",
-      "medium_family": "ink wash",
-      "texture_family": "paper grain",
-      "palette_summary": "warm cream paper, sepia ink, muted ochres, faded teal accents, soft moss greens",
-      "status": "ready",
-      "path": "002_ink_wash_vintage_animation_001",
-      "anchor": "002_ink_wash_vintage_animation_001/style_anchor.png",
-      "usage_count": 1
-    },
-    {
-      "style_id": "retro_1920s_animation_ink_001",
-      "display_name": "Retro 1920S Animation Ink 001",
-      "medium_family": "retro educational illustration",
-      "texture_family": "aged paper grain",
-      "palette_summary": "warm cream paper, sepia and soft black ink, muted ochres, restrained faded teal, occasional moss-gray accents",
-      "status": "ready",
-      "path": "003_retro_1920s_animation_ink_001",
-      "anchor": "003_retro_1920s_animation_ink_001/style_anchor.png",
-      "usage_count": 2
-    },
-    {
-      "style_id": "archaeological_engraving_papyrus_001",
-      "display_name": "Archaeological Engraving Papyrus 001",
-      "medium_family": "historical engraving",
-      "texture_family": "sun-aged papyrus paper grain",
-      "palette_summary": "warm sand and papyrus cream, charcoal brown, muted ochre, restrained desert blue accents, sparse dusty umber shadows",
-      "status": "ready",
-      "path": "004_archaeological_engraving_papyrus_001",
-      "anchor": "004_archaeological_engraving_papyrus_001/style_anchor.png",
-      "usage_count": 2
-    },
-    {
-      "style_id": "luminous_technical_network_001",
-      "display_name": "Luminous Technical Network 001",
-      "medium_family": "technical drawing",
-      "texture_family": "smooth matte",
-      "palette_summary": "deep navy and cool graphite foundations, pale cyan and electric blue signal accents, restrained soft violet highlights, off-white diagram lines, minimal warm amber for emphasis",
-      "status": "ready",
-      "path": "005_luminous_technical_network_001",
-      "anchor": "005_luminous_technical_network_001/style_anchor.png",
-      "usage_count": 1
-    },
-    {
-      "style_id": "greek_black_figure_fresco_001",
-      "display_name": "Greek Black Figure Fresco 001",
-      "medium_family": "fresco",
-      "texture_family": "weathered plaster and aged stone",
-      "palette_summary": "warm terracotta, kiln black, limestone cream, muted ochre, dusty umber, restrained faded olive, with sparse chalk-white highlights",
-      "status": "ready",
-      "path": "006_greek_black_figure_fresco_001",
-      "anchor": "006_greek_black_figure_fresco_001/style_anchor.png",
-      "usage_count": 1
-    },
-    {
-      "style_id": "luminous_mythic_manuscript_gouache_001",
-      "display_name": "Luminous Mythic Manuscript Gouache 001",
-      "medium_family": "manuscript illustration",
-      "texture_family": "aged parchment paper grain with lightly worn painted edges and delicate gilded surface texture",
-      "palette_summary": "deep lapis blue, aged parchment cream, muted ochre and umber, restrained burgundy and olive, with sparse luminous gold-leaf accents",
-      "status": "ready",
-      "path": "007_luminous_mythic_manuscript_gouache_001",
-      "anchor": "007_luminous_mythic_manuscript_gouache_001/style_anchor.png",
-      "usage_count": 1
-    },
-    {
-      "style_id": "aegean_bronze_relief_mineral_fresco_001",
-      "display_name": "Aegean Bronze Relief Mineral Fresco 001",
-      "medium_family": "fresco",
-      "texture_family": "weathered mineral-plaster surface with terracotta grain, shallow relief-like edge wear, oxidized metal patina, and tactile archaeological abrasion",
-      "palette_summary": "oxidized copper teal, charcoal black, sun-baked terracotta and ochre, limestone cream, deep umber shadows, with sparse restrained gold inlay",
-      "status": "ready",
-      "path": "008_aegean_bronze_relief_mineral_fresco_001",
-      "anchor": "008_aegean_bronze_relief_mineral_fresco_001/style_anchor.png",
-      "usage_count": 2
-    },
-    {
-      "style_id": "layered_anatomical_storybook_paper_001",
-      "display_name": "Layered Anatomical Storybook Paper 001",
-      "medium_family": "painted storybook",
-      "texture_family": "hand-painted fibrous paper with softly torn layered edges, dry-brush pigment, and gentle tactile grain",
-      "palette_summary": "muted nocturnal navy, desaturated blue-gray and slate, soft moss and cream neutrals, warm amber and honey highlights for active signals, with restrained dusty rose accents for stressed body systems",
-      "status": "ready",
-      "path": "009_layered_anatomical_storybook_paper_001",
-      "anchor": "009_layered_anatomical_storybook_paper_001/style_anchor.png",
-      "usage_count": 1
-    },
-    {
       "style_id": "orchard_sleep_memory_collage_001",
       "display_name": "Orchard Sleep Memory Collage 001",
       "medium_family": "paper cut",
@@ -99,28 +11,6 @@
       "path": "010_orchard_sleep_memory_collage_001",
       "anchor": "010_orchard_sleep_memory_collage_001/style_anchor.png",
       "usage_count": 3
-    },
-    {
-      "style_id": "sketch_painting_wrestling_memory_001",
-      "display_name": "Sketch Painting Wrestling Memory 001",
-      "medium_family": "painted storybook",
-      "texture_family": "hand-painted fibrous paper grain",
-      "palette_summary": "warm cream paper, muted sepia, soft charcoal, faded teal, moss green, and restrained ochre highlights inspired by historical sports memories",
-      "status": "ready",
-      "path": "011_sketch_painting_wrestling_memory_001",
-      "anchor": "011_sketch_painting_wrestling_memory_001/style_anchor.png",
-      "usage_count": 1
-    },
-    {
-      "style_id": "farmstead_ink_timer_storybook_001",
-      "display_name": "Farmstead Ink Timer Storybook 001",
-      "medium_family": "painted storybook",
-      "texture_family": "hand-painted fibrous paper grain",
-      "palette_summary": "warm morning cream, soft sage greens, muted terracotta, faded teal accents, gentle honey sunlight, and restrained charcoal details",
-      "status": "ready",
-      "path": "012_farmstead_ink_timer_storybook_001",
-      "anchor": "012_farmstead_ink_timer_storybook_001/style_anchor.png",
-      "usage_count": 1
     },
     {
       "style_id": "editorial_lipstick_economics_inkwash_001",

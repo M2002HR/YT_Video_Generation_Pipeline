@@ -2403,7 +2403,7 @@ function RegenerationModal({ run, node, close, started }) {
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const supportsIsolated = (node.regeneration?.modes || []).includes("isolated");
-  const supportsChatgptFeedback = node.id.startsWith("beat_image_") && ["q_station", "question_harvest"].includes(run.job.content_project);
+  const supportsChatgptFeedback = node.id.startsWith("beat_image_") && ["q_station", "q_station"].includes(run.job.content_project);
   useEffect(() => {
     setPlan(null);
     setError("");

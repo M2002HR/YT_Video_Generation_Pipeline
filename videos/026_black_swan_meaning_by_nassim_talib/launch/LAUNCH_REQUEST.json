@@ -12,7 +12,7 @@
   "project": "videos/026_black_swan_meaning_by_nassim_talib",
   "voice_profile": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/de3b1d9f-c21b-450d-9796-d52e8fddcab6/VOICE_PROFILE.json",
   "creative_brief": "videos/026_black_swan_meaning_by_nassim_talib/launch/config_revisions/de3b1d9f-c21b-450d-9796-d52e8fddcab6/CREATIVE_BRIEF.json",
-  "qh": {
+  "qstation": {
     "character": {
       "mode": "manual",
       "character_id": "red_horned_everyman"
@@ -129,7 +129,7 @@
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
+    "scripts/run_full_video_pipeline_q_station_wrapper.py",
     "--topic",
     "Black Swan Meaning, by Nassim talib",
     "--video-id",

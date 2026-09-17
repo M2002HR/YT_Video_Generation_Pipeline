@@ -1,93 +1,36 @@
-# YT Video Generation Pipeline — current architecture
+# YT Video Generation Pipeline — Q Station architecture
 
-This is an automation-first, resumable pipeline for English YouTube videos. The active production
-baseline is Q Station (`q_station`; historical alias `question_harvest`). Recent completed episodes,
-especially `videos/032_*`, are the behavioral regression reference—not the deleted early MVP plans.
+The repository has one active content project: `q_station`. There are no project aliases.
 
 ## Canonical entry points
 
 - Panel/API: `scripts/video_control_panel.py` and `control_panel/ui/`
-- Q Station orchestration: `scripts/run_full_video_pipeline_qh_wrapper.py`
-- Q Station creative/visual runtime: `scripts/run_question_harvest_pipeline.py`
+- Orchestration: `scripts/run_full_video_pipeline_q_station_wrapper.py`
+- Creative/visual runtime: `scripts/run_q_station_pipeline.py`
 - Stage/DAG/artifacts/invalidation: `scripts/pipeline_stages.py`, `scripts/run_graph.py`
 - Character identity: `scripts/character_runtime.py`, `projects/q_station/characters/`
-- Opening story selection and validation: `scripts/opening_runtime.py`, `creative/OPENING_CONCEPT.json`
-- Opening/entry formats: `scripts/presentation_runtime.py`, `projects/q_station/presentation_profiles/`
-- Topic-world style: `projects/q_station/world_styles/` and `creative/WORLD_STYLE_PLAN.json`
-- Timing/edit/render: `align_beats.py` → `trim_opening_clips.py` → `build_timeline.py` → completion pipeline
+- Opening selection: `scripts/opening_runtime.py`
+- Presentation profiles: `scripts/presentation_runtime.py`, `projects/q_station/presentation_profiles/`
+- Topic-world style: `projects/q_station/world_styles/`
 
-Read [docs/QUESTION_HARVEST_PIPELINE.md](docs/QUESTION_HARVEST_PIPELINE.md) for the end-to-end
-contract and [docs/RECOVERY_RUNBOOK.md](docs/RECOVERY_RUNBOOK.md) for operations.
-
-## Separation of concerns
-
-`CharacterContext` owns immutable host identity and behavior. Each character selects one validated
-`PresentationContext`, which owns the two-intro scenario, recurring entry mechanism, prompt fragments
-and artifact contract. `WORLD_STYLE_PLAN` owns only the per-video topic world's medium, palette,
-texture and frame language. Core orchestration consumes these contracts; it does not choose behavior
-by character id.
-
-Current mappings:
+## Supported hosts
 
 | Character | Presentation | Entry |
 |---|---|---|
-| Farmer Host | `book_portal` | topic-styled recurring storybook |
-| Red Horned Everyman | `book_portal` | topic-styled recurring storybook |
-| Moss-Cloaked Crone | `orb_portal` | her recognizable orb with visible ownership cue |
-| Curious Sea Captain | `spyglass_portal` | his recognizable spyglass with a hand/blue-cuff ownership cue |
+| Red Horned Everyman | `book_portal` | recurring storybook |
+| Moss-Cloaked Crone | `orb_portal` | recognizable orb |
+| Curious Sea Captain | `spyglass_portal` | recognizable spyglass |
 
-The durable internal A/B and legacy `book_*` stage IDs remain compatibility identifiers so existing
-state can resume without migration. Their displayed titles and owned artifact paths are resolved from
-the active presentation profile. Do not infer book semantics from those IDs.
+The red host is the automatic fallback and compatibility default. Host selection is frozen for ordinary resume/retry; the panel Revise operation is the explicit controlled way to change it.
 
 ## Runtime invariants
 
-- Providers are locked: text=ChatGPT, images=Gemini, opening video=Flow through Ordak.
+- Text provider is ChatGPT, image provider is Gemini, and opening video provider is Flow through Ordak.
 - No synthetic provider fallback or placeholder media.
-- Flow Intro A uses Ingredients mode with only the resolved character sheet.
-- Flow Intro B uses Frames mode with the generated entry frame and host-free world keyframe; it never
-  receives a style sheet. Required character/entry identity is baked into the first frame by Gemini.
-- Narration is one continuous track. `SCRIPT_PLAN.json` segments are aligned to real word timestamps;
-  the two Flow sources are trimmed to those measured boundaries.
-- Body beat generation is shared by every presentation and follows the same topic-world style path.
-- A paid stage is reused only with durable state and a valid artifact/receipt contract.
-- Existing generated media under `videos/` is never migrated or overwritten by configuration loading.
-- A character is stable across ordinary resume/retry. The panel's explicit Revise operation is the
-  controlled exception: it archives the old character/presentation branch, clears both resolutions,
-  and cascades from `character_resolution` using the new request.
+- Flow A uses the selected canonical character sheet. Flow B uses generated first/last frames only.
+- Narration alignment drives clip trimming and the final timeline.
+- Topic-world art direction is independent of host costume and identity.
+- Paid outputs are reused only with valid durable state and receipt contracts.
+- Operator-installed host artwork is selectable only after validation.
 
-## Adding another character or entry format
-
-Add a character pack (config, prompt prose, canonical sheet), add or reuse a presentation profile,
-and register the character. A new presentation profile declares its narration segment, scenario rules,
-entry identity/frame prompts and artifact paths. The stage executor, Flow gate, trim, timeline, graph,
-panel and invalidation logic resolve that shared contract automatically.
-
-Operator-installed packs may declare `references.provisioning: "operator"` while keeping the sheet
-required. They become selectable only after a real, validated image is installed; missing/corrupt
-operator artwork does not disable bundled characters. Explicit manual/resume requests never switch
-hosts. Check one pack with `scripts/check_character_setup.py --character sea_captain`. See
-[docs/SEA_CAPTAIN_INTEGRATION.md](docs/SEA_CAPTAIN_INTEGRATION.md) for the exact PNG path, deployment,
-scenario strategies and the first paid smoke. No artwork is generated by registry loading or preflight.
-
-Project-specific prompts live only under `projects/<id>/prompts/`. The removed root prompt copies and
-historical Codex implementation briefs are not runtime inputs; Git history is their archive.
-
-## Topic-first opening policy v2
-
-New runs: character/presentation -> opening_concept (three candidates plus independent selection)
--> script draft -> retention core -> episode direction and story review -> final CTA -> shared
-visual planning. Real narration/alignment still precede all generated visual media in the wrapper.
-Writers now receive character behavior and the selected premise. This must not leak host identity
-into topic-world style or the host-free endpoint. No default chores/busy-hands requirement remains.
-
-Read `docs/OPENING_STORY_PIPELINE.md` for history, artifact ownership, failure/retry semantics,
-validation and deployment on dev. Main is the pre-upgrade baseline; development commits go to dev.
-
-## Spoken English
-
-New narration uses the shared `PLAIN_ENGLISH_POLICY.md` via explicit runtime prompt expansion.
-The opening selector scores spoken clarity; retention and final CTA each own independent,
-quoted-evidence language review before their accepted output reaches narration/media. Keep
-technical visual prompts and subtitle/voice settings separate. See `docs/SPOKEN_ENGLISH_POLICY.md`
-for review artifacts, correction ownership, resume compatibility and validation commands.
+See `docs/Q_STATION_PIPELINE.md` for the end-to-end contract and `docs/RECOVERY_RUNBOOK.md` for operations.

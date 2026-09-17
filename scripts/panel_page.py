@@ -316,10 +316,10 @@ function syncBeatImageQcControls(){
 
 function onProjectChange(){
   var sel = document.querySelector('select[name=content_project]');
-  var qh = sel && sel.value === 'q_station';
-  var box = document.getElementById('qh_advanced');
-  if (box) box.style.display = qh ? '' : 'none';
-  if (!qh) return;
+  var qstation = sel && sel.value === 'q_station';
+  var box = document.getElementById('q_station_advanced');
+  if (box) box.style.display = qstation ? '' : 'none';
+  if (!qstation) return;
   var min = document.querySelector('input[name=min_duration_seconds]');
   var max = document.querySelector('input[name=max_duration_seconds]');
   if (min && !min.dataset.touched) min.value = 40;
@@ -474,7 +474,7 @@ def launch_form(project_options: str, style_options: str, character_options: str
    <small>Optional: sends the full-quality polished file in addition to the compact copy.</small></label>
  </fieldset>
 
- <fieldset id="qh_advanced"><legend>Q Station</legend>
+ <fieldset id="q_station_advanced"><legend>Q Station</legend>
   <label>Character <select name=character_mode onchange="document.getElementById('manual_character').disabled=this.value!=='manual'">
     <option value=auto selected>Auto — choose after the final script</option>
     <option value=manual>Manual character</option></select></label>

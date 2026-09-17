@@ -29,13 +29,13 @@ from episode_history import (
 @pytest.fixture
 def project(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> str:
     monkeypatch.setattr(history, "ROOT", tmp_path)
-    registry = tmp_path / "projects" / "question_harvest" / "VIDEOS.json"
+    registry = tmp_path / "projects" / "q_station" / "VIDEOS.json"
     registry.parent.mkdir(parents=True)
     registry.write_text(
-        json.dumps({"schema_version": 1, "project_id": "question_harvest", "videos": []}),
+        json.dumps({"schema_version": 1, "project_id": "q_station", "videos": []}),
         encoding="utf-8",
     )
-    return "question_harvest"
+    return "q_station"
 
 
 def test_traits_are_recorded_and_read_back(project: str) -> None:
@@ -76,9 +76,9 @@ def test_history_is_ordered_by_video_number_and_limited(project: str) -> None:
 
 
 def test_a_legacy_string_registry_is_upgraded_in_place(project: str, tmp_path: Path) -> None:
-    registry = tmp_path / "projects" / "question_harvest" / "VIDEOS.json"
+    registry = tmp_path / "projects" / "q_station" / "VIDEOS.json"
     registry.write_text(
-        json.dumps({"schema_version": 1, "project_id": "question_harvest",
+        json.dumps({"schema_version": 1, "project_id": "q_station",
                     "videos": ["008_old_episode"]}),
         encoding="utf-8",
     )
@@ -97,7 +97,7 @@ def test_a_missing_registry_yields_no_history_rather_than_an_error(
 
 
 def test_a_malformed_registry_is_refused_on_write(project: str, tmp_path: Path) -> None:
-    registry = tmp_path / "projects" / "question_harvest" / "VIDEOS.json"
+    registry = tmp_path / "projects" / "q_station" / "VIDEOS.json"
     registry.write_text(json.dumps({"schema_version": 1}), encoding="utf-8")
     with pytest.raises(EpisodeHistoryError):
         record_traits(project, "010_x", {"opening_activity": "a"})
@@ -200,17 +200,17 @@ def _director_project(tmp_path: Path):
 
     project = tmp_path / "videos" / "011_director"
     (project / "creative").mkdir(parents=True)
-    return project, load_content_project("question_harvest")
+    return project, load_content_project("q_station")
 
 
 def test_the_director_retries_once_when_it_repeats_a_recent_opening(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import run_question_harvest_pipeline as qh
+    import run_q_station_pipeline as qstation
 
     project, content_project = _director_project(tmp_path)
     monkeypatch.setattr(
-        qh, "_recent_history", lambda *a, **k: [{"opening_activity": "boiling a kettle"}]
+        qstation, "_recent_history", lambda *a, **k: [{"opening_activity": "boiling a kettle"}]
     )
     runner = DirectorSpy([
         {
@@ -225,7 +225,7 @@ def test_the_director_retries_once_when_it_repeats_a_recent_opening(
         },
     ])
 
-    plan = qh.stage_episode_director(runner, project, content_project, "why kettles sing", "brief", {"full_narration": "n"})
+    plan = qstation.stage_episode_director(runner, project, content_project, "why kettles sing", "brief", {"full_narration": "n"})
 
     assert plan["opening_activity"] == "folding laundry"
     assert len(runner.prompts) == 2
@@ -236,11 +236,11 @@ def test_the_director_retries_once_when_it_repeats_a_recent_opening(
 def test_a_director_that_keeps_repeating_fails_the_stage(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import run_question_harvest_pipeline as qh
+    import run_q_station_pipeline as qstation
 
     project, content_project = _director_project(tmp_path)
     monkeypatch.setattr(
-        qh, "_recent_history", lambda *a, **k: [{"opening_activity": "boiling a kettle"}]
+        qstation, "_recent_history", lambda *a, **k: [{"opening_activity": "boiling a kettle"}]
     )
     runner = DirectorSpy([
         {
@@ -253,8 +253,8 @@ def test_a_director_that_keeps_repeating_fails_the_stage(
         },
     ])
 
-    with pytest.raises(qh.StageFailure) as excinfo:
-        qh.stage_episode_director(runner, project, content_project, "topic", "brief", {"full_narration": "n"})
+    with pytest.raises(qstation.StageFailure) as excinfo:
+        qstation.stage_episode_director(runner, project, content_project, "topic", "brief", {"full_narration": "n"})
     assert excinfo.value.state == "FAILED_VALIDATION"
     assert "still repeats" in excinfo.value.message
 
@@ -262,16 +262,16 @@ def test_a_director_that_keeps_repeating_fails_the_stage(
 def test_a_first_episode_is_accepted_without_a_correction_round(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import run_question_harvest_pipeline as qh
+    import run_q_station_pipeline as qstation
 
     project, content_project = _director_project(tmp_path)
-    monkeypatch.setattr(qh, "_recent_history", lambda *a, **k: [])
+    monkeypatch.setattr(qstation, "_recent_history", lambda *a, **k: [])
     runner = DirectorSpy([{
         "opening_activity": "boiling a kettle", "topic_visual_link": "steam makes heat visible",
         "link_type": "direct", "opening_visual_proof": "steam lifting from the kettle spout",
     }])
 
-    plan = qh.stage_episode_director(runner, project, content_project, "topic", "brief", {"full_narration": "n"})
+    plan = qstation.stage_episode_director(runner, project, content_project, "topic", "brief", {"full_narration": "n"})
 
     assert plan["opening_activity"] == "boiling a kettle"
     assert len(runner.prompts) == 1
@@ -281,13 +281,13 @@ def test_a_first_episode_is_accepted_without_a_correction_round(
 def test_a_director_plan_without_visible_topic_proof_is_rejected(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import run_question_harvest_pipeline as qh
+    import run_q_station_pipeline as qstation
 
     project, content_project = _director_project(tmp_path)
-    monkeypatch.setattr(qh, "_recent_history", lambda *a, **k: [])
+    monkeypatch.setattr(qstation, "_recent_history", lambda *a, **k: [])
     runner = DirectorSpy([{"opening_activity": "boiling a kettle"}])
 
-    with pytest.raises(qh.StageFailure) as excinfo:
-        qh.stage_episode_director(runner, project, content_project, "why kettles sing", "brief", {"full_narration": "n"})
+    with pytest.raises(qstation.StageFailure) as excinfo:
+        qstation.stage_episode_director(runner, project, content_project, "why kettles sing", "brief", {"full_narration": "n"})
     assert excinfo.value.state == "FAILED_VALIDATION"
     assert "topic_visual_link" in excinfo.value.message

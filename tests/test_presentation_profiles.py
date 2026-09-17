@@ -10,7 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import run_question_harvest_pipeline as qh
+import run_q_station_pipeline as qstation
 from character_runtime import load_character_registry
 from content_projects import load_content_project
 from flow_gate import clip_paths
@@ -50,7 +50,7 @@ def test_crone_resolution_freezes_presentation_once(tmp_path: Path) -> None:
     class Runner:
         state = State()
         def json(self, *args, **kwargs): raise AssertionError("manual selection must not call Auto")
-    resolution, character = qh.stage_character_resolution(
+    resolution, character = qstation.stage_character_resolution(
         Runner(), project, load_content_project("q_station"), "topic", "brief", None, launch,
         is_legacy_run=False,
     )
@@ -68,10 +68,10 @@ def test_script_contract_is_profile_specific(registry) -> None:
         "opening_question_spark": parts[0], "entry_transition": parts[1], "body": body,
         "optional_closing": parts[-2], "cta": parts[-1], "full_narration": " ".join(parts),
     }
-    assert qh.validate_script_plan("test", plan, qh.DurationTarget(30, 40), crone.presentation)["entry_transition"]
+    assert qstation.validate_script_plan("test", plan, qstation.DurationTarget(30, 40), crone.presentation)["entry_transition"]
     wrong = dict(plan); wrong["book_transition"] = wrong.pop("entry_transition")
-    with pytest.raises(qh.StageFailure, match="entry_transition"):
-        qh.validate_script_plan("test", wrong, qh.DurationTarget(30, 40), crone.presentation)
+    with pytest.raises(qstation.StageFailure, match="entry_transition"):
+        qstation.validate_script_plan("test", wrong, qstation.DurationTarget(30, 40), crone.presentation)
 
 
 def test_orb_artifact_contract_reaches_gate_and_graph(tmp_path: Path, registry) -> None:
@@ -94,7 +94,7 @@ def test_manual_character_revision_graph_previews_destination_profile(tmp_path: 
     launch.write_text(json.dumps({"content_project": "q_station"}), encoding="utf-8")
     graph = graph_for(tmp_path, include_disabled=True, settings={
         "content_project": "q_station",
-        "qh": {"character": {"mode": "manual", "character_id": "moss_cloaked_crone"}},
+        "qstation": {"character": {"mode": "manual", "character_id": "moss_cloaked_crone"}},
     })
     nodes = {node["id"]: node for node in graph["nodes"]}
     assert nodes["book_cover"]["title"] == "Topic-styled orb frame"
@@ -140,7 +140,7 @@ def test_orb_entry_frame_uses_identity_style_and_crone_sheet(tmp_path: Path, reg
         captured["roles"] = [ref.role for ref in refs]
         captured["prompt"] = prompt
         return True
-    monkeypatch.setattr(qh, "reusable_image", reusable)
-    qh.stage_entry_frame(Runner(), project, load_content_project("q_station"), "topic", style, identity, {"entry_variant": "raven_leads"}, crone)
+    monkeypatch.setattr(qstation, "reusable_image", reusable)
+    qstation.stage_entry_frame(Runner(), project, load_content_project("q_station"), "topic", style, identity, {"entry_variant": "raven_leads"}, crone)
     assert captured["roles"] == ["entry_identity", "style_reference", "character_sheet"]
     assert "ownership and agency" in captured["prompt"]

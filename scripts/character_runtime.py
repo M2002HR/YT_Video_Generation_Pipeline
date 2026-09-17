@@ -422,7 +422,7 @@ def resolve_character(
     if mode not in {"auto", "manual"}:
         raise CharacterSelectionError(f"Unknown character selection mode: {mode!r}.")
 
-    # 2. Historical run predating characters → deterministic legacy default (Farmer).
+    # 2. Historical run predating characters → deterministic legacy default (Red Host).
     if is_legacy_run and not requested_character_id and mode != "manual":
         ctx = registry.get(registry.legacy_default_character_id)
         return CharacterResolution(

@@ -24,16 +24,16 @@ def test_completed_video_is_registered_in_selected_content_project(tmp_path: Pat
     monkeypatch.setattr(module, "ROOT", tmp_path)
     video = tmp_path / "videos" / "008_first_question"
     video.mkdir(parents=True)
-    project = tmp_path / "projects" / "world_behind_the_question"
-    write_json(project / "PROJECT.json", {"project_id": "world_behind_the_question"})
-    write_json(project / "VIDEOS.json", {"schema_version": 1, "project_id": "world_behind_the_question", "videos": []})
+    project = tmp_path / "projects" / "q_station"
+    write_json(project / "PROJECT.json", {"project_id": "q_station"})
+    write_json(project / "VIDEOS.json", {"schema_version": 1, "project_id": "q_station", "videos": []})
 
-    registry = module.register_content_project_video(video, {"content_project": "world_behind_the_question"})
+    registry = module.register_content_project_video(video, {"content_project": "q_station"})
     videos = json.loads(registry.read_text(encoding="utf-8"))["videos"]
     assert [entry["video_id"] for entry in videos] == ["008_first_question"]
 
     # Registering the same video again must not duplicate it.
-    module.register_content_project_video(video, {"content_project": "world_behind_the_question"})
+    module.register_content_project_video(video, {"content_project": "q_station"})
     videos = json.loads(registry.read_text(encoding="utf-8"))["videos"]
     assert [entry["video_id"] for entry in videos] == ["008_first_question"]
 
@@ -43,18 +43,18 @@ def test_registration_preserves_the_traits_already_recorded(tmp_path: Path, monk
     monkeypatch.setattr(module, "ROOT", tmp_path)
     video = tmp_path / "videos" / "010_second_question"
     video.mkdir(parents=True)
-    project = tmp_path / "projects" / "question_harvest"
-    write_json(project / "PROJECT.json", {"project_id": "question_harvest"})
+    project = tmp_path / "projects" / "q_station"
+    write_json(project / "PROJECT.json", {"project_id": "q_station"})
     write_json(project / "VIDEOS.json", {
         "schema_version": 1,
-        "project_id": "question_harvest",
+        "project_id": "q_station",
         "videos": [
             "009_legacy_string_entry",
             {"video_id": "010_second_question", "opening_activity": "watering plants"},
         ],
     })
 
-    registry = module.register_content_project_video(video, {"content_project": "question_harvest"})
+    registry = module.register_content_project_video(video, {"content_project": "q_station"})
     videos = json.loads(registry.read_text(encoding="utf-8"))["videos"]
     assert any(entry.get("opening_activity") == "watering plants" for entry in videos)
 

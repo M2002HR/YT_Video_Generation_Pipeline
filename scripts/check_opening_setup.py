@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 from character_runtime import load_character_registry
-from content_projects import QH_PIPELINE_PROMPTS, load_content_project, validate_content_project
+from content_projects import Q_STATION_PIPELINE_PROMPTS, load_content_project, validate_content_project
 from opening_runtime import POLICY_VERSION
 from narration_language import POLICY_VERSION as LANGUAGE_POLICY_VERSION
 from pipeline_stages import PIPELINE_STAGE_SEQUENCE
@@ -36,15 +36,15 @@ def check() -> list[str]:
         raise RuntimeError("Stage taxonomy and panel graph disagree.")
     if "opening_concept" not in NODE_SPECS["script_draft"].dependencies:
         raise RuntimeError("Script draft does not depend on the opening concept.")
-    for name in QH_PIPELINE_PROMPTS:
+    for name in Q_STATION_PIPELINE_PROMPTS:
         text = (project.root / "prompts/pipeline" / name).read_text(encoding="utf-8")
         unknown = set(re.findall(r"\{\{([A-Z_]+)\}\}", text)) - TOKENS
         if unknown:
             raise RuntimeError(f"Unknown template inputs in {name}: {sorted(unknown)}")
     from narration_language import policy_text
     policy_text(project.root / "prompts/pipeline")
-    from run_question_harvest_pipeline import resolve_prompt
-    for name in QH_PIPELINE_PROMPTS:
+    from run_q_station_pipeline import resolve_prompt
+    for name in Q_STATION_PIPELINE_PROMPTS:
         if "{{LANGUAGE_POLICY}}" in resolve_prompt(project, name):
             raise RuntimeError(f"Unexpanded spoken-language policy in {name}")
     descriptions = []

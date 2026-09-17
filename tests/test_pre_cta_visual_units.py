@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from run_question_harvest_pipeline import write_visual_beats_markdown
+from run_q_station_pipeline import write_visual_beats_markdown
 from align_beats import parse_beats
 
 

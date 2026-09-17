@@ -18,7 +18,7 @@ from flow_gate import blocked_only_on_flow, clips_ready, missing_clips  # noqa: 
 
 
 def write_state(project: Path, stages: dict) -> None:
-    path = project / "pipeline" / "QH_RUNTIME_STATE.json"
+    path = project / "pipeline" / "Q_STATION_RUNTIME_STATE.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"schema_version": 2, "stages": stages}), encoding="utf-8")
 

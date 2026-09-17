@@ -1,17 +1,31 @@
 {
   "schema_version": 3,
   "project_id": "q_station",
-  "aliases": ["question_harvest"],
+  "aliases": [],
   "display_name": "Q Station",
   "description": "Every question opens a world.",
   "tagline": "Every question opens a world.",
   "pipeline_profile": "bookworld_mixed_media",
   "status": "production_ready",
   "providers": {
-    "text": { "provider": "chatgpt", "allow_fallback": false },
-    "image": { "provider": "gemini", "allow_fallback": false, "default_model": "nano_banana_pro" },
-    "video": { "provider": "flow", "allow_fallback": false, "default_model": "gemini_omni_1_1_flash" },
-    "voice": { "provider": "elevenlabs_web", "allow_fallback": false }
+    "text": {
+      "provider": "chatgpt",
+      "allow_fallback": false
+    },
+    "image": {
+      "provider": "gemini",
+      "allow_fallback": false,
+      "default_model": "nano_banana_pro"
+    },
+    "video": {
+      "provider": "flow",
+      "allow_fallback": false,
+      "default_model": "gemini_omni_1_1_flash"
+    },
+    "voice": {
+      "provider": "elevenlabs_web",
+      "allow_fallback": false
+    }
   },
   "defaults": {
     "format": "short",
@@ -49,5 +63,6 @@
   },
   "default_visual_preset": "001_home_world",
   "allow_global_visual_preset_fallback": false,
-  "allow_legacy_prompt_fallback": false
+  "allow_legacy_prompt_fallback": false,
+  "id": "q_station"
 }

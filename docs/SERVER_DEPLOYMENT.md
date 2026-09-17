@@ -108,5 +108,5 @@ Not optional. A job launched against a stale worker once burned 7 Flow credits p
 
 `.env` at the repo root, `.env.example` documents every key. The ones that change behaviour
 most: `YT_ORDAK_FLOW_URL` (pin to a project URL),
-`YT_QUESTION_HARVEST_DEFAULT_GEMINI_MODEL`, `YT_RENDER_RESOURCE_BUDGET`,
+`YT_Q_STATION_DEFAULT_GEMINI_MODEL`, `YT_RENDER_RESOURCE_BUDGET`,
 `YT_PIPELINE_TELEGRAM_*`, `YT_GIT_PUSH_ENABLED`.

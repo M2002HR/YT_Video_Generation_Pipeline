@@ -11,22 +11,22 @@ if str(SCRIPTS) not in sys.path:
 from content_projects import load_content_project, validate_provider_locks
 
 
-def test_question_harvest_provider_locks_are_gemini_flow():
-    proj = load_content_project("question_harvest")
+def test_q_station_provider_locks_are_gemini_flow():
+    proj = load_content_project("q_station")
     assert proj.get_provider("image") == "gemini"
     assert proj.get_provider("video") == "flow"
     # should not raise
     validate_provider_locks(proj)
 
 
-def test_question_harvest_image_provider_chatgpt_rejected():
-    proj = load_content_project("question_harvest")
+def test_q_station_image_provider_chatgpt_rejected():
+    proj = load_content_project("q_station")
     with pytest.raises(RuntimeError, match="LOCKED.*gemini"):
         validate_provider_locks(proj, image_provider="chatgpt")
 
 
-def test_question_harvest_video_provider_gemini_rejected():
-    proj = load_content_project("question_harvest")
+def test_q_station_video_provider_gemini_rejected():
+    proj = load_content_project("q_station")
     with pytest.raises(RuntimeError, match="LOCKED.*flow"):
         validate_provider_locks(proj, video_provider="gemini")
 
@@ -69,18 +69,18 @@ def _resume_workspace(tmp_path):
 
 def test_a_gemini_failure_never_reaches_another_image_provider(tmp_path, monkeypatch):
     """§93: no provider fallback — the stage fails, it does not shop around."""
-    import run_question_harvest_pipeline as qh
+    import run_q_station_pipeline as qstation
 
     project = _resume_workspace(tmp_path)
     spy = ProviderSpy(fail_provider="gemini")
-    monkeypatch.setattr(qh.Runner, "json", lambda *a, **k: {"hero_present": False})
-    runner = qh.Runner(spy, None, qh.QHState(project, "902_lock", "topic"))
+    monkeypatch.setattr(qstation.Runner, "json", lambda *a, **k: {"hero_present": False})
+    runner = qstation.Runner(spy, None, qstation.QStationState(project, "902_lock", "topic"))
 
-    with pytest.raises(qh.StageFailure) as excinfo:
-        qh.stage_world_keyframe(
+    with pytest.raises(qstation.StageFailure) as excinfo:
+        qstation.stage_world_keyframe(
             runner,
             project,
-            load_content_project("question_harvest"),
+            load_content_project("q_station"),
             "a keyframe prompt",
             project / "references" / "world_style_anchor.png",
         )
@@ -90,17 +90,17 @@ def test_a_gemini_failure_never_reaches_another_image_provider(tmp_path, monkeyp
 
 
 def test_a_flow_failure_never_reaches_another_video_provider(tmp_path):
-    import run_question_harvest_pipeline as qh
+    import run_q_station_pipeline as qstation
 
     project = _resume_workspace(tmp_path)
     spy = ProviderSpy(fail_provider="flow", error_code="flow_credits_exhausted")
-    runner = qh.Runner(spy, None, qh.QHState(project, "902_lock", "topic"))
+    runner = qstation.Runner(spy, None, qstation.QStationState(project, "902_lock", "topic"))
 
-    with pytest.raises(qh.StageFailure) as excinfo:
-        qh.stage_flow_clip(
+    with pytest.raises(qstation.StageFailure) as excinfo:
+        qstation.stage_flow_clip(
             runner,
             project,
-            load_content_project("question_harvest"),
+            load_content_project("q_station"),
             "A",
             "a clip prompt",
             book_spread=None,
@@ -117,7 +117,7 @@ def test_a_flow_failure_never_reaches_another_video_provider(tmp_path):
 
 def test_the_orchestrator_has_no_alternate_image_or_video_backend():
     """A grep guard against a backend creeping back in beside the locked providers."""
-    text = (Path(ROOT) / "scripts" / "run_question_harvest_pipeline.py").read_text(encoding="utf-8")
+    text = (Path(ROOT) / "scripts" / "run_q_station_pipeline.py").read_text(encoding="utf-8")
     assert "validate_provider_locks" in text
     for banned in ("pollinations", "stability.ai", "replicate.com", "openai.com/v1/images", "vertexai"):
         assert banned not in text.lower(), f"{banned!r} appeared beside the locked providers"
@@ -125,7 +125,7 @@ def test_the_orchestrator_has_no_alternate_image_or_video_backend():
 
 def test_pipeline_has_no_synthetic_or_fallback_path():
     """The production orchestrator must contain no way to substitute made-up media (§4)."""
-    text = (Path(ROOT) / "scripts" / "run_question_harvest_pipeline.py").read_text(encoding="utf-8")
+    text = (Path(ROOT) / "scripts" / "run_q_station_pipeline.py").read_text(encoding="utf-8")
     lowered = text.lower()
     assert "flow" in lowered
     for banned in ("allow_synthetic", "synthetic_fallback", "_dummy_", "pollinations", "fallback_synthetic"):

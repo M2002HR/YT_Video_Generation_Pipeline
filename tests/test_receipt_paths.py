@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from run_question_harvest_pipeline import _receipt_path  # noqa: E402
+from run_q_station_pipeline import _receipt_path  # noqa: E402
 
 
 def test_an_episode_asset_is_relative_to_the_episode() -> None:
