@@ -56,16 +56,33 @@ def register_content_project_video(project: Path, state: dict[str, Any]) -> Path
     requested_project = str(state.get("content_project") or "default").strip()
     if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", requested_project):
         raise RuntimeError(f"Invalid content project in pipeline state: {requested_project!r}")
-    content_project = resolve_project_id(requested_project)
-    # Isolated callers/tests can supply their own ROOT with a standalone project that is
-    # not in the repository catalog. Production aliases always take the canonical branch.
-    if not (ROOT / "projects" / content_project / "PROJECT.json").is_file():
-        content_project = requested_project
-    project_root = ROOT / "projects" / content_project
-    config = project_root / "PROJECT.json"
-    registry = project_root / "VIDEOS.json"
-    if not config.is_file() or not registry.is_file():
-        raise RuntimeError(f"Content-project registry is incomplete: projects/{content_project}")
+    # Finalization state predates content projects and may carry a stale
+    # default, while retired catalog entries no longer exist on disk. Prefer
+    # the state's request, then the video's own frozen launch request, so a
+    # completed video always lands in the catalog it was actually built from.
+    candidates = [requested_project]
+    try:
+        launch = json.loads((project / "launch" / "LAUNCH_REQUEST.json").read_text(encoding="utf-8"))
+        frozen = str((launch if isinstance(launch, dict) else {}).get("content_project") or "").strip()
+        if frozen and re.fullmatch(r"[a-z0-9][a-z0-9_-]*", frozen) and frozen not in candidates:
+            candidates.append(frozen)
+    except (OSError, ValueError):
+        pass
+    tried: list[str] = []
+    for candidate in candidates:
+        content_project = resolve_project_id(candidate)
+        # Isolated callers/tests can supply their own ROOT with a standalone project that is
+        # not in the repository catalog. Production aliases always take the canonical branch.
+        if not (ROOT / "projects" / content_project / "PROJECT.json").is_file():
+            content_project = candidate
+        project_root = ROOT / "projects" / content_project
+        config = project_root / "PROJECT.json"
+        registry = project_root / "VIDEOS.json"
+        if config.is_file() and registry.is_file():
+            break
+        tried.append(f"projects/{content_project}")
+    else:
+        raise RuntimeError(f"Content-project registry is incomplete: {', '.join(tried) or 'projects/default'}")
     payload = json.loads(registry.read_text(encoding="utf-8"))
     if payload.get("project_id") != content_project or not isinstance(payload.get("videos"), list):
         raise RuntimeError(f"Invalid content-project video registry: {registry.relative_to(ROOT)}")
