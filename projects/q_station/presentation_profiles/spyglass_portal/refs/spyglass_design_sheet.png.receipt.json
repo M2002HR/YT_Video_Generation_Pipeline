@@ -1,0 +1,116 @@
+{
+  "contract_version": 1,
+  "source_type": "canonical",
+  "request_fingerprint": "fc332a2950813efc9edd07d2afca49b8419ca89eb72e3f3462d9b3bf4e568b64",
+  "quality_check": {
+    "passed": true,
+    "description": "A clean vertical 9:16 object reference sheet showing the same worn maritime spyglass twice on a neutral light-gray background. The upper view is a near-side profile with a warm brown cylindrical barrel, aged golden-brass telescoping sections and joining bands, a broad brass objective rim with dark blue-black glass and painted highlights, and a smaller brass eyepiece. The lower view shows the same spyglass from a three-quarter eyepiece-facing angle. Both views use refined dark ink contours with restrained painted and cel-style shading, visible wear marks, and ordinary circular optics. There are no characters, hands, tripod parts, side attachments, decorative symbols, labels, writing, arrows, numbers, or UI.",
+    "violations": [
+      "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+      "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+      "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+    ],
+    "observations": [
+      "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+      "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "prompt": "Create a clean 9:16 vertical portrait hand-drawn 2D object reference sheet (tall phone-shaped frame, taller than wide) for one worn maritime spyglass belonging to a short cartoon sea captain. A straight, compact, collapsible telescope: warm brown cylindrical main barrel, aged golden-brass telescoping sections and narrow joining bands, a broad round brass objective rim containing dark blue-black glass with a small painted highlight, and a smaller round brass eyepiece. No tripod, handles, side attachments, jewels, runes, skull decoration or modern scope hardware. Show the SAME object in a clear side view and a three-quarter eyepiece view, large on a plain neutral background. Preserve ordinary circular optics and consistent proportions between views. Refined ink contours and restrained painted/cel shading, not 3D or photoreal metal. No character, hands, location, episode motifs, portal, labels, writing, arrows, numbers or UI. This recurring prop is neutral across topics; only later scene art enters its lens.",
+  "prompt_sha256": "5cac85cd6c8e0c7f6c42ad31eb11a65750d6dcb8ba1775e4b4aa49e40248c03a",
+  "output_path": "projects/q_station/presentation_profiles/spyglass_portal/refs/spyglass_design_sheet.png",
+  "output_sha256": "c733a98c6dee4f49de1f372bf25f9cb0f8ae8e6d30ba29420c38efc8358ac486",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "references": [],
+  "validated_at": "2026-09-17T19:51:07Z",
+  "origin": {
+    "provider": "gemini",
+    "job_id": "662a7ed2-17ed-4cd1-8c71-590ac7fe7038",
+    "requested_model": "nano_banana_2",
+    "provider_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/32dcfe8e6a077487",
+      "submission_fingerprint": null,
+      "reference_roles": [],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=662a7ed2-17ed-4cd1-8c71-590ac7fe7038_output_1.png 1536x2752 sha256=c733a98c6dee4f49de1f372bf25f9cb0f8ae8e6d30ba29420c38efc8358ac486"
+      ],
+      "quality_check": {
+        "passed": true,
+        "description": "A clean vertical 9:16 object reference sheet showing the same worn maritime spyglass twice on a neutral light-gray background. The upper view is a near-side profile with a warm brown cylindrical barrel, aged golden-brass telescoping sections and joining bands, a broad brass objective rim with dark blue-black glass and painted highlights, and a smaller brass eyepiece. The lower view shows the same spyglass from a three-quarter eyepiece-facing angle. Both views use refined dark ink contours with restrained painted and cel-style shading, visible wear marks, and ordinary circular optics. There are no characters, hands, tripod parts, side attachments, decorative symbols, labels, writing, arrows, numbers, or UI.",
+        "violations": [
+          "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+          "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+        ],
+        "blocking_violations": [],
+        "regressions": [],
+        "raw_passed": true,
+        "raw_violations": [
+          "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+          "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+        ],
+        "observations": [
+          "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+          "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+        ],
+        "review_status": "passed_with_warnings"
+      },
+      "request_fingerprint": "fbedadc507925a22d40c2231c916c5faf8095f96d0dce013fe2c078b158a365e",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "job_id": "662a7ed2-17ed-4cd1-8c71-590ac7fe7038",
+          "prompt_sha256": "5cac85cd6c8e0c7f6c42ad31eb11a65750d6dcb8ba1775e4b4aa49e40248c03a",
+          "output_sha256": "c733a98c6dee4f49de1f372bf25f9cb0f8ae8e6d30ba29420c38efc8358ac486",
+          "quality_check": {
+            "passed": true,
+            "description": "A clean vertical 9:16 object reference sheet showing the same worn maritime spyglass twice on a neutral light-gray background. The upper view is a near-side profile with a warm brown cylindrical barrel, aged golden-brass telescoping sections and joining bands, a broad brass objective rim with dark blue-black glass and painted highlights, and a smaller brass eyepiece. The lower view shows the same spyglass from a three-quarter eyepiece-facing angle. Both views use refined dark ink contours with restrained painted and cel-style shading, visible wear marks, and ordinary circular optics. There are no characters, hands, tripod parts, side attachments, decorative symbols, labels, writing, arrows, numbers, or UI.",
+            "violations": [
+              "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+              "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+            ],
+            "blocking_violations": [],
+            "regressions": [],
+            "raw_passed": true,
+            "raw_violations": [
+              "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+              "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+            ],
+            "observations": [
+              "The upper view is slightly oblique rather than a perfectly strict orthographic side view, as some of the objective face is visible.",
+              "The neutral background has a subtle gray gradient or vignette rather than a completely flat plain field."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "selected": true
+        }
+      ],
+      "qc_policy": "0",
+      "qc_selected_attempt": 1
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "schema_version": 6,
   "content_project": "q_station",
   "job_id": "50f30a93-23f2-44ee-abef-f8970476e9bc",
-  "status": "FAILED",
+  "status": "DONE",
   "created_at": "2026-09-17T17:53:35.296604+00:00",
   "topic": "Could You Live Forever on a Desert Island?",
   "video_id": "038",
@@ -187,7 +187,7 @@
   "launched_from_job_id": "b6a48042-0751-4c81-8178-cfa4e8a068a4",
   "launched_from_video_id": "037",
   "launch_reason": "topic_change",
-  "pid": 113806,
+  "pid": 118960,
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
@@ -211,9 +211,9 @@
   ],
   "started_at": "2026-09-17T17:53:35.299829+00:00",
   "exit_code": 1,
-  "process_exited_at": "2026-09-17T20:55:33.380924+00:00",
-  "resumed_at": "2026-09-17T21:03:09.682216+00:00",
-  "resume_count": 13,
+  "process_exited_at": "2026-09-17T21:08:22.916444+00:00",
+  "resumed_at": "2026-09-17T21:11:46.015689+00:00",
+  "resume_count": 14,
   "qstation": {
     "character": {
       "mode": "manual",
@@ -324,7 +324,7 @@
       "world_style_hint"
     ],
     "config_revision_id": "e68cfbd0-730b-4507-b849-4e6311058bca",
-    "completed_at": "2026-09-17T20:55:33.383044+00:00"
+    "completed_at": "2026-09-17T21:08:22.920319+00:00"
   },
   "last_config_revision": {
     "schema_version": 2,
@@ -412,8 +412,8 @@
       "world_style_hint"
     ],
     "config_revision_id": "e68cfbd0-730b-4507-b849-4e6311058bca",
-    "completed_at": "2026-09-17T20:55:33.383044+00:00"
+    "completed_at": "2026-09-17T21:08:22.920319+00:00"
   },
   "stopped_by": "panel",
-  "completed_at": "2026-09-17T21:08:22.920319+00:00"
+  "completed_at": "2026-09-17T21:12:23.662814+00:00"
 }

@@ -99,6 +99,28 @@
       "path": "021_cave_pictograph_mineral_fresco_001",
       "anchor": "021_cave_pictograph_mineral_fresco_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "primitive_cave_human_ochre_001",
+      "display_name": "Primitive Cave Human Ochre 001",
+      "medium_family": "fresco",
+      "texture_family": "weathered porous limestone and dry sandstone with raw mineral wash grain",
+      "palette_summary": "parchment and bone-white ground, warm raw ochre, burnt umber silhouettes, muted terracotta, and soft charcoal-black accents",
+      "status": "ready",
+      "path": "022_primitive_cave_human_ochre_001",
+      "anchor": "022_primitive_cave_human_ochre_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "saltwind_island_fieldguide_001",
+      "display_name": "Saltwind Island Fieldguide 001",
+      "medium_family": "retro educational illustration",
+      "texture_family": "sun-bleached paper with salt-stained parchment mottling, fine sand grain, abraded corners and driftwood-like wear",
+      "palette_summary": "faded parchment cream, sun-bleached sand, dry palm and driftwood browns, muted sea-glass teal, washed sky blue, storm-slate gray and restrained rust-orange accents for hazards",
+      "status": "ready",
+      "path": "023_saltwind_island_fieldguide_001",
+      "anchor": "023_saltwind_island_fieldguide_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

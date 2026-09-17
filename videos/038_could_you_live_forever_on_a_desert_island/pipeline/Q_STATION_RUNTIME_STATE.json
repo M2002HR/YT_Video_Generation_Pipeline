@@ -7,7 +7,7 @@
   "stages": {
     "character_resolution": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "requested_mode": "manual",
       "requested_character_id": "sea_captain",
       "resolved_character_id": "sea_captain",
@@ -17,43 +17,43 @@
     },
     "opening_concept": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "artifact": "OPENING_CONCEPT.json"
     },
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "artifact": "SCRIPT_CORE_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "call_to_action": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "artifact": "CALL_TO_ACTION.json"
     },
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "q_station_narration_ready": {
       "status": "DONE",
-      "updated_at": "2026-09-17T21:03:14Z",
+      "updated_at": "2026-09-17T21:11:50Z",
       "body_beats": 8,
       "visual_media": "deferred_until_narration_alignment"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:21Z",
+      "updated_at": "2026-09-17T21:11:58Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "world_style_director_fix2_json1": {
@@ -64,7 +64,7 @@
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-17T21:03:22Z",
+      "updated_at": "2026-09-17T21:12:00Z",
       "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
       "opening_location": "small camp on an uninhabited tropical beach after a storm",
       "camera_pattern": "static_wide",
@@ -84,17 +84,17 @@
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "world_style_anchor.png → catalog/023_saltwind_island_fieldguide_001"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "world_keyframe.png"
     },
     "world_keyframe_visual_qc": {
@@ -106,96 +106,91 @@
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "spyglass_design_sheet.png"
     },
     "book_cover_design": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "SPYGLASS_ENTRY_DIRECTION.txt"
     },
     "book_cover": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:24Z",
+      "updated_at": "2026-09-17T21:12:01Z",
       "artifact": "spyglass_entry_frame.png"
     },
     "body_images": {
       "status": "DONE",
-      "updated_at": "2026-09-17T21:03:28Z"
+      "updated_at": "2026-09-17T21:12:06Z"
     },
     "beat_image_001": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:26Z",
+      "updated_at": "2026-09-17T21:12:05Z",
       "artifact": "beat_001.png"
     },
     "beat_image_002": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:26Z",
+      "updated_at": "2026-09-17T21:12:05Z",
       "artifact": "beat_002.png"
     },
     "beat_image_003": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:27Z",
+      "updated_at": "2026-09-17T21:12:05Z",
       "artifact": "beat_003.png"
     },
     "beat_image_004": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:27Z",
+      "updated_at": "2026-09-17T21:12:05Z",
       "artifact": "beat_004.png"
     },
     "beat_image_005": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:27Z",
+      "updated_at": "2026-09-17T21:12:05Z",
       "artifact": "beat_005.png"
     },
     "beat_image_006": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:27Z",
+      "updated_at": "2026-09-17T21:12:05Z",
       "artifact": "beat_006.png"
     },
     "beat_image_007": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:27Z",
+      "updated_at": "2026-09-17T21:12:06Z",
       "artifact": "beat_007.png"
     },
     "beat_image_008": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:28Z",
+      "updated_at": "2026-09-17T21:12:06Z",
       "artifact": "beat_008.png"
     },
     "transition_direction": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:29Z",
+      "updated_at": "2026-09-17T21:12:07Z",
       "artifact": "TRANSITION_PLAN.json"
     },
     "flow_prompt_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:29Z",
+      "updated_at": "2026-09-17T21:12:07Z",
       "artifact": "flow_prompt_question_intro.txt"
     },
     "flow_prompt_b": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:29Z",
+      "updated_at": "2026-09-17T21:12:07Z",
       "artifact": "flow_prompt_spyglass_transition.txt"
     },
     "flow_clip_a": {
       "status": "REUSED",
-      "updated_at": "2026-09-17T21:03:29Z",
+      "updated_at": "2026-09-17T21:12:07Z",
       "artifact": "question_intro_source.mp4 (4.01s)"
     },
     "flow_clip_b": {
-      "status": "DONE",
-      "updated_at": "2026-09-17T21:05:35Z",
-      "duration_seconds": 4.01,
-      "roles": [
-        "first_frame",
-        "last_frame"
-      ],
-      "sha256": "86275e259d43f820b14b1e71d604bf4f5153ee961e23ead7a1d996eb4f0291f4"
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:12:07Z",
+      "artifact": "spyglass_transition_source.mp4 (4.01s)"
     },
     "q_station_visual_complete": {
       "status": "DONE",
-      "updated_at": "2026-09-17T21:05:36Z",
+      "updated_at": "2026-09-17T21:12:07Z",
       "body_images": 8
     }
   },
@@ -946,7 +941,57 @@
         "last_frame"
       ],
       "sha256": "86275e259d43f820b14b1e71d604bf4f5153ee961e23ead7a1d996eb4f0291f4"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.383,
+      "at": "2026-09-17T21:11:49Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.542,
+      "at": "2026-09-17T21:12:00Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.345,
+      "at": "2026-09-17T21:12:06Z"
     }
   ],
-  "updated_at": "2026-09-17T21:05:36Z"
+  "updated_at": "2026-09-17T21:12:07Z"
 }

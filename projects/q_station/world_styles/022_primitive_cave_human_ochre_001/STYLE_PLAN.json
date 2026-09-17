@@ -1,0 +1,25 @@
+{
+  "style_id": "primitive_cave_human_ochre_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "fresco",
+  "secondary_treatment": null,
+  "texture_family": "weathered porous limestone and dry sandstone with raw mineral wash grain",
+  "palette_summary": "parchment and bone-white ground, warm raw ochre, burnt umber silhouettes, muted terracotta, and soft charcoal-black accents",
+  "line_treatment": "primitive gestural strokes and flat graphic silhouettes with tapered, hand-painted contour edges",
+  "lighting": "flat natural ambient daylight with diffuse cave-mouth warmth and minimal cast shadows",
+  "frame_language": "an organic rock-wall window flanked by weathered earthen borders and gestural twig-like pigment lines along the top and bottom perimeter",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "primal desert island elements including rudimentary branch shelters, basic stone knives, blazing sun pictographs, torrential rain hatches, and minimalist animal and human silhouettes",
+  "historical_accuracy_note": "evokes ancient rock art and petroglyphic pictograms; survival gear is strictly represented through primitive natural materials",
+  "hero_rendering_in_world": "rendered as an expressive, elongated stick-figure silhouette in deep umber pigment with simplified anatomical limbs",
+  "negative_constraints": "no photorealism, no 3D CGI, no glossy digital gradients, no vector crispness, no modern manufactured clothing or tools, no text or UI elements",
+  "reason": "Operator directive explicitly mandates a new 'cave human' style with decision='new' and reuse_of=null. The visual steer features minimalist petroglyph stick figures and earthy mineral pigments, creating an archetypal visual language for the script's theme of human survival against natural elements.",
+  "operator_style_reference": {
+    "path": "videos/038_could_you_live_forever_on_a_desert_island/launch/config_revisions/a2dd65ae-e545-4b0b-9e8f-78e6afe03b46/style_reference.png",
+    "sha256": "c9778ca6d57abf4cbc6318353d0fa56e334b3e4b75c384345b66c9d23ac1ca3f",
+    "role": "operator_style_reference"
+  },
+  "style_subtitle_reserve": "a calm lower 8–10% field of uniform pale limestone texture and subtle flat wash, completely clear of figures, weapons, tools, symbols, and text",
+  "reserve_subtitle_space": false
+}

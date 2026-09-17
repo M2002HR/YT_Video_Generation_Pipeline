@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-17T21:12:19.068881+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-17T21:12:19.068643+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15333,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2158320,
+      "sha256": "0979a713b22541b67b85a12b2a2bd3c34cf61b0af799593025954e3dc72c894b",
+      "duration_seconds": 34.09,
+      "elapsed_seconds": 6.372,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "038_could_you_live_forever_on_a_desert_island",
+        "duration_seconds": 34.09,
+        "beat_count": 10,
+        "video_beat_count": 2,
+        "image_beat_count": 8,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.88,
+          "transition_end": 8.52
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 117.53,
+          "realtime_factor": 3.448,
+          "peak_child_rss_mb": 1142.1,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 038_could_you_live_forever_on_a_desert_island\n⏱ Duration: 0:34\n🎞 Beats: 10 (2 video · 8 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 1:58 wall (3.448x realtime) · 2 thread(s) · peak 1142.1 MB\nArtifact: 0979a713b225 · Delivery: compressed"
+    }
+  }
+}
