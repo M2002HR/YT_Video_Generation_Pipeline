@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "dev",
+  "remote": "origin",
+  "artifact_commit": "16f6a51c403ad21375df6f57c1a1f63263315cb7",
+  "started_at": "2026-09-17T21:05:44.344109+00:00",
+  "completed_at": "2026-09-17T21:11:04.574780+00:00",
+  "elapsed_seconds": 320.231,
+  "scope": "videos/038_could_you_live_forever_on_a_desert_island"
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "038_could_you_live_forever_on_a_desert_island",
   "started_at": "2026-09-17T21:05:44.344109+00:00",
-  "status": "FAILED",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -122,6 +122,18 @@
       "ended_at": "2026-09-17T21:08:21.290199+00:00",
       "elapsed_seconds": 1.41,
       "returncode": 1
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-17T21:05:44.344109+00:00",
+      "ended_at": "2026-09-17T21:11:04.574780+00:00",
+      "elapsed_seconds": 320.231,
+      "branch": "dev",
+      "remote": "origin",
+      "artifact_commit": "16f6a51c403ad21375df6f57c1a1f63263315cb7"
     }
-  ]
+  ],
+  "completed_at": "2026-09-17T21:11:04.574780+00:00",
+  "total_elapsed_seconds": 470.049
 }
