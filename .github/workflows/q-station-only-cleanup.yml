@@ -30,6 +30,9 @@ jobs:
           set -euo pipefail
           python scripts/_q_station_cleanup_tmp.py
           python scripts/_q_station_cleanup_finalize_tmp.py
+          if [ -f scripts/_q_station_test_rewrite_tmp.py ]; then
+            python scripts/_q_station_test_rewrite_tmp.py
+          fi
           git add -A
           git status --short
           git diff --cached --check
