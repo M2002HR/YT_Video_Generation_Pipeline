@@ -1,11 +1,11 @@
 # Content projects
 
-A content project owns its provider locks, prompts, characters, presentation formats, visual presets,
-world-style catalog and publication defaults. Videos remain under repository-level `videos/` for
-render/publish compatibility and identify membership through their launch/PROJECT metadata.
+This repository has one content project: `q_station`.
 
-Prompt resolution is `projects/<project_id>/prompts/pipeline/` only unless a project explicitly enables
-legacy fallback. The repository no longer carries duplicate root prompt copies.
+- Configuration: `projects/q_station/PROJECT.json`
+- Prompts: `projects/q_station/prompts/`
+- Characters: `projects/q_station/characters/`
+- Presentation profiles: `projects/q_station/presentation_profiles/`
+- Topic-world styles: `projects/q_station/world_styles/`
 
-Current canonical projects are `default`, `q_station`, and `world_behind_the_question`.
-`projects/question_harvest` is a compatibility symlink to `q_station`, not a separate project.
+No project aliases are supported. The control panel and runners resolve `q_station` directly.

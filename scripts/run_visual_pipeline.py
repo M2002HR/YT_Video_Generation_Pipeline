@@ -228,7 +228,7 @@ class OrdakClient:
         raise RuntimeError(f"Ordak text stage {stage} exhausted its recovery attempts.")
 
     def image(self, prompt: str, references: list[Path], *, beat_id: int, provider: str = "chatgpt") -> dict[str, Any]:
-        # Provider is selected per content-project (§29): chatgpt for legacy, gemini for question_harvest, flow for video (§3)
+        # Provider is selected per content-project (§29): chatgpt for legacy, gemini for q_station, flow for video (§3)
         provider = provider.strip().lower() or "chatgpt"
         if provider not in {"chatgpt", "gemini", "flow"}:
             raise RuntimeError(f"Unsupported image provider: {provider!r}")
@@ -623,7 +623,7 @@ Constraints: {constraints}
             self.save()
             started_at, started = utcnow(), time.perf_counter()
             try:
-                # provider per content-project §3: question_harvest → gemini, others → chatgpt
+                # provider per content-project §3: q_station → gemini, others → chatgpt
                 try:
                     effective_provider = self.content_project.get_provider("image")
                 except Exception:

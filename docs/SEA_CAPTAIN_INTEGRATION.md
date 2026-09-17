@@ -1,6 +1,6 @@
 # Curious Sea Captain: operator setup and integration contract
 
-The `sea_captain` pack uses `spyglass_portal` in Q Station. It is additive: the farmer,
+The `sea_captain` pack uses `spyglass_portal` in Q Station. It is additive: the red_host,
 red host, crone, book/orb profiles, provider locks, release/thumbnail pipeline and
 legacy stage IDs are unchanged. There is no captain-specific branch in orchestration.
 
@@ -74,7 +74,7 @@ Start a **new video**, choose **Curious Sea Captain** manually, and enter any su
 question with a clear editorial brief and source notes. Its presentation label is
 `Question -> Captain's Spyglass -> Topic World`. Auto remains topic-dependent; merely
 adding this pack does not make it the default. Existing fallback/legacy defaults stay
-`red_horned_everyman` / `farmer_host`.
+`red_horned_everyman` / `red_horned_everyman`.
 
 ## Topic-first scenario selection
 

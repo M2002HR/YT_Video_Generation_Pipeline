@@ -142,7 +142,7 @@ def test_release_reuses_the_episode_image_contract_not_project_default(tmp_path:
     video = tmp_path / "videos" / "901_release"
     (video / "launch").mkdir(parents=True)
     (video / "launch/LAUNCH_REQUEST.json").write_text(json.dumps({
-        "qh": {
+        "qstation": {
             "gemini_image_model": "nano_banana_2",
             "image_qc_correction_policy": "1",
             "chatgpt_fallback_mode": "auto",

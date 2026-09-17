@@ -43,7 +43,7 @@ HTTP `409`.
 Frozen input files:
 
 - `launch/LAUNCH_REQUEST.json`: durable run/job settings used by resume.
-- `launch/CREATIVE_BRIEF.json`: editorial, Question Harvest, branding, subtitle, SFX, and motion input.
+- `launch/CREATIVE_BRIEF.json`: editorial, Q Station, branding, subtitle, SFX, and motion input.
 - `voiceover/REQUESTED_VOICE_PROFILE.json`: ElevenLabs settings.
 
 The locked provider contract remains ChatGPT for text, Gemini for images, and Flow for video.
@@ -58,7 +58,7 @@ The dashboard polls status every five seconds. A run workspace polls its graph, 
 activity, and incremental log every 2.5 seconds. New completion and failure events produce
 toasts; user actions also produce success/error toasts. The activity drawer combines:
 
-- Question Harvest stage state from `pipeline/QH_RUNTIME_STATE.json`;
+- Q Station stage state from `pipeline/Q_STATION_RUNTIME_STATE.json`;
 - wrapper-owned voice, music, timing, and trim events from
   `pipeline/WRAPPER_RUNTIME_STATE.json`;
 - finalization events from `pipeline/FINALIZATION_RUNTIME_STATE.json`;
@@ -147,7 +147,7 @@ After confirmation, the backend performs a transaction-like start:
 1. Compute the dependency closure from the canonical graph.
 2. Move only existing artifacts owned by affected nodes to
    `pipeline/revisions/<revision-id>/previous/<original-path>`.
-3. Remove affected Question Harvest stage checkpoints.
+3. Remove affected Q Station stage checkpoints.
 4. Store feedback and a `REVISION.json` manifest.
 5. Start the normal wrapper, whose stages reuse valid unaffected artifacts.
 6. If the subprocess cannot start, restore archived artifacts and runtime state.

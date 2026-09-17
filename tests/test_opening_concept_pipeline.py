@@ -14,11 +14,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import opening_runtime as opening
 import episode_history as history
-import run_question_harvest_pipeline as qh
+import run_q_station_pipeline as qstation
 from character_runtime import load_character_registry
 from content_projects import load_content_project, validate_content_project
 from run_graph import graph_for, affected_nodes, regeneration_plan
-from video_control_panel import config_revision_skips_qh_visual_stages
+from video_control_panel import config_revision_skips_q_station_visual_stages
 
 
 class State:
@@ -120,7 +120,7 @@ def make_concept(run, registry, character_id="red_horned_everyman"):
     char = registry.get(character_id)
     variant = char.presentation.entry_variants[0]
     spy = Spy([candidates(variant), reviews()])
-    concept = qh.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qh.DurationTarget(30,40), char)
+    concept = qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char)
     return spy, concept, char
 
 
@@ -149,23 +149,23 @@ def test_candidates_are_independently_reviewed_and_frozen(run, registry, cid):
     assert concept["selected"]["entry_variant"] in char.presentation.entry_variants
     assert (run / "creative/OPENING_CANDIDATES.json").is_file()
     history.record_traits("q_station", "100", {"opening_activity": "another episode"})
-    assert qh.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qh.DurationTarget(30,40), char) == concept
+    assert qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char) == concept
     assert len(spy.prompts) == 2
 
 
 def test_changed_editorial_inputs_require_cascade_before_spending(run, registry):
     spy, _, char = make_concept(run, registry)
-    with pytest.raises(qh.StageFailure, match="Revise"):
-        qh.stage_opening_concept(spy, run, load_content_project("q_station"), "a different topic", qh.DurationTarget(30,40), char)
+    with pytest.raises(qstation.StageFailure, match="Revise"):
+        qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "a different topic", qstation.DurationTarget(30,40), char)
     assert len(spy.prompts) == 2
 
 
 def test_cosmetic_or_cta_changes_do_not_invalidate_selected_opening(run, registry):
     spy, concept, char = make_concept(run, registry)
     path = run / "launch/CREATIVE_BRIEF.json"
-    raw = json.loads(path.read_text());raw["_subtitle"] = {"font_size": 100};raw["_qh"] = {"cta_hint": "Ask for comments"}
+    raw = json.loads(path.read_text());raw["_subtitle"] = {"font_size": 100};raw["_q_station"] = {"cta_hint": "Ask for comments"}
     path.write_text(json.dumps(raw))
-    assert qh.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qh.DurationTarget(30,40), char) == concept
+    assert qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char) == concept
 
 
 def test_candidate_reviewer_cannot_pass_malformed_scores():
@@ -189,7 +189,7 @@ def test_no_usable_candidate_causes_bounded_redesign(run, registry):
     for row in rejected["reviews"]:
         row["blocking_issues"] = ["The visible setup does not make the question understandable."]
     spy = Spy([candidates(), rejected, candidates(), reviews()])
-    value = qh.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qh.DurationTarget(30,40), registry.get("red_horned_everyman"))
+    value = qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), registry.get("red_horned_everyman"))
     assert value["selected"]["id"] == "c1"
     assert len(spy.prompts) == 4
     assert "Previous design failure" in spy.prompts[2][1]
@@ -200,8 +200,8 @@ def test_exhausted_text_corrections_stop_before_media(run, registry):
     for row in rejected["reviews"]:
         row["scores"]["honesty"] = 0
     spy = Spy([candidates(), rejected] * opening.MAX_ATTEMPTS)
-    with pytest.raises(qh.StageFailure, match="bounded text-only"):
-        qh.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qh.DurationTarget(30,40), registry.get("red_horned_everyman"))
+    with pytest.raises(qstation.StageFailure, match="bounded text-only"):
+        qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), registry.get("red_horned_everyman"))
     assert len(spy.prompts) == 2 * opening.MAX_ATTEMPTS
     assert not (run / "creative/OPENING_CONCEPT.json").exists()
 
@@ -252,10 +252,10 @@ def test_registry_read_modify_write_is_atomic_across_threads(run):
 
 def test_brief_filters_unrelated_payload_but_never_drops_source_constraints():
     raw = {"must_avoid": "No invented probabilities", "source_notes": "a source", "_branding": {"font": "ignored"}}
-    result = opening.narrative_brief(raw, "topic", qh.DurationTarget(40,60))
+    result = opening.narrative_brief(raw, "topic", qstation.DurationTarget(40,60))
     assert result["must_avoid"] == raw["must_avoid"] and "_branding" not in result
     with pytest.raises(opening.OpeningContractError):
-        opening.narrative_brief({"source_notes": "x"*2501}, "t", qh.DurationTarget(40,60))
+        opening.narrative_brief({"source_notes": "x"*2501}, "t", qstation.DurationTarget(40,60))
 
 
 @pytest.mark.parametrize("cid", ["red_horned_everyman", "moss_cloaked_crone"])
@@ -266,12 +266,12 @@ def test_narration_receives_real_story_context_and_stable_segment_key(run, regis
     language_review = {"checks": {key: True for key in narration_language.REVIEW_CHECKS}, "issues": []}
     spy = Spy([plan, plan, language_review])
     content = load_content_project("q_station")
-    draft = qh.stage_script(spy, run, content, "brief", qh.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept)
-    core = qh.stage_retention(spy, run, content, "brief", draft, qh.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept)
+    draft = qstation.stage_script(spy, run, content, "brief", qstation.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept)
+    core = qstation.stage_retention(spy, run, content, "brief", draft, qstation.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept)
     assert char.id in spy.prompts[0][1] and concept["concept_id"] in spy.prompts[1][1]
     assert char.presentation.segment_key in core
     assert "Choose one **ordinary home-world activity**" not in spy.prompts[0][1]
-    assert qh.stage_script(spy, run, content, "brief", qh.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept) == draft
+    assert qstation.stage_script(spy, run, content, "brief", qstation.DurationTarget(30,40), char.presentation, character=char, opening_concept=concept) == draft
 
 
 def test_direction_review_is_persisted_and_cta_only_revision_reuses_it(run, registry):
@@ -279,20 +279,20 @@ def test_direction_review_is_persisted_and_cta_only_revision_reuses_it(run, regi
     spy = Spy([direction(concept), story_review()])
     plan = narration()
     content = load_content_project("q_station")
-    first = qh.stage_episode_director(spy, run, content, "earworms", "brief", plan, char, opening_concept=concept)
+    first = qstation.stage_episode_director(spy, run, content, "earworms", "brief", plan, char, opening_concept=concept)
     plan["cta"] = "A new CTA is unrelated to the opening."
-    assert qh.stage_episode_director(spy, run, content, "earworms", "brief", plan, char, opening_concept=concept) == first
+    assert qstation.stage_episode_director(spy, run, content, "earworms", "brief", plan, char, opening_concept=concept) == first
     assert json.loads((run/"creative/OPENING_REVIEW.json").read_text())["passed"]
     plan["body"][0] = "Changed factual body"
-    with pytest.raises(qh.StageFailure, match="stale"):
-        qh.stage_episode_director(spy, run, content, "earworms", "brief", plan, char, opening_concept=concept)
+    with pytest.raises(qstation.StageFailure, match="stale"):
+        qstation.stage_episode_director(spy, run, content, "earworms", "brief", plan, char, opening_concept=concept)
 
 
 def test_bad_staging_receives_specific_bounded_correction(run, registry):
     _, concept, char = make_concept(run, registry)
     first = direction(concept);first["opening_actions"] *= 2
     spy = Spy([first, direction(concept), story_review()])
-    qh.stage_episode_director(spy, run, load_content_project("q_station"), "earworms", "brief", narration(), char, opening_concept=concept)
+    qstation.stage_episode_director(spy, run, load_content_project("q_station"), "earworms", "brief", narration(), char, opening_concept=concept)
     assert "one to three" in spy.prompts[1][1]
 
 
@@ -308,7 +308,7 @@ def test_measured_window_reaches_both_flow_prompt_writers(run, registry):
     (run/"timing/OPENING_SOURCE_PLAN.json").write_text(json.dumps({"clips":{"A":{"target_seconds":3.3},"B":{"target_seconds":2.9}}}))
     spy = Spy()
     for clip, seconds in [("A",6),("B",4)]:
-        qh.stage_flow_prompt(spy, run, load_content_project("q_station"), clip, "spoken text", direction(concept), {}, "host-free subject world", "earworms", seconds, character=char, require_source_contract=True)
+        qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), clip, "spoken text", direction(concept), {}, "host-free subject world", "earworms", seconds, character=char, require_source_contract=True)
     assert "3.3" in spy.prompts[0][1] and "2.9" in spy.prompts[1][1]
     assert "SHARED" not in spy.prompts[1][1]
     assert char.appearance_full not in spy.prompts[1][1]
@@ -316,14 +316,14 @@ def test_measured_window_reaches_both_flow_prompt_writers(run, registry):
     # Same source duration, changed real trim window: cannot reuse the old pacing prompt.
     timing = run/"timing/OPENING_SOURCE_PLAN.json"
     timing.write_text(json.dumps({"clips":{"A":{"target_seconds":4.1}}}))
-    qh.stage_flow_prompt(spy, run, load_content_project("q_station"), "A", "spoken text", direction(concept), {}, "host-free subject world", "earworms", 6, character=char, require_source_contract=True)
+    qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), "A", "spoken text", direction(concept), {}, "host-free subject world", "earworms", 6, character=char, require_source_contract=True)
     assert len(spy.prompts) == 3 and "4.1" in spy.prompts[-1][1]
 
 
 def test_keyframe_receives_subject_discovery_but_not_host_identity(run, registry):
     _, concept, char = make_concept(run, registry)
     spy = Spy()
-    qh.stage_world_keyframe_prompt(spy, run, load_content_project("q_station"), narration(), {})
+    qstation.stage_world_keyframe_prompt(spy, run, load_content_project("q_station"), narration(), {})
     assert concept["selected"]["entry_bridge"]["world_entry"] in spy.prompts[0][1]
     assert char.appearance_full not in spy.prompts[0][1]
     assert "no recurring host" in spy.prompts[0][1].lower()
@@ -335,13 +335,13 @@ def test_new_stage_reaches_panel_dag_and_cta_remains_isolated(run):
     assert {"script_draft","retention_edit","episode_director","flow_prompt_b","elevenlabs_voiceover","render_baseline"} <= downstream
     cta = affected_nodes(graph, ["call_to_action"])
     assert not {"opening_concept","episode_director","world_style_anchor"} & cta
-    assert not config_revision_skips_qh_visual_stages({"kind":"config","roots":["opening_concept"]})
+    assert not config_revision_skips_q_station_visual_stages({"kind":"config","roots":["opening_concept"]})
     assert ("book_cover_design", "flow_prompt_b") in {(e["source"],e["target"]) for e in graph["edges"]}
 
 
 def test_retry_labels_map_to_real_parent_stage():
-    assert qh.Runner._fallback_stage("opening_concept_selection_2_json1") == "opening_concept"
-    assert qh.Runner._fallback_stage("episode_director_story_review_1_json2") == "episode_director"
+    assert qstation.Runner._fallback_stage("opening_concept_selection_2_json1") == "opening_concept"
+    assert qstation.Runner._fallback_stage("episode_director_story_review_1_json2") == "episode_director"
 
 
 def test_budget_and_unfilled_tokens_fail_before_provider():
@@ -373,7 +373,7 @@ def test_final_director_seam_is_used_for_book_cover_direction(run, registry):
     plan = direction(concept)
     plan["entry_bridge"]["b_start"] = "The reviewed top-down cover fills the frame without hands."
     (run / "creative/EPISODE_PLAN.json").write_text(json.dumps(plan))
-    assert qh.load_entry_story_context(run)["entry_bridge"]["b_start"] == plan["entry_bridge"]["b_start"]
+    assert qstation.load_entry_story_context(run)["entry_bridge"]["b_start"] == plan["entry_bridge"]["b_start"]
 
 
 def test_prompt_reuse_tracks_changed_final_entry_direction(run, registry):
@@ -382,7 +382,7 @@ def test_prompt_reuse_tracks_changed_final_entry_direction(run, registry):
     direction_file = char.presentation.artifacts.path(run, "entry_direction")
     direction_file.write_text("First closed cover design")
     def generate():
-        return qh.stage_flow_prompt(spy, run, load_content_project("q_station"), "B", "spoken entry", direction(concept), {}, "subject world", "earworms", 4, character=char)
+        return qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), "B", "spoken entry", direction(concept), {}, "subject world", "earworms", 4, character=char)
     generate()
     generate()
     assert len(spy.prompts) == 1
@@ -393,5 +393,5 @@ def test_prompt_reuse_tracks_changed_final_entry_direction(run, registry):
 
 
 def test_new_direction_requires_review_artifact_in_graph(run):
-    from run_graph import qh_node_specs
-    assert "creative/OPENING_REVIEW.json" in qh_node_specs(run)["episode_director"].artifacts
+    from run_graph import q_station_node_specs
+    assert "creative/OPENING_REVIEW.json" in q_station_node_specs(run)["episode_director"].artifacts

@@ -105,7 +105,7 @@ def resolve_max_rate_adjust(cli_value: float | None, video_dir: Path) -> float:
     brief_path = video_dir / "launch" / "CREATIVE_BRIEF.json"
     try:
         brief = json.loads(brief_path.read_text(encoding="utf-8"))
-        candidate = (brief.get("_qh") or {}).get("opening_speed_tolerance")
+        candidate = (brief.get("_q_station") or {}).get("opening_speed_tolerance")
         if candidate is not None and str(candidate) != "":
             value = float(candidate)
             if not 0 <= value <= 0.5:
@@ -147,7 +147,7 @@ def resolve_max_rate_adjust(cli_value: float | None, video_dir: Path) -> float:
                 return float(defaults["opening_speed_tolerance"])
     except (OSError, ValueError):
         pass
-    env_candidate = os.getenv("YT_QUESTION_HARVEST_OPENING_SPEED_TOLERANCE")
+    env_candidate = os.getenv("YT_Q_STATION_OPENING_SPEED_TOLERANCE")
     if env_candidate is not None and str(env_candidate).strip() != "":
         try:
             return float(env_candidate)

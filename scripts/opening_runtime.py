@@ -90,8 +90,8 @@ def narrative_brief(raw: dict[str, Any], topic: str, duration: Any) -> dict[str,
             raise OpeningContractError(f"Creative brief field {key} exceeds 2500 characters. Supply concise source notes and constraints.")
         if value:
             result[key] = value
-    qh = raw.get("_qh") if isinstance(raw.get("_qh"), dict) else {}
-    result["hero_presence_mode"] = qh.get("hero_presence_mode", "auto")
+    qstation = raw.get("_q_station") if isinstance(raw.get("_q_station"), dict) else {}
+    result["hero_presence_mode"] = qstation.get("hero_presence_mode", "auto")
     if len(compact(result)) > 6000:
         raise OpeningContractError("Editorial brief exceeds 6000 characters; shorten the source summary before generating an opening.")
     return result

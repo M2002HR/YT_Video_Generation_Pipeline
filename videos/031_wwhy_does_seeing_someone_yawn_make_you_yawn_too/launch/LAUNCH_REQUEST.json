@@ -12,7 +12,7 @@
   "project": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too",
   "voice_profile": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/voiceover/REQUESTED_VOICE_PROFILE.json",
   "creative_brief": "videos/031_wwhy_does_seeing_someone_yawn_make_you_yawn_too/launch/CREATIVE_BRIEF.json",
-  "qh": {
+  "qstation": {
     "character": {
       "mode": "manual",
       "character_id": "red_horned_everyman"
@@ -144,7 +144,7 @@
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
+    "scripts/run_full_video_pipeline_q_station_wrapper.py",
     "--topic",
     "WWhy Does Seeing Someone Yawn Make You Yawn Too?",
     "--video-id",

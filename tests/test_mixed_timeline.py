@@ -86,7 +86,7 @@ def _build_workspace(root: Path, *, spark: float, transition: float) -> Path:
              str(video_dir / "assets" / "opening" / name)],
             check=True, capture_output=True, timeout=60,
         )
-    (video_dir / "PROJECT.md").write_text("Project: `question_harvest`\n", encoding="utf-8")
+    (video_dir / "PROJECT.md").write_text("Project: `q_station`\n", encoding="utf-8")
     return video_dir
 
 

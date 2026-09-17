@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Resume-safe, no-SFX completion path from timing data to Telegram publish.
 
-Every stage reports to Telegram at the same level of detail as the Question Harvest
+Every stage reports to Telegram at the same level of detail as the Q Station
 orchestrator (T9.3): start, finish, duration, artifact, and the failure text when a stage
 stops. The final message carries the polished file itself plus a summary built from the
 artifacts — duration, beat counts, the models each provider confirmed, and what the render

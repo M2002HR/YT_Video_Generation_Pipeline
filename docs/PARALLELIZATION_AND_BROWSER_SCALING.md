@@ -17,7 +17,7 @@ browser worker until memory/CPU measurements under real load justify it.
 
 ## Evidence in the current codebase
 
-- `scripts/run_graph.py` owns the canonical Question Harvest DAG, but pipeline
+- `scripts/run_graph.py` owns the canonical Q Station DAG, but pipeline
   executors still call stages manually and sequentially.
 - `services/ordak/app/job_manager.py` has one `asyncio.Queue`, one consumer, and a
   `browser_lock` around a complete browser job.  Submitting jobs concurrently to a
@@ -28,7 +28,7 @@ browser worker until memory/CPU measurements under real load justify it.
 - The body-image chain intentionally passes Beat N-1 as `previous_beat` to Beat N.
   A rejected output must not become a continuity reference; this chain therefore
   remains serial inside an episode under the current visual-consistency contract.
-- `QHState` writes an atomic JSON replacement, but it is not a multi-process state
+- `QStationState` writes an atomic JSON replacement, but it is not a multi-process state
   store.  A concurrent scheduler needs a single writer or a transactional store.
 
 ## What can run in parallel

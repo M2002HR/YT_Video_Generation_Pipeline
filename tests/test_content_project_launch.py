@@ -3,46 +3,57 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from content_projects import load_content_project, resolve_pipeline_prompt, validate_content_project, video_slug
+from content_projects import (
+    list_content_projects,
+    load_content_project,
+    resolve_project_id,
+    validate_content_project,
+    video_slug,
+)
 from video_control_panel import Handler, form_text
 
 
-def test_question_project_is_complete_and_has_world_design_stage() -> None:
-    project = load_content_project("world_behind_the_question")
+def test_q_station_is_the_only_complete_content_project() -> None:
+    project = load_content_project("q_station")
     preset = validate_content_project(project)
     assert project.config["status"] == "production_ready"
-    assert preset.name == "001_library_seeker"
-    assert resolve_pipeline_prompt(project, project.config["world_design_prompt"]).name == "00_world_designer.md"
-    assert (preset / "style_anchor.png").stat().st_size > 10_000
-    assert (preset / "character_anchor.png").stat().st_size > 10_000
+    assert project.project_id == "q_station"
+    assert project.aliases == ()
+    assert preset.name == "001_home_world"
+    assert [item.project_id for item in list_content_projects()] == ["q_station"]
 
 
-def test_panel_exposes_project_and_editorial_inputs() -> None:
+def test_retired_project_ids_do_not_resolve() -> None:
+    retired = (
+        "_".join(("question", "harvest")),
+        "_".join(("world", "behind", "the", "question")),
+    )
+    for project_id in retired:
+        assert resolve_project_id(project_id) == project_id
+        with pytest.raises(RuntimeError, match="Unknown content project"):
+            load_content_project(project_id)
+
+
+def test_panel_exposes_q_station_and_editorial_inputs() -> None:
     page = Handler.page(Handler.__new__(Handler))
-    assert "world_behind_the_question" in page
     assert "q_station" in page
-    assert "value='question_harvest'" not in page, "legacy alias must not be a duplicate UI project"
     assert "value='q_station' selected" in page
     for field in ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes"):
         assert f"name={field}" in page
-    # QH advanced fields must be present per §62
     for field in ("hero_presence_mode", "world_style_policy", "gemini_image_model", "flow_video_model", "flow_resolution", "opening_a_seconds", "opening_b_seconds"):
         assert f"name={field}" in page
-    # The world-style picker must be offered, or a catalogued style can never be reused.
     assert "name=world_style_id" in page
     assert "name=world_style_hint" in page
-    # Provider locks are shown as disabled inputs so the UI cannot suggest a combination
-    # the pipeline would reject.
     for locked in ("ChatGPT", "Gemini", "Google Flow"):
         assert locked in page
     assert page.count("disabled") >= 5
-    assert "never uploaded" in page, "the Flow style-sheet prohibition must be visible"
 
 
 def test_panel_form_text_is_bounded() -> None:

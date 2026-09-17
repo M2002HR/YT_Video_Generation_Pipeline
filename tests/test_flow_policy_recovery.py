@@ -9,20 +9,20 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import run_question_harvest_pipeline as qh  # noqa: E402
+import run_q_station_pipeline as qstation  # noqa: E402
 
 
 class NoProvider:
     """The recovery coordinator is tested without making browser/provider calls."""
 
 
-def make_runner(tmp_path: Path) -> qh.Runner:
+def make_runner(tmp_path: Path) -> qstation.Runner:
     project = tmp_path / "episode"
-    return qh.Runner(NoProvider(), None, qh.QHState(project, "test", "topic"))
+    return qstation.Runner(NoProvider(), None, qstation.QStationState(project, "test", "topic"))
 
 
-def policy_failure() -> qh.StageFailure:
-    return qh.StageFailure(
+def policy_failure() -> qstation.StageFailure:
+    return qstation.StageFailure(
         "flow_clip_b",
         "FAILED_VALIDATION",
         "flow/video_generate failed: Flow rejected the generation for policy reasons. "
@@ -31,8 +31,8 @@ def policy_failure() -> qh.StageFailure:
     )
 
 
-def call_recovery(runner: qh.Runner, project: Path) -> Path:
-    return qh.stage_flow_clip_with_policy_recovery(
+def call_recovery(runner: qstation.Runner, project: Path) -> Path:
+    return qstation.stage_flow_clip_with_policy_recovery(
         runner, project, object(), "B", "original prompt",
         book_spread=project / "references" / "book_spread_frame.png",
         world_keyframe=project / "references" / "world_keyframe.png",
@@ -70,10 +70,10 @@ def test_policy_rejection_rewrites_prompt_and_regenerates_both_flow_frames(
         covers.append((topic, force))
         return anchor.with_name(f"safe_book_{len(covers)}.png")
 
-    monkeypatch.setattr(qh, "stage_flow_clip", fake_clip)
-    monkeypatch.setattr(qh, "stage_flow_policy_repair_prompt", fake_repair)
-    monkeypatch.setattr(qh, "stage_world_keyframe", fake_keyframe)
-    monkeypatch.setattr(qh, "stage_topic_book_cover", fake_cover)
+    monkeypatch.setattr(qstation, "stage_flow_clip", fake_clip)
+    monkeypatch.setattr(qstation, "stage_flow_policy_repair_prompt", fake_repair)
+    monkeypatch.setattr(qstation, "stage_world_keyframe", fake_keyframe)
+    monkeypatch.setattr(qstation, "stage_topic_book_cover", fake_cover)
 
     result = call_recovery(runner, project)
 
@@ -96,10 +96,10 @@ def test_non_policy_flow_failure_is_not_retried_or_rewritten(
     def fake_clip(*args, **kwargs):  # noqa: ANN002, ANN003
         nonlocal calls
         calls += 1
-        raise qh.StageFailure("flow_clip_b", "FAILED", "Flow timed out", error_code="flow_generation_timeout")
+        raise qstation.StageFailure("flow_clip_b", "FAILED", "Flow timed out", error_code="flow_generation_timeout")
 
-    monkeypatch.setattr(qh, "stage_flow_clip", fake_clip)
-    with pytest.raises(qh.StageFailure, match="timed out"):
+    monkeypatch.setattr(qstation, "stage_flow_clip", fake_clip)
+    with pytest.raises(qstation.StageFailure, match="timed out"):
         call_recovery(runner, project)
     assert calls == 1
 
@@ -116,11 +116,11 @@ def test_third_policy_rejection_stops_without_a_fourth_credit_spend(
         calls += 1
         raise policy_failure()
 
-    monkeypatch.setattr(qh, "stage_flow_clip", fake_clip)
-    monkeypatch.setattr(qh, "stage_flow_policy_repair_prompt", lambda *args: "safe")
-    monkeypatch.setattr(qh, "stage_world_keyframe", lambda *args, **kwargs: project / "safe.png")
-    monkeypatch.setattr(qh, "stage_topic_book_cover", lambda *args, **kwargs: project / "safe-book.png")
+    monkeypatch.setattr(qstation, "stage_flow_clip", fake_clip)
+    monkeypatch.setattr(qstation, "stage_flow_policy_repair_prompt", lambda *args: "safe")
+    monkeypatch.setattr(qstation, "stage_world_keyframe", lambda *args, **kwargs: project / "safe.png")
+    monkeypatch.setattr(qstation, "stage_topic_book_cover", lambda *args, **kwargs: project / "safe-book.png")
 
-    with pytest.raises(qh.StageFailure, match="after 3 policy-safe attempt"):
+    with pytest.raises(qstation.StageFailure, match="after 3 policy-safe attempt"):
         call_recovery(runner, project)
-    assert calls == qh.FLOW_POLICY_RETRY_LIMIT
+    assert calls == qstation.FLOW_POLICY_RETRY_LIMIT

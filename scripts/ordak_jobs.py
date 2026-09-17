@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Typed Ordak job client for the Question Harvest pipeline.
+"""Typed Ordak job client for the Q Station pipeline.
 
 Everything the pipeline sends to a browser provider goes through here, so the explicit
 generation contract and the reference-role contract are always transmitted — never

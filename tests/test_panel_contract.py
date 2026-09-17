@@ -12,7 +12,7 @@ from panel_page import launch_form
 
 
 def test_schema_exposes_every_launch_configuration_group() -> None:
-    schema = launch_schema([{"value": "question_harvest", "label": "Question Harvest"}], ["ink_001"])
+    schema = launch_schema([{"value": "q_station", "label": "Q Station"}], ["ink_001"])
     assert [group["id"] for group in schema["groups"]] == [
         "episode", "format", "branding", "character", "visual", "opening", "voice", "music",
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
@@ -32,7 +32,7 @@ def test_subtitle_controls_are_colocated_and_gated() -> None:
 
 
 def test_schema_defaults_match_the_server_launch_contract() -> None:
-    values = defaults(launch_schema([{"value": "question_harvest", "label": "Question Harvest"}], []))
+    values = defaults(launch_schema([{"value": "q_station", "label": "Q Station"}], []))
     assert values["min_duration_seconds"] == 40
     assert values["max_duration_seconds"] == 60
     assert values["music_providers"] == ["freesound", "mixkit", "pixabay"]
@@ -84,7 +84,7 @@ def test_visual_group_exposes_stage_aware_image_qc_policy() -> None:
 def test_react_schema_keeps_every_legacy_launch_control() -> None:
     """Moving the form into React must not silently drop an existing pipeline input."""
     legacy = set(re.findall(r"name=[\"']?([a-zA-Z0-9_]+)", launch_form("", "")))
-    schema = launch_schema([{"value": "question_harvest", "label": "Question Harvest"}], [])
+    schema = launch_schema([{"value": "q_station", "label": "Q Station"}], [])
     current = {
         field["name"]
         for group in schema["groups"]

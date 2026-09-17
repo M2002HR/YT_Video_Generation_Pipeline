@@ -9,7 +9,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECTS_ROOT = ROOT / "projects"
-DEFAULT_CONTENT_PROJECT = "default"
+DEFAULT_CONTENT_PROJECT = "q_station"
 PROJECT_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
 PIPELINE_PROMPTS = (
     "01_script_writer.md",
@@ -18,9 +18,9 @@ PIPELINE_PROMPTS = (
     "04_single_beat_image_prompt_writer.md",
 )
 
-# Q Station / legacy Question Harvest (bookworld_mixed_media) uses dedicated pipeline prompts,
+# Q Station / legacy Q Station (bookworld_mixed_media) uses dedicated pipeline prompts,
 # including the final CTA writer so editorial intent never leaks into an unrelated stage.
-QH_PIPELINE_PROMPTS = (
+Q_STATION_PIPELINE_PROMPTS = (
     "PLAIN_ENGLISH_POLICY.md",
     "02_plain_english_reviewer.md",
     "00_opening_concept_director.md",
@@ -95,14 +95,14 @@ class ContentProject:
 
     @property
     def pipeline_profile(self) -> str:
-        return str(self.config.get("pipeline_profile") or "default").strip().lower()
+        return str(self.config.get("pipeline_profile") or "bookworld_mixed_media").strip().lower()
 
     @property
-    def is_question_harvest(self) -> bool:
+    def is_q_station(self) -> bool:
         # Capability, not identity: the bookworld mixed-media profile is what makes a
-        # project drive the Q Station / question-harvest runtime. Keyed on the profile
+        # project drive the Q Station / q-station runtime. Keyed on the profile
         # (not a hardcoded id) so the canonical q_station project and its legacy
-        # question_harvest alias both qualify without scattered id checks.
+        # q_station alias both qualify without scattered id checks.
         return self.pipeline_profile == "bookworld_mixed_media"
 
     @property
@@ -119,14 +119,13 @@ class ContentProject:
 
     def get_provider(self, kind: str) -> str:
         cfg = self.provider_config(kind)
-        # legacy projects may not have providers block → infer
         if not cfg:
             if kind == "text":
                 return "chatgpt"
             if kind == "image":
-                return "chatgpt" if self.project_id == "default" else "gemini" if self.project_id == "world_behind_the_question" else "gemini"
+                return "gemini"
             if kind == "video":
-                return "flow" if self.is_question_harvest else "none"
+                return "flow"
             return "unknown"
         return str(cfg.get("provider") or "").strip().lower()
 
@@ -248,8 +247,8 @@ def resolve_visual_preset(project: ContentProject, preset: str) -> Path:
 
 
 def required_pipeline_prompts(project: ContentProject) -> tuple[str, ...]:
-    if project.is_question_harvest:
-        return QH_PIPELINE_PROMPTS
+    if project.is_q_station:
+        return Q_STATION_PIPELINE_PROMPTS
     return PIPELINE_PROMPTS
 
 
@@ -263,7 +262,7 @@ def validate_content_project(project: ContentProject, preset: str | None = None)
         resolve_pipeline_prompt(project, world_design_prompt)
     preset_root = resolve_visual_preset(project, selected_preset)
     # profile-aware preset validation (§46-47)
-    if project.is_question_harvest:
+    if project.is_q_station:
         # The preset is rendering style only. Character identity is validated from the
         # registry below; the old preset sheet may remain solely for historical runs.
         missing = [name for name in ("README.md",) if not (preset_root / name).is_file()]
@@ -297,8 +296,8 @@ def validate_content_project(project: ContentProject, preset: str | None = None)
 
 
 def validate_provider_locks(project: ContentProject, image_provider: str | None = None, video_provider: str | None = None) -> None:
-    """Enforce absolute provider contract §60: QH image must be gemini, video must be flow (§3-4)."""
-    if not project.is_question_harvest:
+    """Enforce absolute provider contract §60: QStation image must be gemini, video must be flow (§3-4)."""
+    if not project.is_q_station:
         return
     locked_image = "gemini"
     locked_video = "flow"

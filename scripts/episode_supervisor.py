@@ -35,7 +35,7 @@ ROOT = Path(__file__).resolve().parents[1]
 JOBS = ROOT / "control_panel" / "jobs"
 
 #: Markers the wrapper prints when the whole episode is finished.
-SUCCESS_MARKERS = ("FULL QH PIPELINE: PASS", "FULL VIDEO PIPELINE: PASS")
+SUCCESS_MARKERS = ("FULL QStation PIPELINE: PASS", "FULL VIDEO PIPELINE: PASS")
 
 #: A pipeline state that means "waiting on Google", not "this episode is wrong".
 FLOW_PARKED = "WAITING_FOR_FLOW"

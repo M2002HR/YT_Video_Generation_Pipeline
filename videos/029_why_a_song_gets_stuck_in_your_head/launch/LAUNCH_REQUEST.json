@@ -12,7 +12,7 @@
   "project": "videos/029_why_a_song_gets_stuck_in_your_head",
   "voice_profile": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/VOICE_PROFILE.json",
   "creative_brief": "videos/029_why_a_song_gets_stuck_in_your_head/launch/config_revisions/a451f28a-16bd-4bdb-8f70-ce51c606b239/CREATIVE_BRIEF.json",
-  "qh": {
+  "qstation": {
     "character": {
       "mode": "manual",
       "character_id": "red_horned_everyman"
@@ -143,7 +143,7 @@
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
+    "scripts/run_full_video_pipeline_q_station_wrapper.py",
     "--topic",
     "Why a Song Gets Stuck in Your Head",
     "--video-id",

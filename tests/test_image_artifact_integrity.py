@@ -11,7 +11,7 @@ import pytest
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-import run_question_harvest_pipeline as qh
+import run_q_station_pipeline as qstation
 from image_artifacts import digest, request_fingerprint, receipt_status, CONTRACT_VERSION
 from ordak_jobs import Reference, JobResult
 from panel_previews import preview
@@ -32,10 +32,10 @@ def result(model='nano_banana_2', verified=True):
 
 def test_rejected_model_never_overwrites_previous_output(tmp_path):
     target=picture(tmp_path/'beat.png'); before=target.read_bytes()
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     runner._run=lambda *a,**kw:result(verified=False)
     runner.jobs=SimpleNamespace(download=lambda *a:pytest.fail('invalid model downloaded'))
-    with pytest.raises(qh.StageFailure):
+    with pytest.raises(qstation.StageFailure):
         runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
     assert target.read_bytes()==before
     assert list(tmp_path.glob('.*.png'))==[]
@@ -43,10 +43,10 @@ def test_rejected_model_never_overwrites_previous_output(tmp_path):
 
 def test_failed_content_does_not_publish_candidate(tmp_path):
     source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
-    runner=object.__new__(qh.Runner);runner._run=lambda *a,**k:result()
+    runner=object.__new__(qstation.Runner);runner._run=lambda *a,**k:result()
     runner.jobs=SimpleNamespace(download=lambda _,dst:dst.write_bytes(source.read_bytes()))
     runner.json=lambda *a,**k:{'passed':False,'description':'character sheet','violations':['not a scene']}
-    with pytest.raises(qh.StageFailure,match='content QC'):
+    with pytest.raises(qstation.StageFailure,match='content QC'):
         runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=target)
     assert not target.exists()
     assert list(tmp_path.glob('.*.png'))==[]
@@ -59,7 +59,7 @@ def qc_result(check):
 
 
 def test_zero_qc_policy_reports_noncritical_findings_without_regeneration(tmp_path):
-    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='0';calls=[]
+    runner=object.__new__(qstation.Runner);runner.image_qc_correction_policy='0';calls=[]
     def attempt(_stage,_prompt,_references,*,model,destination):
         calls.append(destination);picture(destination,1)
         return qc_result({'passed':True,'review_status':'passed_with_warnings',
@@ -74,7 +74,7 @@ def test_zero_qc_policy_reports_noncritical_findings_without_regeneration(tmp_pa
 
 def test_disabled_beat_qc_never_uploads_generated_image_to_chatgpt(tmp_path):
     source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     runner.beat_image_qc_disabled=True
     runner.image_qc_correction_policy='strict'
     runner._run=lambda *a,**k:result()
@@ -89,7 +89,7 @@ def test_disabled_beat_qc_never_uploads_generated_image_to_chatgpt(tmp_path):
 
 def test_pre_generation_feedback_mode_never_uploads_gemini_replacement_to_chatgpt(tmp_path):
     source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     runner.beat_image_qc_disabled=False
     runner.image_qc_correction_policy='strict'
     runner._run=lambda *a,**k:result()
@@ -105,7 +105,7 @@ def test_pre_generation_feedback_mode_never_uploads_gemini_replacement_to_chatgp
 
 
 def test_one_qc_correction_uses_previous_candidate_as_a_quality_floor(tmp_path):
-    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='1';calls=[]
+    runner=object.__new__(qstation.Runner);runner.image_qc_correction_policy='1';calls=[]
     checks=[
         {'passed':True,'review_status':'passed_with_warnings','observations':['cropping is tight'],'blocking_violations':[]},
         {'passed':True,'review_status':'passed','observations':[],'blocking_violations':[]},
@@ -124,7 +124,7 @@ def test_one_qc_correction_uses_previous_candidate_as_a_quality_floor(tmp_path):
 
 
 def test_two_qc_corrections_keep_the_best_candidate_when_retries_regress(tmp_path):
-    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='2';calls=[]
+    runner=object.__new__(qstation.Runner);runner.image_qc_correction_policy='2';calls=[]
     checks=[
         {'passed':True,'observations':['minor issue'],'blocking_violations':[]},
         {'passed':True,'observations':['minor issue','new defect'],'blocking_violations':[]},
@@ -145,19 +145,19 @@ def test_two_qc_corrections_keep_the_best_candidate_when_retries_regress(tmp_pat
 
 def test_strict_qc_fails_after_three_unresolved_attempts_without_overwriting(tmp_path):
     target=picture(tmp_path/'out.png',9);before=target.read_bytes()
-    runner=object.__new__(qh.Runner);runner.image_qc_correction_policy='strict';calls=[]
+    runner=object.__new__(qstation.Runner);runner.image_qc_correction_policy='strict';calls=[]
     def attempt(_stage,_prompt,_references,*,model,destination):
         calls.append(destination);picture(destination,len(calls))
         return qc_result({'passed':True,'observations':['unresolved polish issue'],'blocking_violations':[]})
     runner._image_attempt=attempt
-    with pytest.raises(qh.StageFailure,match='after 3 attempts'):
+    with pytest.raises(qstation.StageFailure,match='after 3 attempts'):
         runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=target)
     assert len(calls)==3 and target.read_bytes()==before
 
 
 def test_minor_visual_qc_findings_are_accepted_and_preserved(tmp_path):
     candidate=picture(tmp_path/'candidate.png')
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     runner.json=lambda *a,**k:{
         'passed':False,
         'description':'book sheet with labels and an imperfect empty page',
@@ -173,19 +173,19 @@ def test_minor_visual_qc_findings_are_accepted_and_preserved(tmp_path):
 
 def test_fundamental_visual_qc_failure_still_rejects(tmp_path):
     candidate=picture(tmp_path/'candidate.png')
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     runner.json=lambda *a,**k:{
         'passed':False,
         'description':'a character turnaround sheet instead of the requested scene',
         'violations':['A character turnaround was generated instead of a requested scene.'],
     }
-    with pytest.raises(qh.StageFailure,match='content QC rejected'):
+    with pytest.raises(qstation.StageFailure,match='content QC rejected'):
         runner.validate_image_content('world_keyframe','single host-free scene',candidate)
 
 
 def test_reviewer_cannot_escalate_a_minor_finding_to_blocking(tmp_path):
     candidate=picture(tmp_path/'candidate.png')
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     runner.json=lambda *a,**k:{
         'passed':False,
         'description':'a usable scene with readable text',
@@ -201,7 +201,7 @@ def test_character_or_style_continuity_drift_is_blocking(tmp_path):
     candidate=picture(tmp_path/'candidate.png')
     character=picture(tmp_path/'character.png',2)
     style=picture(tmp_path/'style.png',3)
-    runner=object.__new__(qh.Runner)
+    runner=object.__new__(qstation.Runner)
     captured={}
     def review(_stage,_prompt,*,references):
         captured['roles']=[reference.role for reference in references]
@@ -215,7 +215,7 @@ def test_character_or_style_continuity_drift_is_blocking(tmp_path):
             'blocking_violations':[],
         }
     runner.json=review
-    with pytest.raises(qh.StageFailure,match='content QC rejected'):
+    with pytest.raises(qstation.StageFailure,match='content QC rejected'):
         runner.validate_image_content(
             'beat_image_001','scene',candidate,
             references=[Reference('character_sheet',character),Reference('style_reference',style)],
@@ -282,13 +282,13 @@ def test_preview_failure_leaves_no_cache_artifact(tmp_path,monkeypatch):
 
 def test_review_pause_resumes_paid_candidate_without_new_generation(tmp_path):
     source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
-    runner=object.__new__(qh.Runner);calls=[]
+    runner=object.__new__(qstation.Runner);calls=[]
     def generate(*a,**k):calls.append('generate');return result()
     runner._run=generate
     runner.jobs=SimpleNamespace(download=lambda _,dst:dst.write_bytes(source.read_bytes()))
-    def pause(*a,**k):raise qh.StageFailure('review','ACTION_REQUIRED','approve fallback')
+    def pause(*a,**k):raise qstation.StageFailure('review','ACTION_REQUIRED','approve fallback')
     runner.validate_image_content=pause
-    with pytest.raises(qh.StageFailure,match='approve fallback'):
+    with pytest.raises(qstation.StageFailure,match='approve fallback'):
         runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=target)
     assert not target.exists()
     runner.validate_image_content=lambda *a,**k:{'passed':True,'description':'scene','violations':[]}
@@ -298,9 +298,9 @@ def test_review_pause_resumes_paid_candidate_without_new_generation(tmp_path):
 
 
 def test_wrong_requested_model_is_rejected_before_download(tmp_path):
-    runner=object.__new__(qh.Runner);runner._run=lambda *a,**k:result('different_model')
+    runner=object.__new__(qstation.Runner);runner._run=lambda *a,**k:result('different_model')
     runner.jobs=SimpleNamespace(download=lambda *a:pytest.fail('download should not occur'))
-    with pytest.raises(qh.StageFailure,match='another requested model'):
+    with pytest.raises(qstation.StageFailure,match='another requested model'):
         runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=tmp_path/'out.png')
 
 
@@ -310,7 +310,7 @@ def test_structured_json_recovers_unescaped_visible_label_quotes():
         '"violations":["Readable labels are present: "CLOSED FRONT COVER" and '
         '"WIDE-OPEN TWO-PAGE SPREAD"."]}'
     )
-    parsed, repaired = qh.parse_structured_json(raw)
+    parsed, repaired = qstation.parse_structured_json(raw)
     assert repaired is True
     assert parsed == {
         "passed": False,
@@ -320,7 +320,7 @@ def test_structured_json_recovers_unescaped_visible_label_quotes():
 
 
 def test_structured_json_keeps_valid_json_unchanged():
-    parsed, repaired = qh.parse_structured_json('{"passed":true,"description":"scene","violations":[]}')
+    parsed, repaired = qstation.parse_structured_json('{"passed":true,"description":"scene","violations":[]}')
     assert repaired is False
     assert parsed == {"passed": True, "description": "scene", "violations": []}
 
@@ -331,7 +331,7 @@ def test_structured_json_recovers_citation_newline_and_one_final_candidate_close
         'Museum citation\n+1","novelty":{"action_family":"comparison"}\n]}'
     )
 
-    parsed, repaired = qh.parse_structured_json(raw)
+    parsed, repaired = qstation.parse_structured_json(raw)
 
     assert repaired is True
     assert parsed == {
@@ -345,7 +345,7 @@ def test_structured_json_recovers_citation_newline_and_one_final_candidate_close
 
 def test_json_repair_excerpt_includes_the_invalid_response_ending():
     raw = "start" + "x" * 2_100 + "missing-final-closer"
-    excerpt = qh.json_repair_excerpt(raw)
+    excerpt = qstation.json_repair_excerpt(raw)
 
     assert excerpt.startswith("start")
     assert excerpt.endswith("missing-final-closer")
@@ -354,4 +354,4 @@ def test_json_repair_excerpt_includes_the_invalid_response_ending():
 
 def test_structured_json_does_not_accept_unrelated_malformed_json():
     with pytest.raises(json.JSONDecodeError):
-        qh.parse_structured_json('{"passed": false "violations": []}')
+        qstation.parse_structured_json('{"passed": false "violations": []}')

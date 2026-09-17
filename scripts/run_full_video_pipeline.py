@@ -268,9 +268,9 @@ def apply_subtitle_preferences(profile_path: Path, creative_brief: dict[str, Any
     style = creative_brief.get("_subtitle") if isinstance(creative_brief.get("_subtitle"), dict) else {}
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
     subtitles = profile.setdefault("subtitles", {})
-    qh_settings = creative_brief.get("_qh") or {}
-    if "show_subtitles" in qh_settings:
-        subtitles["enabled"] = bool(qh_settings["show_subtitles"])
+    q_station_settings = creative_brief.get("_q_station") or {}
+    if "show_subtitles" in q_station_settings:
+        subtitles["enabled"] = bool(q_station_settings["show_subtitles"])
     if not isinstance(subtitles.get("word_highlight"), dict):
         subtitles["word_highlight"] = {}
     subtitles["word_highlight"]["enabled"] = bool(requested)

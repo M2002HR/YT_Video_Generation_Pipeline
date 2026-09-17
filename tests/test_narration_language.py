@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 
 import narration_language as language
 import opening_runtime as opening
-import run_question_harvest_pipeline as qh
+import run_q_station_pipeline as qstation
 from character_runtime import load_character_registry
 from content_projects import load_content_project
 from run_graph import graph_for, affected_nodes
@@ -50,7 +50,7 @@ def replace_body(plan, text):
 def project(tmp_path):
     for folder in ('creative', 'launch'):
         (tmp_path / folder).mkdir()
-    (tmp_path / 'launch/CREATIVE_BRIEF.json').write_text(json.dumps({'audience': '', '_qh': {}}))
+    (tmp_path / 'launch/CREATIVE_BRIEF.json').write_text(json.dumps({'audience': '', '_q_station': {}}))
     (tmp_path / 'launch/LAUNCH_REQUEST.json').write_text(json.dumps({'content_project': 'q_station'}))
     return tmp_path
 
@@ -61,8 +61,8 @@ def character(request):
 
 
 def retain(spy, project, character, draft):
-    return qh.stage_retention(spy, project, load_content_project('q_station'), 'Source: some causes remain uncertain.',
-                             draft, qh.DurationTarget(30, 40), character.presentation, character=character)
+    return qstation.stage_retention(spy, project, load_content_project('q_station'), 'Source: some causes remain uncertain.',
+                             draft, qstation.DurationTarget(30, 40), character.presentation, character=character)
 
 
 @pytest.mark.parametrize('name', [
@@ -71,7 +71,7 @@ def retain(spy, project, character, draft):
 ])
 def test_all_spoken_producers_and_reviewers_receive_actual_shared_policy(name):
     content = load_content_project('q_station')
-    template = qh.resolve_prompt(content, name)
+    template = qstation.resolve_prompt(content, name)
     policy = language.policy_text(content.root / 'prompts/pipeline')
     assert template.count(policy) == 1
     assert '{{LANGUAGE_POLICY}}' not in template
@@ -82,7 +82,7 @@ def test_all_spoken_producers_and_reviewers_receive_actual_shared_policy(name):
 @pytest.mark.parametrize('name', ['08_opening_video_prompt_writer.md', '09_entry_transition_video_prompt_writer.md',
                                   '06_world_keyframe_prompt_writer.md', '07_single_beat_image_prompt_writer.md'])
 def test_visual_technical_vocabulary_is_not_subject_to_spoken_policy(name):
-    assert 'International spoken English' not in qh.resolve_prompt(load_content_project('q_station'), name)
+    assert 'International spoken English' not in qstation.resolve_prompt(load_content_project('q_station'), name)
 
 
 def test_policy_loader_rejects_empty_missing_or_recursive_include(tmp_path):
@@ -99,8 +99,8 @@ def test_policy_loader_rejects_empty_missing_or_recursive_include(tmp_path):
 def test_blank_audience_does_not_remove_policy_from_actual_writer(project, character):
     plan = narration(character.presentation.segment_key)
     spy = Spy([plan])
-    qh.stage_script(spy, project, load_content_project('q_station'), '{"audience":""}',
-                    qh.DurationTarget(30, 40), character.presentation, character=character)
+    qstation.stage_script(spy, project, load_content_project('q_station'), '{"audience":""}',
+                    qstation.DurationTarget(30, 40), character.presentation, character=character)
     assert 'Apply the policy even when' in spy.prompts[0][1]
     assert character.id in spy.prompts[0][1]
 
@@ -169,7 +169,7 @@ def test_retention_rewrites_dense_sentence_in_editor_not_director(project, chara
     assert [item['passed'] for item in report['attempts']] == [False, True]
     assert report['passed'] and report['policy_sha256'] and report['reviewer_prompt_sha256']
     assert report['attempts'][0]['issues'][0]['quote'] == dense['body'][0]
-    assert qh.validate_script_plan('test', final, qh.DurationTarget(30, 40), character.presentation)
+    assert qstation.validate_script_plan('test', final, qstation.DurationTarget(30, 40), character.presentation)
     assert not (project / 'SCRIPT_FINAL.md').exists()
     assert not (project / 'assets').exists()
 
@@ -188,7 +188,7 @@ def test_simplification_cannot_remove_uncertainty_without_correction(project, ch
 def test_failed_language_edits_are_bounded_and_do_not_publish_core(project, character):
     plan = replace_body(narration(character.presentation.segment_key), 'Chosen privacy differs from unexpected exposure.')
     spy = Spy([plan, issue('body_01', plan['body'][0])] * language.MAX_EDIT_ATTEMPTS)
-    with pytest.raises(qh.StageFailure, match='bounded text edits'):
+    with pytest.raises(qstation.StageFailure, match='bounded text edits'):
         retain(spy, project, character, plan)
     assert len(spy.prompts) == 2 * language.MAX_EDIT_ATTEMPTS
     assert not (project / 'creative/SCRIPT_CORE_PLAN.json').exists()
@@ -226,7 +226,7 @@ def test_core_reuse_requires_matching_review_not_silent_regeneration(project, ch
         target.write_text(json.dumps(changed))
     else:
         plan = replace_body(plan, 'The source says something different now.')
-    with pytest.raises(qh.StageFailure, match='Revise'):
+    with pytest.raises(qstation.StageFailure, match='Revise'):
         retain(spy, project, character, plan)
     assert len(spy.prompts) == 2
 
@@ -240,8 +240,8 @@ def test_legacy_completed_core_has_no_forced_language_migration(project, charact
 
 
 def cta(spy, project, character, plan):
-    return qh.stage_call_to_action(spy, project, load_content_project('q_station'), 'Source: keep the core unchanged.',
-                                   plan, qh.DurationTarget(30, 40), character.presentation)
+    return qstation.stage_call_to_action(spy, project, load_content_project('q_station'), 'Source: keep the core unchanged.',
+                                   plan, qstation.DurationTarget(30, 40), character.presentation)
 
 
 def test_cta_simplification_never_edits_approved_core(project, character):
@@ -251,7 +251,7 @@ def test_cta_simplification_never_edits_approved_core(project, character):
     spy = Spy([{'cta': original}, issue('cta', original, suggestion=simple), {'cta': simple}, passed()])
     result = cta(spy, project, character, plan)
     assert plan == before
-    assert qh.cta_source_context(result, character.presentation) == qh.cta_source_context(plan, character.presentation)
+    assert qstation.cta_source_context(result, character.presentation) == qstation.cta_source_context(plan, character.presentation)
     assert result['cta'] == simple and result['full_narration'].endswith(simple)
     report = json.loads((project / language.REPORT_PATHS['cta']).read_text())
     assert report['scope'] == 'cta'
@@ -268,7 +268,7 @@ def test_cta_missing_receipt_fails_without_changing_existing_script(project, cha
     cta(spy, project, character, plan)
     target = project / 'SCRIPT_FINAL.md'; original = target.read_bytes()
     (project / language.REPORT_PATHS['cta']).unlink()
-    with pytest.raises(qh.StageFailure, match='Revise'):
+    with pytest.raises(qstation.StageFailure, match='Revise'):
         cta(spy, project, character, plan)
     assert target.read_bytes() == original and len(spy.prompts) == 2
 
@@ -280,7 +280,7 @@ def test_cta_only_revision_preserves_core_review_and_rechecks_only_cta(project, 
     spy = Spy([{'cta': 'What question should we explore next?'}, passed()])
     cta(spy, project, character, core)
     path = project / 'launch/CREATIVE_BRIEF.json'
-    path.write_text(json.dumps({'_qh': {'cta_hint': 'Invite a like.'}}))
+    path.write_text(json.dumps({'_q_station': {'cta_hint': 'Invite a like.'}}))
     spy.responses.extend([{'cta': 'Like this video for more questions.'}, passed()])
     cta(spy, project, character, core)
     assert receipt.read_bytes() == before and len(spy.prompts) == 4
@@ -302,7 +302,7 @@ def test_review_receipts_are_required_for_marked_new_runs_in_graph(project, char
 @pytest.mark.parametrize('label,owner', [('retention_edit_language_review_2_json3','retention_edit'),
                                        ('call_to_action_language_review_1_fix1_json2','call_to_action')])
 def test_language_calls_route_fallback_to_their_owning_stage(label, owner):
-    assert qh.Runner._fallback_stage(label) == owner
+    assert qstation.Runner._fallback_stage(label) == owner
 
 
 def test_feedback_budget_preserves_whole_evidence_and_never_truncates_source():
@@ -311,8 +311,8 @@ def test_feedback_budget_preserves_whole_evidence_and_never_truncates_source():
     assert language.correction_feedback(report, max_chars=len(line)) == line
     with pytest.raises(language.LanguageContractError, match='prompt budget'):
         language.correction_feedback(report, max_chars=10)
-    with pytest.raises(qh.StageFailure, match='prompt budget'):
-        qh._language_correction_prompt('x' * qh.ORDAK_QUESTION_LIMIT, 'Fix words', report, 'retention_edit')
+    with pytest.raises(qstation.StageFailure, match='prompt budget'):
+        qstation._language_correction_prompt('x' * qstation.ORDAK_QUESTION_LIMIT, 'Fix words', report, 'retention_edit')
 
 
 def test_new_missing_core_cannot_migrate_an_unreviewed_final_script(project, character):
@@ -320,7 +320,7 @@ def test_new_missing_core_cannot_migrate_an_unreviewed_final_script(project, cha
     spy = Spy([plan, passed()]); retain(spy, project, character, plan)
     (project / 'creative/SCRIPT_CORE_PLAN.json').unlink()
     (project / 'creative/SCRIPT_PLAN.json').write_text(json.dumps(plan))
-    with pytest.raises(qh.StageFailure, match='Reviewed core is missing'):
+    with pytest.raises(qstation.StageFailure, match='Reviewed core is missing'):
         retain(spy, project, character, plan)
     assert len(spy.prompts) == 2
 
@@ -331,7 +331,7 @@ def test_language_policy_rollout_preserves_verified_legacy_concept(project, char
     variant = character.presentation.entry_variants[0]
     spy = Spy([candidates(variant), reviews()])
     content = load_content_project('q_station')
-    concept = qh.stage_opening_concept(spy, project, content, 'earworms', qh.DurationTarget(30,40), character)
+    concept = qstation.stage_opening_concept(spy, project, content, 'earworms', qstation.DurationTarget(30,40), character)
     context_path = project / 'creative/OPENING_CONTEXT.json'
     context = json.loads(context_path.read_text())
     context.pop('language_policy_version')
@@ -343,7 +343,7 @@ def test_language_policy_rollout_preserves_verified_legacy_concept(project, char
     context_path.write_text(json.dumps(context))
     target = project / 'creative/OPENING_CONCEPT.json'; target.write_text(json.dumps(concept))
     before = target.read_bytes()
-    assert qh.stage_opening_concept(spy, project, content, 'earworms', qh.DurationTarget(30,40), character) == concept
+    assert qstation.stage_opening_concept(spy, project, content, 'earworms', qstation.DurationTarget(30,40), character) == concept
     assert target.read_bytes() == before and len(spy.prompts) == 2
-    with pytest.raises(qh.StageFailure, match='Revise'):
-        qh.stage_opening_concept(spy, project, content, 'a genuinely new topic', qh.DurationTarget(30,40), character)
+    with pytest.raises(qstation.StageFailure, match='Revise'):
+        qstation.stage_opening_concept(spy, project, content, 'a genuinely new topic', qstation.DurationTarget(30,40), character)

@@ -12,7 +12,7 @@
   "project": "videos/027_video",
   "voice_profile": "videos/027_video/launch/config_revisions/c2b2efd8-5f42-4431-9795-f67a73f049c0/VOICE_PROFILE.json",
   "creative_brief": "videos/027_video/launch/config_revisions/c2b2efd8-5f42-4431-9795-f67a73f049c0/CREATIVE_BRIEF.json",
-  "qh": {
+  "qstation": {
     "character": {
       "mode": "manual",
       "character_id": "red_horned_everyman"
@@ -132,7 +132,7 @@
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
+    "scripts/run_full_video_pipeline_q_station_wrapper.py",
     "--topic",
     "تئوری و سندروم رژ لب",
     "--video-id",

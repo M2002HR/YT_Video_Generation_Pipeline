@@ -47,7 +47,7 @@ def clips_ready(project: Path) -> bool:
 
 
 def _runtime_state(project: Path) -> dict:
-    path = Path(project) / "pipeline" / "QH_RUNTIME_STATE.json"
+    path = Path(project) / "pipeline" / "Q_STATION_RUNTIME_STATE.json"
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):

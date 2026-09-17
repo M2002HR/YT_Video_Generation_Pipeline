@@ -14,8 +14,8 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from run_question_harvest_pipeline import DurationTarget, style_directive  # noqa: E402
-from run_full_video_pipeline_qh_wrapper import qh_overrides  # noqa: E402
+from run_q_station_pipeline import DurationTarget, style_directive  # noqa: E402
+from run_full_video_pipeline_q_station_wrapper import q_station_overrides  # noqa: E402
 
 
 def test_word_range_follows_the_requested_seconds() -> None:
@@ -49,7 +49,7 @@ def test_beat_count_scales_with_length_and_keeps_the_default() -> None:
 
 def test_the_beat_gate_follows_the_requested_length() -> None:
     """The faster image cadence scales with the requested duration."""
-    from run_question_harvest_pipeline import StageFailure, validate_script_plan
+    from run_q_station_pipeline import StageFailure, validate_script_plan
 
     body = [f"Beat {index} moves the story along." for index in range(8)]
     plan = {
@@ -103,7 +103,7 @@ def test_a_hint_survives_auto_policy() -> None:
 
 def test_the_word_gate_follows_the_requested_length() -> None:
     """A correct 25-30s script must not be rejected for not being a 40-60s script."""
-    from run_question_harvest_pipeline import StageFailure, validate_script_plan
+    from run_q_station_pipeline import StageFailure, validate_script_plan
 
     body = [f"Beat {index} moves the story along." for index in range(8)]
     plan = {
@@ -128,7 +128,7 @@ def test_the_word_gate_follows_the_requested_length() -> None:
 
 def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
     brief = tmp_path / "CREATIVE_BRIEF.json"
-    brief.write_text(json.dumps({"_qh": {
+    brief.write_text(json.dumps({"_q_station": {
         "min_duration_seconds": 25,
         "max_duration_seconds": 30,
         "world_style_id": "woodcut_charcoal_warm",
@@ -138,7 +138,7 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
         "beat_image_qc_disabled": True,
         "image_qc_correction_policy": "2",
     }}), encoding="utf-8")
-    flags = qh_overrides(brief)
+    flags = q_station_overrides(brief)
     for expected in (
         "--min-duration-seconds", "25",
         "--max-duration-seconds", "30",
@@ -155,4 +155,4 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
 def test_an_empty_brief_adds_no_flags(tmp_path: Path) -> None:
     brief = tmp_path / "CREATIVE_BRIEF.json"
     brief.write_text("{}", encoding="utf-8")
-    assert qh_overrides(brief) == []
+    assert q_station_overrides(brief) == []

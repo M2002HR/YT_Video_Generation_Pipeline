@@ -226,7 +226,7 @@ def test_invalidation_paths_include_only_existing_owned_files(tmp_path: Path) ->
 
 def test_stale_done_state_is_reported_missing_when_required_artifact_is_absent(tmp_path: Path) -> None:
     project = project_with_beats(tmp_path)
-    write_json(project / "pipeline/QH_RUNTIME_STATE.json", {"stages": {"world_keyframe": {"status": "DONE"}}})
+    write_json(project / "pipeline/Q_STATION_RUNTIME_STATE.json", {"stages": {"world_keyframe": {"status": "DONE"}}})
     node = next(node for node in graph_for(project)["nodes"] if node["id"] == "world_keyframe")
     assert node["status"] == "MISSING"
 
@@ -237,7 +237,7 @@ def test_zero_byte_required_artifact_is_not_reported_done(tmp_path: Path) -> Non
     keyframe.parent.mkdir(parents=True)
     keyframe.touch()
     write_json(
-        project / "pipeline/QH_RUNTIME_STATE.json",
+        project / "pipeline/Q_STATION_RUNTIME_STATE.json",
         {"stages": {"world_keyframe": {"status": "DONE"}}},
     )
     node = next(

@@ -12,7 +12,7 @@
   "project": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day",
   "voice_profile": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/launch/config_revisions/4fdf20ff-0c1b-4e17-b8e2-8f160edbaeaa/VOICE_PROFILE.json",
   "creative_brief": "videos/028_what_will_happen_if_you_sleep_less_than_5_hours_a_day/launch/config_revisions/4fdf20ff-0c1b-4e17-b8e2-8f160edbaeaa/CREATIVE_BRIEF.json",
-  "qh": {
+  "qstation": {
     "character": {
       "mode": "manual",
       "character_id": "red_horned_everyman"
@@ -135,7 +135,7 @@
   "command": [
     "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
     "-u",
-    "scripts/run_full_video_pipeline_qh_wrapper.py",
+    "scripts/run_full_video_pipeline_q_station_wrapper.py",
     "--topic",
     "What will happen if you sleep less than 5 hours a day",
     "--video-id",

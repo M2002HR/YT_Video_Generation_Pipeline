@@ -25,7 +25,7 @@ from run_graph import graph_for, affected_nodes, invalidation_paths
 import check_character_setup
 import episode_history as history
 import opening_runtime as opening
-import run_question_harvest_pipeline as qh
+import run_q_station_pipeline as qstation
 
 
 class State:
@@ -143,7 +143,7 @@ def test_profile_and_catalog_are_data_driven(captain):
 def test_arbitrary_topics_use_independent_selector_and_frozen_history(run, captain, topic):
     spy = Spy([proposals(captain, topic), assessments()])
     project = load_content_project("q_station")
-    concept = qh.stage_opening_concept(spy, run, project, topic, qh.DurationTarget(30, 40), captain)
+    concept = qstation.stage_opening_concept(spy, run, project, topic, qstation.DurationTarget(30, 40), captain)
     assert concept["selected"]["id"] == "c2"  # reviewer, not candidate order/self-rating
     assert len(spy.prompts) == 2
     assert captain.id in spy.prompts[0][1] and topic in spy.prompts[0][1]
@@ -152,7 +152,7 @@ def test_arbitrary_topics_use_independent_selector_and_frozen_history(run, capta
     assert (run / "creative/OPENING_CANDIDATES.json").is_file()
     frozen = (run / "creative/OPENING_CONCEPT.json").read_bytes()
     history.record_traits("q_station", "100", {"opening_activity": "another episode completed"})
-    assert qh.stage_opening_concept(spy, run, project, topic, qh.DurationTarget(30, 40), captain) == concept
+    assert qstation.stage_opening_concept(spy, run, project, topic, qstation.DurationTarget(30, 40), captain) == concept
     assert len(spy.prompts) == 2
     assert (run / "creative/OPENING_CONCEPT.json").read_bytes() == frozen
     assert not spy.images
@@ -169,8 +169,8 @@ def test_story_rejection_stops_before_media(run, captain):
     rejected = assessments()
     for row in rejected["reviews"]: row["scores"]["honesty"] = 0
     spy = Spy([proposals(captain, "test"), rejected] * opening.MAX_ATTEMPTS)
-    with pytest.raises(qh.StageFailure, match="bounded text-only"):
-        qh.stage_opening_concept(spy, run, load_content_project("q_station"), "test", qh.DurationTarget(30, 40), captain)
+    with pytest.raises(qstation.StageFailure, match="bounded text-only"):
+        qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "test", qstation.DurationTarget(30, 40), captain)
     assert not spy.images
     assert not (run / "creative/OPENING_CONCEPT.json").exists()
 
@@ -179,11 +179,11 @@ def test_manual_resolution_freezes_captain_and_spyglass(run, captain):
     content = replace(load_content_project("q_station"), root=captain.sheet_path.parents[3])
     spy = Spy()
     launch = {"character": {"mode": "manual", "character_id": "sea_captain"}}
-    first, context = qh.stage_character_resolution(spy, run, content, "topic", "brief", None, launch, is_legacy_run=False)
+    first, context = qstation.stage_character_resolution(spy, run, content, "topic", "brief", None, launch, is_legacy_run=False)
     frozen = (run / "creative/PRESENTATION_RESOLUTION.json").read_bytes()
     assert context.id == first.resolved_character_id == "sea_captain"
     assert json.loads(frozen)["profile_id"] == "spyglass_portal"
-    resumed, _ = qh.stage_character_resolution(spy, run, content, "topic", "brief", None, launch, is_legacy_run=False)
+    resumed, _ = qstation.stage_character_resolution(spy, run, content, "topic", "brief", None, launch, is_legacy_run=False)
     assert resumed.resolved_character_id == "sea_captain"
     assert (run / "creative/PRESENTATION_RESOLUTION.json").read_bytes() == frozen
     assert not spy.prompts
@@ -210,8 +210,8 @@ def test_entry_contract_reaches_graph_gate_and_invalidation(run, captain):
 def test_legacy_book_and_crone_mapping_are_unchanged(run):
     registry = load_character_registry(ROOT / "projects/q_station/characters/registry.json")
     assert registry.auto_fallback_character_id == "red_horned_everyman"
-    assert registry.legacy_default_character_id == "farmer_host"
-    for identifier in ("farmer_host", "red_horned_everyman"):
+    assert registry.legacy_default_character_id == "red_horned_everyman"
+    for identifier in ("red_horned_everyman", "red_horned_everyman"):
         assert registry.get(identifier).presentation.id == "book_portal"
     assert registry.get("moss_cloaked_crone").presentation.id == "orb_portal"
     assert presentation_for_project(run).id == "book_portal"
@@ -224,10 +224,10 @@ def test_script_uses_existing_entry_segment_and_closing_beat_contract(captain):
             "entry_transition": "The difference appears when we compare their shapes.",
             "body": body, "optional_closing": "Now the difference makes sense.", "cta": "Which question should we explore next?"}
     plan["full_narration"] = " ".join([plan["opening_question_spark"], plan["entry_transition"], *body, plan["optional_closing"], plan["cta"]])
-    assert qh.validate_script_plan("test", plan, qh.DurationTarget(30, 40), captain.presentation)["entry_transition"]
+    assert qstation.validate_script_plan("test", plan, qstation.DurationTarget(30, 40), captain.presentation)["entry_transition"]
     wrong = dict(plan); wrong["book_transition"] = wrong.pop("entry_transition")
-    with pytest.raises(qh.StageFailure, match="entry_transition"):
-        qh.validate_script_plan("test", wrong, qh.DurationTarget(30, 40), captain.presentation)
+    with pytest.raises(qstation.StageFailure, match="entry_transition"):
+        qstation.validate_script_plan("test", wrong, qstation.DurationTarget(30, 40), captain.presentation)
 
 
 def test_entry_frame_receives_three_references_but_flow_only_two(run, captain, monkeypatch):
@@ -240,8 +240,8 @@ def test_entry_frame_receives_three_references_but_flow_only_two(run, captain, m
         captured.update(prompt=prompt, roles=[ref.role for ref in refs], paths=[ref.path for ref in refs])
         write_sheet(target)
         return True
-    monkeypatch.setattr(qh, "reusable_image", reusable)
-    target = qh.stage_entry_frame(Spy(), run, load_content_project("q_station"), "a comparison", style, identity,
+    monkeypatch.setattr(qstation, "reusable_image", reusable)
+    target = qstation.stage_entry_frame(Spy(), run, load_content_project("q_station"), "a comparison", style, identity,
                                   {"entry_variant": "two_object_compare"}, captain)
     assert captured["roles"] == ["entry_identity", "style_reference", "character_sheet"]
     assert captured["paths"][-1] == captain.sheet_path
@@ -253,18 +253,18 @@ def test_entry_frame_receives_three_references_but_flow_only_two(run, captain, m
 
 
 def test_identity_generation_is_lazy_and_receipt_verified(run, captain, monkeypatch, tmp_path):
-    monkeypatch.setattr(qh, "ROOT", tmp_path)
+    monkeypatch.setattr(qstation, "ROOT", tmp_path)
     profile = captain.presentation
     assert not profile.identity_sheet_path.exists()
     spy = Spy()
-    first = qh.stage_entry_identity(spy, run, load_content_project("q_station"), profile)
+    first = qstation.stage_entry_identity(spy, run, load_content_project("q_station"), profile)
     assert first == profile.identity_sheet_path and first.is_file()
     receipt = first.with_suffix(first.suffix + ".receipt.json")
     assert receipt.is_file() and len(spy.images) == 1
-    assert qh.stage_entry_identity(spy, run, load_content_project("q_station"), profile) == first
+    assert qstation.stage_entry_identity(spy, run, load_content_project("q_station"), profile) == first
     assert len(spy.images) == 1
     receipt.unlink()
-    qh.stage_entry_identity(spy, run, load_content_project("q_station"), profile)
+    qstation.stage_entry_identity(spy, run, load_content_project("q_station"), profile)
     assert len(spy.images) == 2  # Bare pixels are not silently accepted as a paid-stage receipt.
 
 
@@ -274,7 +274,7 @@ def test_flow_prompts_receive_profile_and_measured_durations(run, captain):
     }}))
     spy = Spy()
     for clip, source_seconds, measured in (("A", 6, "4.25"), ("B", 4, "3.15")):
-        qh.stage_flow_prompt(spy, run, load_content_project("q_station"), clip,
+        qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), clip,
                              "The visible comparison gives a useful clue.", {"entry_variant": "two_object_compare"},
                              {"medium": "graphite"}, "A host-free comparison of the subject.", "comparison", source_seconds,
                              character=captain, require_source_contract=True)
@@ -292,9 +292,9 @@ def test_world_endpoint_does_not_receive_character_or_entry_identity(run, monkey
     def reusable(runner, project, stage, target, receipt, prompt, model, refs):
         captured["roles"] = [ref.role for ref in refs]
         return True
-    monkeypatch.setattr(qh, "reusable_image", reusable)
+    monkeypatch.setattr(qstation, "reusable_image", reusable)
     style = write_sheet(run / "references/world_style_anchor.png")
-    qh.stage_world_keyframe(Spy(), run, load_content_project("q_station"), "Host-free subject world.", style)
+    qstation.stage_world_keyframe(Spy(), run, load_content_project("q_station"), "Host-free subject world.", style)
     assert captured["roles"] == ["style_reference"]
 
 
@@ -315,7 +315,7 @@ def test_character_preflight_is_read_only(captain, monkeypatch, capsys):
 def test_body_character_references_follow_hero_presence(run, captain):
     style = write_sheet(run / "references/world_style_anchor.png")
     world = write_sheet(run / "references/world_keyframe.png")
-    present = qh._beat_reference_stack(captain, {"hero_present": True}, style, world, None)
-    absent = qh._beat_reference_stack(None, {"hero_present": False}, style, world, None)
+    present = qstation._beat_reference_stack(captain, {"hero_present": True}, style, world, None)
+    absent = qstation._beat_reference_stack(None, {"hero_present": False}, style, world, None)
     assert any(ref.role == "character_sheet" and ref.path == captain.sheet_path for ref in present)
     assert all(ref.role != "character_sheet" for ref in absent)
