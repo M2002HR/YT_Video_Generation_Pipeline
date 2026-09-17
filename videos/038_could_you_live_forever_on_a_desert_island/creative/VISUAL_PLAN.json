@@ -1,0 +1,101 @@
+{
+  "body_duration_seconds": 30.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Storms can rip shelters apart and ruin tools.",
+      "visual": "Retro educational field-guide illustration of a violent island squall tearing an improvised palm-frond shelter open while a wooden tool rack collapses and simple survival tools scatter across wet sand, framed by salt-stained parchment edges.",
+      "purpose": "show that severe weather can destroy shelter and essential tools",
+      "visual_fingerprint": "wide low-angle storm scene; torn palm shelter whipping sideways at left, broken tool rack and scattered implements at right, rain-driven beach clearing, storm-slate overcast, strong diagonal wind composition",
+      "type": "literal",
+      "continuity": "begin the body with the island's first concrete failure point after the torn-shelter clue",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Strong sun and heat can harm your body.",
+      "visual": "Sun-bleached field-guide illustration of a lone island survivor crouching in sparse palm shade with flushed, exhausted posture, a nearly vertical tropical sun casting a short hard shadow across pale sand.",
+      "purpose": "show physical danger from prolonged tropical heat and sun exposure",
+      "visual_fingerprint": "medium high-angle heat scene; anonymous survivor crouched beneath a narrow palm shadow in center, glaring white-yellow sun overhead, dry beach interior instead of storm shore, stark short-shadow composition with heat haze suggested by ink wash",
+      "type": "literal",
+      "continuity": "shift from sudden storm damage to a contrasting clear-sky environmental hazard",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "A bad injury can become dangerous without medical care.",
+      "visual": "Weathered field-guide illustration of an anonymous survivor seated beside a rocky tide pool, supporting an injured ankle wrapped in an improvised cloth bandage while a dropped walking stick lies nearby; the injury is serious but entirely non-graphic.",
+      "purpose": "show how an accident becomes a major survival problem when professional medical care is absent",
+      "visual_fingerprint": "close three-quarter view at rocky shoreline; bandaged ankle and supporting hands as focal point, dropped walking stick leading diagonally into frame, cool washed-blue reflected light, compact seated composition with no visible wound",
+      "type": "literal",
+      "continuity": "move from environmental exposure to a personal accident requiring care",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Infection can become serious without treatment.",
+      "visual": "Retro survival-field-guide illustration focused on a forearm with a small cleanly bandaged scrape showing subtle redness around its edge, while clean water and fresh cloth sit nearby but no medicine is available; non-graphic and medically restrained.",
+      "purpose": "show that even a modest wound can worsen when infection cannot be properly treated",
+      "visual_fingerprint": "tight top-down detail scene; bandaged forearm crossing the lower diagonal, subtle rust-orange redness, small bowl of clean water and folded cloth above, neutral parchment-toned campsite surface, clinical field-guide composition without gore",
+      "type": "literal",
+      "continuity": "tighten from the larger injury to a different medical risk that can develop afterward",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Storms can spoil food or cut off fresh water.",
+      "visual": "Aged coastal field-guide illustration of storm runoff flooding a small supply cache: torn food wrappings lie soaked in shallow water while an overturned covered water vessel sits beside a rain-choked freshwater collection setup.",
+      "purpose": "show that weather can damage stored food and interrupt safe fresh-water supplies",
+      "visual_fingerprint": "overhead wide supply-cache scene; soaked food bundles at lower left, overturned water vessel at center, broken rain-catch leaves at upper right, muddy runoff crossing the frame, storm-darkened lighting with no shelter as focal subject",
+      "type": "literal",
+      "continuity": "return from medical risks to a separate consequence of storms: loss of consumable supplies",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Rescue may not arrive when you need it.",
+      "visual": "Sun-faded field-guide illustration from behind an empty driftwood signal marker on a high beach ridge, looking toward a vast open ocean with no vessel nearby and only a tiny distant horizon silhouette too far away to help.",
+      "purpose": "show the uncertainty and delay of outside rescue",
+      "visual_fingerprint": "long telephoto-like horizon composition; empty signal marker in foreground lower third, immense muted teal ocean filling center, tiny indistinct vessel-like speck near far horizon, late-afternoon washed light, strong negative-distance emphasis",
+      "type": "literal",
+      "continuity": "expand outward from damaged local supplies to the uncertainty of help beyond the island",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Even in perfect safety, your body would still age.",
+      "visual": "Quiet retro field-guide illustration of the same anonymous human silhouette represented at three natural life stages walking along one continuous shoreline path, progressing from younger adult to visibly older adult with grayer hair and a slower posture, without labels or text.",
+      "purpose": "show that normal human aging continues even when external survival hazards are removed",
+      "visual_fingerprint": "side-on symbolic shoreline scene; three separated life-stage figures along a gently curving beach path from left to right, calm sea and clear sky, no damaged gear or active hazards, soft reflective daylight, chronological spatial composition",
+      "type": "metaphor",
+      "continuity": "leave immediate island dangers behind and reveal the unavoidable biological limit that remains even under ideal safety",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Supplies can extend survival, but they cannot make life endless.",
+      "visual": "Final salt-weathered field-guide still life showing orderly food, water, shelter cloth and tools arranged securely on a calm beach beside a weathered hourglass whose sand has nearly finished falling, with the open ocean beyond.",
+      "purpose": "visually pay off the opening question by showing that abundant supplies can support survival but cannot remove every limit on a human lifespan",
+      "visual_fingerprint": "balanced eye-level closing still life; intact survival supplies grouped on left, nearly spent weathered hourglass as central symbolic object, calm horizon on right, warm faded late-day light, serene triangular composition distinct from every hazard scene",
+      "type": "metaphor",
+      "continuity": "resolve the sequence by contrasting well-protected supplies with a separate symbol of finite human time",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ]
+}

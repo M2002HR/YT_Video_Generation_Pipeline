@@ -1,0 +1,101 @@
+{
+  "body_duration_seconds": 30.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Storms can rip shelters apart and ruin tools.",
+      "visual": "Primitive fresco of a violent island storm tearing a branch-and-leaf shelter open while a stone knife and wooden tool are scattered into rain and wind.",
+      "purpose": "show that storms can destroy shelter and essential primitive tools",
+      "visual_fingerprint": "wide low-angle shoreline scene; collapsing branch shelter at upper left, wind-driven rain slashing diagonally, broken stone-and-wood tools tumbling across the foreground, dark ochre storm cloud mass",
+      "type": "literal",
+      "continuity": "begin the survival-risk sequence with the environment physically overwhelming built protection",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Strong sun and heat can harm your body.",
+      "visual": "Primitive cave-painting scene of a lone human silhouette crouching beneath a blazing sun pictograph on exposed pale rock, with heat-wave strokes surrounding the body.",
+      "purpose": "show direct bodily harm from intense sun and heat",
+      "visual_fingerprint": "medium overhead-feeling composition on an exposed inland rock shelf; single crouched stick figure centered low, enormous terracotta sun disk above, radiating heat marks and sparse dry vegetation, no shelter visible",
+      "type": "literal",
+      "continuity": "shift from storm damage to the opposite weather extreme and focus directly on the body",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "A bad injury can become dangerous without medical care.",
+      "visual": "Fresco close-up of an injured leg beside sharp rocks, with a simplified human silhouette gripping the wounded limb and no medical supplies anywhere in the scene.",
+      "purpose": "show how a serious injury becomes a major survival threat when medical care is unavailable",
+      "visual_fingerprint": "tight ground-level close-up in a rocky interior clearing; bent leg and wounded shin dominate the frame, jagged stones form a diagonal beneath it, one hand reaches toward the injury, sparse charcoal pain marks",
+      "type": "literal",
+      "continuity": "move from environmental stress to a specific physical injury with a much tighter shot scale",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Infection can become serious without treatment.",
+      "visual": "Primitive diagram-like fresco showing a small wound on a forearm surrounded by expanding dark pigment rings and branching marks that suggest spreading infection.",
+      "purpose": "show infection spreading outward from an untreated wound",
+      "visual_fingerprint": "symbolic side-view arm filling the vertical center against bare limestone; tiny wound at wrist, three irregular expanding umber rings and branching charcoal marks moving upward, no landscape elements",
+      "type": "diagram",
+      "continuity": "follow the previous injury by revealing a different secondary danger that can develop afterward",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Storms can spoil food or cut off fresh water.",
+      "visual": "Cave-art still of rainwater flooding a primitive food cache while muddy runoff contaminates a small freshwater pool nearby.",
+      "purpose": "show that storms can destroy stored food and make fresh water unusable",
+      "visual_fingerprint": "high wide view of a sheltered island hollow; overturned woven-leaf food bundle at right, brown floodwater crossing the frame, small freshwater basin clouded with sediment at left, heavy rain hatches from above",
+      "type": "literal",
+      "continuity": "return from bodily threats to resource failure, using storm consequences different from the destroyed shelter",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Rescue may not arrive when you need it.",
+      "visual": "Minimalist fresco of a tiny stranded human silhouette on a high coastal rock raising both arms toward an empty horizon with no boat or rescuer present.",
+      "purpose": "show that survival can depend on outside rescue that may not appear",
+      "visual_fingerprint": "extreme wide side profile of a cliff and empty sea; tiny signaling figure isolated on the far upper right, vast blank parchment-colored horizon occupying most of the frame, a few distant wave glyphs and no vessel",
+      "type": "literal",
+      "continuity": "expand dramatically from damaged local resources to isolation and dependence on help beyond the island",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Even in perfect safety, your body would still age.",
+      "visual": "Primitive symbolic fresco of one human life shown as a single continuous silhouette sequence progressing from upright youth to bent old age beneath an unchanged calm sun.",
+      "purpose": "show that normal human aging continues even when external dangers are removed",
+      "visual_fingerprint": "calm flat limestone field with no hazards; four age-stage silhouettes arranged along a gentle upward arc from left to right, ending in a stooped elder with walking stick, soft sun pictograph centered above",
+      "type": "diagram",
+      "continuity": "remove storms, injury, scarcity, and isolation from the composition to reveal the unavoidable biological limit",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Supplies can extend survival, but they cannot make life endless.",
+      "visual": "Reflective cave-art composition with abundant primitive food, water vessels, shelter materials, and stone tools surrounding a long ochre path that still ends at the final aged human silhouette.",
+      "purpose": "summarize that supplies can support a longer survival period without eliminating mortality",
+      "visual_fingerprint": "balanced frontal tableau in a quiet inland cave-wall setting; supply symbols cluster densely around the lower frame, a long winding ochre path rises through the center, one elderly silhouette stands at its finite endpoint beneath a fading charcoal sun mark",
+      "type": "metaphor",
+      "continuity": "resolve the aging beat by reintroducing plentiful resources while keeping the finite human lifespan visually explicit",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ]
+}

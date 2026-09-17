@@ -1,0 +1,20 @@
+{
+  "style_id": "saltwind_island_fieldguide_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "retro educational illustration",
+  "secondary_treatment": "subtle ink wash",
+  "texture_family": "sun-bleached paper with salt-stained parchment mottling, fine sand grain, abraded corners and driftwood-like wear",
+  "palette_summary": "faded parchment cream, sun-bleached sand, dry palm and driftwood browns, muted sea-glass teal, washed sky blue, storm-slate gray and restrained rust-orange accents for hazards",
+  "line_treatment": "weathered field-guide linework with crisp but slightly broken dark-brown contours, sparse crosshatching and softened ink-wash shadows",
+  "lighting": "hard tropical daylight softened by paper fading, with occasional storm-darkened overcast passages while preserving the same restrained illustrated palette",
+  "frame_language": "a recurring salt-weathered survival-field-guide page: irregular sun-faded parchment edges, subtle tide-line staining, sand abrasion and driftwood-colored edge wear surrounding a clean central illustration window; the same aged coastal material frame persists across every body image without changing medium",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "desert-island survival vocabulary only: torn shelters, palm or coastal vegetation, improvised tools, stored food and water, heat exposure, storms, damaged supplies, minor-to-serious injury cues, infection risk represented non-graphically, dwindling fresh water, distant ocean rescue possibilities and natural signs of aging; favor practical survival imagery over fantasy or luxury-resort motifs",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "if the resolved host appears later, translate the existing host silhouette and proportions into the same faded field-guide illustration language with weathered contour ink, restrained flat color and light wash shading; do not invent new identity traits",
+  "negative_constraints": "no photorealism, no glossy 3D CGI, no anime, no neon palette, no pristine digital vector finish, no lush postcard-tourism aesthetic, no pirate clichés, no fantasy creatures, no graphic wounds, no oversized empty subtitle void, and no embedded text or typographic labels",
+  "reason": "A new style is required by the operator directive. The sun-bleached, salt-stained, sand-grained and driftwood-worn field-guide treatment directly supports a desert-island survival story while letting storms, heat, injury, infection, water loss and aging read clearly as practical hazards. It also increases between-episode diversity: the two most recent episodes used cinematic charcoal and the next recent styles used cave-fresco treatments, so reusing those heavily weathered dark or mineral textures would incur a strong recent-usage penalty.",
+  "style_subtitle_reserve": "a calm lower field occupying only the bottom 8–10% of the 9:16 frame, continuing the pale salt-stained parchment and sparse sand grain with minimal tonal variation; keep it free of faces, hands, focal objects, tools, hazards and fine detail, and absolutely free of text, letters, numbers, captions, labels, words or UI",
+  "reserve_subtitle_space": false
+}

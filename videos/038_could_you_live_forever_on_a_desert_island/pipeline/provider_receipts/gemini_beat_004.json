@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "e60567479e43d34cd53d2d1602579ed20dec0626a9ccc5756a776e94ce18c9ad",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "fa4a83d0-6f71-4317-ac24-16dbfb6c9878",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/26f0bdcec3163f3d",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=fa4a83d0-6f71-4317-ac24-16dbfb6c9878_output_1.png 1536x2752 sha256=b31315225bd266797af6f99601811fea471d52170ee40f08499f3b4df7cb0bc6"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "e60567479e43d34cd53d2d1602579ed20dec0626a9ccc5756a776e94ce18c9ad",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "fa4a83d0-6f71-4317-ac24-16dbfb6c9878",
+        "prompt_sha256": "8aaf26a04e775099caa73e23e6908be71a91f1abfe62fd38119f2027fd044814",
+        "output_sha256": "b31315225bd266797af6f99601811fea471d52170ee40f08499f3b4df7cb0bc6",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_keyframe.png",
+      "sha256": "fbf8a09a768ceeb9062e6a537578b82b88ed987fd3154718c7b5db86ab021d0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/assets/raw_beats/beat_003.png",
+      "sha256": "41bded9afb09bb0a3796dbd4b72055fd230b53d5040c984aa35a330ada04db03"
+    }
+  ],
+  "prompt_sha256": "8aaf26a04e775099caa73e23e6908be71a91f1abfe62fd38119f2027fd044814",
+  "prompt": "Create exactly one 9:16 image, a tight top-down retro educational survival-field-guide illustration of a forearm crossing the lower diagonal, bearing a small cleanly bandaged scrape with only subtle restrained rust-orange redness at the bandage edge, suggesting early infection risk without gore. Above the arm, place a small bowl of clean water and neatly folded fresh cloth on a neutral parchment-toned campsite surface; show no medicine, pills, bottles, antiseptic, or advanced medical supplies. Render in the established Saltwind Island field-guide treatment: sun-bleached parchment cream, sand and driftwood browns, muted sea-glass teal, washed sky blue, storm-slate gray, restrained rust-orange accents; weathered dark-brown contours, sparse crosshatching, softened ink-wash shadows, fine sand grain, salt staining, abrasion, faded corners, and driftwood-like edge wear. Maintain the recurring irregular salt-weathered parchment frame and clean inner illustration window, with hard tropical daylight softened by paper fading. Use the full illustration height naturally; no blank lower strip, caption reserve, empty panel, or low-detail band. Reference roles: use style_reference only for rendering medium and visual treatment; use world_keyframe only for established world palette, material language, and environmental continuity; use previous_beat as binding for recurring frame, edge treatment, texture, palette, and lighting, but do not copy its composition, crop, camera angle, subject placement, pose, or focal object. Keep the scene clinical, practical, non-graphic, and medically restrained. No photorealism, glossy CGI, anime, neon, pristine vector art, fantasy, pirate motifs, readable text, letters, numbers, labels, captions, UI, storyboard, grid, collage, or panels. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring salt-weathered survival-field-guide page: irregular sun-faded parchment edges, subtle tide-line staining, sand abrasion and driftwood-colored edge wear surrounding a clean central illustration window; the same aged coastal material frame persists across every body image without changing medium. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "b31315225bd266797af6f99601811fea471d52170ee40f08499f3b4df7cb0bc6",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.267,
+  "completed_at": "2026-09-17T20:25:43Z"
+}

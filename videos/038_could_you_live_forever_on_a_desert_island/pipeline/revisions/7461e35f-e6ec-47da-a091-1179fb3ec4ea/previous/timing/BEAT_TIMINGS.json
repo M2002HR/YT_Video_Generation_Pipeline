@@ -1,0 +1,96 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 34.09,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If the island has food and water, why can't you stay forever? The torn shelter gives the clue. Supplies cannot stop storms or every danger. Storms can rip shelters apart and ruin tools. Strong sun and heat can harm your body. A bad injury can become dangerous without medical care. Infection can become serious without treatment. Storms can spoil food or cut off fresh water. Rescue may not arrive when you need it. Even in perfect safety, your body would still age. supplies can extend survival but they cannot make life endless how long would you choose to stay",
+  "word_count": 99,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Storms can rip shelters apart and ruin tools.",
+      "speech_start": 8.86,
+      "speech_end": 11.64,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 12.18,
+      "display_duration": 12.18
+    },
+    {
+      "beat_id": 2,
+      "narration": "Strong sun and heat can harm your body.",
+      "speech_start": 12.18,
+      "speech_end": 14.4,
+      "match_confidence": 1.0,
+      "display_start": 12.18,
+      "display_end": 14.92,
+      "display_duration": 2.74
+    },
+    {
+      "beat_id": 3,
+      "narration": "A bad injury can become dangerous without medical care.",
+      "speech_start": 14.92,
+      "speech_end": 17.96,
+      "match_confidence": 1.0,
+      "display_start": 14.92,
+      "display_end": 17.98,
+      "display_duration": 3.06
+    },
+    {
+      "beat_id": 4,
+      "narration": "Infection can become serious without treatment.",
+      "speech_start": 17.98,
+      "speech_end": 20.44,
+      "match_confidence": 1.0,
+      "display_start": 17.98,
+      "display_end": 20.74,
+      "display_duration": 2.76
+    },
+    {
+      "beat_id": 5,
+      "narration": "Storms can spoil food or cut off fresh water.",
+      "speech_start": 20.74,
+      "speech_end": 23.12,
+      "match_confidence": 1.0,
+      "display_start": 20.74,
+      "display_end": 23.56,
+      "display_duration": 2.82
+    },
+    {
+      "beat_id": 6,
+      "narration": "Rescue may not arrive when you need it.",
+      "speech_start": 23.56,
+      "speech_end": 25.58,
+      "match_confidence": 1.0,
+      "display_start": 23.56,
+      "display_end": 25.12,
+      "display_duration": 1.56
+    },
+    {
+      "beat_id": 7,
+      "narration": "Even in perfect safety, your body would still age.",
+      "speech_start": 25.12,
+      "speech_end": 28.5,
+      "match_confidence": 1.0,
+      "display_start": 25.12,
+      "display_end": 28.56,
+      "display_duration": 3.44
+    },
+    {
+      "beat_id": 8,
+      "narration": "Supplies can extend survival, but they cannot make life endless.",
+      "speech_start": 28.56,
+      "speech_end": 32.06,
+      "match_confidence": 1.0,
+      "display_start": 28.56,
+      "display_end": 34.09,
+      "display_duration": 5.53
+    }
+  ]
+}

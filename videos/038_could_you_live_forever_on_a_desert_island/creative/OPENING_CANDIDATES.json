@@ -1,0 +1,232 @@
+{
+  "input_fingerprint": "e170df019784e56681cca299174270da71dcd837cd06ad1b67659003b321ab70",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "028",
+        "029",
+        "030",
+        "032",
+        "033",
+        "034",
+        "035",
+        "037"
+      ],
+      "writer_prompt_sha256": "d14e960b1cf231a996cd9a2c61c2b05d5b4a68c35e113a952549e46b5508cff0",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If this island has food and water, why can't you stay forever?",
+            "viewer_expectation": "Enough food and water should make long-term survival possible.",
+            "visible_contradiction": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+            "frame_zero": "Full water barrel, gathered food and a badly torn shelter are visible together on the beach.",
+            "character_action": "The captain checks the full barrel, looks at the broken shelter, then raises the spyglass toward the damage.",
+            "reaction": "He pauses, lifts one eyebrow and gives the shelter a doubtful look.",
+            "activity": "comparing secure supplies with sudden storm damage",
+            "location": "small camp on an uninhabited tropical beach after a storm",
+            "topic_link": "Having supplies does not remove dangers that can injure you, destroy shelter or cut off what you need.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Food and water can help survival, but storms, injury, illness and other dangers can still threaten a person over time.",
+            "payoff": "No. Food and water alone cannot make island life safe forever, and a normal human life still has limits.",
+            "entry_variant": "trace_to_cause",
+            "entry_bridge": {
+              "a_end": "The captain steadies the spyglass toward the torn shelter and offers the eyepiece forward.",
+              "b_start": "A hand with a blue cuff holds the same spyglass, with the torn shelter visible through the lens.",
+              "reveal": "The lens follows the broken shelter to wind-bent palms and storm debris, showing that supplies are only part of survival.",
+              "world_entry": "Storm debris surrounds damaged shelter materials while stored food and water remain untouched nearby."
+            },
+            "novelty": {
+              "action_family": "risk comparison",
+              "tension_family": "supplies versus sudden danger",
+              "prop_family": "full rain barrel and torn shelter",
+              "reveal_family": "a secure camp can still be disrupted"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "An island can look green. But where does safe drinking water come from?",
+            "viewer_expectation": "A green island with many plants should have plenty of water to drink.",
+            "visible_contradiction": "Healthy palms surround a bright saltwater pool, but no fresh stream or spring is visible.",
+            "frame_zero": "Green palms, fallen coconuts and a clear saltwater pool fill the scene, with no visible fresh water.",
+            "character_action": "The captain studies the green plants, looks at the saltwater pool, then aims the spyglass past it.",
+            "reaction": "His confident look fades into a small skeptical smile.",
+            "activity": "testing whether a lush-looking island really offers drinkable water",
+            "location": "green coral island beside a shallow saltwater pool",
+            "topic_link": "A place can look rich in life while still lacking one resource a human needs every day.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Some uninhabited islands have little reliable fresh water, and seawater cannot replace safe drinking water.",
+            "payoff": "Without reliable fresh water, survival may be short, so living there forever is not realistic.",
+            "entry_variant": "changed_viewpoint",
+            "entry_bridge": {
+              "a_end": "The captain steadies the spyglass beyond the green palms and holds the eyepiece toward the viewer.",
+              "b_start": "A blue-cuffed hand holds the eyepiece while green leaves and the water surface appear inside the lens.",
+              "reveal": "The closer view shows salt crust and waves feeding the pool, revealing that the clear water is seawater.",
+              "world_entry": "Waves wash into a shallow pool among green plants, while the dry ground shows no fresh stream."
+            },
+            "novelty": {
+              "action_family": "appearance test",
+              "tension_family": "lush land versus missing fresh water",
+              "prop_family": "saltwater pool among green palms",
+              "reveal_family": "clear water is not always drinkable"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "Suppose the island had endless food and water. Could you then live forever?",
+            "viewer_expectation": "If every survival need were supplied forever, nothing important would stop the person.",
+            "visible_contradiction": "A model island has full food and water supplies beside an hourglass that keeps running.",
+            "frame_zero": "A simple model island, full supply containers and a running hourglass are visible on one table.",
+            "character_action": "The captain compares the full supplies with the hourglass, pauses, then raises the spyglass toward the model.",
+            "reaction": "He gives the hourglass a quiet, knowing look.",
+            "activity": "testing a perfect-supplies thought experiment against the limit of a human lifetime",
+            "location": "plain expedition classroom with a tabletop island model",
+            "topic_link": "Removing shortages does not remove the biological limit that comes from being a normal human.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "In this thought experiment, food and water never run out. Even then, a normal human still ages, so living forever is impossible.",
+            "payoff": "No. Perfect supplies could remove some survival problems, but they would not stop normal human aging.",
+            "entry_variant": "two_object_compare",
+            "entry_bridge": {
+              "a_end": "The captain steadies the spyglass between the full supplies and the hourglass, then offers the eyepiece.",
+              "b_start": "A blue-cuffed hand holds the spyglass as the model island fills the lens.",
+              "reveal": "The model gives way to a real island with abundant food and water, while the explanation shifts from supplies to human aging.",
+              "world_entry": "Fresh water and food are abundant on an empty island, establishing the thought experiment's perfect supply condition."
+            },
+            "novelty": {
+              "action_family": "thought experiment",
+              "tension_family": "endless supplies versus human aging",
+              "prop_family": "model island, supply containers and hourglass",
+              "reveal_family": "removing shortages does not remove aging"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "028",
+        "029",
+        "030",
+        "032",
+        "033",
+        "034",
+        "035",
+        "037"
+      ],
+      "reviewer_prompt_sha256": "3b97a4e5702581278cb1619c44effe549279beb21d92909ae1d9c662d34f692b",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 3,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The first frame gives a clear, topic-specific contradiction: useful food and water are secure while the shelter is badly damaged. The captain can read that problem in three simple actions, and the storm evidence supports the claim without suggesting that supplies guarantee survival. The spyglass entry adds useful cause evidence, though the storm has already passed, so wind-bent palms and debris are a slightly less direct cause clue than an active effect would be. The hook and payoff are plain, accurate and directly answer why supplies alone do not make life on the island safe forever."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 2,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The fresh-water problem is an important part of island survival, and the wording correctly limits the claim to islands that lack reliable fresh water. The spyglass reveal is useful because waves and salt crust explain that the inviting pool is seawater. However, the opening image by itself is weaker: green plants beside clear water can look reassuring, and the absence of a visible stream does not clearly prove a drinking-water problem at first glance. It also answers one possible island danger rather than the full 'live forever' question."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 2,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [
+              "The spyglass entry does not provide the required explanatory clue for the answer. It changes the model into a real island with abundant supplies, but that only restates the thought experiment; nothing in the lens reveals or supports the key point about human aging."
+            ],
+            "reason": "This is the most direct test of the word 'forever': it removes food and water shortages and correctly leaves normal human aging as the remaining limit. The hourglass beside full supplies makes the contrast fairly readable, and the hypothetical framing prevents the reconstruction from being treated as evidence. The spoken hook and payoff are very clear. The fundamental problem is the entry contract: the meaningful clue about aging stays outside the spyglass transition instead of being discovered through it."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 3,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The first frame gives a clear, topic-specific contradiction: useful food and water are secure while the shelter is badly damaged. The captain can read that problem in three simple actions, and the storm evidence supports the claim without suggesting that supplies guarantee survival. The spyglass entry adds useful cause evidence, though the storm has already passed, so wind-bent palms and debris are a slightly less direct cause clue than an active effect would be. The hook and payoff are plain, accurate and directly answer why supplies alone do not make life on the island safe forever.",
+          "repetition_evidence": [],
+          "weighted_score": 90
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 2,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The fresh-water problem is an important part of island survival, and the wording correctly limits the claim to islands that lack reliable fresh water. The spyglass reveal is useful because waves and salt crust explain that the inviting pool is seawater. However, the opening image by itself is weaker: green plants beside clear water can look reassuring, and the absence of a visible stream does not clearly prove a drinking-water problem at first glance. It also answers one possible island danger rather than the full 'live forever' question.",
+          "repetition_evidence": [],
+          "weighted_score": 80
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 2,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "The spyglass entry does not provide the required explanatory clue for the answer. It changes the model into a real island with abundant supplies, but that only restates the thought experiment; nothing in the lens reveals or supports the key point about human aging.",
+            "Insufficient topic fit, honesty, payoff, entry feasibility, visible hook or spoken clarity."
+          ],
+          "reason": "This is the most direct test of the word 'forever': it removes food and water shortages and correctly leaves normal human aging as the remaining limit. The hourglass beside full supplies makes the contrast fairly readable, and the hypothetical framing prevents the reconstruction from being treated as evidence. The spoken hook and payoff are very clear. The fundamental problem is the entry contract: the meaningful clue about aging stays outside the spyglass transition instead of being discovered through it.",
+          "repetition_evidence": [],
+          "weighted_score": 85
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "audio_duration_seconds": 34.09,
+  "spark_start": 0.0,
+  "spark_end": 3.88,
+  "spark_duration": 3.88,
+  "transition_start": 4.12,
+  "transition_end": 8.52,
+  "transition_duration": 4.4,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 3.88,
+  "clip_b_target_seconds": 4.64,
+  "body_start": 8.86,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If the island has food and water, why can't you stay forever?",
+      "speech_start": 0.0,
+      "speech_end": 3.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "The torn shelter gives the clue: supplies cannot stop storms or every danger.",
+      "speech_start": 4.12,
+      "speech_end": 8.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Storms can rip shelters apart and ruin tools.",
+      "speech_start": 8.86,
+      "speech_end": 11.64,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Strong sun and heat can harm your body.",
+      "speech_start": 12.18,
+      "speech_end": 14.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "A bad injury can become dangerous without medical care.",
+      "speech_start": 14.92,
+      "speech_end": 17.96,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Infection can become serious without treatment.",
+      "speech_start": 17.98,
+      "speech_end": 20.44,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Storms can spoil food or cut off fresh water.",
+      "speech_start": 20.74,
+      "speech_end": 23.12,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Rescue may not arrive when you need it.",
+      "speech_start": 23.56,
+      "speech_end": 25.58,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Even in perfect safety, your body would still age.",
+      "speech_start": 25.12,
+      "speech_end": 28.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Supplies can extend survival, but they cannot make life endless.",
+      "speech_start": 28.56,
+      "speech_end": 32.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "How long would you choose to stay?",
+      "speech_start": 32.06,
+      "speech_end": 33.74,
+      "match_confidence": 1.0
+    }
+  ]
+}

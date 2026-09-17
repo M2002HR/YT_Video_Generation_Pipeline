@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "c1eb8877b13cdee48aa6166bd826342d5aa51e6ec46e0c71020d273222d693bf",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "6894f790-8ba7-4d37-9e6a-f1b085981391",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/7d208937d849878f",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=6894f790-8ba7-4d37-9e6a-f1b085981391_output_1.png 1536x2752 sha256=ed4272fffef5d7bf928f0af80fc37786c4be3258c2e8e5369b73271f38679660"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "c1eb8877b13cdee48aa6166bd826342d5aa51e6ec46e0c71020d273222d693bf",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "6894f790-8ba7-4d37-9e6a-f1b085981391",
+        "prompt_sha256": "3f766a339d91e62ae0cd5c56040503432462fdc71feb0f67da2ef53a6100bcb6",
+        "output_sha256": "ed4272fffef5d7bf928f0af80fc37786c4be3258c2e8e5369b73271f38679660",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_keyframe.png",
+      "sha256": "fbf8a09a768ceeb9062e6a537578b82b88ed987fd3154718c7b5db86ab021d0c"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/assets/raw_beats/beat_004.png",
+      "sha256": "b31315225bd266797af6f99601811fea471d52170ee40f08499f3b4df7cb0bc6"
+    }
+  ],
+  "prompt_sha256": "3f766a339d91e62ae0cd5c56040503432462fdc71feb0f67da2ef53a6100bcb6",
+  "prompt": "Gemini Image Prompt\n\nCreate exactly one vertical 9:16 image: an aged coastal survival field-guide illustration viewed from a wide overhead angle, showing storm runoff flooding a small supply cache. Muddy rainwater cuts diagonally across the full scene; soaked, torn food wrappings and ruined food bundles lie at lower left, an overturned covered water vessel rests near center, and broken rain-catch leaves with a rain-choked freshwater collection setup occupy the upper right, clearly communicating that storms can spoil stored food and interrupt safe fresh-water supplies. Render in retro educational illustration with subtle ink wash, crisp but slightly broken dark-brown contours, sparse crosshatching, softened wash shadows, sun-bleached parchment cream, sand and driftwood browns, muted sea-glass teal, washed blue, storm-slate gray, and restrained rust-orange hazard accents. Preserve the recurring salt-weathered field-guide frame: irregular faded parchment edges, tide-line staining, fine sand grain, abraded corners, driftwood-like wear, and a clean central illustration window. Use storm-darkened tropical daylight while retaining the faded palette. Fill the complete illustration height naturally; no caption reserve, blank strip, empty panel, or low-detail band. Use style_reference only for rendering treatment, world_keyframe only for world-wide medium/palette/material continuity, and previous_beat as binding reference for recurring frame language, edge treatment, texture, palette, and lighting—do not copy its composition, crop, camera angle, subject placement, or focal object. Do not carry over any opening environment or entry mechanism. No shelter as focal subject, no photorealism, glossy CGI, anime, neon, pristine vector finish, tourism aesthetic, pirate motifs, fantasy elements, graphic injury, storyboard, grid, collage, panels, captions, labels, UI, letters, numbers, or readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring salt-weathered survival-field-guide page: irregular sun-faded parchment edges, subtle tide-line staining, sand abrasion and driftwood-colored edge wear surrounding a clean central illustration window; the same aged coastal material frame persists across every body image without changing medium. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "ed4272fffef5d7bf928f0af80fc37786c4be3258c2e8e5369b73271f38679660",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.195,
+  "completed_at": "2026-09-17T20:27:21Z"
+}

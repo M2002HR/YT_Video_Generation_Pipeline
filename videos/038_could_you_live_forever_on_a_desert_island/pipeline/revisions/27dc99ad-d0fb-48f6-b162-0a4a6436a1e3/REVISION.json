@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "revision_id": "27dc99ad-d0fb-48f6-b162-0a4a6436a1e3",
+  "kind": "config",
+  "created_at": "2026-09-17T18:16:22.584682+00:00",
+  "roots": [
+    "call_to_action"
+  ],
+  "affected_nodes": [
+    "call_to_action",
+    "opening_source_plan",
+    "flow_prompt_a",
+    "flow_prompt_b",
+    "flow_clip_a",
+    "flow_clip_b",
+    "elevenlabs_voiceover",
+    "background_music",
+    "ajil_alignment",
+    "opening_trim",
+    "build_timeline",
+    "audio_mix_profile",
+    "render_baseline",
+    "qc_baseline",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "git_commit_push",
+    "publish_telegram"
+  ],
+  "reused_nodes": [
+    "character_resolution",
+    "opening_concept",
+    "script_draft",
+    "retention_edit",
+    "episode_director",
+    "world_style_director",
+    "world_style_anchor",
+    "episode_history",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_design_sheet",
+    "book_cover_design",
+    "book_cover",
+    "body_images",
+    "transition_direction",
+    "render_profile"
+  ],
+  "skipped_nodes": [
+    "motion_director",
+    "sfx_plan",
+    "sfx_acquire"
+  ],
+  "archived_artifacts": [],
+  "regenerate_beats": [],
+  "feedback": "",
+  "status": "STOPPED",
+  "regeneration_mode": "cascade",
+  "use_chatgpt_feedback": false,
+  "started_at": "2026-09-17T18:16:22.585321+00:00",
+  "pid": 9469,
+  "changed_fields": [
+    "cta_hint"
+  ],
+  "config_revision_id": "a2dd65ae-e545-4b0b-9e8f-78e6afe03b46",
+  "completed_at": "2026-09-17T18:44:10.430809+00:00"
+}

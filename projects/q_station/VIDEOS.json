@@ -99,6 +99,29 @@
       "entry_variant": "sleeve_reveal",
       "opening_policy_version": 2,
       "updated_at": "2026-09-16T10:24:08.344267+00:00"
+    },
+    {
+      "video_id": "038",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-17T21:03:22.774026+00:00"
+    },
+    {
+      "video_id": "038_could_you_live_forever_on_a_desert_island"
     }
   ]
 }

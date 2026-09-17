@@ -1,0 +1,101 @@
+{
+  "policy_version": 2,
+  "brief": {
+    "topic": "Could You Live Forever on a Desert Island?",
+    "language": "English",
+    "duration_seconds": [
+      23.0,
+      40.0
+    ],
+    "hero_presence_mode": "opener_only"
+  },
+  "character": {
+    "id": "sea_captain",
+    "archetype": "seasoned, curious explorer who questions appearances and follows evidence",
+    "tone": [
+      "curious",
+      "observant",
+      "wry",
+      "warm",
+      "adventurous"
+    ],
+    "behavior": "An experienced explorer, not an all-knowing lecturer or a bumbling fool. He notices a discrepancy, briefly questions his first assumption, then follows evidence with restrained, readable curiosity. A raised eyebrow, a short pause or a small skeptical smile is enough; no constant shouting or pirate catchphrases. Keep spoken English plain and internationally clear.\n\nThe question chooses the situation. He can observe an ordinary object, compare two outcomes, trace a consequence or change his viewpoint in any topic-appropriate setting. Do not require a ship, sea, treasure hunt, nautical metaphor or chore. A historical reconstruction or thought experiment must remain explicitly such, not fabricated evidence. The spyglass invites a closer explanatory look; it does not magically solve the question. Start with secondary props already resting safely or outside the shot so the main action needs no juggling. Let the body deliver the specific opening payoff; appear in later beats only when the selected host-presence policy and explanation benefit.",
+    "negative_constraints": "No character redesign, mirrored eye patch or swapped peg leg, second boot, extra limbs, hook replacing a hand, new weapons, generic pirate substitution or photoreal/3D redesign. Do not use the covered eye with the spyglass. No drinking, smoking performance, combat, threatening blade use or mockery of age/disability. Keep existing accessories passive and secondary. No automatic ocean, pirate ship, tavern, treasure or sepia world for unrelated questions. No invented facts, magic-as-scientific-proof, ritual catchphrases, introductory greeting or three copies of the same story. Do not copy turnaround labels, reference grids or bottle lettering into the shot as explanatory text.",
+    "environment_policy": "dynamic",
+    "environment_affinities": []
+  },
+  "presentation": {
+    "profile_id": "spyglass_portal",
+    "display_name": "Question -> Captain's Spyglass -> Topic World",
+    "entry_kind": "spyglass",
+    "entry_segment_key": "entry_transition",
+    "entry_segment_label": "spyglass transition",
+    "script_rules": "Two opening segments: opening_question_spark shows a topic-specific discrepancy with the resolved host; entry_transition gives a real explanatory clue as the viewer's gaze passes through his spyglass into the subject world. Never use book_transition, a book, an orb or a portal-door detour. Do not narrate camera movement or announce an adventure instead of answering the question. No greeting, compulsory nautical jargon or pirate catchphrase.\n\nThe body must answer the selected hook and preserve factual qualifications. The first discovery is host-free and topic-led, not necessarily nautical. Close with the promised answer, optionally an earned entry echo or return, before CTA. Keep one still per body unit and one for a non-empty optional_closing; do not invent a third Flow clip.",
+    "episode_rules": "Use the selected topic-first premise, one location and at most three readable actions in A. Vary the conflict, evidence and payoff, not merely the camera. The spyglass recurs; ships and treasure do not have to. Respect the requested host-presence mode.\n\nAllowed entry variants: near_detail inspects an ordinary detail; far_target singles out distant evidence; two_object_compare resolves a visible comparison; trace_to_cause follows an effect toward its cause; changed_viewpoint questions an initial interpretation; pattern_inspection follows a meaningful repetition. Choose by explanatory fit, not rotation. These are scene strategies, never claims of impossible optical powers.\n\nEnd A with the captain steadying or offering the eyepiece; B begins at that eyepiece with a readable hand/blue-cuff ownership cue. Match orientation and hand placement across an editorial seam, not an assumed pixel-perfect join. Aim the barrel away from the viewer. Inside the lens, reveal a topic clue, then let the host-free subject world fill the frame. No face or eyeball inside the tube. Keep body styling independent of host and prop; no permanent circular mask.",
+    "entry_frame_character_presence": "ownership_cue",
+    "entry_variants": [
+      "near_detail",
+      "far_target",
+      "two_object_compare",
+      "trace_to_cause",
+      "changed_viewpoint",
+      "pattern_inspection"
+    ]
+  },
+  "writer_sha256": "cd03ebc51fd4cdb796459d00278118b22b1003d46b07c04d6266e105092d69e0",
+  "reviewer_sha256": "7424febd2238a7c58fe6986489f3f62c1e339cca6d3e8a7ba9c909ba54d549f0",
+  "language_policy_version": 1,
+  "input_fingerprint": "e170df019784e56681cca299174270da71dcd837cd06ad1b67659003b321ab70",
+  "history": [
+    {
+      "video_id": "028",
+      "opening_activity": "quality-checking apples on a moving sorting table and accidentally sending an obviously bruised apple into the good crate while discarding a clean one",
+      "opening_location": "early-morning orchard packing shed"
+    },
+    {
+      "video_id": "029",
+      "opening_activity": "sorting small stage-maintenance tools into a compartmented case after a rehearsal has ended, while unconsciously repeating the same three-tool placement rhythm",
+      "opening_location": "empty neighborhood music rehearsal studio during post-session cleanup"
+    },
+    {
+      "video_id": "030",
+      "opening_activity": "coiling a salt-wet mooring line after securing a small docked skiff, then stopping when one section has cinched itself into an unusually tangled knot",
+      "opening_location": "weathered public marina dock beside a small tied skiff"
+    },
+    {
+      "video_id": "032",
+      "opening_activity": "sorting mismatched hand tools back onto a wall-mounted tool rack after a community repair session while another volunteer works at the neighboring bench",
+      "opening_location": "quiet late-afternoon community repair workshop"
+    },
+    {
+      "video_id": "033",
+      "opening_activity": "boring a pilot hole into a wooden display base with an old hand-cranked geared drill, then stopping when its exposed interlocking gears bind mid-turn",
+      "opening_location": "quiet maritime museum exhibit-preparation room beside an unfinished shipwreck display"
+    },
+    {
+      "video_id": "034",
+      "opening_activity": "checking a dripping irrigation junction at a city allotment, then pausing as a nearby garden hose continues spraying unattended across an empty plot",
+      "opening_location": "quiet early-morning urban community garden with several adjacent raised beds"
+    },
+    {
+      "video_id": "035",
+      "opening_activity": "tying a sagging tomato vine back onto its trellis with her long fingers as the greenhouse's timed overhead misters suddenly activate across the surrounding beds without anyone oper",
+      "opening_location": "rooftop greenhouse garden above a quiet high-rise district at early morning"
+    },
+    {
+      "video_id": "037",
+      "character_id": "moss_cloaked_crone",
+      "opening_activity": "deliberately comparing public display with private concealment",
+      "opening_location": "quiet sculpture gallery beside a temporary changing booth",
+      "situation_summary": "A nude marble figure is openly displayed while a nearby person urgently pulls a changing curtain shut.",
+      "hook_line": "Why can a naked statue feel proper when a naked person feels exposed?",
+      "entry_variant": "sleeve_reveal",
+      "opening_signature": {
+        "action_family": "context comparison",
+        "tension_family": "public display versus concealment",
+        "prop_family": "nude marble statue and privacy curtain",
+        "reveal_family": "same body category, different social rule"
+      }
+    }
+  ]
+}

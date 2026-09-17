@@ -1,0 +1,126 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "ba7f3aa534ca1cfdb0c9d609ff0bbdeb44915c794b07273f00e7a07816f8bb58",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical retro educational style-reference sheet on heavily weathered parchment, with boxed samples of mottled paper, sand grain, driftwood, contour lines, crosshatching, gray wash, and small palette/icon tiles in sand brown, muted teal, washed blue, storm gray, and rust orange. The linework is dark brown, hand-inked, slightly irregular, and supported by sparse hatching and softened wash shadows. No characters, logos, typographic labels, photorealistic elements, anime styling, neon colors, or glossy 3D rendering are visible.",
+    "violations": [
+      "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+      "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+      "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+      "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+      "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+    ],
+    "observations": [
+      "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+      "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+      "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "d23cccaf-e546-4602-81ec-01aabfda7dce",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/23b3bdc8b344ae8a",
+    "submission_fingerprint": null,
+    "reference_roles": [],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=d23cccaf-e546-4602-81ec-01aabfda7dce_output_1.png 1536x2752 sha256=08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A single vertical retro educational style-reference sheet on heavily weathered parchment, with boxed samples of mottled paper, sand grain, driftwood, contour lines, crosshatching, gray wash, and small palette/icon tiles in sand brown, muted teal, washed blue, storm gray, and rust orange. The linework is dark brown, hand-inked, slightly irregular, and supported by sparse hatching and softened wash shadows. No characters, logos, typographic labels, photorealistic elements, anime styling, neon colors, or glossy 3D rendering are visible.",
+      "violations": [
+        "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+        "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+        "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+        "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+        "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+      ],
+      "observations": [
+        "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+        "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+        "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "ba7f3aa534ca1cfdb0c9d609ff0bbdeb44915c794b07273f00e7a07816f8bb58",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "job_id": "d23cccaf-e546-4602-81ec-01aabfda7dce",
+        "prompt_sha256": "b2f9bd6a177e0fd187a535c393e21e0b618da0d6b09123f398627b2003f983a4",
+        "output_sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550",
+        "quality_check": {
+          "passed": true,
+          "description": "A single vertical retro educational style-reference sheet on heavily weathered parchment, with boxed samples of mottled paper, sand grain, driftwood, contour lines, crosshatching, gray wash, and small palette/icon tiles in sand brown, muted teal, washed blue, storm gray, and rust orange. The linework is dark brown, hand-inked, slightly irregular, and supported by sparse hatching and softened wash shadows. No characters, logos, typographic labels, photorealistic elements, anime styling, neon colors, or glossy 3D rendering are visible.",
+          "violations": [
+            "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+            "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+            "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+            "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+            "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+          ],
+          "observations": [
+            "The anchor icon introduces a mild nautical/pirate-associated motif despite the direction to avoid pirate clichés; it is decorative and does not make the sheet unusable.",
+            "Several right-column icon tiles have comparatively crisp rectangular framing and flat fills, making those portions feel slightly cleaner and more graphic than the requested consistently weathered field-guide treatment.",
+            "The large upper texture panel is very sparse, though it functions as a parchment texture sample rather than an empty subtitle area."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [],
+  "prompt_sha256": "b2f9bd6a177e0fd187a535c393e21e0b618da0d6b09123f398627b2003f983a4",
+  "prompt": "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, not a scene. Medium: retro educational illustration. Texture family: sun-bleached paper with salt-stained parchment mottling, fine sand grain, abraded corners and driftwood-like wear. Palette: faded parchment cream, sun-bleached sand, dry palm and driftwood browns, muted sea-glass teal, washed sky blue, storm-slate gray and restrained rust-orange accents for hazards. Line treatment: weathered field-guide linework with crisp but slightly broken dark-brown contours, sparse crosshatching and softened ink-wash shadows. Lighting: hard tropical daylight softened by paper fading, with occasional storm-darkened overcast passages while preserving the same restrained illustrated palette. Avoid: no photorealism, no glossy 3D CGI, no anime, no neon palette, no pristine digital vector finish, no lush postcard-tourism aesthetic, no pirate clichés, no fantasy creatures, no graphic wounds, no oversized empty subtitle void, and no embedded text or typographic labels. No characters, no text, no logos, no photorealism.",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 54.203,
+  "completed_at": "2026-09-17T19:05:10Z"
+}

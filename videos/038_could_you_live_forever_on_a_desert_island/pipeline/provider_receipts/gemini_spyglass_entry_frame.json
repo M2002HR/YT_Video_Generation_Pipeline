@@ -1,0 +1,147 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "cb90a1e1e076a3a69f3af0cf43a5c4a0d3e10565116fb746c1a44c452568d0d4",
+  "quality_check": {
+    "passed": true,
+    "description": "A portrait-format hand-drawn scene on an aged parchment page shows a brass-and-brown spyglass thrust close to camera, held at the lower-right edge by a blue-cuffed hand. The dominant circular lens contains torn shelter fabric and a partly collapsed support frame. Outside the lens, the tropical beach shows bent palms, scattered branches, damaged cordage and storm debris, while a water-filled barrel and gathered fruit remain intact nearby.",
+    "violations": [
+      "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+      "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+      "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "raw_passed": true,
+    "raw_violations": [
+      "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+      "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+      "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+    ],
+    "observations": [
+      "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+      "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+      "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "3589660c-c9a7-462e-85a3-f5a296850134",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a5fa2039d8fce569",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=3589660c-c9a7-462e-85a3-f5a296850134_output_1.png 1536x2752 sha256=d1c1a2348d791846337f7d26ff02d364f6cc5b37b910cbf76d861abe3e1f8f99"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "A portrait-format hand-drawn scene on an aged parchment page shows a brass-and-brown spyglass thrust close to camera, held at the lower-right edge by a blue-cuffed hand. The dominant circular lens contains torn shelter fabric and a partly collapsed support frame. Outside the lens, the tropical beach shows bent palms, scattered branches, damaged cordage and storm debris, while a water-filled barrel and gathered fruit remain intact nearby.",
+      "violations": [
+        "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+        "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+        "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "raw_passed": true,
+      "raw_violations": [
+        "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+        "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+        "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+      ],
+      "observations": [
+        "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+        "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+        "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "cb90a1e1e076a3a69f3af0cf43a5c4a0d3e10565116fb746c1a44c452568d0d4",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "3589660c-c9a7-462e-85a3-f5a296850134",
+        "prompt_sha256": "76a5d778b03061dfe5de5ee69eef30fd634a6b7d446a15ab44d312dc4d5f9c96",
+        "output_sha256": "d1c1a2348d791846337f7d26ff02d364f6cc5b37b910cbf76d861abe3e1f8f99",
+        "quality_check": {
+          "passed": true,
+          "description": "A portrait-format hand-drawn scene on an aged parchment page shows a brass-and-brown spyglass thrust close to camera, held at the lower-right edge by a blue-cuffed hand. The dominant circular lens contains torn shelter fabric and a partly collapsed support frame. Outside the lens, the tropical beach shows bent palms, scattered branches, damaged cordage and storm debris, while a water-filled barrel and gathered fruit remain intact nearby.",
+          "violations": [
+            "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+            "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+            "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "raw_passed": true,
+          "raw_violations": [
+            "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+            "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+            "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+          ],
+          "observations": [
+            "Spyglass orientation appears reversed relative to the requested eyepiece-facing-viewer direction: the broad objective-style end corresponding to the entry_identity's large lens faces the viewer, while the narrower eyepiece end points away.",
+            "The foreground spyglass and portions of the exterior beach use somewhat heavier, cleaner black comic contours and stronger brass saturation than the style_reference's slightly broken dark-brown field-guide linework and more sun-faded palette; the lens interior is closer to the requested muted ink-wash treatment.",
+            "The hand is visibly associated with the captain through the blue cuff, but the actual gripping fingers are largely concealed behind the oversized lens housing, making the requested firm barrel grip less explicit."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/spyglass_portal/refs/spyglass_design_sheet.png",
+      "sha256": "c733a98c6dee4f49de1f372bf25f9cb0f8ae8e6d30ba29420c38efc8358ac486"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/sea_captain/refs/character_sheet.png",
+      "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    }
+  ],
+  "prompt_sha256": "76a5d778b03061dfe5de5ee69eef30fd634a6b7d446a15ab44d312dc4d5f9c96",
+  "prompt": "Create one full 9:16 hand-drawn scene, never a reference sheet. The captain's same spyglass is close to camera, eyepiece facing the viewer and barrel pointing away into the topic-appropriate setting. Its circular lens dominates without swallowing the recognizable brass rim and brown barrel. Preserve the attached entry_identity's object design and the character_sheet's actual hand, blue coat cuff and proportions. Show one restrained ownership and agency cue at an edge, not the whole host or a floating anonymous telescope. Do not redesign the captain to match the world style.\n\nInside the lens place the first topic-specific clue in the attached style_reference's medium, palette and texture; outside it keep the established opening treatment. Follow episode direction for orientation, grip and the A/B seam. The lens is an explanatory window, not a microscope or supernatural proof. No eye/face behind the lens, bottle/pipe performance, text, labels, grid, UI, new emblems, extra limbs, 3D or photorealism. The eventual world keyframe must have neither host nor telescope.\n\nEPISODE TOPIC: Could You Live Forever on a Desert Island?\nEPISODE DIRECTION: Bright post-storm tropical beach camp: a blue-cuffed hand firmly holds the captain’s spyglass, barrel aimed away from the viewer. Through the lens, torn shelter fabric and a partly collapsed frame snap in the wind. Beyond it, bent palms, scattered branches, ripped cordage and storm debris trace the damage outward. Keep a full rain barrel and gathered fruit clearly intact nearby, creating an immediate visual contradiction between secure supplies and environmental danger.\nTOPIC-WORLD STYLE: {\"style_id\": \"saltwind_island_fieldguide_001\", \"decision\": \"new\", \"reuse_of\": null, \"medium\": \"retro educational illustration\", \"secondary_treatment\": \"subtle ink wash\", \"texture_family\": \"sun-bleached paper with salt-stained parchment mottling, fine sand grain, abraded corners and driftwood-like wear\", \"palette_summary\": \"faded parchment cream, sun-bleached sand, dry palm and driftwood browns, muted sea-glass teal, washed sky blue, storm-slate gray and restrained rust-orange accents for hazards\", \"line_treatment\": \"weathered field-guide linework with crisp but slightly broken dark-brown contours, sparse crosshatching and softened ink-wash shadows\", \"lighting\": \"hard tropical daylight softened by paper fading, with occasional storm-darkened overcast passages while preserving the same restrained illustrated palette\", \"frame_language\": \"a recurring salt-weathered survival-field-guide page: irregular sun-faded parchment edges, subtle tide-line staining, sand abrasion and driftwood-colored edge wear surrounding a clean central illustration window; the same aged coastal material frame persists across every body image without changing medium\", \"subtitle_reserve\": \"no dedicated caption reserve; the scene and matching texture fill the complete illustration height\", \"subject_constraints\": \"desert-island survival vocabulary only: torn shelters, palm or coastal vegetation, improvised tools, stored food and water, heat exposure, storms, damaged supplies, minor-to-serious injury cues, infection risk represented non-graphically, dwindling fresh water, distant ocean rescue possibilities and natural signs of aging; favor practical survival imagery over fantasy or luxury-resort motifs\", \"historical_accuracy_note\": null, \"hero_rendering_in_world\": \"if the resolved host appears later, translate the existing host silhouette and proportions into the same faded field-guide illustration language with weathered contour ink, restrained flat color and light wash shading; do not invent new identity traits\", \"negative_constraints\": \"no photorealism, no glossy 3D CGI, no anime, no neon palette, no pristine digital vector finish, no lush postcard-tourism aesthetic, no pirate clichés, no fantasy creatures, no graphic wounds, no oversized empty subtitle void, and no embedded text or typographic labels\", \"reason\": \"A new style is required by the operator directive. The sun-bleached, salt-stained, sand-grained and driftwood-worn field-guide treatment directly supports a desert-island survival story while letting storms, heat, injury, infection, water loss and aging read clearly as practical hazards. It also increases between-episode diversity: the two most recent episodes used cinematic charcoal and the next recent styles used cave-fresco treatments, so reusing those heavily weathered dark or mineral textures would incur a strong recent-usage penalty.\", \"style_subtitle_reserve\": \"a calm lower field occupying only the bottom 8–10% of the 9:16 frame, continuing the pale salt-stained parchment and sparse sand grain with minimal tonal variation; keep it free of faces, hands, focal objects, tools, hazards and fine detail, and absolutely free of text, letters, numbers, captions, labels, words or UI\", \"reserve_subtitle_space\": false}",
+  "output_path": "references/spyglass_entry_frame.png",
+  "output_sha256": "d1c1a2348d791846337f7d26ff02d364f6cc5b37b910cbf76d861abe3e1f8f99",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 69.187,
+  "completed_at": "2026-09-17T20:18:46Z"
+}

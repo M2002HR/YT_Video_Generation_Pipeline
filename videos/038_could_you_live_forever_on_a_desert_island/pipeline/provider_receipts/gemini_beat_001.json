@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "b55f2c9ec1012c7b8841108ebff89b593371f6f98a637230c12e05baf0a75d41",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "24e87eb9-474c-48f9-b16e-7d03bb832ae6",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "768:1376",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/44b42df685706aa1",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=24e87eb9-474c-48f9-b16e-7d03bb832ae6_output_1.png 768x1376 sha256=4b0453ad75b136d70a076b741a165fd6c1d6fce6bebbd7dd4b7e732df361d876"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "b55f2c9ec1012c7b8841108ebff89b593371f6f98a637230c12e05baf0a75d41",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "24e87eb9-474c-48f9-b16e-7d03bb832ae6",
+        "prompt_sha256": "2f1411ce8d3f871f9db62b9a7776c2c815046a8a8e25a5c38f7f48e58001c705",
+        "output_sha256": "4b0453ad75b136d70a076b741a165fd6c1d6fce6bebbd7dd4b7e732df361d876",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/038_could_you_live_forever_on_a_desert_island/references/world_keyframe.png",
+      "sha256": "fbf8a09a768ceeb9062e6a537578b82b88ed987fd3154718c7b5db86ab021d0c"
+    }
+  ],
+  "prompt_sha256": "2f1411ce8d3f871f9db62b9a7776c2c815046a8a8e25a5c38f7f48e58001c705",
+  "prompt": "Create exactly one 9:16 image: a retro educational field-guide illustration of a violent desert-island squall destroying essential survival gear. Use a wide-feeling low-angle composition within the vertical frame: at left, an improvised palm-frond shelter is ripped open and whipped sideways by strong diagonal wind; at right, a crude wooden tool rack collapses as simple handmade survival tools scatter across rain-soaked sand. Drive rain sharply through the beach clearing beneath storm-slate overcast, emphasizing practical weather damage rather than drama or fantasy. Preserve the canonical world treatment: sun-bleached parchment cream, faded sand and driftwood browns, muted sea-glass teal, washed blue, storm gray, restrained rust accents; weathered dark-brown contour ink, sparse crosshatching, subtle ink-wash shadows, fine sand grain, salt-stained parchment mottling, abraded corners, tide marks, and driftwood-like edge wear framing a clean central illustration window. Fill the full illustration height naturally with scene detail; do not reserve any caption strip, blank panel, subtitle band, or empty lower field. The style_reference defines rendering treatment only—medium, linework, texture, palette, and weathering—not subject identity, pose, layout, or composition. The world_keyframe anchors the established island-world frame material, palette, lighting, and texture continuity only; do not copy its composition or import unrelated opening-environment or entry-mechanism elements. No people or recurring host. No photorealism, glossy CGI, anime, neon, pristine vector finish, tourist-postcard lushness, pirate clichés, fantasy elements, or graphic injury. Exactly one image only; no storyboard, grid, collage, split panels, captions, labels, UI, letters, numbers, or readable text. NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this image: a recurring salt-weathered survival-field-guide page: irregular sun-faded parchment edges, subtle tide-line staining, sand abrasion and driftwood-colored edge wear surrounding a clean central illustration window; the same aged coastal material frame persists across every body image without changing medium. Preserve its material/edge grammar, texture, palette and inner illustration window while changing only the scene inside it. Do not reserve a lower caption field, blank strip, empty panel or low-detail band. Continue the scene and its natural texture through the full usable height, guided by the previous accepted image, without adding text, letters, numbers, captions, labels, words or UI.",
+  "output_path": "assets/raw_beats/beat_001.png",
+  "output_sha256": "4b0453ad75b136d70a076b741a165fd6c1d6fce6bebbd7dd4b7e732df361d876",
+  "output_dimensions": [
+    768,
+    1376
+  ],
+  "elapsed_seconds": 69.214,
+  "completed_at": "2026-09-17T20:20:21Z"
+}

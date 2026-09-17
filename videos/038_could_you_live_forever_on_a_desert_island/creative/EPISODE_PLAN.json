@@ -1,0 +1,30 @@
+{
+  "concept_id": "34f061b1425ae0e62b21",
+  "opening_actions": [
+    "The captain checks the full rain barrel and gathered food.",
+    "He turns to the badly torn shelter and pauses at the contrast.",
+    "He raises the spyglass toward the shelter damage and steadies it for the viewer."
+  ],
+  "entry_bridge": {
+    "a_end": "The captain steadies the spyglass toward the torn shelter and offers the eyepiece forward, with the barrel and damaged camp still nearby.",
+    "b_start": "Across an editorial seam, a hand with a blue cuff holds the same spyglass aimed away from the viewer, with the torn shelter clearly visible through the lens.",
+    "reveal": "The view traces the shelter damage outward to wind-bent palms and scattered storm debris, revealing that stored supplies do not prevent environmental danger.",
+    "world_entry": "The host disappears as the damaged beach camp fills the frame: storm debris surrounds ripped shelter materials while stored food and fresh water remain intact nearby."
+  },
+  "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+  "opening_location": "small camp on an uninhabited tropical beach after a storm",
+  "opening_environment": "A bright tropical beach camp just after rough weather, with a full rain barrel, gathered food, a ripped shelter, bent palms and scattered storm debris.",
+  "topic_visual_link": "The intact food and water beside a shelter ripped apart by weather directly show why basic supplies alone cannot guarantee indefinite survival on a desert island.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "A visibly full rain barrel and fresh gathered food sit only a few steps from a shelter whose fabric is torn open and frame partly collapsed by the storm.",
+  "curiosity_trigger": "The secure-looking supplies contrast sharply with torn fabric still fluttering from the wrecked shelter.",
+  "trigger_object": "the storm-torn shelter beside the intact rain barrel and food",
+  "reaction": "He pauses, raises one eyebrow and gives the damaged shelter a small, doubtful look.",
+  "entry_retrieval": "After noticing that the supplies survived while the shelter did not, he shifts his attention along the damage, lifts the spyglass to inspect its cause and then steadies the eyepiece forward for the viewer.",
+  "entry_variant": "trace_to_cause",
+  "camera_pattern": "static_wide",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "Grounded tropical-island survival imagery focused on weather damage, heat, injury risk, contaminated or interrupted resources and ordinary human aging, with no host styling carried into the subject world.",
+  "reason": "The opening turns the script's first claim into an immediate physical contradiction: the captain can plainly see that having food and water does not stop a storm from destroying another essential part of survival."
+}

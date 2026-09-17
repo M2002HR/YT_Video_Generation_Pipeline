@@ -1,0 +1,952 @@
+{
+  "schema_version": 2,
+  "video_id": "038",
+  "topic": "Could You Live Forever on a Desert Island?",
+  "created_at": "2026-09-17T17:59:06Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "requested_mode": "manual",
+      "requested_character_id": "sea_captain",
+      "resolved_character_id": "sea_captain",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-17T21:03:14Z",
+      "body_beats": 8,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:21Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_director_fix2_json1": {
+      "status": "FAILED_UI_CHANGED",
+      "updated_at": "2026-09-17T18:50:10Z",
+      "message": "gemini/chat failed: Gemini Extended Thinking could not be enabled and positively verified from the mode picker.",
+      "error_code": "provider_ui_changed"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-17T21:03:22Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "world_style_anchor.png → catalog/023_saltwind_island_fieldguide_001"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "world_keyframe.png"
+    },
+    "world_keyframe_visual_qc": {
+      "status": "RUNNING",
+      "updated_at": "2026-09-17T19:39:36Z",
+      "fallback_from": "chatgpt",
+      "fallback_to": "gemini",
+      "fallback_reason": "chatgpt/chat failed: ChatGPT login required in your regular Google Chrome session."
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "spyglass_design_sheet.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "SPYGLASS_ENTRY_DIRECTION.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:24Z",
+      "artifact": "spyglass_entry_frame.png"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-17T21:03:28Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:26Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:26Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:27Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:27Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:27Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:27Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:27Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:28Z",
+      "artifact": "beat_008.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:29Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:29Z",
+      "artifact": "flow_prompt_question_intro.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:29Z",
+      "artifact": "flow_prompt_spyglass_transition.txt"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-17T21:03:29Z",
+      "artifact": "question_intro_source.mp4 (4.01s)"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-17T21:05:35Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "86275e259d43f820b14b1e71d604bf4f5153ee961e23ead7a1d996eb4f0291f4"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-17T21:05:36Z",
+      "body_images": 8
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 122.182,
+      "at": "2026-09-17T18:01:09Z",
+      "selected_id": "c1",
+      "concept_id": "34f061b1425ae0e62b21"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 34.769,
+      "at": "2026-09-17T18:01:45Z",
+      "words": 98
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 64.461,
+      "at": "2026-09-17T18:02:51Z",
+      "words": 100
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 55.228,
+      "at": "2026-09-17T18:03:47Z",
+      "activity": "comparing secure food and water supplies with sudden storm damage to the camp"
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 70.715,
+      "at": "2026-09-17T18:17:35Z",
+      "hint_provided": false
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 257.16,
+      "at": "2026-09-17T18:21:54Z",
+      "style_id": "primitive_cave_human_ochre_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.355,
+      "at": "2026-09-17T18:21:56Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "primitive_cave_human_ochre_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 43.165,
+      "at": "2026-09-17T18:22:41Z",
+      "beats": 8
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.408,
+      "at": "2026-09-17T18:34:54Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "primitive_cave_human_ochre_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.515,
+      "at": "2026-09-17T18:35:41Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "primitive_cave_human_ochre_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.58,
+      "at": "2026-09-17T18:38:56Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "primitive_cave_human_ochre_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.539,
+      "at": "2026-09-17T18:40:11Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "primitive_cave_human_ochre_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 147.295,
+      "at": "2026-09-17T18:42:40Z",
+      "sha256": "221df0d0da24cdf120bfccbf82d91388398a9f086bc4b960fed85c3690deaa95",
+      "model": "nano_banana_2",
+      "catalog_path": "022_primitive_cave_human_ochre_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 25.497,
+      "at": "2026-09-17T18:43:07Z",
+      "prompt_sha256": "8db3b926f9f4798ffbeade822ba53fb02c5555cb2cd92123c54eb3005642c739"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 32.682,
+      "at": "2026-09-17T19:02:32Z",
+      "style_id": "saltwind_island_fieldguide_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.062,
+      "at": "2026-09-17T19:02:35Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 43.322,
+      "at": "2026-09-17T19:03:19Z",
+      "beats": 8
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.518,
+      "at": "2026-09-17T19:03:31Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 96.076,
+      "at": "2026-09-17T19:05:10Z",
+      "sha256": "08f56e3544e68da0172274f3d58c2d1c5bffc8debc0758fa76b4523257541550",
+      "model": "nano_banana_2",
+      "catalog_path": "023_saltwind_island_fieldguide_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.272,
+      "at": "2026-09-17T19:16:58Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.292,
+      "at": "2026-09-17T19:17:08Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 29.809,
+      "at": "2026-09-17T19:17:39Z",
+      "prompt_sha256": "b648b0743f7f8071e9dacc53626a56a909ee74910bfcb91e0b5e259dd008e900"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.391,
+      "at": "2026-09-17T19:38:20Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.336,
+      "at": "2026-09-17T19:38:30Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.468,
+      "at": "2026-09-17T19:42:11Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.311,
+      "at": "2026-09-17T19:42:21Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 57.843,
+      "at": "2026-09-17T19:43:20Z",
+      "sha256": "fbf8a09a768ceeb9062e6a537578b82b88ed987fd3154718c7b5db86ab021d0c",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.506,
+      "at": "2026-09-17T19:49:35Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.418,
+      "at": "2026-09-17T19:49:45Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "book_design_sheet",
+      "status": "DONE",
+      "elapsed_seconds": 80.864,
+      "at": "2026-09-17T19:51:07Z",
+      "sha256": "c733a98c6dee4f49de1f372bf25f9cb0f8ae8e6d30ba29420c38efc8358ac486",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 28.208,
+      "at": "2026-09-17T19:51:37Z",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.37,
+      "at": "2026-09-17T20:16:07Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.413,
+      "at": "2026-09-17T20:16:17Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 147.666,
+      "at": "2026-09-17T20:18:46Z",
+      "sha256": "d1c1a2348d791846337f7d26ff02d364f6cc5b37b910cbf76d861abe3e1f8f99",
+      "model": "nano_banana_2",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 69.519,
+      "at": "2026-09-17T20:20:21Z",
+      "sha256": "4b0453ad75b136d70a076b741a165fd6c1d6fce6bebbd7dd4b7e732df361d876",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 75.659,
+      "at": "2026-09-17T20:22:05Z",
+      "sha256": "c02c385b0d0da8c490a1ef7101a6e353e3d30843ae2e2fdec018bda8b8d0effa",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 87.844,
+      "at": "2026-09-17T20:24:02Z",
+      "sha256": "41bded9afb09bb0a3796dbd4b72055fd230b53d5040c984aa35a330ada04db03",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 72.818,
+      "at": "2026-09-17T20:25:43Z",
+      "sha256": "b31315225bd266797af6f99601811fea471d52170ee40f08499f3b4df7cb0bc6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 72.741,
+      "at": "2026-09-17T20:27:21Z",
+      "sha256": "ed4272fffef5d7bf928f0af80fc37786c4be3258c2e8e5369b73271f38679660",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 72.777,
+      "at": "2026-09-17T20:29:02Z",
+      "sha256": "d062dadba258e3e7cc2bfd74f0347413a9309bfd7cd69a5f03f4d1d448f84180",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 72.745,
+      "at": "2026-09-17T20:30:50Z",
+      "sha256": "3c2f6590d6c82ad45dfb11d9b73e2159a873f98be5e5ebca4c9fabde224ff164",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 72.679,
+      "at": "2026-09-17T20:32:31Z",
+      "sha256": "9e5133a55224bd9996d5b1d97fd43580d3db269aa936bf09c23417ddddcd7b5f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 825.414,
+      "at": "2026-09-17T20:32:32Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.192,
+      "at": "2026-09-17T20:32:35Z",
+      "boundaries": 7
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 22.605,
+      "at": "2026-09-17T20:32:58Z",
+      "prompt_sha256": "5d20784ad2e6355c918fb4505b16b699228b93c79e4dded6069c6973ecbd4547"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 25.258,
+      "at": "2026-09-17T20:33:25Z",
+      "prompt_sha256": "0c8562453913f50fff058f6b431cede3fbddafd6e12bc3b1977a71f37a76e9bb"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.742,
+      "at": "2026-09-17T20:51:22Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.238,
+      "at": "2026-09-17T20:51:33Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.528,
+      "at": "2026-09-17T20:51:38Z"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 165.242,
+      "at": "2026-09-17T20:54:26Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "239897ec29bad72746d3fa51d8e66a48f44949f75823d59a9be76f4f338fcd55"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.285,
+      "at": "2026-09-17T21:03:13Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.348,
+      "at": "2026-09-17T21:03:22Z",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "camera_pattern": "static_wide",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      },
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3.664,
+      "at": "2026-09-17T21:03:28Z"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 126.063,
+      "at": "2026-09-17T21:05:35Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "86275e259d43f820b14b1e71d604bf4f5153ee961e23ead7a1d996eb4f0291f4"
+    }
+  ],
+  "updated_at": "2026-09-17T21:05:36Z"
+}
