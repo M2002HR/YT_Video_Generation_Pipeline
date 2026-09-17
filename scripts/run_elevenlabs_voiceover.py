@@ -40,6 +40,7 @@ OUTPUT_FORMAT_SELECTOR = 'button[aria-label="Output format"][role="combobox"]'
 GENERATE_SELECTOR = 'button[data-testid="tts-generate"]'
 VOICE_SEARCH_SELECTOR = '[role="dialog"] input[aria-label="Start typing to search..."]'
 VOICE_OPTION_SELECTOR = '[role="dialog"] button[data-type="list-item-trigger-overlay"][aria-labelledby]'
+VOICE_CONFIRM_BUTTON_SCOPE = '[role="dialog"] button'
 MODEL_OPTION_SELECTOR = '[role="dialog"] button[role="radio"]'
 OUTPUT_FORMAT_OPTION_SELECTOR = '[role="option"][aria-labelledby]'
 DOWNLOAD_SELECTOR = 'button[data-testid="tts-download-latest-button"]'
@@ -298,6 +299,54 @@ class ElevenLabsUI:
         self._dispatch_mouse_click(self.tab, float(target["x"]), float(target["y"]))
         return {**focused, **target}
 
+    def _click_voice_confirm_button(self, requested: str) -> dict[str, Any]:
+        """Press the picked voice card's explicit confirmation button.
+
+        The current picker only highlights/previews a card on activation; the
+        selection commits when that card's own confirmation button (exposed as
+        ``Select <name>``, e.g. ``aria-label="Select Marv "``) is pressed. The
+        button is resolved from the requested voice name on every call, then
+        activated with a trusted keyboard press: the card overlay covers the
+        button's center point, so a coordinate click would land on the overlay
+        instead of the button. Nothing is stored or assumed from a previous
+        layout.
+        """
+        self._bring_to_front()
+        target = self._json(f"""(() => {{
+          const requested={json.dumps(requested)};
+          const norm=s=>String(s||'').trim().toLowerCase().replace(/\\s+/g,' ');
+          const esc=s=>String(s||'').replace(/[.*+?^${{}}()|[\\]\\\\]/g,'\\\\$&');
+          const wanted=norm(requested);
+          // Same word-boundary rule as the Python label matcher so a requested
+          // voice can never confirm a similarly prefixed name.
+          const nameMatches=actual=>!!wanted && new RegExp('^'+esc(wanted)+'(?:$|[\\\\s,;:()\\\\[\\\\]\u2014\u2013-])').test(actual);
+          const rendered=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+          const labelOf=e=>(e.getAttribute('aria-label')||e.innerText||'').trim();
+          const enabled=e=>!e.disabled&&e.getAttribute('aria-disabled')!=='true'&&!e.hasAttribute('data-disabled');
+          const cands=[...document.querySelectorAll({json.dumps(VOICE_CONFIRM_BUTTON_SCOPE)})].filter(e=>rendered(e)&&enabled(e));
+          // Primary: an explicit confirmation button naming the voice.
+          let hit=cands.find(e=>{{
+            const m=norm(labelOf(e)).match(/^(use|select|choose)\\s+(.*)$/);
+            return !!m && nameMatches(m[2]);
+          }});
+          // Fallback: a bare "Use" button scoped to the card that names the voice.
+          if(!hit)hit=cands.find(e=>{{
+            if(norm(e.innerText||'')!=='use')return false;
+            const card=e.closest('li,[role="option"],[data-type="list-item"]')||e.parentElement;
+            return !!card && nameMatches(norm(card.innerText||'').split(/\\s+[0-9]/)[0]);
+          }});
+          if(!hit)return {{ok:false,available:cands.map(e=>norm(labelOf(e))).filter(Boolean).slice(0,40)}};
+          hit.scrollIntoView({{block:'nearest',inline:'nearest'}});
+          hit.focus({{preventScroll:true}});
+          if(document.activeElement!==hit)return {{ok:false,reason:'confirmation button refused focus'}};
+          return {{ok:true,text:labelOf(hit)}};
+        }})()""")
+        if not target.get("ok"):
+            detail = target.get("reason") or f"available={target.get('available', [])}"
+            raise RuntimeError(f"ElevenLabs voice '{requested}' has no activatable confirmation button: {detail}.")
+        self._trusted_key("Enter")
+        return target
+
     def _bring_to_front(self) -> None:
         """Bring the ElevenLabs render widget forward before DOM focus is set."""
         if self.tab is None:
@@ -508,6 +557,28 @@ class ElevenLabsUI:
             time.sleep(0.5)
         else:
             raise RuntimeError(f"ElevenLabs did not show requested {kind} option '{requested}': {last_error}")
+
+        if kind == "voice":
+            # The current picker only highlights a card on activation; the
+            # selection commits with that card's own confirmation button.
+            # Layouts that still commit on card activation already show the
+            # requested label, so they skip the extra press.
+            confirm_deadline = time.monotonic() + 15
+            confirm_error = ""
+            while time.monotonic() < confirm_deadline:
+                current = self._json(probe)
+                if current.get("ok") and setting_label_matches(requested, str(current.get("text") or "")):
+                    break
+                try:
+                    self._click_voice_confirm_button(requested)
+                    break
+                except RuntimeError as exc:
+                    confirm_error = str(exc)
+                time.sleep(0.5)
+            else:
+                raise RuntimeError(
+                    f"ElevenLabs voice '{requested}' was never confirmed: {confirm_error}"
+                )
 
         # Selection is not complete merely because a key event was accepted.  Read
         # the stable trigger until React has committed the requested label.
