@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "red_door_portal",
+  "display_name": "Question -> Impossible Red Door -> Topic World",
+  "version": 1,
+  "entry_kind": "red_door",
+  "narration_segment": {"key": "entry_transition", "label": "red door transition"},
+  "entry_frame_character_presence": "acting_host",
+  "motion_contract": "door_crossing_v1",
+  "min_entry_seconds": 5.0,
+  "min_entry_words": 13,
+  "identity": {"canonical_sheet": "refs/red_door_design_sheet.png", "required_at_preflight": false},
+  "prompt_files": {"script_rules": "prompts/script_rules.md", "episode_rules": "prompts/episode_rules.md", "question_intro": "prompts/question_intro.md", "entry_transition": "prompts/entry_transition.md", "entry_identity": "prompts/entry_identity.md", "entry_frame": "prompts/entry_frame.md"},
+  "artifacts": {
+    "question_prompt": "references/flow_prompt_question_intro.txt",
+    "entry_prompt": "references/flow_prompt_red_door_transition.txt",
+    "question_source": "assets/opening/question_intro_source.mp4",
+    "entry_source": "assets/opening/red_door_transition_source.mp4",
+    "question_trimmed": "assets/opening/question_intro_trimmed.mp4",
+    "entry_trimmed": "assets/opening/red_door_transition_trimmed.mp4",
+    "entry_direction": "creative/RED_DOOR_ENTRY_DIRECTION.txt",
+    "entry_frame": "references/red_door_entry_frame.png",
+    "entry_image_receipt": "pipeline/provider_receipts/gemini_red_door_entry_frame.json"
+  },
+  "entry_variants": ["wrong_wall", "floor_hatch", "freestanding_door", "existing_exit", "unexpected_surface", "recessed_door"]
+}

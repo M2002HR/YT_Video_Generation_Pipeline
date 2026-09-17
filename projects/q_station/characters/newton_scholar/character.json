@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "newton_scholar",
+  "display_name": "Newton-Inspired Scholar",
+  "enabled": true,
+  "version": 1,
+  "presentation_profile": "book_portal",
+  "environment_policy": "dynamic",
+  "selection_profile": {
+    "archetype": "meticulous curious experimental thinker inspired by Newton, not a judge or an infallible historical narrator",
+    "strong_topics": ["science", "physics", "light", "motion", "astronomy", "mathematics", "technology", "history of ideas", "nature", "human behavior", "everyday systems", "general knowledge"],
+    "tone": ["thoughtful", "precise", "curious", "patient", "quietly surprised"],
+    "environment_affinities": []
+  },
+  "references": {"canonical_sheet": "refs/character_sheet.png", "reference_mode": "IDENTITY_ONLY", "required": true, "provisioning": "operator"},
+  "prompt_files": {"appearance": "appearance.md", "behavior": "behavior.md", "negative": "negative.md"}
+}
