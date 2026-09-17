@@ -411,3 +411,32 @@ def test_prompt_reuse_tracks_changed_final_entry_direction(run, registry):
 def test_new_direction_requires_review_artifact_in_graph(run):
     from run_graph import q_station_node_specs
     assert "creative/OPENING_REVIEW.json" in q_station_node_specs(run)["episode_director"].artifacts
+
+
+
+def test_approved_pre_gateway_premise_survives_prose_rollout_without_rewriting(run, registry):
+    spy, concept, char = make_concept(run, registry, "moss_cloaked_crone")
+    context_path = run / "creative/OPENING_CONTEXT.json"
+    frozen = json.loads(context_path.read_text())
+    frozen.pop("gateway_inputs_version")
+    frozen["character"]["behavior"] = "Previously approved acting prose."
+    frozen["presentation"]["episode_rules"] = "Previously approved orb handoff."
+    for key in ("motion_contract", "min_entry_seconds", "min_entry_words"):
+        frozen["presentation"].pop(key, None)
+    keys = ("policy_version", "brief", "character", "presentation", "writer_sha256", "reviewer_sha256", "language_policy_version")
+    old_hash = opening.fingerprint({key: frozen[key] for key in keys})
+    frozen["input_fingerprint"] = old_hash
+    concept["input_fingerprint"] = old_hash
+    concept["concept_id"] = opening.fingerprint({"input": old_hash, "selected": concept["selected"]})[:20]
+    qstation.save_json(context_path, frozen)
+    qstation.save_json(run / "creative/OPENING_CONCEPT.json", concept)
+    before = context_path.read_bytes()
+    count = len(spy.prompts)
+    assert qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char) == concept
+    assert len(spy.prompts) == count and context_path.read_bytes() == before
+    brief_path = run / "launch/CREATIVE_BRIEF.json"
+    brief = json.loads(brief_path.read_text())
+    brief["must_include"] = "A genuinely changed editorial requirement."
+    qstation.save_json(brief_path, brief)
+    with pytest.raises(qstation.StageFailure, match="Opening inputs changed"):
+        qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char)

@@ -190,8 +190,11 @@ def validate_entry_camera(episode: dict[str, Any], presentation: Any) -> dict[st
         value = camera.get(key)
         if not isinstance(value, str) or not value.strip() or len(value) > 400:
             raise ValueError(f"entry_camera.{key} must describe one readable action in 1-400 characters.")
-    if episode.get("entry_variant") == "floor_hatch" and camera["surface"] != "floor":
-        raise ValueError("floor_hatch requires the floor surface and a supported descent.")
+    variant = episode.get("entry_variant")
+    expected_surface = {"wrong_wall": "wall", "recessed_door": "wall", "existing_exit": "wall",
+                        "freestanding_door": "freestanding", "floor_hatch": "floor"}.get(variant)
+    if expected_surface and camera["surface"] != expected_surface:
+        raise ValueError(f"{variant} requires the {expected_surface} surface and a matching supported route.")
     return episode
 
 

@@ -74,6 +74,7 @@ from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprin
 from presentation_runtime import PresentationContext, presentation_for_project, load_presentation_profile
 from dataclasses import replace as replace_dataclass
 import gateway_contracts as visuals
+import gateway_resume
 import opening_runtime as openings
 import narration_language as language
 
@@ -1479,6 +1480,7 @@ def stage_opening_concept(
         writer = resolve_prompt(content_project, "00_opening_concept_director.md")
         reviewer = resolve_prompt(content_project, "00_opening_candidate_reviewer.md")
         base_inputs = {
+            "gateway_inputs_version": gateway_resume.INPUTS_VERSION,
             "policy_version": openings.POLICY_VERSION, "brief": editorial,
             "character": character_context, "presentation": presentation_context,
             "writer_sha256": sha256_text(writer), "reviewer_sha256": sha256_text(reviewer),
@@ -1500,7 +1502,7 @@ def stage_opening_concept(
                     and openings.fingerprint({key: frozen[key] for key in old_keys}) == saved.get("input_fingerprint")
                     and all(frozen.get(key) == base_inputs[key] for key in ("policy_version", "brief", "character", "presentation"))
                 )
-                if not unchanged_legacy:
+                if not unchanged_legacy and not gateway_resume.retains_approved_concept(frozen, base_inputs, saved):
                     raise StageFailure(stage, "FAILED_VALIDATION", "Opening inputs changed. Use Revise/regenerate opening_concept so narration and dependent media invalidate together.")
             runner.stage_reused(stage, target.name)
             return saved

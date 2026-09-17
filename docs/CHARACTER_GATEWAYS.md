@@ -136,3 +136,13 @@ CI run is not a real Gemini/Flow smoke: inspect the first production clips for o
 horn/hinge clearance, visible crossing, temporal seam, target-world reveal and complete removal of
 page framing. Browser auth, service state, credits and generative video consistency require that
 server-side acceptance with the actual operator sheet.
+
+
+### Pre-rollout approved stories
+An approved pre-rollout opening context can retain its existing premise when only gateway/acting
+prose changes in this release. Both stored input and selected-concept hashes must verify; editorial
+brief, duration, character identity, gateway identity, selector prompts and language policy must
+still agree. Nothing in the frozen context is rewritten. New contexts carry a version marker and
+cannot use this compatibility path. This is NOT acceptance of an old reversed or page-framed image:
+regenerated media must pass the current geometry/layout review. A real editorial or character
+change continues to require explicit Revise.

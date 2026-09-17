@@ -184,7 +184,7 @@ def test_corrupt_frozen_presentation_never_silently_becomes_book(environment):
 def test_camera_plan_has_one_coherent_supported_mode(environment, transition, surface):
     _, registry, _ = environment
     profile = registry.get("red_horned_everyman").presentation
-    episode = {"entry_variant": "floor_hatch" if surface == "floor" else "wrong_wall", "entry_camera": camera(surface, transition)}
+    episode = {"entry_variant": {"floor": "floor_hatch", "wall": "wrong_wall", "freestanding": "freestanding_door", "other": "unexpected_surface"}[surface], "entry_camera": camera(surface, transition)}
     assert contracts.validate_entry_camera(episode, profile) is episode
 
 
