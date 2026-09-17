@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "sea_captain",
+  "display_name": "Curious Sea Captain",
+  "enabled": true,
+  "version": 1,
+  "presentation_profile": "spyglass_portal",
+  "environment_policy": "dynamic",
+  "selection_profile": {
+    "archetype": "seasoned, curious explorer who questions appearances and follows evidence",
+    "strong_topics": [
+      "everyday science",
+      "nature",
+      "perception",
+      "discovery",
+      "geography",
+      "history",
+      "engineering",
+      "hidden causes",
+      "unexpected comparisons"
+    ],
+    "tone": [
+      "curious",
+      "observant",
+      "wry",
+      "warm",
+      "adventurous"
+    ],
+    "environment_affinities": []
+  },
+  "references": {
+    "canonical_sheet": "refs/character_sheet.png",
+    "reference_mode": "IDENTITY_ONLY",
+    "required": true,
+    "provisioning": "operator"
+  },
+  "prompt_files": {
+    "appearance": "appearance.md",
+    "behavior": "behavior.md",
+    "negative": "negative.md"
+  }
+}
