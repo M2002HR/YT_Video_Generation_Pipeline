@@ -49,3 +49,11 @@ def test_completion_stage_sequence_gates_motion_without_changing_legacy_workflow
         publish=False, telegram_low_size=True, commit=False,
     )
     assert "sfx_plan" not in planner_off and "sfx_acquire" in planner_off
+
+
+def test_git_publication_is_last_after_telegram_publish() -> None:
+    full = completion_stage_sequence(
+        motion_enabled=False, sfx_enabled=False, sfx_plan_enabled=False,
+        publish=True, telegram_low_size=True, commit=True,
+    )
+    assert full[-2:] == ["publish_telegram", "git_commit_push"]

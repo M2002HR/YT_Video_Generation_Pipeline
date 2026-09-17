@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from content_projects import resolve_project_id
+from presentation_runtime import PresentationProfileError, load_presentation_profile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -111,6 +112,59 @@ def register_content_project_video(project: Path, state: dict[str, Any]) -> Path
     return registry
 
 
+def run_related_extra_paths(project: Path, content_project: str) -> list[Path]:
+    """Catalog files this run generated outside its own video directory.
+
+    The final push must carry everything the run produced, so the shared
+    world-style entry and the presentation identity it (re)generated travel
+    with the video commit. Only paths derived from this video's own creative
+    records are ever listed, and already-committed files are a no-op for the
+    scoped commit, so reuse can never sweep unrelated work.
+    """
+    extras: list[Path] = []
+    content_root = ROOT / "projects" / content_project
+    creative = project / "creative"
+    try:
+        plan = json.loads((creative / "WORLD_STYLE_PLAN.json").read_text(encoding="utf-8"))
+        style_id = str((plan if isinstance(plan, dict) else {}).get("style_id") or "").strip()
+    except (OSError, ValueError):
+        style_id = ""
+    catalog = content_root / "world_styles" / "CATALOG.json"
+    if style_id:
+        try:
+            entries = json.loads(catalog.read_text(encoding="utf-8")).get("styles") or []
+        except (OSError, ValueError):
+            entries = []
+        match = next(
+            (entry for entry in entries if isinstance(entry, dict) and str(entry.get("style_id") or "") == style_id),
+            None,
+        )
+        if isinstance(match, dict):
+            style_dir = content_root / "world_styles" / str(match.get("path") or "").strip()
+            candidates = [catalog, style_dir / "STYLE_PLAN.json"]
+            anchor = str(match.get("anchor") or "").strip()
+            if anchor:
+                candidates.append(style_dir / Path(anchor).name)
+            extras.extend(path for path in candidates if path.is_file())
+    try:
+        resolution = json.loads((creative / "PRESENTATION_RESOLUTION.json").read_text(encoding="utf-8"))
+        profile_id = str((resolution if isinstance(resolution, dict) else {}).get("profile_id") or "").strip()
+    except (OSError, ValueError):
+        profile_id = ""
+    if profile_id and re.fullmatch(r"[a-z0-9][a-z0-9_-]*", profile_id):
+        try:
+            presentation = load_presentation_profile(
+                content_root / "presentation_profiles" / profile_id / "profile.json"
+            )
+            sheet = presentation.identity_sheet_path
+            extras.extend(
+                path for path in (sheet, sheet.with_suffix(sheet.suffix + ".receipt.json")) if path.is_file()
+            )
+        except PresentationProfileError:
+            pass
+    return extras
+
+
 def push(branch: str, *, attempts: int = 4) -> None:
     last_error: Exception | None = None
     for attempt in range(1, attempts + 1):
@@ -176,7 +230,8 @@ def main() -> None:
 
     state = json.loads(state_path.read_text(encoding="utf-8"))
     registry = register_content_project_video(project, state)
-    first_commit = commit_paths([project, registry], f"Video {project.name}: finalized artifacts")
+    extras = run_related_extra_paths(project, registry.parent.name)
+    first_commit = commit_paths([project, registry, *extras], f"Video {project.name}: finalized artifacts")
     if not args.no_push:
         push(branch)
 

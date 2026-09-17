@@ -54,10 +54,13 @@ def completion_stage_sequence(
     sequence.extend(["polish_audio", "qc_polished"])
     if publish and telegram_low_size:
         sequence.append("telegram_compress")
-    if commit:
-        sequence.append("git_commit_push")
     if publish:
         sequence.append("publish_telegram")
+    if commit:
+        # Git publication is always last: the push must carry everything the
+        # run produced, including the Telegram publish state and the final
+        # finalized state save below.
+        sequence.append("git_commit_push")
     return sequence
 
 
@@ -302,18 +305,6 @@ def main() -> None:
     if args.publish and args.telegram_low_size:
         step("telegram_compress", [py, "scripts/compress_for_telegram.py", str(video), "--input", str(polished), "--output", str(compressed)], artifact=compressed)
 
-    # Git publication runs only after both QC gates passed, and re-running it is a no-op
-    # when nothing changed (§76, §111).
-    if args.commit:
-        step(
-            "git_commit_push",
-            [py, "scripts/commit_video_artifacts.py", str(video),
-             "--full-state", str(state_path), "--started-at", state["started_at"]]
-            + ([] if os.getenv("YT_GIT_PUSH_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"} else ["--no-push"]),
-            artifact=video / "pipeline" / "GIT_PUBLISH_STATE.json",
-        )
-        state = json.loads(state_path.read_text(encoding="utf-8"))
-
     if args.publish:
         publish_command = [py, "scripts/publish_to_telegram.py", str(video)]
         if args.telegram_low_size:
@@ -331,6 +322,20 @@ def main() -> None:
     summary = build_summary(video, artifact=polished)
     state["summary"] = summary
     save(state_path, state)
+
+    # Git publication runs only after both QC gates passed, and re-running it is a no-op
+    # when nothing changed (§76, §111). It stays last so the push carries the Telegram
+    # publish state and this final state save as well.
+    if args.commit:
+        step(
+            "git_commit_push",
+            [py, "scripts/commit_video_artifacts.py", str(video),
+             "--full-state", str(state_path), "--started-at", state["started_at"]]
+            + ([] if os.getenv("YT_GIT_PUSH_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"} else ["--no-push"]),
+            artifact=video / "pipeline" / "GIT_PUBLISH_STATE.json",
+        )
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     print("COMPLETION PIPELINE: PASS")
 

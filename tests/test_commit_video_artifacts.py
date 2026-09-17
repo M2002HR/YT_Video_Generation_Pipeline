@@ -59,6 +59,63 @@ def test_registration_preserves_the_traits_already_recorded(tmp_path: Path, monk
     assert any(entry.get("opening_activity") == "watering plants" for entry in videos)
 
 
+def test_run_related_extras_cover_style_and_identity(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(module, "ROOT", tmp_path)
+    video = tmp_path / "videos" / "008_first_question"
+    (video / "creative").mkdir(parents=True)
+    write_json(video / "creative" / "WORLD_STYLE_PLAN.json", {"style_id": "demo_style_001"})
+    write_json(video / "creative" / "PRESENTATION_RESOLUTION.json", {"profile_id": "demo_portal"})
+    content = tmp_path / "projects" / "q_station"
+    write_json(content / "world_styles" / "CATALOG.json", {
+        "schema_version": 1,
+        "styles": [{"style_id": "demo_style_001", "path": "001_demo", "anchor": "001_demo/style_anchor.png"}],
+    })
+    write_json(content / "world_styles" / "001_demo" / "STYLE_PLAN.json", {"style_id": "demo_style_001"})
+    (content / "world_styles" / "001_demo" / "style_anchor.png").write_bytes(b"fake-png")
+    profile = content / "presentation_profiles" / "demo_portal"
+    prompts = {key: f"{key} text" for key in (
+        "script_rules", "episode_rules", "question_intro",
+        "entry_transition", "entry_identity", "entry_frame",
+    )}
+    for key, text in prompts.items():
+        (profile / "prompts" / f"{key}.md").parent.mkdir(parents=True, exist_ok=True)
+        (profile / "prompts" / f"{key}.md").write_text(text + "\n", encoding="utf-8")
+    write_json(profile / "profile.json", {
+        "schema_version": 1, "id": "demo_portal", "entry_kind": "demo",
+        "narration_segment": {"key": "entry_transition", "label": "demo"},
+        "prompt_files": {key: f"prompts/{key}.md" for key in prompts},
+        "identity": {"canonical_sheet": "refs/demo_sheet.png"},
+        "entry_variants": ["near_detail"],
+        "artifacts": {
+            "question_prompt": "references/q.txt", "entry_prompt": "references/e.txt",
+            "question_source": "assets/q.mp4", "entry_source": "assets/e.mp4",
+            "question_trimmed": "assets/qt.mp4", "entry_trimmed": "assets/et.mp4",
+            "entry_direction": "creative/D.txt", "entry_frame": "references/f.png",
+            "entry_image_receipt": "pipeline/r.json",
+        },
+    })
+    (profile / "refs" / "demo_sheet.png").parent.mkdir(parents=True, exist_ok=True)
+    (profile / "refs" / "demo_sheet.png").write_bytes(b"fake-png")
+    (profile / "refs" / "demo_sheet.png.receipt.json").write_text("{}\n", encoding="utf-8")
+
+    extras = module.run_related_extra_paths(video, "q_station")
+    relatives = sorted(str(path.relative_to(tmp_path)) for path in extras)
+    assert relatives == [
+        "projects/q_station/presentation_profiles/demo_portal/refs/demo_sheet.png",
+        "projects/q_station/presentation_profiles/demo_portal/refs/demo_sheet.png.receipt.json",
+        "projects/q_station/world_styles/001_demo/STYLE_PLAN.json",
+        "projects/q_station/world_styles/001_demo/style_anchor.png",
+        "projects/q_station/world_styles/CATALOG.json",
+    ]
+
+
+def test_run_related_extras_are_empty_without_creative_records(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(module, "ROOT", tmp_path)
+    video = tmp_path / "videos" / "008_first_question"
+    video.mkdir(parents=True)
+    assert module.run_related_extra_paths(video, "q_station") == []
+
+
 def test_scoped_commit_preserves_unrelated_staged_work(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setattr(module, "ROOT", tmp_path)
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
