@@ -45,7 +45,6 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
-          import re
           root = Path.cwd()
           banned = [
               '_'.join(('question', 'harvest')),
@@ -54,9 +53,9 @@ jobs:
               '_'.join(('world', 'behind', 'the', 'question')),
               ' '.join(('world', 'behind', 'the', 'question')),
               '-'.join(('world', 'behind', 'the', 'question')),
-              '_'.join(('farmer', 'host')),
-              ' '.join(('farmer', 'host')),
-              '-'.join(('farmer', 'host')),
+              'farmer',
+              '_' + 'qh',
+              'qh' + '_',
           ]
           hits = []
           for path in root.rglob('*'):
@@ -78,10 +77,6 @@ jobs:
               for token in banned:
                   if token in low:
                       hits.append(f'TEXT {rel}: {token}')
-              if re.search(r'\bfarmer\b', low):
-                  hits.append(f'TEXT {rel}: retired host word')
-              if re.search(r'(?<![a-z0-9_])qh(?![a-z0-9_])', low):
-                  hits.append(f'TEXT {rel}: standalone retired runtime abbreviation')
           if hits:
               print('\n'.join(hits[:250]))
               raise SystemExit(f'{len(hits)} retired identifier occurrence(s) remain')
