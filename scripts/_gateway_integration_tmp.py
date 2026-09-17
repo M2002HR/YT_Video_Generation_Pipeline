@@ -4,7 +4,7 @@ import ast
 import runpy
 
 base = Path(__file__).with_name('_gateway_base_tmp.py')
-helpers = [Path(__file__).with_name(name) for name in ('_gateway_followup_tmp.py', '_gateway_review_tmp.py', '_gateway_final_tmp.py', '_gateway_test_fixtures_tmp.py')]
+helpers = [Path(__file__).with_name(name) for name in ('_gateway_followup_tmp.py', '_gateway_review_tmp.py', '_gateway_final_tmp.py', '_gateway_test_fixtures_tmp.py', '_gateway_receipt_fixtures_tmp.py')]
 context = runpy.run_path(str(base))
 for helper in helpers:
     exec(compile(helper.read_text(), str(helper), 'exec'), context)
