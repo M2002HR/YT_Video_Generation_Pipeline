@@ -150,7 +150,7 @@ def style_catalog_context(catalog: dict[str, Any]) -> dict[str, Any]:
     result = dict(catalog)
     if isinstance(catalog.get("styles"), list):
         result["styles"] = [
-            {**entry, "frame_language": WORLD_FRAME, "layout_policy": WORLD_LAYOUT}
+            {key: value for key, value in {**entry, "frame_language": WORLD_FRAME, "layout_policy": WORLD_LAYOUT}.items() if key not in {"reason", "subtitle_reserve"}}
             for entry in catalog["styles"] if isinstance(entry, dict)
         ]
     return result
@@ -158,6 +158,8 @@ def style_catalog_context(catalog: dict[str, Any]) -> dict[str, Any]:
 
 def factual_world_script(plan: dict[str, Any]) -> str:
     """Narration facts without gateway choreography/CTA; no anatomy is injected."""
+    if "body" not in plan:
+        return str(plan.get("full_narration") or "")
     return " ".join(str(part).strip() for part in [*plan.get("body", []), plan.get("optional_closing", "")] if str(part).strip())
 
 
@@ -203,3 +205,12 @@ def validate_entry_duration(presentation: Any, seconds: float) -> None:
             f"visible host crossing and camera arrival, but has {seconds:.3f}s. Revise the entry narration "
             "before paid visual media; a longer source alone cannot fix an edit that trims the crossing."
         )
+
+
+def read_cache(path: Any) -> dict[str, Any]:
+    """A truncated cache is a cache miss, never permission to reuse an artifact."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}

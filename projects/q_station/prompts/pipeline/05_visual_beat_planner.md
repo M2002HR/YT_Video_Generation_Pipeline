@@ -50,3 +50,7 @@ Narration slices must concatenate to exactly the body narration (no missing or o
 Return ONLY JSON.
 
 The episode direction carries a selected opening promise. Ensure its factual answer is visually paid off at the corresponding spoken unit. Do not add words, reuse the world keyframe as a body beat or change the one-image-per-unit contract.
+
+
+## Binding layout isolation
+The viewer is INSIDE the topic world. Every scene fills the 9:16 image edge-to-edge, including the final optional-closing image. No enclosing physical page, book spread, card, gutter, decorative border, inset illustration window, doorway rim or lens mask. Preserve artistic medium, grain, palette and lighting, not a reference's border or composition. Paper/ink/collage texture is allowed; a subject-relevant book can be an object in the scene without becoming the layout. Opening entry mechanisms must not dictate body/world composition. If returning a production image prompt, include these constraints explicitly. Respect the caption-layout rule, never insert printed labels or a blank footer.

@@ -71,7 +71,9 @@ from ordak_jobs import (  # noqa: E402
 from pipeline_notifier import PipelineNotifier, format_duration  # noqa: E402
 from pipeline_stages import stage_title as full_stage_title  # noqa: E402
 from image_artifacts import CONTRACT_VERSION, receipt_status, request_fingerprint
-from presentation_runtime import PresentationContext
+from presentation_runtime import PresentationContext, presentation_for_project, load_presentation_profile
+from dataclasses import replace as replace_dataclass
+import gateway_contracts as visuals
 import opening_runtime as openings
 import narration_language as language
 
@@ -92,6 +94,8 @@ MIN_VIDEO_BYTES = 100_000
 # routinely have small presentational defects which a human can review later and which
 # should not discard a paid-for, otherwise usable image.
 _IMAGE_QC_BLOCKING_MARKERS = (
+    "visual contract violation", "spyglass orientation appears reversed",
+    "reversed spyglass", "optical ends are reversed",
     "wrong subject", "incorrect subject", "subject is wrong", "main subject is absent",
     "main subject is missing", "requested subject is missing", "does not contain the requested subject",
     "not a scene", "character turnaround", "palette sheet", "grid instead of", "wrong output type",
@@ -103,8 +107,12 @@ _IMAGE_QC_BLOCKING_MARKERS = (
 
 
 def _is_blocking_image_qc_violation(violation: str) -> bool:
-    """Whether a reviewer finding makes the image fundamentally unusable."""
-    text = violation.casefold()
+    """Required geometry is structural, regardless of the reviewer's proposed severity."""
+    text = " ".join(str(violation).casefold().split())
+    if "visual contract violation" in text:
+        return True
+    if "spyglass" in text and re.search(r"\brevers(?:ed|al)\b|\bwrong[- ]end\b|\bswapped ends\b", text):
+        return True
     return any(marker in text for marker in _IMAGE_QC_BLOCKING_MARKERS)
 
 
@@ -152,49 +160,25 @@ def assess_image_content_qc(check: Any) -> tuple[dict[str, Any], list[str]]:
     normalized["observations"] = warnings
     normalized["regressions"] = list(regressions)
     normalized["passed"] = not blocking
-    normalized["review_status"] = "passed" if not warnings else "passed_with_warnings"
+    normalized["review_status"] = "failed" if blocking else ("passed_with_warnings" if warnings else "passed")
     return normalized, warnings
 
 
 def episode_frame_contract(world_style_plan: dict[str, Any]) -> str:
-    """A non-negotiable layout contract appended to every Gemini still prompt.
-
-    Prompt writers describe each narrative scene independently, which used to let a later
-    image silently drop the page/card material that made earlier frames feel like one world.
-    This compact instruction travels with the final image request as well as the writer prompt.
-    """
-    frame = str(world_style_plan.get("frame_language") or "the chosen medium's recurring outer material, edge treatment and inner illustration window").strip()
-    if not bool(world_style_plan.get("reserve_subtitle_space", True)):
-        return (
-            "NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this "
-            f"image: {frame}. Preserve its material/edge grammar, texture, palette and inner "
-            "illustration window while changing only the scene inside it. Do not reserve a lower "
-            "caption field, blank strip, empty panel or low-detail band. Continue the scene and its "
-            "natural texture through the full usable height, guided by the previous accepted image, "
-            "without adding text, letters, numbers, captions, labels, words or UI."
-        )
-    reserve = str(world_style_plan.get("subtitle_reserve") or "a calm lower caption field occupying only the bottom 8–10% of the frame, enough for two subtitle lines").strip()
-    return (
-        "NON-NEGOTIABLE EPISODE FRAME CONTRACT: Preserve this recurring frame language in this "
-        f"image: {frame}. Preserve its material/edge grammar and inner illustration window while "
-        "changing only the scene inside it. Keep "
-        f"{reserve}; keep faces, hands, focal action and critical details above it. "
-        "The reserve must stay completely free of any text, letters, numbers, captions, labels, words or UI — leave it as calm texture/atmosphere only, never an oversized empty banner or a UI panel."
-    )
+    """The entry object never determines the enclosing layout of the topic world."""
+    return visuals.WORLD_RULE + caption_layout_rule(world_style_plan)
 
 
 def caption_layout_rule(world_style_plan: dict[str, Any]) -> str:
     if bool(world_style_plan.get("reserve_subtitle_space", True)):
         return (
-            "Reserve a calm, low-detail caption field inside only the bottom 8–10% of the image, "
-            "enough for two subtitle lines. Keep faces, hands, focal action and critical details "
-            "above it. Continue the established material and texture through this quiet field; it "
-            "must contain no text and must never look like a banner or UI panel."
+            "Reserve only the bottom 8-10% as calm natural scene atmosphere for two subtitle lines; "
+            "keep faces, hands and critical details above it. Continue the scene edge-to-edge. "
+            "No printed text, separate banner, page margin or UI panel."
         )
     return (
-        "Do not reserve any lower caption field, blank strip, empty panel or low-detail band. "
-        "Use the full illustration height for a naturally composed continuation of the scene, "
-        "matching the previous accepted image's frame material, texture, palette and lighting."
+        "Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height "
+        "for natural scene content, with consistent medium, texture, palette and lighting. No embedded text."
     )
 
 
@@ -791,6 +775,9 @@ class Runner:
         previous candidate is supplied as a quality-floor reference on corrections, and
         the final file is replaced only after the best reviewed candidate is known.
         """
+        # Entry geometry is never an optional polish review. Body-only opt-outs remain intact.
+        if stage in {"book_design_sheet", "book_cover"} and visuals.requirements(prompt):
+            skip_content_qc = False
         qc_disabled = skip_content_qc or self.image_qc_disabled_for(stage)
         policy = "disabled" if qc_disabled else getattr(self, "image_qc_correction_policy", "0")
         policy = policy if policy in {"disabled", "0", "1", "2", "strict"} else "0"
@@ -958,7 +945,9 @@ class Runner:
             "qc_previous_candidate is the previous output and the minimum quality floor, not a new "
             "scene request. Make the smallest targeted changes needed to fix ONLY the QC findings "
             "below. Do not redesign, simplify, crop, restyle, or replace elements that already work. "
-            f"{stage_guard} Introduce no new text, logos, objects, anatomy problems, identity drift, "
+            f"{stage_guard} Mandatory optical direction, actor route and full-bleed layout override the previous "
+            "candidate: fix a reversed telescope or enclosing page instead of preserving that defect as continuity. "
+            "Introduce no new text, logos, objects, anatomy problems, identity drift, "
             "style drift, or continuity errors. The replacement must be equal or better in every "
             "unmentioned respect.\n\nQC findings to correct:\n"
             f"{numbered}\n\nOriginal art direction remains authoritative:\n{original_prompt}"
@@ -1062,7 +1051,7 @@ class Runner:
             }})
             try:
                 check = (result.generation_receipt or {}).get("quality_check")
-                if skip_content_qc:
+                if skip_content_qc and not (stage in {"book_design_sheet", "book_cover"} and visuals.requirements(prompt)):
                     check = {
                         **self.disabled_image_qc_receipt(),
                         "review_status": "skipped_after_pre_generation_feedback",
@@ -1071,7 +1060,8 @@ class Runner:
                 elif self.image_qc_disabled_for(stage):
                     check = self.disabled_image_qc_receipt()
                 elif not (isinstance(check, dict) and check.get("passed") is True and
-                          saved.get("review_contract_version") == CONTRACT_VERSION):
+                          saved.get("review_contract_version") == CONTRACT_VERSION and
+                          visuals.review_matches(check, prompt)):
                     check = self.validate_image_content(
                         stage, prompt, partial, references=references, reject_blocking=False
                     )
@@ -1123,9 +1113,10 @@ class Runner:
             "'character identity drift: <specific mismatch>' in blocking_violations. When a style_reference, "
             "world_keyframe, previous_beat, or operator_style_reference is attached, compare the candidate directly to the applicable "
             "reference(s). A material break in the recurring medium, line treatment, palette logic, texture, "
-            "frame language, or established visual world is a fundamental failure: set passed=false and include "
+            "or established visual world is a fundamental failure: set passed=false and include "
             "'style continuity drift: <specific mismatch>' in blocking_violations. Do not reject minor natural "
-            "scene variation or a small presentational imperfection as continuity drift. "
+            "scene variation or a small presentational imperfection as continuity drift. An obsolete reference page border, "
+            "inset layout, margins or entry-object mask must not be copied into a full-bleed topic world. "
             "If qc_previous_candidate is attached, compare the candidate against it and list every "
             "newly introduced defect or lost already-correct quality in regressions; otherwise return "
             "regressions as an empty array. Judge visible compliance, not artistic taste. Return only JSON with passed (boolean), "
@@ -1134,16 +1125,16 @@ class Runner:
             "literal double-quote characters inside description or violation strings; use single quotes "
             "for visible labels instead. "
             f"Attached continuity-reference roles: {reference_roles or ['none']}.\n"
-            f"Requested art direction:\n{prompt}",
+            f"Requested art direction:\n{prompt}" + visuals.review_instructions(prompt),
             references=[Reference(role="candidate_output", path=candidate), *references],
         )
         try:
-            accepted, warnings = assess_image_content_qc(check)
+            accepted, warnings = assess_image_content_qc(visuals.enforce_review(check, prompt))
         except ValueError as exc:
             raise StageFailure(stage, "FAILED_VALIDATION", f"Image content QC returned an invalid review: {exc}") from exc
         if accepted["passed"] is not True and reject_blocking:
             raise StageFailure(stage, "FAILED_VALIDATION", f"Image content QC rejected output: {str(accepted)[:1200]}", error_code="image_content_rejected")
-        if warnings:
+        if warnings and accepted["passed"]:
             print(f"    [image QC] accepted with {len(warnings)} non-blocking observation(s): {warnings[:2]}", flush=True)
         return accepted
 
@@ -1324,6 +1315,10 @@ def validate_script_plan(
             f"`body` has {len(body)} beats; a {target.duration_range} Short needs "
             f"{target.beat_min}-{target.beat_max}.",
         )
+
+    if presentation is not None and presentation.min_entry_words:
+        if len(_plan_tokens(str(data.get(entry_key) or ""))) < presentation.min_entry_words:
+            raise StageFailure(stage, "FAILED_VALIDATION", f"{presentation.id} entry narration needs at least {presentation.min_entry_words} meaningful words for visible crossing and camera arrival; do not add stage-direction filler.")
 
     ordered = [
         str(data.get("opening_question_spark") or "").strip(),
@@ -1974,7 +1969,11 @@ def _coerce_character_context(value: Any) -> CharacterContext:
     if registry_file is None:
         raise CharacterSelectionError("This content project has no character registry.")
     registry = load_character_registry(registry_file)
-    return registry.get(registry.legacy_default_character_id)
+    character = registry.get(registry.legacy_default_character_id)
+    legacy_id = str((value.config.get("presentation_profiles") or {}).get("legacy_default") or "book_portal")
+    return replace_dataclass(character, presentation=load_presentation_profile(
+        value.root / "presentation_profiles" / legacy_id / "profile.json"
+    ))
 
 
 def stage_character_resolution(
@@ -2027,6 +2026,15 @@ def stage_character_resolution(
         run_auto_selector=auto_selector,
     )
     context = registry.get(resolution.resolved_character_id)
+    saved_presentation = project / "creative/PRESENTATION_RESOLUTION.json"
+    saved_script = project / "creative/SCRIPT_PLAN.json"
+    if saved_presentation.is_file():
+        context = replace_dataclass(context, presentation=presentation_for_project(project, content_project))
+    elif is_legacy_run or (persisted is not None and saved_script.is_file()
+                           and "book_transition" in load_json(saved_script)):
+        context = replace_dataclass(context, presentation=load_presentation_profile(
+            content_project.root / "presentation_profiles/book_portal/profile.json"
+        ))
     payload = resolution.to_state()
     if persisted is None and not is_legacy_run:
         launch["character"] = {
@@ -2164,6 +2172,10 @@ def stage_episode_director(
         data = runner.json(f"{stage}_try{attempt + 1}" if attempt else stage, prompt)
         try:
             data = validate_episode_opening_contract(data)
+            try:
+                visuals.validate_entry_camera(data, character.presentation)
+            except ValueError as exc:
+                raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
         except StageFailure as exc:
             if not opening_concept:
                 raise
@@ -2278,8 +2290,8 @@ def stage_world_style_director(
     prompt = fill(
         resolve_prompt(content_project, "04_world_style_director.md"),
         TOPIC=topic,
-        FINAL_SCRIPT=plan["full_narration"],
-        STYLE_CATALOG=json.dumps(catalog, ensure_ascii=False),
+        FINAL_SCRIPT=visuals.factual_world_script(plan),
+        STYLE_CATALOG=json.dumps(visuals.style_catalog_context(catalog), ensure_ascii=False),
         RECENT_STYLES=json.dumps(
             [item.get("world_style_id") for item in _recent_history(getattr(content_project, "project_id", "q_station"))],
             ensure_ascii=False,
@@ -2297,7 +2309,7 @@ def stage_world_style_director(
             )
         if reference and str(data.get("decision") or "").lower() != "new":
             raise StageFailure(stage, "FAILED_VALIDATION", "An operator style reference requires a new style, not catalog reuse.")
-        return data
+        return {**data, **visuals.topic_style(data)}
 
     data = ask_with_correction(runner, stage, prompt, check_style, references=[reference] if reference else ())
     if reference:
@@ -2352,6 +2364,7 @@ def stage_world_style_anchor(
 ) -> Path:
     """The style anchor is a Gemini image or a catalog reuse — never a drawn placeholder."""
     stage = "world_style_anchor"
+    world_style_plan = visuals.topic_style(world_style_plan)
     target = project / "references" / "world_style_anchor.png"
     reference = operator_style_reference(project)
     prompt = (
@@ -2370,6 +2383,7 @@ def stage_world_style_anchor(
             if reference else ""
         )
     )
+    prompt += " [VISUAL_CONTRACT:material_anchor_v2] Fill the canvas with a neutral material/palette sample, not a framed page, book, landscape, gateway, inset illustration or host."
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
     receipt_path = project / "pipeline" / "provider_receipts" / "gemini_world_style_anchor.json"
@@ -2390,16 +2404,30 @@ def stage_world_style_anchor(
                 runner.stage_reused(stage, target.name)
                 return target
             started = runner.stage_start(stage)
-            check = runner.validate_image_content(stage, prompt, source)
+            derivative = None
+            try:
+                check = runner.validate_image_content(stage, prompt, source)
+            except StageFailure as exc:
+                if exc.error_code != "image_content_rejected":
+                    raise
+                # Preserve the catalog and medium; remove only its unwanted enclosing layout.
+                derivative = runner.image(stage, prompt, refs, model=model, destination=target)
+                check = (derivative.generation_receipt or {}).get("quality_check", {})
+                if check.get("passed") is not True:
+                    raise StageFailure(stage, "FAILED_VALIDATION", "Catalog derivative failed visual review.")
             target.parent.mkdir(parents=True, exist_ok=True)
             temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
             try:
-                shutil.copyfile(source, temporary)
-                temporary.replace(target)
+                if derivative is None:
+                    shutil.copyfile(source, temporary)
+                    temporary.replace(target)
             finally:
                 temporary.unlink(missing_ok=True)
             save_json(receipt_path, {
                 "contract_version": CONTRACT_VERSION, "source_type": "catalog",
+                "catalog_derivative": derivative is not None,
+                "provider_receipt": (derivative.generation_receipt or {}) if derivative else None,
+                "job_id": derivative.job_id if derivative else None,
                 "request_fingerprint": fingerprint, "quality_check": check,
                 "output_sha256": sha256_file(target), "output_path": _receipt_path(project, target),
                 "references": [{"role": "catalog_style", "path": str(source.resolve()), "sha256": sha256_file(source)}],
@@ -2481,6 +2509,15 @@ def reusable_image(runner, project: Path, stage: str, target: Path, receipt: Pat
     fingerprint = request_fingerprint(prompt, model, references)
     status = receipt_status(project, target, receipt, fingerprint=fingerprint)
     if status["status"] == "verified":
+        data = load_json(receipt)
+        if not visuals.review_matches(data.get("quality_check"), prompt) and not runner.image_qc_disabled_for(stage):
+            try:
+                data["quality_check"] = runner.validate_image_content(stage, prompt, target, references=references)
+            except StageFailure as exc:
+                if exc.error_code == "image_content_rejected":
+                    return False
+                raise
+            save_json(receipt, data)
         return True
     # Old receipts can be upgraded by reviewing the existing pixels, without paying
     # for a new image. Never bless a changed file, changed reference, or failed model.
@@ -2591,6 +2628,7 @@ def _write_video_receipt(
         "workspace_url": receipt.get("workspace_url"),
         "provider_receipt": receipt,
         "uploaded_roles": [ref.role for ref in references],
+        "references": [{"role": ref.role, "path": _receipt_path(project, ref.path), "sha256": sha256_file(ref.path)} for ref in references],
         "prompt_sha256": sha256_text(prompt),
         "output_file": _receipt_path(project, output),
         "output_sha256": sha256_file(output),
@@ -2613,6 +2651,7 @@ def stage_visual_plan(
     character: CharacterContext,
 ) -> dict[str, Any]:
     stage = "visual_plan"
+    world_style_plan = visuals.topic_style(world_style_plan)
     target = project / "creative" / "VISUAL_PLAN.json"
     visual_units = [*plan["body"]]
     if str(plan.get("optional_closing") or "").strip():
@@ -2621,7 +2660,8 @@ def stage_visual_plan(
         existing = load_json(target)
         existing_beats = existing.get("beats") or []
         existing_slices = [str(item.get("narration_slice") or "").strip() for item in existing_beats if isinstance(item, dict)]
-        if len(existing_beats) == len(visual_units) and existing_slices == visual_units:
+        if (len(existing_beats) == len(visual_units) and existing_slices == visual_units
+                and existing.get("layout_policy") == visuals.WORLD_LAYOUT):
             runner.stage_reused(stage, target.name)
             return existing
         print("↻ visual_plan is stale: it does not include one image for every pre-CTA unit", flush=True)
@@ -2640,7 +2680,6 @@ def stage_visual_plan(
         resolve_prompt(content_project, "05_visual_beat_planner.md"),
         FINAL_SCRIPT=json.dumps(
             {"opening_question_spark": plan["opening_question_spark"],
-             character.presentation.segment_key: plan[character.presentation.segment_key],
              "body": plan["body"],
              "optional_closing": plan["optional_closing"],
              "cta": plan["cta"]},
@@ -2651,10 +2690,7 @@ def stage_visual_plan(
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VIDEO_BRIEF="aspect 9:16 vertical Short",
         BODY_DURATION_SECONDS=f"{body_seconds:.0f}",
-        CHARACTER_CONTEXT=json.dumps(
-            {"id": character.id, "display_name": character.display_name, "behavior": character.behavior},
-            ensure_ascii=False,
-        ),
+        CHARACTER_CONTEXT=visuals.body_character_context(character),
     )
     def check(data: Any) -> dict[str, Any]:
         beats = data.get("beats") if isinstance(data, dict) else None
@@ -2694,6 +2730,7 @@ def stage_visual_plan(
         hint=f"Return exactly {len(visual_units)} beats, one per pre-CTA visual unit, in order; the final unit may be optional_closing.",
     )
     beats = data["beats"]
+    data["layout_policy"] = visuals.WORLD_LAYOUT
     save_json(target, data)
     runner.stage_done(stage, started, f"{len(beats)} beats", beats=len(beats))
     return data
@@ -2707,8 +2744,15 @@ def stage_world_keyframe_prompt(
     world_style_plan: dict[str, Any],
 ) -> str:
     stage = "world_keyframe_prompt"
+    world_style_plan = visuals.topic_style(world_style_plan)
     target = project / "references" / "world_keyframe_prompt.txt"
-    if runner.state.done(stage) and target.is_file():
+    cache_path = target.with_suffix(".inputs.json")
+    cache_key = openings.fingerprint({"script": visuals.factual_world_script(plan), "style": world_style_plan,
+        "template": resolve_prompt(content_project, "06_world_keyframe_prompt_writer.md"),
+        "entry": openings.world_entry_context(load_opening_concept(project))})
+    cached = visuals.read_cache(cache_path)
+    if (runner.state.done(stage) and target.is_file() and cached.get("input_sha256") == cache_key
+            and cached.get("output_sha256") == sha256_file(target)):
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
@@ -2716,20 +2760,21 @@ def stage_world_keyframe_prompt(
     # clip's last frame depends only on the factual script and topic-world style.
     prompt = fill(
         resolve_prompt(content_project, "06_world_keyframe_prompt_writer.md"),
-        FINAL_SCRIPT=plan["full_narration"],
+        FINAL_SCRIPT=visuals.factual_world_script(plan),
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         CAPTION_LAYOUT_RULE=caption_layout_rule(world_style_plan),
         WORLD_ENTRY_DISCOVERY=openings.world_entry_context(load_opening_concept(project)),
     )
     text = runner.text(stage, prompt).strip()
     # The world keyframe is the visual constitution for every body frame, so make its
-    # repeatable material border and caption reserve explicit in the actual Gemini prompt.
+    # full-bleed scene and optional caption reserve explicit in the actual Gemini prompt.
     text = (
         f"{text} {episode_frame_contract(world_style_plan)} "
         "Binding isolation: no recurring host, no selected host, and no foreground person or character."
     )
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text + "\n", encoding="utf-8")
+    save_json(cache_path, {"input_sha256": cache_key, "output_sha256": sha256_file(target)})
     runner.stage_done(stage, started, target.name, prompt_sha256=sha256_text(text))
     return text
 
@@ -2877,6 +2922,8 @@ def stage_world_keyframe(
 ) -> Path:
     """The one image that defines the episode's world. Gemini only, verified, no substitute."""
     stage = "world_keyframe"
+    if "[VISUAL_CONTRACT:topic_world_v2]" not in prompt:
+        prompt += "\n" + episode_frame_contract(load_json(project / "creative/WORLD_STYLE_PLAN.json") if (project / "creative/WORLD_STYLE_PLAN.json").is_file() else {})
     target = project / "references" / "world_keyframe.png"
     receipt = project / "pipeline" / "provider_receipts" / "gemini_world_keyframe.json"
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
@@ -3023,7 +3070,8 @@ def stage_entry_identity(
     prompt = presentation.entry_identity_prompt
     receipt = target.with_suffix(target.suffix + ".receipt.json")
     fingerprint = request_fingerprint(prompt, "canonical", [])
-    if valid_image(target) and receipt_status(project, target, receipt, fingerprint=fingerprint)["status"] == "verified":
+    if (valid_image(target) and receipt_status(project, target, receipt, fingerprint=fingerprint)["status"] == "verified"
+            and visuals.review_matches(load_json(receipt).get("quality_check"), prompt)):
         runner.stage_reused(stage, target.name)
         return target
     started = runner.stage_start(stage)
@@ -3070,12 +3118,23 @@ def stage_entry_frame(
         return stage_topic_book_cover(runner, project, content_project, topic, world_style_anchor, force=force)
     direction_stage = "book_cover_design"  # durable compatibility id
     direction_target = presentation.artifacts.path(project, "entry_direction")
-    if force or not (runner.state.done(direction_stage) and direction_target.is_file()):
+    try:
+        visuals.validate_entry_camera(episode_plan, presentation)
+    except ValueError as exc:
+        raise StageFailure(direction_stage, "FAILED_VALIDATION", str(exc)) from exc
+    direction_cache_path = direction_target.with_suffix(".inputs.json")
+    direction_key = openings.fingerprint({"topic": topic, "episode": episode_plan,
+        "frame_rules": presentation.entry_frame_prompt, "presentation": presentation.prompt_context()})
+    saved_direction = visuals.read_cache(direction_cache_path)
+    if force or not (runner.state.done(direction_stage) and direction_target.is_file()
+                     and saved_direction.get("input_sha256") == direction_key
+                     and saved_direction.get("output_sha256") == sha256_file(direction_target)):
         started = runner.stage_start(direction_stage)
         prompt = (
             "Write a compact 55–90 word, non-textual art-direction brief for the configured entry frame. "
             f"Topic: {topic!r}. Episode direction: {json.dumps(episode_plan, ensure_ascii=False)}. "
             f"Presentation: {json.dumps(presentation.prompt_context(), ensure_ascii=False)}. "
+            f"Mandatory frame geometry: {presentation.entry_frame_prompt}. "
             "Name concrete topic motifs and one readable ownership/agency cue. No markdown, labels, words inside the image, or explanation."
         )
         direction = runner.text(direction_stage, prompt).strip()
@@ -3083,6 +3142,7 @@ def stage_entry_frame(
             raise StageFailure(direction_stage, "FAILED_VALIDATION", "Entry-frame direction was unusably short.")
         direction_target.parent.mkdir(parents=True, exist_ok=True)
         direction_target.write_text(direction + "\n", encoding="utf-8")
+        save_json(direction_cache_path, {"input_sha256": direction_key, "output_sha256": sha256_file(direction_target)})
         runner.stage_done(direction_stage, started, direction_target.name, profile_id=presentation.id)
     else:
         runner.stage_reused(direction_stage, direction_target.name)
@@ -3093,11 +3153,16 @@ def stage_entry_frame(
     prompt = (
         f"{presentation.entry_frame_prompt}\n\nEPISODE TOPIC: {topic}\n"
         f"EPISODE DIRECTION: {direction}\n"
-        f"TOPIC-WORLD STYLE: {json.dumps(load_json(project / 'creative' / 'WORLD_STYLE_PLAN.json'), ensure_ascii=False)}"
+        f"TOPIC-WORLD STYLE: {json.dumps(visuals.topic_style(load_json(project / 'creative' / 'WORLD_STYLE_PLAN.json')), ensure_ascii=False)}\n"
+        f"ENTRY CAMERA PLAN: {json.dumps(episode_plan.get('entry_camera') or {}, ensure_ascii=False)}"
     )
     refs = [Reference(role="entry_identity", path=entry_identity), Reference(role="style_reference", path=world_style_anchor)]
-    if presentation.entry_frame_character_presence == "ownership_cue":
+    if presentation.entry_frame_character_presence in {"ownership_cue", "acting_host"}:
         refs.append(Reference(role="character_sheet", path=character.sheet_path))
+    if presentation.entry_frame_character_presence == "acting_host":
+        world_reference = project / "references/world_keyframe.png"
+        if valid_image(world_reference):
+            refs.append(Reference(role="world_keyframe", path=world_reference))
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
     if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, refs):
@@ -3125,6 +3190,7 @@ def stage_flow_prompt(
 ) -> str:
     """Every Flow prompt comes from ChatGPT; none of them is hardcoded (§194)."""
     presentation = (character or _coerce_character_context(content_project)).presentation
+    world_style_plan = visuals.topic_style(world_style_plan)
     stage = f"flow_prompt_{'a' if clip == 'A' else 'b'}"
     target = presentation.artifacts.path(project, "question_prompt" if clip == "A" else "entry_prompt")
     contract_path = target.with_suffix(target.suffix + ".inputs.json")
@@ -3137,7 +3203,14 @@ def stage_flow_prompt(
     direction_path = presentation.artifacts.path(project, "entry_direction")
     entry_direction = direction_path.read_text(encoding="utf-8") if direction_path.is_file() else "Use the supplied configured first frame."
     template_name = "08_opening_video_prompt_writer.md" if clip == "A" else "09_entry_transition_video_prompt_writer.md"
+    if clip == "B":
+        try:
+            visuals.validate_entry_duration(presentation, measured_seconds)
+            visuals.validate_entry_camera(episode_plan or {}, presentation)
+        except ValueError as exc:
+            raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
     input_hash = openings.fingerprint({
+        "rules_sha256": sha256_text(presentation.question_prompt_rules if clip == "A" else presentation.transition_prompt),
         "template_sha256": sha256_text(resolve_prompt(content_project, template_name)),
         "episode": episode_plan if clip == "A" else openings.entry_context(concept, episode_plan),
         "style": world_style_plan if clip == "B" else None,
@@ -3152,10 +3225,10 @@ def stage_flow_prompt(
     try:
         existing = load_json(contract_path)
         contract_matches = (int(existing.get("source_seconds")) == int(source_seconds) and
-                            (not concept or existing.get("input_fingerprint") == input_hash))
+                            existing.get("input_fingerprint") == input_hash)
     except (OSError, ValueError, TypeError):
         pass
-    if not force and runner.state.done(stage) and target.is_file() and (not require_source_contract and not concept or contract_matches):
+    if not force and runner.state.done(stage) and target.is_file() and contract_matches:
         runner.stage_reused(stage, target.name)
         return target.read_text(encoding="utf-8").strip()
     started = runner.stage_start(stage)
@@ -3165,8 +3238,11 @@ def stage_flow_prompt(
         if episode_plan is None:
             raise StageFailure(stage, "FAILED_VALIDATION", "Clip A requires episode direction.")
         preset_rules = (
-            content_project.root / "visual_presets" / content_project.default_visual_preset / "README.md"
-        ).read_text(encoding="utf-8")
+            "Preserve the supplied character sheet's canonical visual identity and readable cartoon acting. "
+            "Choose the opening setting from the question. The episode's resolved presentation alone owns "
+            "the gateway and handoff. Development asset lists, other characters and topic-world framing "
+            "are not opening-scene instructions."
+        )
         prompt = fill(
             resolve_prompt(content_project, "08_opening_video_prompt_writer.md"),
             OPENING_A_NARRATION=narration,
@@ -3199,6 +3275,11 @@ def stage_flow_prompt(
         text = runner.text(stage + f"_compact{correction + 1}", prompt + "\nReturn a non-empty production prompt. Intro A must fit 1800 characters: retain the first-frame event, essential identity and handoff; compress decoration.").strip()
     if not text or (clip == "A" and len(text) > 1800):
         raise StageFailure(stage, "FAILED_VALIDATION", "Opening prompt did not satisfy its production budget.")
+    if clip == "B" and (presentation.motion_contract or presentation.entry_kind == "spyglass"):
+        text += "\n\nBINDING ENTRY MOTION: " + presentation.transition_prompt
+        if episode_plan and episode_plan.get("entry_camera"):
+            text += "\nENTRY CAMERA PLAN: " + json.dumps(episode_plan["entry_camera"], ensure_ascii=False)
+        text += f"\nEssential action ends by {measured_seconds:.3f}s; hold the last frame afterward."
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text.strip() + "\n", encoding="utf-8")
     contract_path.write_text(
@@ -3239,6 +3320,7 @@ def stage_flow_clip(
     receipt = project / "pipeline" / "provider_receipts" / f"{receipt_name}.json"
     receipt_duration = None
     receipt_prompt = None
+    stored_receipt = {}
     if receipt.is_file():
         try:
             stored_receipt = load_json(receipt)
@@ -3246,6 +3328,14 @@ def stage_flow_clip(
             receipt_prompt = stored_receipt.get("prompt_sha256")
         except (OSError, ValueError, TypeError):
             pass
+    recorded_refs = stored_receipt.get("references")
+    refs_match = recorded_refs is None and (clip == "A" or not visuals.requirements(presentation.entry_frame_prompt))
+    if isinstance(recorded_refs, list):
+        expected_uploads = build_flow_uploads(clip="A", character_sheet=(character or _coerce_character_context(content_project)).sheet_path) if clip == "A" else build_flow_uploads(clip="B", entry_frame=book_spread, world_keyframe=world_keyframe)
+        refs_match = (all(path.is_file() for _, path in expected_uploads)
+                      and all(isinstance(item, dict) for item in recorded_refs)
+                      and [{"role": item.get("role"), "sha256": item.get("sha256")} for item in recorded_refs]
+                      == [{"role": role, "sha256": sha256_file(path)} for role, path in expected_uploads])
     # A recovered episode may need a longer opening source after real narration
     # alignment.  Never silently reuse a clip generated to an older, shorter
     # contract: trim_opening_clips correctly refuses to stretch it later.
@@ -3258,9 +3348,22 @@ def stage_flow_clip(
         and runner.state.done(stage)
         and receipt_duration in (None, 0, source_seconds)
         and receipt_prompt in (None, sha256_text(prompt))
+        and refs_match
     ):
         runner.stage_reused(stage, f"{filename} ({ffprobe_duration(target):.2f}s)")
         return target
+    if clip == "B":
+        try:
+            visuals.validate_entry_duration(presentation, float(source_seconds))
+        except ValueError as exc:
+            raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
+    if clip == "B" and visuals.requirements(presentation.entry_frame_prompt):
+        entry_receipt = presentation.artifacts.path(project, "entry_image_receipt")
+        data = visuals.read_cache(entry_receipt)
+        if (book_spread is None or not valid_image(book_spread) or data.get("output_sha256") != sha256_file(book_spread)
+                or receipt_status(project, book_spread, entry_receipt)["status"] != "verified"
+                or not visuals.review_matches(data.get("quality_check"), presentation.entry_frame_prompt)):
+            raise StageFailure(stage, "FAILED_VALIDATION", "The entry start frame lacks current geometry acceptance. Regenerate the entry frame before spending Flow credits.")
     started = runner.stage_start(stage)
 
     if clip == "A":
@@ -3555,6 +3658,7 @@ def stage_beat_prompt(
     references: list[Reference],
     character: CharacterContext | None = None,
 ) -> str:
+    world_style_plan = visuals.topic_style(world_style_plan)
     if beat.get("hero_present", False):
         character = _coerce_character_context(character or content_project)
     beat_id = int(beat["beat_id"])
@@ -3572,7 +3676,7 @@ def stage_beat_prompt(
         raise StageFailure(stage, "FAILED_VALIDATION", f"Style rules are missing: {preset_readme}")
     prompt = fill(
         resolve_prompt(content_project, "07_single_beat_image_prompt_writer.md"),
-        STYLE_RULES=preset_readme.read_text(encoding="utf-8"),
+        STYLE_RULES="Use the selected topic-world medium and palette in a full-bleed scene. The opening preset and entry-object design do not define the body layout.",
         WORLD_STYLE_PLAN=json.dumps(world_style_plan, ensure_ascii=False),
         VISUAL_BEAT=json.dumps(beat, ensure_ascii=False),
         REFERENCE_IMAGES=", ".join(ref.role for ref in references) or "none",
@@ -3580,21 +3684,21 @@ def stage_beat_prompt(
         PREVIOUS_BEAT=(
             "No previous image — establish the world's texture and palette from the canonical anchors."
             if not any(ref.role == "previous_beat" for ref in references)
-            else "Previous image is binding for the recurring frame language, material/edge treatment, "
-            "inner illustration window, texture, palette and lighting. Follow the explicit caption-layout "
+            else "Previous image is binding only for compatible medium, texture, palette and lighting. "
+            "Ignore any inherited page border, inset, gateway mask or physical sheet. Follow the explicit caption-layout "
             "rule for whether its lower reserve is retained or filled. "
             "Never copy its composition, crop, camera angle, pose, subject placement, or focal object."
         ),
         ASPECT_RATIO="9:16",
         CHARACTER_CONTEXT=(
-            _character_prompt_context(character)
+            visuals.body_character_context(character)
             if beat.get("hero_present", False)
             else "HOST ABSENT. Do not depict or mention the selected recurring host."
         ),
     )
     cache_path = target.with_suffix(".inputs.json")
     cache_key = sha256_text(prompt)
-    cached = load_json(cache_path) if cache_path.is_file() else {}
+    cached = visuals.read_cache(cache_path)
     if (target.is_file() and cached.get("input_sha256") == cache_key and
             cached.get("output_sha256") == sha256_file(target)):
         return target.read_text(encoding="utf-8").strip()
@@ -3610,7 +3714,7 @@ def stage_beat_prompt(
             recorded = load_json(image_receipt) if image_receipt.is_file() else {}
         except (OSError, ValueError):
             recorded = {}
-        if recorded.get("prompt_sha256") == sha256_text(existing):
+        if recorded.get("prompt_sha256") == sha256_text(existing) and "[VISUAL_CONTRACT:topic_world_v2]" in existing:
             save_json(
                 cache_path,
                 {"input_sha256": cache_key, "output_sha256": sha256_file(target)},
@@ -3781,6 +3885,10 @@ def stage_body_images(
                     f"{prompt.rstrip()}\n\nCHATGPT PRE-GENERATION QC GUIDANCE (binding):\n{guidance}\n\n"
                     "Apply this guidance in the replacement while preserving all unmentioned successful details."
                 )
+            if "[VISUAL_CONTRACT:topic_world_v2]" not in prompt:
+                prompt += "\n" + episode_frame_contract(world_style_plan)
+            if revision_guidance_receipt is not None:
+                prompt += "\nRequired topic-world layout remains in force after revision feedback; preserve medium and identity, not an obsolete enclosing page or gateway mask."
             image_options = {"skip_content_qc": True} if revision_guidance_receipt is not None else {}
             result = runner.image(
                 stage, prompt, references, model=model, destination=target,
@@ -4467,6 +4575,15 @@ def main() -> int:
                 print("VISUAL MEDIA DEFERRED: waiting for narration alignment", flush=True)
                 return 0
 
+            if presentation.min_entry_seconds:
+                source_plan_path = project / "timing/OPENING_SOURCE_PLAN.json"
+                if not args.use_opening_source_plan or not source_plan_path.is_file():
+                    raise StageFailure("opening_source_plan", "FAILED_VALIDATION", "This gateway requires real narration alignment. Use the full wrapper or --use-opening-source-plan before requesting visual media.")
+                source_plan = load_json(source_plan_path)
+                try:
+                    visuals.validate_entry_duration(presentation, float(source_plan["clips"]["B"]["target_seconds"]))
+                except (KeyError, TypeError, ValueError) as exc:
+                    raise StageFailure("opening_source_plan", "FAILED_VALIDATION", str(exc)) from exc
             world_style_anchor = stage_world_style_anchor(runner, project, content_project, world_style_plan)
 
             keyframe_prompt = stage_world_keyframe_prompt(

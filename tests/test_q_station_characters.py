@@ -26,9 +26,12 @@ from video_control_panel import Handler, character_catalog_entries, pipeline_com
 
 
 def expected_available_ids() -> tuple[str, ...]:
-    bundled = ("red_horned_everyman", "moss_cloaked_crone")
-    sheet = ROOT / "projects/q_station/characters/sea_captain/refs/character_sheet.png"
-    return bundled + (("sea_captain",) if operator_reference_error(sheet) is None else ())
+    ready = ["red_horned_everyman", "moss_cloaked_crone"]
+    for identifier in ("sea_captain", "newton_scholar"):
+        sheet = ROOT / f"projects/q_station/characters/{identifier}/refs/character_sheet.png"
+        if operator_reference_error(sheet) is None:
+            ready.append(identifier)
+    return tuple(ready)
 
 
 @pytest.fixture
@@ -43,10 +46,10 @@ def copied_registry(tmp_path: Path) -> Path:
     return target / "registry.json"
 
 
-def test_registry_declares_exactly_three_character_packs(registry) -> None:
+def test_registry_declares_exactly_four_character_packs(registry) -> None:
     raw = json.loads((ROOT / "projects/q_station/characters/registry.json").read_text())
     assert {item["id"] for item in raw["characters"]} == {
-        "red_horned_everyman", "moss_cloaked_crone", "sea_captain"
+        "red_horned_everyman", "moss_cloaked_crone", "sea_captain", "newton_scholar"
     }
     assert registry.auto_fallback_character_id == "red_horned_everyman"
     assert registry.legacy_default_character_id == "red_horned_everyman"

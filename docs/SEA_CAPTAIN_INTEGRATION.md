@@ -105,37 +105,21 @@ Unsupported claims must be qualified, redesigned or rejected before paid media.
 
 ## Visual and runtime contracts
 
-A uses the selected mini-story from frame zero, one location and at most three clear actions.
-It ends with a compatible eyepiece handoff. B begins on the generated eyepiece close-up:
-the barrel points away, and a small actual hand/blue-cuff cue makes ownership clear. A and B
-are separate clips with an editorial seam, not guaranteed continuous pixels.
+For current new runs, B begins with actual optical use in an oblique side/rear-three-quarter
+view, not a dominant circular lens and anonymous cuff: small eyepiece at the visible unpatched
+eye, wider objective aimed away toward the subject. Both ends, connecting barrel and plausible
+grip must be visible. The camera matches into his outward-looking viewpoint, then reveals the
+world. Optical reversal or uncheckable orientation is a blocking visual defect.
 
-A restrained forward push through the lens reveals the subject-world clue. The final
-keyframe contains no host, hand, spyglass, circular mask or opening setting. The viewer's
-**gaze** enters the world; the captain is not forced bodily into the endpoint. His voice
-continues; later stills may include him only through the existing `hero_present` and
-host-presence policy. The first body unit pays off the opening; later units explain it.
-An optional closing may echo the opening; CTA does not replace the answer.
+The shared object is generated lazily as `spyglass_design_sheet_v2.png`; it is not a second
+manual asset. The old identity remains only as historical provenance. Gemini entry-frame
+references are entry_identity, style_reference, character_sheet and the generated world_keyframe.
+Flow A receives only the character ingredient; Flow B receives only first_frame and last_frame.
+The endpoint and all body images are full-bleed topic-world scenes, without enclosing page edges
+or persistent lens masks. Actual narration alignment governs the edit.
 
-- Character identity: this pack's canonical sheet and appearance/behavior/negative prose.
-- Recurring object: `spyglass_portal/refs/spyglass_design_sheet.png`, generated lazily by the
-  existing non-book identity stage on the first real run, quality-reviewed and receipt-verified.
-  No second asset needs manual installation. It is a shared object asset, not episode-owned.
-- Gemini entry frame: `entry_identity`, `style_reference`, `character_sheet`.
-- Flow A: only `character_sheet` in Ingredients mode.
-- Flow B: only `first_frame` + `last_frame` in Frames mode. Never a style or character ingredient.
-- World keyframe: topic-world references only, no character sheet or entry identity.
-- Narration: existing `opening_question_spark` + `entry_transition`; no new spoken segment key.
-- Timing: actual word alignment and supported source lengths drive trimming, not a fixed 6+4 edit.
-- Body: one image per body unit, plus one for non-empty `optional_closing`; no extra CTA image
-  or third Flow clip. Art style belongs to the topic world, not the captain's costume.
-
-The profile names episode outputs `spyglass_entry_frame.png`,
-`flow_prompt_spyglass_transition.txt`, `spyglass_transition_source.mp4`,
-`spyglass_transition_trimmed.mp4`, `SPYGLASS_ENTRY_DIRECTION.txt` and
-`gemini_spyglass_entry_frame.json`. The existing profile-aware gate, graph, trim, timeline,
-resume and invalidation code resolves these paths. Internal `book_*` compatibility stage
-IDs are deliberately retained. No existing `videos/` media or frozen resolution is migrated.
+See `docs/CHARACTER_GATEWAYS.md` for four-host mappings, review/caching requirements, existing-run
+revision and the server acceptance checklist. Existing operator artwork is not overwritten.
 
 ## Validation and first paid smoke
 
@@ -162,3 +146,8 @@ Offline/CI success cannot verify browser login, account credits, current provide
 visual model consistency or audience retention. An authenticated Gemini/Flow smoke with the
 real operator sheet is the final production acceptance step. Never manufacture a success
 receipt or placeholder when a provider fails; use the existing recovery workflow.
+
+
+## Gateway update
+
+For new runs, the red host uses `red_door_portal`, the Newton-inspired scholar uses the existing `book_portal`, the crone keeps `orb_portal`, and the captain uses the corrected optical-use `spyglass_portal`. Topic-world images are full-bleed, not enclosing pages. Earlier operational examples describe frozen historical runs; current installation, camera/QC contracts and revision guidance are in `docs/CHARACTER_GATEWAYS.md`.

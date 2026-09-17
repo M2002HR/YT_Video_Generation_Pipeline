@@ -154,8 +154,8 @@ def test_new_manual_selection_freezes_matching_presentation(environment, identif
 def test_newton_auto_can_be_selected_once(environment):
     content, registry, run = environment
     called = []
-    first = resolve_character(registry, requested_mode="auto", run_auto_selector=lambda: called.append(1) or {"character_id": "newton_scholar", "confidence": "high", "reason": "Question benefits from comparison and evidence."})
-    second = resolve_character(registry, persisted=first.to_state(), run_auto_selector=lambda: pytest.fail("Auto repeated"))
+    first = resolve_character(registry, requested_mode="auto", requested_character_id=None, run_auto_selector=lambda: called.append(1) or {"character_id": "newton_scholar", "confidence": "high", "reason": "Question benefits from comparison and evidence."})
+    second = resolve_character(registry, requested_mode="auto", requested_character_id=None, persisted=first.to_state(), run_auto_selector=lambda: pytest.fail("Auto repeated"))
     assert first.resolved_character_id == second.resolved_character_id == "newton_scholar" and called == [1]
 
 
@@ -329,3 +329,82 @@ def test_corrupt_input_cache_is_not_reused(tmp_path):
     cache = tmp_path / "cache.json"
     cache.write_text("{broken")
     assert contracts.read_cache(cache) == {}
+
+
+@pytest.mark.parametrize("identifier", ["red_horned_everyman", "sea_captain"])
+def test_acting_entry_dependency_tracks_its_real_world_reference(environment, identifier):
+    _, registry, run = environment
+    save(run / "creative/PRESENTATION_RESOLUTION.json", registry.get(identifier).presentation.to_resolution())
+    graph = graph_for(run, include_disabled=True)
+    assert {"book_cover", "flow_clip_b", "opening_trim"} <= affected_nodes(graph, ["world_keyframe"])
+
+
+def test_crone_does_not_gain_an_unneeded_world_frame_dependency(environment):
+    _, registry, run = environment
+    save(run / "creative/PRESENTATION_RESOLUTION.json", registry.get("moss_cloaked_crone").presentation.to_resolution())
+    assert "book_cover" not in affected_nodes(graph_for(run, include_disabled=True), ["world_keyframe"])
+
+
+def test_full_bleed_rule_is_enforced_at_actual_keyframe_entrypoint(environment, monkeypatch):
+    content, _, run = environment
+    style = pixels(run / "references/world_style_anchor.png")
+    captured = {}
+    def reuse(runner, project, stage, target, receipt, prompt, model, references):
+        captured.update(prompt=prompt, references=references)
+        pixels(target)
+        return True
+    monkeypatch.setattr(pipeline, "reusable_image", reuse)
+    pipeline.stage_world_keyframe(Spy(), run, content, "Describe the actual subject.", style)
+    assert "[VISUAL_CONTRACT:topic_world_v2]" in captured["prompt"]
+    assert all(ref.role not in {"character_sheet", "entry_identity"} for ref in captured["references"])
+
+
+def test_door_with_unreviewed_start_fails_before_flow_spend(environment):
+    content, registry, run = environment
+    character = registry.get("red_horned_everyman")
+    first = pixels(character.presentation.artifacts.path(run, "entry_frame"))
+    last = pixels(run / "references/world_keyframe.png")
+    spy = Spy()
+    with pytest.raises(pipeline.StageFailure, match="geometry acceptance"):
+        pipeline.stage_flow_clip(spy, run, content, "B", "A measured crossing.", book_spread=first,
+            world_keyframe=last, model="gemini_omni_1_1_flash", resolution="720p", aspect_ratio="9:16", source_seconds=8, character=character)
+    assert spy.videos == []
+
+
+
+def test_b_prompt_cache_reuses_identical_inputs_and_invalidates_camera_changes(environment):
+    content, registry, run = environment
+    red = registry.get("red_horned_everyman")
+    save(run / "timing/OPENING_SOURCE_PLAN.json", {"clips": {"B": {"target_seconds": 6.2}}})
+    spy = Spy()
+    episode = {"entry_variant": "wrong_wall", "entry_camera": camera()}
+    args = (spy, run, content, "B", "A factual clue accompanies the crossing.", episode,
+            {"medium": "ink"}, "The host-free world", "topic", 8)
+    first = pipeline.stage_flow_prompt(*args, character=red, require_source_contract=True)
+    count = len(spy.prompts)
+    assert pipeline.stage_flow_prompt(*args, character=red, require_source_contract=True) == first
+    assert len(spy.prompts) == count
+    episode["entry_camera"]["transition"] = "texture_takeover"
+    updated = pipeline.stage_flow_prompt(*args, character=red, require_source_contract=True)
+    assert len(spy.prompts) > count and "texture_takeover" in updated
+
+
+def test_red_identity_behavior_does_not_assign_the_book(environment):
+    _, registry, _ = environment
+    behavior = registry.get("red_horned_everyman").behavior
+    assert "His book is a fixed bridge" not in behavior
+    assert "resolved presentation" in behavior
+
+
+def test_visual_planner_has_no_entry_behavior_context(environment):
+    content, registry, run = environment
+    red = registry.get("red_horned_everyman")
+    beat = {"beat_id": 1, "narration_slice": "A clear factual answer.", "visual_fingerprint": "distinct_subject", "hero_present": False}
+    spy = Spy([{"beats": [beat]}])
+    plan = {"opening_question_spark": "Why?", "entry_transition": "Gateway-only sentinel.",
+            "body": [beat["narration_slice"]], "optional_closing": "", "cta": "Subscribe."}
+    pipeline.stage_visual_plan(spy, run, content, plan, {"entry_camera": camera()}, {"medium": "ink"}, 20, red)
+    prompt = spy.prompts[0][1]
+    assert "Gateway-only sentinel" not in prompt
+    assert "door_crossing_v1" not in prompt and "entry_camera" not in prompt
+    assert "A clear factual answer." in prompt

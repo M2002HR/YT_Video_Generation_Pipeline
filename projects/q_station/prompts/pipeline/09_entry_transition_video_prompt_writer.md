@@ -16,10 +16,10 @@ Inputs:
 
 Flow receives first_frame (the episode-specific entry object/presentation) and last_frame (the exact
 host-free topic-world keyframe). It receives no style sheet or character ingredient in Frames mode.
-Write a continuous hand-drawn 2D shot that obeys ENTRY TRANSITION CONTRACT, begins exactly on the
+Write a controlled shot or the single matched viewpoint/dissolve explicitly allowed by ENTRY TRANSITION CONTRACT, begins exactly on the
 supplied first frame, gradually adopts the topic world's palette, texture, atmosphere and visual
 language inside the entry mechanism, and ends exactly on the supplied last frame. Preserve any
-ownership cue already baked into the first frame when the profile requires it. Do not invent uploads,
+ownership cue or acting host already baked into the first frame when the profile requires it. For an acting-host doorway, visibly complete the threshold crossing before the camera arrival or any dissolve. The profile camera plan is binding; do not default every gateway to a lens push. Do not invent uploads,
 readable text, UI, 3D CGI, photorealism, a hard cut, flash, unrelated character, or alternate endpoint.
 
 Carry the selected informational reveal rather than add an unrelated spectacle. The configured first

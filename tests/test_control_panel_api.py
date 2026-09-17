@@ -781,7 +781,8 @@ def test_character_revision_starts_at_resolution_and_updates_profile_request() -
     assert revised['_q_station']['character'] == {'mode': 'auto'}
     assert {'character_mode', 'character_id'} <= set(changed)
 
-def test_character_revision_archives_old_resolution_and_clears_resume_authority(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+@pytest.mark.parametrize("old_profile_id", ["book_portal", "red_door_portal"])
+def test_character_revision_archives_old_resolution_and_clears_resume_authority(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, old_profile_id: str) -> None:
     from character_runtime import load_character_registry
     monkeypatch.setattr(panel, 'ROOT', tmp_path)
     monkeypatch.setattr(panel, 'monitor_process', lambda *args, **kwargs: None)
@@ -806,8 +807,10 @@ def test_character_revision_archives_old_resolution_and_clears_resume_authority(
     creative.mkdir(parents=True)
     (creative / 'CHARACTER_RESOLUTION.json').write_text(json.dumps(old_resolution), encoding='utf-8')
     registry = load_character_registry(ROOT / 'projects/q_station/characters/registry.json')
-    (creative / 'PRESENTATION_RESOLUTION.json').write_text(json.dumps(registry.get('red_horned_everyman').presentation.to_resolution()), encoding='utf-8')
-    old_entry = project / 'references/book_cover_frame.png'
+    from presentation_runtime import load_presentation_profile
+    old_profile = load_presentation_profile(ROOT / f'projects/q_station/presentation_profiles/{old_profile_id}/profile.json')
+    (creative / 'PRESENTATION_RESOLUTION.json').write_text(json.dumps(old_profile.to_resolution()), encoding='utf-8')
+    old_entry = old_profile.artifacts.path(project, 'entry_frame')
     old_entry.parent.mkdir(parents=True)
     old_entry.write_bytes(b'old-book-frame')
     values = panel.frozen_values(record, brief, voice)
@@ -835,7 +838,7 @@ def test_character_revision_archives_old_resolution_and_clears_resume_authority(
     archived = project / 'pipeline/revisions' / revision['revision_id'] / 'previous'
     assert (archived / 'creative/CHARACTER_RESOLUTION.json').is_file()
     assert (archived / 'creative/PRESENTATION_RESOLUTION.json').is_file()
-    assert (archived / 'references/book_cover_frame.png').read_bytes() == b'old-book-frame'
+    assert (archived / old_entry.relative_to(project)).read_bytes() == b'old-book-frame'
     assert not (creative / 'CHARACTER_RESOLUTION.json').exists()
     saved_job = json.loads((jobs / f"{record['job_id']}.json").read_text())
     frozen_brief = tmp_path / saved_job['creative_brief']

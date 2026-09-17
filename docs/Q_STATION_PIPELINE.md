@@ -105,3 +105,8 @@ deliberately not part of unit tests because it spends credits and requires authe
 See [OPENING_STORY_PIPELINE.md](OPENING_STORY_PIPELINE.md) for the v2 decision contract, semantic
 history, panel invalidation and provider-free deployment checks. New opening rules are enabled for
 new runs on dev without changing character sheets, artifact names or provider input roles.
+
+
+## Gateway update
+
+For new runs, the red host uses `red_door_portal`, the Newton-inspired scholar uses the existing `book_portal`, the crone keeps `orb_portal`, and the captain uses the corrected optical-use `spyglass_portal`. Topic-world images are full-bleed, not enclosing pages. Earlier operational examples describe frozen historical runs; current installation, camera/QC contracts and revision guidance are in `docs/CHARACTER_GATEWAYS.md`.

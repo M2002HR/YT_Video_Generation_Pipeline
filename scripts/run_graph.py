@@ -242,6 +242,13 @@ def q_station_node_specs(project: Path, settings: dict[str, Any] | None = None) 
     specs["book_design_sheet"] = replace(specs["book_design_sheet"], title=f"{label} identity", description="Shared recurring entry-object identity; not owned by this episode.")
     specs["book_cover_design"] = replace(specs["book_cover_design"], title=f"{label} frame direction", artifacts=(a.entry_direction,))
     specs["book_cover"] = replace(specs["book_cover"], title=f"Topic-styled {presentation.entry_kind} frame", artifacts=(a.entry_frame,), optional_artifacts=(a.entry_image_receipt,))
+    if presentation.entry_frame_character_presence == "acting_host":
+        spec = specs["book_cover"]
+        specs["book_cover"] = replace(spec, dependencies=(*spec.dependencies, "world_keyframe"))
+    spec = specs["book_cover_design"]
+    specs["book_cover_design"] = replace(spec, optional_artifacts=(str(Path(a.entry_direction).with_suffix(".inputs.json")),))
+    spec = specs["world_keyframe_prompt"]
+    specs["world_keyframe_prompt"] = replace(spec, optional_artifacts=("references/world_keyframe_prompt.inputs.json",))
     specs["flow_prompt_a"] = replace(specs["flow_prompt_a"], title="Question intro prompt", artifacts=(a.question_prompt,), optional_artifacts=(f"{a.question_prompt}.inputs.json",))
     specs["flow_prompt_b"] = replace(specs["flow_prompt_b"], title=f"{label} entry prompt", artifacts=(a.entry_prompt,), optional_artifacts=(f"{a.entry_prompt}.inputs.json",))
     specs["flow_clip_a"] = replace(specs["flow_clip_a"], title="Question intro", artifacts=(a.question_source,))
