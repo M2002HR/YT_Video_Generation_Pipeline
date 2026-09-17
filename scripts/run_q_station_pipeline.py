@@ -555,7 +555,7 @@ class Runner:
     site is allowed to catch a provider failure and substitute something it made up.
     """
 
-    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QStationState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0", beat_image_qc_disabled: bool = False) -> None:
+    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QStationState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0", beat_image_qc_disabled: bool = False, image_provider_alternation: bool = False) -> None:
         self.jobs = jobs
         self.notifier = notifier
         self.state = state
@@ -564,6 +564,7 @@ class Runner:
         self.chatgpt_fallback_mode = chatgpt_fallback_mode if chatgpt_fallback_mode in {"auto", "approval"} else "approval"
         self.image_qc_correction_policy = image_qc_correction_policy if image_qc_correction_policy in {"0", "1", "2", "strict"} else "0"
         self.beat_image_qc_disabled = bool(beat_image_qc_disabled)
+        self.image_provider_alternation = bool(image_provider_alternation)
 
     def image_qc_disabled_for(self, stage: str) -> bool:
         """Whether this body beat must never be uploaded to the ChatGPT reviewer."""
@@ -802,19 +803,45 @@ class Runner:
         prior_candidate: Path | None = None
         current_prompt = prompt
         current_references = list(references)
+        # Gemini stays primary: attempt 1 is always Gemini, later attempts
+        # alternate to ChatGPT's independent renderer and back while the
+        # correction budget lasts. Disabled (release paths, unit doubles)
+        # keeps the historical Gemini-only sequence byte-identical.
+        alternate = bool(getattr(self, "image_provider_alternation", False))
+        last_failure: StageFailure | None = None
 
         try:
             for attempt in range(max_attempts):
+                provider = ("gemini", "chatgpt")[attempt % 2] if alternate else "gemini"
                 candidate = candidates_dir / f"{destination.stem}.{request_id}.attempt-{attempt + 1}.png"
                 attempt_options = {"skip_content_qc": True} if skip_content_qc else {}
-                result = self._image_attempt(
-                    stage,
-                    current_prompt,
-                    current_references,
-                    model=model,
-                    destination=candidate,
-                    **attempt_options,
-                )
+                try:
+                    result = self._image_attempt(
+                        stage,
+                        current_prompt,
+                        current_references,
+                        model=model,
+                        destination=candidate,
+                        provider=provider,
+                        **attempt_options,
+                    )
+                except StageFailure as exc:
+                    if not alternate or attempt + 1 >= max_attempts:
+                        raise
+                    last_failure = exc
+                    iterations.append({
+                        "attempt": attempt + 1,
+                        "provider": provider,
+                        "error": f"{exc.state}: {exc.message}",
+                        "fully_clean": False,
+                        "selected": False,
+                    })
+                    print(
+                        f"    [image QC] {stage}: {provider} attempt failed ({exc.state}); "
+                        f"trying the other provider {attempt + 2}/{max_attempts}.",
+                        flush=True,
+                    )
+                    continue
                 check = dict((result.generation_receipt or {}).get("quality_check") or {})
                 blocking = list(check.get("blocking_violations") or [])
                 observations = list(check.get("observations") or check.get("violations") or [])
@@ -822,6 +849,7 @@ class Runner:
                 fully_clean = not blocking and not observations and not regressions
                 record = {
                     "attempt": attempt + 1,
+                    "provider": provider,
                     "job_id": result.job_id,
                     "prompt_sha256": sha256_text(current_prompt),
                     "output_sha256": sha256_file(candidate),
@@ -876,6 +904,8 @@ class Runner:
                     error_code="image_content_rejected",
                 )
             if not accepted:
+                if last_failure is not None and not any("quality_check" in item for item in iterations):
+                    raise last_failure
                 raise StageFailure(
                     stage,
                     "FAILED_VALIDATION",
@@ -943,9 +973,17 @@ class Runner:
         model: str,
         destination: Path,
         skip_content_qc: bool = False,
+        provider: str = "gemini",
     ) -> JobResult:
-        """One Gemini image, downloaded and verified. Returns the job result for the receipt."""
+        """One provider image, downloaded and verified. Returns the job result for the receipt."""
+        if provider not in {"gemini", "chatgpt"}:
+            raise ValueError(f"Unsupported image provider: {provider}")
         fingerprint = request_fingerprint(prompt, model, references)
+        if provider != "gemini":
+            # The shared fingerprint must never let one provider reuse the
+            # other provider's pending download; Gemini keeps its exact
+            # historical value so existing receipts stay valid.
+            fingerprint = sha256_text(f"image-provider:{provider}:{fingerprint}")
         before = {str(ref.path): sha256_file(ref.path) for ref in references}
         pending = destination.parent / ".pending_images" / destination.name
         metadata = pending.with_suffix(".json")
@@ -959,9 +997,14 @@ class Runner:
                 saved.get("sha256") == sha256_file(pending)):
             result = JobResult(**saved["result"])
         else:
+            generation = (
+                Generation(model=model, quality="best", aspect_ratio="9:16")
+                if provider == "gemini"
+                else Generation(quality="best", aspect_ratio="9:16")
+            )
             result = self._run(
-                stage, prompt, provider="gemini", mode="image_generate",
-                generation=Generation(model=model, quality="best", aspect_ratio="9:16"),
+                stage, prompt, provider=provider, mode="image_generate",
+                generation=generation,
                 references=references,
             )
             pending.unlink(missing_ok=True)
@@ -973,10 +1016,19 @@ class Runner:
             raise StageFailure(
                 stage,
                 "FAILED_VALIDATION",
-                f"{stage}: Gemini artifact has no verified download provenance; refusing to save it.",
+                f"{stage}: {provider} artifact has no verified download provenance; refusing to save it.",
             )
         destination.parent.mkdir(parents=True, exist_ok=True)
-        require_verified_image_model(stage, model, result.generation_receipt)
+        if provider == "gemini":
+            require_verified_image_model(stage, model, result.generation_receipt)
+        else:
+            chatgpt_receipt = dict(result.generation_receipt or {})
+            if chatgpt_receipt.get("provider", "chatgpt") != "chatgpt" or chatgpt_receipt.get("requested_model"):
+                raise StageFailure(
+                    stage,
+                    "FAILED_MODEL_SELECTION",
+                    f"{stage}: ChatGPT image receipt is misattributed to another provider or model.",
+                )
         partial = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
         try:
             if pending.is_file() and saved.get("fingerprint") == fingerprint and saved.get("sha256") == sha256_file(pending):
@@ -4318,6 +4370,10 @@ def main() -> int:
             chatgpt_fallback_mode=args.chatgpt_fallback_mode,
             image_qc_correction_policy=args.image_qc_correction_policy,
             beat_image_qc_disabled=args.disable_beat_image_qc,
+            # Correction attempts alternate Gemini with ChatGPT's independent
+            # renderer (gemini, chatgpt, gemini, ...); release runners keep the
+            # default Gemini-only sequence plus their own explicit fallback.
+            image_provider_alternation=True,
         )
         current_stage = "preflight"
         try:
