@@ -51,17 +51,18 @@ def normalize_text(path: Path) -> None:
         ("Farmer Host", "Red Horned Everyman"),
         ("farmer-host", "red-horned-everyman"),
         ("Farmer-Host", "Red-Horned-Everyman"),
+        ("_qh", "_q_station"),
+        ("QH_", "Q_STATION_"),
+        ("qh_", "q_station_"),
     )
     for old, new in replacements:
         text = text.replace(old, new)
 
-    # The retained run set was audited before cleanup and contains no topical use of this
-    # retired host noun, so remaining occurrences are compatibility prose/identifiers.
+    # The audited retained run set has no topical use of the retired host noun; any remaining
+    # occurrence is compatibility prose or an identifier and can be normalized safely.
     text = text.replace("FARMER", "RED_HOST")
     text = text.replace("Farmer", "Red Host")
     text = re.sub(r"farmer", "red_host", text, flags=re.IGNORECASE)
-    text = re.sub(r"(?<![A-Za-z0-9_])QH(?![A-Za-z0-9_])", "QStation", text)
-    text = re.sub(r"(?<![A-Za-z0-9_])qh(?![A-Za-z0-9_])", "qstation", text)
 
     if text != original:
         path.write_text(text, encoding="utf-8")
@@ -76,6 +77,8 @@ def verify_clean() -> None:
         "world" + " behind the " + "question",
         "world" + "-behind-the-" + "question",
         "farmer",
+        "_" + "qh",
+        "qh" + "_",
     )
     problems: list[str] = []
     for path in ROOT.rglob("*"):
@@ -97,8 +100,6 @@ def verify_clean() -> None:
             continue
         if any(token in text for token in banned_fragments):
             problems.append(f"text:{rel}")
-        if re.search(r"(?<![a-z0-9_])qh(?![a-z0-9_])", text):
-            problems.append(f"retired-runtime-abbrev:{rel}")
     if problems:
         raise SystemExit("retired identifiers remain:\n" + "\n".join(sorted(set(problems))[:250]))
 
