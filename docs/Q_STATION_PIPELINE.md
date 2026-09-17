@@ -1,107 +1,125 @@
 # Q Station production workflow
 
-`q_station` is the canonical project id. `q_station` is accepted only as a compatibility alias.
-The panel launches `run_full_video_pipeline_q_station_wrapper.py`, which runs the creative/visual half,
-narration/music/alignment, opening trim, then timeline/render/QC/delivery.
+`q_station` is the only supported content project; it has no project aliases. The panel launches
+`scripts/run_full_video_pipeline_q_station_wrapper.py`, with creative/media stages in
+`scripts/run_q_station_pipeline.py`. The completion pipeline saves, renders and publishes before
+its final scoped Git artifact commit/push; that operator workflow is unchanged.
 
 ## End-to-end data flow
 
 ```text
-launch topic + frozen config
+question + frozen launch configuration
   -> character + presentation resolution
-  -> opening_concept: three mini-stories + independent selection
+  -> three distinct opening premises + independent selection
   -> script draft -> retained SCRIPT_CORE_PLAN
-  -> episode direction + blocking opening story review
+  -> episode direction + blocking story review
   -> final CTA -> SCRIPT_PLAN + SCRIPT_FINAL
   -> topic-world style plan + pre-CTA visual plan
-  -> continuous narration + real word alignment + opening source plan
-  -> style anchor + host-free world keyframe + configured entry frame
-  -> sequential body images + Flow Intro A/B with measured timing
-  -> measured trims -> shared timeline/render/QC/delivery
+  -> continuous narration + real word alignment + supported source-length plan
+  -> neutral style anchor + host-free world keyframe + configured entry frame
+  -> Flow Intro A/B + topic-world body and optional-closing stills
+  -> measured trims -> timeline/render/QC/delivery
+  -> final scoped Git artifact commit/push
 ```
 
-## Identity, scenario and style
+## Identity, gateway and art direction
 
-- `characters/<id>/character.json` selects a `presentation_profile` and owns only identity, behavior,
-  selection traits and its canonical character sheet.
-- `presentation_profiles/<id>/profile.json` owns the fixed two-intro progression, entry mechanism,
-  prompt fragments and episode artifact names.
-- `WORLD_STYLE_PLAN.json` owns the topic world's medium, palette, texture, lighting and frame language.
-  It must not redesign the host or recurring entry object.
+Character packs own identity, behavior, selection traits and canonical reference. Presentation
+profiles own opening rules, recurring entry mechanism, prompt fragments and artifact names.
+`WORLD_STYLE_PLAN.json` owns the topic's medium, palette, texture and lighting, not host anatomy or
+entry-object design. `scripts/gateway_contracts.py` supplies rendering and geometric acceptance rules.
 
-`book_portal` preserves the existing red/red_host workflow: varied question scenario → storybook →
-topic-styled closed cover → opening/page turn → enter the topic world. Its historical artifact names
-remain unchanged.
+| New-run character | Presentation | Narration segment |
+| --- | --- | --- |
+| Red Horned Everyman | `red_door_portal` | `entry_transition` |
+| Moss-Cloaked Crone | `orb_portal` | `entry_transition` |
+| Curious Sea Captain | `spyglass_portal` | `entry_transition` |
+| Newton-Inspired Scholar | `book_portal` | `book_transition` |
 
-`orb_portal` implements: varied question scenario → crone's orb → a readable crone ownership/agency
-cue (hand, fingers, moss-green sleeve, shadow/reflection or raven) → the orb interior gradually adopts
-the topic/style visual language → camera enters the same host-free world keyframe. Its artifacts are
-explicitly orb-named.
+A visibly establishes why THIS question arises in one place and at most three clear actions.
+B uses the profile-specific gateway and ends on a host-free topic world. The existing book
+mechanism/assets are reused for Newton; his small accessory book is not automatically that gateway.
+The crone keeps her orb ownership cue. Captain B establishes actual correct optical use before
+matching into his outward-looking viewpoint. Red-door B starts beside an almost-closed door, then
+notice/open, visible physical crossing, and camera arrival. Its declared surface and route must agree.
 
-## Durable state and compatibility
+The red door supports follow-through, threshold dissolve and texture takeover. Any dissolve or
+expansion follows the visible crossing; it cannot hide a missing action. Its entry segment has a
+13-word minimum and five-second measured minimum, with supported source lengths selected after
+real narration alignment. Too-short timing fails before visual generation; lengthening a source
+alone would not prevent the final edit from cutting away the crossing.
 
-New runs write `creative/PRESENTATION_RESOLUTION.json` beside `CHARACTER_RESOLUTION.json`. The profile
-id/version, entry kind, narration key and artifact contract are frozen. Runs without that file predate
-multi-presentation support and resolve to `book_portal`; no file is written merely by reading them.
+## Full-bleed world and body
 
-Stage IDs `flow_prompt_a/b`, `flow_clip_a/b`, `book_design_sheet`, `book_cover_design` and
-`book_cover` are retained as durable compatibility IDs. `run_graph.q_station_node_specs()` gives them truthful
-profile-aware titles and artifacts. This prevents migration of completed state while keeping runtime
-behavior data-driven. A deliberate character change through Revise is versioned: the prior character
-and presentation branch is archived, their persisted resolutions are invalidated, and resolution plus
-all script/opening/downstream consumers rebuild under the newly requested character.
+The viewer is INSIDE the explanatory world, not looking at a picture on an enclosing page.
+World keyframe, body stills and optional closing extend to all four edges. No enclosing book/card,
+page border, gutter, binding, inset illustration window, doorway rim or persistent lens mask.
+Paper grain, ink, manuscript-like markmaking and collage remain valid artistic treatments; a real
+book can be a topic-relevant object inside a scene. Old catalog/reference border metadata is not a
+continuity requirement. With subtitles enabled only the bottom 8-10% is naturally quiet; without
+them the scene uses the full height. No embedded labels or printed captions.
 
-Character resolution now precedes writing new narration so the script uses the correct entry segment.
-Book runs retain `book_transition`; orb runs use `entry_transition`. The aligner accepts both and writes
-the chosen key into `OPENING_TIMING.json`. Everything after `opening_trim` is presentation-agnostic.
+Every body unit owns one still; non-empty `optional_closing` owns one additional final still. CTA
+alone may stay on that final image. Narration slices, beat counts and ordering are validated, then
+aligned to actual speech. Opening choreography is not passed to the body/world planners as identity
+or factual script context.
 
-The image contract is one-to-one: every `body` entry owns one still image and a non-empty
-`optional_closing` owns one additional final still. CTA is the only allowed exception and may remain
-on the closing image. The planner validator checks exact ordered narration slices, the Markdown
-handoff preserves all units, the aligner verifies current beat text before reuse, and the graph marks
-older plans without the closing beat as `STALE` while exposing the missing beat node.
+## Provider reference policy
 
-## Reference policy
+Flow A uses Ingredients mode with the selected character sheet only. Flow B uses Frames mode with
+exactly first_frame and last_frame; it never receives an extra style or character ingredient.
+Gemini bakes required identity into the entry frame. Book entry remains host-free; orb entry uses
+its identity, style and ownership-character references. Acting-host entries (red door and spyglass)
+use entry_identity, style_reference, character_sheet and the actual world_keyframe. Their graph
+therefore includes a world-keyframe dependency for entry-frame regeneration.
 
-- Intro A: Flow Ingredients = `character_sheet` only.
-- Intro B: Flow Frames = `first_frame` (entry frame) + `last_frame` (world keyframe).
-- Gemini entry-frame generation receives `entry_identity`, `style_reference`, and—only when the
-  profile declares `ownership_cue`—`character_sheet`.
-- Flow never receives style anchors. Frames and Ingredients remain mutually exclusive.
+Optical orientation, doorway route/initial state and full-bleed scene layout have explicit pixel
+review rubrics. Required checks must contain booleans and visible evidence. Missing, ambiguous or
+failed geometry cannot be demoted to a non-blocking polish warning, including correction policy 0.
+The existing operator option to disable BODY content QC remains respected and recorded; it does not
+waive entry geometry. Provider failures still use bounded correction/recovery, never placeholder media.
 
-## Panel and regeneration
+## Durable state, caching and revision
 
-The character catalog returns each character's presentation name, shown in the selector. The graph,
-status, prerequisites, descendant calculation, retry/resume and invalidation all consume the same
-profile-aware `NodeSpec` mapping. Changing world style cascades through the entry frame and Intro B;
-body timing/render stages do not become character-aware. Revise exposes character selection and shows
-the full impact before applying it; changing a character intentionally starts at `character_resolution`
-inside the same versioned run, while a topic change still creates a separate run.
+`creative/PRESENTATION_RESOLUTION.json` freezes profile ID/version, entry kind, segment and artifact
+contract beside character resolution. A saved old red-host/book episode does not acquire the new
+door mapping on resume. Runs without presentation state predate that contract and keep the historical
+book fallback. Corrupt saved presentation state fails loudly, not by silently substituting a host.
 
-## Canonical prompts and assets
+Internal `book_*` stage IDs and `bookworld_mixed_media` remain compatibility identifiers, not page-layout
+instructions. The panel, graph, trim and timeline resolve profile-specific paths/titles. Explicit
+character Revise archives the old resolution/media branch, clears both authorities and invalidates
+all dependent creative/media stages. A changed question creates a separate run.
 
-Active Q Station prompts are enumerated by `Q_STATION_PIPELINE_PROMPTS` in `scripts/content_projects.py`,
-including the opening designer, independent candidate reviewer and story-consistency reviewer. Presentation-specific
-rules are under each `presentation_profiles/<id>/prompts/`. The crone sheet is
-`characters/moss_cloaked_crone/refs/character_sheet.jpg` and is the only visual identity authority for
-that character. The orb design sheet is generated once, on first real orb run, from its identity-only
-prompt and then receipt-verified/reused. This lazy generation avoids spending provider credits during
-configuration or tests.
+Prompt caches bind current rules, script/style/camera inputs and output hashes. New visual contracts
+require matching reviewed evidence; old permissive receipts do not certify corrected frames. Flow
+receipts bind input image hashes, preventing a changed entry frame from reusing its old animation.
+Verified pre-rollout opening contexts may retain approved premises across this release's prose changes
+only under the strict compatibility checks in `gateway_resume.py`; changed editorial/identity inputs
+still require Revise. Retaining a premise does not certify its old media under new geometric rules.
 
-## Validation commands
+Deployment itself does not rewrite `videos/`, operator images or paid receipts. To correct an old
+page-framed episode, revise the world-style/keyframe branch and dependent stills together. To repair
+an old captain entry, regenerate the corrected identity/entry frame and dependent B clip. These real
+provider operations can spend credits; opening a preview or running preflight cannot repair old pixels.
+
+## Installation and validation
+
+Newton's full turnaround is operator-installed as a real single-frame PNG at
+`projects/q_station/characters/newton_scholar/refs/character_sheet.png`. Missing/invalid operator
+artwork excludes only that pack from selection; explicit requests report the reason. Red-door and
+corrected spyglass object sheets are generated lazily with verified receipts, not manually installed.
 
 ```bash
-.venv/bin/pytest -q tests
+.venv/bin/python scripts/check_character_setup.py --character newton_scholar
+.venv/bin/python scripts/check_opening_setup.py
+.venv/bin/python -m pytest -q -rs tests
 npm --prefix control_panel/ui test -- --run
 npm --prefix control_panel/ui run build
 ```
 
-Provider-free coverage validates profiles, prompt assembly, legacy book fallback, orb artifact paths,
-DAG propagation, stage ordering, state/resume and panel catalog behavior. A real Gemini/Flow smoke is
-deliberately not part of unit tests because it spends credits and requires authenticated browser state.
-
-## Opening quality and deployment
-
-See [OPENING_STORY_PIPELINE.md](OPENING_STORY_PIPELINE.md) for the v2 decision contract, semantic
-history, panel invalidation and provider-free deployment checks. New opening rules are enabled for
-new runs on dev without changing character sheets, artifact names or provider input roles.
+See `CHARACTER_GATEWAYS.md` for PNG requirements, complete camera contracts, deployment/restart and
+first paid acceptance. See `OPENING_STORY_PIPELINE.md`, `SPOKEN_ENGLISH_POLICY.md` and
+`RECOVERY_RUNBOOK.md` for the shared creative, language and recovery contracts. CI validates software
+with isolated fixtures; authenticated Gemini/Flow output on the actual server still needs visual
+acceptance for character consistency, physical crossing, optical use and camera motion.

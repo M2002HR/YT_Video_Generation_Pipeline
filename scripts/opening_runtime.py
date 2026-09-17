@@ -265,7 +265,8 @@ def entry_context(concept: dict[str, Any] | None, episode: dict[str, Any] | None
     selected = (concept or {}).get("selected") or {}
     bridge = (episode or {}).get("entry_bridge") or selected.get("entry_bridge") or {}
     return {"entry_variant": (episode or {}).get("entry_variant") or selected.get("entry_variant"),
-            "entry_bridge": bridge, "payoff": selected.get("payoff", "")}
+            "entry_bridge": bridge, "payoff": selected.get("payoff", ""),
+            "entry_camera": (episode or {}).get("entry_camera") or {}}
 
 
 def world_entry_context(concept: dict[str, Any] | None) -> str:

@@ -58,7 +58,9 @@ class Spy:
     def image(self, stage, prompt, refs, *, model, destination):
         self.images.append((stage, prompt, refs))
         write_sheet(destination)
-        return SimpleNamespace(job_id="offline-fixture", generation_receipt={"quality_check": {"passed": True}})
+        check = qstation.visuals.enforce_review({"passed": True, "description": "Temporary fixture, no real model review.", "violations": [],
+            "contract_checks": {key: {"passed": True, "evidence": "Fixture acceptance only."} for key in qstation.visuals.requirements(prompt)}}, prompt)
+        return SimpleNamespace(job_id="offline-fixture", generation_receipt={"quality_check": check})
 
 
 @pytest.fixture
@@ -103,8 +105,8 @@ def proposals(captain, topic):
             "factual_anchor": "Preserve the supplied source qualifications.",
             "payoff": f"Explain the observed difference in {topic}.", "claim_mode": "hypothetical",
             "entry_variant": captain.presentation.entry_variants[index - 1],
-            "entry_bridge": {"a_end": "The captain steadies the eyepiece toward the viewer.",
-                             "b_start": "The same eyepiece with one blue-cuffed hand at the edge.",
+            "entry_bridge": {"a_end": "The captain places the small eyepiece beside his visible eye.",
+                             "b_start": "Oblique view: small end at the eye, wide objective toward the subject.",
                              "reveal": "A topic-specific comparison becomes visible through the lens.",
                              "world_entry": "The subject's two contrasting outcomes are visible without a host."},
             "novelty": {"action_family": f"mechanism_{index}", "tension_family": f"tension_{index}",
@@ -131,7 +133,7 @@ def test_profile_and_catalog_are_data_driven(captain):
     profile = captain.presentation
     assert profile.id == "spyglass_portal" and profile.entry_kind == "spyglass"
     assert profile.segment_key == "entry_transition"
-    assert profile.entry_frame_character_presence == "ownership_cue"
+    assert profile.entry_frame_character_presence == "acting_host"
     assert len(set(profile.entry_variants)) == 6
     assert all(variant in profile.episode_rules for variant in profile.entry_variants)
     assert not profile.identity_required_at_preflight
@@ -211,10 +213,9 @@ def test_legacy_book_and_crone_mapping_are_unchanged(run):
     registry = load_character_registry(ROOT / "projects/q_station/characters/registry.json")
     assert registry.auto_fallback_character_id == "red_horned_everyman"
     assert registry.legacy_default_character_id == "red_horned_everyman"
-    for identifier in ("red_horned_everyman", "red_horned_everyman"):
-        assert registry.get(identifier).presentation.id == "book_portal"
+    assert registry.get("red_horned_everyman").presentation.id == "red_door_portal"
     assert registry.get("moss_cloaked_crone").presentation.id == "orb_portal"
-    assert presentation_for_project(run).id == "book_portal"
+    assert presentation_for_project(run).id == "book_portal"  # historical, not a new-run default
     assert not (run / "creative/PRESENTATION_RESOLUTION.json").exists()
 
 

@@ -1,0 +1,3 @@
+# Newton-Inspired Scholar - constraints
+
+Do not identify this fictional host as a documentary reconstruction. No invented quotations, discoveries, historical eyewitness claims or universal certainty. Do not default to apples, gravity, prisms, calculations, courtrooms, gavels, royal courts or religious settings. Do not replace the supplied cartoon with a realistic portrait, modern lab-coated scientist, generic judge or another character. No compulsory small book in every shot, no accessory/portal-book conflation, no repeated study routine. Preserve hair, nose, eyes, outfit and proportions; no extra hands or inappropriate prop handling.

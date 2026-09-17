@@ -15,6 +15,10 @@
     {
       "id": "sea_captain",
       "config": "sea_captain/character.json"
+    },
+    {
+      "id": "newton_scholar",
+      "config": "newton_scholar/character.json"
     }
   ]
 }

@@ -12,6 +12,7 @@ of being inferred from those compatibility ids.
 from __future__ import annotations
 
 import json
+import math
 import re
 from dataclasses import dataclass
 from functools import lru_cache
@@ -71,6 +72,9 @@ class PresentationContext:
     artifacts: OpeningArtifacts
     profile_path: Path
     entry_variants: tuple[str, ...] = ()
+    motion_contract: str = ""
+    min_entry_seconds: float = 0.0
+    min_entry_words: int = 0
 
     def prompt_context(self) -> dict[str, Any]:
         return {
@@ -83,6 +87,9 @@ class PresentationContext:
             "episode_rules": self.episode_rules,
             "entry_frame_character_presence": self.entry_frame_character_presence,
             "entry_variants": list(self.entry_variants),
+            "motion_contract": self.motion_contract,
+            "min_entry_seconds": self.min_entry_seconds,
+            "min_entry_words": self.min_entry_words,
         }
 
     def to_resolution(self) -> dict[str, Any]:
@@ -106,7 +113,7 @@ def _read_required(path: Path, what: str) -> str:
 
 
 @lru_cache(maxsize=None)
-def _load_cached(path_string: str, mtime_ns: int) -> PresentationContext:
+def _load_cached(path_string: str, revision: tuple) -> PresentationContext:
     path = Path(path_string)
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -123,10 +130,22 @@ def _load_cached(path_string: str, mtime_ns: int) -> PresentationContext:
     if not _ID_RE.fullmatch(segment_key):
         raise PresentationProfileError(f"Invalid narration_segment.key in {path}.")
     presence = str(data.get("entry_frame_character_presence") or "none").strip()
-    if presence not in {"none", "ownership_cue"}:
+    if presence not in {"none", "ownership_cue", "acting_host"}:
         raise PresentationProfileError(
-            "entry_frame_character_presence must be 'none' or 'ownership_cue'."
+            "entry_frame_character_presence must be none, ownership_cue or acting_host."
         )
+    motion_contract = str(data.get("motion_contract") or "")
+    if motion_contract not in {"", "door_crossing_v1"}:
+        raise PresentationProfileError("Unknown entry motion contract.")
+    try:
+        seconds = float(data.get("min_entry_seconds", 0))
+        words = int(data.get("min_entry_words", 0))
+    except (TypeError, ValueError) as exc:
+        raise PresentationProfileError("Invalid entry timing requirements.") from exc
+    if not math.isfinite(seconds) or not 0 <= seconds <= 8 or not 0 <= words <= 22:
+        raise PresentationProfileError("Entry timing requirements exceed supported bounds.")
+    if motion_contract and (presence != "acting_host" or seconds < 5 or words < 13):
+        raise PresentationProfileError("Door crossing needs acting_host, at least 5 seconds and 13 words.")
     root = path.parent
     prompt_files = data.get("prompt_files") or {}
     prompts = {
@@ -174,13 +193,20 @@ def _load_cached(path_string: str, mtime_ns: int) -> PresentationContext:
         artifacts=OpeningArtifacts(**{field: str(raw_artifacts[field]) for field in fields}),
         profile_path=path,
         entry_variants=tuple(variants),
+        motion_contract=motion_contract,
+        min_entry_seconds=seconds,
+        min_entry_words=words,
     )
 
 
-def _profile_revision(path: Path) -> int:
-    """Fingerprint all declarative inputs so long-lived services reload prompt edits."""
-    candidates = [path, *path.parent.rglob("*.md")]
-    return max(candidate.stat().st_mtime_ns for candidate in candidates if candidate.is_file())
+def _profile_revision(path: Path) -> tuple:
+    """Track each declarative input, including replacements preserving an old mtime."""
+    result = []
+    for candidate in sorted({path, *path.parent.rglob("*.md")}):
+        if candidate.is_file():
+            stat = candidate.stat()
+            result.append((str(candidate), stat.st_mtime_ns, stat.st_ctime_ns, stat.st_size))
+    return tuple(result)
 
 
 def load_presentation_profile(path: Path) -> PresentationContext:
@@ -199,10 +225,12 @@ def presentation_for_project(project: Path, content_project: Any | None = None) 
     if resolution.is_file():
         try:
             candidate = json.loads(resolution.read_text(encoding="utf-8"))
-            persisted = candidate if isinstance(candidate, dict) else {}
-            profile_id = str(persisted.get("profile_id") or "")
-        except (OSError, ValueError):
-            profile_id = ""
+            if not isinstance(candidate, dict) or not candidate.get("profile_id"):
+                raise ValueError("Missing saved profile_id")
+            persisted = candidate
+            profile_id = str(persisted["profile_id"])
+        except (OSError, ValueError) as exc:
+            raise PresentationProfileError(f"Invalid saved presentation {resolution}: {exc}") from exc
     if content_project is None:
         from content_projects import load_content_project
         launch = project / "launch" / "LAUNCH_REQUEST.json"

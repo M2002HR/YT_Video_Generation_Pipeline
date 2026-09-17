@@ -38,7 +38,7 @@ def test_crone_pack_owns_canonical_sheet_and_orb_profile(registry) -> None:
     assert crone.sheet_sha256 == "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
     assert crone.presentation.id == "orb_portal"
     assert crone.presentation.entry_frame_character_presence == "ownership_cue"
-    assert registry.get("red_horned_everyman").presentation.id == "book_portal"
+    assert registry.get("red_horned_everyman").presentation.id == "red_door_portal"
 
 
 def test_crone_resolution_freezes_presentation_once(tmp_path: Path) -> None:

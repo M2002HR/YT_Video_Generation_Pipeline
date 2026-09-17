@@ -1,4 +1,4 @@
-"""Restarting a run must never regenerate what was already paid for (§78, §102, T6.5).
+"""Restarting with unchanged, currently verified contracts must not regenerate paid media (§78, §102, T6.5).
 
 Each expensive stage is called twice: once with the artifact and state already in place,
 and once from scratch. The reuse path must not touch the provider at all — the Ordak client
@@ -101,9 +101,12 @@ def _mark_done(runner: Runner, stage: str) -> None:
 
 def image_receipt(project, target, prompt, references=(), model="nano_banana_pro"):
     from image_artifacts import CONTRACT_VERSION, request_fingerprint
+    from gateway_contracts import enforce_review, requirements
+    check = enforce_review({"passed": True, "description": "Temporary test fixture, not a production visual review.", "violations": [],
+        "contract_checks": {key: {"passed": True, "evidence": "Current-contract test fixture."} for key in requirements(prompt)}}, prompt)
     payload = {
         "contract_version": CONTRACT_VERSION, "model_verified": True,
-        "requested_model": model, "quality_check": {"passed": True},
+        "requested_model": model, "quality_check": check,
         "output_sha256": qstation.sha256_file(target), "prompt_sha256": qstation.sha256_text(prompt),
         "request_fingerprint": request_fingerprint(prompt,model,references),
         "references": [{"role":r.role,"path":str(r.path),"sha256":qstation.sha256_file(r.path)} for r in references],
@@ -130,8 +133,9 @@ def prepare_beat_cache(runner, project, count):
 
 def test_world_keyframe_is_reused_after_a_restart(runner: Runner, project: Path, monkeypatch) -> None:
     target = _png(project / "references" / "world_keyframe.png")
-    image_receipt(project, target, "a prompt")
-    qstation.save_json(project/'references/world_keyframe_references.json',{'prompt_sha256':qstation.sha256_text('a prompt'),'hero_present':False})
+    effective_prompt = "a prompt\n" + qstation.episode_frame_contract({})
+    image_receipt(project, target, effective_prompt)
+    qstation.save_json(project/'references/world_keyframe_references.json',{'prompt_sha256':qstation.sha256_text(effective_prompt),'hero_present':False})
     _mark_done(runner, "world_keyframe")
 
     result = qstation.stage_world_keyframe(
@@ -366,3 +370,15 @@ def test_stage_state_survives_a_fresh_state_object(project: Path) -> None:
     assert reloaded.done("world_keyframe")
     assert reloaded.state["stages"]["world_keyframe"]["sha256"] == "abc"
     assert not reloaded.done("flow_clip_a")
+
+
+def test_old_permissive_review_cannot_certify_a_new_full_bleed_request(runner, project):
+    prompt = "A topic scene. " + qstation.episode_frame_contract({})
+    target = _png(project / "references/world_keyframe.png")
+    image_receipt(project, target, prompt)
+    receipt_path = project / "pipeline/provider_receipts/gemini_world_keyframe.json"
+    receipt = json.loads(receipt_path.read_text())
+    receipt["quality_check"] = {"passed": True, "observations": ["A page border is present."]}
+    qstation.save_json(receipt_path, receipt)
+    with pytest.raises(AssertionError, match="called chatgpt"):
+        qstation.reusable_image(runner, project, "world_keyframe", target, receipt_path, prompt, "nano_banana_pro", [])

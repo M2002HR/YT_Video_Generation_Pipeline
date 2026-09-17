@@ -28,3 +28,6 @@ explicit. An all-true result requires an empty issues array. This review is not 
 The retention stage independently reviews spoken English before this gate. Judge the selected
 premise, not an exact wording match to hook_line: plain-English rephrasing is legitimate. Do not
 request more academic terms or send a language-only preference into a staging-only correction.
+
+
+For door_crossing_v1, production_feasible and entry_continuity must reject a missing physical crossing, a solid-leaf intersection, a floor hatch without supported descent, a camera path inconsistent with the surface, or a fade before the host crosses. The short route begins with the host already beside the door; no extended approach. The chosen world clue must connect to the hook and first body payoff. For the captain, reject wide-objective-at-eye or a backward passage toward his face. These are structural defects, not aesthetic taste.

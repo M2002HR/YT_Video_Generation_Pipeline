@@ -18,6 +18,8 @@ from pathlib import Path
 from typing import Any
 
 from flow_capabilities import durations_for_model
+from presentation_runtime import presentation_for_project
+from gateway_contracts import validate_entry_duration
 
 
 PLAN_RELATIVE_PATH = Path("timing") / "OPENING_SOURCE_PLAN.json"
@@ -99,6 +101,10 @@ def build_plan(project: Path) -> dict[str, Any]:
     transition_end = _number(timing.get("transition_end"), "OPENING_TIMING.transition_end")
     if transition_end <= spark_end:
         raise OpeningSourcePlanError("OPENING_TIMING.transition_end must be after spark_end.")
+    try:
+        validate_entry_duration(presentation_for_project(project), transition_end - spark_end)
+    except ValueError as exc:
+        raise OpeningSourcePlanError(str(exc)) from exc
     model = str(settings.get("flow_video_model") or "gemini_omni_1_1_flash")
     candidates = durations_for_model(model)
     if not candidates:

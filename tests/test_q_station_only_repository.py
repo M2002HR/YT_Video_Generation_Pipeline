@@ -15,14 +15,14 @@ def _retired_identifiers() -> tuple[str, ...]:
     )
 
 
-def test_only_q_station_project_and_three_hosts_remain() -> None:
+def test_only_q_station_project_and_four_hosts_remain() -> None:
     project_dirs = sorted(p.name for p in (ROOT / "projects").iterdir() if p.is_dir() and not p.is_symlink())
     assert project_dirs == ["q_station"]
     project = json.loads((ROOT / "projects/q_station/PROJECT.json").read_text())
     assert project["project_id"] == "q_station"
     assert project.get("aliases") == []
     registry = json.loads((ROOT / "projects/q_station/characters/registry.json").read_text())
-    expected = {"red_horned_everyman", "moss_cloaked_crone", "sea_captain"}
+    expected = {"red_horned_everyman", "moss_cloaked_crone", "sea_captain", "newton_scholar"}
     assert {item["id"] for item in registry["characters"]} == expected
     assert registry["auto_fallback_character_id"] == "red_horned_everyman"
     assert registry["legacy_default_character_id"] == "red_horned_everyman"
@@ -30,16 +30,16 @@ def test_only_q_station_project_and_three_hosts_remain() -> None:
 
 
 def test_only_audited_q_station_runs_remain() -> None:
-    expected = {
-        "026_black_swan_meaning_by_nassim_talib", "027_video",
-        "028_what_will_happen_if_you_sleep_less_than_5_hours_a_day",
-        "029_why_a_song_gets_stuck_in_your_head", "030_8_of_the_strangest_ocean_creatures",
-        "031_wwhy_does_seeing_someone_yawn_make_you_yawn_too",
-        "032_why_does_seeing_someone_yawn_make_you_yawn_too",
-        "033_the_ancient_computer_found_in_a_shipwreck", "034_what_if_every_human_vanished_tomorrow",
-        "035_what_if_every_human_vanished_tomorrow", "037_why_are_humans_ashamed_of_being_naked",
-    }
-    assert {p.name for p in (ROOT / "videos").iterdir()} == expected
+    supported = {item["id"] for item in json.loads((ROOT / "projects/q_station/characters/registry.json").read_text())["characters"]}
+    runs = [p for p in (ROOT / "videos").iterdir() if p.is_dir()]
+    assert runs
+    for run in runs:
+        launch = json.loads((run / "launch/LAUNCH_REQUEST.json").read_text())
+        assert launch.get("content_project") == "q_station", run.name
+        resolution_path = run / "creative/CHARACTER_RESOLUTION.json"
+        resolution = json.loads(resolution_path.read_text()) if resolution_path.is_file() else launch.get("character_resolution", {})
+        selected = resolution.get("resolved_character_id") or (launch.get("character") or {}).get("character_id")
+        assert selected in supported, (run.name, selected)
 
 
 def test_retired_ids_are_absent_from_tracked_paths_and_text() -> None:

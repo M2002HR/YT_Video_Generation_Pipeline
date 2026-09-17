@@ -57,3 +57,6 @@ Rules:
 - All beat timings here are planning targets; real narration timestamps remain authoritative.
 
 Return ONLY JSON.
+
+
+When the presentation declares motion_contract=door_crossing_v1, include entry_camera exactly as its episode rules require. Its acting_host first frame is intentionally different from no-host book and hand-only orb frames: the actor must be visible so he can cross in B. Keep A question-first, and give B a feasible notice/open -> visible crossing -> camera arrival route within its narration boundary. Do not use a fade to hide missing crossing. The topic-world endpoint remains host-free for every presentation.

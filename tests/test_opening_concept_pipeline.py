@@ -98,6 +98,10 @@ def candidates(variant="desk_reach"):
             "entry_bridge": {"a_end": "Host places the closed book in frame.", "b_start": "Closed top-down book without hands.", "reveal": "The recurring rhythm becomes a memory pattern.", "world_entry": "Sound patterns recur beside a silent speaker in an abstract memory diagram."},
             "novelty": {"action_family": f"test_{index}", "tension_family": f"expectation_{index}", "prop_family": "speaker", "reveal_family": f"comparison_{index}"},
         })
+    if variant in {"wrong_wall", "floor_hatch", "freestanding_door", "existing_exit", "unexpected_surface", "recessed_door"}:
+        for item in result:
+            item["entry_bridge"]["a_end"] = "The host notices the rhythm continuing, still beside the wall."
+            item["entry_bridge"]["b_start"] = "The host stands beside the nearly closed canonical red door."
     return {"candidates": result}
 
 
@@ -108,9 +112,9 @@ def reviews():
 def narration(entry_key="book_transition"):
     body = [f"Memory keeps a sound pattern active in this example {i}." for i in range(1,8)]
     # 30-40 seconds requires 9-13 beats, so use nine shorter units.
-    body = [f"Memory can replay a familiar pattern number {i}." for i in range(1,10)]
+    body = [f"Memory can replay pattern number {i}." for i in range(1,10)]
     plan = {"opening_question_spark": "The music stopped. Why does the pattern keep going?",
-            entry_key: "Memory can replay sound without a speaker.", "body": body,
+            entry_key: "Memory can replay a familiar sound pattern long after the external speaker stops.", "body": body,
             "optional_closing": "The pattern kept moving.", "cta": "Which question should we explore next?"}
     plan["full_narration"] = " ".join([plan["opening_question_spark"], plan[entry_key], *body, plan["optional_closing"], plan["cta"]])
     return plan
@@ -125,7 +129,19 @@ def make_concept(run, registry, character_id="red_horned_everyman"):
 
 
 def direction(concept):
-    return {"concept_id": concept["concept_id"], "opening_activity": "testing the persistent rhythm", "opening_location": "quiet listening room", "topic_visual_link": "The continuing motion makes the remembered rhythm visible", "link_type": "metaphor", "opening_visual_proof": "A silent speaker and continuing finger tap", "entry_variant": concept["selected"]["entry_variant"], "entry_bridge": concept["selected"]["entry_bridge"], "opening_actions": ["Stop speaker", "Notice continuing rhythm", "Reveal configured entry"], "camera_pattern": "slow_push_in", "hero_presence_mode": "opener_only", "closing_mode": "stay_in_world"}
+    variant = concept["selected"]["entry_variant"]
+    result = {"concept_id": concept["concept_id"], "opening_activity": "testing the persistent rhythm", "opening_location": "quiet listening room", "topic_visual_link": "The continuing motion makes the remembered rhythm visible", "link_type": "metaphor", "opening_visual_proof": "A silent speaker and continuing finger tap", "entry_variant": variant, "entry_bridge": concept["selected"]["entry_bridge"], "opening_actions": ["Stop speaker", "Notice continuing rhythm", "Observe the discrepancy"], "camera_pattern": "slow_push_in", "hero_presence_mode": "opener_only", "closing_mode": "stay_in_world"}
+    if variant in {"wrong_wall", "floor_hatch", "freestanding_door", "existing_exit", "unexpected_surface", "recessed_door"}:
+        result["entry_camera"] = {
+            "surface": "floor" if variant == "floor_hatch" else "wall",
+            "transition": "follow_through",
+            "attention_cue": "The door leaf begins to move; the host looks toward it.",
+            "opening_action": "The leaf opens away from the host and the route.",
+            "crossing_action": "The host deliberately crosses the clear threshold and steps aside.",
+            "camera_path": "A restrained lateral follow moves through the same aperture.",
+            "world_reveal": "The rhythm pattern appears in the subject world beyond the opening.",
+        }
+    return result
 
 
 def story_review():
@@ -188,7 +204,7 @@ def test_no_usable_candidate_causes_bounded_redesign(run, registry):
     rejected = reviews()
     for row in rejected["reviews"]:
         row["blocking_issues"] = ["The visible setup does not make the question understandable."]
-    spy = Spy([candidates(), rejected, candidates(), reviews()])
+    spy = Spy([candidates("wrong_wall"), rejected, candidates("wrong_wall"), reviews()])
     value = qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), registry.get("red_horned_everyman"))
     assert value["selected"]["id"] == "c1"
     assert len(spy.prompts) == 4
@@ -199,7 +215,7 @@ def test_exhausted_text_corrections_stop_before_media(run, registry):
     rejected = reviews()
     for row in rejected["reviews"]:
         row["scores"]["honesty"] = 0
-    spy = Spy([candidates(), rejected] * opening.MAX_ATTEMPTS)
+    spy = Spy([candidates("wrong_wall"), rejected] * opening.MAX_ATTEMPTS)
     with pytest.raises(qstation.StageFailure, match="bounded text-only"):
         qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), registry.get("red_horned_everyman"))
     assert len(spy.prompts) == 2 * opening.MAX_ATTEMPTS
@@ -305,11 +321,11 @@ def test_false_payoff_cannot_pass_story_review():
 def test_measured_window_reaches_both_flow_prompt_writers(run, registry):
     _, concept, char = make_concept(run, registry)
     (run/"timing").mkdir()
-    (run/"timing/OPENING_SOURCE_PLAN.json").write_text(json.dumps({"clips":{"A":{"target_seconds":3.3},"B":{"target_seconds":2.9}}}))
+    (run/"timing/OPENING_SOURCE_PLAN.json").write_text(json.dumps({"clips":{"A":{"target_seconds":3.3},"B":{"target_seconds":6.2}}}))
     spy = Spy()
-    for clip, seconds in [("A",6),("B",4)]:
+    for clip, seconds in [("A",6),("B",8)]:
         qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), clip, "spoken text", direction(concept), {}, "host-free subject world", "earworms", seconds, character=char, require_source_contract=True)
-    assert "3.3" in spy.prompts[0][1] and "2.9" in spy.prompts[1][1]
+    assert "3.3" in spy.prompts[0][1] and "6.2" in spy.prompts[1][1]
     assert "SHARED" not in spy.prompts[1][1]
     assert char.appearance_full not in spy.prompts[1][1]
     assert "The recurring rhythm becomes a memory pattern." in spy.prompts[1][1]
@@ -364,14 +380,14 @@ def test_history_budget_keeps_sources_and_latest_context():
 def test_deployment_preflight_validates_shipped_contracts():
     from check_opening_setup import check
     rows = check()
-    assert any("red_horned_everyman: book_portal" in row for row in rows)
+    assert any("red_horned_everyman: red_door_portal" in row for row in rows)
     assert any("moss_cloaked_crone: orb_portal" in row for row in rows)
 
 
-def test_final_director_seam_is_used_for_book_cover_direction(run, registry):
+def test_final_director_seam_is_used_for_entry_direction(run, registry):
     _, concept, char = make_concept(run, registry)
     plan = direction(concept)
-    plan["entry_bridge"]["b_start"] = "The reviewed top-down cover fills the frame without hands."
+    plan["entry_bridge"]["b_start"] = "The reviewed red door stands beside the host with a clear threshold."
     (run / "creative/EPISODE_PLAN.json").write_text(json.dumps(plan))
     assert qstation.load_entry_story_context(run)["entry_bridge"]["b_start"] == plan["entry_bridge"]["b_start"]
 
@@ -380,18 +396,47 @@ def test_prompt_reuse_tracks_changed_final_entry_direction(run, registry):
     _, concept, char = make_concept(run, registry)
     spy = Spy()
     direction_file = char.presentation.artifacts.path(run, "entry_direction")
-    direction_file.write_text("First closed cover design")
+    direction_file.write_text("First almost-closed red door design")
     def generate():
-        return qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), "B", "spoken entry", direction(concept), {}, "subject world", "earworms", 4, character=char)
+        return qstation.stage_flow_prompt(spy, run, load_content_project("q_station"), "B", "spoken entry", direction(concept), {}, "subject world", "earworms", 8, character=char)
     generate()
     generate()
     assert len(spy.prompts) == 1
-    direction_file.write_text("Corrected closed cover design")
+    direction_file.write_text("Corrected almost-closed red door design")
     generate()
     assert len(spy.prompts) == 2
-    assert "Corrected closed cover design" in spy.prompts[-1][1]
+    assert "Corrected almost-closed red door design" in spy.prompts[-1][1]
 
 
 def test_new_direction_requires_review_artifact_in_graph(run):
     from run_graph import q_station_node_specs
     assert "creative/OPENING_REVIEW.json" in q_station_node_specs(run)["episode_director"].artifacts
+
+
+
+def test_approved_pre_gateway_premise_survives_prose_rollout_without_rewriting(run, registry):
+    spy, concept, char = make_concept(run, registry, "moss_cloaked_crone")
+    context_path = run / "creative/OPENING_CONTEXT.json"
+    frozen = json.loads(context_path.read_text())
+    frozen.pop("gateway_inputs_version")
+    frozen["character"]["behavior"] = "Previously approved acting prose."
+    frozen["presentation"]["episode_rules"] = "Previously approved orb handoff."
+    for key in ("motion_contract", "min_entry_seconds", "min_entry_words"):
+        frozen["presentation"].pop(key, None)
+    keys = ("policy_version", "brief", "character", "presentation", "writer_sha256", "reviewer_sha256", "language_policy_version")
+    old_hash = opening.fingerprint({key: frozen[key] for key in keys})
+    frozen["input_fingerprint"] = old_hash
+    concept["input_fingerprint"] = old_hash
+    concept["concept_id"] = opening.fingerprint({"input": old_hash, "selected": concept["selected"]})[:20]
+    qstation.save_json(context_path, frozen)
+    qstation.save_json(run / "creative/OPENING_CONCEPT.json", concept)
+    before = context_path.read_bytes()
+    count = len(spy.prompts)
+    assert qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char) == concept
+    assert len(spy.prompts) == count and context_path.read_bytes() == before
+    brief_path = run / "launch/CREATIVE_BRIEF.json"
+    brief = json.loads(brief_path.read_text())
+    brief["must_include"] = "A genuinely changed editorial requirement."
+    qstation.save_json(brief_path, brief)
+    with pytest.raises(qstation.StageFailure, match="Opening inputs changed"):
+        qstation.stage_opening_concept(spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30,40), char)

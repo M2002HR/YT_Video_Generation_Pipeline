@@ -8,9 +8,9 @@
     "key": "entry_transition",
     "label": "spyglass transition"
   },
-  "entry_frame_character_presence": "ownership_cue",
+  "entry_frame_character_presence": "acting_host",
   "identity": {
-    "canonical_sheet": "refs/spyglass_design_sheet.png",
+    "canonical_sheet": "refs/spyglass_design_sheet_v2.png",
     "required_at_preflight": false
   },
   "prompt_files": {
