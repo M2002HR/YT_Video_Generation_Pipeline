@@ -33,6 +33,9 @@ jobs:
           if [ -f scripts/_q_station_test_rewrite_tmp.py ]; then
             python scripts/_q_station_test_rewrite_tmp.py
           fi
+          if [ -f scripts/_q_station_test_followup_tmp.py ]; then
+            python scripts/_q_station_test_followup_tmp.py
+          fi
           git add -A
           git status --short
           git diff --cached --check
