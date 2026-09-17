@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "WHY NUDITY CAN FEEL SHAMEFUL",
+      "evidence_anchor": "Why can a naked statue feel proper when a naked person feels exposed? Because shame often follows learned expectations about where nakedness belongs. Families and customs teach rules about modesty. Those rules vary across cultures and histo",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/037_why_are_humans_ashamed_of_being_naked/publish/youtube_short/releases/rel_ef9fbc1749ad4db2a3d81d022e1bb89c/thumbnail_candidates/candidate_01/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/037_why_are_humans_ashamed_of_being_naked/publish/youtube_short/releases/rel_ef9fbc1749ad4db2a3d81d022e1bb89c/thumbnail_candidates/candidate_01/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/037_why_are_humans_ashamed_of_being_naked/publish/youtube_short/releases/rel_ef9fbc1749ad4db2a3d81d022e1bb89c/thumbnail_candidates/candidate_01/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2662075,
+        "sha256": "506e230e2c2d4048112c1963bd1c5eaa432ed8617885e0685afd7a4b3f15b9ec"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 4592629,
+        "sha256": "d6dd6992b3c5157fd52a904f8bba96d689a0866549589a8be04e023cf79de4d9"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "d6dd6992b3c5157fd52a904f8bba96d689a0866549589a8be04e023cf79de4d9"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "e721c760-c364-4309-9c88-c14c7f1f807e",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/0f250ceff2207427",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=e721c760-c364-4309-9c88-c14c7f1f807e_output_1.png 1536x2752 sha256=506e230e2c2d4048112c1963bd1c5eaa432ed8617885e0685afd7a4b3f15b9ec"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "a532834cff53a653e4aa2a210720504ed1b1f5ad36341c2b0306784cb41aba24",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "job_id": "e721c760-c364-4309-9c88-c14c7f1f807e",
+            "prompt_sha256": "7e6aae8af1ae1f52c96d025f28c9a7cb4fa8ef2e0b1661f3f49928d791bdaf3c",
+            "output_sha256": "506e230e2c2d4048112c1963bd1c5eaa432ed8617885e0685afd7a4b3f15b9ec",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/037_why_are_humans_ashamed_of_being_naked/publish/youtube_short/releases/rel_ef9fbc1749ad4db2a3d81d022e1bb89c/thumbnail_candidates/candidate_01/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    }
+  ]
+}

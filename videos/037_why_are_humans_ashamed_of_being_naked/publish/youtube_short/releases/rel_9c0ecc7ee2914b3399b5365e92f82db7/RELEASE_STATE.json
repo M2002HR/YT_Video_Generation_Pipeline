@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_9c0ecc7ee2914b3399b5365e92f82db7",
+  "status": "DONE",
+  "started_at": "2026-09-16T19:08:29.417014+00:00",
+  "video": "037_why_are_humans_ashamed_of_being_naked",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "c79cdf3f6e4fd8aac4267f66532c1f6f8ff10b69487ed5eedd4f84df8ea4b854",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-16T19:08:33.020880+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-16T19:10:09.405659+00:00",
+      "chatgpt_job_id": "898a2ee1-8bda-46ef-9a1e-232dbf00166e"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-16T19:10:09.405671+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-16T19:11:45.791730+00:00",
+      "chatgpt_job_id": "af3a2ee1-80fb-40b2-918f-99509d6f25ab",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-16T19:11:45.809974+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-16T19:13:24.515659+00:00",
+      "selected_candidate_id": "candidate_01",
+      "qc_passed": true
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-16T19:13:24.515832+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-16T19:13:24.515837+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-16T19:15:15.411967+00:00",
+      "messages": {
+        "master": 15238,
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15239,
+            "sha256": "102ccac51e27d0d237a1015df87c0fa57a35a79405b54e5ba4bd25c4ff0c1b28"
+          }
+        },
+        "upload_markdown": 15241,
+        "comparison": 15243,
+        "thumbnail_report": 15244,
+        "summary": 15240,
+        "metadata_json": 15242
+      }
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 1,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "auto",
+      "allowed_layouts": [
+        "character_left",
+        "character_right",
+        "contrast_split",
+        "discovery_focus"
+      ],
+      "tension": "dramatic",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "inherit_episode",
+      "quality": "native",
+      "image_fallback": "chatgpt_on_gemini_failure",
+      "thumbnail_note": "",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "montserrat_bold",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.012,
+      "shadow": true,
+      "text_background": true,
+      "line_spacing": 0.035,
+      "text_position": "auto",
+      "text_box_width": 0.82,
+      "safe_margin": 0.055,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.155,
+      "max_words": 6,
+      "max_characters": 40,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": true,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 1,
+      "max_image_generations": 1,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": true,
+      "send_previews": true,
+      "send_comparison_sheet": true,
+      "send_report_json": true,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "4dba77700ca1bb38e147120e43c5649bd8ea2c3acb45c22b6e9c525cc3f5bb1d",
+  "completed_at": "2026-09-16T19:15:15.411975+00:00",
+  "metadata": "publish/youtube_short/releases/rel_9c0ecc7ee2914b3399b5365e92f82db7/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "master": 15238,
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15239,
+        "sha256": "102ccac51e27d0d237a1015df87c0fa57a35a79405b54e5ba4bd25c4ff0c1b28"
+      }
+    },
+    "upload_markdown": 15241,
+    "comparison": 15243,
+    "thumbnail_report": 15244,
+    "summary": 15240,
+    "metadata_json": 15242
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_9c0ecc7ee2914b3399b5365e92f82db7/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_9c0ecc7ee2914b3399b5365e92f82db7/YOUTUBE_SHORT_UPLOAD.md"
+}

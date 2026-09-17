@@ -1,0 +1,229 @@
+{
+  "title": "NUDITY SHAME — Why Context Can Change How Nakedness Feels #shorts 🗿",
+  "title_options": [
+    "NAKEDNESS NORMS — Why Exposure Feels Different by Context #shorts 🧠",
+    "MODESTY RULES — How Culture Can Shape Feelings About Nudity #shorts 👁️",
+    "SOCIAL CONTEXT — Why Nudity Feels Different in Art and Privacy #shorts 🖼️"
+  ],
+  "description": "Feelings about nakedness can reflect learned expectations around modesty, privacy, context, and judgment.\nKeywords: nudity, modesty, social norms, privacy, cultural expectations, nude art\n#shorts #viralshorts #Nudity #Modesty #SocialNorms",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "nudity",
+    "nakedness",
+    "modesty",
+    "social norms",
+    "privacy",
+    "cultural expectations",
+    "nude art",
+    "human behavior",
+    "context and nudity",
+    "educational shorts"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "visibility": "unlisted"
+  },
+  "manual_review": [
+    {
+      "field": "audience",
+      "recommendation": "Review and make the final audience declaration before publication.",
+      "reason": "SOURCE_CONTEXT recommends not_made_for_kids, but the uploader must make the final declaration."
+    },
+    {
+      "field": "age_restriction",
+      "recommendation": "Review the complete final video for the treatment and visibility of nudity before making an age-restriction declaration.",
+      "reason": "The episode discusses nudity in an educational context and includes nude art imagery, but the finished cut must be reviewed before the declaration is made."
+    },
+    {
+      "field": "paid_promotion",
+      "recommendation": "Confirm the paid-promotion declaration before publication.",
+      "reason": "SOURCE_CONTEXT does not provide enough information to make this declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content",
+      "recommendation": "Review the finished video and make the altered-or-synthetic-content disclosure decision manually.",
+      "reason": "The supplied frames are stylized illustrations, but SOURCE_CONTEXT does not provide enough information to determine the final disclosure status."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before release.",
+      "reason": "SOURCE_CONTEXT states that publication rights for the operator-supplied music must be verified by the operator."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Gemini, create one instantly readable vertical 9:16 thumbnail scene for a phone. Treat the attached rendered opening, body, and closing video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Because this thumbnail depicts the gallery opener, let the rendered opening frame lead the exact gallery look while the body and closing frames support overall episode continuity. Treat the world keyframe as supporting continuity only; it must never override the final rendered frames. Treat the character sheet as identity-only, and do not make the crone or any other character appear unless that character genuinely belongs in the chosen thumbnail scene. Build one simple scene with a dominant classical nude marble statue openly displayed in a quiet gallery and a fully closed cream changing-room curtain immediately beside it, making the tension between accepted public art and private concealment unmistakable. Keep the statue as the single dominant focal subject, use strong figure-to-background contrast, a clear visual hierarchy, restrained shadows, and deliberate clean negative space in the upper-right or upper-third for optional later overlay text. Do not show an exposed living person. Generate no written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Why Nakedness Feels Different",
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; select a genuinely relevant Q Station video manually.",
+  "schema_version": 1,
+  "created_at": "2026-09-16T16:42:28.411576+00:00",
+  "source_master_sha256": "c79cdf3f6e4fd8aac4267f66532c1f6f8ff10b69487ed5eedd4f84df8ea4b854",
+  "chatgpt_jobs": {
+    "draft": "638e7bb3-de11-457a-9f6d-e12c29b0c58e",
+    "review": "8304f403-93d2-4eb9-aec2-c94c11ebf96b",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "unlisted",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "037_why_are_humans_ashamed_of_being_naked",
+      "duration_seconds": 44.669,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "concept_id": "55c5658c6c8a234818e7",
+      "opening_actions": [
+        "The crone studies a nude marble statue openly displayed beside a changing booth as an unseen person sharply pulls the privacy curtain closed.",
+        "She traces one long finger from the exposed statue toward the shut curtain and gives a restrained side-eye.",
+        "Her finger stops between them as she draws her orb from inside her moss-green sleeve."
+      ],
+      "entry_bridge": {
+        "a_end": "Her long finger hangs between the openly displayed nude statue and the closed privacy curtain while the orb emerges beneath her moss-green sleeve.",
+        "b_start": "Long fingers and the same ragged moss-green sleeve visibly cradle the orb, making her ownership and guidance unmistakable.",
+        "reveal": "The entry reveals that discomfort around nakedness often follows learned expectations about where nudity belongs rather than naked skin itself.",
+        "world_entry": "Host-free matched scenes compare similar human exposure treated as ordinary in accepted public art, private in a changing space, and differently expected at a beach."
+      },
+      "opening_activity": "deliberately comparing public display with private concealment",
+      "opening_location": "quiet sculpture gallery beside a temporary changing booth",
+      "opening_environment": "a calm gallery alcove where an openly displayed nude marble figure stands only a few steps from a fabric changing booth",
+      "topic_visual_link": "The same category of exposed human form is openly accepted in the statue while a living person immediately conceals themselves, making the social rule around nakedness visible.",
+      "link_type": "direct",
+      "opening_visual_proof": "A nude marble figure remains fully exposed in public view while, in the same frame, a nearby changing curtain snaps shut to hide a person.",
+      "curiosity_trigger": "The sudden rasp and snap of the closing curtain interrupts the stillness of the gallery while the uncovered statue remains calmly on display.",
+      "trigger_object": "the exposed nude statue beside the abruptly closed privacy curtain",
+      "reaction": "She gives the contrast a knowing side-eye and the smallest crooked grin before directing attention between the two.",
+      "entry_retrieval": "After tracing the visible contrast from statue to curtain, she halts her finger between them, slips that hand beneath her ragged moss-green sleeve, and deliberately draws out her orb.",
+      "entry_variant": "sleeve_reveal",
+      "camera_pattern": "slow_push_in",
+      "hero_presence_mode": "opener_only",
+      "closing_mode": "stay_in_world",
+      "world_style_hint": "grounded observational comparisons of nudity, privacy, art, and social context across ordinary human settings",
+      "reason": "The gallery-and-changing-booth contrast makes the script's central distinction immediately visible: the body remains ordinary while learned expectations about context change whether exposure feels acceptable or shameful."
+    },
+    "script_plan": {
+      "opening_question_spark": "Why can a naked statue feel proper when a naked person feels exposed?",
+      "entry_transition": "Because shame often follows learned expectations about where nakedness belongs.",
+      "cta": "What do you think shapes our feelings about nudity most?",
+      "body": [
+        "Families and customs teach rules about modesty.",
+        "Those rules vary across cultures and history.",
+        "Chosen privacy differs from unexpected exposure.",
+        "Context can also make nudity feel sexual.",
+        "Expected staring or judgment can trigger shame.",
+        "Galleries may present nude statues as ordinary art.",
+        "Changing booths usually signal concealment from strangers."
+      ],
+      "optional_closing": "The skin stays ordinary; the social meaning changes.",
+      "full_narration": "Why can a naked statue feel proper when a naked person feels exposed? Because shame often follows learned expectations about where nakedness belongs. Families and customs teach rules about modesty. Those rules vary across cultures and history. Chosen privacy differs from unexpected exposure. Context can also make nudity feel sexual. Expected staring or judgment can trigger shame. Galleries may present nude statues as ordinary art. Changing booths usually signal concealment from strangers. The skin stays ordinary; the social meaning changes. What do you think shapes our feelings about nudity most?",
+      "word_count": 90,
+      "created_at": "2026-09-16T10:24:06Z"
+    },
+    "narration": "Why can a naked statue feel proper when a naked person feels exposed? Because shame often follows learned expectations about where nakedness belongs. Families and customs teach rules about modesty. Those rules vary across cultures and history. Chosen privacy differs from unexpected exposure. Context can also make nudity feel sexual. Expected staring or judgment can trigger shame. Galleries may present nude statues as ordinary art. Changing booths usually signal concealment from strangers. The skin stays ordinary; the social meaning changes. What do you think shapes our feelings about nudity most?",
+    "music": {
+      "provider": "operator_upload",
+      "source_url": null,
+      "license": "Operator-supplied; publication rights must be verified by the operator."
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_203193fa1cb242919e5eb8b108a59a90/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1710931,
+          "sha256": "272548880a076f0cdbba5c2624d783482f55cdcbe4a89fc80aaf03dcb7df7d16",
+          "time_seconds": 4.467
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_203193fa1cb242919e5eb8b108a59a90/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 4042533,
+          "sha256": "47d4b4a2efbc69393563831472aaa08e0f3a9ce4b295364871235aa8e81e2d93",
+          "time_seconds": 22.334
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_203193fa1cb242919e5eb8b108a59a90/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 4534403,
+          "sha256": "71782d202fc968d5b0914880d1a1fa677f93891b31f95b72a44cab2a03961b96",
+          "time_seconds": 37.52
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3539904,
+          "sha256": "1d5587ffa131631cee58794f9c3659d893f7c28112617313e7e493d99ca8ffb0"
+        },
+        {
+          "role": "thumbnail_character_identity",
+          "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+          "file": "projects/q_station/characters/moss_cloaked_crone/refs/character_sheet.jpg",
+          "width": 1280,
+          "height": 960,
+          "bytes": 246946,
+          "sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+        }
+      ]
+    }
+  }
+}

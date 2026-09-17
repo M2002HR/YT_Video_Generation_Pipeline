@@ -1,0 +1,69 @@
+{
+  "preflight": {
+    "character": {
+      "character_id": "moss_cloaked_crone",
+      "display_name": "Moss-Cloaked Crone",
+      "sheet_path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/moss_cloaked_crone/refs/character_sheet.jpg",
+      "sheet_sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    },
+    "font": {
+      "id": "dejavu_sans_bold",
+      "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+      "sha256": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895"
+    },
+    "requested_count": 3,
+    "maximum_image_calls": 6,
+    "aspect_ratio": "9:16"
+  },
+  "visual_references": [
+    {
+      "role": "thumbnail_rendered_opening_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_cd928fb0afe0487f8e1572dff5b1d2bb/visual_references/render_opening.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 1710931,
+      "sha256": "272548880a076f0cdbba5c2624d783482f55cdcbe4a89fc80aaf03dcb7df7d16",
+      "time_seconds": 4.467
+    },
+    {
+      "role": "thumbnail_rendered_body_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_cd928fb0afe0487f8e1572dff5b1d2bb/visual_references/render_body.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 4042533,
+      "sha256": "47d4b4a2efbc69393563831472aaa08e0f3a9ce4b295364871235aa8e81e2d93",
+      "time_seconds": 22.334
+    },
+    {
+      "role": "thumbnail_rendered_closing_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_cd928fb0afe0487f8e1572dff5b1d2bb/visual_references/render_closing.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 4534403,
+      "sha256": "71782d202fc968d5b0914880d1a1fa677f93891b31f95b72a44cab2a03961b96",
+      "time_seconds": 37.52
+    },
+    {
+      "role": "thumbnail_world_keyframe",
+      "purpose": "Supporting world continuity only; never overrides final rendered frames",
+      "file": "references/world_keyframe.png",
+      "width": 1536,
+      "height": 2752,
+      "bytes": 3539904,
+      "sha256": "1d5587ffa131631cee58794f9c3659d893f7c28112617313e7e493d99ca8ffb0"
+    },
+    {
+      "role": "thumbnail_character_identity",
+      "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+      "file": "projects/q_station/characters/moss_cloaked_crone/refs/character_sheet.jpg",
+      "width": 1280,
+      "height": 960,
+      "bytes": 246946,
+      "sha256": "674cfe2e1f5d8aae8e9b72b58a4a833f4623ab377e8cff3e7c996198854830fb"
+    }
+  ],
+  "source_master_sha256": "c79cdf3f6e4fd8aac4267f66532c1f6f8ff10b69487ed5eedd4f84df8ea4b854"
+}

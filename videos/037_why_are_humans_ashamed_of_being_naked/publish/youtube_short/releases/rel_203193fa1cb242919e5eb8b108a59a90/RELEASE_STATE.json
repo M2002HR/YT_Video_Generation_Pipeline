@@ -1,0 +1,122 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_203193fa1cb242919e5eb8b108a59a90",
+  "status": "FAILED",
+  "started_at": "2026-09-16T16:38:44.992179+00:00",
+  "video": "037_why_are_humans_ashamed_of_being_naked",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "c79cdf3f6e4fd8aac4267f66532c1f6f8ff10b69487ed5eedd4f84df8ea4b854",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-16T16:38:48.541425+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-16T16:40:39.983915+00:00",
+      "chatgpt_job_id": "638e7bb3-de11-457a-9f6d-e12c29b0c58e"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-16T16:40:39.983925+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-16T16:42:28.411588+00:00",
+      "chatgpt_job_id": "8304f403-93d2-4eb9-aec2-c94c11ebf96b",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-16T16:42:28.429211+00:00"
+    },
+    {
+      "stage": "release",
+      "status": "FAILED",
+      "at": "2026-09-16T16:49:58.371495+00:00",
+      "error": "ValueError: Thumbnail text does not fit the selected line limit; revise it explicitly."
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": false,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 3,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "auto",
+      "allowed_layouts": [
+        "character_left",
+        "character_right",
+        "contrast_split",
+        "discovery_focus"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "inherit_episode",
+      "quality": "native",
+      "thumbnail_note": "",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "dejavu_sans_bold",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.012,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.04,
+      "text_position": "auto",
+      "text_box_width": 0.82,
+      "safe_margin": 0.055,
+      "text_min_scale": 0.055,
+      "text_max_scale": 0.115,
+      "max_words": 6,
+      "max_characters": 40,
+      "max_lines": 2,
+      "coordinates": null,
+      "badge_enabled": true,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 1,
+      "max_image_generations": 6,
+      "review_preset": "balanced",
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": true,
+      "send_previews": true,
+      "send_comparison_sheet": true,
+      "send_report_json": true,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "151027c2c09ea866307e6ef1a085c5759b814eed243dc0e3860fe98bdb9082d6",
+  "failed_at": "2026-09-16T16:49:58.371511+00:00",
+  "error": "ValueError: Thumbnail text does not fit the selected line limit; revise it explicitly."
+}

@@ -1,0 +1,20 @@
+{
+  "eligible": true,
+  "score": 96,
+  "reasons": [
+    "Host identity is consistent with the provided character sheet: elderly witch-like woman, green cloak, white hair, and crow.",
+    "Main scene is clearly present and communicates the statue-versus-person contrast described by the evidence anchor.",
+    "Final text matches the candidate exactly: 'Why Nakedness Feels Shameful'.",
+    "Headline remains readable at the supplied small-preview size.",
+    "No obvious unwanted model-generated text appears in the composed thumbnail.",
+    "The image is intact and compositionally complete.",
+    "The thumbnail does not make a materially misleading claim relative to the supplied evidence anchor."
+  ],
+  "blocking_violations": [],
+  "warnings": [
+    "Illustrated frontal nudity is prominent and may face platform-specific moderation or monetization restrictions even though it is contextual and non-sexual.",
+    "Fine background details become indistinct at small-preview size, though the headline and primary characters remain clear."
+  ],
+  "review_job_id": "ea99cd25-7a50-40b5-afcf-c683f799a9c8",
+  "final_sha256": "423650751e494d4531f9c5568122f6c71bf165978f2e9b30a491a5bf6cd768a0"
+}

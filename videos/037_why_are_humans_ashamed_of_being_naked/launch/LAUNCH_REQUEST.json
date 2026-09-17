@@ -2,7 +2,7 @@
   "schema_version": 6,
   "content_project": "q_station",
   "job_id": "b6a48042-0751-4c81-8178-cfa4e8a068a4",
-  "status": "RUNNING",
+  "status": "DONE",
   "created_at": "2026-09-16T07:53:51.087960+00:00",
   "topic": "Why Are Humans Ashamed of Being Naked?",
   "video_id": "037",
@@ -434,5 +434,6 @@
       "motion_transition_overrides"
     ],
     "config_revision_id": "47d3c396-8ce2-4d2c-8fb5-b5ee0e5abe45"
-  }
+  },
+  "completed_at": "2026-09-16T13:27:07.411856+00:00"
 }

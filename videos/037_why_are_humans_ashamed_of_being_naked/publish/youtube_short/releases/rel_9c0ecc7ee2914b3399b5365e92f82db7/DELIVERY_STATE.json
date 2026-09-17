@@ -1,0 +1,18 @@
+{
+  "status": "DONE",
+  "messages": {
+    "master": 15238,
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15239,
+        "sha256": "102ccac51e27d0d237a1015df87c0fa57a35a79405b54e5ba4bd25c4ff0c1b28"
+      }
+    },
+    "upload_markdown": 15241,
+    "comparison": 15243,
+    "thumbnail_report": 15244,
+    "summary": 15240,
+    "metadata_json": 15242
+  },
+  "delivered_count": 1
+}

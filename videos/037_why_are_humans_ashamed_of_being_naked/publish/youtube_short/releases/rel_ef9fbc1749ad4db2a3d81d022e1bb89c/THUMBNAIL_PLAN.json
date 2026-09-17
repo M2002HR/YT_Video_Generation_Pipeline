@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "requested_count": 1,
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "WHY NUDITY CAN FEEL SHAMEFUL",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "Why can a naked statue feel proper when a naked person feels exposed? Because shame often follows learned expectations about where nakedness belongs. Families and customs teach rules about modesty. Those rules vary across cultures and histo",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "planned negative space away from face and evidence",
+      "novelty_signature": "895121161b376d5c",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "dramatic"
+      }
+    }
+  ]
+}

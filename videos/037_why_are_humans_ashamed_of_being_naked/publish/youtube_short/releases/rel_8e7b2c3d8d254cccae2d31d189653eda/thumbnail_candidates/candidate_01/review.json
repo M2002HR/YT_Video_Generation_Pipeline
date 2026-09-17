@@ -1,0 +1,18 @@
+{
+  "eligible": true,
+  "score": 94,
+  "reasons": [
+    "Host character matches the supplied witch-and-crow identity.",
+    "Main scene clearly contrasts a classical nude statue with an embarrassed nude person.",
+    "Final text exactly reads 'Why Nakedness Feels Shameful'.",
+    "Headline remains legible in the supplied small preview.",
+    "Visual claim is consistent with the evidence anchor and video title.",
+    "Final composed file appears intact and uncropped."
+  ],
+  "blocking_violations": [],
+  "warnings": [
+    "A small 'Q' badge appears at the lower-right; verify that it is intentional branding rather than unwanted model text."
+  ],
+  "review_job_id": "df2a7617-8c67-4430-a83e-7cf7fdc46a0e",
+  "final_sha256": "6944c85a1020a31e27c499e923e48f4ef44db8d8c83db3b79aff2e7409283276"
+}

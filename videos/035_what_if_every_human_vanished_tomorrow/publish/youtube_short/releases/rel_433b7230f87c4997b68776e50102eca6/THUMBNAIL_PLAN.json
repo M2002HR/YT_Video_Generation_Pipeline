@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "requested_count": 1,
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "After Humans Vanish",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If every human vanished tomorrow, how long would this garden keep watering itself? The crone raises her orb, and we dive inside to watch the aftermath. Within hours, roads empty and power grids begin failing. Without operators, pumps stop a",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "planned negative space away from face and evidence",
+      "novelty_signature": "df020cef2301e167",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "dramatic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "title": "HUMAN VANISHING How Long Would Automated Systems Keep Running? #shorts 🌿",
+  "title_options": [
+    "EMPTY CITIES What Fails First When Everyone Disappears? #shorts 🏙️",
+    "POWER GRIDS How Fast Would Infrastructure Start Failing? #shorts ⚡",
+    "ABANDONED WORLD How Nature Builds Over Human Cities #shorts 🌱"
+  ],
+  "description": "A thought experiment tracks what happens to infrastructure, cities, animals, and nature after humans suddenly vanish.\nKeywords: human disappearance, abandoned cities, infrastructure failure, power grid failure, nature reclamation, urban wildlife\n#shorts #viralshorts #HumanDisappearance #AbandonedCities #NatureReclaims",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "what if humans vanished",
+    "human disappearance",
+    "abandoned cities",
+    "nature reclaims cities",
+    "infrastructure failure",
+    "power grid failure",
+    "urban decay",
+    "wildlife in cities",
+    "post human world",
+    "automated systems",
+    "future of cities",
+    "thought experiment",
+    "science education",
+    "what if scenarios"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "not_made_for_kids",
+      "reason": "The source recommends not made for kids, but the uploader must make the final audience declaration."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "no_age_restriction_recommended",
+      "reason": "The supplied visuals show stylized abandonment, fire, and decay without graphic injury or gore. The uploader must make the final age-restriction declaration."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "no_paid_promotion_indicated",
+      "reason": "SOURCE_CONTEXT contains no sponsorship, endorsement, or paid-placement claim. The uploader must confirm and make the final paid-promotion declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "review the final video against YouTube's disclosure criteria",
+      "reason": "The pipeline uses AI imagery, but the uploader must inspect the finished video and make the final altered-or-synthetic-content declaration."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "verify publication rights before release",
+      "reason": "The music is operator-supplied, and SOURCE_CONTEXT explicitly states that publication rights must be verified by the operator."
+    },
+    {
+      "field": "Audience",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm the audience declaration in YouTube Studio; only the uploader can make the final Made for Kids decision."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Gemini, create one instantly readable 9:16 YouTube Shorts thumbnail designed for a phone. Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Match their hand-drawn graphic-novel feel, muted gray-green abandoned-world palette, strong charcoal linework, weathered surfaces, and restrained warm highlights. Any world keyframe is supporting continuity only and must never override the final rendered frames. A character sheet, if supplied, is identity-only and must not make a character appear unless that character genuinely belongs in this episode's thumbnail. Use one simple visual metaphor with one dominant focal subject: a large glass orb showing an empty modern city with abandoned cars, creeping vegetation, and early infrastructure decay, held at the edge by the crone's long weathered fingers as seen in the episode's opening world. Make humanity's absence understandable at a glance through the empty streets and encroaching nature. Use strong contrast, a clear visual hierarchy, and deliberate uncluttered negative space in the upper-left for optional text added later by a human. It must feel specific to this episode, never like generic apocalypse stock art. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "After Humans Vanish",
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave this unset unless the uploader selects an appropriate existing video.",
+  "schema_version": 1,
+  "created_at": "2026-09-15T17:23:47.408461+00:00",
+  "source_master_sha256": "5dc099f2d43e8b13a5f6309dad67755fb8394bafe20a1f0acbae8aa5b5a8f1ae",
+  "chatgpt_jobs": {
+    "draft": "eb43ee7b-9abd-4492-a9e8-17c68501bcd8",
+    "review": "c6d8e0a4-cf68-4f4c-8e80-b3b6998670a8",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "unlisted",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "035_what_if_every_human_vanished_tomorrow",
+      "duration_seconds": 59.167,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "opening_activity": "tying a sagging tomato vine back onto its trellis with her long fingers as the greenhouse's timed overhead misters suddenly activate across the surrounding beds without anyone operating them",
+      "opening_location": "rooftop greenhouse garden above a quiet high-rise district at early morning",
+      "opening_environment": "a weathered glass rooftop greenhouse filled with vegetable beds, trellises, irrigation tubing, damp concrete paths, and a muted city skyline beyond the panes",
+      "topic_visual_link": "The garden visibly continues watering itself without a human operator, immediately posing how long automated systems would keep functioning if humanity suddenly disappeared.",
+      "link_type": "cause_effect",
+      "opening_visual_proof": "At frame zero, fine mist is already sweeping across multiple unattended planting rows from automatic ceiling nozzles while the crone alone ties a vine beneath them.",
+      "curiosity_trigger": "a sharp valve click followed by the hiss of mist moving down the otherwise silent greenhouse",
+      "trigger_object": "automated overhead irrigation nozzles activating in sequence",
+      "reaction": "She stops mid-knot, follows the advancing spray with a narrow side-eye, then gives the raven a small knowing glance.",
+      "entry_retrieval": "As the question lands, she releases the vine, wipes a bead of irrigation water from one long fingertip, then slips that hand beneath a fold of her moss-green cloak and deliberately draws out her orb; the raven leans toward it as she raises it into the camera's path.",
+      "entry_variant": "sleeve_reveal",
+      "camera_pattern": "pan_right",
+      "hero_presence_mode": "opener_only",
+      "closing_mode": "stay_in_world",
+      "world_style_hint": "cinematic abandoned-world texture showing modern infrastructure failing in stages as vegetation, weather, animals, and decay reclaim human spaces",
+      "reason": "An automatically watered rooftop garden directly supports the script's opening question while giving the crone a quiet, tactile task and a believable mechanical interruption that naturally leads into her orb."
+    },
+    "script_plan": {
+      "opening_question_spark": "If every human vanished tomorrow, how long would this garden keep watering itself?",
+      "entry_transition": "The crone raises her orb, and we dive inside to watch the aftermath.",
+      "cta": "Like and subscribe to keep the questions growing.",
+      "body": [
+        "Within hours, roads empty and power grids begin failing.",
+        "Without operators, pumps stop and tunnels start flooding.",
+        "Pets trapped indoors face danger first.",
+        "Livestock escape fences or die without care.",
+        "Unattended fires can burn unchecked.",
+        "Weeds crack pavement; vines climb buildings.",
+        "Rust, leaks, and frost weaken roofs.",
+        "Wild animals spread through quieter towns.",
+        "Satellites eventually fail or fall from orbit.",
+        "Stone, glass, plastic, and monuments can outlast generations."
+      ],
+      "optional_closing": "Nature wouldn't erase us quickly; it would build over us.",
+      "full_narration": "If every human vanished tomorrow, how long would this garden keep watering itself? The crone raises her orb, and we dive inside to watch the aftermath. Within hours, roads empty and power grids begin failing. Without operators, pumps stop and tunnels start flooding. Pets trapped indoors face danger first. Livestock escape fences or die without care. Unattended fires can burn unchecked. Weeds crack pavement; vines climb buildings. Rust, leaks, and frost weaken roofs. Wild animals spread through quieter towns. Satellites eventually fail or fall from orbit. Stone, glass, plastic, and monuments can outlast generations. Nature wouldn't erase us quickly; it would build over us. Like and subscribe to keep the questions growing.",
+      "word_count": 112,
+      "created_at": "2026-09-15T10:03:23Z"
+    },
+    "narration": "If every human vanished tomorrow, how long would this garden keep watering itself? The crone raises her orb, and we dive inside to watch the aftermath. Within hours, roads empty and power grids begin failing. Without operators, pumps stop and tunnels start flooding. Pets trapped indoors face danger first. Livestock escape fences or die without care. Unattended fires can burn unchecked. Weeds crack pavement; vines climb buildings. Rust, leaks, and frost weaken roofs. Wild animals spread through quieter towns. Satellites eventually fail or fall from orbit. Stone, glass, plastic, and monuments can outlast generations. Nature wouldn't erase us quickly; it would build over us. Like and subscribe to keep the questions growing.",
+    "music": {
+      "provider": "operator_upload",
+      "source_url": null,
+      "license": "Operator-supplied; publication rights must be verified by the operator."
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3618909,
+          "sha256": "584a484fc49f707b44ccc46926b6b6602c6f78265b831f0ed2c510b4b08bcbf3",
+          "time_seconds": 5.917
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3651161,
+          "sha256": "84fbed50dc7b3b90fefe356978eb363516b3effc39868205ebb4b3440bfc3f47",
+          "time_seconds": 29.584
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3965707,
+          "sha256": "e351c55605b979252060d10c545799ec7072de467032cbb2732bf4e4ced9b6e4",
+          "time_seconds": 49.7
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3608232,
+          "sha256": "ef19e101265baaca99b836895d015bb6049a8f9d337a1bf58f195093eab6ef4e"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "schema_version": 2,
+    "selection": {
+      "selected_candidate_id": "candidate_01",
+      "status": "DONE",
+      "ranking": [
+        {
+          "candidate_id": "candidate_01",
+          "rank": 1,
+          "score": 0,
+          "eligible": true,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ]
+        }
+      ],
+      "requested_count": 1,
+      "generated_count": 1,
+      "eligible_count": 1,
+      "delivery_mode": "all_final_candidates"
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_01",
+        "layout_id": "character_left",
+        "headline": "After Humans Vanish",
+        "evidence_anchor": "If every human vanished tomorrow, how long would this garden keep watering itself? The crone raises her orb, and we dive inside to watch the aftermath. Within hours, roads empty and power grids begin failing. Without operators, pumps stop a",
+        "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/publish/youtube_short/releases/rel_433b7230f87c4997b68776e50102eca6/thumbnail_candidates/candidate_01/artwork.png",
+        "final_path": "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/publish/youtube_short/releases/rel_433b7230f87c4997b68776e50102eca6/thumbnail_candidates/candidate_01/final.png",
+        "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/publish/youtube_short/releases/rel_433b7230f87c4997b68776e50102eca6/thumbnail_candidates/candidate_01/preview_small.jpg",
+        "artwork": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 2829541,
+          "sha256": "9b5c4176e2e841211d15cc95edf5eb7cc1d173454fef3175c51b94a4e8ce0be8"
+        },
+        "final": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 4846073,
+          "sha256": "8ca9d5d3fc0d55573353ff5638126c4ea4ee4071c35bace93c685efb610b2e09"
+        },
+        "review": {
+          "eligible": true,
+          "score": 0,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ],
+          "blocking_violations": [],
+          "warnings": [
+            "No ChatGPT visual review was requested."
+          ],
+          "review_status": "SKIPPED_OPERATOR",
+          "final_sha256": "8ca9d5d3fc0d55573353ff5638126c4ea4ee4071c35bace93c685efb610b2e09"
+        },
+        "generated_provider": "gemini",
+        "generation_job_id": "b94409f3-7225-4c49-b8cc-1f2d62274ab1",
+        "generation_receipt": {
+          "provider": "gemini",
+          "requested_model": "nano_banana_2",
+          "actual_model_label": "Open mode picker, currently Flash",
+          "model_verified": true,
+          "pro_regeneration_used": false,
+          "requested_quality": "best",
+          "requested_aspect_ratio": "9:16",
+          "actual_aspect_ratio": "1536:2752",
+          "requested_duration_seconds": null,
+          "actual_duration_seconds": null,
+          "requested_resolution": null,
+          "actual_resolution": null,
+          "workspace_url": "https://gemini.google.com/app/ca0c8fd1a1acfaa9",
+          "submission_fingerprint": null,
+          "reference_roles": [
+            "thumbnail_rendered_opening_frame",
+            "thumbnail_rendered_body_frame",
+            "thumbnail_rendered_closing_frame",
+            "thumbnail_world_keyframe",
+            "thumbnail_character_identity"
+          ],
+          "notes": [
+            "model_label_source=mode-picker",
+            "extended_thinking_mode=Open mode picker, currently Flash Extended",
+            "artifact_source=download",
+            "image=b94409f3-7225-4c49-b8cc-1f2d62274ab1_output_1.png 1536x2752 sha256=9b5c4176e2e841211d15cc95edf5eb7cc1d173454fef3175c51b94a4e8ce0be8"
+          ],
+          "quality_check": {
+            "passed": true,
+            "raw_passed": null,
+            "review_status": "skipped_after_pre_generation_feedback",
+            "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+            "violations": [],
+            "raw_violations": [],
+            "blocking_violations": [],
+            "observations": [],
+            "regressions": [],
+            "review_provider": null
+          },
+          "request_fingerprint": "42933137c2bb19460f72f0a3c8cbb1162ce9acc1349d0cc1cb78d07710b8681d",
+          "quality_iterations": [
+            {
+              "attempt": 1,
+              "job_id": "b94409f3-7225-4c49-b8cc-1f2d62274ab1",
+              "prompt_sha256": "67972524d5624a446cc38b91dfa30c5804c868198492b56cededdcdd1ab87c28",
+              "output_sha256": "9b5c4176e2e841211d15cc95edf5eb7cc1d173454fef3175c51b94a4e8ce0be8",
+              "quality_check": {
+                "passed": true,
+                "raw_passed": null,
+                "review_status": "skipped_after_pre_generation_feedback",
+                "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+                "violations": [],
+                "raw_violations": [],
+                "blocking_violations": [],
+                "observations": [],
+                "regressions": [],
+                "review_provider": null
+              },
+              "fully_clean": true,
+              "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/035_what_if_every_human_vanished_tomorrow/publish/youtube_short/releases/rel_433b7230f87c4997b68776e50102eca6/thumbnail_candidates/candidate_01/attempts/artwork.attempt_1.png",
+              "selected": true
+            }
+          ],
+          "qc_policy": "disabled",
+          "qc_selected_attempt": 1
+        },
+        "fallback_from": null
+      }
+    ],
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1536,
+      "height": 2752,
+      "bytes": 4846073,
+      "sha256": "8ca9d5d3fc0d55573353ff5638126c4ea4ee4071c35bace93c685efb610b2e09"
+    },
+    "quality_check": {
+      "passed": true
+    },
+    "requested_model": "nano_banana_2",
+    "all_final_candidates": true
+  }
+}

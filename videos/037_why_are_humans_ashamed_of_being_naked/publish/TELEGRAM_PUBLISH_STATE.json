@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-16T13:27:02.858216+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-16T13:27:02.858025+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15233,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2577406,
+      "sha256": "95032ddaef806bb3391e7a43eb04ade5ce15166fa7002f27229667a6a13b38dc",
+      "duration_seconds": 44.667,
+      "elapsed_seconds": 7.272,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "037_why_are_humans_ashamed_of_being_naked",
+        "duration_seconds": 44.669,
+        "beat_count": 10,
+        "video_beat_count": 2,
+        "image_beat_count": 8,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.9,
+          "transition_end": 11.1
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 159.973,
+          "realtime_factor": 3.581,
+          "peak_child_rss_mb": 1225.5,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 037_why_are_humans_ashamed_of_being_naked\n⏱ Duration: 0:45\n🎞 Beats: 10 (2 video · 8 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 2:40 wall (3.581x realtime) · 2 thread(s) · peak 1225.5 MB\nArtifact: 95032ddaef80 · Delivery: compressed"
+    }
+  }
+}
