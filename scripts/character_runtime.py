@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any
 
 from presentation_runtime import PresentationContext, PresentationProfileError, load_presentation_profile
+from character_assets import operator_reference_error, registry_asset_revision
 
 # Resolution sources persisted alongside a run so a resolution can be reproduced/debugged.
 SOURCE_MANUAL = "manual"
@@ -100,6 +101,7 @@ class CharacterContext:
     negative_constraints: str
     presentation: PresentationContext
     selection_profile: dict[str, Any] = field(default_factory=dict)
+    reference_error: str | None = None
 
     @property
     def appearance_short(self) -> str:
@@ -161,14 +163,17 @@ class CharacterRegistry:
     _contexts: dict[str, CharacterContext]
 
     def enabled_ids(self) -> tuple[str, ...]:
-        return tuple(self._contexts.keys())
+        return tuple(key for key, ctx in self._contexts.items() if ctx.reference_error is None)
 
     def has(self, character_id: str) -> bool:
-        return character_id in self._contexts
+        return character_id in self._contexts and self._contexts[character_id].reference_error is None
 
     def get(self, character_id: str) -> CharacterContext:
         try:
-            return self._contexts[character_id]
+            context = self._contexts[character_id]
+            if context.reference_error:
+                raise CharacterSelectionError(f"Character {character_id!r} is not ready: {context.reference_error}")
+            return context
         except KeyError:
             raise CharacterSelectionError(
                 f"Character {character_id!r} is not an enabled registry character "
@@ -187,6 +192,7 @@ class CharacterRegistry:
                 "presentation_name": ctx.presentation.display_name,
             }
             for ctx in self._contexts.values()
+            if ctx.reference_error is None
         ]
 
 
@@ -238,7 +244,13 @@ def _load_character(root: Path, entry: dict[str, Any]) -> tuple[str, CharacterCo
     sheet_rel = str(references.get("canonical_sheet") or "").strip()
     sheet_path = _safe_child(pack_dir, sheet_rel, what="canonical_sheet")
     required = bool(references.get("required", True))
-    if required and not sheet_path.is_file():
+    provisioning = str(references.get("provisioning") or "bundled")
+    if provisioning not in {"bundled", "operator"}:
+        raise CharacterRegistryError(f"Character {char_id!r} has invalid reference provisioning {provisioning!r}.")
+    if provisioning == "operator" and not required:
+        raise CharacterRegistryError("An operator-provisioned character sheet must remain required.")
+    reference_error = operator_reference_error(sheet_path) if provisioning == "operator" else None
+    if provisioning == "bundled" and required and not sheet_path.is_file():
         raise CharacterRegistryError(f"Character {char_id!r} is missing required reference sheet: {sheet_rel!r}")
 
     prompt_files = config.get("prompt_files") or {}
@@ -264,18 +276,21 @@ def _load_character(root: Path, entry: dict[str, Any]) -> tuple[str, CharacterCo
         environment_policy=environment_policy,
         reference_mode=reference_mode,
         sheet_path=sheet_path,
-        sheet_sha256=_sha256(sheet_path) if sheet_path.is_file() else "",
+        sheet_sha256=_sha256(sheet_path) if reference_error is None and sheet_path.is_file() else "",
         appearance_full=prompts["appearance"],
         behavior=prompts["behavior"],
         negative_constraints=prompts["negative"],
         presentation=presentation,
         selection_profile=dict(profile),
+        reference_error=reference_error,
     )
     return char_id, context if enabled else None
 
 
-@lru_cache(maxsize=None)
-def _load_registry_cached(registry_path_str: str, mtime_ns: int) -> CharacterRegistry:
+@lru_cache(maxsize=32)
+def _load_registry_cached(
+    registry_path_str: str, revision: tuple[tuple[str, int, int, int], ...]
+) -> CharacterRegistry:
     registry_path = Path(registry_path_str)
     root = registry_path.parent
     try:
@@ -305,9 +320,9 @@ def _load_registry_cached(registry_path_str: str, mtime_ns: int) -> CharacterReg
 
     fallback = str(payload.get("auto_fallback_character_id") or "").strip()
     legacy_default = str(payload.get("legacy_default_character_id") or "").strip()
-    if fallback not in contexts:
+    if fallback not in contexts or contexts[fallback].reference_error:
         raise CharacterRegistryError(f"auto_fallback_character_id {fallback!r} is not an enabled character.")
-    if legacy_default not in contexts:
+    if legacy_default not in contexts or contexts[legacy_default].reference_error:
         raise CharacterRegistryError(f"legacy_default_character_id {legacy_default!r} is not an enabled character.")
 
     return CharacterRegistry(
@@ -319,14 +334,9 @@ def _load_registry_cached(registry_path_str: str, mtime_ns: int) -> CharacterReg
     )
 
 
-def _registry_revision(registry_path: Path) -> int:
-    """Fingerprint configs, prompt fragments and sheets used by this registry."""
-    root = registry_path.parent
-    candidates = [
-        path for path in root.rglob("*")
-        if path.is_file() and path.suffix.lower() in {".json", ".md", ".png", ".jpg", ".jpeg", ".webp"}
-    ]
-    return max(path.stat().st_mtime_ns for path in candidates)
+def _registry_revision(registry_path: Path) -> tuple[tuple[str, int, int, int], ...]:
+    """Reload after operator uploads, replacements and removals, including old mtimes."""
+    return registry_asset_revision(registry_path)
 
 
 def load_character_registry(registry_path: Path) -> CharacterRegistry:
@@ -429,6 +439,8 @@ def resolve_character(
         if not char_id:
             raise CharacterSelectionError("Manual character selection requires a character_id.")
         if not registry.has(char_id):
+            if char_id in registry._contexts:
+                registry.get(char_id)  # Known but unready: actionable error, never a swap.
             raise CharacterSelectionError(
                 f"Requested character {char_id!r} is not an enabled Q Station character "
                 f"(enabled: {', '.join(registry.enabled_ids())})."

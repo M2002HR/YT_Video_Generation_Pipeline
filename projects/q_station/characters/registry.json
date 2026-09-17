@@ -15,6 +15,10 @@
     {
       "id": "moss_cloaked_crone",
       "config": "moss_cloaked_crone/character.json"
+    },
+    {
+      "id": "sea_captain",
+      "config": "sea_captain/character.json"
     }
   ]
 }

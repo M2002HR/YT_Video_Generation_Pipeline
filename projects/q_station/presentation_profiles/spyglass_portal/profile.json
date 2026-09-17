@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "spyglass_portal",
+  "display_name": "Question -> Captain's Spyglass -> Topic World",
+  "version": 1,
+  "entry_kind": "spyglass",
+  "narration_segment": {
+    "key": "entry_transition",
+    "label": "spyglass transition"
+  },
+  "entry_frame_character_presence": "ownership_cue",
+  "identity": {
+    "canonical_sheet": "refs/spyglass_design_sheet.png",
+    "required_at_preflight": false
+  },
+  "prompt_files": {
+    "script_rules": "prompts/script_rules.md",
+    "episode_rules": "prompts/episode_rules.md",
+    "question_intro": "prompts/question_intro.md",
+    "entry_transition": "prompts/entry_transition.md",
+    "entry_identity": "prompts/entry_identity.md",
+    "entry_frame": "prompts/entry_frame.md"
+  },
+  "artifacts": {
+    "question_prompt": "references/flow_prompt_question_intro.txt",
+    "entry_prompt": "references/flow_prompt_spyglass_transition.txt",
+    "question_source": "assets/opening/question_intro_source.mp4",
+    "entry_source": "assets/opening/spyglass_transition_source.mp4",
+    "question_trimmed": "assets/opening/question_intro_trimmed.mp4",
+    "entry_trimmed": "assets/opening/spyglass_transition_trimmed.mp4",
+    "entry_direction": "creative/SPYGLASS_ENTRY_DIRECTION.txt",
+    "entry_frame": "references/spyglass_entry_frame.png",
+    "entry_image_receipt": "pipeline/provider_receipts/gemini_spyglass_entry_frame.json"
+  },
+  "entry_variants": [
+    "near_detail",
+    "far_target",
+    "two_object_compare",
+    "trace_to_cause",
+    "changed_viewpoint",
+    "pattern_inspection"
+  ]
+}

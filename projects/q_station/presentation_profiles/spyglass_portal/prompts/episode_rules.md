@@ -1,0 +1,5 @@
+Use the selected topic-first premise, one location and at most three readable actions in A. Vary the conflict, evidence and payoff, not merely the camera. The spyglass recurs; ships and treasure do not have to. Respect the requested host-presence mode.
+
+Allowed entry variants: near_detail inspects an ordinary detail; far_target singles out distant evidence; two_object_compare resolves a visible comparison; trace_to_cause follows an effect toward its cause; changed_viewpoint questions an initial interpretation; pattern_inspection follows a meaningful repetition. Choose by explanatory fit, not rotation. These are scene strategies, never claims of impossible optical powers.
+
+End A with the captain steadying or offering the eyepiece; B begins at that eyepiece with a readable hand/blue-cuff ownership cue. Match orientation and hand placement across an editorial seam, not an assumed pixel-perfect join. Aim the barrel away from the viewer. Inside the lens, reveal a topic clue, then let the host-free subject world fill the frame. No face or eyeball inside the tube. Keep body styling independent of host and prop; no permanent circular mask.
