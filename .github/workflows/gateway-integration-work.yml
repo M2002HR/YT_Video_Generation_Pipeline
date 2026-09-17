@@ -24,39 +24,16 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
-      - name: Inspect current contracts
+      - name: Apply staged integration
         run: |
-          python - <<'PY'
-          import ast, re
-          from pathlib import Path
-          for name in ['run_q_station_pipeline.py','opening_runtime.py','image_artifacts.py','flow_gate.py','run_full_video_pipeline_q_station_wrapper.py','pipeline_stages.py']:
-              p=Path('scripts')/name
-              print('\nFUNCTIONS',p)
-              t=ast.parse(p.read_text())
-              for n in ast.walk(t):
-                  if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)):
-                      print(n.lineno,n.end_lineno,n.name)
-          for p in sorted(Path('projects/q_station/prompts').rglob('*.md')):
-              print('PROMPT',p)
-          for root in ['scripts','projects/q_station/prompts','projects/q_station/presentation_profiles']:
-              for p in sorted(Path(root).rglob('*')):
-                  if p.suffix not in {'.py','.md','.json'} or not p.is_file(): continue
-                  for i,line in enumerate(p.read_text().splitlines(),1):
-                      if re.search(r'inner illustration window|page/card|page.surface|page texture|page frame|page border|book.world|book spread|book-like|storybook|eyepiece|objective lens',line,re.I):
-                          print('MATCH',p,i,line.strip()[:260])
-          for p in sorted(Path('videos/038_could_you_live_forever_on_a_desert_island').rglob('*')):
-              if p.is_file() and ('reference' in str(p) or p.name in ['WORLD_STYLE_PLAN.json','VISUAL_PLAN.json','EPISODE_PLAN.json','CHARACTER_RESOLUTION.json']):
-                  print('RUN_ASSET',p,p.stat().st_size)
-          PY
-      - name: Apply integration when staged
-        run: |
-          if [ -f scripts/_gateway_integration_tmp.py ]; then
-            python scripts/_gateway_integration_tmp.py
-          fi
+          set -euo pipefail
+          python scripts/_gateway_integration_tmp.py
+          git add -A
+          git diff --cached --check
       - name: Install validation dependencies
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg > /tmp/gateway-apt.log
           python -m pip install -q -r requirements.txt pytest numpy
           npm --prefix control_panel/ui ci
       - name: Validate configuration and syntax
@@ -64,21 +41,32 @@ jobs:
           python scripts/check_opening_setup.py
           python -m compileall -q scripts tests
           git diff --check
-      - name: Full regression suite
+      - name: Full Python regression suite
         run: |
           set -euo pipefail
-          python -m pytest -q -rs tests | tee /tmp/gateway-tests.txt
+          python -m pytest -q -rs tests --junitxml=/tmp/gateway-tests.xml | tee /tmp/gateway-tests.txt
+      - name: UI tests and production build
+        run: |
           npm --prefix control_panel/ui test -- --run
           npm --prefix control_panel/ui run build
-      - name: Commit staged integration only after successful validation
+      - name: Source integrity and geometry guard
         run: |
-          if [ -f scripts/_gateway_integration_tmp.py ]; then
-            rm scripts/_gateway_integration_tmp.py
-            rm .github/workflows/gateway-integration-work.yml
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -A
-            git diff --cached --check
-            git commit -m 'feat(q-station): integrate four gateways and isolate topic-world visuals'
-            git push origin HEAD:feature/character-gateways-v2
-          fi
+          git diff --exit-code -- scripts tests projects docs videos .env.example requirements.txt
+          PYTHONPATH=scripts python - <<'PY'
+          from run_q_station_pipeline import assess_image_content_qc
+          import gateway_contracts as g
+          v, _ = assess_image_content_qc({'passed': True, 'description': 'Optical error', 'violations': ['Spyglass orientation appears reversed: wide objective at the eye.']})
+          assert v['passed'] is False
+          assert not g.review_matches({'passed': True}, '[VISUAL_CONTRACT:spyglass_entry_v2]')
+          print('Independent geometry and missing-evidence checks passed.')
+          PY
+      - name: Commit validated integration
+        run: |
+          set -euo pipefail
+          rm scripts/_gateway_integration_tmp.py .github/workflows/gateway-integration-work.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'feat(q-station): integrate four gateways and isolate topic-world visuals'
+          git push origin HEAD:feature/character-gateways-v2
