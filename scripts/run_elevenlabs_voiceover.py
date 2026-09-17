@@ -305,11 +305,12 @@ class ElevenLabsUI:
         The current picker only highlights/previews a card on activation; the
         selection commits when that card's own confirmation button (exposed as
         ``Select <name>``, e.g. ``aria-label="Select Marv "``) is pressed. The
-        button is resolved from the requested voice name on every call, then
-        activated with a trusted keyboard press: the card overlay covers the
-        button's center point, so a coordinate click would land on the overlay
-        instead of the button. Nothing is stored or assumed from a previous
-        layout.
+        button is resolved from the requested voice name on every call. The
+        card overlay covers varying parts of the button depending on
+        hover/focus state, so the click point is sampled inside the button
+        rect until it actually hits the button; a trusted keypress on the
+        focused button is the fallback. Nothing is stored or assumed from a
+        previous layout.
         """
         self._bring_to_front()
         target = self._json(f"""(() => {{
@@ -339,12 +340,22 @@ class ElevenLabsUI:
           hit.scrollIntoView({{block:'nearest',inline:'nearest'}});
           hit.focus({{preventScroll:true}});
           if(document.activeElement!==hit)return {{ok:false,reason:'confirmation button refused focus'}};
-          return {{ok:true,text:labelOf(hit)}};
+          const r=hit.getBoundingClientRect();
+          let point=null;
+          for(const fx of [0.1,0.25,0.5,0.75,0.9])for(const fy of [0.25,0.5,0.75]){{
+            const x=r.left+r.width*fx, y=r.top+r.height*fy;
+            const under=document.elementFromPoint(x,y);
+            if(under&&(under===hit||hit.contains(under))){{point={{x,y}};break;}}
+          }}
+          return {{ok:true,text:labelOf(hit),x:point?point.x:null,y:point?point.y:null}};
         }})()""")
         if not target.get("ok"):
             detail = target.get("reason") or f"available={target.get('available', [])}"
             raise RuntimeError(f"ElevenLabs voice '{requested}' has no activatable confirmation button: {detail}.")
-        self._trusted_key("Enter")
+        if target.get("x") is not None and target.get("y") is not None:
+            self._dispatch_mouse_click(self.tab, float(target["x"]), float(target["y"]))
+        else:
+            self._trusted_key("Enter")
         return target
 
     def _bring_to_front(self) -> None:
