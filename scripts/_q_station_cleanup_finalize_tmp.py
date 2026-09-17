@@ -55,11 +55,11 @@ def normalize_text(path: Path) -> None:
     for old, new in replacements:
         text = text.replace(old, new)
 
-    # Any remaining standalone references to the retired host name are compatibility prose
-    # or test variable names, not topical content in the audited retained runs.
-    text = re.sub(r"\bFARMER\b", "RED_HOST", text)
-    text = re.sub(r"\bFarmer\b", "Red Host", text)
-    text = re.sub(r"\bfarmer\b", "red_host", text)
+    # The retained run set was audited before cleanup and contains no topical use of this
+    # retired host noun, so remaining occurrences are compatibility prose/identifiers.
+    text = text.replace("FARMER", "RED_HOST")
+    text = text.replace("Farmer", "Red Host")
+    text = re.sub(r"farmer", "red_host", text, flags=re.IGNORECASE)
     text = re.sub(r"(?<![A-Za-z0-9_])QH(?![A-Za-z0-9_])", "QStation", text)
     text = re.sub(r"(?<![A-Za-z0-9_])qh(?![A-Za-z0-9_])", "qstation", text)
 
@@ -75,9 +75,7 @@ def verify_clean() -> None:
         "world" + "_behind_the_" + "question",
         "world" + " behind the " + "question",
         "world" + "-behind-the-" + "question",
-        "farmer" + "_host",
-        "farmer" + " host",
-        "farmer" + "-host",
+        "farmer",
     )
     problems: list[str] = []
     for path in ROOT.rglob("*"):
@@ -99,8 +97,6 @@ def verify_clean() -> None:
             continue
         if any(token in text for token in banned_fragments):
             problems.append(f"text:{rel}")
-        if re.search(r"\bfarmer\b", text):
-            problems.append(f"retired-host-word:{rel}")
         if re.search(r"(?<![a-z0-9_])qh(?![a-z0-9_])", text):
             problems.append(f"retired-runtime-abbrev:{rel}")
     if problems:
