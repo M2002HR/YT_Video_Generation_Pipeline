@@ -2977,7 +2977,21 @@ def stage_entry_identity(
     started = runner.stage_start(stage)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
     model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
-    result = runner.image(stage, prompt, [], model=model, destination=target)
+    # The web provider has no aspect control: the prompt text is the only
+    # portrait steering, so a same-prompt second sampling is the bounded
+    # correction for a wrong-shape download. Any other failure still fails
+    # closed immediately, and the prompt stays identical across attempts so
+    # the canonical fingerprint/receipt reuse contract is preserved.
+    result = None
+    for identity_attempt in range(2):
+        try:
+            result = runner.image(stage, prompt, [], model=model, destination=target)
+            break
+        except StageFailure as exc:
+            if "(aspect_mismatch)" not in str(exc.message) or identity_attempt:
+                raise
+            print(f"    ↻ {stage} rejected: wrong frame shape; regenerating the same approved prompt once.", flush=True)
+    assert result is not None
     check = (result.generation_receipt or {}).get("quality_check")
     if not isinstance(check, dict) or check.get("passed") is not True:
         raise StageFailure(stage, "FAILED_VALIDATION", "Generated entry identity has no successful content review.")
