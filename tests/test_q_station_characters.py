@@ -15,6 +15,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import run_question_harvest_pipeline as qh
+from character_assets import operator_reference_error
 from character_runtime import (
     CharacterRegistryError,
     CharacterSelectionError,
@@ -23,6 +24,18 @@ from character_runtime import (
 )
 from content_projects import list_content_projects, load_content_project, resolve_project_id
 from video_control_panel import Handler, character_catalog_entries, pipeline_command
+
+
+def expected_available_ids() -> tuple[str, ...]:
+    """Keep this suite usable on both clean CI and an operator-provisioned server.
+
+    Dedicated operator tests exercise both states in isolated temporary directories;
+    these endpoint assertions must also honor an actual installed sheet without
+    deleting, generating or replacing that operator-owned artwork.
+    """
+    bundled = ("farmer_host", "red_horned_everyman", "moss_cloaked_crone")
+    sheet = ROOT / "projects/q_station/characters/sea_captain/refs/character_sheet.png"
+    return bundled + (("sea_captain",) if operator_reference_error(sheet) is None else ())
 
 
 @pytest.fixture
@@ -40,7 +53,7 @@ def copied_registry(tmp_path: Path) -> Path:
 
 
 def test_registry_loads_all_enabled_character_packs(registry) -> None:
-    assert registry.enabled_ids() == ("farmer_host", "red_horned_everyman", "moss_cloaked_crone")
+    assert registry.enabled_ids() == expected_available_ids()
     assert registry.get("farmer_host").sheet_path.parent.name == "refs"
     assert registry.get("red_horned_everyman").reference_mode == "IDENTITY_ONLY"
 
@@ -222,7 +235,7 @@ def test_project_alias_is_canonical_and_not_listed_twice() -> None:
 
 def test_character_catalog_is_server_driven_and_safe() -> None:
     entries = character_catalog_entries("question_harvest")
-    assert {item["id"] for item in entries} == {"farmer_host", "red_horned_everyman", "moss_cloaked_crone"}
+    assert {item["id"] for item in entries} == set(expected_available_ids())
     assert all("path" not in item and "sheet" not in item for item in entries)
 
 
@@ -234,9 +247,7 @@ def test_character_catalog_endpoint_resolves_alias() -> None:
     handler.do_GET()
     assert captured["status"] == 200
     assert captured["payload"]["content_project"] == "q_station"
-    assert {item["id"] for item in captured["payload"]["characters"]} == {
-        "farmer_host", "red_horned_everyman", "moss_cloaked_crone",
-    }
+    assert {item["id"] for item in captured["payload"]["characters"]} == set(expected_available_ids())
 
 
 def test_q_station_and_alias_use_bookworld_wrapper() -> None:
