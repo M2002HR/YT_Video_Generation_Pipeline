@@ -1661,10 +1661,14 @@ def reconcile_stuck_jobs_once() -> None:
                 continue
             log = jobs_dir / f"{job.get('job_id')}.log"
             text = log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
+            # The log accumulates the launch plus every resume, so only the latest
+            # run's section decides: a stale FLOW_CLIPS_PENDING (or PASS) from an
+            # old park must not override the current outcome.
+            current_text = text.rsplit("=== resume requested at", 1)[-1]
             # A Flow outage is Google's, not this episode's. The run parks with everything
             # else finished, so it becomes WAITING_FOR_FLOW and a watcher job is started to
             # continue it when Flow answers again — not FAILED.
-            if job.get("exit_code") == 4 or "FLOW_CLIPS_PENDING" in text:
+            if job.get("exit_code") == 4 or "FLOW_CLIPS_PENDING" in current_text:
                 job["status"] = "WAITING_FOR_FLOW"
                 job["completed_at"] = utcnow()
                 write_json(path, job)
@@ -1677,7 +1681,7 @@ def reconcile_stuck_jobs_once() -> None:
             if job.get("exit_code") not in (None, 0):
                 job["status"] = "FAILED"
             # consider success only if pipeline explicitly reported PASS
-            elif "FULL VIDEO PIPELINE: PASS" in text or "QStation CORE STAGES DONE" in text or "FULL QStation PIPELINE: PASS" in text or "COMPLETION PIPELINE: PASS" in text or "QStation PIPELINE BODY IMAGES" in text:
+            elif "FULL VIDEO PIPELINE: PASS" in current_text or "QStation CORE STAGES DONE" in current_text or "FULL QStation PIPELINE: PASS" in current_text or "COMPLETION PIPELINE: PASS" in current_text or "QStation PIPELINE BODY IMAGES" in current_text:
                 # body images done but wrapper may have failed later — still mark DONE only if final reports exist
                 # check for final.mp4 QC pass
                 try:
@@ -1693,7 +1697,7 @@ def reconcile_stuck_jobs_once() -> None:
                         and (proj / "render/QC_REPORT_polished.json").is_file()
                     )
                     legacy_ready = (proj / "assets/renders/final.mp4").is_file() and (proj / "render/QC_REPORT.json").is_file()
-                    if final_ready or ("FULL VIDEO PIPELINE: PASS" in text and legacy_ready):
+                    if final_ready or ("FULL VIDEO PIPELINE: PASS" in current_text and legacy_ready):
                         job["status"] = "DONE"
                     else:
                         job["status"] = "FAILED"

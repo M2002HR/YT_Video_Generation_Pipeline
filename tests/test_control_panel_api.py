@@ -998,3 +998,58 @@ def test_declarative_form_defaults_are_accepted_by_the_launch_endpoint(tmp_path:
     assert record['music_providers'] == ['freesound', 'mixkit', 'pixabay']
     assert record['motion']['enabled'] is True
     assert record['qstation']['reserve_subtitle_space'] is True
+
+
+def _stuck_job_fixture(tmp_path: Path, log_text: str, exit_code: int | None) -> dict:
+    jobs = tmp_path / "control_panel/jobs"
+    jobs.mkdir(parents=True)
+    record = {
+        "job_id": "22222222-3333-4444-5555-666666666666", "video_id": "902",
+        "project": "videos/902_probe", "status": "RUNNING", "pid": 999999999,
+        "exit_code": exit_code,
+    }
+    (jobs / f"{record['job_id']}.json").write_text(json.dumps(record))
+    (jobs / f"{record['job_id']}.log").write_text(log_text)
+    return record
+
+
+def _finalized_project_fixture(tmp_path: Path) -> None:
+    proj = tmp_path / "videos/902_probe"
+    (proj / "pipeline").mkdir(parents=True)
+    (proj / "pipeline/FINALIZATION_RUNTIME_STATE.json").write_text(json.dumps({"status": "DONE"}))
+    (proj / "assets/renders").mkdir(parents=True)
+    (proj / "assets/renders/polished.mp4").write_bytes(b"fake-video-bytes")
+    (proj / "render").mkdir(parents=True)
+    (proj / "render/QC_REPORT_polished.json").write_text(json.dumps({"passed": True}))
+
+
+def test_reconcile_ignores_stale_flow_park_after_later_pass(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """A later PASS must win over an old FLOW_CLIPS_PENDING in the same cumulative log."""
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    monkeypatch.setattr(panel, "ensure_flow_watcher", lambda *a, **k: pytest.fail("no watcher for a passed run"))
+    record = _stuck_job_fixture(
+        tmp_path,
+        "$ pipeline\nQStation PIPELINE PARKED: waiting for Flow clips\nFLOW_CLIPS_PENDING\n"
+        "=== resume requested at 2026-09-18T13:04:41 ===\n"
+        "narration reuse\nFULL QStation PIPELINE: PASS\n",
+        exit_code=0,
+    )
+    _finalized_project_fixture(tmp_path)
+    panel.reconcile_stuck_jobs_once()
+    saved = json.loads((tmp_path / "control_panel/jobs" / f"{record['job_id']}.json").read_text())
+    assert saved["status"] == "DONE"
+
+
+def test_reconcile_parks_current_run_flow_wait(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(panel, "ROOT", tmp_path)
+    monkeypatch.setattr(panel, "ensure_flow_watcher", lambda *a, **k: None)
+    record = _stuck_job_fixture(
+        tmp_path,
+        "$ pipeline\nFULL QStation PIPELINE: PASS\n"
+        "=== resume requested at 2026-09-18T13:04:41 ===\n"
+        "QStation PIPELINE PARKED: waiting for Flow clips\nFLOW_CLIPS_PENDING\n",
+        exit_code=4,
+    )
+    panel.reconcile_stuck_jobs_once()
+    saved = json.loads((tmp_path / "control_panel/jobs" / f"{record['job_id']}.json").read_text())
+    assert saved["status"] == "WAITING_FOR_FLOW"
