@@ -400,6 +400,41 @@ def test_structured_json_does_not_accept_unrelated_malformed_json():
         qstation.parse_structured_json('{"passed": false "violations": []}')
 
 
+def _attempt_runner(tmp_path, output_images):
+    source = picture(tmp_path / 'source.png')
+    runner = object.__new__(qstation.Runner)
+    runner._run = lambda *a, **k: SimpleNamespace(
+        job_id='t', status='completed', answer=None, output_images=list(output_images),
+        generation_receipt={'notes': ['artifact_source=download']}, elapsed_seconds=1.0)
+    seen = []
+
+    def fake_download(src, dst):
+        seen.append(src)
+        dst.write_bytes(source.read_bytes())
+
+    runner.jobs = SimpleNamespace(download=fake_download)
+    runner.image_qc_disabled_for = lambda stage: True
+    return runner, seen
+
+
+def test_multi_image_turn_keeps_first_instead_of_failing(tmp_path):
+    runner, seen = _attempt_runner(tmp_path, ['a.png', 'b.png', 'c.png'])
+    target = tmp_path / 'out.png'
+    result = runner._image_attempt('book_cover', 'scene', [], model='nano_banana_2',
+                                   destination=target, provider='chatgpt')
+    assert seen == ['a.png']
+    assert target.is_file()
+    assert result.output_images == ['a.png']
+
+
+def test_empty_image_turn_still_fails_closed(tmp_path):
+    runner, seen = _attempt_runner(tmp_path, [])
+    with pytest.raises(qstation.StageFailure, match='returned no images'):
+        runner._image_attempt('book_cover', 'scene', [], model='nano_banana_2',
+                              destination=tmp_path / 'out.png', provider='chatgpt')
+    assert seen == []
+
+
 def test_structured_json_strips_prose_wrapped_around_object():
     raw = 'Here is my review:\n{"passed":true,"description":"scene","violations":[]}\nLet me know if you need more.'
     parsed, repaired = qstation.parse_structured_json(raw)

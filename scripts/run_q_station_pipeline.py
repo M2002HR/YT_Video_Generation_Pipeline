@@ -1151,8 +1151,18 @@ class Runner:
             )
             pending.unlink(missing_ok=True)
             metadata.unlink(missing_ok=True)
-        if len(result.output_images) != 1:
-            raise StageFailure(stage, "FAILED_DOWNLOAD", f"{stage}: Expected exactly one image, got {len(result.output_images)}.")
+        if not result.output_images:
+            raise StageFailure(stage, "FAILED_DOWNLOAD", f"{stage}: {provider} returned no images.")
+        if len(result.output_images) > 1:
+            # A correction turn can yield several same-turn images (ChatGPT commonly
+            # renders variants). Keep the first and let content QC stay the gate:
+            # a bad pick still fails closed instead of killing the run outright.
+            print(
+                f"    [{stage}] {provider} returned {len(result.output_images)} images in one turn; "
+                "keeping the first and continuing.",
+                flush=True,
+            )
+            result.output_images = result.output_images[:1]
         receipt_notes = list((result.generation_receipt or {}).get("notes") or [])
         if "artifact_source=download" not in receipt_notes:
             raise StageFailure(
