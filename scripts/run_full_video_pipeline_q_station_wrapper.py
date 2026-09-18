@@ -262,6 +262,124 @@ def clear_opening_trim_outputs(project: Path) -> None:
             pass
 
 
+def _ffprobe_seconds(path: Path) -> float | None:
+    """Measured source duration, or None when the file is not a real video."""
+    try:
+        output = subprocess.check_output(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=nw=1:nk=1", str(path)],
+            text=True,
+            timeout=30,
+        )
+        value = float(output.strip())
+    except (subprocess.SubprocessError, ValueError, OSError):
+        return None
+    return value if value > 0.2 else None
+
+
+def _opening_targets(project: Path) -> tuple[float | None, float | None]:
+    """Measured (clip_a_target, clip_b_target) from OPENING_TIMING.json."""
+    try:
+        timing = json.loads((project / "timing" / "OPENING_TIMING.json").read_text(encoding="utf-8"))
+        spark_end = float(timing["spark_end"])
+        transition_end = float(timing["transition_end"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return None, None
+    if not transition_end > spark_end:
+        return None, None
+    return spark_end, transition_end - spark_end
+
+
+def _flow_source_satisfies(source: Path, target: float, tolerance: float) -> bool:
+    """Whether an existing silent source can still be trimmed to a new target.
+
+    Mirrors plan_opening_sources.choose_source_seconds (capability) and
+    trim_opening_clips.trim (rate adjust): a longer source is harmless, and a
+    slightly shorter one is allowed only within the configured slow-down.
+    """
+    duration = _ffprobe_seconds(source)
+    if duration is None:
+        return False
+    return target <= duration + 0.05 or target <= duration * (1 + tolerance) + 1e-9
+
+
+def restore_reusable_flow_sources(project: Path, tolerance: float) -> list[str]:
+    """Restore archived Flow sources that still satisfy the new narration timing.
+
+    A narration/voice revision archives the opening clips via the DAG cascade,
+    but the silent sources do not depend on voice words — only on whether their
+    measured duration still reaches the new trim boundary. Each clip is judged
+    independently: a sufficient archived source is copied back with its receipt
+    and prompt audit files so the normal reuse path accepts it; an insufficient
+    one is left absent so only that clip is regenerated via Flow.
+    """
+    from presentation_runtime import presentation_for_project
+
+    try:
+        presentation = presentation_for_project(project)
+    except Exception as exc:
+        print(f"warn: cannot resolve presentation for Flow reuse check: {exc}", flush=True)
+        return []
+    target_a, target_b = _opening_targets(project)
+    if target_a is None or target_b is None:
+        return []
+    restored: list[str] = []
+    for clip, field, target in (("A", "question_source", target_a), ("B", "entry_source", target_b)):
+        current = presentation.artifacts.path(project, field)
+        if current.is_file() and _flow_source_satisfies(current, target, tolerance):
+            continue
+        # Most recent archived source first; an older contract is still fine when
+        # its duration reaches the new target within tolerance.
+        candidates = sorted(
+            (project / "pipeline" / "revisions").glob("*/previous"),
+            key=lambda path: path.stat().st_mtime_ns if path.exists() else 0,
+            reverse=True,
+        )
+        for previous in candidates:
+            try:
+                relative = current.relative_to(project)
+            except ValueError:
+                break
+            archived = previous / relative
+            if not archived.is_file() or not _flow_source_satisfies(archived, target, tolerance):
+                continue
+            try:
+                import shutil
+
+                current.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(archived, current)
+                # Keep the audit trail consistent so stage_flow_clip reuse accepts
+                # the restored source instead of treating it as unverified.
+                receipt_name = "flow_opening_a" if clip == "A" else "flow_opening_b"
+                for extra in (
+                    Path("pipeline") / "provider_receipts" / f"{receipt_name}.json",
+                    Path(presentation.artifacts.question_prompt if clip == "A" else presentation.artifacts.entry_prompt),
+                    Path(f"{presentation.artifacts.question_prompt if clip == 'A' else presentation.artifacts.entry_prompt}.inputs.json"),
+                ):
+                    src, dst = previous / extra, project / extra
+                    if src.is_file():
+                        dst.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(src, dst)
+            except OSError as exc:
+                print(f"warn: could not restore archived Flow clip {clip}: {exc}", flush=True)
+                continue
+            duration = _ffprobe_seconds(current)
+            print(
+                f"↻ Flow clip {clip} restored for new target {target:.3f}s "
+                f"(archived source {duration:.2f}s).",
+                flush=True,
+            )
+            restored.append(clip)
+            break
+        else:
+            print(
+                f"Flow clip {clip} needs regeneration: no current or archived source "
+                f"reaches new target {target:.3f}s within {tolerance * 100:.1f}% tolerance.",
+                flush=True,
+            )
+    return restored
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Q Station end-to-end pipeline")
     parser.add_argument("--topic", required=True)
@@ -467,34 +585,85 @@ def main() -> int:
     # 5. Convert the measured opening boundaries into supported Flow durations, then create
     #    both clips under that durable contract.  The preferred launch durations remain a
     #    tie-breaker in the planner; they never override an incapable source length.
-    if not args.skip_visual_stages:
-        plan_path = project / "timing" / "OPENING_SOURCE_PLAN.json"
-        mark_wrapper_stage(project, "opening_source_plan", "RUNNING")
+    #
+    #    Planning is local (no provider cost) so it always runs — even for a
+    #    render-only revision where a new narration changed the measured boundaries.
+    #    Image generation stays locked under --skip-visual-stages; only the Flow
+    #    opening clips may be (re)built below, and the QStation runner itself reuses
+    #    every sufficient source (receipt duration + prompt + references) so only the
+    #    clips that truly need it spend Flow credits.
+    plan_path = project / "timing" / "OPENING_SOURCE_PLAN.json"
+    mark_wrapper_stage(project, "opening_source_plan", "RUNNING")
+    try:
+        run_owned_stage(
+            [python, "scripts/plan_opening_sources.py", str(project)],
+            notifier,
+            "opening_source_plan",
+            plan_path,
+            project,
+        )
+    except subprocess.CalledProcessError as exc:
+        mark_wrapper_stage(project, "opening_source_plan", "FAILED", returncode=exc.returncode)
+        raise
+    try:
+        source_plan = json.loads(plan_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        mark_wrapper_stage(project, "opening_source_plan", "FAILED_VALIDATION", message=str(exc))
+        raise RuntimeError("Opening-source planner returned without a usable plan.") from exc
+    plan_status = str(source_plan.get("status") or "")
+    if plan_status == "REUSED":
+        mark_wrapper_stage(project, "opening_source_plan", "REUSED", artifact="timing/OPENING_SOURCE_PLAN.json")
+    else:
+        # A new timing fingerprint or selected source length invalidates only rendered
+        # opening derivatives. Source clips are independently checked against their
+        # requested-length receipts by the QStation runner below.
+        clear_opening_trim_outputs(project)
+        mark_wrapper_stage(project, "opening_source_plan", "DONE", artifact="timing/OPENING_SOURCE_PLAN.json")
+    if args.skip_visual_stages:
+        # A narration/voice revision archives the opening clips via the DAG cascade,
+        # but the silent sources only care about duration. Restore per-clip archived
+        # sources that still reach the new trim boundary so they are reused instead
+        # of being rebuilt; clips that cannot reach it stay absent for regeneration.
+        print("↻ visual stages locked — checking archived Flow sources against new narration timing; no image provider calls", flush=True)
         try:
-            run_owned_stage(
-                [python, "scripts/plan_opening_sources.py", str(project)],
-                notifier,
-                "opening_source_plan",
-                plan_path,
-                project,
-            )
-        except subprocess.CalledProcessError as exc:
-            mark_wrapper_stage(project, "opening_source_plan", "FAILED", returncode=exc.returncode)
-            raise
+            tolerance = opening_speed_tolerance(project, args.creative_brief)
+        except Exception:
+            tolerance = 0.1
         try:
-            source_plan = json.loads(plan_path.read_text(encoding="utf-8"))
-        except (OSError, ValueError) as exc:
-            mark_wrapper_stage(project, "opening_source_plan", "FAILED_VALIDATION", message=str(exc))
-            raise RuntimeError("Opening-source planner returned without a usable plan.") from exc
-        plan_status = str(source_plan.get("status") or "")
-        if plan_status == "REUSED":
-            mark_wrapper_stage(project, "opening_source_plan", "REUSED", artifact="timing/OPENING_SOURCE_PLAN.json")
+            restore_reusable_flow_sources(project, tolerance)
+        except Exception as exc:
+            print(f"warn: Flow source reuse check failed ({type(exc).__name__}: {exc}); continuing to regeneration check.", flush=True)
+        if clips_ready(project):
+            print("↻ existing Flow sources satisfy the new timing; skipping Flow regeneration", flush=True)
         else:
-            # A new timing fingerprint or selected source length invalidates only rendered
-            # opening derivatives. Source clips are independently checked against their
-            # requested-length receipts by the QStation runner below.
-            clear_opening_trim_outputs(project)
-            mark_wrapper_stage(project, "opening_source_plan", "DONE", artifact="timing/OPENING_SOURCE_PLAN.json")
+            # Only the insufficient clips need Flow. Body images were not invalidated
+            # by an audio-only revision, so this reuses them and spends Flow credits
+            # solely on the missing/insufficient opening sources.
+            print("↻ some Flow sources cannot reach the new timing; regenerating only those via Flow (images reused)", flush=True)
+            try:
+                run(
+                    [
+                        python, "-u", "scripts/run_q_station_pipeline.py",
+                        "--topic", args.topic,
+                        "--video-id", args.video_id,
+                        "--content-project", args.content_project,
+                        "--creative-brief", str(args.creative_brief),
+                        "--voice-profile", str(args.voice_profile),
+                        "--aspect-ratio", args.aspect_ratio,
+                        "--use-opening-source-plan",
+                    ]
+                    + q_station_overrides(args.creative_brief)
+                    + (["--regenerate-beats", args.regenerate_beats] if args.regenerate_beats else [])
+                    + (["--preserve-downstream-beats"] if args.preserve_downstream_beats else [])
+                    + (["--beat-feedback-json", str(args.beat_feedback_json)] if args.beat_feedback_json else [])
+                    + (["--chatgpt-revision-feedback-json", str(args.chatgpt_revision_feedback_json)] if args.chatgpt_revision_feedback_json else [])
+                )
+            except subprocess.CalledProcessError:
+                only_flow, reason = blocked_only_on_flow(project)
+                if not only_flow:
+                    raise
+                flow_pending_reason = reason
+    else:
         try:
             run(
                 [
