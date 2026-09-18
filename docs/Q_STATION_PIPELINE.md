@@ -105,9 +105,10 @@ provider operations can spend credits; opening a preview or running preflight ca
 
 ## Installation and validation
 
-Newton's full turnaround is operator-installed as a real single-frame PNG at
-`projects/q_station/characters/newton_scholar/refs/character_sheet.png`. Missing/invalid operator
-artwork excludes only that pack from selection; explicit requests report the reason. Red-door and
+Newton's full turnaround is tracked in git as a real single-frame PNG at
+`projects/q_station/characters/newton_scholar/refs/character_sheet.png`, like the other
+characters. Missing/invalid artwork excludes only that pack from selection; explicit requests
+report the reason. Red-door and
 corrected spyglass object sheets are generated lazily with verified receipts, not manually installed.
 
 ```bash

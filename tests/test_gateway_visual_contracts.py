@@ -117,7 +117,14 @@ def test_four_mappings_and_operator_installation(environment):
     assert registry.get("newton_scholar").sheet_path.name == "character_sheet.png"
     assert registry.get("sea_captain").presentation.identity_sheet_path.name == "spyglass_design_sheet_v2.png"
     assert registry.get("red_horned_everyman").presentation.entry_frame_character_presence == "acting_host"
-    assert not (ROOT / "projects/q_station/characters/newton_scholar/refs/character_sheet.png").exists()
+    # Newton sheet is shipped in git like the other characters (see sea_captain precedent).
+    import subprocess
+    from character_assets import operator_reference_error
+    newton_sheet = ROOT / "projects/q_station/characters/newton_scholar/refs/character_sheet.png"
+    assert newton_sheet.is_file()
+    assert operator_reference_error(newton_sheet) is None
+    tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split(chr(0))
+    assert "projects/q_station/characters/newton_scholar/refs/character_sheet.png" in tracked
 
 
 def test_newton_unavailable_is_isolated_and_hot_reloadable(environment):

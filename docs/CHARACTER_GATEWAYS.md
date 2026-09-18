@@ -1,17 +1,16 @@
 # Q Station: four character gateways and full-bleed topic worlds
 
-## Operator installation
+## Character reference
 
-Only the new Newton-inspired character sheet needs manual installation. Export the complete
-approved turnaround as a real single-frame PNG, keeping original proportions and resolution:
+The Newton-inspired character sheet is shipped in git, like the other characters, at:
 
 ```text
 projects/q_station/characters/newton_scholar/refs/character_sheet.png
 ```
 
-Both edges must be at least 256 pixels and the file at least 10,000 bytes. Renaming a JPEG is
-not conversion. No image or placeholder is committed. The locally ignored PNG cannot be
-replaced by a normal pull. Upload to `character_sheet.upload.png`, then rename atomically.
+It is a real single-frame PNG at original proportions and resolution. Both edges must be
+at least 256 pixels and the file at least 10,000 bytes. Renaming a JPEG is not
+conversion. To replace artwork, upload to `character_sheet.upload.png`, then rename atomically.
 Do not replace artwork while a generation job is active.
 
 Deploy in an idle production checkout, preserving local edits, `.env`, sessions and media:
@@ -21,7 +20,7 @@ git status --short
 git fetch origin --prune
 git switch dev
 git pull --ff-only origin dev
-# Install the operator PNG at the path above before the selected-character check.
+# The Newton sheet arrives via git like the other characters; verify before restart.
 .venv/bin/python scripts/check_character_setup.py --character newton_scholar
 .venv/bin/python scripts/check_opening_setup.py
 sudo systemctl restart video-control-panel.service video-control-panel-websocket.service
