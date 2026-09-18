@@ -710,9 +710,12 @@ def generate_thumbnail_batch(
                     prompt, provider="chatgpt", mode="image_generate",
                     generation=Generation(quality="best", aspect_ratio=thumbnail_settings["aspect_ratio"]),
                     references=visual_references, start_new_chat=True, attempts=1,
+                    chatgpt_chat="temporary",
                 )
-                if len(result.output_images) != 1:
-                    raise RuntimeError(f"ChatGPT fallback returned {len(result.output_images)} images, expected exactly one.")
+                if not result.output_images:
+                    raise RuntimeError("ChatGPT fallback returned no images.")
+                if len(result.output_images) > 1:
+                    print(f"Thumbnail fallback: ChatGPT returned {len(result.output_images)} images; keeping the first.", flush=True)
                 jobs.download(result.output_images[0], artwork)
                 generated_provider = "chatgpt"
             except Exception as fallback_error:
@@ -848,7 +851,13 @@ async def deliver_bundle(
     settings: NotifierSettings, master: Path, thumbnail: Path | None, upload: Path | None, metadata: Path,
     caption: str, title: str, *, candidates: list[dict[str, Any]] | None = None,
     comparison: Path | None = None, report: Path | None = None,
+    send_master: bool = True,
 ) -> dict[str, Any]:
+    """Deliver the release bundle over Telegram.
+
+    When only thumbnails are needed (thumbnail-only release), ``send_master``
+    skips re-sending the whole video and delivers just the thumbnail package.
+    """
     from telethon import TelegramClient
     from telethon.sessions import StringSession
 
@@ -861,11 +870,16 @@ async def deliver_bundle(
     try:
         if not await client.is_user_authorized():
             raise RuntimeError("Configured Telegram user session is not authorized.")
-        video_message = await client.send_file(
-            settings.recipient, str(master), caption=caption, force_document=True,
-            supports_streaming=False,
-        )
-        messages: dict[str, Any] = {"master": int(video_message.id), "candidates": {}}
+        video_message = None
+        messages: dict[str, Any] = {"candidates": {}}
+        reply_to: int | None = None
+        if send_master:
+            video_message = await client.send_file(
+                settings.recipient, str(master), caption=caption, force_document=True,
+                supports_streaming=False,
+            )
+            messages["master"] = int(video_message.id)
+            reply_to = int(video_message.id)
         deliverables = candidates or ([] if thumbnail is None else [{"candidate_id": "thumbnail", "final_path": str(thumbnail), "headline": "", "review": {"eligible": True, "score": 0}, "final": {}}])
         selected_id = next((item.get("candidate_id") for item in deliverables if item.get("selected")), None)
         for item in deliverables:
@@ -881,30 +895,31 @@ async def deliver_bundle(
             message = await client.send_file(
                 settings.recipient, str(final),
                 caption=(f"Thumbnail {item.get('candidate_id')} · {status}\nText: {item.get('headline') or 'none'}\nEditorial score: {review.get('score', 'n/a')}")[:1024],
-                force_document=True, reply_to=video_message.id,
+                force_document=True, reply_to=reply_to,
             )
             messages["candidates"][str(item.get("candidate_id"))] = {"message_id": int(message.id), "sha256": (item.get("final") or {}).get("sha256")}
+        attached = "original master MP4, " if send_master else ""
         text = (
             f"YouTube release ready: {title}\n"
-            "Attached files: original master MP4, original thumbnail PNG, copy-ready Markdown, and JSON metadata.\n"
+            f"Attached files: {attached}original thumbnail PNG, copy-ready Markdown, and JSON metadata.\n"
             "Upload the MP4, paste the Markdown fields, then confirm every Manual review item in YouTube Studio."
         )
-        text_message = await client.send_message(settings.recipient, text, reply_to=video_message.id)
+        text_message = await client.send_message(settings.recipient, text, reply_to=reply_to)
         if upload and upload.is_file():
             upload_message = await client.send_file(
                 settings.recipient, str(upload), caption="Copy-ready YouTube upload instructions (.md)",
-                force_document=True, reply_to=video_message.id,
+                force_document=True, reply_to=reply_to,
             )
             messages["upload_markdown"] = int(upload_message.id)
         metadata_message = await client.send_file(
             settings.recipient, str(metadata), caption="Machine-readable YouTube metadata (.json)",
-            force_document=True, reply_to=video_message.id,
+            force_document=True, reply_to=reply_to,
         )
         if comparison and comparison.is_file():
-            comparison_message = await client.send_file(settings.recipient, str(comparison), caption="Thumbnail comparison sheet — preview only", force_document=True, reply_to=video_message.id)
+            comparison_message = await client.send_file(settings.recipient, str(comparison), caption="Thumbnail comparison sheet — preview only", force_document=True, reply_to=reply_to)
             messages["comparison"] = int(comparison_message.id)
         if report and report.is_file():
-            report_message = await client.send_file(settings.recipient, str(report), caption="Thumbnail selection report (.json)", force_document=True, reply_to=video_message.id)
+            report_message = await client.send_file(settings.recipient, str(report), caption="Thumbnail selection report (.json)", force_document=True, reply_to=reply_to)
             messages["thumbnail_report"] = int(report_message.id)
         return {**messages, "summary": int(text_message.id), "metadata_json": int(metadata_message.id)}
     finally:
@@ -1045,6 +1060,7 @@ def main() -> None:
                 video_caption(metadata, thumbnail), metadata["title"], candidates=candidate_items,
                 comparison=(paths["root"] / "comparison.jpg") if request["thumbnail"]["send_comparison_sheet"] else None,
                 report=paths["selection"] if request["thumbnail"]["send_report_json"] else None,
+                send_master=bool(request["thumbnail"].get("send_master_video", True)),
             ))
             write_json(paths["delivery"], {"status": "DONE", "messages": messages, "delivered_count": len((messages.get("candidates") or {}))})
             event(state, "telegram_delivery", "DONE", messages=messages)

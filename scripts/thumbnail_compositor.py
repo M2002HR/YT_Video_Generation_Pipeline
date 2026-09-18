@@ -47,6 +47,34 @@ def _wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, wi
         raise ValueError("Thumbnail text does not fit the selected line limit; revise it explicitly.")
     return lines
 
+def text_box_geometry(settings: dict[str, Any], layout_id: str) -> dict[str, float]:
+    """Reserved headline rectangle as frame fractions (single source of truth).
+
+    The artwork prompt and this compositor share this exact geometry, so the
+    clean band the model leaves in the artwork is precisely where the final
+    headline lands. Coordinates are fractions of width/height.
+    """
+    coords = settings.get("coordinates")
+    if coords:
+        return {"x": float(coords["x"]), "y": float(coords["y"]),
+                "width": float(coords["width"]), "height": float(coords["height"])}
+    margin = float(settings["safe_margin"])
+    box_w = float(settings["text_box_width"])
+    box_h = 0.32
+    x = margin if layout_id in {"character_right", "discovery_focus"} else 1.0 - margin - box_w
+    if settings["text_position"] == "top":
+        y = margin
+    elif settings["text_position"] == "bottom":
+        y = 1.0 - margin - box_h
+    else:
+        y = 0.07 if layout_id in {"character_left", "character_right"} else 0.60
+    if settings["text_position"] == "left":
+        x = margin
+    if settings["text_position"] == "right":
+        x = 1.0 - margin - box_w
+    return {"x": x, "y": y, "width": box_w, "height": box_h}
+
+
 def compose(artwork: Path, output: Path, text: str, settings: dict[str, Any], layout_id: str) -> dict[str, Any]:
     """Render text and a small channel mark. Returns exact bounds used for QC."""
     font_path, font_hash = resolve_font(settings["font_id"])
@@ -59,17 +87,9 @@ def compose(artwork: Path, output: Path, text: str, settings: dict[str, Any], la
     if settings["case_mode"] == "uppercase": text = text.upper()
     elif settings["case_mode"] == "sentence_case": text = text[:1].upper() + text[1:]
     margin = int(width * settings["safe_margin"])
-    coords = settings.get("coordinates")
-    if coords:
-        x, y, box_w, box_h = (int(coords["x"] * width), int(coords["y"] * height), int(coords["width"] * width), int(coords["height"] * height))
-    else:
-        box_w = int(width * settings["text_box_width"]); box_h = int(height * .32)
-        x = margin if layout_id in {"character_right", "discovery_focus"} else width - margin - box_w
-        if settings["text_position"] == "top": y = margin
-        elif settings["text_position"] == "bottom": y = height - margin - box_h
-        else: y = int(height * .07) if layout_id in {"character_left", "character_right"} else int(height * .60)
-        if settings["text_position"] == "left": x = margin
-        if settings["text_position"] == "right": x = width - margin - box_w
+    geometry = text_box_geometry(settings, layout_id)
+    x, y, box_w, box_h = (int(geometry["x"] * width), int(geometry["y"] * height),
+                          int(geometry["width"] * width), int(geometry["height"] * height))
     if min(x, y, box_w, box_h) < 0 or x + box_w > width or y + box_h > height:
         raise ValueError("Thumbnail text coordinates leave the image bounds.")
     stroke = max(1, int(width * settings["outline_width"]))
