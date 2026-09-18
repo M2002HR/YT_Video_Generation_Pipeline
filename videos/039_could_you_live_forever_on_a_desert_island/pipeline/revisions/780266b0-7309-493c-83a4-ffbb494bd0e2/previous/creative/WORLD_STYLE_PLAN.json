@@ -1,0 +1,33 @@
+{
+  "style_id": "saltcut_tropical_survival_linocut_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "linocut relief print",
+  "secondary_treatment": "restrained translucent mineral wash for water and physiological flow",
+  "texture_family": "matte carved-print ink with salt-bloom speckling, fibrous grain, dry roller breakup and subtle edge chatter",
+  "palette_summary": "deep marine indigo, weathered turquoise, sun-bleached sand and bone white, dry palm brown, storm gray, with sparse rust-orange accents reserved for salt stress, injury and survival hazards",
+  "line_treatment": "bold carved contours with controlled crosshatching, simplified anatomical cutaways and clear directional flow marks; organic irregularity without embedded labels or lettering",
+  "lighting": "hard tropical daylight with crisp directional shadows, softened only during rain or storm beats while preserving the same high-contrast print logic",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Desert-island shorelines, seawater, drinking vessels, human hydration anatomy, kidneys, rain catchment, springs, groundwater, improvised shelter, desalination equipment, food scarcity, injury, disease and aging cues shown through plausible survival situations and mechanisms",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reason": "The operator explicitly requires a new style. A carved tropical linocut gives seawater, salt stress, rain collection, anatomy and desalination a single coherent explanatory language while retaining enough graphic clarity for rapid educational beats. Its indigo-and-sand world is topic-specific without defaulting to the recently repeated retro field-guide treatment, and the relief-print texture also avoids the recently used fresco family.",
+  "subject_affinities": [
+    "desert-island survival",
+    "hydration and dehydration",
+    "salt balance and kidney function",
+    "rainwater collection",
+    "freshwater springs and groundwater",
+    "desalination mechanisms",
+    "survival hazards",
+    "food scarcity",
+    "injury and disease",
+    "human aging and physical limits"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

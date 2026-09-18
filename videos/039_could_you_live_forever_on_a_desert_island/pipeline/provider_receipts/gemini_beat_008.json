@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "7d8e203ce4eb8d4ab6222863d3fa80e8b48888d46114e4502735f0a0aeb456d6",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "4feb4bf3-ea50-4938-8b71-4ca97c77bcab",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/f0b198d9bfb34c7c",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=4feb4bf3-ea50-4938-8b71-4ca97c77bcab_output_1.png 1536x2752 sha256=39dc4dfe70524de7f90b32e64208b82743f7cf948ecfd8b7685af96a8c563812"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "7d8e203ce4eb8d4ab6222863d3fa80e8b48888d46114e4502735f0a0aeb456d6",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "4feb4bf3-ea50-4938-8b71-4ca97c77bcab",
+        "prompt_sha256": "9c4a3679693040e87161ee9a3f91ea04ddc6f4d1aeeb184a611d8e74c0ba8434",
+        "output_sha256": "39dc4dfe70524de7f90b32e64208b82743f7cf948ecfd8b7685af96a8c563812",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/039_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/039_could_you_live_forever_on_a_desert_island/references/world_keyframe.png",
+      "sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/039_could_you_live_forever_on_a_desert_island/assets/raw_beats/beat_007.png",
+      "sha256": "c7ac5368fdc2d930a015c52351c8196c3d7034730d867ed79a8e0644a8f94d38"
+    }
+  ],
+  "prompt_sha256": "9c4a3679693040e87161ee9a3f91ea04ddc6f4d1aeeb184a611d8e74c0ba8434",
+  "prompt": "Gemini Image Prompt — Beat 8\n\nCreate exactly one vertical 9:16 image: a full-bleed tropical desert-island survival scene in linocut relief print, viewed tight and side-on at ground level. An anonymous injured bare foot dominates the foreground, showing a small non-graphic cut being carefully rinsed with clean water and wrapped in simple clean cloth; keep anatomy plausible and avoid gore. Confine a sparse rust-orange accent strictly to the injury, using deep marine indigo, weathered turquoise, sun-bleached sand and bone white, dry palm brown, and storm gray elsewhere. Behind the treatment, extend a sparse shoreline and empty sea horizon into the distance to communicate isolation and the absence of professional medical care without symbols or text. Use bold carved contours, irregular gouged hatching, matte carved-print ink, salt-bloom speckling, fibrous grain, dry-roller breakup, subtle hand-cut edge chatter, hard tropical daylight, and graphic carved shadows. Fill the entire frame naturally edge-to-edge and through the full height; no blank footer or caption reserve. Reference roles: use style_reference only for the established linocut medium, texture, palette, line treatment, and lighting; use world_keyframe only to maintain a plausible tropical-island survival world and compatible visual depth; use previous_beat only for compatible medium, texture, palette, and lighting continuity, never its composition, crop, camera angle, pose, or focal-object placement. The viewer is inside the topic world: no page, book spread, card, border, gutter, inset window, doorway rim, entry mechanism, lens mask, or enclosing frame. Do not reproduce any opening-layout device. Exactly one image only—no storyboard, grid, collage, panels, captions, labels, signage, or readable text. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_008.png",
+  "output_sha256": "39dc4dfe70524de7f90b32e64208b82743f7cf948ecfd8b7685af96a8c563812",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 93.322,
+  "completed_at": "2026-09-18T08:06:55Z"
+}

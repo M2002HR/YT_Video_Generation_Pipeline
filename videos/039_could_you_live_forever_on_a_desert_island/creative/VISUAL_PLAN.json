@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 34.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Calories give your body energy.",
+      "visual": "Full-bleed linocut scene of a simple island meal beside a small cooking fire, with carved sunburst-like energy rays rising from the food and fire without symbols or text.",
+      "purpose": "show that food provides usable energy for the body",
+      "visual_fingerprint": "medium close view of cooked island food and glowing cooking fire on sun-bleached sand, low three-quarter camera angle, hard tropical daylight, radiating carved energy shapes dominating the upper frame",
+      "type": "metaphor",
+      "continuity": "begin the nutrition explanation with a concrete island meal before expanding to what energy alone does not provide",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Health also needs vitamins, minerals, protein, and fats.",
+      "visual": "Overhead full-bleed linocut composition of a varied tropical spread containing fish, coconut, leafy greens, fruit, roots and shellfish arranged naturally on a woven mat, emphasizing diversity without labels.",
+      "purpose": "show that health depends on multiple kinds of nutrients supplied by varied foods",
+      "visual_fingerprint": "top-down wide shot of six visibly different tropical food groups on a rough woven mat, turquoise shoreline entering one corner, balanced radial composition, bright hard daylight",
+      "type": "literal",
+      "continuity": "expand from the single energy-giving meal to a visibly broader range of foods that supplies different nutritional needs",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Eating only a few foods may still leave nutrient gaps.",
+      "visual": "Full-bleed linocut of three identical repeated meals set in a row on bare sand while several empty food impressions and vacant spaces surround them, visually suggesting missing variety without text.",
+      "purpose": "show how a repetitive diet can leave nutritional needs unmet",
+      "visual_fingerprint": "oblique medium-wide shot of three nearly identical coconut-and-starch meals receding diagonally across bare beach, conspicuous empty carved silhouettes around them, sparse composition with bone-white negative shapes",
+      "type": "metaphor",
+      "continuity": "contrast the previous varied spread with a repetitive, visibly incomplete food pattern to pay off the opening question",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Over time, those gaps can cause health problems.",
+      "visual": "Full-bleed linocut still life of the same limited food supply now weathered beside a drooping island plant and a cracked, weakened wooden tool, using gradual deterioration as a non-medical metaphor for deficiency over time.",
+      "purpose": "show that persistent nutrient gaps can lead to worsening health",
+      "visual_fingerprint": "low-angle close still life under storm-muted light, wilted leaves and cracked wooden tool beside repetitive food remnants, darker indigo shadows and sparse rust-orange stress accents",
+      "type": "metaphor",
+      "continuity": "carry the idea of missing nutrients forward in time by replacing empty spaces with visible signs of gradual decline",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Fresh plants may add nutrients those repeated meals miss.",
+      "visual": "Full-bleed linocut close view of hands gathering fresh edible-looking island greens and fruit from a lush patch beside the beach, with the repetitive meal supply distant and secondary.",
+      "purpose": "show fresh plant foods adding dietary variety and nutrients",
+      "visual_fingerprint": "tight ground-level harvest scene in a shaded tropical plant patch, hands lifting leafy greens and bright fruit into a simple basket, distant beach meal blurred into the upper background, renewed daylight contrast",
+      "type": "literal",
+      "continuity": "shift from deterioration to a constructive source of additional dietary variety",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Clean drinking water is essential every day.",
+      "visual": "Full-bleed linocut of clear collected rainwater pouring from a broad tropical leaf into a clean coconut-shell vessel, with muddy standing water visibly separated in the distant background.",
+      "purpose": "show the daily importance of a clean drinking-water source",
+      "visual_fingerprint": "extreme close-up of a clear water stream entering a coconut-shell cup, diagonal composition beneath rain-wet leaves, cool turquoise and bone-white highlights, muddy puddle small and distant",
+      "type": "literal",
+      "continuity": "move from food variety to another essential daily survival requirement in a different island zone",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Shelter protects you from heat, rain, and storms.",
+      "visual": "Full-bleed linocut wide shot of a sturdy palm-frond shelter on raised dry ground as hard rain slants across the beach and wind bends nearby palms, while the interior remains protected.",
+      "purpose": "show shelter reducing exposure to tropical weather hazards",
+      "visual_fingerprint": "wide exterior storm scene from a high three-quarter angle, compact palm-frond shelter centered on raised sand, diagonal rain and bent palms framing it, storm-gray sky with deep indigo carved shadows",
+      "type": "subject_world",
+      "continuity": "leave the close water detail for a broad environmental survival need as weather intensifies",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Injuries or infections can become dangerous without medical care.",
+      "visual": "Full-bleed linocut close scene of an injured bare foot with a small cut being rinsed and wrapped using simple clean cloth, while a distant empty horizon underscores the absence of professional medical help.",
+      "purpose": "show why untreated injury or infection is a serious survival risk",
+      "visual_fingerprint": "tight side-on treatment scene at ground level, wounded foot and clean cloth dominating the foreground, sparse shoreline and empty sea horizon behind, restrained rust-orange accent confined to the injury",
+      "type": "literal",
+      "continuity": "move from protection against environmental hazards to a personal hazard that shelter and food cannot solve alone",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Even perfect nutrition cannot stop normal aging.",
+      "visual": "Full-bleed linocut of a healthy tropical tree shown with a thick, weathered trunk and fallen older leaves while fresh fruit still hangs above, using natural aging as a restrained metaphor rather than depicting illness.",
+      "purpose": "show that aging continues even when nourishment is adequate",
+      "visual_fingerprint": "low upward wide shot of an old fruit-bearing tropical tree at warm late-day light, deeply carved bark and fallen leaves in the foreground, healthy fruit overhead, quiet reflective composition",
+      "type": "metaphor",
+      "continuity": "shift from acute survival threats to the unavoidable long-term limit that nutrition cannot remove",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Plenty of food helps, but it cannot make you live forever.",
+      "visual": "Full-bleed linocut sunset scene of an abundant island food spread in the foreground while a long human-made trail of footprints crosses the beach and eventually disappears into the tide, conveying abundance alongside mortality without text.",
+      "purpose": "summarize that plentiful nutrition supports survival but does not eliminate mortality",
+      "visual_fingerprint": "very wide sunset beach composition with abundant fruit, fish and coconuts low in the foreground, a sweeping S-curve of footprints leading toward the surf and vanishing under incoming water, reflective storm-free horizon",
+      "type": "metaphor",
+      "continuity": "close in the same island world by pairing visible abundance with a separate visual reminder that life remains finite",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

@@ -1,0 +1,210 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "d7c38d22c2d6e08679777ec8846849e1534cb67c79a8df42298c3d08ba6bbe05",
+  "quality_check": {
+    "passed": true,
+    "description": "Full-bleed vertical island scene showing the blue-coated captain using a correctly oriented brown-and-brass spyglass beside hanging fish, coconuts, a water barrel and a fish-and-coconut plate. The small eyepiece meets his uncovered eye and the wider objective points outward toward the food.",
+    "violations": [
+      "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+      "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+      "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "contract_checks": {
+      "spyglass_entry_v2.small_end_at_eye": {
+        "passed": true,
+        "evidence": "The narrow brass rear eyepiece is visibly positioned at the captain's uncovered eye beside the nose, while the patched eye remains separate on the other side of his face."
+      },
+      "spyglass_entry_v2.objective_outward": {
+        "passed": true,
+        "evidence": "The connected barrel runs from the small eyepiece at the face toward the right and terminates in a visibly wider brass objective aimed into the fish, coconut and barrel area."
+      },
+      "spyglass_entry_v2.identity_and_grip": {
+        "passed": true,
+        "evidence": "One captain with black skull hat, eye patch, white beard and blue cuff holds one spyglass with one hand near the rear section and the other wrapped around and supporting the wider barrel."
+      },
+      "spyglass_entry_v2.scene_not_page": {
+        "passed": true,
+        "evidence": "The tropical shelter composition extends to all image edges with no parchment frame, reference grid, inset card, text block or circular full-image mask."
+      }
+    },
+    "visual_contract_signature": "49ebdc95b70af12d8b1a471a8453b1122ce9c4144ac2b0811d4c3ecfb3bf6be7",
+    "raw_passed": true,
+    "raw_violations": [
+      "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+      "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+      "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+    ],
+    "observations": [
+      "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+      "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+      "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "8b7a2bfb-9411-4c39-a005-a213e9a3e27f",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/f899467a32d5c1f7",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=8b7a2bfb-9411-4c39-a005-a213e9a3e27f_output_1.png 1536x2752 sha256=4ebe04994b375725667986414f2f538ad56eb986ba9a854e5abd39153ae6dd12"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "Full-bleed vertical island scene showing the blue-coated captain using a correctly oriented brown-and-brass spyglass beside hanging fish, coconuts, a water barrel and a fish-and-coconut plate. The small eyepiece meets his uncovered eye and the wider objective points outward toward the food.",
+      "violations": [
+        "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+        "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+        "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "contract_checks": {
+        "spyglass_entry_v2.small_end_at_eye": {
+          "passed": true,
+          "evidence": "The narrow brass rear eyepiece is visibly positioned at the captain's uncovered eye beside the nose, while the patched eye remains separate on the other side of his face."
+        },
+        "spyglass_entry_v2.objective_outward": {
+          "passed": true,
+          "evidence": "The connected barrel runs from the small eyepiece at the face toward the right and terminates in a visibly wider brass objective aimed into the fish, coconut and barrel area."
+        },
+        "spyglass_entry_v2.identity_and_grip": {
+          "passed": true,
+          "evidence": "One captain with black skull hat, eye patch, white beard and blue cuff holds one spyglass with one hand near the rear section and the other wrapped around and supporting the wider barrel."
+        },
+        "spyglass_entry_v2.scene_not_page": {
+          "passed": true,
+          "evidence": "The tropical shelter composition extends to all image edges with no parchment frame, reference grid, inset card, text block or circular full-image mask."
+        }
+      },
+      "visual_contract_signature": "49ebdc95b70af12d8b1a471a8453b1122ce9c4144ac2b0811d4c3ecfb3bf6be7",
+      "raw_passed": true,
+      "raw_violations": [
+        "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+        "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+        "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+      ],
+      "observations": [
+        "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+        "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+        "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "d7c38d22c2d6e08679777ec8846849e1534cb67c79a8df42298c3d08ba6bbe05",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "8b7a2bfb-9411-4c39-a005-a213e9a3e27f",
+        "prompt_sha256": "1aa015dfa8a2e8bf7405027a447266f9c4488c64ed27a5280836fa17f60d3e14",
+        "output_sha256": "4ebe04994b375725667986414f2f538ad56eb986ba9a854e5abd39153ae6dd12",
+        "quality_check": {
+          "passed": true,
+          "description": "Full-bleed vertical island scene showing the blue-coated captain using a correctly oriented brown-and-brass spyglass beside hanging fish, coconuts, a water barrel and a fish-and-coconut plate. The small eyepiece meets his uncovered eye and the wider objective points outward toward the food.",
+          "violations": [
+            "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+            "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+            "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "contract_checks": {
+            "spyglass_entry_v2.small_end_at_eye": {
+              "passed": true,
+              "evidence": "The narrow brass rear eyepiece is visibly positioned at the captain's uncovered eye beside the nose, while the patched eye remains separate on the other side of his face."
+            },
+            "spyglass_entry_v2.objective_outward": {
+              "passed": true,
+              "evidence": "The connected barrel runs from the small eyepiece at the face toward the right and terminates in a visibly wider brass objective aimed into the fish, coconut and barrel area."
+            },
+            "spyglass_entry_v2.identity_and_grip": {
+              "passed": true,
+              "evidence": "One captain with black skull hat, eye patch, white beard and blue cuff holds one spyglass with one hand near the rear section and the other wrapped around and supporting the wider barrel."
+            },
+            "spyglass_entry_v2.scene_not_page": {
+              "passed": true,
+              "evidence": "The tropical shelter composition extends to all image edges with no parchment frame, reference grid, inset card, text block or circular full-image mask."
+            }
+          },
+          "visual_contract_signature": "49ebdc95b70af12d8b1a471a8453b1122ce9c4144ac2b0811d4c3ecfb3bf6be7",
+          "raw_passed": true,
+          "raw_violations": [
+            "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+            "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+            "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+          ],
+          "observations": [
+            "The captain is framed closer to a front-side profile than the requested rear-three-quarter staging, though the optical direction remains clearly readable.",
+            "The rendering is cleaner and more digitally smooth than the linocut references, with noticeably less dry-roller breakup, salt-bloom speckling, fibrous grain and hand-cut edge chatter.",
+            "The hat skull emblem is substantially enlarged and centered relative to the character sheet, while some smaller canonical hat and face details are simplified."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/spyglass_portal/refs/spyglass_design_sheet_v2.png",
+      "sha256": "32abc89e57aa6c3647a56eaa59086769f4c4e7650ae55120a72594332e9bc87a"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/039_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/sea_captain/refs/character_sheet.png",
+      "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/039_could_you_live_forever_on_a_desert_island/references/world_keyframe.png",
+      "sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e"
+    }
+  ],
+  "prompt_sha256": "1aa015dfa8a2e8bf7405027a447266f9c4488c64ed27a5280836fa17f60d3e14",
+  "prompt": "[VISUAL_CONTRACT:spyglass_entry_v2] Create exactly one full-bleed 9:16 opening SCENE, not a reference sheet. Establish the telescope's use from an OBLIQUE SIDE / REAR-THREE-QUARTER view: the captain's visible, unpatched eye is beside the SMALL narrow rear eyepiece; the brown-and-brass barrel extends AWAY from his face toward the observed subject, ending in the physically LARGER front objective. Show enough of his canonical head and blue-coated arm, both distinct optical endpoints and their connection to verify direction. Keep perspective mild: do not use an extreme frontal lens close-up that conceals which end is which. A giant circular lens facing the viewer is NOT the requested composition.\n\nUse character_sheet for the exact captain face, eye patch, beard, hat and blue cuff, and entry_identity for the correctly oriented telescope. The small end belongs at the visible eye, never the patched eye or an unsupported hand gesture. Show a plausible barrel-supporting grip. Do not mirror the character, swap telescope ends, point the objective back toward his face, or put an eyeball/face inside the tube. This ownership and agency cue is actual optical use, not an anonymous cuff beside a lens.\n\nThe topic-relevant subject lies beyond the outward-pointing objective; the target-world reference supplies only that subject's medium, texture, palette and initial clue. Do not paint a mini-world over the captain's face or onto the eyecup. The camera will match into his outward-looking optical point of view in B, not physically fly backward from the objective into his face. Keep the scene edge-to-edge without a page/card border, circular vignette, grid, embedded text or extra limbs. The eventual last frame contains neither host nor spyglass.\n\nEPISODE TOPIC: Could You Live Forever on a Desert Island??\nEPISODE DIRECTION: Full-bleed 9:16 tropical food shelter, oblique rear-three-quarter view of the seasoned blue-coated captain pausing skeptically beside abundant drying fish, coconuts, and a full water barrel while a plate repeats only fish and coconut. His visible unpatched eye meets the spyglass’s small rear eyepiece; one hand holds it firmly while the other supports the brown-and-brass barrel extending outward to the clearly larger objective aimed at the food. Mild perspective, bright shaded island light, readable abundance-versus-variety tension, no text or vignette.\nTOPIC-WORLD STYLE: {\"style_id\": \"saltcut_tropical_survival_linocut_001\", \"decision\": \"reuse\", \"reuse_of\": \"saltcut_tropical_survival_linocut_001\", \"medium\": \"linocut relief print\", \"secondary_treatment\": null, \"texture_family\": \"matte carved-print ink with salt-bloom speckling, fibrous grain, dry roller breakup and subtle edge chatter\", \"palette_summary\": \"deep marine indigo, weathered turquoise, sun-bleached sand and bone white, dry palm brown, storm gray, with sparse rust-orange accents reserved for salt stress, injury and survival hazards\", \"line_treatment\": \"bold carved linocut contours, irregular gouged hatching, dry-roller breakup and simplified survival-focused silhouettes with consistent hand-cut edge chatter\", \"lighting\": \"hard tropical daylight with graphic carved shadows, shifting to storm-muted contrast for hazard beats while preserving the same relief-print language\", \"subject_constraints\": \"Desert-island survival imagery centered on food variety, nutrient gaps, fresh plants, clean drinking water, shelter, heat, rain, storms, injury, infection, aging and the limits of nutrition; keep environments and objects plausible for a tropical island and vary scale and composition across beats\", \"historical_accuracy_note\": null, \"hero_rendering_in_world\": \"Only when a later shot requests the host, translate the supplied identity into this medium\", \"negative_constraints\": \"No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery\", \"reserve_subtitle_space\": false, \"frame_language\": \"Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.\", \"layout_policy\": \"full_bleed_topic_world_v2\", \"subtitle_reserve\": \"No reserved caption field; continue the scene through the full height.\"}\nENTRY CAMERA PLAN: {}",
+  "output_path": "references/spyglass_entry_frame.png",
+  "output_sha256": "4ebe04994b375725667986414f2f538ad56eb986ba9a854e5abd39153ae6dd12",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 90.324,
+  "completed_at": "2026-09-18T07:52:23Z"
+}

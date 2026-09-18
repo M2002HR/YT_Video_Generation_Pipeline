@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "44a868dea016248864c325255dae357c4ba91de0dc59f6856d0b295a8fd7ac09",
+  "concept_id": "4defcaf186f57935cb04",
+  "character_id": "sea_captain",
+  "presentation_id": "spyglass_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If food is everywhere, how can eating the same few things still fail you?",
+    "viewer_expectation": "Plenty of food plus fresh water should cover the basic needs for long-term survival.",
+    "visible_contradiction": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+    "frame_zero": "A full water barrel, coconuts and racks of fish fill the frame, while the meal plate holds only fish and coconut.",
+    "character_action": "The captain compares the packed food rack with the narrow meal, gives a small skeptical look, then studies the available island foods through the spyglass.",
+    "reaction": "A raised eyebrow and brief pause show that plenty of food is not the same as a complete diet.",
+    "activity": "testing whether abundance also means enough variety",
+    "location": "a simple island food shelter beside coconut trees",
+    "topic_link": "A person can have enough calories yet still miss nutrients the body needs if the diet stays too limited.",
+    "factual_anchor": "Food and water are important, but having supplies does not remove every long-term survival problem.",
+    "payoff": "Living for many years would require a diet that keeps supplying the nutrients the body needs, not just a large amount of food.",
+    "claim_mode": "conservative",
+    "entry_variant": "pattern_inspection",
+    "entry_bridge": {
+      "a_end": "The captain holds the spyglass toward the repeated foods, with the narrow eyepiece at his visible eye and the wide objective facing them.",
+      "b_start": "From an oblique rear-side view, the same correct spyglass orientation points toward the food before the view matches forward.",
+      "reveal": "The repeated meals become a closer look at what the diet provides and what a very narrow diet can miss.",
+      "world_entry": "A host-free close view compares several repeated island meals with the range of nutrients a human body needs over time."
+    },
+    "novelty": {
+      "action_family": "abundance versus variety",
+      "tension_family": "enough food versus complete nutrition",
+      "prop_family": "fish rack, coconuts and meal plate",
+      "reveal_family": "repeated meals expose a long-term nutrition gap"
+    }
+  },
+  "created_at": "2026-09-18T05:18:52Z"
+}

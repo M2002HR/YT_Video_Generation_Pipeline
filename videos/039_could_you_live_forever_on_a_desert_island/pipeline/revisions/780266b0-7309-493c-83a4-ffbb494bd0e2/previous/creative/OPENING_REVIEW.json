@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "topic_specific": true,
+    "visible_from_start": true,
+    "character_consistent": true,
+    "honest_claims": true,
+    "hook_paid_off": true,
+    "entry_continuity": true,
+    "production_feasible": true,
+    "meaningfully_distinct": true
+  },
+  "issues": [],
+  "passed": true,
+  "history_ids": [
+    "030",
+    "032",
+    "033",
+    "034",
+    "035",
+    "037",
+    "038",
+    "038_could_you_live_forever_on_a_desert_island"
+  ],
+  "prompt_sha256": "fe997868fe788648c922dd7f5b289e03df7754f98288750499ffb018b4e22f83",
+  "input_fingerprint": "b21088bdc298c5f9dfa539e25590f9a5d0ca8a24f6f484276ea6a20366a9a879",
+  "concept_id": "6f3e148b27d1492ba47d"
+}

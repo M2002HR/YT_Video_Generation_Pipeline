@@ -1,0 +1,227 @@
+{
+  "input_fingerprint": "86e9f6607bd0ba3cf5f1448e0f49b9b490eb35714c18bb2d8cf25c454dfbd112",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "030",
+        "032",
+        "033",
+        "034",
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island"
+      ],
+      "writer_prompt_sha256": "da7ae051f8f683c2668f9d0c5997cec8da204efa2489e75bdac92b36ed0a71c7",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+            "viewer_expectation": "Water surrounds the island, so finding enough to drink should be easy.",
+            "visible_contradiction": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+            "frame_zero": "Beside a bright tide pool, an empty metal cup shows a thick white salt crust around its rim.",
+            "character_action": "She rubs one salt crystal between two long fingers, studies the dry cup, then angles it toward the water.",
+            "reaction": "A slow side-eye and a small crooked grin: the obvious supply is useless.",
+            "activity": "testing whether abundant seawater solves the need for drinking water",
+            "location": "rocky shoreline beside a clear tide pool",
+            "topic_link": "A resource can look unlimited but still be unusable for a basic human need.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Seawater has too much salt for humans to drink safely; long-term survival needs a reliable source of fresh water.",
+            "payoff": "Ocean water cannot replace fresh water; reliable freshwater is a basic long-term limit.",
+            "entry_variant": "reflection_reveal",
+            "entry_bridge": {
+              "a_end": "Her fingers stop beside the dry cup as the orb appears in the tide pool's reflection.",
+              "b_start": "Her moss sleeve and long fingers tilt the orb into the same reflected line.",
+              "reveal": "The water all around you is not the fresh water your body needs.",
+              "world_entry": "Host-free close-up of clear seawater evaporating and leaving salt crystals beside a separate cup of fresh water."
+            },
+            "novelty": {
+              "action_family": "resource test",
+              "tension_family": "abundance versus usefulness",
+              "prop_family": "salt-crusted drinking cup",
+              "reveal_family": "the obvious supply cannot meet the need"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "Could one endless food still leave your body missing what it needs?",
+            "viewer_expectation": "If one edible food is abundant, there should always be enough to live on.",
+            "visible_contradiction": "A huge pile of one food dwarfs a small mixed meal, but abundance and variety are clearly not the same.",
+            "frame_zero": "A mountain of coconuts fills one side of a table; a small mixed meal sits alone on the other.",
+            "character_action": "She measures the coconut pile with one hand, then points to the smaller mixed meal and shifts one coconut aside.",
+            "reaction": "She gives the larger pile a doubtful look, then raises one eyebrow at the smaller plate.",
+            "activity": "comparing food quantity with the range of foods a body may need",
+            "location": "simple coastal survival test table under a canvas shade",
+            "topic_link": "Having a lot of one food is different from meeting all of the body's long-term needs.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Calories alone are not enough; long-term health also depends on essential nutrients, and one food may not provide all of them.",
+            "payoff": "Food quantity is not enough; a lasting diet must cover calories and essential nutrients.",
+            "entry_variant": "hand_reveal",
+            "entry_bridge": {
+              "a_end": "She shifts one coconut aside and exposes her orb resting beneath the basket edge.",
+              "b_start": "Her long fingers close around the revealed orb against her moss-green sleeve.",
+              "reveal": "A large food supply can still be a poor long-term diet if it lacks needed nutrients.",
+              "world_entry": "Host-free sequence shows the same single-food meal repeated day after day before widening to a much more varied meal."
+            },
+            "novelty": {
+              "action_family": "quantity comparison",
+              "tension_family": "plenty versus completeness",
+              "prop_family": "coconut pile and mixed meal",
+              "reveal_family": "more food does not mean complete nutrition"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "What can end island life even when food and water are fine?",
+            "viewer_expectation": "Once food and fresh water are secure, the main survival problems should be solved.",
+            "visible_contradiction": "Full food and water sit beside a bloodied bandage and an empty medical case.",
+            "frame_zero": "A full water bottle and food pouch flank a bloodied cloth and an open, empty first-aid case.",
+            "character_action": "She weighs the full bottle against the empty medical case, sets both down, then opens her palm beside them.",
+            "reaction": "Her grin fades into a measured look at the empty case.",
+            "activity": "testing whether basic supplies are enough when a health problem appears",
+            "location": "bare coastal shelter with a staged survival pack",
+            "topic_link": "A small health problem can become a major survival threat when treatment is far away.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Long-term isolation leaves no quick access to treatment; serious injury or infection can become dangerous without medical care or evacuation.",
+            "payoff": "Food and water do not remove medical risk; serious injury or infection may require treatment or evacuation.",
+            "entry_variant": "sleeve_reveal",
+            "entry_bridge": {
+              "a_end": "Her empty hand rests beside the medical case as her moss sleeve drops over her wrist.",
+              "b_start": "The sleeve lifts just enough to show her orb already settled in her long fingers.",
+              "reveal": "Survival also depends on what happens when the body is injured or sick.",
+              "world_entry": "Host-free close-up follows a small cut that becomes red and swollen over several days with no clinic or treatment nearby."
+            },
+            "novelty": {
+              "action_family": "missing-backup test",
+              "tension_family": "basic supplies versus medical risk",
+              "prop_family": "empty first-aid case and bloodied cloth",
+              "reveal_family": "survival can fail after an ordinary injury"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "030",
+        "032",
+        "033",
+        "034",
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island"
+      ],
+      "reviewer_prompt_sha256": "98f1828668937dd00da49bc35bef7dcd46b100848b8754e5a05d480264318e94",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The dry, salt-crusted cup surrounded by seawater creates an immediate and understandable contradiction that directly serves the island-survival question. The salt clue gives the crone a deliberate discovery to guide, and the reflection reveal clearly keeps the orb under her ownership. The entry adds useful factual information instead of describing the transition. The seawater claim is careful and accurate, the payoff answers the hook, and the short action chain is practical to film. This resource problem is also meaningfully different from the recent storm-risk opening."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [],
+            "reason": "The large coconut pile against a small varied meal clearly supports the idea that food amount and diet quality are different, though the first image requires slightly more interpretation than c1 or c3 before the survival problem is clear. The crone actively compares the evidence and deliberately uncovers her orb. The nutrition claim keeps the needed uncertainty and does not claim that calories alone guarantee health. The entry gives a real clue and the body payoff matches it. Spoken wording is understandable, but 'one endless food' is slightly unnatural and 'needed nutrients' is a little less immediate on first listen."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 3,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "Full food and water beside a bloodied cloth and empty medical case make the missing medical backup visible at once, so the scene directly raises a long-term survival limit. The factual claim correctly says injury or infection can become dangerous without treatment or evacuation. The sleeve reveal proves ownership and the entry narration adds information. The bottle-versus-medical-case weighing action feels somewhat constructed compared with the crone's more natural clue-reading behavior. Its meaning also partly overlaps the recent opening's broader idea that secure supplies do not remove sudden danger, although medical isolation gives it a distinct payoff."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The dry, salt-crusted cup surrounded by seawater creates an immediate and understandable contradiction that directly serves the island-survival question. The salt clue gives the crone a deliberate discovery to guide, and the reflection reveal clearly keeps the orb under her ownership. The entry adds useful factual information instead of describing the transition. The seawater claim is careful and accurate, the payoff answers the hook, and the short action chain is practical to film. This resource problem is also meaningfully different from the recent storm-risk opening.",
+          "repetition_evidence": [],
+          "weighted_score": 92
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [],
+          "reason": "The large coconut pile against a small varied meal clearly supports the idea that food amount and diet quality are different, though the first image requires slightly more interpretation than c1 or c3 before the survival problem is clear. The crone actively compares the evidence and deliberately uncovers her orb. The nutrition claim keeps the needed uncertainty and does not claim that calories alone guarantee health. The entry gives a real clue and the body payoff matches it. Spoken wording is understandable, but 'one endless food' is slightly unnatural and 'needed nutrients' is a little less immediate on first listen.",
+          "repetition_evidence": [],
+          "weighted_score": 86
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 3,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "Full food and water beside a bloodied cloth and empty medical case make the missing medical backup visible at once, so the scene directly raises a long-term survival limit. The factual claim correctly says injury or infection can become dangerous without treatment or evacuation. The sleeve reveal proves ownership and the entry narration adds information. The bottle-versus-medical-case weighing action feels somewhat constructed compared with the crone's more natural clue-reading behavior. Its meaning also partly overlaps the recent opening's broader idea that secure supplies do not remove sudden danger, although medical isolation gives it a distinct payoff.",
+          "repetition_evidence": [],
+          "weighted_score": 88
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

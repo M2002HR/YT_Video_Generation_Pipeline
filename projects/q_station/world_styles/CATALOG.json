@@ -121,6 +121,17 @@
       "path": "023_saltwind_island_fieldguide_001",
       "anchor": "023_saltwind_island_fieldguide_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "saltcut_tropical_survival_linocut_001",
+      "display_name": "Saltcut Tropical Survival Linocut 001",
+      "medium_family": "linocut relief print",
+      "texture_family": "matte carved-print ink with salt-bloom speckling, fibrous grain, dry roller breakup and subtle edge chatter",
+      "palette_summary": "deep marine indigo, weathered turquoise, sun-bleached sand and bone white, dry palm brown, storm gray, with sparse rust-orange accents reserved for salt stress, injury and survival hazards",
+      "status": "ready",
+      "path": "024_saltcut_tropical_survival_linocut_001",
+      "anchor": "024_saltcut_tropical_survival_linocut_001/style_anchor.png",
+      "usage_count": 2
     }
   ]
 }

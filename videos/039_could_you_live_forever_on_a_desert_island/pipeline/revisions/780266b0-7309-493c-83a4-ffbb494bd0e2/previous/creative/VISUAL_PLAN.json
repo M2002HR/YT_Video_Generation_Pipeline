@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 35.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Seawater has too much salt for your body.",
+      "visual": "Full-bleed vertical linocut close-up of a bone-white drinking cup scooping turquoise seawater at the surf line, with dense rust-orange salt crystals exaggerated around the cup rim and suspended in the water to make the salt burden immediately visible.",
+      "purpose": "show that ocean water contains a salt load too high for normal hydration",
+      "visual_fingerprint": "extreme close-up + cup dipping into foamy shoreline seawater + dense visible salt crystals + low waterline angle + diagonal surf composition",
+      "type": "literal",
+      "continuity": "begin inside the island world at the shoreline, immediately answering the freshwater problem without carrying over the opener composition",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Your kidneys use water to remove that salt.",
+      "visual": "Full-bleed simplified anatomical linocut cutaway of a human torso against an abstract indigo field, two kidneys prominent in bone white while translucent turquoise flow streams toward them and rust-orange salt particles funnel toward an outgoing urine stream.",
+      "purpose": "explain that kidneys require water to excrete excess salt",
+      "visual_fingerprint": "anatomical torso cutaway + paired kidneys + turquoise internal flow + orange salt particles exiting downward + centered frontal diagram composition",
+      "type": "diagram",
+      "continuity": "shift from the salty drink to the body's internal mechanism responsible for removing that salt",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Drink seawater, and you may lose more water than you gain.",
+      "visual": "Full-bleed side-view survival figure kneeling on sun-bleached sand after drinking from a shell, with one small turquoise intake stream entering the body while a visibly larger turquoise outflow leaves toward the sand, surrounded by sparse rust-orange salt marks.",
+      "purpose": "show the net water-loss consequence of drinking seawater",
+      "visual_fingerprint": "side-view kneeling castaway + shell drinking vessel + small incoming water flow versus larger outgoing flow + dry beach setting + asymmetrical cause-and-effect composition",
+      "type": "diagram",
+      "continuity": "translate the kidney mechanism back into a whole-body survival consequence and complete the opening promise payoff",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Rain can help if you collect it.",
+      "visual": "Full-bleed high-angle linocut of a sudden tropical rain shower striking broad palm leaves angled into an improvised bone-white container, turquoise rain channels converging into the vessel beneath softened storm-gray light.",
+      "purpose": "show rainwater as a usable freshwater source when actively captured",
+      "visual_fingerprint": "overhead rain catchment + slanted palm leaves + central collecting vessel + storm-gray shower + converging turquoise runoff geometry",
+      "type": "literal",
+      "continuity": "move from dangerous seawater to the first practical freshwater alternative",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Some islands have springs or fresh groundwater.",
+      "visual": "Full-bleed cutaway of a rocky island slope, with a clear turquoise spring emerging from shaded stone above while a second turquoise groundwater pocket sits beneath the sand and roots, both surrounded by carved indigo earth layers.",
+      "purpose": "show that some islands naturally contain springs or freshwater underground",
+      "visual_fingerprint": "island hillside cross-section + surface spring + underground freshwater lens + exposed roots and rock strata + split above-and-below composition",
+      "type": "diagram",
+      "continuity": "expand the search for freshwater from weather-dependent rain to natural island water stores",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Others may have no reliable fresh water.",
+      "visual": "Full-bleed wide shot of a low barren coral islet under hard tropical sun, ringed by turquoise ocean but showing only cracked sand, dry palms and an empty tilted container casting a sharp shadow.",
+      "purpose": "show that some islands lack dependable freshwater sources despite being surrounded by water",
+      "visual_fingerprint": "very wide barren islet + empty container + cracked ground + harsh overhead sun + ocean encircling the dry land + sparse horizon-heavy composition",
+      "type": "subject_world",
+      "continuity": "contrast the water-bearing island cutaway with a separate island where those freshwater sources are absent",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Desalination can turn seawater into fresh water.",
+      "visual": "Full-bleed three-quarter view of a compact improvised desalination still on coastal rocks, seawater heating in one vessel as translucent vapor arcs through a cooling tube and condenses into clear turquoise drops in a separate clean cup.",
+      "purpose": "show the basic transformation of seawater into fresh water by desalination",
+      "visual_fingerprint": "three-quarter equipment view + heated seawater pot + curved vapor path + condenser tube + separate cup receiving clear drops + rocky shore workshop zone",
+      "type": "diagram",
+      "continuity": "introduce a technological solution after showing an island with no reliable natural freshwater",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "But it needs equipment, energy, and care.",
+      "visual": "Full-bleed low-angle still life of the desalination setup partially dismantled beside stacked fuel, a cracked hose, tools and a carefully tended flame, with hard shadows emphasizing the amount of supporting gear and maintenance involved.",
+      "purpose": "show that desalination depends on machinery, energy input and upkeep",
+      "visual_fingerprint": "low-angle maintenance still life + dismantled desalination parts + fuel bundle + tools + controlled flame + no human figure + dense foreground composition",
+      "type": "literal",
+      "continuity": "stay with desalination but change from successful output to the resources and maintenance required to keep it working",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Food, injury, disease, and aging still matter.",
+      "visual": "Full-bleed island shelter scene containing four integrated survival hazards without panels: an almost-empty food basket in the foreground, a bandaged ankle beside a walking stick, a feverish figure resting under shade with a water bowl nearby, and an elderly silhouette moving slowly near the shelter entrance.",
+      "purpose": "show that freshwater does not eliminate other major long-term survival limits",
+      "visual_fingerprint": "medium-wide shelter tableau + depleted food basket + bandaged limb + fever-resting survivor + elderly silhouette + layered foreground-to-background hazard composition",
+      "type": "subject_world",
+      "continuity": "pull outward from the desalination system to the wider set of survival pressures that remain even when water is available",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Even perfect fresh water cannot make island life last forever.",
+      "visual": "Full-bleed dusk linocut of a pristine vessel overflowing with clear turquoise fresh water in the foreground while an abandoned weathered shelter, spent food remnants and a long aging palm shadow recede toward a storm-gray horizon, the water abundant but the island visibly finite.",
+      "purpose": "close by showing that solving freshwater alone cannot remove every long-term limit on island survival",
+      "visual_fingerprint": "foreground overflowing freshwater vessel + distant weathered empty shelter + exhausted supplies + long dusk palm shadow + low horizon + reflective depth composition",
+      "type": "metaphor",
+      "continuity": "remain in the island world and resolve the preceding hazards into a quiet final image where water is plentiful but survival remains finite",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

@@ -1,0 +1,30 @@
+{
+  "concept_id": "6f3e148b27d1492ba47d",
+  "opening_actions": [
+    "She rubs a salt crystal from the crusted cup rim between two long fingers.",
+    "She studies the dry cup, then angles it toward the clear tide pool surrounding her.",
+    "Her fingers stop beside the cup as the orb appears in the tide pool's reflection."
+  ],
+  "entry_bridge": {
+    "a_end": "Her fingers stop beside the dry, salt-crusted cup as the orb appears in the tide pool's reflection.",
+    "b_start": "Her moss-green sleeve and long fingers tilt her orb into the same reflected line, clearly establishing that she owns and guides it.",
+    "reveal": "The water all around you is not the fresh water your body needs.",
+    "world_entry": "Host-free close-up of clear seawater evaporating and leaving salt crystals beside a separate cup of fresh water."
+  },
+  "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+  "opening_location": "rocky shoreline beside a clear tide pool",
+  "opening_environment": "sunlit coastal rocks around a bright tide pool, with open seawater visible beyond",
+  "topic_visual_link": "The island appears surrounded by limitless water, yet the dry salt-crusted cup shows that abundance does not make seawater usable for drinking.",
+  "link_type": "irony",
+  "opening_visual_proof": "A dry metal drinking cup with a thick white salt crust sits inches from a tide pool full of clear water, while open seawater fills the background.",
+  "curiosity_trigger": "Clear water glitters everywhere, but salt crystals scrape from the rim of the only drinking cup.",
+  "trigger_object": "salt-crusted metal drinking cup beside the tide pool",
+  "reaction": "She gives the cup a slow side-eye and a restrained crooked grin, recognizing that the obvious water supply is useless.",
+  "entry_retrieval": "After comparing the dry cup with the surrounding water, she lowers it beside the tide pool; the reflected orb comes into view, and her long fingers in a moss-green sleeve deliberately tilt the real orb to align with its reflection before the camera enters it.",
+  "entry_variant": "reflection_reveal",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "grounded island-survival imagery focused on seawater, salt, rainfall capture, freshwater sources, and practical desalination",
+  "reason": "The salt-crusted cup makes the central survival problem immediately visible: an island can be surrounded by water while still lacking the reliable fresh water needed for long-term life."
+}

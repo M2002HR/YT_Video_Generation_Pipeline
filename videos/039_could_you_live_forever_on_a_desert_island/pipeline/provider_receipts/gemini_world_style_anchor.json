@@ -1,0 +1,44 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "catalog_derivative": false,
+  "provider_receipt": null,
+  "job_id": null,
+  "request_fingerprint": "9cc1fe296ed118c2f1ceb62bfeff43c489b946e9eb097327f4e240d116f18d82",
+  "quality_check": {
+    "passed": true,
+    "description": "A single vertical linocut-style reference sheet showing palette swatches, carved line tests, speckled dry-roller textures, contour motifs and sparse rust accents on fibrous bone-white stock.",
+    "violations": [
+      "Canvas is approximately 1143:2048, slightly narrower than an exact 9:16 ratio.",
+      "A few isometric contour-block samples read somewhat more illustratively than the otherwise neutral texture and line tests, but they do not turn the overall deliverable into a scene."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "contract_checks": {
+      "material_anchor_v2.neutral_material": {
+        "passed": true,
+        "evidence": "The canvas is filled edge-to-edge with fibrous paper and organized material, palette and line samples; there is no enclosing page border, book, doorway, host, character or single depicted location."
+      }
+    },
+    "visual_contract_signature": "a9c331a2bd3cd13e3d84acc6ff143a3244ba10320d67ae8a6b849bf4e0fba535",
+    "raw_passed": true,
+    "raw_violations": [
+      "Canvas is approximately 1143:2048, slightly narrower than an exact 9:16 ratio.",
+      "A few isometric contour-block samples read somewhat more illustratively than the otherwise neutral texture and line tests, but they do not turn the overall deliverable into a scene."
+    ],
+    "observations": [
+      "Canvas is approximately 1143:2048, slightly narrower than an exact 9:16 ratio.",
+      "A few isometric contour-block samples read somewhat more illustratively than the otherwise neutral texture and line tests, but they do not turn the overall deliverable into a scene."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/024_saltcut_tropical_survival_linocut_001/style_anchor.png",
+      "sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875"
+    }
+  ]
+}

@@ -1,0 +1,682 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 45.871,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 112,
+  "words": [
+    {
+      "text": "Surrounded",
+      "token": "surrounded",
+      "start": 0.02,
+      "end": 0.42
+    },
+    {
+      "text": "by",
+      "token": "by",
+      "start": 0.42,
+      "end": 0.68
+    },
+    {
+      "text": "water,",
+      "token": "water",
+      "start": 0.68,
+      "end": 1.46
+    },
+    {
+      "text": "how",
+      "token": "how",
+      "start": 1.46,
+      "end": 1.78
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 1.78,
+      "end": 2.1
+    },
+    {
+      "text": "thirst",
+      "token": "thirst",
+      "start": 2.1,
+      "end": 2.5
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 2.5,
+      "end": 3.2
+    },
+    {
+      "text": "be",
+      "token": "be",
+      "start": 3.2,
+      "end": 3.48
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 3.48,
+      "end": 3.66
+    },
+    {
+      "text": "first",
+      "token": "first",
+      "start": 3.66,
+      "end": 4.0
+    },
+    {
+      "text": "big",
+      "token": "big",
+      "start": 4.0,
+      "end": 4.28
+    },
+    {
+      "text": "problem?",
+      "token": "problem",
+      "start": 4.28,
+      "end": 4.8
+    },
+    {
+      "text": "All",
+      "token": "all",
+      "start": 5.18,
+      "end": 5.38
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 5.38,
+      "end": 5.58
+    },
+    {
+      "text": "seawater",
+      "token": "seawater",
+      "start": 5.58,
+      "end": 6.2
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 6.2,
+      "end": 6.4
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 6.4,
+      "end": 6.6
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 6.6,
+      "end": 6.78
+    },
+    {
+      "text": "fresh",
+      "token": "fresh",
+      "start": 6.78,
+      "end": 7.06
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 7.06,
+      "end": 7.4
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 7.4,
+      "end": 7.6
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 7.6,
+      "end": 7.94
+    },
+    {
+      "text": "needs.",
+      "token": "needs",
+      "start": 7.94,
+      "end": 8.46
+    },
+    {
+      "text": "Seawater",
+      "token": "seawater",
+      "start": 8.82,
+      "end": 9.26
+    },
+    {
+      "text": "has",
+      "token": "has",
+      "start": 9.26,
+      "end": 9.54
+    },
+    {
+      "text": "too",
+      "token": "too",
+      "start": 9.54,
+      "end": 9.78
+    },
+    {
+      "text": "much",
+      "token": "much",
+      "start": 9.78,
+      "end": 10.04
+    },
+    {
+      "text": "salt",
+      "token": "salt",
+      "start": 10.04,
+      "end": 10.42
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 10.42,
+      "end": 10.68
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 10.68,
+      "end": 10.82
+    },
+    {
+      "text": "body.",
+      "token": "body",
+      "start": 10.82,
+      "end": 11.16
+    },
+    {
+      "text": "Your",
+      "token": "your",
+      "start": 11.66,
+      "end": 11.84
+    },
+    {
+      "text": "kidneys",
+      "token": "kidneys",
+      "start": 11.84,
+      "end": 12.22
+    },
+    {
+      "text": "use",
+      "token": "use",
+      "start": 12.22,
+      "end": 12.6
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 12.6,
+      "end": 12.94
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 12.94,
+      "end": 13.14
+    },
+    {
+      "text": "remove",
+      "token": "remove",
+      "start": 13.14,
+      "end": 13.5
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 13.5,
+      "end": 13.78
+    },
+    {
+      "text": "salt.",
+      "token": "salt",
+      "start": 13.78,
+      "end": 14.1
+    },
+    {
+      "text": "Drink",
+      "token": "drink",
+      "start": 14.66,
+      "end": 15.02
+    },
+    {
+      "text": "seawater,",
+      "token": "seawater",
+      "start": 15.02,
+      "end": 15.8
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 15.8,
+      "end": 16.58
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 16.58,
+      "end": 16.76
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 16.76,
+      "end": 16.96
+    },
+    {
+      "text": "lose",
+      "token": "lose",
+      "start": 16.96,
+      "end": 17.24
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 17.24,
+      "end": 17.68
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 17.68,
+      "end": 18.18
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 18.18,
+      "end": 18.76
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 18.76,
+      "end": 18.94
+    },
+    {
+      "text": "gain.",
+      "token": "gain",
+      "start": 18.94,
+      "end": 19.46
+    },
+    {
+      "text": "Rain",
+      "token": "rain",
+      "start": 19.98,
+      "end": 20.22
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 20.22,
+      "end": 20.46
+    },
+    {
+      "text": "help",
+      "token": "help",
+      "start": 20.46,
+      "end": 20.76
+    },
+    {
+      "text": "if",
+      "token": "if",
+      "start": 20.76,
+      "end": 21.02
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 21.02,
+      "end": 21.1
+    },
+    {
+      "text": "collect",
+      "token": "collect",
+      "start": 21.1,
+      "end": 21.46
+    },
+    {
+      "text": "it.",
+      "token": "it",
+      "start": 21.46,
+      "end": 21.72
+    },
+    {
+      "text": "Some",
+      "token": "some",
+      "start": 21.16,
+      "end": 22.02
+    },
+    {
+      "text": "islands",
+      "token": "islands",
+      "start": 22.02,
+      "end": 22.32
+    },
+    {
+      "text": "have",
+      "token": "have",
+      "start": 22.32,
+      "end": 22.58
+    },
+    {
+      "text": "springs",
+      "token": "springs",
+      "start": 22.58,
+      "end": 22.94
+    },
+    {
+      "text": "or",
+      "token": "or",
+      "start": 22.94,
+      "end": 23.14
+    },
+    {
+      "text": "fresh",
+      "token": "fresh",
+      "start": 23.14,
+      "end": 23.38
+    },
+    {
+      "text": "groundwater.",
+      "token": "groundwater",
+      "start": 23.38,
+      "end": 23.74
+    },
+    {
+      "text": "Others",
+      "token": "others",
+      "start": 24.46,
+      "end": 24.72
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 24.72,
+      "end": 24.98
+    },
+    {
+      "text": "have",
+      "token": "have",
+      "start": 24.98,
+      "end": 25.18
+    },
+    {
+      "text": "no",
+      "token": "no",
+      "start": 25.18,
+      "end": 25.4
+    },
+    {
+      "text": "reliable",
+      "token": "reliable",
+      "start": 25.4,
+      "end": 25.9
+    },
+    {
+      "text": "fresh",
+      "token": "fresh",
+      "start": 25.9,
+      "end": 26.26
+    },
+    {
+      "text": "water.",
+      "token": "water",
+      "start": 26.26,
+      "end": 26.62
+    },
+    {
+      "text": "desalination",
+      "token": "desalination",
+      "start": 27.22,
+      "end": 27.86
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 27.86,
+      "end": 28.36
+    },
+    {
+      "text": "turn",
+      "token": "turn",
+      "start": 28.36,
+      "end": 28.6
+    },
+    {
+      "text": "seawater",
+      "token": "seawater",
+      "start": 28.6,
+      "end": 29.18
+    },
+    {
+      "text": "into",
+      "token": "into",
+      "start": 29.18,
+      "end": 29.44
+    },
+    {
+      "text": "fresh",
+      "token": "fresh",
+      "start": 29.44,
+      "end": 29.72
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 29.72,
+      "end": 30.14
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 30.14,
+      "end": 30.78
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 30.78,
+      "end": 30.94
+    },
+    {
+      "text": "needs",
+      "token": "needs",
+      "start": 30.94,
+      "end": 31.48
+    },
+    {
+      "text": "equipment",
+      "token": "equipment",
+      "start": 31.48,
+      "end": 32.12
+    },
+    {
+      "text": "energy",
+      "token": "energy",
+      "start": 32.12,
+      "end": 33.1
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 33.1,
+      "end": 33.82
+    },
+    {
+      "text": "care",
+      "token": "care",
+      "start": 33.82,
+      "end": 34.22
+    },
+    {
+      "text": "food",
+      "token": "food",
+      "start": 34.22,
+      "end": 35.08
+    },
+    {
+      "text": "injury",
+      "token": "injury",
+      "start": 35.08,
+      "end": 35.46
+    },
+    {
+      "text": "disease",
+      "token": "disease",
+      "start": 35.08,
+      "end": 36.02
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 36.02,
+      "end": 36.34
+    },
+    {
+      "text": "aging",
+      "token": "aging",
+      "start": 36.34,
+      "end": 36.62
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 36.62,
+      "end": 36.96
+    },
+    {
+      "text": "matter",
+      "token": "matter",
+      "start": 36.96,
+      "end": 37.34
+    },
+    {
+      "text": "even",
+      "token": "even",
+      "start": 37.34,
+      "end": 37.94
+    },
+    {
+      "text": "perfect",
+      "token": "perfect",
+      "start": 37.94,
+      "end": 38.36
+    },
+    {
+      "text": "fresh",
+      "token": "fresh",
+      "start": 38.36,
+      "end": 38.62
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 38.62,
+      "end": 39.0
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 39.0,
+      "end": 39.58
+    },
+    {
+      "text": "make",
+      "token": "make",
+      "start": 39.58,
+      "end": 39.98
+    },
+    {
+      "text": "island",
+      "token": "island",
+      "start": 39.98,
+      "end": 40.34
+    },
+    {
+      "text": "life",
+      "token": "life",
+      "start": 40.34,
+      "end": 40.68
+    },
+    {
+      "text": "last",
+      "token": "last",
+      "start": 40.68,
+      "end": 41.04
+    },
+    {
+      "text": "forever",
+      "token": "forever",
+      "start": 41.04,
+      "end": 41.4
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 40.96,
+      "end": 42.08
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 42.08,
+      "end": 42.36
+    },
+    {
+      "text": "island",
+      "token": "island",
+      "start": 42.36,
+      "end": 42.86
+    },
+    {
+      "text": "survival",
+      "token": "survival",
+      "start": 42.86,
+      "end": 43.34
+    },
+    {
+      "text": "questions",
+      "token": "questions",
+      "start": 43.34,
+      "end": 43.88
+    },
+    {
+      "text": "leave",
+      "token": "leave",
+      "start": 43.88,
+      "end": 44.22
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 44.22,
+      "end": 44.36
+    },
+    {
+      "text": "like",
+      "token": "like",
+      "start": 44.36,
+      "end": 44.62
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 44.62,
+      "end": 44.84
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 44.84,
+      "end": 45.18
+    }
+  ]
+}

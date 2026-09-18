@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 45.871,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Surrounded by water, how could thirst still be your first big problem? All that seawater is not the fresh water your body needs. Seawater has too much salt for your body. Your kidneys use water to remove that salt. Drink seawater, and you may lose more water than you gain. Rain can help if you collect it. Some islands have springs or fresh groundwater. Others may have no reliable fresh water. desalination can turn seawater into fresh water but it needs equipment energy and care food injury disease and aging still matter even perfect fresh water cannot make island life last forever for more island survival questions leave a like and subscribe",
+  "word_count": 112,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Seawater has too much salt for your body.",
+      "speech_start": 8.82,
+      "speech_end": 11.16,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 11.66,
+      "display_duration": 11.66
+    },
+    {
+      "beat_id": 2,
+      "narration": "Your kidneys use water to remove that salt.",
+      "speech_start": 11.66,
+      "speech_end": 14.1,
+      "match_confidence": 1.0,
+      "display_start": 11.66,
+      "display_end": 14.66,
+      "display_duration": 3.0
+    },
+    {
+      "beat_id": 3,
+      "narration": "Drink seawater, and you may lose more water than you gain.",
+      "speech_start": 14.66,
+      "speech_end": 19.46,
+      "match_confidence": 1.0,
+      "display_start": 14.66,
+      "display_end": 19.98,
+      "display_duration": 5.32
+    },
+    {
+      "beat_id": 4,
+      "narration": "Rain can help if you collect it.",
+      "speech_start": 19.98,
+      "speech_end": 21.72,
+      "match_confidence": 1.0,
+      "display_start": 19.98,
+      "display_end": 21.16,
+      "display_duration": 1.18
+    },
+    {
+      "beat_id": 5,
+      "narration": "Some islands have springs or fresh groundwater.",
+      "speech_start": 21.16,
+      "speech_end": 23.74,
+      "match_confidence": 1.0,
+      "display_start": 21.16,
+      "display_end": 24.46,
+      "display_duration": 3.3
+    },
+    {
+      "beat_id": 6,
+      "narration": "Others may have no reliable fresh water.",
+      "speech_start": 24.46,
+      "speech_end": 26.62,
+      "match_confidence": 1.0,
+      "display_start": 24.46,
+      "display_end": 27.22,
+      "display_duration": 2.76
+    },
+    {
+      "beat_id": 7,
+      "narration": "Desalination can turn seawater into fresh water.",
+      "speech_start": 27.22,
+      "speech_end": 30.14,
+      "match_confidence": 1.0,
+      "display_start": 27.22,
+      "display_end": 30.14,
+      "display_duration": 2.92
+    },
+    {
+      "beat_id": 8,
+      "narration": "But it needs equipment, energy, and care.",
+      "speech_start": 30.14,
+      "speech_end": 34.22,
+      "match_confidence": 1.0,
+      "display_start": 30.14,
+      "display_end": 34.22,
+      "display_duration": 4.08
+    },
+    {
+      "beat_id": 9,
+      "narration": "Food, injury, disease, and aging still matter.",
+      "speech_start": 34.22,
+      "speech_end": 37.34,
+      "match_confidence": 1.0,
+      "display_start": 34.22,
+      "display_end": 37.34,
+      "display_duration": 3.12
+    },
+    {
+      "beat_id": 10,
+      "narration": "Even perfect fresh water cannot make island life last forever.",
+      "speech_start": 37.34,
+      "speech_end": 41.4,
+      "match_confidence": 1.0,
+      "display_start": 37.34,
+      "display_end": 45.871,
+      "display_duration": 8.531
+    }
+  ]
+}

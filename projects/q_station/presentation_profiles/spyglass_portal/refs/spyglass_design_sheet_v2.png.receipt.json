@@ -1,0 +1,147 @@
+{
+  "contract_version": 1,
+  "source_type": "canonical",
+  "request_fingerprint": "67ae756192f8acb1f80773c2141a73caeac342f463e7b5249ae8fd8fd13126cd",
+  "quality_check": {
+    "passed": true,
+    "description": "A 9:16 object sheet shows a warm-brown and worn-brass compact spyglass in one near-side view and one three-quarter view on a neutral textured background, with a narrow rear eyepiece at left and a larger front objective at right.",
+    "violations": [
+      "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+      "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+      "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "contract_checks": {
+      "spyglass_identity_v2.unequal_optical_ends": {
+        "passed": true,
+        "evidence": "In the upper view, both ends are simultaneously visible: the left rear eyepiece is physically narrow while the right front objective housing is clearly wider; the lower three-quarter view preserves the same narrow-left and broad-right orientation."
+      }
+    },
+    "visual_contract_signature": "f8a98ebaf15b472c49cc29575d2dc3c74b08a91a4ddaee5a771e247b309b629f",
+    "raw_passed": true,
+    "raw_violations": [
+      "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+      "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+      "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+    ],
+    "observations": [
+      "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+      "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+      "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "prompt": "[VISUAL_CONTRACT:spyglass_identity_v2] Create one 9:16 portrait object reference sheet for the captain's single compact maritime telescope. Keep its warm-brown main barrel, worn golden-brass telescoping sections, restrained seams and simple vintage design. In a clear SIDE VIEW, show a physically small, narrow REAR EYEPIECE and a visibly wider FRONT OBJECTIVE housing, roughly three times the eyepiece diameter. The narrow end is for the observer's eye; the broad end faces the distant subject. Both ends must be visible simultaneously. Add a three-quarter view of the exact same geometry; do not reverse the ends between views. Physical size, not perspective enlargement, defines each end.\n\nThe eyecup is the smallest optical opening, never a huge flared mouth. One continuous straight optical axis, no bent barrel, two broad lenses, unexplained extra tubes or equal-sized ends. No character, eye, hand, scene, topic imagery, labels, arrows, letters, frame border or decorative symbols. Neutral material background, confident hand-drawn outlines. A later entry frame supplies the actual captain and his eye relationship; this sheet must make that relationship unambiguous without printed instructions.",
+  "prompt_sha256": "29024adb6b33c4cdd7708405d44027bd901d30f4e6c6d8b5a4fc54cc853c513f",
+  "output_path": "projects/q_station/presentation_profiles/spyglass_portal/refs/spyglass_design_sheet_v2.png",
+  "output_sha256": "32abc89e57aa6c3647a56eaa59086769f4c4e7650ae55120a72594332e9bc87a",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "references": [],
+  "validated_at": "2026-09-18T06:30:22Z",
+  "origin": {
+    "provider": "gemini",
+    "job_id": "6f1bc988-0e51-4467-8133-e9441548a654",
+    "requested_model": "nano_banana_2",
+    "provider_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app/b752ce6c33c936ed",
+      "submission_fingerprint": null,
+      "reference_roles": [],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=6f1bc988-0e51-4467-8133-e9441548a654_output_1.png 1536x2752 sha256=32abc89e57aa6c3647a56eaa59086769f4c4e7650ae55120a72594332e9bc87a"
+      ],
+      "quality_check": {
+        "passed": true,
+        "description": "A 9:16 object sheet shows a warm-brown and worn-brass compact spyglass in one near-side view and one three-quarter view on a neutral textured background, with a narrow rear eyepiece at left and a larger front objective at right.",
+        "violations": [
+          "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+          "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+          "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+        ],
+        "blocking_violations": [],
+        "regressions": [],
+        "contract_checks": {
+          "spyglass_identity_v2.unequal_optical_ends": {
+            "passed": true,
+            "evidence": "In the upper view, both ends are simultaneously visible: the left rear eyepiece is physically narrow while the right front objective housing is clearly wider; the lower three-quarter view preserves the same narrow-left and broad-right orientation."
+          }
+        },
+        "visual_contract_signature": "f8a98ebaf15b472c49cc29575d2dc3c74b08a91a4ddaee5a771e247b309b629f",
+        "raw_passed": true,
+        "raw_violations": [
+          "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+          "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+          "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+        ],
+        "observations": [
+          "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+          "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+          "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+        ],
+        "review_status": "passed_with_warnings"
+      },
+      "request_fingerprint": "f7427aac6e40afbd60ce0509dfd1b78dafe73331f4b3acf1951c55cb90c754a7",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "provider": "gemini",
+          "job_id": "6f1bc988-0e51-4467-8133-e9441548a654",
+          "prompt_sha256": "29024adb6b33c4cdd7708405d44027bd901d30f4e6c6d8b5a4fc54cc853c513f",
+          "output_sha256": "32abc89e57aa6c3647a56eaa59086769f4c4e7650ae55120a72594332e9bc87a",
+          "quality_check": {
+            "passed": true,
+            "description": "A 9:16 object sheet shows a warm-brown and worn-brass compact spyglass in one near-side view and one three-quarter view on a neutral textured background, with a narrow rear eyepiece at left and a larger front objective at right.",
+            "violations": [
+              "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+              "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+              "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+            ],
+            "blocking_violations": [],
+            "regressions": [],
+            "contract_checks": {
+              "spyglass_identity_v2.unequal_optical_ends": {
+                "passed": true,
+                "evidence": "In the upper view, both ends are simultaneously visible: the left rear eyepiece is physically narrow while the right front objective housing is clearly wider; the lower three-quarter view preserves the same narrow-left and broad-right orientation."
+              }
+            },
+            "visual_contract_signature": "f8a98ebaf15b472c49cc29575d2dc3c74b08a91a4ddaee5a771e247b309b629f",
+            "raw_passed": true,
+            "raw_violations": [
+              "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+              "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+              "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+            ],
+            "observations": [
+              "The front objective is distinctly wider than the rear eyepiece, but the visible diameter difference appears closer to about twice rather than the requested roughly three times.",
+              "The three-quarter view appears to include an additional brass telescoping stage or seam compared with the upper side view, so the two depictions do not read as perfectly identical geometry.",
+              "The upper view has slight perspective and exposes the front lens face rather than reading as a completely strict orthographic side view."
+            ],
+            "review_status": "passed_with_warnings"
+          },
+          "fully_clean": false,
+          "selected": true
+        }
+      ],
+      "qc_policy": "0",
+      "qc_selected_attempt": 1
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "input_fingerprint": "44a868dea016248864c325255dae357c4ba91de0dc59f6856d0b295a8fd7ac09",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "030",
+        "032",
+        "033",
+        "034",
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island"
+      ],
+      "writer_prompt_sha256": "5b506c04176d21db1811da167ea4cfb71578ad3818ca1f9d16c708421f0bcc5a",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If food is everywhere, how can eating the same few things still fail you?",
+            "viewer_expectation": "Plenty of food plus fresh water should cover the basic needs for long-term survival.",
+            "visible_contradiction": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+            "frame_zero": "A full water barrel, coconuts and racks of fish fill the frame, while the meal plate holds only fish and coconut.",
+            "character_action": "The captain compares the packed food rack with the narrow meal, gives a small skeptical look, then studies the available island foods through the spyglass.",
+            "reaction": "A raised eyebrow and brief pause show that plenty of food is not the same as a complete diet.",
+            "activity": "testing whether abundance also means enough variety",
+            "location": "a simple island food shelter beside coconut trees",
+            "topic_link": "A person can have enough calories yet still miss nutrients the body needs if the diet stays too limited.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Food and water are important, but having supplies does not remove every long-term survival problem.",
+            "payoff": "Living for many years would require a diet that keeps supplying the nutrients the body needs, not just a large amount of food.",
+            "entry_variant": "pattern_inspection",
+            "entry_bridge": {
+              "a_end": "The captain holds the spyglass toward the repeated foods, with the narrow eyepiece at his visible eye and the wide objective facing them.",
+              "b_start": "From an oblique rear-side view, the same correct spyglass orientation points toward the food before the view matches forward.",
+              "reveal": "The repeated meals become a closer look at what the diet provides and what a very narrow diet can miss.",
+              "world_entry": "A host-free close view compares several repeated island meals with the range of nutrients a human body needs over time."
+            },
+            "novelty": {
+              "action_family": "abundance versus variety",
+              "tension_family": "enough food versus complete nutrition",
+              "prop_family": "fish rack, coconuts and meal plate",
+              "reveal_family": "repeated meals expose a long-term nutrition gap"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "A full water tank looks safe, so why can this island still run dry?",
+            "viewer_expectation": "A large tank of fresh water seems to solve the island's drinking problem.",
+            "visible_contradiction": "The tank is full, but the rain catchment feeding it is completely dry under a clear sky.",
+            "frame_zero": "A full rain tank stands beside a dry roof gutter and sun-baked catchment surface, with no rain clouds visible.",
+            "character_action": "The captain looks from the full tank to the dry catchment, pauses, then aims the spyglass toward the clear horizon.",
+            "reaction": "His small doubtful smile shows that stored water and reliable future water are different things.",
+            "activity": "checking whether a full supply can replace itself",
+            "location": "an island rainwater catchment beside a small shelter",
+            "topic_link": "Stored fresh water lasts only if enough new water arrives before the stored supply is used up.",
+            "claim_mode": "conservative",
+            "factual_anchor": "A secure supply can still be disrupted, so survival depends on more than what is available at one moment.",
+            "payoff": "A full tank can support you for a time, but long-term survival needs a dependable way to replace the water you use.",
+            "entry_variant": "changed_viewpoint",
+            "entry_bridge": {
+              "a_end": "The captain faces the dry horizon with the small eyepiece at his visible eye and the larger objective pointing away from him.",
+              "b_start": "An oblique rear-side view preserves the grip and direction before matching into his outward-looking view.",
+              "reveal": "The clear sky gives way to a wider view of how rainfall, storage and daily water use must stay in balance.",
+              "world_entry": "A host-free island view shows a rain tank falling over time while a long dry period brings little new water."
+            },
+            "novelty": {
+              "action_family": "supply replacement test",
+              "tension_family": "full now versus refill later",
+              "prop_family": "rain tank and dry catchment",
+              "reveal_family": "stored water becomes a flow problem"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If the camp can support you, what happens when you suddenly need outside help?",
+            "viewer_expectation": "A strong shelter with food and water can make one person fully self-sufficient.",
+            "visible_contradiction": "The camp is well supplied, but a large SOS cloth lies on the beach with nobody answering it.",
+            "frame_zero": "Food, water and a sturdy shelter are ready behind a large SOS cloth spread clearly on the empty beach.",
+            "character_action": "The captain studies the safe camp, then the unanswered SOS, and uses the spyglass to search the empty horizon.",
+            "reaction": "He pauses with a restrained frown as the difference between surviving alone and getting help becomes clear.",
+            "activity": "testing the limits of self-sufficiency",
+            "location": "a well supplied island camp beside an open beach",
+            "topic_link": "Some injuries, illnesses or emergencies can exceed what one person can handle without medical care, rescue or other outside support.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Food and water do not remove every danger, and a secure camp can still face problems one person cannot solve alone.",
+            "payoff": "Even a well supplied island cannot guarantee endless survival because serious problems may require help that the island cannot provide.",
+            "entry_variant": "far_target",
+            "entry_bridge": {
+              "a_end": "The captain searches the empty horizon, with the small eyepiece at his visible eye and the wide objective aimed outward.",
+              "b_start": "An oblique side-rear view keeps both lens ends clear before matching forward toward the distant horizon.",
+              "reveal": "The empty horizon shifts into examples of emergencies where food, water and shelter alone are not enough.",
+              "world_entry": "A host-free survival scene shows a serious injury beside good supplies, with medical help far beyond the island."
+            },
+            "novelty": {
+              "action_family": "self-sufficiency limit",
+              "tension_family": "working camp versus unavailable help",
+              "prop_family": "large SOS cloth and stocked camp",
+              "reveal_family": "an empty horizon exposes dependence on backup"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "030",
+        "032",
+        "033",
+        "034",
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island"
+      ],
+      "reviewer_prompt_sha256": "5b883812a428a889dd769dc06119875912bfc35e7ba6fd933f77f762ff672b29",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 3,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The first frame gives a clear topic-specific contradiction: there is plenty of food, but the visible meal has very little variety. That naturally raises a long-term survival question without needing the written rationale. The captain only needs to compare the stores and plate, react, and use the spyglass, so A stays within the action limit. The pattern-inspection entry fits the nutrition payoff and can add useful information during the transition. The claim remains conditional rather than saying this exact fish-and-coconut diet must cause a deficiency. This is also meaningfully different from the recent storm-damage opening."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 2,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [],
+            "reason": "A full tank beside a dry catchment makes the present-supply-versus-future-refill problem visible immediately, and the payoff follows directly from that evidence. The captain's look from tank to catchment to horizon is restrained, readable and limited to three actions. The changed-viewpoint entry can move naturally into rainfall, storage and use over time. The main weakness is novelty: the recent opening for this same topic already used a full rain barrel as evidence that current supplies do not guarantee long-term survival, so this feels related even though the refill mechanism is more specific. 'Run dry' and 'stay in balance' are understandable but slightly less direct than plain first-listen wording."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The stocked camp and unanswered SOS create a clear self-sufficiency question, although the first frame does not yet show what emergency caused the need for help, so the contradiction is a little less immediate than c1 or c2. The captain's pause and horizon search fit his observant character, and the far-target spyglass transition is especially natural here. The later injury example supports the conservative claim that some emergencies can exceed what one person can handle alone. It overlaps with the recent opening's broader idea that good supplies do not remove every danger, but the specific payoff about unavailable medical or rescue help is materially different."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 3,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The first frame gives a clear topic-specific contradiction: there is plenty of food, but the visible meal has very little variety. That naturally raises a long-term survival question without needing the written rationale. The captain only needs to compare the stores and plate, react, and use the spyglass, so A stays within the action limit. The pattern-inspection entry fits the nutrition payoff and can add useful information during the transition. The claim remains conditional rather than saying this exact fish-and-coconut diet must cause a deficiency. This is also meaningfully different from the recent storm-damage opening.",
+          "repetition_evidence": [],
+          "weighted_score": 89
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 2,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [],
+          "reason": "A full tank beside a dry catchment makes the present-supply-versus-future-refill problem visible immediately, and the payoff follows directly from that evidence. The captain's look from tank to catchment to horizon is restrained, readable and limited to three actions. The changed-viewpoint entry can move naturally into rainfall, storage and use over time. The main weakness is novelty: the recent opening for this same topic already used a full rain barrel as evidence that current supplies do not guarantee long-term survival, so this feels related even though the refill mechanism is more specific. 'Run dry' and 'stay in balance' are understandable but slightly less direct than plain first-listen wording.",
+          "repetition_evidence": [],
+          "weighted_score": 85
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The stocked camp and unanswered SOS create a clear self-sufficiency question, although the first frame does not yet show what emergency caused the need for help, so the contradiction is a little less immediate than c1 or c2. The captain's pause and horizon search fit his observant character, and the far-target spyglass transition is especially natural here. The later injury example supports the conservative claim that some emergencies can exceed what one person can handle alone. It overlaps with the recent opening's broader idea that good supplies do not remove every danger, but the specific payoff about unavailable medical or rescue help is materially different.",
+          "repetition_evidence": [],
+          "weighted_score": 87
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

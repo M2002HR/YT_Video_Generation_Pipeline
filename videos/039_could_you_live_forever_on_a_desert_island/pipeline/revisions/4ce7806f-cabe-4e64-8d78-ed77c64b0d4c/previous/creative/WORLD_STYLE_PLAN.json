@@ -1,0 +1,32 @@
+{
+  "style_id": "saltwind_island_fieldguide_001",
+  "decision": "reuse",
+  "reuse_of": "saltwind_island_fieldguide_001",
+  "medium": "retro educational illustration",
+  "secondary_treatment": null,
+  "texture_family": "sun-bleached, salt-weathered illustrative surface texture with fine sand grain and driftwood-like abrasion carried edge-to-edge through the environment",
+  "palette_summary": "faded parchment cream, sun-bleached sand, dry palm and driftwood browns, muted sea-glass teal, washed sky blue, storm-slate gray, and restrained rust-orange accents for hazards",
+  "line_treatment": "clean but weathered field-guide draftsmanship with restrained contour lines, simplified natural forms, subtle print wear, and lightly abraded edges on illustrated objects",
+  "lighting": "hard tropical daylight softened by salt haze, with warm sunlit sand, pale reflected sky light, and occasional storm-slate shadow for danger or water scarcity beats",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Desert-island survival imagery only: open ocean, shoreline, palms and scrub, exposed rock, rain capture, freshwater springs or groundwater cues where factually appropriate, desalination equipment, food scarcity, injury, disease, aging, and human survival needs. Vary scale from bodily hydration mechanisms to island-wide resource conditions without inventing guaranteed freshwater sources.",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no physical field-guide page, border, card, book frame, gutter, binding, inset illustration window, captions, labels, embedded text, or unsupported factual imagery. Do not depict seawater as safe hydration or imply desalination works without equipment and energy.",
+  "reason": "The operator explicitly directs reuse of saltwind_island_fieldguide_001, and its sun-bleached retro educational island-survival language is strongly aligned with seawater hazards, rain collection, freshwater uncertainty, desalination, and broader survival limits. Although it is among the most recently used styles, the explicit reuse directive overrides normal recency-avoidance tradeoffs.",
+  "subject_affinities": [
+    "desert-island survival",
+    "freshwater scarcity",
+    "seawater dehydration",
+    "rainwater collection",
+    "island springs and groundwater",
+    "desalination",
+    "food and shelter survival",
+    "injury and disease risk",
+    "aging and human biological limits"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

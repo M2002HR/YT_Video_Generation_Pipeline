@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "operator_upload",
+  "selection_mode": "operator_upload",
+  "file": "assets/music/operator_background.mp3",
+  "source_url": null,
+  "source_sha256": "fa8132d7d36522d932f3029b9ee42c993a79a87163c3e46db61047abb0e7cf88",
+  "license": "Operator-supplied; publication rights must be verified by the operator.",
+  "original_name": "Calima - Full Moon (freetouse.com).mp3",
+  "library_origin": "upload",
+  "selected_at": "2026-09-18T05:11:29.176286+00:00"
+}

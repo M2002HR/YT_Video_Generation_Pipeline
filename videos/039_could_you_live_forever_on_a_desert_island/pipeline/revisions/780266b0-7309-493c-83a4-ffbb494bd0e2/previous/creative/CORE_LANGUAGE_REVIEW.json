@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "core",
+  "content_fingerprint": "30104b3d2e94e1566d69d92a47e8eed2949eacbe0b286b6552f58439d80d85d7",
+  "reference_fingerprint": "a1427dba44461a64a75caada8176c548f79cf74e0c69f819283ed0fc63f093ad",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "abbd3e5695e5f470a97ba91ffccbc36e02cd995d97e0f8dd56a5821b957d710d",
+  "input_fingerprint": "f29cd632dd858799a7edec08ee6af89f5d6c2b9202f12ad2b6274449b010615d",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "opening_question_spark": "Surrounded by water, how could thirst still be your first big problem?",
+        "entry_transition": "All that seawater is not the fresh water your body needs.",
+        "body_01": "Seawater has too much salt for your body.",
+        "body_02": "Your kidneys use water to remove that salt.",
+        "body_03": "Drink seawater, and you may lose more water than you gain.",
+        "body_04": "Rain can help if you collect it.",
+        "body_05": "Some islands have springs or fresh groundwater.",
+        "body_06": "Others may have no reliable fresh water.",
+        "body_07": "Desalination can turn seawater into fresh water.",
+        "body_08": "But it needs equipment, energy, and care.",
+        "body_09": "Food, injury, disease, and aging still matter.",
+        "optional_closing": "Even perfect fresh water cannot make island life last forever."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-18T04:09:36Z"
+}

@@ -1,0 +1,955 @@
+{
+  "schema_version": 2,
+  "video_id": "039",
+  "topic": "Could You Live Forever on a Desert Island??",
+  "created_at": "2026-09-18T04:05:47Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:12Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:47:02Z",
+      "body_beats": 10,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor_visual_qc": {
+      "status": "FAILED_VALIDATION",
+      "updated_at": "2026-09-18T04:17:22Z",
+      "message": "world_style_anchor_visual_qc never produced valid JSON after 3 attempts: Expecting ',' delimiter: line 19 column 2 (char 2234); last output began '{\\n\"passed\": false,\\n\"description\": \"A single vertical retro educational style sheet is visible on an aged parchment-like surface. It contains a large bordered pale wash area, framed sand and driftwood '",
+      "error_code": null
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:12Z",
+      "artifact": "spyglass_design_sheet_v2.png"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "requested_mode": "manual",
+      "requested_character_id": "sea_captain",
+      "resolved_character_id": "sea_captain",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:09Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:47:11Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:12Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:12Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:12Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T07:47:12Z",
+      "artifact": "SPYGLASS_ENTRY_DIRECTION.txt"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:52:23Z",
+      "sha256": "4ebe04994b375725667986414f2f538ad56eb986ba9a854e5abd39153ae6dd12",
+      "model": "nano_banana_2",
+      "profile_id": "spyglass_portal"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:11:07Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:53:57Z",
+      "sha256": "0e585f286239da67b23a2942594a5ccd835d8719318a8a6b368cbafa56f3f9d3",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:55:38Z",
+      "sha256": "14051b2e6bce0d2f641186aea7de00a023ec798dc848011476a3c6b25011ec1e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:57:34Z",
+      "sha256": "4e0f4bbc7187cc85af653ae5d0d5dd1ab7e2696b2d4e34f161efb230a0539c03",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T07:59:18Z",
+      "sha256": "20dde6f6805afd912a099a32091b028c7ad206d274c777f83bf833195cfbfdf3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:00:56Z",
+      "sha256": "6a4f15fb13b766095a5b1906cb5cba1673d0a99c3c8dd28353fb5de2b2734eca",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:02:53Z",
+      "sha256": "4708404525812113ce914db579485eb4165cd6a44ac0c750122a1e950d9af971",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:04:53Z",
+      "sha256": "c7ac5368fdc2d930a015c52351c8196c3d7034730d867ed79a8e0644a8f94d38",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:06:55Z",
+      "sha256": "39dc4dfe70524de7f90b32e64208b82743f7cf948ecfd8b7685af96a8c563812",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:08:51Z",
+      "sha256": "7b37a5f15cc47d8521d2c60f99dc3577be4e10e28884c70d3ef9de59c2a122ca",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:11:06Z",
+      "sha256": "67e664a7275e9cd444298899c35b6a76f72177882510951a0fee551262ff32db",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:11:09Z",
+      "boundaries": 9
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:11:45Z",
+      "prompt_sha256": "9214734f244733ea4fd32c1bf17f9794482ead6c199b9aeaa49b1a887a15e98f"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:12:08Z",
+      "prompt_sha256": "4b51e4b33b81fa164a902124f827b74fc281b12b92c9b3582d581f94999e1c25"
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:13:53Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "23e3afde53cbd2e2838fec467091b07b541cd8588b01d8f00b8c0c5380c31342"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:16:02Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "711ccdf823e04582db82d286e81c0ba6528d47eb25b60d44f3edf9ed64dac65c"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T08:16:04Z",
+      "body_images": 10
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 133.711,
+      "at": "2026-09-18T04:08:01Z",
+      "selected_id": "c1",
+      "concept_id": "6f3e148b27d1492ba47d"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 31.243,
+      "at": "2026-09-18T04:08:34Z",
+      "words": 108
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 61.248,
+      "at": "2026-09-18T04:09:36Z",
+      "words": 107
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.58,
+      "at": "2026-09-18T04:10:21Z",
+      "activity": "testing whether abundant seawater can actually solve the need for drinking water"
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 76.487,
+      "at": "2026-09-18T04:11:39Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 22.331,
+      "at": "2026-09-18T04:12:02Z",
+      "style_id": "saltwind_island_fieldguide_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.297,
+      "at": "2026-09-18T04:12:05Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 40.059,
+      "at": "2026-09-18T04:12:46Z",
+      "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.129,
+      "at": "2026-09-18T04:15:36Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.277,
+      "at": "2026-09-18T04:59:20Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.417,
+      "at": "2026-09-18T04:59:29Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.277,
+      "at": "2026-09-18T05:08:47Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.387,
+      "at": "2026-09-18T05:08:56Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltwind_island_fieldguide_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 34.394,
+      "at": "2026-09-18T05:10:42Z",
+      "style_id": "saltcut_tropical_survival_linocut_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.081,
+      "at": "2026-09-18T05:10:44Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 40.434,
+      "at": "2026-09-18T05:11:26Z",
+      "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.257,
+      "at": "2026-09-18T05:11:38Z",
+      "opening_activity": "testing whether abundant seawater can actually solve the need for drinking water",
+      "opening_location": "rocky shoreline beside a clear tide pool",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "resource test",
+        "tension_family": "abundance versus usefulness",
+        "prop_family": "salt-crusted drinking cup",
+        "reveal_family": "the obvious supply cannot meet the need"
+      },
+      "situation_summary": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+      "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+      "entry_variant": "reflection_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 86.547,
+      "at": "2026-09-18T05:13:05Z",
+      "sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875",
+      "model": "nano_banana_2",
+      "catalog_path": "024_saltcut_tropical_survival_linocut_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 22.142,
+      "at": "2026-09-18T05:13:29Z",
+      "prompt_sha256": "52275a1b5d0e7804ecf245d55937fb9364f873e65f3537385dab1439f02bb704"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 118.831,
+      "at": "2026-09-18T05:15:29Z",
+      "sha256": "7f6f379651df850f6a4957734432bbf7fed6a48d4331d7102b28e13ca295dcee",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 23.599,
+      "at": "2026-09-18T05:15:54Z",
+      "profile_id": "orb_portal"
+    },
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 118.452,
+      "at": "2026-09-18T05:18:52Z",
+      "selected_id": "c1",
+      "concept_id": "4defcaf186f57935cb04"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 55.13,
+      "at": "2026-09-18T05:19:48Z",
+      "words": 112
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 94.503,
+      "at": "2026-09-18T05:21:23Z",
+      "words": 112
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 46.306,
+      "at": "2026-09-18T05:22:11Z",
+      "activity": "testing whether abundant food also provides enough dietary variety for long-term survival"
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 61.497,
+      "at": "2026-09-18T05:23:14Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 25.098,
+      "at": "2026-09-18T05:23:40Z",
+      "style_id": "saltcut_tropical_survival_linocut_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.007,
+      "at": "2026-09-18T05:23:42Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 43.486,
+      "at": "2026-09-18T05:24:26Z",
+      "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.22,
+      "at": "2026-09-18T06:22:12Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.168,
+      "at": "2026-09-18T06:23:01Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 64.173,
+      "at": "2026-09-18T06:24:07Z",
+      "reuse_of": "saltcut_tropical_survival_linocut_001",
+      "sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875",
+      "usage_count": 2
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 34.538,
+      "at": "2026-09-18T06:24:43Z",
+      "prompt_sha256": "f6fd57f499cf20788bc2fc2d61e89de2edb05d170012a22ddd2d8b10448c9d79"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 254.466,
+      "at": "2026-09-18T06:28:58Z",
+      "sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_design_sheet",
+      "status": "DONE",
+      "elapsed_seconds": 82.624,
+      "at": "2026-09-18T06:30:22Z",
+      "sha256": "32abc89e57aa6c3647a56eaa59086769f4c4e7650ae55120a72594332e9bc87a",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 25.386,
+      "at": "2026-09-18T06:30:49Z",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.593,
+      "at": "2026-09-18T07:06:02Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.233,
+      "at": "2026-09-18T07:06:12Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.248,
+      "at": "2026-09-18T07:47:01Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.596,
+      "at": "2026-09-18T07:47:11Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 310.965,
+      "at": "2026-09-18T07:52:23Z",
+      "sha256": "4ebe04994b375725667986414f2f538ad56eb986ba9a854e5abd39153ae6dd12",
+      "model": "nano_banana_2",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 69.624,
+      "at": "2026-09-18T07:53:57Z",
+      "sha256": "0e585f286239da67b23a2942594a5ccd835d8719318a8a6b368cbafa56f3f9d3",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 78.792,
+      "at": "2026-09-18T07:55:38Z",
+      "sha256": "14051b2e6bce0d2f641186aea7de00a023ec798dc848011476a3c6b25011ec1e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 90.814,
+      "at": "2026-09-18T07:57:34Z",
+      "sha256": "4e0f4bbc7187cc85af653ae5d0d5dd1ab7e2696b2d4e34f161efb230a0539c03",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 81.859,
+      "at": "2026-09-18T07:59:18Z",
+      "sha256": "20dde6f6805afd912a099a32091b028c7ad206d274c777f83bf833195cfbfdf3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 72.689,
+      "at": "2026-09-18T08:00:56Z",
+      "sha256": "6a4f15fb13b766095a5b1906cb5cba1673d0a99c3c8dd28353fb5de2b2734eca",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 81.733,
+      "at": "2026-09-18T08:02:53Z",
+      "sha256": "4708404525812113ce914db579485eb4165cd6a44ac0c750122a1e950d9af971",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 93.865,
+      "at": "2026-09-18T08:04:53Z",
+      "sha256": "c7ac5368fdc2d930a015c52351c8196c3d7034730d867ed79a8e0644a8f94d38",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 93.832,
+      "at": "2026-09-18T08:06:55Z",
+      "sha256": "39dc4dfe70524de7f90b32e64208b82743f7cf948ecfd8b7685af96a8c563812",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 90.871,
+      "at": "2026-09-18T08:08:51Z",
+      "sha256": "7b37a5f15cc47d8521d2c60f99dc3577be4e10e28884c70d3ef9de59c2a122ca",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 103.031,
+      "at": "2026-09-18T08:11:06Z",
+      "sha256": "67e664a7275e9cd444298899c35b6a76f72177882510951a0fee551262ff32db",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1122.529,
+      "at": "2026-09-18T08:11:07Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.413,
+      "at": "2026-09-18T08:11:09Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 34.717,
+      "at": "2026-09-18T08:11:45Z",
+      "prompt_sha256": "9214734f244733ea4fd32c1bf17f9794482ead6c199b9aeaa49b1a887a15e98f"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 22.091,
+      "at": "2026-09-18T08:12:08Z",
+      "prompt_sha256": "4b51e4b33b81fa164a902124f827b74fc281b12b92c9b3582d581f94999e1c25"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 103.698,
+      "at": "2026-09-18T08:13:53Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "23e3afde53cbd2e2838fec467091b07b541cd8588b01d8f00b8c0c5380c31342"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 127.971,
+      "at": "2026-09-18T08:16:02Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "711ccdf823e04582db82d286e81c0ba6528d47eb25b60d44f3edf9ed64dac65c"
+    }
+  ],
+  "updated_at": "2026-09-18T08:16:04Z"
+}

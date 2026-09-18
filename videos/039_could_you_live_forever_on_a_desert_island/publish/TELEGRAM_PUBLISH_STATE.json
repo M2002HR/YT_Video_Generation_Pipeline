@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-18T08:20:04.085381+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-18T08:20:04.085185+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15415,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 3814062,
+      "sha256": "086183df09ff3ab00f13e74d434134f0b04c4f79d827027a7277a37c5f15cfec",
+      "duration_seconds": 42.537,
+      "elapsed_seconds": 7.61,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "039_could_you_live_forever_on_a_desert_island",
+        "duration_seconds": 42.527,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.1,
+          "transition_end": 8.04
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ],
+          "unverified": [
+            "gemini_world_style_anchor"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 171.613,
+          "realtime_factor": 4.035,
+          "peak_child_rss_mb": 1419.9,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 039_could_you_live_forever_on_a_desert_island\n⏱ Duration: 0:43\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n⚠️ Unverified receipts: 1\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 2:52 wall (4.035x realtime) · 2 thread(s) · peak 1419.9 MB\nArtifact: 086183df09ff · Delivery: compressed"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "86e9f6607bd0ba3cf5f1448e0f49b9b490eb35714c18bb2d8cf25c454dfbd112",
+  "concept_id": "6f3e148b27d1492ba47d",
+  "character_id": "moss_cloaked_crone",
+  "presentation_id": "orb_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "Surrounded by water, how could thirst still be your first big problem?",
+    "viewer_expectation": "Water surrounds the island, so finding enough to drink should be easy.",
+    "visible_contradiction": "Clear water fills the view, but the only drinking cup is dry and crusted with salt.",
+    "frame_zero": "Beside a bright tide pool, an empty metal cup shows a thick white salt crust around its rim.",
+    "character_action": "She rubs one salt crystal between two long fingers, studies the dry cup, then angles it toward the water.",
+    "reaction": "A slow side-eye and a small crooked grin: the obvious supply is useless.",
+    "activity": "testing whether abundant seawater solves the need for drinking water",
+    "location": "rocky shoreline beside a clear tide pool",
+    "topic_link": "A resource can look unlimited but still be unusable for a basic human need.",
+    "factual_anchor": "Seawater has too much salt for humans to drink safely; long-term survival needs a reliable source of fresh water.",
+    "payoff": "Ocean water cannot replace fresh water; reliable freshwater is a basic long-term limit.",
+    "claim_mode": "conservative",
+    "entry_variant": "reflection_reveal",
+    "entry_bridge": {
+      "a_end": "Her fingers stop beside the dry cup as the orb appears in the tide pool's reflection.",
+      "b_start": "Her moss sleeve and long fingers tilt the orb into the same reflected line.",
+      "reveal": "The water all around you is not the fresh water your body needs.",
+      "world_entry": "Host-free close-up of clear seawater evaporating and leaving salt crystals beside a separate cup of fresh water."
+    },
+    "novelty": {
+      "action_family": "resource test",
+      "tension_family": "abundance versus usefulness",
+      "prop_family": "salt-crusted drinking cup",
+      "reveal_family": "the obvious supply cannot meet the need"
+    }
+  },
+  "created_at": "2026-09-18T04:08:01Z"
+}

@@ -1,0 +1,27 @@
+{
+  "presentation_profile": "spyglass_portal",
+  "spark_end": 4.1,
+  "transition_end": 8.04,
+  "max_rate_adjust": 0.2,
+  "clips": [
+    {
+      "label": "Intro A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/assets/opening/question_intro_trimmed.mp4",
+      "target": 4.1,
+      "actual": 4.083,
+      "speed_factor": 1.022444,
+      "rate_adjusted": true
+    },
+    {
+      "label": "Intro B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/assets/opening/spyglass_transition_trimmed.mp4",
+      "target": 3.94,
+      "actual": 3.958,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    }
+  ],
+  "opening_total_seconds": 8.041,
+  "opening_total_target_seconds": 8.04,
+  "opening_total_drift_seconds": 0.001
+}

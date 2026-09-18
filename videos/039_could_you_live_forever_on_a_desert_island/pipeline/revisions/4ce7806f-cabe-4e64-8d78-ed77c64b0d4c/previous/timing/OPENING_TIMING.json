@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 45.871,
+  "spark_start": 0.02,
+  "spark_end": 4.8,
+  "spark_duration": 4.78,
+  "transition_start": 5.18,
+  "transition_end": 8.46,
+  "transition_duration": 3.28,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 4.8,
+  "clip_b_target_seconds": 3.66,
+  "body_start": 8.82,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Surrounded by water, how could thirst still be your first big problem?",
+      "speech_start": 0.02,
+      "speech_end": 4.8,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "All that seawater is not the fresh water your body needs.",
+      "speech_start": 5.18,
+      "speech_end": 8.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Seawater has too much salt for your body.",
+      "speech_start": 8.82,
+      "speech_end": 11.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Your kidneys use water to remove that salt.",
+      "speech_start": 11.66,
+      "speech_end": 14.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Drink seawater, and you may lose more water than you gain.",
+      "speech_start": 14.66,
+      "speech_end": 19.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Rain can help if you collect it.",
+      "speech_start": 19.98,
+      "speech_end": 21.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Some islands have springs or fresh groundwater.",
+      "speech_start": 21.16,
+      "speech_end": 23.74,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Others may have no reliable fresh water.",
+      "speech_start": 24.46,
+      "speech_end": 26.62,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Desalination can turn seawater into fresh water.",
+      "speech_start": 27.22,
+      "speech_end": 30.14,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "But it needs equipment, energy, and care.",
+      "speech_start": 30.14,
+      "speech_end": 34.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "Food, injury, disease, and aging still matter.",
+      "speech_start": 34.22,
+      "speech_end": 37.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Even perfect fresh water cannot make island life last forever.",
+      "speech_start": 37.34,
+      "speech_end": 41.4,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "For more island survival questions, leave a like and subscribe.",
+      "speech_start": 40.96,
+      "speech_end": 45.18,
+      "match_confidence": 1.0
+    }
+  ]
+}

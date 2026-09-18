@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 35.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Seawater has too much salt for your body.",
+      "visual": "Full-bleed retro educational illustration of a shallow tide pool evaporating beside the open ocean, with pale salt crystals crusting the rocks and concentrated brine glinting under hard tropical sun.",
+      "purpose": "show that seawater contains a heavy salt load unsuitable for normal hydration",
+      "visual_fingerprint": "macro shoreline detail + visible salt crust and brine + low rock-level angle + harsh sunlit tide-pool zone + diagonal ocean edge composition",
+      "type": "literal",
+      "continuity": "begin inside the island environment with a close physical example of seawater salinity",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Your kidneys use water to remove that salt.",
+      "visual": "Full-bleed field-guide-style anatomical cutaway of a human torso centered against a softly abstracted island backdrop, kidneys emphasized naturally as water flows through the urinary system with no labels or text.",
+      "purpose": "show that the kidneys require body water to excrete excess salt",
+      "visual_fingerprint": "anatomical torso cutaway + kidneys processing water + straight-on medium framing + simplified interior-body setting + centered symmetrical composition",
+      "type": "diagram",
+      "continuity": "shift from the salty environment to the body's internal response",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Drink seawater, and you may lose more water than you gain.",
+      "visual": "A weathered castaway crouches beside the surf after drinking from cupped hands, while an almost-empty freshwater gourd lies nearby and the blazing shoreline stretches behind them, emphasizing worsening dehydration rather than relief.",
+      "purpose": "visually pay off that drinking seawater can worsen net water loss",
+      "visual_fingerprint": "dehydrated castaway + drinking at surf edge + wide three-quarter shoreline view + exposed blazing beach + empty freshwater vessel as symbolic object",
+      "type": "literal",
+      "continuity": "return from internal physiology to the practical survival consequence on the beach",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Rain can help if you collect it.",
+      "visual": "During a slate-gray tropical shower, broad palm leaves and a stretched scrap of cloth funnel rainwater into a clean container set on sand, with droplets visibly converging toward the catch vessel.",
+      "purpose": "show rainwater collection as a usable freshwater opportunity",
+      "visual_fingerprint": "rain-catching cloth and palm leaves + water funneling into container + high three-quarter angle + storm-dark beach clearing + converging V-shaped composition",
+      "type": "literal",
+      "continuity": "move from failed seawater hydration to a viable freshwater source",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Some islands have springs or fresh groundwater.",
+      "visual": "A shaded rocky interior hollow where clear freshwater seeps naturally from a stone face into a small pool beneath dense island scrub, with the ocean only faintly visible far below.",
+      "purpose": "show that certain islands can contain natural springs or accessible fresh groundwater",
+      "visual_fingerprint": "rock spring seep + clear pool + low upward angle + shaded inland ravine + water emerging from stone as focal reveal",
+      "type": "subject_world",
+      "continuity": "travel inland from temporary rainfall collection to a possible natural freshwater source",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Others may have no reliable fresh water.",
+      "visual": "A high overhead view of a small dry island surrounded by turquoise ocean, its interior showing sun-baked scrub, bare rock, and an empty cracked rain basin with no stream or spring visible.",
+      "purpose": "show that an island may lack any dependable freshwater source",
+      "visual_fingerprint": "entire dry island + empty cracked catch basin + bird's-eye scale + cloudless drought conditions + isolated island centered in surrounding sea",
+      "type": "literal",
+      "continuity": "contrast the spring-bearing island with a different island that is visibly dry",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Desalination can turn seawater into fresh water.",
+      "visual": "At the shoreline, a compact improvised desalination setup draws seawater through tubing and a condensation chamber, producing a small stream of clear water into a separate vessel.",
+      "purpose": "show desalination converting seawater into freshwater",
+      "visual_fingerprint": "desalination apparatus + seawater intake and clear-water output + eye-level close-medium shot + rocky shore work area + left-to-right process composition",
+      "type": "diagram",
+      "continuity": "introduce a technological solution after the dry-island limitation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "But it needs equipment, energy, and care.",
+      "visual": "A wider worksite view shows the same class of desalination system surrounded by a solar panel, fuel or power components, tools, replacement filters, and a person carefully maintaining a fouled intake near the surf.",
+      "purpose": "show the material, energy, and maintenance requirements of desalination",
+      "visual_fingerprint": "maintenance worker and desalination gear + cleaning clogged intake + wide oblique worksite shot + equipment-strewn coastal shelf + solar panel and tools forming foreground anchors",
+      "type": "literal",
+      "continuity": "expand from the clean conversion process to the support systems required to keep it operating",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Food, injury, disease, and aging still matter.",
+      "visual": "A full-bleed island survival scene at dusk shows four distinct but naturally integrated pressures: sparse edible plants and an empty fishing line, a bandaged leg, a feverish resting figure under a palm shelter, and an older survivor moving slowly with a driftwood staff.",
+      "purpose": "show that freshwater does not eliminate other long-term survival limits",
+      "visual_fingerprint": "multiple survival pressures + scarce food, injury care, illness and aging + broad dusk tableau + inland camp zone + layered foreground-to-background human needs",
+      "type": "subject_world",
+      "continuity": "widen beyond water technology to the remaining limits on long-term survival",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Even perfect fresh water cannot make island life last forever.",
+      "visual": "At sunset, a pristine vessel overflowing with clear freshwater sits in the foreground while an aging, weather-beaten island camp and exhausted survivors recede toward the horizon, the abundant water visibly unable to solve every other need.",
+      "purpose": "close on the idea that unlimited freshwater alone cannot guarantee indefinite island survival",
+      "visual_fingerprint": "overflowing freshwater vessel versus failing camp + no active water collection + low foreground-heavy angle + amber sunset shoreline + symbolic contrast between abundant water and declining human condition",
+      "type": "metaphor",
+      "continuity": "remain in the island world and distill the preceding survival pressures into one final contrast",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

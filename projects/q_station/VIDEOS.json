@@ -122,6 +122,29 @@
     },
     {
       "video_id": "038_could_you_live_forever_on_a_desert_island"
+    },
+    {
+      "video_id": "039",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-18T07:47:11.395125+00:00"
+    },
+    {
+      "video_id": "039_could_you_live_forever_on_a_desert_island"
     }
   ]
 }
