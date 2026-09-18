@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "status": "REUSED",
-  "created_at": "2026-09-18T06:22:58.471208+00:00",
-  "timing_sha256": "ab0a9db023bc4020e5f8519ca880217626a875057aa4efec8e2f54fa32596169",
+  "created_at": "2026-09-18T12:48:44.849693+00:00",
+  "timing_sha256": "a50d69dcefdca4fdd4e3f8849e4e4e3751efd6db9e66fd79418f25e1578aa420",
   "flow_model": "gemini_omni_1_1_flash",
   "verified_source_seconds": [
     4,
@@ -13,7 +13,7 @@
   "opening_speed_tolerance": 0.2,
   "clips": {
     "A": {
-      "target_seconds": 4.1,
+      "target_seconds": 4.88,
       "preferred_source_seconds": 8,
       "supported_source_seconds": [
         4,
@@ -21,13 +21,13 @@
         8,
         10
       ],
-      "selected_source_seconds": 4,
-      "estimated_speed_factor": 1.025,
-      "estimated_rate_adjusted": true,
-      "estimated_headroom_seconds": -0.1
+      "selected_source_seconds": 6,
+      "estimated_speed_factor": 0.813333,
+      "estimated_rate_adjusted": false,
+      "estimated_headroom_seconds": 1.12
     },
     "B": {
-      "target_seconds": 3.94,
+      "target_seconds": 4.14,
       "preferred_source_seconds": 4,
       "supported_source_seconds": [
         4,
@@ -36,11 +36,11 @@
         10
       ],
       "selected_source_seconds": 4,
-      "estimated_speed_factor": 0.985,
-      "estimated_rate_adjusted": false,
-      "estimated_headroom_seconds": 0.06
+      "estimated_speed_factor": 1.035,
+      "estimated_rate_adjusted": true,
+      "estimated_headroom_seconds": -0.14
     }
   },
   "changed_from_previous": false,
-  "reused_at": "2026-09-18T07:47:07.592074+00:00"
+  "reused_at": "2026-09-18T12:52:57.178241+00:00"
 }

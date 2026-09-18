@@ -7,7 +7,7 @@
   "stages": {
     "visual_plan": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:12Z",
+      "updated_at": "2026-09-18T12:53:02Z",
       "artifact": "VISUAL_PLAN.json"
     },
     "q_station_narration_ready": {
@@ -24,12 +24,12 @@
     },
     "book_design_sheet": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:12Z",
+      "updated_at": "2026-09-18T12:53:02Z",
       "artifact": "spyglass_design_sheet_v2.png"
     },
     "character_resolution": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "requested_mode": "manual",
       "requested_character_id": "sea_captain",
       "resolved_character_id": "sea_captain",
@@ -39,37 +39,37 @@
     },
     "opening_concept": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "artifact": "OPENING_CONCEPT.json"
     },
     "script_draft": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "artifact": "SCRIPT_DRAFT.json"
     },
     "retention_edit": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "artifact": "SCRIPT_CORE_PLAN.json"
     },
     "episode_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "artifact": "EPISODE_PLAN.json"
     },
     "call_to_action": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "artifact": "CALL_TO_ACTION.json"
     },
     "world_style_director": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:09Z",
+      "updated_at": "2026-09-18T12:52:59Z",
       "artifact": "WORLD_STYLE_PLAN.json"
     },
     "episode_history": {
       "status": "DONE",
-      "updated_at": "2026-09-18T07:47:11Z",
+      "updated_at": "2026-09-18T12:53:01Z",
       "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
       "opening_location": "a simple island food shelter beside coconut trees",
       "camera_pattern": "slow_push_in",
@@ -89,172 +89,121 @@
     },
     "world_style_anchor": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:12Z",
+      "updated_at": "2026-09-18T12:53:02Z",
       "artifact": "world_style_anchor.png"
     },
     "world_keyframe_prompt": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:12Z",
+      "updated_at": "2026-09-18T12:53:02Z",
       "artifact": "world_keyframe_prompt.txt"
     },
     "world_keyframe": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:12Z",
+      "updated_at": "2026-09-18T12:53:02Z",
       "artifact": "world_keyframe.png"
     },
     "book_cover_design": {
       "status": "REUSED",
-      "updated_at": "2026-09-18T07:47:12Z",
+      "updated_at": "2026-09-18T12:53:02Z",
       "artifact": "SPYGLASS_ENTRY_DIRECTION.txt"
     },
     "book_cover": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T07:52:23Z",
-      "sha256": "4ebe04994b375725667986414f2f538ad56eb986ba9a854e5abd39153ae6dd12",
-      "model": "nano_banana_2",
-      "profile_id": "spyglass_portal"
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:02Z",
+      "artifact": "spyglass_entry_frame.png"
     },
     "body_images": {
       "status": "DONE",
-      "updated_at": "2026-09-18T08:11:07Z"
+      "updated_at": "2026-09-18T12:53:06Z"
     },
     "beat_image_001": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T07:53:57Z",
-      "sha256": "0e585f286239da67b23a2942594a5ccd835d8719318a8a6b368cbafa56f3f9d3",
-      "references": [
-        "style_reference",
-        "world_keyframe"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:04Z",
+      "artifact": "beat_001.png"
     },
     "beat_image_002": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T07:55:38Z",
-      "sha256": "14051b2e6bce0d2f641186aea7de00a023ec798dc848011476a3c6b25011ec1e",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:05Z",
+      "artifact": "beat_002.png"
     },
     "beat_image_003": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T07:57:34Z",
-      "sha256": "4e0f4bbc7187cc85af653ae5d0d5dd1ab7e2696b2d4e34f161efb230a0539c03",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:05Z",
+      "artifact": "beat_003.png"
     },
     "beat_image_004": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T07:59:18Z",
-      "sha256": "20dde6f6805afd912a099a32091b028c7ad206d274c777f83bf833195cfbfdf3",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:05Z",
+      "artifact": "beat_004.png"
     },
     "beat_image_005": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:00:56Z",
-      "sha256": "6a4f15fb13b766095a5b1906cb5cba1673d0a99c3c8dd28353fb5de2b2734eca",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:05Z",
+      "artifact": "beat_005.png"
     },
     "beat_image_006": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:02:53Z",
-      "sha256": "4708404525812113ce914db579485eb4165cd6a44ac0c750122a1e950d9af971",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:05Z",
+      "artifact": "beat_006.png"
     },
     "beat_image_007": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:04:53Z",
-      "sha256": "c7ac5368fdc2d930a015c52351c8196c3d7034730d867ed79a8e0644a8f94d38",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:06Z",
+      "artifact": "beat_007.png"
     },
     "beat_image_008": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:06:55Z",
-      "sha256": "39dc4dfe70524de7f90b32e64208b82743f7cf948ecfd8b7685af96a8c563812",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:06Z",
+      "artifact": "beat_008.png"
     },
     "beat_image_009": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:08:51Z",
-      "sha256": "7b37a5f15cc47d8521d2c60f99dc3577be4e10e28884c70d3ef9de59c2a122ca",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:06Z",
+      "artifact": "beat_009.png"
     },
     "beat_image_010": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:11:06Z",
-      "sha256": "67e664a7275e9cd444298899c35b6a76f72177882510951a0fee551262ff32db",
-      "references": [
-        "style_reference",
-        "world_keyframe",
-        "previous_beat"
-      ]
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:06Z",
+      "artifact": "beat_010.png"
     },
     "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:08Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "q_station_visual_complete": {
       "status": "DONE",
-      "updated_at": "2026-09-18T08:11:09Z",
-      "boundaries": 9
+      "updated_at": "2026-09-18T12:57:03Z",
+      "body_images": 10
     },
     "flow_prompt_a": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:11:45Z",
-      "prompt_sha256": "9214734f244733ea4fd32c1bf17f9794482ead6c199b9aeaa49b1a887a15e98f"
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:08Z",
+      "artifact": "flow_prompt_question_intro.txt"
     },
     "flow_prompt_b": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:12:08Z",
-      "prompt_sha256": "4b51e4b33b81fa164a902124f827b74fc281b12b92c9b3582d581f94999e1c25"
+      "status": "REUSED",
+      "updated_at": "2026-09-18T12:53:08Z",
+      "artifact": "flow_prompt_spyglass_transition.txt"
     },
     "flow_clip_a": {
       "status": "DONE",
-      "updated_at": "2026-09-18T08:13:53Z",
-      "duration_seconds": 4.01,
+      "updated_at": "2026-09-18T12:54:52Z",
+      "duration_seconds": 6.016,
       "roles": [
         "character_sheet"
       ],
-      "sha256": "23e3afde53cbd2e2838fec467091b07b541cd8588b01d8f00b8c0c5380c31342"
+      "sha256": "75649134e55b3e2dfbe84bc15073a70bc5dab901512e7d7c93dbcf0a27bb800f"
     },
     "flow_clip_b": {
       "status": "DONE",
-      "updated_at": "2026-09-18T08:16:02Z",
+      "updated_at": "2026-09-18T12:57:02Z",
       "duration_seconds": 4.01,
       "roles": [
         "first_frame",
         "last_frame"
       ],
-      "sha256": "711ccdf823e04582db82d286e81c0ba6528d47eb25b60d44f3edf9ed64dac65c"
-    },
-    "q_station_visual_complete": {
-      "status": "DONE",
-      "updated_at": "2026-09-18T08:16:04Z",
-      "body_images": 10
+      "sha256": "1f415969f5fe280c3dd5ea41ce4da285b51e7b400225592eb201c936af44a783"
     }
   },
   "events": [
@@ -949,7 +898,100 @@
         "last_frame"
       ],
       "sha256": "711ccdf823e04582db82d286e81c0ba6528d47eb25b60d44f3edf9ed64dac65c"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.322,
+      "at": "2026-09-18T12:50:57Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.066,
+      "at": "2026-09-18T12:51:03Z"
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 26.77,
+      "at": "2026-09-18T12:51:31Z",
+      "prompt_sha256": "6ac6821b563012beb57a5999c373fefb000553ce6e3630a96719728fcf75f00f"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 28.612,
+      "at": "2026-09-18T12:52:01Z",
+      "prompt_sha256": "37b01e080c79e0cb087cbe445fb343376da11940a10dfd64915af48f41c10ad4"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.43,
+      "at": "2026-09-18T12:53:01Z",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "saltcut_tropical_survival_linocut_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      },
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 4.14,
+      "at": "2026-09-18T12:53:06Z"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 104.709,
+      "at": "2026-09-18T12:54:52Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "75649134e55b3e2dfbe84bc15073a70bc5dab901512e7d7c93dbcf0a27bb800f"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 127.801,
+      "at": "2026-09-18T12:57:02Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "1f415969f5fe280c3dd5ea41ce4da285b51e7b400225592eb201c936af44a783"
     }
   ],
-  "updated_at": "2026-09-18T08:16:04Z"
+  "updated_at": "2026-09-18T12:57:03Z"
 }

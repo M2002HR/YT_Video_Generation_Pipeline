@@ -11,5 +11,5 @@ Style: VideoTitle,Wonderbar,110,&H00F2F2F2,&H00F2F2F2,&H00000000,&H00000000,0,0,
 
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
-Dialogue: 1,0:00:00.00,0:00:42.53,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,115.00)}Could You Live Forever
-Dialogue: 1,0:00:00.00,0:00:42.53,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,225.00)}on a Desert Island?
+Dialogue: 1,0:00:00.00,0:00:56.69,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,115.00)}Could You Live Forever
+Dialogue: 1,0:00:00.00,0:00:56.69,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,225.00)}on a Desert Island?

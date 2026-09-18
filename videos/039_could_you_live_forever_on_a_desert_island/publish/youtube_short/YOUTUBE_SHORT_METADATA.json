@@ -1,0 +1,486 @@
+{
+  "title": "DESERT ISLAND Why plenty of food still can't make you live forever #shorts 🏝️",
+  "title_options": [
+    "NUTRIENT GAPS Why the same island meals may fail over time #shorts 🥥",
+    "ISLAND SURVIVAL Plenty of food doesn't stop aging or health risks #shorts 🐟",
+    "REPEATED MEALS How abundant food can still leave nutrition gaps #shorts 🌴"
+  ],
+  "description": "A repetitive fish-and-coconut diet may leave nutrient gaps, while nutrition cannot stop normal aging.\nKeywords: desert island survival, nutrient gaps, limited diet, survival nutrition, clean water, healthy aging\n#shorts #viralshorts #DesertIsland #Nutrition #Survival",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "desert island survival",
+    "island survival",
+    "survival nutrition",
+    "nutrient gaps",
+    "limited diet",
+    "fish and coconut diet",
+    "clean drinking water",
+    "survival basics",
+    "nutrition facts",
+    "educational shorts"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "visibility": "unlisted"
+  },
+  "manual_review": [
+    {
+      "field": "audience",
+      "recommendation": "Confirm the audience declaration before publishing.",
+      "reason": "The source recommends not_made_for_kids, but the uploader must make the final audience declaration."
+    },
+    {
+      "field": "age_restriction",
+      "recommendation": "Review and select the appropriate age-restriction declaration before publishing.",
+      "reason": "The source context does not provide a final age-restriction declaration."
+    },
+    {
+      "field": "paid_promotion",
+      "recommendation": "Review and select the appropriate paid-promotion declaration before publishing.",
+      "reason": "The source context does not provide a final paid-promotion declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content",
+      "recommendation": "Review the final video and select the appropriate disclosure setting before publishing.",
+      "reason": "The source context does not provide a final altered-or-synthetic-content disclosure decision."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before publishing.",
+      "reason": "The source states that publication rights for the operator-supplied music must be verified."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Gemini: Treat the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere, and relevant subject matter. Treat the world keyframe as supporting continuity only and never let it override the rendered frames. Treat the character sheet as identity-only; do not copy its sheet layout or make the character appear unless that character belongs in this episode's thumbnail. The sea captain belongs to this episode's opening and may be the single dominant focal subject. Create one simple, instantly readable vertical 9:16 scene for a phone showing the captain in the island food shelter giving a skeptical look toward a small plate containing only fish and coconut while abundant fish, coconuts, and a full water barrel surround him. Make the abundance-versus-variety tension unmistakable at a glance with high contrast, clear visual hierarchy, simplified supporting props, and deliberate negative space in the upper-right area. Match the illustrated, grounded tropical survival look of the rendered frames so the thumbnail feels specific to this episode, never like generic stock art. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Same Meals Can Fall Short",
+  "related_video_note": "No related video is specified in the source context; leave this unset unless the uploader selects a verified Q Station video.",
+  "schema_version": 1,
+  "created_at": "2026-09-18T11:15:46.809200+00:00",
+  "source_master_sha256": "e9ccb3f016170e18f4cbab56c7c412c886542bc806aa9e6b9537b988557d12db",
+  "chatgpt_jobs": {
+    "draft": "0bd972e2-a437-4953-99f2-60e6a720bccd",
+    "review": "147efd31-ca66-45bd-9e50-bee8776beede",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "unlisted",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "039_could_you_live_forever_on_a_desert_island",
+      "duration_seconds": 42.527,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "concept_id": "4defcaf186f57935cb04",
+      "opening_actions": [
+        "The captain looks from a packed fish rack, coconuts, and full water barrel down to a plate holding only fish and coconut.",
+        "He pauses and raises one eyebrow at the mismatch between abundance and repetition.",
+        "He lifts the spyglass correctly to his visible unpatched eye and studies the repeated foods."
+      ],
+      "entry_bridge": {
+        "a_end": "The captain holds the spyglass toward the fish, coconuts, and narrow meal, with the small eyepiece beside his visible unpatched eye and the wider objective facing the food.",
+        "b_start": "At the editorial seam, an oblique rear-side view clearly shows the same correct spyglass orientation, supporting grip, subject direction, and island-shelter lighting before matching into his outward-looking viewpoint.",
+        "reveal": "The forward view shifts from apparent food abundance to a closer comparison of what the repeated meals provide and what a very narrow diet can miss.",
+        "world_entry": "The spyglass framing disappears into a full-bleed, host-free comparison of repeated island meals against the broader mix of nutrients a human body needs over time."
+      },
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "opening_environment": "A shaded open-sided food shelter on an uninhabited tropical island, stocked with drying fish, gathered coconuts, a full clean-water barrel, and a small meal-preparation surface.",
+      "topic_visual_link": "The island visibly has plenty of food and water, yet the captain's meal repeats the same two foods, directly exposing the difference between having enough to eat and having a sufficiently varied long-term diet.",
+      "link_type": "direct",
+      "opening_visual_proof": "A visibly abundant rack of fish, pile of coconuts, and full water barrel surround a meal plate containing only fish and coconut.",
+      "curiosity_trigger": "The captain notices that despite food filling the shelter, his plate looks almost identical to the meals available around it.",
+      "trigger_object": "the narrow fish-and-coconut meal sitting amid abundant supplies of the same foods",
+      "reaction": "He gives the plate a brief skeptical look, raises one eyebrow, and pauses before investigating further.",
+      "entry_retrieval": "After comparing the full stores with the repetitive plate, he reaches for the resting spyglass and angles it toward the foods to inspect the pattern more closely.",
+      "entry_variant": "pattern_inspection",
+      "camera_pattern": "slow_push_in",
+      "hero_presence_mode": "opener_only",
+      "closing_mode": "stay_in_world",
+      "world_style_hint": "A bright, grounded tropical survival world that transitions into clear host-free visual comparisons of meals, nutrients, water, shelter, medical risk, and aging.",
+      "reason": "The abundance-versus-variety mismatch makes the script's opening nutrition question visible immediately and gives the seasoned explorer a natural discrepancy to investigate without changing the selected island premise."
+    },
+    "script_plan": {
+      "opening_question_spark": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_transition": "The clue is what those repeated meals actually provide.",
+      "cta": "Like this island challenge, and subscribe.",
+      "body": [
+        "Calories give your body energy.",
+        "Health also needs vitamins, minerals, protein, and fats.",
+        "Eating only a few foods may still leave nutrient gaps.",
+        "Over time, those gaps can cause health problems.",
+        "Fresh plants may add nutrients those repeated meals miss.",
+        "Clean drinking water is essential every day.",
+        "Shelter protects you from heat, rain, and storms.",
+        "Injuries or infections can become dangerous without medical care.",
+        "Even perfect nutrition cannot stop normal aging."
+      ],
+      "optional_closing": "Plenty of food helps, but it cannot make you live forever.",
+      "full_narration": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may still leave nutrient gaps. Over time, those gaps can cause health problems. Fresh plants may add nutrients those repeated meals miss. Clean drinking water is essential every day. Shelter protects you from heat, rain, and storms. Injuries or infections can become dangerous without medical care. Even perfect nutrition cannot stop normal aging. Plenty of food helps, but it cannot make you live forever. Like this island challenge, and subscribe.",
+      "word_count": 110,
+      "created_at": "2026-09-18T07:47:09Z"
+    },
+    "narration": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may still leave nutrient gaps. Over time, those gaps can cause health problems. Fresh plants may add nutrients those repeated meals miss. Clean drinking water is essential every day. Shelter protects you from heat, rain, and storms. Injuries or infections can become dangerous without medical care. Even perfect nutrition cannot stop normal aging. Plenty of food helps, but it cannot make you live forever. Like this island challenge, and subscribe.",
+    "music": {
+      "provider": "operator_upload",
+      "source_url": null,
+      "license": "Operator-supplied; publication rights must be verified by the operator."
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3615067,
+          "sha256": "ea09a1107b06069f83be69e856a951bc16ddd0f5532d1af87208907a7d1592b2",
+          "time_seconds": 4.253
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 4760771,
+          "sha256": "7eb109b00006a91943ff586a554bdf706f24ee1d74c1cb42b0014c2185539699",
+          "time_seconds": 21.264
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 4653258,
+          "sha256": "9251d7b5f3f4013aed8860607eaba47d0d808b33177b627c3987e20e932638cb",
+          "time_seconds": 35.723
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 768,
+          "height": 1376,
+          "bytes": 1174756,
+          "sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e"
+        },
+        {
+          "role": "thumbnail_character_identity",
+          "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+          "file": "projects/q_station/characters/sea_captain/refs/character_sheet.png",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 2073817,
+          "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "schema_version": 2,
+    "selection": {
+      "selected_candidate_id": "candidate_01",
+      "status": "DONE",
+      "ranking": [
+        {
+          "candidate_id": "candidate_01",
+          "rank": 1,
+          "score": 0,
+          "eligible": true,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ]
+        },
+        {
+          "candidate_id": "candidate_02",
+          "rank": 2,
+          "score": 0,
+          "eligible": true,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ]
+        }
+      ],
+      "requested_count": 2,
+      "generated_count": 2,
+      "eligible_count": 2,
+      "delivery_mode": "all_final_candidates"
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_01",
+        "layout_id": "character_left",
+        "headline": "Same Meals Can Fall Short",
+        "evidence_anchor": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may s",
+        "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_01/artwork.png",
+        "final_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_01/final.png",
+        "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_01/preview_small.jpg",
+        "artwork": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 2967749,
+          "sha256": "aac8e728f38e0423cec52f5396e9c56f6061b0f634bb282bbd3698da41a309fe"
+        },
+        "final": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 5501992,
+          "sha256": "5c49d77b1e7e6ecabf664d3fe83b1840e67359ee842e3afb2fb0e870b2ef0fb9"
+        },
+        "review": {
+          "eligible": true,
+          "score": 0,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ],
+          "blocking_violations": [],
+          "warnings": [
+            "No ChatGPT visual review was requested."
+          ],
+          "review_status": "SKIPPED_OPERATOR",
+          "final_sha256": "5c49d77b1e7e6ecabf664d3fe83b1840e67359ee842e3afb2fb0e870b2ef0fb9"
+        },
+        "generated_provider": "gemini",
+        "generation_job_id": "cbdddf30-379e-49fd-900b-4031a081851d",
+        "generation_receipt": {
+          "provider": "gemini",
+          "requested_model": "nano_banana_2",
+          "actual_model_label": "Open mode picker, currently Flash",
+          "model_verified": true,
+          "pro_regeneration_used": false,
+          "requested_quality": "best",
+          "requested_aspect_ratio": "9:16",
+          "actual_aspect_ratio": "1536:2752",
+          "requested_duration_seconds": null,
+          "actual_duration_seconds": null,
+          "requested_resolution": null,
+          "actual_resolution": null,
+          "workspace_url": "https://gemini.google.com/app/55ac34ed5fd87f86",
+          "submission_fingerprint": null,
+          "reference_roles": [
+            "thumbnail_rendered_opening_frame",
+            "thumbnail_rendered_body_frame",
+            "thumbnail_rendered_closing_frame",
+            "thumbnail_world_keyframe",
+            "thumbnail_character_identity"
+          ],
+          "notes": [
+            "model_label_source=mode-picker",
+            "extended_thinking_mode=Open mode picker, currently Flash Extended",
+            "artifact_source=download",
+            "image=cbdddf30-379e-49fd-900b-4031a081851d_output_1.png 1536x2752 sha256=aac8e728f38e0423cec52f5396e9c56f6061b0f634bb282bbd3698da41a309fe"
+          ],
+          "quality_check": {
+            "passed": true,
+            "raw_passed": null,
+            "review_status": "skipped_after_pre_generation_feedback",
+            "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+            "violations": [],
+            "raw_violations": [],
+            "blocking_violations": [],
+            "observations": [],
+            "regressions": [],
+            "review_provider": null
+          },
+          "request_fingerprint": "22bc44e128958552e5113790b9b2d0d73fdf76ffa21b0a10868fd3068e972e85",
+          "quality_iterations": [
+            {
+              "attempt": 1,
+              "provider": "gemini",
+              "job_id": "cbdddf30-379e-49fd-900b-4031a081851d",
+              "prompt_sha256": "0a7f3a7cba54156f297fd36ed26b222ff459ee2c3268f7ef55aa7af1aaa0475c",
+              "output_sha256": "aac8e728f38e0423cec52f5396e9c56f6061b0f634bb282bbd3698da41a309fe",
+              "quality_check": {
+                "passed": true,
+                "raw_passed": null,
+                "review_status": "skipped_after_pre_generation_feedback",
+                "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+                "violations": [],
+                "raw_violations": [],
+                "blocking_violations": [],
+                "observations": [],
+                "regressions": [],
+                "review_provider": null
+              },
+              "fully_clean": true,
+              "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_01/attempts/artwork.attempt_1.png",
+              "selected": true
+            }
+          ],
+          "qc_policy": "disabled",
+          "qc_selected_attempt": 1
+        },
+        "fallback_from": null
+      },
+      {
+        "candidate_id": "candidate_02",
+        "layout_id": "character_right",
+        "headline": "Same Meals Can Fall Short",
+        "evidence_anchor": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may s",
+        "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_02/artwork.png",
+        "final_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_02/final.png",
+        "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_02/preview_small.jpg",
+        "artwork": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 3140933,
+          "sha256": "2902373c4ca38ff8a31a111d8e1b031b7970c38d4c925cf1c968b3d8f81dc8bf"
+        },
+        "final": {
+          "width": 1536,
+          "height": 2752,
+          "bytes": 5779771,
+          "sha256": "192df71f9f48bad705fbeb67067917609d00c1bbdc8e3d52fc48ed9fae11457b"
+        },
+        "review": {
+          "eligible": true,
+          "score": 0,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ],
+          "blocking_violations": [],
+          "warnings": [
+            "No ChatGPT visual review was requested."
+          ],
+          "review_status": "SKIPPED_OPERATOR",
+          "final_sha256": "192df71f9f48bad705fbeb67067917609d00c1bbdc8e3d52fc48ed9fae11457b"
+        },
+        "generated_provider": "gemini",
+        "generation_job_id": "afec2863-9e02-41f9-86dc-31cc43ba1f1e",
+        "generation_receipt": {
+          "provider": "gemini",
+          "requested_model": "nano_banana_2",
+          "actual_model_label": "Open mode picker, currently Flash",
+          "model_verified": true,
+          "pro_regeneration_used": false,
+          "requested_quality": "best",
+          "requested_aspect_ratio": "9:16",
+          "actual_aspect_ratio": "1536:2752",
+          "requested_duration_seconds": null,
+          "actual_duration_seconds": null,
+          "requested_resolution": null,
+          "actual_resolution": null,
+          "workspace_url": "https://gemini.google.com/app/33bdf0796a0e40d1",
+          "submission_fingerprint": null,
+          "reference_roles": [
+            "thumbnail_rendered_opening_frame",
+            "thumbnail_rendered_body_frame",
+            "thumbnail_rendered_closing_frame",
+            "thumbnail_world_keyframe",
+            "thumbnail_character_identity"
+          ],
+          "notes": [
+            "model_label_source=mode-picker",
+            "extended_thinking_mode=Open mode picker, currently Flash Extended",
+            "artifact_source=download",
+            "image=afec2863-9e02-41f9-86dc-31cc43ba1f1e_output_1.png 1536x2752 sha256=2902373c4ca38ff8a31a111d8e1b031b7970c38d4c925cf1c968b3d8f81dc8bf"
+          ],
+          "quality_check": {
+            "passed": true,
+            "raw_passed": null,
+            "review_status": "skipped_after_pre_generation_feedback",
+            "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+            "violations": [],
+            "raw_violations": [],
+            "blocking_violations": [],
+            "observations": [],
+            "regressions": [],
+            "review_provider": null
+          },
+          "request_fingerprint": "1a46643c18fab1018b8a6483958e1b2f8e05d98382f6fe85183821158604cd66",
+          "quality_iterations": [
+            {
+              "attempt": 1,
+              "provider": "gemini",
+              "job_id": "afec2863-9e02-41f9-86dc-31cc43ba1f1e",
+              "prompt_sha256": "bba4f8542931f05dd2081bc45ea5b033aa25c24af3bbcec1e11f38cb5a218312",
+              "output_sha256": "2902373c4ca38ff8a31a111d8e1b031b7970c38d4c925cf1c968b3d8f81dc8bf",
+              "quality_check": {
+                "passed": true,
+                "raw_passed": null,
+                "review_status": "skipped_after_pre_generation_feedback",
+                "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+                "violations": [],
+                "raw_violations": [],
+                "blocking_violations": [],
+                "observations": [],
+                "regressions": [],
+                "review_provider": null
+              },
+              "fully_clean": true,
+              "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_3ccb69b4158f40c884194b408127ef9e/thumbnail_candidates/candidate_02/attempts/artwork.attempt_1.png",
+              "selected": true
+            }
+          ],
+          "qc_policy": "disabled",
+          "qc_selected_attempt": 1
+        },
+        "fallback_from": null
+      }
+    ],
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1536,
+      "height": 2752,
+      "bytes": 5501992,
+      "sha256": "5c49d77b1e7e6ecabf664d3fe83b1840e67359ee842e3afb2fb0e870b2ef0fb9"
+    },
+    "quality_check": {
+      "passed": true
+    },
+    "requested_model": "nano_banana_2",
+    "all_final_candidates": true
+  }
+}

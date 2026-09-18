@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "video_id": "039",
+  "created_at": "2026-09-18T12:30:04.225164+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "86f3c46f37d79224cac8777ad1a39902d1152adc1ac501e45cf4cda3119b7a27",
+  "settings": {
+    "voice": "Mr. Claus",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.98,
+    "stability": 0.3,
+    "similarity": 0.3,
+    "style": 0.35,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "FAILED",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-18T12:30:05.799835+00:00",
+      "elapsed_seconds": 1.548
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-18T12:31:15.730540+00:00",
+      "elapsed_seconds": 1.535
+    }
+  ],
+  "updated_at": "2026-09-18T12:31:32.915599+00:00",
+  "error": "ElevenLabs did not show requested voice option 'Mr. Claus': Could not focus ElevenLabs selector '[role=\"dialog\"] button[data-type=\"list-item-trigger-overlay\"][aria-labelledby]' matching 'Mr. Claus'; available=['Mr. Claus – The Classic Jolly Santa\\n\\nEnglish\\n\\nAmerican\\n\\n2y\\n\\n35.9K\\n\\nUse\\nAdd'].",
+  "failed_at": "2026-09-18T12:31:32.915571+00:00"
+}

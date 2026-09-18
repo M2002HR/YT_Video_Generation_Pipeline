@@ -1,0 +1,670 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 42.527,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 110,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.0,
+      "end": 0.16
+    },
+    {
+      "text": "food",
+      "token": "food",
+      "start": 0.16,
+      "end": 0.46
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 0.46,
+      "end": 0.66
+    },
+    {
+      "text": "everywhere,",
+      "token": "everywhere",
+      "start": 0.66,
+      "end": 1.48
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 1.48,
+      "end": 1.9
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 1.9,
+      "end": 2.1
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 2.1,
+      "end": 2.28
+    },
+    {
+      "text": "same",
+      "token": "same",
+      "start": 2.28,
+      "end": 2.58
+    },
+    {
+      "text": "few",
+      "token": "few",
+      "start": 2.58,
+      "end": 2.88
+    },
+    {
+      "text": "meals",
+      "token": "meals",
+      "start": 2.88,
+      "end": 3.22
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 3.22,
+      "end": 3.52
+    },
+    {
+      "text": "fail",
+      "token": "fail",
+      "start": 3.52,
+      "end": 3.88
+    },
+    {
+      "text": "you?",
+      "token": "you",
+      "start": 3.88,
+      "end": 4.1
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 4.62,
+      "end": 4.82
+    },
+    {
+      "text": "clue",
+      "token": "clue",
+      "start": 4.82,
+      "end": 5.1
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 5.1,
+      "end": 5.38
+    },
+    {
+      "text": "what",
+      "token": "what",
+      "start": 5.38,
+      "end": 5.6
+    },
+    {
+      "text": "those",
+      "token": "those",
+      "start": 5.6,
+      "end": 5.86
+    },
+    {
+      "text": "repeated",
+      "token": "repeated",
+      "start": 5.86,
+      "end": 6.3
+    },
+    {
+      "text": "meals",
+      "token": "meals",
+      "start": 6.3,
+      "end": 6.66
+    },
+    {
+      "text": "actually",
+      "token": "actually",
+      "start": 6.66,
+      "end": 7.24
+    },
+    {
+      "text": "provide.",
+      "token": "provide",
+      "start": 7.24,
+      "end": 8.04
+    },
+    {
+      "text": "Calories",
+      "token": "calories",
+      "start": 8.38,
+      "end": 8.76
+    },
+    {
+      "text": "give",
+      "token": "give",
+      "start": 8.76,
+      "end": 9.06
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 9.06,
+      "end": 9.24
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 9.24,
+      "end": 9.52
+    },
+    {
+      "text": "energy.",
+      "token": "energy",
+      "start": 9.52,
+      "end": 10.02
+    },
+    {
+      "text": "Health",
+      "token": "health",
+      "start": 9.94,
+      "end": 10.22
+    },
+    {
+      "text": "also",
+      "token": "also",
+      "start": 10.22,
+      "end": 10.54
+    },
+    {
+      "text": "needs",
+      "token": "needs",
+      "start": 10.54,
+      "end": 10.84
+    },
+    {
+      "text": "vitamins,",
+      "token": "vitamins",
+      "start": 10.84,
+      "end": 11.42
+    },
+    {
+      "text": "minerals,",
+      "token": "minerals",
+      "start": 11.42,
+      "end": 11.82
+    },
+    {
+      "text": "protein,",
+      "token": "protein",
+      "start": 11.82,
+      "end": 12.14
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 12.14,
+      "end": 12.34
+    },
+    {
+      "text": "fats.",
+      "token": "fats",
+      "start": 12.34,
+      "end": 12.62
+    },
+    {
+      "text": "Eating",
+      "token": "eating",
+      "start": 13.2,
+      "end": 13.46
+    },
+    {
+      "text": "only",
+      "token": "only",
+      "start": 13.46,
+      "end": 13.74
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 13.74,
+      "end": 13.94
+    },
+    {
+      "text": "few",
+      "token": "few",
+      "start": 13.94,
+      "end": 14.08
+    },
+    {
+      "text": "foods",
+      "token": "foods",
+      "start": 14.08,
+      "end": 14.48
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 14.48,
+      "end": 14.74
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 14.74,
+      "end": 15.1
+    },
+    {
+      "text": "leave",
+      "token": "leave",
+      "start": 15.1,
+      "end": 15.44
+    },
+    {
+      "text": "nutrient",
+      "token": "nutrient",
+      "start": 15.44,
+      "end": 15.84
+    },
+    {
+      "text": "gaps.",
+      "token": "gaps",
+      "start": 15.84,
+      "end": 16.4
+    },
+    {
+      "text": "Over",
+      "token": "over",
+      "start": 16.9,
+      "end": 17.12
+    },
+    {
+      "text": "time,",
+      "token": "time",
+      "start": 17.12,
+      "end": 17.56
+    },
+    {
+      "text": "those",
+      "token": "those",
+      "start": 17.56,
+      "end": 17.78
+    },
+    {
+      "text": "gaps",
+      "token": "gaps",
+      "start": 17.78,
+      "end": 18.06
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 18.06,
+      "end": 18.28
+    },
+    {
+      "text": "cause",
+      "token": "cause",
+      "start": 18.28,
+      "end": 18.52
+    },
+    {
+      "text": "health",
+      "token": "health",
+      "start": 18.52,
+      "end": 18.8
+    },
+    {
+      "text": "problems.",
+      "token": "problems",
+      "start": 18.8,
+      "end": 19.2
+    },
+    {
+      "text": "Fresh",
+      "token": "fresh",
+      "start": 19.88,
+      "end": 20.16
+    },
+    {
+      "text": "plants",
+      "token": "plants",
+      "start": 20.16,
+      "end": 20.66
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 20.66,
+      "end": 20.94
+    },
+    {
+      "text": "add",
+      "token": "add",
+      "start": 20.94,
+      "end": 21.24
+    },
+    {
+      "text": "nutrients.",
+      "token": "nutrients",
+      "start": 21.24,
+      "end": 22.04
+    },
+    {
+      "text": "Those",
+      "token": "those",
+      "start": 21.86,
+      "end": 22.1
+    },
+    {
+      "text": "repeated",
+      "token": "repeated",
+      "start": 22.1,
+      "end": 22.52
+    },
+    {
+      "text": "meals",
+      "token": "meals",
+      "start": 22.52,
+      "end": 22.92
+    },
+    {
+      "text": "miss.",
+      "token": "miss",
+      "start": 22.92,
+      "end": 23.96
+    },
+    {
+      "text": "Clean",
+      "token": "clean",
+      "start": 23.38,
+      "end": 24.42
+    },
+    {
+      "text": "drinking",
+      "token": "drinking",
+      "start": 24.42,
+      "end": 24.7
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 24.7,
+      "end": 24.96
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 24.96,
+      "end": 25.2
+    },
+    {
+      "text": "essential",
+      "token": "essential",
+      "start": 25.2,
+      "end": 25.6
+    },
+    {
+      "text": "every",
+      "token": "every",
+      "start": 25.6,
+      "end": 25.9
+    },
+    {
+      "text": "day.",
+      "token": "day",
+      "start": 25.9,
+      "end": 26.1
+    },
+    {
+      "text": "Shelter",
+      "token": "shelter",
+      "start": 26.54,
+      "end": 26.92
+    },
+    {
+      "text": "protects",
+      "token": "protects",
+      "start": 26.92,
+      "end": 27.34
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 27.34,
+      "end": 27.48
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 27.48,
+      "end": 27.68
+    },
+    {
+      "text": "heat,",
+      "token": "heat",
+      "start": 27.68,
+      "end": 28.12
+    },
+    {
+      "text": "rain,",
+      "token": "rain",
+      "start": 28.12,
+      "end": 28.34
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 28.34,
+      "end": 28.48
+    },
+    {
+      "text": "storms.",
+      "token": "storms",
+      "start": 28.48,
+      "end": 28.9
+    },
+    {
+      "text": "Injuries",
+      "token": "injuries",
+      "start": 29.6,
+      "end": 30.06
+    },
+    {
+      "text": "or",
+      "token": "or",
+      "start": 30.06,
+      "end": 30.28
+    },
+    {
+      "text": "infections",
+      "token": "infections",
+      "start": 30.28,
+      "end": 30.8
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 30.8,
+      "end": 31.42
+    },
+    {
+      "text": "become",
+      "token": "become",
+      "start": 31.42,
+      "end": 31.74
+    },
+    {
+      "text": "dangerous",
+      "token": "dangerous",
+      "start": 31.74,
+      "end": 32.28
+    },
+    {
+      "text": "without",
+      "token": "without",
+      "start": 32.28,
+      "end": 32.58
+    },
+    {
+      "text": "medical",
+      "token": "medical",
+      "start": 32.58,
+      "end": 33.06
+    },
+    {
+      "text": "care.",
+      "token": "care",
+      "start": 33.06,
+      "end": 33.58
+    },
+    {
+      "text": "Even",
+      "token": "even",
+      "start": 33.9,
+      "end": 34.14
+    },
+    {
+      "text": "perfect",
+      "token": "perfect",
+      "start": 34.14,
+      "end": 34.56
+    },
+    {
+      "text": "nutrition",
+      "token": "nutrition",
+      "start": 34.56,
+      "end": 35.2
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 35.2,
+      "end": 35.56
+    },
+    {
+      "text": "stop",
+      "token": "stop",
+      "start": 35.56,
+      "end": 36.04
+    },
+    {
+      "text": "normal",
+      "token": "normal",
+      "start": 36.04,
+      "end": 36.46
+    },
+    {
+      "text": "aging.",
+      "token": "aging",
+      "start": 36.46,
+      "end": 37.04
+    },
+    {
+      "text": "Plenty",
+      "token": "plenty",
+      "start": 37.36,
+      "end": 37.68
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 37.68,
+      "end": 37.86
+    },
+    {
+      "text": "food",
+      "token": "food",
+      "start": 37.86,
+      "end": 38.16
+    },
+    {
+      "text": "helps,",
+      "token": "helps",
+      "start": 38.16,
+      "end": 38.64
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 38.64,
+      "end": 38.72
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 38.72,
+      "end": 38.86
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 38.86,
+      "end": 39.0
+    },
+    {
+      "text": "make",
+      "token": "make",
+      "start": 39.0,
+      "end": 39.28
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 39.28,
+      "end": 39.44
+    },
+    {
+      "text": "live",
+      "token": "live",
+      "start": 39.44,
+      "end": 39.64
+    },
+    {
+      "text": "forever",
+      "token": "forever",
+      "start": 39.64,
+      "end": 40.0
+    },
+    {
+      "text": "like",
+      "token": "like",
+      "start": 40.0,
+      "end": 40.28
+    },
+    {
+      "text": "this",
+      "token": "this",
+      "start": 40.28,
+      "end": 40.52
+    },
+    {
+      "text": "island",
+      "token": "island",
+      "start": 40.52,
+      "end": 40.86
+    },
+    {
+      "text": "challenge",
+      "token": "challenge",
+      "start": 40.86,
+      "end": 41.24
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 41.24,
+      "end": 41.52
+    },
+    {
+      "text": "subscribe.",
+      "token": "subscribe",
+      "start": 41.52,
+      "end": 42.38
+    }
+  ]
+}

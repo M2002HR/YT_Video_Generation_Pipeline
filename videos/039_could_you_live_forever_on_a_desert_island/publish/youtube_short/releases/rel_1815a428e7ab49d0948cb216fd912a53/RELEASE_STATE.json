@@ -1,0 +1,174 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_1815a428e7ab49d0948cb216fd912a53",
+  "status": "DONE",
+  "started_at": "2026-09-18T11:12:21.392870+00:00",
+  "video": "039_could_you_live_forever_on_a_desert_island",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "e9ccb3f016170e18f4cbab56c7c412c886542bc806aa9e6b9537b988557d12db",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-18T11:12:24.978436+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-18T11:14:10.347340+00:00",
+      "chatgpt_job_id": "0bd972e2-a437-4953-99f2-60e6a720bccd"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-18T11:14:10.347351+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-18T11:15:46.809213+00:00",
+      "chatgpt_job_id": "147efd31-ca66-45bd-9e50-bee8776beede",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-18T11:15:46.827392+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-18T11:19:52.467872+00:00",
+      "selected_candidate_id": "candidate_01",
+      "qc_passed": true
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-18T11:19:52.468149+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-18T11:19:52.468156+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-18T11:22:21.852880+00:00",
+      "messages": {
+        "master": 15418,
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15419,
+            "sha256": "0d402ef1c625655b3067b3adeead4ac6fa97ff876b31d73e38641c27b3c51e00"
+          },
+          "candidate_02": {
+            "message_id": 15420,
+            "sha256": "f72ed67b31491d47e6028b2d5b32dc0e0a189e9e7da8b938e13a5b5b6c83b771"
+          }
+        },
+        "upload_markdown": 15422,
+        "summary": 15421,
+        "metadata_json": 15423
+      }
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": false,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 2,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "auto",
+      "allowed_layouts": [
+        "character_left",
+        "character_right",
+        "contrast_split",
+        "discovery_focus"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "inherit_episode",
+      "quality": "native",
+      "image_fallback": "chatgpt_on_gemini_failure",
+      "thumbnail_note": "",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "montserrat_bold",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.012,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.035,
+      "text_position": "auto",
+      "text_box_width": 0.82,
+      "safe_margin": 0.055,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.16,
+      "max_words": 6,
+      "max_characters": 40,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": true,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 1,
+      "max_image_generations": 2,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": true,
+      "send_previews": true,
+      "send_comparison_sheet": false,
+      "send_report_json": false,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "eb9a4dfcfdb5f297b92a582d73195b10893ef32b83d08912ecee06aceede3b6e",
+  "completed_at": "2026-09-18T11:22:21.852889+00:00",
+  "metadata": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "master": 15418,
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15419,
+        "sha256": "0d402ef1c625655b3067b3adeead4ac6fa97ff876b31d73e38641c27b3c51e00"
+      },
+      "candidate_02": {
+        "message_id": 15420,
+        "sha256": "f72ed67b31491d47e6028b2d5b32dc0e0a189e9e7da8b938e13a5b5b6c83b771"
+      }
+    },
+    "upload_markdown": 15422,
+    "summary": 15421,
+    "metadata_json": 15423
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/YOUTUBE_SHORT_UPLOAD.md"
+}

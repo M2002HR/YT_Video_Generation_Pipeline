@@ -1,105 +1,105 @@
 {
-  "audio_duration_seconds": 42.527,
+  "audio_duration_seconds": 56.686,
   "spark_start": 0.0,
-  "spark_end": 4.1,
-  "spark_duration": 4.1,
-  "transition_start": 4.62,
-  "transition_end": 8.04,
-  "transition_duration": 3.42,
+  "spark_end": 4.88,
+  "spark_duration": 4.88,
+  "transition_start": 5.24,
+  "transition_end": 9.02,
+  "transition_duration": 3.78,
   "entry_segment": "entry_transition",
-  "clip_a_target_seconds": 4.1,
-  "clip_b_target_seconds": 3.94,
-  "body_start": 8.38,
+  "clip_a_target_seconds": 4.88,
+  "clip_b_target_seconds": 4.14,
+  "body_start": 9.48,
   "segments": [
     {
       "segment": "opening_question_spark",
       "narration": "If food is everywhere, why can the same few meals still fail you?",
       "speech_start": 0.0,
-      "speech_end": 4.1,
+      "speech_end": 4.88,
       "match_confidence": 1.0
     },
     {
       "segment": "entry_transition",
       "narration": "The clue is what those repeated meals actually provide.",
-      "speech_start": 4.62,
-      "speech_end": 8.04,
+      "speech_start": 5.24,
+      "speech_end": 9.02,
       "match_confidence": 1.0
     },
     {
       "segment": "body_01",
       "narration": "Calories give your body energy.",
-      "speech_start": 8.38,
-      "speech_end": 10.02,
+      "speech_start": 9.48,
+      "speech_end": 11.6,
       "match_confidence": 1.0
     },
     {
       "segment": "body_02",
       "narration": "Health also needs vitamins, minerals, protein, and fats.",
-      "speech_start": 9.94,
-      "speech_end": 12.62,
+      "speech_start": 11.92,
+      "speech_end": 16.4,
       "match_confidence": 1.0
     },
     {
       "segment": "body_03",
       "narration": "Eating only a few foods may still leave nutrient gaps.",
-      "speech_start": 13.2,
-      "speech_end": 16.4,
+      "speech_start": 16.86,
+      "speech_end": 20.6,
       "match_confidence": 1.0
     },
     {
       "segment": "body_04",
       "narration": "Over time, those gaps can cause health problems.",
-      "speech_start": 16.9,
-      "speech_end": 19.2,
+      "speech_start": 21.2,
+      "speech_end": 24.22,
       "match_confidence": 1.0
     },
     {
       "segment": "body_05",
       "narration": "Fresh plants may add nutrients those repeated meals miss.",
-      "speech_start": 19.88,
-      "speech_end": 23.96,
+      "speech_start": 24.74,
+      "speech_end": 29.6,
       "match_confidence": 1.0
     },
     {
       "segment": "body_06",
       "narration": "Clean drinking water is essential every day.",
-      "speech_start": 23.38,
-      "speech_end": 26.1,
+      "speech_start": 29.18,
+      "speech_end": 33.32,
       "match_confidence": 1.0
     },
     {
       "segment": "body_07",
       "narration": "Shelter protects you from heat, rain, and storms.",
-      "speech_start": 26.54,
-      "speech_end": 28.9,
+      "speech_start": 33.6,
+      "speech_end": 37.62,
       "match_confidence": 1.0
     },
     {
       "segment": "body_08",
       "narration": "Injuries or infections can become dangerous without medical care.",
-      "speech_start": 29.6,
-      "speech_end": 33.58,
+      "speech_start": 38.02,
+      "speech_end": 42.66,
       "match_confidence": 1.0
     },
     {
       "segment": "body_09",
       "narration": "Even perfect nutrition cannot stop normal aging.",
-      "speech_start": 33.9,
-      "speech_end": 37.04,
+      "speech_start": 42.94,
+      "speech_end": 47.18,
       "match_confidence": 1.0
     },
     {
       "segment": "optional_closing",
       "narration": "Plenty of food helps, but it cannot make you live forever.",
-      "speech_start": 37.36,
-      "speech_end": 40.0,
+      "speech_start": 47.16,
+      "speech_end": 52.66,
       "match_confidence": 1.0
     },
     {
       "segment": "cta",
       "narration": "Like this island challenge, and subscribe.",
-      "speech_start": 40.0,
-      "speech_end": 42.38,
+      "speech_start": 52.96,
+      "speech_end": 56.62,
       "match_confidence": 1.0
     }
   ]

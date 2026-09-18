@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 42.527,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may still leave nutrient gaps. Over time, those gaps can cause health problems. Fresh plants may add nutrients. Those repeated meals miss. Clean drinking water is essential every day. Shelter protects you from heat, rain, and storms. Injuries or infections can become dangerous without medical care. Even perfect nutrition cannot stop normal aging. Plenty of food helps, but it cannot make you live forever like this island challenge and subscribe.",
+  "word_count": 110,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Calories give your body energy.",
+      "speech_start": 8.38,
+      "speech_end": 10.02,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 9.94,
+      "display_duration": 9.94
+    },
+    {
+      "beat_id": 2,
+      "narration": "Health also needs vitamins, minerals, protein, and fats.",
+      "speech_start": 9.94,
+      "speech_end": 12.62,
+      "match_confidence": 1.0,
+      "display_start": 9.94,
+      "display_end": 13.2,
+      "display_duration": 3.26
+    },
+    {
+      "beat_id": 3,
+      "narration": "Eating only a few foods may still leave nutrient gaps.",
+      "speech_start": 13.2,
+      "speech_end": 16.4,
+      "match_confidence": 1.0,
+      "display_start": 13.2,
+      "display_end": 16.9,
+      "display_duration": 3.7
+    },
+    {
+      "beat_id": 4,
+      "narration": "Over time, those gaps can cause health problems.",
+      "speech_start": 16.9,
+      "speech_end": 19.2,
+      "match_confidence": 1.0,
+      "display_start": 16.9,
+      "display_end": 19.88,
+      "display_duration": 2.98
+    },
+    {
+      "beat_id": 5,
+      "narration": "Fresh plants may add nutrients those repeated meals miss.",
+      "speech_start": 19.88,
+      "speech_end": 23.96,
+      "match_confidence": 1.0,
+      "display_start": 19.88,
+      "display_end": 23.38,
+      "display_duration": 3.5
+    },
+    {
+      "beat_id": 6,
+      "narration": "Clean drinking water is essential every day.",
+      "speech_start": 23.38,
+      "speech_end": 26.1,
+      "match_confidence": 1.0,
+      "display_start": 23.38,
+      "display_end": 26.54,
+      "display_duration": 3.16
+    },
+    {
+      "beat_id": 7,
+      "narration": "Shelter protects you from heat, rain, and storms.",
+      "speech_start": 26.54,
+      "speech_end": 28.9,
+      "match_confidence": 1.0,
+      "display_start": 26.54,
+      "display_end": 29.6,
+      "display_duration": 3.06
+    },
+    {
+      "beat_id": 8,
+      "narration": "Injuries or infections can become dangerous without medical care.",
+      "speech_start": 29.6,
+      "speech_end": 33.58,
+      "match_confidence": 1.0,
+      "display_start": 29.6,
+      "display_end": 33.9,
+      "display_duration": 4.3
+    },
+    {
+      "beat_id": 9,
+      "narration": "Even perfect nutrition cannot stop normal aging.",
+      "speech_start": 33.9,
+      "speech_end": 37.04,
+      "match_confidence": 1.0,
+      "display_start": 33.9,
+      "display_end": 37.36,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 10,
+      "narration": "Plenty of food helps, but it cannot make you live forever.",
+      "speech_start": 37.36,
+      "speech_end": 40.0,
+      "match_confidence": 1.0,
+      "display_start": 37.36,
+      "display_end": 42.527,
+      "display_duration": 5.167
+    }
+  ]
+}

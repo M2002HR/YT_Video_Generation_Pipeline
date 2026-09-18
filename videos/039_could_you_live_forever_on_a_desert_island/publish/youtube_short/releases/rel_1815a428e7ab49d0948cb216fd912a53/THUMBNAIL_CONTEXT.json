@@ -1,0 +1,69 @@
+{
+  "preflight": {
+    "character": {
+      "character_id": "sea_captain",
+      "display_name": "Curious Sea Captain",
+      "sheet_path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/sea_captain/refs/character_sheet.png",
+      "sheet_sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    "font": {
+      "id": "montserrat_bold",
+      "path": "/usr/share/fonts/subtitle/Montserrat-Bold.ttf",
+      "sha256": "62a35062845a304895cbd8cfc343c35e0ebfeb132cec28410c809376e25ebc0c"
+    },
+    "requested_count": 2,
+    "maximum_image_calls": 2,
+    "aspect_ratio": "9:16"
+  },
+  "visual_references": [
+    {
+      "role": "thumbnail_rendered_opening_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/visual_references/render_opening.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 3615067,
+      "sha256": "ea09a1107b06069f83be69e856a951bc16ddd0f5532d1af87208907a7d1592b2",
+      "time_seconds": 4.253
+    },
+    {
+      "role": "thumbnail_rendered_body_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/visual_references/render_body.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 4760771,
+      "sha256": "7eb109b00006a91943ff586a554bdf706f24ee1d74c1cb42b0014c2185539699",
+      "time_seconds": 21.264
+    },
+    {
+      "role": "thumbnail_rendered_closing_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_1815a428e7ab49d0948cb216fd912a53/visual_references/render_closing.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 4653258,
+      "sha256": "9251d7b5f3f4013aed8860607eaba47d0d808b33177b627c3987e20e932638cb",
+      "time_seconds": 35.723
+    },
+    {
+      "role": "thumbnail_world_keyframe",
+      "purpose": "Supporting world continuity only; never overrides final rendered frames",
+      "file": "references/world_keyframe.png",
+      "width": 768,
+      "height": 1376,
+      "bytes": 1174756,
+      "sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e"
+    },
+    {
+      "role": "thumbnail_character_identity",
+      "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+      "file": "projects/q_station/characters/sea_captain/refs/character_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2073817,
+      "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    }
+  ],
+  "source_master_sha256": "e9ccb3f016170e18f4cbab56c7c412c886542bc806aa9e6b9537b988557d12db"
+}

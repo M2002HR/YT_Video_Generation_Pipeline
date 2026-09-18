@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "requested_count": 2,
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "Same Meals Can Fall Short",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may s",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "planned negative space away from face and evidence",
+      "novelty_signature": "fb168cf1364e816e",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    },
+    {
+      "candidate_id": "candidate_02",
+      "layout_id": "character_right",
+      "headline": "Same Meals Can Fall Short",
+      "scene": "a before-and-after contrast tied to the claim",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may s",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "planned negative space away from face and evidence",
+      "novelty_signature": "64c2a5d745643ac7",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    }
+  ]
+}

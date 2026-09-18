@@ -1,0 +1,17 @@
+{
+  "font_id": "montserrat_bold",
+  "font_sha256": "62a35062845a304895cbd8cfc343c35e0ebfeb132cec28410c809376e25ebc0c",
+  "text": "Same Meals Can Fall Short",
+  "text_bounds": {
+    "x": 107,
+    "y": 365,
+    "width": 1177,
+    "height": 602
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 2752
+  },
+  "layout_id": "character_right",
+  "preview": "preview_small.jpg"
+}

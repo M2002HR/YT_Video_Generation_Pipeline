@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "Same Meals Can Fall Short",
+      "evidence_anchor": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may s",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_01/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_01/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_01/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 3129975,
+        "sha256": "a9ef3030570181c59f25c86b1d30a573fd14c617ccf94b14f1ea876b19efe84c"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 5663129,
+        "sha256": "5db7520c2c4e5c7b92f3e27307cb9cee55894c4392e8f691c0079aed5118ff77"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "5db7520c2c4e5c7b92f3e27307cb9cee55894c4392e8f691c0079aed5118ff77"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "e290d612-8f5e-4739-ae46-d0b02d726ee4",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/703d41da32bb8094",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=e290d612-8f5e-4739-ae46-d0b02d726ee4_output_1.png 1536x2752 sha256=a9ef3030570181c59f25c86b1d30a573fd14c617ccf94b14f1ea876b19efe84c"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "11709221fde08b6cf8b07e537c3f29dee57f456ea1aa8b919a64a8ec598d360b",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "provider": "gemini",
+            "job_id": "e290d612-8f5e-4739-ae46-d0b02d726ee4",
+            "prompt_sha256": "8d80eb0868f85a3ab779644117e5537a9e348aeccd2eb879bd4e932641d13a25",
+            "output_sha256": "a9ef3030570181c59f25c86b1d30a573fd14c617ccf94b14f1ea876b19efe84c",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_01/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    },
+    {
+      "candidate_id": "candidate_02",
+      "layout_id": "character_right",
+      "headline": "Same Meals Can Fall Short",
+      "evidence_anchor": "If food is everywhere, why can the same few meals still fail you? The clue is what those repeated meals actually provide. Calories give your body energy. Health also needs vitamins, minerals, protein, and fats. Eating only a few foods may s",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_02/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_02/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_02/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2922765,
+        "sha256": "a22c0b959931e260d0a6d4f4c3a97d884691b4fd3ed4dd8ce475ab1e01b96775"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 5192623,
+        "sha256": "c83ebf49404de9382548c75f6b827636c44d2a69586309bd40b32073056b27e5"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "c83ebf49404de9382548c75f6b827636c44d2a69586309bd40b32073056b27e5"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "b86a8a82-0a6b-4848-88bd-3a4c0e62ab80",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/e4be7874df7ad3bd",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=b86a8a82-0a6b-4848-88bd-3a4c0e62ab80_output_1.png 1536x2752 sha256=a22c0b959931e260d0a6d4f4c3a97d884691b4fd3ed4dd8ce475ab1e01b96775"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "7a0bee132e47979954dd0c460ca2baa5919afa390abcb01f80b51c68eb68f598",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "provider": "gemini",
+            "job_id": "b86a8a82-0a6b-4848-88bd-3a4c0e62ab80",
+            "prompt_sha256": "b3fff65fe146eca859ca34593b1c83df898ba6eaf78d823c5c7a44a05a9fdf79",
+            "output_sha256": "a22c0b959931e260d0a6d4f4c3a97d884691b4fd3ed4dd8ce475ab1e01b96775",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/publish/youtube_short/releases/rel_ce386f637e38479cbd18880e1b6d9796/thumbnail_candidates/candidate_02/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    }
+  ]
+}

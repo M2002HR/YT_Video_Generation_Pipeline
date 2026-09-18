@@ -1,22 +1,22 @@
 {
   "provider": "flow",
-  "job_id": "46edaa8c-df3c-4087-ab57-6df3f67c78f9",
+  "job_id": "51087560-455d-4343-8134-19f097ae209c",
   "requested": {
     "model": "gemini_omni_1_1_flash",
     "resolution": "720p",
     "aspect_ratio": "9:16",
-    "duration_seconds": 4
+    "duration_seconds": 6
   },
   "actual_model_label": "Omni 1.1 Flash",
   "model_verified": true,
-  "duration_actual": 4,
+  "duration_actual": 6,
   "resolution_actual": "720p",
   "aspect_actual": "9:16",
   "reference_roles": [
     "character_sheet"
   ],
-  "submission_fingerprint": "c19a6f73e4ea61de6336f51d7baba55d",
-  "workspace_url": "https://flow.google.com/project/1f0b1229-62ac-420a-b3ac-f78a6fc534b9",
+  "submission_fingerprint": "bffa66c6f2dfb6d05eda4d267eb37219",
+  "workspace_url": "https://flow.google.com/project/d3430400-564d-45d1-9f27-7aac5e3d3a5b",
   "provider_receipt": {
     "provider": "flow",
     "requested_model": "gemini_omni_1_1_flash",
@@ -26,22 +26,22 @@
     "requested_quality": null,
     "requested_aspect_ratio": "9:16",
     "actual_aspect_ratio": "9:16",
-    "requested_duration_seconds": 4,
-    "actual_duration_seconds": 4,
+    "requested_duration_seconds": 6,
+    "actual_duration_seconds": 6,
     "requested_resolution": "720p",
     "actual_resolution": "720p",
-    "workspace_url": "https://flow.google.com/project/1f0b1229-62ac-420a-b3ac-f78a6fc534b9",
-    "submission_fingerprint": "c19a6f73e4ea61de6336f51d7baba55d",
+    "workspace_url": "https://flow.google.com/project/d3430400-564d-45d1-9f27-7aac5e3d3a5b",
+    "submission_fingerprint": "bffa66c6f2dfb6d05eda4d267eb37219",
     "reference_roles": [
       "character_sheet"
     ],
     "notes": [
-      "credits_required=7",
+      "credits_required=10",
       "outputs=x1",
       "reference_mode=ingredients",
       "pixels=720x1280",
-      "bytes=1985050",
-      "duration 4.01s vs requested 4s",
+      "bytes=2774503",
+      "duration 6.02s vs requested 6s",
       "resolution 720x1280 vs 720p"
     ]
   },
@@ -55,9 +55,9 @@
       "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
     }
   ],
-  "prompt_sha256": "9214734f244733ea4fd32c1bf17f9794482ead6c199b9aeaa49b1a887a15e98f",
+  "prompt_sha256": "6ac6821b563012beb57a5999c373fefb000553ce6e3630a96719728fcf75f00f",
   "output_file": "assets/opening/question_intro_source.mp4",
-  "output_sha256": "23e3afde53cbd2e2838fec467091b07b541cd8588b01d8f00b8c0c5380c31342",
-  "elapsed_seconds": 102.279,
-  "completed_at": "2026-09-18T08:13:53Z"
+  "output_sha256": "75649134e55b3e2dfbe84bc15073a70bc5dab901512e7d7c93dbcf0a27bb800f",
+  "elapsed_seconds": 102.325,
+  "completed_at": "2026-09-18T12:54:52Z"
 }

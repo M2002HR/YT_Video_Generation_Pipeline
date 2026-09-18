@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "provider": "operator_upload",
-  "selection_mode": "operator_upload",
+  "provider": "freesound",
+  "selection_mode": "library_selection",
   "file": "assets/music/operator_background.mp3",
-  "source_url": null,
-  "source_sha256": "fa8132d7d36522d932f3029b9ee42c993a79a87163c3e46db61047abb0e7cf88",
-  "license": "Operator-supplied; publication rights must be verified by the operator.",
-  "original_name": "Calima - Full Moon (freetouse.com).mp3",
-  "library_origin": "upload",
-  "selected_at": "2026-09-18T07:47:05.272004+00:00"
+  "source_url": "https://freesound.org/people/kontraamusic/sounds/790936/",
+  "source_sha256": "c96743f18da09eee1619d7122c5e24d0de16baceef6fdf9d846c60c806f5fed8",
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "original_name": "Battleground | UK Drill Instrumental",
+  "library_origin": "provider",
+  "selected_at": "2026-09-18T12:52:53.437665+00:00"
 }

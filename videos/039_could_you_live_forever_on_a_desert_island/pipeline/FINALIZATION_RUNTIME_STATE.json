@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "039_could_you_live_forever_on_a_desert_island",
-  "started_at": "2026-09-18T08:16:11.914635+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-18T12:57:11.755285+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-18T08:16:11.938846+00:00",
+      "started_at": "2026-09-18T12:57:11.778599+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:16:13.486416+00:00",
-      "elapsed_seconds": 1.548,
+      "ended_at": "2026-09-18T12:57:13.430694+00:00",
+      "elapsed_seconds": 1.652,
       "artifact": "timeline/TIMELINE.json",
-      "artifact_bytes": 38235
+      "artifact_bytes": 37983
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-18T08:16:14.554718+00:00",
+      "started_at": "2026-09-18T12:57:15.238387+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -33,14 +33,14 @@
         "step 2/8 · Render Baseline"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:19:06.647102+00:00",
-      "elapsed_seconds": 172.092,
+      "ended_at": "2026-09-18T13:01:04.069533+00:00",
+      "elapsed_seconds": 228.831,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 79121441
+      "artifact_bytes": 99921530
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-18T08:19:06.647700+00:00",
+      "started_at": "2026-09-18T13:01:04.070219+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -50,14 +50,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:19:17.137194+00:00",
-      "elapsed_seconds": 10.489,
+      "ended_at": "2026-09-18T13:01:18.110620+00:00",
+      "elapsed_seconds": 14.04,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-18T08:19:18.393811+00:00",
+      "started_at": "2026-09-18T13:01:19.338699+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -66,14 +66,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:19:21.897727+00:00",
-      "elapsed_seconds": 3.504,
+      "ended_at": "2026-09-18T13:01:23.599628+00:00",
+      "elapsed_seconds": 4.261,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 79392925
+      "artifact_bytes": 99935060
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-18T08:19:22.872152+00:00",
+      "started_at": "2026-09-18T13:01:24.743075+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -83,14 +83,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:19:33.158325+00:00",
-      "elapsed_seconds": 10.286,
+      "ended_at": "2026-09-18T13:01:38.094909+00:00",
+      "elapsed_seconds": 13.352,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-18T08:19:34.661285+00:00",
+      "started_at": "2026-09-18T13:01:39.368154+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -101,14 +101,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:19:53.751241+00:00",
-      "elapsed_seconds": 19.09,
+      "ended_at": "2026-09-18T13:02:04.732760+00:00",
+      "elapsed_seconds": 25.365,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 3814062
+      "artifact_bytes": 4771392
     },
     {
       "stage": "publish_telegram",
-      "started_at": "2026-09-18T08:19:54.874723+00:00",
+      "started_at": "2026-09-18T13:02:05.902817+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/publish_to_telegram.py",
@@ -119,14 +119,14 @@
         "compressed"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T08:20:04.149365+00:00",
-      "elapsed_seconds": 9.275,
+      "ended_at": "2026-09-18T13:02:17.325199+00:00",
+      "elapsed_seconds": 11.422,
       "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
-      "artifact_bytes": 2165
+      "artifact_bytes": 2168
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-18T08:20:05.216390+00:00",
+      "started_at": "2026-09-18T13:02:18.243922+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -134,26 +134,16 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/039_could_you_live_forever_on_a_desert_island/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-18T08:16:11.914635+00:00"
+        "2026-09-18T12:57:11.755285+00:00"
       ],
       "status": "RUNNING"
-    },
-    {
-      "stage": "git_commit_push",
-      "status": "DONE",
-      "started_at": "2026-09-18T08:16:11.914635+00:00",
-      "ended_at": "2026-09-18T08:20:14.583506+00:00",
-      "elapsed_seconds": 242.669,
-      "branch": "dev",
-      "remote": "origin",
-      "artifact_commit": "6b7708936136e57ebf2ca70e20358a909b7cd3f1"
     }
   ],
-  "completed_at": "2026-09-18T08:20:14.583506+00:00",
-  "total_elapsed_seconds": 468.953,
+  "completed_at": "2026-09-18T13:02:18.241420+00:00",
+  "total_elapsed_seconds": 298.923,
   "summary": {
     "video": "039_could_you_live_forever_on_a_desert_island",
-    "duration_seconds": 42.527,
+    "duration_seconds": 56.686,
     "beat_count": 12,
     "video_beat_count": 2,
     "image_beat_count": 10,
@@ -161,8 +151,8 @@
     "fps": 30,
     "subtitles": true,
     "opening": {
-      "spark_end": 4.1,
-      "transition_end": 8.04
+      "spark_end": 4.88,
+      "transition_end": 9.02
     },
     "stt": {
       "backend": "ajil",
@@ -187,9 +177,9 @@
       "enabled": false
     },
     "resources": {
-      "wall_seconds": 171.613,
-      "realtime_factor": 4.035,
-      "peak_child_rss_mb": 1419.9,
+      "wall_seconds": 228.246,
+      "realtime_factor": 4.026,
+      "peak_child_rss_mb": 1417.1,
       "threads": 2,
       "resource_budget": 0.8,
       "cpus_available": 2

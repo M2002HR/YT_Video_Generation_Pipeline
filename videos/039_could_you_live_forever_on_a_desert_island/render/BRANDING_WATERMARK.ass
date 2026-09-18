@@ -11,4 +11,4 @@ Style: VideoWatermark,Roleo,150,&HA6FFFFFF,&HA6FFFFFF,&HA6000000,&H00000000,0,0,
 
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
-Dialogue: 1,0:00:00.00,0:00:42.53,VideoWatermark,,0,0,0,,{\an8\q2\pos(540.00,1597.00)}Q Station
+Dialogue: 1,0:00:00.00,0:00:56.69,VideoWatermark,,0,0,0,,{\an8\q2\pos(540.00,1597.00)}Q Station
