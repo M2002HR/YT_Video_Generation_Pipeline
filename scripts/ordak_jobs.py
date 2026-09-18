@@ -286,6 +286,12 @@ class OrdakJobs:
 
     # -- job submission ----------------------------------------------------
 
+    #: Where a ChatGPT image job must live. ``project`` is today's behavior
+    #: (the configured project conversation). ``temporary`` opens a fresh
+    #: temporary chat per job; ``fresh`` opens a fresh normal (non-temp) chat.
+    #: Anything else (including Gemini) ignores this flag.
+    CHAT_SCOPES = ("project", "temporary", "fresh")
+
     def submit(
         self,
         question: str,
@@ -296,8 +302,11 @@ class OrdakJobs:
         references: Sequence[Reference] = (),
         start_new_chat: bool = True,
         conversation_id: str | None = None,
+        chatgpt_chat: str = "project",
     ) -> str:
         """Create a job and return its id. Uploads carry an explicit role each."""
+        if chatgpt_chat not in self.CHAT_SCOPES:
+            raise OrdakJobError(f"Unknown chatgpt_chat scope: {chatgpt_chat!r}.")
         if references:
             files: list[tuple[str, tuple[str, bytes, str]]] = []
             form: dict[str, Any] = {
@@ -306,6 +315,7 @@ class OrdakJobs:
                 "mode": mode,
                 "start_new_chat": "true" if start_new_chat else "false",
                 "wait_for_completion": "false",
+                "chatgpt_chat": chatgpt_chat,
             }
             if conversation_id:
                 form["conversation_id"] = conversation_id
@@ -328,6 +338,7 @@ class OrdakJobs:
                 "provider": provider,
                 "mode": mode,
                 "start_new_chat": start_new_chat,
+                "chatgpt_chat": chatgpt_chat,
             }
             if conversation_id:
                 payload["conversation_id"] = conversation_id
@@ -416,6 +427,7 @@ class OrdakJobs:
         timeout_seconds: int | None = None,
         attempts: int = 1,
         on_log: Any = None,
+        chatgpt_chat: str = "project",
     ) -> JobResult:
         """Submit and wait. ``attempts`` only ever retries transient browser faults.
 
@@ -431,6 +443,7 @@ class OrdakJobs:
                 generation=generation,
                 references=references,
                 start_new_chat=start_new_chat,
+                chatgpt_chat=chatgpt_chat,
             )
             try:
                 return self.wait(job_id, timeout_seconds=timeout_seconds, on_log=on_log)

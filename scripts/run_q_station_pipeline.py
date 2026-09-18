@@ -639,6 +639,9 @@ class Runner:
         self.image_qc_correction_policy = image_qc_correction_policy if image_qc_correction_policy in {"0", "1", "2", "strict"} else "0"
         self.beat_image_qc_disabled = bool(beat_image_qc_disabled)
         self.image_provider_alternation = bool(image_provider_alternation)
+        # Renderer locked in by the first accepted beat image (persisted per
+        # episode); None until the first acceptance. See image().
+        self._beat_image_provider: str | None = None
 
     def image_qc_disabled_for(self, stage: str) -> bool:
         """Whether this body beat must never be uploaded to the ChatGPT reviewer."""
@@ -781,6 +784,7 @@ class Runner:
         generation: Generation | None = None,
         references: list[Reference] = (),
         timeout_seconds: int | None = None,
+        chatgpt_chat: str = "project",
     ) -> JobResult:
         if len(question) > ORDAK_QUESTION_LIMIT:
             raise StageFailure(
@@ -799,6 +803,7 @@ class Runner:
                 timeout_seconds=timeout_seconds,
                 attempts=3 if provider == "gemini" and mode == "image_generate" else 1,
                 on_log=lambda message: print(f"    [{provider}] {message[:160]}", flush=True),
+                chatgpt_chat=chatgpt_chat,
             )
         except OrdakJobError as exc:
             raise StageFailure(
@@ -948,11 +953,31 @@ class Runner:
         # correction budget lasts. Disabled (release paths, unit doubles)
         # keeps the historical Gemini-only sequence byte-identical.
         alternate = bool(getattr(self, "image_provider_alternation", False))
+        # Beat images keep one renderer for the whole episode: the provider of
+        # the first accepted beat leads every later beat (fallback to the other
+        # only on failure, loudly). This avoids one-by-one style alternation.
+        sticky = None
+        if alternate and stage.startswith("beat_image_"):
+            sticky = getattr(self, "_beat_image_provider", None)
+            if sticky not in ("gemini", "chatgpt"):
+                sticky = _load_beat_image_provider(_runner_project(self))
+                self._beat_image_provider = sticky
         last_failure: StageFailure | None = None
 
         try:
             for attempt in range(max_attempts):
-                provider = ("gemini", "chatgpt")[attempt % 2] if alternate else "gemini"
+                if sticky in ("gemini", "chatgpt"):
+                    other = "chatgpt" if sticky == "gemini" else "gemini"
+                    provider = sticky if attempt % 2 == 0 else other
+                else:
+                    provider = ("gemini", "chatgpt")[attempt % 2] if alternate else "gemini"
+                # Fresh ChatGPT generations each get their own temporary chat;
+                # corrections go to a fresh normal (non-temp) chat with the
+                # previous candidate attached as reference — never the stale
+                # project conversation, never a temp chat for corrections.
+                chatgpt_chat = "project"
+                if provider == "chatgpt":
+                    chatgpt_chat = "fresh" if attempt > 0 else "temporary"
                 candidate = candidates_dir / f"{destination.stem}.{request_id}.attempt-{attempt + 1}.png"
                 attempt_options = {"skip_content_qc": True} if skip_content_qc else {}
                 try:
@@ -963,6 +988,7 @@ class Runner:
                         model=model,
                         destination=candidate,
                         provider=provider,
+                        chatgpt_chat=chatgpt_chat,
                         **attempt_options,
                     )
                 except StageFailure as exc:
@@ -1065,6 +1091,21 @@ class Runner:
                 "request_fingerprint": request_fingerprint(prompt, model, references),
             })
             selected_result.generation_receipt = receipt
+            if stage.startswith("beat_image_") and getattr(self, "_beat_image_provider", None) is None:
+                selected_provider = None
+                if 1 <= selected_attempt <= len(iterations):
+                    candidate_provider = iterations[selected_attempt - 1].get("provider")
+                    if candidate_provider in ("gemini", "chatgpt"):
+                        selected_provider = candidate_provider
+                if selected_provider is not None:
+                    self._beat_image_provider = selected_provider
+                    project = _runner_project(self)
+                    if project is not None:
+                        _store_beat_image_provider(project, selected_provider, stage)
+                    print(
+                        f"    [{stage}] beat image renderer locked to {selected_provider} for the rest of the episode.",
+                        flush=True,
+                    )
             destination.parent.mkdir(parents=True, exist_ok=True)
             committed = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
             try:
@@ -1116,10 +1157,13 @@ class Runner:
         destination: Path,
         skip_content_qc: bool = False,
         provider: str = "gemini",
+        chatgpt_chat: str = "project",
     ) -> JobResult:
         """One provider image, downloaded and verified. Returns the job result for the receipt."""
         if provider not in {"gemini", "chatgpt"}:
             raise ValueError(f"Unsupported image provider: {provider}")
+        if chatgpt_chat not in ("project", "temporary", "fresh"):
+            raise ValueError(f"Unsupported chatgpt_chat scope: {chatgpt_chat!r}.")
         fingerprint = request_fingerprint(prompt, model, references)
         if provider != "gemini":
             # The shared fingerprint must never let one provider reuse the
@@ -1148,6 +1192,7 @@ class Runner:
                 stage, prompt, provider=provider, mode="image_generate",
                 generation=generation,
                 references=references,
+                chatgpt_chat=chatgpt_chat,
             )
             pending.unlink(missing_ok=True)
             metadata.unlink(missing_ok=True)
@@ -2714,6 +2759,70 @@ def reusable_image(runner, project: Path, stage: str, target: Path, receipt: Pat
     data.update(contract_version=CONTRACT_VERSION, request_fingerprint=fingerprint, quality_check=check)
     save_json(receipt, data)
     return True
+
+
+def _beat_provider_file(project: Path) -> Path:
+    return project / "creative" / "BEAT_IMAGE_PROVIDER.json"
+
+
+def _runner_project(runner: Any) -> Path | None:
+    project = getattr(getattr(runner, "state", None), "project", None)
+    return project if isinstance(project, Path) else None
+
+
+def _load_beat_image_provider(project: Path | None) -> str | None:
+    """The renderer locked in by the first accepted beat image, if any.
+
+    Explicit record first; otherwise the earliest beat receipt whose quality
+    iterations name the selected attempt's provider (covers episodes made
+    before the record existed). Reused beats never change it.
+    """
+    if project is None:
+        return None
+    try:
+        data = json.loads(_beat_provider_file(project).read_text(encoding="utf-8"))
+        if isinstance(data, dict) and data.get("provider") in ("gemini", "chatgpt"):
+            return str(data["provider"])
+    except (OSError, ValueError):
+        pass
+    candidates: list[tuple[int, str]] = []
+    try:
+        receipts = sorted((project / "pipeline" / "provider_receipts").glob("gemini_beat_*.json"))
+    except OSError:
+        return None
+    for receipt_path in receipts:
+        try:
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(receipt, dict):
+            continue
+        selected = receipt.get("qc_selected_attempt")
+        for item in receipt.get("quality_iterations") or []:
+            if isinstance(item, dict) and item.get("attempt") == selected and item.get("provider") in ("gemini", "chatgpt"):
+                try:
+                    beat_id = int(receipt_path.stem.split("_")[-1])
+                except ValueError:
+                    continue
+                candidates.append((beat_id, str(item["provider"])))
+    if not candidates:
+        return None
+    return sorted(candidates)[0][1]
+
+
+def _store_beat_image_provider(project: Path, provider: str, stage: str) -> None:
+    try:
+        _beat_provider_file(project).parent.mkdir(parents=True, exist_ok=True)
+        _beat_provider_file(project).write_text(
+            json.dumps(
+                {"schema_version": 1, "provider": provider, "set_by": stage, "updated_at": utcnow()},
+                ensure_ascii=False,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+    except OSError:
+        pass
 
 
 def _write_image_receipt(

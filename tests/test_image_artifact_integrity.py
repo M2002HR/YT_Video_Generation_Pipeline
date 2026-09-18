@@ -60,7 +60,7 @@ def qc_result(check):
 
 def test_zero_qc_policy_reports_noncritical_findings_without_regeneration(tmp_path):
     runner=object.__new__(qstation.Runner);runner.image_qc_correction_policy='0';calls=[]
-    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini"):
+    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         calls.append(destination);picture(destination,1)
         return qc_result({'passed':True,'review_status':'passed_with_warnings',
                           'observations':['minor framing issue'],'blocking_violations':[]})
@@ -110,7 +110,7 @@ def test_one_qc_correction_uses_previous_candidate_as_a_quality_floor(tmp_path):
         {'passed':True,'review_status':'passed_with_warnings','observations':['cropping is tight'],'blocking_violations':[]},
         {'passed':True,'review_status':'passed','observations':[],'blocking_violations':[]},
     ]
-    def attempt(_stage,prompt,references,*,model,destination,provider="gemini"):
+    def attempt(_stage,prompt,references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         calls.append((prompt,references));picture(destination,len(calls))
         return qc_result(checks[len(calls)-1])
     runner._image_attempt=attempt
@@ -131,7 +131,7 @@ def test_two_qc_corrections_keep_the_best_candidate_when_retries_regress(tmp_pat
         {'passed':False,'observations':[],'blocking_violations':['style continuity drift: wrong medium']},
     ]
     expected_first=picture(tmp_path/'expected.png',1).read_bytes()
-    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini"):
+    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         calls.append(destination);picture(destination,len(calls))
         return qc_result(checks[len(calls)-1])
     runner._image_attempt=attempt
@@ -146,7 +146,7 @@ def test_two_qc_corrections_keep_the_best_candidate_when_retries_regress(tmp_pat
 def test_strict_qc_fails_after_three_unresolved_attempts_without_overwriting(tmp_path):
     target=picture(tmp_path/'out.png',9);before=target.read_bytes()
     runner=object.__new__(qstation.Runner);runner.image_qc_correction_policy='strict';calls=[]
-    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini"):
+    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         calls.append(destination);picture(destination,len(calls))
         return qc_result({'passed':True,'observations':['unresolved polish issue'],'blocking_violations':[]})
     runner._image_attempt=attempt
@@ -307,7 +307,7 @@ def test_wrong_requested_model_is_rejected_before_download(tmp_path):
 def test_provider_alternation_retries_failed_attempt_on_other_provider(tmp_path):
     runner=object.__new__(qstation.Runner)
     runner.image_qc_correction_policy='1';runner.image_provider_alternation=True;providers=[]
-    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini"):
+    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         providers.append(provider)
         if len(providers)==1:
             raise qstation.StageFailure('beat_image_001','FAILED_DOWNLOAD','boom')
@@ -338,7 +338,7 @@ def test_provider_failure_without_alternation_fails_immediately(tmp_path):
 def test_alternation_cycles_back_to_gemini_on_third_attempt(tmp_path):
     runner=object.__new__(qstation.Runner)
     runner.image_qc_correction_policy='2';runner.image_provider_alternation=True;providers=[]
-    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini"):
+    def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         providers.append(provider)
         raise qstation.StageFailure('beat_image_001','FAILED_DOWNLOAD','boom')
     runner._image_attempt=attempt
