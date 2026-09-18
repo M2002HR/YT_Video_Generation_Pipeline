@@ -69,6 +69,20 @@ def save(path: Path, state: dict[str, Any]) -> None:
     path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def mark_finalization_done(state_path: Path) -> dict[str, Any]:
+    """Flip a fully passed finalization state to DONE.
+
+    Every per-stage step leaves the top status at RUNNING (including the last
+    git_commit_push step), so the final DONE mark must happen after the last
+    step — otherwise a successful episode is later read as failed.
+    """
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    state["status"] = "DONE"
+    state["completed_at"] = now()
+    save(state_path, state)
+    return state
+
+
 def timeline_matches_current_timing(video: Path) -> bool:
     """Refuse a plausible-looking timeline built from an older visual-beat contract."""
     try:
@@ -334,6 +348,10 @@ def main() -> None:
             + ([] if os.getenv("YT_GIT_PUSH_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"} else ["--no-push"]),
             artifact=video / "pipeline" / "GIT_PUBLISH_STATE.json",
         )
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+        # step() leaves the top status at RUNNING; a fully passed run must end DONE,
+        # otherwise the panel reconciler reads a successful episode as failed.
+        mark_finalization_done(state_path)
         state = json.loads(state_path.read_text(encoding="utf-8"))
 
     print(json.dumps(summary, ensure_ascii=False, indent=2))

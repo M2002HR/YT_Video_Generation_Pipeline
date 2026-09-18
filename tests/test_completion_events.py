@@ -85,3 +85,26 @@ def test_timeline_reuse_rejects_an_old_missing_closing_beat(tmp_path: Path) -> N
         ],
     }), encoding="utf-8")
     assert completion.timeline_matches_current_timing(tmp_path) is False
+
+
+def test_final_step_leaves_top_status_running_until_finalized(tmp_path: Path, monkeypatch) -> None:
+    """Every per-stage step (including the last git_commit_push) leaves RUNNING."""
+    state_path = tmp_path / "state.json"
+    state = {"status": "RUNNING", "events": []}
+    monkeypatch.setattr(completion.subprocess, "run", lambda *args, **kwargs: None)
+    completion.execute("git_commit_push", ["tool"], state, state_path)
+    saved = json.loads(state_path.read_text())
+    assert saved["events"][-1]["status"] == "DONE"
+    assert saved["status"] == "RUNNING"
+
+
+def test_mark_finalization_done_flips_fully_passed_state(tmp_path: Path) -> None:
+    state_path = tmp_path / "state.json"
+    state_path.write_text(json.dumps({
+        "schema_version": 1, "status": "RUNNING",
+        "events": [{"stage": "git_commit_push", "status": "DONE"}],
+    }), encoding="utf-8")
+    final = completion.mark_finalization_done(state_path)
+    assert final["status"] == "DONE"
+    assert final["completed_at"]
+    assert json.loads(state_path.read_text())["status"] == "DONE"
