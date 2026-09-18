@@ -840,7 +840,14 @@ def freeze_music_asset(launch: dict, project: Path, folder: Path) -> None:
     elif isinstance(existing, dict):
         try:
             source = (ROOT / str(existing.get("path") or "")).resolve()
-            source.relative_to(project.resolve())
+            try:
+                source.relative_to(project.resolve())
+            except ValueError:
+                # A new episode (topic change) starts in a fresh folder but may reuse
+                # the source episode's frozen bed, which lives outside the new project.
+                # Accept it only while it stays inside the repository; absolute system
+                # paths and traversal outside the repo remain rejected below.
+                source.relative_to(ROOT.resolve())
         except ValueError as exc:
             raise ValueError("Stored background music has an unsafe path.") from exc
         expected = str(existing.get("sha256") or "")
