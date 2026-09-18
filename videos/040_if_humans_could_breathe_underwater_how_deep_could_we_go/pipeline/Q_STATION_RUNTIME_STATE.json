@@ -1,0 +1,599 @@
+{
+  "schema_version": 2,
+  "video_id": "040",
+  "topic": "If Humans Could Breathe Underwater, How Deep Could We Go?",
+  "created_at": "2026-09-18T18:03:14Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "requested_mode": "manual",
+      "requested_character_id": "sea_captain",
+      "resolved_character_id": "sea_captain",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:07Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T20:01:09Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T20:01:00Z",
+      "body_beats": 10,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "world_style_anchor.png → catalog/025_submerged_pressure_gouache_cutaway_001"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "spyglass_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "SPYGLASS_ENTRY_DIRECTION.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:10Z",
+      "artifact": "spyglass_entry_frame.png"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T20:01:15Z"
+    },
+    "beat_image_001": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:14Z",
+      "artifact": "beat_001.png"
+    },
+    "beat_image_002": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:14Z",
+      "artifact": "beat_002.png"
+    },
+    "beat_image_003": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:14Z",
+      "artifact": "beat_003.png"
+    },
+    "beat_image_004": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:14Z",
+      "artifact": "beat_004.png"
+    },
+    "beat_image_005": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:15Z",
+      "artifact": "beat_005.png"
+    },
+    "beat_image_006": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:15Z",
+      "artifact": "beat_006.png"
+    },
+    "beat_image_007": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:15Z",
+      "artifact": "beat_007.png"
+    },
+    "beat_image_008": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:15Z",
+      "artifact": "beat_008.png"
+    },
+    "beat_image_009": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:15Z",
+      "artifact": "beat_009.png"
+    },
+    "beat_image_010": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:15Z",
+      "artifact": "beat_010.png"
+    },
+    "transition_direction": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:17Z",
+      "artifact": "TRANSITION_PLAN.json"
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:17Z",
+      "artifact": "flow_prompt_question_intro.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:17Z",
+      "artifact": "flow_prompt_spyglass_transition.txt"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-18T20:01:17Z",
+      "artifact": "question_intro_source.mp4 (4.01s)"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T20:03:16Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "b7411ad906d29a43db147e17a2db1c9bf8138957684ebbe6bdcda79ed29c37b8"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-18T20:03:17Z",
+      "body_images": 10
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 128.108,
+      "at": "2026-09-18T18:05:23Z",
+      "selected_id": "c1",
+      "concept_id": "128c4e717da3dbc78433"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 82.296,
+      "at": "2026-09-18T18:06:46Z",
+      "words": 117
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 245.062,
+      "at": "2026-09-18T18:10:53Z",
+      "words": 119
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 49.329,
+      "at": "2026-09-18T18:11:43Z",
+      "activity": "Comparing how trapped air and water respond when exposed to the same increased pressure."
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 37.68,
+      "at": "2026-09-18T18:41:34Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 31.571,
+      "at": "2026-09-18T18:42:07Z",
+      "style_id": "submerged_pressure_gouache_cutaway_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.1,
+      "at": "2026-09-18T18:42:09Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 49.515,
+      "at": "2026-09-18T18:43:00Z",
+      "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.711,
+      "at": "2026-09-18T18:44:01Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 47.609,
+      "at": "2026-09-18T18:44:50Z",
+      "sha256": "6055558634ad01690afb0aa59d2849d608ebe3d33799a45c077b560bc4962a87",
+      "model": "nano_banana_2",
+      "catalog_path": "025_submerged_pressure_gouache_cutaway_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 22.204,
+      "at": "2026-09-18T18:45:13Z",
+      "prompt_sha256": "546bb7c623de3ee02ea538f60a2f16a50a4e592a5d84598d8464f06e8b533256"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 79.825,
+      "at": "2026-09-18T18:46:34Z",
+      "sha256": "835d78722f43a6d80f75a3744ebd899ebf5d96016b7430f8aef814b8e431e275",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 20.181,
+      "at": "2026-09-18T18:46:57Z",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.415,
+      "at": "2026-09-18T19:13:08Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.435,
+      "at": "2026-09-18T19:13:18Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 138.717,
+      "at": "2026-09-18T19:15:38Z",
+      "sha256": "9b51cd43cf87e7c362b37949ccdabab31e1371ccefca878c1fffe011a81dcace",
+      "model": "nano_banana_2",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 66.592,
+      "at": "2026-09-18T19:17:12Z",
+      "sha256": "cdbac89cc5278f57240780a07b4d484cde50f9328d8dda4c25e0752736be3d26",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 138.996,
+      "at": "2026-09-18T19:20:02Z",
+      "sha256": "5be732375d206bc23d80bf651190d1dcf5447f7dec7da5e6b1fe475471686670",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 84.694,
+      "at": "2026-09-18T19:21:53Z",
+      "sha256": "553839b701ed1a76c5402f2bb6c5b6569efec20ba595a4ab1808372932754f80",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 78.738,
+      "at": "2026-09-18T19:23:40Z",
+      "sha256": "22c0c5159ff3409c5d55567957263d541aa5731d2486ec3bdd5661c1081fc145",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 87.841,
+      "at": "2026-09-18T19:25:37Z",
+      "sha256": "c4e02482694a69d22aede32d5e777bda1c142817e882cba91d29db74024eb3e5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 81.77,
+      "at": "2026-09-18T19:27:24Z",
+      "sha256": "2ae00f27fa7d40da8799fc55fc70f6c61b8e4b213e59bb9e0ad7992b7bb70c3b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 87.832,
+      "at": "2026-09-18T19:29:17Z",
+      "sha256": "683e11a617a928091e5c3f02cc7210428bfdd5cb3b57c787f7c93694980bc98e",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 75.815,
+      "at": "2026-09-18T19:30:55Z",
+      "sha256": "c6d05b5912b8241514a2c1836a860e816b8c96d9ad61b170cc511ecd465e4013",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 96.826,
+      "at": "2026-09-18T19:32:57Z",
+      "sha256": "392d4a4328f0bd5766e53e5790ae263911e1f22bcb10f097f3f621bc7eef3ec7",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 78.847,
+      "at": "2026-09-18T19:34:41Z",
+      "sha256": "adaad9374ee9301f7771f83c614744a0840a456a7e0542b041491cd97e88c2fb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1143.26,
+      "at": "2026-09-18T19:34:43Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.53,
+      "at": "2026-09-18T19:34:45Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 31.551,
+      "at": "2026-09-18T19:35:18Z",
+      "prompt_sha256": "b45e7886aa480ab99630e56ca59aa01ba292364bd72c008b911127c09ef3f846"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 26.406,
+      "at": "2026-09-18T19:35:46Z",
+      "prompt_sha256": "884deefe144ed02e5c90f545238a38d0b98a54001e4973e83c65a65cc3c0bde3"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 103.923,
+      "at": "2026-09-18T19:37:31Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "98afe6c4b9f2f3ecb1a8ca5c4942ef29834f7cdc48063474608244868f6f8028"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.425,
+      "at": "2026-09-18T20:00:59Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.686,
+      "at": "2026-09-18T20:01:09Z",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 5.065,
+      "at": "2026-09-18T20:01:15Z"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 119.642,
+      "at": "2026-09-18T20:03:16Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "b7411ad906d29a43db147e17a2db1c9bf8138957684ebbe6bdcda79ed29c37b8"
+    }
+  ],
+  "updated_at": "2026-09-18T20:03:17Z"
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-18T20:08:02.011316+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-18T20:08:02.011117+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15533,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 1992254,
+      "sha256": "1d666ff3d7a0def0ac430f9949739bc592a6e79a49a063b55b779c9385e4f268",
+      "duration_seconds": 59.469,
+      "elapsed_seconds": 5.664,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "duration_seconds": 59.481,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.6,
+          "transition_end": 8.66
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 206.282,
+          "realtime_factor": 3.468,
+          "peak_child_rss_mb": 1232.5,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 040_if_humans_could_breathe_underwater_how_deep_could_we_go\n⏱ Duration: 0:59\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:26 wall (3.468x realtime) · 2 thread(s) · peak 1232.5 MB\nArtifact: 1d666ff3d7a0 · Delivery: compressed"
+    }
+  }
+}

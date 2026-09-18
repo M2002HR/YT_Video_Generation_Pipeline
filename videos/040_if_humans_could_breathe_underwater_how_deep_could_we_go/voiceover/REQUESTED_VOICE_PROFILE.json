@@ -1,0 +1,10 @@
+{
+  "voice": "Mr. Claus – The Classic Jolly Santa",
+  "model": "Eleven Multilingual v2",
+  "speed": 0.98,
+  "stability": 0.35,
+  "similarity": 0.35,
+  "style": 0.3,
+  "speaker_boost": false,
+  "output_format": "MP3 44.1 kHz (128kbps)"
+}

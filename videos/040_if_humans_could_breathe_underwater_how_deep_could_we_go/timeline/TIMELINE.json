@@ -1,0 +1,2023 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 59.481,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.583,
+      "duration": 4.583,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/spyglass_transition_trimmed.mp4",
+      "start": 4.583,
+      "end": 8.625,
+      "duration": 4.042,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 8.66,
+      "end": 12.96,
+      "duration": 4.3,
+      "speech_start": 8.88,
+      "speech_end": 12.48,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Body tissue with lots of water barely changes.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 12.96,
+      "end": 17.14,
+      "duration": 4.18,
+      "speech_start": 12.96,
+      "speech_end": 16.78,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Air in your ears and sinuses shrinks much more.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 17.14,
+      "end": 22.19,
+      "duration": 5.05,
+      "speech_start": 17.14,
+      "speech_end": 22.4,
+      "match_confidence": 0.923,
+      "motion": "zoom_in",
+      "narration": "Every ten meters, pressure rises by about the air pressure at the surface.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 22.19,
+      "end": 26.82,
+      "duration": 4.63,
+      "speech_start": 21.98,
+      "speech_end": 26.38,
+      "match_confidence": 0.875,
+      "motion": "zoom_in",
+      "narration": "At ten meters, total pressure is about double.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 26.82,
+      "end": 31.1,
+      "duration": 4.28,
+      "speech_start": 26.82,
+      "speech_end": 30.8,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Unequal pressure can injure your ears and sinuses.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 31.1,
+      "end": 36.74,
+      "duration": 5.64,
+      "speech_start": 31.1,
+      "speech_end": 36.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Breathing underwater removes the problem of running out of air.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 36.74,
+      "end": 40.24,
+      "duration": 3.5,
+      "speech_start": 36.74,
+      "speech_end": 39.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "But pressure would still affect your body.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 40.24,
+      "end": 46.16,
+      "duration": 5.92,
+      "speech_start": 40.24,
+      "speech_end": 45.94,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "At extreme depths, high pressure can disturb how nerves normally work.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 46.16,
+      "end": 50.54,
+      "duration": 4.38,
+      "speech_start": 46.16,
+      "speech_end": 50.1,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "So breathing alone does not set a fixed depth limit.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 50.54,
+      "end": 59.481,
+      "duration": 8.941,
+      "speech_start": 50.54,
+      "speech_end": 55.08,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Breathing solves one limit, but pressure creates others.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 0.26,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.0,
+          "end": 0.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.26,
+      "end": 0.72,
+      "text": "water",
+      "ass_text": "water",
+      "words": [
+        {
+          "text": "water",
+          "start": 0.26,
+          "end": 0.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.72,
+      "end": 1.38,
+      "text": "crushes",
+      "ass_text": "crushes",
+      "words": [
+        {
+          "text": "crushes",
+          "start": 0.72,
+          "end": 1.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.38,
+      "end": 1.74,
+      "text": "air",
+      "ass_text": "air",
+      "words": [
+        {
+          "text": "air",
+          "start": 1.38,
+          "end": 1.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.74,
+      "end": 2.34,
+      "text": "pockets,",
+      "ass_text": "pockets,",
+      "words": [
+        {
+          "text": "pockets,",
+          "start": 1.74,
+          "end": 2.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.34,
+      "end": 2.82,
+      "text": "why",
+      "ass_text": "why",
+      "words": [
+        {
+          "text": "why",
+          "start": 2.34,
+          "end": 2.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.82,
+      "end": 3.2,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 2.82,
+          "end": 3.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.2,
+      "end": 3.48,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 3.2,
+          "end": 3.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.48,
+      "end": 3.9,
+      "text": "whole",
+      "ass_text": "whole",
+      "words": [
+        {
+          "text": "whole",
+          "start": 3.48,
+          "end": 3.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.9,
+      "end": 4.6,
+      "text": "body?",
+      "ass_text": "body?",
+      "words": [
+        {
+          "text": "body?",
+          "start": 3.9,
+          "end": 4.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.84,
+      "end": 5.18,
+      "text": "Most",
+      "ass_text": "Most",
+      "words": [
+        {
+          "text": "Most",
+          "start": 4.84,
+          "end": 5.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.18,
+      "end": 5.38,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 5.18,
+          "end": 5.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.38,
+      "end": 5.52,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 5.38,
+          "end": 5.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.52,
+      "end": 5.86,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 5.52,
+          "end": 5.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.86,
+      "end": 6.3,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 5.86,
+          "end": 6.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.3,
+      "end": 6.84,
+      "text": "water,",
+      "ass_text": "water,",
+      "words": [
+        {
+          "text": "water,",
+          "start": 6.3,
+          "end": 6.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.84,
+      "end": 7.2,
+      "text": "which",
+      "ass_text": "which",
+      "words": [
+        {
+          "text": "which",
+          "start": 6.84,
+          "end": 7.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.2,
+      "end": 7.54,
+      "text": "hardly",
+      "ass_text": "hardly",
+      "words": [
+        {
+          "text": "hardly",
+          "start": 7.2,
+          "end": 7.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.54,
+      "end": 7.88,
+      "text": "gets",
+      "ass_text": "gets",
+      "words": [
+        {
+          "text": "gets",
+          "start": 7.54,
+          "end": 7.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.88,
+      "end": 8.66,
+      "text": "squeezed.",
+      "ass_text": "squeezed.",
+      "words": [
+        {
+          "text": "squeezed.",
+          "start": 7.88,
+          "end": 8.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.88,
+      "end": 9.18,
+      "text": "Body",
+      "ass_text": "Body",
+      "words": [
+        {
+          "text": "Body",
+          "start": 8.88,
+          "end": 9.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.18,
+      "end": 9.58,
+      "text": "tissue",
+      "ass_text": "tissue",
+      "words": [
+        {
+          "text": "tissue",
+          "start": 9.18,
+          "end": 9.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.58,
+      "end": 10.04,
+      "text": "with",
+      "ass_text": "with",
+      "words": [
+        {
+          "text": "with",
+          "start": 9.58,
+          "end": 10.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.04,
+      "end": 10.4,
+      "text": "lots",
+      "ass_text": "lots",
+      "words": [
+        {
+          "text": "lots",
+          "start": 10.04,
+          "end": 10.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.4,
+      "end": 10.64,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 10.4,
+          "end": 10.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.64,
+      "end": 10.98,
+      "text": "water",
+      "ass_text": "water",
+      "words": [
+        {
+          "text": "water",
+          "start": 10.64,
+          "end": 10.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.98,
+      "end": 11.88,
+      "text": "barely",
+      "ass_text": "barely",
+      "words": [
+        {
+          "text": "barely",
+          "start": 10.98,
+          "end": 11.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.88,
+      "end": 12.48,
+      "text": "changes.",
+      "ass_text": "changes.",
+      "words": [
+        {
+          "text": "changes.",
+          "start": 11.88,
+          "end": 12.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.96,
+      "end": 13.28,
+      "text": "Air",
+      "ass_text": "Air",
+      "words": [
+        {
+          "text": "Air",
+          "start": 12.96,
+          "end": 13.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.28,
+      "end": 13.72,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 13.28,
+          "end": 13.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.72,
+      "end": 13.86,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 13.72,
+          "end": 13.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.86,
+      "end": 14.32,
+      "text": "ears",
+      "ass_text": "ears",
+      "words": [
+        {
+          "text": "ears",
+          "start": 13.86,
+          "end": 14.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.32,
+      "end": 14.7,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 14.32,
+          "end": 14.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.7,
+      "end": 15.26,
+      "text": "sinuses",
+      "ass_text": "sinuses",
+      "words": [
+        {
+          "text": "sinuses",
+          "start": 14.7,
+          "end": 15.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.26,
+      "end": 16.14,
+      "text": "shrinks",
+      "ass_text": "shrinks",
+      "words": [
+        {
+          "text": "shrinks",
+          "start": 15.26,
+          "end": 16.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.14,
+      "end": 16.42,
+      "text": "much",
+      "ass_text": "much",
+      "words": [
+        {
+          "text": "much",
+          "start": 16.14,
+          "end": 16.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.42,
+      "end": 16.78,
+      "text": "more.",
+      "ass_text": "more.",
+      "words": [
+        {
+          "text": "more.",
+          "start": 16.42,
+          "end": 16.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 17.14,
+      "end": 17.56,
+      "text": "Every",
+      "ass_text": "Every",
+      "words": [
+        {
+          "text": "Every",
+          "start": 17.14,
+          "end": 17.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.56,
+      "end": 17.9,
+      "text": "10",
+      "ass_text": "10",
+      "words": [
+        {
+          "text": "10",
+          "start": 17.56,
+          "end": 17.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.9,
+      "end": 18.22,
+      "text": "meters,",
+      "ass_text": "meters,",
+      "words": [
+        {
+          "text": "meters,",
+          "start": 17.9,
+          "end": 18.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.22,
+      "end": 18.98,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 18.22,
+          "end": 18.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.98,
+      "end": 19.56,
+      "text": "rises",
+      "ass_text": "rises",
+      "words": [
+        {
+          "text": "rises",
+          "start": 18.98,
+          "end": 19.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.56,
+      "end": 20.18,
+      "text": "by",
+      "ass_text": "by",
+      "words": [
+        {
+          "text": "by",
+          "start": 19.56,
+          "end": 20.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.18,
+      "end": 20.54,
+      "text": "about",
+      "ass_text": "about",
+      "words": [
+        {
+          "text": "about",
+          "start": 20.18,
+          "end": 20.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.54,
+      "end": 20.8,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 20.54,
+          "end": 20.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.8,
+      "end": 21.14,
+      "text": "air",
+      "ass_text": "air",
+      "words": [
+        {
+          "text": "air",
+          "start": 20.8,
+          "end": 21.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.14,
+      "end": 21.52,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 21.14,
+          "end": 21.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.52,
+      "end": 21.82,
+      "text": "at",
+      "ass_text": "at",
+      "words": [
+        {
+          "text": "at",
+          "start": 21.52,
+          "end": 21.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.82,
+      "end": 22.0,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 21.82,
+          "end": 22.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.0,
+      "end": 22.19,
+      "text": "surface.",
+      "ass_text": "surface.",
+      "words": [
+        {
+          "text": "surface.",
+          "start": 22.0,
+          "end": 22.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 22.19,
+      "end": 23.12,
+      "text": "At",
+      "ass_text": "At",
+      "words": [
+        {
+          "text": "At",
+          "start": 21.98,
+          "end": 23.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.12,
+      "end": 23.48,
+      "text": "10",
+      "ass_text": "10",
+      "words": [
+        {
+          "text": "10",
+          "start": 23.12,
+          "end": 23.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.48,
+      "end": 24.08,
+      "text": "meters,",
+      "ass_text": "meters,",
+      "words": [
+        {
+          "text": "meters,",
+          "start": 23.48,
+          "end": 24.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.08,
+      "end": 24.86,
+      "text": "total",
+      "ass_text": "total",
+      "words": [
+        {
+          "text": "total",
+          "start": 24.08,
+          "end": 24.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.86,
+      "end": 25.28,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 24.86,
+          "end": 25.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.28,
+      "end": 25.58,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 25.28,
+          "end": 25.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.58,
+      "end": 25.86,
+      "text": "about",
+      "ass_text": "about",
+      "words": [
+        {
+          "text": "about",
+          "start": 25.58,
+          "end": 25.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 25.86,
+      "end": 26.38,
+      "text": "double.",
+      "ass_text": "double.",
+      "words": [
+        {
+          "text": "double.",
+          "start": 25.86,
+          "end": 26.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 26.82,
+      "end": 27.3,
+      "text": "Unequal",
+      "ass_text": "Unequal",
+      "words": [
+        {
+          "text": "Unequal",
+          "start": 26.82,
+          "end": 27.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.3,
+      "end": 27.72,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 27.3,
+          "end": 27.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.72,
+      "end": 28.02,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 27.72,
+          "end": 28.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.02,
+      "end": 28.56,
+      "text": "injure",
+      "ass_text": "injure",
+      "words": [
+        {
+          "text": "injure",
+          "start": 28.02,
+          "end": 28.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.56,
+      "end": 28.84,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 28.56,
+          "end": 28.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.84,
+      "end": 29.26,
+      "text": "ears",
+      "ass_text": "ears",
+      "words": [
+        {
+          "text": "ears",
+          "start": 28.84,
+          "end": 29.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.26,
+      "end": 29.8,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 29.26,
+          "end": 29.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.8,
+      "end": 30.8,
+      "text": "sinuses.",
+      "ass_text": "sinuses.",
+      "words": [
+        {
+          "text": "sinuses.",
+          "start": 29.8,
+          "end": 30.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 31.1,
+      "end": 31.58,
+      "text": "Breathing",
+      "ass_text": "Breathing",
+      "words": [
+        {
+          "text": "Breathing",
+          "start": 31.1,
+          "end": 31.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.58,
+      "end": 32.3,
+      "text": "underwater",
+      "ass_text": "underwater",
+      "words": [
+        {
+          "text": "underwater",
+          "start": 31.58,
+          "end": 32.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.3,
+      "end": 33.36,
+      "text": "removes",
+      "ass_text": "removes",
+      "words": [
+        {
+          "text": "removes",
+          "start": 32.3,
+          "end": 33.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.36,
+      "end": 33.9,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 33.36,
+          "end": 33.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.9,
+      "end": 34.34,
+      "text": "problem",
+      "ass_text": "problem",
+      "words": [
+        {
+          "text": "problem",
+          "start": 33.9,
+          "end": 34.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.34,
+      "end": 34.58,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 34.34,
+          "end": 34.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.58,
+      "end": 34.96,
+      "text": "running",
+      "ass_text": "running",
+      "words": [
+        {
+          "text": "running",
+          "start": 34.58,
+          "end": 34.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.96,
+      "end": 35.48,
+      "text": "out",
+      "ass_text": "out",
+      "words": [
+        {
+          "text": "out",
+          "start": 34.96,
+          "end": 35.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 35.48,
+      "end": 35.88,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 35.48,
+          "end": 35.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 35.88,
+      "end": 36.52,
+      "text": "air,",
+      "ass_text": "air,",
+      "words": [
+        {
+          "text": "air,",
+          "start": 35.88,
+          "end": 36.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 36.74,
+      "end": 36.9,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 36.74,
+          "end": 36.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.9,
+      "end": 37.32,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 36.9,
+          "end": 37.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.32,
+      "end": 37.92,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 37.32,
+          "end": 37.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.92,
+      "end": 38.48,
+      "text": "still",
+      "ass_text": "still",
+      "words": [
+        {
+          "text": "still",
+          "start": 37.92,
+          "end": 38.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.48,
+      "end": 38.94,
+      "text": "affect",
+      "ass_text": "affect",
+      "words": [
+        {
+          "text": "affect",
+          "start": 38.48,
+          "end": 38.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.94,
+      "end": 39.26,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 38.94,
+          "end": 39.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 39.26,
+      "end": 39.68,
+      "text": "body.",
+      "ass_text": "body.",
+      "words": [
+        {
+          "text": "body.",
+          "start": 39.26,
+          "end": 39.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 40.24,
+      "end": 40.4,
+      "text": "At",
+      "ass_text": "At",
+      "words": [
+        {
+          "text": "At",
+          "start": 40.24,
+          "end": 40.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.4,
+      "end": 41.14,
+      "text": "extreme",
+      "ass_text": "extreme",
+      "words": [
+        {
+          "text": "extreme",
+          "start": 40.4,
+          "end": 41.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.14,
+      "end": 41.98,
+      "text": "depths,",
+      "ass_text": "depths,",
+      "words": [
+        {
+          "text": "depths,",
+          "start": 41.14,
+          "end": 41.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.98,
+      "end": 42.28,
+      "text": "high",
+      "ass_text": "high",
+      "words": [
+        {
+          "text": "high",
+          "start": 41.98,
+          "end": 42.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.28,
+      "end": 42.72,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 42.28,
+          "end": 42.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.72,
+      "end": 43.04,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 42.72,
+          "end": 43.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.04,
+      "end": 43.5,
+      "text": "disturb",
+      "ass_text": "disturb",
+      "words": [
+        {
+          "text": "disturb",
+          "start": 43.04,
+          "end": 43.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 43.5,
+      "end": 44.26,
+      "text": "how",
+      "ass_text": "how",
+      "words": [
+        {
+          "text": "how",
+          "start": 43.5,
+          "end": 44.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 44.26,
+      "end": 44.8,
+      "text": "nerves",
+      "ass_text": "nerves",
+      "words": [
+        {
+          "text": "nerves",
+          "start": 44.26,
+          "end": 44.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 44.8,
+      "end": 45.3,
+      "text": "normally",
+      "ass_text": "normally",
+      "words": [
+        {
+          "text": "normally",
+          "start": 44.8,
+          "end": 45.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 45.3,
+      "end": 45.94,
+      "text": "work,",
+      "ass_text": "work,",
+      "words": [
+        {
+          "text": "work,",
+          "start": 45.3,
+          "end": 45.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 46.16,
+      "end": 46.34,
+      "text": "so",
+      "ass_text": "so",
+      "words": [
+        {
+          "text": "so",
+          "start": 46.16,
+          "end": 46.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.34,
+      "end": 46.88,
+      "text": "breathing",
+      "ass_text": "breathing",
+      "words": [
+        {
+          "text": "breathing",
+          "start": 46.34,
+          "end": 46.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.88,
+      "end": 47.4,
+      "text": "alone",
+      "ass_text": "alone",
+      "words": [
+        {
+          "text": "alone",
+          "start": 46.88,
+          "end": 47.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 47.4,
+      "end": 47.92,
+      "text": "does",
+      "ass_text": "does",
+      "words": [
+        {
+          "text": "does",
+          "start": 47.4,
+          "end": 47.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 47.92,
+      "end": 48.24,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 47.92,
+          "end": 48.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 48.24,
+      "end": 48.5,
+      "text": "set",
+      "ass_text": "set",
+      "words": [
+        {
+          "text": "set",
+          "start": 48.24,
+          "end": 48.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 48.5,
+      "end": 48.7,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 48.5,
+          "end": 48.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 48.7,
+      "end": 49.12,
+      "text": "fixed",
+      "ass_text": "fixed",
+      "words": [
+        {
+          "text": "fixed",
+          "start": 48.7,
+          "end": 49.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 49.12,
+      "end": 49.54,
+      "text": "depth",
+      "ass_text": "depth",
+      "words": [
+        {
+          "text": "depth",
+          "start": 49.12,
+          "end": 49.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 49.54,
+      "end": 50.1,
+      "text": "limit.",
+      "ass_text": "limit.",
+      "words": [
+        {
+          "text": "limit.",
+          "start": 49.54,
+          "end": 50.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 50.54,
+      "end": 51.08,
+      "text": "Breathing",
+      "ass_text": "Breathing",
+      "words": [
+        {
+          "text": "Breathing",
+          "start": 50.54,
+          "end": 51.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 51.08,
+      "end": 51.68,
+      "text": "solves",
+      "ass_text": "solves",
+      "words": [
+        {
+          "text": "solves",
+          "start": 51.08,
+          "end": 51.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 51.68,
+      "end": 52.0,
+      "text": "one",
+      "ass_text": "one",
+      "words": [
+        {
+          "text": "one",
+          "start": 51.68,
+          "end": 52.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 52.0,
+      "end": 52.52,
+      "text": "limit,",
+      "ass_text": "limit,",
+      "words": [
+        {
+          "text": "limit,",
+          "start": 52.0,
+          "end": 52.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 52.52,
+      "end": 52.88,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 52.52,
+          "end": 52.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 52.88,
+      "end": 53.42,
+      "text": "pressure",
+      "ass_text": "pressure",
+      "words": [
+        {
+          "text": "pressure",
+          "start": 52.88,
+          "end": 53.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.42,
+      "end": 54.38,
+      "text": "creates",
+      "ass_text": "creates",
+      "words": [
+        {
+          "text": "creates",
+          "start": 53.42,
+          "end": 54.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 54.38,
+      "end": 55.08,
+      "text": "others.",
+      "ass_text": "others.",
+      "words": [
+        {
+          "text": "others.",
+          "start": 54.38,
+          "end": 55.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 55.4,
+      "end": 55.58,
+      "text": "Like",
+      "ass_text": "Like",
+      "words": [
+        {
+          "text": "Like",
+          "start": 55.4,
+          "end": 55.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 55.58,
+      "end": 55.88,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 55.58,
+          "end": 55.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 55.88,
+      "end": 56.44,
+      "text": "subscribe",
+      "ass_text": "subscribe",
+      "words": [
+        {
+          "text": "subscribe",
+          "start": 55.88,
+          "end": 56.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 56.44,
+      "end": 57.34,
+      "text": "for",
+      "ass_text": "for",
+      "words": [
+        {
+          "text": "for",
+          "start": 56.44,
+          "end": 57.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 57.34,
+      "end": 57.74,
+      "text": "more",
+      "ass_text": "more",
+      "words": [
+        {
+          "text": "more",
+          "start": 57.34,
+          "end": 57.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 57.74,
+      "end": 58.34,
+      "text": "survival",
+      "ass_text": "survival",
+      "words": [
+        {
+          "text": "survival",
+          "start": 57.74,
+          "end": 58.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 58.34,
+      "end": 59.04,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "words": [
+        {
+          "text": "questions.",
+          "start": 58.34,
+          "end": 59.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 3,
+        "before_beat": 4,
+        "current_speech_end": 22.4,
+        "next_speech_start": 21.98,
+        "overlap_seconds": 0.42,
+        "chosen_boundary": 22.19
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 49,
+        "current_cue": 50,
+        "previous_end": 22.4,
+        "current_start": 21.98,
+        "overlap_seconds": 0.42,
+        "chosen_boundary": 22.19
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 119,
+    "subtitle_cues_estimated": 0
+  }
+}

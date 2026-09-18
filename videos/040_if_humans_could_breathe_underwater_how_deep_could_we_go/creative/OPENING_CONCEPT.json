@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "b110c54c81868b152c8526be483e108d51f60be2a3c2ed4da3eb4fadfcaa1a58",
+  "concept_id": "128c4e717da3dbc78433",
+  "character_id": "sea_captain",
+  "presentation_id": "spyglass_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If water can crush an air pocket, why not your whole body?",
+    "viewer_expectation": "Deeper water should squeeze every part of a human body in the same way.",
+    "visible_contradiction": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+    "frame_zero": "Two clear flexible bulbs sit under pressure: the air-filled one is visibly smaller, while the water-filled one keeps its shape.",
+    "character_action": "The captain compares the two bulbs, watches the difference grow, then aims his spyglass toward the chamber.",
+    "reaction": "A raised eyebrow and a short thoughtful pause.",
+    "activity": "comparing how trapped air and water respond to the same pressure",
+    "location": "marine science pressure-lab viewing bay",
+    "topic_link": "Most body tissue contains much more water than gas, so trapped air changes far more under rising pressure.",
+    "factual_anchor": "Water and body tissues compress very little compared with air. Underwater pressure rises with depth, so air-filled spaces remain a major problem even if breathing is possible.",
+    "payoff": "Breathing removes one limit, not pressure. Air spaces must equalize, and very high pressure can also disturb normal nerve and body function.",
+    "claim_mode": "conservative",
+    "entry_variant": "two_object_compare",
+    "entry_bridge": {
+      "a_end": "The captain faces the chamber with the spyglass raised toward the two bulbs.",
+      "b_start": "From behind his visible eye, the small eyepiece is near his face and the larger objective points toward the chamber.",
+      "reveal": "The view moves from the shrinking air bulb to the same pressure acting on a human body.",
+      "world_entry": "Underwater body cutaway: tissue keeps nearly the same volume while a small trapped air pocket is squeezed."
+    },
+    "novelty": {
+      "action_family": "same-pressure material comparison",
+      "tension_family": "whole-body crushing versus selective compression",
+      "prop_family": "air-filled and water-filled flexible bulbs",
+      "reveal_family": "pressure affects gas far more than water-rich tissue"
+    }
+  },
+  "created_at": "2026-09-18T18:05:23Z"
+}

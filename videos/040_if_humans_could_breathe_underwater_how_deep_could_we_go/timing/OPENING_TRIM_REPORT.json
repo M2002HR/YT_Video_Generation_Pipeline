@@ -1,0 +1,27 @@
+{
+  "presentation_profile": "spyglass_portal",
+  "spark_end": 4.6,
+  "transition_end": 8.66,
+  "max_rate_adjust": 0.2,
+  "clips": [
+    {
+      "label": "Intro A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/assets/opening/question_intro_trimmed.mp4",
+      "target": 4.6,
+      "actual": 4.583,
+      "speed_factor": 1.147132,
+      "rate_adjusted": true
+    },
+    {
+      "label": "Intro B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/assets/opening/spyglass_transition_trimmed.mp4",
+      "target": 4.06,
+      "actual": 4.042,
+      "speed_factor": 1.012469,
+      "rate_adjusted": true
+    }
+  ],
+  "opening_total_seconds": 8.625,
+  "opening_total_target_seconds": 8.66,
+  "opening_total_drift_seconds": -0.035
+}

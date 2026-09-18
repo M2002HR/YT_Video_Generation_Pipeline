@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "operator_upload",
+  "selection_mode": "operator_upload",
+  "file": "assets/music/operator_background.mp3",
+  "source_url": null,
+  "source_sha256": "01d97304c3f291204fdc3043e32d82313ea2cf2bb3204c38d3a87754fb118e49",
+  "license": "Operator-supplied; publication rights must be verified by the operator.",
+  "original_name": "mondamusic-mystery-mysterious-mystical-519335 (2).mp3",
+  "library_origin": "upload",
+  "selected_at": "2026-09-18T20:01:02.990757+00:00"
+}

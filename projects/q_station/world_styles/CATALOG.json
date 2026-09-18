@@ -132,6 +132,17 @@
       "path": "024_saltcut_tropical_survival_linocut_001",
       "anchor": "024_saltcut_tropical_survival_linocut_001/style_anchor.png",
       "usage_count": 2
+    },
+    {
+      "style_id": "submerged_pressure_gouache_cutaway_001",
+      "display_name": "Submerged Pressure Gouache Cutaway 001",
+      "medium_family": "painted gouache illustration",
+      "texture_family": "matte layered gouache with translucent pigment glazing, soft granular blooms, and subtle underwater diffusion",
+      "palette_summary": "deep marine indigo and muted teal foundations, desaturated aqua and bone-white anatomy, restrained coral-orange for compressed air spaces and injury risk, with sparse pale violet highlights for neurological pressure effects",
+      "status": "ready",
+      "path": "025_submerged_pressure_gouache_cutaway_001",
+      "anchor": "025_submerged_pressure_gouache_cutaway_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

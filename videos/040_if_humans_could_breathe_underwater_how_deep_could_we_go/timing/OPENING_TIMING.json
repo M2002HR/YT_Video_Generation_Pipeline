@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 59.481,
+  "spark_start": 0.0,
+  "spark_end": 4.6,
+  "spark_duration": 4.6,
+  "transition_start": 4.84,
+  "transition_end": 8.66,
+  "transition_duration": 3.82,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 4.6,
+  "clip_b_target_seconds": 4.06,
+  "body_start": 8.88,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If water crushes air pockets, why not your whole body?",
+      "speech_start": 0.0,
+      "speech_end": 4.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "Most of your body is water, which hardly gets squeezed.",
+      "speech_start": 4.84,
+      "speech_end": 8.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Body tissue with lots of water barely changes.",
+      "speech_start": 8.88,
+      "speech_end": 12.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Air in your ears and sinuses shrinks much more.",
+      "speech_start": 12.96,
+      "speech_end": 16.78,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Every ten meters, pressure rises by about the air pressure at the surface.",
+      "speech_start": 17.14,
+      "speech_end": 22.4,
+      "match_confidence": 0.923
+    },
+    {
+      "segment": "body_04",
+      "narration": "At ten meters, total pressure is about double.",
+      "speech_start": 21.98,
+      "speech_end": 26.38,
+      "match_confidence": 0.875
+    },
+    {
+      "segment": "body_05",
+      "narration": "Unequal pressure can injure your ears and sinuses.",
+      "speech_start": 26.82,
+      "speech_end": 30.8,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Breathing underwater removes the problem of running out of air.",
+      "speech_start": 31.1,
+      "speech_end": 36.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "But pressure would still affect your body.",
+      "speech_start": 36.74,
+      "speech_end": 39.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "At extreme depths, high pressure can disturb how nerves normally work.",
+      "speech_start": 40.24,
+      "speech_end": 45.94,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "So breathing alone does not set a fixed depth limit.",
+      "speech_start": 46.16,
+      "speech_end": 50.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Breathing solves one limit, but pressure creates others.",
+      "speech_start": 50.54,
+      "speech_end": 55.08,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like and subscribe for more survival questions.",
+      "speech_start": 55.4,
+      "speech_end": 59.04,
+      "match_confidence": 1.0
+    }
+  ]
+}

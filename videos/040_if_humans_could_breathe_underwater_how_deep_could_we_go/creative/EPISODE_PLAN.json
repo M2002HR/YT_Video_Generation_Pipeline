@@ -1,0 +1,30 @@
+{
+  "concept_id": "128c4e717da3dbc78433",
+  "opening_actions": [
+    "The captain looks between two flexible bulbs inside the same pressure chamber: the air-filled bulb has visibly shrunk while the water-filled bulb remains nearly unchanged.",
+    "He raises one eyebrow and pauses at the mismatch.",
+    "He lifts the spyglass toward the two bulbs."
+  ],
+  "entry_bridge": {
+    "a_end": "The captain faces the pressure chamber with the spyglass raised toward the two contrasting bulbs.",
+    "b_start": "In an oblique side/rear-three-quarter view, the small rear eyepiece sits beside his visible unpatched eye while the physically larger objective points away from him toward the pressure chamber, with his supporting grip and both optical endpoints clearly visible.",
+    "reveal": "The outward-looking view advances from the visibly compressed air-filled bulb to the idea of the same rising pressure acting on different parts of a human body.",
+    "world_entry": "A host-free underwater body cutaway shows water-rich tissue keeping nearly the same volume while a small trapped air pocket is squeezed."
+  },
+  "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+  "opening_location": "marine science pressure-lab viewing bay",
+  "opening_environment": "A quiet marine research viewing bay with one transparent pressure chamber containing two simple flexible bulbs, one filled with air and one with water.",
+  "topic_visual_link": "The side-by-side bulbs directly show that rising pressure compresses trapped gas far more than water, setting up why a mostly water-rich human body is not squeezed uniformly underwater.",
+  "link_type": "direct",
+  "opening_visual_proof": "At frame zero, two flexible bulbs sit side by side inside the same pressure chamber: the air-filled bulb is conspicuously smaller while the water-filled bulb retains nearly its original shape.",
+  "curiosity_trigger": "Under the same visible pressure, one bulb contracts dramatically while its neighbor barely changes.",
+  "trigger_object": "the mismatched air-filled and water-filled flexible bulbs inside the pressure chamber",
+  "reaction": "A raised eyebrow followed by a short, thoughtful pause.",
+  "entry_retrieval": "After comparing the bulbs and registering the discrepancy, the captain raises the spyglass toward the chamber to examine the consequence more closely.",
+  "entry_variant": "two_object_compare",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "Clean full-bleed underwater scientific visualization using body cutaways, shrinking air spaces, depth cues, and simple pressure comparisons.",
+  "reason": "The paired bulbs make the script's central distinction between compressible air and nearly incompressible water immediately visible, giving the observant captain a natural discrepancy to investigate before the explanation moves into the human body."
+}

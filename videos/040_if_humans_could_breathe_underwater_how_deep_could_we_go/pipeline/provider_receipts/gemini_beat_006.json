@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "81d31fac9d9907c5a34243c4b666627d0945934cdc2ac07c1240a742b1e4860d",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "c81818f7-90b5-470e-b861-11503b222c73",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/74c91496c246dda4",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=c81818f7-90b5-470e-b861-11503b222c73_output_1.png 1536x2752 sha256=2ae00f27fa7d40da8799fc55fc70f6c61b8e4b213e59bb9e0ad7992b7bb70c3b"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "81d31fac9d9907c5a34243c4b666627d0945934cdc2ac07c1240a742b1e4860d",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "c81818f7-90b5-470e-b861-11503b222c73",
+        "prompt_sha256": "4718a21622ec450b4dadf2f779bcd657ed888e01ec4eddbf4574a9b22514c04f",
+        "output_sha256": "2ae00f27fa7d40da8799fc55fc70f6c61b8e4b213e59bb9e0ad7992b7bb70c3b",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/references/world_style_anchor.png",
+      "sha256": "6055558634ad01690afb0aa59d2849d608ebe3d33799a45c077b560bc4962a87"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/references/world_keyframe.png",
+      "sha256": "835d78722f43a6d80f75a3744ebd899ebf5d96016b7430f8aef814b8e431e275"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/assets/raw_beats/beat_005.png",
+      "sha256": "c4e02482694a69d22aede32d5e777bda1c142817e882cba91d29db74024eb3e5"
+    }
+  ],
+  "prompt_sha256": "4718a21622ec450b4dadf2f779bcd657ed888e01ec4eddbf4574a9b22514c04f",
+  "prompt": "Create exactly one 9:16 full-bleed image, edge-to-edge, in the submerged-pressure topic world: a painted gouache illustration showing a generic submerged diver in a medium three-quarter view, calmly breathing through underwater breathing equipment, chest naturally expanded, with a clean vertical stream of exhaled bubbles rising toward soft pale surface light above. Emphasize successful breathing and steady access to breathable air rather than depth or danger; place the diver within a slightly brighter open-water pocket while surrounding water falls into deep marine indigo and muted teal. Use matte layered gouache, translucent pigment glazing, soft granular blooms, subtle underwater diffusion, clean hand-painted contours, and diffused top light with gentle volumetric falloff. Keep equipment plausible but generic, with no gauges, labels, numbers, or implied hard depth limits. The style_reference controls only the painted medium, texture, palette, contour language, and underwater lighting; do not copy its composition. The world_keyframe establishes the coherent underwater environment and pressure-world visual language only; do not reproduce its framing, pose, crop, or subject placement. The previous_beat is binding only for compatible gouache texture, color family, and lighting continuity; ignore any border, inset, page treatment, gateway, pose, camera angle, or focal arrangement. Viewer is fully inside the scene: no physical page, book spread, card, gutter, decorative border, inset window, doorway rim, lens mask, blank footer, caption field, or reserved lower strip. Fill the full usable height with natural scene content. No selected recurring host. No storyboard, grid, collage, panels, captions, embedded labels, or readable text. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_006.png",
+  "output_sha256": "2ae00f27fa7d40da8799fc55fc70f6c61b8e4b213e59bb9e0ad7992b7bb70c3b",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.262,
+  "completed_at": "2026-09-18T19:27:24Z"
+}

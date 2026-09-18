@@ -1,0 +1,724 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 59.481,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 119,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.0,
+      "end": 0.26
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 0.26,
+      "end": 0.72
+    },
+    {
+      "text": "crushes",
+      "token": "crushes",
+      "start": 0.72,
+      "end": 1.38
+    },
+    {
+      "text": "air",
+      "token": "air",
+      "start": 1.38,
+      "end": 1.74
+    },
+    {
+      "text": "pockets,",
+      "token": "pockets",
+      "start": 1.74,
+      "end": 2.34
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 2.34,
+      "end": 2.82
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 2.82,
+      "end": 3.2
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 3.2,
+      "end": 3.48
+    },
+    {
+      "text": "whole",
+      "token": "whole",
+      "start": 3.48,
+      "end": 3.9
+    },
+    {
+      "text": "body?",
+      "token": "body",
+      "start": 3.9,
+      "end": 4.6
+    },
+    {
+      "text": "Most",
+      "token": "most",
+      "start": 4.84,
+      "end": 5.18
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 5.18,
+      "end": 5.38
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 5.38,
+      "end": 5.52
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 5.52,
+      "end": 5.86
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 5.86,
+      "end": 6.3
+    },
+    {
+      "text": "water,",
+      "token": "water",
+      "start": 6.3,
+      "end": 6.84
+    },
+    {
+      "text": "which",
+      "token": "which",
+      "start": 6.84,
+      "end": 7.2
+    },
+    {
+      "text": "hardly",
+      "token": "hardly",
+      "start": 7.2,
+      "end": 7.54
+    },
+    {
+      "text": "gets",
+      "token": "gets",
+      "start": 7.54,
+      "end": 7.88
+    },
+    {
+      "text": "squeezed.",
+      "token": "squeezed",
+      "start": 7.88,
+      "end": 8.66
+    },
+    {
+      "text": "Body",
+      "token": "body",
+      "start": 8.88,
+      "end": 9.18
+    },
+    {
+      "text": "tissue",
+      "token": "tissue",
+      "start": 9.18,
+      "end": 9.58
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 9.58,
+      "end": 10.04
+    },
+    {
+      "text": "lots",
+      "token": "lots",
+      "start": 10.04,
+      "end": 10.4
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 10.4,
+      "end": 10.64
+    },
+    {
+      "text": "water",
+      "token": "water",
+      "start": 10.64,
+      "end": 10.98
+    },
+    {
+      "text": "barely",
+      "token": "barely",
+      "start": 10.98,
+      "end": 11.88
+    },
+    {
+      "text": "changes.",
+      "token": "changes",
+      "start": 11.88,
+      "end": 12.48
+    },
+    {
+      "text": "Air",
+      "token": "air",
+      "start": 12.96,
+      "end": 13.28
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 13.28,
+      "end": 13.72
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 13.72,
+      "end": 13.86
+    },
+    {
+      "text": "ears",
+      "token": "ears",
+      "start": 13.86,
+      "end": 14.32
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 14.32,
+      "end": 14.7
+    },
+    {
+      "text": "sinuses",
+      "token": "sinuses",
+      "start": 14.7,
+      "end": 15.26
+    },
+    {
+      "text": "shrinks",
+      "token": "shrinks",
+      "start": 15.26,
+      "end": 16.14
+    },
+    {
+      "text": "much",
+      "token": "much",
+      "start": 16.14,
+      "end": 16.42
+    },
+    {
+      "text": "more.",
+      "token": "more",
+      "start": 16.42,
+      "end": 16.78
+    },
+    {
+      "text": "Every",
+      "token": "every",
+      "start": 17.14,
+      "end": 17.56
+    },
+    {
+      "text": "10",
+      "token": "10",
+      "start": 17.56,
+      "end": 17.9
+    },
+    {
+      "text": "meters,",
+      "token": "meters",
+      "start": 17.9,
+      "end": 18.22
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 18.22,
+      "end": 18.98
+    },
+    {
+      "text": "rises",
+      "token": "rises",
+      "start": 18.98,
+      "end": 19.56
+    },
+    {
+      "text": "by",
+      "token": "by",
+      "start": 19.56,
+      "end": 20.18
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 20.18,
+      "end": 20.54
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 20.54,
+      "end": 20.8
+    },
+    {
+      "text": "air",
+      "token": "air",
+      "start": 20.8,
+      "end": 21.14
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 21.14,
+      "end": 21.52
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 21.52,
+      "end": 21.82
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 21.82,
+      "end": 22.0
+    },
+    {
+      "text": "surface.",
+      "token": "surface",
+      "start": 22.0,
+      "end": 22.4
+    },
+    {
+      "text": "At",
+      "token": "at",
+      "start": 21.98,
+      "end": 23.12
+    },
+    {
+      "text": "10",
+      "token": "10",
+      "start": 23.12,
+      "end": 23.48
+    },
+    {
+      "text": "meters,",
+      "token": "meters",
+      "start": 23.48,
+      "end": 24.08
+    },
+    {
+      "text": "total",
+      "token": "total",
+      "start": 24.08,
+      "end": 24.86
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 24.86,
+      "end": 25.28
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 25.28,
+      "end": 25.58
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 25.58,
+      "end": 25.86
+    },
+    {
+      "text": "double.",
+      "token": "double",
+      "start": 25.86,
+      "end": 26.38
+    },
+    {
+      "text": "Unequal",
+      "token": "unequal",
+      "start": 26.82,
+      "end": 27.3
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 27.3,
+      "end": 27.72
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 27.72,
+      "end": 28.02
+    },
+    {
+      "text": "injure",
+      "token": "injure",
+      "start": 28.02,
+      "end": 28.56
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 28.56,
+      "end": 28.84
+    },
+    {
+      "text": "ears",
+      "token": "ears",
+      "start": 28.84,
+      "end": 29.26
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 29.26,
+      "end": 29.8
+    },
+    {
+      "text": "sinuses.",
+      "token": "sinuses",
+      "start": 29.8,
+      "end": 30.8
+    },
+    {
+      "text": "Breathing",
+      "token": "breathing",
+      "start": 31.1,
+      "end": 31.58
+    },
+    {
+      "text": "underwater",
+      "token": "underwater",
+      "start": 31.58,
+      "end": 32.3
+    },
+    {
+      "text": "removes",
+      "token": "removes",
+      "start": 32.3,
+      "end": 33.36
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 33.36,
+      "end": 33.9
+    },
+    {
+      "text": "problem",
+      "token": "problem",
+      "start": 33.9,
+      "end": 34.34
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 34.34,
+      "end": 34.58
+    },
+    {
+      "text": "running",
+      "token": "running",
+      "start": 34.58,
+      "end": 34.96
+    },
+    {
+      "text": "out",
+      "token": "out",
+      "start": 34.96,
+      "end": 35.48
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 35.48,
+      "end": 35.88
+    },
+    {
+      "text": "air,",
+      "token": "air",
+      "start": 35.88,
+      "end": 36.52
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 36.74,
+      "end": 36.9
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 36.9,
+      "end": 37.32
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 37.32,
+      "end": 37.92
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 37.92,
+      "end": 38.48
+    },
+    {
+      "text": "affect",
+      "token": "affect",
+      "start": 38.48,
+      "end": 38.94
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 38.94,
+      "end": 39.26
+    },
+    {
+      "text": "body.",
+      "token": "body",
+      "start": 39.26,
+      "end": 39.68
+    },
+    {
+      "text": "At",
+      "token": "at",
+      "start": 40.24,
+      "end": 40.4
+    },
+    {
+      "text": "extreme",
+      "token": "extreme",
+      "start": 40.4,
+      "end": 41.14
+    },
+    {
+      "text": "depths,",
+      "token": "depths",
+      "start": 41.14,
+      "end": 41.98
+    },
+    {
+      "text": "high",
+      "token": "high",
+      "start": 41.98,
+      "end": 42.28
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 42.28,
+      "end": 42.72
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 42.72,
+      "end": 43.04
+    },
+    {
+      "text": "disturb",
+      "token": "disturb",
+      "start": 43.04,
+      "end": 43.5
+    },
+    {
+      "text": "how",
+      "token": "how",
+      "start": 43.5,
+      "end": 44.26
+    },
+    {
+      "text": "nerves",
+      "token": "nerves",
+      "start": 44.26,
+      "end": 44.8
+    },
+    {
+      "text": "normally",
+      "token": "normally",
+      "start": 44.8,
+      "end": 45.3
+    },
+    {
+      "text": "work,",
+      "token": "work",
+      "start": 45.3,
+      "end": 45.94
+    },
+    {
+      "text": "so",
+      "token": "so",
+      "start": 46.16,
+      "end": 46.34
+    },
+    {
+      "text": "breathing",
+      "token": "breathing",
+      "start": 46.34,
+      "end": 46.88
+    },
+    {
+      "text": "alone",
+      "token": "alone",
+      "start": 46.88,
+      "end": 47.4
+    },
+    {
+      "text": "does",
+      "token": "does",
+      "start": 47.4,
+      "end": 47.92
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 47.92,
+      "end": 48.24
+    },
+    {
+      "text": "set",
+      "token": "set",
+      "start": 48.24,
+      "end": 48.5
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 48.5,
+      "end": 48.7
+    },
+    {
+      "text": "fixed",
+      "token": "fixed",
+      "start": 48.7,
+      "end": 49.12
+    },
+    {
+      "text": "depth",
+      "token": "depth",
+      "start": 49.12,
+      "end": 49.54
+    },
+    {
+      "text": "limit.",
+      "token": "limit",
+      "start": 49.54,
+      "end": 50.1
+    },
+    {
+      "text": "Breathing",
+      "token": "breathing",
+      "start": 50.54,
+      "end": 51.08
+    },
+    {
+      "text": "solves",
+      "token": "solves",
+      "start": 51.08,
+      "end": 51.68
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 51.68,
+      "end": 52.0
+    },
+    {
+      "text": "limit,",
+      "token": "limit",
+      "start": 52.0,
+      "end": 52.52
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 52.52,
+      "end": 52.88
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 52.88,
+      "end": 53.42
+    },
+    {
+      "text": "creates",
+      "token": "creates",
+      "start": 53.42,
+      "end": 54.38
+    },
+    {
+      "text": "others.",
+      "token": "others",
+      "start": 54.38,
+      "end": 55.08
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 55.4,
+      "end": 55.58
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 55.58,
+      "end": 55.88
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 55.88,
+      "end": 56.44
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 56.44,
+      "end": 57.34
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 57.34,
+      "end": 57.74
+    },
+    {
+      "text": "survival",
+      "token": "survival",
+      "start": 57.74,
+      "end": 58.34
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 58.34,
+      "end": 59.04
+    }
+  ]
+}

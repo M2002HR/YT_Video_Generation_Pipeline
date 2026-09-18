@@ -1,0 +1,237 @@
+{
+  "input_fingerprint": "b110c54c81868b152c8526be483e108d51f60be2a3c2ed4da3eb4fadfcaa1a58",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "033",
+        "034",
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island",
+        "039",
+        "039_could_you_live_forever_on_a_desert_island"
+      ],
+      "writer_prompt_sha256": "f5f415da63bf1415c2bae48a2993f2f68777b0bf13306ef8860410d133dea0e6",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If water can crush an air pocket, why not your whole body?",
+            "viewer_expectation": "Deeper water should squeeze every part of a human body in the same way.",
+            "visible_contradiction": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+            "frame_zero": "Two clear flexible bulbs sit under pressure: the air-filled one is visibly smaller, while the water-filled one keeps its shape.",
+            "character_action": "The captain compares the two bulbs, watches the difference grow, then aims his spyglass toward the chamber.",
+            "reaction": "A raised eyebrow and a short thoughtful pause.",
+            "activity": "comparing how trapped air and water respond to the same pressure",
+            "location": "marine science pressure-lab viewing bay",
+            "topic_link": "Most body tissue contains much more water than gas, so trapped air changes far more under rising pressure.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Water and body tissues compress very little compared with air. Underwater pressure rises with depth, so air-filled spaces remain a major problem even if breathing is possible.",
+            "payoff": "Breathing removes one limit, not pressure. Air spaces must equalize, and very high pressure can also disturb normal nerve and body function.",
+            "entry_variant": "two_object_compare",
+            "entry_bridge": {
+              "a_end": "The captain faces the chamber with the spyglass raised toward the two bulbs.",
+              "b_start": "From behind his visible eye, the small eyepiece is near his face and the larger objective points toward the chamber.",
+              "reveal": "The view moves from the shrinking air bulb to the same pressure acting on a human body.",
+              "world_entry": "Underwater body cutaway: tissue keeps nearly the same volume while a small trapped air pocket is squeezed."
+            },
+            "novelty": {
+              "action_family": "same-pressure material comparison",
+              "tension_family": "whole-body crushing versus selective compression",
+              "prop_family": "air-filled and water-filled flexible bulbs",
+              "reveal_family": "pressure affects gas far more than water-rich tissue"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If your lungs could breathe water, what would hurt first on the way down?",
+            "viewer_expectation": "Once breathing is solved, a human should be able to descend without an immediate pressure problem.",
+            "visible_contradiction": "A clear ear model bends inward under pressure while the water-filled body model beside it barely changes shape.",
+            "frame_zero": "The ear membrane is already bowed inward beside an unchanged water-filled body model inside the same pressure display.",
+            "character_action": "The captain studies the bent membrane, touches his own ear once, then turns the spyglass toward the model.",
+            "reaction": "He tilts his head, then gives a small knowing nod.",
+            "activity": "testing which body space develops a pressure difference first",
+            "location": "indoor diver physiology laboratory",
+            "topic_link": "A sealed gas space can develop a damaging pressure difference even when the surrounding body is not being crushed.",
+            "claim_mode": "conservative",
+            "factual_anchor": "If pressure inside an air-filled space does not match the surrounding water pressure, the difference can injure ears and sinuses. Underwater breathing alone would not solve this.",
+            "payoff": "A water-breathing human would still need safe pressure equalization. Even then, the breathing change alone does not give one clear maximum depth.",
+            "entry_variant": "near_detail",
+            "entry_bridge": {
+              "a_end": "The captain holds his spyglass toward the bowed ear membrane.",
+              "b_start": "An oblique rear view shows the small eyepiece at his visible eye and the larger objective aimed at the ear model.",
+              "reveal": "The close look exposes the pressure difference across the thin membrane.",
+              "world_entry": "A host-free ear cutaway underwater shows outside pressure rising while trapped gas pushes less strongly from inside."
+            },
+            "novelty": {
+              "action_family": "weak-point inspection",
+              "tension_family": "solved breathing versus unsolved pressure balance",
+              "prop_family": "transparent ear and water-filled body models",
+              "reveal_family": "a small sealed cavity becomes the first problem"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "Whales dive deep without gills. So would gills alone let humans follow them?",
+            "viewer_expectation": "Underwater breathing seems like the main missing ability between humans and deep-diving animals.",
+            "visible_contradiction": "A whale anatomy model shows pressure-adapted air spaces beside a human model that keeps ordinary vulnerable cavities.",
+            "frame_zero": "Large whale and human anatomy models stand side by side, with their very different air-space structures immediately visible.",
+            "character_action": "The captain compares the two bodies, shifts his attention from their breathing organs to the whole anatomy, then raises the spyglass.",
+            "reaction": "A small skeptical smile fades into focused curiosity.",
+            "activity": "comparing one new ability with the many adaptations used by deep divers",
+            "location": "marine biology anatomy gallery",
+            "topic_link": "Deep diving depends on how the whole body handles pressure, not only on how oxygen enters it.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Deep-diving mammals have special adaptations for gas spaces, oxygen storage and circulation. Giving a human underwater breathing alone would not also give those pressure adaptations.",
+            "payoff": "There is no single depth set by gills alone. The answer depends on which other pressure adaptations the changed human body also receives.",
+            "entry_variant": "changed_viewpoint",
+            "entry_bridge": {
+              "a_end": "The captain now aims past the breathing organs toward the full human anatomy model.",
+              "b_start": "The small eyepiece rests by his visible eye while the larger objective points toward the full-body model.",
+              "reveal": "The question widens from breathing alone to every body system that must handle depth.",
+              "world_entry": "A whale and human descend underwater; the whale's pressure-adapted gas spaces change safely while the human retains ordinary vulnerable cavities."
+            },
+            "novelty": {
+              "action_family": "cross-species anatomy comparison",
+              "tension_family": "one useful ability versus whole-body adaptation",
+              "prop_family": "whale and human anatomy models",
+              "reveal_family": "deep diving requires more than underwater breathing"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "033",
+        "034",
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island",
+        "039",
+        "039_could_you_live_forever_on_a_desert_island"
+      ],
+      "reviewer_prompt_sha256": "9134af89ecd0ba07f06c447eca0b34ecc0de893cc025bb4a59b7652676f3a590",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The air-versus-water comparison directly shows why solving breathing does not remove pressure problems. The first frame has a readable physical difference, though viewers may need a moment to understand that both bulbs face the same pressure. The captain has only three clear actions, and the spyglass seam preserves the required orientation and leads into useful body-pressure information. The payoff stays cautious: it does not invent one maximum depth and correctly separates relatively incompressible tissue from vulnerable gas spaces and other high-pressure effects. The hook is plain and easy to understand."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 3,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [
+              "The hook asks what would hurt first, but the factual anchor only supports that ears and sinuses can develop harmful pressure differences; it does not support one predictable first injury. The payoff also does not answer that specific promise."
+            ],
+            "reason": "The bowed ear membrane gives the opening a concrete pressure problem even after underwater breathing is assumed, and the captain's three actions are restrained and readable. The entry seam is well matched and moves naturally into an ear cutaway. However, 'what would hurt first' is stronger than the supplied evidence because different gas spaces can become troublesome, so the central hook overpromises. 'Pressure equalization' is also less immediately clear for the target spoken-English level than a plain phrase such as matching the pressure inside and outside."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 2,
+              "character_fit": 4,
+              "honesty": 3,
+              "payoff": 4,
+              "entry_fit": 3,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [
+              "The brief only says humans can breathe underwater, but the hook changes that ability specifically into gills. That narrows the hypothetical without support and can change what physical assumptions the answer should use.",
+              "The first-frame difference between whale and human internal air-space anatomy is unlikely to be self-explanatory to a general viewer. Without narration explaining which structures matter, the visible event does not clearly create the intended depth question."
+            ],
+            "reason": "The broader idea is strong: deep diving depends on whole-body pressure adaptations, not only oxygen intake, and the final payoff correctly avoids claiming a single depth from breathing ability alone. The captain's comparison behavior fits well and the cross-species approach is distinct from the recent openings and the other candidates. But the opening relies on viewers understanding unfamiliar anatomy models, and replacing the general underwater-breathing premise with 'gills' introduces an assumption the brief did not make."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The air-versus-water comparison directly shows why solving breathing does not remove pressure problems. The first frame has a readable physical difference, though viewers may need a moment to understand that both bulbs face the same pressure. The captain has only three clear actions, and the spyglass seam preserves the required orientation and leads into useful body-pressure information. The payoff stays cautious: it does not invent one maximum depth and correctly separates relatively incompressible tissue from vulnerable gas spaces and other high-pressure effects. The hook is plain and easy to understand.",
+          "repetition_evidence": [],
+          "weighted_score": 87
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 3,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [
+            "The hook asks what would hurt first, but the factual anchor only supports that ears and sinuses can develop harmful pressure differences; it does not support one predictable first injury. The payoff also does not answer that specific promise."
+          ],
+          "reason": "The bowed ear membrane gives the opening a concrete pressure problem even after underwater breathing is assumed, and the captain's three actions are restrained and readable. The entry seam is well matched and moves naturally into an ear cutaway. However, 'what would hurt first' is stronger than the supplied evidence because different gas spaces can become troublesome, so the central hook overpromises. 'Pressure equalization' is also less immediately clear for the target spoken-English level than a plain phrase such as matching the pressure inside and outside.",
+          "repetition_evidence": [],
+          "weighted_score": 78
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 2,
+            "character_fit": 4,
+            "honesty": 3,
+            "payoff": 4,
+            "entry_fit": 3,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "The brief only says humans can breathe underwater, but the hook changes that ability specifically into gills. That narrows the hypothetical without support and can change what physical assumptions the answer should use.",
+            "The first-frame difference between whale and human internal air-space anatomy is unlikely to be self-explanatory to a general viewer. Without narration explaining which structures matter, the visible event does not clearly create the intended depth question."
+          ],
+          "reason": "The broader idea is strong: deep diving depends on whole-body pressure adaptations, not only oxygen intake, and the final payoff correctly avoids claiming a single depth from breathing ability alone. The captain's comparison behavior fits well and the cross-species approach is distinct from the recent openings and the other candidates. But the opening relies on viewers understanding unfamiliar anatomy models, and replacing the general underwater-breathing premise with 'gills' introduces an assumption the brief did not make.",
+          "repetition_evidence": [],
+          "weighted_score": 76
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

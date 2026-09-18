@@ -1,0 +1,16 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Mr. Claus – The Classic Jolly Santa",
+    "model": "Eleven Multilingual v2",
+    "speed": 0.98,
+    "stability": 0.35,
+    "similarity": 0.35,
+    "style": 0.3,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "c4027672b3cf42448bc5c5184616426874f67e86496acfc77d23325da5071a2c",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-09-18T18:43:51.338219+00:00"
+}

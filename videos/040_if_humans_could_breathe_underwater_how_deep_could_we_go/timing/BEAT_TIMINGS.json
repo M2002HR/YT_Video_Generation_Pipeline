@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 59.481,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every 10 meters, pressure rises by about the air pressure at the surface. At 10 meters, total pressure is about double. Unequal pressure can injure your ears and sinuses. Breathing underwater removes the problem of running out of air, but pressure would still affect your body. At extreme depths, high pressure can disturb how nerves normally work, so breathing alone does not set a fixed depth limit. Breathing solves one limit, but pressure creates others. Like and subscribe for more survival questions.",
+  "word_count": 119,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Body tissue with lots of water barely changes.",
+      "speech_start": 8.88,
+      "speech_end": 12.48,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 12.96,
+      "display_duration": 12.96
+    },
+    {
+      "beat_id": 2,
+      "narration": "Air in your ears and sinuses shrinks much more.",
+      "speech_start": 12.96,
+      "speech_end": 16.78,
+      "match_confidence": 1.0,
+      "display_start": 12.96,
+      "display_end": 17.14,
+      "display_duration": 4.18
+    },
+    {
+      "beat_id": 3,
+      "narration": "Every ten meters, pressure rises by about the air pressure at the surface.",
+      "speech_start": 17.14,
+      "speech_end": 22.4,
+      "match_confidence": 0.923,
+      "display_start": 17.14,
+      "display_end": 21.98,
+      "display_duration": 4.84
+    },
+    {
+      "beat_id": 4,
+      "narration": "At ten meters, total pressure is about double.",
+      "speech_start": 21.98,
+      "speech_end": 26.38,
+      "match_confidence": 0.875,
+      "display_start": 21.98,
+      "display_end": 26.82,
+      "display_duration": 4.84
+    },
+    {
+      "beat_id": 5,
+      "narration": "Unequal pressure can injure your ears and sinuses.",
+      "speech_start": 26.82,
+      "speech_end": 30.8,
+      "match_confidence": 1.0,
+      "display_start": 26.82,
+      "display_end": 31.1,
+      "display_duration": 4.28
+    },
+    {
+      "beat_id": 6,
+      "narration": "Breathing underwater removes the problem of running out of air.",
+      "speech_start": 31.1,
+      "speech_end": 36.52,
+      "match_confidence": 1.0,
+      "display_start": 31.1,
+      "display_end": 36.74,
+      "display_duration": 5.64
+    },
+    {
+      "beat_id": 7,
+      "narration": "But pressure would still affect your body.",
+      "speech_start": 36.74,
+      "speech_end": 39.68,
+      "match_confidence": 1.0,
+      "display_start": 36.74,
+      "display_end": 40.24,
+      "display_duration": 3.5
+    },
+    {
+      "beat_id": 8,
+      "narration": "At extreme depths, high pressure can disturb how nerves normally work.",
+      "speech_start": 40.24,
+      "speech_end": 45.94,
+      "match_confidence": 1.0,
+      "display_start": 40.24,
+      "display_end": 46.16,
+      "display_duration": 5.92
+    },
+    {
+      "beat_id": 9,
+      "narration": "So breathing alone does not set a fixed depth limit.",
+      "speech_start": 46.16,
+      "speech_end": 50.1,
+      "match_confidence": 1.0,
+      "display_start": 46.16,
+      "display_end": 50.54,
+      "display_duration": 4.38
+    },
+    {
+      "beat_id": 10,
+      "narration": "Breathing solves one limit, but pressure creates others.",
+      "speech_start": 50.54,
+      "speech_end": 55.08,
+      "match_confidence": 1.0,
+      "display_start": 50.54,
+      "display_end": 59.481,
+      "display_duration": 8.941
+    }
+  ]
+}

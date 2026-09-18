@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 38.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Body tissue with lots of water barely changes.",
+      "visual": "Full-bleed painted gouache underwater close-up of a human torso in translucent anatomical cutaway, with water-rich muscle and organs retaining their normal shape while deep marine water presses in from all sides; matte indigo and teal glazing, bone-white anatomy accents, no text or borders.",
+      "purpose": "show that water-rich body tissue changes very little under increasing pressure",
+      "visual_fingerprint": "tight side-on torso cutaway + unchanged soft tissues under surrounding water pressure + open midwater setting + centered anatomical silhouette with broad teal pressure gradients",
+      "type": "literal",
+      "continuity": "establish the submerged anatomical world with a calm close anatomical view",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Air in your ears and sinuses shrinks much more.",
+      "visual": "Full-bleed gouache profile cutaway of a submerged human head, enlarged ear canal and sinus cavities glowing restrained coral-orange as their air pockets visibly contract inward, surrounded by muted aqua tissue and dark indigo water; no labels, panels, or printed symbols.",
+      "purpose": "show that gas-filled ear and sinus spaces compress much more than water-rich tissue",
+      "visual_fingerprint": "extreme profile head cutaway + shrinking coral air pockets in ear and sinuses + darker upper-water zone + asymmetrical composition focused on face cavities",
+      "type": "literal",
+      "continuity": "move from stable torso tissue to the body's vulnerable gas-filled spaces",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Every ten meters, pressure rises by about the air pressure at the surface.",
+      "visual": "Full-bleed vertical gouache water column seen from a distant side angle, with one small descending diver silhouette passing successive evenly spaced depth zones; each lower zone is rendered with progressively denser translucent indigo pressure glazing and dimmer top light, without numbers, gauges, or text.",
+      "purpose": "show pressure increasing in roughly equal steps as depth increases",
+      "visual_fingerprint": "tiny descending diver + tall vertical water-column sequence + distant side view + stacked depth bands created only by progressively denser pigment and fading light",
+      "type": "diagram",
+      "continuity": "pull far back from anatomy to reveal how pressure builds through the surrounding water column",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slidedown"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "At ten meters, total pressure is about double.",
+      "visual": "Full-bleed gouache underwater scene at a single shallow-depth ledge, viewed slightly upward: a diver hovers beside two visually matched translucent pressure halos, one pale surface-reference halo above and a second added water-pressure halo surrounding the diver, together conveying doubled total pressure without any text, numbers, or gauge faces.",
+      "purpose": "show that around ten meters the surrounding total pressure is about twice surface pressure",
+      "visual_fingerprint": "medium-wide upward-looking diver + paired translucent pressure halos + shallow rocky ledge zone + diagonal composition from bright surface reference to submerged figure",
+      "type": "diagram",
+      "continuity": "resolve the previous stepped descent into one specific shallow-depth pressure comparison",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Unequal pressure can injure your ears and sinuses.",
+      "visual": "Full-bleed frontal three-quarter gouache head cutaway underwater, with one ear space and the sinus region compressed unevenly against surrounding tissue; restrained coral-orange blooms mark stressed membranes while the rest of the face remains cool aqua and bone-white, avoiding gore and readable labels.",
+      "purpose": "show how unequal pressure across trapped air spaces can strain and injure ears and sinuses",
+      "visual_fingerprint": "three-quarter face cutaway + visibly bowed ear membrane and stressed sinus cavity + confined darker midwater pocket + coral injury-risk blooms concentrated on one side",
+      "type": "literal",
+      "continuity": "return from the water-column scale to a close anatomical consequence of unequal pressure",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Breathing underwater removes the problem of running out of air.",
+      "visual": "Full-bleed gouache medium shot of a generic submerged diver calmly breathing through underwater breathing equipment, chest expanded naturally as a clean stream of exhaled bubbles rises toward pale surface light; composition emphasizes successful breathing rather than depth, with no gauges or text.",
+      "purpose": "show that an underwater breathing supply addresses the immediate need for breathable air",
+      "visual_fingerprint": "medium three-quarter diver + calm inhalation and rising bubble stream + brighter open-water pocket + upward vertical bubble composition beneath diffused surface light",
+      "type": "subject_world",
+      "continuity": "shift from injured air spaces to the separate issue of maintaining breathing underwater",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "But pressure would still affect your body.",
+      "visual": "Full-bleed gouache wide shot from below of the same generic diver deeper in the water column, still breathing normally while broad translucent pressure gradients close around the whole body and small coral ear-cavity highlights remain compressed; the surface is now distant and dim.",
+      "purpose": "show that successful breathing does not remove the physical effects of ambient pressure",
+      "visual_fingerprint": "wide low-angle diver + normal bubble breathing inside encroaching pressure field + deeper blue open-water zone + small compressed ear accents against a large surrounding pressure gradient",
+      "type": "literal",
+      "continuity": "keep breathing visibly functional while changing depth, angle, scale, and lighting to reveal pressure persisting",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothdown"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "At extreme depths, high pressure can disturb how nerves normally work.",
+      "visual": "Full-bleed gouache anatomical cutaway of a submerged upper body at extreme depth, viewed obliquely from behind, with the brain, spinal cord, and peripheral nerves rendered as pale violet pathways whose normally smooth glow breaks into irregular scattered pulses under dense indigo pressure glazing; no text or mechanical readouts.",
+      "purpose": "show that very high pressure can disrupt normal nervous-system function at extreme depth",
+      "visual_fingerprint": "oblique rear upper-body cutaway + disrupted violet brain-and-nerve pathways + near-black extreme-depth water + diagonal neural glow fragments crossing dense pressure haze",
+      "type": "literal",
+      "continuity": "move beyond compressed air spaces to a different pressure effect inside the nervous system at much greater depth",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "So breathing alone does not set a fixed depth limit.",
+      "visual": "Full-bleed gouache long vertical composition showing a small breathing diver suspended between brighter water above and an open, increasingly dark abyss below, with no hard barrier, depth line, gauge, or endpoint; the diver still exhales bubbles while multiple subtle pressure effects intensify gradually with depth.",
+      "purpose": "show that breathing is only one constraint and does not create a single fixed biological depth boundary",
+      "visual_fingerprint": "tiny central breathing diver + vast uninterrupted vertical abyss + extreme long shot + open-ended gradient with several gradually intensifying pressure cues and no boundary object",
+      "type": "metaphor",
+      "continuity": "pull back from nerve detail to an open-ended depth view that rejects the idea of one simple cutoff",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Breathing solves one limit, but pressure creates others.",
+      "visual": "Full-bleed painted gouache final underwater tableau: a generic diver breathes comfortably in the upper third while, deeper below, the surrounding world reveals three distinct pressure consequences in one unified scene—compressed ear and sinus air spaces, largely unchanged water-rich tissue, and faint violet nerve disruption—arranged through depth rather than panels, labels, or borders.",
+      "purpose": "visually pay off that breathing solves the air-supply problem while pressure still creates multiple physiological limits",
+      "visual_fingerprint": "comfortable breathing diver above + layered anatomical pressure consequences emerging below + deep descending world tableau + top-to-bottom payoff composition linking coral air spaces, stable aqua tissue, and violet nerve effects",
+      "type": "subject_world",
+      "continuity": "stay inside the same underwater world and consolidate the episode's separate pressure effects into one final full-frame payoff",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

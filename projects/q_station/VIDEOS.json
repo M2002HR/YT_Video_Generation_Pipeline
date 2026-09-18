@@ -145,6 +145,29 @@
     },
     {
       "video_id": "039_could_you_live_forever_on_a_desert_island"
+    },
+    {
+      "video_id": "040",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "submerged_pressure_gouache_cutaway_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      },
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-18T20:01:09.147869+00:00"
+    },
+    {
+      "video_id": "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
     }
   ]
 }

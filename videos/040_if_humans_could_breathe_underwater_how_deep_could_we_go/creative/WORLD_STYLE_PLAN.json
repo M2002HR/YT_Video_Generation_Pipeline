@@ -1,0 +1,30 @@
+{
+  "style_id": "submerged_pressure_gouache_cutaway_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "painted gouache illustration",
+  "secondary_treatment": null,
+  "texture_family": "matte layered gouache with translucent pigment glazing, soft granular blooms, and subtle underwater diffusion",
+  "palette_summary": "deep marine indigo and muted teal foundations, desaturated aqua and bone-white anatomy, restrained coral-orange for compressed air spaces and injury risk, with sparse pale violet highlights for neurological pressure effects",
+  "line_treatment": "clean hand-painted anatomical contours with selectively transparent cutaways, soft-edged pressure gradients, and restrained contour emphasis rather than dense hatching",
+  "lighting": "diffused underwater top light that progressively dims with depth, with soft volumetric falloff and sparse internal glow highlighting air cavities, tissues, or nerve effects",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Human-scale underwater environments, anatomical cutaways of ears and sinuses, visible water-column depth and pressure cues, compressed gas spaces, largely unchanged water-rich tissue, and abstract but physiologically grounded nerve disruption at extreme depth",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery; no pressure gauges implying a single hard biological depth limit; no engraving, linocut, or persistent diagram-board framing",
+  "reason": "The operator explicitly requires a new style. Layered gouache supports both underwater atmosphere and transparent physiological cutaways, making the contrast between incompressible water-rich tissue and compressible air spaces visually intuitive. It also differentiates this episode from the recently used bathypelagic engraving and saltcut linocut textures while avoiding reuse of the existing abyssal monochrome linework style.",
+  "subject_affinities": [
+    "underwater human physiology",
+    "hydrostatic pressure",
+    "ear and sinus compression",
+    "anatomical cutaways",
+    "deep-diving science",
+    "pressure-related nerve effects",
+    "water-column depth visualization"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

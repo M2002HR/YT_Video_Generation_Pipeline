@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "cta",
+  "content_fingerprint": "7b3953b6414af2c54e86b114b6bfd8e8fac1031e20d7b7324676938690c8d0be",
+  "reference_fingerprint": "14fa3ad1320df4e43796300c0f421c2092b40b82a0b6d119fd02894172297e45",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "abbd3e5695e5f470a97ba91ffccbc36e02cd995d97e0f8dd56a5821b957d710d",
+  "input_fingerprint": "9a0c6c654f86ede2ae6cccb5231d11b58c6571e11186303a3997e69ad730b9cc",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "cta": "Like and subscribe for more survival questions."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-18T18:41:34Z"
+}

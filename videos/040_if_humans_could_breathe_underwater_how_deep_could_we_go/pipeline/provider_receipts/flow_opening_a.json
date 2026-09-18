@@ -1,0 +1,63 @@
+{
+  "provider": "flow",
+  "job_id": "3f0a6722-be6f-4dba-a698-0a60f3162736",
+  "requested": {
+    "model": "gemini_omni_1_1_flash",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "duration_seconds": 4
+  },
+  "actual_model_label": "Omni 1.1 Flash",
+  "model_verified": true,
+  "duration_actual": 4,
+  "resolution_actual": "720p",
+  "aspect_actual": "9:16",
+  "reference_roles": [
+    "character_sheet"
+  ],
+  "submission_fingerprint": "da2785a52ba2d8906d1e62fa1a5eb938",
+  "workspace_url": "https://flow.google.com/project/2327dda5-0702-4fd6-87ed-dc770fb447e9",
+  "provider_receipt": {
+    "provider": "flow",
+    "requested_model": "gemini_omni_1_1_flash",
+    "actual_model_label": "Omni 1.1 Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": null,
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "9:16",
+    "requested_duration_seconds": 4,
+    "actual_duration_seconds": 4,
+    "requested_resolution": "720p",
+    "actual_resolution": "720p",
+    "workspace_url": "https://flow.google.com/project/2327dda5-0702-4fd6-87ed-dc770fb447e9",
+    "submission_fingerprint": "da2785a52ba2d8906d1e62fa1a5eb938",
+    "reference_roles": [
+      "character_sheet"
+    ],
+    "notes": [
+      "credits_required=7",
+      "outputs=x1",
+      "reference_mode=ingredients",
+      "pixels=720x1280",
+      "bytes=1975668",
+      "duration 4.01s vs requested 4s",
+      "resolution 720x1280 vs 720p"
+    ]
+  },
+  "uploaded_roles": [
+    "character_sheet"
+  ],
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/sea_captain/refs/character_sheet.png",
+      "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    }
+  ],
+  "prompt_sha256": "b45e7886aa480ab99630e56ca59aa01ba292364bd72c008b911127c09ef3f846",
+  "output_file": "assets/opening/question_intro_source.mp4",
+  "output_sha256": "98afe6c4b9f2f3ecb1a8ca5c4942ef29834f7cdc48063474608244868f6f8028",
+  "elapsed_seconds": 102.409,
+  "completed_at": "2026-09-18T19:37:31Z"
+}
