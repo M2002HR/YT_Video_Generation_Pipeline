@@ -398,3 +398,83 @@ def test_json_repair_excerpt_includes_the_invalid_response_ending():
 def test_structured_json_does_not_accept_unrelated_malformed_json():
     with pytest.raises(json.JSONDecodeError):
         qstation.parse_structured_json('{"passed": false "violations": []}')
+
+
+def test_structured_json_strips_prose_wrapped_around_object():
+    raw = 'Here is my review:\n{"passed":true,"description":"scene","violations":[]}\nLet me know if you need more.'
+    parsed, repaired = qstation.parse_structured_json(raw)
+    assert repaired is True
+    assert parsed == {"passed": True, "description": "scene", "violations": []}
+
+
+def test_structured_json_completes_truncated_verdict_without_changing_passed():
+    raw = '{"passed": false,\n"description": "A bordered wash area with framed sand and driftwood'
+    parsed, repaired = qstation.parse_structured_json(raw)
+    assert repaired is True
+    assert parsed["passed"] is False
+    assert parsed["description"].startswith("A bordered wash area")
+
+
+def test_structured_json_completes_truncated_open_arrays():
+    raw = '{"passed":true,"description":"scene","violations":["minor frame'
+    parsed, repaired = qstation.parse_structured_json(raw)
+    assert repaired is True
+    assert parsed["passed"] is True
+
+
+def test_complete_truncated_json_leaves_balanced_or_mismatched_text_alone():
+    assert qstation.complete_truncated_json('{"a":1}') == '{"a":1}'
+    assert qstation.complete_truncated_json('{"a":1]') == '{"a":1]'
+
+
+def test_json_looks_truncated_detects_partial_objects():
+    assert qstation._json_looks_truncated('{"passed": false,\n"description": "cut off') is True
+    assert qstation._json_looks_truncated('{"passed":true,"description":"ok"}') is False
+    assert qstation._json_looks_truncated('not json at all') is False
+
+
+def test_json_correction_prompt_names_truncation_only_for_partial_objects():
+    truncated = qstation.Runner._json_correction_prompt('task', '{"passed": "cut', 'boom')
+    assert 'cut off' in truncated
+    balanced = qstation.Runner._json_correction_prompt('task', '{"passed": true "violations": []}', 'boom')
+    assert 'cut off' not in balanced
+    assert 'not valid JSON' in balanced
+
+
+def test_json_escalation_reasks_unrepairable_output_and_parses():
+    runner = object.__new__(qstation.Runner)
+    calls = []
+    good = '{"passed":true,"description":"ok","violations":[]}'
+    bad = '{"passed": false "violations": []}'
+    def fake_text(label, prompt, *, references=()):
+        calls.append((label, prompt))
+        return bad if len(calls) == 1 else good
+    runner.text = fake_text
+    assert runner.json('probe_stage', 'task') == {"passed": True, "description": "ok", "violations": []}
+    assert [label for label, _ in calls] == ['probe_stage_json1', 'probe_stage_json2']
+    assert 'not valid JSON' in calls[1][1]
+
+
+def test_json_persistent_malformation_falls_back_to_gemini_in_auto_mode():
+    runner = object.__new__(qstation.Runner)
+    runner.chatgpt_fallback_mode = 'auto'
+    runner.text = lambda label, prompt, *, references=(): '{"passed": tru'
+    runner._run = lambda label, question, *, provider, mode, references=(): SimpleNamespace(
+        answer='{"passed":true,"description":"via gemini","violations":[]}')
+    runner.state = SimpleNamespace(mark=lambda *a, **k: None)
+    assert runner.json('probe_stage', 'task') == {"passed": True, "description": "via gemini", "violations": []}
+
+
+def test_json_persistent_malformation_parks_for_approval_instead_of_dying():
+    runner = object.__new__(qstation.Runner)
+    runner.chatgpt_fallback_mode = 'approval'
+    runner.text = lambda label, prompt, *, references=(): '{"passed": tru'
+    def boom(*a, **k):
+        raise qstation.StageFailure('probe_stage', 'FAILED', 'transport down')
+    runner._run = boom
+    runner._consume_fallback_approval = lambda label: False
+    def need_approval(label, failure):
+        raise qstation.StageFailure(label, 'ACTION_REQUIRED', 'approval needed')
+    runner._require_fallback_approval = need_approval
+    with pytest.raises(qstation.StageFailure, match='approval needed'):
+        runner.json('probe_stage', 'task')

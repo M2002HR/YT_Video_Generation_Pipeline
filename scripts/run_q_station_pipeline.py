@@ -460,21 +460,110 @@ def repair_final_candidate_closer(text: str) -> str:
     return text
 
 
+def strip_json_prose_affixes(text: str) -> str:
+    """Drop leading/trailing prose around a JSON object (§50).
+
+    Providers sometimes wrap the object in commentary despite the raw-JSON-only
+    contract. Only the outermost object is kept; text without braces is unchanged.
+    """
+    start = text.find("{")
+    end = text.rfind("}")
+    if 0 <= start < end:
+        return text[start:end + 1]
+    return text
+
+
+def complete_truncated_json(text: str) -> str:
+    """Close an unterminated string and any open containers (truncation recovery).
+
+    Only appends characters; never alters existing ones. Returns the input
+    unchanged when it already ends balanced or contains a mismatched closer, so
+    genuinely malformed JSON (missing commas, wrong tokens) still fails normally.
+    A truncated verdict keeps its already-complete fields (notably ``passed``);
+    trailing arrays cut off by the truncation close empty and the repair is
+    reported, never silent.
+    """
+    stack: list[str] = []
+    inside_string = False
+    escaped = False
+    for char in text:
+        if inside_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                inside_string = False
+            continue
+        if char == '"':
+            inside_string = True
+        elif char in "{[":
+            stack.append(char)
+        elif char in "}]":
+            expected = "{" if char == "}" else "["
+            if stack and stack[-1] == expected:
+                stack.pop()
+            else:
+                return text
+    if not inside_string and not stack:
+        return text
+    completed = text
+    if inside_string:
+        completed += '"'
+    for opener in reversed(stack):
+        completed += "}" if opener == "{" else "]"
+    return completed
+
+
+def _json_looks_truncated(text: str) -> bool:
+    """True when the response ends mid-string or with unclosed containers."""
+    body = strip_json_prose_affixes(strip_fences(text))
+    if not body.startswith("{"):
+        return False
+    stack: list[str] = []
+    inside_string = False
+    escaped = False
+    for char in body:
+        if inside_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                inside_string = False
+            continue
+        if char == '"':
+            inside_string = True
+        elif char in "{[":
+            stack.append(char)
+        elif char in "}]":
+            expected = "{" if char == "}" else "["
+            if stack and stack[-1] == expected:
+                stack.pop()
+            else:
+                return False
+    return inside_string or bool(stack)
+
+
 def parse_structured_json(text: str) -> tuple[Any, bool]:
     """Parse provider JSON with narrowly-scoped recovery for known DOM artifacts."""
     raw = strip_fences(text)
     try:
         return json.loads(raw), False
     except json.JSONDecodeError as original_error:
-        repaired = repair_unescaped_json_string_controls(raw)
-        repaired = repair_unescaped_json_string_quotes(repaired)
-        repaired = repair_final_candidate_closer(repaired)
-        if repaired == raw:
-            raise original_error
-        try:
-            return json.loads(repaired), True
-        except json.JSONDecodeError:
-            raise original_error
+        candidate = strip_json_prose_affixes(raw)
+        for fix in (
+            repair_unescaped_json_string_controls,
+            repair_unescaped_json_string_quotes,
+            repair_final_candidate_closer,
+            complete_truncated_json,
+        ):
+            candidate = fix(candidate)
+            try:
+                return json.loads(candidate), True
+            except json.JSONDecodeError:
+                continue
+        raise original_error
 
 
 def json_repair_excerpt(raw: str, limit: int = 2_000) -> str:
@@ -737,32 +826,95 @@ class Runner:
     def json(
         self, stage: str, prompt: str, *, retries: int = 2, references: list[Reference] = ()
     ) -> Any:
-        """ChatGPT call that must parse as JSON, with a bounded correction retry (§50)."""
+        """ChatGPT call that must parse as JSON, with escalating self-repair (§50).
+
+        Deterministic repairs (fences, prose, controls, quotes, truncation
+        completion) are free and always applied first. Provider re-asks escalate
+        from a plain retry to a strict compact re-ask when the previous response
+        looked truncated. A persistent formatting defect falls back to a Gemini
+        read under the same approval gate as transport failures, so malformed
+        provider text alone can never silently fail a run without an audit trail.
+        """
         current = prompt
         last_error = ""
         last_raw = ""
         for attempt in range(retries + 1):
-            last_raw = self.text(f"{stage}_json{attempt + 1}", current, references=references)
+            label = f"{stage}_json{attempt + 1}"
+            last_raw = self.text(label, current, references=references)
             try:
                 parsed, repaired = parse_structured_json(last_raw)
                 if repaired:
                     print(
-                        f"    [{stage}] recovered a safe JSON formatting defect; preserving the raw response for audit.",
+                        f"    [{stage}] recovered a JSON formatting defect; preserving the raw response for audit.",
                         flush=True,
                     )
                 return parsed
             except ValueError as exc:
                 last_error = str(exc)
-                current = (
-                    f"Your previous output was not valid JSON ({exc}). Return ONLY raw JSON with "
-                    f"no markdown fences and no commentary.\n\nOriginal task:\n{prompt}\n\n"
-                    f"Your previous output:\n{json_repair_excerpt(last_raw)}"
+                current = self._json_correction_prompt(prompt, last_raw, last_error)
+        return self._json_gemini_fallback(stage, prompt, references, retries, last_raw, last_error)
+
+    @staticmethod
+    def _json_correction_prompt(prompt: str, raw: str, error: str) -> str:
+        hint = ""
+        if _json_looks_truncated(raw):
+            hint = (
+                " The previous output was cut off before the JSON object was complete. "
+                "Return the COMPLETE object in compact form: keep description under 400 "
+                "characters on a single line with no line breaks inside strings."
+            )
+        return (
+            f"Your previous output was not valid JSON ({error}). Return ONLY raw JSON with "
+            f"no markdown fences, no commentary and no prose before or after.{hint}\n\nOriginal task:\n{prompt}\n\n"
+            f"Your previous output:\n{json_repair_excerpt(raw)}"
+        )
+
+    def _json_gemini_fallback(
+        self,
+        stage: str,
+        prompt: str,
+        references: list[Reference],
+        retries: int,
+        last_raw: str,
+        last_error: str,
+    ) -> Any:
+        """Read the same structured task with Gemini after ChatGPT text stayed malformed."""
+        label = f"{stage}_json{retries + 2}"
+        short_prompt = (
+            "Return ONLY raw JSON: no fences, no commentary, no prose before or after. "
+            "Keep every string on a single line and description under 400 characters.\n\n"
+            f"{prompt}"
+        )
+        try:
+            result = self._run(label, short_prompt, provider="gemini", mode="chat", references=references)
+        except StageFailure as failure:
+            if self.chatgpt_fallback_mode != "auto" and not self._consume_fallback_approval(label):
+                self._require_fallback_approval(label, failure)
+            result = self._run(label, short_prompt, provider="gemini", mode="chat", references=references)
+        answer = (result.answer or "").strip()
+        if answer:
+            try:
+                parsed, _ = parse_structured_json(answer)
+                print(
+                    f"    [{stage}] Gemini fallback produced parseable JSON after ChatGPT formatting failures.",
+                    flush=True,
                 )
+                self.state.mark(
+                    self._fallback_stage(label),
+                    STATE_RUNNING,
+                    fallback_from="chatgpt",
+                    fallback_to="gemini",
+                    fallback_reason=f"persistent JSON formatting failure: {last_error[:300]}",
+                )
+                return parsed
+            except ValueError:
+                pass
         raise StageFailure(
             stage,
             "FAILED_VALIDATION",
-            f"{stage} never produced valid JSON after {retries + 1} attempts: {last_error}; "
-            f"last output began {last_raw[:200]!r}",
+            f"{stage} never produced valid JSON after {retries + 2} ChatGPT attempts plus a Gemini fallback: {last_error}; "
+            f"last ChatGPT output began {last_raw[:400]!r} and ended {last_raw[-400:]!r}; "
+            f"Gemini output began {answer[:400]!r}.",
         )
 
     def image(
@@ -1121,7 +1273,7 @@ class Runner:
             "If qc_previous_candidate is attached, compare the candidate against it and list every "
             "newly introduced defect or lost already-correct quality in regressions; otherwise return "
             "regressions as an empty array. Judge visible compliance, not artistic taste. Return only JSON with passed (boolean), "
-            "description (what is actually visible), violations (array of specific strings), and "
+            "description (what is actually visible, under 400 characters on a single line), violations (array of specific strings), and "
             "blocking_violations (array of only fundamental failures), and regressions (array). Do not use "
             "literal double-quote characters inside description or violation strings; use single quotes "
             "for visible labels instead. "
