@@ -64,7 +64,11 @@ def text_box_geometry(settings: dict[str, Any], layout_id: str) -> dict[str, flo
     margin = float(settings["safe_margin"])
     box_w = float(settings["text_box_width"])
     box_h = 0.32
-    x = margin if layout_id in {"character_right", "discovery_focus"} else 1.0 - margin - box_w
+    # The headline block is always canvas-centered (stable across layouts and
+    # line widths): the artwork template keeps the whole top half free of
+    # important elements, so no side-anchored box is needed. Explicit
+    # left/right placements are still respected below.
+    x = (1.0 - box_w) / 2.0
     if settings["text_position"] == "top":
         y = max(0.0, margin - nudge)
     elif settings["text_position"] == "bottom":
@@ -124,7 +128,9 @@ def compose(artwork: Path, output: Path, text: str, settings: dict[str, Any], la
     for index, line in enumerate(lines):
         bbox = draw.textbbox((0, 0), line, font=font, stroke_width=stroke)
         line_w = bbox[2] - bbox[0]
-        tx = x + max(0, (box_w - line_w) // 2); ty = top + index * (line_h + spacing)
+        # Center the visible ink, not the advance box: compensate the first
+        # glyph's left bearing so every line shares the exact same center.
+        tx = x + max(0, (box_w - line_w) // 2) - bbox[0]; ty = top + index * (line_h + spacing)
         if settings["shadow"]: draw.text((tx + stroke, ty + stroke), line, font=font, fill=(0, 0, 0, 210), stroke_width=stroke, stroke_fill=(0, 0, 0, 210))
         draw.text((tx, ty), line, font=font, fill=settings["text_fill"], stroke_width=stroke, stroke_fill=settings["text_outline"])
         rendered = draw.textbbox((tx, ty), line, font=font, stroke_width=stroke)
