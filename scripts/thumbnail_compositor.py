@@ -51,9 +51,12 @@ def text_box_geometry(settings: dict[str, Any], layout_id: str) -> dict[str, flo
     """Reserved headline rectangle as frame fractions (single source of truth).
 
     The artwork prompt and this compositor share this exact geometry, so the
-    clean band the model leaves in the artwork is precisely where the final
-    headline lands. Coordinates are fractions of width/height.
+    clean zone the model leaves in the artwork is precisely where the final
+    headline lands. Coordinates are fractions of width/height. Upper placements
+    are nudged slightly toward the top edge.
     """
+    #: How much higher upper text sits (fraction of height).
+    nudge = 0.02
     coords = settings.get("coordinates")
     if coords:
         return {"x": float(coords["x"]), "y": float(coords["y"]),
@@ -63,11 +66,13 @@ def text_box_geometry(settings: dict[str, Any], layout_id: str) -> dict[str, flo
     box_h = 0.32
     x = margin if layout_id in {"character_right", "discovery_focus"} else 1.0 - margin - box_w
     if settings["text_position"] == "top":
-        y = margin
+        y = max(0.0, margin - nudge)
     elif settings["text_position"] == "bottom":
         y = 1.0 - margin - box_h
     else:
         y = 0.07 if layout_id in {"character_left", "character_right"} else 0.60
+        if y < 0.5:
+            y = max(0.0, y - nudge)
     if settings["text_position"] == "left":
         x = margin
     if settings["text_position"] == "right":

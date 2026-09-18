@@ -14,26 +14,26 @@ from thumbnail_compositor import comparison_sheet, compose, resolve_font, text_b
 
 LAYOUTS = ("character_left", "character_right", "contrast_split", "discovery_focus")
 
-#: Fixed per-layout composition template. The reserved headline band is the exact
-#: rectangle the local compositor later fills (see thumbnail_compositor
-#: text_box_geometry), so the artwork must keep it clean and every element must
-#: sit in a predictable place outside it. Fractions of frame, y=0 at the top.
+#: Fixed per-layout composition template. The top half of the frame stays free
+#: of anything important (ordinary continuing scenery, never an artificially
+#: emptied panel); the local compositor headline lands inside that clean half.
+#: Fractions of frame, y=0 at the top.
 LAYOUT_TEMPLATES = {
     "character_left": {
-        "host": "host full-body on the LEFT third (x 0.00-0.45), entire head (top of hat/hair to chin) BELOW the band bottom edge",
-        "scene": "principal evidence/scene on the RIGHT side (x 0.50-1.00), entirely below the band",
+        "host": "host full-body on the LEFT third (x 0.00-0.45), entire head (top of hat/hair to chin) BELOW y=0.50",
+        "scene": "principal evidence/scene on the RIGHT side (x 0.50-1.00), entirely below y=0.50",
     },
     "character_right": {
-        "host": "host full-body on the RIGHT third (x 0.55-1.00), entire head (top of hat/hair to chin) BELOW the band bottom edge",
-        "scene": "principal evidence/scene on the LEFT side (x 0.00-0.50), entirely below the band",
+        "host": "host full-body on the RIGHT third (x 0.55-1.00), entire head (top of hat/hair to chin) BELOW y=0.50",
+        "scene": "principal evidence/scene on the LEFT side (x 0.00-0.50), entirely below y=0.50",
     },
     "contrast_split": {
-        "host": "host below the band, whole head BELOW the band bottom edge, reacting toward the contrast",
-        "scene": "before/after contrast split LEFT vs RIGHT halves, both entirely below the band",
+        "host": "host below y=0.50, whole head BELOW y=0.50, reacting toward the contrast",
+        "scene": "before/after contrast split LEFT vs RIGHT halves, both entirely below y=0.50",
     },
     "discovery_focus": {
-        "host": "host small at a bottom corner BELOW the band, whole head BELOW the band bottom edge (or fully out of frame if the object needs the space)",
-        "scene": "one large central object/event centered (x 0.15-0.85), entirely below the band",
+        "host": "host small at a bottom corner BELOW y=0.50, whole head BELOW y=0.50 (or fully out of frame if the object needs the space)",
+        "scene": "one large central object/event centered (x 0.15-0.85), entirely below y=0.50",
     },
 }
 
@@ -43,15 +43,16 @@ def layout_template_block(layout_id: str, band: dict[str, float]) -> str:
     template = LAYOUT_TEMPLATES.get(layout_id, LAYOUT_TEMPLATES["discovery_focus"])
     return (
         f"COMPOSITION TEMPLATE ({layout_id}) — follow exactly: "
-        f"headline zone x {band['x']:.2f}-{band['x'] + band['width']:.2f}, "
-        f"y {band['y']:.2f}-{band['y'] + band['height']:.2f} (fractions of frame). "
+        f"TOP HALF RULE: keep y 0.00-0.50 free of anything important. "
         f"This zone stays ordinary scene space — the normal background simply continues "
         f"there (sky, foliage, wall, sea); do NOT paint it as an artificially emptied, blank "
         f"or blurred-out panel. The rule is compositional: keep every important element OUT "
-        f"of this zone — STRICTLY no face, eyes, mouth, head, hands, principal evidence, or "
-        f"text-like shapes inside it. "
+        f"of the top half — STRICTLY no face, eyes, mouth, head, hands, principal evidence, or "
+        f"text-like shapes above y=0.50. "
+        f"The local headline lands at x {band['x']:.2f}-{band['x'] + band['width']:.2f}, "
+        f"y {band['y']:.2f}-{band['y'] + band['height']:.2f} (inside the clean half). "
         f"Host: {template['host']}. Scene: {template['scene']}. "
-        f"The host may look toward the zone (connects headline and scene) but no part of the "
+        f"The host may look toward the top half (connects headline and scene) but no part of the "
         f"head ever enters it."
     )
 

@@ -39,10 +39,10 @@ def sample_context():
 def test_geometry_is_top_band_for_character_layouts() -> None:
     band = text_box_geometry(base_settings(), "character_left")
     assert band["width"] == 0.82 and band["height"] == 0.32
-    assert abs(band["x"] - 0.125) < 1e-9 and band["y"] == 0.07
+    assert abs(band["x"] - 0.125) < 1e-9 and abs(band["y"] - 0.05) < 1e-9
     assert band["y"] + band["height"] <= 0.40
     top = text_box_geometry(base_settings(text_position="top"), "contrast_split")
-    assert top["y"] == 0.055 and top["y"] + top["height"] <= 0.40
+    assert abs(top["y"] - 0.035) < 1e-9 and top["y"] + top["height"] <= 0.40
     bottom = text_box_geometry(base_settings(text_position="bottom"), "character_left")
     assert bottom["y"] + bottom["height"] <= 1.0
 
@@ -69,9 +69,10 @@ def test_artwork_prompt_reserves_band_and_keeps_head_below() -> None:
     plan = local_plan(sample_metadata(), sample_context(), settings, sample_character())[0]
     prompt = artwork_prompt(plan, sample_character(), [], "")
     assert "COMPOSITION TEMPLATE (character_left)" in prompt
-    assert "y 0.07-0.39" in prompt
+    assert "y 0.00-0.50" in prompt
     assert "BELOW" in prompt
     assert "no face, eyes, mouth" in prompt
+    assert "artificially emptied" in prompt
 
 
 def test_final_review_rejects_headline_over_face() -> None:
