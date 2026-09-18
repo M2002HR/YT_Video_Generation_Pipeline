@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "dev",
+  "remote": "origin",
+  "artifact_commit": "7df275b37390486dc59d47ca46c524819af198d8",
+  "started_at": "2026-09-18T20:03:25.344658+00:00",
+  "completed_at": "2026-09-18T20:08:11.360846+00:00",
+  "elapsed_seconds": 286.016,
+  "scope": "videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+}
