@@ -371,9 +371,26 @@ def main() -> int:
             # upgraded run whose state was produced by an earlier wrapper.
             flow_pending_reason = reason
 
-    # 2. One continuous narration track (§66).
+    # 2. One continuous narration track (§66). Reuse is allowed only when the
+    # stored audio was made from exactly the current script text and voice
+    # settings; a bare usable file is never enough, otherwise a script revision
+    # would silently keep speaking stale words while beats move on.
+    from run_elevenlabs_voiceover import narration_input, narration_receipt_matches, settings_from_profile
     narration = project / "assets" / "audio" / "narration.mp3"
-    if file_is_usable(narration):
+    narration_matches = False
+    try:
+        _, narration_text = narration_input(project)
+        voice_profile_payload: dict = {}
+        if args.voice_profile:
+            loaded = json.loads(Path(args.voice_profile).read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                voice_profile_payload = loaded
+        narration_matches = file_is_usable(narration) and narration_receipt_matches(
+            project, narration_text, settings_from_profile(voice_profile_payload).supplied()
+        )
+    except (OSError, ValueError, RuntimeError):
+        narration_matches = False
+    if narration_matches:
         print(f"narration reuse: {narration}", flush=True)
         mark_wrapper_stage(project, "elevenlabs_voiceover", "REUSED", artifact=str(narration.relative_to(project)))
         report_reused(notifier, "elevenlabs_voiceover", str(narration.relative_to(project)))

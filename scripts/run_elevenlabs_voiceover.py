@@ -878,24 +878,190 @@ class ElevenLabsUI:
         return {"ok": True, "choice": choice.get("text") or "Download latest"}
 
 
-def narration_input(project: Path) -> tuple[Path, str]:
-    canonical = project / "voiceover" / "VOICEOVER_INPUT.txt"
-    source = canonical if canonical.exists() else project / "SCRIPT_FINAL.md"
-    if not source.is_file():
-        raise RuntimeError("No voiceover input found: create voiceover/VOICEOVER_INPUT.txt or complete SCRIPT_FINAL.md first.")
-    text = source.read_text(encoding="utf-8").replace("\ufeff", "").strip()
+def _read_narration_text(path: Path) -> str:
+    text = path.read_text(encoding="utf-8").replace("\ufeff", "").strip()
     # The visual-script UI can prepend its own editor affordance as a lone
     # first line. It is not narration and must never reach ElevenLabs. Keep
     # this deliberately narrow so valid narration is never rewritten.
     lines = text.splitlines()
     if lines and lines[0].strip().casefold() == "edit":
         text = "\n".join(lines[1:]).lstrip()
-    if not text:
+    return text
+
+
+def _voiceover_input_sidecar(project: Path) -> Path:
+    return project / "voiceover" / "VOICEOVER_INPUT.source.json"
+
+
+def _read_input_sidecar(project: Path) -> dict[str, Any]:
+    try:
+        data = json.loads(_voiceover_input_sidecar(project).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _write_input_sidecar(project: Path, *, script_sha256: str, snapshot_sha256: str, operator_customized: bool) -> None:
+    json_dump(
+        _voiceover_input_sidecar(project),
+        {
+            "schema_version": 1,
+            "script_sha256": script_sha256,
+            "snapshot_sha256": snapshot_sha256,
+            "operator_customized": operator_customized,
+            "updated_at": utcnow(),
+        },
+    )
+
+
+def narration_input(project: Path) -> tuple[Path, str]:
+    """Resolve the narration text, keeping the snapshot in sync with the script.
+
+    The pipeline-canonical script (``SCRIPT_FINAL.md``, rewritten on every
+    script generation) is the single source of truth.
+    ``voiceover/VOICEOVER_INPUT.txt`` is only a snapshot of it — except when an
+    operator deliberately customized the file, which is detected via the
+    provenance sidecar (or, for legacy snapshots without one, via mtimes) and
+    then respected with a loud warning instead of being overwritten.
+    """
+    canonical_file = project / "SCRIPT_FINAL.md"
+    snapshot = project / "voiceover" / "VOICEOVER_INPUT.txt"
+    canonical_text = _read_narration_text(canonical_file) if canonical_file.is_file() else ""
+    if not snapshot.is_file():
+        if not canonical_text:
+            raise RuntimeError("No voiceover input found: create voiceover/VOICEOVER_INPUT.txt or complete SCRIPT_FINAL.md first.")
+        snapshot.parent.mkdir(parents=True, exist_ok=True)
+        snapshot.write_text(canonical_text + "\n", encoding="utf-8")
+        _write_input_sidecar(
+            project,
+            script_sha256=digest(canonical_text),
+            snapshot_sha256=digest(canonical_text),
+            operator_customized=False,
+        )
+        return snapshot, canonical_text
+    snapshot_text = _read_narration_text(snapshot)
+    if not snapshot_text:
         raise RuntimeError("Voiceover input is empty.")
-    if source != canonical or canonical.read_text(encoding="utf-8") != text + "\n":
-        canonical.parent.mkdir(parents=True, exist_ok=True)
-        canonical.write_text(text + "\n", encoding="utf-8")
-    return canonical, text
+    if not canonical_text or snapshot_text == canonical_text:
+        return snapshot, snapshot_text
+    # The snapshot and the canonical script diverged: determine who moved.
+    sidecar = _read_input_sidecar(project)
+    if sidecar and sidecar.get("snapshot_sha256") != digest(snapshot_text):
+        # Someone edited the snapshot after the pipeline wrote it: operator
+        # customization wins, but beats are timed against the canonical script,
+        # so say so loudly — alignment stays the final guard.
+        _write_input_sidecar(
+            project,
+            script_sha256=digest(canonical_text),
+            snapshot_sha256=digest(snapshot_text),
+            operator_customized=True,
+        )
+        print(
+            "WARNING: voiceover/VOICEOVER_INPUT.txt was customized by the operator and no "
+            "longer matches SCRIPT_FINAL.md; synthesizing the customized text. Body timing "
+            "is measured against the canonical script, so a mismatch will fail alignment.",
+            flush=True,
+        )
+        return snapshot, snapshot_text
+    if sidecar and sidecar.get("operator_customized"):
+        print(
+            "WARNING: using operator-customized voiceover input although SCRIPT_FINAL.md changed; "
+            "a mismatch will fail alignment instead of drifting images.",
+            flush=True,
+        )
+        return snapshot, snapshot_text
+    if not sidecar:
+        # Legacy snapshot without provenance: the newer file wins. A newer
+        # canonical script means the pipeline moved on; a newer snapshot means
+        # an operator touched it.
+        try:
+            if snapshot.stat().st_mtime >= canonical_file.stat().st_mtime:
+                print(
+                    "WARNING: voiceover/VOICEOVER_INPUT.txt is newer than SCRIPT_FINAL.md; keeping "
+                    "it as a possible operator customization.",
+                    flush=True,
+                )
+                _write_input_sidecar(
+                    project,
+                    script_sha256=digest(canonical_text),
+                    snapshot_sha256=digest(snapshot_text),
+                    operator_customized=True,
+                )
+                return snapshot, snapshot_text
+        except OSError:
+            pass
+    # Pipeline-owned snapshot and the script moved on: refresh the snapshot so
+    # narration, beats and timing always speak the same text.
+    print("Narration input changed via pipeline script revision; refreshing voiceover input snapshot.", flush=True)
+    snapshot.write_text(canonical_text + "\n", encoding="utf-8")
+    _write_input_sidecar(
+        project,
+        script_sha256=digest(canonical_text),
+        snapshot_sha256=digest(canonical_text),
+        operator_customized=False,
+    )
+    return snapshot, canonical_text
+
+
+def _input_change_is_pipeline_synced(project: Path, text: str) -> bool:
+    """True when the narration text changed through a tracked script revision."""
+    sidecar = _read_input_sidecar(project)
+    return (
+        bool(sidecar)
+        and not sidecar.get("operator_customized")
+        and sidecar.get("script_sha256") == digest(text)
+    )
+
+
+def narration_receipt_matches(project: Path, text: str, settings_supplied: dict[str, Any]) -> bool:
+    """True only when the stored narration was made from exactly this text+settings.
+
+    This is the reuse gate for both the wrapper and the voiceover stage: a usable
+    audio file alone is never enough, otherwise a script revision would silently
+    keep speaking stale words while beats move on.
+    """
+    try:
+        receipt = json.loads((project / "voiceover" / "VOICE_PROFILE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    if not isinstance(receipt, dict) or receipt.get("input_sha256") != digest(text):
+        return False
+    if receipt.get("settings") != settings_supplied:
+        return False
+    output = receipt.get("output")
+    if not output:
+        return False
+    candidate = (project / str(output)).resolve()
+    return candidate.is_file() and candidate.stat().st_size > 0 and candidate.suffix.lower() in AUDIO_EXTENSIONS
+
+
+def settings_from_profile(profile: dict[str, Any], cli: dict[str, Any] | None = None) -> VoiceSettings:
+    """Build effective voice settings exactly like the CLI (profile + overrides)."""
+    cli = cli or {}
+
+    def choose(name: str, env_name: str | None = None) -> Any:
+        if cli.get(name) is not None:
+            return cli[name]
+        value = profile.get(name)
+        if value is not None:
+            return value
+        if env_name:
+            return os.getenv(env_name) or None
+        return None
+
+    boost = choose("speaker_boost")
+    if isinstance(boost, str):
+        boost = boost.strip().lower() == "true"
+    return VoiceSettings(
+        choose("voice", "YT_ELEVENLABS_DEFAULT_VOICE"),
+        choose("model", "YT_ELEVENLABS_DEFAULT_MODEL"),
+        choose("speed"),
+        choose("stability"),
+        choose("similarity"),
+        choose("style"),
+        boost,
+        choose("output_format"),
+    )
 
 
 def find_download(download_dir: Path, started_at: float) -> Path | None:
@@ -943,11 +1109,24 @@ def main() -> None:
     profile: dict[str, Any] = {}
     if args.profile:
         profile = json.loads(args.profile.read_text(encoding="utf-8"))
-    def choose(name: str, cli_value: Any) -> Any:
-        return cli_value if cli_value is not None else profile.get(name)
-    settings = VoiceSettings(choose("voice", args.voice), choose("model", args.model), choose("speed", args.speed), choose("stability", args.stability), choose("similarity", args.similarity), choose("style", args.style), choose("speaker_boost", None if args.speaker_boost is None else args.speaker_boost == "true"), choose("output_format", args.output_format))
+    settings = settings_from_profile(
+        profile,
+        {
+            "voice": args.voice, "model": args.model, "speed": args.speed,
+            "stability": args.stability, "similarity": args.similarity, "style": args.style,
+            "speaker_boost": args.speaker_boost, "output_format": args.output_format,
+        },
+    )
     voiceover_dir = project / "voiceover"
-    state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings, allow_input_reset=args.force)
+    try:
+        state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings, allow_input_reset=args.force)
+    except RuntimeError as exc:
+        if "different narration text" not in str(exc) or args.force or not _input_change_is_pipeline_synced(project, text):
+            raise
+        # The text changed through a tracked pipeline script revision (not an
+        # operator file swap): reset state via the audited path instead of dying.
+        print("Narration input changed via pipeline script revision; resetting voiceover state.", flush=True)
+        state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings, allow_input_reset=True)
     # A failed/restarted run may predate a newer versioned profile.  Persist
     # exactly what this invocation is about to apply for traceability.
     state.data["settings"] = settings.supplied()
@@ -962,14 +1141,19 @@ def main() -> None:
     output_dir = project / "assets" / "audio"
     output_dir.mkdir(parents=True, exist_ok=True)
     existing = next((output_dir / f"narration{extension}" for extension in AUDIO_EXTENSIONS if (output_dir / f"narration{extension}").is_file()), None)
-    if existing and not args.force:
+    if existing and not args.force and narration_receipt_matches(project, text, settings.supplied()):
         state.data.update({"status": "DONE", "output": str(existing.relative_to(project))})
         state.data.pop("error", None); state.data.pop("failed_at", None)
         state.event("elevenlabs_download_recovered", started if "started" in locals() else time.perf_counter(), bytes=existing.stat().st_size, output=str(existing.relative_to(project)))
         state.save()
-        json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(existing.relative_to(project)), "generated_at": utcnow(), "recovered_from_existing_download": True})
         print(f"ELEVENLABS VOICEOVER: PASS (reused {existing})")
         return
+    if existing and not args.force:
+        print(
+            f"ELEVENLABS VOICEOVER: existing {existing.name} was not made from the current "
+            "narration text/settings; regenerating so audio, beats and timing stay in sync.",
+            flush=True,
+        )
     notifier = PipelineNotifier(args.video_id, project.name, state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json")
     started = time.perf_counter()
     title = stage_title("elevenlabs_voiceover")
