@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "provider": "freesound",
-  "selection_mode": "library_selection",
+  "provider": "operator_upload",
+  "selection_mode": "operator_upload",
   "file": "assets/music/operator_background.mp3",
-  "source_url": "https://freesound.org/people/kontraamusic/sounds/790936/",
-  "source_sha256": "c96743f18da09eee1619d7122c5e24d0de16baceef6fdf9d846c60c806f5fed8",
-  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
-  "original_name": "Battleground | UK Drill Instrumental",
-  "library_origin": "provider",
-  "selected_at": "2026-09-19T07:05:56.806341+00:00"
+  "source_url": null,
+  "source_sha256": "893dff5681f0120f1c9e5c50caec38211e5172d46e4d79f1bb5ae51758cf79a1",
+  "license": "Operator-supplied; publication rights must be verified by the operator.",
+  "original_name": "Moavii - Foreign (freetouse.com).mp3",
+  "library_origin": "upload",
+  "selected_at": "2026-09-19T07:49:57.136247+00:00"
 }

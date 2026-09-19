@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-19T07:49:57.136455+00:00",
+  "updated_at": "2026-09-19T07:05:56.806579+00:00",
   "status": "SELECTED",
   "narration_seconds": 50.756,
   "segment_count": 1,
@@ -11,8 +11,8 @@
       "end_seconds": 50.756,
       "duration_seconds": 50.756,
       "role": "bed",
-      "provider": "operator_upload",
-      "query_prompt": "Studio operator upload; no provider search performed.",
+      "provider": "freesound",
+      "query_prompt": "Studio library selection; no provider search performed.",
       "source_url": null,
       "file": "assets/music/operator_background.mp3",
       "gain_db": -20.0,
