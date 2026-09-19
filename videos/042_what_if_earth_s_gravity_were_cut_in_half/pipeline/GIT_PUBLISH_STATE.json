@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "dev",
+  "remote": "origin",
+  "artifact_commit": "453e21a609abde93959a158220ed599e702cf3d5",
+  "started_at": "2026-09-19T05:24:53.447866+00:00",
+  "completed_at": "2026-09-19T05:28:29.876825+00:00",
+  "elapsed_seconds": 216.429,
+  "scope": "videos/042_what_if_earth_s_gravity_were_cut_in_half"
+}
