@@ -1,0 +1,227 @@
+{
+  "input_fingerprint": "1e9690df8cf46c9781fef9eec1d5b1f0c48e53b935b6334b65a9e72964d11b1e",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "039",
+        "039_could_you_live_forever_on_a_desert_island",
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land",
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half"
+      ],
+      "writer_prompt_sha256": "4facbc162f2959450a4e7bbf4c377db878580f417d977908fc971cebdbb8ec0b",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If bones were metal, would your body become stronger?",
+            "viewer_expectation": "A harder skeleton should make people stronger and safer.",
+            "visible_contradiction": "A metal frame holds weight well but cannot move like a living body.",
+            "frame_zero": "A small body model with metal rods bends less but loses its natural movement.",
+            "character_action": "The scholar gently bends two frame models to compare their responses.",
+            "reaction": "He pauses, surprised that strength alone does not solve the problem.",
+            "activity": "comparing flexible and rigid body structures",
+            "location": "a quiet engineering display room",
+            "topic_link": "A material change can improve one feature while creating new limits.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Assume human bones were made of metal instead of the usual material.",
+            "payoff": "Metal bones might be strong, but a body would face problems with weight, movement and repair.",
+            "entry_variant": "object_transformation",
+            "entry_bridge": {
+              "a_end": "The scholar places the two frame models beside the storybook.",
+              "b_start": "A closed topic-styled book sits alone in a top-down view.",
+              "reveal": "The book opens to an illustrated body with metal bones.",
+              "world_entry": "A host-free view shows a human-shaped figure with a shiny internal frame."
+            },
+            "novelty": {
+              "action_family": "strength versus movement",
+              "tension_family": "hardness versus flexibility",
+              "prop_family": "bending frame models",
+              "reveal_family": "one advantage creates new limits"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If your bones were metal, would you feel heavier?",
+            "viewer_expectation": "Metal seems heavier than bone, so a person may expect a much heavier body.",
+            "visible_contradiction": "A tiny metal piece can be light while a large metal structure can become heavy.",
+            "frame_zero": "The scholar holds a metal body frame beside a matching light frame.",
+            "character_action": "He carefully compares the two frames and checks how they balance.",
+            "reaction": "He gives a small surprised look at the unexpected comparison.",
+            "activity": "testing balance between different frame materials",
+            "location": "a simple balance demonstration room",
+            "topic_link": "The size and design of a structure affect its effect, not just its material.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Assume human bones were made of metal instead of the usual material.",
+            "payoff": "The body's weight would depend on the metal used and the design of the skeleton.",
+            "entry_variant": "desk_reach",
+            "entry_bridge": {
+              "a_end": "The scholar sets the frame comparison down and reaches for the book.",
+              "b_start": "A closed topic-styled book appears in a top-down view.",
+              "reveal": "The open page shows different metal skeleton designs.",
+              "world_entry": "A host-free scene shows several body frames made with different metals."
+            },
+            "novelty": {
+              "action_family": "material weight test",
+              "tension_family": "expectation versus design",
+              "prop_family": "balanced frame samples",
+              "reveal_family": "material alone is not enough"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If bones were metal, could your body still grow?",
+            "viewer_expectation": "A metal skeleton should stay fixed and not change over time.",
+            "visible_contradiction": "A living body needs parts that can change as it grows.",
+            "frame_zero": "A child and adult body outline show different skeleton sizes beside a metal frame.",
+            "character_action": "The scholar compares the changing outlines with the fixed frame.",
+            "reaction": "He notices the mismatch and quietly rethinks the idea.",
+            "activity": "comparing growing and fixed structures",
+            "location": "a calm anatomy display area",
+            "topic_link": "Living systems need materials that work with change over time.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Assume human bones were made of metal instead of the usual material.",
+            "payoff": "A metal skeleton would need a different way to handle growth and body changes.",
+            "entry_variant": "shelf_reveal",
+            "entry_bridge": {
+              "a_end": "The scholar turns from the growing outlines toward a shelf.",
+              "b_start": "A closed topic-styled book is shown alone from above.",
+              "reveal": "The book opens to a changing skeleton illustration.",
+              "world_entry": "A host-free view shows a growing body outline with a metal internal frame."
+            },
+            "novelty": {
+              "action_family": "growth comparison",
+              "tension_family": "fixed versus changing",
+              "prop_family": "age comparison outlines",
+              "reveal_family": "living bodies need adaptable parts"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "039",
+        "039_could_you_live_forever_on_a_desert_island",
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land",
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half"
+      ],
+      "reviewer_prompt_sha256": "7902ff028eef6b5b07d52c0eb62bf7e49c709f88f3756cbe025509e51547b7d7",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 3,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The visible comparison between a flexible body-like frame and a rigid metal frame directly creates the question. It matches the character's careful investigation style and supports the hypothetical clearly. The entry mostly follows the book bridge, though object_transformation is slightly less natural because the book itself is the required gateway, not the main experiment."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 2,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The weight comparison is understandable and fits the character, but the visible contradiction is less directly about metal bones. The scene mainly asks about metal weight, while the bigger topic includes movement, repair and living bone functions. The entry contract is clear and the hypothesis is honestly framed."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "Growth is a real consequence of replacing living bone with metal, but a fixed skeleton is not the first visible idea most viewers will connect to the metal-bone question. The scene can work, yet the hook depends more on explanation than an immediate physical mismatch. The book reveal and topic transition fit well."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 3,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The visible comparison between a flexible body-like frame and a rigid metal frame directly creates the question. It matches the character's careful investigation style and supports the hypothetical clearly. The entry mostly follows the book bridge, though object_transformation is slightly less natural because the book itself is the required gateway, not the main experiment.",
+          "repetition_evidence": [],
+          "weighted_score": 90
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 2,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The weight comparison is understandable and fits the character, but the visible contradiction is less directly about metal bones. The scene mainly asks about metal weight, while the bigger topic includes movement, repair and living bone functions. The entry contract is clear and the hypothesis is honestly framed.",
+          "repetition_evidence": [],
+          "weighted_score": 79
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "Growth is a real consequence of replacing living bone with metal, but a fixed skeleton is not the first visible idea most viewers will connect to the metal-bone question. The scene can work, yet the hook depends more on explanation than an immediate physical mismatch. The book reveal and topic transition fit well.",
+          "repetition_evidence": [],
+          "weighted_score": 81
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

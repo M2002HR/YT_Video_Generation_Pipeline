@@ -1,0 +1,1890 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 50.756,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.083,
+      "duration": 3.083,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 3.083,
+      "end": 7.792,
+      "duration": 4.708,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.8,
+      "end": 11.24,
+      "duration": 3.44,
+      "speech_start": 8.1,
+      "speech_end": 10.76,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Metal bones could carry heavy loads.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 11.24,
+      "end": 14.42,
+      "duration": 3.18,
+      "speech_start": 11.24,
+      "speech_end": 14.06,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Joints need movement, not only strength.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 14.42,
+      "end": 18.24,
+      "duration": 3.82,
+      "speech_start": 14.42,
+      "speech_end": 17.76,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Real bones are strong and slightly bendable.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 18.24,
+      "end": 21.4,
+      "duration": 3.16,
+      "speech_start": 18.24,
+      "speech_end": 21.24,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Metal frames bend less than bones.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 21.4,
+      "end": 24.4,
+      "duration": 3.0,
+      "speech_start": 21.4,
+      "speech_end": 24.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The body could become too heavy to move.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 24.4,
+      "end": 27.98,
+      "duration": 3.58,
+      "speech_start": 24.4,
+      "speech_end": 27.32,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Muscles may struggle with a heavier skeleton.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 27.98,
+      "end": 31.7,
+      "duration": 3.72,
+      "speech_start": 27.98,
+      "speech_end": 31.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Metal bones could make repairs harder after damage.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 31.7,
+      "end": 36.2,
+      "duration": 4.5,
+      "speech_start": 31.7,
+      "speech_end": 35.88,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Medical parts called implants use titanium for support.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 36.2,
+      "end": 38.89,
+      "duration": 2.69,
+      "speech_start": 36.2,
+      "speech_end": 39.0,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "They do not replace a whole living skeleton.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 38.89,
+      "end": 43.9,
+      "duration": 5.01,
+      "speech_start": 38.78,
+      "speech_end": 43.36,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A strong skeleton must help the body move and work well.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 43.9,
+      "end": 50.756,
+      "duration": 6.856,
+      "speech_start": 43.9,
+      "speech_end": 47.9,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Metal gives strength, but it can also cause movement problems.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 0.18,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.0,
+          "end": 0.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.18,
+      "end": 0.54,
+      "text": "bones",
+      "ass_text": "bones",
+      "words": [
+        {
+          "text": "bones",
+          "start": 0.18,
+          "end": 0.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.54,
+      "end": 0.74,
+      "text": "were",
+      "ass_text": "were",
+      "words": [
+        {
+          "text": "were",
+          "start": 0.54,
+          "end": 0.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.74,
+      "end": 1.2,
+      "text": "metal,",
+      "ass_text": "metal,",
+      "words": [
+        {
+          "text": "metal,",
+          "start": 0.74,
+          "end": 1.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.2,
+      "end": 1.56,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 1.2,
+          "end": 1.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.56,
+      "end": 1.7,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 1.56,
+          "end": 1.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.7,
+      "end": 2.02,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 1.7,
+          "end": 2.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.02,
+      "end": 2.32,
+      "text": "become",
+      "ass_text": "become",
+      "words": [
+        {
+          "text": "become",
+          "start": 2.02,
+          "end": 2.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.32,
+      "end": 3.06,
+      "text": "stronger?",
+      "ass_text": "stronger?",
+      "words": [
+        {
+          "text": "stronger?",
+          "start": 2.32,
+          "end": 3.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.68,
+      "end": 4.08,
+      "text": "Metal",
+      "ass_text": "Metal",
+      "words": [
+        {
+          "text": "Metal",
+          "start": 3.68,
+          "end": 4.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.08,
+      "end": 4.22,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 4.08,
+          "end": 4.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.22,
+      "end": 4.52,
+      "text": "hold",
+      "ass_text": "hold",
+      "words": [
+        {
+          "text": "hold",
+          "start": 4.22,
+          "end": 4.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.52,
+      "end": 5.06,
+      "text": "weight,",
+      "ass_text": "weight,",
+      "words": [
+        {
+          "text": "weight,",
+          "start": 4.52,
+          "end": 5.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.06,
+      "end": 5.48,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 5.06,
+          "end": 5.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.48,
+      "end": 6.1,
+      "text": "bone-like",
+      "ass_text": "bone-like",
+      "words": [
+        {
+          "text": "bone-like",
+          "start": 5.48,
+          "end": 6.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.1,
+      "end": 6.58,
+      "text": "movement",
+      "ass_text": "movement",
+      "words": [
+        {
+          "text": "movement",
+          "start": 6.1,
+          "end": 6.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.58,
+      "end": 7.0,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 6.58,
+          "end": 7.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.0,
+      "end": 7.1,
+      "text": "be",
+      "ass_text": "be",
+      "words": [
+        {
+          "text": "be",
+          "start": 7.0,
+          "end": 7.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.1,
+      "end": 7.8,
+      "text": "lost.",
+      "ass_text": "lost.",
+      "words": [
+        {
+          "text": "lost.",
+          "start": 7.1,
+          "end": 7.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.1,
+      "end": 8.5,
+      "text": "Metal",
+      "ass_text": "Metal",
+      "words": [
+        {
+          "text": "Metal",
+          "start": 8.1,
+          "end": 8.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 8.5,
+      "end": 8.96,
+      "text": "bones",
+      "ass_text": "bones",
+      "words": [
+        {
+          "text": "bones",
+          "start": 8.5,
+          "end": 8.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 8.96,
+      "end": 9.38,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 8.96,
+          "end": 9.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.38,
+      "end": 9.7,
+      "text": "carry",
+      "ass_text": "carry",
+      "words": [
+        {
+          "text": "carry",
+          "start": 9.38,
+          "end": 9.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.7,
+      "end": 9.98,
+      "text": "heavy",
+      "ass_text": "heavy",
+      "words": [
+        {
+          "text": "heavy",
+          "start": 9.7,
+          "end": 9.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.98,
+      "end": 10.76,
+      "text": "loads.",
+      "ass_text": "loads.",
+      "words": [
+        {
+          "text": "loads.",
+          "start": 9.98,
+          "end": 10.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.24,
+      "end": 11.68,
+      "text": "Joints",
+      "ass_text": "Joints",
+      "words": [
+        {
+          "text": "Joints",
+          "start": 11.24,
+          "end": 11.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 11.68,
+      "end": 11.96,
+      "text": "need",
+      "ass_text": "need",
+      "words": [
+        {
+          "text": "need",
+          "start": 11.68,
+          "end": 11.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 11.96,
+      "end": 12.64,
+      "text": "movement,",
+      "ass_text": "movement,",
+      "words": [
+        {
+          "text": "movement,",
+          "start": 11.96,
+          "end": 12.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.64,
+      "end": 13.02,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 12.64,
+          "end": 13.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.02,
+      "end": 13.34,
+      "text": "only",
+      "ass_text": "only",
+      "words": [
+        {
+          "text": "only",
+          "start": 13.02,
+          "end": 13.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.34,
+      "end": 14.06,
+      "text": "strength.",
+      "ass_text": "strength.",
+      "words": [
+        {
+          "text": "strength.",
+          "start": 13.34,
+          "end": 14.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.42,
+      "end": 14.86,
+      "text": "Real",
+      "ass_text": "Real",
+      "words": [
+        {
+          "text": "Real",
+          "start": 14.42,
+          "end": 14.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 14.86,
+      "end": 15.32,
+      "text": "bones",
+      "ass_text": "bones",
+      "words": [
+        {
+          "text": "bones",
+          "start": 14.86,
+          "end": 15.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 15.32,
+      "end": 15.56,
+      "text": "are",
+      "ass_text": "are",
+      "words": [
+        {
+          "text": "are",
+          "start": 15.32,
+          "end": 15.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 15.56,
+      "end": 16.08,
+      "text": "strong",
+      "ass_text": "strong",
+      "words": [
+        {
+          "text": "strong",
+          "start": 15.56,
+          "end": 16.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.08,
+      "end": 16.54,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 16.08,
+          "end": 16.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.54,
+      "end": 16.98,
+      "text": "slightly",
+      "ass_text": "slightly",
+      "words": [
+        {
+          "text": "slightly",
+          "start": 16.54,
+          "end": 16.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.98,
+      "end": 17.76,
+      "text": "bendable.",
+      "ass_text": "bendable.",
+      "words": [
+        {
+          "text": "bendable.",
+          "start": 16.98,
+          "end": 17.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.24,
+      "end": 18.66,
+      "text": "Metal",
+      "ass_text": "Metal",
+      "words": [
+        {
+          "text": "Metal",
+          "start": 18.24,
+          "end": 18.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 18.66,
+      "end": 19.16,
+      "text": "frames",
+      "ass_text": "frames",
+      "words": [
+        {
+          "text": "frames",
+          "start": 18.66,
+          "end": 19.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.16,
+      "end": 19.74,
+      "text": "bend",
+      "ass_text": "bend",
+      "words": [
+        {
+          "text": "bend",
+          "start": 19.16,
+          "end": 19.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.74,
+      "end": 20.16,
+      "text": "less",
+      "ass_text": "less",
+      "words": [
+        {
+          "text": "less",
+          "start": 19.74,
+          "end": 20.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.16,
+      "end": 20.48,
+      "text": "than",
+      "ass_text": "than",
+      "words": [
+        {
+          "text": "than",
+          "start": 20.16,
+          "end": 20.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.48,
+      "end": 21.24,
+      "text": "bones.",
+      "ass_text": "bones.",
+      "words": [
+        {
+          "text": "bones.",
+          "start": 20.48,
+          "end": 21.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.4,
+      "end": 21.96,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 21.4,
+          "end": 21.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 21.96,
+      "end": 22.18,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 21.96,
+          "end": 22.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.18,
+      "end": 22.36,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 22.18,
+          "end": 22.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.36,
+      "end": 22.68,
+      "text": "become",
+      "ass_text": "become",
+      "words": [
+        {
+          "text": "become",
+          "start": 22.36,
+          "end": 22.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.68,
+      "end": 22.96,
+      "text": "too",
+      "ass_text": "too",
+      "words": [
+        {
+          "text": "too",
+          "start": 22.68,
+          "end": 22.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.96,
+      "end": 23.28,
+      "text": "heavy",
+      "ass_text": "heavy",
+      "words": [
+        {
+          "text": "heavy",
+          "start": 22.96,
+          "end": 23.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.28,
+      "end": 23.52,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 23.28,
+          "end": 23.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.52,
+      "end": 24.16,
+      "text": "move.",
+      "ass_text": "move.",
+      "words": [
+        {
+          "text": "move.",
+          "start": 23.52,
+          "end": 24.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 24.4,
+      "end": 24.9,
+      "text": "Muscles",
+      "ass_text": "Muscles",
+      "words": [
+        {
+          "text": "Muscles",
+          "start": 24.4,
+          "end": 24.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 24.9,
+      "end": 25.12,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 24.9,
+          "end": 25.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.12,
+      "end": 25.56,
+      "text": "struggle",
+      "ass_text": "struggle",
+      "words": [
+        {
+          "text": "struggle",
+          "start": 25.12,
+          "end": 25.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.56,
+      "end": 25.9,
+      "text": "with",
+      "ass_text": "with",
+      "words": [
+        {
+          "text": "with",
+          "start": 25.56,
+          "end": 25.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.9,
+      "end": 26.02,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 25.9,
+          "end": 26.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.02,
+      "end": 26.34,
+      "text": "heavier",
+      "ass_text": "heavier",
+      "words": [
+        {
+          "text": "heavier",
+          "start": 26.02,
+          "end": 26.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.34,
+      "end": 27.32,
+      "text": "skeleton.",
+      "ass_text": "skeleton.",
+      "words": [
+        {
+          "text": "skeleton.",
+          "start": 26.34,
+          "end": 27.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 27.98,
+      "end": 28.0,
+      "text": "Metal",
+      "ass_text": "Metal",
+      "words": [
+        {
+          "text": "Metal",
+          "start": 27.98,
+          "end": 28.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.0,
+      "end": 28.4,
+      "text": "bones",
+      "ass_text": "bones",
+      "words": [
+        {
+          "text": "bones",
+          "start": 28.0,
+          "end": 28.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.4,
+      "end": 28.66,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 28.4,
+          "end": 28.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.66,
+      "end": 28.86,
+      "text": "make",
+      "ass_text": "make",
+      "words": [
+        {
+          "text": "make",
+          "start": 28.66,
+          "end": 28.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.86,
+      "end": 29.58,
+      "text": "repairs",
+      "ass_text": "repairs",
+      "words": [
+        {
+          "text": "repairs",
+          "start": 28.86,
+          "end": 29.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 29.58,
+      "end": 30.18,
+      "text": "harder",
+      "ass_text": "harder",
+      "words": [
+        {
+          "text": "harder",
+          "start": 29.58,
+          "end": 30.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 30.18,
+      "end": 30.58,
+      "text": "after",
+      "ass_text": "after",
+      "words": [
+        {
+          "text": "after",
+          "start": 30.18,
+          "end": 30.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 30.58,
+      "end": 31.34,
+      "text": "damage.",
+      "ass_text": "damage.",
+      "words": [
+        {
+          "text": "damage.",
+          "start": 30.58,
+          "end": 31.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 31.7,
+      "end": 32.18,
+      "text": "Medical",
+      "ass_text": "Medical",
+      "words": [
+        {
+          "text": "Medical",
+          "start": 31.7,
+          "end": 32.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 32.18,
+      "end": 32.6,
+      "text": "parts",
+      "ass_text": "parts",
+      "words": [
+        {
+          "text": "parts",
+          "start": 32.18,
+          "end": 32.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 32.6,
+      "end": 32.94,
+      "text": "called",
+      "ass_text": "called",
+      "words": [
+        {
+          "text": "called",
+          "start": 32.6,
+          "end": 32.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 32.94,
+      "end": 33.54,
+      "text": "implants",
+      "ass_text": "implants",
+      "words": [
+        {
+          "text": "implants",
+          "start": 32.94,
+          "end": 33.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 33.54,
+      "end": 34.06,
+      "text": "use",
+      "ass_text": "use",
+      "words": [
+        {
+          "text": "use",
+          "start": 33.54,
+          "end": 34.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 34.06,
+      "end": 34.7,
+      "text": "titanium",
+      "ass_text": "titanium",
+      "words": [
+        {
+          "text": "titanium",
+          "start": 34.06,
+          "end": 34.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 34.7,
+      "end": 35.16,
+      "text": "for",
+      "ass_text": "for",
+      "words": [
+        {
+          "text": "for",
+          "start": 34.7,
+          "end": 35.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 35.16,
+      "end": 35.88,
+      "text": "support.",
+      "ass_text": "support.",
+      "words": [
+        {
+          "text": "support.",
+          "start": 35.16,
+          "end": 35.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 36.2,
+      "end": 36.5,
+      "text": "They",
+      "ass_text": "They",
+      "words": [
+        {
+          "text": "They",
+          "start": 36.2,
+          "end": 36.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 36.5,
+      "end": 36.64,
+      "text": "do",
+      "ass_text": "do",
+      "words": [
+        {
+          "text": "do",
+          "start": 36.5,
+          "end": 36.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 36.64,
+      "end": 36.8,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 36.64,
+          "end": 36.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 36.8,
+      "end": 37.3,
+      "text": "replace",
+      "ass_text": "replace",
+      "words": [
+        {
+          "text": "replace",
+          "start": 36.8,
+          "end": 37.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 37.3,
+      "end": 37.62,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 37.3,
+          "end": 37.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 37.62,
+      "end": 37.86,
+      "text": "whole",
+      "ass_text": "whole",
+      "words": [
+        {
+          "text": "whole",
+          "start": 37.62,
+          "end": 37.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 37.86,
+      "end": 38.18,
+      "text": "living",
+      "ass_text": "living",
+      "words": [
+        {
+          "text": "living",
+          "start": 37.86,
+          "end": 38.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 38.18,
+      "end": 38.89,
+      "text": "skeleton.",
+      "ass_text": "skeleton.",
+      "words": [
+        {
+          "text": "skeleton.",
+          "start": 38.18,
+          "end": 39.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 38.89,
+      "end": 39.42,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 38.78,
+          "end": 39.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.42,
+      "end": 39.78,
+      "text": "strong",
+      "ass_text": "strong",
+      "words": [
+        {
+          "text": "strong",
+          "start": 39.42,
+          "end": 39.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.78,
+      "end": 40.34,
+      "text": "skeleton",
+      "ass_text": "skeleton",
+      "words": [
+        {
+          "text": "skeleton",
+          "start": 39.78,
+          "end": 40.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.34,
+      "end": 41.06,
+      "text": "must",
+      "ass_text": "must",
+      "words": [
+        {
+          "text": "must",
+          "start": 40.34,
+          "end": 41.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 41.06,
+      "end": 41.3,
+      "text": "help",
+      "ass_text": "help",
+      "words": [
+        {
+          "text": "help",
+          "start": 41.06,
+          "end": 41.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 41.3,
+      "end": 41.5,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 41.3,
+          "end": 41.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 41.5,
+      "end": 41.72,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 41.5,
+          "end": 41.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 41.72,
+      "end": 42.14,
+      "text": "move",
+      "ass_text": "move",
+      "words": [
+        {
+          "text": "move",
+          "start": 41.72,
+          "end": 42.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 42.14,
+      "end": 42.46,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 42.14,
+          "end": 42.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 42.46,
+      "end": 42.7,
+      "text": "work",
+      "ass_text": "work",
+      "words": [
+        {
+          "text": "work",
+          "start": 42.46,
+          "end": 42.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 42.7,
+      "end": 43.36,
+      "text": "well.",
+      "ass_text": "well.",
+      "words": [
+        {
+          "text": "well.",
+          "start": 42.7,
+          "end": 43.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 43.9,
+      "end": 44.34,
+      "text": "Metal",
+      "ass_text": "Metal",
+      "words": [
+        {
+          "text": "Metal",
+          "start": 43.9,
+          "end": 44.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 44.34,
+      "end": 44.62,
+      "text": "gives",
+      "ass_text": "gives",
+      "words": [
+        {
+          "text": "gives",
+          "start": 44.34,
+          "end": 44.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 44.62,
+      "end": 45.14,
+      "text": "strength",
+      "ass_text": "strength",
+      "words": [
+        {
+          "text": "strength",
+          "start": 44.62,
+          "end": 45.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 45.14,
+      "end": 45.66,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 45.14,
+          "end": 45.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 45.66,
+      "end": 45.78,
+      "text": "it",
+      "ass_text": "it",
+      "words": [
+        {
+          "text": "it",
+          "start": 45.66,
+          "end": 45.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 45.78,
+      "end": 45.9,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 45.78,
+          "end": 45.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 45.9,
+      "end": 46.16,
+      "text": "also",
+      "ass_text": "also",
+      "words": [
+        {
+          "text": "also",
+          "start": 45.9,
+          "end": 46.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 46.16,
+      "end": 46.56,
+      "text": "cause",
+      "ass_text": "cause",
+      "words": [
+        {
+          "text": "cause",
+          "start": 46.16,
+          "end": 46.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 46.56,
+      "end": 47.06,
+      "text": "movement",
+      "ass_text": "movement",
+      "words": [
+        {
+          "text": "movement",
+          "start": 46.56,
+          "end": 47.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 47.06,
+      "end": 47.9,
+      "text": "problems.",
+      "ass_text": "problems.",
+      "words": [
+        {
+          "text": "problems.",
+          "start": 47.06,
+          "end": 47.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 48.3,
+      "end": 48.8,
+      "text": "Suggest",
+      "ass_text": "Suggest",
+      "words": [
+        {
+          "text": "Suggest",
+          "start": 48.3,
+          "end": 48.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 48.8,
+      "end": 48.98,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 48.8,
+          "end": 48.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 48.98,
+      "end": 49.24,
+      "text": "next",
+      "ass_text": "next",
+      "words": [
+        {
+          "text": "next",
+          "start": 48.98,
+          "end": 49.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 49.24,
+      "end": 49.66,
+      "text": "video",
+      "ass_text": "video",
+      "words": [
+        {
+          "text": "video",
+          "start": 49.24,
+          "end": 49.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 49.66,
+      "end": 50.5,
+      "text": "idea.",
+      "ass_text": "idea.",
+      "words": [
+        {
+          "text": "idea.",
+          "start": 49.66,
+          "end": 50.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    }
+  ],
+  "qc": {
+    "beat_count": 13,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 9,
+        "before_beat": 10,
+        "current_speech_end": 39.0,
+        "next_speech_start": 38.78,
+        "overlap_seconds": 0.22,
+        "chosen_boundary": 38.89
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 82,
+        "current_cue": 83,
+        "previous_end": 39.0,
+        "current_start": 38.78,
+        "overlap_seconds": 0.22,
+        "chosen_boundary": 38.89
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 109,
+    "subtitle_cues_estimated": 0
+  }
+}

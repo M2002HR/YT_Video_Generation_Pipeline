@@ -1,0 +1,113 @@
+{
+  "audio_duration_seconds": 50.756,
+  "spark_start": 0.0,
+  "spark_end": 3.06,
+  "spark_duration": 3.06,
+  "transition_start": 3.68,
+  "transition_end": 7.8,
+  "transition_duration": 4.12,
+  "entry_segment": "book_transition",
+  "clip_a_target_seconds": 3.06,
+  "clip_b_target_seconds": 4.74,
+  "body_start": 8.1,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If bones were metal, would your body become stronger?",
+      "speech_start": 0.0,
+      "speech_end": 3.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "Metal can hold weight, but bone-like movement may be lost.",
+      "speech_start": 3.68,
+      "speech_end": 7.8,
+      "match_confidence": 0.818
+    },
+    {
+      "segment": "body_01",
+      "narration": "Metal bones could carry heavy loads.",
+      "speech_start": 8.1,
+      "speech_end": 10.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Joints need movement, not only strength.",
+      "speech_start": 11.24,
+      "speech_end": 14.06,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Real bones are strong and slightly bendable.",
+      "speech_start": 14.42,
+      "speech_end": 17.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Metal frames bend less than bones.",
+      "speech_start": 18.24,
+      "speech_end": 21.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "The body could become too heavy to move.",
+      "speech_start": 21.4,
+      "speech_end": 24.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Muscles may struggle with a heavier skeleton.",
+      "speech_start": 24.4,
+      "speech_end": 27.32,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Metal bones could make repairs harder after damage.",
+      "speech_start": 27.98,
+      "speech_end": 31.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Medical parts called implants use titanium for support.",
+      "speech_start": 31.7,
+      "speech_end": 35.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "They do not replace a whole living skeleton.",
+      "speech_start": 36.2,
+      "speech_end": 39.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "A strong skeleton must help the body move and work well.",
+      "speech_start": 38.78,
+      "speech_end": 43.36,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Metal gives strength, but it can also cause movement problems.",
+      "speech_start": 43.9,
+      "speech_end": 47.9,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Suggest the next video idea.",
+      "speech_start": 48.3,
+      "speech_end": 50.5,
+      "match_confidence": 1.0
+    }
+  ]
+}

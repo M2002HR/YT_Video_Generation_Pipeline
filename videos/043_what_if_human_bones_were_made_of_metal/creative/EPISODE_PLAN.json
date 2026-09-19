@@ -1,0 +1,30 @@
+{
+  "concept_id": "8141ec83c222320a1d14",
+  "opening_actions": [
+    "The scholar gently bends two small body frame models side by side.",
+    "He notices the metal rod frame barely flexes while the flexible frame moves naturally.",
+    "He pauses and compares the different shapes after bending."
+  ],
+  "entry_bridge": {
+    "a_end": "The scholar places the two frame models beside the storybook.",
+    "b_start": "A closed topic-styled book sits alone in a top-down view.",
+    "reveal": "The book opens to an illustrated body with metal bones.",
+    "world_entry": "A host-free view shows a human-shaped figure with a shiny internal frame."
+  },
+  "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+  "opening_location": "A quiet engineering display room with simple material demonstration models.",
+  "opening_environment": "A calm exhibit space with a small table holding body structure models and the storybook nearby.",
+  "topic_visual_link": "The rigid metal frame model visually mirrors the idea of metal bones gaining strength while losing the flexibility needed for movement.",
+  "link_type": "metaphor",
+  "opening_visual_proof": "Two body frame models are being bent together, with the metal rod frame staying stiff while the flexible frame curves.",
+  "curiosity_trigger": "The surprising mismatch between a strong-looking metal frame and its limited movement makes the scholar question whether strength alone helps a body.",
+  "trigger_object": "The side-by-side flexible and metal body frame models.",
+  "reaction": "He pauses with quiet surprise and studies the less flexible metal frame.",
+  "entry_retrieval": "He sets the models down beside the storybook and reveals it as the next place to investigate the question.",
+  "entry_variant": "object_transformation",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "A scientific topic world showing a human-shaped figure exploring the tradeoff between rigid metal structures and living movement.",
+  "reason": "The material comparison directly visualizes the script's central idea that metal can add strength but may reduce the flexibility and movement required by a living skeleton."
+}

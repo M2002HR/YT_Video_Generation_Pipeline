@@ -1,0 +1,583 @@
+{
+  "schema_version": 2,
+  "video_id": "043",
+  "topic": "What If Human Bones Were Made of Metal?",
+  "created_at": "2026-09-19T05:51:34Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "requested_mode": "manual",
+      "requested_character_id": "newton_scholar",
+      "resolved_character_id": "newton_scholar",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:04Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:06:06Z",
+      "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+      "opening_location": "A quiet engineering display room with simple material demonstration models.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "orchard_sleep_memory_collage_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "strength versus movement",
+        "tension_family": "hardness versus flexibility",
+        "prop_family": "bending frame models",
+        "reveal_family": "one advantage creates new limits"
+      },
+      "situation_summary": "A metal frame holds weight well but cannot move like a living body.",
+      "hook_line": "If bones were metal, would your body become stronger?",
+      "entry_variant": "object_transformation",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:06:07Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:05:05Z",
+      "body_beats": 11,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:07:55Z",
+      "reuse_of": "orchard_sleep_memory_collage_001",
+      "sha256": "cf31df7e6ed9316cdc270b74a6954a402878fd4658430e37196740d851dfdc78",
+      "usage_count": 4
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:08:15Z",
+      "prompt_sha256": "b2d47d0dfe201de307cd8edfe7d84981b4a9bc62df94dd55e7f772894670291c"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:09:42Z",
+      "sha256": "a2d71ba97172a50031a782cd73bd7e322f15243a3fcea5bc45090f5ec1383894",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T07:09:43Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:10:10Z",
+      "prompt_sha256": "c6763c7a63a06dc8dd611de9b31d3702b072d0d28e438eb7276525db908d589d"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:11:19Z",
+      "sha256": "5ea99970071c4bb5f6c301d57452e0713e147e254f563a9fbe81273baa9bed33",
+      "model": "nano_banana_2"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:31:07Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:13:16Z",
+      "sha256": "566a7f5df44aad34cc60ba8b529ab4813a9a323b6d61e775f152220af7700417",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:14:54Z",
+      "sha256": "64d49e60307b7a1713afe7f5db26b596e963fda4c2eb5fbdff781e4fef7d226c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:17:05Z",
+      "sha256": "39673ce148020794dfc73b9104e930db09425ceb38f17a66fa45a613923ee22f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:19:20Z",
+      "sha256": "5da801ebe425e1d449806f3d7ad437f0ab828d6083feedcef7c433b1efb2c15a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:21:13Z",
+      "sha256": "ae8bc5649c3e37b48f61a59662ef7be2b599cbab1cc51705e2aa99be96787ce6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:22:54Z",
+      "sha256": "f7d03e73c41b148d1309c103e8bbc14adf4072ba81480f7536d633c6dd7a0cbb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:24:29Z",
+      "sha256": "6a284b12e33183cc71c54119a7829c6c969bc102c12be5f9709c3eed9c26f2c9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:26:05Z",
+      "sha256": "fb3074de034a2557ef91e2eba88c6dc75abdf040e9dd712db1a79bcf0fb20523",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:27:43Z",
+      "sha256": "56fe5de2e4dc1225f3f27d92abdf832ab16437420fcd1b9626e763a76a8d6568",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:29:15Z",
+      "sha256": "a2815f0af396e891ae3b257c2f79e8367655e5b04ea9313bc5d135b4ce688e5a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_011": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:31:06Z",
+      "sha256": "767b92f57bef155ac43ff2d7d57d460967e3866a05bb985fac4c9e664dfbf197",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:31:10Z",
+      "boundaries": 10
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:31:30Z",
+      "prompt_sha256": "2d349f37dc486081877271cac7deaa5475417fa21beded8b4a4e66aaafe57ef3"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:31:51Z",
+      "prompt_sha256": "eff795dc021244a86ad2597353df692bcbf263d1d8f064b2af6bd3368e373f55"
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:34:24Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "c47c7ff603499b54756380fa4999698c5017d8358cb58700e09e7bc325f67738"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:36:33Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "ee0fb54b5f841c853e78a6a6ce858794ee3564b398b2df0fd40e1c6045c75312"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T07:36:35Z",
+      "body_images": 11
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 43.541,
+      "at": "2026-09-19T05:52:18Z",
+      "selected_id": "c1",
+      "concept_id": "8141ec83c222320a1d14"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 28.164,
+      "at": "2026-09-19T05:52:48Z",
+      "words": 93
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 130.65,
+      "at": "2026-09-19T05:55:00Z",
+      "words": 109
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 40.794,
+      "at": "2026-09-19T07:02:22Z",
+      "activity": "Comparing how flexible and rigid body structures respond to the same bending force."
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 109.833,
+      "at": "2026-09-19T07:04:14Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 19.296,
+      "at": "2026-09-19T07:04:34Z",
+      "style_id": "orchard_sleep_memory_collage_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.159,
+      "at": "2026-09-19T07:04:37Z",
+      "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+      "opening_location": "A quiet engineering display room with simple material demonstration models.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "orchard_sleep_memory_collage_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "strength versus movement",
+        "tension_family": "hardness versus flexibility",
+        "prop_family": "bending frame models",
+        "reveal_family": "one advantage creates new limits"
+      },
+      "situation_summary": "A metal frame holds weight well but cannot move like a living body.",
+      "hook_line": "If bones were metal, would your body become stronger?",
+      "entry_variant": "object_transformation",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 25.535,
+      "at": "2026-09-19T07:05:03Z",
+      "beats": 11
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.477,
+      "at": "2026-09-19T07:06:06Z",
+      "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+      "opening_location": "A quiet engineering display room with simple material demonstration models.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "orchard_sleep_memory_collage_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "strength versus movement",
+        "tension_family": "hardness versus flexibility",
+        "prop_family": "bending frame models",
+        "reveal_family": "one advantage creates new limits"
+      },
+      "situation_summary": "A metal frame holds weight well but cannot move like a living body.",
+      "hook_line": "If bones were metal, would your body become stronger?",
+      "entry_variant": "object_transformation",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 107.755,
+      "at": "2026-09-19T07:07:55Z",
+      "reuse_of": "orchard_sleep_memory_collage_001",
+      "sha256": "cf31df7e6ed9316cdc270b74a6954a402878fd4658430e37196740d851dfdc78",
+      "usage_count": 4
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 19.061,
+      "at": "2026-09-19T07:08:15Z",
+      "prompt_sha256": "b2d47d0dfe201de307cd8edfe7d84981b4a9bc62df94dd55e7f772894670291c"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 85.902,
+      "at": "2026-09-19T07:09:42Z",
+      "sha256": "a2d71ba97172a50031a782cd73bd7e322f15243a3fcea5bc45090f5ec1383894",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 26.508,
+      "at": "2026-09-19T07:10:10Z",
+      "prompt_sha256": "c6763c7a63a06dc8dd611de9b31d3702b072d0d28e438eb7276525db908d589d"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 67.781,
+      "at": "2026-09-19T07:11:19Z",
+      "sha256": "5ea99970071c4bb5f6c301d57452e0713e147e254f563a9fbe81273baa9bed33",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 96.731,
+      "at": "2026-09-19T07:13:16Z",
+      "sha256": "566a7f5df44aad34cc60ba8b529ab4813a9a323b6d61e775f152220af7700417",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 78.784,
+      "at": "2026-09-19T07:14:54Z",
+      "sha256": "64d49e60307b7a1713afe7f5db26b596e963fda4c2eb5fbdff781e4fef7d226c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 111.853,
+      "at": "2026-09-19T07:17:05Z",
+      "sha256": "39673ce148020794dfc73b9104e930db09425ceb38f17a66fa45a613923ee22f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 115.045,
+      "at": "2026-09-19T07:19:20Z",
+      "sha256": "5da801ebe425e1d449806f3d7ad437f0ab828d6083feedcef7c433b1efb2c15a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 93.889,
+      "at": "2026-09-19T07:21:13Z",
+      "sha256": "ae8bc5649c3e37b48f61a59662ef7be2b599cbab1cc51705e2aa99be96787ce6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 81.713,
+      "at": "2026-09-19T07:22:54Z",
+      "sha256": "f7d03e73c41b148d1309c103e8bbc14adf4072ba81480f7536d633c6dd7a0cbb",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 75.815,
+      "at": "2026-09-19T07:24:29Z",
+      "sha256": "6a284b12e33183cc71c54119a7829c6c969bc102c12be5f9709c3eed9c26f2c9",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 75.87,
+      "at": "2026-09-19T07:26:05Z",
+      "sha256": "fb3074de034a2557ef91e2eba88c6dc75abdf040e9dd712db1a79bcf0fb20523",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 75.832,
+      "at": "2026-09-19T07:27:43Z",
+      "sha256": "56fe5de2e4dc1225f3f27d92abdf832ab16437420fcd1b9626e763a76a8d6568",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 72.789,
+      "at": "2026-09-19T07:29:15Z",
+      "sha256": "a2815f0af396e891ae3b257c2f79e8367655e5b04ea9313bc5d135b4ce688e5a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 90.881,
+      "at": "2026-09-19T07:31:06Z",
+      "sha256": "767b92f57bef155ac43ff2d7d57d460967e3866a05bb985fac4c9e664dfbf197",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1187.114,
+      "at": "2026-09-19T07:31:07Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.358,
+      "at": "2026-09-19T07:31:10Z",
+      "boundaries": 10
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 19.132,
+      "at": "2026-09-19T07:31:30Z",
+      "prompt_sha256": "2d349f37dc486081877271cac7deaa5475417fa21beded8b4a4e66aaafe57ef3"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 19.651,
+      "at": "2026-09-19T07:31:51Z",
+      "prompt_sha256": "eff795dc021244a86ad2597353df692bcbf263d1d8f064b2af6bd3368e373f55"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 151.719,
+      "at": "2026-09-19T07:34:24Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "c47c7ff603499b54756380fa4999698c5017d8358cb58700e09e7bc325f67738"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 127.785,
+      "at": "2026-09-19T07:36:33Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "ee0fb54b5f841c853e78a6a6ce858794ee3564b398b2df0fd40e1c6045c75312"
+    }
+  ],
+  "updated_at": "2026-09-19T07:36:35Z"
+}

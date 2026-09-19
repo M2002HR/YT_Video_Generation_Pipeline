@@ -1,0 +1,28 @@
+{
+  "style_id": "orchard_sleep_memory_collage_001",
+  "decision": "reuse",
+  "reuse_of": "orchard_sleep_memory_collage_001",
+  "medium": "paper cut",
+  "secondary_treatment": null,
+  "texture_family": "hand-layered paper grain with fibrous cut edges",
+  "palette_summary": "warm orchard greens, muted amber sunlight, cream anatomical layers, soft slate blues for mechanical strain states, and restrained honey highlights for body function signals",
+  "line_treatment": "Layered cut-paper silhouettes with soft handmade edges, simplified anatomical contours, and subtle layered depth rather than drawn outlines",
+  "lighting": "Soft warm natural illumination with gentle amber highlights and calm shadowed areas that reveal the contrast between living bone flexibility and rigid metal structure",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Topic-appropriate objects, scale and environment including human skeletal structures, metal bone comparisons, joints, muscles, movement challenges, and medical implants without unsupported fantasy anatomy",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reason": "Reuses the explicitly requested catalog style while keeping a consistent world medium. The layered paper-cut approach fits an explanatory biology topic by allowing clear separation of bone, metal, joints, and body systems. Recent styles already include colorful crayon and clay treatments, so this reuse avoids unnecessary medium repetition while following the operator preference.",
+  "subject_affinities": [
+    "human anatomy",
+    "skeletal systems",
+    "biomechanics",
+    "medical implants",
+    "material transformation thought experiments"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

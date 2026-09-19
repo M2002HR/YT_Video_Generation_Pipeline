@@ -1,0 +1,138 @@
+{
+  "body_duration_seconds": 34.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Metal bones could carry heavy loads.",
+      "visual": "A paper-cut human skeleton with metallic bone sections lifting a large stone weight in a warm anatomical workshop landscape, showing increased carrying capacity.",
+      "purpose": "show that metal structures can support heavy loads",
+      "visual_fingerprint": "silver metal-boned skeleton standing in an orchard clearing while lifting a massive stone, low angle close composition with amber light",
+      "type": "literal",
+      "continuity": "begin the topic world with a full-body skeleton comparison scene",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Joints need movement, not only strength.",
+      "visual": "A close paper-cut view of a knee and elbow joint made from layered bone and soft tissue pieces, bending smoothly beside a rigid metal hinge comparison.",
+      "purpose": "show that joints require flexibility and motion",
+      "visual_fingerprint": "close-up knee joint comparison with flexible living layers and stiff metal hinge pieces on a mossy ground setting, side angle",
+      "type": "diagram",
+      "continuity": "move from skeleton strength to the mechanics of movement",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Real bones are strong and slightly bendable.",
+      "visual": "A natural bone structure made from cream paper layers gently flexing like a living branch while maintaining its shape.",
+      "purpose": "show the combination of strength and slight flexibility in real bones",
+      "visual_fingerprint": "cream anatomical bone arching gently like a branch in a sunlit orchard biome, medium shot from above",
+      "type": "metaphor",
+      "continuity": "continue from joint motion into the qualities of living bone",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Metal frames bend less than bones.",
+      "visual": "A split visual of a flexible bone-like structure curving and a metal frame resisting the same bending force.",
+      "purpose": "compare flexibility between bone and metal structures",
+      "visual_fingerprint": "two vertical structures in a paper-cut laboratory grove, one curved cream bone and one rigid slate metal frame under side lighting",
+      "type": "diagram",
+      "continuity": "shift from natural bone properties to direct material comparison",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "The body could become too heavy to move.",
+      "visual": "A full-body silhouette with oversized metallic bones struggling to take a step through soft grass, showing weight affecting movement.",
+      "purpose": "show how heavier metal bones could make movement difficult",
+      "visual_fingerprint": "tiny human figure with oversized silver skeletal frame trudging through tall orchard grass, wide shot with downward camera angle",
+      "type": "metaphor",
+      "continuity": "move from material stiffness to whole-body consequences",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Muscles may struggle with a heavier skeleton.",
+      "visual": "Layered paper muscles around a metallic skeleton pulling with effort as the body attempts to lift an arm.",
+      "purpose": "show that muscles would face extra demands from a heavier skeleton",
+      "visual_fingerprint": "anatomical muscle layers straining around a silver skeleton in a shaded woodland clearing, close three-quarter view",
+      "type": "literal",
+      "continuity": "continue the weight problem by focusing on body systems",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Metal bones could make repairs harder after damage.",
+      "visual": "A damaged metallic bone section with complicated repair pieces and tools compared with a simpler living bone healing scene.",
+      "purpose": "show that repairing metal bone replacements could be difficult",
+      "visual_fingerprint": "broken silver bone structure surrounded by layered repair fragments on a warm medical workbench environment, top-down composition",
+      "type": "diagram",
+      "continuity": "follow body strain into repair challenges",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Medical parts called implants use titanium for support.",
+      "visual": "A realistic paper-cut medical implant piece made of titanium placed beside a human bone, showing a small supportive role.",
+      "purpose": "show that titanium implants are used as supportive medical parts",
+      "visual_fingerprint": "small titanium implant beside cream bone layers in a calm clinic garden setting, focused close composition with soft amber highlights",
+      "type": "literal",
+      "continuity": "transition from repair problems to real medical uses of metal",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "They do not replace a whole living skeleton.",
+      "visual": "A complete living skeleton with one small titanium implant area highlighted by placement and scale contrast.",
+      "purpose": "show that implants are limited parts rather than a complete metal skeleton replacement",
+      "visual_fingerprint": "full human skeleton with one tiny silver support piece in a botanical anatomy space, distant centered composition",
+      "type": "diagram",
+      "continuity": "clarify the difference between support parts and total replacement",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "A strong skeleton must help the body move and work well.",
+      "visual": "A balanced human skeleton walking and reaching naturally while surrounded by flowing muscle and movement shapes.",
+      "purpose": "show that a useful skeleton must combine strength with movement",
+      "visual_fingerprint": "healthy cream skeleton moving through an orchard path with flowing muscle layers, dynamic full-body side composition",
+      "type": "metaphor",
+      "continuity": "bring together strength, flexibility and function as the conclusion of the body explanation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "Metal gives strength, but it can also cause movement problems.",
+      "visual": "A final balanced comparison showing a strong metal piece beside a flexible living skeleton moving freely.",
+      "purpose": "reinforce the tradeoff between metal strength and movement limitations",
+      "visual_fingerprint": "split-depth orchard anatomy scene with rigid silver structure on one side and moving living skeleton on the other, wide final composition",
+      "type": "metaphor",
+      "continuity": "final reflection staying inside the topic world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

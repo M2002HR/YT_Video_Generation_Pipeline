@@ -1,0 +1,91 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "catalog_derivative": true,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/119b467b524bac27",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "catalog_style"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=0d2a20d9-6594-48c4-bbe4-85c25610b518_output_1.png 1536x2752 sha256=cf31df7e6ed9316cdc270b74a6954a402878fd4658430e37196740d851dfdc78"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "14a1dc2d9a8943eca0b118da8a2c7ec22e908cf052b577e376c32db1896b4a0c",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "0d2a20d9-6594-48c4-bbe4-85c25610b518",
+        "prompt_sha256": "06e33354efd938fed68a280d9e1285ce31f701cc1edc517b59b4efb18d00a7be",
+        "output_sha256": "cf31df7e6ed9316cdc270b74a6954a402878fd4658430e37196740d851dfdc78",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "job_id": "0d2a20d9-6594-48c4-bbe4-85c25610b518",
+  "request_fingerprint": "44cb066b63df14eb85c48d2c545fe194a551a91873cdce29b0d73b7ad8c9e1e3",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "output_sha256": "cf31df7e6ed9316cdc270b74a6954a402878fd4658430e37196740d851dfdc78",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/010_orchard_sleep_memory_collage_001/style_anchor.png",
+      "sha256": "888f20b80b2f6b7be11242b11eb083645b07dc061a2c5821cd07ac43cca15e57"
+    }
+  ]
+}

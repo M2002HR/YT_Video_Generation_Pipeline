@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "1e9690df8cf46c9781fef9eec1d5b1f0c48e53b935b6334b65a9e72964d11b1e",
+  "concept_id": "8141ec83c222320a1d14",
+  "character_id": "newton_scholar",
+  "presentation_id": "book_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If bones were metal, would your body become stronger?",
+    "viewer_expectation": "A harder skeleton should make people stronger and safer.",
+    "visible_contradiction": "A metal frame holds weight well but cannot move like a living body.",
+    "frame_zero": "A small body model with metal rods bends less but loses its natural movement.",
+    "character_action": "The scholar gently bends two frame models to compare their responses.",
+    "reaction": "He pauses, surprised that strength alone does not solve the problem.",
+    "activity": "comparing flexible and rigid body structures",
+    "location": "a quiet engineering display room",
+    "topic_link": "A material change can improve one feature while creating new limits.",
+    "factual_anchor": "Assume human bones were made of metal instead of the usual material.",
+    "payoff": "Metal bones might be strong, but a body would face problems with weight, movement and repair.",
+    "claim_mode": "hypothetical",
+    "entry_variant": "object_transformation",
+    "entry_bridge": {
+      "a_end": "The scholar places the two frame models beside the storybook.",
+      "b_start": "A closed topic-styled book sits alone in a top-down view.",
+      "reveal": "The book opens to an illustrated body with metal bones.",
+      "world_entry": "A host-free view shows a human-shaped figure with a shiny internal frame."
+    },
+    "novelty": {
+      "action_family": "strength versus movement",
+      "tension_family": "hardness versus flexibility",
+      "prop_family": "bending frame models",
+      "reveal_family": "one advantage creates new limits"
+    }
+  },
+  "created_at": "2026-09-19T05:52:18Z"
+}

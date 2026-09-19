@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "02f3fbe60652bce281b16d60a1c3d0797c9357237266b101fbee78b8c24b017e",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "65003a0b-faeb-48dd-b6f9-c0b5a2d8a382",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/6d7b4680bb8b32f5",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=65003a0b-faeb-48dd-b6f9-c0b5a2d8a382_output_1.png 1536x2752 sha256=f7d03e73c41b148d1309c103e8bbc14adf4072ba81480f7536d633c6dd7a0cbb"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "02f3fbe60652bce281b16d60a1c3d0797c9357237266b101fbee78b8c24b017e",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "65003a0b-faeb-48dd-b6f9-c0b5a2d8a382",
+        "prompt_sha256": "a629596d3f49eff1f096f14910df1bbaf0565a8aab75092d32fb3d1fd2597025",
+        "output_sha256": "f7d03e73c41b148d1309c103e8bbc14adf4072ba81480f7536d633c6dd7a0cbb",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/043_what_if_human_bones_were_made_of_metal/references/world_style_anchor.png",
+      "sha256": "cf31df7e6ed9316cdc270b74a6954a402878fd4658430e37196740d851dfdc78"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/043_what_if_human_bones_were_made_of_metal/references/world_keyframe.png",
+      "sha256": "a2d71ba97172a50031a782cd73bd7e322f15243a3fcea5bc45090f5ec1383894"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/043_what_if_human_bones_were_made_of_metal/assets/raw_beats/beat_005.png",
+      "sha256": "ae8bc5649c3e37b48f61a59662ef7be2b599cbab1cc51705e2aa99be96787ce6"
+    }
+  ],
+  "prompt_sha256": "a629596d3f49eff1f096f14910df1bbaf0565a8aab75092d32fb3d1fd2597025",
+  "prompt": "Create exactly one 9:16 vertical image: a full-bleed topic-world scene in a hand-layered paper cut medium, using the style reference for the established material language of fibrous cut-paper edges, layered paper grain, simplified anatomical contours, and soft handmade depth; use the world keyframe reference only to maintain the orchard sleep memory collage world consistency of warm orchard greens, muted amber sunlight, cream anatomical layers, soft slate blues for mechanical strain states, and restrained honey highlights, without copying its composition or layout; use the previous beat reference only for continuity of medium, texture, palette, and lighting, not its pose, crop, or arrangement. Show a literal close three-quarter view in a shaded woodland clearing where layered paper muscles wrap around a silver metallic human skeleton, with the muscle layers visibly stretched and working as the skeleton attempts to lift one arm. Emphasize the contrast between flexible living tissue and a heavier rigid metal structure through tense muscle forms, compressed joints, and subtle effort signals, while keeping the anatomy grounded and scientifically plausible. Use soft warm natural illumination with gentle amber highlights and calm shadowed areas to reveal the strain and material contrast. The scene must extend naturally to all four image edges with no enclosing page, book spread, card, border, inset frame, gateway, or mask. Use the full usable height with no lower caption area, blank strip, panel, labels, or readable text. Do not create a storyboard, grid, collage panels, or multiple images; produce only one cinematic paper-cut scene. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_006.png",
+  "output_sha256": "f7d03e73c41b148d1309c103e8bbc14adf4072ba81480f7536d633c6dd7a0cbb",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 81.208,
+  "completed_at": "2026-09-19T07:22:54Z"
+}

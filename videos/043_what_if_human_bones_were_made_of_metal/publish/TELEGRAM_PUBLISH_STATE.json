@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-19T07:40:43.813282+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-19T07:40:43.813089+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15666,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2466518,
+      "sha256": "b9868ff1982a1b0a935ff0a2245d404a6d0f8bd1f8ca682517a029ffd181e8d7",
+      "duration_seconds": 50.764,
+      "elapsed_seconds": 5.816,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "043_what_if_human_bones_were_made_of_metal",
+        "duration_seconds": 50.756,
+        "beat_count": 13,
+        "video_beat_count": 2,
+        "image_beat_count": 11,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.06,
+          "transition_end": 7.8
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ],
+          "unverified": [
+            "gemini_world_style_anchor"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 187.531,
+          "realtime_factor": 3.695,
+          "peak_child_rss_mb": 1378.1,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 043_what_if_human_bones_were_made_of_metal\n⏱ Duration: 0:51\n🎞 Beats: 13 (2 video · 11 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n⚠️ Unverified receipts: 1\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:08 wall (3.695x realtime) · 2 thread(s) · peak 1378.1 MB\nArtifact: b9868ff1982a · Delivery: compressed"
+    }
+  }
+}

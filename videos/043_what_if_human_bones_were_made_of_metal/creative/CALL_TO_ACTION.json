@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "language_review_required": true,
+  "language_policy_version": 1,
+  "input_fingerprint": "5f63c6c112edf0fdcb474c721b9352abb9a0c5dc79ed24fb80289086c6cd4c82",
+  "hint_sha256": "0701f2076157350aff59f66ef5217225270682db3ffad5efbc736a4f57b46c04",
+  "hint_provided": true,
+  "cta": "Suggest the next video idea.",
+  "word_count": 5,
+  "created_at": "2026-09-19T07:04:14Z"
+}

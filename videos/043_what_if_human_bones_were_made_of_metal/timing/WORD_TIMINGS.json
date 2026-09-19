@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 50.756,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 109,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.0,
+      "end": 0.18
+    },
+    {
+      "text": "bones",
+      "token": "bones",
+      "start": 0.18,
+      "end": 0.54
+    },
+    {
+      "text": "were",
+      "token": "were",
+      "start": 0.54,
+      "end": 0.74
+    },
+    {
+      "text": "metal,",
+      "token": "metal",
+      "start": 0.74,
+      "end": 1.2
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 1.2,
+      "end": 1.56
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 1.56,
+      "end": 1.7
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 1.7,
+      "end": 2.02
+    },
+    {
+      "text": "become",
+      "token": "become",
+      "start": 2.02,
+      "end": 2.32
+    },
+    {
+      "text": "stronger?",
+      "token": "stronger",
+      "start": 2.32,
+      "end": 3.06
+    },
+    {
+      "text": "Metal",
+      "token": "metal",
+      "start": 3.68,
+      "end": 4.08
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 4.08,
+      "end": 4.22
+    },
+    {
+      "text": "hold",
+      "token": "hold",
+      "start": 4.22,
+      "end": 4.52
+    },
+    {
+      "text": "weight,",
+      "token": "weight",
+      "start": 4.52,
+      "end": 5.06
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 5.06,
+      "end": 5.48
+    },
+    {
+      "text": "bone-like",
+      "token": "bonelike",
+      "start": 5.48,
+      "end": 6.1
+    },
+    {
+      "text": "movement",
+      "token": "movement",
+      "start": 6.1,
+      "end": 6.58
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 6.58,
+      "end": 7.0
+    },
+    {
+      "text": "be",
+      "token": "be",
+      "start": 7.0,
+      "end": 7.1
+    },
+    {
+      "text": "lost.",
+      "token": "lost",
+      "start": 7.1,
+      "end": 7.8
+    },
+    {
+      "text": "Metal",
+      "token": "metal",
+      "start": 8.1,
+      "end": 8.5
+    },
+    {
+      "text": "bones",
+      "token": "bones",
+      "start": 8.5,
+      "end": 8.96
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 8.96,
+      "end": 9.38
+    },
+    {
+      "text": "carry",
+      "token": "carry",
+      "start": 9.38,
+      "end": 9.7
+    },
+    {
+      "text": "heavy",
+      "token": "heavy",
+      "start": 9.7,
+      "end": 9.98
+    },
+    {
+      "text": "loads.",
+      "token": "loads",
+      "start": 9.98,
+      "end": 10.76
+    },
+    {
+      "text": "Joints",
+      "token": "joints",
+      "start": 11.24,
+      "end": 11.68
+    },
+    {
+      "text": "need",
+      "token": "need",
+      "start": 11.68,
+      "end": 11.96
+    },
+    {
+      "text": "movement,",
+      "token": "movement",
+      "start": 11.96,
+      "end": 12.64
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 12.64,
+      "end": 13.02
+    },
+    {
+      "text": "only",
+      "token": "only",
+      "start": 13.02,
+      "end": 13.34
+    },
+    {
+      "text": "strength.",
+      "token": "strength",
+      "start": 13.34,
+      "end": 14.06
+    },
+    {
+      "text": "Real",
+      "token": "real",
+      "start": 14.42,
+      "end": 14.86
+    },
+    {
+      "text": "bones",
+      "token": "bones",
+      "start": 14.86,
+      "end": 15.32
+    },
+    {
+      "text": "are",
+      "token": "are",
+      "start": 15.32,
+      "end": 15.56
+    },
+    {
+      "text": "strong",
+      "token": "strong",
+      "start": 15.56,
+      "end": 16.08
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 16.08,
+      "end": 16.54
+    },
+    {
+      "text": "slightly",
+      "token": "slightly",
+      "start": 16.54,
+      "end": 16.98
+    },
+    {
+      "text": "bendable.",
+      "token": "bendable",
+      "start": 16.98,
+      "end": 17.76
+    },
+    {
+      "text": "Metal",
+      "token": "metal",
+      "start": 18.24,
+      "end": 18.66
+    },
+    {
+      "text": "frames",
+      "token": "frames",
+      "start": 18.66,
+      "end": 19.16
+    },
+    {
+      "text": "bend",
+      "token": "bend",
+      "start": 19.16,
+      "end": 19.74
+    },
+    {
+      "text": "less",
+      "token": "less",
+      "start": 19.74,
+      "end": 20.16
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 20.16,
+      "end": 20.48
+    },
+    {
+      "text": "bones.",
+      "token": "bones",
+      "start": 20.48,
+      "end": 21.24
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 21.4,
+      "end": 21.96
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 21.96,
+      "end": 22.18
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 22.18,
+      "end": 22.36
+    },
+    {
+      "text": "become",
+      "token": "become",
+      "start": 22.36,
+      "end": 22.68
+    },
+    {
+      "text": "too",
+      "token": "too",
+      "start": 22.68,
+      "end": 22.96
+    },
+    {
+      "text": "heavy",
+      "token": "heavy",
+      "start": 22.96,
+      "end": 23.28
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 23.28,
+      "end": 23.52
+    },
+    {
+      "text": "move.",
+      "token": "move",
+      "start": 23.52,
+      "end": 24.16
+    },
+    {
+      "text": "Muscles",
+      "token": "muscles",
+      "start": 24.4,
+      "end": 24.9
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 24.9,
+      "end": 25.12
+    },
+    {
+      "text": "struggle",
+      "token": "struggle",
+      "start": 25.12,
+      "end": 25.56
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 25.56,
+      "end": 25.9
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 25.9,
+      "end": 26.02
+    },
+    {
+      "text": "heavier",
+      "token": "heavier",
+      "start": 26.02,
+      "end": 26.34
+    },
+    {
+      "text": "skeleton.",
+      "token": "skeleton",
+      "start": 26.34,
+      "end": 27.32
+    },
+    {
+      "text": "Metal",
+      "token": "metal",
+      "start": 27.98,
+      "end": 28.0
+    },
+    {
+      "text": "bones",
+      "token": "bones",
+      "start": 28.0,
+      "end": 28.4
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 28.4,
+      "end": 28.66
+    },
+    {
+      "text": "make",
+      "token": "make",
+      "start": 28.66,
+      "end": 28.86
+    },
+    {
+      "text": "repairs",
+      "token": "repairs",
+      "start": 28.86,
+      "end": 29.58
+    },
+    {
+      "text": "harder",
+      "token": "harder",
+      "start": 29.58,
+      "end": 30.18
+    },
+    {
+      "text": "after",
+      "token": "after",
+      "start": 30.18,
+      "end": 30.58
+    },
+    {
+      "text": "damage.",
+      "token": "damage",
+      "start": 30.58,
+      "end": 31.34
+    },
+    {
+      "text": "Medical",
+      "token": "medical",
+      "start": 31.7,
+      "end": 32.18
+    },
+    {
+      "text": "parts",
+      "token": "parts",
+      "start": 32.18,
+      "end": 32.6
+    },
+    {
+      "text": "called",
+      "token": "called",
+      "start": 32.6,
+      "end": 32.94
+    },
+    {
+      "text": "implants",
+      "token": "implants",
+      "start": 32.94,
+      "end": 33.54
+    },
+    {
+      "text": "use",
+      "token": "use",
+      "start": 33.54,
+      "end": 34.06
+    },
+    {
+      "text": "titanium",
+      "token": "titanium",
+      "start": 34.06,
+      "end": 34.7
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 34.7,
+      "end": 35.16
+    },
+    {
+      "text": "support.",
+      "token": "support",
+      "start": 35.16,
+      "end": 35.88
+    },
+    {
+      "text": "They",
+      "token": "they",
+      "start": 36.2,
+      "end": 36.5
+    },
+    {
+      "text": "do",
+      "token": "do",
+      "start": 36.5,
+      "end": 36.64
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 36.64,
+      "end": 36.8
+    },
+    {
+      "text": "replace",
+      "token": "replace",
+      "start": 36.8,
+      "end": 37.3
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 37.3,
+      "end": 37.62
+    },
+    {
+      "text": "whole",
+      "token": "whole",
+      "start": 37.62,
+      "end": 37.86
+    },
+    {
+      "text": "living",
+      "token": "living",
+      "start": 37.86,
+      "end": 38.18
+    },
+    {
+      "text": "skeleton.",
+      "token": "skeleton",
+      "start": 38.18,
+      "end": 39.0
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 38.78,
+      "end": 39.42
+    },
+    {
+      "text": "strong",
+      "token": "strong",
+      "start": 39.42,
+      "end": 39.78
+    },
+    {
+      "text": "skeleton",
+      "token": "skeleton",
+      "start": 39.78,
+      "end": 40.34
+    },
+    {
+      "text": "must",
+      "token": "must",
+      "start": 40.34,
+      "end": 41.06
+    },
+    {
+      "text": "help",
+      "token": "help",
+      "start": 41.06,
+      "end": 41.3
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 41.3,
+      "end": 41.5
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 41.5,
+      "end": 41.72
+    },
+    {
+      "text": "move",
+      "token": "move",
+      "start": 41.72,
+      "end": 42.14
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 42.14,
+      "end": 42.46
+    },
+    {
+      "text": "work",
+      "token": "work",
+      "start": 42.46,
+      "end": 42.7
+    },
+    {
+      "text": "well.",
+      "token": "well",
+      "start": 42.7,
+      "end": 43.36
+    },
+    {
+      "text": "Metal",
+      "token": "metal",
+      "start": 43.9,
+      "end": 44.34
+    },
+    {
+      "text": "gives",
+      "token": "gives",
+      "start": 44.34,
+      "end": 44.62
+    },
+    {
+      "text": "strength",
+      "token": "strength",
+      "start": 44.62,
+      "end": 45.14
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 45.14,
+      "end": 45.66
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 45.66,
+      "end": 45.78
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 45.78,
+      "end": 45.9
+    },
+    {
+      "text": "also",
+      "token": "also",
+      "start": 45.9,
+      "end": 46.16
+    },
+    {
+      "text": "cause",
+      "token": "cause",
+      "start": 46.16,
+      "end": 46.56
+    },
+    {
+      "text": "movement",
+      "token": "movement",
+      "start": 46.56,
+      "end": 47.06
+    },
+    {
+      "text": "problems.",
+      "token": "problems",
+      "start": 47.06,
+      "end": 47.9
+    },
+    {
+      "text": "Suggest",
+      "token": "suggest",
+      "start": 48.3,
+      "end": 48.8
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 48.8,
+      "end": 48.98
+    },
+    {
+      "text": "next",
+      "token": "next",
+      "start": 48.98,
+      "end": 49.24
+    },
+    {
+      "text": "video",
+      "token": "video",
+      "start": 49.24,
+      "end": 49.66
+    },
+    {
+      "text": "idea.",
+      "token": "idea",
+      "start": 49.66,
+      "end": 50.5
+    }
+  ]
+}

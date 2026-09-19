@@ -1,0 +1,126 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 50.756,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If bones were metal, would your body become stronger? Metal can hold weight, but bone-like movement may be lost. Metal bones could carry heavy loads. Joints need movement, not only strength. Real bones are strong and slightly bendable. Metal frames bend less than bones. The body could become too heavy to move. Muscles may struggle with a heavier skeleton. Metal bones could make repairs harder after damage. Medical parts called implants use titanium for support. They do not replace a whole living skeleton. A strong skeleton must help the body move and work well. Metal gives strength but it can also cause movement problems. Suggest the next video idea.",
+  "word_count": 109,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Metal bones could carry heavy loads.",
+      "speech_start": 8.1,
+      "speech_end": 10.76,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 11.24,
+      "display_duration": 11.24
+    },
+    {
+      "beat_id": 2,
+      "narration": "Joints need movement, not only strength.",
+      "speech_start": 11.24,
+      "speech_end": 14.06,
+      "match_confidence": 1.0,
+      "display_start": 11.24,
+      "display_end": 14.42,
+      "display_duration": 3.18
+    },
+    {
+      "beat_id": 3,
+      "narration": "Real bones are strong and slightly bendable.",
+      "speech_start": 14.42,
+      "speech_end": 17.76,
+      "match_confidence": 1.0,
+      "display_start": 14.42,
+      "display_end": 18.24,
+      "display_duration": 3.82
+    },
+    {
+      "beat_id": 4,
+      "narration": "Metal frames bend less than bones.",
+      "speech_start": 18.24,
+      "speech_end": 21.24,
+      "match_confidence": 1.0,
+      "display_start": 18.24,
+      "display_end": 21.4,
+      "display_duration": 3.16
+    },
+    {
+      "beat_id": 5,
+      "narration": "The body could become too heavy to move.",
+      "speech_start": 21.4,
+      "speech_end": 24.16,
+      "match_confidence": 1.0,
+      "display_start": 21.4,
+      "display_end": 24.4,
+      "display_duration": 3.0
+    },
+    {
+      "beat_id": 6,
+      "narration": "Muscles may struggle with a heavier skeleton.",
+      "speech_start": 24.4,
+      "speech_end": 27.32,
+      "match_confidence": 1.0,
+      "display_start": 24.4,
+      "display_end": 27.98,
+      "display_duration": 3.58
+    },
+    {
+      "beat_id": 7,
+      "narration": "Metal bones could make repairs harder after damage.",
+      "speech_start": 27.98,
+      "speech_end": 31.34,
+      "match_confidence": 1.0,
+      "display_start": 27.98,
+      "display_end": 31.7,
+      "display_duration": 3.72
+    },
+    {
+      "beat_id": 8,
+      "narration": "Medical parts called implants use titanium for support.",
+      "speech_start": 31.7,
+      "speech_end": 35.88,
+      "match_confidence": 1.0,
+      "display_start": 31.7,
+      "display_end": 36.2,
+      "display_duration": 4.5
+    },
+    {
+      "beat_id": 9,
+      "narration": "They do not replace a whole living skeleton.",
+      "speech_start": 36.2,
+      "speech_end": 39.0,
+      "match_confidence": 1.0,
+      "display_start": 36.2,
+      "display_end": 38.78,
+      "display_duration": 2.58
+    },
+    {
+      "beat_id": 10,
+      "narration": "A strong skeleton must help the body move and work well.",
+      "speech_start": 38.78,
+      "speech_end": 43.36,
+      "match_confidence": 1.0,
+      "display_start": 38.78,
+      "display_end": 43.9,
+      "display_duration": 5.12
+    },
+    {
+      "beat_id": 11,
+      "narration": "Metal gives strength, but it can also cause movement problems.",
+      "speech_start": 43.9,
+      "speech_end": 47.9,
+      "match_confidence": 1.0,
+      "display_start": 43.9,
+      "display_end": 50.756,
+      "display_duration": 6.856
+    }
+  ]
+}

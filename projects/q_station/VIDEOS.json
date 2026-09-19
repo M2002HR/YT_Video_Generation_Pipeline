@@ -214,6 +214,29 @@
     },
     {
       "video_id": "042_what_if_earth_s_gravity_were_cut_in_half"
+    },
+    {
+      "video_id": "043",
+      "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+      "opening_location": "A quiet engineering display room with simple material demonstration models.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "orchard_sleep_memory_collage_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "strength versus movement",
+        "tension_family": "hardness versus flexibility",
+        "prop_family": "bending frame models",
+        "reveal_family": "one advantage creates new limits"
+      },
+      "situation_summary": "A metal frame holds weight well but cannot move like a living body.",
+      "hook_line": "If bones were metal, would your body become stronger?",
+      "entry_variant": "object_transformation",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-19T07:06:06.313941+00:00"
+    },
+    {
+      "video_id": "043_what_if_human_bones_were_made_of_metal"
     }
   ]
 }

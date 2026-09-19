@@ -1,0 +1,126 @@
+{
+  "gateway_inputs_version": 1,
+  "policy_version": 2,
+  "brief": {
+    "topic": "What If Human Bones Were Made of Metal?",
+    "language": "English",
+    "duration_seconds": [
+      30.0,
+      44.0
+    ],
+    "hero_presence_mode": "in_world"
+  },
+  "character": {
+    "id": "newton_scholar",
+    "archetype": "meticulous curious experimental thinker inspired by Newton, not a judge or an infallible historical narrator",
+    "tone": [
+      "thoughtful",
+      "precise",
+      "curious",
+      "patient",
+      "quietly surprised"
+    ],
+    "behavior": "# Newton-Inspired Scholar - behavior\n\nObserve first, notice a specific mismatch, compare an expectation with evidence, then investigate. Show curiosity through a focused glance, a small pause, a careful comparison or a modest adjustment, not a lecture pose. He is capable but can be surprised and revise an idea. Use restrained warmth and an occasional tiny visual joke; never make him a clown or an all-knowing authority.\n\nEvery opening situation comes from the actual question and editorial sources. One location and at most three readable actions in A. The book is the recurring route into the explanation, not the cause of every question. Do not impose a laboratory, library, old century, reading routine or apple-falling incident on unrelated topics. Modern topics are allowed without claiming the historical Newton knew or discovered them.\n\nA is the event that makes the question necessary. B uses the existing canonical book gateway and its exact no-host first-frame contract. Prefer placing/revealing the portal book at the end of A so the top-down book close-up in B is an intentional editorial cut. The small accessory book may be absent or already set aside. End B inside the topic world; later images explain the answer without enclosing page borders. Narration carries actual explanatory content, not claims of supernatural evidence or invented historical quotations.",
+    "negative_constraints": "# Newton-Inspired Scholar - constraints\n\nDo not identify this fictional host as a documentary reconstruction. No invented quotations, discoveries, historical eyewitness claims or universal certainty. Do not default to apples, gravity, prisms, calculations, courtrooms, gavels, royal courts or religious settings. Do not replace the supplied cartoon with a realistic portrait, modern lab-coated scientist, generic judge or another character. No compulsory small book in every shot, no accessory/portal-book conflation, no repeated study routine. Preserve hair, nose, eyes, outfit and proportions; no extra hands or inappropriate prop handling.",
+    "environment_policy": "dynamic",
+    "environment_affinities": []
+  },
+  "presentation": {
+    "profile_id": "book_portal",
+    "display_name": "Question → Storybook → Topic World",
+    "entry_kind": "book",
+    "entry_segment_key": "book_transition",
+    "entry_segment_label": "book transition",
+    "script_rules": "The fixed show progression is: a topic-specific visible discrepancy or consequence makes the question visible; the host\nreaches or reveals a relevant storybook; the closed topic-styled book opens; the camera enters its\nillustrated page; the factual body begins in the topic world. The second narration segment should take roughly 3 seconds and deliver a concrete clue\nwhile the visual book retrieval/opening proceeds. The narration need not say \"book\" if\nthe visual hinge remains unmistakable, but it must support that action.\n\nThe spoken entry is not a report of camera movement or prop retrieval. It must advance the\nselected question with a supported clue. Preserve the entry mechanics; vary the specific story,\nnot the identity of the portal. Never give the host unconfigured magical powers or a fixed job.",
+    "episode_rules": "Plan a natural book retrieval or reveal after the question reaction. Return `entry_retrieval` as a\nconcise physical action and `entry_variant` as one of desk_reach, shelf_reveal, pocket_reveal,\nobject_transformation, or discovered_book. The book is the fixed bridge, not the opening activity.\nThe episode-specific environment must not be inferred from the topic-world style.",
+    "entry_frame_character_presence": "none",
+    "entry_variants": [
+      "desk_reach",
+      "shelf_reveal",
+      "pocket_reveal",
+      "object_transformation",
+      "discovered_book"
+    ],
+    "motion_contract": "",
+    "min_entry_seconds": 0.0,
+    "min_entry_words": 0
+  },
+  "writer_sha256": "cd03ebc51fd4cdb796459d00278118b22b1003d46b07c04d6266e105092d69e0",
+  "reviewer_sha256": "7424febd2238a7c58fe6986489f3f62c1e339cca6d3e8a7ba9c909ba54d549f0",
+  "language_policy_version": 1,
+  "input_fingerprint": "1e9690df8cf46c9781fef9eec1d5b1f0c48e53b935b6334b65a9e72964d11b1e",
+  "history": [
+    {
+      "video_id": "039",
+      "character_id": "sea_captain",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      }
+    },
+    {
+      "video_id": "039_could_you_live_forever_on_a_desert_island"
+    },
+    {
+      "video_id": "040",
+      "character_id": "sea_captain",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      }
+    },
+    {
+      "video_id": "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+    },
+    {
+      "video_id": "041",
+      "character_id": "sea_captain",
+      "opening_activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water",
+      "opening_location": "a quiet coastal research garden with a small pool and damp plant-filled ground",
+      "situation_summary": "A fish is active beside water instead of fully inside it.",
+      "hook_line": "If fish could breathe on land, why would they still need water?",
+      "entry_variant": "changed_viewpoint",
+      "opening_signature": {
+        "action_family": "limit comparison",
+        "tension_family": "water need versus land freedom",
+        "prop_family": "small pool and damp ground",
+        "reveal_family": "one change is not every change"
+      }
+    },
+    {
+      "video_id": "041_what_if_fish_could_breathe_on_land"
+    },
+    {
+      "video_id": "042",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "situation_summary": "A person carries a heavy object easily, but a bridge model bends differently.",
+      "hook_line": "If your weight was cut in half, would Earth feel the same?",
+      "entry_variant": "shelf_reveal",
+      "opening_signature": {
+        "action_family": "load comparison",
+        "tension_family": "lighter people versus changed systems",
+        "prop_family": "bridge model",
+        "reveal_family": "weight change spreads beyond bodies"
+      }
+    },
+    {
+      "video_id": "042_what_if_earth_s_gravity_were_cut_in_half"
+    }
+  ]
+}

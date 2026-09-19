@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "video": "043_what_if_human_bones_were_made_of_metal",
+  "started_at": "2026-09-19T07:36:42.608470+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-19T07:36:42.630557+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:36:43.984478+00:00",
+      "elapsed_seconds": 1.354,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 37576
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-19T07:36:45.353418+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 2/8 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:39:53.485924+00:00",
+      "elapsed_seconds": 188.132,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 49693628
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-19T07:39:53.486586+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:40:02.069354+00:00",
+      "elapsed_seconds": 8.583,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-19T07:40:03.175516+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:40:06.528936+00:00",
+      "elapsed_seconds": 3.353,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 49930908
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-19T07:40:07.719900+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:40:16.546092+00:00",
+      "elapsed_seconds": 8.826,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-19T07:40:17.918781+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:40:35.685807+00:00",
+      "elapsed_seconds": 17.767,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2466518
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-19T07:40:36.740630+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T07:40:43.872422+00:00",
+      "elapsed_seconds": 7.132,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2160
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-19T07:40:44.927784+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-19T07:36:42.608470+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ],
+  "completed_at": "2026-09-19T07:40:44.925365+00:00",
+  "total_elapsed_seconds": 235.147,
+  "summary": {
+    "video": "043_what_if_human_bones_were_made_of_metal",
+    "duration_seconds": 50.756,
+    "beat_count": 13,
+    "video_beat_count": 2,
+    "image_beat_count": 11,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.06,
+      "transition_end": 7.8
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Nano Banana 2"
+      ],
+      "unverified": [
+        "gemini_world_style_anchor"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 187.531,
+      "realtime_factor": 3.695,
+      "peak_child_rss_mb": 1378.1,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
+}
