@@ -13,7 +13,9 @@ from typing import Any
 POLICY_VERSION = 1
 POLICY_FILE = "PLAIN_ENGLISH_POLICY.md"
 REVIEWER_FILE = "02_plain_english_reviewer.md"
-MAX_EDIT_ATTEMPTS = 3
+# One initial edit plus four evidence-led repairs.  A review can expose a second issue
+# only after the first rewrite; the caller carries all prior feedback forward.
+MAX_EDIT_ATTEMPTS = 5
 REVIEW_CHECKS = (
     "everyday_words", "clear_sentence_meaning", "terms_explained",
     "easy_to_follow_once", "meaning_preserved",

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "operator_upload",
+  "selection_mode": "operator_upload",
+  "file": "assets/music/operator_background.mp3",
+  "source_url": null,
+  "source_sha256": "893dff5681f0120f1c9e5c50caec38211e5172d46e4d79f1bb5ae51758cf79a1",
+  "license": "Operator-supplied; publication rights must be verified by the operator.",
+  "original_name": "Moavii - Foreign (freetouse.com).mp3",
+  "library_origin": "upload",
+  "selected_at": "2026-09-19T15:13:04.277451+00:00"
+}

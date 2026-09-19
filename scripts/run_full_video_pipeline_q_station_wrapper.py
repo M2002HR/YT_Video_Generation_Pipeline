@@ -163,7 +163,6 @@ def q_station_overrides(creative_brief: Path) -> list[str]:
         return []
     advanced = brief.get("_q_station") or {}
     mapping = {
-        "gemini_image_model": "--gemini-model",
         "image_qc_correction_policy": "--image-qc-correction-policy",
         "flow_video_model": "--flow-model",
         "flow_resolution": "--flow-resolution",

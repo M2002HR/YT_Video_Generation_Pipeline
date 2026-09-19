@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "2c7366a73f6d2192bfa99b5e0fec69de90e16039450802c04380ba5d7cc9233e",
+  "concept_id": "1fc5dad72979b24da8d0",
+  "character_id": "newton_scholar",
+  "presentation_id": "book_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If a human grew huge, would their body cool the same way?",
+    "viewer_expectation": "A bigger human would work like a normal human, only larger.",
+    "visible_contradiction": "Two body models lose warmth at different speeds.",
+    "frame_zero": "A small human model and an elephant-sized model sit beside matching warm plates.",
+    "character_action": "The scholar compares the models and checks the different surface sizes.",
+    "reaction": "He pauses, surprised that size changes more than height.",
+    "activity": "Comparing warmth loss between scaled body shapes.",
+    "location": "A quiet science display hall with body models.",
+    "topic_link": "Body size changes how much outside area a body has compared with its inside.",
+    "factual_anchor": "Hypothetical assumption: a human grows to the size of an elephant.",
+    "payoff": "A giant human may need a different way to manage body heat because scaling changes body proportions.",
+    "claim_mode": "hypothetical",
+    "entry_variant": "discovered_book",
+    "entry_bridge": {
+      "a_end": "The scholar places the large model beside the small one.",
+      "b_start": "A closed topic-styled book rests beside the models.",
+      "reveal": "The book reveals a body-size comparison world.",
+      "world_entry": "Two giant and small body outlines stand beside temperature markers."
+    },
+    "novelty": {
+      "action_family": "heat comparison",
+      "tension_family": "size versus cooling",
+      "prop_family": "body models",
+      "reveal_family": "proportions change with growth"
+    }
+  },
+  "created_at": "2026-09-19T14:21:31Z"
+}

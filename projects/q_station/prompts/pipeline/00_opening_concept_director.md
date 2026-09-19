@@ -10,6 +10,12 @@ CHARACTER STORY CONTEXT: {{CHARACTER_STORY_CONTEXT}}
 PRESENTATION (binding mechanics): {{PRESENTATION_CONTEXT}}
 RECENT OPENINGS (global and same-character; do not paraphrase these into 'new' scenes): {{RECENT_OPENINGS}}
 
+If a recent opening addresses the same broad question, a new run is still allowed, but it must
+approach a DIFFERENT causal sub-question. Do not reuse that opening's hook, visible discrepancy,
+first test, prop family, factual mechanism, or payoff. A new location, camera, wording, or a
+smaller/larger version of the same model is not enough. Make each candidate independently distinct
+from that prior episode and state the new mechanism plainly in frame_zero and factual_anchor.
+
 Start from the supported answer, the viewer's likely expectation, and a concrete discrepancy that
 can be understood from the first frame. Then choose a situation in which THIS host can observe,
 test, misinterpret or reveal it. This is not a catalogue of hobbies, jobs, chores or environments.

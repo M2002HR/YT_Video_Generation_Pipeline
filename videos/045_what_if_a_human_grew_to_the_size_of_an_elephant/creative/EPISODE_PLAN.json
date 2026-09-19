@@ -1,0 +1,30 @@
+{
+  "concept_id": "1fc5dad72979b24da8d0",
+  "opening_actions": [
+    "The scholar places a small human model and an elephant-sized human model beside matching warm plates.",
+    "He compares the visible warmth loss from the two body shapes.",
+    "He pauses and notices the larger model changing differently."
+  ],
+  "entry_bridge": {
+    "a_end": "The scholar places the large model beside the small one.",
+    "b_start": "A closed topic-styled book rests beside the models.",
+    "reveal": "The book reveals a body-size comparison world where scale changes how bodies handle heat.",
+    "world_entry": "Two giant and small body outlines stand beside temperature markers in the illustrated topic world."
+  },
+  "opening_activity": "Comparing warmth loss between scaled body shapes using matching body models and heat demonstrations.",
+  "opening_location": "A quiet science display hall with body models and simple heat comparison exhibits.",
+  "opening_environment": "A calm educational display space with scaled body forms, warm plates, and measurement objects.",
+  "topic_visual_link": "The different cooling behavior of small and giant body models directly previews how elephant-sized human bodies would experience changed heat loss.",
+  "link_type": "direct",
+  "opening_visual_proof": "A small human model and an elephant-sized human model beside identical warm plates show different visible warmth loss patterns.",
+  "curiosity_trigger": "The scholar notices the larger body shape does not keep the same warmth pattern as the smaller one.",
+  "trigger_object": "The paired small and elephant-sized human models with matching warm plates.",
+  "reaction": "He pauses with a curious glance and carefully compares the two models again.",
+  "entry_retrieval": "After checking the models, the scholar discovers the closed storybook resting beside the display and reveals it as the next path of exploration.",
+  "entry_variant": "discovered_book",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "A visual science world showing oversized and miniature body forms, heat patterns, and changing proportions.",
+  "reason": "The opening makes the square-cube rule visible through a simple body-scale comparison, fitting the scholar's careful observation style and the topic's core question."
+}

@@ -1,0 +1,100 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "cta",
+  "content_fingerprint": "e18dc82af40a1abbf5a92e91247e968a7834588b1d504eea89bf57dc5923b6e0",
+  "reference_fingerprint": "0dccf236ae2e8dc6c4fbc9901956c8053eb110ec74c5c62c9a7aa91e53ad2ead",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "4e8a7b963b4f3e3f9336c81b87bc8a017ffe899babcd76ed5143f4b3521e2909",
+  "input_fingerprint": "f1f4eab67cba45a2a599257732df0c5b354d54a8ef1d9033f39b92a4a19435df",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "cta": "Pick next question in comments."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": false
+      },
+      "issues": [
+        {
+          "check": "meaning_preserved",
+          "segment": "cta",
+          "quote": "Pick next question in comments.",
+          "problem": "The CTA mentions comments, but it does not clearly tell viewers that they should choose the next video topic or question. It also sounds like there is already a fixed next question to pick.",
+          "suggestion": "Make it clear that viewers can choose the next topic or question in the comments."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "segments": {
+        "cta": "Choose next question in comments."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": false,
+        "terms_explained": true,
+        "easy_to_follow_once": false,
+        "meaning_preserved": false
+      },
+      "issues": [
+        {
+          "check": "clear_sentence_meaning",
+          "segment": "cta",
+          "quote": "Choose next question in comments.",
+          "problem": "The sentence does not clearly say who should choose or that viewers should suggest a new question in the comments.",
+          "suggestion": "Make the viewer action clear by saying that viewers can suggest the next question or topic in the comments."
+        },
+        {
+          "check": "easy_to_follow_once",
+          "segment": "cta",
+          "quote": "Choose next question in comments.",
+          "problem": "The listener may not understand what to do because the action is missing a clear subject and the phrase 'in comments' is incomplete.",
+          "suggestion": "Use a simple direct request that tells viewers to add their ideas in the comments."
+        },
+        {
+          "check": "meaning_preserved",
+          "segment": "cta",
+          "quote": "Choose next question in comments.",
+          "problem": "The CTA does not fully preserve the engagement intent because it does not invite general suggestions for any future video topic or question.",
+          "suggestion": "Include that viewers can decide the next video question or topic by writing suggestions in the comments."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 3,
+      "segments": {
+        "cta": "Suggest next topic in comments."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-19T14:57:26Z"
+}

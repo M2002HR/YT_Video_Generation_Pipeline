@@ -47,8 +47,10 @@ def test_panel_exposes_q_station_and_editorial_inputs() -> None:
     assert "value='q_station' selected" in page
     for field in ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes"):
         assert f"name={field}" in page
-    for field in ("hero_presence_mode", "world_style_policy", "gemini_image_model", "flow_video_model", "flow_resolution", "opening_a_seconds", "opening_b_seconds"):
+    for field in ("hero_presence_mode", "world_style_policy", "flow_video_model", "flow_resolution", "opening_a_seconds", "opening_b_seconds"):
         assert f"name={field}" in page
+    assert "name=gemini_image_model" not in page
+    assert "ChatGPT · project chat · Extra High" in page
     assert "name=world_style_id" in page
     assert "name=world_style_hint" in page
     for locked in ("ChatGPT", "Gemini", "Google Flow"):

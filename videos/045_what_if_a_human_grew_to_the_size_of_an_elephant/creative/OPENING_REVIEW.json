@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "topic_specific": true,
+    "visible_from_start": true,
+    "character_consistent": true,
+    "honest_claims": true,
+    "hook_paid_off": true,
+    "entry_continuity": true,
+    "production_feasible": true,
+    "meaningfully_distinct": true
+  },
+  "issues": [],
+  "passed": true,
+  "history_ids": [
+    "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+    "041",
+    "041_what_if_fish_could_breathe_on_land",
+    "042",
+    "042_what_if_earth_s_gravity_were_cut_in_half",
+    "043",
+    "043_what_if_human_bones_were_made_of_metal",
+    "044"
+  ],
+  "prompt_sha256": "9bb7be1b21c03bd8647e895f7831371256e3846e2f2331c332d3ef9f2811408c",
+  "input_fingerprint": "3ea6df9fa599a20256f058227131d0ffe632199ac7652a24c8df5ed494f348e6",
+  "concept_id": "1fc5dad72979b24da8d0"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "REUSED",
+  "created_at": "2026-09-19T14:59:16.669554+00:00",
+  "timing_sha256": "327c7e48f9d7ab7d6940641c6f480a333f1139fcc5512c48f4d637bdabae89da",
+  "flow_model": "gemini_omni_1_1_flash",
+  "verified_source_seconds": [
+    4,
+    6,
+    8,
+    10
+  ],
+  "opening_speed_tolerance": 0.2,
+  "clips": {
+    "A": {
+      "target_seconds": 3.48,
+      "preferred_source_seconds": 8,
+      "supported_source_seconds": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "selected_source_seconds": 4,
+      "estimated_speed_factor": 0.87,
+      "estimated_rate_adjusted": false,
+      "estimated_headroom_seconds": 0.52
+    },
+    "B": {
+      "target_seconds": 3.82,
+      "preferred_source_seconds": 4,
+      "supported_source_seconds": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "selected_source_seconds": 4,
+      "estimated_speed_factor": 0.955,
+      "estimated_rate_adjusted": false,
+      "estimated_headroom_seconds": 0.18
+    }
+  },
+  "changed_from_previous": false,
+  "reused_at": "2026-09-19T15:13:06.919485+00:00"
+}

@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 34.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Two body outlines show different heat loss.",
+      "visual": "Two layered paper-cut human silhouettes stand in the same cool environment, one small and one giant, with soft amber heat cues drifting away from their surfaces.",
+      "purpose": "show that differently sized bodies lose heat differently",
+      "visual_fingerprint": "paired small and giant human cutout silhouettes side by side on a frosty blue ground with outward heat wisps, front comparison composition",
+      "type": "diagram",
+      "continuity": "begin the scale comparison with a clear two-form setup",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "Small and giant models lose warmth at different speeds.",
+      "visual": "The two paper-cut body models are shown at different moments of heat fading, with the smaller figure retaining a warmer glow while the giant figure has broader cooling areas.",
+      "purpose": "compare the speed of heat loss between sizes",
+      "visual_fingerprint": "small and giant anatomical paper models in a time-sequence-like frozen scene with different heat glow intensities, angled overhead view",
+      "type": "diagram",
+      "continuity": "same scale experiment, shifted from comparison to heat behavior",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "The giant model has more outside area and loses heat.",
+      "visual": "A giant paper-cut human form is surrounded by a larger exposed outer edge, with warm internal layers releasing heat into the surrounding cool air.",
+      "purpose": "show the larger outside area involved in heat loss",
+      "visual_fingerprint": "single giant layered body cutaway with expanded outer perimeter and heat escaping into blue atmosphere, low angle close composition",
+      "type": "literal",
+      "continuity": "moves from two-body comparison into the giant model's surface details",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "The inner part of the body grows differently from outside area.",
+      "visual": "A giant paper-cut body is opened as a layered anatomical form, showing a deeper inner volume compared with its outer boundary layer.",
+      "purpose": "show that inner volume and outer area scale differently",
+      "visual_fingerprint": "large anatomical paper cross-section with nested ivory layers and surrounding blue space, top-down cutaway composition",
+      "type": "diagram",
+      "continuity": "same giant model, revealing hidden internal structure",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "The square-cube rule explains size changes outside area and volume.",
+      "visual": "A small paper cube-like body form expands into a much larger layered cube and body shape, showing surface layers and filled interior changing at different rates.",
+      "purpose": "explain the relationship between surface area and volume during scaling",
+      "visual_fingerprint": "abstract paper-cut scaling demonstration with nested cube forms and a human-shaped silhouette merging into the comparison, centered perspective",
+      "type": "metaphor",
+      "continuity": "transitions from anatomy to the underlying size principle",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Volume means the space inside a body.",
+      "visual": "A translucent layered paper-cut body shape reveals a filled inner region representing the space contained inside the form.",
+      "purpose": "show the meaning of volume as internal space",
+      "visual_fingerprint": "transparent layered anatomical shell with a glowing inner paper volume mass, centered close-up composition",
+      "type": "diagram",
+      "continuity": "focuses on one concept from the previous scaling explanation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "An elephant-sized human may struggle with body heat.",
+      "visual": "An elephant-scale human paper-cut figure stands in a cool landscape while heat gathers around the body and cooling layers work harder.",
+      "purpose": "show the possible heat challenge of an elephant-sized human",
+      "visual_fingerprint": "towering human silhouette beside tiny environmental elements with amber heat stress cues, wide ground-level perspective",
+      "type": "subject_world",
+      "continuity": "returns the concept to a real imagined giant body scenario",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "The models show bigger bodies change beyond height.",
+      "visual": "Several ascending paper-cut human forms show changing proportions, with the largest having altered limb and body relationships rather than simple enlargement.",
+      "purpose": "show that scaling changes body proportions",
+      "visual_fingerprint": "three-stage paper human scale progression arranged diagonally with visibly changing proportions, studio-like blue background",
+      "type": "diagram",
+      "continuity": "uses the giant example to examine structural changes",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "A giant human is not just a larger copy.",
+      "visual": "A giant paper-cut human stands beside a smaller version, with distinct layered anatomy and altered proportions emphasizing a different body design.",
+      "purpose": "show that giant bodies require different solutions than enlarged normal bodies",
+      "visual_fingerprint": "small human and transformed giant human facing each other in a full-bleed paper landscape, dramatic side composition",
+      "type": "metaphor",
+      "continuity": "concludes the scale lesson with the main takeaway",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Bodies need new solutions.",
+      "visual": "The giant human paper-cut figure is surrounded by adaptive cooling structures and environmental elements suggesting future ways to manage heat.",
+      "purpose": "reinforce that changed body scales need new adaptations",
+      "visual_fingerprint": "giant layered human in a calm blue thermal environment with new cooling forms around the body, wide final hero composition",
+      "type": "subject_world",
+      "continuity": "final reflection image stays in the same imagined giant-body world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

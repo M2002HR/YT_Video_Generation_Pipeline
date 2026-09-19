@@ -222,6 +222,37 @@ def test_exhausted_text_corrections_stop_before_media(run, registry):
     assert not (run / "creative/OPENING_CONCEPT.json").exists()
 
 
+def test_failed_final_story_review_forces_a_fresh_concept_on_resume(run, registry):
+    first_spy, first, char = make_concept(run, registry)
+    first_spy.state.completed.add("opening_concept")
+    (run / "creative/OPENING_REVIEW.json").write_text(json.dumps({
+        "passed": False,
+        "failure": "The prior premise repeats the recent leg-support demonstration.",
+    }))
+    retry = Spy([candidates(char.presentation.entry_variants[0]), reviews()])
+    renewed = qstation.stage_opening_concept(
+        retry, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30, 40), char
+    )
+    assert len(retry.prompts) == 2
+    assert renewed["concept_id"] == first["concept_id"]
+    assert "Previous design failure" in retry.prompts[0][1]
+
+
+def test_superseded_story_rejection_does_not_regenerate_the_new_concept(run, registry):
+    spy, concept, char = make_concept(run, registry)
+    spy.state.completed.add("opening_concept")
+    (run / "creative/OPENING_REVIEW.json").write_text(json.dumps({
+        "passed": False,
+        "concept_id": "old-concept",
+        "superseded_by_concept_id": concept["concept_id"],
+        "failure": "An earlier premise was too similar.",
+    }))
+    assert qstation.stage_opening_concept(
+        spy, run, load_content_project("q_station"), "earworms", qstation.DurationTarget(30, 40), char
+    ) == concept
+    assert len(spy.prompts) == 2
+
+
 def test_candidate_count_unique_mechanisms_and_entry_variant():
     raw = candidates();raw["candidates"] = raw["candidates"][:2]
     with pytest.raises(opening.OpeningContractError, match="exactly 3"):

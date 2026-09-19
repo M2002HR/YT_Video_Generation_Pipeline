@@ -52,8 +52,85 @@
       "started_at": "2026-09-19T08:56:17.235933+00:00",
       "ended_at": "2026-09-19T08:56:20.886114+00:00",
       "artifact": "timing/OPENING_SOURCE_PLAN.json"
+    },
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:03:52.018001+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:03:52.106655+00:00",
+      "artifact": "assets/music"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:03:52.172599+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_source_plan",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:03:52.172873+00:00",
+      "ended_at": "2026-09-19T13:03:55.945738+00:00",
+      "artifact": "timing/OPENING_SOURCE_PLAN.json"
+    },
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:09:37.635010+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:09:37.705798+00:00",
+      "artifact": "assets/music"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:09:37.750929+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_source_plan",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:09:37.751291+00:00",
+      "ended_at": "2026-09-19T13:09:41.426006+00:00",
+      "artifact": "timing/OPENING_SOURCE_PLAN.json"
+    },
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:12:17.889152+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:12:17.959047+00:00",
+      "artifact": "assets/music"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:12:18.016150+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_source_plan",
+      "status": "REUSED",
+      "started_at": "2026-09-19T13:12:18.016491+00:00",
+      "ended_at": "2026-09-19T13:12:22.319907+00:00",
+      "artifact": "timing/OPENING_SOURCE_PLAN.json"
     }
   ],
-  "status": "REUSED",
-  "updated_at": "2026-09-19T08:56:20.886114+00:00"
+  "status": "FAILED",
+  "updated_at": "2026-09-19T13:12:22.319907+00:00",
+  "failed_at": "2026-09-19T13:14:10.716789+00:00",
+  "error": "CalledProcessError: Command '['/opt/YT_Video_Generation_Pipeline/.venv/bin/python', '-u', 'scripts/run_q_station_pipeline.py', '--topic', 'What If a Human Grew to the Size of an Elephant?', '--video-id', '044', '--content-project', 'q_station', '--creative-brief', '/opt/YT_Video_Generation_Pipeline/videos/044_what_if_a_human_grew_to_the_size_of_an_elephant/launch/CREATIVE_BRIEF.json', '--voice-profile', '/opt/YT_Video_Generation_Pipeline/videos/044_what_if_a_human_grew_to_the_size_of_an_elephant/voiceover/REQUESTED_VOICE_PROFILE.json', '--aspect-ratio', '9:16', '--use-opening-source-plan', '--gemini-model', 'nano_banana_2', '--image-qc-correction-policy', '0', '--flow-model', 'gemini_omni_1_1_flash', '--flow-resolution', '720p', '--opening-a-seconds', '8', '--opening-b-seconds', '4', '--world-style-policy', 'new', '--world-style-hint', 'Paper cut style', '--chatgpt-fallback-mode', 'auto', '--min-duration-seconds', '30', '--max-duration-seconds', '44', '--opening-speed-tolerance', '0.2'"
 }

@@ -1,0 +1,101 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "52841169d720a876ad91c89e2a1c4d31d2e1e3eda7364d9bf5c2911acda07032",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "b4e3b5ba-0771-4ddb-ae07-07937c6cf6a6",
+  "requested_model": "chatgpt_image",
+  "actual_model_label": null,
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "chatgpt",
+    "requested_model": null,
+    "actual_model_label": null,
+    "model_verified": false,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "9:16",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://chatgpt.com/g/g-p-6aad6365c6a4819189a5a35f28e021fc-ordak/c/6aaea7de-c5b8-83eb-9556-934c33117978",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "artifact_source=download",
+      "chat_scope=project",
+      "image=b4e3b5ba-0771-4ddb-ae07-07937c6cf6a6_output_1.png sha256=b567fbff34609bfe375f47c2843b6877c278308bb548e6f84f80eaefc31296a7"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "52841169d720a876ad91c89e2a1c4d31d2e1e3eda7364d9bf5c2911acda07032",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "chatgpt",
+        "job_id": "b4e3b5ba-0771-4ddb-ae07-07937c6cf6a6",
+        "prompt_sha256": "aabc1512633adf7604f3768ad18f522149438af4e1f97f9632d294381404e3d1",
+        "output_sha256": "b567fbff34609bfe375f47c2843b6877c278308bb548e6f84f80eaefc31296a7",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/references/world_style_anchor.png",
+      "sha256": "b9308681292de6c251884bd2f05fb8eec6ec72588d5b108bff2e16dfef326aa4"
+    }
+  ],
+  "prompt_sha256": "aabc1512633adf7604f3768ad18f522149438af4e1f97f9632d294381404e3d1",
+  "prompt": "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and occupies about 82–88% of the canvas height with narrow even margins. The entire cover and page block are visible. The surrounding tabletop/paper/ground uses ONLY the supplied episode style reference's texture, palette and frame language; it must not borrow the book-cover subject matter. The cover itself is uniquely and richly crafted for this topic: What If a Human Grew to the Size of an Elephant??. The authoritative COVER DESIGN BRIEF is: Closed illustrated book cover with a deep blue linen texture features an oversized human silhouette, a miniature human silhouette, an elephant footprint imprint, and copper heat-wave bands as motifs. The large silhouette dominates the center, the smaller figure sits beside it, the footprint anchors the lower edge, and the heat-wave bands curve around both forms to show altered body heat management after extreme scaling. Render every named motif as visible cover craftsmanship — central emblem, border, binding, corners or page edges — rather than as tiny incidental decoration. Use ONLY motifs justified by that brief; do not substitute generic book imagery. No title, letters, numbers, readable marks, logos or real-person likeness. This is a closed cover only: no open pages, no two-page spread, no hands, no people, no UI, no photorealism and no 3D.",
+  "output_path": "references/book_cover_frame.png",
+  "output_sha256": "b567fbff34609bfe375f47c2843b6877c278308bb548e6f84f80eaefc31296a7",
+  "output_dimensions": [
+    941,
+    1672
+  ],
+  "elapsed_seconds": 135.376,
+  "completed_at": "2026-09-19T15:20:54Z"
+}

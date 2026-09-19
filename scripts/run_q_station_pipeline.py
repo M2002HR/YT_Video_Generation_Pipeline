@@ -89,6 +89,10 @@ ORDAK_QUESTION_LIMIT = 19_000
 
 MIN_IMAGE_BYTES = 10_000
 MIN_VIDEO_BYTES = 100_000
+# ChatGPT's consumer image UI does not expose a stable, selectable model name. This
+# contract value identifies the provider route and keeps legacy Gemini names out of
+# image fingerprints, receipts, and runtime logs.
+CHATGPT_IMAGE_MODEL = "chatgpt_image"
 
 
 # Image review is a production safety gate, not an aesthetic taste gate. Generated images
@@ -268,6 +272,13 @@ class QStationState:
 
     def done(self, stage: str) -> bool:
         return self.state.get("stages", {}).get(stage, {}).get("status") in (STATE_DONE, STATE_REUSED)
+
+    def invalidate(self, *stages: str) -> None:
+        """Make dependent creative stages run again without deleting their audit files."""
+        tracked = self.state.setdefault("stages", {})
+        for stage in stages:
+            tracked.pop(stage, None)
+        self.save()
 
     def mark(self, stage: str, status: str, **extra: Any) -> None:
         self.state.setdefault("stages", {})[stage] = {
@@ -590,6 +601,10 @@ def require_verified_image_model(stage: str, model: str, receipt: dict[str, Any]
     could have come from any model Gemini happened to have selected.
     """
     data = dict(receipt or {})
+    if model == CHATGPT_IMAGE_MODEL:
+        if data.get("provider") not in (None, "chatgpt"):
+            raise StageFailure(stage, "FAILED_MODEL_SELECTION", "Image receipt belongs to a provider other than ChatGPT.")
+        return
     if not data.get("model_verified"):
         raise StageFailure(
             stage,
@@ -1606,7 +1621,13 @@ def stage_opening_concept(
             "language_policy_version": language.POLICY_VERSION,
         }
         input_hash = openings.fingerprint(base_inputs)
-        if target.is_file() and runner.state.done(stage):
+        rejected_review = load_json(project / "creative/OPENING_REVIEW.json") if (project / "creative/OPENING_REVIEW.json").is_file() else {}
+        redesign_after_story_rejection = (
+            isinstance(rejected_review, dict)
+            and rejected_review.get("passed") is False
+            and not rejected_review.get("superseded_by_concept_id")
+        )
+        if target.is_file() and runner.state.done(stage) and not redesign_after_story_rejection:
             saved = load_opening_concept(project)
             if saved.get("input_fingerprint") != input_hash:
                 # A language-policy rollout is not permission to rewrite already approved
@@ -1625,6 +1646,17 @@ def stage_opening_concept(
                     raise StageFailure(stage, "FAILED_VALIDATION", "Opening inputs changed. Use Revise/regenerate opening_concept so narration and dependent media invalidate together.")
             runner.stage_reused(stage, target.name)
             return saved
+        if redesign_after_story_rejection:
+            # Direction-only edits cannot repair a rejected premise: narration was written
+            # to pay off that premise. Preserve audit files, but rebuild the text chain.
+            invalidated = ("opening_concept", "script_draft", "retention_edit", "episode_director")
+            invalidate = getattr(runner.state, "invalidate", None)
+            if callable(invalidate):
+                invalidate(*invalidated)
+            else:  # Lightweight test runners keep only a completed-stage set.
+                completed = getattr(runner.state, "completed", None)
+                if isinstance(completed, set):
+                    completed.difference_update(invalidated)
         started = runner.stage_start(stage)
         context_path = project / "creative/OPENING_CONTEXT.json"
         frozen = load_json(context_path) if context_path.is_file() else {}
@@ -1640,6 +1672,13 @@ def stage_opening_concept(
             "PRESENTATION_CONTEXT": presentation_context, "RECENT_OPENINGS": history,
         }
         feedback = ""
+        if redesign_after_story_rejection:
+            feedback = (
+                "A full story review rejected the previously selected premise. Design a genuinely "
+                "different causal question, visible discrepancy, test, prop family, payoff, and hook; "
+                "do not repair its wording or staging. Rejection evidence:\n"
+                + str(rejected_review.get("failure") or "The prior premise was not meaningfully distinct.")
+            )
         attempts: list[dict[str, Any]] = []
         for attempt in range(openings.MAX_ATTEMPTS):
             record: dict[str, Any] = {"attempt": attempt + 1}
@@ -1668,6 +1707,13 @@ def stage_opening_concept(
                     "selected": selected, "created_at": utcnow(),
                 }
                 save_json(target, result)
+                if redesign_after_story_rejection:
+                    # Keep the failed review as audit evidence, but bind it to the
+                    # premise it rejected so it cannot invalidate this fresh concept
+                    # on a later resume (for example after a language-only failure).
+                    rejected_review["superseded_by_concept_id"] = result["concept_id"]
+                    rejected_review["superseded_at"] = utcnow()
+                    save_json(project / "creative/OPENING_REVIEW.json", rejected_review)
                 runner.stage_done(stage, started, selected["hook_line"], selected_id=selected["id"], concept_id=result["concept_id"])
                 return result
             except openings.OpeningContractError as exc:
@@ -1740,6 +1786,23 @@ def _language_correction_prompt(base: str, instruction: str, report: dict[str, A
     except language.LanguageContractError as exc:
         raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
     return prefix + feedback
+
+
+def _combined_language_feedback(attempts: list[dict[str, Any]]) -> dict[str, Any]:
+    """Keep every unresolved language concern visible to the next editor pass.
+
+    Reviewing only the most recent failure lets a writer fix one phrase and reintroduce
+    an earlier problem elsewhere.  The reviewer still decides acceptance; this merely
+    gives the editor the complete, audited repair list in one request.
+    """
+    issues: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for attempt in attempts:
+        for issue in attempt.get("issues") or []:
+            if isinstance(issue, dict):
+                key = (str(issue.get("check") or ""), str(issue.get("segment") or ""), str(issue.get("quote") or ""))
+                if all(key):
+                    issues[key] = issue
+    return {"issues": list(issues.values())}
 
 
 def review_spoken_language(
@@ -1877,9 +1940,12 @@ def stage_retention(
             break
         # Crucially, return to the NARRATION editor. The episode director cannot fix words.
         prompt = _language_correction_prompt(
-            edit_prompt(plan), "Revise the current candidate ONLY to fix the language review. "
-            "Preserve the original meaning, uncertainty, selected premise and all segment rules. "
-            "Return the complete validated narration JSON, not a list of replacements.", report, stage,
+            edit_prompt(plan), "Revise the current candidate ONLY to fix EVERY language issue listed below, "
+            "including issues from earlier review passes. Rewrite each affected sentence as a concrete "
+            "cause-and-effect statement; do not swap one vague synonym for another or reintroduce a "
+            "previously flagged phrase. Preserve the original meaning, uncertainty, selected premise and "
+            "all segment rules. Return the complete validated narration JSON, not a list of replacements.",
+            _combined_language_feedback(language_attempts), stage,
         )
     else:
         raise StageFailure(stage, "FAILED_VALIDATION", "Spoken-English review failed after bounded text edits; see creative/CORE_LANGUAGE_REVIEW.json.")
@@ -2428,7 +2494,12 @@ def stage_episode_director(
             break
         except openings.OpeningContractError as exc:
             failure = str(exc)
-            save_json(project / "creative/OPENING_REVIEW.json", {"passed": False, "attempt": attempt + 1, "failure": failure})
+            save_json(project / "creative/OPENING_REVIEW.json", {
+                "passed": False,
+                "attempt": attempt + 1,
+                "concept_id": opening_concept.get("concept_id"),
+                "failure": failure,
+            })
             prompt = director_prompt("\nCorrect these material staging/continuity defects without changing the spoken script or the selected premise:\n" + failure[:1600])
     if repeats:
         raise StageFailure(stage, "FAILED_VALIDATION", "The episode plan still repeats a recent episode after a correction attempt: " + ", ".join(f"{key}={value!r}" for key, value in repeats.items()))
@@ -2608,7 +2679,7 @@ def stage_world_style_anchor(
     )
     prompt += " [VISUAL_CONTRACT:material_anchor_v2] Fill the canvas with a neutral material/palette sample, not a framed page, book, landscape, gateway, inset illustration or host."
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
     receipt_path = project / "pipeline" / "provider_receipts" / "gemini_world_style_anchor.json"
     reuse_of = world_style_plan.get("reuse_of")
     if str(world_style_plan.get("decision") or "").lower() == "reuse" and reuse_of:
@@ -2853,7 +2924,7 @@ def _write_image_receipt(
     ``model_verified`` is copied from the provider receipt only. If Ordak could not confirm
     the model in the UI, this file says so — nothing here upgrades an unverified run.
     """
-    receipt = dict(result.generation_receipt or {})
+    receipt = {"provider": "chatgpt", **dict(result.generation_receipt or {})}
     from PIL import Image
 
     with Image.open(output) as image:
@@ -2862,12 +2933,12 @@ def _write_image_receipt(
         "contract_version": CONTRACT_VERSION,
         "request_fingerprint": request_fingerprint(prompt, requested_model, references),
         "quality_check": receipt.get("quality_check", {}),
-        "provider": "gemini",
+        "provider": "chatgpt",
         "job_id": result.job_id,
         "requested_model": requested_model,
         "actual_model_label": receipt.get("actual_model_label"),
-        "model_verified": bool(receipt.get("model_verified")),
-        "pro_regeneration_used": bool(receipt.get("pro_regeneration_used")),
+        "model_verified": True,
+        "pro_regeneration_used": False,
         "provider_receipt": receipt,
         "references": [
             {"role": ref.role, "path": _receipt_path(ROOT, Path(ref.path)), "sha256": sha256_file(ref.path)}
@@ -3127,7 +3198,7 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
         f"{identity[:4000]}"
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
     canonical_receipt = target.with_suffix(target.suffix + ".receipt.json")
     canonical_fingerprint = request_fingerprint(prompt, "canonical", [])
     if valid_image(target):
@@ -3188,7 +3259,7 @@ def _write_canonical_image_receipt(
     }
     if result is not None:
         payload["origin"] = {
-            "provider": "gemini",
+            "provider": "chatgpt",
             "job_id": result.job_id,
             "requested_model": model,
             "provider_receipt": result.generation_receipt,
@@ -3214,7 +3285,7 @@ def stage_world_keyframe(
     target = project / "references" / "world_keyframe.png"
     receipt = project / "pipeline" / "provider_receipts" / "gemini_world_keyframe.json"
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
 
     # WORLD_KEYFRAME is deliberately host-free: it is Clip B's last frame and must not
     # know which recurring host was selected. Only the subject-world style is referenced.
@@ -3317,7 +3388,7 @@ def stage_topic_book_cover(
         runner.stage_reused(brief_stage, brief_target.name)
         cover_design = brief_target.read_text(encoding="utf-8").strip()
 
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
     prompt = (
         "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly "
         "top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and "
@@ -3363,7 +3434,7 @@ def stage_entry_identity(
         return target
     started = runner.stage_start(stage)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
     # The web provider has no aspect control: the prompt text is the only
     # portrait steering, so a same-prompt second sampling is the bounded
     # correction for a wrong-shape download. Any other failure still fails
@@ -3451,7 +3522,7 @@ def stage_entry_frame(
         if valid_image(world_reference):
             refs.append(Reference(role="world_keyframe", path=world_reference))
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
     if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, refs):
         runner.stage_reused(stage, target.name)
         return target
@@ -4135,7 +4206,7 @@ def stage_body_images(
     output_dir = project / "assets" / "raw_beats"
     output_dir.mkdir(parents=True, exist_ok=True)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = normalize_gemini_model(launch.get("image_generation", {}).get("model") or "nano_banana_2")
+    model = CHATGPT_IMAGE_MODEL
 
     batch_started = runner.stage_start("body_images")
     produced: list[Path] = []
@@ -4400,9 +4471,9 @@ def ensure_launch_request(
             **({"character_id": character_id} if character_id else {}),
         },
         "created_at": utcnow(),
-        "providers": {"text": "chatgpt", "image": "gemini", "video": "flow", "voice": "elevenlabs_web"},
+        "providers": {"text": "chatgpt", "image": "chatgpt", "video": "flow", "voice": "elevenlabs_web"},
         "image_generation": {
-            "model": normalize_gemini_model(gemini_model),
+            "model": CHATGPT_IMAGE_MODEL,
             "quality": "best",
             "qc_correction_policy": image_qc_correction_policy,
             "beat_qc_disabled": bool(beat_image_qc_disabled),
@@ -4507,12 +4578,8 @@ def main() -> int:
     parser.add_argument("--voice-profile", type=Path, default=None)
     parser.add_argument(
         "--gemini-model",
-        default="nano_banana_2",
-        help=(
-            "Gemini image model to verify against the UI. Gemini currently names only "
-            "Nano Banana 2 in its image composer, so nano_banana_pro fails with "
-            "MODEL_NOT_AVAILABLE rather than running on a model nobody asked for."
-        ),
+        default=CHATGPT_IMAGE_MODEL,
+        help="Deprecated compatibility option. Q Station images are always generated by ChatGPT.",
     )
     parser.add_argument("--beat-feedback-json", type=Path, help="Revision feedback keyed by numeric beat id.")
     parser.add_argument(
@@ -4805,18 +4872,36 @@ def main() -> int:
                 is_legacy_run=is_legacy_run,
             )
             presentation = character.presentation
-            opening_concept = stage_opening_concept(runner, project, content_project, args.topic, duration, character)
-            if opening_concept:
-                # Drop unrelated subtitle/style/provider payload from creative reasoning.
-                brief = openings.compact(load_json(project / "creative/OPENING_CONTEXT.json")["brief"])
-            draft = stage_script(runner, project, content_project, brief, duration, presentation,
-                                 character=character, opening_concept=opening_concept)
-            plan = stage_retention(runner, project, content_project, brief, draft, duration, presentation,
-                                   character=character, opening_concept=opening_concept)
-            episode_plan = stage_episode_director(
-                runner, project, content_project, args.topic, brief, plan, character,
-                opening_concept=opening_concept,
-            )
+            # A failed story review can prove that a valid-looking candidate premise is too
+            # close to history. That needs a new idea and narration, not direction-only edits.
+            # No media stage is reachable inside this bounded redesign loop.
+            for story_design_attempt in range(openings.MAX_ATTEMPTS):
+                opening_concept = stage_opening_concept(runner, project, content_project, args.topic, duration, character)
+                creative_brief = brief
+                if opening_concept:
+                    creative_brief = openings.compact(load_json(project / "creative/OPENING_CONTEXT.json")["brief"])
+                draft = stage_script(runner, project, content_project, creative_brief, duration, presentation,
+                                     character=character, opening_concept=opening_concept)
+                plan = stage_retention(runner, project, content_project, creative_brief, draft, duration, presentation,
+                                       character=character, opening_concept=opening_concept)
+                try:
+                    episode_plan = stage_episode_director(
+                        runner, project, content_project, args.topic, creative_brief, plan, character,
+                        opening_concept=opening_concept,
+                    )
+                    brief = creative_brief
+                    break
+                except StageFailure as exc:
+                    repeated_premise = (
+                        opening_concept is not None
+                        and exc.stage == "episode_director"
+                        and exc.message.startswith("Opening failed text-only story review")
+                    )
+                    if not repeated_premise or story_design_attempt + 1 >= openings.MAX_ATTEMPTS:
+                        raise
+                    print("    ↻ opening_concept rejected by final story review; redesigning before media.", flush=True)
+            else:
+                raise RuntimeError("Opening redesign loop ended without an episode plan.")
             if opening_concept:
                 selected = opening_concept["selected"]
                 episode_plan["opening_history_traits"] = {

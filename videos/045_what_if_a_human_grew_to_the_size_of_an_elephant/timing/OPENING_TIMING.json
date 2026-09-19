@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 49.45,
+  "spark_start": 0.02,
+  "spark_end": 3.48,
+  "spark_duration": 3.46,
+  "transition_start": 4.0,
+  "transition_end": 7.3,
+  "transition_duration": 3.3,
+  "entry_segment": "book_transition",
+  "clip_a_target_seconds": 3.48,
+  "clip_b_target_seconds": 3.82,
+  "body_start": 8.06,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If a human grew huge, would their body cool the same?",
+      "speech_start": 0.02,
+      "speech_end": 3.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "Bigger size can change how a body loses heat.",
+      "speech_start": 4.0,
+      "speech_end": 7.3,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Two body outlines show different heat loss.",
+      "speech_start": 8.06,
+      "speech_end": 10.8,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "Small and giant models lose warmth at different speeds.",
+      "speech_start": 10.7,
+      "speech_end": 15.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "The giant model has more outside area and loses heat.",
+      "speech_start": 15.6,
+      "speech_end": 19.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "The inner part of the body grows differently from outside area.",
+      "speech_start": 19.7,
+      "speech_end": 23.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "The square-cube rule explains size changes outside area and volume.",
+      "speech_start": 23.94,
+      "speech_end": 29.84,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Volume means the space inside a body.",
+      "speech_start": 29.84,
+      "speech_end": 33.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "An elephant-sized human may struggle with body heat.",
+      "speech_start": 34.22,
+      "speech_end": 37.62,
+      "match_confidence": 0.778
+    },
+    {
+      "segment": "body_08",
+      "narration": "The models show bigger bodies change beyond height.",
+      "speech_start": 37.62,
+      "speech_end": 40.86,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "A giant human is not just a larger copy.",
+      "speech_start": 40.86,
+      "speech_end": 44.16,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Bodies need new solutions.",
+      "speech_start": 44.16,
+      "speech_end": 46.72,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Suggest next topic in comments.",
+      "speech_start": 46.72,
+      "speech_end": 49.42,
+      "match_confidence": 1.0
+    }
+  ]
+}

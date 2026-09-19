@@ -196,6 +196,19 @@ def test_failed_language_edits_are_bounded_and_do_not_publish_core(project, char
     assert json.loads((project / language.REPORT_PATHS['core']).read_text())['passed'] is False
 
 
+def test_later_language_repairs_keep_earlier_feedback_visible(project, character):
+    first = replace_body(narration(character.presentation.segment_key), 'Chosen privacy differs from unexpected exposure.')
+    second = replace_body(first, 'Being seen without permission can feel uncomfortable.')
+    final = replace_body(second, 'Being seen when you want privacy can feel uncomfortable.')
+    first_issue = issue('body_01', first['body'][0], suggestion=second['body'][0])
+    second_issue = issue('body_01', second['body'][0], suggestion=final['body'][0])
+    spy = Spy([first, first_issue, second, second_issue, final, passed()])
+    retain(spy, project, character, first)
+    correction = spy.prompts[4][1]
+    assert first['body'][0] in correction
+    assert second['body'][0] in correction
+
+
 def test_malformed_review_retries_checker_not_script(project, character):
     plan = narration(character.presentation.segment_key)
     spy = Spy([plan, {'passed': True}, passed()])

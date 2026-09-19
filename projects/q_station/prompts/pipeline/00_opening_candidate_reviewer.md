@@ -20,6 +20,9 @@ information during entry. Unfamiliar props alone are not an understandable discr
 Compare meaning, not strings, with history AND the other candidates. Sorting paraphrases, a new
 workshop, or a changed camera do not establish novelty. Shared host traits/book/orb are not defects.
 A single shared action family is allowed when the discrepancy and payoff materially differ.
+When a candidate revisits a broad question already present in history, reject it unless its causal
+sub-question, first test, evidence/prop family, factual mechanism, and payoff are all materially
+different. Do not score a renamed version of the previous demonstration as novel.
 Do not require a returning-host ending: the configured subject world can pay off the hook.
 
 Return raw JSON: {"reviews":[{"id":"c1","scores":{"topic_fit":0,"visible_hook":0,

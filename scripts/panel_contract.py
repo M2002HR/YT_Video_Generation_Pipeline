@@ -192,14 +192,14 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("character_id", "Manual character", "select", default="", options=[{"value": "", "label": "Choose a character"}]),
             _field("hero_presence_mode", "Hero presence", "select", default="auto", options=select([("auto", "Auto"), ("opener_only", "Opener only"), ("limited_in_world", "Limited in world"), ("in_world", "In world")])),
         ]},
-        {"id": "visual", "title": "World style & still images", "description": "World identity, style selection and Gemini still generation.", "projects": ["q_station"], "fields": [
+        {"id": "visual", "title": "World style & still images", "description": "World identity, style selection and ChatGPT still generation.", "projects": ["q_station"], "fields": [
             _field("world_style_id", "World style", "select", default="", options=[{"value": "", "label": "Auto — let the director decide"}] + [{"value": value, "label": value} for value in styles]),
             _field("world_style_policy", "Style policy", "select", default="auto", options=select([("auto", "Auto — reuse or create"), ("reuse", "Reuse an existing style"), ("new", "Create a new style")])),
             # Rendered by the Studio's dedicated upload control.  Keeping its opaque
             # token in the typed contract means launch and revision use one validator.
             _field("world_style_reference_id", "Style reference upload", maxLength=96, placeholder=""),
             _field("world_style_hint", "Style hint", maxLength=500, placeholder="charcoal, woodcut, ink wash…"),
-            _field("gemini_image_model", "Gemini image model", "select", default="nano_banana_2", options=select([("nano_banana_2", "Nano Banana 2"), ("nano_banana_pro", "Nano Banana Pro (availability required)")])),
+            _field("image_provider", "Image provider", "readonly", default="ChatGPT · project chat · Extra High"),
             _field(
                 "beat_image_qc_disabled", "Disable ChatGPT QC for all images", "toggle", default=False,
                 help="Skips visual review entirely for every generated image (world style, keyframe, book art and body beats), with no exceptions: images are never uploaded to ChatGPT and are accepted as rendered.",
@@ -294,9 +294,9 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
         ]},
         {"id": "providers", "title": "Locked provider contract", "description": "Fixed by Q Station project design.", "projects": ["q_station"], "collapsed": True, "fields": [
             _field("locked_text", "Text", "readonly", default="ChatGPT · via Ordak"),
-            _field("locked_image", "Image", "readonly", default="Gemini · via Ordak"),
+            _field("locked_image", "Image", "readonly", default="ChatGPT · project chat · Extra High"),
             _field("locked_video", "Video", "readonly", default="Google Flow · via Ordak"),
-            _field("chatgpt_fallback_auto", "Allow Gemini for a failed text request", "toggle", default=False, help="Recovery policy for text stages only. Off pauses for operator approval; it never changes image or video providers."),
+            _field("chatgpt_fallback_auto", "Gemini fallback", "readonly", default="Disabled — no fallback for text or images"),
         ]},
     ]
     order = (

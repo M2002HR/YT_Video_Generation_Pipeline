@@ -1,0 +1,182 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "core",
+  "content_fingerprint": "7d2816c4cceb5ba0df3b7474c11cc8e4f1e44182d43fdaa100e68598eaa3394d",
+  "reference_fingerprint": "8c0e79ccdfde28bed869d7c1027ace7fa6e4f1538e8d89bb6424a4a4ff97e0b4",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "4e8a7b963b4f3e3f9336c81b87bc8a017ffe899babcd76ed5143f4b3521e2909",
+  "input_fingerprint": "34cf1cbddaca3e67661ebf0275b0d4b2baeb7401d333de49e69497784130f87a",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "opening_question_spark": "If a human grew huge, would their body cool like normal?",
+        "book_transition": "The size clue reveals why a bigger body may lose heat differently.",
+        "body_01": "Two body outlines stand beside temperature markers.",
+        "body_02": "The giant loses warmth from more outside area.",
+        "body_03": "Its inside grows differently.",
+        "body_04": "Scientists call this the square-cube rule.",
+        "body_05": "The rule shows size changes body proportions, not only height.",
+        "body_06": "An elephant-sized human may struggle with body heat.",
+        "body_07": "Staying cool may require a different solution.",
+        "body_08": "The scholar compares the models and spots the mismatch.",
+        "body_09": "Bigger bodies are not simple copies of smaller ones.",
+        "optional_closing": "The models reveal a surprising size challenge."
+      },
+      "checks": {
+        "everyday_words": false,
+        "clear_sentence_meaning": false,
+        "terms_explained": false,
+        "easy_to_follow_once": false,
+        "meaning_preserved": false
+      },
+      "issues": [
+        {
+          "check": "everyday_words",
+          "segment": "body_08",
+          "quote": "The scholar compares the models and spots the mismatch.",
+          "problem": "\"Scholar\" and \"mismatch\" are less common words for many international English learners and are not needed to understand the body-size idea.",
+          "suggestion": "Use simpler everyday words for the person and the difference found in the models."
+        },
+        {
+          "check": "clear_sentence_meaning",
+          "segment": "body_03",
+          "quote": "Its inside grows differently.",
+          "problem": "A listener may not know what \"inside\" means here or what it grows differently from.",
+          "suggestion": "Make the comparison clear by saying the inner part of the body grows in a different way from the outside area."
+        },
+        {
+          "check": "terms_explained",
+          "segment": "body_04",
+          "quote": "Scientists call this the square-cube rule.",
+          "problem": "The technical name is given, but the idea is not clearly explained at the same point in the narration.",
+          "suggestion": "Add a plain explanation near the term that connects bigger size with different changes in surface area and inside volume."
+        },
+        {
+          "check": "easy_to_follow_once",
+          "segment": "body_08",
+          "quote": "The scholar compares the models and spots the mismatch.",
+          "problem": "A new person appears without context, and \"the mismatch\" is not clear from the previous lines.",
+          "suggestion": "Keep the focus on what the models show and name the difference in simple words."
+        },
+        {
+          "check": "meaning_preserved",
+          "segment": "body_08",
+          "quote": "The scholar compares the models and spots the mismatch.",
+          "problem": "The reference says models reveal why bigger bodies change, but this sentence adds a scholar and a specific finding that were not part of the stated meaning.",
+          "suggestion": "Describe what the models show instead of adding a new character or claim."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "segments": {
+        "opening_question_spark": "If a human grew huge, would their body cool the same way?",
+        "book_transition": "A clue shows bigger bodies lose heat differently.",
+        "body_01": "Two body outlines show temperature changes.",
+        "body_02": "Small and giant models lose warmth differently.",
+        "body_03": "The giant has more outside area and loses heat.",
+        "body_04": "Its inner body grows differently from its outside area.",
+        "body_05": "Scientists call this the square-cube rule: size changes area and body space differently.",
+        "body_06": "An elephant-sized human may struggle with body heat.",
+        "body_07": "Staying cool may require a different way.",
+        "body_08": "The models show a giant body is not a copy.",
+        "body_09": "Bigger bodies need different ways to manage heat.",
+        "optional_closing": "Size changes more than height."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": false,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [
+        {
+          "check": "clear_sentence_meaning",
+          "segment": "body_04",
+          "quote": "Its inner body grows differently from its outside area.",
+          "problem": "The comparison is not fully clear on first listen. A listener may not know that the sentence compares the amount of body inside with the amount of outside area.",
+          "suggestion": "Make the two compared parts clearer by saying what grows differently, such as the inside of the body and the outside area."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 3,
+      "segments": {
+        "opening_question_spark": "If a human grew huge, would their body cool the same?",
+        "book_transition": "Bigger bodies can lose heat differently because size changes.",
+        "body_01": "Two outlines show different warmth loss.",
+        "body_02": "Small and giant models lose warmth at different speeds.",
+        "body_03": "The giant model has more outside area and loses heat.",
+        "body_04": "The inside part of the body grows differently from outside area.",
+        "body_05": "The square-cube rule means size changes outside area and volume differently.",
+        "body_06": "An elephant-sized human may struggle with body heat.",
+        "body_07": "Staying cool may need a different way.",
+        "body_08": "Models show bigger bodies change beyond height.",
+        "body_09": "A giant body is not just a larger copy.",
+        "optional_closing": "Bigger bodies need new heat solutions"
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": false,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [
+        {
+          "check": "terms_explained",
+          "segment": "body_05",
+          "quote": "The square-cube rule means size changes outside area and volume differently.",
+          "problem": "The term \"volume\" may be unfamiliar to some international viewers, and the sentence does not explain that it means the space inside a body.",
+          "suggestion": "Add a simple explanation of volume, such as saying it means the amount of space inside the body."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 4,
+      "segments": {
+        "opening_question_spark": "If a human grew huge, would their body cool the same?",
+        "book_transition": "Bigger size can change how a body loses heat.",
+        "body_01": "Two body outlines show different heat loss.",
+        "body_02": "Small and giant models lose warmth at different speeds.",
+        "body_03": "The giant model has more outside area and loses heat.",
+        "body_04": "The inner part of the body grows differently from outside area.",
+        "body_05": "The square-cube rule explains size changes outside area and volume.",
+        "body_06": "Volume means the space inside a body.",
+        "body_07": "An elephant-sized human may struggle with body heat.",
+        "body_08": "The models show bigger bodies change beyond height.",
+        "body_09": "A giant human is not just a larger copy.",
+        "optional_closing": "Bodies need new solutions."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-19T14:54:53Z"
+}

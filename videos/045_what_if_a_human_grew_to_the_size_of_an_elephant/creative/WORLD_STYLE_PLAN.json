@@ -1,0 +1,33 @@
+{
+  "style_id": "thermal_scale_papercut_anatomy_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "paper cut",
+  "secondary_treatment": null,
+  "texture_family": "layered matte cardstock with soft fibrous paper grain, clean hand-cut edges, subtle raised layers and gentle shadow depth between cut forms",
+  "palette_summary": "cool cyan and pale blue atmospheric tones, warm ivory anatomy forms, muted slate and lavender shadows, soft amber heat cues, and restrained coral accents for biological stress signals",
+  "line_treatment": "minimal cut-edge silhouettes with occasional fine paper-layer contours and embossed-like shape definition rather than drawn outlines",
+  "lighting": "soft diffused studio-like illumination from above with gentle cast shadows revealing physical paper depth and scale relationships",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Topic-appropriate objects, scale and environment: human and elephant-scale body comparisons, heat-loss demonstrations, simplified anatomical cutaways, surface-area and volume concepts shown through physical layered forms without text labels",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reason": "A new paper cut style follows the operator preference while using the uploaded reference only for its soft layered material qualities, cool palette, and dimensional lighting. The style is designed for a scale-and-body-mechanics topic, making contrasting body sizes and internal-versus-external structures visually clear. It avoids recent texture-family repetition while staying close to the catalog's successful layered paper language.",
+  "subject_affinities": [
+    "human anatomy comparison",
+    "animal scale comparison",
+    "biological adaptation",
+    "physics visualization",
+    "surface area and volume concepts"
+  ],
+  "operator_style_reference": {
+    "path": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/style_references/style_reference.png",
+    "sha256": "95cb475cab4ec2dfd7296c2182d6358767f3f6e07eb6eeb654665eab59e0556b",
+    "role": "operator_style_reference"
+  },
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

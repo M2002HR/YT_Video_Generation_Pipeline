@@ -176,6 +176,17 @@
       "path": "028_structural_scale_layered_papercut_001",
       "anchor": "028_structural_scale_layered_papercut_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "thermal_scale_papercut_anatomy_001",
+      "display_name": "Thermal Scale Papercut Anatomy 001",
+      "medium_family": "paper cut",
+      "texture_family": "layered matte cardstock with soft fibrous paper grain, clean hand-cut edges, subtle raised layers and gentle shadow depth between cut forms",
+      "palette_summary": "cool cyan and pale blue atmospheric tones, warm ivory anatomy forms, muted slate and lavender shadows, soft amber heat cues, and restrained coral accents for biological stress signals",
+      "status": "ready",
+      "path": "029_thermal_scale_papercut_anatomy_001",
+      "anchor": "029_thermal_scale_papercut_anatomy_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

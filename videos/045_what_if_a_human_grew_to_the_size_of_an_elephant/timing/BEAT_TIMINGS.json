@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 49.45,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If a human grew huge, would their body cool the same? Bigger size can change how a body loses heat. Two body outlines show different heat loss. Small and giant models lose warmth at different speeds. The giant model has more outside area and loses heat. The inner part of the body grows differently from outside area. The square cube rule explains size changes outside area and volume. Volume means the space inside a body. An elephant-sized human may struggle with body heat. The models show bigger bodies change beyond height. A giant human is not just a larger copy. Bodies need new solutions. Suggest next topic in comments.",
+  "word_count": 109,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Two body outlines show different heat loss.",
+      "speech_start": 8.06,
+      "speech_end": 10.8,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 10.7,
+      "display_duration": 10.7
+    },
+    {
+      "beat_id": 2,
+      "narration": "Small and giant models lose warmth at different speeds.",
+      "speech_start": 10.7,
+      "speech_end": 15.6,
+      "match_confidence": 1.0,
+      "display_start": 10.7,
+      "display_end": 15.6,
+      "display_duration": 4.9
+    },
+    {
+      "beat_id": 3,
+      "narration": "The giant model has more outside area and loses heat.",
+      "speech_start": 15.6,
+      "speech_end": 19.84,
+      "match_confidence": 1.0,
+      "display_start": 15.6,
+      "display_end": 19.7,
+      "display_duration": 4.1
+    },
+    {
+      "beat_id": 4,
+      "narration": "The inner part of the body grows differently from outside area.",
+      "speech_start": 19.7,
+      "speech_end": 23.72,
+      "match_confidence": 1.0,
+      "display_start": 19.7,
+      "display_end": 23.94,
+      "display_duration": 4.24
+    },
+    {
+      "beat_id": 5,
+      "narration": "The square-cube rule explains size changes outside area and volume.",
+      "speech_start": 23.94,
+      "speech_end": 29.84,
+      "match_confidence": 1.0,
+      "display_start": 23.94,
+      "display_end": 29.84,
+      "display_duration": 5.9
+    },
+    {
+      "beat_id": 6,
+      "narration": "Volume means the space inside a body.",
+      "speech_start": 29.84,
+      "speech_end": 33.42,
+      "match_confidence": 1.0,
+      "display_start": 29.84,
+      "display_end": 34.22,
+      "display_duration": 4.38
+    },
+    {
+      "beat_id": 7,
+      "narration": "An elephant-sized human may struggle with body heat.",
+      "speech_start": 34.22,
+      "speech_end": 37.62,
+      "match_confidence": 0.778,
+      "display_start": 34.22,
+      "display_end": 37.62,
+      "display_duration": 3.4
+    },
+    {
+      "beat_id": 8,
+      "narration": "The models show bigger bodies change beyond height.",
+      "speech_start": 37.62,
+      "speech_end": 40.86,
+      "match_confidence": 1.0,
+      "display_start": 37.62,
+      "display_end": 40.86,
+      "display_duration": 3.24
+    },
+    {
+      "beat_id": 9,
+      "narration": "A giant human is not just a larger copy.",
+      "speech_start": 40.86,
+      "speech_end": 44.16,
+      "match_confidence": 1.0,
+      "display_start": 40.86,
+      "display_end": 44.16,
+      "display_duration": 3.3
+    },
+    {
+      "beat_id": 10,
+      "narration": "Bodies need new solutions.",
+      "speech_start": 44.16,
+      "speech_end": 46.72,
+      "match_confidence": 1.0,
+      "display_start": 44.16,
+      "display_end": 49.45,
+      "display_duration": 5.29
+    }
+  ]
+}

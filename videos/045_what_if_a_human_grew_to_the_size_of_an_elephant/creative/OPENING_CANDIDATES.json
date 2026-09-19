@@ -1,0 +1,235 @@
+{
+  "input_fingerprint": "2c7366a73f6d2192bfa99b5e0fec69de90e16039450802c04380ba5d7cc9233e",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land",
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half",
+        "043",
+        "043_what_if_human_bones_were_made_of_metal",
+        "044"
+      ],
+      "writer_prompt_sha256": "987a165080f792fca113fe3b9c62c7418e8dc635d9b67433e7155f95d1be00eb",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If a human grew huge, would their body cool the same way?",
+            "viewer_expectation": "A bigger human would work like a normal human, only larger.",
+            "visible_contradiction": "Two body models lose warmth at different speeds.",
+            "frame_zero": "A small human model and an elephant-sized model sit beside matching warm plates.",
+            "character_action": "The scholar compares the models and checks the different surface sizes.",
+            "reaction": "He pauses, surprised that size changes more than height.",
+            "activity": "Comparing warmth loss between scaled body shapes.",
+            "location": "A quiet science display hall with body models.",
+            "topic_link": "Body size changes how much outside area a body has compared with its inside.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Hypothetical assumption: a human grows to the size of an elephant.",
+            "payoff": "A giant human may need a different way to manage body heat because scaling changes body proportions.",
+            "entry_variant": "discovered_book",
+            "entry_bridge": {
+              "a_end": "The scholar places the large model beside the small one.",
+              "b_start": "A closed topic-styled book rests beside the models.",
+              "reveal": "The book reveals a body-size comparison world.",
+              "world_entry": "Two giant and small body outlines stand beside temperature markers."
+            },
+            "novelty": {
+              "action_family": "heat comparison",
+              "tension_family": "size versus cooling",
+              "prop_family": "body models",
+              "reveal_family": "proportions change with growth"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If a human became elephant-sized, could the heart keep the same job?",
+            "viewer_expectation": "A larger body would use the same body systems in the same way.",
+            "visible_contradiction": "A small pump model and a giant body model do not match easily.",
+            "frame_zero": "A heart model sits beside body models with different sizes.",
+            "character_action": "The scholar compares the heart size with the whole body size.",
+            "reaction": "He notices the scale change creates a new question.",
+            "activity": "Testing how body parts relate to overall size.",
+            "location": "A simple anatomy exhibit room with scale models.",
+            "topic_link": "Growing a body changes the relationship between its parts.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Hypothetical assumption: a human grows to the size of an elephant.",
+            "payoff": "The body would need different proportions and systems because simply enlarging every part creates new limits.",
+            "entry_variant": "shelf_reveal",
+            "entry_bridge": {
+              "a_end": "The scholar slides the body models onto a display shelf.",
+              "b_start": "A closed topic-styled book is shown on the shelf.",
+              "reveal": "The book opens into a world of giant body systems.",
+              "world_entry": "Large body structures are compared without a host present."
+            },
+            "novelty": {
+              "action_family": "system comparison",
+              "tension_family": "parts versus whole",
+              "prop_family": "heart and body models",
+              "reveal_family": "growth changes relationships"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If humans grew elephant-sized, would their movements feel the same?",
+            "viewer_expectation": "A giant human would move like a normal person, just bigger.",
+            "visible_contradiction": "A scaled movement model takes much longer actions.",
+            "frame_zero": "Two human motion figures of different sizes take the same step.",
+            "character_action": "The scholar compares their movement paths and adjusts the models.",
+            "reaction": "He gives a small surprised look at the mismatch.",
+            "activity": "Comparing movement patterns across body sizes.",
+            "location": "An indoor motion study space with simple figures.",
+            "topic_link": "Changing size can change how body parts work together during movement.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Hypothetical assumption: a human grows to the size of an elephant.",
+            "payoff": "A giant human would not move exactly like a normal human because size changes body proportions and motion.",
+            "entry_variant": "object_transformation",
+            "entry_bridge": {
+              "a_end": "The scholar aligns the two movement figures.",
+              "b_start": "A closed topic-styled book appears with the figures.",
+              "reveal": "The book reveals a giant movement comparison.",
+              "world_entry": "Scaled human figures move across a plain subject-world scene."
+            },
+            "novelty": {
+              "action_family": "motion comparison",
+              "tension_family": "same shape versus new scale",
+              "prop_family": "movement figures",
+              "reveal_family": "scale changes motion"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land",
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half",
+        "043",
+        "043_what_if_human_bones_were_made_of_metal",
+        "044"
+      ],
+      "reviewer_prompt_sha256": "8b13388e7b43feb8b9ab415e0c27ac19fe298dc38c2d78e745e335926bcf9d70",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The visible mismatch between small and elephant-sized body models with different warmth loss can directly raise the question of whether a giant human would work the same way. It uses a different mechanism from the recent bone-support openings: heat exchange instead of strength. The book reveal fits naturally after the comparison, and the hypothetical claim stays appropriately framed."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 3,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [
+              "The heart and body-model mismatch may be harder to understand at first glance because viewers may not know what relationship is being tested without the narration."
+            ],
+            "reason": "The body-system question fits the topic and gives a useful explanation of scaling limits. However, the visible evidence is less immediate than a clear physical comparison, and it overlaps somewhat with the general idea that larger bodies need different proportions. The hook wording is understandable but 'keep the same job' is slightly less concrete."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 2,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [
+              "The concept of changed movement from size increase is close to previous scaling-change demonstrations and does not have a clearly separate causal mechanism."
+            ],
+            "reason": "The movement comparison is easy to show and the host behavior fits, but the core idea is broad: a giant human would not simply move like a normal human. Compared with the recent elephant-sized human support example, this needs a more distinct first test or mechanism to avoid feeling like another general scale-change demonstration."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The visible mismatch between small and elephant-sized body models with different warmth loss can directly raise the question of whether a giant human would work the same way. It uses a different mechanism from the recent bone-support openings: heat exchange instead of strength. The book reveal fits naturally after the comparison, and the hypothetical claim stays appropriately framed.",
+          "repetition_evidence": [],
+          "weighted_score": 89
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 3,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [
+            "The heart and body-model mismatch may be harder to understand at first glance because viewers may not know what relationship is being tested without the narration."
+          ],
+          "reason": "The body-system question fits the topic and gives a useful explanation of scaling limits. However, the visible evidence is less immediate than a clear physical comparison, and it overlaps somewhat with the general idea that larger bodies need different proportions. The hook wording is understandable but 'keep the same job' is slightly less concrete.",
+          "repetition_evidence": [],
+          "weighted_score": 82
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 2,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "The concept of changed movement from size increase is close to previous scaling-change demonstrations and does not have a clearly separate causal mechanism."
+          ],
+          "reason": "The movement comparison is easy to show and the host behavior fits, but the core idea is broad: a giant human would not simply move like a normal human. Compared with the recent elephant-sized human support example, this needs a more distinct first test or mechanism to avoid feeling like another general scale-change demonstration.",
+          "repetition_evidence": [],
+          "weighted_score": 82
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

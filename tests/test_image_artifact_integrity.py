@@ -524,26 +524,24 @@ def test_json_escalation_reasks_unrepairable_output_and_parses():
     assert 'not valid JSON' in calls[1][1]
 
 
-def test_json_persistent_malformation_falls_back_to_gemini_in_auto_mode():
+def test_json_persistent_malformation_never_falls_back_to_gemini():
     runner = object.__new__(qstation.Runner)
     runner.chatgpt_fallback_mode = 'auto'
     runner.text = lambda label, prompt, *, references=(): '{"passed": tru'
-    runner._run = lambda label, question, *, provider, mode, references=(): SimpleNamespace(
-        answer='{"passed":true,"description":"via gemini","violations":[]}')
+    runner._run = lambda *args, **kwargs: pytest.fail("Gemini fallback must never be invoked")
     runner.state = SimpleNamespace(mark=lambda *a, **k: None)
-    assert runner.json('probe_stage', 'task') == {"passed": True, "description": "via gemini", "violations": []}
+    with pytest.raises(qstation.StageFailure, match="ChatGPT Temporary Chat attempts"):
+        runner.json('probe_stage', 'task')
 
 
-def test_json_persistent_malformation_parks_for_approval_instead_of_dying():
+def test_json_persistent_malformation_does_not_request_gemini_approval():
     runner = object.__new__(qstation.Runner)
     runner.chatgpt_fallback_mode = 'approval'
     runner.text = lambda label, prompt, *, references=(): '{"passed": tru'
     def boom(*a, **k):
         raise qstation.StageFailure('probe_stage', 'FAILED', 'transport down')
     runner._run = boom
-    runner._consume_fallback_approval = lambda label: False
-    def need_approval(label, failure):
-        raise qstation.StageFailure(label, 'ACTION_REQUIRED', 'approval needed')
-    runner._require_fallback_approval = need_approval
-    with pytest.raises(qstation.StageFailure, match='approval needed'):
+    runner._consume_fallback_approval = lambda label: pytest.fail("Gemini approval must never be requested")
+    runner._require_fallback_approval = lambda label, failure: pytest.fail("Gemini approval must never be requested")
+    with pytest.raises(qstation.StageFailure, match="ChatGPT Temporary Chat attempts"):
         runner.json('probe_stage', 'task')

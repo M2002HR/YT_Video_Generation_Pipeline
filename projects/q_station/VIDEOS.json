@@ -256,7 +256,27 @@
       "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
       "entry_variant": "discovered_book",
       "opening_policy_version": 2,
-      "updated_at": "2026-09-19T08:23:43.312348+00:00"
+      "updated_at": "2026-09-19T13:12:28.327042+00:00"
+    },
+    {
+      "video_id": "045",
+      "opening_activity": "Comparing warmth loss between scaled body shapes using matching body models and heat demonstrations.",
+      "opening_location": "A quiet science display hall with body models and simple heat comparison exhibits.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "thermal_scale_papercut_anatomy_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "heat comparison",
+        "tension_family": "size versus cooling",
+        "prop_family": "body models",
+        "reveal_family": "proportions change with growth"
+      },
+      "situation_summary": "Two body models lose warmth at different speeds.",
+      "hook_line": "If a human grew huge, would their body cool the same?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-19T15:13:15.274808+00:00"
     }
   ]
 }
