@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "043_what_if_human_bones_were_made_of_metal",
   "started_at": "2026-09-19T07:50:01.255236+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -107,10 +107,20 @@
         "2026-09-19T07:50:01.255236+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-19T07:50:01.255236+00:00",
+      "ended_at": "2026-09-19T07:50:51.961978+00:00",
+      "elapsed_seconds": 50.707,
+      "branch": "dev",
+      "remote": "origin",
+      "artifact_commit": "9788bf49b6f7df960c0a7232587fd0892f322960"
     }
   ],
-  "completed_at": "2026-09-19T07:50:45.899015+00:00",
-  "total_elapsed_seconds": 38.185,
+  "completed_at": "2026-09-19T07:50:51.961978+00:00",
+  "total_elapsed_seconds": 88.892,
   "summary": {
     "video": "043_what_if_human_bones_were_made_of_metal",
     "duration_seconds": 50.756,
