@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
   "started_at": "2026-09-19T02:47:23.290483+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -137,10 +137,20 @@
         "2026-09-19T02:47:23.290483+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-19T02:47:23.290483+00:00",
+      "ended_at": "2026-09-19T02:51:44.471670+00:00",
+      "elapsed_seconds": 261.181,
+      "branch": "dev",
+      "remote": "origin",
+      "artifact_commit": "33a3041eb8df46b51b6f3b6bf04c5055fcd600b9"
     }
   ],
-  "completed_at": "2026-09-19T02:51:38.551214+00:00",
-  "total_elapsed_seconds": 248.601,
+  "completed_at": "2026-09-19T02:51:44.471670+00:00",
+  "total_elapsed_seconds": 509.782,
   "summary": {
     "video": "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
     "duration_seconds": 59.481,
