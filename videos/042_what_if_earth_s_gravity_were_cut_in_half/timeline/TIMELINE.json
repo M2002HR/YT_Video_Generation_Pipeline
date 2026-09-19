@@ -1,0 +1,1853 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 47.726,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.458,
+      "duration": 3.458,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 3.458,
+      "end": 8.667,
+      "duration": 5.208,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 8.667,
+      "end": 11.84,
+      "duration": 3.173,
+      "speech_start": 9.36,
+      "speech_end": 11.38,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "People would weigh half as much on Earth.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 11.84,
+      "end": 15.66,
+      "duration": 3.82,
+      "speech_start": 11.84,
+      "speech_end": 15.04,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "They could jump higher and lift heavy objects more easily.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 15.66,
+      "end": 19.12,
+      "duration": 3.46,
+      "speech_start": 15.66,
+      "speech_end": 18.46,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A person could carry a large box with less effort.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 19.12,
+      "end": 22.38,
+      "duration": 3.26,
+      "speech_start": 19.12,
+      "speech_end": 21.62,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Bridges and buildings would face different forces.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 22.38,
+      "end": 25.2,
+      "duration": 2.82,
+      "speech_start": 22.38,
+      "speech_end": 24.62,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Some structures might need new designs.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 25.2,
+      "end": 28.38,
+      "duration": 3.18,
+      "speech_start": 25.2,
+      "speech_end": 27.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Cars and machines would move differently.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 28.38,
+      "end": 32.88,
+      "duration": 4.5,
+      "speech_start": 28.38,
+      "speech_end": 32.5,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Astronauts already experience very low gravity in space.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 32.88,
+      "end": 38.78,
+      "duration": 5.9,
+      "speech_start": 32.88,
+      "speech_end": 37.5,
+      "match_confidence": 0.8,
+      "motion": "zoom_in",
+      "narration": "A half-gravity Earth could look familiar but act differently.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 38.78,
+      "end": 42.52,
+      "duration": 3.74,
+      "speech_start": 38.78,
+      "speech_end": 41.72,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Many systems would need to adjust to lower weight.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 42.52,
+      "end": 47.726,
+      "duration": 5.206,
+      "speech_start": 42.52,
+      "speech_end": 44.9,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Lighter does not mean the same.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 0.22,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.02,
+          "end": 0.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.22,
+      "end": 0.38,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 0.22,
+          "end": 0.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.38,
+      "end": 0.62,
+      "text": "weight",
+      "ass_text": "weight",
+      "words": [
+        {
+          "text": "weight",
+          "start": 0.38,
+          "end": 0.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.62,
+      "end": 0.84,
+      "text": "was",
+      "ass_text": "was",
+      "words": [
+        {
+          "text": "was",
+          "start": 0.62,
+          "end": 0.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.84,
+      "end": 1.08,
+      "text": "cut",
+      "ass_text": "cut",
+      "words": [
+        {
+          "text": "cut",
+          "start": 0.84,
+          "end": 1.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.08,
+      "end": 1.28,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 1.08,
+          "end": 1.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.28,
+      "end": 1.82,
+      "text": "half,",
+      "ass_text": "half,",
+      "words": [
+        {
+          "text": "half,",
+          "start": 1.28,
+          "end": 1.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.82,
+      "end": 2.28,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 1.82,
+          "end": 2.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.28,
+      "end": 2.48,
+      "text": "Earth",
+      "ass_text": "Earth",
+      "words": [
+        {
+          "text": "Earth",
+          "start": 2.28,
+          "end": 2.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.48,
+      "end": 2.84,
+      "text": "feel",
+      "ass_text": "feel",
+      "words": [
+        {
+          "text": "feel",
+          "start": 2.48,
+          "end": 2.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.84,
+      "end": 3.02,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 2.84,
+          "end": 3.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.02,
+      "end": 3.42,
+      "text": "same?",
+      "ass_text": "same?",
+      "words": [
+        {
+          "text": "same?",
+          "start": 3.02,
+          "end": 3.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.96,
+      "end": 4.12,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 3.96,
+          "end": 4.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.12,
+      "end": 4.44,
+      "text": "weaker",
+      "ass_text": "weaker",
+      "words": [
+        {
+          "text": "weaker",
+          "start": 4.12,
+          "end": 4.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.44,
+      "end": 4.8,
+      "text": "pull",
+      "ass_text": "pull",
+      "words": [
+        {
+          "text": "pull",
+          "start": 4.44,
+          "end": 4.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.8,
+      "end": 5.28,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 4.8,
+          "end": 5.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.28,
+      "end": 5.62,
+      "text": "change",
+      "ass_text": "change",
+      "words": [
+        {
+          "text": "change",
+          "start": 5.28,
+          "end": 5.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.62,
+      "end": 5.84,
+      "text": "how",
+      "ass_text": "how",
+      "words": [
+        {
+          "text": "how",
+          "start": 5.62,
+          "end": 5.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.84,
+      "end": 6.18,
+      "text": "people",
+      "ass_text": "people",
+      "words": [
+        {
+          "text": "people",
+          "start": 5.84,
+          "end": 6.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.18,
+      "end": 6.66,
+      "text": "move",
+      "ass_text": "move",
+      "words": [
+        {
+          "text": "move",
+          "start": 6.18,
+          "end": 6.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.66,
+      "end": 7.18,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 6.66,
+          "end": 7.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.18,
+      "end": 7.34,
+      "text": "how",
+      "ass_text": "how",
+      "words": [
+        {
+          "text": "how",
+          "start": 7.18,
+          "end": 7.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.34,
+      "end": 7.7,
+      "text": "bridges",
+      "ass_text": "bridges",
+      "words": [
+        {
+          "text": "bridges",
+          "start": 7.34,
+          "end": 7.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.7,
+      "end": 8.22,
+      "text": "carry",
+      "ass_text": "carry",
+      "words": [
+        {
+          "text": "carry",
+          "start": 7.7,
+          "end": 8.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.22,
+      "end": 8.66,
+      "text": "loads.",
+      "ass_text": "loads.",
+      "words": [
+        {
+          "text": "loads.",
+          "start": 8.22,
+          "end": 8.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.36,
+      "end": 9.6,
+      "text": "People",
+      "ass_text": "People",
+      "words": [
+        {
+          "text": "People",
+          "start": 9.36,
+          "end": 9.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.6,
+      "end": 9.88,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 9.6,
+          "end": 9.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.88,
+      "end": 10.1,
+      "text": "weigh",
+      "ass_text": "weigh",
+      "words": [
+        {
+          "text": "weigh",
+          "start": 9.88,
+          "end": 10.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.1,
+      "end": 10.44,
+      "text": "half",
+      "ass_text": "half",
+      "words": [
+        {
+          "text": "half",
+          "start": 10.1,
+          "end": 10.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.44,
+      "end": 10.66,
+      "text": "as",
+      "ass_text": "as",
+      "words": [
+        {
+          "text": "as",
+          "start": 10.44,
+          "end": 10.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.66,
+      "end": 10.88,
+      "text": "much",
+      "ass_text": "much",
+      "words": [
+        {
+          "text": "much",
+          "start": 10.66,
+          "end": 10.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.88,
+      "end": 11.14,
+      "text": "on",
+      "ass_text": "on",
+      "words": [
+        {
+          "text": "on",
+          "start": 10.88,
+          "end": 11.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.14,
+      "end": 11.38,
+      "text": "Earth.",
+      "ass_text": "Earth.",
+      "words": [
+        {
+          "text": "Earth.",
+          "start": 11.14,
+          "end": 11.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.84,
+      "end": 12.0,
+      "text": "They",
+      "ass_text": "They",
+      "words": [
+        {
+          "text": "They",
+          "start": 11.84,
+          "end": 12.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.0,
+      "end": 12.14,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 12.0,
+          "end": 12.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.14,
+      "end": 12.38,
+      "text": "jump",
+      "ass_text": "jump",
+      "words": [
+        {
+          "text": "jump",
+          "start": 12.14,
+          "end": 12.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.38,
+      "end": 12.82,
+      "text": "higher",
+      "ass_text": "higher",
+      "words": [
+        {
+          "text": "higher",
+          "start": 12.38,
+          "end": 12.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.82,
+      "end": 13.3,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 12.82,
+          "end": 13.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.3,
+      "end": 13.52,
+      "text": "lift",
+      "ass_text": "lift",
+      "words": [
+        {
+          "text": "lift",
+          "start": 13.3,
+          "end": 13.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.52,
+      "end": 13.8,
+      "text": "heavy",
+      "ass_text": "heavy",
+      "words": [
+        {
+          "text": "heavy",
+          "start": 13.52,
+          "end": 13.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.8,
+      "end": 14.34,
+      "text": "objects",
+      "ass_text": "objects",
+      "words": [
+        {
+          "text": "objects",
+          "start": 13.8,
+          "end": 14.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.34,
+      "end": 14.64,
+      "text": "more",
+      "ass_text": "more",
+      "words": [
+        {
+          "text": "more",
+          "start": 14.34,
+          "end": 14.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.64,
+      "end": 15.04,
+      "text": "easily.",
+      "ass_text": "easily.",
+      "words": [
+        {
+          "text": "easily.",
+          "start": 14.64,
+          "end": 15.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.66,
+      "end": 15.78,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 15.66,
+          "end": 15.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 15.78,
+      "end": 16.16,
+      "text": "person",
+      "ass_text": "person",
+      "words": [
+        {
+          "text": "person",
+          "start": 15.78,
+          "end": 16.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.16,
+      "end": 16.42,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 16.16,
+          "end": 16.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.42,
+      "end": 16.72,
+      "text": "carry",
+      "ass_text": "carry",
+      "words": [
+        {
+          "text": "carry",
+          "start": 16.42,
+          "end": 16.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.72,
+      "end": 16.88,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 16.72,
+          "end": 16.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.88,
+      "end": 17.24,
+      "text": "large",
+      "ass_text": "large",
+      "words": [
+        {
+          "text": "large",
+          "start": 16.88,
+          "end": 17.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.24,
+      "end": 17.66,
+      "text": "box",
+      "ass_text": "box",
+      "words": [
+        {
+          "text": "box",
+          "start": 17.24,
+          "end": 17.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.66,
+      "end": 17.92,
+      "text": "with",
+      "ass_text": "with",
+      "words": [
+        {
+          "text": "with",
+          "start": 17.66,
+          "end": 17.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.92,
+      "end": 18.14,
+      "text": "less",
+      "ass_text": "less",
+      "words": [
+        {
+          "text": "less",
+          "start": 17.92,
+          "end": 18.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.14,
+      "end": 18.46,
+      "text": "effort.",
+      "ass_text": "effort.",
+      "words": [
+        {
+          "text": "effort.",
+          "start": 18.14,
+          "end": 18.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.12,
+      "end": 19.52,
+      "text": "Bridges",
+      "ass_text": "Bridges",
+      "words": [
+        {
+          "text": "Bridges",
+          "start": 19.12,
+          "end": 19.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.52,
+      "end": 19.84,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 19.52,
+          "end": 19.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.84,
+      "end": 20.22,
+      "text": "buildings",
+      "ass_text": "buildings",
+      "words": [
+        {
+          "text": "buildings",
+          "start": 19.84,
+          "end": 20.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.22,
+      "end": 20.58,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 20.22,
+          "end": 20.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.58,
+      "end": 20.82,
+      "text": "face",
+      "ass_text": "face",
+      "words": [
+        {
+          "text": "face",
+          "start": 20.58,
+          "end": 20.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.82,
+      "end": 21.2,
+      "text": "different",
+      "ass_text": "different",
+      "words": [
+        {
+          "text": "different",
+          "start": 20.82,
+          "end": 21.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.2,
+      "end": 21.62,
+      "text": "forces.",
+      "ass_text": "forces.",
+      "words": [
+        {
+          "text": "forces.",
+          "start": 21.2,
+          "end": 21.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.38,
+      "end": 22.58,
+      "text": "Some",
+      "ass_text": "Some",
+      "words": [
+        {
+          "text": "Some",
+          "start": 22.38,
+          "end": 22.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 22.58,
+      "end": 23.08,
+      "text": "structures",
+      "ass_text": "structures",
+      "words": [
+        {
+          "text": "structures",
+          "start": 22.58,
+          "end": 23.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.08,
+      "end": 23.54,
+      "text": "might",
+      "ass_text": "might",
+      "words": [
+        {
+          "text": "might",
+          "start": 23.08,
+          "end": 23.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.54,
+      "end": 23.84,
+      "text": "need",
+      "ass_text": "need",
+      "words": [
+        {
+          "text": "need",
+          "start": 23.54,
+          "end": 23.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 23.84,
+      "end": 24.12,
+      "text": "new",
+      "ass_text": "new",
+      "words": [
+        {
+          "text": "new",
+          "start": 23.84,
+          "end": 24.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 24.12,
+      "end": 24.62,
+      "text": "designs.",
+      "ass_text": "designs.",
+      "words": [
+        {
+          "text": "designs.",
+          "start": 24.12,
+          "end": 24.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.2,
+      "end": 25.62,
+      "text": "Cars",
+      "ass_text": "Cars",
+      "words": [
+        {
+          "text": "Cars",
+          "start": 25.2,
+          "end": 25.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.62,
+      "end": 25.88,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 25.62,
+          "end": 25.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.88,
+      "end": 26.22,
+      "text": "machines",
+      "ass_text": "machines",
+      "words": [
+        {
+          "text": "machines",
+          "start": 25.88,
+          "end": 26.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.22,
+      "end": 26.68,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 26.22,
+          "end": 26.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.68,
+      "end": 26.92,
+      "text": "move",
+      "ass_text": "move",
+      "words": [
+        {
+          "text": "move",
+          "start": 26.68,
+          "end": 26.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 26.92,
+      "end": 27.34,
+      "text": "differently.",
+      "ass_text": "differently.",
+      "words": [
+        {
+          "text": "differently.",
+          "start": 26.92,
+          "end": 27.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 28.38,
+      "end": 28.9,
+      "text": "Astronauts",
+      "ass_text": "Astronauts",
+      "words": [
+        {
+          "text": "Astronauts",
+          "start": 28.38,
+          "end": 28.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.9,
+      "end": 29.32,
+      "text": "already",
+      "ass_text": "already",
+      "words": [
+        {
+          "text": "already",
+          "start": 28.9,
+          "end": 29.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 29.32,
+      "end": 30.0,
+      "text": "experience",
+      "ass_text": "experience",
+      "words": [
+        {
+          "text": "experience",
+          "start": 29.32,
+          "end": 30.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 30.0,
+      "end": 30.6,
+      "text": "very",
+      "ass_text": "very",
+      "words": [
+        {
+          "text": "very",
+          "start": 30.0,
+          "end": 30.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 30.6,
+      "end": 30.88,
+      "text": "low",
+      "ass_text": "low",
+      "words": [
+        {
+          "text": "low",
+          "start": 30.6,
+          "end": 30.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 30.88,
+      "end": 31.34,
+      "text": "gravity",
+      "ass_text": "gravity",
+      "words": [
+        {
+          "text": "gravity",
+          "start": 30.88,
+          "end": 31.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 31.34,
+      "end": 31.78,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 31.34,
+          "end": 31.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 31.78,
+      "end": 32.5,
+      "text": "space.",
+      "ass_text": "space.",
+      "words": [
+        {
+          "text": "space.",
+          "start": 31.78,
+          "end": 32.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 32.88,
+      "end": 33.04,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 32.88,
+          "end": 33.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 33.04,
+      "end": 33.84,
+      "text": "half-gravity",
+      "ass_text": "half-gravity",
+      "words": [
+        {
+          "text": "half-gravity",
+          "start": 33.04,
+          "end": 33.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 33.84,
+      "end": 34.28,
+      "text": "Earth",
+      "ass_text": "Earth",
+      "words": [
+        {
+          "text": "Earth",
+          "start": 33.84,
+          "end": 34.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 34.28,
+      "end": 34.92,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 34.28,
+          "end": 34.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 34.92,
+      "end": 35.1,
+      "text": "look",
+      "ass_text": "look",
+      "words": [
+        {
+          "text": "look",
+          "start": 34.92,
+          "end": 35.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 35.1,
+      "end": 35.54,
+      "text": "familiar",
+      "ass_text": "familiar",
+      "words": [
+        {
+          "text": "familiar",
+          "start": 35.1,
+          "end": 35.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 35.54,
+      "end": 36.38,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 35.54,
+          "end": 36.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 36.38,
+      "end": 36.8,
+      "text": "act",
+      "ass_text": "act",
+      "words": [
+        {
+          "text": "act",
+          "start": 36.38,
+          "end": 36.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 36.8,
+      "end": 37.5,
+      "text": "differently.",
+      "ass_text": "differently.",
+      "words": [
+        {
+          "text": "differently.",
+          "start": 36.8,
+          "end": 37.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.78,
+      "end": 39.04,
+      "text": "Many",
+      "ass_text": "Many",
+      "words": [
+        {
+          "text": "Many",
+          "start": 38.78,
+          "end": 39.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 39.04,
+      "end": 39.44,
+      "text": "systems",
+      "ass_text": "systems",
+      "words": [
+        {
+          "text": "systems",
+          "start": 39.04,
+          "end": 39.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 39.44,
+      "end": 39.82,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 39.44,
+          "end": 39.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 39.82,
+      "end": 39.94,
+      "text": "need",
+      "ass_text": "need",
+      "words": [
+        {
+          "text": "need",
+          "start": 39.82,
+          "end": 39.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 39.94,
+      "end": 40.14,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 39.94,
+          "end": 40.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 40.14,
+      "end": 40.58,
+      "text": "adjust",
+      "ass_text": "adjust",
+      "words": [
+        {
+          "text": "adjust",
+          "start": 40.14,
+          "end": 40.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 40.58,
+      "end": 40.92,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 40.58,
+          "end": 40.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 40.92,
+      "end": 41.2,
+      "text": "lower",
+      "ass_text": "lower",
+      "words": [
+        {
+          "text": "lower",
+          "start": 40.92,
+          "end": 41.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 41.2,
+      "end": 41.72,
+      "text": "weight.",
+      "ass_text": "weight.",
+      "words": [
+        {
+          "text": "weight.",
+          "start": 41.2,
+          "end": 41.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.52,
+      "end": 42.9,
+      "text": "Lighter",
+      "ass_text": "Lighter",
+      "words": [
+        {
+          "text": "Lighter",
+          "start": 42.52,
+          "end": 42.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 42.9,
+      "end": 43.58,
+      "text": "does",
+      "ass_text": "does",
+      "words": [
+        {
+          "text": "does",
+          "start": 42.9,
+          "end": 43.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 43.58,
+      "end": 43.78,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 43.58,
+          "end": 43.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 43.78,
+      "end": 44.04,
+      "text": "mean",
+      "ass_text": "mean",
+      "words": [
+        {
+          "text": "mean",
+          "start": 43.78,
+          "end": 44.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 44.04,
+      "end": 44.22,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 44.04,
+          "end": 44.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 44.22,
+      "end": 44.9,
+      "text": "same.",
+      "ass_text": "same.",
+      "words": [
+        {
+          "text": "same.",
+          "start": 44.22,
+          "end": 44.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.44,
+      "end": 45.7,
+      "text": "Comment",
+      "ass_text": "Comment",
+      "words": [
+        {
+          "text": "Comment",
+          "start": 45.44,
+          "end": 45.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.7,
+      "end": 45.98,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 45.7,
+          "end": 45.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.98,
+      "end": 46.28,
+      "text": "next",
+      "ass_text": "next",
+      "words": [
+        {
+          "text": "next",
+          "start": 45.98,
+          "end": 46.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 46.28,
+      "end": 46.68,
+      "text": "gravity",
+      "ass_text": "gravity",
+      "words": [
+        {
+          "text": "gravity",
+          "start": 46.28,
+          "end": 46.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 46.68,
+      "end": 47.22,
+      "text": "question.",
+      "ass_text": "question.",
+      "words": [
+        {
+          "text": "question.",
+          "start": 46.68,
+          "end": 47.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 109,
+    "subtitle_cues_estimated": 0
+  }
+}

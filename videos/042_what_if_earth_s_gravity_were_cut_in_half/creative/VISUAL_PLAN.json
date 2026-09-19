@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 36.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "People would weigh half as much on Earth.",
+      "visual": "A clay Earth park scene showing two identical people on a balance platform, one normal-weight reference silhouette and one lightly compressed scale effect with a clear upward lift feeling, surrounded by familiar trees and ground.",
+      "purpose": "show that people would experience half their current weight on Earth",
+      "visual_fingerprint": "two clay human figures on a rounded outdoor weighing platform, eye-level wide shot, grassy Earth park setting, one figure visibly lifted by reduced weight",
+      "type": "literal",
+      "continuity": "first body image establishes the altered-gravity Earth setting",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "They could jump higher and lift heavy objects more easily.",
+      "visual": "A clay person making a high jump beside a large stone block being lifted with ease, with soft motion arcs suggested through bent poses and floating dust.",
+      "purpose": "show increased jumping ability and easier lifting under lower gravity",
+      "visual_fingerprint": "single clay person soaring above a village path while raising a heavy stone block, low-angle action composition with open sky background",
+      "type": "literal",
+      "continuity": "same altered-gravity world, moving from body weight to movement effects",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "A person could carry a large box with less effort.",
+      "visual": "A clay person calmly carrying an oversized cardboard box across a warehouse floor, showing relaxed posture despite the box size.",
+      "purpose": "show reduced effort when carrying heavy objects",
+      "visual_fingerprint": "oversized clay box carried by a small relaxed figure, medium side view, indoor storage space with stacked objects",
+      "type": "literal",
+      "continuity": "moves from jumping and lifting to everyday tasks",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Bridges and buildings would face different forces.",
+      "visual": "A clay city scene with a bridge and tall buildings showing altered support loads through thicker beams, curved supports, and people observing from below.",
+      "purpose": "show that structures experience changed forces in lower gravity",
+      "visual_fingerprint": "wide clay city canyon with bridge crossing between buildings, elevated camera angle, structural elements emphasized through exposed supports",
+      "type": "diagram",
+      "continuity": "expands from personal effects to large-scale systems",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Some structures might need new designs.",
+      "visual": "A clay architect workspace with a model bridge being reshaped with stronger-looking curved supports and new forms.",
+      "purpose": "show possible redesigns for structures in a different gravity environment",
+      "visual_fingerprint": "close clay tabletop view of hands modifying a miniature bridge model, workshop setting with tools and sculpted pieces",
+      "type": "literal",
+      "continuity": "same engineering theme, shifts from existing structures to adaptation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Cars and machines would move differently.",
+      "visual": "Clay vehicles traveling on a road with a truck and construction machine showing altered suspension and motion, surrounded by a soft dusty landscape.",
+      "purpose": "show how vehicles and machines could behave differently with lower weight",
+      "visual_fingerprint": "three clay machines on a curved road, rear three-quarter camera angle, outdoor industrial zone with altered vehicle movement",
+      "type": "literal",
+      "continuity": "continues from structural changes to mechanical systems",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Astronauts already experience very low gravity in space.",
+      "visual": "A clay astronaut floating inside a spacecraft cabin with soft Earth visible through a window, showing the familiar low-gravity experience.",
+      "purpose": "connect low gravity on Earth to an experience astronauts already have",
+      "visual_fingerprint": "floating clay astronaut inside rounded spacecraft interior, close vertical composition with Earth in background window",
+      "type": "literal",
+      "continuity": "moves from machines on Earth to a real low-gravity environment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "A half-gravity Earth could look familiar but act differently.",
+      "visual": "A clay landscape that resembles a normal Earth park while people, trees, and vehicles show subtle unusual movement from lower gravity.",
+      "purpose": "show that the planet could appear familiar while behaving differently",
+      "visual_fingerprint": "full clay park panorama with ordinary scenery, floating leaves, higher jumps and altered vehicle motion, centered wide composition",
+      "type": "metaphor",
+      "continuity": "returns from space to a changed Earth overview",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "Many systems would need to adjust to lower weight.",
+      "visual": "A clay montage-like city block scene showing transportation, buildings, and daily activity adapting with redesigned supports and machinery.",
+      "purpose": "show broad adjustments needed across human systems",
+      "visual_fingerprint": "vertical clay city block composition with roads, buildings, and machines arranged in layers showing adaptation across society",
+      "type": "diagram",
+      "continuity": "widens the previous Earth view into a systems-level conclusion",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Lighter does not mean the same.",
+      "visual": "A clay Earth scene split by composition rather than borders, with familiar landscapes on one side and subtly changed movement and structures on the other.",
+      "purpose": "summarize that reduced weight changes behavior without making Earth identical",
+      "visual_fingerprint": "final clay planetary landscape with familiar terrain, altered motion cues, and redesigned structures, cinematic vertical wide shot",
+      "type": "metaphor",
+      "continuity": "final reflection image gathering the topic changes into one world view",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

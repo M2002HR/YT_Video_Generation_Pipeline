@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "e3d93e808020656a8affdcd02150065af81093ee927fdd1ceed867ff1632844c",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "fc337fcf-0014-4b84-892b-85573f3b7e84",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/2d97bfe39547e0df",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=fc337fcf-0014-4b84-892b-85573f3b7e84_output_1.png 1536x2752 sha256=a785dff2736e42ce0395ed7a0672db15e8d6b3484dedbbeca3ad7e71b7b780ac"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "e3d93e808020656a8affdcd02150065af81093ee927fdd1ceed867ff1632844c",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "fc337fcf-0014-4b84-892b-85573f3b7e84",
+        "prompt_sha256": "15ef6fbe0de7d3ae3f73fafc51948429057896763111fec741c3c1d2e2db3897",
+        "output_sha256": "a785dff2736e42ce0395ed7a0672db15e8d6b3484dedbbeca3ad7e71b7b780ac",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/references/world_style_anchor.png",
+      "sha256": "f2fe61e7c84d8fb4aa7eacebd9dcd388be1fde5fd78763a08ee3f7dbf717dc03"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/references/world_keyframe.png",
+      "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/raw_beats/beat_004.png",
+      "sha256": "f55f9edd043132a458b81a19a2f8f663a68338c54d21eef74fcec9a57be9f07f"
+    }
+  ],
+  "prompt_sha256": "15ef6fbe0de7d3ae3f73fafc51948429057896763111fec741c3c1d2e2db3897",
+  "prompt": "Create exactly one 9:16 full-bleed image of a clay/stop-motion-like engineering scene inside the topic world: a close tabletop view of a clay architect workspace where sculpted hands reshape a miniature bridge model for a different gravity environment. Show the bridge being redesigned with stronger-looking curved supports, adjusted forms, and experimental structural pieces, with small clay tools and additional sculpted components arranged naturally around the model. The scene should communicate adaptation of structures through literal engineering redesign, not fantasy. Use the style reference only to preserve the selected medium, soft doughy sculpted surface, rounded hand-formed volumes, subtle fingerprints, gentle compression marks, matte tactile clay grain, minimal sculpted contours, earthy sky blues, muted greens, warm stone grays, soft clay browns, cream highlights, restrained metallic accents, and soft studio-like natural daylight with broad shadows and gentle ambient bounce. Use the world keyframe reference only for overall topic-world continuity and visual consistency, not for its composition, framing, layout, or subject placement. Use the previous beat reference only to maintain compatible medium, palette, texture, and lighting continuity; create a fresh composition with a new camera angle and arrangement. Fill the entire image edge-to-edge with the scene: no enclosing page, book spread, card, border, gutter, inset window, doorway rim, lens mask, blank caption area, footer, or decorative frame. No embedded text, labels, or readable writing. Do not depict or mention any host character. Produce a single natural scene, not a storyboard, grid, collage, panels, or multiple images. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_005.png",
+  "output_sha256": "a785dff2736e42ce0395ed7a0672db15e8d6b3484dedbbeca3ad7e71b7b780ac",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.172,
+  "completed_at": "2026-09-19T05:11:20Z"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-19T04:59:19.833948+00:00",
+  "status": "SELECTED",
+  "narration_seconds": 47.726,
+  "segment_count": 1,
+  "segments": [
+    {
+      "segment_id": "bed_001",
+      "start_seconds": 0.0,
+      "end_seconds": 47.726,
+      "duration_seconds": 47.726,
+      "role": "bed",
+      "provider": "freesound",
+      "query_prompt": "Studio library selection; no provider search performed.",
+      "source_url": null,
+      "file": "assets/music/operator_background.mp3",
+      "gain_db": -20.0,
+      "fade_in_seconds": 0.8,
+      "fade_out_seconds": 1.4,
+      "notes": []
+    }
+  ]
+}

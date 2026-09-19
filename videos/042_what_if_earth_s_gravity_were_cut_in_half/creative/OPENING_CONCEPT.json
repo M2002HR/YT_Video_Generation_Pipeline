@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "7c15d476bbc3ef36a61a725cae60a119ee29d7097e97b3fa080f677c28fec93a",
+  "concept_id": "d190a000937bbf385cd1",
+  "character_id": "newton_scholar",
+  "presentation_id": "book_portal",
+  "selected": {
+    "id": "c2",
+    "hook_line": "If your weight was cut in half, would Earth feel the same?",
+    "viewer_expectation": "People expect their bodies to feel lighter but the world around them to stay mostly unchanged.",
+    "visible_contradiction": "A person carries a heavy object easily, but a bridge model bends differently.",
+    "frame_zero": "The scholar lifts a heavy box while a nearby model bridge shows a changed load.",
+    "character_action": "The scholar compares his easy lift with the altered bridge model and investigates the mismatch.",
+    "reaction": "He gives a small surprised look and checks both examples carefully.",
+    "activity": "comparing reduced weight effects on people and structures",
+    "location": "open engineering display area with a simple bridge model",
+    "topic_link": "Lower gravity changes weight, affecting movement and how structures handle loads.",
+    "factual_anchor": "Assumption: Earth's gravity is cut in half. The thought experiment explores lower weight, not a confirmed event.",
+    "payoff": "The body explains that people would feel lighter, while many systems built for current gravity would need changes.",
+    "claim_mode": "hypothetical",
+    "entry_variant": "shelf_reveal",
+    "entry_bridge": {
+      "a_end": "The scholar returns the box and pulls a closed storybook from a nearby shelf.",
+      "b_start": "A closed topic-styled book is shown alone from above.",
+      "reveal": "The opened pages reveal a world where gravity is half as strong.",
+      "world_entry": "A city scene shows people and vehicles moving under weaker gravity."
+    },
+    "novelty": {
+      "action_family": "load comparison",
+      "tension_family": "lighter people versus changed systems",
+      "prop_family": "bridge model",
+      "reveal_family": "weight change spreads beyond bodies"
+    }
+  },
+  "created_at": "2026-09-19T04:44:06Z"
+}

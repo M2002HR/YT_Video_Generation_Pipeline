@@ -1,0 +1,561 @@
+{
+  "schema_version": 2,
+  "video_id": "042",
+  "topic": "What If Earth's Gravity Were Cut in Half?",
+  "created_at": "2026-09-19T04:43:19Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "requested_mode": "manual",
+      "requested_character_id": "newton_scholar",
+      "resolved_character_id": "newton_scholar",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:27Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:59:28Z",
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "gravity_halfworld_dough_clay_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "load comparison",
+        "tension_family": "lighter people versus changed systems",
+        "prop_family": "bridge model",
+        "reveal_family": "weight change spreads beyond bodies"
+      },
+      "situation_summary": "A person carries a heavy object easily, but a bridge model bends differently.",
+      "hook_line": "If your weight was cut in half, would Earth feel the same?",
+      "entry_variant": "shelf_reveal",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:59:29Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:47:43Z",
+      "body_beats": 10,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:00:11Z",
+      "sha256": "f2fe61e7c84d8fb4aa7eacebd9dcd388be1fde5fd78763a08ee3f7dbf717dc03",
+      "model": "nano_banana_2",
+      "catalog_path": "027_gravity_halfworld_dough_clay_001"
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:00:32Z",
+      "prompt_sha256": "600ce702b97edb762811f443a396b9fc99b05d6f4cd4a794a3c4dde7735d6f47"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:01:31Z",
+      "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T05:01:32Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:01:56Z",
+      "prompt_sha256": "671ced9d7b02f95d190677e15fb1691dcbdd165efe1e962abd1124a4fc2940e6"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:03:26Z",
+      "sha256": "ca0fc2bee5e2f56f79834dfe2fd4320c3c3f9b02aa9618623a46fe72880a138e",
+      "model": "nano_banana_2"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:20:14Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:05:20Z",
+      "sha256": "af0ac7c7bf851b2b1012cf84932405465dca5f317911c8f2beaeeb9f4a7c0a0b",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:06:49Z",
+      "sha256": "a491fbfacdacb088ce38a938dfc19c76ce4e9f52e3fc4e3e5282a3a7f362663c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:08:16Z",
+      "sha256": "d8c6321c8c3833292ad3b6f1cc264bb70e4bef2535cce11ef39b3257a581d2fc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:09:48Z",
+      "sha256": "f55f9edd043132a458b81a19a2f8f663a68338c54d21eef74fcec9a57be9f07f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:11:20Z",
+      "sha256": "a785dff2736e42ce0395ed7a0672db15e8d6b3484dedbbeca3ad7e71b7b780ac",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:13:25Z",
+      "sha256": "641a62aa3ec3f7cabb2194e189675ca5391c2e106a6ad15258bf3d72201d18ce",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:15:27Z",
+      "sha256": "68e43815fc0e8696aa7a5985db613cf54e346cab1cf7b8c7aa7cc6fef14c5bd0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:17:05Z",
+      "sha256": "59ff505353d6b241dd41b4b5a2ae8db47bdac48a0be02be519452d1da587ef81",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:18:43Z",
+      "sha256": "9a5e50697334ba057e38389aaaa3c0198f1e6f3cab327ecdad6ee74aea2b1460",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:20:13Z",
+      "sha256": "587362268d3b5c037bba72bb50392694edd70c4719d9ef72c5c605d3e1d5286c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:20:16Z",
+      "boundaries": 9
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:20:36Z",
+      "prompt_sha256": "6d25ae6f076dd2392e0b6c1a6eb1f6e6e8d7bee4e720c8651eda508b42e9d9a7"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:20:56Z",
+      "prompt_sha256": "4f9fd3311dea13e384fcab6a5d25f88190366c02d546db507bc65018bc1c63f2"
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:22:38Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "a15a36c6636aa383cbac2c93bab7cc6d6e3e871135cf328b86e4993b7221e235"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:24:41Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "3b737dd097b0cd5553bb6332412bb7bf9c387474b992f3fbc2e674c449c853a0"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T05:24:42Z",
+      "body_images": 10
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 46.531,
+      "at": "2026-09-19T04:44:06Z",
+      "selected_id": "c2",
+      "concept_id": "d190a000937bbf385cd1"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 31.481,
+      "at": "2026-09-19T04:44:39Z",
+      "words": 95
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 52.446,
+      "at": "2026-09-19T04:45:32Z",
+      "words": 109
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 40.34,
+      "at": "2026-09-19T04:46:14Z",
+      "activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads."
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 34.319,
+      "at": "2026-09-19T04:46:50Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 22.298,
+      "at": "2026-09-19T04:47:13Z",
+      "style_id": "gravity_halfworld_dough_clay_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.353,
+      "at": "2026-09-19T04:47:16Z",
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "gravity_halfworld_dough_clay_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "load comparison",
+        "tension_family": "lighter people versus changed systems",
+        "prop_family": "bridge model",
+        "reveal_family": "weight change spreads beyond bodies"
+      },
+      "situation_summary": "A person carries a heavy object easily, but a bridge model bends differently.",
+      "hook_line": "If your weight was cut in half, would Earth feel the same?",
+      "entry_variant": "shelf_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 25.252,
+      "at": "2026-09-19T04:47:42Z",
+      "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.348,
+      "at": "2026-09-19T04:59:28Z",
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "gravity_halfworld_dough_clay_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "load comparison",
+        "tension_family": "lighter people versus changed systems",
+        "prop_family": "bridge model",
+        "reveal_family": "weight change spreads beyond bodies"
+      },
+      "situation_summary": "A person carries a heavy object easily, but a bridge model bends differently.",
+      "hook_line": "If your weight was cut in half, would Earth feel the same?",
+      "entry_variant": "shelf_reveal",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 41.498,
+      "at": "2026-09-19T05:00:11Z",
+      "sha256": "f2fe61e7c84d8fb4aa7eacebd9dcd388be1fde5fd78763a08ee3f7dbf717dc03",
+      "model": "nano_banana_2",
+      "catalog_path": "027_gravity_halfworld_dough_clay_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 19.477,
+      "at": "2026-09-19T05:00:32Z",
+      "prompt_sha256": "600ce702b97edb762811f443a396b9fc99b05d6f4cd4a794a3c4dde7735d6f47"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 58.504,
+      "at": "2026-09-19T05:01:31Z",
+      "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 23.358,
+      "at": "2026-09-19T05:01:56Z",
+      "prompt_sha256": "671ced9d7b02f95d190677e15fb1691dcbdd165efe1e962abd1124a4fc2940e6"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 88.872,
+      "at": "2026-09-19T05:03:26Z",
+      "sha256": "ca0fc2bee5e2f56f79834dfe2fd4320c3c3f9b02aa9618623a46fe72880a138e",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 90.718,
+      "at": "2026-09-19T05:05:20Z",
+      "sha256": "af0ac7c7bf851b2b1012cf84932405465dca5f317911c8f2beaeeb9f4a7c0a0b",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 69.708,
+      "at": "2026-09-19T05:06:49Z",
+      "sha256": "a491fbfacdacb088ce38a938dfc19c76ce4e9f52e3fc4e3e5282a3a7f362663c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 63.702,
+      "at": "2026-09-19T05:08:16Z",
+      "sha256": "d8c6321c8c3833292ad3b6f1cc264bb70e4bef2535cce11ef39b3257a581d2fc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 66.681,
+      "at": "2026-09-19T05:09:48Z",
+      "sha256": "f55f9edd043132a458b81a19a2f8f663a68338c54d21eef74fcec9a57be9f07f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 72.678,
+      "at": "2026-09-19T05:11:20Z",
+      "sha256": "a785dff2736e42ce0395ed7a0672db15e8d6b3484dedbbeca3ad7e71b7b780ac",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 105.858,
+      "at": "2026-09-19T05:13:25Z",
+      "sha256": "641a62aa3ec3f7cabb2194e189675ca5391c2e106a6ad15258bf3d72201d18ce",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 102.822,
+      "at": "2026-09-19T05:15:27Z",
+      "sha256": "68e43815fc0e8696aa7a5985db613cf54e346cab1cf7b8c7aa7cc6fef14c5bd0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 75.684,
+      "at": "2026-09-19T05:17:05Z",
+      "sha256": "59ff505353d6b241dd41b4b5a2ae8db47bdac48a0be02be519452d1da587ef81",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 75.738,
+      "at": "2026-09-19T05:18:43Z",
+      "sha256": "9a5e50697334ba057e38389aaaa3c0198f1e6f3cab327ecdad6ee74aea2b1460",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 69.753,
+      "at": "2026-09-19T05:20:13Z",
+      "sha256": "587362268d3b5c037bba72bb50392694edd70c4719d9ef72c5c605d3e1d5286c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1006.592,
+      "at": "2026-09-19T05:20:14Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.149,
+      "at": "2026-09-19T05:20:16Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 19.213,
+      "at": "2026-09-19T05:20:36Z",
+      "prompt_sha256": "6d25ae6f076dd2392e0b6c1a6eb1f6e6e8d7bee4e720c8651eda508b42e9d9a7"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 19.182,
+      "at": "2026-09-19T05:20:56Z",
+      "prompt_sha256": "4f9fd3311dea13e384fcab6a5d25f88190366c02d546db507bc65018bc1c63f2"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 100.866,
+      "at": "2026-09-19T05:22:38Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "a15a36c6636aa383cbac2c93bab7cc6d6e3e871135cf328b86e4993b7221e235"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 121.712,
+      "at": "2026-09-19T05:24:41Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "3b737dd097b0cd5553bb6332412bb7bf9c387474b992f3fbc2e674c449c853a0"
+    }
+  ],
+  "updated_at": "2026-09-19T05:24:42Z"
+}

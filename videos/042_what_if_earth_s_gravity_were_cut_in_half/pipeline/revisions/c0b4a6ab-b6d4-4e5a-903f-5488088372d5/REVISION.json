@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "revision_id": "c0b4a6ab-b6d4-4e5a-903f-5488088372d5",
+  "kind": "config",
+  "created_at": "2026-09-19T04:58:35.636605+00:00",
+  "roots": [
+    "elevenlabs_voiceover"
+  ],
+  "affected_nodes": [
+    "opening_source_plan",
+    "flow_prompt_a",
+    "flow_prompt_b",
+    "flow_clip_a",
+    "flow_clip_b",
+    "elevenlabs_voiceover",
+    "background_music",
+    "ajil_alignment",
+    "opening_trim",
+    "build_timeline",
+    "audio_mix_profile",
+    "render_baseline",
+    "qc_baseline",
+    "polish_audio",
+    "qc_polished",
+    "telegram_compress",
+    "git_commit_push",
+    "publish_telegram"
+  ],
+  "reused_nodes": [
+    "character_resolution",
+    "opening_concept",
+    "script_draft",
+    "retention_edit",
+    "call_to_action",
+    "episode_director",
+    "world_style_director",
+    "world_style_anchor",
+    "episode_history",
+    "visual_plan",
+    "world_keyframe_prompt",
+    "world_keyframe",
+    "book_design_sheet",
+    "book_cover_design",
+    "book_cover",
+    "body_images",
+    "transition_direction",
+    "render_profile",
+    "beat_image_001",
+    "beat_image_002",
+    "beat_image_003",
+    "beat_image_004",
+    "beat_image_005",
+    "beat_image_006",
+    "beat_image_007",
+    "beat_image_008",
+    "beat_image_009",
+    "beat_image_010"
+  ],
+  "skipped_nodes": [
+    "motion_director",
+    "sfx_plan",
+    "sfx_acquire"
+  ],
+  "archived_artifacts": [
+    "voiceover/ELEVENLABS_RUNTIME_STATE.json"
+  ],
+  "regenerate_beats": [],
+  "feedback": "",
+  "status": "RUNNING",
+  "regeneration_mode": "cascade",
+  "use_chatgpt_feedback": false,
+  "skip_visual_stages": true,
+  "started_at": "2026-09-19T04:58:35.637377+00:00",
+  "pid": 1027697,
+  "changed_fields": [
+    "voice"
+  ],
+  "config_revision_id": "c1e74bb2-f496-4ad5-9ef5-ef316957f4c4"
+}

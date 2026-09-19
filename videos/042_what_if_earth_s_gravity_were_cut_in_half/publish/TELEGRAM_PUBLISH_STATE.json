@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-19T05:28:20.817806+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-19T05:28:20.817581+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15627,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2002927,
+      "sha256": "2f9309d850f902eff835d98433929803c53f282c9b89e6aba54c4ee16deb3639",
+      "duration_seconds": 47.734,
+      "elapsed_seconds": 6.513,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "042_what_if_earth_s_gravity_were_cut_in_half",
+        "duration_seconds": 47.726,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.42,
+          "transition_end": 8.66
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 159.193,
+          "realtime_factor": 3.336,
+          "peak_child_rss_mb": 1239.0,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 042_what_if_earth_s_gravity_were_cut_in_half\n⏱ Duration: 0:48\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 2:39 wall (3.336x realtime) · 2 thread(s) · peak 1239.0 MB\nArtifact: 2f9309d850f9 · Delivery: compressed"
+    }
+  }
+}

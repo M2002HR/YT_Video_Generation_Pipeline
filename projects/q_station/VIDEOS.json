@@ -191,6 +191,29 @@
     },
     {
       "video_id": "041_what_if_fish_could_breathe_on_land"
+    },
+    {
+      "video_id": "042",
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "gravity_halfworld_dough_clay_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "load comparison",
+        "tension_family": "lighter people versus changed systems",
+        "prop_family": "bridge model",
+        "reveal_family": "weight change spreads beyond bodies"
+      },
+      "situation_summary": "A person carries a heavy object easily, but a bridge model bends differently.",
+      "hook_line": "If your weight was cut in half, would Earth feel the same?",
+      "entry_variant": "shelf_reveal",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-19T04:59:28.666178+00:00"
+    },
+    {
+      "video_id": "042_what_if_earth_s_gravity_were_cut_in_half"
     }
   ]
 }

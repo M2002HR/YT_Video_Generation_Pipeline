@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "f9335e68ae3b57287284e566bba400753c8c02b7964b55f8b6ad4a7fb47dabaf",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "01827b03-1297-48ea-8bba-90cb94fd09b4",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/74aca143c26723a7",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=01827b03-1297-48ea-8bba-90cb94fd09b4_output_1.png 1536x2752 sha256=587362268d3b5c037bba72bb50392694edd70c4719d9ef72c5c605d3e1d5286c"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "f9335e68ae3b57287284e566bba400753c8c02b7964b55f8b6ad4a7fb47dabaf",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "01827b03-1297-48ea-8bba-90cb94fd09b4",
+        "prompt_sha256": "c92cdf47f1ebebb64a4394e84fd04843f9d96d21e73b244f9b46ed016e6950d3",
+        "output_sha256": "587362268d3b5c037bba72bb50392694edd70c4719d9ef72c5c605d3e1d5286c",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/references/world_style_anchor.png",
+      "sha256": "f2fe61e7c84d8fb4aa7eacebd9dcd388be1fde5fd78763a08ee3f7dbf717dc03"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/references/world_keyframe.png",
+      "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/raw_beats/beat_009.png",
+      "sha256": "9a5e50697334ba057e38389aaaa3c0198f1e6f3cab327ecdad6ee74aea2b1460"
+    }
+  ],
+  "prompt_sha256": "c92cdf47f1ebebb64a4394e84fd04843f9d96d21e73b244f9b46ed016e6950d3",
+  "prompt": "Create exactly one 9:16 vertical full-bleed image of a clay/stop-motion-like planetary Earth scene, with the viewer fully inside the topic world and the composition extending naturally to all four edges. Show a familiar Earth landscape transformed by reduced weight: one continuous environment with recognizable terrain, vegetation, water and human-built structures, where some areas subtly reveal lighter-gravity behavior through altered movement cues, gently floating dust or slower drifting objects, changed vehicle suspension, lifted architectural forms, and structures redesigned for different weight conditions while remaining realistic and topic-supported. The image should communicate “lighter does not mean the same” through visual contrast within the same world, not through borders or split panels. Use the style_reference role only to preserve the chosen medium, texture, palette and lighting: soft doughy sculpted clay surfaces, rounded hand-formed volumes, subtle fingerprints, gentle compression marks, matte tactile clay grain, earthy sky blues, muted greens, warm stone grays, soft clay browns, cream highlights and restrained metallic accents. Use the world_keyframe role only as a consistency anchor for the topic world’s clay rendering, atmosphere and spatial depth, creating a fresh final composition rather than copying its layout. Use the previous_beat role only to maintain compatible medium, texture, palette and lighting continuity, not its camera angle, crop, placement or composition. Illuminate the scene with soft studio-like natural daylight, broad shadows, gentle ambient bounce and clear weight-related form changes. Minimal sculpted contours and soft edge definition should come from molded transitions and shallow grooves, not drawn outlines. No enclosing page, book spread, card, frame, border, inset window, gateway mask, lens effect, collage, grid, storyboard panels, caption area, blank footer, labels or readable text. The result is a cinematic vertical wide clay planetary landscape that fills the entire image. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_010.png",
+  "output_sha256": "587362268d3b5c037bba72bb50392694edd70c4719d9ef72c5c605d3e1d5286c",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 69.227,
+  "completed_at": "2026-09-19T05:20:13Z"
+}

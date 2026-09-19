@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 47.726,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 109,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.02,
+      "end": 0.22
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 0.22,
+      "end": 0.38
+    },
+    {
+      "text": "weight",
+      "token": "weight",
+      "start": 0.38,
+      "end": 0.62
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 0.62,
+      "end": 0.84
+    },
+    {
+      "text": "cut",
+      "token": "cut",
+      "start": 0.84,
+      "end": 1.08
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 1.08,
+      "end": 1.28
+    },
+    {
+      "text": "half,",
+      "token": "half",
+      "start": 1.28,
+      "end": 1.82
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 1.82,
+      "end": 2.28
+    },
+    {
+      "text": "Earth",
+      "token": "earth",
+      "start": 2.28,
+      "end": 2.48
+    },
+    {
+      "text": "feel",
+      "token": "feel",
+      "start": 2.48,
+      "end": 2.84
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 2.84,
+      "end": 3.02
+    },
+    {
+      "text": "same?",
+      "token": "same",
+      "start": 3.02,
+      "end": 3.42
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 3.96,
+      "end": 4.12
+    },
+    {
+      "text": "weaker",
+      "token": "weaker",
+      "start": 4.12,
+      "end": 4.44
+    },
+    {
+      "text": "pull",
+      "token": "pull",
+      "start": 4.44,
+      "end": 4.8
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 4.8,
+      "end": 5.28
+    },
+    {
+      "text": "change",
+      "token": "change",
+      "start": 5.28,
+      "end": 5.62
+    },
+    {
+      "text": "how",
+      "token": "how",
+      "start": 5.62,
+      "end": 5.84
+    },
+    {
+      "text": "people",
+      "token": "people",
+      "start": 5.84,
+      "end": 6.18
+    },
+    {
+      "text": "move",
+      "token": "move",
+      "start": 6.18,
+      "end": 6.66
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 6.66,
+      "end": 7.18
+    },
+    {
+      "text": "how",
+      "token": "how",
+      "start": 7.18,
+      "end": 7.34
+    },
+    {
+      "text": "bridges",
+      "token": "bridges",
+      "start": 7.34,
+      "end": 7.7
+    },
+    {
+      "text": "carry",
+      "token": "carry",
+      "start": 7.7,
+      "end": 8.22
+    },
+    {
+      "text": "loads.",
+      "token": "loads",
+      "start": 8.22,
+      "end": 8.66
+    },
+    {
+      "text": "People",
+      "token": "people",
+      "start": 9.36,
+      "end": 9.6
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 9.6,
+      "end": 9.88
+    },
+    {
+      "text": "weigh",
+      "token": "weigh",
+      "start": 9.88,
+      "end": 10.1
+    },
+    {
+      "text": "half",
+      "token": "half",
+      "start": 10.1,
+      "end": 10.44
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 10.44,
+      "end": 10.66
+    },
+    {
+      "text": "much",
+      "token": "much",
+      "start": 10.66,
+      "end": 10.88
+    },
+    {
+      "text": "on",
+      "token": "on",
+      "start": 10.88,
+      "end": 11.14
+    },
+    {
+      "text": "Earth.",
+      "token": "earth",
+      "start": 11.14,
+      "end": 11.38
+    },
+    {
+      "text": "They",
+      "token": "they",
+      "start": 11.84,
+      "end": 12.0
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 12.0,
+      "end": 12.14
+    },
+    {
+      "text": "jump",
+      "token": "jump",
+      "start": 12.14,
+      "end": 12.38
+    },
+    {
+      "text": "higher",
+      "token": "higher",
+      "start": 12.38,
+      "end": 12.82
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 12.82,
+      "end": 13.3
+    },
+    {
+      "text": "lift",
+      "token": "lift",
+      "start": 13.3,
+      "end": 13.52
+    },
+    {
+      "text": "heavy",
+      "token": "heavy",
+      "start": 13.52,
+      "end": 13.8
+    },
+    {
+      "text": "objects",
+      "token": "objects",
+      "start": 13.8,
+      "end": 14.34
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 14.34,
+      "end": 14.64
+    },
+    {
+      "text": "easily.",
+      "token": "easily",
+      "start": 14.64,
+      "end": 15.04
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 15.66,
+      "end": 15.78
+    },
+    {
+      "text": "person",
+      "token": "person",
+      "start": 15.78,
+      "end": 16.16
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 16.16,
+      "end": 16.42
+    },
+    {
+      "text": "carry",
+      "token": "carry",
+      "start": 16.42,
+      "end": 16.72
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 16.72,
+      "end": 16.88
+    },
+    {
+      "text": "large",
+      "token": "large",
+      "start": 16.88,
+      "end": 17.24
+    },
+    {
+      "text": "box",
+      "token": "box",
+      "start": 17.24,
+      "end": 17.66
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 17.66,
+      "end": 17.92
+    },
+    {
+      "text": "less",
+      "token": "less",
+      "start": 17.92,
+      "end": 18.14
+    },
+    {
+      "text": "effort.",
+      "token": "effort",
+      "start": 18.14,
+      "end": 18.46
+    },
+    {
+      "text": "Bridges",
+      "token": "bridges",
+      "start": 19.12,
+      "end": 19.52
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 19.52,
+      "end": 19.84
+    },
+    {
+      "text": "buildings",
+      "token": "buildings",
+      "start": 19.84,
+      "end": 20.22
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 20.22,
+      "end": 20.58
+    },
+    {
+      "text": "face",
+      "token": "face",
+      "start": 20.58,
+      "end": 20.82
+    },
+    {
+      "text": "different",
+      "token": "different",
+      "start": 20.82,
+      "end": 21.2
+    },
+    {
+      "text": "forces.",
+      "token": "forces",
+      "start": 21.2,
+      "end": 21.62
+    },
+    {
+      "text": "Some",
+      "token": "some",
+      "start": 22.38,
+      "end": 22.58
+    },
+    {
+      "text": "structures",
+      "token": "structures",
+      "start": 22.58,
+      "end": 23.08
+    },
+    {
+      "text": "might",
+      "token": "might",
+      "start": 23.08,
+      "end": 23.54
+    },
+    {
+      "text": "need",
+      "token": "need",
+      "start": 23.54,
+      "end": 23.84
+    },
+    {
+      "text": "new",
+      "token": "new",
+      "start": 23.84,
+      "end": 24.12
+    },
+    {
+      "text": "designs.",
+      "token": "designs",
+      "start": 24.12,
+      "end": 24.62
+    },
+    {
+      "text": "Cars",
+      "token": "cars",
+      "start": 25.2,
+      "end": 25.62
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 25.62,
+      "end": 25.88
+    },
+    {
+      "text": "machines",
+      "token": "machines",
+      "start": 25.88,
+      "end": 26.22
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 26.22,
+      "end": 26.68
+    },
+    {
+      "text": "move",
+      "token": "move",
+      "start": 26.68,
+      "end": 26.92
+    },
+    {
+      "text": "differently.",
+      "token": "differently",
+      "start": 26.92,
+      "end": 27.34
+    },
+    {
+      "text": "Astronauts",
+      "token": "astronauts",
+      "start": 28.38,
+      "end": 28.9
+    },
+    {
+      "text": "already",
+      "token": "already",
+      "start": 28.9,
+      "end": 29.32
+    },
+    {
+      "text": "experience",
+      "token": "experience",
+      "start": 29.32,
+      "end": 30.0
+    },
+    {
+      "text": "very",
+      "token": "very",
+      "start": 30.0,
+      "end": 30.6
+    },
+    {
+      "text": "low",
+      "token": "low",
+      "start": 30.6,
+      "end": 30.88
+    },
+    {
+      "text": "gravity",
+      "token": "gravity",
+      "start": 30.88,
+      "end": 31.34
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 31.34,
+      "end": 31.78
+    },
+    {
+      "text": "space.",
+      "token": "space",
+      "start": 31.78,
+      "end": 32.5
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 32.88,
+      "end": 33.04
+    },
+    {
+      "text": "half-gravity",
+      "token": "halfgravity",
+      "start": 33.04,
+      "end": 33.84
+    },
+    {
+      "text": "Earth",
+      "token": "earth",
+      "start": 33.84,
+      "end": 34.28
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 34.28,
+      "end": 34.92
+    },
+    {
+      "text": "look",
+      "token": "look",
+      "start": 34.92,
+      "end": 35.1
+    },
+    {
+      "text": "familiar",
+      "token": "familiar",
+      "start": 35.1,
+      "end": 35.54
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 35.54,
+      "end": 36.38
+    },
+    {
+      "text": "act",
+      "token": "act",
+      "start": 36.38,
+      "end": 36.8
+    },
+    {
+      "text": "differently.",
+      "token": "differently",
+      "start": 36.8,
+      "end": 37.5
+    },
+    {
+      "text": "Many",
+      "token": "many",
+      "start": 38.78,
+      "end": 39.04
+    },
+    {
+      "text": "systems",
+      "token": "systems",
+      "start": 39.04,
+      "end": 39.44
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 39.44,
+      "end": 39.82
+    },
+    {
+      "text": "need",
+      "token": "need",
+      "start": 39.82,
+      "end": 39.94
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 39.94,
+      "end": 40.14
+    },
+    {
+      "text": "adjust",
+      "token": "adjust",
+      "start": 40.14,
+      "end": 40.58
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 40.58,
+      "end": 40.92
+    },
+    {
+      "text": "lower",
+      "token": "lower",
+      "start": 40.92,
+      "end": 41.2
+    },
+    {
+      "text": "weight.",
+      "token": "weight",
+      "start": 41.2,
+      "end": 41.72
+    },
+    {
+      "text": "Lighter",
+      "token": "lighter",
+      "start": 42.52,
+      "end": 42.9
+    },
+    {
+      "text": "does",
+      "token": "does",
+      "start": 42.9,
+      "end": 43.58
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 43.58,
+      "end": 43.78
+    },
+    {
+      "text": "mean",
+      "token": "mean",
+      "start": 43.78,
+      "end": 44.04
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 44.04,
+      "end": 44.22
+    },
+    {
+      "text": "same.",
+      "token": "same",
+      "start": 44.22,
+      "end": 44.9
+    },
+    {
+      "text": "Comment",
+      "token": "comment",
+      "start": 45.44,
+      "end": 45.7
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 45.7,
+      "end": 45.98
+    },
+    {
+      "text": "next",
+      "token": "next",
+      "start": 45.98,
+      "end": 46.28
+    },
+    {
+      "text": "gravity",
+      "token": "gravity",
+      "start": 46.28,
+      "end": 46.68
+    },
+    {
+      "text": "question.",
+      "token": "question",
+      "start": 46.68,
+      "end": 47.22
+    }
+  ]
+}

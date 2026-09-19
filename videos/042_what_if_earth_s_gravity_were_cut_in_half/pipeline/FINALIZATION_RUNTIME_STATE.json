@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "video": "042_what_if_earth_s_gravity_were_cut_in_half",
+  "started_at": "2026-09-19T05:24:53.447866+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-19T05:24:53.468103+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:24:54.853997+00:00",
+      "elapsed_seconds": 1.386,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 36712
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-19T05:24:56.118649+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 2/8 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:27:35.793097+00:00",
+      "elapsed_seconds": 159.674,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 29705722
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-19T05:27:35.793689+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:27:42.954611+00:00",
+      "elapsed_seconds": 7.161,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-19T05:27:44.255288+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:27:47.391666+00:00",
+      "elapsed_seconds": 3.136,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 29937864
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-19T05:27:48.638043+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:27:55.486911+00:00",
+      "elapsed_seconds": 6.849,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-19T05:27:56.600340+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:28:11.887811+00:00",
+      "elapsed_seconds": 15.287,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2002927
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-19T05:28:12.980407+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T05:28:20.878919+00:00",
+      "elapsed_seconds": 7.898,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2055
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-19T05:28:22.278453+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-19T05:24:53.447866+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ],
+  "completed_at": "2026-09-19T05:28:22.275715+00:00",
+  "total_elapsed_seconds": 201.391,
+  "summary": {
+    "video": "042_what_if_earth_s_gravity_were_cut_in_half",
+    "duration_seconds": 47.726,
+    "beat_count": 12,
+    "video_beat_count": 2,
+    "image_beat_count": 10,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.42,
+      "transition_end": 8.66
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Nano Banana 2"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 159.193,
+      "realtime_factor": 3.336,
+      "peak_child_rss_mb": 1239.0,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
+}

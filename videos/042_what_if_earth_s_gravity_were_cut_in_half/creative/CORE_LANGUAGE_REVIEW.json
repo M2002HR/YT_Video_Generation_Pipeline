@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "core",
+  "content_fingerprint": "545f5037c676d7a69046268bfc494403be71c3c4021a4b3bb00de24588656b61",
+  "reference_fingerprint": "bce01ae694db869f037c65b0a5d39eff8b1fd3b95902e9f087155eb271a0e7f6",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "abbd3e5695e5f470a97ba91ffccbc36e02cd995d97e0f8dd56a5821b957d710d",
+  "input_fingerprint": "5229c135c03fc34b067b4cd8b957b9d0644b9d25687f9ad3c352b540d85cb2b3",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "opening_question_spark": "If your weight was cut in half, would Earth feel the same?",
+        "book_transition": "A weaker pull could change how people move and how bridges carry loads.",
+        "body_01": "People would weigh half as much on Earth.",
+        "body_02": "They could jump higher and lift heavy objects more easily.",
+        "body_03": "A person could carry a large box with less effort.",
+        "body_04": "Bridges and buildings would face different forces.",
+        "body_05": "Some structures might need new designs.",
+        "body_06": "Cars and machines would move differently.",
+        "body_07": "Astronauts already experience very low gravity in space.",
+        "body_08": "A half-gravity Earth could look familiar but act differently.",
+        "body_09": "Many systems would need to adjust to lower weight.",
+        "optional_closing": "Lighter does not mean the same."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-19T04:45:32Z"
+}

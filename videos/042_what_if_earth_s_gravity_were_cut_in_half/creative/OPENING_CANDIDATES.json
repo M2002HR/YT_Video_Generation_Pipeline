@@ -1,0 +1,235 @@
+{
+  "input_fingerprint": "7c15d476bbc3ef36a61a725cae60a119ee29d7097e97b3fa080f677c28fec93a",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "038",
+        "038_could_you_live_forever_on_a_desert_island",
+        "039",
+        "039_could_you_live_forever_on_a_desert_island",
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land"
+      ],
+      "writer_prompt_sha256": "5c1d0a9a1c4172e83eb7cf883edd05c5d6209bd69769d9ca1a9197898a3280d5",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If you could jump higher, why would everything else change too?",
+            "viewer_expectation": "People expect only jumping and falling to feel different when gravity changes.",
+            "visible_contradiction": "A person jumps normally but lands much later and loose objects float higher.",
+            "frame_zero": "A dropped ball rises slowly after a gentle bounce beside the surprised scholar.",
+            "character_action": "The scholar watches the ball, compares its motion with his expectation, and reaches for the storybook.",
+            "reaction": "He pauses, looks closer, and adjusts his idea after seeing the slower fall.",
+            "activity": "testing motion with a small ball and comparing the result",
+            "location": "quiet outdoor courtyard with simple objects on the ground",
+            "topic_link": "A weaker pull from Earth changes how objects move and how people experience weight.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Assumption: Earth's gravity is cut in half. In this thought experiment, objects would weigh less and fall more slowly.",
+            "payoff": "The body explains that half gravity would make movement easier but would change many daily experiences.",
+            "entry_variant": "object_transformation",
+            "entry_bridge": {
+              "a_end": "The scholar places the ball beside the closed storybook after seeing the unusual bounce.",
+              "b_start": "A closed topic-styled book lies alone in a top-down frame.",
+              "reveal": "The book opens to an illustrated world where gravity is different.",
+              "world_entry": "A person walks with long light steps across a landscape with floating dust."
+            },
+            "novelty": {
+              "action_family": "motion comparison",
+              "tension_family": "jumping versus consequences",
+              "prop_family": "bouncing ball",
+              "reveal_family": "small change affects many movements"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If your weight was cut in half, would Earth feel the same?",
+            "viewer_expectation": "People expect their bodies to feel lighter but the world around them to stay mostly unchanged.",
+            "visible_contradiction": "A person carries a heavy object easily, but a bridge model bends differently.",
+            "frame_zero": "The scholar lifts a heavy box while a nearby model bridge shows a changed load.",
+            "character_action": "The scholar compares his easy lift with the altered bridge model and investigates the mismatch.",
+            "reaction": "He gives a small surprised look and checks both examples carefully.",
+            "activity": "comparing reduced weight effects on people and structures",
+            "location": "open engineering display area with a simple bridge model",
+            "topic_link": "Lower gravity changes weight, affecting movement and how structures handle loads.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Assumption: Earth's gravity is cut in half. The thought experiment explores lower weight, not a confirmed event.",
+            "payoff": "The body explains that people would feel lighter, while many systems built for current gravity would need changes.",
+            "entry_variant": "shelf_reveal",
+            "entry_bridge": {
+              "a_end": "The scholar returns the box and pulls a closed storybook from a nearby shelf.",
+              "b_start": "A closed topic-styled book is shown alone from above.",
+              "reveal": "The opened pages reveal a world where gravity is half as strong.",
+              "world_entry": "A city scene shows people and vehicles moving under weaker gravity."
+            },
+            "novelty": {
+              "action_family": "load comparison",
+              "tension_family": "lighter people versus changed systems",
+              "prop_family": "bridge model",
+              "reveal_family": "weight change spreads beyond bodies"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If gravity became weaker, could Earth keep everything it has?",
+            "viewer_expectation": "People expect Earth to look the same because the planet itself does not change shape.",
+            "visible_contradiction": "A globe model keeps its surface while nearby particles escape upward.",
+            "frame_zero": "The scholar watches tiny model particles move away from a globe model.",
+            "character_action": "The scholar studies the model, notices the missing match, and reveals the storybook.",
+            "reaction": "He quietly rechecks the model and shows careful curiosity.",
+            "activity": "observing how a weaker pull changes what stays near a planet",
+            "location": "simple science exhibit room with a planet model",
+            "topic_link": "Gravity helps keep objects near Earth, so changing it can affect what stays bound.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Assumption: Earth's gravity is cut in half. The thought experiment asks how weaker gravity could affect objects around Earth.",
+            "payoff": "The body explains that weaker gravity could make it harder for Earth to hold some objects close.",
+            "entry_variant": "discovered_book",
+            "entry_bridge": {
+              "a_end": "The scholar finds a closed storybook beside the globe model after the test.",
+              "b_start": "A closed topic-styled book fills a host-free top-down frame.",
+              "reveal": "The book opens into a space view showing a lower-gravity Earth.",
+              "world_entry": "A planet view shows objects moving differently around a weaker-gravity Earth."
+            },
+            "novelty": {
+              "action_family": "planet model test",
+              "tension_family": "Earth holding versus letting go",
+              "prop_family": "globe model",
+              "reveal_family": "gravity affects what stays nearby"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "038",
+        "038_could_you_live_forever_on_a_desert_island",
+        "039",
+        "039_could_you_live_forever_on_a_desert_island",
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land"
+      ],
+      "reviewer_prompt_sha256": "f4d98809e6c1a4225c2482fff2de275154587f4dbcb7c55db70cf8b9b2626115",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 3,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [
+              "The opening image of a ball rising slowly after a bounce may suggest a specific gravity effect that is not clear or guaranteed; the visible evidence needs to focus on slower falling or easier jumping."
+            ],
+            "reason": "The candidate directly shows a small motion change that can lead to the gravity question. The scholar's careful comparison fits well. The entry follows the book bridge rules, and the payoff can explain broad effects, but the first image risks confusing viewers about what half gravity actually changes."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The contrast between a person feeling lighter and a structure reacting differently clearly raises the question. The scholar investigates a mismatch rather than giving a lecture, and the book transition works. The engineering display may need careful visual design, but the idea is filmable and supports the factual anchor."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [
+              "A small model showing particles escaping may be too abstract for viewers to immediately understand as a gravity problem without extra visual support."
+            ],
+            "reason": "The candidate explores an important consequence of weaker gravity and offers a less common angle. The scholar's observation fits, and the hypothesis is stated honestly. However, the first visual clue is less immediately readable than a body or object weight change, and the payoff may need more explanation."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 3,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "The opening image of a ball rising slowly after a bounce may suggest a specific gravity effect that is not clear or guaranteed; the visible evidence needs to focus on slower falling or easier jumping."
+          ],
+          "reason": "The candidate directly shows a small motion change that can lead to the gravity question. The scholar's careful comparison fits well. The entry follows the book bridge rules, and the payoff can explain broad effects, but the first image risks confusing viewers about what half gravity actually changes.",
+          "repetition_evidence": [],
+          "weighted_score": 84
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The contrast between a person feeling lighter and a structure reacting differently clearly raises the question. The scholar investigates a mismatch rather than giving a lecture, and the book transition works. The engineering display may need careful visual design, but the idea is filmable and supports the factual anchor.",
+          "repetition_evidence": [],
+          "weighted_score": 88
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "A small model showing particles escaping may be too abstract for viewers to immediately understand as a gravity problem without extra visual support."
+          ],
+          "reason": "The candidate explores an important consequence of weaker gravity and offers a less common angle. The scholar's observation fits, and the hypothesis is stated honestly. However, the first visual clue is less immediately readable than a body or object weight change, and the payoff may need more explanation.",
+          "repetition_evidence": [],
+          "weighted_score": 84
+        }
+      ],
+      "selected_id": "c2"
+    }
+  ]
+}

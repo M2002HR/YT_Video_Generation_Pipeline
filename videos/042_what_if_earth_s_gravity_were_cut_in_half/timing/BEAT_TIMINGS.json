@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 47.726,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person could carry a large box with less effort. Bridges and buildings would face different forces. Some structures might need new designs. Cars and machines would move differently. Astronauts already experience very low gravity in space. A half-gravity Earth could look familiar but act differently. Many systems would need to adjust to lower weight. Lighter does not mean the same. Comment your next gravity question.",
+  "word_count": 109,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "People would weigh half as much on Earth.",
+      "speech_start": 9.36,
+      "speech_end": 11.38,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 11.84,
+      "display_duration": 11.84
+    },
+    {
+      "beat_id": 2,
+      "narration": "They could jump higher and lift heavy objects more easily.",
+      "speech_start": 11.84,
+      "speech_end": 15.04,
+      "match_confidence": 1.0,
+      "display_start": 11.84,
+      "display_end": 15.66,
+      "display_duration": 3.82
+    },
+    {
+      "beat_id": 3,
+      "narration": "A person could carry a large box with less effort.",
+      "speech_start": 15.66,
+      "speech_end": 18.46,
+      "match_confidence": 1.0,
+      "display_start": 15.66,
+      "display_end": 19.12,
+      "display_duration": 3.46
+    },
+    {
+      "beat_id": 4,
+      "narration": "Bridges and buildings would face different forces.",
+      "speech_start": 19.12,
+      "speech_end": 21.62,
+      "match_confidence": 1.0,
+      "display_start": 19.12,
+      "display_end": 22.38,
+      "display_duration": 3.26
+    },
+    {
+      "beat_id": 5,
+      "narration": "Some structures might need new designs.",
+      "speech_start": 22.38,
+      "speech_end": 24.62,
+      "match_confidence": 1.0,
+      "display_start": 22.38,
+      "display_end": 25.2,
+      "display_duration": 2.82
+    },
+    {
+      "beat_id": 6,
+      "narration": "Cars and machines would move differently.",
+      "speech_start": 25.2,
+      "speech_end": 27.34,
+      "match_confidence": 1.0,
+      "display_start": 25.2,
+      "display_end": 28.38,
+      "display_duration": 3.18
+    },
+    {
+      "beat_id": 7,
+      "narration": "Astronauts already experience very low gravity in space.",
+      "speech_start": 28.38,
+      "speech_end": 32.5,
+      "match_confidence": 1.0,
+      "display_start": 28.38,
+      "display_end": 32.88,
+      "display_duration": 4.5
+    },
+    {
+      "beat_id": 8,
+      "narration": "A half-gravity Earth could look familiar but act differently.",
+      "speech_start": 32.88,
+      "speech_end": 37.5,
+      "match_confidence": 0.8,
+      "display_start": 32.88,
+      "display_end": 38.78,
+      "display_duration": 5.9
+    },
+    {
+      "beat_id": 9,
+      "narration": "Many systems would need to adjust to lower weight.",
+      "speech_start": 38.78,
+      "speech_end": 41.72,
+      "match_confidence": 1.0,
+      "display_start": 38.78,
+      "display_end": 42.52,
+      "display_duration": 3.74
+    },
+    {
+      "beat_id": 10,
+      "narration": "Lighter does not mean the same.",
+      "speech_start": 42.52,
+      "speech_end": 44.9,
+      "match_confidence": 1.0,
+      "display_start": 42.52,
+      "display_end": 47.726,
+      "display_duration": 5.206
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "cta",
+  "content_fingerprint": "e7951f3721031f0e0e3509f1518a82f09549ff43d4f4d547f885709e1c2744f5",
+  "reference_fingerprint": "1de92f89e7dc5caa25b28b9e802020a12e8258fff82d0efb971b478cb00c78b2",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "abbd3e5695e5f470a97ba91ffccbc36e02cd995d97e0f8dd56a5821b957d710d",
+  "input_fingerprint": "dd5a03c3aab18245330af5653ee3610cfcb8034ed8e8a841bc64e94b24cfcbbe",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "cta": "Comment your next gravity question."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-19T04:46:50Z"
+}

@@ -154,6 +154,17 @@
       "path": "026_colorful_crayon_adaptation_world_001",
       "anchor": "026_colorful_crayon_adaptation_world_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "gravity_halfworld_dough_clay_001",
+      "display_name": "Gravity Halfworld Dough Clay 001",
+      "medium_family": "clay/stop-motion-like",
+      "texture_family": "soft doughy sculpted surface with rounded hand-formed volumes, subtle fingerprints, gentle compression marks and matte tactile clay grain",
+      "palette_summary": "earthy sky blues, muted greens, warm stone grays, soft clay browns and cream highlights, with restrained metallic accents for machines and structures",
+      "status": "ready",
+      "path": "027_gravity_halfworld_dough_clay_001",
+      "anchor": "027_gravity_halfworld_dough_clay_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

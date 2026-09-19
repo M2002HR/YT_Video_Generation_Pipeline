@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "ec151ac2187bd1f013713a12aad544d9c7e1bf223a6a26bc872f4bd59a9c29dc",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "c0c45ac4-d3e6-4209-ac01-e8ccb2086790",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/023dd7c6da6043fc",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=c0c45ac4-d3e6-4209-ac01-e8ccb2086790_output_1.png 1536x2752 sha256=d8c6321c8c3833292ad3b6f1cc264bb70e4bef2535cce11ef39b3257a581d2fc"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "ec151ac2187bd1f013713a12aad544d9c7e1bf223a6a26bc872f4bd59a9c29dc",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "c0c45ac4-d3e6-4209-ac01-e8ccb2086790",
+        "prompt_sha256": "75a21f295c09dc59ccdd30a4ff77d26252960c8ab7f329cb782c7dfc03bc737b",
+        "output_sha256": "d8c6321c8c3833292ad3b6f1cc264bb70e4bef2535cce11ef39b3257a581d2fc",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/references/world_style_anchor.png",
+      "sha256": "f2fe61e7c84d8fb4aa7eacebd9dcd388be1fde5fd78763a08ee3f7dbf717dc03"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/references/world_keyframe.png",
+      "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/042_what_if_earth_s_gravity_were_cut_in_half/assets/raw_beats/beat_002.png",
+      "sha256": "a491fbfacdacb088ce38a938dfc19c76ce4e9f52e3fc4e3e5282a3a7f362663c"
+    }
+  ],
+  "prompt_sha256": "75a21f295c09dc59ccdd30a4ff77d26252960c8ab7f329cb782c7dfc03bc737b",
+  "prompt": "Gemini single beat image prompt\n\nCreate exactly one 9:16 full-bleed image of a clay/stop-motion-like topic-world scene: a small clay person calmly carrying an oversized cardboard box across a warehouse floor, demonstrating reduced effort through a relaxed upright posture, easy grip, and natural movement despite the box size. Compose a medium side view inside an indoor storage space with stacked boxes and warehouse objects, showing altered weight behavior through the effortless carrying action while keeping the scene realistic and topic-supported, with no fantasy elements. Use the style_reference only to preserve the clay medium, soft doughy sculpted surface, rounded hand-formed volumes, subtle fingerprints, gentle compression marks, matte tactile clay grain, minimal molded contours, earthy sky blues, muted greens, warm stone grays, soft clay browns, cream highlights and restrained metallic accents. Use the world_keyframe only as a guide for consistent world atmosphere, spatial depth, lighting, texture and material treatment, not its composition or layout. Use the previous_beat only for compatible continuity of medium, palette and soft natural daylight qualities, not its pose, camera angle, subject placement or framing. Fill the entire 9:16 frame edge-to-edge with the warehouse world; use soft studio-like natural daylight, broad shadows, gentle ambient bounce and clear weight-related form changes. Do not include any enclosing page, border, inset window, gateway mask, decorative frame, blank caption area, footer, panels, grid, collage, storyboard elements, captions or readable text. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "d8c6321c8c3833292ad3b6f1cc264bb70e4bef2535cce11ef39b3257a581d2fc",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.236,
+  "completed_at": "2026-09-19T05:08:16Z"
+}

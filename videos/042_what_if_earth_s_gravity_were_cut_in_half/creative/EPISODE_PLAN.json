@@ -1,0 +1,30 @@
+{
+  "concept_id": "d190a000937bbf385cd1",
+  "opening_actions": [
+    "The scholar lifts a large box from a display platform with unexpected ease.",
+    "He sets the box beside a small bridge model and notices the model flexing under a changed load.",
+    "He leans closer and compares the two examples with a curious pause."
+  ],
+  "entry_bridge": {
+    "a_end": "The scholar returns the box and pulls a closed storybook from a nearby shelf.",
+    "b_start": "A closed topic-styled book is shown alone from above.",
+    "reveal": "The opened pages reveal an illustrated world where gravity is half as strong.",
+    "world_entry": "A city scene shows people, vehicles, and structures behaving under weaker gravity."
+  },
+  "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+  "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+  "opening_environment": "A quiet public engineering exhibit space with a large box, a tabletop bridge model, and a nearby shelf holding storybooks.",
+  "topic_visual_link": "The visible mismatch between an easily lifted heavy box and a bridge model reacting differently shows that halving gravity changes both people and the systems around them.",
+  "link_type": "direct",
+  "opening_visual_proof": "The scholar holds a large box effortlessly while the adjacent bridge model visibly bends under its altered load.",
+  "curiosity_trigger": "He notices that the same lighter-feeling world does not make every structure behave the same way.",
+  "trigger_object": "The large box beside the flexing bridge model.",
+  "reaction": "He gives a small surprised look and carefully checks both examples.",
+  "entry_retrieval": "After comparing the box and bridge, the scholar returns the box and reaches to a nearby shelf to reveal the closed storybook.",
+  "entry_variant": "shelf_reveal",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "auto",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "A grounded illustrated city and landscape where everyday movement and machines adapt to lower gravity.",
+  "reason": "The opening turns the script's central idea into a visible cause-and-effect moment: lighter bodies do not mean the entire built world stays unchanged."
+}

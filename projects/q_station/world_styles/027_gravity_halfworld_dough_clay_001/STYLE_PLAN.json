@@ -1,0 +1,19 @@
+{
+  "style_id": "gravity_halfworld_dough_clay_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "clay/stop-motion-like",
+  "secondary_treatment": null,
+  "texture_family": "soft doughy sculpted surface with rounded hand-formed volumes, subtle fingerprints, gentle compression marks and matte tactile clay grain",
+  "palette_summary": "earthy sky blues, muted greens, warm stone grays, soft clay browns and cream highlights, with restrained metallic accents for machines and structures",
+  "line_treatment": "Minimal sculpted contours and soft edge definition created through form separation, shallow grooves and molded surface transitions rather than drawn outlines",
+  "lighting": "Soft studio-like natural daylight with broad shadows, gentle ambient bounce and clear weight-related form changes",
+  "subject_constraints": "Topic-appropriate objects, scale and environment: people, vehicles, buildings, bridges and planetary landscapes should show altered weight, motion and structural behavior without fantasy elements unsupported by the topic",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reserve_subtitle_space": false,
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "No reserved caption field; continue the scene through the full height."
+}
