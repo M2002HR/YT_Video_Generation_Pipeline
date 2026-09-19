@@ -347,3 +347,44 @@ def test_language_policy_rollout_preserves_verified_legacy_concept(project, char
     assert target.read_bytes() == before and len(spy.prompts) == 2
     with pytest.raises(qstation.StageFailure, match='Revise'):
         qstation.stage_opening_concept(spy, project, content, 'a genuinely new topic', qstation.DurationTarget(30,40), character)
+
+
+def _core_text(plan, entry_key):
+    return ' '.join(filter(None, [plan['opening_question_spark'], plan[entry_key],
+                                  *plan['body'], plan['optional_closing']]))
+
+
+_FILLER_BANK = "Memory can replay each pattern softly again today while the room stays quiet and still".split()
+
+
+def _padded_core(entry_key, target_words):
+    from test_opening_concept_pipeline import narration
+    plan = copy.deepcopy(narration(entry_key))
+    deficit = target_words - qstation.word_count(_core_text(plan, entry_key))
+    while deficit > 0:
+        chunk = min(deficit, 14)
+        words = (_FILLER_BANK * ((chunk // len(_FILLER_BANK)) + 1))[:chunk]
+        words[0] = words[0].capitalize()
+        plan['body'].append(' '.join(words) + '.')
+        deficit -= chunk
+    # A short provisional CTA keeps the whole plan inside the episode cap so the
+    # room check — not the range check — is what the retention stage reacts to.
+    plan['cta'] = 'Say more.'
+    key = 'entry_transition' if 'entry_transition' in plan else 'book_transition'
+    plan['full_narration'] = ' '.join(filter(None, [plan['opening_question_spark'], plan[key],
+                                                    *plan['body'], plan['optional_closing'], plan['cta']]))
+    assert qstation.word_count(_core_text(plan, entry_key)) == target_words
+    return plan
+
+
+def test_retention_leaves_room_for_the_downstream_cta(project, character):
+    entry_key = character.presentation.segment_key
+    long = _padded_core(entry_key, 98)
+    short = _padded_core(entry_key, 90)
+    assert qstation.DurationTarget(30, 40).word_max - qstation.word_count(_core_text(long, entry_key)) == 2
+    spy = Spy([long, passed(), short, passed()])
+    final = retain(spy, project, character, long)
+    assert qstation._cta_word_room(final, qstation.DurationTarget(30, 40), character.presentation) >= 4
+    assert len(spy.prompts) == 4
+    assert 'Compress the current candidate by at least 2 words' in spy.prompts[2][1]
+    assert (project / 'creative/SCRIPT_CORE_PLAN.json').is_file()

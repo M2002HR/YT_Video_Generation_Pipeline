@@ -500,9 +500,9 @@ def launch_form(project_options: str, style_options: str, character_options: str
   <label>Gemini image model <select name=gemini_image_model>
     <option value=nano_banana_2 selected>Nano Banana 2 — what Gemini offers today</option>
     <option value=nano_banana_pro>Nano Banana Pro — fails until Gemini exposes it</option></select></label>
-  <label class=check><input type=checkbox name=beat_image_qc_disabled onchange="syncBeatImageQcControls()">
-   Disable ChatGPT QC for beat images
-   <small>Generated body-beat images will never be uploaded to ChatGPT for review.</small></label>
+   <label class=check><input type=checkbox name=beat_image_qc_disabled onchange="syncBeatImageQcControls()">
+    Disable ChatGPT QC for all images
+    <small>Generated images (style, keyframe, book art, body beats) will never be uploaded to ChatGPT for review, with no exceptions — they are accepted as rendered.</small></label>
   <label id=beat_image_qc_policy>Non-critical image QC corrections <select name=image_qc_correction_policy>
     <option value=0 selected>0 — report only (current behaviour)</option>
     <option value=1>1 corrective regeneration</option>

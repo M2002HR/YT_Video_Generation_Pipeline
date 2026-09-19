@@ -644,8 +644,14 @@ class Runner:
         self._beat_image_provider: str | None = None
 
     def image_qc_disabled_for(self, stage: str) -> bool:
-        """Whether this body beat must never be uploaded to the ChatGPT reviewer."""
-        return bool(getattr(self, "beat_image_qc_disabled", False)) and stage.startswith("beat_image_")
+        """Whether this image must never be uploaded to the ChatGPT reviewer.
+
+        The launch toggle is a global image-QC opt-out: when active, every
+        generated image (world style, keyframe, book art, body beats, ...) skips
+        visual review with no exceptions. The operator accepts the rendered
+        pixels as-is; the receipt records the review as disabled.
+        """
+        return bool(getattr(self, "beat_image_qc_disabled", False))
 
     @staticmethod
     def disabled_image_qc_receipt() -> dict[str, Any]:
@@ -933,7 +939,11 @@ class Runner:
         previous candidate is supplied as a quality-floor reference on corrections, and
         the final file is replaced only after the best reviewed candidate is known.
         """
-        # Entry geometry is never an optional polish review. Body-only opt-outs remain intact.
+        # The launch flag is a global image-QC opt-out: when active, every generated
+        # image is accepted as rendered and never uploaded to ChatGPT for review —
+        # world style, keyframes, book art and body beats alike, with no exceptions.
+        # The entry-geometry guard below only governs the explicit skip_content_qc
+        # parameter (release/feedback paths) when the flag is off.
         if stage in {"book_design_sheet", "book_cover"} and visuals.requirements(prompt):
             skip_content_qc = False
         qc_disabled = skip_content_qc or self.image_qc_disabled_for(stage)
@@ -1971,6 +1981,49 @@ def stage_retention(
         )
     else:
         raise StageFailure(stage, "FAILED_VALIDATION", "Spoken-English review failed after bounded text edits; see creative/CORE_LANGUAGE_REVIEW.json.")
+    # The downstream CTA stage appends a 4–16 word closing line inside the same episode
+    # word cap. A core that fills the whole range would make every legal CTA fail, so
+    # compress here — while the narration editor is still in the loop — instead of
+    # failing the CTA stage later for something it cannot fix.
+    language_fix = None
+    for _ in range(3):
+        short_by = CTA_MIN_WORDS - (duration.word_max - _cta_core_words(plan, presentation))
+        if short_by <= 0 and language_fix is None:
+            break
+        compress_instruction = (
+            f"Compress the current candidate by at least {short_by} words "
+            f"(it is {_cta_core_words(plan, presentation)} words; the episode cap is {duration.word_max} "
+            f"words and the downstream CTA stage needs at least {CTA_MIN_WORDS} of them). "
+            if short_by > 0 else ""
+        )
+        if language_fix is not None:
+            prompt = _language_correction_prompt(
+                edit_prompt(plan),
+                "Revise the current candidate ONLY to fix the language review. " + compress_instruction
+                + "Preserve the original meaning, uncertainty, selected premise and all segment rules. "
+                "Return the complete validated narration JSON, not a list of replacements.",
+                language_fix, stage,
+            )
+            language_fix = None
+        else:
+            prompt = (
+                edit_prompt(plan) + "\n\n" + compress_instruction
+                + "Preserve the approved meaning, premise, uncertainty, and all segment rules. "
+                "Return the complete validated narration JSON."
+            )
+        plan = ask_for_script(runner, stage, prompt, duration, presentation=presentation)
+        report = review_spoken_language(
+            runner, project, content_project, stage, "core", plan, presentation,
+            brief, reference, language_attempts,
+        )
+        if not report["passed"]:
+            language_fix = report
+    else:
+        raise StageFailure(
+            stage, "FAILED_VALIDATION",
+            "The core leaves no room for the closing CTA inside the episode word cap; "
+            "shorten it via retention revision.",
+        )
     save_json(target, plan)
     _record_text_input(project, stage, prompt, opening_concept, language_review_required=True)
     runner.stage_done(stage, started, f"{plan['word_count']} words; language reviewed", words=plan["word_count"])
@@ -1978,6 +2031,31 @@ def stage_retention(
 
 
 CTA_HINT_MAX_CHARS = 500
+
+#: The CTA writer's legal window. The downstream CTA shares the episode word cap
+#: with the editorial core, so retention must always leave room for the minimum.
+CTA_MIN_WORDS = 4
+CTA_MAX_WORDS = 16
+
+
+def _cta_core_words(plan: dict[str, Any], presentation: PresentationContext) -> int:
+    """Spoken words of the approved core, i.e. everything except the CTA itself.
+
+    Uses the same ``word_count`` as the final narration gate so the reserved room
+    is measured with the exact ruler the merge will be judged by.
+    """
+    parts = [
+        str(plan.get("opening_question_spark") or "").strip(),
+        str(plan.get(presentation.segment_key) or "").strip(),
+        *[str(item).strip() for item in plan.get("body") or []],
+        str(plan.get("optional_closing") or "").strip(),
+    ]
+    return word_count(" ".join(part for part in parts if part))
+
+
+def _cta_word_room(plan: dict[str, Any], duration: DurationTarget, presentation: PresentationContext) -> int:
+    """How many CTA words still fit inside the episode word cap."""
+    return duration.word_max - _cta_core_words(plan, presentation)
 
 
 def cta_hint(project: Path) -> str:
@@ -2049,10 +2127,31 @@ def validate_cta(
         raise StageFailure(stage, "FAILED_VALIDATION", "CTA writer must return a JSON object with a string `cta`.")
     line = payload["cta"].strip()
     tokens = _plan_tokens(line)
-    if not 4 <= len(tokens) <= 16:
-        raise StageFailure(stage, "FAILED_VALIDATION", "CTA must contain 4–16 spoken words.")
-    if len(re.findall(r"[.!?…](?:[\"')\]]|\s)*", line)) > 1:
-        raise StageFailure(stage, "FAILED_VALIDATION", "CTA must be one atomic spoken sentence.")
+    if not CTA_MIN_WORDS <= len(tokens) <= CTA_MAX_WORDS:
+        raise StageFailure(stage, "FAILED_VALIDATION", f"CTA must contain {CTA_MIN_WORDS}–{CTA_MAX_WORDS} spoken words.")
+    room = _cta_word_room(plan, duration, presentation)
+    cap = min(CTA_MAX_WORDS, room)
+    if len(tokens) > cap:
+        if room < CTA_MIN_WORDS:
+            raise StageFailure(
+                stage, "FAILED_VALIDATION",
+                f"The approved core is {_cta_core_words(plan, presentation)} words against a "
+                f"{duration.word_max}-word cap, leaving no room for even a {CTA_MIN_WORDS}-word CTA. "
+                "Revise from retention_edit to shorten the core; no CTA wording can fix this.",
+            )
+        raise StageFailure(
+            stage, "FAILED_VALIDATION",
+            f"CTA has {len(tokens)} words but only {cap} fit within the {duration.word_max}-word "
+            f"narration cap. Shorten it to {cap} words or fewer, keeping exactly one sentence.",
+        )
+    marks = re.findall(r"[.!?…]", line)
+    if len(marks) > 1:
+        raise StageFailure(
+            stage, "FAILED_VALIDATION",
+            f"CTA must be exactly one spoken sentence with exactly one sentence-ending mark "
+            f"(found {len(marks)}). A hook question followed by an ask is two sentences: merge "
+            "the intent into a single sentence ending with one period.",
+        )
     if re.search(r"https?://|www\.|[#*_]", line, flags=re.IGNORECASE):
         raise StageFailure(stage, "FAILED_VALIDATION", "CTA contains non-spoken formatting or a URL.")
     if cta_copies_hint(line, hint):
@@ -2107,11 +2206,22 @@ def stage_call_to_action(
         except (OSError, ValueError, TypeError):
             pass
     started = runner.stage_start(stage)
+    room = _cta_word_room(plan, duration, presentation)
+    if room < CTA_MIN_WORDS:
+        raise StageFailure(
+            stage, "FAILED_VALIDATION",
+            f"The approved core is {_cta_core_words(plan, presentation)} words against a "
+            f"{duration.word_max}-word cap, leaving no room for even a {CTA_MIN_WORDS}-word CTA. "
+            "Revise from retention_edit to shorten the core, then resume.",
+        )
+    budget_cap = min(CTA_MAX_WORDS, room)
+    budget_label = f"{CTA_MIN_WORDS}–{budget_cap}" if budget_cap < CTA_MAX_WORDS else f"{CTA_MIN_WORDS}–{CTA_MAX_WORDS}"
     prompt = fill(
         resolve_prompt(content_project, "03_call_to_action_writer.md"),
         VIDEO_BRIEF=brief,
         SCRIPT_CONTEXT=json.dumps(cta_source_context(plan, presentation), ensure_ascii=False, indent=2),
         CTA_HINT=hint or "No additional operator direction; choose the most natural topic-aware engagement intent.",
+        CTA_WORD_BUDGET=budget_label,
     )
     original_prompt = prompt
     language_attempts: list[dict[str, Any]] = []
@@ -2120,7 +2230,9 @@ def stage_call_to_action(
         final = ask_with_correction(
             runner, stage, prompt,
             lambda data: validate_cta(stage, data, hint, plan, duration, presentation),
-            hint="Return only a fresh one-sentence CTA. Do not copy the optional operator hint verbatim.",
+            hint=f"Return only a fresh CTA of at most {budget_cap} words: exactly one sentence "
+            "with exactly one final period and no ? ! … characters. Never append an ask after "
+            "a question. Do not copy the optional operator hint verbatim.",
         )
         report = review_spoken_language(
             runner, project, content_project, stage, "cta", final, presentation,
@@ -3563,6 +3675,33 @@ def stage_flow_prompt(
     return text
 
 
+def entry_frame_geometry_accepted(
+    project: Path, presentation: PresentationContext, book_spread: Path | None,
+) -> bool:
+    """Whether Clip B may spend Flow credits on the current entry start frame.
+
+    Acceptance is either a ChatGPT review matching the current entry-frame
+    contract, or the operator's explicit QC opt-out: with the launch flag on,
+    the entry receipt's ``disabled`` review means the verified file bytes are
+    the acceptance and no review exists by design. File integrity (a valid
+    image, a matching sha and a verified receipt status) is required in both
+    cases, so a stale or replaced frame never passes on an old receipt.
+    """
+    if not visuals.requirements(presentation.entry_frame_prompt):
+        return True
+    if book_spread is None or not valid_image(book_spread):
+        return False
+    entry_receipt = presentation.artifacts.path(project, "entry_image_receipt")
+    data = visuals.read_cache(entry_receipt)
+    if (data.get("output_sha256") != sha256_file(book_spread)
+            or receipt_status(project, book_spread, entry_receipt)["status"] != "verified"):
+        return False
+    check = data.get("quality_check")
+    if isinstance(check, dict) and check.get("review_status") == "disabled":
+        return True
+    return bool(visuals.review_matches(check, presentation.entry_frame_prompt))
+
+
 def stage_flow_clip(
     runner: Runner,
     project: Path,
@@ -3630,13 +3769,8 @@ def stage_flow_clip(
             visuals.validate_entry_duration(presentation, float(source_seconds))
         except ValueError as exc:
             raise StageFailure(stage, "FAILED_VALIDATION", str(exc)) from exc
-    if clip == "B" and visuals.requirements(presentation.entry_frame_prompt):
-        entry_receipt = presentation.artifacts.path(project, "entry_image_receipt")
-        data = visuals.read_cache(entry_receipt)
-        if (book_spread is None or not valid_image(book_spread) or data.get("output_sha256") != sha256_file(book_spread)
-                or receipt_status(project, book_spread, entry_receipt)["status"] != "verified"
-                or not visuals.review_matches(data.get("quality_check"), presentation.entry_frame_prompt)):
-            raise StageFailure(stage, "FAILED_VALIDATION", "The entry start frame lacks current geometry acceptance. Regenerate the entry frame before spending Flow credits.")
+    if clip == "B" and not entry_frame_geometry_accepted(project, presentation, book_spread):
+        raise StageFailure(stage, "FAILED_VALIDATION", "The entry start frame lacks current geometry acceptance. Regenerate the entry frame before spending Flow credits.")
     started = runner.stage_start(stage)
 
     if clip == "A":

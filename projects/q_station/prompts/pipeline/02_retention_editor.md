@@ -50,7 +50,9 @@ SELECTED OPENING CONCEPT: {{OPENING_CONCEPT}}
 - clearer hook wording and curiosity payoff; preserve the premise, not the candidate's exact words
 - remove unnecessary jargon and abstract noun piles; explain necessary terms in context
 - clarity before compression: never replace everyday wording with a formal synonym just to save words
-- keep word count within {{WORD_RANGE}} for a {{DURATION_RANGE}} Short
+- keep word count within {{WORD_RANGE}} for a {{DURATION_RANGE}} Short, and always leave at least
+  4 words of headroom below the top of that range: the downstream CTA stage appends a 4–16 word
+  closing line inside the same cap, so a core that fills the range leaves it no legal wording
 - TTS rhythm and visual translatability
 - removing generic openers such as "Have you ever wondered"
 - making the {{ENTRY_SEGMENT_LABEL}} carry a concrete clue while visuals handle the entry mechanics; never merely announce that we enter the prop

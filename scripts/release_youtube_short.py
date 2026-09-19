@@ -362,7 +362,13 @@ def review_prompt(context: dict[str, Any], draft: dict[str, Any]) -> str:
 def _valid_short_title(title: str) -> bool:
     """Return whether a title obeys the deliberately compact Shorts title format."""
     words = title.split()
-    if len(words) < 4 or not all(re.fullmatch(r"[A-Z]+(?:['-][A-Z]+)*", word) for word in words[:2]):
+    if len(words) < 4:
+        return False
+    # First word: ALL CAPS (A-Z, apostrophe, hyphen)
+    # Second word: ALL CAPS optionally followed by a colon (natural separator before the sentence)
+    first_ok = re.fullmatch(r"[A-Z]+(?:['-][A-Z]+)*", words[0]) is not None
+    second_ok = re.fullmatch(r"[A-Z]+(?:['-][A-Z]+)*:?", words[1]) is not None
+    if not (first_ok and second_ok):
         return False
     hashtags = re.findall(r"(?<!\w)#\w+", title.casefold())
     return hashtags == ["#shorts"] and bool(re.search(r"[^\w\s#]$", title, flags=re.UNICODE))

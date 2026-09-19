@@ -201,8 +201,8 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("world_style_hint", "Style hint", maxLength=500, placeholder="charcoal, woodcut, ink wash…"),
             _field("gemini_image_model", "Gemini image model", "select", default="nano_banana_2", options=select([("nano_banana_2", "Nano Banana 2"), ("nano_banana_pro", "Nano Banana Pro (availability required)")])),
             _field(
-                "beat_image_qc_disabled", "Disable ChatGPT QC for beat images", "toggle", default=False,
-                help="Skips visual review entirely for body beats: generated beat images are never uploaded to ChatGPT.",
+                "beat_image_qc_disabled", "Disable ChatGPT QC for all images", "toggle", default=False,
+                help="Skips visual review entirely for every generated image (world style, keyframe, book art and body beats), with no exceptions: images are never uploaded to ChatGPT and are accepted as rendered.",
             ),
             _field(
                 "image_qc_correction_policy", "Non-critical QC corrections", "select", default="0",

@@ -87,6 +87,43 @@ def test_disabled_beat_qc_never_uploads_generated_image_to_chatgpt(tmp_path):
     assert selected.generation_receipt['quality_check']['review_provider'] is None
 
 
+def test_disabled_qc_flag_covers_every_image_stage_not_just_beats(tmp_path):
+    source=picture(tmp_path/'source.png')
+    for stage in ('world_style_anchor', 'world_keyframe', 'book_cover', 'beat_image_001'):
+        target=tmp_path/f'{stage}.png'
+        runner=object.__new__(qstation.Runner)
+        runner.beat_image_qc_disabled=True
+        runner.image_qc_correction_policy='strict'
+        runner._run=lambda *a,**k:result()
+        runner.jobs=SimpleNamespace(download=lambda _,dst:dst.write_bytes(source.read_bytes()))
+        runner.validate_image_content=lambda *a,**k:pytest.fail(f'{stage} was sent to ChatGPT QC')
+        selected=runner.image(stage,'scene',[],model='nano_banana_2',destination=target)
+        assert target.is_file()
+        assert selected.generation_receipt['qc_policy']=='disabled'
+    runner=object.__new__(qstation.Runner)
+    runner.beat_image_qc_disabled=False
+    assert runner.image_qc_disabled_for('world_style_anchor') is False
+    assert runner.image_qc_disabled_for('beat_image_001') is False
+
+
+def test_disabled_qc_flag_skips_entry_geometry_review_with_no_exceptions(tmp_path):
+    # The exact Video 040 book_cover failure: the flag was on, yet the stage
+    # entered ChatGPT QC because its prompt carries a visual contract. With the
+    # flag on, even entry-geometry stages must never upload to ChatGPT.
+    source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
+    prompt='scene [VISUAL_CONTRACT:spyglass_entry_v2]'
+    runner=object.__new__(qstation.Runner)
+    runner.beat_image_qc_disabled=True
+    runner.image_qc_correction_policy='strict'
+    runner._run=lambda *a,**k:result()
+    runner.jobs=SimpleNamespace(download=lambda _,dst:dst.write_bytes(source.read_bytes()))
+    runner.validate_image_content=lambda *a,**k:pytest.fail('book_cover was sent to ChatGPT QC despite the disable flag')
+    selected=runner.image('book_cover',prompt,[],model='nano_banana_2',destination=target)
+    assert target.is_file()
+    assert selected.generation_receipt['qc_policy']=='disabled'
+    assert selected.generation_receipt['quality_check']['review_status']=='disabled'
+
+
 def test_pre_generation_feedback_mode_never_uploads_gemini_replacement_to_chatgpt(tmp_path):
     source=picture(tmp_path/'source.png');target=tmp_path/'out.png'
     runner=object.__new__(qstation.Runner)

@@ -15,7 +15,7 @@ Inputs:
 Return raw JSON only:
 ```json
 {
-  "concept_id": "copy the selected concept_id, or empty for a legacy caller",
+  "concept_id": "copy the TOP-LEVEL concept_id from SELECTED OPENING CONCEPT (e.g., \"8141ec83c222320a1d14\"), NOT the selected.id (e.g., \"c1\"). Empty only for legacy callers.",
   "opening_actions": ["one to three concise physical actions, in order"],
   "entry_bridge": {"a_end": "last state of A", "b_start": "compatible profile-specific first frame of B", "reveal": "informational discovery during entry", "world_entry": "host-free first factual discovery"},
   "opening_activity": "free semantic description",
@@ -38,6 +38,7 @@ Return raw JSON only:
 ```
 
 Rules:
+- The `concept_id` in your output MUST be the TOP-LEVEL `concept_id` from SELECTED OPENING CONCEPT (e.g., `"8141ec83c222320a1d14"`). Do NOT use `selected.id` (e.g., `"c1"`) — that is a selection label, not the concept identifier. An empty or wrong `concept_id` will cause validation failure.
 - Infer WHERE and WHAT from topic + final script + character tone. Environments are episode-specific, never character-owned.
 - Every opening must make a topic-specific visual connection that the viewer can see immediately, not merely read about in `reason`. It may be direct, metaphorical, ironic, causal, or a historical echo; choose the most natural form for the topic.
 - `opening_visual_proof` is mandatory: it must be physically visible in the first 1–2 seconds, work without captions, readable text, logos, or prior knowledge, and be part of what the host is already doing or noticing at frame zero. It must naturally cause `curiosity_trigger` and the host's reaction.
