@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "dev",
+  "remote": "origin",
+  "artifact_commit": "5d24f2b11cf2b2b46797426cc2240231235155e9",
+  "started_at": "2026-09-19T04:35:34.577823+00:00",
+  "completed_at": "2026-09-19T04:39:20.083709+00:00",
+  "elapsed_seconds": 225.506,
+  "scope": "videos/041_what_if_fish_could_breathe_on_land"
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "041_what_if_fish_could_breathe_on_land",
   "started_at": "2026-09-19T04:35:34.577823+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -137,10 +137,20 @@
         "2026-09-19T04:35:34.577823+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-19T04:35:34.577823+00:00",
+      "ended_at": "2026-09-19T04:39:20.083709+00:00",
+      "elapsed_seconds": 225.506,
+      "branch": "dev",
+      "remote": "origin",
+      "artifact_commit": "5d24f2b11cf2b2b46797426cc2240231235155e9"
     }
   ],
-  "completed_at": "2026-09-19T04:39:12.692015+00:00",
-  "total_elapsed_seconds": 210.577,
+  "completed_at": "2026-09-19T04:39:20.083709+00:00",
+  "total_elapsed_seconds": 436.083,
   "summary": {
     "video": "041_what_if_fish_could_breathe_on_land",
     "duration_seconds": 45.636,
