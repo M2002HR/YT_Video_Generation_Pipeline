@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "branch": "dev",
+  "remote": "origin",
+  "artifact_commit": "597fed5e281008e104db4270b046821a770521c3",
+  "started_at": "2026-09-19T15:52:44.380166+00:00",
+  "completed_at": "2026-09-19T15:57:37.617107+00:00",
+  "elapsed_seconds": 293.237,
+  "scope": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant"
+}
