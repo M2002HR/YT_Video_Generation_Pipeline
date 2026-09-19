@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "video": "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
-  "started_at": "2026-09-18T20:03:25.344658+00:00",
-  "status": "DONE",
+  "started_at": "2026-09-19T02:47:23.290483+00:00",
+  "status": "RUNNING",
   "events": [
     {
       "stage": "build_timeline",
-      "started_at": "2026-09-18T20:03:25.366385+00:00",
+      "started_at": "2026-09-19T02:47:23.310355+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/build_timeline.py",
         "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:03:26.919573+00:00",
-      "elapsed_seconds": 1.553,
+      "ended_at": "2026-09-19T02:47:24.765621+00:00",
+      "elapsed_seconds": 1.455,
       "artifact": "timeline/TIMELINE.json",
       "artifact_bytes": 39944
     },
     {
       "stage": "render_baseline",
-      "started_at": "2026-09-18T20:03:28.810368+00:00",
+      "started_at": "2026-09-19T02:47:25.716387+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/render_video.py",
@@ -33,14 +33,14 @@
         "step 2/8 · Render Baseline"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:06:55.627823+00:00",
-      "elapsed_seconds": 206.817,
+      "ended_at": "2026-09-19T02:50:49.482029+00:00",
+      "elapsed_seconds": 203.766,
       "artifact": "assets/renders/final.mp4",
-      "artifact_bytes": 35679067
+      "artifact_bytes": 35686637
     },
     {
       "stage": "qc_baseline",
-      "started_at": "2026-09-18T20:06:55.628924+00:00",
+      "started_at": "2026-09-19T02:50:49.482563+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -50,14 +50,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:07:07.090124+00:00",
-      "elapsed_seconds": 11.461,
+      "ended_at": "2026-09-19T02:50:57.333749+00:00",
+      "elapsed_seconds": 7.851,
       "artifact": "render/QC_REPORT.json",
       "artifact_bytes": 1557
     },
     {
       "stage": "polish_audio",
-      "started_at": "2026-09-18T20:07:08.137353+00:00",
+      "started_at": "2026-09-19T02:50:58.616924+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/polish_audio.py",
@@ -66,14 +66,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/assets/renders/polished.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:07:11.779133+00:00",
-      "elapsed_seconds": 3.642,
+      "ended_at": "2026-09-19T02:51:02.174359+00:00",
+      "elapsed_seconds": 3.557,
       "artifact": "assets/renders/polished.mp4",
-      "artifact_bytes": 35724582
+      "artifact_bytes": 35732152
     },
     {
       "stage": "qc_polished",
-      "started_at": "2026-09-18T20:07:12.831199+00:00",
+      "started_at": "2026-09-19T02:51:03.324800+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/qc_render.py",
@@ -83,14 +83,14 @@
         "--decode"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:07:24.543434+00:00",
-      "elapsed_seconds": 11.712,
+      "ended_at": "2026-09-19T02:51:10.805533+00:00",
+      "elapsed_seconds": 7.481,
       "artifact": "render/QC_REPORT_polished.json",
       "artifact_bytes": 1560
     },
     {
       "stage": "telegram_compress",
-      "started_at": "2026-09-18T20:07:25.764854+00:00",
+      "started_at": "2026-09-19T02:51:11.831929+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/compress_for_telegram.py",
@@ -101,14 +101,14 @@
         "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/assets/renders/telegram_low.mp4"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:07:54.020204+00:00",
-      "elapsed_seconds": 28.255,
+      "ended_at": "2026-09-19T02:51:29.167999+00:00",
+      "elapsed_seconds": 17.336,
       "artifact": "assets/renders/telegram_low.mp4",
-      "artifact_bytes": 1992254
+      "artifact_bytes": 2016902
     },
     {
       "stage": "publish_telegram",
-      "started_at": "2026-09-18T20:07:55.117139+00:00",
+      "started_at": "2026-09-19T02:51:30.395238+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/publish_to_telegram.py",
@@ -119,14 +119,14 @@
         "compressed"
       ],
       "status": "DONE",
-      "ended_at": "2026-09-18T20:08:02.121199+00:00",
-      "elapsed_seconds": 7.004,
+      "ended_at": "2026-09-19T02:51:37.550201+00:00",
+      "elapsed_seconds": 7.155,
       "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
       "artifact_bytes": 2084
     },
     {
       "stage": "git_commit_push",
-      "started_at": "2026-09-18T20:08:03.330589+00:00",
+      "started_at": "2026-09-19T02:51:38.553468+00:00",
       "command": [
         "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
         "scripts/commit_video_artifacts.py",
@@ -134,23 +134,13 @@
         "--full-state",
         "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/pipeline/FINALIZATION_RUNTIME_STATE.json",
         "--started-at",
-        "2026-09-18T20:03:25.344658+00:00"
+        "2026-09-19T02:47:23.290483+00:00"
       ],
       "status": "RUNNING"
-    },
-    {
-      "stage": "git_commit_push",
-      "status": "DONE",
-      "started_at": "2026-09-18T20:03:25.344658+00:00",
-      "ended_at": "2026-09-18T20:08:11.360846+00:00",
-      "elapsed_seconds": 286.016,
-      "branch": "dev",
-      "remote": "origin",
-      "artifact_commit": "7df275b37390486dc59d47ca46c524819af198d8"
     }
   ],
-  "completed_at": "2026-09-18T20:08:11.360846+00:00",
-  "total_elapsed_seconds": 556.46,
+  "completed_at": "2026-09-19T02:51:38.551214+00:00",
+  "total_elapsed_seconds": 248.601,
   "summary": {
     "video": "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
     "duration_seconds": 59.481,
@@ -184,9 +174,9 @@
       "enabled": false
     },
     "resources": {
-      "wall_seconds": 206.282,
-      "realtime_factor": 3.468,
-      "peak_child_rss_mb": 1232.5,
+      "wall_seconds": 203.322,
+      "realtime_factor": 3.418,
+      "peak_child_rss_mb": 1235.2,
       "threads": 2,
       "resource_budget": 0.8,
       "cpus_available": 2

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "completed_at": "2026-09-19T02:50:49.416961+00:00",
+  "completed_at": "2026-09-18T20:06:55.538777+00:00",
   "output": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/assets/renders/final.mp4",
-  "output_bytes": 35686637,
+  "output_bytes": 35679067,
   "target_duration_seconds": 59.481,
   "actual_duration_seconds": 59.467,
   "duration_drift_seconds": -0.014,
-  "wall_seconds": 203.322,
-  "realtime_factor": 3.418,
+  "wall_seconds": 206.282,
+  "realtime_factor": 3.468,
   "beats": 12,
   "resolution": "1080x1920",
   "fps": 30,
@@ -31,5 +31,5 @@
   "motion_render_backend": "single_graph",
   "motion_segments_rendered": 0,
   "motion_segments_reused": 0,
-  "peak_child_rss_mb": 1235.2
+  "peak_child_rss_mb": 1232.5
 }

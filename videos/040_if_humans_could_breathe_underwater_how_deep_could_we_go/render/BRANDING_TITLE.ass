@@ -11,5 +11,6 @@ Style: VideoTitle,Wonderbar,110,&H00F2F2F2,&H00F2F2F2,&H00000000,&H00000000,0,0,
 
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
-Dialogue: 1,0:00:00.00,0:00:59.48,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,115.00)}Could You Live Forever
-Dialogue: 1,0:00:00.00,0:00:59.48,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,225.00)}on a Desert Island?
+Dialogue: 1,0:00:00.00,0:00:59.48,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,115.00)}If Humans Could Breathe
+Dialogue: 1,0:00:00.00,0:00:59.48,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,225.00)}Underwater, How Deep
+Dialogue: 1,0:00:00.00,0:00:59.48,VideoTitle,,0,0,0,,{\an8\q2\pos(540.00,335.00)}Could We Go?
