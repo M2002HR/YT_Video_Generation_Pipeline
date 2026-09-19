@@ -1,0 +1,76 @@
+{
+  "title": "What If Fish Could Breathe on Land? 🐟 #shorts",
+  "title_options": [
+    "What Happens If Fish Breathe Air? 🐠 #shorts",
+    "Could Fish Really Live on Land? 🌊 #shorts",
+    "Fish on Land: What Would Change? 🐟 #shorts"
+  ],
+  "description": "What If Fish Could Breathe on Land? explores why breathing air alone would not remove a fish's need for water and the adaptations needed for life on land.\nKeywords: fish breathe on land, could fish live on land, fish adaptation, air breathing fish, animal survival questions, aquatic animals\n#shorts #viralshorts #fish #sciencefacts",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "What If Fish Could Breathe on Land",
+    "fish breathe on land",
+    "could fish live on land",
+    "fish adaptation",
+    "air breathing fish",
+    "aquatic animals",
+    "animal science",
+    "science facts"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "age_restriction_recommendation": "no_age_restriction_recommended",
+    "paid_promotion_recommendation": "no_paid_promotion_declared",
+    "altered_or_synthetic_content_recommendation": "review_needed_before_declaration"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Review the audience setting before publishing.",
+      "reason": "The uploader must make the final audience declaration based on the intended audience and applicable platform requirements."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "Review whether any age restriction is needed.",
+      "reason": "The uploader must make the final legal and platform declaration; this educational nature content does not by itself determine the setting."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Confirm whether paid promotion disclosure applies.",
+      "reason": "The uploader must declare any paid promotion or commercial relationship; no such relationship is provided in the reference data."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review whether synthetic content disclosure is required.",
+      "reason": "The uploader must decide the disclosure based on whether the visual output is realistic or meaningfully alters reality."
+    }
+  ],
+  "thumbnail_prompt": "Create a 9:16 educational nature illustration matching this episode: one large fish as the single focal subject moving from shallow water onto wet land at the edge of a small coastal pool, with damp plants and shoreline textures showing the tension between aquatic and land environments. Use a hand-drawn storybook science style with realistic biological textures, soft natural lighting, high contrast, and clear negative space for a mobile thumbnail. No written words, letters, logos, watermark, UI, border, collage, or split-screen.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "fish breathe on land",
+    "search_intent": "Viewers are looking for a science explanation of what would happen if fish could breathe outside water.",
+    "secondary_queries": [
+      "could fish live on land",
+      "air breathing fish",
+      "fish adaptation",
+      "what if animals changed"
+    ],
+    "spelling_variants": [
+      "fish breathing on land",
+      "fish can breathe air"
+    ],
+    "rationale": "The episode directly explores the hypothetical ability of fish to breathe on land while explaining that survival would require additional adaptations. The metadata focuses on the core science question without adding unsupported claims."
+  },
+  "related_video_note": "Related videos should stay within factual animal science, adaptation, and hypothetical biology topics that match the channel's educational focus."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "stacked_brand",
+      "headline": "Still Need Water?",
+      "evidence_anchor": "If fish could breathe on land, why would they still need water? The answer starts with one change, not a whole new fish. Air breathing solves one problem. The fish still needs water. Its body must handle dry ground. Its fins must support la",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_e9442899ff8a4c71ac4065855978db2f/thumbnail_candidates/candidate_01/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_e9442899ff8a4c71ac4065855978db2f/thumbnail_candidates/candidate_01/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_e9442899ff8a4c71ac4065855978db2f/thumbnail_candidates/candidate_01/preview_small.jpg",
+      "artwork": {
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2499591,
+        "sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+      },
+      "final": {
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2499591,
+        "sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+      },
+      "generated_provider": "chatgpt",
+      "generation_job_id": "1f73d969-5712-4229-8e9e-194f26361be2",
+      "generation_receipt": {
+        "provider": "chatgpt",
+        "requested_model": null,
+        "actual_model_label": null,
+        "model_verified": false,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "9:16",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://chatgpt.com/c/6aae7f46-b6a4-83eb-be90-a2c2c46f06fd",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "character_sheet"
+        ],
+        "notes": [
+          "artifact_source=download",
+          "chat_scope=project",
+          "image=1f73d969-5712-4229-8e9e-194f26361be2_output_1.png sha256=f51b383c1177db86d89a06915706ce0a95d175ed39006ddb26417d5ec0083e70"
+        ],
+        "mode": "image_generate",
+        "attachment_roles": [
+          "character_sheet"
+        ],
+        "attachment_sha256": {
+          "character_sheet": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+        },
+        "normalization": {
+          "source_width": 941,
+          "source_height": 1672,
+          "ratio_error": 0.000532,
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2499591,
+          "sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+        },
+        "output_count": 1
+      },
+      "attachments": [
+        {
+          "role": "character_sheet",
+          "purpose": "MANDATORY source of truth for character identity only",
+          "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/sea_captain/refs/character_sheet.png",
+          "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+        },
+        {
+          "role": "quicky_story_font",
+          "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+          "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+          "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+        }
+      ]
+    }
+  ]
+}

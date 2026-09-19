@@ -4,7 +4,7 @@ Character sheets are `IDENTITY_ONLY`: they define face, silhouette, proportions,
 
 - Visual preset controls opening rendering treatment, not WHO the host is.
 - World style controls the post-entry subject world, not WHO the host is.
-- Gemini body images receive `CharacterContext` and the selected canonical sheet only when `hero_present` is true. Host-absent beats receive neither.
+- ChatGPT body images receive `CharacterContext` and the selected canonical sheet only when `hero_present` is true. Host-absent beats receive neither.
 - WORLD_KEYFRAME is always host-free and receives no character context or sheet.
 - Flow never receives any visual/style sheet.
 - Flow Clip A uses Ingredients mode with only the selected character-pack sheet in role `character_sheet`.

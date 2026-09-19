@@ -1,4 +1,4 @@
-export const READY = new Set(["DONE", "REUSED"]);
+export const READY = new Set(["DONE", "REUSED", "SKIPPED"]);
 
 export function dbToLinearGain(value, minimum = -12, maximum = 12) {
   const numeric = Number(value);
@@ -170,7 +170,7 @@ export const label = (value) => String(value || "").replaceAll("_", " ");
 export const statusClass = (value) => {
   const status = String(value || "").toUpperCase();
   if (status === "DONE") return "done";
-  if (status === "REUSED") return "reused";
+  if (status === "REUSED" || status === "SKIPPED") return "reused";
   if (status === "RUNNING") return "running";
   if (status === "ACTION_REQUIRED") return "action-required";
   if (
@@ -178,6 +178,8 @@ export const statusClass = (value) => {
     status === "MISSING" ||
     status === "STALE" ||
     status === "UNVERIFIED" ||
+    status === "INTERRUPTED" ||
+    status === "NEEDS_REVIEW" ||
     status.startsWith("FAILED") ||
     status.startsWith("PAUSED")
   )

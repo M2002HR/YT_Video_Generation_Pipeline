@@ -23,10 +23,9 @@ def test_release_thumbnail_contract_is_strict_before_provider_work() -> None:
         normalize_release_settings({"thumbnail": {"count": True}})
     with pytest.raises(ValueError, match="Unknown thumbnail"):
         normalize_release_settings({"thumbnail": {"filesystem_path": "../../secret"}})
-    with pytest.raises(ValueError, match="cover"):
-        normalize_release_settings({"thumbnail": {"count": 6, "max_image_generations": 5}})
-    with pytest.raises(ValueError, match="coordinates"):
-        normalize_release_settings({"thumbnail": {"coordinates": {"x": .9, "y": 0, "width": .2, "height": .2}}})
+    assert normalize_release_settings({"thumbnail": {"count": 6, "max_image_generations": 5}})["thumbnail"]["max_image_generations"] == 6
+    settings = normalize_release_settings({"thumbnail": {"coordinates": {"x": .9, "y": 0, "width": .2, "height": .2}}})
+    assert settings["thumbnail"]["coordinates"] is None
 
 
 def test_legacy_thumbnail_note_round_trips_into_nested_contract() -> None:
@@ -42,8 +41,20 @@ def test_thumbnail_review_bypass_is_a_typed_release_setting() -> None:
         normalize_release_settings({"thumbnail": {"review_enabled": "false"}})
 
 
-def test_chatgpt_image_fallback_is_explicit_and_opt_in() -> None:
+def test_thumbnail_headline_modes_are_validated() -> None:
+    assert normalize_release_settings({})["thumbnail"]["text_mode"] == "auto"
+    assert normalize_release_settings({"thumbnail": {"text_mode": "video_title"}})["thumbnail"]["text_mode"] == "video_title"
+    manual = normalize_release_settings({"thumbnail": {"text_mode": "manual", "manual_text": "Exact Manual Headline"}})
+    assert manual["thumbnail"]["manual_text"] == "Exact Manual Headline"
+    with pytest.raises(ValueError, match="manual_text"):
+        normalize_release_settings({"thumbnail": {"text_mode": "manual", "manual_text": ""}})
+
+
+def test_release_thumbnail_provider_is_chatgpt_only_and_legacy_settings_migrate() -> None:
     settings = normalize_release_settings({"thumbnail": {"image_fallback": "chatgpt_on_gemini_failure"}})
-    assert settings["thumbnail"]["image_fallback"] == "chatgpt_on_gemini_failure"
+    assert settings["thumbnail"]["image_model"] == "chatgpt"
+    assert settings["thumbnail"]["image_fallback"] == "none"
+    assert settings["thumbnail"]["font_id"] == "quicky_story"
+    assert settings["thumbnail"]["layout_mode"] == "stacked_brand"
     with pytest.raises(ValueError, match="image_fallback"):
         normalize_release_settings({"thumbnail": {"image_fallback": "off"}})

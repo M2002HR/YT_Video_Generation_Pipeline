@@ -1,0 +1,183 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_6db21bc5a0c641658e6368b5f051e880",
+  "status": "DONE",
+  "started_at": "2026-09-19T02:53:14.727103+00:00",
+  "video": "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "c6f1f83488c2192be1f83496196cc127682a96dfdd9ddc5ef4cae8f9198cb4cf",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-19T02:53:18.313742+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-19T02:54:18.612715+00:00",
+      "chatgpt_job_id": "13b65c02-d50a-4cc7-9922-e4c13a392887"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-19T02:54:18.612729+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-19T02:55:21.925150+00:00",
+      "chatgpt_job_id": "a87eb1ee-c789-48ad-a8ac-29c4a3295090",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-19T02:55:21.949263+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-19T02:59:58.364106+00:00",
+      "selected_candidate_id": "candidate_01",
+      "qc_passed": true
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-19T02:59:58.364289+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-19T02:59:58.364295+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-19T03:01:12.702173+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15549,
+            "sha256": "323e61b2785311f9776094fca09e162aa1d036a0b9cc88f0ffcf32ce6e056430"
+          },
+          "candidate_02": {
+            "message_id": 15550,
+            "sha256": "a9085d6227b31cececb668c85ff88163d9ea8753c1c6a7649c95d208c98c3bc0"
+          },
+          "candidate_03": {
+            "message_id": 15551,
+            "sha256": "16f4feeb204a7d5347e0861431d0dc5839da442a041a0717fdce1ebf3172ef0b"
+          }
+        },
+        "master": 15548,
+        "upload_markdown": 15553,
+        "summary": 15552,
+        "metadata_json": 15554
+      }
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 3,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "auto",
+      "allowed_layouts": [
+        "character_left",
+        "character_right",
+        "contrast_split",
+        "discovery_focus"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "inherit_episode",
+      "quality": "native",
+      "image_fallback": "chatgpt_on_gemini_failure",
+      "thumbnail_note": "",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "montserrat_bold",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.01,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.035,
+      "text_position": "auto",
+      "text_box_width": 0.82,
+      "safe_margin": 0.055,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.15,
+      "max_words": 6,
+      "max_characters": 40,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": true,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 1,
+      "max_image_generations": 3,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": true,
+      "send_previews": true,
+      "send_master_video": true,
+      "send_comparison_sheet": false,
+      "send_report_json": false,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "4e2d4d88c3f77d86f740b303098e1587b7a37ef24217d6baceca8dd75d0ef00e",
+  "completed_at": "2026-09-19T03:01:12.702186+00:00",
+  "metadata": "publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15549,
+        "sha256": "323e61b2785311f9776094fca09e162aa1d036a0b9cc88f0ffcf32ce6e056430"
+      },
+      "candidate_02": {
+        "message_id": 15550,
+        "sha256": "a9085d6227b31cececb668c85ff88163d9ea8753c1c6a7649c95d208c98c3bc0"
+      },
+      "candidate_03": {
+        "message_id": 15551,
+        "sha256": "16f4feeb204a7d5347e0861431d0dc5839da442a041a0717fdce1ebf3172ef0b"
+      }
+    },
+    "master": 15548,
+    "upload_markdown": 15553,
+    "summary": 15552,
+    "metadata_json": 15554
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/YOUTUBE_SHORT_UPLOAD.md"
+}

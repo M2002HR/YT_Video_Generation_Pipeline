@@ -13,6 +13,8 @@ sys.path.insert(0, str(SCRIPTS))
 
 from release_youtube_short import (  # noqa: E402
     CHANNEL_DEFAULTS,
+    apply_episode_title,
+    apply_title_override,
     build_upload_markdown,
     original_image_contract,
     release_request,
@@ -31,11 +33,11 @@ SPEC.loader.exec_module(panel)
 
 def sample_metadata() -> dict:
     return {
-        "title": "BLACK SWAN Events Break Forecasts #shorts 🦢",
+        "title": "Black Swan Events Break Forecasts 🦢 #shorts",
         "title_options": [
-            "HIDDEN RISK Your Model Misses #shorts 🎯",
-            "FORECAST FAILURE The Surprise Ahead #shorts 📉",
-            "UNSEEN EVENTS Why Plans Break #shorts ⚠️",
+            "Hidden Risk Your Model Misses 🎯 #shorts",
+            "Forecast Failure and Surprise Events 📉 #shorts",
+            "Why Plans Break Under Uncertainty ⚠️ #shorts",
         ],
         "description": "A Black Swan is an unexpected event with an outsized impact on forecasts and decisions.\nKeywords: black swan, Nassim Taleb, uncertainty, forecasting, risk management\n#shorts #viralshorts #BlackSwan #Forecasting #DecisionMaking",
         "tags": ["shorts", "viral shorts", "Q Station", "black swan", "Nassim Taleb", "uncertainty", "forecasting"],
@@ -47,13 +49,15 @@ def sample_metadata() -> dict:
         "manual_review": [{"field": "altered content", "recommendation": "Confirm", "reason": "AI imagery needs uploader review."}],
         "thumbnail_prompt": "Create a vertical 9:16 editorial illustration of one black swan disrupting a neat field of white swans, high contrast, one clear focal subject and calm negative space above it. No written words, letters, logos, watermark, UI, border, collage, or split screen.",
         "thumbnail_overlay_text": "Plan for surprise",
+        "seo_strategy": {"primary_query": "black swan event", "search_intent": "Informational", "secondary_queries": ["forecasting uncertainty"], "spelling_variants": [], "rationale": "Matches the episode."},
         "related_video_note": "Choose a public or unlisted related video from this channel if one is relevant.",
     }
 
 
 def test_metadata_contract_applies_channel_defaults_and_youtube_limits() -> None:
     metadata = validate_metadata(sample_metadata(), CHANNEL_DEFAULTS)
-    assert metadata["title"] == "BLACK SWAN Events Break Forecasts #shorts 🦢"
+    assert metadata["title"] == "Black Swan Events Break Forecasts 🦢 #shorts"
+    assert metadata["thumbnail_overlay_text"] == ""
     assert metadata["upload_settings"]["category_id"] == "27"
     assert len(",".join(metadata["tags"])) < 500
     assert {item["field"].casefold() for item in metadata["manual_review"]} >= {
@@ -67,6 +71,12 @@ def test_metadata_contract_refuses_overlong_youtube_title() -> None:
     metadata["title"] = "x" * 101
     with pytest.raises(ValueError, match="title"):
         validate_metadata(metadata, CHANNEL_DEFAULTS)
+
+
+def test_operator_title_wording_keeps_required_shorts_envelope() -> None:
+    metadata = apply_title_override(sample_metadata(), "What If Fish Could Breathe on Land?")
+    assert metadata["title"] == "What If Fish Could Breathe on Land? 🦢 #shorts"
+    assert validate_metadata(metadata, CHANNEL_DEFAULTS)["title"] == metadata["title"]
 
 
 def test_metadata_contract_enforces_shorts_title_description_and_tags() -> None:
@@ -88,9 +98,9 @@ def test_metadata_contract_normalizes_common_non_array_list_formatting() -> None
     metadata = sample_metadata()
     metadata["tags"] = "shorts, viral shorts, Q Station, black swan, forecasting"  # type: ignore[assignment]
     metadata["title_options"] = (
-        "HIDDEN RISK Your Model Misses #shorts 🎯\n"
-        "FORECAST FAILURE The Surprise Ahead #shorts 📉\n"
-        "UNSEEN EVENTS Why Plans Break #shorts ⚠️"
+        "Hidden Risk Your Model Misses 🎯 #shorts\n"
+        "Forecast Failure and Surprise Events 📉 #shorts\n"
+        "Why Plans Break Under Uncertainty ⚠️ #shorts"
     )
     normalized = validate_metadata(metadata, CHANNEL_DEFAULTS)
     assert normalized["tags"] == ["shorts", "viral shorts", "Q Station", "black swan", "forecasting"]
@@ -197,6 +207,11 @@ def test_release_request_selects_real_steps_and_rejects_unknown_settings(tmp_pat
     request.write_text(json.dumps({"settings": {"not_a_step": True}}), encoding="utf-8")
     with pytest.raises(RuntimeError, match="Unknown Release"):
         release_request(request)
+
+
+def test_primary_release_title_uses_exact_episode_title_and_suffix_order() -> None:
+    metadata = apply_episode_title(sample_metadata(), {"run": {"topic": "What If Fish Could Breathe on Land?"}})
+    assert metadata["title"] == "What If Fish Could Breathe on Land? 🦢 #shorts"
 
 
 def test_panel_release_settings_require_at_least_one_step() -> None:

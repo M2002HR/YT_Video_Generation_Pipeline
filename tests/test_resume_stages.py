@@ -153,7 +153,7 @@ def test_world_keyframe_without_its_receipt_is_not_treated_as_done(
     _png(project / "references" / "world_keyframe.png")
     _mark_done(runner, "world_keyframe")
 
-    with pytest.raises(AssertionError, match="called gemini"):
+    with pytest.raises(AssertionError, match="called chatgpt"):
         qstation.stage_world_keyframe(
             runner, project, _content_project(), "a prompt", project / "references" / "anchor.png"
         )
@@ -162,7 +162,7 @@ def test_world_keyframe_without_its_receipt_is_not_treated_as_done(
 def test_unverified_style_anchor_is_not_silently_reused(runner: Runner, project: Path) -> None:
     _png(project / "references/world_style_anchor.png", seed=2)
     _mark_done(runner, "world_style_anchor")
-    with pytest.raises(AssertionError,match="called gemini"):
+    with pytest.raises(AssertionError,match="called chatgpt"):
         qstation.stage_world_style_anchor(runner,project,_content_project(),{"decision":"new","medium":"woodcut"})
 
 

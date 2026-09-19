@@ -1,0 +1,113 @@
+{
+  "audio_duration_seconds": 45.975,
+  "spark_start": 0.0,
+  "spark_end": 3.88,
+  "spark_duration": 3.88,
+  "transition_start": 4.58,
+  "transition_end": 8.3,
+  "transition_duration": 3.72,
+  "entry_segment": "book_transition",
+  "clip_a_target_seconds": 3.88,
+  "clip_b_target_seconds": 4.42,
+  "body_start": 8.92,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "speech_start": 0.0,
+      "speech_end": 3.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "As bodies grow, weight rises faster than bone strength.",
+      "speech_start": 4.58,
+      "speech_end": 8.3,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Picture a human at four tons.",
+      "speech_start": 8.92,
+      "speech_end": 10.02,
+      "match_confidence": 0.667
+    },
+    {
+      "segment": "body_02",
+      "narration": "That is fifty times your normal weight.",
+      "speech_start": 10.56,
+      "speech_end": 13.74,
+      "match_confidence": 0.857
+    },
+    {
+      "segment": "body_03",
+      "narration": "Weight grows with volume in three directions,",
+      "speech_start": 14.08,
+      "speech_end": 16.44,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "but bone strength only grows with bone thickness.",
+      "speech_start": 16.44,
+      "speech_end": 20.54,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Your weight jumps fifty times,",
+      "speech_start": 21.74,
+      "speech_end": 23.46,
+      "match_confidence": 0.8
+    },
+    {
+      "segment": "body_06",
+      "narration": "while bone thickness only grows fourteen times.",
+      "speech_start": 23.46,
+      "speech_end": 27.28,
+      "match_confidence": 0.857
+    },
+    {
+      "segment": "body_07",
+      "narration": "Elephants survive with legs like thick pillars.",
+      "speech_start": 27.78,
+      "speech_end": 30.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Slender human legs bend at angles.",
+      "speech_start": 31.2,
+      "speech_end": 33.66,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "The moment you try to stand,",
+      "speech_start": 34.22,
+      "speech_end": 35.88,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_10",
+      "narration": "your leg bones snap under the load.",
+      "speech_start": 35.88,
+      "speech_end": 38.5,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "To carry that weight, you need legs like tree trunks.",
+      "speech_start": 38.88,
+      "speech_end": 42.1,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Ask your next question about anything in the comments.",
+      "speech_start": 42.54,
+      "speech_end": 45.68,
+      "match_confidence": 1.0
+    }
+  ]
+}

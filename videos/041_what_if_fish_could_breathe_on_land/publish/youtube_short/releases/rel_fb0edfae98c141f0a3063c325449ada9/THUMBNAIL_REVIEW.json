@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "contrast_split",
+      "headline": "What If Fish Could Breathe on Land?",
+      "evidence_anchor": "If fish could breathe on land, why would they still need water? The answer starts with one change, not a whole new fish. Air breathing solves one problem. The fish still needs water. Its body must handle dry ground. Its fins must support la",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/thumbnail_candidates/candidate_01/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/thumbnail_candidates/candidate_01/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/thumbnail_candidates/candidate_01/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2795187,
+        "sha256": "89a6c37c92b6fc99d516e4bf9ef347a9de641055a8df6b10d3d1d79131bf90ae"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 5198034,
+        "sha256": "3eb89782692ff311c6617efd33a6130e0dc931adbab47ec2d4bfcecd92ca688c"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "3eb89782692ff311c6617efd33a6130e0dc931adbab47ec2d4bfcecd92ca688c"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "2a7539e6-af11-458d-b624-099269a9283e",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/745e45441685689b",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=2a7539e6-af11-458d-b624-099269a9283e_output_1.png 1536x2752 sha256=89a6c37c92b6fc99d516e4bf9ef347a9de641055a8df6b10d3d1d79131bf90ae"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "f16b1b1ef2597110c3f206cb7f6f2a690a3d198575e0bff0ad559b73d2fab634",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "provider": "gemini",
+            "job_id": "2a7539e6-af11-458d-b624-099269a9283e",
+            "prompt_sha256": "24da7fe4502d7389e8dc91484e5a9493f369ffb8d4aa193c9b6df3f3d552521c",
+            "output_sha256": "89a6c37c92b6fc99d516e4bf9ef347a9de641055a8df6b10d3d1d79131bf90ae",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/thumbnail_candidates/candidate_01/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    }
+  ]
+}

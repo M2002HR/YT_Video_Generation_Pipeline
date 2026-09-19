@@ -1,0 +1,30 @@
+{
+  "concept_id": "4defcaf186f57935cb04",
+  "opening_actions": [
+    "The captain looks from a packed fish rack, coconuts, and full water barrel down to a plate holding only fish and coconut.",
+    "He pauses and raises one eyebrow at the mismatch between abundance and repetition.",
+    "He lifts the spyglass correctly to his visible unpatched eye and studies the repeated foods."
+  ],
+  "entry_bridge": {
+    "a_end": "The captain holds the spyglass toward the fish, coconuts, and narrow meal, with the small eyepiece beside his visible unpatched eye and the wider objective facing the food.",
+    "b_start": "At the editorial seam, an oblique rear-side view clearly shows the same correct spyglass orientation, supporting grip, subject direction, and island-shelter lighting before matching into his outward-looking viewpoint.",
+    "reveal": "The forward view shifts from apparent food abundance to a closer comparison of what the repeated meals provide and what a very narrow diet can miss.",
+    "world_entry": "The spyglass framing disappears into a full-bleed, host-free comparison of repeated island meals against the broader mix of nutrients a human body needs over time."
+  },
+  "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+  "opening_location": "a simple island food shelter beside coconut trees",
+  "opening_environment": "A shaded open-sided food shelter on an uninhabited tropical island, stocked with drying fish, gathered coconuts, a full clean-water barrel, and a small meal-preparation surface.",
+  "topic_visual_link": "The island visibly has plenty of food and water, yet the captain's meal repeats the same two foods, directly exposing the difference between having enough to eat and having a sufficiently varied long-term diet.",
+  "link_type": "direct",
+  "opening_visual_proof": "A visibly abundant rack of fish, pile of coconuts, and full water barrel surround a meal plate containing only fish and coconut.",
+  "curiosity_trigger": "The captain notices that despite food filling the shelter, his plate looks almost identical to the meals available around it.",
+  "trigger_object": "the narrow fish-and-coconut meal sitting amid abundant supplies of the same foods",
+  "reaction": "He gives the plate a brief skeptical look, raises one eyebrow, and pauses before investigating further.",
+  "entry_retrieval": "After comparing the full stores with the repetitive plate, he reaches for the resting spyglass and angles it toward the foods to inspect the pattern more closely.",
+  "entry_variant": "pattern_inspection",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "opener_only",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "A bright, grounded tropical survival world that transitions into clear host-free visual comparisons of meals, nutrients, water, shelter, medical risk, and aging.",
+  "reason": "The abundance-versus-variety mismatch makes the script's opening nutrition question visible immediately and gives the seasoned explorer a natural discrepancy to investigate without changing the selected island premise."
+}

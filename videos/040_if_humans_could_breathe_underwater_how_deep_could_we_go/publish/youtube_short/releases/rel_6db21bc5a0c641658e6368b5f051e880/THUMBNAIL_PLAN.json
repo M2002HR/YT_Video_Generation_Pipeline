@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "requested_count": 3,
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "Air Shrinks, Body Resists",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every ten meters, pressure rises b",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "headline zone x 0.09-0.91, y 0.05-0.37 (frame fractions): ordinary scene space with no important elements; see composition template",
+      "composition_template": "COMPOSITION TEMPLATE (character_left) — follow exactly: TOP HALF RULE: keep y 0.00-0.50 free of anything important. This zone stays ordinary scene space — the normal background simply continues there (sky, foliage, wall, sea); do NOT paint it as an artificially emptied, blank or blurred-out panel. The rule is compositional: keep every important element OUT of the top half — STRICTLY no face, eyes, mouth, head, hands, principal evidence, or text-like shapes above y=0.50. The local headline lands at x 0.09-0.91, y 0.05-0.37 (inside the clean half). Host: host full-body on the LEFT third (x 0.00-0.45), entire head (top of hat/hair to chin) BELOW y=0.50. Scene: principal evidence/scene on the RIGHT side (x 0.50-1.00), entirely below y=0.50. The host may look toward the top half (connects headline and scene) but no part of the head ever enters it.",
+      "novelty_signature": "5fc4013725d1ad61",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    },
+    {
+      "candidate_id": "candidate_02",
+      "layout_id": "character_right",
+      "headline": "Air Shrinks, Body Resists",
+      "scene": "a before-and-after contrast tied to the claim",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every ten meters, pressure rises b",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "headline zone x 0.09-0.91, y 0.05-0.37 (frame fractions): ordinary scene space with no important elements; see composition template",
+      "composition_template": "COMPOSITION TEMPLATE (character_right) — follow exactly: TOP HALF RULE: keep y 0.00-0.50 free of anything important. This zone stays ordinary scene space — the normal background simply continues there (sky, foliage, wall, sea); do NOT paint it as an artificially emptied, blank or blurred-out panel. The rule is compositional: keep every important element OUT of the top half — STRICTLY no face, eyes, mouth, head, hands, principal evidence, or text-like shapes above y=0.50. The local headline lands at x 0.09-0.91, y 0.05-0.37 (inside the clean half). Host: host full-body on the RIGHT third (x 0.55-1.00), entire head (top of hat/hair to chin) BELOW y=0.50. Scene: principal evidence/scene on the LEFT side (x 0.00-0.50), entirely below y=0.50. The host may look toward the top half (connects headline and scene) but no part of the head ever enters it.",
+      "novelty_signature": "7a190c8e61ef95b7",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    },
+    {
+      "candidate_id": "candidate_03",
+      "layout_id": "contrast_split",
+      "headline": "Air Shrinks, Body Resists",
+      "scene": "the exact discovery or scale shift explained in the video",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every ten meters, pressure rises b",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "headline zone x 0.09-0.91, y 0.60-0.92 (frame fractions): ordinary scene space with no important elements; see composition template",
+      "composition_template": "COMPOSITION TEMPLATE (contrast_split) — follow exactly: TOP HALF RULE: keep y 0.00-0.50 free of anything important. This zone stays ordinary scene space — the normal background simply continues there (sky, foliage, wall, sea); do NOT paint it as an artificially emptied, blank or blurred-out panel. The rule is compositional: keep every important element OUT of the top half — STRICTLY no face, eyes, mouth, head, hands, principal evidence, or text-like shapes above y=0.50. The local headline lands at x 0.09-0.91, y 0.60-0.92 (inside the clean half). Host: host below y=0.50, whole head BELOW y=0.50, reacting toward the contrast. Scene: before/after contrast split LEFT vs RIGHT halves, both entirely below y=0.50. The host may look toward the top half (connects headline and scene) but no part of the head ever enters it.",
+      "novelty_signature": "7d8869323315e5cb",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    }
+  ]
+}

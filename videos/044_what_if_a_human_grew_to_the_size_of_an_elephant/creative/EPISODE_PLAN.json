@@ -1,0 +1,30 @@
+{
+  "concept_id": "2b209251593eb141904d",
+  "opening_actions": [
+    "Places a weighted torso block onto a slender scaled human leg armature.",
+    "Observes the thin leg frame splinter and collapse under the proportional load.",
+    "Steps to an adjacent stone display pedestal holding a heavy leather-bound volume."
+  ],
+  "entry_bridge": {
+    "a_end": "The scholar rests his palm on an embossed topic book resting on a stone display pedestal.",
+    "b_start": "Top-down view of the closed book bound in rough hide-textured leather on the pedestal.",
+    "reveal": "The book falls open to an illustrated structural comparison of slender angled human legs beside massive elephant pillar legs.",
+    "world_entry": "A colossal four-ton human figure collapses onto its knees as slender leg bones buckle under the body mass."
+  },
+  "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+  "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+  "opening_environment": "An open-air stone pavilion lined with mammalian skeletal casts and mechanical load test rigs under clear morning daylight.",
+  "topic_visual_link": "A physical load test directly demonstrates how human leg proportions fail catastrophically when forced to support elephant-scale weight.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "A slender wooden leg armature scaled to human proportions snaps cleanly under a simulated four-ton torso block.",
+  "curiosity_trigger": "The sudden crack of the slender model leg giving way beneath the weighted block.",
+  "trigger_object": "A splintering model leg armature crushed under a weighted torso block.",
+  "reaction": "A quiet blink of surprise followed by a gentle fingertip tap on the fractured timber.",
+  "entry_retrieval": "Steps over to a stone display pedestal and unlatches the clasp of a thick discovered volume.",
+  "entry_variant": "discovered_book",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "Anatomically grounded biomechanics world featuring massive scale contrasts, volumetric cross-sections, and dynamic stress vectors.",
+  "reason": "Direct mechanical load failure cleanly grounds the square-cube law in physical evidence before expanding the inquiry to full elephant scale."
+}

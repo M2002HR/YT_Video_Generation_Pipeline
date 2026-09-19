@@ -28,7 +28,8 @@ class NodeSpec:
 # Adding a regular stage should require one entry here, not coordinated edits in the API,
 # graph renderer and regeneration handler. Beat-image nodes are expanded dynamically.
 NODE_SPECS: dict[str, NodeSpec] = {
-    "character_resolution": NodeSpec("Character & presentation resolution", "data", (), ("creative/CHARACTER_RESOLUTION.json",), ("creative/PRESENTATION_RESOLUTION.json",), description="One-time Auto/manual host and opening-format resolution.", phase="creative"),
+    "preflight": NodeSpec("Pipeline preflight", "gate", (), ("launch/LAUNCH_REQUEST.json",), description="Validates frozen settings, provider readiness and source contracts before credits are spent.", phase="creative", regeneratable=False),
+    "character_resolution": NodeSpec("Character & presentation resolution", "data", ("preflight",), ("creative/CHARACTER_RESOLUTION.json",), ("creative/PRESENTATION_RESOLUTION.json",), description="One-time Auto/manual host and opening-format resolution.", phase="creative"),
     "opening_concept": NodeSpec("Opening story selection", "data", ("character_resolution",), ("creative/OPENING_CONCEPT.json", "creative/OPENING_CONTEXT.json", "creative/OPENING_CANDIDATES.json"), description="Three topic-first mini-stories, independent selection and frozen semantic history.", phase="creative"),
     "script_draft": NodeSpec("Script draft", "text", ("opening_concept", "character_resolution"), ("creative/SCRIPT_DRAFT.json",), ("creative/script_draft.inputs.json",), description="Initial script using the resolved presentation grammar.", phase="creative"),
     "retention_edit": NodeSpec("Retained script core", "text", ("script_draft",), ("creative/SCRIPT_CORE_PLAN.json",), ("creative/retention_edit.inputs.json", "creative/CORE_LANGUAGE_REVIEW.json"), description="Retention-edited, plain-English-reviewed core before the final CTA.", phase="creative"),
@@ -67,8 +68,8 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "polish_audio": NodeSpec("Polished render", "video", ("render_baseline", "sfx_acquire", "audio_mix_profile"), ("assets/renders/polished.mp4",), phase="render"),
     "qc_polished": NodeSpec("Final QC", "data", ("polish_audio",), ("render/QC_REPORT_polished.json",), phase="render"),
     "telegram_compress": NodeSpec("Telegram render", "video", ("qc_polished",), ("assets/renders/telegram_low.mp4",), ("render/TELEGRAM_RENDER_PROGRESS.json",), phase="publish"),
-    "git_commit_push": NodeSpec("Git publish", "data", ("qc_polished",), ("pipeline/GIT_PUBLISH_STATE.json",), phase="publish"),
     "publish_telegram": NodeSpec("Telegram publish", "data", ("qc_polished", "telegram_compress"), ("publish/TELEGRAM_PUBLISH_STATE.json",), phase="publish"),
+    "git_commit_push": NodeSpec("Git publish", "data", ("publish_telegram",), ("pipeline/GIT_PUBLISH_STATE.json",), description="Final repository publication after enabled delivery receipts are durable.", phase="publish"),
 }
 
 GENERIC_NODE_SPECS: dict[str, NodeSpec] = {
@@ -91,8 +92,8 @@ GENERIC_NODE_SPECS: dict[str, NodeSpec] = {
     "polish_audio": NodeSpec("Polished render", "video", ("render_baseline", "sfx_acquire", "audio_mix_profile"), ("assets/renders/polished.mp4",), phase="render"),
     "qc_polished": NodeSpec("Final QC", "data", ("polish_audio",), ("render/QC_REPORT_polished.json",), phase="render"),
     "telegram_compress": NodeSpec("Telegram render", "video", ("qc_polished",), ("assets/renders/telegram_low.mp4",), phase="publish"),
-    "git_commit_push": NodeSpec("Git publish", "data", ("qc_polished",), ("pipeline/GIT_PUBLISH_STATE.json",), phase="publish"),
     "publish_telegram": NodeSpec("Telegram publish", "data", ("qc_polished", "telegram_compress"), ("publish/TELEGRAM_PUBLISH_STATE.json",), phase="publish"),
+    "git_commit_push": NodeSpec("Git publish", "data", ("publish_telegram",), ("pipeline/GIT_PUBLISH_STATE.json",), phase="publish"),
 }
 
 MEDIA_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".mp4", ".mov", ".webm", ".mp3", ".wav", ".m4a", ".ogg", ".flac"}
@@ -102,7 +103,7 @@ def _edge(source: str, target: str) -> dict[str, str]:
     """Describe why an edge exists so scheduling and regeneration can treat it safely."""
     if source.startswith("beat_image_") and target.startswith("beat_image_"):
         kind = "continuity"
-    elif source == "qc_baseline" and target == "sfx_acquire":
+    elif source == "preflight" or (source == "qc_baseline" and target == "sfx_acquire"):
         kind = "gate"
     else:
         kind = "data"
@@ -300,6 +301,10 @@ def _generic_graph_for(
     visual = load(project / "visual_pipeline/RUNTIME_STATE.json")
     full = load(project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json")
     final = load(project / "pipeline/FINALIZATION_RUNTIME_STATE.json")
+    terminal_failed = any(
+        str(payload.get("status") or "") in {"FAILED", "STOPPED", "INTERRUPTED"}
+        for payload in (visual, full, final)
+    )
     stages: dict[str, dict[str, Any]] = {
         str(name): entry
         for name, entry in (visual.get("stages") or {}).items()
@@ -359,6 +364,8 @@ def _generic_graph_for(
             for relative in required
         )
         status = str(entry.get("status") or ("DONE" if required_ok else "PENDING"))
+        if status == "RUNNING" and terminal_failed:
+            status = "FAILED"
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
         if node_id == "visual_plan" and not visual_plan_contract_matches(project):
@@ -408,6 +415,10 @@ def graph_for(
     qstation = load(project / "pipeline/Q_STATION_RUNTIME_STATE.json")
     wrapper = load(project / "pipeline/WRAPPER_RUNTIME_STATE.json")
     final = load(project / "pipeline/FINALIZATION_RUNTIME_STATE.json")
+    terminal_failed = any(
+        str(payload.get("status") or "") in {"FAILED", "STOPPED", "INTERRUPTED"}
+        for payload in (qstation, wrapper, final)
+    )
     stages = dict(qstation.get("stages") or {})
     for item in wrapper.get("events") or []:
         if item.get("stage"):
@@ -440,6 +451,8 @@ def graph_for(
             for relative in required
         )
         status = str(entry.get("status") or ("DONE" if required_ok else "PENDING"))
+        if status == "RUNNING" and terminal_failed:
+            status = "FAILED"
         if status in {"DONE", "REUSED"} and required and not required_ok:
             status = "MISSING"
         if node_id == "visual_plan" and not visual_plan_contract_matches(project):
@@ -455,6 +468,24 @@ def graph_for(
                 validation = {"status": "catalog", "reason": "Reused catalog style anchor"}
         regeneratable = spec.regeneratable if spec is not None else True
         nodes.append({"id": node_id, "title": title, "kind": kind, "phase": phase, "description": description, "status": status, "artifacts": artifacts, "meta": entry, "regeneratable": regeneratable, "regeneration": _regeneration_metadata(node_id, regeneratable), "validation": validation})
+
+    # The body-images card is a milestone, not a second independently executed
+    # operation. Derive it from its expanded beat nodes so it can never disagree
+    # with the actual image chain after a crash or isolated revision.
+    if count:
+        node_map = {node["id"]: node for node in nodes}
+        beat_states = [node_map[f"beat_image_{number:03d}"]["status"] for number in range(1, count + 1)]
+        body = node_map.get("body_images")
+        if body is not None:
+            if any(value in {"FAILED", "MISSING", "STALE", "INVALID"} for value in beat_states):
+                body["status"] = "FAILED"
+            elif any(value == "RUNNING" for value in beat_states):
+                body["status"] = "RUNNING"
+            elif all(value in {"DONE", "REUSED"} for value in beat_states):
+                body["status"] = "DONE"
+            else:
+                body["status"] = "PENDING"
+            body["meta"] = {**body.get("meta", {}), "derived_from": [f"beat_image_{number:03d}" for number in range(1, count + 1)]}
 
     edges = [_edge(dependency, node_id) for node_id, deps in dependencies.items() for dependency in deps if dependency in dependencies]
     if not include_disabled:

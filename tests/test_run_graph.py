@@ -124,6 +124,30 @@ def test_cta_regeneration_rebuilds_spoken_delivery_without_rebuilding_body_image
     assert {"visual_plan", "body_images", "beat_image_001", "world_keyframe", "episode_director"} <= reused
 
 
+def test_preflight_is_a_visible_gate_and_git_publish_follows_telegram(tmp_path: Path) -> None:
+    project = project_with_beats(tmp_path)
+    graph = graph_for(project, include_disabled=True)
+    nodes = {node["id"]: node for node in graph["nodes"]}
+    edges = {(edge["source"], edge["target"], edge["kind"]) for edge in graph["edges"]}
+    assert nodes["preflight"]["regeneratable"] is False
+    assert ("preflight", "character_resolution", "gate") in edges
+    assert ("publish_telegram", "git_commit_push", "data") in edges
+
+
+def test_body_images_status_is_derived_from_expanded_beats(tmp_path: Path) -> None:
+    project = project_with_beats(tmp_path)
+    state = project / "pipeline/Q_STATION_RUNTIME_STATE.json"
+    write_json(state, {"status": "RUNNING", "stages": {
+        "beat_image_001": {"status": "DONE"},
+        "beat_image_002": {"status": "DONE"},
+        "beat_image_003": {"status": "RUNNING"},
+        "beat_image_004": {"status": "PENDING"},
+    }})
+    nodes = {node["id"]: node for node in graph_for(project, include_disabled=True)["nodes"]}
+    assert nodes["body_images"]["status"] == "RUNNING"
+    assert len(nodes["body_images"]["meta"]["derived_from"]) == 4
+
+
 def test_beat_regeneration_cascades_continuity_but_reuses_independent_audio(tmp_path: Path) -> None:
     project = project_with_beats(tmp_path)
     plan = regeneration_plan(project, ["beat_image_002"])

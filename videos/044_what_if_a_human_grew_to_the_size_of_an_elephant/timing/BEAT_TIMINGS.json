@@ -1,0 +1,126 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 45.975,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "If you grew as big as an elephant, could your legs still hold your weight? As bodies grow, weight rises faster than bone strength. Picture a human at 4 tonnes. That is 50 times your normal weight. Weight grows with volume in three directions, but bone strength only grows with bone thickness. Your weight jumps 50 times, while bone thickness only grows 14 times. Elephants survive with legs like thick pillars. Slender human legs bend at angles. The moment you try to stand, your leg bones snap under the load. To carry that weight, you need legs like tree trunks. Ask your next question about anything in the comments.",
+  "word_count": 109,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Picture a human at four tons.",
+      "speech_start": 8.92,
+      "speech_end": 10.02,
+      "match_confidence": 0.667,
+      "display_start": 0.0,
+      "display_end": 10.56,
+      "display_duration": 10.56
+    },
+    {
+      "beat_id": 2,
+      "narration": "That is fifty times your normal weight.",
+      "speech_start": 10.56,
+      "speech_end": 13.74,
+      "match_confidence": 0.857,
+      "display_start": 10.56,
+      "display_end": 14.08,
+      "display_duration": 3.52
+    },
+    {
+      "beat_id": 3,
+      "narration": "Weight grows with volume in three directions,",
+      "speech_start": 14.08,
+      "speech_end": 16.44,
+      "match_confidence": 1.0,
+      "display_start": 14.08,
+      "display_end": 16.44,
+      "display_duration": 2.36
+    },
+    {
+      "beat_id": 4,
+      "narration": "but bone strength only grows with bone thickness.",
+      "speech_start": 16.44,
+      "speech_end": 20.54,
+      "match_confidence": 1.0,
+      "display_start": 16.44,
+      "display_end": 21.74,
+      "display_duration": 5.3
+    },
+    {
+      "beat_id": 5,
+      "narration": "Your weight jumps fifty times,",
+      "speech_start": 21.74,
+      "speech_end": 23.46,
+      "match_confidence": 0.8,
+      "display_start": 21.74,
+      "display_end": 23.46,
+      "display_duration": 1.72
+    },
+    {
+      "beat_id": 6,
+      "narration": "while bone thickness only grows fourteen times.",
+      "speech_start": 23.46,
+      "speech_end": 27.28,
+      "match_confidence": 0.857,
+      "display_start": 23.46,
+      "display_end": 27.78,
+      "display_duration": 4.32
+    },
+    {
+      "beat_id": 7,
+      "narration": "Elephants survive with legs like thick pillars.",
+      "speech_start": 27.78,
+      "speech_end": 30.76,
+      "match_confidence": 1.0,
+      "display_start": 27.78,
+      "display_end": 31.2,
+      "display_duration": 3.42
+    },
+    {
+      "beat_id": 8,
+      "narration": "Slender human legs bend at angles.",
+      "speech_start": 31.2,
+      "speech_end": 33.66,
+      "match_confidence": 1.0,
+      "display_start": 31.2,
+      "display_end": 34.22,
+      "display_duration": 3.02
+    },
+    {
+      "beat_id": 9,
+      "narration": "The moment you try to stand,",
+      "speech_start": 34.22,
+      "speech_end": 35.88,
+      "match_confidence": 1.0,
+      "display_start": 34.22,
+      "display_end": 35.88,
+      "display_duration": 1.66
+    },
+    {
+      "beat_id": 10,
+      "narration": "your leg bones snap under the load.",
+      "speech_start": 35.88,
+      "speech_end": 38.5,
+      "match_confidence": 1.0,
+      "display_start": 35.88,
+      "display_end": 38.88,
+      "display_duration": 3.0
+    },
+    {
+      "beat_id": 11,
+      "narration": "To carry that weight, you need legs like tree trunks.",
+      "speech_start": 38.88,
+      "speech_end": 42.1,
+      "match_confidence": 1.0,
+      "display_start": 38.88,
+      "display_end": 45.975,
+      "display_duration": 7.095
+    }
+  ]
+}

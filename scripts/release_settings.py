@@ -12,35 +12,36 @@ import json
 import math
 from typing import Any
 
-LAYOUTS = ("character_left", "character_right", "contrast_split", "discovery_focus")
+LAYOUTS = ("stacked_brand",)
 BRAND_PROFILES = ("q_station_v1",)
 THUMBNAIL_FONTS = (
-    ("dejavu_sans_bold", "DejaVu Sans Bold"), ("montserrat_bold", "Montserrat Bold"),
-    ("poppins", "Poppins"), ("roboto_bold", "Roboto Bold"), ("open_sans_bold", "Open Sans Bold"),
-    ("source_sans_3_bold", "Source Sans 3 Bold"), ("atkinson_hyperlegible_bold", "Atkinson Hyperlegible Bold"),
-    ("bebas_neue", "Bebas Neue"), ("oswald_bold", "Oswald Bold"),
+    ("quicky_story", "Quicky Story"),
 )
 THUMBNAIL_FONT_IDS = tuple(font_id for font_id, _name in THUMBNAIL_FONTS)
 
 THUMBNAIL_DEFAULTS: dict[str, Any] = {
     "count_mode": "fixed", "count": 3, "auto_min": 2, "auto_max": 4,
-    "concept_count": "auto", "diversity": "high", "layout_mode": "auto",
-    "allowed_layouts": list(LAYOUTS), "tension": "strong", "brand_profile": "q_station_v1",
-    "aspect_ratio": "9:16", "image_model": "inherit_episode", "quality": "native",
-    "image_fallback": "chatgpt_on_gemini_failure",
-    "thumbnail_note": "", "must_include": "", "must_avoid": "",
+    "concept_count": "auto", "diversity": "high", "layout_mode": "stacked_brand",
+    "allowed_layouts": ["stacked_brand"], "tension": "strong", "brand_profile": "q_station_v1",
+    "aspect_ratio": "9:16", "image_model": "chatgpt", "quality": "best",
+    "image_fallback": "none",
+    "topic_mode": "episode", "manual_topic": "",
+    "video_title_mode": "metadata", "manual_video_title": "",
+    "approved_style_reference": "none",
+    "thumbnail_note": "", "character_expression": "auto", "topic_objects": "auto",
+    "color_direction": "auto", "must_include": "", "must_avoid": "",
     "text_mode": "auto", "manual_text": "", "candidate_text_overrides": {},
-    "text_renderer": "local", "font_id": "montserrat_bold", "case_mode": "auto",
+    "text_renderer": "local", "font_id": "quicky_story", "case_mode": "auto",
     "text_fill": "#FFFFFF", "text_outline": "#111827", "outline_width": 0.012,
-    "shadow": True, "text_background": True, "line_spacing": 0.035,
-    "text_position": "auto", "text_box_width": 0.82, "safe_margin": 0.055,
+    "shadow": True, "text_background": False, "line_spacing": 0.035,
+    "text_position": "middle", "text_box_width": 0.88, "safe_margin": 0.06,
     # A 9:16 native 2160px canvas needs a lower floor than a 1080px preview: this
     # still yields a 65px font while allowing ordinary four-to-six word headlines to wrap.
-    "text_min_scale": 0.04, "text_max_scale": 0.15, "max_words": 6,
-    "max_characters": 40, "max_lines": 3, "coordinates": None,
-    "badge_enabled": True, "badge_asset_id": "q_station_mark", "badge_position": "bottom_right", "badge_scale": 0.07,
+    "text_min_scale": 0.04, "text_max_scale": 0.15, "max_words": 12,
+    "max_characters": 100, "max_lines": 3, "coordinates": None,
+    "badge_enabled": False, "badge_asset_id": "q_station_mark", "badge_position": "bottom_right", "badge_scale": 0.07,
     "reference_mode": "master", "reference_timestamps": [], "max_references": 5,
-    "corrections_per_candidate": 1, "max_image_generations": 6,
+    "corrections_per_candidate": 0, "max_image_generations": 6,
     "review_preset": "balanced", "review_enabled": True, "export_format": "png", "jpeg_quality": 90,
     "preview_small": True, "comparison_sheet": True, "send_previews": True,
     "send_master_video": True, "send_comparison_sheet": True, "send_report_json": True, "send_raw_artwork": False,
@@ -102,6 +103,35 @@ def normalize_release_settings(value: Any) -> dict[str, Any]:
     if unknown_thumbnail:
         raise ValueError("Unknown thumbnail setting(s): " + ", ".join(sorted(unknown_thumbnail)))
     thumb = copy.deepcopy(THUMBNAIL_DEFAULTS); thumb.update(supplied)
+    # Migrate persisted pre-Quicky/ChatGPT Release settings onto the new fixed
+    # design system. Old Release artifacts stay immutable; only a new/revised run
+    # receives this contract.
+    if thumb.get("image_model") == "inherit_episode": thumb["image_model"] = "chatgpt"
+    if thumb.get("quality") == "native": thumb["quality"] = "best"
+    if thumb.get("image_fallback") == "chatgpt_on_gemini_failure": thumb["image_fallback"] = "none"
+    if thumb.get("font_id") != "quicky_story": thumb["font_id"] = "quicky_story"
+    if thumb.get("layout_mode") not in {"stacked_brand"}: thumb["layout_mode"] = "stacked_brand"
+    if thumb.get("text_mode") == "none": thumb["text_mode"] = "auto"
+    thumb["allowed_layouts"] = ["stacked_brand"]
+    if thumb.get("text_position") != "middle": thumb["text_position"] = "middle"
+    # The Release UI intentionally has no advanced typography/design surface.
+    # Normalize legacy/saved hidden values so they cannot silently affect a run.
+    thumb.update({
+        "topic_mode": "episode", "manual_topic": "", "video_title_mode": "metadata",
+        "manual_video_title": "", "diversity": "high", "layout_mode": "stacked_brand",
+        "allowed_layouts": ["stacked_brand"], "tension": "strong",
+        "character_expression": "auto", "topic_objects": "auto", "color_direction": "auto",
+        "must_include": "", "must_avoid": "", "candidate_text_overrides": {},
+        "text_renderer": "local", "font_id": "quicky_story",
+        "case_mode": "auto", "text_fill": "#FFFFFF", "text_outline": "#111827",
+        "outline_width": 0.012, "shadow": True, "text_background": False,
+        "line_spacing": 0.035, "text_position": "middle", "text_box_width": 0.88,
+        "safe_margin": 0.06, "text_min_scale": 0.04, "text_max_scale": 0.15,
+        "max_words": 12, "max_characters": 100, "max_lines": 3, "coordinates": None,
+        "badge_enabled": False, "corrections_per_candidate": 0, "review_preset": "balanced",
+        "reference_mode": "master", "reference_timestamps": [], "max_references": 5,
+        "max_image_generations": 6,
+    })
     thumb["count_mode"] = _enum(thumb["count_mode"], "thumbnail.count_mode", ("fixed", "auto"))
     thumb["count"] = _integer(thumb["count"], "thumbnail.count", 1, 6)
     thumb["auto_min"] = _integer(thumb["auto_min"], "thumbnail.auto_min", 1, 6)
@@ -109,19 +139,25 @@ def normalize_release_settings(value: Any) -> dict[str, Any]:
     if thumb["auto_min"] > thumb["auto_max"]:
         raise ValueError("Release setting thumbnail.auto_min cannot exceed auto_max.")
     if thumb["concept_count"] != "auto": thumb["concept_count"] = _integer(thumb["concept_count"], "thumbnail.concept_count", thumb["count"] if thumb["count_mode"] == "fixed" else thumb["auto_min"], 12)
-    for name, allowed in {"diversity": ("low", "medium", "high"), "layout_mode": ("auto", *LAYOUTS), "tension": ("restrained", "strong", "dramatic"), "brand_profile": BRAND_PROFILES, "aspect_ratio": ("9:16",), "image_model": ("inherit_episode",), "quality": ("native",), "image_fallback": ("chatgpt_on_gemini_failure",), "text_mode": ("auto", "manual", "candidate_overrides"), "text_renderer": ("local",), "font_id": THUMBNAIL_FONT_IDS, "case_mode": ("auto", "uppercase", "sentence_case"), "text_position": ("auto", "top", "bottom", "left", "right"), "badge_asset_id": ("q_station_mark",), "badge_position": ("top_left", "top_right", "bottom_left", "bottom_right"), "reference_mode": ("master", "timestamps"), "review_preset": ("balanced", "clarity_first", "brand_first"), "export_format": ("png", "jpeg", "both"), "delivery_mode": ("all_final_candidates",)}.items():
+    for name, allowed in {"diversity": ("low", "medium", "high"), "layout_mode": LAYOUTS, "tension": ("restrained", "strong", "dramatic"), "brand_profile": BRAND_PROFILES, "aspect_ratio": ("9:16",), "image_model": ("chatgpt",), "quality": ("best",), "image_fallback": ("none",), "topic_mode": ("episode", "manual"), "video_title_mode": ("metadata", "manual"), "approved_style_reference": ("none", "current_release"), "text_mode": ("auto", "video_title", "manual"), "text_renderer": ("local",), "font_id": ("quicky_story",), "case_mode": ("auto", "uppercase", "sentence_case"), "text_position": ("auto", "middle"), "badge_asset_id": ("q_station_mark",), "badge_position": ("top_left", "top_right", "bottom_left", "bottom_right"), "reference_mode": ("master", "timestamps"), "review_preset": ("balanced", "clarity_first", "brand_first"), "export_format": ("png", "jpeg", "both"), "delivery_mode": ("all_final_candidates",)}.items():
         thumb[name] = _enum(thumb[name], f"thumbnail.{name}", tuple(allowed))
     layouts = thumb["allowed_layouts"]
     if not isinstance(layouts, list) or not layouts or any(item not in LAYOUTS for item in layouts):
         raise ValueError("Release setting thumbnail.allowed_layouts must be a non-empty supported layout list.")
     thumb["allowed_layouts"] = list(dict.fromkeys(layouts))
-    for name, limit in (("thumbnail_note", 2000), ("must_include", 500), ("must_avoid", 500), ("manual_text", 40)):
+    for name, limit in (("thumbnail_note", 2000), ("manual_topic", 500), ("manual_video_title", 200), ("character_expression", 300), ("topic_objects", 500), ("color_direction", 300), ("must_include", 500), ("must_avoid", 500), ("manual_text", 100)):
         thumb[name] = _text(thumb[name], f"thumbnail.{name}", limit)
+    for name in ("character_expression", "topic_objects", "color_direction"):
+        thumb[name] = thumb[name] or "auto"
     if thumb["text_mode"] == "manual" and not thumb["manual_text"]:
-        raise ValueError("Release setting thumbnail.manual_text is required in manual text mode.")
+        raise ValueError("Release setting thumbnail.manual_text is required in manual headline mode.")
+    if thumb["topic_mode"] == "manual" and not thumb["manual_topic"]:
+        raise ValueError("Release setting thumbnail.manual_topic is required in manual topic mode.")
+    if thumb["video_title_mode"] == "manual" and not thumb["manual_video_title"]:
+        raise ValueError("Release setting thumbnail.manual_video_title is required in manual video-title mode.")
     if not isinstance(thumb["candidate_text_overrides"], dict): raise ValueError("Release setting thumbnail.candidate_text_overrides must be an object.")
-    thumb["candidate_text_overrides"] = {str(k): _text(v, "thumbnail.candidate_text_overrides", 40) for k, v in thumb["candidate_text_overrides"].items()}
-    for name, low, high in (("max_words", 2, 6), ("max_characters", 8, 40), ("max_lines", 1, 3), ("corrections_per_candidate", 0, 2), ("max_image_generations", 1, 18), ("max_references", 3, 5), ("jpeg_quality", 40, 100)):
+    thumb["candidate_text_overrides"] = {str(k): _text(v, "thumbnail.candidate_text_overrides", 100) for k, v in thumb["candidate_text_overrides"].items()}
+    for name, low, high in (("max_words", 2, 12), ("max_characters", 8, 100), ("max_lines", 1, 3), ("corrections_per_candidate", 0, 2), ("max_image_generations", 1, 18), ("max_references", 3, 5), ("jpeg_quality", 40, 100)):
         thumb[name] = _integer(thumb[name], f"thumbnail.{name}", low, high)
     desired = thumb["count"] if thumb["count_mode"] == "fixed" else thumb["auto_max"]
     if thumb["max_image_generations"] < desired:
@@ -155,4 +191,4 @@ def settings_fingerprint(settings: dict[str, Any]) -> str:
 
 def public_schema() -> dict[str, Any]:
     """A compact UI contract; validation remains server-side."""
-    return {"schema_version": 2, "defaults": copy.deepcopy(RELEASE_DEFAULTS), "capabilities": {"aspect_ratios": ["9:16"], "layouts": list(LAYOUTS), "brand_profiles": list(BRAND_PROFILES), "fonts": [{"id": font_id, "name": name, "fallback": "DejaVu Sans Bold"} for font_id, name in THUMBNAIL_FONTS], "delivery_mode": "all_final_candidates", "max_candidates": 6, "max_concepts": 12}}
+    return {"schema_version": 2, "defaults": copy.deepcopy(RELEASE_DEFAULTS), "capabilities": {"aspect_ratios": ["9:16"], "layouts": list(LAYOUTS), "brand_profiles": list(BRAND_PROFILES), "fonts": [{"id": font_id, "name": name, "fallback": None} for font_id, name in THUMBNAIL_FONTS], "delivery_mode": "all_final_candidates", "max_candidates": 6, "max_concepts": 12}}

@@ -1,0 +1,76 @@
+{
+  "title": "What If Fish Could Breathe on Land? 🐟 #shorts",
+  "title_options": [
+    "What If Fish Could Breathe on Land? 🐠 #shorts",
+    "What If Fish Could Live on Land? 🌊 #shorts",
+    "What If Fish Could Breathe Air? 🐟 #shorts"
+  ],
+  "description": "What If Fish Could Breathe on Land? explores why breathing air would only solve one challenge and what adaptations fish would need to survive outside water.\nKeywords: fish breathe on land, could fish live on land, fish adaptation, air breathing fish, aquatic animal survival, hypothetical biology\n#shorts #viralshorts #fish #sciencefacts",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "What If Fish Could Breathe on Land",
+    "fish breathe on land",
+    "fish breathing on land",
+    "could fish live on land",
+    "fish adaptation",
+    "air breathing fish",
+    "aquatic animals",
+    "science facts"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "age_restriction_recommendation": "no_age_restriction_recommended",
+    "paid_promotion_recommendation": "no_paid_promotion_declared",
+    "altered_or_synthetic_content_recommendation": "review_needed_before_declaration"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Review the audience setting before publishing.",
+      "reason": "The uploader must make the final audience declaration based on the intended audience and applicable platform requirements."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "Review whether any age restriction is needed.",
+      "reason": "The uploader must make the final platform declaration based on the content and applicable requirements."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Confirm whether paid promotion disclosure applies.",
+      "reason": "The uploader must declare any paid promotion or commercial relationship; no such relationship is provided."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review whether synthetic content disclosure is required.",
+      "reason": "The uploader must decide disclosure based on whether the visual output requires it under platform rules."
+    }
+  ],
+  "thumbnail_prompt": "Create a 9:16 educational nature illustration based on this episode's rendered visual style: a single fish as the dominant focal subject moving across wet ground at the edge of a shallow coastal pool, with the water behind it and damp plants around it to clearly show the question of life outside water. Use the same hand-drawn storybook science aesthetic, soft natural lighting, realistic fish textures, coastal research garden atmosphere, and strong contrast with clean negative space for mobile readability. Keep the composition simple and instantly understandable. No text, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "fish breathe on land",
+    "search_intent": "Viewers are looking for a science explanation of what would happen if fish could breathe outside water.",
+    "secondary_queries": [
+      "could fish live on land",
+      "fish adaptation",
+      "air breathing fish",
+      "hypothetical animal biology"
+    ],
+    "spelling_variants": [
+      "fish breathing on land",
+      "fish can breathe air"
+    ],
+    "rationale": "The metadata keeps the episode's core hypothetical biology question intact while using closely related search phrases that match the narration about breathing air, water needs, and adaptations."
+  },
+  "related_video_note": "Related videos should stay within factual animal science, adaptation, and hypothetical biology topics that match the channel's educational focus."
+}

@@ -31,6 +31,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+_ACTIVE_NOTIFIER = None
+_ACTIVE_PROJECT: Path | None = None
+
 #: STT results are only usable for sync when they carry real per-word timestamps.
 ACCEPTED_STT_BACKENDS = ("ajil", "local")
 MUSIC_SUFFIXES = {".mp3", ".wav", ".m4a", ".ogg", ".flac"}
@@ -426,12 +429,14 @@ def main() -> int:
 
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     python = sys.executable
-    from pipeline_notifier import PipelineNotifier
+    from pipeline_notifier import PipelineNotifier, format_duration
     from pipeline_stages import stage_title
     notifier = PipelineNotifier(
         args.video_id, args.topic,
         state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
     )
+    global _ACTIVE_NOTIFIER, _ACTIVE_PROJECT
+    _ACTIVE_NOTIFIER, _ACTIVE_PROJECT = notifier, project
     if args.regenerate_beats:
         notifier.send(
             "Revision started",
@@ -744,8 +749,31 @@ def main() -> int:
         narration_gain_db = float(audio_settings.get("narration_gain_db", 0))
     except (OSError, ValueError, TypeError):
         narration_gain_db = 0.0
-    ensure_audio_mix_profile(project, narration_gain_db)
-    apply_render_preferences(ensure_render_profile(project, args.aspect_ratio), args.creative_brief, args.topic)
+    mix_artifact = project / "audio_mix/AUDIO_MIX_PROFILE.json"
+    mix_started = time.perf_counter()
+    mix_message = notifier.stage_started(stage_title("audio_mix_profile"), key="audio_mix_profile")
+    mark_wrapper_stage(project, "audio_mix_profile", "RUNNING")
+    try:
+        ensure_audio_mix_profile(project, narration_gain_db)
+    except Exception as exc:
+        mark_wrapper_stage(project, "audio_mix_profile", "FAILED", error=f"{type(exc).__name__}: {exc}"[:800])
+        notifier.stage_failure(mix_message, stage_title("audio_mix_profile"), time.perf_counter() - mix_started, str(exc))
+        raise
+    mark_wrapper_stage(project, "audio_mix_profile", "DONE", artifact=str(mix_artifact.relative_to(project)))
+    notifier.stage_update(mix_message, stage_title("audio_mix_profile"), ["✅ Stage complete", f"⏱ Duration: {format_duration(time.perf_counter() - mix_started)}", "📄 Saved: audio_mix/AUDIO_MIX_PROFILE.json"])
+
+    render_artifact = project / "render/RENDER_PROFILE.json"
+    render_started = time.perf_counter()
+    render_message = notifier.stage_started(stage_title("render_profile"), key="render_profile")
+    mark_wrapper_stage(project, "render_profile", "RUNNING")
+    try:
+        apply_render_preferences(ensure_render_profile(project, args.aspect_ratio), args.creative_brief, args.topic)
+    except Exception as exc:
+        mark_wrapper_stage(project, "render_profile", "FAILED", error=f"{type(exc).__name__}: {exc}"[:800])
+        notifier.stage_failure(render_message, stage_title("render_profile"), time.perf_counter() - render_started, str(exc))
+        raise
+    mark_wrapper_stage(project, "render_profile", "DONE", artifact=str(render_artifact.relative_to(project)))
+    notifier.stage_update(render_message, stage_title("render_profile"), ["✅ Stage complete", f"⏱ Duration: {format_duration(time.perf_counter() - render_started)}", "📄 Saved: render/RENDER_PROFILE.json"])
 
     completion = [
         python, "scripts/run_completion_pipeline.py", str(project),
@@ -778,4 +806,19 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception as exc:
+        if _ACTIVE_NOTIFIER is not None:
+            from pipeline_notifier import safe_detail
+            _ACTIVE_NOTIFIER.send("Pipeline failed", ["❌ The workflow stopped", safe_detail(f"{type(exc).__name__}: {exc}"), "↻ Completed stages remain reusable; fix the cause and resume."])
+        if _ACTIVE_PROJECT is not None:
+            state_path = _ACTIVE_PROJECT / "pipeline/WRAPPER_RUNTIME_STATE.json"
+            try:
+                payload = json.loads(state_path.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                payload = {"schema_version": 1, "events": []}
+            payload.update({"status": "FAILED", "failed_at": datetime.now(timezone.utc).isoformat(), "error": f"{type(exc).__name__}: {exc}"[:1000]})
+            state_path.parent.mkdir(parents=True, exist_ok=True)
+            state_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        raise

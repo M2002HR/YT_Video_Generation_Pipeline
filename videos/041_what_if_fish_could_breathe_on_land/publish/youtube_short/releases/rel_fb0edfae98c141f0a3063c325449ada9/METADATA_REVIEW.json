@@ -1,0 +1,61 @@
+{
+  "title": "FISH ADAPTATION Why breathing air would not make fish land animals #shorts 🐟",
+  "title_options": [
+    "FISH SURVIVAL Why fish still need water after breathing air #shorts 🌊",
+    "FISH BIOLOGY Could fish live on land with one new ability? #shorts 🐟",
+    "FISH ADAPTATION One change cannot transform a fish completely #shorts 🔬"
+  ],
+  "description": "A fish breathing air on land would still need water and other adaptations to survive.\nKeywords: fish adaptation, fish survival, animal biology, aquatic life, air breathing, evolution\n#shorts #viralshorts #FishAdaptation #AnimalScience",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "fish facts",
+    "fish adaptation",
+    "fish survival",
+    "animal biology",
+    "aquatic life",
+    "science education",
+    "evolution",
+    "education shorts"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "age_restriction_recommendation": "no_age_restriction",
+    "paid_promotion_recommendation": "no_paid_promotion",
+    "altered_or_synthetic_content_recommendation": "review_required"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Confirm the final audience setting before publishing.",
+      "reason": "The uploader must make the final audience declaration."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Confirm whether any paid promotion disclosure is needed.",
+      "reason": "Only the uploader knows whether the video includes paid promotion or sponsorship."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "Review the final video for any age-related restrictions.",
+      "reason": "The uploader must make the final platform compliance decision."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review whether synthetic content disclosure is required.",
+      "reason": "Disclosure depends on the final content and platform requirements, and the uploader makes the declaration."
+    }
+  ],
+  "thumbnail_prompt": "Create a 9:16 YouTube Shorts thumbnail using the attached rendered-video frames as the PRIMARY visual truth for texture, rendering medium, palette, lighting, atmosphere and relevant subject matter. Treat any world keyframe as supporting continuity only, and use a character sheet for identity-only; do not make a character appear unless that character belongs in this episode's thumbnail. Design one simple instantly readable phone-friendly scene from this exact episode: a single fish as the dominant focal subject moving across damp land beside a small pool, showing the tension between land and water. Use high contrast, clear visual hierarchy and deliberate negative space. Match this episode's illustrated nature style, never generic stock art. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "Fish Still Need Water",
+  "related_video_note": "Related topic: explore how animal adaptations help species survive in different environments."
+}

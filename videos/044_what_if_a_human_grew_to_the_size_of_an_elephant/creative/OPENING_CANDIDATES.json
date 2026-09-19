@@ -1,0 +1,229 @@
+{
+  "input_fingerprint": "e2f4b4c5ca372574d5974e0fdf7cf54700bddec73a738def9bd12f0f60e28ae9",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land",
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half",
+        "043",
+        "043_what_if_human_bones_were_made_of_metal"
+      ],
+      "writer_prompt_sha256": "18f18de79d291811525be84244a5fd3628100140507ec4620b93c0f6da767f43",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+            "viewer_expectation": "A giant human would simply be bigger, stronger, and able to walk normally.",
+            "visible_contradiction": "Weight grows with volume, but bone strength only grows with cross-section area.",
+            "frame_zero": "A scaled model leg built with human proportions snaps under four tons of simulated weight.",
+            "character_action": "The scholar gently places a proportional torso load onto a scaled human leg frame.",
+            "reaction": "A quiet blink of surprise followed by a gentle tap on the cracked support timber.",
+            "activity": "Testing how scaling height without widening bone width breaks upright support.",
+            "location": "An outdoor comparative anatomy pavilion beside full-size animal leg casts.",
+            "topic_link": "Body mass increases much faster than the cross-section area of supporting bones.",
+            "claim_mode": "source_supported",
+            "factual_anchor": "A human scaled to the size and weight of an elephant, where volume grows faster than bone area.",
+            "payoff": "An elephant-sized human would collapse because normal human leg proportions cannot carry four tons.",
+            "entry_variant": "discovered_book",
+            "entry_bridge": {
+              "a_end": "The scholar rests his palm on an embossed topic book resting on a stone display pedestal.",
+              "b_start": "Top-down view of the closed book bound in rough hide-textured leather on the pedestal.",
+              "reveal": "The book opens to an illustrated comparison of slender human legs versus elephant pillars.",
+              "world_entry": "A four-ton giant human figure collapses onto its knees as slender leg bones buckle under the body."
+            },
+            "novelty": {
+              "action_family": "vertical load failure test",
+              "tension_family": "proportional scaling versus actual mass",
+              "prop_family": "scaled leg bone model and weighted torso block",
+              "reveal_family": "bone area falls behind total volume growth"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If your body grew elephant-sized, could your skin release enough heat to keep you cool?",
+            "viewer_expectation": "Sweating through normal human skin would easily keep a giant human cool.",
+            "visible_contradiction": "A giant body creates vast internal heat but has far too little skin area to release it.",
+            "frame_zero": "A thermal gauge shows a human-shaped giant tank overheating while an elephant model cools evenly.",
+            "character_action": "The scholar compares surface temperature readings from an upright cylinder and an elephant silhouette.",
+            "reaction": "A thoughtful nod as the gauge needle for the upright cylinder hits the red overheating zone.",
+            "activity": "Measuring heat loss differences between large smooth bodies and animals with cooling adaptations.",
+            "location": "An open wildlife thermal study shelter overlooking shaded animal paddocks.",
+            "topic_link": "Metabolic heat production scales with volume while heat release depends entirely on surface area.",
+            "claim_mode": "source_supported",
+            "factual_anchor": "A human body scaled to elephant mass, where heat production grows faster than skin surface area.",
+            "payoff": "Without giant ears or skin folds to dump heat, an elephant-sized human would quickly overheat.",
+            "entry_variant": "shelf_reveal",
+            "entry_bridge": {
+              "a_end": "The scholar opens a shaded wooden equipment locker and reveals a thick cloth-bound book.",
+              "b_start": "Top-down frame of the closed cloth-bound book resting on the weathered wooden shelf.",
+              "reveal": "Pages turn to reveal thermal body maps comparing smooth human skin to wrinkled elephant skin.",
+              "world_entry": "A giant human body standing under sunlight surrounded by shimmering waves of trapped core heat."
+            },
+            "novelty": {
+              "action_family": "metabolic thermal dissipation check",
+              "tension_family": "internal heat production versus cooling surface",
+              "prop_family": "comparative thermal sensor gauges and heat tanks",
+              "reveal_family": "skin area grows too slowly to vent core heat"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If you stood as tall as an elephant, could your heart push blood to your head?",
+            "viewer_expectation": "A larger heart would easily pump blood through larger blood vessels.",
+            "visible_contradiction": "Pumping blood three meters upward creates crushing pressure that blows out lower blood vessels.",
+            "frame_zero": "A tall liquid column simulator shows fluid failing to reach the top while the lower seal bursts.",
+            "character_action": "The scholar turns a manual valve to lift colored fluid to head height on a tall upright rig.",
+            "reaction": "A raised eyebrow as fluid leaks from the base pipe long before reaching the upper chamber.",
+            "activity": "Testing the hydraulic pressure required to push blood to the top of a three-meter vertical body.",
+            "location": "An open fluid dynamics courtyard featuring tall glass pressure columns.",
+            "topic_link": "Hydrostatic pressure rises with height, demanding extreme pressure that endangers blood vessels.",
+            "claim_mode": "source_supported",
+            "factual_anchor": "A human body scaled to elephant height, where pumping blood to the head requires extreme pressure.",
+            "payoff": "An elephant-sized human would faint from low brain pressure or rupture blood vessels in the legs.",
+            "entry_variant": "desk_reach",
+            "entry_bridge": {
+              "a_end": "The scholar turns toward his workbench and lays his palm flat on a brass-cornered ledger book.",
+              "b_start": "Top-down static view of the closed brass-cornered ledger book centered on the wooden workbench.",
+              "reveal": "The ledger opens to anatomical diagrams of tall circulatory columns and high-pressure hearts.",
+              "world_entry": "A transparent giant human body showing blood pooling in the lower legs while the brain pales."
+            },
+            "novelty": {
+              "action_family": "vertical fluid column pressure test",
+              "tension_family": "brain blood delivery versus vessel rupture",
+              "prop_family": "tall glass manometer tube with lower valve gauges",
+              "reveal_family": "gravity creates crushing pressure in lower limbs"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go",
+        "041",
+        "041_what_if_fish_could_breathe_on_land",
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half",
+        "043",
+        "043_what_if_human_bones_were_made_of_metal"
+      ],
+      "reviewer_prompt_sha256": "6e8c7cf9a9f2ef64d017b244aebcf559b96ef88c21189e110c027bb03219c443",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "Directly targets the square-cube law through Galileo's classic bone-scaling problem. The proportional leg model snapping under torso weight creates an immediate physical discrepancy without text or gauges, the scholar's reaction is restrained, and the discovered_book transition cleanly matches the no-host B-frame contract."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 2,
+              "character_fit": 3,
+              "honesty": 3,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 3,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [],
+            "reason": "Thermoregulation is a valid scaling consequence, but watching gauge needles on cylinder tanks is passive and visually abstract for an opening hook. Explaining overheating by comparing human skin to elephant ear flaps also oversimplifies human sweating biology, and repeating shelf_reveal mirrors episode 042."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 2,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 2,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "Muddles elephant mass scaling with tall vertical giraffe hydraulics. A human scaled to elephant mass would stand over six meters tall, whereas scaling only to three meters produces a fraction of elephant weight. While the hydraulic pipe failure is clear, the underlying scientific premise conflates two different scaling problems."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "Directly targets the square-cube law through Galileo's classic bone-scaling problem. The proportional leg model snapping under torso weight creates an immediate physical discrepancy without text or gauges, the scholar's reaction is restrained, and the discovered_book transition cleanly matches the no-host B-frame contract.",
+          "repetition_evidence": [],
+          "weighted_score": 90
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 2,
+            "character_fit": 3,
+            "honesty": 3,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 3,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [],
+          "reason": "Thermoregulation is a valid scaling consequence, but watching gauge needles on cylinder tanks is passive and visually abstract for an opening hook. Explaining overheating by comparing human skin to elephant ear flaps also oversimplifies human sweating biology, and repeating shelf_reveal mirrors episode 042.",
+          "repetition_evidence": [],
+          "weighted_score": 68
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 2,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 2,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "Insufficient topic fit, honesty, payoff, entry feasibility, visible hook or spoken clarity."
+          ],
+          "reason": "Muddles elephant mass scaling with tall vertical giraffe hydraulics. A human scaled to elephant mass would stand over six meters tall, whereas scaling only to three meters produces a fraction of elephant weight. While the hydraulic pipe failure is clear, the underlying scientific premise conflates two different scaling problems.",
+          "repetition_evidence": [],
+          "weighted_score": 72
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

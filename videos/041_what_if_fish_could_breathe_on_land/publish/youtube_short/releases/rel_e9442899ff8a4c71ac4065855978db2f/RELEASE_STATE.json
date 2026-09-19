@@ -1,0 +1,559 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_e9442899ff8a4c71ac4065855978db2f",
+  "status": "DONE",
+  "started_at": "2026-09-19T12:24:48.633272+00:00",
+  "video": "041_what_if_fish_could_breathe_on_land",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "6ca05fba1fcae6a31effa89965166d5f07868c5188c09148196466ce5bae11bb",
+  "events": [
+    {
+      "stage": "source_gate",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:48:57.315706+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "DONE",
+      "at": "2026-09-19T11:48:58.981199+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:49:00.164722+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "DONE",
+      "at": "2026-09-19T11:49:01.174677+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:49:02.648731+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "DONE",
+      "at": "2026-09-19T11:49:08.112284+00:00",
+      "references": 5
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:49:09.359652+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-19T11:50:20.074000+00:00",
+      "chatgpt_job_id": "f42d0c1f-de85-40d0-810a-3e3371e933f8"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:50:21.522207+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-19T11:51:35.228957+00:00",
+      "chatgpt_job_id": "6750f9d3-a4ff-4847-98fd-50687864a8ea",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:51:36.409297+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-19T11:51:38.046198+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:51:39.388649+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "DONE",
+      "at": "2026-09-19T11:51:52.748021+00:00",
+      "candidates": 1
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "RUNNING",
+      "at": "2026-09-19T11:51:54.029721+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "FAILED",
+      "at": "2026-09-19T11:53:36.018390+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:12:03.502183+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "DONE",
+      "at": "2026-09-19T12:12:05.095788+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:12:06.265968+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "DONE",
+      "at": "2026-09-19T12:12:07.607986+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:12:08.663810+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "DONE",
+      "at": "2026-09-19T12:12:14.285405+00:00",
+      "references": 5
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "REUSED",
+      "at": "2026-09-19T12:12:15.464315+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "REUSED",
+      "at": "2026-09-19T12:12:15.464895+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:12:15.465603+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-19T12:12:17.563316+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:12:19.526708+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "DONE",
+      "at": "2026-09-19T12:15:00.294787+00:00",
+      "candidates": 1
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:15:01.474662+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "FAILED",
+      "at": "2026-09-19T12:18:37.803857+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:21:59.285017+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "DONE",
+      "at": "2026-09-19T12:22:00.505402+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:22:01.580118+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "DONE",
+      "at": "2026-09-19T12:22:02.748822+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:22:03.858432+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "DONE",
+      "at": "2026-09-19T12:22:10.106532+00:00",
+      "references": 5
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "REUSED",
+      "at": "2026-09-19T12:22:11.479487+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "REUSED",
+      "at": "2026-09-19T12:22:11.480030+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:22:11.480749+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-19T12:22:14.093310+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:22:16.118272+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "FAILED",
+      "at": "2026-09-19T12:24:38.516444+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:24:48.653936+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "DONE",
+      "at": "2026-09-19T12:24:50.316837+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:24:52.070078+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "DONE",
+      "at": "2026-09-19T12:24:53.262728+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:24:54.400669+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "DONE",
+      "at": "2026-09-19T12:24:59.445861+00:00",
+      "references": 5
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "REUSED",
+      "at": "2026-09-19T12:25:00.717352+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "REUSED",
+      "at": "2026-09-19T12:25:00.717959+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:25:00.718772+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-19T12:25:03.434227+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:25:05.413139+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "DONE",
+      "at": "2026-09-19T12:25:21.946032+00:00",
+      "candidates": 1
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:25:23.872069+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "DONE",
+      "at": "2026-09-19T12:28:49.196757+00:00",
+      "provider": "chatgpt"
+    },
+    {
+      "stage": "thumbnail_candidate_01_compose",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:28:50.353030+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_compose",
+      "status": "DONE",
+      "at": "2026-09-19T12:28:51.611427+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_review",
+      "status": "DONE",
+      "at": "2026-09-19T12:28:52.965370+00:00"
+    },
+    {
+      "stage": "thumbnail_selection",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:28:54.394635+00:00"
+    },
+    {
+      "stage": "thumbnail_selection",
+      "status": "DONE",
+      "at": "2026-09-19T12:28:55.431498+00:00",
+      "selected_candidate_id": "candidate_01"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:28:57.039748+00:00"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-19T12:28:58.388099+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-19T12:28:59.831434+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-19T12:30:34.969974+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15718,
+            "sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+          }
+        },
+        "master": 15717,
+        "master_sha256": "6ca05fba1fcae6a31effa89965166d5f07868c5188c09148196466ce5bae11bb",
+        "summary": 15719,
+        "upload_markdown": 15720,
+        "upload_markdown_sha256": "4b236d347d11f71495978b1a4b1bcecdaa48249732b4fd756ffef663911e756d",
+        "metadata_json": 15721,
+        "metadata_json_sha256": "3a054ba05a86c89295663a6547446d8fb5c261a62e7075307f8b65155a88074d",
+        "thumbnail_report": 15722,
+        "thumbnail_report_sha256": "8e4493afc02693c19dec6b7387a45c5094bab7ff35bc444b3d7561cc8afe7c69"
+      }
+    },
+    {
+      "stage": "release_complete",
+      "status": "DONE",
+      "at": "2026-09-19T12:30:36.354792+00:00"
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "What If Fish Could Breathe on Land?",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 1,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "stacked_brand",
+      "allowed_layouts": [
+        "stacked_brand"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "chatgpt",
+      "quality": "best",
+      "image_fallback": "none",
+      "topic_mode": "episode",
+      "manual_topic": "",
+      "video_title_mode": "metadata",
+      "manual_video_title": "",
+      "approved_style_reference": "none",
+      "thumbnail_note": "",
+      "character_expression": "auto",
+      "topic_objects": "auto",
+      "color_direction": "auto",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "What If Fish Could Breathe on Land?",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "quicky_story",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.012,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.035,
+      "text_position": "middle",
+      "text_box_width": 0.88,
+      "safe_margin": 0.06,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.15,
+      "max_words": 12,
+      "max_characters": 100,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": false,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 0,
+      "max_image_generations": 6,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": false,
+      "send_previews": true,
+      "send_master_video": true,
+      "send_comparison_sheet": true,
+      "send_report_json": true,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "c61492ed8a10b65e96aa9e7e75c7caf47583313bddb2a5fe653a81435ce26cf9",
+  "source_job_id": "3e1107e7-333a-4e01-9c18-c11eb69c93a9",
+  "parent_release_id": null,
+  "revision_roots": [],
+  "reused_nodes": [],
+  "attempt": 4,
+  "resumed_at": "2026-09-19T12:24:48.633553+00:00",
+  "nodes": {
+    "source_gate": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:24:50.316837+00:00"
+    },
+    "release_context": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:24:53.262728+00:00"
+    },
+    "visual_references": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:24:59.445861+00:00",
+      "references": 5
+    },
+    "metadata_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T12:25:00.717352+00:00"
+    },
+    "metadata_review": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T12:25:00.717959+00:00"
+    },
+    "metadata_finalize": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:25:03.434227+00:00"
+    },
+    "thumbnail_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:25:21.946032+00:00",
+      "candidates": 1
+    },
+    "thumbnail_candidate_01_artwork": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:28:49.196757+00:00",
+      "provider": "chatgpt"
+    },
+    "thumbnail_candidate_01_compose": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:28:51.611427+00:00"
+    },
+    "thumbnail_candidate_01_review": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:28:52.965370+00:00"
+    },
+    "thumbnail_selection": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:28:55.431498+00:00",
+      "selected_candidate_id": "candidate_01"
+    },
+    "upload_guide": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:28:58.388099+00:00"
+    },
+    "telegram_delivery": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:30:34.969974+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15718,
+            "sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+          }
+        },
+        "master": 15717,
+        "master_sha256": "6ca05fba1fcae6a31effa89965166d5f07868c5188c09148196466ce5bae11bb",
+        "summary": 15719,
+        "upload_markdown": 15720,
+        "upload_markdown_sha256": "4b236d347d11f71495978b1a4b1bcecdaa48249732b4fd756ffef663911e756d",
+        "metadata_json": 15721,
+        "metadata_json_sha256": "3a054ba05a86c89295663a6547446d8fb5c261a62e7075307f8b65155a88074d",
+        "thumbnail_report": 15722,
+        "thumbnail_report_sha256": "8e4493afc02693c19dec6b7387a45c5094bab7ff35bc444b3d7561cc8afe7c69"
+      }
+    },
+    "release_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T12:30:36.354792+00:00"
+    }
+  },
+  "completed_at": "2026-09-19T12:30:36.354429+00:00",
+  "metadata": "publish/youtube_short/releases/rel_e9442899ff8a4c71ac4065855978db2f/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15718,
+        "sha256": "915be757bfa860ecd87cad065b990bb5dc692104bdf7a1a0fd61c65043303d5b"
+      }
+    },
+    "master": 15717,
+    "master_sha256": "6ca05fba1fcae6a31effa89965166d5f07868c5188c09148196466ce5bae11bb",
+    "summary": 15719,
+    "upload_markdown": 15720,
+    "upload_markdown_sha256": "4b236d347d11f71495978b1a4b1bcecdaa48249732b4fd756ffef663911e756d",
+    "metadata_json": 15721,
+    "metadata_json_sha256": "3a054ba05a86c89295663a6547446d8fb5c261a62e7075307f8b65155a88074d",
+    "thumbnail_report": 15722,
+    "thumbnail_report_sha256": "8e4493afc02693c19dec6b7387a45c5094bab7ff35bc444b3d7561cc8afe7c69"
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_e9442899ff8a4c71ac4065855978db2f/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_e9442899ff8a4c71ac4065855978db2f/YOUTUBE_SHORT_UPLOAD.md"
+}

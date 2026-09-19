@@ -24,7 +24,7 @@ def query_from_ordak(context: str, duration: float) -> tuple[str, list[str]]:
     prompt = f'''Return ONLY JSON: {{"query":"...","alternate_queries":["..."]}}. Create a PRIMARY Freesound query of exactly 2 or 3 broad words, plus up to 3 alternate queries also of 2 or 3 words, for one INSTRUMENTAL background-music bed. Every query MUST contain the word "instrumental". Do not over-specify terms: Freesound search is lexical. No lyrics, vocals, speech, singing, sound effects, memes, abrupt drops, or cinematic impacts. It must support {duration:.1f} seconds of narration and may be looped. You are choosing SEARCH TERMS ONLY, never links or files. Video context:\n{context[:2400]}'''
     with OrdakJobs() as jobs:
         for attempt in range(2):
-            raw = jobs.run(prompt if not attempt else "Return corrected raw JSON only. " + prompt, provider="chatgpt", mode="chat").answer or ""
+            raw = jobs.run(prompt if not attempt else "Return corrected raw JSON only. " + prompt, provider="chatgpt", mode="chat", chatgpt_chat="temporary").answer or ""
             try:
                 data=json.loads(raw.strip().removeprefix("```json").removesuffix("```").strip())
                 query=str(data.get("query") or "").strip()

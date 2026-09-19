@@ -1,0 +1,16 @@
+{
+  "status": "DONE",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15700,
+        "sha256": "3eb89782692ff311c6617efd33a6130e0dc931adbab47ec2d4bfcecd92ca688c"
+      }
+    },
+    "master": 15699,
+    "upload_markdown": 15702,
+    "summary": 15701,
+    "metadata_json": 15703
+  },
+  "delivered_count": 1
+}

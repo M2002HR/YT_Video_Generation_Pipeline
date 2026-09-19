@@ -178,6 +178,19 @@ class OrdakClient:
         # login and project-URL checks immediately after opening that tab.
         return data
 
+    def require_chatgpt_project(self) -> dict[str, Any]:
+        project_url = os.getenv("YT_ORDAK_CHATGPT_PROJECT_URL", "").strip()
+        if not re.fullmatch(r"https://chatgpt\.com/g/[^/]+/project/?", project_url):
+            raise RuntimeError(
+                "YT_ORDAK_CHATGPT_PROJECT_URL must be the exact https://chatgpt.com/g/.../project URL."
+            )
+        data = self.readiness()
+        if not (data.get("project_url_configured") or {}).get("chatgpt"):
+            raise RuntimeError(
+                "The running Ordak process did not load the ChatGPT Project URL; restart Ordak."
+            )
+        return data
+
     @staticmethod
     def _recoverable(error: Exception) -> bool:
         return isinstance(error, httpx.TransportError) or any(marker in str(error).lower() for marker in RECOVERABLE_ORDAK_ERRORS)
@@ -205,7 +218,7 @@ class OrdakClient:
             try:
                 response = self._request("POST",
                     f"{self.settings.base_url}/api/chatgpt/respond",
-                    json={"question": prompt, "mode": "chat", "start_new_chat": True,
+                    json={"question": prompt, "mode": "chat", "start_new_chat": True, "chatgpt_chat": "temporary",
                           "wait_for_completion": True, "wait_timeout_seconds": self.settings.wait_seconds},
                 )
                 response.raise_for_status()
@@ -228,10 +241,9 @@ class OrdakClient:
         raise RuntimeError(f"Ordak text stage {stage} exhausted its recovery attempts.")
 
     def image(self, prompt: str, references: list[Path], *, beat_id: int, provider: str = "chatgpt") -> dict[str, Any]:
-        # Provider is selected per content-project (§29): chatgpt for legacy, gemini for q_station, flow for video (§3)
-        provider = provider.strip().lower() or "chatgpt"
-        if provider not in {"chatgpt", "gemini", "flow"}:
-            raise RuntimeError(f"Unsupported image provider: {provider!r}")
+        if (provider.strip().lower() or "chatgpt") != "chatgpt":
+            raise RuntimeError("All pipeline images are locked to the ChatGPT provider.")
+        provider = "chatgpt"
         reference_readings: list[dict[str, Any]] = []
         files = []
         for reference in references:
@@ -244,9 +256,10 @@ class OrdakClient:
             files.append(("image", (reference.name, content, "image/png")))
         data = {
             "question": prompt,
-            "provider": provider,
+            "provider": "chatgpt",
             "mode": "image_generate",
             "start_new_chat": "true",
+            "chatgpt_chat": "project",
             "wait_for_completion": "true",
             "wait_timeout_seconds": str(self.settings.wait_seconds),
         }
@@ -506,7 +519,7 @@ Constraints: {constraints}
     def run(self) -> Path:
         total_timer = StageTimer()
         try:
-            self.client.readiness()
+            self.client.require_chatgpt_project()
             self.load_or_init()
             self.restore_notifier_image_progress()
             brief = self.brief().read_text(encoding="utf-8")
@@ -623,14 +636,12 @@ Constraints: {constraints}
             self.save()
             started_at, started = utcnow(), time.perf_counter()
             try:
-                # provider per content-project §3: q_station → gemini, others → chatgpt
-                try:
-                    effective_provider = self.content_project.get_provider("image")
-                except Exception:
-                    effective_provider = "chatgpt"
-                if effective_provider not in {"chatgpt", "gemini"}:
-                    effective_provider = "chatgpt"
-                job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id, provider=effective_provider)
+                effective_provider = self.content_project.get_provider("image")
+                if effective_provider != "chatgpt":
+                    raise RuntimeError(
+                        f"Content project image provider must be 'chatgpt'; found {effective_provider!r}."
+                    )
+                job = self.client.image((self.project / record["prompt_path"]).read_text(encoding="utf-8"), references, beat_id=beat_id, provider="chatgpt")
                 artifacts = list(job.get("output_images") or [])
                 if not artifacts:
                     raise RuntimeError(f"Beat {beat_id:03d} did not produce a generated artifact.")

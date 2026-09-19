@@ -1,6 +1,6 @@
 # Prompt 07 — Single Beat Image Prompt Writer (Q Station Body)
 
-Convert one visual beat into one standalone Gemini image prompt.
+Convert one visual beat into one standalone ChatGPT image prompt.
 
 Inputs:
 - STYLE RULES: {{STYLE_RULES}}

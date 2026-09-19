@@ -1,0 +1,232 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_fb0edfae98c141f0a3063c325449ada9",
+  "status": "DONE",
+  "started_at": "2026-09-19T09:54:55.942625+00:00",
+  "video": "041_what_if_fish_could_breathe_on_land",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "6ca05fba1fcae6a31effa89965166d5f07868c5188c09148196466ce5bae11bb",
+  "events": [
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-19T09:45:13.787281+00:00"
+    },
+    {
+      "stage": "release",
+      "status": "FAILED",
+      "at": "2026-09-19T09:46:29.205962+00:00",
+      "error": "OrdakJobError: ChatGPT Power effort control is unavailable after waiting."
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-19T09:55:00.102795+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-19T09:56:12.558640+00:00",
+      "chatgpt_job_id": "b278397a-1bf8-4071-9f9d-a9e4304c8a67"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-19T09:56:12.558654+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-19T09:57:22.055251+00:00",
+      "chatgpt_job_id": "0112543c-32d4-49a3-ba37-bb1ced63a323",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-19T09:57:22.055258+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "RUNNING",
+      "at": "2026-09-19T09:57:22.074001+00:00"
+    },
+    {
+      "stage": "thumbnail",
+      "status": "DONE",
+      "at": "2026-09-19T09:59:28.382229+00:00",
+      "selected_candidate_id": "candidate_01",
+      "qc_passed": true
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-19T09:59:28.382550+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-19T09:59:28.382591+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-19T10:01:13.186960+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15700,
+            "sha256": "3eb89782692ff311c6617efd33a6130e0dc931adbab47ec2d4bfcecd92ca688c"
+          }
+        },
+        "master": 15699,
+        "upload_markdown": 15702,
+        "summary": 15701,
+        "metadata_json": 15703
+      }
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "What If Fish Could Breathe on Land?",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 1,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "contrast_split",
+      "allowed_layouts": [
+        "character_left",
+        "character_right",
+        "contrast_split",
+        "discovery_focus"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "inherit_episode",
+      "quality": "native",
+      "image_fallback": "chatgpt_on_gemini_failure",
+      "thumbnail_note": "",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "manual",
+      "manual_text": "What If Fish Could Breathe on Land?",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "montserrat_bold",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.01,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.035,
+      "text_position": "auto",
+      "text_box_width": 0.82,
+      "safe_margin": 0.055,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.15,
+      "max_words": 6,
+      "max_characters": 40,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": true,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 1,
+      "max_image_generations": 3,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": false,
+      "send_previews": true,
+      "send_master_video": true,
+      "send_comparison_sheet": false,
+      "send_report_json": false,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "ecc013516a508a8c3bbc11000c5dfae0f78a7c77c6a1a73528b0acba2493c38a",
+  "source_job_id": "3e1107e7-333a-4e01-9c18-c11eb69c93a9",
+  "parent_release_id": null,
+  "revision_roots": [],
+  "reused_nodes": [],
+  "attempt": 2,
+  "resumed_at": "2026-09-19T09:54:55.942889+00:00",
+  "nodes": {
+    "metadata_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T09:56:12.558640+00:00",
+      "chatgpt_job_id": "b278397a-1bf8-4071-9f9d-a9e4304c8a67"
+    },
+    "metadata_review": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T09:57:22.055251+00:00",
+      "chatgpt_job_id": "0112543c-32d4-49a3-ba37-bb1ced63a323",
+      "schema_repair_job_ids": []
+    },
+    "metadata_finalize": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T09:57:22.055258+00:00"
+    },
+    "thumbnail": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T09:59:28.382229+00:00",
+      "selected_candidate_id": "candidate_01",
+      "qc_passed": true
+    },
+    "upload_guide": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T09:59:28.382550+00:00"
+    },
+    "telegram_delivery": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T10:01:13.186960+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15700,
+            "sha256": "3eb89782692ff311c6617efd33a6130e0dc931adbab47ec2d4bfcecd92ca688c"
+          }
+        },
+        "master": 15699,
+        "upload_markdown": 15702,
+        "summary": 15701,
+        "metadata_json": 15703
+      }
+    }
+  },
+  "completed_at": "2026-09-19T10:01:13.186974+00:00",
+  "metadata": "publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15700,
+        "sha256": "3eb89782692ff311c6617efd33a6130e0dc931adbab47ec2d4bfcecd92ca688c"
+      }
+    },
+    "master": 15699,
+    "upload_markdown": 15702,
+    "summary": 15701,
+    "metadata_json": 15703
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_fb0edfae98c141f0a3063c325449ada9/YOUTUBE_SHORT_UPLOAD.md"
+}

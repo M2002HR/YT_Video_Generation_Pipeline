@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Regenerate the canonical Q Station Red Horned Everyman sheet with Gemini (§13, §47).
+"""Regenerate the canonical Q Station character sheet with ChatGPT via Ordak.
 
 There is no synthetic fallback. This sheet is the recurring identity every episode is built
 against, so a hand-drawn placeholder would silently redefine the character for every future
-video. If Gemini cannot produce it, the right outcome is a non-zero exit and a real retry.
+video. If ChatGPT cannot produce it, the right outcome is a non-zero exit and a real retry.
 
 Output:
     projects/q_station/characters/red_horned_everyman/refs/character_sheet.png
@@ -34,22 +34,24 @@ OUTPUT — exactly one image: 9:16 full-body turnaround (front, 3/4, side) on cl
 """
 
 
-def generate(output: Path, *, model: str, timeout: int) -> dict:
-    """Ask Gemini for the sheet, download it, and prove it decodes as an image."""
+def generate(output: Path, *, timeout: int) -> dict:
+    """Ask project-scoped ChatGPT for the sheet and prove it decodes as an image."""
     from PIL import Image
 
     with OrdakJobs() as jobs:
-        jobs.require_ready(["gemini"])
+        jobs.require_chatgpt_project()
         result = jobs.run(
             CHARACTER_PROMPT,
-            provider="gemini",
+            provider="chatgpt",
             mode="image_generate",
-            generation=Generation(model=model, quality="best", aspect_ratio="9:16"),
+            generation=Generation(quality="best", aspect_ratio="9:16"),
             timeout_seconds=timeout,
-            on_log=lambda message: print(f"    [gemini] {message[:160]}", flush=True),
+            attempts=2,
+            chatgpt_chat="project",
+            on_log=lambda message: print(f"    [chatgpt] {message[:160]}", flush=True),
         )
         if not result.output_images:
-            raise RuntimeError("Gemini completed the job but produced no image artifact.")
+            raise RuntimeError("ChatGPT completed the job but produced no image artifact.")
         output.parent.mkdir(parents=True, exist_ok=True)
         partial = output.with_suffix(output.suffix + ".download")
         jobs.download(result.output_images[0], partial)
@@ -63,8 +65,8 @@ def generate(output: Path, *, model: str, timeout: int) -> dict:
     return {
         "output": str(output),
         "sha256": sha256_file(output),
-        "provider": "gemini",
-        "requested_model": model,
+        "provider": "chatgpt",
+        "requested_model": None,
         "actual_model_label": receipt.get("actual_model_label"),
         "model_verified": bool(receipt.get("model_verified")),
         "size": f"{width}x{height}",
@@ -74,9 +76,8 @@ def generate(output: Path, *, model: str, timeout: int) -> dict:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate the canonical character sheet with Gemini")
+    parser = argparse.ArgumentParser(description="Generate the canonical character sheet with project-scoped ChatGPT")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--model", default="nano_banana_pro")
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--force", action="store_true", help="Regenerate even if the file exists")
     args = parser.parse_args()
@@ -87,12 +88,12 @@ def main() -> int:
         return 0
 
     try:
-        meta = generate(args.output, model=args.model, timeout=args.timeout)
+        meta = generate(args.output, timeout=args.timeout)
     except (OrdakJobError, RuntimeError, OSError) as exc:
         print(f"FAILED: the character sheet could not be generated: {exc}", file=sys.stderr, flush=True)
         print(
             "This sheet defines the recurring character, so no placeholder is written. "
-            "Fix the Gemini session and run again.",
+            "Fix the ChatGPT project session and run again.",
             file=sys.stderr,
             flush=True,
         )

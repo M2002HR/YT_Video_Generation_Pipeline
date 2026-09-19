@@ -1,0 +1,13 @@
+{
+  "eligible": true,
+  "score": 0,
+  "reasons": [
+    "Thumbnail QC and final visual review were disabled by the Release operator."
+  ],
+  "blocking_violations": [],
+  "warnings": [
+    "No ChatGPT visual review was requested."
+  ],
+  "review_status": "SKIPPED_OPERATOR",
+  "final_sha256": "323e61b2785311f9776094fca09e162aa1d036a0b9cc88f0ffcf32ce6e056430"
+}

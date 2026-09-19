@@ -1,0 +1,29 @@
+{
+  "schema_version": 3,
+  "requested_count": 1,
+  "text_mode": "auto",
+  "resolved_headline": "Still Need Water?",
+  "headline_job_id": "61364326-8ff1-4601-a506-be1ab3e8f4b8",
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "stacked_brand",
+      "headline": "Still Need Water?",
+      "video_topic": "What If Fish Could Breathe on Land?",
+      "video_title": "What If Fish Could Breathe on Land? 🐟 #shorts",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If fish could breathe on land, why would they still need water? The answer starts with one change, not a whole new fish. Air breathing solves one problem. The fish still needs water. Its body must handle dry ground. Its fins must support la",
+      "character_expression": "auto",
+      "color_direction": "auto",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the topic object",
+      "composition_template": "FIXED BRANDED COMPOSITION: one continuous vertical canvas with no panels or dividers. Use the upper portion for distinct topic objects, reserve a visually quiet middle zone for the exact headline, and use the lower portion for one expressive centered character close-up. Host: one large head-and-shoulders close-up at the bottom, centered, head roughly 70–85% of canvas width. Objects: one dominant topic object at the top, with no more than two smaller supporting objects. Keep the face unobstructed.",
+      "novelty_signature": "0fc739d25ffd6179",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    }
+  ]
+}

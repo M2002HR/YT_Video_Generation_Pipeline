@@ -1,0 +1,24 @@
+{
+  "status": "DONE",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15549,
+        "sha256": "323e61b2785311f9776094fca09e162aa1d036a0b9cc88f0ffcf32ce6e056430"
+      },
+      "candidate_02": {
+        "message_id": 15550,
+        "sha256": "a9085d6227b31cececb668c85ff88163d9ea8753c1c6a7649c95d208c98c3bc0"
+      },
+      "candidate_03": {
+        "message_id": 15551,
+        "sha256": "16f4feeb204a7d5347e0861431d0dc5839da442a041a0717fdce1ebf3172ef0b"
+      }
+    },
+    "master": 15548,
+    "upload_markdown": 15553,
+    "summary": 15552,
+    "metadata_json": 15554
+  },
+  "delivered_count": 3
+}

@@ -18,6 +18,8 @@ from panel_contract import SUBTITLE_FONT_SIZE_MIN, SUBTITLE_FONT_SIZE_MAX, TITLE
 
 
 ROOT = Path(__file__).resolve().parents[1]
+_ACTIVE_NOTIFIER: PipelineNotifier | None = None
+_ACTIVE_STATE_PATH: Path | None = None
 
 
 class PipelinePausedForImageLimit(RuntimeError):
@@ -565,6 +567,8 @@ def main() -> None:
         args.video_id, args.topic,
         state_path=project / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
     )
+    global _ACTIVE_NOTIFIER, _ACTIVE_STATE_PATH
+    _ACTIVE_NOTIFIER, _ACTIVE_STATE_PATH = notifier, state_path
     if args.regenerate_beats:
         notifier.send("Revision started", [
             f"🛠 Beat image(s): {args.regenerate_beats}",
@@ -655,4 +659,17 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:
+        if _ACTIVE_NOTIFIER is not None:
+            from pipeline_notifier import safe_detail
+            _ACTIVE_NOTIFIER.send("Pipeline failed", ["❌ The workflow stopped", safe_detail(f"{type(exc).__name__}: {exc}"), "↻ Completed stages remain reusable; fix the cause and resume."])
+        if _ACTIVE_STATE_PATH is not None:
+            try:
+                failed_state = json.loads(_ACTIVE_STATE_PATH.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                failed_state = {"schema_version": 5, "events": []}
+            failed_state.update({"status": "FAILED", "failed_at": stamp(), "error": f"{type(exc).__name__}: {exc}"[:1000]})
+            _ACTIVE_STATE_PATH.write_text(json.dumps(failed_state, indent=2) + "\n", encoding="utf-8")
+        raise

@@ -12,6 +12,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 
@@ -109,6 +110,21 @@ def main() -> None:
             "Set YT_ORDAK_PROVIDER=chatgpt."
         )
     # Per-job provider selection is now supported; the same Ordak service handles chatgpt/gemini/flow concurrently.
+
+    project_url = os.getenv("YT_ORDAK_CHATGPT_PROJECT_URL", "").strip()
+    parsed_project_url = urlparse(project_url)
+    project_parts = [part for part in parsed_project_url.path.split("/") if part]
+    if (
+        parsed_project_url.scheme != "https"
+        or parsed_project_url.netloc.casefold() != "chatgpt.com"
+        or len(project_parts) < 3
+        or project_parts[0] != "g"
+        or project_parts[-1] != "project"
+    ):
+        raise SystemExit(
+            "YT_ORDAK_CHATGPT_PROJECT_URL must be set to the exact "
+            "https://chatgpt.com/g/.../project URL; all pipeline images are project-scoped."
+        )
 
     required_root_settings = {
         "YT_ORDAK_BROWSER_EXECUTABLE_PATH": os.getenv("YT_ORDAK_BROWSER_EXECUTABLE_PATH"),

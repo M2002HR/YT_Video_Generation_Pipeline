@@ -13,9 +13,8 @@
       "allow_fallback": false
     },
     "image": {
-      "provider": "gemini",
-      "allow_fallback": false,
-      "default_model": "nano_banana_pro"
+      "provider": "chatgpt",
+      "allow_fallback": false
     },
     "video": {
       "provider": "flow",
@@ -35,7 +34,6 @@
     "subtitles": false,
     "hero_presence_mode": "auto",
     "world_style_policy": "auto",
-    "gemini_image_model": "nano_banana_pro",
     "flow_video_model": "gemini_omni_1_1_flash",
     "flow_resolution": "720p",
     "opening_a_source_seconds": 6,

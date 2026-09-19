@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "e2f4b4c5ca372574d5974e0fdf7cf54700bddec73a738def9bd12f0f60e28ae9",
+  "concept_id": "2b209251593eb141904d",
+  "character_id": "newton_scholar",
+  "presentation_id": "book_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+    "viewer_expectation": "A giant human would simply be bigger, stronger, and able to walk normally.",
+    "visible_contradiction": "Weight grows with volume, but bone strength only grows with cross-section area.",
+    "frame_zero": "A scaled model leg built with human proportions snaps under four tons of simulated weight.",
+    "character_action": "The scholar gently places a proportional torso load onto a scaled human leg frame.",
+    "reaction": "A quiet blink of surprise followed by a gentle tap on the cracked support timber.",
+    "activity": "Testing how scaling height without widening bone width breaks upright support.",
+    "location": "An outdoor comparative anatomy pavilion beside full-size animal leg casts.",
+    "topic_link": "Body mass increases much faster than the cross-section area of supporting bones.",
+    "factual_anchor": "A human scaled to the size and weight of an elephant, where volume grows faster than bone area.",
+    "payoff": "An elephant-sized human would collapse because normal human leg proportions cannot carry four tons.",
+    "claim_mode": "source_supported",
+    "entry_variant": "discovered_book",
+    "entry_bridge": {
+      "a_end": "The scholar rests his palm on an embossed topic book resting on a stone display pedestal.",
+      "b_start": "Top-down view of the closed book bound in rough hide-textured leather on the pedestal.",
+      "reveal": "The book opens to an illustrated comparison of slender human legs versus elephant pillars.",
+      "world_entry": "A four-ton giant human figure collapses onto its knees as slender leg bones buckle under the body."
+    },
+    "novelty": {
+      "action_family": "vertical load failure test",
+      "tension_family": "proportional scaling versus actual mass",
+      "prop_family": "scaled leg bone model and weighted torso block",
+      "reveal_family": "bone area falls behind total volume growth"
+    }
+  },
+  "created_at": "2026-09-19T08:02:06Z"
+}

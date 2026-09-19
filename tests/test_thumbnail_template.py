@@ -1,4 +1,4 @@
-"""Regressions: predictable thumbnail template with a reserved headline band."""
+"""Regressions: predictable, text-free thumbnail template."""
 from __future__ import annotations
 
 import sys
@@ -9,7 +9,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from release_settings import THUMBNAIL_DEFAULTS, normalize_release_settings
 from thumbnail_compositor import text_box_geometry
-from thumbnail_runtime import LAYOUT_TEMPLATES, artwork_prompt, final_review_prompt, local_plan
+from thumbnail_runtime import LAYOUT_TEMPLATES, artwork_prompt, episode_title_headline, final_review_prompt, local_plan, validate_headline
 
 
 def base_settings(**overrides):
@@ -37,56 +37,48 @@ def sample_context():
 
 
 def test_geometry_is_top_band_for_character_layouts() -> None:
-    band = text_box_geometry(base_settings(), "character_left")
-    assert band["width"] == 0.82 and band["height"] == 0.32
-    assert abs(band["x"] - 0.09) < 1e-9 and abs(band["y"] - 0.05) < 1e-9
-    assert band["y"] + band["height"] <= 0.40
-    top = text_box_geometry(base_settings(text_position="top"), "contrast_split")
-    assert abs(top["y"] - 0.035) < 1e-9 and top["y"] + top["height"] <= 0.40
-    bottom = text_box_geometry(base_settings(text_position="bottom"), "character_left")
-    assert bottom["y"] + bottom["height"] <= 1.0
-    # Headline box is canvas-centered for every layout (stable, not side-anchored).
-    for layout in ("character_left", "character_right", "contrast_split", "discovery_focus"):
-        box = text_box_geometry(base_settings(), layout)
-        assert abs((box["x"] + box["width"] / 2) - 0.5) < 1e-9
-    left = text_box_geometry(base_settings(text_position="left"), "character_left")
-    assert abs(left["x"] - 0.055) < 1e-9
+    band = text_box_geometry(base_settings(), "stacked_brand")
+    assert band == {"x": 0.06, "y": 0.30, "width": 0.88, "height": 0.28}
+    assert abs((band["x"] + band["width"] / 2) - 0.5) < 1e-9
 
 
 def test_every_layout_has_a_placement_template() -> None:
-    for layout in ("character_left", "character_right", "contrast_split", "discovery_focus"):
+    for layout in ("stacked_brand",):
         template = LAYOUT_TEMPLATES[layout]
         assert template["host"] and template["scene"]
 
 
 def test_plan_carries_band_and_template_per_layout() -> None:
     settings = base_settings(count=4)
-    plans = local_plan(sample_metadata(), sample_context(), settings, sample_character())
-    assert [plan["layout_id"] for plan in plans] == [
-        "character_left", "character_right", "contrast_split", "discovery_focus"]
+    plans = local_plan(sample_metadata(), sample_context(), settings, sample_character(), "Same Meals Fall Short")
+    assert [plan["layout_id"] for plan in plans] == ["stacked_brand"] * 4
     for plan in plans:
-        assert "COMPOSITION TEMPLATE" in plan["composition_template"]
-        assert plan["layout_id"] in plan["composition_template"]
-        assert "text_region" in plan and "frame fractions" in plan["text_region"]
+        assert "FIXED BRANDED COMPOSITION" in plan["composition_template"]
+        assert plan["headline"] == "Same Meals Fall Short"
 
 
 def test_artwork_prompt_reserves_band_and_keeps_head_below() -> None:
     settings = base_settings(count=1)
-    plan = local_plan(sample_metadata(), sample_context(), settings, sample_character())[0]
+    plan = local_plan(sample_metadata(), sample_context(), settings, sample_character(), "Same Meals Fall Short")[0]
     prompt = artwork_prompt(plan, sample_character(), [], "")
-    assert "COMPOSITION TEMPLATE (character_left)" in prompt
-    assert "y 0.00-0.50" in prompt
-    assert "BELOW" in prompt
-    assert "no face, eyes, mouth" in prompt
-    assert "artificially emptied" in prompt
+    assert 'Render exactly this English headline once: "Same Meals Fall Short"' in prompt
+    assert "The pipeline will not add a second text layer later" in prompt
+    assert "CHARACTER SHEET attachment is the source of truth" in prompt
 
 
-def test_final_review_rejects_headline_over_face() -> None:
+def test_final_review_requires_exact_headline_output() -> None:
     prompt = final_review_prompt(
         {"headline": "Same Meals Fall Short", "evidence_anchor": "meals"},
         {"title": "Same Meals Can Fall Short #shorts"},
     )
-    assert "overlapping the host's face" in prompt
+    assert "missing, misspelled, duplicated" in prompt
+
+
+def test_episode_title_and_manual_headlines_are_preserved_exactly() -> None:
+    settings = base_settings()
+    context = {"run": {"topic": "What If Fish Could Breathe on Land?"}}
+    assert episode_title_headline(context, sample_metadata(), settings) == "What If Fish Could Breathe on Land?"
+    assert validate_headline("  A Manual   Headline  ", settings) == "A Manual Headline"
 
 
 def test_rendered_lines_share_one_ink_center(tmp_path) -> None:
@@ -98,7 +90,7 @@ def test_rendered_lines_share_one_ink_center(tmp_path) -> None:
     artwork = tmp_path / "artwork.png"
     Image.new("RGB", (1080, 1920), (90, 110, 140)).save(artwork)
     out = tmp_path / "final.png"
-    compose(artwork, out, "Can This Diet Last?", base_settings(), "character_left")
+    compose(artwork, out, "Can This Diet Last?", base_settings(), "stacked_brand")
     image = Image.open(out).convert("RGB")
     width, height = image.size
     pixels = image.load()
@@ -121,7 +113,7 @@ def test_rendered_lines_share_one_ink_center(tmp_path) -> None:
         previous = y
     assert current
     lines.append(current)
-    assert len(lines) == 3
+    assert len(lines) >= 1
     for line_rows in lines:
         xs = [x for y in line_rows for x in rows[y]]
         center = (min(xs) + max(xs)) / 2

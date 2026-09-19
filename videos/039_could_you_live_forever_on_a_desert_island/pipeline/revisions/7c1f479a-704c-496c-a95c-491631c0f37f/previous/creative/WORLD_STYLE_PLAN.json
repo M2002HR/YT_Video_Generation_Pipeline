@@ -1,0 +1,31 @@
+{
+  "style_id": "saltcut_tropical_survival_linocut_001",
+  "decision": "reuse",
+  "reuse_of": "saltcut_tropical_survival_linocut_001",
+  "medium": "linocut relief print",
+  "secondary_treatment": null,
+  "texture_family": "matte carved-print ink with salt-bloom speckling, fibrous grain, dry roller breakup and subtle edge chatter",
+  "palette_summary": "deep marine indigo, weathered turquoise, sun-bleached sand and bone white, dry palm brown, storm gray, with sparse rust-orange accents reserved for salt stress, injury and survival hazards",
+  "line_treatment": "bold carved linocut contours, irregular gouged hatching, dry-roller breakup and simplified survival-focused silhouettes with consistent hand-cut edge chatter",
+  "lighting": "hard tropical daylight with graphic carved shadows, shifting to storm-muted contrast for hazard beats while preserving the same relief-print language",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Desert-island survival imagery centered on food variety, nutrient gaps, fresh plants, clean drinking water, shelter, heat, rain, storms, injury, infection, aging and the limits of nutrition; keep environments and objects plausible for a tropical island and vary scale and composition across beats",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reason": "The operator explicitly requires reuse of saltcut_tropical_survival_linocut_001. Its carved tropical-survival vocabulary, marine and sun-bleached palette, salt-worn texture and reserved hazard accents closely match an episode about island nutrition, water, shelter, injury and aging. Although this style appears in the recent-use list and would normally carry a repetition penalty, the explicit operator preference overrides that tradeoff.",
+  "subject_affinities": [
+    "desert-island survival",
+    "nutrition and nutrient deficiency",
+    "fresh edible plants",
+    "clean drinking water",
+    "tropical shelter",
+    "storms and heat exposure",
+    "injury and infection risk",
+    "human aging and survival limits"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

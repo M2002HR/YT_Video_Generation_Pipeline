@@ -24,17 +24,17 @@ def picture(path, seed=1):
     return path
 
 
-def result(model='nano_banana_2', verified=True):
+def result(model=None, verified=False, provider='chatgpt'):
     return JobResult(job_id='test',status='completed',answer=None,output_images=['one'],generation_receipt={
-        'requested_model':model,'model_verified':verified,'actual_model_label':'Nano Banana 2',
+        'provider':provider,'requested_model':model,'model_verified':verified,'actual_model_label':None,
         'notes':['artifact_source=download']})
 
 
-def test_rejected_model_never_overwrites_previous_output(tmp_path):
+def test_misattributed_provider_never_overwrites_previous_output(tmp_path):
     target=picture(tmp_path/'beat.png'); before=target.read_bytes()
     runner=object.__new__(qstation.Runner)
-    runner._run=lambda *a,**kw:result(verified=False)
-    runner.jobs=SimpleNamespace(download=lambda *a:pytest.fail('invalid model downloaded'))
+    runner._run=lambda *a,**kw:result(provider='gemini')
+    runner.jobs=SimpleNamespace(download=lambda *a:pytest.fail('misattributed image downloaded'))
     with pytest.raises(qstation.StageFailure):
         runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
     assert target.read_bytes()==before
@@ -334,31 +334,28 @@ def test_review_pause_resumes_paid_candidate_without_new_generation(tmp_path):
     assert calls==['generate']
 
 
-def test_wrong_requested_model_is_rejected_before_download(tmp_path):
+def test_chatgpt_receipt_with_requested_model_is_rejected_before_download(tmp_path):
     runner=object.__new__(qstation.Runner);runner._run=lambda *a,**k:result('different_model')
     runner.jobs=SimpleNamespace(download=lambda *a:pytest.fail('download should not occur'))
-    with pytest.raises(qstation.StageFailure,match='another requested model'):
+    with pytest.raises(qstation.StageFailure,match='misattributed'):
         runner.image('world_keyframe','scene',[],model='nano_banana_2',destination=tmp_path/'out.png')
 
 
-def test_provider_alternation_retries_failed_attempt_on_other_provider(tmp_path):
+def test_legacy_alternation_flag_cannot_enable_gemini(tmp_path):
     runner=object.__new__(qstation.Runner)
     runner.image_qc_correction_policy='1';runner.image_provider_alternation=True;providers=[]
     def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
         providers.append(provider)
-        if len(providers)==1:
-            raise qstation.StageFailure('beat_image_001','FAILED_DOWNLOAD','boom')
         picture(destination,2)
         return qc_result({'passed':True,'review_status':'passed','observations':[],'blocking_violations':[]})
     runner._image_attempt=attempt
     target=tmp_path/'out.png'
     selected=runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=target)
-    assert providers==['gemini','chatgpt']
+    assert providers==['chatgpt']
     assert target.is_file()
     iterations=selected.generation_receipt['quality_iterations']
-    assert [(item['attempt'],item['provider']) for item in iterations]==[(1,'gemini'),(2,'chatgpt')]
-    assert iterations[0]['error'].startswith('FAILED_DOWNLOAD')
-    assert selected.generation_receipt['qc_selected_attempt']==2
+    assert [(item['attempt'],item['provider']) for item in iterations]==[(1,'chatgpt')]
+    assert selected.generation_receipt['qc_selected_attempt']==1
 
 
 def test_provider_failure_without_alternation_fails_immediately(tmp_path):
@@ -372,7 +369,7 @@ def test_provider_failure_without_alternation_fails_immediately(tmp_path):
     assert target.read_bytes()==before
 
 
-def test_alternation_cycles_back_to_gemini_on_third_attempt(tmp_path):
+def test_provider_failure_never_cycles_to_gemini(tmp_path):
     runner=object.__new__(qstation.Runner)
     runner.image_qc_correction_policy='2';runner.image_provider_alternation=True;providers=[]
     def attempt(_stage,_prompt,_references,*,model,destination,provider="gemini",chatgpt_chat="project"):
@@ -381,7 +378,7 @@ def test_alternation_cycles_back_to_gemini_on_third_attempt(tmp_path):
     runner._image_attempt=attempt
     with pytest.raises(qstation.StageFailure,match='boom'):
         runner.image('beat_image_001','scene',[],model='nano_banana_2',destination=tmp_path/'out.png')
-    assert providers==['gemini','chatgpt','gemini']
+    assert providers==['chatgpt']
 
 
 def test_structured_json_recovers_unescaped_visible_label_quotes():

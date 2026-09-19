@@ -1,0 +1,107 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [
+    "Using 'bone thickness' in body_04 and body_06 successfully simplifies 'cross-section area' into accessible spoken English for B1 listeners while keeping the core scaling relationship and numbers intact."
+  ],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "core",
+  "content_fingerprint": "a3668e011dd79b066a0effdeca24c5af35582136b69fe7fc1d0228debe5627c1",
+  "reference_fingerprint": "23fe6a3e424e8c8938544f71c1bf96f32c6c4360e8c9dcda8ba9a5a380286894",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "abbd3e5695e5f470a97ba91ffccbc36e02cd995d97e0f8dd56a5821b957d710d",
+  "input_fingerprint": "69ab799037d7b25971cb9333856e96cfa7cdca39025825c90e930d7ae9cc94fd",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "opening_question_spark": "If you grew as big as an elephant, could your legs still hold your weight?",
+        "book_transition": "As bodies grow, weight rises faster than bone strength.",
+        "body_01": "Picture a human at four tons.",
+        "body_02": "That is fifty times your normal weight.",
+        "body_03": "Weight grows with volume in three directions,",
+        "body_04": "but bone strength only grows with cross-section area.",
+        "body_05": "Your weight jumps fifty times,",
+        "body_06": "while bone area only grows fourteen times.",
+        "body_07": "Elephants survive with legs like thick pillars.",
+        "body_08": "Slender human legs bend at angles.",
+        "body_09": "The moment you try to stand,",
+        "body_10": "your leg bones snap under the load.",
+        "optional_closing": "To carry that weight, you need legs like tree trunks."
+      },
+      "checks": {
+        "everyday_words": false,
+        "clear_sentence_meaning": true,
+        "terms_explained": false,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [
+        {
+          "check": "everyday_words",
+          "segment": "body_04",
+          "quote": "but bone strength only grows with cross-section area.",
+          "problem": "'cross-section area' is an academic and technical noun phrase rather than everyday spoken English for an international B1 audience.",
+          "suggestion": "Replace with a familiar everyday phrase such as 'bone thickness' or 'the area across the bone'."
+        },
+        {
+          "check": "terms_explained",
+          "segment": "body_04",
+          "quote": "but bone strength only grows with cross-section area.",
+          "problem": "The technical concept of 'cross-section area' is introduced without a plain-language explanation before or alongside it to aid first-listen comprehension.",
+          "suggestion": "Explain the concept in plain words alongside the term, such as 'the thickness across the bone'."
+        },
+        {
+          "check": "terms_explained",
+          "segment": "body_06",
+          "quote": "while bone area only grows fourteen times.",
+          "problem": "The narration shifts to 'bone area' after introducing 'cross-section area' in body_04, rotating synonyms instead of repeating the same clear label.",
+          "suggestion": "Use the same label consistently as in body_04 (such as 'bone thickness' or 'bone area')."
+        }
+      ],
+      "notes": [
+        "'Slender' in body_08 is slightly more descriptive than common everyday words like 'thin', but the direct contrast with 'thick pillars' keeps comprehension clear.",
+        "Body_03 successfully explains the 3D nature of volume by adding the concrete phrase 'in three directions'."
+      ],
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "segments": {
+        "opening_question_spark": "If you grew as big as an elephant, could your legs still hold your weight?",
+        "book_transition": "As bodies grow, weight rises faster than bone strength.",
+        "body_01": "Picture a human at four tons.",
+        "body_02": "That is fifty times your normal weight.",
+        "body_03": "Weight grows with volume in three directions,",
+        "body_04": "but bone strength only grows with bone thickness.",
+        "body_05": "Your weight jumps fifty times,",
+        "body_06": "while bone thickness only grows fourteen times.",
+        "body_07": "Elephants survive with legs like thick pillars.",
+        "body_08": "Slender human legs bend at angles.",
+        "body_09": "The moment you try to stand,",
+        "body_10": "your leg bones snap under the load.",
+        "optional_closing": "To carry that weight, you need legs like tree trunks."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [
+        "Using 'bone thickness' in body_04 and body_06 successfully simplifies 'cross-section area' into accessible spoken English for B1 listeners while keeping the core scaling relationship and numbers intact."
+      ],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-19T08:11:31Z"
+}

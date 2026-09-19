@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "video_id": "041",
+  "messages": {
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:source_gate": 15704,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:release_context": 15705,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:visual_references": 15706,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:metadata_draft": 15707,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:metadata_review": 15708,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:metadata_finalize": 15709,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:thumbnail_plan": 15710,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:thumbnail_candidate_01_artwork": 15711,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:thumbnail_candidate_01_compose": 15712,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:thumbnail_selection": 15714,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:upload_guide": 15715,
+    "release:rel_e9442899ff8a4c71ac4065855978db2f:telegram_delivery": 15716
+  },
+  "errors": []
+}

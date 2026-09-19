@@ -57,3 +57,5 @@ def test_git_publication_is_last_after_telegram_publish() -> None:
         publish=True, telegram_low_size=True, commit=True,
     )
     assert full[-2:] == ["publish_telegram", "git_commit_push"]
+    assert PIPELINE_STAGE_SEQUENCE.index("publish_telegram") < PIPELINE_STAGE_SEQUENCE.index("git_commit_push")
+    assert PIPELINE_STAGE_SEQUENCE[0] == "preflight"

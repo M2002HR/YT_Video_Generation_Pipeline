@@ -122,6 +122,7 @@ test("dependentNodeIds finds all downstream consumers without looping", () => {
 test("status values map to stable visual classes", () => {
   assert.equal(statusClass("DONE"), "done");
   assert.equal(statusClass("REUSED"), "reused");
+  assert.equal(statusClass("SKIPPED"), "reused");
   assert.equal(statusClass("FAILED_VALIDATION"), "failed");
   assert.equal(statusClass("WAITING_FOR_FLOW"), "waiting");
   assert.equal(statusClass("PENDING"), "pending");

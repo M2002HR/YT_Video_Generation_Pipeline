@@ -1,0 +1,320 @@
+{
+  "schema_version": 2,
+  "candidates": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "character_left",
+      "headline": "Air Shrinks, Body Resists",
+      "evidence_anchor": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every ten meters, pressure rises b",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_01/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_01/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_01/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2112167,
+        "sha256": "4ca265d24ce2c31ffce19c251e2e678fbfcadbd6e58cdf4d4656175bb25f609f"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 4101426,
+        "sha256": "323e61b2785311f9776094fca09e162aa1d036a0b9cc88f0ffcf32ce6e056430"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "323e61b2785311f9776094fca09e162aa1d036a0b9cc88f0ffcf32ce6e056430"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "ebed6452-549a-42c5-ac66-001095b2d547",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/a48fa69ac3fdb42d",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=ebed6452-549a-42c5-ac66-001095b2d547_output_1.png 1536x2752 sha256=4ca265d24ce2c31ffce19c251e2e678fbfcadbd6e58cdf4d4656175bb25f609f"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "ec9ed3a0a95dad87fce4023a8b4afda50b94976e042c7aa12296a3ab0625b978",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "provider": "gemini",
+            "job_id": "ebed6452-549a-42c5-ac66-001095b2d547",
+            "prompt_sha256": "da3cacc5417670cab1cfb625c6514e79ffa13182f50ef3c47c5ca458aafe018d",
+            "output_sha256": "4ca265d24ce2c31ffce19c251e2e678fbfcadbd6e58cdf4d4656175bb25f609f",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_01/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    },
+    {
+      "candidate_id": "candidate_02",
+      "layout_id": "character_right",
+      "headline": "Air Shrinks, Body Resists",
+      "evidence_anchor": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every ten meters, pressure rises b",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_02/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_02/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_02/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2360466,
+        "sha256": "8b0c7b162a32f6da0f4f9093ab08d79cd156d39070cd18da3a50cd02790c0bc9"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 4541587,
+        "sha256": "a9085d6227b31cececb668c85ff88163d9ea8753c1c6a7649c95d208c98c3bc0"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "a9085d6227b31cececb668c85ff88163d9ea8753c1c6a7649c95d208c98c3bc0"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "9f64587b-e395-4ee2-b854-042d01234113",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/6d9710462e76c0bc",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=9f64587b-e395-4ee2-b854-042d01234113_output_1.png 1536x2752 sha256=8b0c7b162a32f6da0f4f9093ab08d79cd156d39070cd18da3a50cd02790c0bc9"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "2bb7ba148e9f41bc2b3cfb42e833eeacbd1a3f2f9b4ef7a5d91a3c1ba870ac1f",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "provider": "gemini",
+            "job_id": "9f64587b-e395-4ee2-b854-042d01234113",
+            "prompt_sha256": "0c6311f72c6ec8be4416df07e28b9fc407ef2b62012031b885ffbc7db35e3044",
+            "output_sha256": "8b0c7b162a32f6da0f4f9093ab08d79cd156d39070cd18da3a50cd02790c0bc9",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_02/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    },
+    {
+      "candidate_id": "candidate_03",
+      "layout_id": "contrast_split",
+      "headline": "Air Shrinks, Body Resists",
+      "evidence_anchor": "If water crushes air pockets, why not your whole body? Most of your body is water, which hardly gets squeezed. Body tissue with lots of water barely changes. Air in your ears and sinuses shrinks much more. Every ten meters, pressure rises b",
+      "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_03/artwork.png",
+      "final_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_03/final.png",
+      "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_03/preview_small.jpg",
+      "artwork": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 2186928,
+        "sha256": "d9cb7ffe2452e7cc2cc1bf5ff73db5bfbc889e5d4769d294c07762ed902c460d"
+      },
+      "final": {
+        "width": 1536,
+        "height": 2752,
+        "bytes": 4082834,
+        "sha256": "16f4feeb204a7d5347e0861431d0dc5839da442a041a0717fdce1ebf3172ef0b"
+      },
+      "review": {
+        "eligible": true,
+        "score": 0,
+        "reasons": [
+          "Thumbnail QC and final visual review were disabled by the Release operator."
+        ],
+        "blocking_violations": [],
+        "warnings": [
+          "No ChatGPT visual review was requested."
+        ],
+        "review_status": "SKIPPED_OPERATOR",
+        "final_sha256": "16f4feeb204a7d5347e0861431d0dc5839da442a041a0717fdce1ebf3172ef0b"
+      },
+      "generated_provider": "gemini",
+      "generation_job_id": "8e0efce5-3ff9-4d13-bca9-af2a335dbb82",
+      "generation_receipt": {
+        "provider": "gemini",
+        "requested_model": "nano_banana_2",
+        "actual_model_label": "Open mode picker, currently Flash",
+        "model_verified": true,
+        "pro_regeneration_used": false,
+        "requested_quality": "best",
+        "requested_aspect_ratio": "9:16",
+        "actual_aspect_ratio": "1536:2752",
+        "requested_duration_seconds": null,
+        "actual_duration_seconds": null,
+        "requested_resolution": null,
+        "actual_resolution": null,
+        "workspace_url": "https://gemini.google.com/app/ab2a601047394da0",
+        "submission_fingerprint": null,
+        "reference_roles": [
+          "thumbnail_rendered_opening_frame",
+          "thumbnail_rendered_body_frame",
+          "thumbnail_rendered_closing_frame",
+          "thumbnail_world_keyframe",
+          "thumbnail_character_identity"
+        ],
+        "notes": [
+          "model_label_source=mode-picker",
+          "extended_thinking_mode=Open mode picker, currently Flash Extended",
+          "artifact_source=download",
+          "image=8e0efce5-3ff9-4d13-bca9-af2a335dbb82_output_1.png 1536x2752 sha256=d9cb7ffe2452e7cc2cc1bf5ff73db5bfbc889e5d4769d294c07762ed902c460d"
+        ],
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "skipped_after_pre_generation_feedback",
+          "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "request_fingerprint": "cb115694ae5a46b172a0cbe3f1f3dc15ac11d36d23a9480e79f31a08a1ca02d5",
+        "quality_iterations": [
+          {
+            "attempt": 1,
+            "provider": "gemini",
+            "job_id": "8e0efce5-3ff9-4d13-bca9-af2a335dbb82",
+            "prompt_sha256": "1160eeb882b6645abffc8d53ccf8e74e58e556c2008d0f41318fadda9b186523",
+            "output_sha256": "d9cb7ffe2452e7cc2cc1bf5ff73db5bfbc889e5d4769d294c07762ed902c460d",
+            "quality_check": {
+              "passed": true,
+              "raw_passed": null,
+              "review_status": "skipped_after_pre_generation_feedback",
+              "description": "The existing image was reviewed by ChatGPT before Gemini regeneration; the replacement was intentionally not uploaded again.",
+              "violations": [],
+              "raw_violations": [],
+              "blocking_violations": [],
+              "observations": [],
+              "regressions": [],
+              "review_provider": null
+            },
+            "fully_clean": true,
+            "retained_candidate": "/opt/YT_Video_Generation_Pipeline/videos/040_if_humans_could_breathe_underwater_how_deep_could_we_go/publish/youtube_short/releases/rel_6db21bc5a0c641658e6368b5f051e880/thumbnail_candidates/candidate_03/attempts/artwork.attempt_1.png",
+            "selected": true
+          }
+        ],
+        "qc_policy": "disabled",
+        "qc_selected_attempt": 1
+      },
+      "fallback_from": null
+    }
+  ]
+}

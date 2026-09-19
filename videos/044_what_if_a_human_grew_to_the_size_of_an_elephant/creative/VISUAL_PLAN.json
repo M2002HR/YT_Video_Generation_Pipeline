@@ -1,0 +1,138 @@
+{
+  "body_duration_seconds": 34.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Picture a human at four tons.",
+      "visual": "A colossal human figure sculpted from layered cream paper cardstock looms against a cool cyan atmospheric sky, with the small silhouette of the Newton-inspired scholar standing on a slate stone terrace in the foreground looking upward in awe at the monumental scale.",
+      "purpose": "Establish the colossal scale of a four-ton human silhouette towering in the environment",
+      "visual_fingerprint": "Colossal layered cream human silhouette towering over low foreground slate terrace, low-angle shot, Newton scholar gazing upward, cool cyan backdrop.",
+      "type": "subject_world",
+      "continuity": "Establishes opening subject scale in the papercraft world; low-angle introduction.",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "That is fifty times your normal weight.",
+      "visual": "A massive dimensional paper balance scale tilted dramatically, where a single paper silhouette of an average human on one suspended lavender pan is outweighed by a dense stack of fifty layered cardstock human cutouts pressing heavily down onto the slate base.",
+      "purpose": "Visualize a 50x weight increase using a tactile balance comparison",
+      "visual_fingerprint": "Tilted mechanical balance scale constructed of warm straw yellow and slate paper, high-contrast mass comparison, dynamic diagonal composition.",
+      "type": "metaphor",
+      "continuity": "Cuts from the towering figure to an analytical scale comparison; medium shot focusing on balance pans.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Weight grows with volume in three directions,",
+      "purpose": "Demonstrate volumetric scaling along height, width, and depth (cubic growth)",
+      "visual": "An expanding 3D isometric cube constructed of translucent layered cream paper unfolding outward in three distinct dimensional axes, cast in directional studio light with folded paper expansion arrows indicating three-dimensional growth.",
+      "visual_fingerprint": "Isometric multi-layered unfolding geometric cardstock cube with three directional paper fold vectors, centered isometric composition, pale sky-blue background.",
+      "type": "diagram",
+      "continuity": "Transitions from physical balance to abstract volumetric principle; geometric diagrammatic framing.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "but bone strength only grows with bone thickness.",
+      "purpose": "Demonstrate that structural cross-section area grows in only two dimensions",
+      "visual": "A clean transverse cross-sectional slice of a cylindrical leg bone sculpted in concentric layers of bone-white cardstock, highlighting the circular flat cross-sectional surface area rather than volume, illuminated by soft studio rim lighting.",
+      "visual_fingerprint": "Close-up planar cutaway disc of concentric layered bone-white cardstock showing cross-sectional circular face, top-down angled perspective, muted lavender background.",
+      "type": "diagram",
+      "continuity": "Direct counterpoint to 3D cube: shifts from 3-axis volumetric volume to 2D cross-sectional planar area.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Your weight jumps fifty times,",
+      "purpose": "Visually depict the overwhelming downward gravitational load of a 50x scaled body",
+      "visual": "A massive vertical stack of fifty dense paper body silhouettes pressing downward as a towering column, creating deep layered drop shadows and downward coral-orange compression arrows bearing onto a single support plane.",
+      "visual_fingerprint": "Vertical tower of fifty compressed cardstock silhouette layers descending vertically, downward coral load vectors, dramatic vertical tracking perspective.",
+      "type": "diagram",
+      "continuity": "Expands the scale of the load; shifts from bone cross-section back to total cumulative weight.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "while bone thickness only grows fourteen times.",
+      "purpose": "Contrast the 14x bone cross-section area against the 50x weight requirement",
+      "visual": "Two side-by-side circular bone cross-sections cut from matte white paper: one moderately widened by fourteen layers, overlaid by a faint coral-tinted outline showing the fifty-layer thickness that would actually be required to match the weight.",
+      "visual_fingerprint": "Split circular cross-section comparison of concentric bone cardstock layers with coral-orange deficit ring, eye-level macro diagram.",
+      "type": "diagram",
+      "continuity": "Directly quantifies the bone thickness limitation; returns to circular cross-section motif with comparative overlay.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Elephants survive with legs like thick pillars.",
+      "purpose": "Show evolutionary adaptation of vertical, pillar-like limb geometry",
+      "visual": "A full-height dimensional paper sculpture of an elephant's leg showing its vertical column alignment from hip to foot, constructed like an architectural classical pillar of thick slate and warm cream cardstock with zero joint angle.",
+      "visual_fingerprint": "Vertical architectural pillar-like elephant leg constructed from stacked slate cardstock cylinders, straight vertical alignment, side profile, cool cyan studio backdrop.",
+      "type": "literal",
+      "continuity": "Shifts from abstract geometric cross-sections to natural anatomical solution in the animal kingdom.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Slender human legs bend at angles.",
+      "purpose": "Highlight vulnerable cantilever angles in human leg anatomy",
+      "visual": "A layered papercraft sculpture of human leg bones shown in profile, emphasizing the slender femur and tibia meeting at an acute knee angle, casting diagonal shear lines and displaying coral-orange tension crease marks at the flexed joint.",
+      "visual_fingerprint": "Slender angled human skeletal leg in profile showing acute knee bend, delicate bone-white cardstock struts, diagonal cantilever angle composition.",
+      "type": "literal",
+      "continuity": "Direct anatomical contrast to the straight elephant pillar; side-by-side conceptual counterpart.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "The moment you try to stand,",
+      "purpose": "Depict the colossal giant attempting to bear weight on standing legs",
+      "visual": "A dramatic low-angle shot of the giant human legs straining to push upward from a crouch on a cracked slate foundation, paper muscle layers taut and intense coral-orange stress lines radiating across the bent knee joints.",
+      "visual_fingerprint": "Giant paper legs straining in mid-crouch to stand, coral-orange stress crease points lighting up knees, low-angle upward dynamic perspective.",
+      "type": "subject_world",
+      "continuity": "Brings the physical mechanism into dynamic action in the subject world; dramatic upward perspective.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "your leg bones snap under the load.",
+      "purpose": "Payoff the opening promise: catastrophic mechanical structural failure under shear stress",
+      "visual": "A dramatic mechanical failure rendered in paper: the slender bone-white cardstock femur snaps sharply along a clean jagged fracture line, buckling under the massive downward slate load with burst paper fragments and vivid coral-orange fracture edges.",
+      "visual_fingerprint": "Sharp jagged fracture and buckling of central paper bone shaft under heavy vertical cardstock load, coral-orange split edges, close-up dynamic diagonal composition.",
+      "type": "literal",
+      "continuity": "Direct catastrophic climax and culmination of the strain in beat 9; close-up impact shot.",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 11,
+      "narration_slice": "To carry that weight, you need legs like tree trunks.",
+      "purpose": "Conclude with the necessary biomechanical adaptation (massive tree-trunk proportions)",
+      "visual": "The Newton-inspired scholar stands on a layered slate terrace next to a towering human silhouette reimagined with massive, flaring tree-trunk legs rooted securely into the ground, crafted from textured warm cream and slate cardstock against a serene pale sky.",
+      "visual_fingerprint": "Newton scholar gesturing beside a stable giant human silhouette with wide tree-trunk pillar legs, wide landscape full-bleed composition, warm straw and sky-blue tones.",
+      "type": "metaphor",
+      "continuity": "Final resolution and closing payoff; pulls back to wide landscape showing the scholar in-world with the corrected proportion.",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

@@ -5,15 +5,15 @@ Stage order:
 
     workspace → creative brief → script (JSON) → retention edit → episode direction
     → world style decision → world style anchor → body visual plan → world keyframe prompt
-    → Gemini world keyframe → book spread composition → Flow Clip A/B prompts
-    → Flow Clip A → Flow Clip B → per-beat image prompts → Gemini body images
+    → ChatGPT world keyframe → book spread composition → Flow Clip A/B prompts
+    → Flow Clip A → Flow Clip B → per-beat image prompts → ChatGPT body images
 
 Production rules this file exists to keep:
 
 * **No synthetic media, ever.** There is no fallback that draws a placeholder or renders a
   colour card. A provider failure becomes a ``PAUSED_*``/``FAILED_*`` state with the
   provider's own error code, and the run stops there.
-* **No provider fallback.** text=ChatGPT, image=Gemini, video=Flow — each through Ordak.
+* **No provider fallback.** text=ChatGPT, image=ChatGPT, video=Flow — each through Ordak.
 * **The generation contract travels as data**, not as text smuggled into the prompt: model,
   aspect, duration and resolution go through ``ordak_jobs.Generation``, and every upload
   declares its role through ``ordak_jobs.Reference``.
@@ -91,7 +91,7 @@ MIN_IMAGE_BYTES = 10_000
 MIN_VIDEO_BYTES = 100_000
 
 
-# Image review is a production safety gate, not an aesthetic taste gate. Gemini images
+# Image review is a production safety gate, not an aesthetic taste gate. Generated images
 # routinely have small presentational defects which a human can review later and which
 # should not discard a paid-for, otherwise usable image.
 _IMAGE_QC_BLOCKING_MARKERS = (
@@ -790,7 +790,7 @@ class Runner:
         generation: Generation | None = None,
         references: list[Reference] = (),
         timeout_seconds: int | None = None,
-        chatgpt_chat: str = "project",
+        chatgpt_chat: str | None = None,
     ) -> JobResult:
         if len(question) > ORDAK_QUESTION_LIMIT:
             raise StageFailure(
@@ -820,15 +820,11 @@ class Runner:
             ) from exc
 
     def text(self, stage: str, prompt: str, *, references: list[Reference] = ()) -> str:
-        """ChatGPT text with an auditable, operator-controlled Gemini fallback."""
-        try:
-            result = self._run(stage, prompt, provider="chatgpt", mode="chat", references=references)
-        except StageFailure as failure:
-            if self.chatgpt_fallback_mode != "auto" and not self._consume_fallback_approval(stage):
-                self._require_fallback_approval(stage, failure)
-            print(f"    [fallback] ChatGPT failed; continuing {stage} with approved Gemini fallback.", flush=True)
-            result = self._run(stage, prompt, provider="gemini", mode="chat", references=references)
-            self.state.mark(self._fallback_stage(stage), STATE_RUNNING, fallback_from="chatgpt", fallback_to="gemini", fallback_reason=failure.message[:500])
+        """Run every textual stage in a fresh ChatGPT Temporary Chat."""
+        result = self._run(
+            stage, prompt, provider="chatgpt", mode="chat", references=references,
+            chatgpt_chat="temporary",
+        )
         answer = (result.answer or "").strip()
         if not answer:
             raise StageFailure(stage, "FAILED", f"Provider returned an empty answer for {stage}.")
@@ -842,9 +838,7 @@ class Runner:
         Deterministic repairs (fences, prose, controls, quotes, truncation
         completion) are free and always applied first. Provider re-asks escalate
         from a plain retry to a strict compact re-ask when the previous response
-        looked truncated. A persistent formatting defect falls back to a Gemini
-        read under the same approval gate as transport failures, so malformed
-        provider text alone can never silently fail a run without an audit trail.
+        looked truncated. Every retry stays in a new ChatGPT Temporary Chat.
         """
         current = prompt
         last_error = ""
@@ -863,7 +857,12 @@ class Runner:
             except ValueError as exc:
                 last_error = str(exc)
                 current = self._json_correction_prompt(prompt, last_raw, last_error)
-        return self._json_gemini_fallback(stage, prompt, references, retries, last_raw, last_error)
+        raise StageFailure(
+            stage,
+            "FAILED_VALIDATION",
+            f"{stage} never produced valid JSON after {retries + 1} ChatGPT Temporary Chat attempts: {last_error}; "
+            f"last output began {last_raw[:400]!r} and ended {last_raw[-400:]!r}.",
+        )
 
     @staticmethod
     def _json_correction_prompt(prompt: str, raw: str, error: str) -> str:
@@ -889,43 +888,12 @@ class Runner:
         last_raw: str,
         last_error: str,
     ) -> Any:
-        """Read the same structured task with Gemini after ChatGPT text stayed malformed."""
-        label = f"{stage}_json{retries + 2}"
-        short_prompt = (
-            "Return ONLY raw JSON: no fences, no commentary, no prose before or after. "
-            "Keep every string on a single line and description under 400 characters.\n\n"
-            f"{prompt}"
-        )
-        try:
-            result = self._run(label, short_prompt, provider="gemini", mode="chat", references=references)
-        except StageFailure as failure:
-            if self.chatgpt_fallback_mode != "auto" and not self._consume_fallback_approval(label):
-                self._require_fallback_approval(label, failure)
-            result = self._run(label, short_prompt, provider="gemini", mode="chat", references=references)
-        answer = (result.answer or "").strip()
-        if answer:
-            try:
-                parsed, _ = parse_structured_json(answer)
-                print(
-                    f"    [{stage}] Gemini fallback produced parseable JSON after ChatGPT formatting failures.",
-                    flush=True,
-                )
-                self.state.mark(
-                    self._fallback_stage(label),
-                    STATE_RUNNING,
-                    fallback_from="chatgpt",
-                    fallback_to="gemini",
-                    fallback_reason=f"persistent JSON formatting failure: {last_error[:300]}",
-                )
-                return parsed
-            except ValueError:
-                pass
+        """Compatibility shim: text work is intentionally ChatGPT-only now."""
         raise StageFailure(
             stage,
             "FAILED_VALIDATION",
-            f"{stage} never produced valid JSON after {retries + 2} ChatGPT attempts plus a Gemini fallback: {last_error}; "
-            f"last ChatGPT output began {last_raw[:400]!r} and ended {last_raw[-400:]!r}; "
-            f"Gemini output began {answer[:400]!r}.",
+            f"{stage} never produced valid JSON after {retries + 1} ChatGPT Temporary Chat attempts: {last_error}; "
+            f"last output began {last_raw[:400]!r} and ended {last_raw[-400:]!r}.",
         )
 
     def image(
@@ -958,36 +926,13 @@ class Runner:
         prior_candidate: Path | None = None
         current_prompt = prompt
         current_references = list(references)
-        # Gemini stays primary: attempt 1 is always Gemini, later attempts
-        # alternate to ChatGPT's independent renderer and back while the
-        # correction budget lasts. Disabled (release paths, unit doubles)
-        # keeps the historical Gemini-only sequence byte-identical.
-        alternate = bool(getattr(self, "image_provider_alternation", False))
-        # Beat images keep one renderer for the whole episode: the provider of
-        # the first accepted beat leads every later beat (fallback to the other
-        # only on failure, loudly). This avoids one-by-one style alternation.
-        sticky = None
-        if alternate and stage.startswith("beat_image_"):
-            sticky = getattr(self, "_beat_image_provider", None)
-            if sticky not in ("gemini", "chatgpt"):
-                sticky = _load_beat_image_provider(_runner_project(self))
-                self._beat_image_provider = sticky
-        last_failure: StageFailure | None = None
-
         try:
             for attempt in range(max_attempts):
-                if sticky in ("gemini", "chatgpt"):
-                    other = "chatgpt" if sticky == "gemini" else "gemini"
-                    provider = sticky if attempt % 2 == 0 else other
-                else:
-                    provider = ("gemini", "chatgpt")[attempt % 2] if alternate else "gemini"
-                # Fresh ChatGPT generations each get their own temporary chat;
-                # corrections go to a fresh normal (non-temp) chat with the
-                # previous candidate attached as reference — never the stale
-                # project conversation, never a temp chat for corrections.
+                # Every image, including QC corrections, starts at the exact
+                # ChatGPT Project URL configured for Ordak. Gemini is never an
+                # image-generation fallback for this pipeline.
+                provider = "chatgpt"
                 chatgpt_chat = "project"
-                if provider == "chatgpt":
-                    chatgpt_chat = "fresh" if attempt > 0 else "temporary"
                 candidate = candidates_dir / f"{destination.stem}.{request_id}.attempt-{attempt + 1}.png"
                 attempt_options = {"skip_content_qc": True} if skip_content_qc else {}
                 try:
@@ -1002,22 +947,7 @@ class Runner:
                         **attempt_options,
                     )
                 except StageFailure as exc:
-                    if not alternate or attempt + 1 >= max_attempts:
-                        raise
-                    last_failure = exc
-                    iterations.append({
-                        "attempt": attempt + 1,
-                        "provider": provider,
-                        "error": f"{exc.state}: {exc.message}",
-                        "fully_clean": False,
-                        "selected": False,
-                    })
-                    print(
-                        f"    [image QC] {stage}: {provider} attempt failed ({exc.state}); "
-                        f"trying the other provider {attempt + 2}/{max_attempts}.",
-                        flush=True,
-                    )
-                    continue
+                    raise
                 check = dict((result.generation_receipt or {}).get("quality_check") or {})
                 blocking = list(check.get("blocking_violations") or [])
                 observations = list(check.get("observations") or check.get("violations") or [])
@@ -1080,8 +1010,6 @@ class Runner:
                     error_code="image_content_rejected",
                 )
             if not accepted:
-                if last_failure is not None and not any("quality_check" in item for item in iterations):
-                    raise last_failure
                 raise StageFailure(
                     stage,
                     "FAILED_VALIDATION",
@@ -1101,21 +1029,6 @@ class Runner:
                 "request_fingerprint": request_fingerprint(prompt, model, references),
             })
             selected_result.generation_receipt = receipt
-            if stage.startswith("beat_image_") and getattr(self, "_beat_image_provider", None) is None:
-                selected_provider = None
-                if 1 <= selected_attempt <= len(iterations):
-                    candidate_provider = iterations[selected_attempt - 1].get("provider")
-                    if candidate_provider in ("gemini", "chatgpt"):
-                        selected_provider = candidate_provider
-                if selected_provider is not None:
-                    self._beat_image_provider = selected_provider
-                    project = _runner_project(self)
-                    if project is not None:
-                        _store_beat_image_provider(project, selected_provider, stage)
-                    print(
-                        f"    [{stage}] beat image renderer locked to {selected_provider} for the rest of the episode.",
-                        flush=True,
-                    )
             destination.parent.mkdir(parents=True, exist_ok=True)
             committed = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
             try:
@@ -1166,20 +1079,16 @@ class Runner:
         model: str,
         destination: Path,
         skip_content_qc: bool = False,
-        provider: str = "gemini",
+        provider: str = "chatgpt",
         chatgpt_chat: str = "project",
     ) -> JobResult:
         """One provider image, downloaded and verified. Returns the job result for the receipt."""
-        if provider not in {"gemini", "chatgpt"}:
-            raise ValueError(f"Unsupported image provider: {provider}")
+        if provider != "chatgpt":
+            raise ValueError("All pipeline images are locked to the ChatGPT provider.")
         if chatgpt_chat not in ("project", "temporary", "fresh"):
             raise ValueError(f"Unsupported chatgpt_chat scope: {chatgpt_chat!r}.")
         fingerprint = request_fingerprint(prompt, model, references)
-        if provider != "gemini":
-            # The shared fingerprint must never let one provider reuse the
-            # other provider's pending download; Gemini keeps its exact
-            # historical value so existing receipts stay valid.
-            fingerprint = sha256_text(f"image-provider:{provider}:{fingerprint}")
+        fingerprint = sha256_text(f"image-provider:chatgpt:{fingerprint}")
         before = {str(ref.path): sha256_file(ref.path) for ref in references}
         pending = destination.parent / ".pending_images" / destination.name
         metadata = pending.with_suffix(".json")
@@ -1193,13 +1102,9 @@ class Runner:
                 saved.get("sha256") == sha256_file(pending)):
             result = JobResult(**saved["result"])
         else:
-            generation = (
-                Generation(model=model, quality="best", aspect_ratio="9:16")
-                if provider == "gemini"
-                else Generation(quality="best", aspect_ratio="9:16")
-            )
+            generation = Generation(quality="best", aspect_ratio="9:16")
             result = self._run(
-                stage, prompt, provider=provider, mode="image_generate",
+                stage, prompt, provider="chatgpt", mode="image_generate",
                 generation=generation,
                 references=references,
                 chatgpt_chat=chatgpt_chat,
@@ -1226,16 +1131,13 @@ class Runner:
                 f"{stage}: {provider} artifact has no verified download provenance; refusing to save it.",
             )
         destination.parent.mkdir(parents=True, exist_ok=True)
-        if provider == "gemini":
-            require_verified_image_model(stage, model, result.generation_receipt)
-        else:
-            chatgpt_receipt = dict(result.generation_receipt or {})
-            if chatgpt_receipt.get("provider", "chatgpt") != "chatgpt" or chatgpt_receipt.get("requested_model"):
-                raise StageFailure(
-                    stage,
-                    "FAILED_MODEL_SELECTION",
-                    f"{stage}: ChatGPT image receipt is misattributed to another provider or model.",
-                )
+        chatgpt_receipt = dict(result.generation_receipt or {})
+        if chatgpt_receipt.get("provider", "chatgpt") != "chatgpt" or chatgpt_receipt.get("requested_model"):
+            raise StageFailure(
+                stage,
+                "FAILED_MODEL_SELECTION",
+                f"{stage}: ChatGPT image receipt is misattributed to another provider or model.",
+            )
         partial = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
         try:
             if pending.is_file() and saved.get("fingerprint") == fingerprint and saved.get("sha256") == sha256_file(pending):
@@ -2683,7 +2585,7 @@ def stage_record_history(
 def stage_world_style_anchor(
     runner: Runner, project: Path, content_project: Any, world_style_plan: dict[str, Any]
 ) -> Path:
-    """The style anchor is a Gemini image or a catalog reuse — never a drawn placeholder."""
+    """The style anchor is a ChatGPT image or a catalog reuse — never a drawn placeholder."""
     stage = "world_style_anchor"
     world_style_plan = visuals.topic_style(world_style_plan)
     target = project / "references" / "world_style_anchor.png"
@@ -4182,6 +4084,7 @@ def chatgpt_revision_guidance(
         provider="chatgpt",
         mode="chat",
         references=[Reference(role="current_image_to_revise", path=source)],
+        chatgpt_chat="temporary",
     )
     guidance = str(response.answer or "").strip()
     if not guidance:
@@ -4216,7 +4119,7 @@ def stage_body_images(
     chatgpt_revision_requests: dict[int, dict[str, Any]] | None = None,
     preserve_downstream_beats: bool = False,
 ) -> list[Path]:
-    """One Gemini image per body beat, sequential because each uses the previous for continuity."""
+    """One ChatGPT image per body beat, sequential because each uses the previous for continuity."""
     character = _coerce_character_context(character or content_project)
     beats = list(visual_plan.get("beats") or [])
     requested_regenerations = regenerate_beats or set()
@@ -4885,16 +4788,17 @@ def main() -> int:
             chatgpt_fallback_mode=args.chatgpt_fallback_mode,
             image_qc_correction_policy=args.image_qc_correction_policy,
             beat_image_qc_disabled=args.disable_beat_image_qc,
-            # Correction attempts alternate Gemini with ChatGPT's independent
-            # renderer (gemini, chatgpt, gemini, ...); release runners keep the
-            # default Gemini-only sequence plus their own explicit fallback.
-            image_provider_alternation=True,
+            image_provider_alternation=False,
         )
         current_stage = "preflight"
         try:
             # Fail before spending anything if the browser stack is not usable (§65).
-            jobs.require_ready(["chatgpt"] if args.defer_flow_clips else ["chatgpt", "gemini", "flow"])
+            preflight_started = runner.stage_start("preflight")
+            jobs.require_chatgpt_project()
+            if not args.defer_flow_clips:
+                jobs.require_ready(["flow"])
             brief = build_brief(project, args.topic, content_project, duration)
+            runner.stage_done("preflight", preflight_started, "launch/LAUNCH_REQUEST.json")
 
             _resolution, character = stage_character_resolution(
                 runner, project, content_project, args.topic, brief, None, launch,

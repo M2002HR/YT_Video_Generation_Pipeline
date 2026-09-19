@@ -109,7 +109,7 @@ def ask_validated_json(
     for correction in range(correction_attempts + 1):
         result = jobs.run(
             current, provider="chatgpt", mode="chat", generation=Generation(quality="best"),
-            references=references or [], attempts=2,
+            references=references or [], attempts=2, chatgpt_chat="temporary",
         )
         job_ids.append(result.job_id)
         answer = result.answer or ""

@@ -1,7 +1,7 @@
-"""Deterministic final-thumbnail compositor.
+"""Legacy deterministic thumbnail-text compositor.
 
-Gemini generates artwork only.  This module owns every readable glyph, the brand mark,
-and the normalized layout record so a final PNG is reproducible without a provider call.
+The current Release flow asks ChatGPT to embed its resolved headline and does not call
+``compose``. This utility remains for historical artifacts and focused compatibility tests only.
 """
 from __future__ import annotations
 
@@ -11,7 +11,11 @@ from typing import Any
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
+ROOT = Path(__file__).resolve().parents[1]
 FONT_FILES = {
+    # Canonical operator-uploaded face. The catalog hash is checked by Release
+    # preflight before this file is attached to ChatGPT or used for composition.
+    "quicky_story": ROOT / "control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
     "dejavu_sans_bold": Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
     "montserrat_bold": Path("/usr/share/fonts/subtitle/Montserrat-Bold.ttf"),
     "poppins": Path("/usr/share/fonts/subtitle/poppins-v24-latin-regular.ttf"),
@@ -23,7 +27,7 @@ FONT_FILES = {
     "oswald_bold": Path("/usr/share/fonts/subtitle/oswald-v57-latin-700.ttf"),
 }
 
-def resolve_font(font_id: str = "dejavu_sans_bold") -> tuple[Path, str]:
+def resolve_font(font_id: str = "quicky_story") -> tuple[Path, str]:
     path = FONT_FILES.get(font_id)
     if path is None:
         raise ValueError("Unknown thumbnail font.")
@@ -61,6 +65,12 @@ def text_box_geometry(settings: dict[str, Any], layout_id: str) -> dict[str, flo
     if coords:
         return {"x": float(coords["x"]), "y": float(coords["y"]),
                 "width": float(coords["width"]), "height": float(coords["height"])}
+    if layout_id == "stacked_brand":
+        # Fixed design system: objects 0–30%, headline 30–58%, character 58–100%.
+        # Six-percent horizontal clearance is part of the user-visible contract.
+        margin = max(0.06, float(settings["safe_margin"]))
+        box_w = min(float(settings["text_box_width"]), 1.0 - margin * 2)
+        return {"x": (1.0 - box_w) / 2.0, "y": 0.30, "width": box_w, "height": 0.28}
     margin = float(settings["safe_margin"])
     box_w = float(settings["text_box_width"])
     box_h = 0.32

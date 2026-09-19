@@ -14,11 +14,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import mimetypes
 import os
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Sequence
+from urllib.parse import urlparse
 
 import httpx
 
@@ -284,13 +286,48 @@ class OrdakJobs:
         data["_unverified_providers"] = unverified
         return data
 
+    def require_chatgpt_project(self) -> dict[str, Any]:
+        """Fail fast unless this process and the running Ordak use the configured project."""
+        project_url = os.getenv("YT_ORDAK_CHATGPT_PROJECT_URL", "").strip()
+        parsed = urlparse(project_url)
+        parts = [part for part in parsed.path.split("/") if part]
+        if (
+            parsed.scheme != "https"
+            or parsed.netloc.casefold() != "chatgpt.com"
+            or len(parts) < 3
+            or parts[0] != "g"
+            or parts[-1] != "project"
+        ):
+            raise OrdakJobError(
+                "YT_ORDAK_CHATGPT_PROJECT_URL must be the exact https://chatgpt.com/g/.../project URL.",
+                error_code="project_url_missing",
+            )
+        data = self.require_ready(["chatgpt"])
+        configured = data.get("project_url_configured") or {}
+        if not configured.get("chatgpt"):
+            raise OrdakJobError(
+                "The running Ordak process did not load YT_ORDAK_CHATGPT_PROJECT_URL; restart Ordak before generating images.",
+                error_code="project_url_missing",
+            )
+        return data
+
     # -- job submission ----------------------------------------------------
 
-    #: Where a ChatGPT image job must live. ``project`` is today's behavior
-    #: (the configured project conversation). ``temporary`` opens a fresh
-    #: temporary chat per job; ``fresh`` opens a fresh normal (non-temp) chat.
-    #: Anything else (including Gemini) ignores this flag.
+    #: ChatGPT scope names accepted by Ordak. Image jobs always belong in the
+    #: configured project; ordinary text work belongs in a fresh temporary chat.
+    #: ``fresh`` remains available only for an explicitly requested normal chat.
     CHAT_SCOPES = ("project", "temporary", "fresh")
+
+    @classmethod
+    def default_chatgpt_scope(cls, provider: str, mode: str, requested: str | None) -> str:
+        """Choose a safe scope when a caller does not supply one explicitly."""
+        if requested is not None:
+            if requested not in cls.CHAT_SCOPES:
+                raise OrdakJobError(f"Unknown chatgpt_chat scope: {requested!r}.")
+            return requested
+        if provider.casefold() != "chatgpt":
+            return "project"
+        return "project" if mode == "image_generate" else "temporary"
 
     def submit(
         self,
@@ -302,11 +339,10 @@ class OrdakJobs:
         references: Sequence[Reference] = (),
         start_new_chat: bool = True,
         conversation_id: str | None = None,
-        chatgpt_chat: str = "project",
+        chatgpt_chat: str | None = None,
     ) -> str:
         """Create a job and return its id. Uploads carry an explicit role each."""
-        if chatgpt_chat not in self.CHAT_SCOPES:
-            raise OrdakJobError(f"Unknown chatgpt_chat scope: {chatgpt_chat!r}.")
+        chatgpt_chat = self.default_chatgpt_scope(provider, mode, chatgpt_chat)
         if references:
             files: list[tuple[str, tuple[str, bytes, str]]] = []
             form: dict[str, Any] = {
@@ -326,10 +362,11 @@ class OrdakJobs:
                 if not path.is_file():
                     raise OrdakJobError(f"Reference {ref.role} missing on disk: {path}")
                 roles.append(ref.role)
-                from PIL import Image
-                with Image.open(path) as source:
-                    mime = Image.MIME.get(source.format, "application/octet-stream")
-                files.append(("image", (path.name, path.read_bytes(), mime)))
+                mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+                # Ordak performs authoritative server-side validation.  Using a
+                # generic multipart field lets the same reference contract carry
+                # both images and the explicitly supported TTF/OTF font files.
+                files.append(("file", (path.name, path.read_bytes(), mime)))
             form["role"] = roles
             response = self._request("POST", "/api/jobs", data=form, files=files)
         else:
@@ -427,7 +464,7 @@ class OrdakJobs:
         timeout_seconds: int | None = None,
         attempts: int = 1,
         on_log: Any = None,
-        chatgpt_chat: str = "project",
+        chatgpt_chat: str | None = None,
     ) -> JobResult:
         """Submit and wait. ``attempts`` only ever retries transient browser faults.
 

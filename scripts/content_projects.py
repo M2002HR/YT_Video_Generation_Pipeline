@@ -123,7 +123,7 @@ class ContentProject:
             if kind == "text":
                 return "chatgpt"
             if kind == "image":
-                return "gemini"
+                return "chatgpt"
             if kind == "video":
                 return "flow"
             return "unknown"
@@ -296,10 +296,10 @@ def validate_content_project(project: ContentProject, preset: str | None = None)
 
 
 def validate_provider_locks(project: ContentProject, image_provider: str | None = None, video_provider: str | None = None) -> None:
-    """Enforce absolute provider contract §60: QStation image must be gemini, video must be flow (§3-4)."""
+    """Enforce the project-wide provider contract: ChatGPT images and Flow video."""
     if not project.is_q_station:
         return
-    locked_image = "gemini"
+    locked_image = "chatgpt"
     locked_video = "flow"
     if image_provider is not None and image_provider.strip().lower() != locked_image:
         raise RuntimeError(f"Q Station image provider is LOCKED to {locked_image!r}; got {image_provider!r} (§60)")

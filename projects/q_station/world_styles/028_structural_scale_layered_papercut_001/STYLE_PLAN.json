@@ -1,0 +1,24 @@
+{
+  "style_id": "structural_scale_layered_papercut_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "layered paper cut",
+  "secondary_treatment": "subtle dimensional paper relief folding",
+  "texture_family": "matte archival cardstock with clean knife-cut bevels, subtle paper grain tooth, and physical sheet layering",
+  "palette_summary": "cool cyan and pale sky-blue atmosphere, warm cream and bone-white structural elements, muted lavender and slate stone bases, warm straw yellow, and restrained coral-orange accents reserved for load stress, structural compression, and fracture points",
+  "line_treatment": "crisp silhouette cut edges and pressed sculptural creases with zero drawn ink outlines",
+  "lighting": "soft directional studio illumination casting tangible cast shadows between layered paper depths to articulate physical mass and cross-sectional scale",
+  "subject_constraints": "Massive human silhouette scale, elephant column leg geometry, cross-sections of bone thickness versus volumetric load, tree-trunk skeletal comparisons, and biomechanical stress vectors rendered purely as tactile paper constructions",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Constructed from layered matte paper silhouette planes with clean cut edges matching the dimensional cardstock world",
+  "negative_constraints": "No enclosing frames, shadowbox borders, card margins, inset windows, or page edges; no visible glue, wires, or digital vector flatting; no embedded text, typographic callouts, labels, or anatomical gore",
+  "reserve_subtitle_space": false,
+  "operator_style_reference": {
+    "path": "videos/044_what_if_a_human_grew_to_the_size_of_an_elephant/launch/style_references/style_reference.png",
+    "sha256": "95cb475cab4ec2dfd7296c2182d6358767f3f6e07eb6eeb654665eab59e0556b",
+    "role": "operator_style_reference"
+  },
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "No reserved caption field; continue the scene through the full height."
+}

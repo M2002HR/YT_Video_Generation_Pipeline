@@ -1,0 +1,16 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Tanksinker",
+    "model": "Eleven Multilingual v2",
+    "speed": 1.0,
+    "stability": 0.3,
+    "similarity": 0.3,
+    "style": 0.35,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "5e4f1e85640fd0557c0e22fa4ea37fc37d69f2c1d094725638fbd498f48231d7",
+  "output": "assets/audio/narration.mp3",
+  "generated_at": "2026-09-19T08:23:32.201204+00:00"
+}

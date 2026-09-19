@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "cta",
+  "content_fingerprint": "2f75d820884798cd41af6a14e382dc161af3c92d2635cf55d49895627ef69179",
+  "reference_fingerprint": "eb5369353473ff84f9ad00f5e4227a18f5a8f9e023d50c10c9f5a06535a6febe",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "abbd3e5695e5f470a97ba91ffccbc36e02cd995d97e0f8dd56a5821b957d710d",
+  "input_fingerprint": "c2305b7346088093e57a221f5924df1b02a9df1c7a661b624f8927aa51840d47",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "cta": "Like this island challenge, and subscribe."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-18T05:23:14Z"
+}

@@ -71,6 +71,13 @@ are compacted, while waits and failures remain actionable. Message ownership is 
 run/revision plus stage, so parallel branches cannot overwrite one another. Final media
 delivery is independent from the optional progress-notification switch.
 
+Release uses the same medium-detail policy independently of final bundle delivery. Source
+gate, context/reference extraction, metadata draft/review/finalize, every candidate's
+artwork/composition/review, selection, upload package and delivery each own a durable stage
+event and editable Telegram message. Confirmed file message IDs and hashes are checkpointed
+after every send, so a resume skips already delivered files instead of duplicating a partial
+bundle. Notification outages remain warnings and never discard a valid media artifact.
+
 The process monitor stores the subprocess exit code immediately. A background reconciler
 also checks dead PIDs every 30 seconds. A run becomes `DONE` only when the finalization state
 is complete and the polished video plus polished QC report exist. Flow-provider outages use
@@ -230,6 +237,15 @@ but are explicitly read-only because they do not have a panel-owned frozen job c
 | `POST /api/revisions` | Compatibility alias for regeneration |
 | `POST /api/config-revisions` | Version edited input JSON and rebuild its affected branches |
 | `POST /api/releases` | Create the manual YouTube Shorts release package for one fully completed Studio run |
+| `GET /api/releases` | Eligible source videos, Release history, and summary counts |
+| `GET /api/releases/<release-id>/graph` | Independent Release DAG, activity and immutable request |
+| `GET /api/releases/<release-id>/config` | Frozen Release settings and ancestry |
+| `GET /api/releases/<release-id>/log` | Incremental Release worker log |
+| `GET /api/releases/<release-id>/artifact/<path>` | Safe Release artifact preview |
+| `POST /api/releases/resume` | Continue an interrupted Release using completed checkpoints |
+| `POST /api/releases/stop` | Stop one Release while preserving its partial revision |
+| `POST /api/releases/revisions/preview` | Compute the selected Release node's dependency closure |
+| `POST /api/releases/revisions` | Create an immutable child Release and rebuild only that closure |
 
 ### YouTube Release
 
@@ -237,39 +253,44 @@ The `Release` button appears only for a panel-owned run whose durable finalizati
 `DONE`, whose `polished.mp4` exists, and whose polished QC report passed. It starts a separate
 post-render worker; it never changes the episode master or reopens the video pipeline.
 
+The Studio home also exposes a dedicated Releases workspace. Its Ready list applies the same
+gate and additionally excludes videos with an unfinished pipeline revision. History is read
+from durable per-release folders, so legacy successes and failures remain inspectable even
+when an episode job's compatibility summary points at a newer Release. Orphaned historical
+`RUNNING` markers are displayed as `INTERRUPTED`, and independently owned live process records
+are reconciled after a service restart.
+
 The worker derives facts from the final narration, plans, timeline, render profile, QC, and
 music receipt; asks ChatGPT through Ordak for a draft and a reviewed structured metadata package;
-asks ChatGPT for the Gemini thumbnail prompt; generates one 9:16 Gemini thumbnail; runs a
-ChatGPT image QC; and permits exactly one corrective thumbnail generation. Before either model is
-called, it extracts opening/body/closing frames from the **QC-passed final master** into
-`publish/youtube_short/visual_references/`. Those frames are mandatory primary references for
-the thumbnail's texture, rendering medium, palette, lighting, atmosphere and subject world. The
-episode world keyframe is only a supporting continuity reference. If the episode has a resolved
-host, its canonical character sheet is attached identity-only; it must not introduce a character
-that does not belong in the thumbnail. The prompt and QC enforce one readable, high-contrast,
-single-focal 9:16 scene rather than generic stock art, a copied frame, a busy collage, or
-AI-rendered text. They also require a concise, accurate, curiosity-led title: its first two
-topic keywords are ALL CAPS, it contains only `#shorts`, and ends with a relevant emoji.
-Descriptions use a short summary, a 5–6 keyword comma-separated line, and a final 4–5 hashtag
-line beginning `#shorts #viralshorts`; tags include `shorts`, `viral shorts`, the channel name,
-and relevant topic/niche terms. Both paid candidates are retained under
-`publish/youtube_short/thumbnail_candidates/`;
-after the correction attempt, the valid second image is retained along with its QC observations so
-no paid result disappears.
+then runs a separate thumbnail graph. Every artwork job is locked to ChatGPT `image_generate` and
+receives the episode's canonical character sheet and Quicky Story font as mandatory role-labelled
+attachments. An approved current thumbnail can optionally be added as a style-only reference.
+Basic settings offer three headline modes: a short factual headline selected by ChatGPT, the exact
+original episode title, or exact operator-entered text. The resolved headline is injected verbatim
+into the ChatGPT image prompt and the pipeline adds no second text layer later. Advanced typography
+and placement settings remain removed; candidate count and final QC stay available in Basic.
 
-Release does not have a separate, weaker image path: it reads the completed episode's immutable
-`launch/LAUNCH_REQUEST.json` (and its versioned creative brief when needed) for the exact Gemini
-model, ChatGPT fallback setting and image-QC correction policy used by the main pipeline. It then
-uses the same shared `Runner.image` worker as world and beat images: bounded Gemini retries,
-UI-verified model receipt, verified-download provenance, reference fingerprinting, atomic commit,
-ChatGPT visual QC and the episode's correction policy. A release never silently swaps a requested
-model for a different Gemini variant.
+The visual system uses one continuous composition with clear topic objects and one large faithful
+character close-up. The prompt and final
+review reject generic stock art, a busy collage, duplicate faces, accidental model lettering, or
+unsupported claims. Metadata also requires a concise, accurate, curiosity-led title: the primary
+title uses the original episode title in natural capitalization and ends with an emoji followed by
+`#shorts`. Three distinct search-aware alternatives are included.
+Descriptions use a short summary, a 5–6 keyword comma-separated line, and a final 3–5 hashtag
+line beginning `#shorts #viralshorts`; tags include `shorts`, `viral shorts`, the channel name,
+and relevant topic/niche terms. All paid candidates are retained under
+`publish/youtube_short/thumbnail_candidates/`;
+with provider job IDs, attachment hashes, raw downloads, exact final files and QC observations so
+no paid result disappears. There is no Gemini thumbnail path and no silent provider substitution.
+Art direction revises from `thumbnail_plan`; candidate finalization, QC and delivery remain
+independent downstream nodes.
 
 It then sends, using the existing Telegram **user session**, the exact `polished.mp4` as a
 document (never the compressed preview), the original 9:16 thumbnail PNG, a copy-ready Markdown
 upload sheet, and the structured JSON metadata. `RELEASE_STATE.json` records source hashes,
-provider job IDs, QC decisions, and every Telegram message ID. Re-clicking a delivered release
-with the same master is idempotent and does not duplicate the Telegram delivery.
+provider job IDs, QC decisions, and every Telegram message ID. `DELIVERY_STATE.json` is also
+updated after each confirmed file, making a fully delivered or partially interrupted Release
+resume-safe without duplicating confirmed messages.
 
 The upload sheet is an English mobile-only checklist: update the official YouTube and YT Studio
 apps, upload as **Unlisted** in YouTube, add a suitable trending song and set its balance, choose

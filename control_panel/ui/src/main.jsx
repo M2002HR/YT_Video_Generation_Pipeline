@@ -72,6 +72,11 @@ const PHASE_LABELS = {
   edit: "Edit & motion",
   render: "Render & QC",
   publish: "Publishing",
+  source: "Approved source",
+  metadata: "Metadata",
+  thumbnail: "Thumbnails",
+  package: "Package",
+  delivery: "Delivery",
 };
 
 const TRANSITION_OPTIONS = [
@@ -1991,6 +1996,12 @@ function Home({ open, go, page = "home", notify, theme, onToggleTheme }) {
             <small>Set up a new video and start its generation pipeline.</small>
             <i aria-hidden="true">→</i>
           </button>
+          <button className="landing-card" onClick={() => go("/releases")}>
+            <span className="landing-icon" aria-hidden="true">⇧</span>
+            <b>Releases</b>
+            <small>Package approved videos, inspect Release graphs, and continue revisions.</small>
+            <i aria-hidden="true">→</i>
+          </button>
         </section>
       </main>
     );
@@ -2153,29 +2164,53 @@ function PipelineBoard({ graph, selected, dependents, choose }) {
   );
 }
 
-function DependencyGraph({ run, selected, choose, theme = "dark" }) {
+function DependencyGraph({ run, selected, choose, theme = "dark", artifactBase = "" }) {
   const light = theme === "light";
   const dependents = useMemo(
     () => dependentNodeIds(run.graph.edges, selected?.id),
     [run.graph.edges, selected?.id],
   );
   const flow = useMemo(() => {
-    const phases = run.graph.phases || [],
-      perPhase = {};
+    const phases = run.graph.phases || [];
+    const ids = new Set(run.graph.nodes.map((node) => node.id));
+    const incoming = new Map(run.graph.nodes.map((node) => [node.id, 0]));
+    const children = new Map(run.graph.nodes.map((node) => [node.id, []]));
+    (run.graph.edges || []).forEach((edge) => {
+      if (!ids.has(edge.source) || !ids.has(edge.target)) return;
+      incoming.set(edge.target, (incoming.get(edge.target) || 0) + 1);
+      children.get(edge.source).push(edge.target);
+    });
+    const rank = new Map(run.graph.nodes.map((node) => [node.id, 0]));
+    const queue = run.graph.nodes.filter((node) => incoming.get(node.id) === 0).map((node) => node.id);
+    for (let cursor = 0; cursor < queue.length; cursor += 1) {
+      const source = queue[cursor];
+      (children.get(source) || []).forEach((target) => {
+        rank.set(target, Math.max(rank.get(target) || 0, (rank.get(source) || 0) + 1));
+        incoming.set(target, (incoming.get(target) || 0) - 1);
+        if (incoming.get(target) === 0) queue.push(target);
+      });
+    }
+    // Rank/phase buckets keep parallel work close while preserving the real
+    // left-to-right dependency order across phase boundaries.
+    const buckets = {};
     return {
       nodes: run.graph.nodes.map((node) => {
-        const phase = phases.indexOf(node.phase),
-          row = perPhase[node.phase] || 0;
-        perPhase[node.phase] = row + 1;
+        const phase = Math.max(0, phases.indexOf(node.phase));
+        const column = rank.get(node.id) || 0;
+        const bucket = `${column}:${phase}`;
+        const row = buckets[bucket] || 0;
+        buckets[bucket] = row + 1;
         return {
           id: node.id,
           type: "artifact",
-          position: { x: Math.max(0, phase) * 255, y: row * 128 },
+          position: { x: column * 245, y: phase * 185 + row * 116 },
           data: {
             ...node,
             selected: selected?.id === node.id,
             dependent: dependents.has(node.id),
-            previewBase: `/api/run/${run.job.job_id}/artifact`,
+            previewBase: artifactBase || (run.job?.job_id
+              ? `/api/run/${run.job.job_id}/artifact`
+              : ""),
           },
         };
       }),
@@ -2403,6 +2438,7 @@ function RegenerationModal({ run, node, close, started }) {
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const supportsIsolated = (node.regeneration?.modes || []).includes("isolated");
+  const consumesFeedback = Boolean(node.regeneration?.feedback);
   const supportsChatgptFeedback = node.id.startsWith("beat_image_") && ["q_station", "q_station"].includes(run.job.content_project);
   useEffect(() => {
     setPlan(null);
@@ -2510,15 +2546,19 @@ function RegenerationModal({ run, node, close, started }) {
         )}
         <label className="field">
           <span>
-            Revision note <i>{isolated || useChatgptFeedback ? "required" : "optional"}</i>
+            Revision note <i>{isolated || useChatgptFeedback ? "required" : consumesFeedback ? "optional prompt direction" : "optional audit note"}</i>
           </span>
           <textarea
             value={feedback}
             onChange={(event) => setFeedback(event.target.value)}
             maxLength={4000}
             required={isolated || useChatgptFeedback}
-            placeholder="Describe exactly what should change in this image. This is added to the provider prompt."
+            placeholder={consumesFeedback
+              ? "Describe exactly what should change. This direction is passed to the stage provider."
+              : "Record why this branch is being rebuilt. This note is stored in revision history and does not alter deterministic stage inputs."
+            }
           />
+          {!consumesFeedback && <small>To change this stage's output, edit its source settings or revise an editorial/provider node upstream.</small>}
         </label>
         {supportsChatgptFeedback && (
           <label className="toggle-field regeneration-mode">
@@ -2979,16 +3019,19 @@ const RELEASE_DEFAULTS = {
   title_override: "",
   thumbnail: {
     count_mode: "fixed", count: 3, auto_min: 2, auto_max: 4, concept_count: "auto",
-    diversity: "high", layout_mode: "auto", allowed_layouts: ["character_left", "character_right", "contrast_split", "discovery_focus"],
-    tension: "strong", brand_profile: "q_station_v1", aspect_ratio: "9:16", image_model: "inherit_episode", quality: "native", image_fallback: "chatgpt_on_gemini_failure",
-    thumbnail_note: "", must_include: "", must_avoid: "", text_mode: "auto", manual_text: "", font_id: "montserrat_bold",
-    case_mode: "auto", text_position: "auto", max_words: 6, max_lines: 3, text_max_scale: .15, text_fill: "#FFFFFF", text_outline: "#111827", outline_width: .012, shadow: true, text_background: true, corrections_per_candidate: 1, max_image_generations: 6,
+    diversity: "high", layout_mode: "stacked_brand", allowed_layouts: ["stacked_brand"],
+    tension: "strong", brand_profile: "q_station_v1", aspect_ratio: "9:16", image_model: "chatgpt", quality: "best", image_fallback: "none",
+    topic_mode: "episode", manual_topic: "", video_title_mode: "metadata", manual_video_title: "", approved_style_reference: "none",
+    thumbnail_note: "", character_expression: "auto", topic_objects: "auto", color_direction: "auto", must_include: "", must_avoid: "", text_mode: "auto", manual_text: "", candidate_text_overrides: {}, font_id: "quicky_story", text_renderer: "local",
+    case_mode: "auto", text_position: "middle", max_words: 12, max_characters: 100, max_lines: 3, text_min_scale: .04, text_max_scale: .15, text_box_width: .88, safe_margin: .06, line_spacing: .035, coordinates: null, text_fill: "#FFFFFF", text_outline: "#111827", outline_width: .012, shadow: true, text_background: false, corrections_per_candidate: 0, max_image_generations: 6,
+    badge_enabled: false, badge_asset_id: "q_station_mark", badge_position: "bottom_right", badge_scale: .07,
+    reference_mode: "master", reference_timestamps: [], max_references: 5, jpeg_quality: 90,
     review_preset: "balanced", review_enabled: true, export_format: "png", preview_small: true, comparison_sheet: true, send_master_video: true, send_comparison_sheet: true,
     send_report_json: true, send_raw_artwork: false, delivery_mode: "all_final_candidates", resend: false,
   },
 };
 
-function ReleaseModal({ jobId, close, started }) {
+function ReleaseModal({ jobId, close, started, initialSettings = null, revisionOf = null }) {
   const [settings, setSettings] = useState(RELEASE_DEFAULTS);
   const [capabilities, setCapabilities] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -2996,6 +3039,11 @@ function ReleaseModal({ jobId, close, started }) {
   const change = (name, value) => setSettings((current) => ({ ...current, [name]: value }));
   const thumb = (name, value) => setSettings((current) => ({ ...current, thumbnail: { ...current.thumbnail, [name]: value } }));
   useEffect(() => {
+    if (initialSettings) {
+      setSettings(initialSettings);
+      request("/api/release-schema").then((schema) => setCapabilities(schema.capabilities || null)).catch(() => {});
+      return undefined;
+    }
     let active = true;
     Promise.all([request("/api/release-schema"), request("/api/release-settings")]).then(([schema, saved]) => {
       if (!active || !schema?.defaults) return;
@@ -3003,10 +3051,10 @@ function ReleaseModal({ jobId, close, started }) {
       setSettings(saved?.settings || schema.defaults);
     }).catch(() => {});
     return () => { active = false; };
-  }, []);
+  }, [initialSettings]);
   const tasks = [
     ["generate_metadata", "Generate YouTube metadata", "Creates title alternatives, description, tags, upload recommendations, and a thumbnail brief."],
-    ["generate_thumbnail", "Generate thumbnail candidates", "Creates independent text-free artworks, composites real English text locally, reviews final files, and recommends one."],
+    ["generate_thumbnail", "Generate thumbnail candidates", "Creates independent artworks with the selected exact headline, reviews the final files, and recommends one."],
     ["create_upload_guide", "Create upload guide", "Writes copy-ready YouTube instructions and manual-review reminders."],
     ["send_telegram", "Send release files to Telegram", "Always sends the QC-passed master and every visible final thumbnail candidate as original documents."],
   ];
@@ -3018,9 +3066,11 @@ function ReleaseModal({ jobId, close, started }) {
     }
     setBusy(true); setError("");
     try {
-      const response = await request("/api/releases", {
+      const response = await request(revisionOf ? "/api/releases/revisions" : "/api/releases", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ job_id: jobId, settings }),
+        body: JSON.stringify(revisionOf
+          ? { release_id: revisionOf, node_ids: ["release_context"], settings_revision: true, settings, feedback: "Release settings revision" }
+          : { job_id: jobId, settings }),
       });
       started(response);
     } catch (failure) {
@@ -3033,8 +3083,8 @@ function ReleaseModal({ jobId, close, started }) {
     <div className="modal-back" role="dialog" aria-modal="true" aria-labelledby="release-title" onMouseDown={(event) => event.target === event.currentTarget && !busy && close()}>
       <form className="modal release-modal" onSubmit={submit}>
         <button type="button" className="icon close" onClick={close} disabled={busy} aria-label="Close Release settings">×</button>
-        <span className="eyebrow">POST-RENDER RELEASE</span>
-        <h2 id="release-title">Choose Release steps</h2>
+        <span className="eyebrow">{revisionOf ? "RELEASE CONFIG REVISION" : "POST-RENDER RELEASE"}</span>
+        <h2 id="release-title">{revisionOf ? "Revise Release settings" : "Choose Release steps"}</h2>
         <p>Only selected operations run. The finished video is never changed; this creates its YouTube package and optional delivery.</p>
         <section className="release-step-list" aria-label="Release operations">
           {tasks.map(([key, title, detail]) => (
@@ -3049,8 +3099,8 @@ function ReleaseModal({ jobId, close, started }) {
           <h3>Basic</h3>
           <label className="field">
             <span>Custom final title</span>
-            <input value={settings.title_override} maxLength="100" placeholder="Leave empty to use generated or saved metadata" disabled={busy} onChange={(event) => change("title_override", event.target.value)} />
-            <small>Applied to the metadata, upload guide, and Telegram caption.</small>
+            <input value={settings.title_override} maxLength="100" placeholder="Leave empty to use the original episode title" disabled={busy} onChange={(event) => change("title_override", event.target.value)} />
+            <small>By default the original episode title is preserved. A custom value is applied to metadata, the upload guide, and Telegram.</small>
           </label>
           <label className="field">
             <span>Metadata direction</span>
@@ -3063,31 +3113,24 @@ function ReleaseModal({ jobId, close, started }) {
             {settings.thumbnail.count_mode === "fixed" ? <input type="number" min="1" max="6" value={settings.thumbnail.count} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("count", Number(event.target.value))} /> : <span className="field-grid"><input aria-label="Minimum candidates" type="number" min="1" max="6" value={settings.thumbnail.auto_min} onChange={(event) => thumb("auto_min", Number(event.target.value))} /><input aria-label="Maximum candidates" type="number" min="1" max="6" value={settings.thumbnail.auto_max} onChange={(event) => thumb("auto_max", Number(event.target.value))} /></span>}
             <small>{settings.thumbnail.count_mode === "fixed" ? `${settings.thumbnail.count} independent final candidates` : `${settings.thumbnail.auto_min}–${settings.thumbnail.auto_max} independently planned candidates`}; all visible final candidates are delivered.</small>
           </label>
-          <label className="field"><span>Layout family</span><select value={settings.thumbnail.layout_mode} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("layout_mode", event.target.value)}><option value="auto">Auto — diverse layouts</option><option value="character_left">Character left</option><option value="character_right">Character right</option><option value="contrast_split">Contrast split</option><option value="discovery_focus">Discovery focus</option></select></label>
-          <label className="field"><span>Text</span><select value={settings.thumbnail.text_mode} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("text_mode", event.target.value)}><option value="auto">Auto from the factual release brief</option><option value="manual">One manual headline</option></select>{settings.thumbnail.text_mode === "manual" && <input value={settings.thumbnail.manual_text} maxLength="40" placeholder="2–6 English words" onChange={(event) => thumb("manual_text", event.target.value)} />}</label>
+          <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.review_enabled} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("review_enabled", event.target.checked)} /><span className="switch" /><span><b>Run thumbnail QC</b><small>Reviews character fidelity, exact headline readability, topic relevance, malformed details, and mobile clarity.</small></span></label>
+          <label className="field">
+            <span>Thumbnail headline</span>
+            <select value={settings.thumbnail.text_mode === "none" ? "auto" : settings.thumbnail.text_mode} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("text_mode", event.target.value)}>
+              <option value="auto">Automatic catchy headline</option>
+              <option value="video_title">Use original episode title</option>
+              <option value="manual">Manual headline</option>
+            </select>
+            {settings.thumbnail.text_mode === "manual" && <input value={settings.thumbnail.manual_text} maxLength="100" placeholder="Exact English text to place on the thumbnail" disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("manual_text", event.target.value)} />}
+            <small>The resolved text is injected verbatim into the ChatGPT image prompt. No second text layer is added afterward.</small>
+          </label>
+          <label className="field"><span>Approved series reference</span><select value={settings.thumbnail.approved_style_reference} disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("approved_style_reference", event.target.value)}><option value="none">None</option><option value="current_release">Current approved Release thumbnail</option></select><small>Optional. It controls visual treatment only; character identity still comes from this episode's sheet.</small></label>
           <label className="field">
             <span>Thumbnail art direction</span>
             <textarea value={settings.thumbnail.thumbnail_note} maxLength="2000" placeholder="Desired visual emphasis, factual scene, composition, or constraints…" disabled={busy || !settings.generate_thumbnail} onChange={(event) => thumb("thumbnail_note", event.target.value)} />
-            <small>Gemini creates artwork without text. The final headline, badge, and frame are rendered locally and reviewed on the final file.</small>
+            <small>ChatGPT creates the final artwork through Ordak with the selected headline embedded once. No extra caption, logo, or duplicate text is added later.</small>
           </label>
         </section>
-        <details className="release-editorial"><summary><b>Advanced thumbnail settings</b></summary><div className="field-grid">
-          <label className="field"><span>Tension</span><select value={settings.thumbnail.tension} onChange={(event) => thumb("tension", event.target.value)}><option value="restrained">Restrained</option><option value="strong">Strong</option><option value="dramatic">Dramatic</option></select></label>
-          <label className="field"><span>Diversity</span><select value={settings.thumbnail.diversity} onChange={(event) => thumb("diversity", event.target.value)}><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
-          <label className="field"><span>Final reviewer</span><select value={settings.thumbnail.review_preset} onChange={(event) => thumb("review_preset", event.target.value)}><option value="balanced">Balanced</option><option value="clarity_first">Clarity first</option><option value="brand_first">Brand first</option></select></label>
-          <label className="field"><span>Font</span><select value={settings.thumbnail.font_id} onChange={(event) => thumb("font_id", event.target.value)}>{(capabilities?.fonts || [{ id: "montserrat_bold", name: "Montserrat Bold" }]).map((font) => <option value={font.id} key={font.id}>{font.name}</option>)}</select></label>
-          <label className="field"><span>Text case</span><select value={settings.thumbnail.case_mode} onChange={(event) => thumb("case_mode", event.target.value)}><option value="auto">Auto</option><option value="uppercase">Uppercase</option><option value="sentence_case">Sentence case</option></select></label>
-          <label className="field"><span>Text size</span><input type="range" min="0.08" max="0.2" step="0.005" value={settings.thumbnail.text_max_scale} onChange={(event) => thumb("text_max_scale", Number(event.target.value))} /><small>{Math.round(settings.thumbnail.text_max_scale * 100)}% of canvas width; layout may reduce only when needed to fit.</small></label>
-          <label className="field"><span>Text fill</span><input type="color" value={settings.thumbnail.text_fill} onChange={(event) => thumb("text_fill", event.target.value.toUpperCase())} /></label>
-          <label className="field"><span>Outline color</span><input type="color" value={settings.thumbnail.text_outline} onChange={(event) => thumb("text_outline", event.target.value.toUpperCase())} /></label>
-          <label className="field"><span>Outline thickness</span><input type="range" min="0" max="0.04" step="0.002" value={settings.thumbnail.outline_width} onChange={(event) => thumb("outline_width", Number(event.target.value))} /><small>{Math.round(settings.thumbnail.outline_width * 1000) / 10}% of canvas width</small></label>
-          <label className="field"><span>Text position</span><select value={settings.thumbnail.text_position} onChange={(event) => thumb("text_position", event.target.value)}><option value="auto">Auto</option><option value="top">Top</option><option value="bottom">Bottom</option><option value="left">Left</option><option value="right">Right</option></select></label>
-          <label className="field"><span>Quality corrections per candidate</span><input type="number" min="0" max="2" value={settings.thumbnail.corrections_per_candidate} onChange={(event) => thumb("corrections_per_candidate", Number(event.target.value))} /></label>
-          <label className="field"><span>Maximum image submissions</span><input type="number" min="1" max="18" value={settings.thumbnail.max_image_generations} onChange={(event) => thumb("max_image_generations", Number(event.target.value))} /></label>
-          <label className="field"><span>Image-generation fallback</span><input value="Gemini primary → ChatGPT automatically on failure" disabled readOnly /><small>Mandatory for Release. The candidate receipt records the Gemini error and actual producing provider.</small></label>
-          <label className="field"><span>Must include</span><input maxLength="500" value={settings.thumbnail.must_include || ""} onChange={(event) => thumb("must_include", event.target.value)} /></label>
-          <label className="field"><span>Must avoid</span><input maxLength="500" value={settings.thumbnail.must_avoid || ""} onChange={(event) => thumb("must_avoid", event.target.value)} /></label>
-        </div><label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.text_background} onChange={(event) => thumb("text_background", event.target.checked)} /><span className="switch" /><span><b>Text background</b><small>Adds a restrained translucent dark panel behind the headline for small-screen readability.</small></span></label><label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.shadow} onChange={(event) => thumb("shadow", event.target.checked)} /><span className="switch" /><span><b>Text shadow</b><small>Preserves contrast over detailed artwork.</small></span></label><label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.review_enabled} onChange={(event) => thumb("review_enabled", event.target.checked)} /><span className="switch" /><span><b>Run thumbnail QC and final visual review</b><small>When off, Gemini artwork is not sent to ChatGPT for image QC or final-thumbnail review. File decoding, dimensions, font rendering, and text bounds still run locally; the recommendation is marked as skipped.</small></span></label><small>Default typography is Montserrat Bold, white fill, dark outline, shadow, and a subtle background for clear small-screen reading. Actual supported ratio: 9:16.</small></details>
         <details className="release-editorial"><summary><b>Delivery</b></summary>
           <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.send_master_video} onChange={(event) => thumb("send_master_video", event.target.checked)} /><span className="switch" /><span><b>Send master video</b><small>Off sends only the thumbnail package over Telegram (no full video re-send).</small></span></label>
           <label className="toggle-field"><input type="checkbox" checked={settings.thumbnail.send_comparison_sheet} onChange={(event) => thumb("send_comparison_sheet", event.target.checked)} /><span className="switch" /><span><b>Send comparison sheet</b><small>Preview only; original candidates are always sent as documents.</small></span></label>
@@ -3099,9 +3142,9 @@ function ReleaseModal({ jobId, close, started }) {
           <span className="switch" />
           <span><b>Replace already completed selected outputs</b><small>Use for an intentional new metadata or thumbnail version. Existing files remain in the project history where retained.</small></span>
         </label>
-        <small className="release-dependency">Start summary: {settings.generate_thumbnail ? `${settings.thumbnail.count_mode === "fixed" ? settings.thumbnail.count : `${settings.thumbnail.auto_min}–${settings.thumbnail.auto_max}`} candidates, up to ${settings.thumbnail.max_image_generations} image submissions, ${settings.thumbnail.image_model}, ${settings.thumbnail.aspect_ratio}; every visible final candidate is sent when Telegram delivery is on.` : "Thumbnail generation is off: no thumbnail provider call or thumbnail preflight runs."} If Metadata is off, dependent steps reuse saved metadata and stop before any provider call when it is unavailable.</small>
+        <small className="release-dependency">Start summary: {settings.generate_thumbnail ? `${settings.thumbnail.count_mode === "fixed" ? settings.thumbnail.count : `${settings.thumbnail.auto_min}–${settings.thumbnail.auto_max}`} candidates, ${settings.thumbnail.text_mode === "manual" ? "manual headline" : settings.thumbnail.text_mode === "video_title" ? "episode-title headline" : "ChatGPT-selected headline"}, ChatGPT via Ordak, mandatory character sheet and Quicky Story font, ${settings.thumbnail.aspect_ratio}; every visible final candidate is sent when Telegram delivery is on.` : "Thumbnail generation is off: no thumbnail provider call or thumbnail preflight runs."} If Metadata is off, dependent steps reuse saved metadata and stop before any provider call when it is unavailable.</small>
         {error && <div className="inline-error" role="alert">{error}</div>}
-        <button className="primary" disabled={busy}>{busy ? "Starting Release…" : "Start selected Release steps →"}</button>
+        <button className="primary" disabled={busy}>{busy ? "Starting Release…" : revisionOf ? "Create settings revision →" : "Start selected Release steps →"}</button>
       </form>
     </div>
   );
@@ -3468,6 +3511,97 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
   );
 }
 
+function ReleaseRow({ release, open }) {
+  return <button className="run-row" onClick={() => open(release.release_id)}>
+    <div className="run-id"><span>{release.video_id || "—"}</span><i className={statusClass(release.status)} /></div>
+    <div className="run-copy">
+      <strong>{release.topic || "Untitled release"}</strong>
+      <small>{formatDate(release.created_at)} · {release.release_id.slice(-8)}{release.parent_release_id ? " · revision" : ""}</small>
+    </div>
+    <div className="run-progress"><b>{release.attempt || 1}</b><small>attempt</small></div>
+    <StatusPill status={release.status} /><span className="arrow">→</span>
+  </button>;
+}
+
+function ReleasesPage({ goHome, openRelease, notify, theme, onToggleTheme }) {
+  const [data, setData] = useState(null), [query, setQuery] = useState(""), [status, setStatus] = useState("all"), [launch, setLaunch] = useState(null);
+  const load = () => request("/api/releases").then(setData).catch((error) => notify("Release history unavailable", error.message, "bad"));
+  useEffect(() => { load(); const timer = setInterval(load, 4000); return () => clearInterval(timer); }, []);
+  const runs = (data?.runs || []).filter((item) =>
+    (status === "all" || statusClass(item.status) === status) &&
+    `${item.video_id} ${item.topic} ${item.release_id}`.toLowerCase().includes(query.toLowerCase())
+  );
+  return <main className="home">
+    <header className="brand"><div><span className="eyebrow">POST-RENDER WORKSPACE</span><button className="back page-back" onClick={goHome}>← Studio</button></div><div className="brand-side"><ThemeToggle theme={theme} onToggle={onToggleTheme} /></div></header>
+    <section className="release-summary-grid">
+      {[['Ready', data?.summary?.ready || 0], ['Running', data?.summary?.running || 0], ['Needs attention', data?.summary?.attention || 0], ['Complete', data?.summary?.done || 0]].map(([name, value]) => <article className="loading-card" key={name}><span className="eyebrow">{name}</span><h2>{value}</h2></article>)}
+    </section>
+    <section className="runs">
+      <div className="section-head"><div><span className="eyebrow">APPROVED SOURCES</span><h2>Ready for release</h2><p>Only completed runs with a passing final QC and a present polished master appear here.</p></div></div>
+      <div className="release-source-grid">
+        {(data?.sources || []).map((source) => <article className="release-source-card" key={source.job_id}>
+          <span className="eyebrow">VIDEO {source.video_id}</span><h3>{source.topic}</h3>
+          <small>{source.release_count} Release run(s){source.last_release ? ` · last ${label(source.last_release.status)}` : ""}</small>
+          <button className="primary compact" onClick={() => setLaunch(source)}>Create Release →</button>
+        </article>)}
+        {data && !data.sources?.length && <div className="no-runs">No finalized video currently satisfies the Release gate.</div>}
+      </div>
+    </section>
+    <section className="runs">
+      <div className="section-head"><div><span className="eyebrow">AUDIT HISTORY</span><h2>Release runs</h2></div><div className="run-tools">
+        <input aria-label="Search releases" placeholder="Search video, topic, or Release ID…" value={query} onChange={(event) => setQuery(event.target.value)} />
+        <select value={status} onChange={(event) => setStatus(event.target.value)}><option value="all">All statuses</option><option value="running">Running</option><option value="done">Done</option><option value="failed">Needs attention</option><option value="waiting">Stopped / waiting</option></select>
+      </div></div>
+      {runs.length ? runs.map((item) => <ReleaseRow key={item.release_id} release={item} open={openRelease} />) : <div className="no-runs">No Release runs match this view.</div>}
+    </section>
+    {launch && <ReleaseModal jobId={launch.job_id} close={() => setLaunch(null)} started={(response) => { setLaunch(null); notify("Release started", "The independent Release pipeline is running."); openRelease(response.release.release_id); }} />}
+  </main>;
+}
+
+function ReleaseNodeDetail({ release, node, close, revise }) {
+  if (!node) return <aside className="detail empty"><span>↖</span><h3>Select a Release stage</h3><p>Inspect its artifacts, checkpoint and downstream impact.</p></aside>;
+  const base = `/api/releases/${release.release_id}/artifact`;
+  const existing = (node.artifacts || []).filter((item) => item.exists);
+  const media = existing.filter((item) => item.media), textItems = existing.filter((item) => !item.media);
+  return <aside className="detail">
+    <button className="icon close" onClick={close}>×</button><span className="eyebrow">{PHASE_LABELS[node.phase]} · {node.kind}</span><h2>{node.title}</h2><StatusPill status={node.status} />
+    <p className="description">{node.description}</p>
+    {media.length > 0 && <div className="media-gallery">{media.map((item) => { const src = artifactUrl(base, item.path, item.updated_at); return <div className="preview" key={item.path}>{/\.(png|jpe?g|webp)$/i.test(item.path) ? <img src={src} alt={node.title} /> : /\.(mp4|mov|webm)$/i.test(item.path) ? <video controls src={src} /> : <audio controls src={src} />}</div>; })}</div>}
+    <section><h3>Artifacts <span>{existing.length}/{node.artifacts?.length || 0}</span></h3>{(node.artifacts || []).map((item) => <a className={item.exists ? "" : "missing"} key={item.path} href={item.exists ? artifactUrl(base, item.path, item.updated_at) : undefined} target="_blank" rel="noreferrer"><i>{item.exists ? "✓" : "—"}</i><span>{item.path}<small>{item.exists ? formatBytes(item.bytes) : "not generated"}</small></span></a>)}</section>
+    <TextArtifacts base={base} items={textItems} />
+    <button className="primary" disabled={release.live || node.regeneratable === false} onClick={() => revise(node)}>{node.regeneratable === false ? "Managed Release gate" : release.live ? "Wait for the active Release" : "Revise this stage →"}</button>
+  </aside>;
+}
+
+function ReleaseRevisionModal({ release, node, close, started }) {
+  const [plan, setPlan] = useState(null), [feedback, setFeedback] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState("");
+  useEffect(() => { request("/api/releases/revisions/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ release_id: release.release_id, node_ids: [node.id] }) }).then(setPlan).catch((failure) => setError(failure.message)); }, [release.release_id, node.id]);
+  async function submit(event) { event.preventDefault(); setBusy(true); setError(""); try { const response = await request("/api/releases/revisions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ release_id: release.release_id, node_ids: [node.id], feedback, settings: release.settings }) }); started(response); } catch (failure) { setError(failure.message); } finally { setBusy(false); } }
+  return <div className="modal-back" role="dialog" aria-modal="true"><form className="modal" onSubmit={submit}><button type="button" className="icon close" onClick={close} disabled={busy}>×</button><span className="eyebrow">RELEASE REVISION</span><h2>Revise {node.title}</h2><p>This creates an immutable child Release. Unaffected stages and candidate files are reused.</p>
+    <label className="field"><span>Revision direction</span><textarea value={feedback} maxLength="4000" onChange={(event) => setFeedback(event.target.value)} placeholder="Describe the exact change. Keep factual source constraints intact." /></label>
+    {plan && <div className="impact-grid"><section><h3>Rebuild · {plan.affected_nodes.length}</h3><div>{plan.affected_nodes.map((id) => <span key={id}>{plan.titles?.[id] || label(id)}</span>)}</div></section><section><h3>Reuse · {plan.reused_nodes.length}</h3><div>{plan.reused_nodes.map((id) => <span key={id}>{plan.titles?.[id] || label(id)}</span>)}</div></section></div>}
+    {error && <div className="inline-error">{error}</div>}<button className="primary" disabled={busy || !plan}>{busy ? "Starting revision…" : "Create child revision →"}</button>
+  </form></div>;
+}
+
+function ReleaseWorkspace({ releaseId, goBack, openRelease, notify, theme, onToggleTheme }) {
+  const [payload, setPayload] = useState(null), [selected, setSelected] = useState(null), [view, setView] = useState("board"), [revisionNode, setRevisionNode] = useState(null), [settingsOpen, setSettingsOpen] = useState(false), [drawer, setDrawer] = useState(true), [log, setLog] = useState(""), [error, setError] = useState("");
+  const offset = useRef(0), loading = useRef(false);
+  const load = async () => { if (loading.current) return; loading.current = true; try { const data = await request(`/api/releases/${releaseId}/graph`); data.graph = normalizeGraph(data.graph); setPayload(data); setSelected((current) => data.graph.nodes.find((node) => node.id === current?.id) || null); const tail = await request(`/api/releases/${releaseId}/log?offset=${offset.current}`); offset.current = tail.offset; if (tail.text) setLog((current) => `${current}${tail.text}`.slice(-120000)); setError(""); } catch (failure) { setError(failure.message); } finally { loading.current = false; } };
+  useEffect(() => { offset.current = 0; setLog(""); load(); const timer = setInterval(load, 3000); return () => clearInterval(timer); }, [releaseId]);
+  async function action(path, message) { try { await request(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ release_id: releaseId }) }); notify(message, "Release state changed."); setTimeout(load, 400); } catch (failure) { notify(`${message} failed`, failure.message, "bad"); } }
+  if (error && !payload) return <main className="center"><h1>Release unavailable</h1><p>{error}</p><button onClick={goBack}>Back to Releases</button></main>;
+  if (!payload) return <main className="center"><div className="spinner" />Loading Release…</main>;
+  const release = payload.release, graph = payload.graph, dependents = dependentNodeIds(graph.edges, selected?.id), ready = graph.nodes.filter((node) => READY.has(node.status)).length;
+  return <main className="run-page"><header className="run-header"><button className="back" onClick={goBack}>← Releases</button><div className="run-title"><span className="eyebrow">RELEASE {release.release_id.slice(-8)} · VIDEO {release.video_id}</span><h1>{release.topic}</h1><small>{ready}/{graph.nodes.length} stages ready{release.parent_release_id ? " · child revision" : ""}</small></div><div className="run-actions"><ThemeToggle theme={theme} onToggle={onToggleTheme} /><button className="secondary" disabled={release.live} onClick={() => setSettingsOpen(true)}>Revise settings</button>{release.stoppable && <button className="secondary danger" onClick={() => action("/api/releases/stop", "Release stopped")}>Stop</button>}{release.resumable && <button className="primary" onClick={() => action("/api/releases/resume", "Release resumed")}>Resume</button>}<StatusPill status={release.status} /></div></header>
+    <nav className="workspace-nav"><div className="segmented"><button className={view === "board" ? "active" : ""} onClick={() => setView("board")}>Release board</button><button className={view === "graph" ? "active" : ""} onClick={() => setView("graph")}>Dependency graph</button></div><div className="legend"><span className="done">● done</span><span className="reused">● reused</span><span className="running">● running</span><span className="failed">● attention</span></div></nav>
+    <div className="workspace">{view === "board" ? <PipelineBoard graph={graph} selected={selected} dependents={dependents} choose={setSelected} /> : <DependencyGraph run={{ graph }} selected={selected} choose={setSelected} theme={theme} artifactBase={`/api/releases/${release.release_id}/artifact`} />}<ReleaseNodeDetail release={release} node={selected} close={() => setSelected(null)} revise={setRevisionNode} /></div>
+    <ActivityPanel events={payload.activity || []} log={log} open={drawer} toggle={() => setDrawer((value) => !value)} />
+    {revisionNode && <ReleaseRevisionModal release={release} node={revisionNode} close={() => setRevisionNode(null)} started={(response) => { setRevisionNode(null); notify("Release revision started", `${response.revision.affected_nodes.length} stages rebuild; ${response.revision.reused_nodes.length} reused.`); openRelease(response.release.release_id); }} />}
+    {settingsOpen && <ReleaseModal jobId={release.source_job_id} initialSettings={release.settings} revisionOf={release.release_id} close={() => setSettingsOpen(false)} started={(response) => { setSettingsOpen(false); notify("Release settings revision started", "The source and immutable parent were preserved."); openRelease(response.release.release_id); }} />}
+  </main>;
+}
+
 class StudioErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -3526,6 +3660,7 @@ function App() {
     return () => removeEventListener("popstate", pop);
   }, []);
   const match = path.match(/^\/runs\/([a-f0-9-]{36})$/);
+  const releaseMatch = path.match(/^\/releases\/(rel_[a-f0-9]{32})$/);
   const page = path === "/new" ? "new" : path === "/runs" ? "runs" : "home";
   return (
     <>
@@ -3541,6 +3676,24 @@ function App() {
           jobId={match[1]}
           goHome={() => navigate("/")}
           goRun={(id) => navigate(`/runs/${id}`)}
+          notify={notify}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
+      ) : releaseMatch ? (
+        <ReleaseWorkspace
+          key={releaseMatch[1]}
+          releaseId={releaseMatch[1]}
+          goBack={() => navigate("/releases")}
+          openRelease={(id) => navigate(`/releases/${id}`)}
+          notify={notify}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
+      ) : path === "/releases" ? (
+        <ReleasesPage
+          goHome={() => navigate("/")}
+          openRelease={(id) => navigate(`/releases/${id}`)}
           notify={notify}
           theme={theme}
           onToggleTheme={toggleTheme}

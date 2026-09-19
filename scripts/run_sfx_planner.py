@@ -21,7 +21,7 @@ def main():
  raw=''; err=''
  with OrdakJobs() as jobs:
   for attempt in range(2):
-   raw=jobs.run(prompt if not attempt else f'Previous output was invalid: {err}. Return corrected raw JSON only.\n{prompt}',provider='chatgpt',mode='chat').answer or ''
+   raw=jobs.run(prompt if not attempt else f'Previous output was invalid: {err}. Return corrected raw JSON only.\n{prompt}',provider='chatgpt',mode='chat',chatgpt_chat='temporary').answer or ''
    try:
     payload=json.loads(raw.strip().removeprefix('```json').removesuffix('```').strip())
     if not isinstance(payload, dict):

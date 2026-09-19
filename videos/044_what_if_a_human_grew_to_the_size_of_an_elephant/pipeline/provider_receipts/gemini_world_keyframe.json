@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "415942519c0d8d3412ebc267ebcc3e0f37b020247f2e7070ac528919c8b50e3f",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "f5dda767-1e4c-48e6-bebc-d8379b9de440",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/d90acf3a5953f50f",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "operator_style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=f5dda767-1e4c-48e6-bebc-d8379b9de440_output_1.png 1536x2752 sha256=0f206ea1bbbd39233b27379bc8da8c15bae3233bd0757f4ac385f39cadd07c8b"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "415942519c0d8d3412ebc267ebcc3e0f37b020247f2e7070ac528919c8b50e3f",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "f5dda767-1e4c-48e6-bebc-d8379b9de440",
+        "prompt_sha256": "4db763940470b65935ac4398f3f244daddfce18d52925755d5bf3803c46c28ae",
+        "output_sha256": "0f206ea1bbbd39233b27379bc8da8c15bae3233bd0757f4ac385f39cadd07c8b",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/044_what_if_a_human_grew_to_the_size_of_an_elephant/references/world_style_anchor.png",
+      "sha256": "8ab5c38ed546109043806d31c887863c426b54d350d532e76c83bc2131fc46d5"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/044_what_if_a_human_grew_to_the_size_of_an_elephant/launch/style_references/style_reference.png",
+      "sha256": "95cb475cab4ec2dfd7296c2182d6358767f3f6e07eb6eeb654665eab59e0556b"
+    }
+  ],
+  "prompt_sha256": "4db763940470b65935ac4398f3f244daddfce18d52925755d5bf3803c46c28ae",
+  "prompt": "A high-resolution, full-bleed vertical (9:16) photograph capturing a physical, layered paper cut composition inside a host-free subject world. The scene, constructed from matte archival cardstock with clean knife-cut bevels and subtle paper grain tooth, depicts the dramatic collapse of a four-ton human giant. The massive human figure, made of bone-white and warm cream structural paper planes, is on its knees in the mid-ground. The figure's slender legs are visibly buckling and snapping under the extreme volumetric load. These critical fracture and stress points at the knees and shins are rendered with sharp, jagged tears and crushed layers of cardstock, revealing embedded accents of restricted coral-orange and warm straw-yellow paper, indicating biomechanical failure. The surrounding environment consists of muted lavender and slate stone paper bases. Soft directional studio illumination casts tangible shadows between the physical paper sheets, emphasizing the cross-sectional scale, volumetric mass, and the structural depth of the collapse. The background features cool cyan and pale sky-blue atmospheric layers. The composition fills the frame edge-to-edge without any enclosing borders, shadowbox margins, or embedded text. The focus is purely on the tactile, layered paper construction of the massive figure failing against the laws of physics. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text. Binding isolation: no recurring host, no selected host, and no foreground person or character.\n\nThe attached operator_style_reference is style-only. Preserve the newly established world plan while echoing only its texture, palette, line work and lighting; do not copy its subject, text, people, logo, or composition.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "0f206ea1bbbd39233b27379bc8da8c15bae3233bd0757f4ac385f39cadd07c8b",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 63.138,
+  "completed_at": "2026-09-19T08:26:47Z"
+}

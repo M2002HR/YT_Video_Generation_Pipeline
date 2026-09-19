@@ -48,6 +48,11 @@ from content_projects import (
 )
 from character_runtime import CharacterSelectionError, load_character_registry
 from release_settings import normalize_release_settings as shared_normalize_release_settings, public_schema as release_public_schema
+from release_graph import (
+    graph_for as release_graph_for, revision_plan as release_revision_plan,
+    artifact_paths_for as release_artifact_paths_for, load as load_release_json,
+    settings_revision_roots as release_settings_revision_roots,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
@@ -56,6 +61,7 @@ PROVIDER_STATUS_LOCK = threading.Lock()
 PROVIDER_STATUS_CACHE: dict[str, object] = {"at": 0.0, "base": "", "value": {}}
 CREDIT_CHECK_LOCK = threading.Lock()
 CREDIT_CHECK_ACTIVE_ID: str | None = None
+RELEASE_ID_RE = re.compile(r"rel_[a-f0-9]{32}")
 PREFERRED_CONTENT_PROJECT = "q_station"
 CREATIVE_FIELDS = ("working_title", "audience", "narrative_angle", "must_include", "must_avoid", "source_notes")
 
@@ -2203,6 +2209,9 @@ def release_eligibility(record: dict, project: Path) -> tuple[bool, str]:
         return False, "Release is available only after the run is DONE."
     if pid_is_live(record.get("pid")):
         return False, "The pipeline process is still live."
+    pending = record.get("pending_revision") if isinstance(record.get("pending_revision"), dict) else {}
+    if pending and str(pending.get("status") or "").upper() not in {"DONE", "REUSED"}:
+        return False, "The video has a pending revision and is not release-stable yet."
     try:
         final = json.loads((project / "pipeline" / "FINALIZATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -2247,8 +2256,171 @@ def save_release_settings(settings: dict[str, Any]) -> None:
     })
 
 
+def release_jobs_dir() -> Path:
+    path = ROOT / "control_panel" / "release_jobs"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def release_root(project: Path, release_id: str) -> Path:
+    if not RELEASE_ID_RE.fullmatch(release_id):
+        raise ValueError("Unknown Release id.")
+    root = (project / "publish" / "youtube_short" / "releases" / release_id).resolve()
+    root.relative_to(project.resolve())
+    return root
+
+
+def _episode_records(jobs_dir: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for path in jobs_dir.glob("*.json"):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if str(record.get("kind") or "episode") == "episode" and record.get("project"):
+            records.append(record)
+    return records
+
+
+def release_sources(jobs_dir: Path) -> list[dict[str, Any]]:
+    """Only panel-owned, fully finalized videos may appear in Ready for release."""
+    releases = release_records(jobs_dir)
+    by_job: dict[str, list[dict[str, Any]]] = {}
+    for release in releases:
+        by_job.setdefault(str(release.get("source_job_id") or ""), []).append(release)
+    result: list[dict[str, Any]] = []
+    for record in _episode_records(jobs_dir):
+        project = ROOT / str(record.get("project") or "")
+        allowed, reason = release_eligibility(record, project)
+        if not allowed:
+            continue
+        history = by_job.get(str(record.get("job_id") or ""), [])
+        result.append({
+            "job_id": record.get("job_id"), "video_id": record.get("video_id"),
+            "topic": record.get("topic", ""), "project": record.get("project"),
+            "content_project": record.get("content_project", DEFAULT_CONTENT_PROJECT),
+            "completed_at": record.get("completed_at"), "eligible": True, "eligibility_reason": reason,
+            "release_count": len(history), "last_release": history[0] if history else None,
+        })
+    return sorted(result, key=lambda item: str(item.get("completed_at") or ""), reverse=True)
+
+
+def release_records(jobs_dir: Path) -> list[dict[str, Any]]:
+    """Merge durable release folders with optional live process bookkeeping.
+
+    The episode folder is authoritative and lets legacy releases remain visible.  Process
+    records only add PID/log ownership and may be safely rebuilt after a service restart.
+    """
+    process_records: dict[str, dict[str, Any]] = {}
+    jobs_root = release_jobs_dir()
+    for path in jobs_root.glob("*.json"):
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+            if RELEASE_ID_RE.fullmatch(str(value.get("release_id") or "")):
+                process_records[str(value["release_id"])] = value
+        except (OSError, ValueError):
+            continue
+    episodes = _episode_records(jobs_dir)
+    by_project = {str(item.get("project")): item for item in episodes}
+    records: list[dict[str, Any]] = []
+    videos = ROOT / "videos"
+    for state_path in videos.glob("*/publish/youtube_short/releases/rel_*/RELEASE_STATE.json") if videos.is_dir() else []:
+        release_id = state_path.parent.name
+        if not RELEASE_ID_RE.fullmatch(release_id):
+            continue
+        state = load_release_json(state_path)
+        request = load_release_json(state_path.parent / "RELEASE_REQUEST.json")
+        try:
+            project = state_path.parents[4]
+            project_relative = str(project.relative_to(ROOT))
+        except ValueError:
+            continue
+        episode = by_project.get(project_relative, {})
+        process = process_records.get(release_id, {})
+        pid = process.get("pid")
+        live = pid_is_live(pid)
+        status = str(process.get("status") or state.get("status") or "UNKNOWN")
+        # A durable RUNNING marker without its owned process is interrupted, not active.
+        if status == "RUNNING" and not live:
+            status = "INTERRUPTED"
+        records.append({
+            "release_id": release_id,
+            "source_job_id": state.get("source_job_id") or request.get("source_job_id") or episode.get("job_id"),
+            "video_id": episode.get("video_id") or str(state.get("video") or project.name).split("_", 1)[0],
+            "topic": episode.get("topic") or project.name,
+            "project": project_relative,
+            "content_project": episode.get("content_project", DEFAULT_CONTENT_PROJECT),
+            "status": status, "live": live, "pid": pid,
+            "created_at": state.get("started_at") or process.get("started_at"),
+            "completed_at": state.get("completed_at") or state.get("failed_at") or process.get("completed_at"),
+            "parent_release_id": state.get("parent_release_id") or request.get("parent_release_id"),
+            "master_sha256": state.get("master_sha256"), "error": state.get("error"),
+            "settings": request.get("settings") or state.get("request") or {},
+            "log": process.get("log"), "attempt": state.get("attempt", 1),
+        })
+    discovered = {item["release_id"] for item in records}
+    for release_id, process in process_records.items():
+        if release_id in discovered:
+            continue
+        project_relative = str(process.get("project") or "")
+        episode = by_project.get(project_relative, {})
+        live = pid_is_live(process.get("pid"))
+        status = str(process.get("status") or "UNKNOWN")
+        if status == "RUNNING" and not live:
+            status = "INTERRUPTED"
+        records.append({
+            **process, "release_id": release_id, "status": status, "live": live,
+            "source_job_id": process.get("source_job_id") or episode.get("job_id"),
+            "video_id": process.get("video_id") or episode.get("video_id"),
+            "topic": process.get("topic") or episode.get("topic") or project_relative,
+            "project": project_relative, "settings": process.get("settings") or {},
+        })
+    records.sort(key=lambda item: str(item.get("created_at") or ""), reverse=True)
+    return records
+
+
+def resolve_release(jobs_dir: Path, release_id: str) -> tuple[dict[str, Any], Path, Path] | None:
+    if not RELEASE_ID_RE.fullmatch(release_id):
+        return None
+    record = next((item for item in release_records(jobs_dir) if item["release_id"] == release_id), None)
+    if not record:
+        return None
+    project = (ROOT / str(record["project"])).resolve()
+    try:
+        project.relative_to((ROOT / "videos").resolve())
+        root = release_root(project, release_id)
+    except ValueError:
+        return None
+    return record, project, root
+
+
+def reconcile_stuck_releases_once() -> None:
+    """Settle orphaned Release process records without rewriting immutable artifacts."""
+    folder = release_jobs_dir()
+    for path in folder.glob("rel_*.json"):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            if record.get("status") != "RUNNING" or pid_is_live(record.get("pid")):
+                continue
+            project = ROOT / str(record.get("project") or "")
+            state = load_release_json(release_root(project, str(record["release_id"])) / "RELEASE_STATE.json")
+            durable = str(state.get("status") or "")
+            record["status"] = durable if durable in {"DONE", "FAILED", "STOPPED", "NEEDS_REVIEW"} else "INTERRUPTED"
+            record["completed_at"] = state.get("completed_at") or state.get("failed_at") or utcnow()
+            if state.get("error"):
+                record["error"] = str(state["error"])[:1000]
+            write_json(path, record)
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+
+
 def active_release(jobs_dir: Path) -> dict | None:
     """Only one release may use the shared authenticated browser at a time."""
+    for record in release_records(jobs_dir):
+        if record.get("status") == "RUNNING" and record.get("live"):
+            return record
+    # Compatibility with a Release started immediately before the independent job store
+    # was introduced.
     for path in jobs_dir.glob("*.json"):
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
@@ -2266,6 +2438,7 @@ def start_stuck_job_reconciler(interval: int = 30) -> None:
         while True:
             try:
                 reconcile_stuck_jobs_once()
+                reconcile_stuck_releases_once()
             except Exception:
                 pass
             import time
@@ -3678,8 +3851,87 @@ class Handler(BaseHTTPRequestHandler):
                 write_json(request, record)
         self.send_notice(HTTPStatus.ACCEPTED, f"Resumed {record.get('video_id')} — completed stages are reused, not regenerated.")
 
+    def start_release_worker(
+        self, record: dict[str, Any], project: Path, release_id: str, settings: dict[str, Any],
+        *, request_extra: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        """Start one independently recorded Release process and monitor its exact state."""
+        job_id = str(record["job_id"])
+        started_at = utcnow()
+        request_dir = project / "publish" / "youtube_short" / "release_requests"
+        request_dir.mkdir(parents=True, exist_ok=True)
+        request_path = request_dir / f"{started_at.replace(':', '-').replace('+', '_')}_{release_id}.json"
+        request_payload = {
+            "schema_version": 3, "release_id": release_id, "source_job_id": job_id,
+            "created_at": started_at, "settings": settings, **(request_extra or {}),
+        }
+        write_json(request_path, request_payload)
+        logs = release_jobs_dir()
+        log = logs / f"{release_id}.log"
+        handle = log.open("a", encoding="utf-8")
+        if (request_extra or {}).get("resume_existing"):
+            handle.write(f"\n=== Release resume/revision requested at {started_at} ===\n")
+            handle.flush()
+        command = [
+            sys.executable, "-u", "scripts/release_youtube_short.py", str(project),
+            "--content-project", str(record.get("content_project") or DEFAULT_CONTENT_PROJECT),
+            "--request-file", str(request_path),
+        ]
+        try:
+            process = subprocess.Popen(
+                command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True,
+            )
+        finally:
+            handle.close()
+        release = {
+            "schema_version": 1, "release_id": release_id, "source_job_id": job_id,
+            "video_id": record.get("video_id"), "topic": record.get("topic"),
+            "project": str(project.relative_to(ROOT)), "content_project": record.get("content_project", DEFAULT_CONTENT_PROJECT),
+            "status": "RUNNING", "pid": process.pid, "started_at": started_at,
+            "command": command, "log": str(log.relative_to(ROOT)), "settings": settings,
+            "request": str(request_path.relative_to(ROOT)),
+            "parent_release_id": (request_extra or {}).get("parent_release_id"),
+        }
+        release_record_path = logs / f"{release_id}.json"
+        write_json(release_record_path, release)
+        # Compatibility summary for older clients.  History authority remains release_jobs.
+        episode_path = self.jobs_dir / f"{job_id}.json"
+        record["release"] = dict(release)
+        write_json(episode_path, record)
+
+        def monitor() -> None:
+            code = process.wait()
+            current = load_release_json(release_record_path)
+            if current.get("status") == "STOPPED":
+                return
+            package_state = release_root(project, release_id) / "RELEASE_STATE.json"
+            worker = load_release_json(package_state)
+            worker_status = str(worker.get("status") or "")
+            succeeded = code == 0 and worker_status == "DONE"
+            needs_review = code == 0 and worker_status == "NEEDS_REVIEW"
+            current.update({
+                "status": "DONE" if succeeded else "NEEDS_REVIEW" if needs_review else "FAILED",
+                "exit_code": code, "completed_at": utcnow(),
+                "state": str(package_state.relative_to(ROOT)),
+            })
+            if not succeeded and not needs_review:
+                current["error"] = str(worker.get("error") or f"Release worker exited with code {code}.")[:1000]
+            if needs_review:
+                current["message"] = "Release package is complete but no final thumbnail is eligible."
+            write_json(release_record_path, current)
+            try:
+                episode = json.loads(episode_path.read_text(encoding="utf-8"))
+                if str((episode.get("release") or {}).get("release_id")) == release_id:
+                    episode["release"] = current
+                    write_json(episode_path, episode)
+            except (OSError, ValueError):
+                pass
+
+        threading.Thread(target=monitor, daemon=True, name=f"release-{release_id[-8:]}").start()
+        return release
+
     def handle_release(self) -> None:
-        """Start the isolated, auditable YouTube-release worker for one completed run."""
+        """Start a new isolated, auditable Release run for one approved video."""
         try:
             payload = self.read_json_payload(limit=12_000)
             job_id = str(payload.get("job_id") or "")
@@ -3714,102 +3966,166 @@ class Handler(BaseHTTPRequestHandler):
                     "error": f"A Release for video {other.get('video_id')} is already using the shared browser."
                 })
                 return
-            log = self.jobs_dir / f"{job_id}.release.log"
-            handle = log.open("a", encoding="utf-8")
-            request_dir = project / "publish" / "youtube_short" / "release_requests"
-            request_dir.mkdir(parents=True, exist_ok=True)
-            request_path = request_dir / f"{utcnow().replace(':', '-').replace('+', '_')}.json"
             release_id = "rel_" + uuid.uuid4().hex
-            write_json(request_path, {"schema_version": 2, "release_id": release_id, "job_id": job_id, "created_at": utcnow(), "settings": settings})
-            command = [
-                sys.executable, "-u", "scripts/release_youtube_short.py", str(project),
-                "--content-project", str(record.get("content_project") or DEFAULT_CONTENT_PROJECT),
-                "--request-file", str(request_path),
-            ]
             try:
-                process = subprocess.Popen(
-                    command, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT, start_new_session=True,
-                )
+                release = self.start_release_worker(record, project, release_id, settings)
             except OSError as exc:
-                handle.close()
                 self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"Could not start Release: {exc}"})
                 return
-            finally:
-                if not handle.closed:
-                    handle.close()
-            release = {
-                "status": "RUNNING", "pid": process.pid, "started_at": utcnow(),
-                "command": command, "log": str(log.relative_to(ROOT)),
-                "settings": settings, "request": str(request_path.relative_to(ROOT)), "release_id": release_id,
-            }
-            record["release"] = release
-            write_json(record_path, record)
             save_release_settings(settings)
-
-        def monitor() -> None:
-            code = process.wait()
-            try:
-                current = json.loads(record_path.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
-                return
-            package_state = project / "publish" / "youtube_short" / "RELEASE_STATE.json"
-            try:
-                worker = json.loads(package_state.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
-                worker = {}
-            result = dict(current.get("release") or {})
-            if result.get("status") == "STOPPED":
-                # The panel deliberately terminated this worker; its non-zero exit is
-                # expected and must not hide the preserved partial Release revision.
-                write_json(record_path, current)
-                return
-            worker_status = str(worker.get("status") or "")
-            succeeded = code == 0 and worker_status == "DONE"
-            needs_review = code == 0 and worker_status == "NEEDS_REVIEW"
-            result.update({
-                "status": "DONE" if succeeded else "NEEDS_REVIEW" if needs_review else "FAILED", "exit_code": code,
-                "completed_at": utcnow(), "state": str(package_state.relative_to(ROOT)),
-            })
-            if not succeeded and not needs_review:
-                result["error"] = str(worker.get("error") or f"Release worker exited with code {code}.")[:1000]
-            if needs_review:
-                result["message"] = "Release package is complete but no final thumbnail is eligible; review the visible candidates."
-            current["release"] = result
-            write_json(record_path, current)
-
-        threading.Thread(target=monitor, daemon=True, name=f"release-{job_id[:8]}").start()
         self.send_json(HTTPStatus.ACCEPTED, {"message": "Release started with the selected steps.", "release": release})
 
     def handle_release_stop(self) -> None:
         """Stop only a running Release worker; its partial revision is never deleted."""
         try:
             payload = self.read_json_payload(limit=4_000)
-            job_id = str(payload.get("job_id") or "")
-            if not JOB_ID_RE.fullmatch(job_id):
-                raise ValueError("Unknown job id.")
+            release_id = str(payload.get("release_id") or "")
+            if not release_id and JOB_ID_RE.fullmatch(str(payload.get("job_id") or "")):
+                episode = load_release_json(self.jobs_dir / f"{payload['job_id']}.json")
+                release_id = str((episode.get("release") or {}).get("release_id") or "")
+            if not RELEASE_ID_RE.fullmatch(release_id):
+                raise ValueError("Unknown Release id.")
         except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
-        record_path = self.jobs_dir / f"{job_id}.json"
-        try:
-            record = json.loads(record_path.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown run."}); return
-        release = record.get("release") if isinstance(record.get("release"), dict) else {}
-        if release.get("status") != "RUNNING":
+        resolved = resolve_release(self.jobs_dir, release_id)
+        process_path = release_jobs_dir() / f"{release_id}.json"
+        release = load_release_json(process_path)
+        if not resolved or release.get("status") != "RUNNING":
             self.send_json(HTTPStatus.CONFLICT, {"error": "This Release is not running."}); return
         stopped = terminate_job(release)
         stopped_at = utcnow()
         release.update({"status": "STOPPED", "stopped_at": stopped_at, "completed_at": stopped_at, "stopped_by": "panel"})
-        record["release"] = release
-        write_json(record_path, record)
-        release_id = str(release.get("release_id") or "")
-        state_path = ROOT / str(record.get("project") or "") / "publish" / "youtube_short" / "releases" / release_id / "RELEASE_STATE.json"
-        state = load_json(state_path) if state_path.is_file() else {}
+        write_json(process_path, release)
+        _summary, _project, root = resolved
+        state_path = root / "RELEASE_STATE.json"
+        state = load_release_json(state_path) if state_path.is_file() else {}
         if state:
             state.setdefault("events", []).append({"stage": "release", "status": "STOPPED", "at": stopped_at, "stopped_by": "panel"})
             state.update({"status": "STOPPED", "stopped_at": stopped_at})
             write_json(state_path, state)
+        source_job_id = str(release.get("source_job_id") or "")
+        episode_path = self.jobs_dir / f"{source_job_id}.json"
+        episode = load_release_json(episode_path)
+        if str((episode.get("release") or {}).get("release_id") or "") == release_id:
+            episode["release"] = release
+            write_json(episode_path, episode)
         self.send_json(HTTPStatus.ACCEPTED, {"message": "Release stopped; its partial revision was preserved.", "stopped": stopped, "release": release})
+
+    def _release_source_record(self, summary: dict[str, Any]) -> tuple[dict[str, Any], Path]:
+        job_id = str(summary.get("source_job_id") or "")
+        record = load_release_json(self.jobs_dir / f"{job_id}.json")
+        if not record:
+            raise ValueError("The source video job is no longer available in Studio.")
+        project = (ROOT / str(record.get("project") or "")).resolve()
+        project.relative_to((ROOT / "videos").resolve())
+        allowed, reason = release_eligibility(record, project)
+        if not allowed:
+            raise ValueError(reason)
+        return record, project
+
+    def handle_release_resume(self) -> None:
+        try:
+            payload = self.read_json_payload(limit=4_000)
+            release_id = str(payload.get("release_id") or "")
+            resolved = resolve_release(self.jobs_dir, release_id)
+            if not resolved:
+                raise ValueError("Unknown Release run.")
+            summary, _project, root = resolved
+            if summary.get("status") not in {"FAILED", "STOPPED", "INTERRUPTED", "NEEDS_REVIEW"}:
+                raise ValueError("Only an interrupted or attention-required Release can be resumed.")
+            record, project = self._release_source_record(summary)
+            request = load_release_json(root / "RELEASE_REQUEST.json")
+            settings = normalize_release_settings(request.get("settings") or summary.get("settings") or {})
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+        with LAUNCH_LOCK:
+            active = active_job(self.jobs_dir)
+            other = active_release(self.jobs_dir)
+            if active is not None or other is not None:
+                owner = (active or other).get("video_id")
+                self.send_json(HTTPStatus.CONFLICT, {"error": f"Video {owner} is using the shared browser."}); return
+            try:
+                release = self.start_release_worker(record, project, release_id, settings, request_extra={
+                    "resume_existing": True,
+                    "parent_release_id": request.get("parent_release_id"),
+                    "revision_roots": request.get("revision_roots") or [],
+                    "reused_nodes": request.get("reused_nodes") or [],
+                    "revision_feedback": request.get("revision_feedback") or "",
+                })
+            except OSError as exc:
+                self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"Could not resume Release: {exc}"}); return
+        self.send_json(HTTPStatus.ACCEPTED, {"message": "Release resumed; completed stages will be reused.", "release": release})
+
+    def handle_release_revision_preview(self) -> None:
+        try:
+            payload = self.read_json_payload(limit=20_000)
+            release_id = str(payload.get("release_id") or "")
+            roots = payload.get("node_ids")
+            if not isinstance(roots, list) or not roots:
+                raise ValueError("Choose at least one Release stage to revise.")
+            resolved = resolve_release(self.jobs_dir, release_id)
+            if not resolved:
+                raise ValueError("Unknown Release run.")
+            plan = release_revision_plan(resolved[2], [str(item) for item in roots])
+            graph = release_graph_for(resolved[2])
+            titles = {node["id"]: node["title"] for node in graph["nodes"]}
+            plan["titles"] = titles
+            self.send_json(HTTPStatus.OK, plan)
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+
+    def handle_release_revision(self) -> None:
+        try:
+            payload = self.read_json_payload(limit=30_000)
+            parent_id = str(payload.get("release_id") or "")
+            roots = payload.get("node_ids")
+            if not isinstance(roots, list) or not roots:
+                raise ValueError("Choose at least one Release stage to revise.")
+            resolved = resolve_release(self.jobs_dir, parent_id)
+            if not resolved:
+                raise ValueError("Unknown Release run.")
+            summary, _old_project, parent_root = resolved
+            record, project = self._release_source_record(summary)
+            settings = normalize_release_settings(payload.get("settings") or summary.get("settings") or {})
+            if payload.get("settings_revision") is True:
+                parent_request = load_release_json(parent_root / "RELEASE_REQUEST.json")
+                parent_settings = normalize_release_settings(parent_request.get("settings") or summary.get("settings") or {})
+                roots = release_settings_revision_roots(parent_root, parent_settings, settings)
+            plan = release_revision_plan(parent_root, [str(item) for item in roots])
+            feedback = str(payload.get("feedback") or "").strip()
+            if len(feedback) > 4000:
+                raise ValueError("Release revision feedback is too long.")
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+        with LAUNCH_LOCK:
+            active = active_job(self.jobs_dir)
+            other = active_release(self.jobs_dir)
+            if active is not None or other is not None:
+                owner = (active or other).get("video_id")
+                self.send_json(HTTPStatus.CONFLICT, {"error": f"Video {owner} is using the shared browser."}); return
+            release_id = "rel_" + uuid.uuid4().hex
+            child_root = release_root(project, release_id)
+            try:
+                shutil.copytree(parent_root, child_root)
+                for relative in release_artifact_paths_for(child_root, plan["affected_nodes"]):
+                    target = child_root / relative
+                    if target.is_file() or target.is_symlink():
+                        target.unlink(missing_ok=True)
+                    elif target.is_dir():
+                        shutil.rmtree(target)
+                (child_root / "RELEASE_STATE.json").unlink(missing_ok=True)
+                (child_root / "RELEASE_REQUEST.json").unlink(missing_ok=True)
+                release = self.start_release_worker(record, project, release_id, settings, request_extra={
+                    "resume_existing": True, "parent_release_id": parent_id,
+                    "revision_roots": plan["roots"], "reused_nodes": plan["reused_nodes"],
+                    "revision_feedback": feedback,
+                })
+            except Exception as exc:
+                # A child that never started is not history.  The immutable parent remains intact.
+                if child_root.is_dir() and not (release_jobs_dir() / f"{release_id}.json").is_file():
+                    shutil.rmtree(child_root)
+                self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"Could not start Release revision: {exc}"}); return
+        self.send_json(HTTPStatus.ACCEPTED, {"message": "Release revision started.", "release": release, "revision": plan})
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -3822,6 +4138,51 @@ class Handler(BaseHTTPRequestHandler):
         if route == "/api/release-settings":
             self.send_json(HTTPStatus.OK, {"settings": saved_release_settings()})
             return
+        if route == "/api/releases":
+            runs = release_records(self.jobs_dir)
+            sources = release_sources(self.jobs_dir)
+            self.send_json(HTTPStatus.OK, {
+                "at": utcnow(), "sources": sources, "runs": runs,
+                "summary": {
+                    "ready": len(sources),
+                    "running": sum(1 for item in runs if item["status"] == "RUNNING"),
+                    "attention": sum(1 for item in runs if item["status"] in {"FAILED", "STOPPED", "INTERRUPTED", "NEEDS_REVIEW"}),
+                    "done": sum(1 for item in runs if item["status"] == "DONE"),
+                },
+            })
+            return
+        if route.startswith("/api/releases/"):
+            parts = route.split("/")
+            release_id = parts[3] if len(parts) > 3 else ""
+            resolved = resolve_release(self.jobs_dir, release_id)
+            if not resolved:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown Release run."}); return
+            summary, _project, root = resolved
+            if len(parts) == 5 and parts[4] == "graph":
+                state = load_release_json(root / "RELEASE_STATE.json")
+                events = []
+                for index, entry in enumerate(state.get("events") or []):
+                    if isinstance(entry, dict):
+                        events.append({"id": f"release:{release_id}:{index}:{entry.get('at')}", **entry})
+                self.send_json(HTTPStatus.OK, {
+                    "release": {**summary, "resumable": summary["status"] in {"FAILED", "STOPPED", "INTERRUPTED", "NEEDS_REVIEW"}, "stoppable": bool(summary.get("live"))},
+                    "graph": release_graph_for(root), "activity": events,
+                    "request": load_release_json(root / "RELEASE_REQUEST.json"),
+                }); return
+            if len(parts) == 5 and parts[4] == "config":
+                self.send_json(HTTPStatus.OK, {"settings": summary.get("settings") or {}, "request": load_release_json(root / "RELEASE_REQUEST.json")}); return
+            if len(parts) == 5 and parts[4] == "log":
+                try: offset = int((query.get("offset") or ["0"])[0])
+                except ValueError: offset = 0
+                log = release_jobs_dir() / f"{release_id}.log"
+                if not log.is_file(): self.send_json(HTTPStatus.OK, {"offset": 0, "text": "", "waiting": True}); return
+                size = log.stat().st_size; start = min(max(offset, 0), size)
+                if size - start > 200_000: start = size - 200_000
+                with log.open("rb") as handle: handle.seek(start); chunk = handle.read()
+                self.send_json(HTTPStatus.OK, {"offset": size, "text": chunk.decode("utf-8", errors="replace"), "waiting": False}); return
+            if len(parts) >= 6 and parts[4] == "artifact":
+                self.serve_artifact(root, unquote("/".join(parts[5:]))); return
+            self.send_error(HTTPStatus.NOT_FOUND); return
 
         if route == "/api/ws":
             self.handle_websocket(query)
@@ -3986,7 +4347,7 @@ class Handler(BaseHTTPRequestHandler):
             if not resolved: self.send_error(HTTPStatus.NOT_FOUND); return
             self.serve_artifact(resolved[1], unquote(parts[5])); return
 
-        if route in {"/", "/new", "/runs", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/assets/"):
+        if route in {"/", "/new", "/runs", "/releases", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/releases/") or route.startswith("/assets/"):
             self.serve_studio(route); return
 
         if route == "/api/status":
@@ -4040,7 +4401,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_HEAD(self) -> None:
         """Expose correct metadata for static assets and range-capable previews."""
         route = urlparse(self.path).path
-        if route in {"/", "/new", "/runs", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/assets/"):
+        if route in {"/", "/new", "/runs", "/releases", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/releases/") or route.startswith("/assets/"):
             self.serve_studio(route); return
         if route.startswith("/api/styles/"):
             parts = route.split("/")
@@ -4051,6 +4412,11 @@ class Handler(BaseHTTPRequestHandler):
             resolved = self.project_for_job(parts[3]) if len(parts) == 6 else None
             if resolved:
                 self.serve_artifact(resolved[1], unquote(parts[5])); return
+        if route.startswith("/api/releases/") and "/artifact/" in route:
+            parts = route.split("/")
+            resolved = resolve_release(self.jobs_dir, parts[3]) if len(parts) >= 6 else None
+            if resolved:
+                self.serve_artifact(resolved[2], unquote("/".join(parts[5:]))); return
         self.send_error(HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:
@@ -4072,6 +4438,9 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/revisions": self.handle_revision(); return
         if self.path == "/api/config-revisions/preview": self.handle_config_preview(); return
         if self.path == "/api/config-revisions": self.handle_config_revision(); return
+        if self.path == "/api/releases/revisions/preview": self.handle_release_revision_preview(); return
+        if self.path == "/api/releases/revisions": self.handle_release_revision(); return
+        if self.path == "/api/releases/resume": self.handle_release_resume(); return
         if self.path == "/api/releases": self.handle_release(); return
         if self.path == "/api/releases/stop": self.handle_release_stop(); return
         if self.path in {"/resume", "/api/fallback-action"}: self.handle_resume(); return
@@ -4590,6 +4959,7 @@ def main() -> None:
     prepare_uploaded_fonts_dir(ROOT)
     reconcile_scheduled_resumes()
     reconcile_stuck_jobs_once()
+    reconcile_stuck_releases_once()
     start_stuck_job_reconciler(interval=30)
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"Video control panel: http://{args.host}:{args.port}", flush=True); server.serve_forever()

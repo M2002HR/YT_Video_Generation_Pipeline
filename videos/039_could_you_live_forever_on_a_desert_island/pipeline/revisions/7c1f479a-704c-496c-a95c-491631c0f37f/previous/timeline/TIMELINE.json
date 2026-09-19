@@ -1,0 +1,1906 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 56.686,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.917,
+      "duration": 4.917,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/spyglass_transition_trimmed.mp4",
+      "start": 4.917,
+      "end": 9.042,
+      "duration": 4.125,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.042,
+      "end": 11.92,
+      "duration": 2.878,
+      "speech_start": 9.48,
+      "speech_end": 11.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Calories give your body energy.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 11.92,
+      "end": 16.86,
+      "duration": 4.94,
+      "speech_start": 11.92,
+      "speech_end": 16.4,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Health also needs vitamins, minerals, protein, and fats.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 16.86,
+      "end": 21.2,
+      "duration": 4.34,
+      "speech_start": 16.86,
+      "speech_end": 20.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Eating only a few foods may still leave nutrient gaps.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 21.2,
+      "end": 24.74,
+      "duration": 3.54,
+      "speech_start": 21.2,
+      "speech_end": 24.22,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Over time, those gaps can cause health problems.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 24.74,
+      "end": 29.39,
+      "duration": 4.65,
+      "speech_start": 24.74,
+      "speech_end": 29.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Fresh plants may add nutrients those repeated meals miss.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 29.39,
+      "end": 33.6,
+      "duration": 4.21,
+      "speech_start": 29.18,
+      "speech_end": 33.32,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Clean drinking water is essential every day.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 33.6,
+      "end": 38.02,
+      "duration": 4.42,
+      "speech_start": 33.6,
+      "speech_end": 37.62,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Shelter protects you from heat, rain, and storms.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 38.02,
+      "end": 42.94,
+      "duration": 4.92,
+      "speech_start": 38.02,
+      "speech_end": 42.66,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Injuries or infections can become dangerous without medical care.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 42.94,
+      "end": 47.17,
+      "duration": 4.23,
+      "speech_start": 42.94,
+      "speech_end": 47.18,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Even perfect nutrition cannot stop normal aging.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 47.17,
+      "end": 56.686,
+      "duration": 9.516,
+      "speech_start": 47.16,
+      "speech_end": 52.66,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Plenty of food helps, but it cannot make you live forever.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 0.24,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.0,
+          "end": 0.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.24,
+      "end": 0.9,
+      "text": "food",
+      "ass_text": "food",
+      "words": [
+        {
+          "text": "food",
+          "start": 0.24,
+          "end": 0.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.9,
+      "end": 1.12,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 0.9,
+          "end": 1.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.12,
+      "end": 1.82,
+      "text": "everywhere,",
+      "ass_text": "everywhere,",
+      "words": [
+        {
+          "text": "everywhere,",
+          "start": 1.12,
+          "end": 1.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.82,
+      "end": 1.98,
+      "text": "why",
+      "ass_text": "why",
+      "words": [
+        {
+          "text": "why",
+          "start": 1.82,
+          "end": 1.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.98,
+      "end": 2.2,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 1.98,
+          "end": 2.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.2,
+      "end": 2.36,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 2.2,
+          "end": 2.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.36,
+      "end": 2.74,
+      "text": "same",
+      "ass_text": "same",
+      "words": [
+        {
+          "text": "same",
+          "start": 2.36,
+          "end": 2.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.74,
+      "end": 3.12,
+      "text": "few",
+      "ass_text": "few",
+      "words": [
+        {
+          "text": "few",
+          "start": 2.74,
+          "end": 3.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.12,
+      "end": 3.64,
+      "text": "meals",
+      "ass_text": "meals",
+      "words": [
+        {
+          "text": "meals",
+          "start": 3.12,
+          "end": 3.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.64,
+      "end": 4.18,
+      "text": "still",
+      "ass_text": "still",
+      "words": [
+        {
+          "text": "still",
+          "start": 3.64,
+          "end": 4.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.18,
+      "end": 4.58,
+      "text": "fail",
+      "ass_text": "fail",
+      "words": [
+        {
+          "text": "fail",
+          "start": 4.18,
+          "end": 4.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.58,
+      "end": 4.88,
+      "text": "you?",
+      "ass_text": "you?",
+      "words": [
+        {
+          "text": "you?",
+          "start": 4.58,
+          "end": 4.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.24,
+      "end": 5.36,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 5.24,
+          "end": 5.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.36,
+      "end": 5.68,
+      "text": "clue",
+      "ass_text": "clue",
+      "words": [
+        {
+          "text": "clue",
+          "start": 5.36,
+          "end": 5.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.68,
+      "end": 6.0,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 5.68,
+          "end": 6.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.0,
+      "end": 6.22,
+      "text": "what",
+      "ass_text": "what",
+      "words": [
+        {
+          "text": "what",
+          "start": 6.0,
+          "end": 6.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.22,
+      "end": 6.5,
+      "text": "those",
+      "ass_text": "those",
+      "words": [
+        {
+          "text": "those",
+          "start": 6.22,
+          "end": 6.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.5,
+      "end": 6.94,
+      "text": "repeated",
+      "ass_text": "repeated",
+      "words": [
+        {
+          "text": "repeated",
+          "start": 6.5,
+          "end": 6.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.94,
+      "end": 7.3,
+      "text": "meals",
+      "ass_text": "meals",
+      "words": [
+        {
+          "text": "meals",
+          "start": 6.94,
+          "end": 7.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.3,
+      "end": 8.18,
+      "text": "actually",
+      "ass_text": "actually",
+      "words": [
+        {
+          "text": "actually",
+          "start": 7.3,
+          "end": 8.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.18,
+      "end": 9.02,
+      "text": "provide.",
+      "ass_text": "provide.",
+      "words": [
+        {
+          "text": "provide.",
+          "start": 8.18,
+          "end": 9.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.48,
+      "end": 9.9,
+      "text": "Calories",
+      "ass_text": "Calories",
+      "words": [
+        {
+          "text": "Calories",
+          "start": 9.48,
+          "end": 9.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.9,
+      "end": 10.24,
+      "text": "give",
+      "ass_text": "give",
+      "words": [
+        {
+          "text": "give",
+          "start": 9.9,
+          "end": 10.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.24,
+      "end": 10.46,
+      "text": "your",
+      "ass_text": "your",
+      "words": [
+        {
+          "text": "your",
+          "start": 10.24,
+          "end": 10.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.46,
+      "end": 10.8,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 10.46,
+          "end": 10.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.8,
+      "end": 11.6,
+      "text": "energy.",
+      "ass_text": "energy.",
+      "words": [
+        {
+          "text": "energy.",
+          "start": 10.8,
+          "end": 11.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.92,
+      "end": 12.22,
+      "text": "Health",
+      "ass_text": "Health",
+      "words": [
+        {
+          "text": "Health",
+          "start": 11.92,
+          "end": 12.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.22,
+      "end": 12.8,
+      "text": "also",
+      "ass_text": "also",
+      "words": [
+        {
+          "text": "also",
+          "start": 12.22,
+          "end": 12.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.8,
+      "end": 13.18,
+      "text": "needs",
+      "ass_text": "needs",
+      "words": [
+        {
+          "text": "needs",
+          "start": 12.8,
+          "end": 13.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.18,
+      "end": 14.08,
+      "text": "vitamins,",
+      "ass_text": "vitamins,",
+      "words": [
+        {
+          "text": "vitamins,",
+          "start": 13.18,
+          "end": 14.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.08,
+      "end": 14.88,
+      "text": "minerals,",
+      "ass_text": "minerals,",
+      "words": [
+        {
+          "text": "minerals,",
+          "start": 14.08,
+          "end": 14.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.88,
+      "end": 15.48,
+      "text": "protein,",
+      "ass_text": "protein,",
+      "words": [
+        {
+          "text": "protein,",
+          "start": 14.88,
+          "end": 15.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.48,
+      "end": 16.0,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 15.48,
+          "end": 16.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.0,
+      "end": 16.4,
+      "text": "fats.",
+      "ass_text": "fats.",
+      "words": [
+        {
+          "text": "fats.",
+          "start": 16.0,
+          "end": 16.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 16.86,
+      "end": 17.1,
+      "text": "Eating",
+      "ass_text": "Eating",
+      "words": [
+        {
+          "text": "Eating",
+          "start": 16.86,
+          "end": 17.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.1,
+      "end": 17.62,
+      "text": "only",
+      "ass_text": "only",
+      "words": [
+        {
+          "text": "only",
+          "start": 17.1,
+          "end": 17.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.62,
+      "end": 17.82,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 17.62,
+          "end": 17.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.82,
+      "end": 17.96,
+      "text": "few",
+      "ass_text": "few",
+      "words": [
+        {
+          "text": "few",
+          "start": 17.82,
+          "end": 17.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.96,
+      "end": 18.38,
+      "text": "foods",
+      "ass_text": "foods",
+      "words": [
+        {
+          "text": "foods",
+          "start": 17.96,
+          "end": 18.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.38,
+      "end": 18.86,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 18.38,
+          "end": 18.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.86,
+      "end": 19.24,
+      "text": "still",
+      "ass_text": "still",
+      "words": [
+        {
+          "text": "still",
+          "start": 18.86,
+          "end": 19.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.24,
+      "end": 19.62,
+      "text": "leave",
+      "ass_text": "leave",
+      "words": [
+        {
+          "text": "leave",
+          "start": 19.24,
+          "end": 19.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.62,
+      "end": 20.04,
+      "text": "nutrient",
+      "ass_text": "nutrient",
+      "words": [
+        {
+          "text": "nutrient",
+          "start": 19.62,
+          "end": 20.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 20.04,
+      "end": 20.6,
+      "text": "gaps.",
+      "ass_text": "gaps.",
+      "words": [
+        {
+          "text": "gaps.",
+          "start": 20.04,
+          "end": 20.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 21.2,
+      "end": 21.52,
+      "text": "Over",
+      "ass_text": "Over",
+      "words": [
+        {
+          "text": "Over",
+          "start": 21.2,
+          "end": 21.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.52,
+      "end": 21.96,
+      "text": "time,",
+      "ass_text": "time,",
+      "words": [
+        {
+          "text": "time,",
+          "start": 21.52,
+          "end": 21.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.96,
+      "end": 22.6,
+      "text": "those",
+      "ass_text": "those",
+      "words": [
+        {
+          "text": "those",
+          "start": 21.96,
+          "end": 22.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.6,
+      "end": 22.88,
+      "text": "gaps",
+      "ass_text": "gaps",
+      "words": [
+        {
+          "text": "gaps",
+          "start": 22.6,
+          "end": 22.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.88,
+      "end": 23.12,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 22.88,
+          "end": 23.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.12,
+      "end": 23.48,
+      "text": "cause",
+      "ass_text": "cause",
+      "words": [
+        {
+          "text": "cause",
+          "start": 23.12,
+          "end": 23.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.48,
+      "end": 23.8,
+      "text": "health",
+      "ass_text": "health",
+      "words": [
+        {
+          "text": "health",
+          "start": 23.48,
+          "end": 23.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.8,
+      "end": 24.22,
+      "text": "problems.",
+      "ass_text": "problems.",
+      "words": [
+        {
+          "text": "problems.",
+          "start": 23.8,
+          "end": 24.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 24.74,
+      "end": 25.06,
+      "text": "Fresh",
+      "ass_text": "Fresh",
+      "words": [
+        {
+          "text": "Fresh",
+          "start": 24.74,
+          "end": 25.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.06,
+      "end": 25.6,
+      "text": "plants",
+      "ass_text": "plants",
+      "words": [
+        {
+          "text": "plants",
+          "start": 25.06,
+          "end": 25.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.6,
+      "end": 25.9,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 25.6,
+          "end": 25.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.9,
+      "end": 26.28,
+      "text": "add",
+      "ass_text": "add",
+      "words": [
+        {
+          "text": "add",
+          "start": 25.9,
+          "end": 26.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 26.28,
+      "end": 26.96,
+      "text": "nutrients",
+      "ass_text": "nutrients",
+      "words": [
+        {
+          "text": "nutrients",
+          "start": 26.28,
+          "end": 26.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 26.96,
+      "end": 27.48,
+      "text": "those",
+      "ass_text": "those",
+      "words": [
+        {
+          "text": "those",
+          "start": 26.96,
+          "end": 27.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.48,
+      "end": 28.06,
+      "text": "repeated",
+      "ass_text": "repeated",
+      "words": [
+        {
+          "text": "repeated",
+          "start": 27.48,
+          "end": 28.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.06,
+      "end": 28.68,
+      "text": "meals",
+      "ass_text": "meals",
+      "words": [
+        {
+          "text": "meals",
+          "start": 28.06,
+          "end": 28.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.68,
+      "end": 29.39,
+      "text": "miss.",
+      "ass_text": "miss.",
+      "words": [
+        {
+          "text": "miss.",
+          "start": 28.68,
+          "end": 29.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.39,
+      "end": 30.06,
+      "text": "Clean",
+      "ass_text": "Clean",
+      "words": [
+        {
+          "text": "Clean",
+          "start": 29.18,
+          "end": 30.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.06,
+      "end": 30.78,
+      "text": "drinking",
+      "ass_text": "drinking",
+      "words": [
+        {
+          "text": "drinking",
+          "start": 30.06,
+          "end": 30.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.78,
+      "end": 31.28,
+      "text": "water",
+      "ass_text": "water",
+      "words": [
+        {
+          "text": "water",
+          "start": 30.78,
+          "end": 31.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.28,
+      "end": 31.74,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 31.28,
+          "end": 31.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.74,
+      "end": 32.32,
+      "text": "essential",
+      "ass_text": "essential",
+      "words": [
+        {
+          "text": "essential",
+          "start": 31.74,
+          "end": 32.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.32,
+      "end": 32.7,
+      "text": "every",
+      "ass_text": "every",
+      "words": [
+        {
+          "text": "every",
+          "start": 32.32,
+          "end": 32.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.7,
+      "end": 33.32,
+      "text": "day.",
+      "ass_text": "day.",
+      "words": [
+        {
+          "text": "day.",
+          "start": 32.7,
+          "end": 33.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 33.6,
+      "end": 34.02,
+      "text": "Shelter",
+      "ass_text": "Shelter",
+      "words": [
+        {
+          "text": "Shelter",
+          "start": 33.6,
+          "end": 34.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.02,
+      "end": 34.5,
+      "text": "protects",
+      "ass_text": "protects",
+      "words": [
+        {
+          "text": "protects",
+          "start": 34.02,
+          "end": 34.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.5,
+      "end": 34.68,
+      "text": "you",
+      "ass_text": "you",
+      "words": [
+        {
+          "text": "you",
+          "start": 34.5,
+          "end": 34.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.68,
+      "end": 35.14,
+      "text": "from",
+      "ass_text": "from",
+      "words": [
+        {
+          "text": "from",
+          "start": 34.68,
+          "end": 35.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.14,
+      "end": 35.86,
+      "text": "heat,",
+      "ass_text": "heat,",
+      "words": [
+        {
+          "text": "heat,",
+          "start": 35.14,
+          "end": 35.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.86,
+      "end": 36.52,
+      "text": "rain",
+      "ass_text": "rain",
+      "words": [
+        {
+          "text": "rain",
+          "start": 35.86,
+          "end": 36.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.52,
+      "end": 36.84,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 36.52,
+          "end": 36.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.84,
+      "end": 37.62,
+      "text": "storms.",
+      "ass_text": "storms.",
+      "words": [
+        {
+          "text": "storms.",
+          "start": 36.84,
+          "end": 37.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 38.02,
+      "end": 38.62,
+      "text": "Injuries",
+      "ass_text": "Injuries",
+      "words": [
+        {
+          "text": "Injuries",
+          "start": 38.02,
+          "end": 38.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.62,
+      "end": 38.86,
+      "text": "or",
+      "ass_text": "or",
+      "words": [
+        {
+          "text": "or",
+          "start": 38.62,
+          "end": 38.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.86,
+      "end": 39.38,
+      "text": "infections",
+      "ass_text": "infections",
+      "words": [
+        {
+          "text": "infections",
+          "start": 38.86,
+          "end": 39.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.38,
+      "end": 40.06,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 39.38,
+          "end": 40.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.06,
+      "end": 40.46,
+      "text": "become",
+      "ass_text": "become",
+      "words": [
+        {
+          "text": "become",
+          "start": 40.06,
+          "end": 40.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.46,
+      "end": 41.08,
+      "text": "dangerous",
+      "ass_text": "dangerous",
+      "words": [
+        {
+          "text": "dangerous",
+          "start": 40.46,
+          "end": 41.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.08,
+      "end": 41.64,
+      "text": "without",
+      "ass_text": "without",
+      "words": [
+        {
+          "text": "without",
+          "start": 41.08,
+          "end": 41.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 41.64,
+      "end": 42.2,
+      "text": "medical",
+      "ass_text": "medical",
+      "words": [
+        {
+          "text": "medical",
+          "start": 41.64,
+          "end": 42.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.2,
+      "end": 42.66,
+      "text": "care.",
+      "ass_text": "care.",
+      "words": [
+        {
+          "text": "care.",
+          "start": 42.2,
+          "end": 42.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 42.94,
+      "end": 43.3,
+      "text": "Even",
+      "ass_text": "Even",
+      "words": [
+        {
+          "text": "Even",
+          "start": 42.94,
+          "end": 43.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.3,
+      "end": 43.98,
+      "text": "perfect",
+      "ass_text": "perfect",
+      "words": [
+        {
+          "text": "perfect",
+          "start": 43.3,
+          "end": 43.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.98,
+      "end": 44.56,
+      "text": "nutrition",
+      "ass_text": "nutrition",
+      "words": [
+        {
+          "text": "nutrition",
+          "start": 43.98,
+          "end": 44.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 44.56,
+      "end": 45.26,
+      "text": "cannot",
+      "ass_text": "cannot",
+      "words": [
+        {
+          "text": "cannot",
+          "start": 44.56,
+          "end": 45.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.26,
+      "end": 45.74,
+      "text": "stop",
+      "ass_text": "stop",
+      "words": [
+        {
+          "text": "stop",
+          "start": 45.26,
+          "end": 45.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 45.74,
+      "end": 46.26,
+      "text": "normal",
+      "ass_text": "normal",
+      "words": [
+        {
+          "text": "normal",
+          "start": 45.74,
+          "end": 46.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 46.26,
+      "end": 47.17,
+      "text": "aging.",
+      "ass_text": "aging.",
+      "words": [
+        {
+          "text": "aging.",
+          "start": 46.26,
+          "end": 47.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 47.17,
+      "end": 47.96,
+      "text": "Plenty",
+      "ass_text": "Plenty",
+      "words": [
+        {
+          "text": "Plenty",
+          "start": 47.16,
+          "end": 47.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 47.96,
+      "end": 48.3,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 47.96,
+          "end": 48.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.3,
+      "end": 48.72,
+      "text": "food",
+      "ass_text": "food",
+      "words": [
+        {
+          "text": "food",
+          "start": 48.3,
+          "end": 48.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.72,
+      "end": 49.9,
+      "text": "helps,",
+      "ass_text": "helps,",
+      "words": [
+        {
+          "text": "helps,",
+          "start": 48.72,
+          "end": 49.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 49.9,
+      "end": 49.96,
+      "text": "but",
+      "ass_text": "but",
+      "words": [
+        {
+          "text": "but",
+          "start": 49.9,
+          "end": 49.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 49.96,
+      "end": 50.18,
+      "text": "it",
+      "ass_text": "it",
+      "words": [
+        {
+          "text": "it",
+          "start": 49.96,
+          "end": 50.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 50.18,
+      "end": 50.6,
+      "text": "cannot",
+      "ass_text": "cannot",
+      "words": [
+        {
+          "text": "cannot",
+          "start": 50.18,
+          "end": 50.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 50.6,
+      "end": 50.98,
+      "text": "make",
+      "ass_text": "make",
+      "words": [
+        {
+          "text": "make",
+          "start": 50.6,
+          "end": 50.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 50.98,
+      "end": 51.16,
+      "text": "you",
+      "ass_text": "you",
+      "words": [
+        {
+          "text": "you",
+          "start": 50.98,
+          "end": 51.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 51.16,
+      "end": 51.58,
+      "text": "live",
+      "ass_text": "live",
+      "words": [
+        {
+          "text": "live",
+          "start": 51.16,
+          "end": 51.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 51.58,
+      "end": 52.66,
+      "text": "forever.",
+      "ass_text": "forever.",
+      "words": [
+        {
+          "text": "forever.",
+          "start": 51.58,
+          "end": 52.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 52.96,
+      "end": 53.2,
+      "text": "Like",
+      "ass_text": "Like",
+      "words": [
+        {
+          "text": "Like",
+          "start": 52.96,
+          "end": 53.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.2,
+      "end": 53.44,
+      "text": "this",
+      "ass_text": "this",
+      "words": [
+        {
+          "text": "this",
+          "start": 53.2,
+          "end": 53.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.44,
+      "end": 53.94,
+      "text": "island",
+      "ass_text": "island",
+      "words": [
+        {
+          "text": "island",
+          "start": 53.44,
+          "end": 53.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 53.94,
+      "end": 54.38,
+      "text": "challenge",
+      "ass_text": "challenge",
+      "words": [
+        {
+          "text": "challenge",
+          "start": 53.94,
+          "end": 54.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 54.38,
+      "end": 55.06,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 54.38,
+          "end": 55.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 55.06,
+      "end": 56.62,
+      "text": "subscribe.",
+      "ass_text": "subscribe.",
+      "words": [
+        {
+          "text": "subscribe.",
+          "start": 55.06,
+          "end": 56.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 5,
+        "before_beat": 6,
+        "current_speech_end": 29.6,
+        "next_speech_start": 29.18,
+        "overlap_seconds": 0.42,
+        "chosen_boundary": 29.39
+      },
+      {
+        "after_beat": 9,
+        "before_beat": 10,
+        "current_speech_end": 47.18,
+        "next_speech_start": 47.16,
+        "overlap_seconds": 0.02,
+        "chosen_boundary": 47.17
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 61,
+        "current_cue": 62,
+        "previous_end": 29.6,
+        "current_start": 29.18,
+        "overlap_seconds": 0.42,
+        "chosen_boundary": 29.39
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 92,
+        "current_cue": 93,
+        "previous_end": 47.18,
+        "current_start": 47.16,
+        "overlap_seconds": 0.02,
+        "chosen_boundary": 47.17
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 110,
+    "subtitle_cues_estimated": 0
+  }
+}

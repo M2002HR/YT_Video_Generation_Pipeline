@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 45.975,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 109,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.0,
+      "end": 0.2
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 0.2,
+      "end": 0.3
+    },
+    {
+      "text": "grew",
+      "token": "grew",
+      "start": 0.3,
+      "end": 0.52
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 0.52,
+      "end": 0.72
+    },
+    {
+      "text": "big",
+      "token": "big",
+      "start": 0.72,
+      "end": 0.92
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 0.92,
+      "end": 1.12
+    },
+    {
+      "text": "an",
+      "token": "an",
+      "start": 1.12,
+      "end": 1.24
+    },
+    {
+      "text": "elephant,",
+      "token": "elephant",
+      "start": 1.24,
+      "end": 1.74
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 1.74,
+      "end": 2.16
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 2.16,
+      "end": 2.32
+    },
+    {
+      "text": "legs",
+      "token": "legs",
+      "start": 2.32,
+      "end": 2.68
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 2.68,
+      "end": 3.0
+    },
+    {
+      "text": "hold",
+      "token": "hold",
+      "start": 3.0,
+      "end": 3.32
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 3.32,
+      "end": 3.54
+    },
+    {
+      "text": "weight?",
+      "token": "weight",
+      "start": 3.54,
+      "end": 3.88
+    },
+    {
+      "text": "As",
+      "token": "as",
+      "start": 4.58,
+      "end": 4.76
+    },
+    {
+      "text": "bodies",
+      "token": "bodies",
+      "start": 4.76,
+      "end": 5.12
+    },
+    {
+      "text": "grow,",
+      "token": "grow",
+      "start": 5.12,
+      "end": 5.74
+    },
+    {
+      "text": "weight",
+      "token": "weight",
+      "start": 5.74,
+      "end": 6.22
+    },
+    {
+      "text": "rises",
+      "token": "rises",
+      "start": 6.22,
+      "end": 6.66
+    },
+    {
+      "text": "faster",
+      "token": "faster",
+      "start": 6.66,
+      "end": 7.18
+    },
+    {
+      "text": "than",
+      "token": "than",
+      "start": 7.18,
+      "end": 7.44
+    },
+    {
+      "text": "bone",
+      "token": "bone",
+      "start": 7.44,
+      "end": 7.78
+    },
+    {
+      "text": "strength.",
+      "token": "strength",
+      "start": 7.78,
+      "end": 8.3
+    },
+    {
+      "text": "Picture",
+      "token": "picture",
+      "start": 8.92,
+      "end": 9.2
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 9.2,
+      "end": 9.4
+    },
+    {
+      "text": "human",
+      "token": "human",
+      "start": 9.4,
+      "end": 9.7
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 9.7,
+      "end": 10.02
+    },
+    {
+      "text": "4",
+      "token": "4",
+      "start": 10.02,
+      "end": 10.32
+    },
+    {
+      "text": "tonnes.",
+      "token": "tonnes",
+      "start": 10.32,
+      "end": 10.56
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 10.56,
+      "end": 11.32
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 11.32,
+      "end": 11.5
+    },
+    {
+      "text": "50",
+      "token": "50",
+      "start": 11.5,
+      "end": 11.86
+    },
+    {
+      "text": "times",
+      "token": "times",
+      "start": 11.86,
+      "end": 12.4
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 12.4,
+      "end": 12.8
+    },
+    {
+      "text": "normal",
+      "token": "normal",
+      "start": 12.8,
+      "end": 13.1
+    },
+    {
+      "text": "weight.",
+      "token": "weight",
+      "start": 13.1,
+      "end": 13.74
+    },
+    {
+      "text": "Weight",
+      "token": "weight",
+      "start": 14.08,
+      "end": 14.32
+    },
+    {
+      "text": "grows",
+      "token": "grows",
+      "start": 14.32,
+      "end": 14.68
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 14.68,
+      "end": 14.94
+    },
+    {
+      "text": "volume",
+      "token": "volume",
+      "start": 14.94,
+      "end": 15.38
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 15.38,
+      "end": 15.72
+    },
+    {
+      "text": "three",
+      "token": "three",
+      "start": 15.72,
+      "end": 15.88
+    },
+    {
+      "text": "directions,",
+      "token": "directions",
+      "start": 15.88,
+      "end": 16.44
+    },
+    {
+      "text": "but",
+      "token": "but",
+      "start": 16.44,
+      "end": 17.26
+    },
+    {
+      "text": "bone",
+      "token": "bone",
+      "start": 17.26,
+      "end": 17.64
+    },
+    {
+      "text": "strength",
+      "token": "strength",
+      "start": 17.64,
+      "end": 18.1
+    },
+    {
+      "text": "only",
+      "token": "only",
+      "start": 18.1,
+      "end": 18.68
+    },
+    {
+      "text": "grows",
+      "token": "grows",
+      "start": 18.68,
+      "end": 19.1
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 19.1,
+      "end": 19.56
+    },
+    {
+      "text": "bone",
+      "token": "bone",
+      "start": 19.56,
+      "end": 20.0
+    },
+    {
+      "text": "thickness.",
+      "token": "thickness",
+      "start": 20.0,
+      "end": 20.54
+    },
+    {
+      "text": "Your",
+      "token": "your",
+      "start": 21.74,
+      "end": 21.98
+    },
+    {
+      "text": "weight",
+      "token": "weight",
+      "start": 21.98,
+      "end": 22.22
+    },
+    {
+      "text": "jumps",
+      "token": "jumps",
+      "start": 22.22,
+      "end": 22.54
+    },
+    {
+      "text": "50",
+      "token": "50",
+      "start": 22.54,
+      "end": 22.9
+    },
+    {
+      "text": "times,",
+      "token": "times",
+      "start": 22.9,
+      "end": 23.46
+    },
+    {
+      "text": "while",
+      "token": "while",
+      "start": 23.46,
+      "end": 24.0
+    },
+    {
+      "text": "bone",
+      "token": "bone",
+      "start": 24.0,
+      "end": 24.4
+    },
+    {
+      "text": "thickness",
+      "token": "thickness",
+      "start": 24.4,
+      "end": 24.84
+    },
+    {
+      "text": "only",
+      "token": "only",
+      "start": 24.84,
+      "end": 25.66
+    },
+    {
+      "text": "grows",
+      "token": "grows",
+      "start": 25.66,
+      "end": 26.08
+    },
+    {
+      "text": "14",
+      "token": "14",
+      "start": 26.08,
+      "end": 26.48
+    },
+    {
+      "text": "times.",
+      "token": "times",
+      "start": 26.48,
+      "end": 27.28
+    },
+    {
+      "text": "Elephants",
+      "token": "elephants",
+      "start": 27.78,
+      "end": 28.16
+    },
+    {
+      "text": "survive",
+      "token": "survive",
+      "start": 28.16,
+      "end": 28.5
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 28.5,
+      "end": 29.0
+    },
+    {
+      "text": "legs",
+      "token": "legs",
+      "start": 29.0,
+      "end": 29.38
+    },
+    {
+      "text": "like",
+      "token": "like",
+      "start": 29.38,
+      "end": 29.7
+    },
+    {
+      "text": "thick",
+      "token": "thick",
+      "start": 29.7,
+      "end": 30.02
+    },
+    {
+      "text": "pillars.",
+      "token": "pillars",
+      "start": 30.02,
+      "end": 30.76
+    },
+    {
+      "text": "Slender",
+      "token": "slender",
+      "start": 31.2,
+      "end": 31.56
+    },
+    {
+      "text": "human",
+      "token": "human",
+      "start": 31.56,
+      "end": 31.94
+    },
+    {
+      "text": "legs",
+      "token": "legs",
+      "start": 31.94,
+      "end": 32.34
+    },
+    {
+      "text": "bend",
+      "token": "bend",
+      "start": 32.34,
+      "end": 32.88
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 32.88,
+      "end": 33.18
+    },
+    {
+      "text": "angles.",
+      "token": "angles",
+      "start": 33.18,
+      "end": 33.66
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 34.22,
+      "end": 34.3
+    },
+    {
+      "text": "moment",
+      "token": "moment",
+      "start": 34.3,
+      "end": 34.52
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 34.52,
+      "end": 34.74
+    },
+    {
+      "text": "try",
+      "token": "try",
+      "start": 34.74,
+      "end": 35.02
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 35.02,
+      "end": 35.14
+    },
+    {
+      "text": "stand,",
+      "token": "stand",
+      "start": 35.14,
+      "end": 35.88
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 35.88,
+      "end": 36.26
+    },
+    {
+      "text": "leg",
+      "token": "leg",
+      "start": 36.26,
+      "end": 36.52
+    },
+    {
+      "text": "bones",
+      "token": "bones",
+      "start": 36.52,
+      "end": 36.88
+    },
+    {
+      "text": "snap",
+      "token": "snap",
+      "start": 36.88,
+      "end": 37.4
+    },
+    {
+      "text": "under",
+      "token": "under",
+      "start": 37.4,
+      "end": 37.8
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 37.8,
+      "end": 37.94
+    },
+    {
+      "text": "load.",
+      "token": "load",
+      "start": 37.94,
+      "end": 38.5
+    },
+    {
+      "text": "To",
+      "token": "to",
+      "start": 38.88,
+      "end": 39.0
+    },
+    {
+      "text": "carry",
+      "token": "carry",
+      "start": 39.0,
+      "end": 39.28
+    },
+    {
+      "text": "that",
+      "token": "that",
+      "start": 39.28,
+      "end": 39.48
+    },
+    {
+      "text": "weight,",
+      "token": "weight",
+      "start": 39.48,
+      "end": 39.96
+    },
+    {
+      "text": "you",
+      "token": "you",
+      "start": 39.96,
+      "end": 40.3
+    },
+    {
+      "text": "need",
+      "token": "need",
+      "start": 40.3,
+      "end": 40.44
+    },
+    {
+      "text": "legs",
+      "token": "legs",
+      "start": 40.44,
+      "end": 40.82
+    },
+    {
+      "text": "like",
+      "token": "like",
+      "start": 40.82,
+      "end": 41.16
+    },
+    {
+      "text": "tree",
+      "token": "tree",
+      "start": 41.16,
+      "end": 41.44
+    },
+    {
+      "text": "trunks.",
+      "token": "trunks",
+      "start": 41.44,
+      "end": 42.1
+    },
+    {
+      "text": "Ask",
+      "token": "ask",
+      "start": 42.54,
+      "end": 42.84
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 42.84,
+      "end": 43.02
+    },
+    {
+      "text": "next",
+      "token": "next",
+      "start": 43.02,
+      "end": 43.28
+    },
+    {
+      "text": "question",
+      "token": "question",
+      "start": 43.28,
+      "end": 43.78
+    },
+    {
+      "text": "about",
+      "token": "about",
+      "start": 43.78,
+      "end": 44.22
+    },
+    {
+      "text": "anything",
+      "token": "anything",
+      "start": 44.22,
+      "end": 44.64
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 44.64,
+      "end": 44.92
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 44.92,
+      "end": 45.02
+    },
+    {
+      "text": "comments.",
+      "token": "comments",
+      "start": 45.02,
+      "end": 45.68
+    }
+  ]
+}

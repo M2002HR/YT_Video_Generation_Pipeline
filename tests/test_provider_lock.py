@@ -1,4 +1,5 @@
 from __future__ import annotations
+import ast
 import sys
 from pathlib import Path
 import pytest
@@ -11,18 +12,18 @@ if str(SCRIPTS) not in sys.path:
 from content_projects import load_content_project, validate_provider_locks
 
 
-def test_q_station_provider_locks_are_gemini_flow():
+def test_q_station_provider_locks_are_chatgpt_flow():
     proj = load_content_project("q_station")
-    assert proj.get_provider("image") == "gemini"
+    assert proj.get_provider("image") == "chatgpt"
     assert proj.get_provider("video") == "flow"
     # should not raise
     validate_provider_locks(proj)
 
 
-def test_q_station_image_provider_chatgpt_rejected():
+def test_q_station_image_provider_gemini_rejected():
     proj = load_content_project("q_station")
-    with pytest.raises(RuntimeError, match="LOCKED.*gemini"):
-        validate_provider_locks(proj, image_provider="chatgpt")
+    with pytest.raises(RuntimeError, match="LOCKED.*chatgpt"):
+        validate_provider_locks(proj, image_provider="gemini")
 
 
 def test_q_station_video_provider_gemini_rejected():
@@ -67,12 +68,12 @@ def _resume_workspace(tmp_path):
     return project
 
 
-def test_a_gemini_failure_never_reaches_another_image_provider(tmp_path, monkeypatch):
+def test_a_chatgpt_failure_never_reaches_another_image_provider(tmp_path, monkeypatch):
     """§93: no provider fallback — the stage fails, it does not shop around."""
     import run_q_station_pipeline as qstation
 
     project = _resume_workspace(tmp_path)
-    spy = ProviderSpy(fail_provider="gemini")
+    spy = ProviderSpy(fail_provider="chatgpt")
     monkeypatch.setattr(qstation.Runner, "json", lambda *a, **k: {"hero_present": False})
     runner = qstation.Runner(spy, None, qstation.QStationState(project, "902_lock", "topic"))
 
@@ -85,8 +86,8 @@ def test_a_gemini_failure_never_reaches_another_image_provider(tmp_path, monkeyp
             project / "references" / "world_style_anchor.png",
         )
 
-    assert spy.providers == ["gemini"], f"another provider was contacted: {spy.calls}"
-    assert "gemini/image_generate failed" in excinfo.value.message
+    assert spy.providers == ["chatgpt"], f"another provider was contacted: {spy.calls}"
+    assert "chatgpt/image_generate failed" in excinfo.value.message
 
 
 def test_a_flow_failure_never_reaches_another_video_provider(tmp_path):
@@ -121,6 +122,73 @@ def test_the_orchestrator_has_no_alternate_image_or_video_backend():
     assert "validate_provider_locks" in text
     for banned in ("pollinations", "stability.ai", "replicate.com", "openai.com/v1/images", "vertexai"):
         assert banned not in text.lower(), f"{banned!r} appeared beside the locked providers"
+
+
+def test_every_static_image_generation_call_is_chatgpt() -> None:
+    """No script may reintroduce a direct Gemini image-generation call."""
+    violations = []
+    for path in sorted((Path(ROOT) / "scripts").glob("*.py")):
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                values = {
+                    keyword.arg: keyword.value.value
+                    for keyword in node.keywords
+                    if keyword.arg and isinstance(keyword.value, ast.Constant)
+                }
+                if values.get("mode") == "image_generate" and values.get("provider") != "chatgpt":
+                    violations.append(f"{path.name}:{node.lineno}:{values.get('provider')!r}")
+                if values.get("mode") == "image_generate" and values.get("provider") == "chatgpt":
+                    if values.get("chatgpt_chat") not in {"project", None}:
+                        violations.append(f"{path.name}:{node.lineno}:scope={values.get('chatgpt_chat')!r}")
+            if isinstance(node, ast.Dict):
+                values = {
+                    key.value: value.value
+                    for key, value in zip(node.keys, node.values)
+                    if isinstance(key, ast.Constant) and isinstance(value, ast.Constant)
+                }
+                if values.get("mode") == "image_generate" and values.get("provider") != "chatgpt":
+                    violations.append(f"{path.name}:{node.lineno}:{values.get('provider')!r}")
+                if values.get("mode") == "image_generate" and values.get("provider") == "chatgpt":
+                    if values.get("chatgpt_chat") != "project":
+                        violations.append(f"{path.name}:{node.lineno}:scope={values.get('chatgpt_chat')!r}")
+    assert violations == []
+
+
+def test_ordak_scope_defaults_separate_text_from_image() -> None:
+    from ordak_jobs import OrdakJobs
+
+    assert OrdakJobs.default_chatgpt_scope("chatgpt", "chat", None) == "temporary"
+    assert OrdakJobs.default_chatgpt_scope("chatgpt", "image_generate", None) == "project"
+
+
+def test_every_static_chatgpt_text_call_uses_temporary_chat() -> None:
+    """Text calls must never inherit the project-scoped image conversation."""
+    violations = []
+    for path in sorted((Path(ROOT) / "scripts").glob("*.py")):
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                values = {
+                    keyword.arg: keyword.value.value
+                    for keyword in node.keywords
+                    if keyword.arg and isinstance(keyword.value, ast.Constant)
+                }
+                if values.get("provider") == "chatgpt" and values.get("mode") == "chat":
+                    if values.get("chatgpt_chat") != "temporary":
+                        violations.append(f"{path.name}:{node.lineno}")
+            if isinstance(node, ast.Dict):
+                values = {
+                    key.value: value.value
+                    for key, value in zip(node.keys, node.values)
+                    if isinstance(key, ast.Constant) and isinstance(value, ast.Constant)
+                }
+                if values.get("mode") == "chat" and values.get("chatgpt_chat") != "temporary":
+                    # Direct /api/chatgpt/respond payloads have no provider field.
+                    parent_text = path.read_text(encoding="utf-8")
+                    if "/api/chatgpt/respond" in parent_text:
+                        violations.append(f"{path.name}:{node.lineno}")
+    assert violations == []
 
 
 def test_pipeline_has_no_synthetic_or_fallback_path():

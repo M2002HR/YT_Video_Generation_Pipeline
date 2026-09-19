@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "video": "041_what_if_fish_could_breathe_on_land",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "6ca05fba1fcae6a31effa89965166d5f07868c5188c09148196466ce5bae11bb",
+  "finalization_status": "DONE",
+  "polished_qc_passed": true,
+  "captured_at": "2026-09-19T12:24:48.634073+00:00"
+}

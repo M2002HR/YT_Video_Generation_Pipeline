@@ -1,0 +1,147 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "911ccb21063dd77fd7e9ab7dc4639ac607e867c8e89d84fd03f549bb077e2e07",
+  "quality_check": {
+    "passed": true,
+    "description": "Full-bleed vertical linocut scene showing four repeated fish, coconut and root meals on the left against a broader island-plausible spread of greens, fruit, nuts, shellfish, crab, roots and additional fish on the right, with no people or text.",
+    "violations": [
+      "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+      "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "contract_checks": {
+      "topic_world_v2.full_bleed": {
+        "passed": true,
+        "evidence": "Food, baskets, foliage, woven mat and wood textures continue naturally to all four canvas edges; there is no enclosing page, card, decorative outer frame, inset window, doorway mask or physical sheet boundary."
+      }
+    },
+    "visual_contract_signature": "349fa2e23d5632d67ef0934af954fc45ac5f3e3e13370d6f30585e2819635191",
+    "raw_passed": true,
+    "raw_violations": [
+      "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+      "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+    ],
+    "observations": [
+      "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+      "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "provider": "gemini",
+  "job_id": "e612c267-d180-4b79-aa05-f821a0014a6b",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "768:1376",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/a5dbb8b63bdf9b20",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=e612c267-d180-4b79-aa05-f821a0014a6b_output_1.png 768x1376 sha256=9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e"
+    ],
+    "quality_check": {
+      "passed": true,
+      "description": "Full-bleed vertical linocut scene showing four repeated fish, coconut and root meals on the left against a broader island-plausible spread of greens, fruit, nuts, shellfish, crab, roots and additional fish on the right, with no people or text.",
+      "violations": [
+        "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+        "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+      ],
+      "blocking_violations": [],
+      "regressions": [],
+      "contract_checks": {
+        "topic_world_v2.full_bleed": {
+          "passed": true,
+          "evidence": "Food, baskets, foliage, woven mat and wood textures continue naturally to all four canvas edges; there is no enclosing page, card, decorative outer frame, inset window, doorway mask or physical sheet boundary."
+        }
+      },
+      "visual_contract_signature": "349fa2e23d5632d67ef0934af954fc45ac5f3e3e13370d6f30585e2819635191",
+      "raw_passed": true,
+      "raw_violations": [
+        "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+        "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+      ],
+      "observations": [
+        "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+        "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+      ],
+      "review_status": "passed_with_warnings"
+    },
+    "request_fingerprint": "911ccb21063dd77fd7e9ab7dc4639ac607e867c8e89d84fd03f549bb077e2e07",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "e612c267-d180-4b79-aa05-f821a0014a6b",
+        "prompt_sha256": "f6fd57f499cf20788bc2fc2d61e89de2edb05d170012a22ddd2d8b10448c9d79",
+        "output_sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e",
+        "quality_check": {
+          "passed": true,
+          "description": "Full-bleed vertical linocut scene showing four repeated fish, coconut and root meals on the left against a broader island-plausible spread of greens, fruit, nuts, shellfish, crab, roots and additional fish on the right, with no people or text.",
+          "violations": [
+            "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+            "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+          ],
+          "blocking_violations": [],
+          "regressions": [],
+          "contract_checks": {
+            "topic_world_v2.full_bleed": {
+              "passed": true,
+              "evidence": "Food, baskets, foliage, woven mat and wood textures continue naturally to all four canvas edges; there is no enclosing page, card, decorative outer frame, inset window, doorway mask or physical sheet boundary."
+            }
+          },
+          "visual_contract_signature": "349fa2e23d5632d67ef0934af954fc45ac5f3e3e13370d6f30585e2819635191",
+          "raw_passed": true,
+          "raw_violations": [
+            "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+            "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+          ],
+          "observations": [
+            "The narrow sand-toned center strip is relatively sparse and straight-edged, giving a slight designed-separator impression rather than fully continuous layered food-world texture.",
+            "Lighting reads mainly through carved contrast and shadows rather than a strongly legible single hard tropical daylight direction."
+          ],
+          "review_status": "passed_with_warnings"
+        },
+        "fully_clean": false,
+        "selected": true
+      }
+    ],
+    "qc_policy": "0",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/039_could_you_live_forever_on_a_desert_island/references/world_style_anchor.png",
+      "sha256": "97e209e77da9c729869a29317a196d8fd689a3654b255dbacd86b52dd5470875"
+    }
+  ],
+  "prompt_sha256": "f6fd57f499cf20788bc2fc2d61e89de2edb05d170012a22ddd2d8b10448c9d79",
+  "prompt": "WORLD_KEYFRAME Prompt\n\nCreate one standalone 9:16 WORLD_KEYFRAME, host-free and character-free, establishing the post-entry tropical survival subject world. Use a full-bleed linocut relief-print medium with matte carved-print ink, salt-bloom speckling, fibrous grain, dry-roller breakup, subtle edge chatter, bold hand-cut contours, and irregular gouged hatching. Palette: deep marine indigo, weathered turquoise, sun-bleached sand and bone white, dry palm brown, storm gray, with only sparse rust-orange accents.\n\nShot purpose: a close, visually clear comparison between repeated narrow island meals and the broader food variety needed to reduce nutrient gaps over time. Arrange several nearly identical simple meal portions—such as the same reef fish, coconut, and starchy root combination repeated—against a richer but still plausible tropical-island spread including leafy edible plants, varied tropical fruits, nuts or seeds, shellfish or additional fish, and different roots or plant foods. Communicate redundancy versus dietary variety entirely through objects, repetition, color, and composition; no nutrient labels, diagrams, anatomy, symbols, or text.\n\nHard tropical daylight creates graphic carved shadows and strong relief-print depth. The atmosphere is sober, practical, survival-focused, and documentary-like rather than dramatic or celebratory. Fill the entire vertical frame naturally to all four edges with layered island textures and food objects; no reserved caption area, footer, blank strip, empty panel, border, page, card, gutter, inset window, doorway rim, lens mask, UI, grid, sheet layout, swatches, or readable text. No recurring host, selected host, person, body, hand, silhouette, or foreground character. Treat any reference only as a world-style anchor for medium, grain, palette, and lighting—never copy its composition or framing.\n\nClarify the Meal Comparison Layout\nKeep Food Examples Island-Plausible [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text. Binding isolation: no recurring host, no selected host, and no foreground person or character.",
+  "output_path": "references/world_keyframe.png",
+  "output_sha256": "9bdebec93326993021a67a12c73cafb805a8e0c05c14234cde3a00315b08286e",
+  "output_dimensions": [
+    768,
+    1376
+  ],
+  "elapsed_seconds": 90.23,
+  "completed_at": "2026-09-18T06:28:58Z"
+}

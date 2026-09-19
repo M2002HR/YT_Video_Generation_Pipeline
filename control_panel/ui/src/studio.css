@@ -95,7 +95,7 @@ p {
 }
 .landing-actions {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 .landing-card {
@@ -1458,6 +1458,15 @@ p {
 .release-editorial textarea { min-height: 72px; resize: vertical; }
 .release-force { margin-top: 14px; }
 .release-dependency { display: block; margin: 10px 0 14px; color: var(--muted); line-height: 1.45; }
+.release-summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 28px; }
+.release-summary-grid .loading-card { margin: 0; min-height: 104px; }
+.release-summary-grid h2 { margin: 8px 0 0; font-size: 30px; }
+.release-source-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.release-source-card { display: flex; flex-direction: column; gap: 9px; min-height: 190px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.release-source-card h3 { margin: 0; line-height: 1.35; }
+.release-source-card small { color: var(--muted); line-height: 1.45; }
+.release-source-card .primary { margin-top: auto; align-self: flex-start; }
+@media (max-width: 760px) { .release-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .modal h2 {
   font-size: 28px;
   letter-spacing: -1px;

@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "requested_count": 1,
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "contrast_split",
+      "headline": "What If Fish Could Breathe on Land?",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If fish could breathe on land, why would they still need water? The answer starts with one change, not a whole new fish. Air breathing solves one problem. The fish still needs water. Its body must handle dry ground. Its fins must support la",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the scene",
+      "text_region": "headline zone x 0.09-0.91, y 0.60-0.92 (frame fractions): ordinary scene space with no important elements; see composition template",
+      "composition_template": "COMPOSITION TEMPLATE (contrast_split) — follow exactly: TOP HALF RULE: keep y 0.00-0.50 free of anything important. This zone stays ordinary scene space — the normal background simply continues there (sky, foliage, wall, sea); do NOT paint it as an artificially emptied, blank or blurred-out panel. The rule is compositional: keep every important element OUT of the top half — STRICTLY no face, eyes, mouth, head, hands, principal evidence, or text-like shapes above y=0.50. The local headline lands at x 0.09-0.91, y 0.60-0.92 (inside the clean half). Host: host below y=0.50, whole head BELOW y=0.50, reacting toward the contrast. Scene: before/after contrast split LEFT vs RIGHT halves, both entirely below y=0.50. The host may look toward the top half (connects headline and scene) but no part of the head ever enters it.",
+      "novelty_signature": "06e108cc1fe6bcde",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    }
+  ]
+}

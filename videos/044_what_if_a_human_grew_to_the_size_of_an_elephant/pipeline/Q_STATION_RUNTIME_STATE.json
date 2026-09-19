@@ -1,0 +1,296 @@
+{
+  "schema_version": 2,
+  "video_id": "044",
+  "topic": "What If a Human Grew to the Size of an Elephant?",
+  "created_at": "2026-09-19T07:59:39Z",
+  "pipeline_state": "FAILED",
+  "stages": {
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "requested_mode": "manual",
+      "requested_character_id": "newton_scholar",
+      "resolved_character_id": "newton_scholar",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:21Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T08:56:22Z",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "structural_scale_layered_papercut_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      },
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:23Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T08:56:14Z",
+      "body_beats": 11,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:24Z",
+      "artifact": "world_style_anchor.png → catalog/028_structural_scale_layered_papercut_001"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:24Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:24Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:24Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:24Z",
+      "artifact": "BOOK_COVER_DESIGN.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T08:56:24Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "body_images": {
+      "status": "FAILED",
+      "updated_at": "2026-09-19T09:12:02Z",
+      "message": "Body image batch stopped: gemini/chat failed: Job 4b098371-d85c-41e7-9a81-635964b3657b did not reach a terminal status within 900s",
+      "error_code": "response_timeout"
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 145.842,
+      "at": "2026-09-19T08:02:06Z",
+      "selected_id": "c1",
+      "concept_id": "2b209251593eb141904d"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 88.559,
+      "at": "2026-09-19T08:03:36Z",
+      "words": 107
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 474.149,
+      "at": "2026-09-19T08:11:31Z",
+      "words": 106
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 112.909,
+      "at": "2026-09-19T08:13:25Z",
+      "activity": "Testing how scaling weight without widening bone thickness breaks upright support."
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 163.738,
+      "at": "2026-09-19T08:16:11Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 251.252,
+      "at": "2026-09-19T08:20:23Z",
+      "style_id": "structural_scale_layered_papercut_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.401,
+      "at": "2026-09-19T08:20:26Z",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "structural_scale_layered_papercut_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      },
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 136.946,
+      "at": "2026-09-19T08:22:44Z",
+      "beats": 11
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.4,
+      "at": "2026-09-19T08:23:43Z",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "structural_scale_layered_papercut_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      },
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 57.129,
+      "at": "2026-09-19T08:24:41Z",
+      "sha256": "8ab5c38ed546109043806d31c887863c426b54d350d532e76c83bc2131fc46d5",
+      "model": "nano_banana_2",
+      "catalog_path": "028_structural_scale_layered_papercut_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 58.497,
+      "at": "2026-09-19T08:25:41Z",
+      "prompt_sha256": "889c26928a6e2306e65494db9d7b3b0bb69d3d6d5f5c2ffd4bb9185d46df0241"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 64.67,
+      "at": "2026-09-19T08:26:47Z",
+      "sha256": "0f206ea1bbbd39233b27379bc8da8c15bae3233bd0757f4ac385f39cadd07c8b",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 62.47,
+      "at": "2026-09-19T08:27:51Z",
+      "prompt_sha256": "c2041582a216aed71475ace307f7eb382b02df9dfa9fc3bc581d80ad81aa927c"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 209.178,
+      "at": "2026-09-19T08:31:22Z",
+      "sha256": "81662f31de26d0ae22982a953566599c70dac2cbfcc75dcd74769843059c0b29",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.391,
+      "at": "2026-09-19T08:56:13Z",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "structural_scale_layered_papercut_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      },
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.124,
+      "at": "2026-09-19T08:56:22Z",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "structural_scale_layered_papercut_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      },
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2
+    }
+  ],
+  "updated_at": "2026-09-19T09:12:02Z"
+}
