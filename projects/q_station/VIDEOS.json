@@ -237,6 +237,26 @@
     },
     {
       "video_id": "043_what_if_human_bones_were_made_of_metal"
+    },
+    {
+      "video_id": "044",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "structural_scale_layered_papercut_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      },
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-19T08:23:43.312348+00:00"
     }
   ]
 }

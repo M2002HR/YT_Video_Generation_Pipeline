@@ -165,6 +165,17 @@
       "path": "027_gravity_halfworld_dough_clay_001",
       "anchor": "027_gravity_halfworld_dough_clay_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "structural_scale_layered_papercut_001",
+      "display_name": "Structural Scale Layered Papercut 001",
+      "medium_family": "layered paper cut",
+      "texture_family": "matte archival cardstock with clean knife-cut bevels, subtle paper grain tooth, and physical sheet layering",
+      "palette_summary": "cool cyan and pale sky-blue atmosphere, warm cream and bone-white structural elements, muted lavender and slate stone bases, warm straw yellow, and restrained coral-orange accents reserved for load stress, structural compression, and fracture points",
+      "status": "ready",
+      "path": "028_structural_scale_layered_papercut_001",
+      "anchor": "028_structural_scale_layered_papercut_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }
