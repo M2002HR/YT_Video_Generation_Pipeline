@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "video": "041_what_if_fish_could_breathe_on_land",
+  "started_at": "2026-09-19T04:35:34.577823+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-19T04:35:34.597016+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:35:36.261791+00:00",
+      "elapsed_seconds": 1.665,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 32937
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-19T04:35:37.512991+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 2/8 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:38:20.727609+00:00",
+      "elapsed_seconds": 163.215,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 60628144
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-19T04:38:20.728060+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:38:29.564090+00:00",
+      "elapsed_seconds": 8.836,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-19T04:38:30.795268+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:38:33.962566+00:00",
+      "elapsed_seconds": 3.167,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 60660095
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-19T04:38:35.251607+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:38:44.020864+00:00",
+      "elapsed_seconds": 8.769,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-19T04:38:45.487797+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:39:02.164331+00:00",
+      "elapsed_seconds": 16.676,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 2887488
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-19T04:39:03.414962+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-19T04:39:11.663990+00:00",
+      "elapsed_seconds": 8.249,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2042
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-19T04:39:12.694598+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-19T04:35:34.577823+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ],
+  "completed_at": "2026-09-19T04:39:12.692015+00:00",
+  "total_elapsed_seconds": 210.577,
+  "summary": {
+    "video": "041_what_if_fish_could_breathe_on_land",
+    "duration_seconds": 45.636,
+    "beat_count": 12,
+    "video_beat_count": 2,
+    "image_beat_count": 10,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 4.18,
+      "transition_end": 9.3
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "gemini": [
+        "Nano Banana 2"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 162.745,
+      "realtime_factor": 3.566,
+      "peak_child_rss_mb": 1377.6,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
+}

@@ -1,0 +1,1648 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 45.636,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.167,
+      "duration": 4.167,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/spyglass_transition_trimmed.mp4",
+      "start": 4.167,
+      "end": 9.292,
+      "duration": 5.125,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 9.3,
+      "end": 12.1,
+      "duration": 2.8,
+      "speech_start": 9.66,
+      "speech_end": 11.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Air breathing solves one problem.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 12.1,
+      "end": 14.4,
+      "duration": 2.3,
+      "speech_start": 12.1,
+      "speech_end": 14.02,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The fish still needs water.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 14.4,
+      "end": 17.0,
+      "duration": 2.6,
+      "speech_start": 14.4,
+      "speech_end": 16.56,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Its body must handle dry ground.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 17.0,
+      "end": 19.96,
+      "duration": 2.96,
+      "speech_start": 17.0,
+      "speech_end": 19.38,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Its fins must support land movement.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 19.96,
+      "end": 21.64,
+      "duration": 1.68,
+      "speech_start": 19.96,
+      "speech_end": 21.82,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Water helps many fish survive.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 21.64,
+      "end": 25.78,
+      "duration": 4.14,
+      "speech_start": 21.46,
+      "speech_end": 25.34,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Some fish already use air sometimes.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 25.78,
+      "end": 28.52,
+      "duration": 2.74,
+      "speech_start": 25.78,
+      "speech_end": 27.98,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Scientists study these fish changes.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 28.52,
+      "end": 31.66,
+      "duration": 3.14,
+      "speech_start": 28.52,
+      "speech_end": 31.42,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A land fish needs many more changes.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 31.66,
+      "end": 34.34,
+      "duration": 2.68,
+      "speech_start": 31.66,
+      "speech_end": 34.02,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "One ability cannot change everything.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 34.34,
+      "end": 45.636,
+      "duration": 11.296,
+      "speech_start": 34.34,
+      "speech_end": 39.68,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Adaptation means changes living things make to survive in a place.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.0,
+      "end": 0.22,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.0,
+          "end": 0.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.22,
+      "end": 0.58,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 0.22,
+          "end": 0.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.58,
+      "end": 0.82,
+      "text": "could",
+      "ass_text": "could",
+      "words": [
+        {
+          "text": "could",
+          "start": 0.58,
+          "end": 0.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.82,
+      "end": 1.3,
+      "text": "breathe",
+      "ass_text": "breathe",
+      "words": [
+        {
+          "text": "breathe",
+          "start": 0.82,
+          "end": 1.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.3,
+      "end": 1.58,
+      "text": "on",
+      "ass_text": "on",
+      "words": [
+        {
+          "text": "on",
+          "start": 1.3,
+          "end": 1.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.58,
+      "end": 2.54,
+      "text": "land,",
+      "ass_text": "land,",
+      "words": [
+        {
+          "text": "land,",
+          "start": 1.58,
+          "end": 2.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.54,
+      "end": 2.6,
+      "text": "why",
+      "ass_text": "why",
+      "words": [
+        {
+          "text": "why",
+          "start": 2.54,
+          "end": 2.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.6,
+      "end": 2.86,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 2.6,
+          "end": 2.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.86,
+      "end": 3.02,
+      "text": "they",
+      "ass_text": "they",
+      "words": [
+        {
+          "text": "they",
+          "start": 2.86,
+          "end": 3.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.02,
+      "end": 3.36,
+      "text": "still",
+      "ass_text": "still",
+      "words": [
+        {
+          "text": "still",
+          "start": 3.02,
+          "end": 3.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.36,
+      "end": 3.68,
+      "text": "need",
+      "ass_text": "need",
+      "words": [
+        {
+          "text": "need",
+          "start": 3.36,
+          "end": 3.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.68,
+      "end": 4.18,
+      "text": "water?",
+      "ass_text": "water?",
+      "words": [
+        {
+          "text": "water?",
+          "start": 3.68,
+          "end": 4.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.9,
+      "end": 5.04,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 4.9,
+          "end": 5.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.04,
+      "end": 5.48,
+      "text": "answer",
+      "ass_text": "answer",
+      "words": [
+        {
+          "text": "answer",
+          "start": 5.04,
+          "end": 5.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.48,
+      "end": 6.06,
+      "text": "starts",
+      "ass_text": "starts",
+      "words": [
+        {
+          "text": "starts",
+          "start": 5.48,
+          "end": 6.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.06,
+      "end": 6.3,
+      "text": "with",
+      "ass_text": "with",
+      "words": [
+        {
+          "text": "with",
+          "start": 6.06,
+          "end": 6.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.3,
+      "end": 6.62,
+      "text": "one",
+      "ass_text": "one",
+      "words": [
+        {
+          "text": "one",
+          "start": 6.3,
+          "end": 6.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.62,
+      "end": 7.46,
+      "text": "change,",
+      "ass_text": "change,",
+      "words": [
+        {
+          "text": "change,",
+          "start": 6.62,
+          "end": 7.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.46,
+      "end": 7.78,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 7.46,
+          "end": 7.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.78,
+      "end": 8.02,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 7.78,
+          "end": 8.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.02,
+      "end": 8.32,
+      "text": "whole",
+      "ass_text": "whole",
+      "words": [
+        {
+          "text": "whole",
+          "start": 8.02,
+          "end": 8.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.32,
+      "end": 8.68,
+      "text": "new",
+      "ass_text": "new",
+      "words": [
+        {
+          "text": "new",
+          "start": 8.32,
+          "end": 8.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.68,
+      "end": 9.3,
+      "text": "fish.",
+      "ass_text": "fish.",
+      "words": [
+        {
+          "text": "fish.",
+          "start": 8.68,
+          "end": 9.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.66,
+      "end": 9.96,
+      "text": "Air",
+      "ass_text": "Air",
+      "words": [
+        {
+          "text": "Air",
+          "start": 9.66,
+          "end": 9.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.96,
+      "end": 10.34,
+      "text": "breathing",
+      "ass_text": "breathing",
+      "words": [
+        {
+          "text": "breathing",
+          "start": 9.96,
+          "end": 10.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.34,
+      "end": 10.88,
+      "text": "solves",
+      "ass_text": "solves",
+      "words": [
+        {
+          "text": "solves",
+          "start": 10.34,
+          "end": 10.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.88,
+      "end": 11.2,
+      "text": "one",
+      "ass_text": "one",
+      "words": [
+        {
+          "text": "one",
+          "start": 10.88,
+          "end": 11.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 11.2,
+      "end": 11.68,
+      "text": "problem.",
+      "ass_text": "problem.",
+      "words": [
+        {
+          "text": "problem.",
+          "start": 11.2,
+          "end": 11.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.1,
+      "end": 12.28,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 12.1,
+          "end": 12.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.28,
+      "end": 12.66,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 12.28,
+          "end": 12.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.66,
+      "end": 13.26,
+      "text": "still",
+      "ass_text": "still",
+      "words": [
+        {
+          "text": "still",
+          "start": 12.66,
+          "end": 13.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.26,
+      "end": 13.62,
+      "text": "needs",
+      "ass_text": "needs",
+      "words": [
+        {
+          "text": "needs",
+          "start": 13.26,
+          "end": 13.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.62,
+      "end": 14.02,
+      "text": "water.",
+      "ass_text": "water.",
+      "words": [
+        {
+          "text": "water.",
+          "start": 13.62,
+          "end": 14.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.4,
+      "end": 14.62,
+      "text": "Its",
+      "ass_text": "Its",
+      "words": [
+        {
+          "text": "Its",
+          "start": 14.4,
+          "end": 14.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 14.62,
+      "end": 14.98,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 14.62,
+          "end": 14.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 14.98,
+      "end": 15.26,
+      "text": "must",
+      "ass_text": "must",
+      "words": [
+        {
+          "text": "must",
+          "start": 14.98,
+          "end": 15.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 15.26,
+      "end": 15.64,
+      "text": "handle",
+      "ass_text": "handle",
+      "words": [
+        {
+          "text": "handle",
+          "start": 15.26,
+          "end": 15.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 15.64,
+      "end": 16.0,
+      "text": "dry",
+      "ass_text": "dry",
+      "words": [
+        {
+          "text": "dry",
+          "start": 15.64,
+          "end": 16.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.0,
+      "end": 16.56,
+      "text": "ground.",
+      "ass_text": "ground.",
+      "words": [
+        {
+          "text": "ground.",
+          "start": 16.0,
+          "end": 16.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.0,
+      "end": 17.24,
+      "text": "Its",
+      "ass_text": "Its",
+      "words": [
+        {
+          "text": "Its",
+          "start": 17.0,
+          "end": 17.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 17.24,
+      "end": 17.58,
+      "text": "fins",
+      "ass_text": "fins",
+      "words": [
+        {
+          "text": "fins",
+          "start": 17.24,
+          "end": 17.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 17.58,
+      "end": 18.08,
+      "text": "must",
+      "ass_text": "must",
+      "words": [
+        {
+          "text": "must",
+          "start": 17.58,
+          "end": 18.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 18.08,
+      "end": 18.54,
+      "text": "support",
+      "ass_text": "support",
+      "words": [
+        {
+          "text": "support",
+          "start": 18.08,
+          "end": 18.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 18.54,
+      "end": 19.02,
+      "text": "land",
+      "ass_text": "land",
+      "words": [
+        {
+          "text": "land",
+          "start": 18.54,
+          "end": 19.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.02,
+      "end": 19.38,
+      "text": "movement.",
+      "ass_text": "movement.",
+      "words": [
+        {
+          "text": "movement.",
+          "start": 19.02,
+          "end": 19.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 19.96,
+      "end": 20.28,
+      "text": "Water",
+      "ass_text": "Water",
+      "words": [
+        {
+          "text": "Water",
+          "start": 19.96,
+          "end": 20.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 20.28,
+      "end": 20.68,
+      "text": "helps",
+      "ass_text": "helps",
+      "words": [
+        {
+          "text": "helps",
+          "start": 20.28,
+          "end": 20.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 20.68,
+      "end": 21.18,
+      "text": "many",
+      "ass_text": "many",
+      "words": [
+        {
+          "text": "many",
+          "start": 20.68,
+          "end": 21.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 21.18,
+      "end": 21.54,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 21.18,
+          "end": 21.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 21.54,
+      "end": 21.64,
+      "text": "survive.",
+      "ass_text": "survive.",
+      "words": [
+        {
+          "text": "survive.",
+          "start": 21.54,
+          "end": 21.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 21.64,
+      "end": 22.74,
+      "text": "Some",
+      "ass_text": "Some",
+      "words": [
+        {
+          "text": "Some",
+          "start": 21.46,
+          "end": 22.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 22.74,
+      "end": 23.08,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 22.74,
+          "end": 23.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 23.08,
+      "end": 23.78,
+      "text": "already",
+      "ass_text": "already",
+      "words": [
+        {
+          "text": "already",
+          "start": 23.08,
+          "end": 23.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 23.78,
+      "end": 24.18,
+      "text": "use",
+      "ass_text": "use",
+      "words": [
+        {
+          "text": "use",
+          "start": 23.78,
+          "end": 24.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 24.18,
+      "end": 24.66,
+      "text": "air",
+      "ass_text": "air",
+      "words": [
+        {
+          "text": "air",
+          "start": 24.18,
+          "end": 24.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 24.66,
+      "end": 25.34,
+      "text": "sometimes.",
+      "ass_text": "sometimes.",
+      "words": [
+        {
+          "text": "sometimes.",
+          "start": 24.66,
+          "end": 25.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 25.78,
+      "end": 26.24,
+      "text": "Scientists",
+      "ass_text": "Scientists",
+      "words": [
+        {
+          "text": "Scientists",
+          "start": 25.78,
+          "end": 26.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 26.24,
+      "end": 27.06,
+      "text": "study",
+      "ass_text": "study",
+      "words": [
+        {
+          "text": "study",
+          "start": 26.24,
+          "end": 27.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 27.06,
+      "end": 27.32,
+      "text": "these",
+      "ass_text": "these",
+      "words": [
+        {
+          "text": "these",
+          "start": 27.06,
+          "end": 27.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 27.32,
+      "end": 27.54,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 27.32,
+          "end": 27.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 27.54,
+      "end": 27.98,
+      "text": "changes.",
+      "ass_text": "changes.",
+      "words": [
+        {
+          "text": "changes.",
+          "start": 27.54,
+          "end": 27.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 28.52,
+      "end": 28.56,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 28.52,
+          "end": 28.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 28.56,
+      "end": 29.04,
+      "text": "land",
+      "ass_text": "land",
+      "words": [
+        {
+          "text": "land",
+          "start": 28.56,
+          "end": 29.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 29.04,
+      "end": 29.3,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 29.04,
+          "end": 29.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 29.3,
+      "end": 29.88,
+      "text": "needs",
+      "ass_text": "needs",
+      "words": [
+        {
+          "text": "needs",
+          "start": 29.3,
+          "end": 29.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 29.88,
+      "end": 30.32,
+      "text": "many",
+      "ass_text": "many",
+      "words": [
+        {
+          "text": "many",
+          "start": 29.88,
+          "end": 30.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 30.32,
+      "end": 30.68,
+      "text": "more",
+      "ass_text": "more",
+      "words": [
+        {
+          "text": "more",
+          "start": 30.32,
+          "end": 30.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 30.68,
+      "end": 31.42,
+      "text": "changes.",
+      "ass_text": "changes.",
+      "words": [
+        {
+          "text": "changes.",
+          "start": 30.68,
+          "end": 31.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 31.66,
+      "end": 31.92,
+      "text": "One",
+      "ass_text": "One",
+      "words": [
+        {
+          "text": "One",
+          "start": 31.66,
+          "end": 31.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 31.92,
+      "end": 32.38,
+      "text": "ability",
+      "ass_text": "ability",
+      "words": [
+        {
+          "text": "ability",
+          "start": 31.92,
+          "end": 32.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 32.38,
+      "end": 32.76,
+      "text": "cannot",
+      "ass_text": "cannot",
+      "words": [
+        {
+          "text": "cannot",
+          "start": 32.38,
+          "end": 32.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 32.76,
+      "end": 33.18,
+      "text": "change",
+      "ass_text": "change",
+      "words": [
+        {
+          "text": "change",
+          "start": 32.76,
+          "end": 33.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 33.18,
+      "end": 34.02,
+      "text": "everything.",
+      "ass_text": "everything.",
+      "words": [
+        {
+          "text": "everything.",
+          "start": 33.18,
+          "end": 34.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 34.34,
+      "end": 34.98,
+      "text": "Adaptation",
+      "ass_text": "Adaptation",
+      "words": [
+        {
+          "text": "Adaptation",
+          "start": 34.34,
+          "end": 34.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 34.98,
+      "end": 35.68,
+      "text": "means",
+      "ass_text": "means",
+      "words": [
+        {
+          "text": "means",
+          "start": 34.98,
+          "end": 35.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 35.68,
+      "end": 36.32,
+      "text": "changes",
+      "ass_text": "changes",
+      "words": [
+        {
+          "text": "changes",
+          "start": 35.68,
+          "end": 36.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 36.32,
+      "end": 36.76,
+      "text": "living",
+      "ass_text": "living",
+      "words": [
+        {
+          "text": "living",
+          "start": 36.32,
+          "end": 36.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 36.76,
+      "end": 37.2,
+      "text": "things",
+      "ass_text": "things",
+      "words": [
+        {
+          "text": "things",
+          "start": 36.76,
+          "end": 37.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 37.2,
+      "end": 37.78,
+      "text": "make",
+      "ass_text": "make",
+      "words": [
+        {
+          "text": "make",
+          "start": 37.2,
+          "end": 37.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 37.78,
+      "end": 38.24,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 37.78,
+          "end": 38.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 38.24,
+      "end": 38.62,
+      "text": "survive",
+      "ass_text": "survive",
+      "words": [
+        {
+          "text": "survive",
+          "start": 38.24,
+          "end": 38.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 38.62,
+      "end": 39.12,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 38.62,
+          "end": 39.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.12,
+      "end": 39.24,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 39.12,
+          "end": 39.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 39.24,
+      "end": 39.68,
+      "text": "place.",
+      "ass_text": "place.",
+      "words": [
+        {
+          "text": "place.",
+          "start": 39.24,
+          "end": 39.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.06,
+      "end": 40.26,
+      "text": "Like",
+      "ass_text": "Like",
+      "words": [
+        {
+          "text": "Like",
+          "start": 40.06,
+          "end": 40.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.26,
+      "end": 40.5,
+      "text": "this",
+      "ass_text": "this",
+      "words": [
+        {
+          "text": "this",
+          "start": 40.26,
+          "end": 40.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.5,
+      "end": 40.78,
+      "text": "video",
+      "ass_text": "video",
+      "words": [
+        {
+          "text": "video",
+          "start": 40.5,
+          "end": 40.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 40.78,
+      "end": 41.64,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 40.78,
+          "end": 41.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 41.64,
+      "end": 42.16,
+      "text": "subscribe",
+      "ass_text": "subscribe",
+      "words": [
+        {
+          "text": "subscribe",
+          "start": 41.64,
+          "end": 42.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 42.16,
+      "end": 43.02,
+      "text": "for",
+      "ass_text": "for",
+      "words": [
+        {
+          "text": "for",
+          "start": 42.16,
+          "end": 43.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 43.02,
+      "end": 43.4,
+      "text": "more",
+      "ass_text": "more",
+      "words": [
+        {
+          "text": "more",
+          "start": 43.02,
+          "end": 43.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 43.4,
+      "end": 43.76,
+      "text": "fish",
+      "ass_text": "fish",
+      "words": [
+        {
+          "text": "fish",
+          "start": 43.4,
+          "end": 43.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 43.76,
+      "end": 44.36,
+      "text": "survival",
+      "ass_text": "survival",
+      "words": [
+        {
+          "text": "survival",
+          "start": 43.76,
+          "end": 44.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 44.36,
+      "end": 45.18,
+      "text": "questions.",
+      "ass_text": "questions.",
+      "words": [
+        {
+          "text": "questions.",
+          "start": 44.36,
+          "end": 45.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 5,
+        "before_beat": 6,
+        "current_speech_end": 21.82,
+        "next_speech_start": 21.46,
+        "overlap_seconds": 0.36,
+        "chosen_boundary": 21.64
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 49,
+        "current_cue": 50,
+        "previous_end": 21.82,
+        "current_start": 21.46,
+        "overlap_seconds": 0.36,
+        "chosen_boundary": 21.64
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 94,
+    "subtitle_cues_estimated": 0
+  }
+}

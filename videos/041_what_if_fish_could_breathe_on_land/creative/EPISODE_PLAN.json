@@ -1,0 +1,30 @@
+{
+  "concept_id": "cd58b34e0dcb64825721",
+  "opening_actions": [
+    "The captain kneels beside a shallow pool in a quiet research garden and watches a fish moving onto damp ground.",
+    "He compares the fish's movement on land with the water beside it.",
+    "He raises an eyebrow and brings the spyglass closer for a careful look."
+  ],
+  "entry_bridge": {
+    "a_end": "The captain holds the spyglass toward the fish near the pool edge.",
+    "b_start": "The view begins from the spyglass looking across the land habitat.",
+    "reveal": "The imagined land scene reveals a fish moving through a damp environment beside plants and a small pool.",
+    "world_entry": "A host-free view shows fish exploring a damp land habitat while still surrounded by the conditions their bodies need."
+  },
+  "opening_activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water",
+  "opening_location": "a quiet coastal research garden with a small pool and damp plant-filled ground",
+  "opening_environment": "a natural research garden where wet soil, shallow water, and coastal plants meet",
+  "topic_visual_link": "A fish active on damp land beside its pool creates the visible question of whether breathing air alone would remove its need for water.",
+  "link_type": "direct",
+  "opening_visual_proof": "A fish is visibly moving on wet ground at the pool edge while water remains immediately beside it.",
+  "curiosity_trigger": "The captain notices a fish moving where it seems it should not be, beside rather than inside the water.",
+  "trigger_object": "A fish crossing damp ground next to a shallow pool",
+  "reaction": "He pauses, raises an eyebrow, and studies the unusual movement with quiet curiosity.",
+  "entry_retrieval": "He follows the fish's movement with the correctly held spyglass, shifting his viewpoint from the garden scene into the imagined land habitat.",
+  "entry_variant": "changed_viewpoint",
+  "camera_pattern": "over_shoulder",
+  "hero_presence_mode": "in_world",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "A grounded speculative nature scene showing fish exploring damp land environments with realistic biological textures.",
+  "reason": "The opening naturally fits the topic because the visible contrast between a fish on land and nearby water immediately introduces the difference between one new ability and the many adaptations needed for land life."
+}

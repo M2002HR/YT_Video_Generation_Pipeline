@@ -1,0 +1,71 @@
+{
+  "provider": "flow",
+  "job_id": "50cc5292-afa5-4522-b791-bf4811992cef",
+  "requested": {
+    "model": "gemini_omni_1_1_flash",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "duration_seconds": 6
+  },
+  "actual_model_label": "Omni 1.1 Flash",
+  "model_verified": true,
+  "duration_actual": 6,
+  "resolution_actual": "720p",
+  "aspect_actual": "9:16",
+  "reference_roles": [
+    "first_frame",
+    "last_frame"
+  ],
+  "submission_fingerprint": "a1d79ccd4fa0fb150ced99dcdf4d6a4f",
+  "workspace_url": "https://flow.google.com/project/6aa4129d-be72-429c-8e9d-f4b82375aaff",
+  "provider_receipt": {
+    "provider": "flow",
+    "requested_model": "gemini_omni_1_1_flash",
+    "actual_model_label": "Omni 1.1 Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": null,
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "9:16",
+    "requested_duration_seconds": 6,
+    "actual_duration_seconds": 6,
+    "requested_resolution": "720p",
+    "actual_resolution": "720p",
+    "workspace_url": "https://flow.google.com/project/6aa4129d-be72-429c-8e9d-f4b82375aaff",
+    "submission_fingerprint": "a1d79ccd4fa0fb150ced99dcdf4d6a4f",
+    "reference_roles": [
+      "first_frame",
+      "last_frame"
+    ],
+    "notes": [
+      "credits_required=10",
+      "outputs=x1",
+      "reference_mode=frames",
+      "pixels=720x1280",
+      "bytes=3974798",
+      "duration 6.02s vs requested 6s",
+      "resolution 720x1280 vs 720p"
+    ]
+  },
+  "uploaded_roles": [
+    "first_frame",
+    "last_frame"
+  ],
+  "references": [
+    {
+      "role": "first_frame",
+      "path": "references/spyglass_entry_frame.png",
+      "sha256": "935950933574673edd293944b38235f85479d7e9b22b8c464e285535374b603e"
+    },
+    {
+      "role": "last_frame",
+      "path": "references/world_keyframe.png",
+      "sha256": "dfaf563c2ee51ea3360ccc68a8835fc54aee0d21701038ffee44b2a54e84f01b"
+    }
+  ],
+  "prompt_sha256": "13034b749135c13e35711ec7f05974f68abfd8ae48cefbf80ecc26ce8fbf5e5b",
+  "output_file": "assets/opening/spyglass_transition_source.mp4",
+  "output_sha256": "1609c7c71312af7db202c11c2af7712785a06658b5ed9eb01cf54a1fc0d6a48a",
+  "elapsed_seconds": 123.401,
+  "completed_at": "2026-09-19T04:35:26Z"
+}

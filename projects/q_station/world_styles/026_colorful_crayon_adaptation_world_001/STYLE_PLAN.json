@@ -1,0 +1,19 @@
+{
+  "style_id": "colorful_crayon_adaptation_world_001",
+  "decision": "new",
+  "reuse_of": null,
+  "medium": "crayon illustration",
+  "secondary_treatment": null,
+  "texture_family": "soft wax crayon grain with layered strokes, visible pigment buildup, gentle rubbing and uneven hand-drawn mark variation",
+  "palette_summary": "bright aquatic blues, fresh greens, sandy yellows, warm oranges, soft sky tones, and earthy browns with playful but natural saturation for underwater and shoreline environments",
+  "line_treatment": "bold hand-drawn crayon contours with overlapping colored strokes, simplified scientific forms, and expressive texture while keeping anatomy readable",
+  "lighting": "warm natural daylight with soft underwater diffusion and gentle highlights on wet surfaces",
+  "subject_constraints": "Topic-appropriate fish, shallow water, muddy banks, vegetation, air exposure, and adaptation-focused anatomy; show gradual biological changes rather than fantasy transformations",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery; no fantasy fish with unrelated powers",
+  "reserve_subtitle_space": false,
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "No reserved caption field; continue the scene through the full height."
+}

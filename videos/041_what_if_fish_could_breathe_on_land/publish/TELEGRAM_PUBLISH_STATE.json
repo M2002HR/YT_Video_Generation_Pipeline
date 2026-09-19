@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-19T04:39:11.567876+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-19T04:39:11.567656+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15588,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2887488,
+      "sha256": "7a50130d595fd49287e4319c9da264f339278ca9c0bec56ff0dfab1c935df15d",
+      "duration_seconds": 45.641,
+      "elapsed_seconds": 6.676,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "041_what_if_fish_could_breathe_on_land",
+        "duration_seconds": 45.636,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 4.18,
+          "transition_end": 9.3
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "gemini": [
+            "Nano Banana 2"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 162.745,
+          "realtime_factor": 3.566,
+          "peak_child_rss_mb": 1377.6,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 041_what_if_fish_could_breathe_on_land\n⏱ Duration: 0:46\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — flow: Omni 1.1 Flash · gemini: Nano Banana 2\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 2:43 wall (3.566x realtime) · 2 thread(s) · peak 1377.6 MB\nArtifact: 7a50130d595f · Delivery: compressed"
+    }
+  }
+}

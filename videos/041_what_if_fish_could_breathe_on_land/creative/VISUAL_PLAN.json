@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 29.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Air breathing solves one problem.",
+      "visual": "A small fish near a shallow shoreline lifts its head above water and gulps air while bubbles trail behind it.",
+      "purpose": "show that air breathing can help a fish get oxygen outside water",
+      "visual_fingerprint": "single shoreline fish breaking the surface at water edge, upward head action, close vertical composition with rippling blue water and warm sunlight",
+      "type": "literal",
+      "continuity": "first body image establishes the adaptation world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "The fish still needs water.",
+      "visual": "The same type of fish swims between water and a muddy bank, with its wet body partly supported by the shallow pool.",
+      "purpose": "show that breathing air does not remove the need for a watery environment",
+      "visual_fingerprint": "fish half-submerged in a muddy shoreline pool, side view showing wet skin and surrounding water plants, medium shot",
+      "type": "literal",
+      "continuity": "same shoreline world, shifted from surface breathing to habitat dependence",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Its body must handle dry ground.",
+      "visual": "A fish rests on damp earth beside a puddle, showing the challenge of supporting its body away from water.",
+      "purpose": "show the physical challenge of surviving on land",
+      "visual_fingerprint": "fish on muddy ground beside a shrinking puddle, low angle view emphasizing body weight and dry surroundings",
+      "type": "literal",
+      "continuity": "moves from water dependence to the land challenge",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Its fins must support land movement.",
+      "visual": "Close view of a fish using sturdy fin movements against wet sand near the shore, with fin structure clearly visible.",
+      "purpose": "show that fins would need changes for movement on land",
+      "visual_fingerprint": "close-up fin action on sandy shoreline, angled top-down composition focused on contact between fins and ground",
+      "type": "literal",
+      "continuity": "same shore setting, focusing from whole body problem to a specific adaptation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Water helps many fish survive.",
+      "visual": "A colorful group of fish moves through a healthy shallow aquatic habitat with plants, rocks, and flowing water.",
+      "purpose": "show the many survival benefits provided by water",
+      "visual_fingerprint": "school of fish in a bright underwater plant-filled zone, wide overhead composition with flowing currents and depth",
+      "type": "subject_world",
+      "continuity": "expands from one fish challenge to the broader underwater ecosystem",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Some fish already use air sometimes.",
+      "visual": "A mudskipper-like fish climbs on a wet bank beside mangrove roots while taking air from above the water.",
+      "purpose": "show real fish examples that already use air occasionally",
+      "visual_fingerprint": "small amphibious fish on mangrove mud, side profile with raised head and exposed roots forming the background",
+      "type": "literal",
+      "continuity": "returns to shoreline to show an existing adaptation example",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "Scientists study these fish changes.",
+      "visual": "A scientist observes a fish in a natural shoreline research setting with simple field tools and a magnifying lens.",
+      "purpose": "show scientific study of fish adaptations",
+      "visual_fingerprint": "field researcher kneeling beside a shallow stream examining fish habitat, medium-wide composition with natural tools",
+      "type": "subject_world",
+      "continuity": "moves from animal example to observing and learning about adaptations",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "A land fish needs many more changes.",
+      "visual": "A visual comparison in the same crayon world shows a fish silhouette with highlighted areas for body support, fins, and moisture needs without any text labels.",
+      "purpose": "show that becoming land-adapted requires multiple body changes",
+      "visual_fingerprint": "single fish centered on split shoreline environment, surrounding visual cues of stronger fins, body support, and wet habitat needs, front-facing composition",
+      "type": "diagram",
+      "continuity": "transforms research observation into a clear adaptation explanation",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "One ability cannot change everything.",
+      "visual": "A fish with air-breathing ability returns to the water beside a dry landscape, emphasizing that one feature is not enough for land life.",
+      "purpose": "show that a single adaptation does not solve every survival challenge",
+      "visual_fingerprint": "fish at boundary between dry shore and water, wide vertical composition contrasting one useful ability with many environmental demands",
+      "type": "metaphor",
+      "continuity": "concludes the explanation by connecting all adaptation challenges",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "Adaptation means changes living things make to survive in a place.",
+      "visual": "A vibrant shoreline ecosystem shows different fish and plants fitting their environments, with the adapted fish swimming between water and land.",
+      "purpose": "summarize adaptation as changes that help living things survive in their habitats",
+      "visual_fingerprint": "full ecosystem view of shoreline with varied organisms in matching habitats, panoramic vertical composition from underwater foreground to sunny bank",
+      "type": "subject_world",
+      "continuity": "final wide view connects individual fish changes to the whole living world",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

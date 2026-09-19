@@ -1,0 +1,94 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "885a4e0c66e3d4b532203779c433d8a8e4678c43ee15d32273f345f7de88dbf4",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "5b49746a-aa08-4edf-811b-e7bcd55da0af",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/226f59ec00d30996",
+    "submission_fingerprint": null,
+    "reference_roles": [],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=5b49746a-aa08-4edf-811b-e7bcd55da0af_output_1.png 1536x2752 sha256=1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "885a4e0c66e3d4b532203779c433d8a8e4678c43ee15d32273f345f7de88dbf4",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "5b49746a-aa08-4edf-811b-e7bcd55da0af",
+        "prompt_sha256": "a8b1f1e5b2de5672086889ebdccf7f0a45eb83a96c9bc5b306b3e2a8db7bfbfd",
+        "output_sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [],
+  "prompt_sha256": "a8b1f1e5b2de5672086889ebdccf7f0a45eb83a96c9bc5b306b3e2a8db7bfbfd",
+  "prompt": "Create exactly one 9:16 vertical style reference sheet — a texture and palette sample, not a scene. Medium: crayon illustration. Texture family: soft wax crayon grain with layered strokes, visible pigment buildup, gentle rubbing and uneven hand-drawn mark variation. Palette: bright aquatic blues, fresh greens, sandy yellows, warm oranges, soft sky tones, and earthy browns with playful but natural saturation for underwater and shoreline environments. Line treatment: bold hand-drawn crayon contours with overlapping colored strokes, simplified scientific forms, and expressive texture while keeping anatomy readable. Lighting: warm natural daylight with soft underwater diffusion and gentle highlights on wet surfaces. Avoid: No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery; no fantasy fish with unrelated powers. No characters, no text, no logos, no photorealism. [VISUAL_CONTRACT:material_anchor_v2] Fill the canvas with a neutral material/palette sample, not a framed page, book, landscape, gateway, inset illustration or host.",
+  "output_path": "references/world_style_anchor.png",
+  "output_sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 42.14,
+  "completed_at": "2026-09-19T04:09:52Z"
+}

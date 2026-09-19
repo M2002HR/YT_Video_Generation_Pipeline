@@ -1,0 +1,574 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 45.636,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 94,
+  "words": [
+    {
+      "text": "If",
+      "token": "if",
+      "start": 0.0,
+      "end": 0.22
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 0.22,
+      "end": 0.58
+    },
+    {
+      "text": "could",
+      "token": "could",
+      "start": 0.58,
+      "end": 0.82
+    },
+    {
+      "text": "breathe",
+      "token": "breathe",
+      "start": 0.82,
+      "end": 1.3
+    },
+    {
+      "text": "on",
+      "token": "on",
+      "start": 1.3,
+      "end": 1.58
+    },
+    {
+      "text": "land,",
+      "token": "land",
+      "start": 1.58,
+      "end": 2.54
+    },
+    {
+      "text": "why",
+      "token": "why",
+      "start": 2.54,
+      "end": 2.6
+    },
+    {
+      "text": "would",
+      "token": "would",
+      "start": 2.6,
+      "end": 2.86
+    },
+    {
+      "text": "they",
+      "token": "they",
+      "start": 2.86,
+      "end": 3.02
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 3.02,
+      "end": 3.36
+    },
+    {
+      "text": "need",
+      "token": "need",
+      "start": 3.36,
+      "end": 3.68
+    },
+    {
+      "text": "water?",
+      "token": "water",
+      "start": 3.68,
+      "end": 4.18
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 4.9,
+      "end": 5.04
+    },
+    {
+      "text": "answer",
+      "token": "answer",
+      "start": 5.04,
+      "end": 5.48
+    },
+    {
+      "text": "starts",
+      "token": "starts",
+      "start": 5.48,
+      "end": 6.06
+    },
+    {
+      "text": "with",
+      "token": "with",
+      "start": 6.06,
+      "end": 6.3
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 6.3,
+      "end": 6.62
+    },
+    {
+      "text": "change,",
+      "token": "change",
+      "start": 6.62,
+      "end": 7.46
+    },
+    {
+      "text": "not",
+      "token": "not",
+      "start": 7.46,
+      "end": 7.78
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 7.78,
+      "end": 8.02
+    },
+    {
+      "text": "whole",
+      "token": "whole",
+      "start": 8.02,
+      "end": 8.32
+    },
+    {
+      "text": "new",
+      "token": "new",
+      "start": 8.32,
+      "end": 8.68
+    },
+    {
+      "text": "fish.",
+      "token": "fish",
+      "start": 8.68,
+      "end": 9.3
+    },
+    {
+      "text": "Air",
+      "token": "air",
+      "start": 9.66,
+      "end": 9.96
+    },
+    {
+      "text": "breathing",
+      "token": "breathing",
+      "start": 9.96,
+      "end": 10.34
+    },
+    {
+      "text": "solves",
+      "token": "solves",
+      "start": 10.34,
+      "end": 10.88
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 10.88,
+      "end": 11.2
+    },
+    {
+      "text": "problem.",
+      "token": "problem",
+      "start": 11.2,
+      "end": 11.68
+    },
+    {
+      "text": "The",
+      "token": "the",
+      "start": 12.1,
+      "end": 12.28
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 12.28,
+      "end": 12.66
+    },
+    {
+      "text": "still",
+      "token": "still",
+      "start": 12.66,
+      "end": 13.26
+    },
+    {
+      "text": "needs",
+      "token": "needs",
+      "start": 13.26,
+      "end": 13.62
+    },
+    {
+      "text": "water.",
+      "token": "water",
+      "start": 13.62,
+      "end": 14.02
+    },
+    {
+      "text": "Its",
+      "token": "its",
+      "start": 14.4,
+      "end": 14.62
+    },
+    {
+      "text": "body",
+      "token": "body",
+      "start": 14.62,
+      "end": 14.98
+    },
+    {
+      "text": "must",
+      "token": "must",
+      "start": 14.98,
+      "end": 15.26
+    },
+    {
+      "text": "handle",
+      "token": "handle",
+      "start": 15.26,
+      "end": 15.64
+    },
+    {
+      "text": "dry",
+      "token": "dry",
+      "start": 15.64,
+      "end": 16.0
+    },
+    {
+      "text": "ground.",
+      "token": "ground",
+      "start": 16.0,
+      "end": 16.56
+    },
+    {
+      "text": "Its",
+      "token": "its",
+      "start": 17.0,
+      "end": 17.24
+    },
+    {
+      "text": "fins",
+      "token": "fins",
+      "start": 17.24,
+      "end": 17.58
+    },
+    {
+      "text": "must",
+      "token": "must",
+      "start": 17.58,
+      "end": 18.08
+    },
+    {
+      "text": "support",
+      "token": "support",
+      "start": 18.08,
+      "end": 18.54
+    },
+    {
+      "text": "land",
+      "token": "land",
+      "start": 18.54,
+      "end": 19.02
+    },
+    {
+      "text": "movement.",
+      "token": "movement",
+      "start": 19.02,
+      "end": 19.38
+    },
+    {
+      "text": "Water",
+      "token": "water",
+      "start": 19.96,
+      "end": 20.28
+    },
+    {
+      "text": "helps",
+      "token": "helps",
+      "start": 20.28,
+      "end": 20.68
+    },
+    {
+      "text": "many",
+      "token": "many",
+      "start": 20.68,
+      "end": 21.18
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 21.18,
+      "end": 21.54
+    },
+    {
+      "text": "survive.",
+      "token": "survive",
+      "start": 21.54,
+      "end": 21.82
+    },
+    {
+      "text": "Some",
+      "token": "some",
+      "start": 21.46,
+      "end": 22.74
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 22.74,
+      "end": 23.08
+    },
+    {
+      "text": "already",
+      "token": "already",
+      "start": 23.08,
+      "end": 23.78
+    },
+    {
+      "text": "use",
+      "token": "use",
+      "start": 23.78,
+      "end": 24.18
+    },
+    {
+      "text": "air",
+      "token": "air",
+      "start": 24.18,
+      "end": 24.66
+    },
+    {
+      "text": "sometimes.",
+      "token": "sometimes",
+      "start": 24.66,
+      "end": 25.34
+    },
+    {
+      "text": "Scientists",
+      "token": "scientists",
+      "start": 25.78,
+      "end": 26.24
+    },
+    {
+      "text": "study",
+      "token": "study",
+      "start": 26.24,
+      "end": 27.06
+    },
+    {
+      "text": "these",
+      "token": "these",
+      "start": 27.06,
+      "end": 27.32
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 27.32,
+      "end": 27.54
+    },
+    {
+      "text": "changes.",
+      "token": "changes",
+      "start": 27.54,
+      "end": 27.98
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 28.52,
+      "end": 28.56
+    },
+    {
+      "text": "land",
+      "token": "land",
+      "start": 28.56,
+      "end": 29.04
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 29.04,
+      "end": 29.3
+    },
+    {
+      "text": "needs",
+      "token": "needs",
+      "start": 29.3,
+      "end": 29.88
+    },
+    {
+      "text": "many",
+      "token": "many",
+      "start": 29.88,
+      "end": 30.32
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 30.32,
+      "end": 30.68
+    },
+    {
+      "text": "changes.",
+      "token": "changes",
+      "start": 30.68,
+      "end": 31.42
+    },
+    {
+      "text": "One",
+      "token": "one",
+      "start": 31.66,
+      "end": 31.92
+    },
+    {
+      "text": "ability",
+      "token": "ability",
+      "start": 31.92,
+      "end": 32.38
+    },
+    {
+      "text": "cannot",
+      "token": "cannot",
+      "start": 32.38,
+      "end": 32.76
+    },
+    {
+      "text": "change",
+      "token": "change",
+      "start": 32.76,
+      "end": 33.18
+    },
+    {
+      "text": "everything.",
+      "token": "everything",
+      "start": 33.18,
+      "end": 34.02
+    },
+    {
+      "text": "Adaptation",
+      "token": "adaptation",
+      "start": 34.34,
+      "end": 34.98
+    },
+    {
+      "text": "means",
+      "token": "means",
+      "start": 34.98,
+      "end": 35.68
+    },
+    {
+      "text": "changes",
+      "token": "changes",
+      "start": 35.68,
+      "end": 36.32
+    },
+    {
+      "text": "living",
+      "token": "living",
+      "start": 36.32,
+      "end": 36.76
+    },
+    {
+      "text": "things",
+      "token": "things",
+      "start": 36.76,
+      "end": 37.2
+    },
+    {
+      "text": "make",
+      "token": "make",
+      "start": 37.2,
+      "end": 37.78
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 37.78,
+      "end": 38.24
+    },
+    {
+      "text": "survive",
+      "token": "survive",
+      "start": 38.24,
+      "end": 38.62
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 38.62,
+      "end": 39.12
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 39.12,
+      "end": 39.24
+    },
+    {
+      "text": "place.",
+      "token": "place",
+      "start": 39.24,
+      "end": 39.68
+    },
+    {
+      "text": "Like",
+      "token": "like",
+      "start": 40.06,
+      "end": 40.26
+    },
+    {
+      "text": "this",
+      "token": "this",
+      "start": 40.26,
+      "end": 40.5
+    },
+    {
+      "text": "video",
+      "token": "video",
+      "start": 40.5,
+      "end": 40.78
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 40.78,
+      "end": 41.64
+    },
+    {
+      "text": "subscribe",
+      "token": "subscribe",
+      "start": 41.64,
+      "end": 42.16
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 42.16,
+      "end": 43.02
+    },
+    {
+      "text": "more",
+      "token": "more",
+      "start": 43.02,
+      "end": 43.4
+    },
+    {
+      "text": "fish",
+      "token": "fish",
+      "start": 43.4,
+      "end": 43.76
+    },
+    {
+      "text": "survival",
+      "token": "survival",
+      "start": 43.76,
+      "end": 44.36
+    },
+    {
+      "text": "questions.",
+      "token": "questions",
+      "start": 44.36,
+      "end": 45.18
+    }
+  ]
+}

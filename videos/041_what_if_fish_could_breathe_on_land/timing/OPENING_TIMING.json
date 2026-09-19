@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 45.636,
+  "spark_start": 0.0,
+  "spark_end": 4.18,
+  "spark_duration": 4.18,
+  "transition_start": 4.9,
+  "transition_end": 9.3,
+  "transition_duration": 4.4,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 4.18,
+  "clip_b_target_seconds": 5.12,
+  "body_start": 9.66,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "If fish could breathe on land, why would they still need water?",
+      "speech_start": 0.0,
+      "speech_end": 4.18,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "The answer starts with one change, not a whole new fish.",
+      "speech_start": 4.9,
+      "speech_end": 9.3,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Air breathing solves one problem.",
+      "speech_start": 9.66,
+      "speech_end": 11.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "The fish still needs water.",
+      "speech_start": 12.1,
+      "speech_end": 14.02,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Its body must handle dry ground.",
+      "speech_start": 14.4,
+      "speech_end": 16.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Its fins must support land movement.",
+      "speech_start": 17.0,
+      "speech_end": 19.38,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Water helps many fish survive.",
+      "speech_start": 19.96,
+      "speech_end": 21.82,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Some fish already use air sometimes.",
+      "speech_start": 21.46,
+      "speech_end": 25.34,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "Scientists study these fish changes.",
+      "speech_start": 25.78,
+      "speech_end": 27.98,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "A land fish needs many more changes.",
+      "speech_start": 28.52,
+      "speech_end": 31.42,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "One ability cannot change everything.",
+      "speech_start": 31.66,
+      "speech_end": 34.02,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "Adaptation means changes living things make to survive in a place.",
+      "speech_start": 34.34,
+      "speech_end": 39.68,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Like this video and subscribe for more fish survival questions.",
+      "speech_start": 40.06,
+      "speech_end": 45.18,
+      "match_confidence": 1.0
+    }
+  ]
+}

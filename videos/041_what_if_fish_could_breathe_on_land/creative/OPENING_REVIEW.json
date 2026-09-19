@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "topic_specific": true,
+    "visible_from_start": true,
+    "character_consistent": true,
+    "honest_claims": true,
+    "hook_paid_off": true,
+    "entry_continuity": true,
+    "production_feasible": true,
+    "meaningfully_distinct": true
+  },
+  "issues": [],
+  "passed": true,
+  "history_ids": [
+    "035",
+    "037",
+    "038",
+    "038_could_you_live_forever_on_a_desert_island",
+    "039",
+    "039_could_you_live_forever_on_a_desert_island",
+    "040",
+    "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+  ],
+  "prompt_sha256": "bd5072a5f409f0f9d7ef78f5351aca87bef21c5ee1fa87298ac8fa723290c0bc",
+  "input_fingerprint": "0dac32f4078aae15886966fa3cd5e43f2e4c394af55d10f9d2ddc0b4b5e7e36e",
+  "concept_id": "cd58b34e0dcb64825721"
+}

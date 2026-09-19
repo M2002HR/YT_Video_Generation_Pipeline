@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-19T04:38:20.664500+00:00",
+  "output": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/renders/final.mp4",
+  "output_bytes": 60628144,
+  "target_duration_seconds": 45.636,
+  "actual_duration_seconds": 45.633,
+  "duration_drift_seconds": -0.003,
+  "wall_seconds": 162.745,
+  "realtime_factor": 3.566,
+  "beats": 12,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "subtitles": true,
+  "branding": {
+    "logo": false,
+    "title": true
+  },
+  "resource_budget": 0.8,
+  "cpus_available": 2,
+  "threads": {
+    "encoder": 2,
+    "filter": 2,
+    "filter_complex": 2,
+    "source": "render profile"
+  },
+  "nice": 10,
+  "ionice": true,
+  "supersample": 2,
+  "supersample_note": "",
+  "motion_render_backend": "single_graph",
+  "motion_segments_rendered": 0,
+  "motion_segments_reused": 0,
+  "peak_child_rss_mb": 1377.6
+}

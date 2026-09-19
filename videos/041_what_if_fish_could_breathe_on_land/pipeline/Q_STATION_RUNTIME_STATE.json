@@ -1,0 +1,563 @@
+{
+  "schema_version": 2,
+  "video_id": "041",
+  "topic": "What If Fish Could Breathe on Land?",
+  "created_at": "2026-09-19T04:03:12Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "requested_mode": "manual",
+      "requested_character_id": "sea_captain",
+      "resolved_character_id": "sea_captain",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:05Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:09:06Z",
+      "opening_activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water",
+      "opening_location": "a quiet coastal research garden with a small pool and damp plant-filled ground",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "limit comparison",
+        "tension_family": "water need versus land freedom",
+        "prop_family": "small pool and damp ground",
+        "reveal_family": "one change is not every change"
+      },
+      "situation_summary": "A fish is active beside water instead of fully inside it.",
+      "hook_line": "If fish could breathe on land, why would they still need water?",
+      "entry_variant": "changed_viewpoint",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:09:08Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:08:11Z",
+      "body_beats": 10,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:09:52Z",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112",
+      "model": "nano_banana_2",
+      "catalog_path": "026_colorful_crayon_adaptation_world_001"
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:10:10Z",
+      "prompt_sha256": "f4b8859a781c3affea56794445c65d1c9e1cd5a144abbba261d1a2015e12be52"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:11:07Z",
+      "sha256": "dfaf563c2ee51ea3360ccc68a8835fc54aee0d21701038ffee44b2a54e84f01b",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-19T04:11:09Z",
+      "artifact": "spyglass_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:11:29Z",
+      "profile_id": "spyglass_portal"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:13:33Z",
+      "sha256": "935950933574673edd293944b38235f85479d7e9b22b8c464e285535374b603e",
+      "model": "nano_banana_2",
+      "profile_id": "spyglass_portal"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:30:57Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:15:06Z",
+      "sha256": "014f1f972c62ecfcdc7d5eb04a799a6a364788ea84846e9abdd8e9d1a0bb7dfb",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:16:41Z",
+      "sha256": "7492979298c7c1098a9b9d197213bb163da7a457ac95b28eb71206ddedf8010c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:18:20Z",
+      "sha256": "4a7a8153fcdbacd1f044a456fa0b1d1bc0dd1658313e21e1398011173a929654",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:20:04Z",
+      "sha256": "24c8370594292eeab7f5a009e157c3bc022ec96cbe0db62bcb8305dc327b9c5d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:21:48Z",
+      "sha256": "e71494447b46cdb640718c5d74210d1ab8ca9d11bffc1b0c29190ae7085aec35",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:23:26Z",
+      "sha256": "0daa7123899382c39f0e44173b84e17097ce74b3cdb01a49d15de07e416a5120",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:25:32Z",
+      "sha256": "4fa6c3835d883158b07364c63ac8925d85f3a8cb42a3b9a62625d1ca87caa3f4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:27:10Z",
+      "sha256": "0c1f537d23e4468ddd506bd5f6d9c42ac4970f353e4f49268b262342e0c3889d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:29:21Z",
+      "sha256": "cbdf21253fd23e56a163ce1d97825ed81360b5ba9169d416816bbb88228f4644",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:30:56Z",
+      "sha256": "89a5a280a3ea65d341c43027029a1d773dbebf1b2327035c26748e271731df65",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:31:00Z",
+      "boundaries": 9
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:31:20Z",
+      "prompt_sha256": "412e25443a957f71bbdb4e5237e529788bd91ff28e83b660fdb519515af163aa"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:31:40Z",
+      "prompt_sha256": "13034b749135c13e35711ec7f05974f68abfd8ae48cefbf80ecc26ce8fbf5e5b"
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:33:20Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "3f29f000314344c9916bba63b472a6ea58ed505bfff17eed890e1a360aea6a8f"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:35:26Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "1609c7c71312af7db202c11c2af7712785a06658b5ed9eb01cf54a1fc0d6a48a"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T04:35:27Z",
+      "body_images": 10
+    }
+  },
+  "events": [
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 43.316,
+      "at": "2026-09-19T04:03:56Z",
+      "selected_id": "c1",
+      "concept_id": "cd58b34e0dcb64825721"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 34.086,
+      "at": "2026-09-19T04:04:31Z",
+      "words": 87
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 88.927,
+      "at": "2026-09-19T04:06:01Z",
+      "words": 89
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.319,
+      "at": "2026-09-19T04:06:45Z",
+      "activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water"
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 34.116,
+      "at": "2026-09-19T04:07:21Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 19.111,
+      "at": "2026-09-19T04:07:41Z",
+      "style_id": "colorful_crayon_adaptation_world_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.408,
+      "at": "2026-09-19T04:07:44Z",
+      "opening_activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water",
+      "opening_location": "a quiet coastal research garden with a small pool and damp plant-filled ground",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "limit comparison",
+        "tension_family": "water need versus land freedom",
+        "prop_family": "small pool and damp ground",
+        "reveal_family": "one change is not every change"
+      },
+      "situation_summary": "A fish is active beside water instead of fully inside it.",
+      "hook_line": "If fish could breathe on land, why would they still need water?",
+      "entry_variant": "changed_viewpoint",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 25.013,
+      "at": "2026-09-19T04:08:10Z",
+      "beats": 10
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.093,
+      "at": "2026-09-19T04:09:06Z",
+      "opening_activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water",
+      "opening_location": "a quiet coastal research garden with a small pool and damp plant-filled ground",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "limit comparison",
+        "tension_family": "water need versus land freedom",
+        "prop_family": "small pool and damp ground",
+        "reveal_family": "one change is not every change"
+      },
+      "situation_summary": "A fish is active beside water instead of fully inside it.",
+      "hook_line": "If fish could breathe on land, why would they still need water?",
+      "entry_variant": "changed_viewpoint",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 44.636,
+      "at": "2026-09-19T04:09:52Z",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112",
+      "model": "nano_banana_2",
+      "catalog_path": "026_colorful_crayon_adaptation_world_001"
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 16.468,
+      "at": "2026-09-19T04:10:10Z",
+      "prompt_sha256": "f4b8859a781c3affea56794445c65d1c9e1cd5a144abbba261d1a2015e12be52"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 55.984,
+      "at": "2026-09-19T04:11:07Z",
+      "sha256": "dfaf563c2ee51ea3360ccc68a8835fc54aee0d21701038ffee44b2a54e84f01b",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 20.613,
+      "at": "2026-09-19T04:11:29Z",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 122.53,
+      "at": "2026-09-19T04:13:33Z",
+      "sha256": "935950933574673edd293944b38235f85479d7e9b22b8c464e285535374b603e",
+      "model": "nano_banana_2",
+      "profile_id": "spyglass_portal"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 72.614,
+      "at": "2026-09-19T04:15:06Z",
+      "sha256": "014f1f972c62ecfcdc7d5eb04a799a6a364788ea84846e9abdd8e9d1a0bb7dfb",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 75.766,
+      "at": "2026-09-19T04:16:41Z",
+      "sha256": "7492979298c7c1098a9b9d197213bb163da7a457ac95b28eb71206ddedf8010c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 78.94,
+      "at": "2026-09-19T04:18:20Z",
+      "sha256": "4a7a8153fcdbacd1f044a456fa0b1d1bc0dd1658313e21e1398011173a929654",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 84.912,
+      "at": "2026-09-19T04:20:04Z",
+      "sha256": "24c8370594292eeab7f5a009e157c3bc022ec96cbe0db62bcb8305dc327b9c5d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 84.87,
+      "at": "2026-09-19T04:21:48Z",
+      "sha256": "e71494447b46cdb640718c5d74210d1ab8ca9d11bffc1b0c29190ae7085aec35",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 78.85,
+      "at": "2026-09-19T04:23:26Z",
+      "sha256": "0daa7123899382c39f0e44173b84e17097ce74b3cdb01a49d15de07e416a5120",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 105.893,
+      "at": "2026-09-19T04:25:32Z",
+      "sha256": "4fa6c3835d883158b07364c63ac8925d85f3a8cb42a3b9a62625d1ca87caa3f4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 78.834,
+      "at": "2026-09-19T04:27:10Z",
+      "sha256": "0c1f537d23e4468ddd506bd5f6d9c42ac4970f353e4f49268b262342e0c3889d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 111.869,
+      "at": "2026-09-19T04:29:21Z",
+      "sha256": "cbdf21253fd23e56a163ce1d97825ed81360b5ba9169d416816bbb88228f4644",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 75.885,
+      "at": "2026-09-19T04:30:56Z",
+      "sha256": "89a5a280a3ea65d341c43027029a1d773dbebf1b2327035c26748e271731df65",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1043.023,
+      "at": "2026-09-19T04:30:57Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.406,
+      "at": "2026-09-19T04:31:00Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 19.392,
+      "at": "2026-09-19T04:31:20Z",
+      "prompt_sha256": "412e25443a957f71bbdb4e5237e529788bd91ff28e83b660fdb519515af163aa"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 19.265,
+      "at": "2026-09-19T04:31:40Z",
+      "prompt_sha256": "13034b749135c13e35711ec7f05974f68abfd8ae48cefbf80ecc26ce8fbf5e5b"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 98.019,
+      "at": "2026-09-19T04:33:20Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "3f29f000314344c9916bba63b472a6ea58ed505bfff17eed890e1a360aea6a8f"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 124.917,
+      "at": "2026-09-19T04:35:26Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "1609c7c71312af7db202c11c2af7712785a06658b5ed9eb01cf54a1fc0d6a48a"
+    }
+  ],
+  "updated_at": "2026-09-19T04:35:27Z"
+}

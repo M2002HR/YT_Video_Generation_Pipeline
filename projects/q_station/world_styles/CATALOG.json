@@ -143,6 +143,17 @@
       "path": "025_submerged_pressure_gouache_cutaway_001",
       "anchor": "025_submerged_pressure_gouache_cutaway_001/style_anchor.png",
       "usage_count": 1
+    },
+    {
+      "style_id": "colorful_crayon_adaptation_world_001",
+      "display_name": "Colorful Crayon Adaptation World 001",
+      "medium_family": "crayon illustration",
+      "texture_family": "soft wax crayon grain with layered strokes, visible pigment buildup, gentle rubbing and uneven hand-drawn mark variation",
+      "palette_summary": "bright aquatic blues, fresh greens, sandy yellows, warm oranges, soft sky tones, and earthy browns with playful but natural saturation for underwater and shoreline environments",
+      "status": "ready",
+      "path": "026_colorful_crayon_adaptation_world_001",
+      "anchor": "026_colorful_crayon_adaptation_world_001/style_anchor.png",
+      "usage_count": 1
     }
   ]
 }

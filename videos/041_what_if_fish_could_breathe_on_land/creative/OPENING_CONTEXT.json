@@ -1,0 +1,129 @@
+{
+  "gateway_inputs_version": 1,
+  "policy_version": 2,
+  "brief": {
+    "topic": "What If Fish Could Breathe on Land?",
+    "language": "English",
+    "duration_seconds": [
+      30.0,
+      44.0
+    ],
+    "hero_presence_mode": "in_world"
+  },
+  "character": {
+    "id": "sea_captain",
+    "archetype": "seasoned, curious explorer who questions appearances and follows evidence",
+    "tone": [
+      "curious",
+      "observant",
+      "wry",
+      "warm",
+      "adventurous"
+    ],
+    "behavior": "An experienced explorer, not an all-knowing lecturer or a bumbling fool. He notices a discrepancy, briefly questions his first assumption, then follows evidence with restrained, readable curiosity. A raised eyebrow, a short pause or a small skeptical smile is enough; no constant shouting or pirate catchphrases. Keep spoken English plain and internationally clear.\n\nThe question chooses the situation. He can observe an ordinary object, compare two outcomes, trace a consequence or change his viewpoint in any topic-appropriate setting. Do not require a ship, sea, treasure hunt, nautical metaphor or chore. A historical reconstruction or thought experiment must remain explicitly such, not fabricated evidence. The spyglass invites a closer explanatory look; it does not magically solve the question. Start with secondary props already resting safely or outside the shot so the main action needs no juggling. Let the body deliver the specific opening payoff; appear in later beats only when the selected host-presence policy and explanation benefit.",
+    "negative_constraints": "No character redesign, mirrored eye patch or swapped peg leg, second boot, extra limbs, hook replacing a hand, new weapons, generic pirate substitution or photoreal/3D redesign. Do not use the covered eye with the spyglass. No drinking, smoking performance, combat, threatening blade use or mockery of age/disability. Keep existing accessories passive and secondary. No automatic ocean, pirate ship, tavern, treasure or sepia world for unrelated questions. No invented facts, magic-as-scientific-proof, ritual catchphrases, introductory greeting or three copies of the same story. Do not copy turnaround labels, reference grids or bottle lettering into the shot as explanatory text.\n\n\nNever put the wide objective at his eye, swap telescope ends, or aim the objective toward his face. The small narrow eyepiece goes next to the visible unpatched eye; the wider objective faces the subject. A close-up must not conceal this relationship. Keep the approved eye-patch side and a plausible supporting grip.",
+    "environment_policy": "dynamic",
+    "environment_affinities": []
+  },
+  "presentation": {
+    "profile_id": "spyglass_portal",
+    "display_name": "Question -> Captain's Spyglass -> Topic World",
+    "entry_kind": "spyglass",
+    "entry_segment_key": "entry_transition",
+    "entry_segment_label": "spyglass transition",
+    "script_rules": "The captain notices an observation, comparison, misleading impression, pattern or consequence specific to the actual question. A creates that question naturally in one location and at most three readable actions. No required sea, ship, treasure hunt or repeated catchphrase. B uses the same spyglass correctly: small eyepiece at the visible unpatched eye, wider objective away toward the subject, followed by a matched outward-looking viewpoint and a forward reveal of the topic world. Narration uses opening_question_spark and entry_transition, and gives an initial explanatory clue rather than describing a prop ritual. The visual passage is metaphorical where it changes scale; do not claim ordinary optics prove a hidden scientific mechanism. End in the full-bleed explanatory world; body and closing are not enclosed in a lens or page.",
+    "episode_rules": "Use the selected topic-first premise; a repeated nautical routine is not a premise. Choose the entry variant from the actual question: near_detail, far_target, two_object_compare, trace_to_cause, changed_viewpoint or pattern_inspection. The spyglass is a discovery device, not a restriction to ocean settings or a real microscope.\n\nA has one setting and at most three readable actions. B starts in an oblique side/rear-three-quarter view that clearly shows the SMALL rear eyepiece beside the captain's visible unpatched eye and the physically LARGER objective pointing away toward the observed subject. Preserve the sheet's face, eye patch and supporting hand. Both optical endpoints must be legible; an anonymous cuff with a giant foreground lens is not acceptable. Match orientation, grip, subject direction and lighting across the editorial A/B seam.\n\nB makes one restrained match into the captain's outward-looking optical viewpoint at the small eyepiece, then a forward reveal of the world. Do not fly backward through the objective into his face or make the barrel reverse during a zoom. Keep all essential action inside measured B narration; the tail holds the final frame. End host-free with no spyglass, brass rim, circular mask or enclosing page. Later host presence follows the shared body policy; medium and palette belong to the topic world, not to the captain's coat.",
+    "entry_frame_character_presence": "acting_host",
+    "entry_variants": [
+      "near_detail",
+      "far_target",
+      "two_object_compare",
+      "trace_to_cause",
+      "changed_viewpoint",
+      "pattern_inspection"
+    ],
+    "motion_contract": "",
+    "min_entry_seconds": 0.0,
+    "min_entry_words": 0
+  },
+  "writer_sha256": "cd03ebc51fd4cdb796459d00278118b22b1003d46b07c04d6266e105092d69e0",
+  "reviewer_sha256": "7424febd2238a7c58fe6986489f3f62c1e339cca6d3e8a7ba9c909ba54d549f0",
+  "language_policy_version": 1,
+  "input_fingerprint": "e0ea6f2df762fac7bef4aa004cc9f30359c4bd491fe56e769dd3d07ad59221a8",
+  "history": [
+    {
+      "video_id": "035",
+      "opening_activity": "tying a sagging tomato vine back onto its trellis with her long fingers as the greenhouse's timed overhead misters suddenly activate across the surrounding beds without anyone oper",
+      "opening_location": "rooftop greenhouse garden above a quiet high-rise district at early morning"
+    },
+    {
+      "video_id": "037",
+      "character_id": "moss_cloaked_crone",
+      "opening_activity": "deliberately comparing public display with private concealment",
+      "opening_location": "quiet sculpture gallery beside a temporary changing booth",
+      "situation_summary": "A nude marble figure is openly displayed while a nearby person urgently pulls a changing curtain shut.",
+      "hook_line": "Why can a naked statue feel proper when a naked person feels exposed?",
+      "entry_variant": "sleeve_reveal",
+      "opening_signature": {
+        "action_family": "context comparison",
+        "tension_family": "public display versus concealment",
+        "prop_family": "nude marble statue and privacy curtain",
+        "reveal_family": "same body category, different social rule"
+      }
+    },
+    {
+      "video_id": "038",
+      "character_id": "sea_captain",
+      "opening_activity": "comparing secure food and water supplies with sudden storm damage to the camp",
+      "opening_location": "small camp on an uninhabited tropical beach after a storm",
+      "situation_summary": "A full rain barrel and fresh food sit beside a shelter ripped apart by a storm.",
+      "hook_line": "If the island has food and water, why can't you stay forever?",
+      "entry_variant": "trace_to_cause",
+      "opening_signature": {
+        "action_family": "risk comparison",
+        "tension_family": "supplies versus sudden danger",
+        "prop_family": "full rain barrel and torn shelter",
+        "reveal_family": "a secure camp can still be disrupted"
+      }
+    },
+    {
+      "video_id": "038_could_you_live_forever_on_a_desert_island"
+    },
+    {
+      "video_id": "039",
+      "character_id": "sea_captain",
+      "opening_activity": "testing whether abundant food also provides enough dietary variety for long-term survival",
+      "opening_location": "a simple island food shelter beside coconut trees",
+      "situation_summary": "The camp has lots to eat, but nearly every meal comes from the same two foods.",
+      "hook_line": "If food is everywhere, why can the same few meals still fail you?",
+      "entry_variant": "pattern_inspection",
+      "opening_signature": {
+        "action_family": "abundance versus variety",
+        "tension_family": "enough food versus complete nutrition",
+        "prop_family": "fish rack, coconuts and meal plate",
+        "reveal_family": "repeated meals expose a long-term nutrition gap"
+      }
+    },
+    {
+      "video_id": "039_could_you_live_forever_on_a_desert_island"
+    },
+    {
+      "video_id": "040",
+      "character_id": "sea_captain",
+      "opening_activity": "Comparing how trapped air and water respond when exposed to the same increased pressure.",
+      "opening_location": "marine science pressure-lab viewing bay",
+      "situation_summary": "Inside one pressure chamber, an air-filled bulb shrinks while a water-filled bulb beside it barely changes.",
+      "hook_line": "If water crushes air pockets, why not your whole body?",
+      "entry_variant": "two_object_compare",
+      "opening_signature": {
+        "action_family": "same-pressure material comparison",
+        "tension_family": "whole-body crushing versus selective compression",
+        "prop_family": "air-filled and water-filled flexible bulbs",
+        "reveal_family": "pressure affects gas far more than water-rich tissue"
+      }
+    },
+    {
+      "video_id": "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+    }
+  ]
+}

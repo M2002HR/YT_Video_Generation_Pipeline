@@ -168,6 +168,29 @@
     },
     {
       "video_id": "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+    },
+    {
+      "video_id": "041",
+      "opening_activity": "testing a surprising change in a familiar animal's needs by observing how a fish behaves outside water",
+      "opening_location": "a quiet coastal research garden with a small pool and damp plant-filled ground",
+      "camera_pattern": "over_shoulder",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "sea_captain",
+      "presentation_id": "spyglass_portal",
+      "opening_signature": {
+        "action_family": "limit comparison",
+        "tension_family": "water need versus land freedom",
+        "prop_family": "small pool and damp ground",
+        "reveal_family": "one change is not every change"
+      },
+      "situation_summary": "A fish is active beside water instead of fully inside it.",
+      "hook_line": "If fish could breathe on land, why would they still need water?",
+      "entry_variant": "changed_viewpoint",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-19T04:09:06.954689+00:00"
+    },
+    {
+      "video_id": "041_what_if_fish_could_breathe_on_land"
     }
   ]
 }

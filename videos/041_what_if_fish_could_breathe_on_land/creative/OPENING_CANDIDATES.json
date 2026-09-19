@@ -1,0 +1,233 @@
+{
+  "input_fingerprint": "e0ea6f2df762fac7bef4aa004cc9f30359c4bd491fe56e769dd3d07ad59221a8",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island",
+        "039",
+        "039_could_you_live_forever_on_a_desert_island",
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+      ],
+      "writer_prompt_sha256": "0adbc18948407476711191292908208d629efe849534670e651cec2258f618e9",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If fish could breathe on land, why would they still need water?",
+            "viewer_expectation": "A fish should stay in water to survive.",
+            "visible_contradiction": "A fish is active beside water instead of fully inside it.",
+            "frame_zero": "A fish moves in a damp land area next to a small pool.",
+            "character_action": "The captain compares the fish's dry surroundings with the nearby water.",
+            "reaction": "He pauses, raises an eyebrow, and checks the unusual scene.",
+            "activity": "testing a surprising change in a familiar animal's needs",
+            "location": "a quiet coastal research garden with a small pool",
+            "topic_link": "Changing one body ability can change where an animal can live.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Hypothetical assumption: a fish species can take oxygen from air and live on land.",
+            "payoff": "The body explains that breathing air would remove one limit, but land life would still require other adaptations.",
+            "entry_variant": "changed_viewpoint",
+            "entry_bridge": {
+              "a_end": "The captain holds the spyglass toward the fish near the pool edge.",
+              "b_start": "The view begins from the spyglass looking across the land habitat.",
+              "reveal": "The land scene reveals the imagined fish world without the captain.",
+              "world_entry": "A host-free view shows fish moving through a damp land habitat beside plants."
+            },
+            "novelty": {
+              "action_family": "limit comparison",
+              "tension_family": "water need versus land freedom",
+              "prop_family": "small pool and damp ground",
+              "reveal_family": "one change is not every change"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If fish could breathe air, what would stop them from walking everywhere?",
+            "viewer_expectation": "Breathing air alone would make land travel easy.",
+            "visible_contradiction": "A fish breathes air but struggles on a dry surface.",
+            "frame_zero": "A fish-like creature reaches dry ground while its body movement looks limited.",
+            "character_action": "The captain watches movement and compares it with breathing.",
+            "reaction": "He gives a small skeptical smile and looks closer.",
+            "activity": "separating one survival problem from another",
+            "location": "a natural history thought-experiment exhibit",
+            "topic_link": "A new ability solves only the problem it changes.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Hypothetical assumption: a fish can breathe air, while other body features stay unchanged.",
+            "payoff": "The body explains that breathing and moving on land are different challenges.",
+            "entry_variant": "two_object_compare",
+            "entry_bridge": {
+              "a_end": "The captain faces a land surface and a water area with the spyglass raised.",
+              "b_start": "The spyglass view opens on the two environments side by side.",
+              "reveal": "The comparison shows different demands on the imagined fish.",
+              "world_entry": "A host-free scene shows a water zone and a dry zone in the thought experiment."
+            },
+            "novelty": {
+              "action_family": "ability comparison",
+              "tension_family": "breathing versus movement",
+              "prop_family": "water edge and dry ground",
+              "reveal_family": "one adaptation has limits"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "If fish lived on land, how would their world change?",
+            "viewer_expectation": "The same fish world would simply move onto land.",
+            "visible_contradiction": "The imagined fish habitat looks unlike a normal pond.",
+            "frame_zero": "Fish move through a land habitat with wet plants and shallow streams.",
+            "character_action": "The captain follows signs of a changed environment.",
+            "reaction": "He studies the scene with quiet curiosity.",
+            "activity": "tracing how one change affects a whole habitat",
+            "location": "a fictional ecology study area",
+            "topic_link": "A new animal ability can affect the places and systems around it.",
+            "claim_mode": "hypothetical",
+            "factual_anchor": "Hypothetical assumption: fish can breathe on land and their habitat changes around this ability.",
+            "payoff": "The body explores how land-breathing fish could need different homes, food sources, and protections.",
+            "entry_variant": "trace_to_cause",
+            "entry_bridge": {
+              "a_end": "The captain points the spyglass from the altered habitat model.",
+              "b_start": "The view moves outward into the imagined land ecosystem.",
+              "reveal": "The transition reveals a whole world built around the change.",
+              "world_entry": "A host-free view shows a land ecosystem with imagined air-breathing fish."
+            },
+            "novelty": {
+              "action_family": "habitat consequence",
+              "tension_family": "single change versus wider effects",
+              "prop_family": "wet plants and shallow streams",
+              "reveal_family": "body change reshapes surroundings"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "035",
+        "037",
+        "038",
+        "038_could_you_live_forever_on_a_desert_island",
+        "039",
+        "039_could_you_live_forever_on_a_desert_island",
+        "040",
+        "040_if_humans_could_breathe_underwater_how_deep_could_we_go"
+      ],
+      "reviewer_prompt_sha256": "06ca0bc61c32dd883b80623fd2fd7546b7a397975270b40dde54c1a4bb2e14c4",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The fish outside water creates a clear visible contradiction and directly supports the question. The hypothetical is stated honestly, and the payoff follows by showing that breathing air solves only one problem. The spyglass transition fits because the captain compares a changed animal need before entering the imagined world."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 3,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The idea clearly separates breathing from other survival needs, which is a strong science link. The first frame is understandable, though a fish-like creature struggling on dry ground may need careful visual design to avoid looking like an unrelated fantasy animal. The captain's skeptical comparison fits the character."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 3,
+              "feasibility": 3,
+              "novelty": 2,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [
+              "The opening promises a broad ecosystem change but the first visible event may not create a specific enough question before entry.",
+              "The habitat consequence approach risks feeling like a general world-building sequence rather than a focused answer to what happens if fish can breathe on land."
+            ],
+            "reason": "The concept is honest and the captain can investigate consequences, but the visible contradiction is weaker than candidates focused on one clear survival limit. The imagined ecosystem may require many details to explain within the short opening, and the action family overlaps with broader consequence comparisons."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The fish outside water creates a clear visible contradiction and directly supports the question. The hypothetical is stated honestly, and the payoff follows by showing that breathing air solves only one problem. The spyglass transition fits because the captain compares a changed animal need before entering the imagined world.",
+          "repetition_evidence": [],
+          "weighted_score": 90
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 3,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The idea clearly separates breathing from other survival needs, which is a strong science link. The first frame is understandable, though a fish-like creature struggling on dry ground may need careful visual design to avoid looking like an unrelated fantasy animal. The captain's skeptical comparison fits the character.",
+          "repetition_evidence": [],
+          "weighted_score": 87
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 3,
+            "feasibility": 3,
+            "novelty": 2,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [
+            "The opening promises a broad ecosystem change but the first visible event may not create a specific enough question before entry.",
+            "The habitat consequence approach risks feeling like a general world-building sequence rather than a focused answer to what happens if fish can breathe on land."
+          ],
+          "reason": "The concept is honest and the captain can investigate consequences, but the visible contradiction is weaker than candidates focused on one clear survival limit. The imagined ecosystem may require many details to explain within the short opening, and the action family overlaps with broader consequence comparisons.",
+          "repetition_evidence": [],
+          "weighted_score": 75
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

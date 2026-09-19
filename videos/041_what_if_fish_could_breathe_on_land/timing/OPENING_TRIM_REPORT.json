@@ -1,0 +1,27 @@
+{
+  "presentation_profile": "spyglass_portal",
+  "spark_end": 4.18,
+  "transition_end": 9.3,
+  "max_rate_adjust": 0.2,
+  "clips": [
+    {
+      "label": "Intro A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/opening/question_intro_trimmed.mp4",
+      "target": 4.18,
+      "actual": 4.167,
+      "speed_factor": 1.042394,
+      "rate_adjusted": true
+    },
+    {
+      "label": "Intro B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/041_what_if_fish_could_breathe_on_land/assets/opening/spyglass_transition_trimmed.mp4",
+      "target": 5.12,
+      "actual": 5.125,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    }
+  ],
+  "opening_total_seconds": 9.292,
+  "opening_total_target_seconds": 9.3,
+  "opening_total_drift_seconds": -0.008
+}

@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "42829a9b29e2fa8548481c3e60f020ca06d5590e10ac8256f68d84880ea362fa",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "cb9ef9ac-85c0-4f68-89d3-2ada2ce1c316",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/cbde674878ffd588",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=cb9ef9ac-85c0-4f68-89d3-2ada2ce1c316_output_1.png 1536x2752 sha256=0c1f537d23e4468ddd506bd5f6d9c42ac4970f353e4f49268b262342e0c3889d"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "42829a9b29e2fa8548481c3e60f020ca06d5590e10ac8256f68d84880ea362fa",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "cb9ef9ac-85c0-4f68-89d3-2ada2ce1c316",
+        "prompt_sha256": "000a7133b8747e3cbaa5bab230aaceb86c6419ed81fe9c9836c71e4e314ab297",
+        "output_sha256": "0c1f537d23e4468ddd506bd5f6d9c42ac4970f353e4f49268b262342e0c3889d",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/041_what_if_fish_could_breathe_on_land/references/world_style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/041_what_if_fish_could_breathe_on_land/references/world_keyframe.png",
+      "sha256": "dfaf563c2ee51ea3360ccc68a8835fc54aee0d21701038ffee44b2a54e84f01b"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/041_what_if_fish_could_breathe_on_land/assets/raw_beats/beat_007.png",
+      "sha256": "4fa6c3835d883158b07364c63ac8925d85f3a8cb42a3b9a62625d1ca87caa3f4"
+    }
+  ],
+  "prompt_sha256": "000a7133b8747e3cbaa5bab230aaceb86c6419ed81fe9c9836c71e4e314ab297",
+  "prompt": "Create exactly one 9:16 full-bleed Gemini image of a crayon illustration scene inside the aquatic shoreline topic world. Use the style_reference to preserve the selected medium, soft wax crayon grain, layered pigment buildup, gentle rubbing, uneven hand-drawn mark variation, bold crayon contours, simplified scientific forms with readable anatomy, bright aquatic blues, fresh greens, sandy yellows, warm oranges, soft sky tones and earthy browns, with warm natural daylight and soft underwater diffusion. Use the world_keyframe only as a guide for overall world consistency, atmosphere, palette, lighting and material treatment; do not copy its composition, framing, layout or entry design. Use the previous_beat reference only to maintain continuity of medium, texture, palette and lighting; do not copy its pose, camera angle, crop or arrangement. Show a single fish centered in a split shoreline environment where shallow water meets muddy bank and vegetation, creating a clear visual comparison of the many changes needed for life on land. The fish should have highlighted visual cues integrated naturally into the illustration, showing stronger fin structures, increased body support, and the need to maintain moisture through wet habitat connections, without text labels or fantasy features. Make the comparison feel like a scientific adaptation explanation through visual form rather than a diagram with written annotations. Keep the fish front-facing and anatomically recognizable, with gradual biological adaptation implied rather than a magical transformation. Fill the entire image edge-to-edge with the natural scene; no page, border, frame, inset, card, panel, doorway, lens mask, blank footer, caption area or empty strip. No readable text, symbols, labels, storyboard, grid, collage or multiple images. Use the full vertical composition height for the shoreline world and consistent crayon texture throughout. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_008.png",
+  "output_sha256": "0c1f537d23e4468ddd506bd5f6d9c42ac4970f353e4f49268b262342e0c3889d",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 78.266,
+  "completed_at": "2026-09-19T04:27:10Z"
+}

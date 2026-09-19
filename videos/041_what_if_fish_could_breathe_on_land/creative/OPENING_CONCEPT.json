@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "e0ea6f2df762fac7bef4aa004cc9f30359c4bd491fe56e769dd3d07ad59221a8",
+  "concept_id": "cd58b34e0dcb64825721",
+  "character_id": "sea_captain",
+  "presentation_id": "spyglass_portal",
+  "selected": {
+    "id": "c1",
+    "hook_line": "If fish could breathe on land, why would they still need water?",
+    "viewer_expectation": "A fish should stay in water to survive.",
+    "visible_contradiction": "A fish is active beside water instead of fully inside it.",
+    "frame_zero": "A fish moves in a damp land area next to a small pool.",
+    "character_action": "The captain compares the fish's dry surroundings with the nearby water.",
+    "reaction": "He pauses, raises an eyebrow, and checks the unusual scene.",
+    "activity": "testing a surprising change in a familiar animal's needs",
+    "location": "a quiet coastal research garden with a small pool",
+    "topic_link": "Changing one body ability can change where an animal can live.",
+    "factual_anchor": "Hypothetical assumption: a fish species can take oxygen from air and live on land.",
+    "payoff": "The body explains that breathing air would remove one limit, but land life would still require other adaptations.",
+    "claim_mode": "hypothetical",
+    "entry_variant": "changed_viewpoint",
+    "entry_bridge": {
+      "a_end": "The captain holds the spyglass toward the fish near the pool edge.",
+      "b_start": "The view begins from the spyglass looking across the land habitat.",
+      "reveal": "The land scene reveals the imagined fish world without the captain.",
+      "world_entry": "A host-free view shows fish moving through a damp land habitat beside plants."
+    },
+    "novelty": {
+      "action_family": "limit comparison",
+      "tension_family": "water need versus land freedom",
+      "prop_family": "small pool and damp ground",
+      "reveal_family": "one change is not every change"
+    }
+  },
+  "created_at": "2026-09-19T04:03:56Z"
+}

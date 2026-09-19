@@ -1,0 +1,120 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "89200faa15dc25d8659472450bca4e97cfb2b3b001b98747dc3cca65cf7fe9a8",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "gemini",
+  "job_id": "6ed8a1fe-3824-4da0-af42-0fe5d0d9d34a",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/22840f14e6a5d121",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=6ed8a1fe-3824-4da0-af42-0fe5d0d9d34a_output_1.png 1536x2752 sha256=935950933574673edd293944b38235f85479d7e9b22b8c464e285535374b603e"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "89200faa15dc25d8659472450bca4e97cfb2b3b001b98747dc3cca65cf7fe9a8",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "6ed8a1fe-3824-4da0-af42-0fe5d0d9d34a",
+        "prompt_sha256": "f338c9af95751c1c682d795281e51e0f59916d8b3a52d859ccfb8da4df646087",
+        "output_sha256": "935950933574673edd293944b38235f85479d7e9b22b8c464e285535374b603e",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/spyglass_portal/refs/spyglass_design_sheet_v2.png",
+      "sha256": "32abc89e57aa6c3647a56eaa59086769f4c4e7650ae55120a72594332e9bc87a"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/041_what_if_fish_could_breathe_on_land/references/world_style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/sea_captain/refs/character_sheet.png",
+      "sha256": "5aba3d3e5213edbb3238a9d39d920bce0ba4a63068ae1c0fa970f6b4868251eb"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/041_what_if_fish_could_breathe_on_land/references/world_keyframe.png",
+      "sha256": "dfaf563c2ee51ea3360ccc68a8835fc54aee0d21701038ffee44b2a54e84f01b"
+    }
+  ],
+  "prompt_sha256": "f338c9af95751c1c682d795281e51e0f59916d8b3a52d859ccfb8da4df646087",
+  "prompt": "[VISUAL_CONTRACT:spyglass_entry_v2] Create exactly one full-bleed 9:16 opening SCENE, not a reference sheet. Establish the telescope's use from an OBLIQUE SIDE / REAR-THREE-QUARTER view: the captain's visible, unpatched eye is beside the SMALL narrow rear eyepiece; the brown-and-brass barrel extends AWAY from his face toward the observed subject, ending in the physically LARGER front objective. Show enough of his canonical head and blue-coated arm, both distinct optical endpoints and their connection to verify direction. Keep perspective mild: do not use an extreme frontal lens close-up that conceals which end is which. A giant circular lens facing the viewer is NOT the requested composition.\n\nUse character_sheet for the exact captain face, eye patch, beard, hat and blue cuff, and entry_identity for the correctly oriented telescope. The small end belongs at the visible eye, never the patched eye or an unsupported hand gesture. Show a plausible barrel-supporting grip. Do not mirror the character, swap telescope ends, point the objective back toward his face, or put an eyeball/face inside the tube. This ownership and agency cue is actual optical use, not an anonymous cuff beside a lens.\n\nThe topic-relevant subject lies beyond the outward-pointing objective; the target-world reference supplies only that subject's medium, texture, palette and initial clue. Do not paint a mini-world over the captain's face or onto the eyecup. The camera will match into his outward-looking optical point of view in B, not physically fly backward from the objective into his face. Keep the scene edge-to-edge without a page/card border, circular vignette, grid, embedded text or extra limbs. The eventual last frame contains neither host nor spyglass.\n\nEPISODE TOPIC: What If Fish Could Breathe on Land?\nEPISODE DIRECTION: Art-direction brief\n\nOblique rear-three-quarter view of the captain using a brown-and-brass spyglass beside a coastal research garden pool, with the small eyepiece aligned to his unpatched eye and his blue-coated arm supporting the barrel toward a fish crossing damp ground. The revealed habitat shows amphibious speculation: wet soil, coastal plants, shallow water, and fish exploring land while retaining water-dependent conditions. Realistic textures emphasize biological limits, curiosity, and the captain's careful observational agency.\nTOPIC-WORLD STYLE: {\"style_id\": \"colorful_crayon_adaptation_world_001\", \"decision\": \"new\", \"reuse_of\": null, \"medium\": \"crayon illustration\", \"secondary_treatment\": null, \"texture_family\": \"soft wax crayon grain with layered strokes, visible pigment buildup, gentle rubbing and uneven hand-drawn mark variation\", \"palette_summary\": \"bright aquatic blues, fresh greens, sandy yellows, warm oranges, soft sky tones, and earthy browns with playful but natural saturation for underwater and shoreline environments\", \"line_treatment\": \"bold hand-drawn crayon contours with overlapping colored strokes, simplified scientific forms, and expressive texture while keeping anatomy readable\", \"lighting\": \"warm natural daylight with soft underwater diffusion and gentle highlights on wet surfaces\", \"subject_constraints\": \"Topic-appropriate fish, shallow water, muddy banks, vegetation, air exposure, and adaptation-focused anatomy; show gradual biological changes rather than fantasy transformations\", \"historical_accuracy_note\": null, \"hero_rendering_in_world\": \"Only when a later shot requests the host, translate the supplied identity into this medium\", \"negative_constraints\": \"No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery; no fantasy fish with unrelated powers\", \"reserve_subtitle_space\": false, \"frame_language\": \"Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.\", \"layout_policy\": \"full_bleed_topic_world_v2\", \"subtitle_reserve\": \"No reserved caption field; continue the scene through the full height.\"}\nENTRY CAMERA PLAN: {}",
+  "output_path": "references/spyglass_entry_frame.png",
+  "output_sha256": "935950933574673edd293944b38235f85479d7e9b22b8c464e285535374b603e",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 120.414,
+  "completed_at": "2026-09-19T04:13:33Z"
+}
