@@ -1,0 +1,1921 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 49.45,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.5,
+      "duration": 3.5,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 3.5,
+      "end": 7.333,
+      "duration": 3.833,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.333,
+      "end": 10.75,
+      "duration": 3.417,
+      "speech_start": 8.06,
+      "speech_end": 10.8,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Two body outlines show different heat loss.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 10.75,
+      "end": 15.6,
+      "duration": 4.85,
+      "speech_start": 10.7,
+      "speech_end": 15.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Small and giant models lose warmth at different speeds.",
+      "transition_in": "fade",
+      "transition_seconds": 0.3,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 15.6,
+      "end": 19.77,
+      "duration": 4.17,
+      "speech_start": 15.6,
+      "speech_end": 19.84,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The giant model has more outside area and loses heat.",
+      "transition_in": "fade",
+      "transition_seconds": 0.17,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 19.77,
+      "end": 23.94,
+      "duration": 4.17,
+      "speech_start": 19.7,
+      "speech_end": 23.72,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The inner part of the body grows differently from outside area.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 23.94,
+      "end": 29.84,
+      "duration": 5.9,
+      "speech_start": 23.94,
+      "speech_end": 29.84,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The square-cube rule explains size changes outside area and volume.",
+      "transition_in": "fade",
+      "transition_seconds": 0.2,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 29.84,
+      "end": 34.22,
+      "duration": 4.38,
+      "speech_start": 29.84,
+      "speech_end": 33.42,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Volume means the space inside a body.",
+      "transition_in": "fade",
+      "transition_seconds": 0.14,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 34.22,
+      "end": 37.62,
+      "duration": 3.4,
+      "speech_start": 34.22,
+      "speech_end": 37.62,
+      "match_confidence": 0.778,
+      "motion": "zoom_in",
+      "narration": "An elephant-sized human may struggle with body heat.",
+      "transition_in": "fade",
+      "transition_seconds": 0.13,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 37.62,
+      "end": 40.86,
+      "duration": 3.24,
+      "speech_start": 37.62,
+      "speech_end": 40.86,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "The models show bigger bodies change beyond height.",
+      "transition_in": "fade",
+      "transition_seconds": 0.14,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 40.86,
+      "end": 44.16,
+      "duration": 3.3,
+      "speech_start": 40.86,
+      "speech_end": 44.16,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A giant human is not just a larger copy.",
+      "transition_in": "fade",
+      "transition_seconds": 0.14,
+      "transition_source": "manual"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 44.16,
+      "end": 49.45,
+      "duration": 5.29,
+      "speech_start": 44.16,
+      "speech_end": 46.72,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "Bodies need new solutions.",
+      "transition_in": "fade",
+      "transition_seconds": 0.21,
+      "transition_source": "manual"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.02,
+      "end": 0.2,
+      "text": "If",
+      "ass_text": "If",
+      "words": [
+        {
+          "text": "If",
+          "start": 0.02,
+          "end": 0.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.2,
+      "end": 0.3,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 0.2,
+          "end": 0.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.3,
+      "end": 0.6,
+      "text": "human",
+      "ass_text": "human",
+      "words": [
+        {
+          "text": "human",
+          "start": 0.3,
+          "end": 0.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.6,
+      "end": 0.94,
+      "text": "grew",
+      "ass_text": "grew",
+      "words": [
+        {
+          "text": "grew",
+          "start": 0.6,
+          "end": 0.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.94,
+      "end": 1.5,
+      "text": "huge,",
+      "ass_text": "huge,",
+      "words": [
+        {
+          "text": "huge,",
+          "start": 0.94,
+          "end": 1.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.5,
+      "end": 1.94,
+      "text": "would",
+      "ass_text": "would",
+      "words": [
+        {
+          "text": "would",
+          "start": 1.5,
+          "end": 1.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.94,
+      "end": 2.14,
+      "text": "their",
+      "ass_text": "their",
+      "words": [
+        {
+          "text": "their",
+          "start": 1.94,
+          "end": 2.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.14,
+      "end": 2.42,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 2.14,
+          "end": 2.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.42,
+      "end": 2.72,
+      "text": "cool",
+      "ass_text": "cool",
+      "words": [
+        {
+          "text": "cool",
+          "start": 2.42,
+          "end": 2.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.72,
+      "end": 2.92,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 2.72,
+          "end": 2.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.92,
+      "end": 3.48,
+      "text": "same?",
+      "ass_text": "same?",
+      "words": [
+        {
+          "text": "same?",
+          "start": 2.92,
+          "end": 3.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.0,
+      "end": 4.36,
+      "text": "Bigger",
+      "ass_text": "Bigger",
+      "words": [
+        {
+          "text": "Bigger",
+          "start": 4.0,
+          "end": 4.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.36,
+      "end": 4.86,
+      "text": "size",
+      "ass_text": "size",
+      "words": [
+        {
+          "text": "size",
+          "start": 4.36,
+          "end": 4.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.86,
+      "end": 5.16,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 4.86,
+          "end": 5.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.16,
+      "end": 5.5,
+      "text": "change",
+      "ass_text": "change",
+      "words": [
+        {
+          "text": "change",
+          "start": 5.16,
+          "end": 5.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.5,
+      "end": 5.8,
+      "text": "how",
+      "ass_text": "how",
+      "words": [
+        {
+          "text": "how",
+          "start": 5.5,
+          "end": 5.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.8,
+      "end": 5.92,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 5.8,
+          "end": 5.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.92,
+      "end": 6.18,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 5.92,
+          "end": 6.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.18,
+      "end": 6.6,
+      "text": "loses",
+      "ass_text": "loses",
+      "words": [
+        {
+          "text": "loses",
+          "start": 6.18,
+          "end": 6.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.6,
+      "end": 7.3,
+      "text": "heat.",
+      "ass_text": "heat.",
+      "words": [
+        {
+          "text": "heat.",
+          "start": 6.6,
+          "end": 7.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.06,
+      "end": 8.34,
+      "text": "Two",
+      "ass_text": "Two",
+      "words": [
+        {
+          "text": "Two",
+          "start": 8.06,
+          "end": 8.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 8.34,
+      "end": 8.62,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 8.34,
+          "end": 8.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 8.62,
+      "end": 9.24,
+      "text": "outlines",
+      "ass_text": "outlines",
+      "words": [
+        {
+          "text": "outlines",
+          "start": 8.62,
+          "end": 9.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.24,
+      "end": 9.66,
+      "text": "show",
+      "ass_text": "show",
+      "words": [
+        {
+          "text": "show",
+          "start": 9.24,
+          "end": 9.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 9.66,
+      "end": 10.0,
+      "text": "different",
+      "ass_text": "different",
+      "words": [
+        {
+          "text": "different",
+          "start": 9.66,
+          "end": 10.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.0,
+      "end": 10.22,
+      "text": "heat",
+      "ass_text": "heat",
+      "words": [
+        {
+          "text": "heat",
+          "start": 10.0,
+          "end": 10.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.22,
+      "end": 10.75,
+      "text": "loss.",
+      "ass_text": "loss.",
+      "words": [
+        {
+          "text": "loss.",
+          "start": 10.22,
+          "end": 10.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 10.75,
+      "end": 11.72,
+      "text": "Small",
+      "ass_text": "Small",
+      "words": [
+        {
+          "text": "Small",
+          "start": 10.7,
+          "end": 11.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 11.72,
+      "end": 11.96,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 11.72,
+          "end": 11.96
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 11.96,
+      "end": 12.44,
+      "text": "giant",
+      "ass_text": "giant",
+      "words": [
+        {
+          "text": "giant",
+          "start": 11.96,
+          "end": 12.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.44,
+      "end": 13.06,
+      "text": "models",
+      "ass_text": "models",
+      "words": [
+        {
+          "text": "models",
+          "start": 12.44,
+          "end": 13.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.06,
+      "end": 13.68,
+      "text": "lose",
+      "ass_text": "lose",
+      "words": [
+        {
+          "text": "lose",
+          "start": 13.06,
+          "end": 13.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 13.68,
+      "end": 14.16,
+      "text": "warmth",
+      "ass_text": "warmth",
+      "words": [
+        {
+          "text": "warmth",
+          "start": 13.68,
+          "end": 14.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.16,
+      "end": 14.42,
+      "text": "at",
+      "ass_text": "at",
+      "words": [
+        {
+          "text": "at",
+          "start": 14.16,
+          "end": 14.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.42,
+      "end": 14.74,
+      "text": "different",
+      "ass_text": "different",
+      "words": [
+        {
+          "text": "different",
+          "start": 14.42,
+          "end": 14.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.74,
+      "end": 15.6,
+      "text": "speeds.",
+      "ass_text": "speeds.",
+      "words": [
+        {
+          "text": "speeds.",
+          "start": 14.74,
+          "end": 15.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 15.6,
+      "end": 16.28,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 15.6,
+          "end": 16.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.28,
+      "end": 16.6,
+      "text": "giant",
+      "ass_text": "giant",
+      "words": [
+        {
+          "text": "giant",
+          "start": 16.28,
+          "end": 16.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.6,
+      "end": 16.98,
+      "text": "model",
+      "ass_text": "model",
+      "words": [
+        {
+          "text": "model",
+          "start": 16.6,
+          "end": 16.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 16.98,
+      "end": 17.3,
+      "text": "has",
+      "ass_text": "has",
+      "words": [
+        {
+          "text": "has",
+          "start": 16.98,
+          "end": 17.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.3,
+      "end": 17.5,
+      "text": "more",
+      "ass_text": "more",
+      "words": [
+        {
+          "text": "more",
+          "start": 17.3,
+          "end": 17.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 17.5,
+      "end": 18.08,
+      "text": "outside",
+      "ass_text": "outside",
+      "words": [
+        {
+          "text": "outside",
+          "start": 17.5,
+          "end": 18.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.08,
+      "end": 18.56,
+      "text": "area",
+      "ass_text": "area",
+      "words": [
+        {
+          "text": "area",
+          "start": 18.08,
+          "end": 18.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.56,
+      "end": 18.94,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 18.56,
+          "end": 18.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 18.94,
+      "end": 19.26,
+      "text": "loses",
+      "ass_text": "loses",
+      "words": [
+        {
+          "text": "loses",
+          "start": 18.94,
+          "end": 19.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.26,
+      "end": 19.77,
+      "text": "heat.",
+      "ass_text": "heat.",
+      "words": [
+        {
+          "text": "heat.",
+          "start": 19.26,
+          "end": 19.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 19.77,
+      "end": 20.38,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 19.7,
+          "end": 20.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.38,
+      "end": 20.54,
+      "text": "inner",
+      "ass_text": "inner",
+      "words": [
+        {
+          "text": "inner",
+          "start": 20.38,
+          "end": 20.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.54,
+      "end": 20.82,
+      "text": "part",
+      "ass_text": "part",
+      "words": [
+        {
+          "text": "part",
+          "start": 20.54,
+          "end": 20.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.82,
+      "end": 20.94,
+      "text": "of",
+      "ass_text": "of",
+      "words": [
+        {
+          "text": "of",
+          "start": 20.82,
+          "end": 20.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 20.94,
+      "end": 21.08,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 20.94,
+          "end": 21.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.08,
+      "end": 21.32,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 21.08,
+          "end": 21.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.32,
+      "end": 21.76,
+      "text": "grows",
+      "ass_text": "grows",
+      "words": [
+        {
+          "text": "grows",
+          "start": 21.32,
+          "end": 21.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 21.76,
+      "end": 22.14,
+      "text": "differently",
+      "ass_text": "differently",
+      "words": [
+        {
+          "text": "differently",
+          "start": 21.76,
+          "end": 22.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.14,
+      "end": 22.66,
+      "text": "from",
+      "ass_text": "from",
+      "words": [
+        {
+          "text": "from",
+          "start": 21.96,
+          "end": 22.66
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 22.66,
+      "end": 23.02,
+      "text": "outside",
+      "ass_text": "outside",
+      "words": [
+        {
+          "text": "outside",
+          "start": 22.66,
+          "end": 23.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.02,
+      "end": 23.72,
+      "text": "area.",
+      "ass_text": "area.",
+      "words": [
+        {
+          "text": "area.",
+          "start": 23.02,
+          "end": 23.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 23.94,
+      "end": 24.62,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 23.94,
+          "end": 24.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 24.62,
+      "end": 24.92,
+      "text": "square",
+      "ass_text": "square",
+      "words": [
+        {
+          "text": "square",
+          "start": 24.62,
+          "end": 24.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 24.92,
+      "end": 25.3,
+      "text": "cube",
+      "ass_text": "cube",
+      "words": [
+        {
+          "text": "cube",
+          "start": 24.92,
+          "end": 25.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.3,
+      "end": 25.7,
+      "text": "rule",
+      "ass_text": "rule",
+      "words": [
+        {
+          "text": "rule",
+          "start": 25.3,
+          "end": 25.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 25.7,
+      "end": 26.52,
+      "text": "explains",
+      "ass_text": "explains",
+      "words": [
+        {
+          "text": "explains",
+          "start": 25.7,
+          "end": 26.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 26.52,
+      "end": 27.02,
+      "text": "size",
+      "ass_text": "size",
+      "words": [
+        {
+          "text": "size",
+          "start": 26.52,
+          "end": 27.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.02,
+      "end": 27.54,
+      "text": "changes",
+      "ass_text": "changes",
+      "words": [
+        {
+          "text": "changes",
+          "start": 27.02,
+          "end": 27.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 27.66,
+      "end": 28.02,
+      "text": "outside",
+      "ass_text": "outside",
+      "words": [
+        {
+          "text": "outside",
+          "start": 27.66,
+          "end": 28.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.02,
+      "end": 28.68,
+      "text": "area",
+      "ass_text": "area",
+      "words": [
+        {
+          "text": "area",
+          "start": 28.02,
+          "end": 28.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 28.68,
+      "end": 29.1,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 28.68,
+          "end": 29.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.1,
+      "end": 29.84,
+      "text": "volume.",
+      "ass_text": "volume.",
+      "words": [
+        {
+          "text": "volume.",
+          "start": 29.1,
+          "end": 29.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 29.84,
+      "end": 30.84,
+      "text": "Volume",
+      "ass_text": "Volume",
+      "words": [
+        {
+          "text": "Volume",
+          "start": 29.84,
+          "end": 30.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 30.84,
+      "end": 31.36,
+      "text": "means",
+      "ass_text": "means",
+      "words": [
+        {
+          "text": "means",
+          "start": 30.84,
+          "end": 31.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.36,
+      "end": 31.58,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 31.36,
+          "end": 31.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 31.58,
+      "end": 32.04,
+      "text": "space",
+      "ass_text": "space",
+      "words": [
+        {
+          "text": "space",
+          "start": 31.58,
+          "end": 32.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.04,
+      "end": 32.6,
+      "text": "inside",
+      "ass_text": "inside",
+      "words": [
+        {
+          "text": "inside",
+          "start": 32.04,
+          "end": 32.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.6,
+      "end": 32.9,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 32.6,
+          "end": 32.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 32.9,
+      "end": 33.42,
+      "text": "body.",
+      "ass_text": "body.",
+      "words": [
+        {
+          "text": "body.",
+          "start": 32.9,
+          "end": 33.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 34.22,
+      "end": 34.44,
+      "text": "An",
+      "ass_text": "An",
+      "words": [
+        {
+          "text": "An",
+          "start": 34.22,
+          "end": 34.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 34.44,
+      "end": 35.2,
+      "text": "elephant-sized",
+      "ass_text": "elephant-sized",
+      "words": [
+        {
+          "text": "elephant-sized",
+          "start": 34.44,
+          "end": 35.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.2,
+      "end": 35.7,
+      "text": "human",
+      "ass_text": "human",
+      "words": [
+        {
+          "text": "human",
+          "start": 35.2,
+          "end": 35.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 35.7,
+      "end": 36.06,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 35.7,
+          "end": 36.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.06,
+      "end": 36.5,
+      "text": "struggle",
+      "ass_text": "struggle",
+      "words": [
+        {
+          "text": "struggle",
+          "start": 36.06,
+          "end": 36.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.5,
+      "end": 36.76,
+      "text": "with",
+      "ass_text": "with",
+      "words": [
+        {
+          "text": "with",
+          "start": 36.5,
+          "end": 36.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 36.76,
+      "end": 37.08,
+      "text": "body",
+      "ass_text": "body",
+      "words": [
+        {
+          "text": "body",
+          "start": 36.76,
+          "end": 37.08
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.08,
+      "end": 37.62,
+      "text": "heat.",
+      "ass_text": "heat.",
+      "words": [
+        {
+          "text": "heat.",
+          "start": 37.08,
+          "end": 37.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 37.62,
+      "end": 38.12,
+      "text": "The",
+      "ass_text": "The",
+      "words": [
+        {
+          "text": "The",
+          "start": 37.62,
+          "end": 38.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.12,
+      "end": 38.44,
+      "text": "models",
+      "ass_text": "models",
+      "words": [
+        {
+          "text": "models",
+          "start": 38.12,
+          "end": 38.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.44,
+      "end": 38.74,
+      "text": "show",
+      "ass_text": "show",
+      "words": [
+        {
+          "text": "show",
+          "start": 38.44,
+          "end": 38.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 38.74,
+      "end": 39.02,
+      "text": "bigger",
+      "ass_text": "bigger",
+      "words": [
+        {
+          "text": "bigger",
+          "start": 38.74,
+          "end": 39.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.02,
+      "end": 39.4,
+      "text": "bodies",
+      "ass_text": "bodies",
+      "words": [
+        {
+          "text": "bodies",
+          "start": 39.02,
+          "end": 39.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.4,
+      "end": 39.62,
+      "text": "change",
+      "ass_text": "change",
+      "words": [
+        {
+          "text": "change",
+          "start": 39.4,
+          "end": 39.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 39.62,
+      "end": 40.3,
+      "text": "beyond",
+      "ass_text": "beyond",
+      "words": [
+        {
+          "text": "beyond",
+          "start": 39.38,
+          "end": 40.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.3,
+      "end": 40.86,
+      "text": "height.",
+      "ass_text": "height.",
+      "words": [
+        {
+          "text": "height.",
+          "start": 40.3,
+          "end": 40.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 40.86,
+      "end": 41.38,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 40.86,
+          "end": 41.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 41.38,
+      "end": 41.74,
+      "text": "giant",
+      "ass_text": "giant",
+      "words": [
+        {
+          "text": "giant",
+          "start": 41.38,
+          "end": 41.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 41.74,
+      "end": 42.14,
+      "text": "human",
+      "ass_text": "human",
+      "words": [
+        {
+          "text": "human",
+          "start": 41.74,
+          "end": 42.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.14,
+      "end": 42.46,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 42.14,
+          "end": 42.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.46,
+      "end": 42.64,
+      "text": "not",
+      "ass_text": "not",
+      "words": [
+        {
+          "text": "not",
+          "start": 42.46,
+          "end": 42.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.64,
+      "end": 42.94,
+      "text": "just",
+      "ass_text": "just",
+      "words": [
+        {
+          "text": "just",
+          "start": 42.64,
+          "end": 42.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 42.94,
+      "end": 43.14,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 42.94,
+          "end": 43.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.14,
+      "end": 43.5,
+      "text": "larger",
+      "ass_text": "larger",
+      "words": [
+        {
+          "text": "larger",
+          "start": 43.14,
+          "end": 43.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 43.5,
+      "end": 44.16,
+      "text": "copy.",
+      "ass_text": "copy.",
+      "words": [
+        {
+          "text": "copy.",
+          "start": 43.5,
+          "end": 44.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 44.16,
+      "end": 45.04,
+      "text": "Bodies",
+      "ass_text": "Bodies",
+      "words": [
+        {
+          "text": "Bodies",
+          "start": 44.16,
+          "end": 45.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.04,
+      "end": 45.4,
+      "text": "need",
+      "ass_text": "need",
+      "words": [
+        {
+          "text": "need",
+          "start": 45.04,
+          "end": 45.4
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.4,
+      "end": 45.68,
+      "text": "new",
+      "ass_text": "new",
+      "words": [
+        {
+          "text": "new",
+          "start": 45.4,
+          "end": 45.68
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 45.68,
+      "end": 46.72,
+      "text": "solutions.",
+      "ass_text": "solutions.",
+      "words": [
+        {
+          "text": "solutions.",
+          "start": 45.68,
+          "end": 46.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 46.72,
+      "end": 47.26,
+      "text": "Suggest",
+      "ass_text": "Suggest",
+      "words": [
+        {
+          "text": "Suggest",
+          "start": 46.72,
+          "end": 47.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 47.26,
+      "end": 47.76,
+      "text": "next",
+      "ass_text": "next",
+      "words": [
+        {
+          "text": "next",
+          "start": 47.08,
+          "end": 47.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 47.76,
+      "end": 48.18,
+      "text": "topic",
+      "ass_text": "topic",
+      "words": [
+        {
+          "text": "topic",
+          "start": 47.76,
+          "end": 48.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.18,
+      "end": 48.5,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 48.18,
+          "end": 48.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 48.5,
+      "end": 49.42,
+      "text": "comments.",
+      "ass_text": "comments.",
+      "words": [
+        {
+          "text": "comments.",
+          "start": 48.5,
+          "end": 49.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    }
+  ],
+  "qc": {
+    "beat_count": 12,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 1,
+        "before_beat": 2,
+        "current_speech_end": 10.8,
+        "next_speech_start": 10.7,
+        "overlap_seconds": 0.1,
+        "chosen_boundary": 10.75
+      },
+      {
+        "after_beat": 3,
+        "before_beat": 4,
+        "current_speech_end": 19.84,
+        "next_speech_start": 19.7,
+        "overlap_seconds": 0.14,
+        "chosen_boundary": 19.77
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 26,
+        "current_cue": 27,
+        "previous_end": 10.8,
+        "current_start": 10.7,
+        "overlap_seconds": 0.1,
+        "chosen_boundary": 10.75
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 45,
+        "current_cue": 46,
+        "previous_end": 19.84,
+        "current_start": 19.7,
+        "overlap_seconds": 0.14,
+        "chosen_boundary": 19.77
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 53,
+        "current_cue": 54,
+        "previous_end": 22.32,
+        "current_start": 21.96,
+        "overlap_seconds": 0.36,
+        "chosen_boundary": 22.14
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 88,
+        "current_cue": 89,
+        "previous_end": 39.86,
+        "current_start": 39.38,
+        "overlap_seconds": 0.48,
+        "chosen_boundary": 39.62
+      },
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 104,
+        "current_cue": 105,
+        "previous_end": 47.44,
+        "current_start": 47.08,
+        "overlap_seconds": 0.36,
+        "chosen_boundary": 47.26
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 109,
+    "subtitle_cues_estimated": 0
+  }
+}

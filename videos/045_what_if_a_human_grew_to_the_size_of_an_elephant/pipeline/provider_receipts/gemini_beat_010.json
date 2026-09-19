@@ -1,0 +1,119 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "8ea7e2625799407189434d931ce99408686d718a7f121ad510fb38ecef17963b",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "7c5a0007-6ab5-4e58-b479-a40a594ca791",
+  "requested_model": "chatgpt_image",
+  "actual_model_label": null,
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "chatgpt",
+    "requested_model": null,
+    "actual_model_label": null,
+    "model_verified": false,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "9:16",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://chatgpt.com/g/g-p-6aad6365c6a4819189a5a35f28e021fc-ordak/c/6aaeae59-9794-83ed-b4cd-42cac665d8be",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "operator_style_reference",
+      "previous_beat"
+    ],
+    "notes": [
+      "artifact_source=download",
+      "chat_scope=project",
+      "image=7c5a0007-6ab5-4e58-b479-a40a594ca791_output_1.png sha256=15f218d743fba5c81c15152770e29c007d3dfe80b9eba62fbbdde8d32c45a30b"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "8ea7e2625799407189434d931ce99408686d718a7f121ad510fb38ecef17963b",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "chatgpt",
+        "job_id": "7c5a0007-6ab5-4e58-b479-a40a594ca791",
+        "prompt_sha256": "b231c045b927da3a0745f46284e905213293390735819b8bf06b901dd7e4d4e0",
+        "output_sha256": "15f218d743fba5c81c15152770e29c007d3dfe80b9eba62fbbdde8d32c45a30b",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/references/world_style_anchor.png",
+      "sha256": "b9308681292de6c251884bd2f05fb8eec6ec72588d5b108bff2e16dfef326aa4"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/references/world_keyframe.png",
+      "sha256": "7359ba569a3a706bbf8060352392db99ce115bcbf79d63c0fbf4f0a4a6e4c4da"
+    },
+    {
+      "role": "operator_style_reference",
+      "path": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/style_references/style_reference.png",
+      "sha256": "95cb475cab4ec2dfd7296c2182d6358767f3f6e07eb6eeb654665eab59e0556b"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/assets/raw_beats/beat_009.png",
+      "sha256": "dbe27edcecb0639916fb105f2403421f635c414ab9cd7b9f2e23b8662c5bfd77"
+    }
+  ],
+  "prompt_sha256": "b231c045b927da3a0745f46284e905213293390735819b8bf06b901dd7e4d4e0",
+  "prompt": "Create exactly one 9:16 full-bleed image, edge-to-edge, with no storyboard, grid, collage, panels, captions, labels, or readable text. Inside the established topic world, show a wide final hero composition of a giant layered paper-cut human figure standing calmly in a cool blue thermal environment, surrounded by plausible adaptive cooling structures and environmental features that visually suggest new ways a much larger body might manage heat: broad shaded canopies, flowing-air channels, cooling surfaces, shallow water or mist elements, and softly radiating heat-release forms arranged around the body without implying unsupported anatomy. Use layered matte cardstock with soft fibrous paper grain, clean hand-cut edges, subtle raised layers, and gentle shadow depth; cool cyan and pale blue atmosphere, warm ivory anatomy, muted slate and lavender shadows, soft amber heat cues, and restrained coral biological-stress accents. Minimal cut-edge silhouettes with occasional embossed-like paper contours; soft diffused overhead studio illumination reveals physical depth and scale. Convey the reflective idea that altered body scale demands new adaptations. Fill the entire vertical frame naturally; no blank footer. Reference roles: use style_reference and operator_style_reference only for the established paper-cut medium, grain, palette, lighting, and cut-layer finish; use world_keyframe only to maintain continuity of the imagined giant-body world; use previous_beat only for compatible medium, texture, palette, and lighting. Do not copy any reference pose, crop, camera angle, subject placement, focal object, border, layout, or composition. No host character. No enclosing page, book spread, card, gutter, decorative border, inset window, doorway rim, lens mask, or inherited opening-entry mechanism. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_010.png",
+  "output_sha256": "15f218d743fba5c81c15152770e29c007d3dfe80b9eba62fbbdde8d32c45a30b",
+  "output_dimensions": [
+    941,
+    1672
+  ],
+  "elapsed_seconds": 114.383,
+  "completed_at": "2026-09-19T15:47:55Z"
+}

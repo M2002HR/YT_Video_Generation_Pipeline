@@ -121,8 +121,8 @@
       "model": "chatgpt_image"
     },
     "body_images": {
-      "status": "RUNNING",
-      "updated_at": "2026-09-19T15:20:55Z"
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:47:56Z"
     },
     "beat_image_001": {
       "status": "DONE",
@@ -135,8 +135,142 @@
       ]
     },
     "beat_image_002": {
-      "status": "RUNNING",
-      "updated_at": "2026-09-19T15:23:26Z"
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:25:24Z",
+      "sha256": "05dd252466d4b7ca09088cb24e07560d4385b9447379ca3027335d1b319e1e1d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:27:41Z",
+      "sha256": "f3ddaf58bde26f943cb72d7765e0657122e9df21981199e6601ca788749d78f3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:30:31Z",
+      "sha256": "32b32872a3be9de52f888b2e7370e19a1d75ac63108cbdea37ad16ded8241619",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:32:52Z",
+      "sha256": "6a4156ae68940ae93b1a9143fce133b35932db00f264e14b26ee5ef502c3345c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:36:12Z",
+      "sha256": "17814feaefd7bf456a860be617aac06ab4e5f38fe05e3d77661c2015479ac705",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:39:36Z",
+      "sha256": "40e33f1fc02f38eaf3a19da9a8926dcf0d95ef9ccaeb5e85a85ff545dbf35e5a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:42:59Z",
+      "sha256": "b8bc7a233ee6263c32fe0390fb946e7f7a64368c3c9081c7932202dfec6ce2bf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:45:40Z",
+      "sha256": "dbe27edcecb0639916fb105f2403421f635c414ab9cd7b9f2e23b8662c5bfd77",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:47:55Z",
+      "sha256": "15f218d743fba5c81c15152770e29c007d3dfe80b9eba62fbbdde8d32c45a30b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:47:59Z",
+      "boundaries": 9
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:48:22Z",
+      "prompt_sha256": "d0bfbf3b5ea2c92795c31f36c99c4ebe74c715b8a906587b0c6e7b44544d9b6d"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:48:46Z",
+      "prompt_sha256": "1c36f394416619be5243f8c3eb5e8f9e8cbf802fdea11b719c59b247edab81e9"
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:50:28Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "9222ee5f9cd8a807f76331a88aa45eca41425e58cf82c970b92e5c087756d8e2"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:52:32Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "212d889b6107fd4a4673dff6a73c937ac9a66d74822aab89e6d54d3fff3927ad"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-19T15:52:33Z",
+      "body_images": 10
     }
   },
   "events": [
@@ -475,7 +609,174 @@
         "world_keyframe",
         "operator_style_reference"
       ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 117.824,
+      "at": "2026-09-19T15:25:24Z",
+      "sha256": "05dd252466d4b7ca09088cb24e07560d4385b9447379ca3027335d1b319e1e1d",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 117.825,
+      "at": "2026-09-19T15:27:41Z",
+      "sha256": "f3ddaf58bde26f943cb72d7765e0657122e9df21981199e6601ca788749d78f3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 147.966,
+      "at": "2026-09-19T15:30:31Z",
+      "sha256": "32b32872a3be9de52f888b2e7370e19a1d75ac63108cbdea37ad16ded8241619",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 117.805,
+      "at": "2026-09-19T15:32:52Z",
+      "sha256": "6a4156ae68940ae93b1a9143fce133b35932db00f264e14b26ee5ef502c3345c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 177.958,
+      "at": "2026-09-19T15:36:12Z",
+      "sha256": "17814feaefd7bf456a860be617aac06ab4e5f38fe05e3d77661c2015479ac705",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 181.0,
+      "at": "2026-09-19T15:39:36Z",
+      "sha256": "40e33f1fc02f38eaf3a19da9a8926dcf0d95ef9ccaeb5e85a85ff545dbf35e5a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 180.927,
+      "at": "2026-09-19T15:42:59Z",
+      "sha256": "b8bc7a233ee6263c32fe0390fb946e7f7a64368c3c9081c7932202dfec6ce2bf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 135.86,
+      "at": "2026-09-19T15:45:40Z",
+      "sha256": "dbe27edcecb0639916fb105f2403421f635c414ab9cd7b9f2e23b8662c5bfd77",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 114.826,
+      "at": "2026-09-19T15:47:55Z",
+      "sha256": "15f218d743fba5c81c15152770e29c007d3dfe80b9eba62fbbdde8d32c45a30b",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "operator_style_reference",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 1621.106,
+      "at": "2026-09-19T15:47:56Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.647,
+      "at": "2026-09-19T15:47:59Z",
+      "boundaries": 9
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 22.323,
+      "at": "2026-09-19T15:48:22Z",
+      "prompt_sha256": "d0bfbf3b5ea2c92795c31f36c99c4ebe74c715b8a906587b0c6e7b44544d9b6d"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 22.257,
+      "at": "2026-09-19T15:48:46Z",
+      "prompt_sha256": "1c36f394416619be5243f8c3eb5e8f9e8cbf802fdea11b719c59b247edab81e9"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 100.94,
+      "at": "2026-09-19T15:50:28Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "9222ee5f9cd8a807f76331a88aa45eca41425e58cf82c970b92e5c087756d8e2"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 122.076,
+      "at": "2026-09-19T15:52:32Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "212d889b6107fd4a4673dff6a73c937ac9a66d74822aab89e6d54d3fff3927ad"
     }
   ],
-  "updated_at": "2026-09-19T15:23:26Z"
+  "updated_at": "2026-09-19T15:52:33Z"
 }

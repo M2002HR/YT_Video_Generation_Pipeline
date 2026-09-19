@@ -1,0 +1,71 @@
+{
+  "provider": "flow",
+  "job_id": "2be1f0b4-e950-4214-a4db-c5dec879335c",
+  "requested": {
+    "model": "gemini_omni_1_1_flash",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "duration_seconds": 4
+  },
+  "actual_model_label": "Omni 1.1 Flash",
+  "model_verified": true,
+  "duration_actual": 4,
+  "resolution_actual": "720p",
+  "aspect_actual": "9:16",
+  "reference_roles": [
+    "first_frame",
+    "last_frame"
+  ],
+  "submission_fingerprint": "51315dae8fafcbc06d99bcd0514b11be",
+  "workspace_url": "https://flow.google.com/project/6c5d7700-823c-486b-a63a-b54bc3342b6e",
+  "provider_receipt": {
+    "provider": "flow",
+    "requested_model": "gemini_omni_1_1_flash",
+    "actual_model_label": "Omni 1.1 Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": null,
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "9:16",
+    "requested_duration_seconds": 4,
+    "actual_duration_seconds": 4,
+    "requested_resolution": "720p",
+    "actual_resolution": "720p",
+    "workspace_url": "https://flow.google.com/project/6c5d7700-823c-486b-a63a-b54bc3342b6e",
+    "submission_fingerprint": "51315dae8fafcbc06d99bcd0514b11be",
+    "reference_roles": [
+      "first_frame",
+      "last_frame"
+    ],
+    "notes": [
+      "credits_required=7",
+      "outputs=x1",
+      "reference_mode=frames",
+      "pixels=720x1280",
+      "bytes=2027653",
+      "duration 4.01s vs requested 4s",
+      "resolution 720x1280 vs 720p"
+    ]
+  },
+  "uploaded_roles": [
+    "first_frame",
+    "last_frame"
+  ],
+  "references": [
+    {
+      "role": "first_frame",
+      "path": "references/book_cover_frame.png",
+      "sha256": "b567fbff34609bfe375f47c2843b6877c278308bb548e6f84f80eaefc31296a7"
+    },
+    {
+      "role": "last_frame",
+      "path": "references/world_keyframe.png",
+      "sha256": "7359ba569a3a706bbf8060352392db99ce115bcbf79d63c0fbf4f0a4a6e4c4da"
+    }
+  ],
+  "prompt_sha256": "1c36f394416619be5243f8c3eb5e8f9e8cbf802fdea11b719c59b247edab81e9",
+  "output_file": "assets/opening/book_transition_source.mp4",
+  "output_sha256": "212d889b6107fd4a4673dff6a73c937ac9a66d74822aab89e6d54d3fff3927ad",
+  "elapsed_seconds": 120.353,
+  "completed_at": "2026-09-19T15:52:32Z"
+}

@@ -1,0 +1,27 @@
+{
+  "presentation_profile": "book_portal",
+  "spark_end": 3.48,
+  "transition_end": 7.3,
+  "max_rate_adjust": 0.2,
+  "clips": [
+    {
+      "label": "Intro A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/assets/opening/question_spark_trimmed.mp4",
+      "target": 3.48,
+      "actual": 3.5,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    },
+    {
+      "label": "Intro B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/assets/opening/book_transition_trimmed.mp4",
+      "target": 3.82,
+      "actual": 3.833,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    }
+  ],
+  "opening_total_seconds": 7.333,
+  "opening_total_target_seconds": 7.3,
+  "opening_total_drift_seconds": 0.033
+}

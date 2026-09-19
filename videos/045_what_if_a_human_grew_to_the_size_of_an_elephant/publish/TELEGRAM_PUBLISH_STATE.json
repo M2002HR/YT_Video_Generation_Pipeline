@@ -1,0 +1,62 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-19T15:57:30.611609+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-19T15:57:30.611390+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15797,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 2026129,
+      "sha256": "a97938ef20a9117cd6085ab95413ca3dbc461a00e958f03f7fbf95e436d607c7",
+      "duration_seconds": 49.458,
+      "elapsed_seconds": 5.605,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+        "duration_seconds": 49.45,
+        "beat_count": 12,
+        "video_beat_count": 2,
+        "image_beat_count": 10,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": true,
+        "opening": {
+          "spark_end": 3.48,
+          "transition_end": 7.3
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "chatgpt": [
+            "chatgpt_image"
+          ],
+          "flow": [
+            "Omni 1.1 Flash"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": false
+        },
+        "resources": {
+          "wall_seconds": 237.449,
+          "realtime_factor": 4.802,
+          "peak_child_rss_mb": 1711.1,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 045_what_if_a_human_grew_to_the_size_of_an_elephant\n⏱ Duration: 0:49\n🎞 Beats: 12 (2 video · 10 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — chatgpt: chatgpt_image · flow: Omni 1.1 Flash\n🗣 Timing: ajil / word\n🔍 QC: passed\n🧮 Render: 3:57 wall (4.802x realtime) · 2 thread(s) · peak 1711.1 MB\nArtifact: a97938ef20a9 · Delivery: compressed"
+    }
+  }
+}
