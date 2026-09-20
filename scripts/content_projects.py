@@ -296,20 +296,20 @@ def validate_content_project(project: ContentProject, preset: str | None = None)
 
 
 def validate_provider_locks(project: ContentProject, image_provider: str | None = None, video_provider: str | None = None) -> None:
-    """Enforce the project-wide provider contract: ChatGPT images and Flow video."""
+    """Enforce the Q Station provider allowlist and the immutable Flow contract."""
     if not project.is_q_station:
         return
-    locked_image = "chatgpt"
+    allowed_images = {"chatgpt", "gemini"}
     locked_video = "flow"
-    if image_provider is not None and image_provider.strip().lower() != locked_image:
-        raise RuntimeError(f"Q Station image provider is LOCKED to {locked_image!r}; got {image_provider!r} (§60)")
+    if image_provider is not None and image_provider.strip().lower() not in allowed_images:
+        raise RuntimeError(f"Q Station image provider must be one of {sorted(allowed_images)!r}; got {image_provider!r}")
     if video_provider is not None and video_provider.strip().lower() != locked_video:
         raise RuntimeError(f"Q Station video provider is LOCKED to {locked_video!r}; got {video_provider!r} (§60)")
     # also validate config itself
     cfg_image = project.get_provider("image")
     cfg_video = project.get_provider("video")
-    if cfg_image != locked_image:
-        raise RuntimeError(f"PROJECT.json image provider must be {locked_image!r}; found {cfg_image!r}")
+    if cfg_image not in allowed_images:
+        raise RuntimeError(f"PROJECT.json default image provider must be one of {sorted(allowed_images)!r}; found {cfg_image!r}")
     if cfg_video != locked_video:
         raise RuntimeError(f"PROJECT.json video provider must be {locked_video!r}; found {cfg_video!r}")
 

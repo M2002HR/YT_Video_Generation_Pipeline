@@ -497,7 +497,13 @@ def launch_form(project_options: str, style_options: str, character_options: str
   <input type=hidden name=world_style_reference_id value="">
   <label><input type=checkbox name=reserve_subtitle_space checked> Reserve lower space inside images for subtitles</label>
   <label><input type=checkbox name=chatgpt_fallback_auto disabled> Gemini fallback disabled — ChatGPT is required</label>
-  <label>Image provider <input value="ChatGPT · project chat · Extra High" disabled></label>
+  <label>Image generation provider <select name=image_provider>
+    <option value=chatgpt selected>ChatGPT · project chat · Extra High</option>
+    <option value=gemini>Gemini · via Ordak</option></select>
+   <small>One provider is used for every still image; there is no automatic provider fallback.</small></label>
+  <label>Gemini image model <select name=gemini_image_model>
+    <option value=nano_banana_2 selected>Nano Banana 2</option>
+    <option value=nano_banana_pro>Nano Banana Pro (availability required)</option></select></label>
    <label class=check><input type=checkbox name=beat_image_qc_disabled onchange="syncBeatImageQcControls()">
     Disable ChatGPT QC for all images
     <small>Generated images (style, keyframe, book art, body beats) will never be uploaded to ChatGPT for review, with no exceptions — they are accepted as rendered.</small></label>

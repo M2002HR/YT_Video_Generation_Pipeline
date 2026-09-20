@@ -20,10 +20,12 @@ def test_q_station_provider_locks_are_chatgpt_flow():
     validate_provider_locks(proj)
 
 
-def test_q_station_image_provider_gemini_rejected():
+def test_q_station_allows_explicit_chatgpt_or_gemini_image_provider():
     proj = load_content_project("q_station")
-    with pytest.raises(RuntimeError, match="LOCKED.*chatgpt"):
-        validate_provider_locks(proj, image_provider="gemini")
+    validate_provider_locks(proj, image_provider="chatgpt")
+    validate_provider_locks(proj, image_provider="gemini")
+    with pytest.raises(RuntimeError, match="must be one of"):
+        validate_provider_locks(proj, image_provider="dall-e")
 
 
 def test_q_station_video_provider_gemini_rejected():
@@ -124,8 +126,8 @@ def test_the_orchestrator_has_no_alternate_image_or_video_backend():
         assert banned not in text.lower(), f"{banned!r} appeared beside the locked providers"
 
 
-def test_every_static_image_generation_call_is_chatgpt() -> None:
-    """No script may reintroduce a direct Gemini image-generation call."""
+def test_every_static_image_generation_call_uses_the_selected_allowlisted_provider() -> None:
+    """Image calls may be dynamic, but never name an unapproved third provider."""
     violations = []
     for path in sorted((Path(ROOT) / "scripts").glob("*.py")):
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
@@ -136,7 +138,7 @@ def test_every_static_image_generation_call_is_chatgpt() -> None:
                     for keyword in node.keywords
                     if keyword.arg and isinstance(keyword.value, ast.Constant)
                 }
-                if values.get("mode") == "image_generate" and values.get("provider") != "chatgpt":
+                if values.get("mode") == "image_generate" and values.get("provider") not in {None, "chatgpt", "gemini"}:
                     violations.append(f"{path.name}:{node.lineno}:{values.get('provider')!r}")
                 if values.get("mode") == "image_generate" and values.get("provider") == "chatgpt":
                     if values.get("chatgpt_chat") not in {"project", None}:
@@ -147,7 +149,7 @@ def test_every_static_image_generation_call_is_chatgpt() -> None:
                     for key, value in zip(node.keys, node.values)
                     if isinstance(key, ast.Constant) and isinstance(value, ast.Constant)
                 }
-                if values.get("mode") == "image_generate" and values.get("provider") != "chatgpt":
+                if values.get("mode") == "image_generate" and values.get("provider") not in {None, "chatgpt", "gemini"}:
                     violations.append(f"{path.name}:{node.lineno}:{values.get('provider')!r}")
                 if values.get("mode") == "image_generate" and values.get("provider") == "chatgpt":
                     if values.get("chatgpt_chat") != "project":

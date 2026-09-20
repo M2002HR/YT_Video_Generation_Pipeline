@@ -58,6 +58,8 @@ runtime/sfx_library/
 runtime/freesound_music_library/
 videos/**/pipeline/TELEGRAM_NOTIFICATION_STATE.json
 videos/**/pipeline/TELEGRAM_NOTIFICATION_STATE.json.lock
+# Studio preview proxies are disposable caches regenerated on demand.
+videos/**/.panel_previews/
 
 # Per-video execution metadata is durable engineering evidence and must stay
 # eligible for Git even when generated media itself is ignored.

@@ -82,6 +82,7 @@ Q_STATION_ROOTS = {
     # The hint only changes the final spoken CTA and its narration/render descendants.
     "cta_hint": ("call_to_action",),
     "gemini_image_model": ("world_style_anchor",),
+    "image_provider": ("world_style_anchor",),
     # Affects only future image attempts; saving it must not spend credits rebuilding
     # already accepted artifacts.
     "image_qc_correction_policy": (),
@@ -354,9 +355,8 @@ def validate_config_values(values: dict) -> dict:
         for field in group["fields"]
         if field["type"] != "readonly"
     }
-    # Historical frozen briefs may contain this retired control even though the
-    # current provider contract exposes it read-only. Preserve its frozen value
-    # for legacy revision calculations without reopening it in the public form.
+    # Historical frozen briefs may contain this retired text-fallback control.
+    # Preserve it for legacy revision calculations without reopening it.
     legacy_fallback = bool(values.get("chatgpt_fallback_auto", False))
     unknown = set(values) - set(fields) - {"chatgpt_fallback_auto"}
     if unknown:
@@ -4758,6 +4758,7 @@ class Handler(BaseHTTPRequestHandler):
             world_style_reference_id = values.get("world_style_reference_id", [""])[0].strip()
             reserve_subtitle_space = "reserve_subtitle_space" in values
             chatgpt_fallback_auto = "chatgpt_fallback_auto" in values
+            image_provider = values.get("image_provider", ["chatgpt"])[0].strip().lower() or "chatgpt"
             world_style_id = values.get("world_style_id", [""])[0].strip()
             if world_style_id and world_style_id not in catalogued_style_ids(content_project):
                 raise ValueError(f"Unknown world style: {world_style_id}")
@@ -4797,6 +4798,8 @@ class Handler(BaseHTTPRequestHandler):
                     gemini_image_model = normalize_gemini_model(gemini_image_model)
                 except Exception:
                     raise ValueError("Invalid gemini_image_model")
+            if image_provider not in {"chatgpt", "gemini"}:
+                raise ValueError("Invalid image_provider")
             if image_qc_correction_policy not in {"0", "1", "2", "strict"}:
                 raise ValueError("Invalid image_qc_correction_policy")
             if flow_video_model not in {"gemini_omni_1_1_flash", "veo_3_1_quality", "veo_3_1_fast", "veo_3_1_lite"}:
@@ -4909,7 +4912,7 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Enable at least one Motion primitive (use intentional holds for cut-only editing)")
             cp = load_content_project(content_project)
             # provider locks (§60)
-            validate_provider_locks(cp)
+            validate_provider_locks(cp, image_provider=image_provider)
             # Validate project assets, including the Q Station character registry.
             validate_content_project(cp)
             if cp.is_q_station:
@@ -4943,6 +4946,7 @@ class Handler(BaseHTTPRequestHandler):
                 "min_duration_seconds": duration_min,
                 "max_duration_seconds": duration_max,
                 "gemini_image_model": gemini_image_model,
+                "image_provider": image_provider,
                 "beat_image_qc_disabled": beat_image_qc_disabled,
                 "image_qc_correction_policy": image_qc_correction_policy,
                 "flow_video_model": flow_video_model,

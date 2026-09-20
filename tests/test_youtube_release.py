@@ -160,6 +160,7 @@ def test_release_reuses_the_episode_image_contract_not_project_default(tmp_path:
     }), encoding="utf-8")
     contract = original_image_contract(video, "q_station")
     assert contract == {
+        "provider": "gemini",
         "model": "nano_banana_2",
         "qc_correction_policy": "1",
         "chatgpt_fallback_mode": "auto",

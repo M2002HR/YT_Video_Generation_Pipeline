@@ -173,6 +173,7 @@ def q_station_overrides(creative_brief: Path) -> list[str]:
         return []
     advanced = brief.get("_q_station") or {}
     mapping = {
+        "image_provider": "--image-provider",
         "image_qc_correction_policy": "--image-qc-correction-policy",
         "flow_video_model": "--flow-model",
         "flow_resolution": "--flow-resolution",
@@ -190,6 +191,8 @@ def q_station_overrides(creative_brief: Path) -> list[str]:
     for key, flag in mapping.items():
         if advanced.get(key):
             flags += [flag, str(advanced[key])]
+    if str(advanced.get("image_provider") or "chatgpt").strip().lower() == "gemini":
+        flags += ["--gemini-model", str(advanced.get("gemini_image_model") or "nano_banana_2")]
     if bool(advanced.get("beat_image_qc_disabled", False)):
         flags.append("--disable-beat-image-qc")
     character = advanced.get("character")

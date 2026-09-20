@@ -5,15 +5,16 @@ Stage order:
 
     workspace → creative brief → script (JSON) → retention edit → episode direction
     → world style decision → world style anchor → body visual plan → world keyframe prompt
-    → ChatGPT world keyframe → book spread composition → Flow Clip A/B prompts
-    → Flow Clip A → Flow Clip B → per-beat image prompts → ChatGPT body images
+    → selected-provider world keyframe → book spread composition → Flow Clip A/B prompts
+    → Flow Clip A → Flow Clip B → per-beat image prompts → selected-provider body images
 
 Production rules this file exists to keep:
 
 * **No synthetic media, ever.** There is no fallback that draws a placeholder or renders a
   colour card. A provider failure becomes a ``PAUSED_*``/``FAILED_*`` state with the
   provider's own error code, and the run stops there.
-* **No provider fallback.** text=ChatGPT, image=ChatGPT, video=Flow — each through Ordak.
+* **No provider fallback.** text=ChatGPT, image=the explicit ChatGPT/Gemini run choice,
+  video=Flow — each through Ordak.
 * **The generation contract travels as data**, not as text smuggled into the prompt: model,
   aspect, duration and resolution go through ``ordak_jobs.Generation``, and every upload
   declares its role through ``ordak_jobs.Reference``.
@@ -624,6 +625,11 @@ def require_verified_image_model(stage: str, model: str, receipt: dict[str, Any]
         )
 
 
+def selected_image_model(runner: Any) -> str:
+    """Return the run-frozen model while keeping lightweight stage test doubles compatible."""
+    return str(getattr(runner, "image_model", CHATGPT_IMAGE_MODEL))
+
+
 def require_verified_video_model(stage: str, model: str, receipt: dict[str, Any] | None) -> None:
     """A Flow clip is only usable if Flow confirmed the model that rendered it (§18)."""
     data = dict(receipt or {})
@@ -644,7 +650,7 @@ class Runner:
     site is allowed to catch a provider failure and substitute something it made up.
     """
 
-    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QStationState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0", beat_image_qc_disabled: bool = False, image_provider_alternation: bool = False) -> None:
+    def __init__(self, jobs: OrdakJobs, notifier: PipelineNotifier | None, state: QStationState, *, chatgpt_fallback_mode: str = "approval", image_qc_correction_policy: str = "0", beat_image_qc_disabled: bool = False, image_provider: str = "chatgpt", image_model: str = CHATGPT_IMAGE_MODEL, image_provider_alternation: bool = False) -> None:
         self.jobs = jobs
         self.notifier = notifier
         self.state = state
@@ -653,6 +659,10 @@ class Runner:
         self.chatgpt_fallback_mode = chatgpt_fallback_mode if chatgpt_fallback_mode in {"auto", "approval"} else "approval"
         self.image_qc_correction_policy = image_qc_correction_policy if image_qc_correction_policy in {"0", "1", "2", "strict"} else "0"
         self.beat_image_qc_disabled = bool(beat_image_qc_disabled)
+        if image_provider not in {"chatgpt", "gemini"}:
+            raise ValueError(f"Unsupported image provider: {image_provider!r}")
+        self.image_provider = image_provider
+        self.image_model = CHATGPT_IMAGE_MODEL if image_provider == "chatgpt" else normalize_gemini_model(image_model)
         self.image_provider_alternation = bool(image_provider_alternation)
         # Renderer locked in by the first accepted beat image (persisted per
         # episode); None until the first acceptance. See image().
@@ -943,10 +953,9 @@ class Runner:
         current_references = list(references)
         try:
             for attempt in range(max_attempts):
-                # Every image, including QC corrections, starts at the exact
-                # ChatGPT Project URL configured for Ordak. Gemini is never an
-                # image-generation fallback for this pipeline.
-                provider = "chatgpt"
+                # One explicitly selected provider owns every still-image generation
+                # in the episode. Corrections never shop around to another provider.
+                provider = getattr(self, "image_provider", "chatgpt")
                 chatgpt_chat = "project"
                 candidate = candidates_dir / f"{destination.stem}.{request_id}.attempt-{attempt + 1}.png"
                 attempt_options = {"skip_content_qc": True} if skip_content_qc else {}
@@ -955,7 +964,7 @@ class Runner:
                         stage,
                         current_prompt,
                         current_references,
-                        model=model,
+                        model=getattr(self, "image_model", model),
                         destination=candidate,
                         provider=provider,
                         chatgpt_chat=chatgpt_chat,
@@ -1041,7 +1050,7 @@ class Runner:
                 "quality_iterations": iterations,
                 "qc_policy": policy,
                 "qc_selected_attempt": selected_attempt,
-                "request_fingerprint": request_fingerprint(prompt, model, references),
+                "request_fingerprint": request_fingerprint(prompt, getattr(self, "image_model", model), references),
             })
             selected_result.generation_receipt = receipt
             destination.parent.mkdir(parents=True, exist_ok=True)
@@ -1098,12 +1107,15 @@ class Runner:
         chatgpt_chat: str = "project",
     ) -> JobResult:
         """One provider image, downloaded and verified. Returns the job result for the receipt."""
-        if provider != "chatgpt":
-            raise ValueError("All pipeline images are locked to the ChatGPT provider.")
+        if provider not in {"gemini", "chatgpt"}:
+            raise ValueError(f"Unsupported image provider: {provider}")
         if chatgpt_chat not in ("project", "temporary", "fresh"):
             raise ValueError(f"Unsupported chatgpt_chat scope: {chatgpt_chat!r}.")
         fingerprint = request_fingerprint(prompt, model, references)
-        fingerprint = sha256_text(f"image-provider:chatgpt:{fingerprint}")
+        if provider != "gemini":
+            # Preserve the historical Gemini fingerprint while keeping provider
+            # pending downloads isolated from ChatGPT.
+            fingerprint = sha256_text(f"image-provider:{provider}:{fingerprint}")
         before = {str(ref.path): sha256_file(ref.path) for ref in references}
         pending = destination.parent / ".pending_images" / destination.name
         metadata = pending.with_suffix(".json")
@@ -1117,9 +1129,13 @@ class Runner:
                 saved.get("sha256") == sha256_file(pending)):
             result = JobResult(**saved["result"])
         else:
-            generation = Generation(quality="best", aspect_ratio="9:16")
+            generation = (
+                Generation(model=model, quality="best", aspect_ratio="9:16")
+                if provider == "gemini"
+                else Generation(quality="best", aspect_ratio="9:16")
+            )
             result = self._run(
-                stage, prompt, provider="chatgpt", mode="image_generate",
+                stage, prompt, provider=provider, mode="image_generate",
                 generation=generation,
                 references=references,
                 chatgpt_chat=chatgpt_chat,
@@ -1146,13 +1162,16 @@ class Runner:
                 f"{stage}: {provider} artifact has no verified download provenance; refusing to save it.",
             )
         destination.parent.mkdir(parents=True, exist_ok=True)
-        chatgpt_receipt = dict(result.generation_receipt or {})
-        if chatgpt_receipt.get("provider", "chatgpt") != "chatgpt" or chatgpt_receipt.get("requested_model"):
-            raise StageFailure(
-                stage,
-                "FAILED_MODEL_SELECTION",
-                f"{stage}: ChatGPT image receipt is misattributed to another provider or model.",
-            )
+        if provider == "gemini":
+            require_verified_image_model(stage, model, result.generation_receipt)
+        else:
+            chatgpt_receipt = dict(result.generation_receipt or {})
+            if chatgpt_receipt.get("provider", "chatgpt") != "chatgpt" or chatgpt_receipt.get("requested_model"):
+                raise StageFailure(
+                    stage,
+                    "FAILED_MODEL_SELECTION",
+                    f"{stage}: ChatGPT image receipt is misattributed to another provider or model.",
+                )
         partial = destination.with_name(f".{destination.stem}.{uuid.uuid4().hex}.png")
         try:
             if pending.is_file() and saved.get("fingerprint") == fingerprint and saved.get("sha256") == sha256_file(pending):
@@ -2679,7 +2698,7 @@ def stage_world_style_anchor(
     )
     prompt += " [VISUAL_CONTRACT:material_anchor_v2] Fill the canvas with a neutral material/palette sample, not a framed page, book, landscape, gateway, inset illustration or host."
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
     receipt_path = project / "pipeline" / "provider_receipts" / "gemini_world_style_anchor.json"
     reuse_of = world_style_plan.get("reuse_of")
     if str(world_style_plan.get("decision") or "").lower() == "reuse" and reuse_of:
@@ -3198,7 +3217,7 @@ def stage_book_design_sheet(runner: Runner, project: Path, content_project: Any)
         f"{identity[:4000]}"
     )
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
     canonical_receipt = target.with_suffix(target.suffix + ".receipt.json")
     canonical_fingerprint = request_fingerprint(prompt, "canonical", [])
     if valid_image(target):
@@ -3278,14 +3297,14 @@ def stage_world_keyframe(
     *,
     force: bool = False,
 ) -> Path:
-    """The one image that defines the episode's world. Gemini only, verified, no substitute."""
+    """The one image that defines the episode's world, from the run-selected provider."""
     stage = "world_keyframe"
     if "[VISUAL_CONTRACT:topic_world_v2]" not in prompt:
         prompt += "\n" + episode_frame_contract(load_json(project / "creative/WORLD_STYLE_PLAN.json") if (project / "creative/WORLD_STYLE_PLAN.json").is_file() else {})
     target = project / "references" / "world_keyframe.png"
     receipt = project / "pipeline" / "provider_receipts" / "gemini_world_keyframe.json"
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
 
     # WORLD_KEYFRAME is deliberately host-free: it is Clip B's last frame and must not
     # know which recurring host was selected. Only the subject-world style is referenced.
@@ -3388,7 +3407,7 @@ def stage_topic_book_cover(
         runner.stage_reused(brief_stage, brief_target.name)
         cover_design = brief_target.read_text(encoding="utf-8").strip()
 
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
     prompt = (
         "Create exactly one 9:16 vertical first frame for an animated storybook transition. Camera is perfectly "
         "top-down/orthographic, never tilted or three-quarter: one CLOSED hardback book lies flat, centered and "
@@ -3434,7 +3453,7 @@ def stage_entry_identity(
         return target
     started = runner.stage_start(stage)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
     # The web provider has no aspect control: the prompt text is the only
     # portrait steering, so a same-prompt second sampling is the bounded
     # correction for a wrong-shape download. Any other failure still fails
@@ -3522,7 +3541,7 @@ def stage_entry_frame(
         if valid_image(world_reference):
             refs.append(Reference(role="world_keyframe", path=world_reference))
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
     if not force and reusable_image(runner, project, stage, target, receipt, prompt, model, refs):
         runner.stage_reused(stage, target.name)
         return target
@@ -4206,7 +4225,7 @@ def stage_body_images(
     output_dir = project / "assets" / "raw_beats"
     output_dir.mkdir(parents=True, exist_ok=True)
     launch = load_json(project / "launch" / "LAUNCH_REQUEST.json")
-    model = CHATGPT_IMAGE_MODEL
+    model = selected_image_model(runner)
 
     batch_started = runner.stage_start("body_images")
     produced: list[Path] = []
@@ -4444,6 +4463,7 @@ def stage_transition_direction(
 def ensure_launch_request(
     project: Path,
     content_project_id: str,
+    image_provider: str,
     gemini_model: str,
     flow_model: str,
     flow_resolution: str,
@@ -4471,9 +4491,9 @@ def ensure_launch_request(
             **({"character_id": character_id} if character_id else {}),
         },
         "created_at": utcnow(),
-        "providers": {"text": "chatgpt", "image": "chatgpt", "video": "flow", "voice": "elevenlabs_web"},
+        "providers": {"text": "chatgpt", "image": image_provider, "video": "flow", "voice": "elevenlabs_web"},
         "image_generation": {
-            "model": CHATGPT_IMAGE_MODEL,
+            "model": CHATGPT_IMAGE_MODEL if image_provider == "chatgpt" else normalize_gemini_model(gemini_model),
             "quality": "best",
             "qc_correction_policy": image_qc_correction_policy,
             "beat_qc_disabled": bool(beat_image_qc_disabled),
@@ -4577,9 +4597,16 @@ def main() -> int:
     parser.add_argument("--creative-brief", type=Path, default=None)
     parser.add_argument("--voice-profile", type=Path, default=None)
     parser.add_argument(
+        "--image-provider",
+        choices=("chatgpt", "gemini"),
+        default="chatgpt",
+        help="Generate every still image with this provider; there is no automatic provider fallback.",
+    )
+    parser.add_argument(
         "--gemini-model",
-        default=CHATGPT_IMAGE_MODEL,
-        help="Deprecated compatibility option. Q Station images are always generated by ChatGPT.",
+        default="nano_banana_2",
+        choices=("nano_banana_2", "nano_banana_pro"),
+        help="Gemini model used when --image-provider=gemini.",
     )
     parser.add_argument("--beat-feedback-json", type=Path, help="Revision feedback keyed by numeric beat id.")
     parser.add_argument(
@@ -4801,6 +4828,7 @@ def main() -> int:
     launch = ensure_launch_request(
         project,
         content_project.project_id,
+        args.image_provider,
         args.gemini_model,
         args.flow_model,
         args.flow_resolution,
@@ -4838,6 +4866,11 @@ def main() -> int:
     )
 
     video_generation = launch.get("video_generation", {})
+    # Config revisions intentionally override the original immutable launch choice;
+    # the panel archives the old config before starting the affected image branch.
+    image_provider = args.image_provider
+    image_model = CHATGPT_IMAGE_MODEL if image_provider == "chatgpt" else normalize_gemini_model(args.gemini_model)
+    validate_provider_locks(content_project, image_provider=image_provider)
     flow_model = normalize_flow_model(video_generation.get("model") or args.flow_model)
     flow_resolution = str(video_generation.get("resolution") or args.flow_resolution)
     opening_a_seconds = int(video_generation.get("opening_a_source_seconds") or args.opening_a_seconds)
@@ -4855,6 +4888,8 @@ def main() -> int:
             chatgpt_fallback_mode=args.chatgpt_fallback_mode,
             image_qc_correction_policy=args.image_qc_correction_policy,
             beat_image_qc_disabled=args.disable_beat_image_qc,
+            image_provider=image_provider,
+            image_model=image_model,
             image_provider_alternation=False,
         )
         current_stage = "preflight"
@@ -4862,6 +4897,8 @@ def main() -> int:
             # Fail before spending anything if the browser stack is not usable (§65).
             preflight_started = runner.stage_start("preflight")
             jobs.require_chatgpt_project()
+            if image_provider == "gemini":
+                jobs.require_ready(["gemini"])
             if not args.defer_flow_clips:
                 jobs.require_ready(["flow"])
             brief = build_brief(project, args.topic, content_project, duration)

@@ -134,6 +134,7 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
         "world_style_id": "woodcut_charcoal_warm",
         "world_style_policy": "reuse",
         "world_style_hint": "warm paper",
+        "image_provider": "gemini",
         "gemini_image_model": "nano_banana_2",
         "beat_image_qc_disabled": True,
         "image_qc_correction_policy": "2",
@@ -145,14 +146,23 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
         "--world-style-id", "woodcut_charcoal_warm",
         "--world-style-policy", "reuse",
         "--world-style-hint", "warm paper",
+        "--image-provider", "gemini",
+        "--gemini-model", "nano_banana_2",
         "--disable-beat-image-qc",
         "--image-qc-correction-policy", "2",
     ):
         assert expected in flags, expected
-    assert "--gemini-model" not in flags, "the locked ChatGPT image provider must not accept a legacy Gemini override"
 
 
 def test_an_empty_brief_adds_no_flags(tmp_path: Path) -> None:
     brief = tmp_path / "CREATIVE_BRIEF.json"
     brief.write_text("{}", encoding="utf-8")
     assert q_station_overrides(brief) == []
+
+
+def test_legacy_gemini_model_without_explicit_provider_stays_chatgpt(tmp_path: Path) -> None:
+    brief = tmp_path / "CREATIVE_BRIEF.json"
+    brief.write_text(json.dumps({"_q_station": {"gemini_image_model": "nano_banana_pro"}}), encoding="utf-8")
+    flags = q_station_overrides(brief)
+    assert "--image-provider" not in flags
+    assert "--gemini-model" not in flags

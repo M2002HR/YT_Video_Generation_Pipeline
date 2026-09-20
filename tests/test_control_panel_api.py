@@ -754,6 +754,21 @@ def test_structured_config_revision_persists_opening_speed_tolerance() -> None:
     assert revised_brief['_q_station']['opening_speed_tolerance'] == 0.2
     assert changed == ['opening_speed_tolerance']
 
+def test_structured_config_accepts_legacy_gemini_field_and_switches_every_image_root() -> None:
+    record = _record(content_project='q_station', music_providers=['pixabay'], telegram_low_size=True, telegram_original=False, commit_artifacts=False, motion={'enabled': False}, sfx={'enabled': False})
+    brief = {'_q_station': {'gemini_image_model': 'nano_banana_2'}, '_motion': {'enabled': False}, '_sfx': {'enabled': False}, '_subtitle': {'word_highlight': True}}
+    voice = {'voice': 'Mark - Natural Conversations', 'model': 'Eleven Multilingual v2'}
+    values = panel.frozen_values(record, brief, voice)
+    assert values['gemini_image_model'] == 'nano_banana_2'
+    assert values['image_provider'] == 'chatgpt'
+    normalized = panel.validate_config_values(values)
+    assert normalized['gemini_image_model'] == 'nano_banana_2'
+    values['image_provider'] = 'gemini'
+    roots, revised, _voice, _launch, changed = panel.config_roots(record, brief, voice, values)
+    assert roots == {'world_style_anchor'}
+    assert revised['_q_station']['image_provider'] == 'gemini'
+    assert changed == ['image_provider']
+
 def test_structured_config_revision_maps_cta_hint_to_its_own_stage() -> None:
     record = _record(content_project='q_station', music_providers=['pixabay'], telegram_low_size=True, telegram_original=False, commit_artifacts=False, motion={'enabled': False}, sfx={'enabled': False})
     brief = {'_q_station': {'cta_hint': ''}, '_motion': {'enabled': False}, '_sfx': {'enabled': False}, '_subtitle': {'word_highlight': True}}

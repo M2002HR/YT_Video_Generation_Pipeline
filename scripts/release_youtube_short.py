@@ -214,17 +214,26 @@ def original_image_contract(video: Path, content_project: str) -> dict[str, str]
         if brief_path.is_file() and brief_path.resolve().is_relative_to(ROOT):
             brief = load_json(brief_path)
             brief_q_station = brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else {}
-    requested = (
+    requested = str(
         image.get("model") or qstation.get("gemini_image_model") or brief_q_station.get("gemini_image_model")
-        or "nano_banana_2"
+        or "chatgpt_image"
     )
+    provider = str(
+        (launch.get("providers") or {}).get("image")
+        or qstation.get("image_provider") or brief_q_station.get("image_provider")
+        or ("chatgpt" if requested == "chatgpt_image" else "gemini")
+    ).strip().lower()
+    if provider not in {"chatgpt", "gemini"}:
+        raise RuntimeError(f"Unsupported source image provider: {provider!r}")
+    model = "chatgpt_image" if provider == "chatgpt" else normalize_gemini_model(requested)
     qc_policy = (
         image.get("qc_correction_policy") or qstation.get("image_qc_correction_policy")
         or brief_q_station.get("image_qc_correction_policy") or "0"
     )
     fallback = qstation.get("chatgpt_fallback_mode") or brief_q_station.get("chatgpt_fallback_mode") or "approval"
     return {
-        "model": normalize_gemini_model(str(requested)),
+        "provider": provider,
+        "model": model,
         "qc_correction_policy": str(qc_policy),
         "chatgpt_fallback_mode": str(fallback),
     }
@@ -799,7 +808,9 @@ def generate_thumbnail_batch(
         candidate_state = candidate_dir / "candidate.json"
         candidate_dir.mkdir(parents=True, exist_ok=True)
         prompt = artwork_prompt(plan, character, generation_manifest, direction)
-        write_json(candidate_dir / "concept.json", {**plan, "prompt_artwork": prompt, "character_id": character["character_id"], "attachments": generation_manifest, "provider": "chatgpt"})
+        selected_provider = image_contract.get("provider", "chatgpt")
+        selected_model = image_contract.get("model", "chatgpt_image")
+        write_json(candidate_dir / "concept.json", {**plan, "prompt_artwork": prompt, "character_id": character["character_id"], "attachments": generation_manifest, "provider": selected_provider, "model": selected_model})
         previous = load_json(candidate_state)
         if (
             previous.get("status") == "DONE"
@@ -824,7 +835,7 @@ def generate_thumbnail_batch(
                     progress.mark(stage, "REUSED")
             continue
         prior_result = previous.get("result") if previous.get("plan") == plan and isinstance(previous.get("result"), dict) else {}
-        generated_provider = "chatgpt"
+        generated_provider = selected_provider
         generation_job_id = prior_result.get("generation_job_id")
         generation_receipt = prior_result.get("generation_receipt")
         if not artwork.is_file():
@@ -833,20 +844,24 @@ def generate_thumbnail_batch(
             if progress:
                 progress.update(artwork_stage, ["📎 Attaching the mandatory character sheet", "🔤 Applying Quicky Story locally in the deterministic compositor", f"✍️ Injecting the exact headline: {plan['headline']}"])
             result = jobs.run(
-                prompt, provider="chatgpt", mode="image_generate",
-                generation=Generation(quality="best", aspect_ratio="9:16"),
+                prompt, provider=selected_provider, mode="image_generate",
+                generation=(Generation(model=selected_model, quality="best", aspect_ratio="9:16") if selected_provider == "gemini" else Generation(quality="best", aspect_ratio="9:16")),
                 references=generation_references, start_new_chat=True, attempts=2,
-                chatgpt_chat="project",
+                chatgpt_chat="project" if selected_provider == "chatgpt" else None,
             )
-            if str(result.raw.get("provider") or "chatgpt").casefold() != "chatgpt":
-                raise RuntimeError("Thumbnail provider lock failed: Ordak did not report ChatGPT.")
+            if str(result.raw.get("provider") or selected_provider).casefold() != selected_provider:
+                raise RuntimeError(f"Thumbnail provider selection failed: Ordak did not report {selected_provider}.")
+            if selected_provider == "gemini":
+                receipt = dict(result.generation_receipt or {})
+                if receipt.get("requested_model") != selected_model or not receipt.get("model_verified"):
+                    raise RuntimeError(f"Gemini did not verify thumbnail model {selected_model!r}.")
             if not result.output_images:
-                raise RuntimeError("ChatGPT returned no downloadable thumbnail artwork.")
-            raw_artwork = candidate_dir / "attempts" / "chatgpt_original.png"
+                raise RuntimeError(f"{selected_provider.title()} returned no downloadable thumbnail artwork.")
+            raw_artwork = candidate_dir / "attempts" / f"{selected_provider}_original.png"
             jobs.download(result.output_images[0], raw_artwork)
             normalization = normalize_thumbnail_artwork(raw_artwork, artwork)
             generation_job_id = result.job_id
-            generation_receipt = {**dict(result.generation_receipt or {}), "provider": "chatgpt", "mode": "image_generate", "chatgpt_chat": "project", "attachment_roles": [item.role for item in generation_references], "attachment_sha256": {item.role: item.sha256() for item in generation_references}, "normalization": normalization, "output_count": len(result.output_images)}
+            generation_receipt = {**dict(result.generation_receipt or {}), "provider": selected_provider, "mode": "image_generate", "chatgpt_chat": "project" if selected_provider == "chatgpt" else None, "attachment_roles": [item.role for item in generation_references], "attachment_sha256": {item.role: item.sha256() for item in generation_references}, "normalization": normalization, "output_count": len(result.output_images)}
             if progress:
                 progress.mark(artwork_stage, "DONE", artifact=f"thumbnail_candidates/{candidate_id}/artwork.png", provider=generated_provider)
         elif progress:
@@ -907,7 +922,7 @@ def generate_thumbnail_batch(
         if sha256_file(paths["thumbnail"]) != selected["final"]["sha256"]: raise RuntimeError("Thumbnail alias did not preserve selected final bytes.")
     if progress:
         progress.mark("thumbnail_selection", selection["status"], artifact="THUMBNAIL_SELECTION.json", selected_candidate_id=selection.get("selected_candidate_id"))
-    return {"schema_version": 5, "selection": selection, "candidates": results, "selected_file": str(paths["thumbnail"].relative_to(paths["root"])) if selected else None, "selected": selected["final"] if selected else None, "quality_check": {"passed": bool(selected)}, "requested_model": "chatgpt", "visible_text": True, "headline": resolved_headline, "headline_mode": thumbnail_settings["text_mode"], "headline_job_id": headline_job_id, "generation_attachments": generation_manifest, "all_final_candidates": True}
+    return {"schema_version": 5, "selection": selection, "candidates": results, "selected_file": str(paths["thumbnail"].relative_to(paths["root"])) if selected else None, "selected": selected["final"] if selected else None, "quality_check": {"passed": bool(selected)}, "provider": image_contract.get("provider", "chatgpt"), "requested_model": image_contract.get("model", "chatgpt_image"), "visible_text": True, "headline": resolved_headline, "headline_mode": thumbnail_settings["text_mode"], "headline_job_id": headline_job_id, "generation_attachments": generation_manifest, "all_final_candidates": True}
 
 
 def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any] | None, context: dict[str, Any]) -> str:
@@ -1372,9 +1387,11 @@ def main() -> None:
         saved_thumbnail = metadata.get("thumbnail") if isinstance(metadata.get("thumbnail"), dict) else None
         thumbnail = saved_thumbnail if saved_thumbnail and current_paths["thumbnail"].is_file() else None
         if needs_thumbnail:
-            image_contract = {"model": "chatgpt", "qc_correction_policy": "0", "chatgpt_fallback_mode": "disabled"}
+            image_contract = original_image_contract(video, args.content_project)
             with OrdakJobs() as jobs:
                 jobs.require_chatgpt_project()
+                if image_contract["provider"] == "gemini":
+                    jobs.require_ready(["gemini"])
                 direction = request["thumbnail"]["thumbnail_note"]
                 if revision_feedback and any(root.startswith("thumbnail_") for root in revision_roots):
                     direction = (direction + "\n\nREVISION FEEDBACK:\n" + revision_feedback).strip()
