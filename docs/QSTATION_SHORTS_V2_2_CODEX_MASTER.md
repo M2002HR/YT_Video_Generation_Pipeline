@@ -1883,15 +1883,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "ce554cfa54371f9d2e55955c08dd1a45635e390e",
-  "last_session_id": "C1-2026-09-20-01",
+  "last_verified_head": "16d5c98aea8540c0bc7f8cc9db230469c5105d01",
+  "last_session_id": "C2-2026-09-20-01",
   "overall_status": "IN_PROGRESS",
   "code_ready": false,
   "production_smoke_passed": false,
   "human_artistic_acceptance": "NOT_REQUESTED",
-  "active_phase": "P04",
-  "next_phase": "P04",
-  "next_action": "C2_CREATIVE: reconcile HEAD and the protected dirty video outputs, then implement only P04-P07 beginning with the four versioned creative profiles, six Hook Packages, evidence provenance, and accept/reject fixtures for P04; do not redo P00-P03 or begin P08.",
+  "active_phase": "P05",
+  "next_phase": "P05",
+  "next_action": "C2_CREATIVE: implement P05 canonical-to-execution separation, typed performance AST, model-specific v2/v3 compilers, word anchors and TTS fingerprints using the P04 script/profile contracts; run T03-T09, T13, T20 and T29-T31; do not redo P04 or begin P08.",
   "execution_chat_plan": {
     "mode": "FOUR_CHAT",
     "selected_during_phase": "P00",
@@ -2027,9 +2027,17 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P01",
         "P02"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "16d5c98aea8540c0bc7f8cc9db230469c5105d01"
+      ],
+      "evidence": [
+        "Four strict versioned character performance profiles with separate v2/v3 bindings and Shorts-only behavior scope: scripts/shorts_v2/creative_profiles.json",
+        "Evidence/source provenance, six-package hook validation, independent hard-gate review, deterministic top-two tournament, story/script/CTA contracts, semantic history and ten versioned prompt/context builders: scripts/shorts_v2/creative.py",
+        "Provider-free T24-T28/T65 accept/reject fixtures plus artifact ownership coverage: tests/test_shorts_v2_creative.py and tests/test_shorts_v2_orchestration.py",
+        "Targeted P04 regression: 50 passed, exit 0, /tmp/qstation-v2-c2-p04-targeted.log",
+        "Full Python regression: 827 passed, 19 failed, 1 skipped, exit 1; exact same 19 baseline failures, /tmp/qstation-v2-c2-p04-full.log and /tmp/qstation-v2-c2-p04-full.xml"
+      ],
       "blockers": []
     },
     {
@@ -2159,14 +2167,19 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "D-C1-02: Shorts V2 owns an isolated DAG/revision namespace and imports no legacy Motion Director runtime modules.",
     "D-C1-03: Current ElevenLabs v3 Stability slider values 0/0.5/1 are adapted as categorical Creative/Natural/Robust; arbitrary v2 numeric settings stay inactive for v3.",
     "D-C1-04: Pre-existing enabled downloads never acknowledge a new submit; consumption requires one new bound result identity and a fresh file inside its dedicated attempt directory.",
-    "D-C1-05: Ordak already provides sufficient authenticated CDP primitives, so its pinned submodule was not modified."
+    "D-C1-05: Ordak already provides sufficient authenticated CDP primitives, so its pinned submodule was not modified.",
+    "D-C2-01: Hook selection uses explicit independent hard gates before editorial scores; deterministic score/hook-id ordering prevents input order and a high score from rescuing an untruthful, ungrounded, unpaid or infeasible hook.",
+    "D-C2-02: Character behavior overrides are scoped to shorts_v2 and retain the frozen visual identity contract; available Mark/Liam bindings are recorded as documented_not_calibrated rather than fabricated character calibration.",
+    "D-C2-03: Evidence provenance accepts honest retrieved sources, source notes or conservative background, but central claims cannot pass on unverified or background-only support."
   ],
   "test_evidence": [
     "Targeted C1: 69 passed, exit 0, /tmp/qstation-v2-c1-final-targeted.log",
     "Full Python post-change: 818 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c1-final-pytest.log and /tmp/qstation-v2-c1-final-pytest.xml; the same 19 baseline failures remain and no new failure was introduced",
     "UI unit tests: 15 passed, exit 0, /tmp/qstation-v2-c1-ui-test.log",
     "UI production build: exit 0, /tmp/qstation-v2-c1-ui-build.log",
-    "Python compileall and git diff --check: exit 0"
+    "Python compileall and git diff --check: exit 0",
+    "P04 targeted provider-free: 50 passed, exit 0, /tmp/qstation-v2-c2-p04-targeted.log",
+    "P04 full Python regression: 827 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c2-p04-full.log and /tmp/qstation-v2-c2-p04-full.xml; exact same pre-existing baseline failures and 9 additional passing tests"
   ],
   "uncommitted_work": [
     "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/LAUNCH_REQUEST.json",
@@ -2217,6 +2230,23 @@ Running jobs/processes reconciled: no provider generation or background job star
 Next action (exact): C2 reads this ledger, protects the listed dirty video outputs, implements P04-P07 only, starts with P04 profiles/Hook Packages/evidence provenance/fixtures, and stops before P08
 ```
 
+```text
+Session ID: C2-2026-09-20-01
+Started/ended at: 2026-09-20 (continued from the reconciled C2 handoff) / 2026-09-20T15:09:15+04:00
+Actual branch and tested implementation HEAD: dev / 16d5c98aea8540c0bc7f8cc9db230469c5105d01
+Phase(s): P04 DONE; C2_CREATIVE remains active at P05
+Requirements addressed: evidence/source provenance; four versioned character baseline/burst profiles; six semantically distinct Hook Packages; hard-gate independent review and deterministic top-two tournament; model feasibility; story/payoff; natural canonical script; separate CTA; semantic history and A/B ancestry
+Files changed: scripts/shorts_v2/creative.py, creative_profiles.json, artifacts.py, registry.py and __init__.py; tests/test_shorts_v2_creative.py and test_shorts_v2_orchestration.py
+Decisions and reasons: gate hooks before scoring so an irrelevant scream cannot win; keep new behavior Shorts-only and fixed identity unchanged; label current real voice bindings documented_not_calibrated; refuse central claims supported only by unverified/background evidence
+Commands/tests: targeted P04/contracts/orchestration/history pytest; full Python suite with JUnit; compileall; git diff --check
+Results and evidence paths: targeted 50 passed, exit 0, /tmp/qstation-v2-c2-p04-targeted.log; full 827 passed/19 failed/1 skipped, exit 1, /tmp/qstation-v2-c2-p04-full.log and /tmp/qstation-v2-c2-p04-full.xml; all 19 failures match the C1 baseline categories and no new failure appeared
+Commits / push state: 16d5c98 P04 implementation plus this ledger handoff; pushed to origin/dev at session close
+Remaining work: P05-P14; this C2 slot still owns P05-P07 and must stop before P08
+Blockers: no P05 blocker; paid ElevenLabs Generate-to-bound-download smoke remains deferred to P14
+Running jobs/processes reconciled: full pytest completed; no provider generation, render, or background process was started
+Next action (exact): implement P05 typed performance AST and separate expressive_v3/optimized_v2 compilers in scripts/shorts_v2, anchored to P04 SCRIPT_CORE units and actual P03 capability data; start by adding failing T29-T31 fixtures
+```
+
 ### 29.3. Decision Log
 
 `D-C1-01 | 2026-09-20 | P01/P02 | Old episodes have no engine marker | infer from old fields vs require explicit selection | missing marker is legacy; explicit malformed shorts_v2 fails closed | no accidental migration or silent fallback | targeted dispatch/contracts tests`
@@ -2228,6 +2258,12 @@ Next action (exact): C2 reads this ledger, protects the listed dirty video outpu
 `D-C1-04 | 2026-09-20 | P03 | Existing Download latest can predate the current request | accept any enabled download vs bind a new result | baseline result identities before submit and require exactly one new identity plus attempt-local fresh file | ambiguous/stale output fails loudly | result/download ownership tests`
 
 `D-C1-05 | 2026-09-20 | P03 | Determine whether Ordak must change | modify submodule vs use pinned primitives | keep Ordak pinned and implement model semantics in main repo | no unreachable gitlink or service deployment needed | live Chrome/CDP probes`
+
+`D-C2-01 | 2026-09-20 | P04/R05/R20 | High editorial scores could mask a failed truth/topic/payoff gate | select by score vs gate then score | require all explicit gates before deterministic total-score/hook-id tournament | irrelevant shock and unpaid promises remain rejected regardless of score | T24/T25 fixtures`
+
+`D-C2-02 | 2026-09-20 | P04/R07/R08/R09 | Creative behavior must expand without mutating identity or inventing calibrated voices | merge legacy behavior blindly vs versioned Shorts-only layer | preserve fixed identity and scope baseline/burst override to shorts_v2; bind observed Mark/Liam profiles as documented_not_calibrated | legacy remains frozen and P05 gets honest model-specific input | T27/T28 fixtures`
+
+`D-C2-03 | 2026-09-20 | P04/R20/R35 | Retrieval can be absent or limited | fabricate citation/PASS vs honest source tiers | permit retrieved/source_note/conservative_background provenance but reject unverified or background-only central support | unsupported central science must be redesigned or removed | T26 fixtures`
 
 For every later meaningful change:
 
@@ -2259,6 +2295,10 @@ For every run:
 
 `T70 | UI unit/build | npm --prefix control_panel/ui test; npm --prefix control_panel/ui run build | 2026-09-20 | bea5c67 | 0/0 | 15 passed; Vite production build passed | /tmp/qstation-v2-c1-ui-test.log; /tmp/qstation-v2-c1-ui-build.log | no new UI surface is required until P11`
 
+`T24-T28,T65 | provider-free targeted | .venv/bin/python -m pytest -q tests/test_shorts_v2_creative.py tests/test_shorts_v2_contracts.py tests/test_shorts_v2_orchestration.py tests/test_episode_history.py | 2026-09-20 | 16d5c98 | 0 | 50 passed | /tmp/qstation-v2-c2-p04-targeted.log | validates contracts/prompts and accept/reject fixtures; no provider content generation`
+
+`T70 | full Python regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c2-p04-full.xml | 2026-09-20 | 16d5c98 | 1 | 827 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c2-p04-full.log; /tmp/qstation-v2-c2-p04-full.xml | exact same 19 pre-existing baseline failures; 9 additional passing tests and no new failure`
+
 ### 29.6. Handoff to the next session
 
 First reconstruct current state from the ledger and Git. The latest Session Log must not contain vague wording such as “almost finished.” Appropriate example:
@@ -2275,17 +2315,17 @@ Open blocker: <real missing environment capability, or none verified>.
 Current exact handoff:
 
 ```text
-Next phase: P04
-Next operation: implement four versioned creative profiles, six Hook Packages, evidence/source provenance, context builders and accept/reject fixtures under the isolated Shorts V2 contracts.
+Next phase: P05
+Next operation: implement typed performance AST, stable word anchors and separate expressive_v3/optimized_v2 compilers under scripts/shorts_v2, using P04 SCRIPT_CORE and character performance artifacts.
 Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; scripts/shorts_v2/registry.py is the shared DAG authority.
-Last passing tests: 69 targeted tests (/tmp/qstation-v2-c1-final-targeted.log), 15 UI tests and UI build; full suite has the unchanged 19-failure baseline.
-Do not redo: P00-P02; P03 adapter code and authenticated non-generating v2/v3 capability verification.
+Last passing tests: P04 targeted 50 passed (/tmp/qstation-v2-c2-p04-targeted.log); full suite 827 passed/19 unchanged baseline failures/1 skipped (/tmp/qstation-v2-c2-p04-full.log).
+Do not redo: P00-P04; P03 adapter and P04 creative contracts/profiles/tournament/script validators are committed inputs to P05.
 Open blocker: paid Generate-to-bound-download smoke is explicitly deferred to P14 and does not block P04-P13.
 Selected chat plan: FOUR_CHAT
 Current chat slot and assigned phase range: C2_CREATIVE / P04-P07
-Range gate reached: YES for C1 (P03 code-ready; live validation explicitly deferred under the documented gate)
-Next chat slot: C2_CREATIVE
-Reason this is a safe stopping point: contracts, dispatch, revision namespace and voice transport safety are independently tested and committed; no P04 work has started.
+Range gate reached: NO; P04 is DONE but P05-P07 remain in C2.
+Next chat slot: unchanged C2_CREATIVE
+Reason this is a safe stopping point: P04 is a coherent tested commit with explicit artifact ownership; P05 can consume frozen canonical script/profile contracts without revisiting creative selection.
 ```
 
 The handoff must additionally state:
