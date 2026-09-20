@@ -90,6 +90,15 @@ OVERLAY_POSITIONS = (
 def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str, Any]:
     select = lambda values: [{"value": value, "label": label} for value, label in values]
     groups = [
+        {"id": "engine", "title": "Editing engine", "description": "Choose the frozen production engine. Existing and legacy runs never migrate implicitly.", "fields": [
+            _field("editing_engine", "Engine", "select", default="legacy", options=select([
+                ("legacy", "Legacy — frozen existing workflow"),
+                ("shorts_v2", "Shorts V2.2 — audio-timed multi-shot engine"),
+            ])),
+            _field("shorts_rhythm_preset", "Rhythm preset", "select", default="dynamic", options=select([
+                ("calm", "Calm"), ("dynamic", "Dynamic"), ("intense", "Intense"),
+            ]), requires={"field": "editing_engine", "value": "shorts_v2"}, hideWhenGated=True),
+        ]},
         {"id": "episode", "title": "Episode", "description": "Topic, audience and editorial constraints.", "fields": [
             _field("content_project", "Content project", "select", required=True, default="q_station", options=projects),
             _field("topic", "Question or topic", required=True, maxLength=220, placeholder="What should this video explain?"),
@@ -233,6 +242,30 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
             _field("style", "Voice style", "number", default=.15, min=0, max=1, step=.01, width="half"),
             _field("narration_gain_db", "Narration volume (dB)", "number", default=0, min=-12, max=12, step=.5, help="Final-mix gain. Positive values make narration louder without regenerating the ElevenLabs voice.", width="half"),
         ]},
+        {"id": "shorts_voice_performance", "title": "Shorts V2 voice performance", "description": "Performance intent is compiled separately from canonical spoken text. Model-specific controls are activated only for the selected ElevenLabs model.", "collapsed": True, "fields": [
+            _field("shorts_hook_intensity", "Hook intensity", "number", default=.8, min=0, max=1, step=.05, width="half", requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_body_intensity", "Body intensity", "number", default=.55, min=0, max=1, step=.05, width="half", requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_allow_pauses", "Allow planned pauses", "toggle", default=True, requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_allow_emphasis", "Allow word emphasis", "toggle", default=True, requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_v3_tag_palette", "V3 expressive tag palette", "select", default="safe", options=select([("safe", "Safe documented palette"), ("minimal", "Minimal tags")]), requires=[{"field": "editing_engine", "value": "shorts_v2"}, {"field": "model", "value": "Eleven v3"}], hideWhenGated=True),
+            _field("shorts_manual_take_selection", "Choose takes manually", "toggle", default=False, help="Off keeps normal production automatic with one technically accepted take.", requires={"field": "editing_engine", "value": "shorts_v2"}),
+        ]},
+        {"id": "shorts_hook_shots", "title": "Shorts V2 hook & shots", "description": "The hook, narration units, shots and assets remain independent contracts.", "collapsed": True, "fields": [
+            _field("shorts_hook_intensity_preset", "Hook direction", "select", default="intense", options=select([("grounded", "Grounded"), ("intense", "Intense and immediate"), ("cinematic", "Cinematic")]), requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_burst_permission", "Allow character burst", "toggle", default=True, requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_hook_candidate_count", "Hook candidates", "number", default=6, min=6, max=6, step=1, width="half", requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_history_policy", "History policy", "select", default="semantic", options=select([("semantic", "Semantic dedupe"), ("ignore_failed", "Ignore failed runs")]), requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_shot_density", "Shot density", "select", default="auto", options=select([("auto", "Automatic from rhythm"), ("calm", "Calm"), ("dense", "Dense")]), requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_min_shot_seconds", "Minimum shot seconds", "number", default=.55, min=.3, max=4, step=.05, width="half", requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_max_shot_seconds", "Maximum shot seconds", "number", default=2.8, min=.6, max=8, step=.1, width="half", requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_body_video", "Allow supported body video roles", "toggle", default=False, requires={"field": "editing_engine", "value": "shorts_v2"}),
+        ]},
+        {"id": "shorts_quality", "title": "Shorts V2 review policy", "description": "Content review, geometry observation and technical validation are independent. Review is off by default for every visual asset.", "collapsed": True, "fields": [
+            _field("shorts_media_review", "Visual content review", "select", default="off", options=select([("off", "Off — no review or regeneration loop"), ("report", "Report only"), ("strict", "Strict review")]), requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_editing_observation", "Geometry observation", "select", default="auto_once", options=select([("auto_once", "One pass for safe editing"), ("off", "Off — use safe full-frame geometry")]), requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_media_auto_corrections", "Content correction budget", "number", default=0, min=0, max=3, step=1, help="Must remain zero while visual content review is off.", requires={"field": "editing_engine", "value": "shorts_v2"}),
+            _field("shorts_technical_validation", "Technical validation", "toggle", default=True, requires={"field": "editing_engine", "value": "shorts_v2"}),
+        ]},
         {"id": "music", "title": "Background music", "description": "Ordered source fallback for the final audio mix.", "fields": [
             # Rendered by the Studio's dedicated audio uploader. The opaque token is
             # validated and frozen into each launch/revision by the backend.
@@ -300,7 +333,8 @@ def launch_schema(projects: list[dict[str, str]], styles: list[str]) -> dict[str
         ]},
     ]
     order = (
-        "episode", "format", "branding", "character", "visual", "opening", "voice", "music",
+        "engine", "episode", "format", "branding", "character", "visual", "opening", "voice",
+        "shorts_voice_performance", "shorts_hook_shots", "shorts_quality", "music",
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
     )
     groups.sort(key=lambda group: order.index(group["id"]))

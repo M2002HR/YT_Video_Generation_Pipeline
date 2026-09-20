@@ -94,6 +94,7 @@ def effective_graph(settings: Mapping[str, Any], *, include_disabled: bool = Fal
     order = topological_order(nodes, edges)
     return {
         "schema_version": 1,
+        "mode": "shorts_v2",
         "editing_engine": "shorts_v2",
         "nodes": nodes,
         "edges": edges,

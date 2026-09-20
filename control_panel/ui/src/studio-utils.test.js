@@ -177,6 +177,14 @@ test("launch validation catches cross-field constraints", () => {
     () => validateLaunchValues({ ...valid, character_mode: "manual", character_id: "" }),
     /manual character/,
   );
+  assert.throws(
+    () => validateLaunchValues({ ...valid, editing_engine: "shorts_v2", shorts_min_shot_seconds: 3, shorts_max_shot_seconds: 2, shorts_media_review: "off", shorts_media_auto_corrections: 0 }),
+    /minimum shot duration/,
+  );
+  assert.throws(
+    () => validateLaunchValues({ ...valid, editing_engine: "shorts_v2", shorts_min_shot_seconds: 1, shorts_max_shot_seconds: 2, shorts_media_review: "off", shorts_media_auto_corrections: 1 }),
+    /correction budget/,
+  );
 });
 
 test("subtitle preview wraps the first caption like the ASS writer", () => {

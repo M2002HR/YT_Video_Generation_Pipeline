@@ -3150,6 +3150,107 @@ function ReleaseModal({ jobId, close, started, initialSettings = null, revisionO
   );
 }
 
+const SHORTS_REVISION_SCOPES = [
+  ["hook", "Hook / premise"], ["script_core", "Script core"], ["cta", "Call to action"],
+  ["voice_model", "Voice model"], ["voice_performance", "Voice performance"],
+  ["shot_plan", "Shot plan / density"], ["asset", "Selected asset"],
+  ["motion", "Selected shot motion"], ["boundary", "Selected boundary"],
+  ["caption_style", "Captions"], ["branding", "Branding"], ["music", "Music"],
+  ["sfx", "Sound effects"], ["narration_gain", "Narration gain"],
+  ["character_style", "Character / style"], ["quality_policy", "Review policy"],
+  ["enable_observation", "Enable geometry observation"],
+];
+
+function ShortsRevisionModal({ jobId, workspace, selectedNode, close, changed, notify }) {
+  const [scope, setScope] = useState("caption_style"), [target, setTarget] = useState(""),
+    [feedback, setFeedback] = useState(""), [plan, setPlan] = useState(null),
+    [busy, setBusy] = useState(false), [error, setError] = useState("");
+  const targeted = ["asset", "motion", "boundary"].includes(scope);
+  useEffect(() => {
+    if (targeted && selectedNode?.id) setTarget(selectedNode.id);
+  }, [scope, selectedNode?.id]);
+  const accepted = workspace.accepted;
+  const revisionRequest = () => ({
+    episode_id: workspace.episode_id, base_revision_id: accepted.revision_id,
+    base_config_hash: accepted.config_hash, base_manifest_hash: accepted.manifest_hash,
+    scope, target_ids: targeted ? [target.trim()] : [],
+    patch_or_feedback: { feedback: feedback.trim() || "Operator requested scoped revision" },
+    lock_policy: "preserve_or_conflict", execution_policy: "execute_affected_only",
+  });
+  async function preview(event) {
+    event.preventDefault(); setBusy(true); setError("");
+    try {
+      if (!accepted) throw new Error("An accepted base version is required before revision.");
+      if (targeted && !target.trim()) throw new Error("Choose a stable target ID for this scoped revision.");
+      const response = await request("/api/shorts-v2/revisions/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ job_id: jobId, request: revisionRequest() }) });
+      setPlan(response.plan);
+    } catch (failure) { setError(failure.message); } finally { setBusy(false); }
+  }
+  async function apply() {
+    setBusy(true); setError("");
+    try {
+      const response = await request("/api/shorts-v2/revisions/apply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ job_id: jobId, request: revisionRequest(), plan_hash: plan.plan_hash }) });
+      notify("Revision staged", `${response.revision.revision_id} is bound to the previewed base and ready for affected-only execution.`);
+      changed(); close();
+    } catch (failure) {
+      setError(failure.message.includes("409") ? `${failure.message} Refresh the workspace before applying again.` : failure.message);
+    } finally { setBusy(false); }
+  }
+  return <div className="modal-back" role="dialog" aria-modal="true"><form className="modal shorts-revision-modal" onSubmit={preview}>
+    <button type="button" className="icon close" onClick={close} disabled={busy}>×</button>
+    <span className="eyebrow">SHORTS V2 · SCOPED REVISE</span><h2>Preview real dependencies</h2>
+    <label className="field"><span>Component</span><select value={scope} onChange={(event) => { setScope(event.target.value); setPlan(null); }}>{SHORTS_REVISION_SCOPES.map(([value, title]) => <option value={value} key={value}>{title}</option>)}</select></label>
+    {targeted && <label className="field"><span>Stable target ID</span><input value={target} onChange={(event) => { setTarget(event.target.value); setPlan(null); }} placeholder="asset.007 / shot.012 / boundary.004" /></label>}
+    <label className="field"><span>Scoped direction</span><textarea value={feedback} maxLength="4000" onChange={(event) => { setFeedback(event.target.value); setPlan(null); }} placeholder="Describe only the requested change." /></label>
+    {error && <p className="form-error">{error}</p>}
+    {plan && <section className="revision-plan"><h3>Dependency preview</h3>
+      <p><b>Affected:</b> {plan.affected.join(", ") || "none"}</p><p><b>Reused:</b> {plan.reused.join(", ") || "none"}</p>
+      <p><b>Conditional:</b> {plan.conditional_reuse.join(", ") || "none"}</p>
+      <p><b>Provider calls ({plan.provider_calls_confidence}):</b> {Object.entries(plan.provider_calls).map(([key, value]) => `${key}=${value ?? "unknown"}`).join(" · ")}</p>
+    </section>}
+    <div className="modal-actions"><button type="button" className="secondary" onClick={close}>Cancel</button>{plan ? <button type="button" className="primary" disabled={busy} onClick={apply}>{busy ? "Applying…" : "Apply exact preview →"}</button> : <button className="primary" disabled={busy}>{busy ? "Planning…" : "Preview impact →"}</button>}</div>
+  </form></div>;
+}
+
+function ShortsV2Workspace({ jobId, run, goHome, notify, theme, onToggleTheme }) {
+  const [data, setData] = useState(null), [error, setError] = useState(""),
+    [selected, setSelected] = useState(null), [view, setView] = useState("board"),
+    [revisionOpen, setRevisionOpen] = useState(false), [visibleShots, setVisibleShots] = useState(25),
+    [compareLeft, setCompareLeft] = useState(""), [compareRight, setCompareRight] = useState(""), [comparison, setComparison] = useState(null);
+  const load = async (revisionId = "") => {
+    try {
+      const result = await request(`/api/run/${jobId}/shorts-v2/workspace${revisionId ? `?revision_id=${encodeURIComponent(revisionId)}` : ""}`);
+      setData(result); setSelected((current) => result.graph.nodes.find((node) => node.id === current?.id) || null);
+      if (!compareLeft && result.versions[0]) setCompareLeft(result.versions[0].revision_id);
+      if (!compareRight && result.versions[1]) setCompareRight(result.versions[1].revision_id);
+      setError("");
+    } catch (failure) { setError(failure.message); }
+  };
+  useEffect(() => { load(); }, [jobId]);
+  const compare = async () => {
+    try { setComparison(await request(`/api/run/${jobId}/shorts-v2/compare?left=${encodeURIComponent(compareLeft)}&right=${encodeURIComponent(compareRight)}`)); }
+    catch (failure) { notify("Version compare failed", failure.message, "bad"); }
+  };
+  const rollback = async (revisionId) => {
+    if (!confirm(`Roll back the accepted pointer to ${revisionId}? Delivery will not be resent.`)) return;
+    try { await request("/api/shorts-v2/versions/rollback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ job_id: jobId, revision_id: revisionId, delivery_requested: false }) }); notify("Version rolled back", "The accepted pointer changed without regeneration or delivery."); load(); }
+    catch (failure) { notify("Rollback failed", failure.message, "bad"); }
+  };
+  if (error && !data) return <main className="center"><h1>Shorts V2 workspace unavailable</h1><p>{error}</p><button onClick={goHome}>Back to runs</button></main>;
+  if (!data) return <main className="center"><div className="spinner" />Loading Shorts V2 workspace…</main>;
+  const shots = Array.isArray(data.tracks?.shots?.shots) ? data.tracks.shots.shots : [];
+  const dependents = dependentNodeIds(data.graph.edges, selected?.id);
+  const done = data.graph.nodes.filter((node) => ["DONE", "REUSED"].includes(node.status)).length;
+  return <main className="run-page shorts-workspace"><header className="run-header"><button className="back" onClick={goHome}>← Runs</button><div className="run-title"><span className="eyebrow">SHORTS V2 · {run.job.video_id}</span><h1>{run.job.topic}</h1><small>{done}/{data.graph.nodes.length} stages ready · version {data.revision_id}</small></div><div className="run-actions"><ThemeToggle theme={theme} onToggle={onToggleTheme} /><button className="primary" disabled={!data.accepted} onClick={() => setRevisionOpen(true)}>Revise component →</button><StatusPill status={run.job.status} /></div></header>
+    <div className={`review-banner ${data.review_state === "content_review_not_requested" ? "neutral" : ""}`}>{data.review_state === "content_review_not_requested" ? "Generated — visual content review was not requested. Technical validation remains active." : "Visual content review is enabled for this version."}</div>
+    <nav className="workspace-nav"><div className="segmented">{[["board","Pipeline"],["graph","Graph"],["timeline","Tracks"],["versions","Versions"]].map(([id,title]) => <button key={id} className={view === id ? "active" : ""} onClick={() => setView(id)}>{title}</button>)}</div></nav>
+    {view === "versions" ? <section className="version-workspace"><div className="version-compare"><select value={compareLeft} onChange={(e) => setCompareLeft(e.target.value)}>{data.versions.map((item) => <option key={item.revision_id}>{item.revision_id}</option>)}</select><span>vs</span><select value={compareRight} onChange={(e) => setCompareRight(e.target.value)}>{data.versions.map((item) => <option key={item.revision_id}>{item.revision_id}</option>)}</select><button className="secondary" disabled={!compareLeft || !compareRight || compareLeft === compareRight} onClick={compare}>Compare</button></div>{comparison && <div className="revision-plan"><p><b>Changed:</b> {comparison.changed.map((item) => item.logical_name).join(", ") || "none"}</p><p><b>Reused byte-for-byte:</b> {comparison.unchanged.join(", ") || "none"}</p></div>}<div className="version-list">{data.versions.map((item) => <article key={item.revision_id}><div><b>{item.revision_id}</b><small>{item.scope} · {item.status} · technical {item.technical_acceptance || "pending"} · human {item.human_artistic_acceptance}</small></div>{item.accepted ? <span className="state done">accepted</span> : item.technical_acceptance === "passed" && <button className="secondary compact" onClick={() => rollback(item.revision_id)}>Rollback</button>}</article>)}</div></section>
+    : view === "timeline" ? <section className="track-workspace"><h2>Audio-authoritative tracks</h2><p>Canonical timing, shots, captions and sound share the accepted version clock.</p><div className="shot-track">{shots.slice(0, visibleShots).map((shot, index) => <button key={shot.shot_id || index} onClick={() => setRevisionOpen(true)}><b>{shot.shot_id || `shot ${index + 1}`}</b><small>{shot.start_seconds ?? shot.start_frame ?? "?"} → {shot.end_seconds ?? shot.end_frame ?? "?"}</small></button>)}</div>{visibleShots < shots.length && <button className="secondary" onClick={() => setVisibleShots((value) => value + 25)}>Load 25 more shots</button>}<p>{shots.length || 0} shots · rendered in bounded groups</p></section>
+    : <div className="workspace">{view === "board" ? <PipelineBoard graph={data.graph} selected={selected} dependents={dependents} choose={setSelected} /> : <DependencyGraph run={{ graph: data.graph }} selected={selected} choose={setSelected} theme={theme} artifactBase={`/api/run/${jobId}/shorts-v2/artifact/${data.revision_id}`} />}<aside className={`detail ${selected ? "" : "empty"}`}>{selected ? <><button className="icon close" onClick={() => setSelected(null)}>×</button><span className="eyebrow">{selected.phase}</span><h2>{selected.title}</h2><p>Status: <b>{selected.status}</b></p><div className="artifact-list">{(selected.artifacts || []).map((item) => item.exists ? <a key={item.logical_name} href={`/api/run/${jobId}/shorts-v2/artifact/${data.revision_id}/${item.logical_name}`} target="_blank" rel="noreferrer">{item.logical_name} · {formatBytes(item.bytes)}</a> : <span key={item.logical_name}>{item.logical_name} · pending</span>)}</div><button className="primary" disabled={!data.accepted} onClick={() => setRevisionOpen(true)}>Revise this component →</button></> : <><span>↖</span><h3>Select a stage</h3><p>Inspect owned artifacts and scope a revision.</p></>}</aside></div>}
+    {revisionOpen && <ShortsRevisionModal jobId={jobId} workspace={data} selectedNode={selected} close={() => setRevisionOpen(false)} changed={load} notify={notify} />}
+  </main>;
+}
+
 function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
   const [run, setRun] = useState(null),
     [selected, setSelected] = useState(null),
@@ -3314,6 +3415,8 @@ function RunPage({ jobId, goHome, goRun, notify, theme, onToggleTheme }) {
         Loading run…
       </main>
     );
+  if (run.graph.mode === "shorts_v2")
+    return <ShortsV2Workspace jobId={jobId} run={run} goHome={goHome} notify={notify} theme={theme} onToggleTheme={onToggleTheme} />;
   const done = run.graph.nodes.filter((node) =>
     ["DONE", "REUSED"].includes(node.status),
   ).length;

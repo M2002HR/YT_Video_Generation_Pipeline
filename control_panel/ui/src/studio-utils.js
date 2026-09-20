@@ -419,6 +419,12 @@ export function validateLaunchValues(values) {
     throw new Error("Choose at least one Telegram delivery output.");
   if (!Array.isArray(values.music_providers) || !values.music_providers.length)
     throw new Error("Choose at least one music provider.");
+  if (values.editing_engine === "shorts_v2") {
+    if (Number(values.shorts_min_shot_seconds) > Number(values.shorts_max_shot_seconds))
+      throw new Error("Shorts V2 minimum shot duration cannot exceed its maximum.");
+    if (values.shorts_media_review === "off" && Number(values.shorts_media_auto_corrections) !== 0)
+      throw new Error("Shorts V2 correction budget must be zero while visual review is off.");
+  }
   const motionPrimitives = [
     "motion_allow_hold",
     "motion_allow_push",

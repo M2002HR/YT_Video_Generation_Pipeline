@@ -14,7 +14,8 @@ from panel_page import launch_form
 def test_schema_exposes_every_launch_configuration_group() -> None:
     schema = launch_schema([{"value": "q_station", "label": "Q Station"}], ["ink_001"])
     assert [group["id"] for group in schema["groups"]] == [
-        "episode", "format", "branding", "character", "visual", "opening", "voice", "music",
+        "engine", "episode", "format", "branding", "character", "visual", "opening", "voice",
+        "shorts_voice_performance", "shorts_hook_shots", "shorts_quality", "music",
         "subtitles", "transitions", "motion", "sfx", "delivery", "providers",
     ]
     names = {field["name"] for group in schema["groups"] for field in group["fields"]}
@@ -91,7 +92,10 @@ def test_react_schema_keeps_every_legacy_launch_control() -> None:
         for field in group["fields"]
         if field["type"] != "readonly"
     }
-    assert current == legacy
+    # The old form remains a compatibility subset. Its retired provider-fallback
+    # checkbox is intentionally read-only under the locked provider contract.
+    assert legacy - {"chatgpt_fallback_auto"} <= current
+    assert {"editing_engine", "shorts_media_review", "shorts_shot_density", "shorts_hook_intensity"} <= current
 
 
 def test_subtitle_offset_fields_stay_gated_on_custom_and_fonts_starred() -> None:

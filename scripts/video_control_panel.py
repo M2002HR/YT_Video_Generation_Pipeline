@@ -53,6 +53,12 @@ from release_graph import (
     artifact_paths_for as release_artifact_paths_for, load as load_release_json,
     settings_revision_roots as release_settings_revision_roots,
 )
+from shorts_v2.contracts import normalize_engine_settings
+from shorts_v2.revision import RevisionConflict, RevisionStore
+from shorts_v2.studio import artifact_path as shorts_v2_artifact_path
+from shorts_v2.studio import artifact_preview as shorts_v2_artifact_preview
+from shorts_v2.studio import compare_versions as shorts_v2_compare_versions
+from shorts_v2.studio import workspace as shorts_v2_workspace
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
@@ -225,6 +231,27 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         "topic": record.get("topic", ""),
         "content_project": resolve_project_id(str(record.get("content_project", DEFAULT_CONTENT_PROJECT))),
     })
+    shorts = normalize_engine_settings(brief if isinstance(brief.get("_shorts_v2"), dict) else record)
+    values["editing_engine"] = shorts["editing_engine"]
+    if shorts["editing_engine"] == "shorts_v2":
+        quality = shorts["quality"]; controls = shorts.get("locks", {}).get("studio_product_controls", {})
+        values.update({
+            "shorts_media_review": quality["media_review"],
+            "shorts_media_auto_corrections": quality["media_auto_corrections"],
+            "shorts_editing_observation": quality["editing_observation"],
+            "shorts_technical_validation": quality["technical_validation"],
+            "shorts_manual_take_selection": shorts["voice"]["manual_take_selection"],
+        })
+        for field, key in {
+            "shorts_rhythm_preset": "rhythm_preset", "shorts_hook_intensity": "hook_intensity",
+            "shorts_body_intensity": "body_intensity", "shorts_allow_pauses": "allow_pauses",
+            "shorts_allow_emphasis": "allow_emphasis", "shorts_v3_tag_palette": "v3_tag_palette",
+            "shorts_hook_intensity_preset": "hook_direction", "shorts_burst_permission": "burst_permission",
+            "shorts_hook_candidate_count": "hook_candidate_count", "shorts_history_policy": "history_policy",
+            "shorts_shot_density": "shot_density", "shorts_min_shot_seconds": "min_shot_seconds",
+            "shorts_max_shot_seconds": "max_shot_seconds", "shorts_body_video": "body_video",
+        }.items():
+            if key in controls: values[field] = controls[key]
     qstation = brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else {}
     values.update({
         field: qstation[stored]
@@ -326,7 +353,11 @@ def validate_config_values(values: dict) -> dict:
         for field in group["fields"]
         if field["type"] != "readonly"
     }
-    unknown = set(values) - set(fields)
+    # Historical frozen briefs may contain this retired control even though the
+    # current provider contract exposes it read-only. Preserve its frozen value
+    # for legacy revision calculations without reopening it in the public form.
+    legacy_fallback = bool(values.get("chatgpt_fallback_auto", False))
+    unknown = set(values) - set(fields) - {"chatgpt_fallback_auto"}
     if unknown:
         raise ValueError(f"Unknown configuration field(s): {', '.join(sorted(unknown))}")
     normalized: dict[str, Any] = {}
@@ -369,6 +400,7 @@ def validate_config_values(values: dict) -> dict:
             if field.get("maxLength") and len(value) > int(field["maxLength"]):
                 raise ValueError(f"{field['label']} is too long.")
         normalized[name] = value
+    normalized["chatgpt_fallback_auto"] = legacy_fallback
     if float(normalized["min_duration_seconds"]) > float(normalized["max_duration_seconds"]):
         raise ValueError("Minimum duration cannot be greater than maximum duration.")
     if resolve_project_id(normalized["content_project"]) == "q_station" and normalized["aspect_ratio"] != "9:16":
@@ -388,6 +420,11 @@ def validate_config_values(values: dict) -> dict:
         raise ValueError("Choose at least one Telegram delivery output.")
     if normalized["show_watermark"] and not normalized["watermark_text"]:
         raise ValueError("Enter watermark text before enabling it.")
+    if normalized["editing_engine"] == "shorts_v2":
+        if normalized["shorts_min_shot_seconds"] > normalized["shorts_max_shot_seconds"]:
+            raise ValueError("Shorts V2 minimum shot duration cannot exceed its maximum.")
+        if normalized["shorts_media_review"] == "off" and normalized["shorts_media_auto_corrections"] != 0:
+            raise ValueError("Shorts V2 correction budget must be zero while visual review is off.")
     motion_primitives = (
         "motion_allow_hold", "motion_allow_push", "motion_allow_pull",
         "motion_allow_directional_pans", "motion_allow_tilt", "motion_allow_pan_push",
@@ -411,6 +448,11 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     qstation = dict(previous.get("_q_station") or {})
     for key in Q_STATION_FIELDS:
         if key in {"chatgpt_fallback_auto", "character_mode", "character_id", "world_style_reference_id"}:
+            continue
+        # Provider fields removed from the public schema remain frozen in old
+        # briefs; an unrelated revision must preserve rather than rematerialize
+        # or silently change them.
+        if key not in merged:
             continue
         qstation[Q_STATION_STORED_FIELDS[key]] = merged[key]
         if before.get(key) != merged.get(key):
@@ -3067,6 +3109,48 @@ class Handler(BaseHTTPRequestHandler):
             raise ValueError("Request body must be a JSON object.")
         return value
 
+    def _shorts_v2_run(self, job_id: str) -> tuple[dict, Path]:
+        resolved = self.project_for_job(job_id)
+        if not resolved:
+            raise FileNotFoundError("Unknown run.")
+        record, project = resolved
+        settings = normalize_engine_settings(record)
+        if settings["editing_engine"] != "shorts_v2":
+            try:
+                brief = json.loads((ROOT / str(record["creative_brief"])).read_text(encoding="utf-8"))
+            except (OSError, KeyError, json.JSONDecodeError) as exc:
+                raise ValueError("This run has no readable Shorts V2 contract.") from exc
+            settings = normalize_engine_settings(brief)
+        if settings["editing_engine"] != "shorts_v2":
+            raise ValueError("This is a legacy read-only run, not a Shorts V2 workspace.")
+        return {**record, "_effective_shorts_v2": settings}, project
+
+    def handle_shorts_v2_revision(self, action: str) -> None:
+        try:
+            payload = self.read_json_payload(limit=40_000)
+            job_id = str(payload.get("job_id") or "")
+            record, project = self._shorts_v2_run(job_id)
+            expected_episode = f"episode.{record.get('video_id')}"
+            store = RevisionStore(project)
+            if action == "rollback":
+                result = store.rollback(str(payload.get("revision_id") or ""), delivery_requested=bool(payload.get("delivery_requested", False)))
+                self.send_json(HTTPStatus.OK, {"accepted": result}); return
+            request = payload.get("request")
+            if not isinstance(request, dict) or request.get("episode_id") != expected_episode:
+                raise ValueError("Revision episode_id does not match this run.")
+            if action == "preview":
+                self.send_json(HTTPStatus.OK, {"plan": store.preview(request)}); return
+            if action == "apply":
+                result = store.apply(request, plan_hash=str(payload.get("plan_hash") or ""))
+                self.send_json(HTTPStatus.ACCEPTED, {"revision": result}); return
+            raise ValueError("Unknown Shorts V2 revision action.")
+        except FileNotFoundError as exc:
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)})
+        except RevisionConflict as exc:
+            self.send_json(HTTPStatus.CONFLICT, {"error": str(exc), "refresh_required": True})
+        except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+
     def handle_regeneration_preview(self) -> None:
         try:
             payload = self.read_json_payload()
@@ -4259,6 +4343,32 @@ class Handler(BaseHTTPRequestHandler):
             self.send_error(HTTPStatus.NOT_FOUND)
             return
 
+        if route.startswith("/api/run/") and "/shorts-v2/" in route:
+            parts = route.split("/")
+            job_id = parts[3] if len(parts) > 3 else ""
+            try:
+                record, project = self._shorts_v2_run(job_id)
+                action = parts[5] if len(parts) > 5 else ""
+                if action == "workspace" and len(parts) == 6:
+                    revision_id = str((query.get("revision_id") or [""])[0]).strip() or None
+                    payload = shorts_v2_workspace(project, record["_effective_shorts_v2"], revision_id=revision_id)
+                    payload["episode_id"] = f"episode.{record.get('video_id')}"
+                    self.send_json(HTTPStatus.OK, payload); return
+                if action == "compare" and len(parts) == 6:
+                    left = str((query.get("left") or [""])[0]); right = str((query.get("right") or [""])[0])
+                    self.send_json(HTTPStatus.OK, shorts_v2_compare_versions(project, left, right)); return
+                if action in {"artifact", "preview"} and len(parts) == 8:
+                    revision_id, logical_name = unquote(parts[6]), unquote(parts[7])
+                    if action == "preview":
+                        self.send_json(HTTPStatus.OK, shorts_v2_artifact_preview(project, revision_id, logical_name)); return
+                    path = shorts_v2_artifact_path(project, revision_id, logical_name)
+                    self.serve_artifact(project, str(path.relative_to(project))); return
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "Unknown Shorts V2 route."}); return
+            except FileNotFoundError as exc:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)}); return
+            except ValueError as exc:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)}); return
+
         if route.startswith("/api/run/") and route.endswith("/graph"):
             job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
             if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
@@ -4401,6 +4511,15 @@ class Handler(BaseHTTPRequestHandler):
     def do_HEAD(self) -> None:
         """Expose correct metadata for static assets and range-capable previews."""
         route = urlparse(self.path).path
+        if route.startswith("/api/run/") and "/shorts-v2/artifact/" in route:
+            parts = route.split("/")
+            try:
+                _record, project = self._shorts_v2_run(parts[3])
+                path = shorts_v2_artifact_path(project, unquote(parts[6]), unquote(parts[7])) if len(parts) == 8 else None
+                if path is not None:
+                    self.serve_artifact(project, str(path.relative_to(project))); return
+            except (FileNotFoundError, ValueError):
+                self.send_error(HTTPStatus.NOT_FOUND); return
         if route in {"/", "/new", "/runs", "/releases", "/favicon.svg", "/theme-bootstrap.js"} or route.startswith("/runs/") or route.startswith("/releases/") or route.startswith("/assets/"):
             self.serve_studio(route); return
         if route.startswith("/api/styles/"):
@@ -4420,6 +4539,9 @@ class Handler(BaseHTTPRequestHandler):
         self.send_error(HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:
+        if self.path == "/api/shorts-v2/revisions/preview": self.handle_shorts_v2_revision("preview"); return
+        if self.path == "/api/shorts-v2/revisions/apply": self.handle_shorts_v2_revision("apply"); return
+        if self.path == "/api/shorts-v2/versions/rollback": self.handle_shorts_v2_revision("rollback"); return
         if self.path == "/api/style-reference-uploads": self.handle_style_reference_upload(); return
         if self.path == "/api/logo-uploads": self.handle_logo_upload(); return
         if self.path == "/api/music-uploads": self.handle_music_upload(); return
@@ -4465,6 +4587,50 @@ class Handler(BaseHTTPRequestHandler):
             duration_min = float(values["min_duration_seconds"][0]); duration_max = float(values["max_duration_seconds"][0])
             aspect_ratio = values["aspect_ratio"][0]; voice = values["voice"][0].strip(); model = values["model"][0].strip()
             speed, stability, similarity, style = (float(values[k][0]) for k in ("speed", "stability", "similarity", "style"))
+            editing_engine = values.get("editing_engine", ["legacy"])[0].strip() or "legacy"
+            shorts_settings: dict[str, Any] | None = None
+            if editing_engine == "shorts_v2":
+                shorts_media_review = values.get("shorts_media_review", ["off"])[0].strip() or "off"
+                shorts_media_auto_corrections = int(float(values.get("shorts_media_auto_corrections", ["0"])[0]))
+                product_controls = {
+                    "rhythm_preset": values.get("shorts_rhythm_preset", ["dynamic"])[0].strip(),
+                    "hook_intensity": float(values.get("shorts_hook_intensity", [".8"])[0]),
+                    "body_intensity": float(values.get("shorts_body_intensity", [".55"])[0]),
+                    "allow_pauses": "shorts_allow_pauses" in values,
+                    "allow_emphasis": "shorts_allow_emphasis" in values,
+                    "v3_tag_palette": values.get("shorts_v3_tag_palette", ["safe"])[0].strip(),
+                    "hook_direction": values.get("shorts_hook_intensity_preset", ["intense"])[0].strip(),
+                    "burst_permission": "shorts_burst_permission" in values,
+                    "hook_candidate_count": int(float(values.get("shorts_hook_candidate_count", ["6"])[0])),
+                    "history_policy": values.get("shorts_history_policy", ["semantic"])[0].strip(),
+                    "shot_density": values.get("shorts_shot_density", ["auto"])[0].strip(),
+                    "min_shot_seconds": float(values.get("shorts_min_shot_seconds", [".55"])[0]),
+                    "max_shot_seconds": float(values.get("shorts_max_shot_seconds", ["2.8"])[0]),
+                    "body_video": "shorts_body_video" in values,
+                }
+                if product_controls["min_shot_seconds"] > product_controls["max_shot_seconds"]:
+                    raise ValueError("Shorts V2 minimum shot duration cannot exceed its maximum.")
+                if shorts_media_review == "off" and shorts_media_auto_corrections:
+                    raise ValueError("Shorts V2 content correction budget must be zero while visual review is off.")
+                shorts_settings = normalize_engine_settings({
+                    "editing_engine": "shorts_v2",
+                    "voice": {
+                        "tts_model": "eleven_v3" if model == "Eleven v3" else "eleven_multilingual_v2",
+                        "transport": "elevenlabs_web", "voice_label": voice,
+                        "candidate_count": 1, "manual_take_selection": "shorts_manual_take_selection" in values,
+                        "v2": {"speed": speed, "stability": stability, "similarity": similarity, "style": style},
+                        "v3": {"stability": stability, "tag_palette": product_controls["v3_tag_palette"]},
+                    },
+                    "quality": {
+                        "media_review": shorts_media_review, "media_review_scope": "all_visual_assets",
+                        "media_auto_corrections": shorts_media_auto_corrections,
+                        "editing_observation": values.get("shorts_editing_observation", ["auto_once"])[0].strip(),
+                        "technical_validation": "shorts_technical_validation" in values,
+                    },
+                    "locks": {"studio_product_controls": product_controls},
+                })
+            elif editing_engine != "legacy":
+                raise ValueError("Editing engine must be legacy or shorts_v2.")
             narration_gain_db = float(values.get("narration_gain_db", ["0"])[0])
             providers = music_provider_priority(values.get("music_providers", values.get("music_provider", ["mixkit"]))[0])
             music_upload_id = values.get("music_upload_id", [""])[0].strip()
@@ -4746,6 +4912,8 @@ class Handler(BaseHTTPRequestHandler):
                 elif character_id:
                     raise ValueError("Auto character selection must not include a manual character id.")
             creative_brief = {key: form_text(values, key) for key in CREATIVE_FIELDS}
+            if shorts_settings is not None:
+                creative_brief["_shorts_v2"] = shorts_settings
             # Store bookworld/Q Station settings for the downstream pipeline.
             creative_brief["_q_station"] = {
                 "character": {
@@ -4903,6 +5071,7 @@ class Handler(BaseHTTPRequestHandler):
                 "commit_artifacts": commit_artifacts,
                 "telegram_low_size": telegram_low_size,
                 "telegram_original": telegram_original,
+                **({"_shorts_v2": shorts_settings} if shorts_settings is not None else {}),
             }
             request = project / "launch" / "LAUNCH_REQUEST.json"; write_json(request, record); write_json(self.jobs_dir / f"{job_id}.json", record)
             log = self.jobs_dir / f"{job_id}.log"; handle = log.open("w", encoding="utf-8")
