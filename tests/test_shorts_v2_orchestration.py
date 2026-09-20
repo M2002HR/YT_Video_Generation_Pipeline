@@ -80,6 +80,15 @@ def test_wrapper_engine_selection_reads_only_explicit_marker(tmp_path: Path) -> 
     assert selected_editing_engine(brief) == "shorts_v2"
 
 
+def test_qstation_brief_never_dispatches_to_plan_only_shorts_v2(tmp_path: Path) -> None:
+    brief = tmp_path / "brief.json"
+    brief.write_text(json.dumps({
+        "_q_station": {"character": {"mode": "auto"}},
+        "_shorts_v2": {"editing_engine": "shorts_v2", "voice": {"tts_model": "eleven_v3", "voice_id": "voice_mark"}},
+    }), encoding="utf-8")
+    assert selected_editing_engine(brief) == "legacy"
+
+
 def test_invalid_explicit_marker_never_falls_back_to_legacy(tmp_path: Path) -> None:
     launch = tmp_path / "launch"
     launch.mkdir()

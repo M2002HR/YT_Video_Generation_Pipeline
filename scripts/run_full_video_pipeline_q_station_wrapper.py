@@ -66,11 +66,18 @@ def file_is_usable(path: Path) -> bool:
 
 
 def selected_editing_engine(creative_brief: Path) -> str:
-    """Resolve the explicit engine marker without materializing new defaults."""
+    """Resolve the engine marker, keeping production Q Station on its real runner.
+
+    Shorts V2 is an isolated, plan-only development contract.  A Q Station
+    brief can carry stale UI settings from an earlier panel build, but must
+    never be diverted from the production Q Station wrapper on that basis.
+    """
     try:
         payload = json.loads(creative_brief.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
         raise ValueError(f"Creative brief is unreadable: {creative_brief}") from exc
+    if isinstance(payload.get("_q_station"), dict):
+        return "legacy"
     from shorts_v2.contracts import normalize_engine_settings
     return str(normalize_engine_settings(payload)["editing_engine"])
 

@@ -233,7 +233,12 @@ def frozen_values(record: dict, brief: dict, voice: dict) -> dict:
         "topic": record.get("topic", ""),
         "content_project": resolve_project_id(str(record.get("content_project", DEFAULT_CONTENT_PROJECT))),
     })
+    is_q_station = resolve_project_id(str(record.get("content_project") or DEFAULT_CONTENT_PROJECT)) == "q_station"
     shorts = normalize_engine_settings(brief if isinstance(brief.get("_shorts_v2"), dict) else record)
+    if is_q_station:
+        # Do not render the unfinished Shorts V2 workspace for a production
+        # Q Station run merely because an old panel form persisted its fields.
+        shorts = {**shorts, "editing_engine": "legacy"}
     values["editing_engine"] = shorts["editing_engine"]
     if shorts["editing_engine"] == "shorts_v2":
         quality = shorts["quality"]; controls = shorts.get("locks", {}).get("studio_product_controls", {})
@@ -4916,6 +4921,11 @@ class Handler(BaseHTTPRequestHandler):
             # Validate project assets, including the Q Station character registry.
             validate_content_project(cp)
             if cp.is_q_station:
+                # Shorts V2 is currently a plan-only development skeleton. Q
+                # Station is the production workflow, so normalise an old/new
+                # form's experimental engine field away before freezing either
+                # the brief or the resumable launch record.
+                shorts_settings = None
                 if character_mode not in {"auto", "manual"}:
                     raise ValueError("Invalid character mode.")
                 registry_path = character_registry_path(cp)

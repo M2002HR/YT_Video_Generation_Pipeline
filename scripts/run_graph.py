@@ -133,6 +133,11 @@ def load(path: Path) -> dict[str, Any]:
 
 def project_mode(project: Path) -> str:
     launch = load(project / "launch/LAUNCH_REQUEST.json")
+    # Q Station has a complete production executor and graph.  Shorts V2 is a
+    # separate plan-only contract; stale panel controls must not replace the
+    # graph for an actual Q Station episode.
+    if isinstance(launch.get("qstation"), dict) or isinstance(launch.get("_q_station"), dict):
+        return "qstation"
     engine_source: dict[str, Any] = launch
     try:
         from shorts_v2.contracts import normalize_engine_settings
