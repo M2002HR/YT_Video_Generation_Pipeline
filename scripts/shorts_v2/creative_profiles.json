@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "profile_version": "shorts-v2.2-creative-r1",
+  "characters": {
+    "red_horned_everyman": {
+      "display_name": "Red Horned Everyman",
+      "baseline_demeanor": ["deadpan", "skeptical", "dryly conversational", "clear"],
+      "hook_burst_range": ["brief disbelief", "sharp skeptical reaction", "controlled alarm"],
+      "avoid": ["automatic rage", "demon behavior inferred from appearance", "constant shouting"],
+      "emotional_palette": ["skeptical", "wry", "surprised", "concerned"],
+      "hook_intensity": [0.55, 0.85],
+      "body_intensity": [0.25, 0.6],
+      "allowed_vocabulary": ["plain international English", "short dry observations", "natural contractions"],
+      "voice_bindings": {
+        "eleven_multilingual_v2": {"voice_label": "Mark", "calibration": "documented_not_calibrated"},
+        "eleven_v3": {"voice_label": "Liam - Energetic, Social Media Creator", "calibration": "documented_not_calibrated"}
+      }
+    },
+    "moss_cloaked_crone": {
+      "display_name": "Moss-Cloaked Crone",
+      "baseline_demeanor": ["mysterious", "slightly wicked", "playful", "dryly conversational"],
+      "hook_burst_range": ["caused whisper", "brief wicked grin", "sharp topic-driven reaction"],
+      "avoid": ["screaming in every episode", "ritualistically slow speech", "repetitive witch caricature"],
+      "emotional_palette": ["mischievous", "curious", "ominous", "quietly delighted"],
+      "hook_intensity": [0.5, 0.9],
+      "body_intensity": [0.25, 0.6],
+      "allowed_vocabulary": ["plain international English", "dry humor", "natural contractions"],
+      "voice_bindings": {
+        "eleven_multilingual_v2": {"voice_label": "Mark", "calibration": "documented_not_calibrated"},
+        "eleven_v3": {"voice_label": "Liam - Energetic, Social Media Creator", "calibration": "documented_not_calibrated"}
+      }
+    },
+    "sea_captain": {
+      "display_name": "Curious Sea Captain",
+      "baseline_demeanor": ["warm", "exploratory", "wry", "evidence-led"],
+      "hook_burst_range": ["excited discovery", "brief justified alarm", "surprised realization"],
+      "avoid": ["pirate catchphrases", "constant shouting", "stereotyped accent imitation"],
+      "emotional_palette": ["curious", "warm", "alert", "delighted"],
+      "hook_intensity": [0.5, 0.85],
+      "body_intensity": [0.3, 0.65],
+      "allowed_vocabulary": ["plain international English", "exploratory phrasing", "natural contractions"],
+      "voice_bindings": {
+        "eleven_multilingual_v2": {"voice_label": "Mark", "calibration": "documented_not_calibrated"},
+        "eleven_v3": {"voice_label": "Liam - Energetic, Social Media Creator", "calibration": "documented_not_calibrated"}
+      }
+    },
+    "newton_scholar": {
+      "display_name": "Newton-Inspired Scholar",
+      "baseline_demeanor": ["precise", "alive", "patient", "curious"],
+      "hook_burst_range": ["sudden realization", "brief disbelief", "genuine excitement"],
+      "avoid": ["dry academic lecturing", "clowning", "claiming historical infallibility"],
+      "emotional_palette": ["thoughtful", "surprised", "excited", "concerned"],
+      "hook_intensity": [0.45, 0.85],
+      "body_intensity": [0.25, 0.65],
+      "allowed_vocabulary": ["plain international English", "precise comparisons", "natural contractions"],
+      "voice_bindings": {
+        "eleven_multilingual_v2": {"voice_label": "Mark", "calibration": "documented_not_calibrated"},
+        "eleven_v3": {"voice_label": "Liam - Energetic, Social Media Creator", "calibration": "documented_not_calibrated"}
+      }
+    }
+  }
+}

@@ -24,10 +24,10 @@ class StageSpec:
 
 STAGES: tuple[StageSpec, ...] = (
     StageSpec("preflight", "Shorts V2 preflight", "contract", owned_artifacts=("request",)),
-    StageSpec("character_resolution", "Character and presentation", "creative", ("preflight",), ("character_resolution",)),
-    StageSpec("evidence", "Evidence pack", "creative", ("preflight",)),
-    StageSpec("hook", "Hook tournament", "creative", ("character_resolution", "evidence"), provider="chatgpt"),
-    StageSpec("script", "Canonical script", "creative", ("hook", "evidence"), ("script_core",), provider="chatgpt"),
+    StageSpec("character_resolution", "Character and presentation", "creative", ("preflight",), ("character_resolution", "character_performance")),
+    StageSpec("evidence", "Evidence pack", "creative", ("preflight",), ("evidence_pack",)),
+    StageSpec("hook", "Hook tournament", "creative", ("character_resolution", "evidence"), ("hook_packages", "hook_reviews", "hook_tournament"), provider="chatgpt"),
+    StageSpec("script", "Canonical script", "creative", ("hook", "evidence"), ("story_blueprint", "script_core", "cta", "script_reviews"), provider="chatgpt"),
     StageSpec("voice_resolution", "Voice resolution and capabilities", "voice", ("character_resolution",), ("voice_resolution", "voice_capabilities"), provider="elevenlabs_web"),
     StageSpec("voice_performance", "Voice performance", "voice", ("script", "voice_resolution"), provider="chatgpt"),
     StageSpec("voice_compile", "Model-specific voice compile", "voice", ("voice_performance",), ("tts_input",)),

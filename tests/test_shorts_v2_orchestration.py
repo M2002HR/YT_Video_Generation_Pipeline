@@ -139,6 +139,17 @@ def test_artifact_resolver_keeps_every_path_inside_revision(tmp_path: Path) -> N
         resolver.resolve("unknown")
 
 
+def test_p04_creative_stages_own_their_versioned_artifacts(tmp_path: Path) -> None:
+    resolver = ArtifactResolver(tmp_path / "episode", "revision-001")
+    graph = effective_graph(settings())
+    nodes = {node["id"]: node for node in graph["nodes"]}
+    assert set(nodes["evidence"]["owned_artifacts"]) == {"evidence_pack"}
+    assert set(nodes["hook"]["owned_artifacts"]) == {"hook_packages", "hook_reviews", "hook_tournament"}
+    assert set(nodes["script"]["owned_artifacts"]) == {"story_blueprint", "script_core", "cta", "script_reviews"}
+    for logical_name in (*nodes["evidence"]["owned_artifacts"], *nodes["hook"]["owned_artifacts"], *nodes["script"]["owned_artifacts"]):
+        assert resolver.resolve(logical_name).is_relative_to(resolver.revision_root)
+
+
 def test_stage_state_is_resumable_and_rejects_invalid_transitions(tmp_path: Path) -> None:
     path = tmp_path / "state.json"
     store = StageStateStore(path, run_id="run-001", revision_id="revision-001")
