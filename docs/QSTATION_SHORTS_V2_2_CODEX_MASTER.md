@@ -1871,7 +1871,7 @@ Product changes such as turning QC on by default, requiring human calibration, r
 
 ### 29.1. How to update it
 
-Update the JSON between the markers below after every batch. At delivery time this ledger represents **future execution state**, so all phases are intentionally `NOT_STARTED`.
+Update the JSON between the markers below after every batch. It represents the reconciled execution state and the next safe continuation point.
 
 The `evidence` list must contain real paths and outcomes, not empty assertions. Prefer recording the latest test run and plan version in commits. Write `last_verified_head` only after inspecting Git, not from chat memory.
 
@@ -1883,20 +1883,20 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
+  "last_verified_head": "bea5c6732c2b4cd74ba3fbc7a985358bb196f630",
   "last_session_id": "C1-2026-09-20-01",
   "overall_status": "IN_PROGRESS",
   "code_ready": false,
   "production_smoke_passed": false,
   "human_artistic_acceptance": "NOT_REQUESTED",
-  "active_phase": "P00",
-  "next_phase": "P00",
-  "next_action": "Complete P00 baseline audit and contract delta, then implement P01 shared shorts_v2 contracts without touching existing video outputs.",
+  "active_phase": "P04",
+  "next_phase": "P04",
+  "next_action": "C2_CREATIVE: reconcile HEAD and the protected dirty video outputs, then implement only P04-P07 beginning with the four versioned creative profiles, six Hook Packages, evidence provenance, and accept/reject fixtures for P04; do not redo P00-P03 or begin P08.",
   "execution_chat_plan": {
     "mode": "FOUR_CHAT",
     "selected_during_phase": "P00",
     "selection_status": "CONFIRMED",
-    "current_chat_slot": "C1_FOUNDATION",
+    "current_chat_slot": "C2_CREATIVE",
     "routes": {
       "FOUR_CHAT": [
         {
@@ -1944,8 +1944,8 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "python": ".venv/bin/python 3.12.3",
     "node": "22.23.2",
     "ffmpeg": "6.1.1-3ubuntu5",
-    "browser_access": "ORDAK_HEALTHY_CHROME_RUNNING_CHATGPT_LOGGED_IN_ELEVENLABS_NOT_YET_CHECKED",
-    "elevenlabs_session": "NOT_CHECKED",
+    "browser_access": "ORDAK_HEALTHY_CHROME_RUNNING_CHATGPT_AND_ELEVENLABS_LOGGED_IN",
+    "elevenlabs_session": "HEALTHY_NON_GENERATING_V2_V3_CAPABILITY_PROBE_PASS",
     "ordak_commit": "6456e9957e6b44eef9a99e60ab372eb258077af8"
   },
   "phases": [
@@ -1953,12 +1953,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "id": "P00",
       "title": "inventory_baseline_handoff",
       "requires": [],
-      "status": "IN_PROGRESS",
-      "commits": [],
+      "status": "DONE",
+      "commits": [
+        "57aa33ad893c1723da5d2c41069640f0efbb0622"
+      ],
       "evidence": [
         "Baseline compile: exit 0, /tmp/qstation-v2-c1-baseline-compile.log",
         "Baseline pytest: 782 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c1-baseline-pytest.log and /tmp/qstation-v2-c1-baseline-pytest.xml",
-        "Ordak health: PASS; Chrome running and ChatGPT logged in; ElevenLabs session not yet checked"
+        "Ordak health: PASS; Chrome running and ChatGPT logged in",
+        "Baseline audit and protected-dirty-work inventory: docs/QSTATION_SHORTS_V2_2_BASELINE_AUDIT.md"
       ],
       "blockers": []
     },
@@ -1968,9 +1971,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "requires": [
         "P00"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "bf73ad4ec0ad72f3570911a9b7376eadaa012420"
+      ],
+      "evidence": [
+        "Strict engine/model/quality/artifact schemas and precedence: scripts/shorts_v2/contracts.py",
+        "Canonical unit/token identities: scripts/shorts_v2/canonical_text.py",
+        "Schema and canonical-text tests: tests/test_shorts_v2_contracts.py"
+      ],
       "blockers": []
     },
     {
@@ -1979,9 +1988,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "requires": [
         "P01"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "95a6183a24cffedc71257ebc5dc06b3dec650506"
+      ],
+      "evidence": [
+        "Independent effective DAG, artifact resolver, resumable state, leases and fixture-only provider spy: scripts/shorts_v2/",
+        "Explicit dispatch and plan-only executable path: scripts/run_shorts_v2_pipeline.py, scripts/run_graph.py, scripts/run_full_video_pipeline_q_station_wrapper.py",
+        "No legacy Motion Director imports in the new runtime path; plan-only integration and routing tests pass"
+      ],
       "blockers": []
     },
     {
@@ -1992,9 +2007,16 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P01",
         "P02"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "READY_FOR_REVIEW",
+      "commits": [
+        "bea5c6732c2b4cd74ba3fbc7a985358bb196f630"
+      ],
+      "evidence": [
+        "code_ready=true; live_validation_pending=true for paid Generate/result/download smoke owned by P14",
+        "Authenticated live non-generating probe PASS: v2 exposes textarea plus speed/stability/similarity/style; v3 exposes contenteditable plus native Stability=0.5 categorical mapping; final UI restored to Eleven v3 / Liam - Energetic, Social Media Creator",
+        "Attempt state machine, exact text readback hash, pre-submit result baseline, bound new-result identity, dedicated attempt download, ffprobe validation and structured receipt implemented",
+        "Provider-free adapter tests: tests/test_elevenlabs_v2_v3_adapter.py"
+      ],
       "blockers": []
     },
     {
@@ -2128,10 +2150,28 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "blockers": []
     }
   ],
-  "open_blockers": [],
-  "design_decisions": [],
-  "test_evidence": [],
-  "uncommitted_work": [],
+  "open_blockers": [
+    "P14 must run an authorized paid v2/v3 Generate-to-bound-download smoke; C1 deliberately performed no paid generation and does not claim production smoke."
+  ],
+  "design_decisions": [
+    "D-C1-01: Missing editing_engine remains legacy; only an explicit valid shorts_v2 marker can enter the new runtime, and malformed explicit markers fail closed.",
+    "D-C1-02: Shorts V2 owns an isolated DAG/revision namespace and imports no legacy Motion Director runtime modules.",
+    "D-C1-03: Current ElevenLabs v3 Stability slider values 0/0.5/1 are adapted as categorical Creative/Natural/Robust; arbitrary v2 numeric settings stay inactive for v3.",
+    "D-C1-04: Pre-existing enabled downloads never acknowledge a new submit; consumption requires one new bound result identity and a fresh file inside its dedicated attempt directory.",
+    "D-C1-05: Ordak already provides sufficient authenticated CDP primitives, so its pinned submodule was not modified."
+  ],
+  "test_evidence": [
+    "Targeted C1: 69 passed, exit 0, /tmp/qstation-v2-c1-final-targeted.log",
+    "Full Python post-change: 818 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c1-final-pytest.log and /tmp/qstation-v2-c1-final-pytest.xml; the same 19 baseline failures remain and no new failure was introduced",
+    "UI unit tests: 15 passed, exit 0, /tmp/qstation-v2-c1-ui-test.log",
+    "UI production build: exit 0, /tmp/qstation-v2-c1-ui-build.log",
+    "Python compileall and git diff --check: exit 0"
+  ],
+  "uncommitted_work": [
+    "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/LAUNCH_REQUEST.json",
+    "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/pipeline/FINALIZATION_RUNTIME_STATE.json",
+    "PROTECTED PRE-EXISTING: untracked publish/youtube_short packages for videos 042, 043 and 045"
+  ],
   "unpushed_commits": [],
   "running_processes_or_provider_jobs": []
 }
@@ -2140,7 +2180,7 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
 
 ### 29.2. Session Log — append-only execution summary
 
-No Codex execution has been recorded yet. Each session appends the following entry using real data:
+Execution entries are append-only. Template for later sessions:
 
 ```text
 Session ID:
@@ -2159,9 +2199,36 @@ Running jobs/processes reconciled:
 Next action (exact):
 ```
 
+```text
+Session ID: C1-2026-09-20-01
+Started/ended at: 2026-09-20T13:48:18+04:00 / 2026-09-20T14:15:43+04:00
+Actual branch and HEAD: dev / bea5c6732c2b4cd74ba3fbc7a985358bb196f630 (implementation HEAD before this ledger-only handoff commit)
+Phase(s): P00 DONE; P01 DONE; P02 DONE; P03 READY_FOR_REVIEW with code_ready=true and paid live_validation_pending=true
+Requirements addressed: baseline/durable memory; strict schemas/settings/canonical IDs; isolated DAG/state/artifacts/leases/dispatch; model-aware ElevenLabs v2/v3 UI, exact text and bound-result/download safety
+Files changed: canonical/master/audit docs; scripts/shorts_v2/*; new runner; wrapper/graph dispatch; ElevenLabs runner; v3 profile; three new test modules
+Decisions and reasons: explicit engine selection fails closed; legacy remains default; new runtime is Motion-Director-free; v3 categorical stability maps onto the observed provider slider; stale downloads cannot prove submission
+Commands/tests: compileall; 69-test targeted suite; full Python suite; UI tests/build; git diff --check; authenticated non-generating live v2/v3 capability and control probes
+Results and evidence paths: targeted 69 passed; full 818 passed/19 failed/1 skipped with the same 19 baseline failures; UI 15 passed and build passed; logs under /tmp/qstation-v2-c1-*
+Commits / push state: 57aa33a P00, bf73ad4 P01, 95a6183 P02, bea5c67 P03; pushed with the C1 ledger handoff to origin/dev
+Remaining work: P04-P14; P14 paid end-to-end v2/v3 Generate/result/download smoke; resolve the unrelated legacy 19-failure baseline in its owning scope
+Blockers: no blocker to C2; paid provider smoke intentionally deferred to P14 and production_smoke_passed remains false
+Running jobs/processes reconciled: no provider generation or background job started; Chrome remains running by pre-existing service ownership; ElevenLabs UI restored to Eleven v3 and Liam
+Next action (exact): C2 reads this ledger, protects the listed dirty video outputs, implements P04-P07 only, starts with P04 profiles/Hook Packages/evidence provenance/fixtures, and stops before P08
+```
+
 ### 29.3. Decision Log
 
-No post-delivery execution decision has been recorded yet. For every meaningful change:
+`D-C1-01 | 2026-09-20 | P01/P02 | Old episodes have no engine marker | infer from old fields vs require explicit selection | missing marker is legacy; explicit malformed shorts_v2 fails closed | no accidental migration or silent fallback | targeted dispatch/contracts tests`
+
+`D-C1-02 | 2026-09-20 | P02 | Existing Q Station graph imports Motion Director | condition old graph vs isolated registry | independent scripts/shorts_v2 registry and revision namespace | later phases can replace nodes without coupling legacy | DAG/import/plan-only tests`
+
+`D-C1-03 | 2026-09-20 | P03 | Current v3 UI presents Stability as a numeric slider although v3 semantics are categorical | send arbitrary numeric v2 value vs semantic adapter | map Creative/Natural/Robust to observed 0/0.5/1; keep other v2 controls inactive | model semantics remain explicit under UI drift | adapter tests plus authenticated live control probe`
+
+`D-C1-04 | 2026-09-20 | P03 | Existing Download latest can predate the current request | accept any enabled download vs bind a new result | baseline result identities before submit and require exactly one new identity plus attempt-local fresh file | ambiguous/stale output fails loudly | result/download ownership tests`
+
+`D-C1-05 | 2026-09-20 | P03 | Determine whether Ordak must change | modify submodule vs use pinned primitives | keep Ordak pinned and implement model semantics in main repo | no unreachable gitlink or service deployment needed | live Chrome/CDP probes`
+
+For every later meaningful change:
 
 `decision_id | date | requirement | observed problem | options | chosen approach | consequences | tests`
 
@@ -2169,7 +2236,9 @@ Recording something here does not legitimize deleting a requirement, reducing sc
 
 ### 29.4. Blocker Log
 
-Codex execution-environment blockers have not yet been evaluated; the absence of an entry does not imply access is available.
+`B-C1-01 | P14 (not blocking P03 code readiness or C2) | authorized paid ElevenLabs generation smoke | authenticated v2/v3 settings/editor probes pass, but C1 did not click Generate or consume credits | verified login, exact model/voice retention, model-specific controls, editor types and trusted slider interaction | all provider-free P00-P03 work completed | during P14 run one authorized v2 and one v3 request through new-result binding, attempt-local download and ffprobe receipt`
+
+`B-C1-02 | baseline/legacy owner (not a Shorts V2 blocker) | clean pre-existing Python suite | baseline and post-change runs both contain the same 19 failures | captured baseline before edits and compared exact post-change count/categories | targeted C1, UI and build suites are green | repair chatgpt_fallback_auto schema drift, legacy gemini flag, resume fingerprints and stale test double in their owning scope`
 
 `blocker_id | phase | capability/access missing | evidence | attempted checks | independent work continued | exact unblock action`
 
@@ -2179,7 +2248,15 @@ For every run:
 
 `test_id(s) | level | command | date | commit | exit_code | passed/failed/skipped | log_path | limitation`
 
-Test status at this delivery: **new product code tests have not been run; only the structure of this delivery file itself is being checked.**
+`T01,T02,T70 | baseline | .venv/bin/python -m compileall -q scripts; .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c1-baseline-pytest.xml | 2026-09-20 | e4cd11c | compile 0 / pytest 1 | 782 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c1-baseline-compile.log; /tmp/qstation-v2-c1-baseline-pytest.log | pre-change baseline`
+
+`T03-T23,T51-T54 | provider-free targeted | .venv/bin/python -m pytest -q tests/test_shorts_v2_contracts.py tests/test_shorts_v2_orchestration.py tests/test_elevenlabs_v2_v3_adapter.py tests/test_elevenlabs_output_format.py tests/test_voiceover_input_sync.py tests/test_run_graph.py tests/test_q_station_wrapper_artifacts.py | 2026-09-20 | bea5c67 | 0 | 69 passed | /tmp/qstation-v2-c1-final-targeted.log | DOM/result behavior is fixture-level except separately recorded live probe`
+
+`T68-partial | authenticated live non-generating | select/probe/read back Eleven Multilingual v2 and Eleven v3 controls and editors; exercise trusted Stability/Style minimum controls; restore v3/Liam | 2026-09-20 | bea5c67 | 0 | v2 and v3 capability/control PASS | session output summarized in P03 evidence | no Generate, result binding or download; those remain P14`
+
+`T70 | full Python regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c1-final-pytest.xml | 2026-09-20 | bea5c67 | 1 | 818 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c1-final-pytest.log | exact same 19 pre-existing baseline failures; 36 additional passing tests and no new failure`
+
+`T70 | UI unit/build | npm --prefix control_panel/ui test; npm --prefix control_panel/ui run build | 2026-09-20 | bea5c67 | 0/0 | 15 passed; Vite production build passed | /tmp/qstation-v2-c1-ui-test.log; /tmp/qstation-v2-c1-ui-build.log | no new UI surface is required until P11`
 
 ### 29.6. Handoff to the next session
 
@@ -2194,7 +2271,21 @@ Do not redo: <completed tasks and commits>.
 Open blocker: <real missing environment capability, or none verified>.
 ```
 
-This is a reporting format example, not the current project status.
+Current exact handoff:
+
+```text
+Next phase: P04
+Next operation: implement four versioned creative profiles, six Hook Packages, evidence/source provenance, context builders and accept/reject fixtures under the isolated Shorts V2 contracts.
+Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; scripts/shorts_v2/registry.py is the shared DAG authority.
+Last passing tests: 69 targeted tests (/tmp/qstation-v2-c1-final-targeted.log), 15 UI tests and UI build; full suite has the unchanged 19-failure baseline.
+Do not redo: P00-P02; P03 adapter code and authenticated non-generating v2/v3 capability verification.
+Open blocker: paid Generate-to-bound-download smoke is explicitly deferred to P14 and does not block P04-P13.
+Selected chat plan: FOUR_CHAT
+Current chat slot and assigned phase range: C2_CREATIVE / P04-P07
+Range gate reached: YES for C1 (P03 code-ready; live validation explicitly deferred under the documented gate)
+Next chat slot: C2_CREATIVE
+Reason this is a safe stopping point: contracts, dispatch, revision namespace and voice transport safety are independently tested and committed; no P04 work has started.
+```
 
 The handoff must additionally state:
 
