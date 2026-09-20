@@ -32,6 +32,7 @@ LOGICAL_ARTIFACTS: dict[str, str] = {
     "tts_receipt": "receipts/TTS_EXECUTION_RECEIPT.json",
     "narration_audio": "voiceover/narration.mp3",
     "narration_timing": "timing/NARRATION_TIMING.json",
+    "narration_pacing": "timing/NARRATION_PACING_REPORT.json",
     "rhythm_map": "timing/RHYTHM_MAP.json",
     "shot_plan": "planning/SHOT_PLAN.json",
     "asset_manifest": "planning/ASSET_MANIFEST.json",
