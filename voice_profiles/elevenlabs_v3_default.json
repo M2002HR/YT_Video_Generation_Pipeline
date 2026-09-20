@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "provider": "ElevenLabs web UI",
-  "name": "mark_v3_default",
+  "name": "liam_v3_default",
   "voice": "Liam - Energetic, Social Media Creator",
   "model": "Eleven v3",
   "stability_mode": "Natural",
