@@ -24,6 +24,8 @@ Chrome's profile lives at `/root/.config/google-chrome-ordak` and holds the prov
 | `ordak-xvfb` | `Xvfb :1 -screen 0 1920x1080x24 -nolisten tcp` | — |
 | `ordak-fluxbox` | window manager on `:1` | — |
 | `ordak-chrome` | Chrome with `--remote-debugging-port=9222`, profile `google-chrome-ordak` | 127.0.0.1:9222 |
+| `ordak-chrome-watchdog.timer` | Restarts the systemd-owned Chrome only after three failed DevTools probes | — |
+| `elevenlabs-tab-monitor.timer` | Records the health of an existing ElevenLabs tab every 30 seconds; never generates audio | — |
 | `ordak-x11vnc` | `x11vnc -display :1 -localhost -rfbauth /etc/ordak-vnc.pass` | 127.0.0.1:5901 |
 | `ordak-novnc` | `websockify --web /usr/share/novnc 127.0.0.1:6080 → 5901` | 127.0.0.1:6080 |
 | `ordak-api` | `.venv/bin/python scripts/run_ordak.py` | 127.0.0.1:8000 |
@@ -32,6 +34,13 @@ Chrome's profile lives at `/root/.config/google-chrome-ordak` and holds the prov
 
 All of them are `enabled` with `Restart=always`, so the stack comes back after a reboot.
 Everything except nginx binds to loopback only.
+
+The ElevenLabs monitor is observational: `healthy`, `transitional`, `blocked`,
+`degraded`, or `idle` is written to
+`/var/lib/ordak-elevenlabs-monitor/state.json`. `idle` means no ElevenLabs work
+tab exists and is normal under the one-tab provider policy. The voiceover runner
+does the destructive-safe part itself: it clears the official v3 composer,
+inserts the narration, and requires an exact hash read-back before Generate.
 
 ## Public surface
 

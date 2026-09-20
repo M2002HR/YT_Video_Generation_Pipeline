@@ -128,6 +128,43 @@ def test_text_readback_hash_normalizes_only_line_endings() -> None:
     assert text_fingerprint("one  two") != text_fingerprint("one two")
 
 
+def test_v3_contenteditable_recovery_retries_once_then_requires_exact_readback() -> None:
+    ui = object.__new__(ElevenLabsUI)
+    expected = "The narration that must replace stale text."
+    observed = iter(("old narration" + expected, expected))
+    ui._replace_contenteditable_text_once = lambda text: next(observed)  # type: ignore[method-assign]
+
+    assert ui._set_contenteditable_text_with_recovery(expected) == expected
+
+
+def test_v3_contenteditable_recovery_never_accepts_an_appended_narration() -> None:
+    ui = object.__new__(ElevenLabsUI)
+    expected = "The narration that must replace stale text."
+    ui._replace_contenteditable_text_once = lambda text: "stale text" + text  # type: ignore[method-assign]
+
+    with pytest.raises(ElevenLabsAdapterError) as caught:
+        ui._set_contenteditable_text_with_recovery(expected)
+    assert caught.value.code is AdapterErrorCode.TEXT_MISMATCH
+    assert len(caught.value.evidence["observations"]) == 2
+
+
+def test_v3_contenteditable_clear_is_required_before_trusted_insert() -> None:
+    ui = object.__new__(ElevenLabsUI)
+    ui.control_timeout_seconds = 1
+    ui.poll_seconds = 0
+    reads = iter(("stale narration", "", "new narration"))
+    ui.read_text = lambda: next(reads)  # type: ignore[method-assign]
+    activated: list[str] = []
+    ui._activate_selector = lambda selector: activated.append(selector)  # type: ignore[method-assign]
+    ui._json = lambda expression: {"ok": True}  # type: ignore[method-assign]
+    inserted: list[str] = []
+    ui._trusted_insert_text = lambda text: inserted.append(text)  # type: ignore[method-assign]
+
+    assert ui._replace_contenteditable_text_once("new narration") == "new narration"
+    assert activated == ['button[aria-label="Clear text"]']
+    assert inserted == ["new narration"]
+
+
 def test_state_machine_rejects_skipped_or_duplicate_submit_states() -> None:
     machine = AttemptStateMachine()
     machine.advance("OPEN")

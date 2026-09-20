@@ -27,6 +27,7 @@ from dotenv import load_dotenv
 from pipeline_notifier import PipelineNotifier, format_duration
 from pipeline_stages import stage_title
 from shorts_v2.elevenlabs_adapter import (
+    AdapterErrorCode,
     AttemptStateMachine,
     CapabilityProbe,
     ElevenLabsAdapterError,
@@ -57,6 +58,12 @@ VOICE_CONFIRM_BUTTON_SCOPE = '[role="dialog"] button'
 MODEL_OPTION_SELECTOR = '[role="dialog"] button[role="radio"]'
 OUTPUT_FORMAT_OPTION_SELECTOR = '[role="option"][aria-labelledby]'
 DOWNLOAD_SELECTOR = 'button[data-testid="tts-download-latest-button"]'
+# The v3 composer is a ProseMirror document.  Selecting its DOM nodes and calling
+# ``Input.insertText`` looks like a replacement but, in the current ElevenLabs UI,
+# can append ahead of an existing node view.  Use the product's own explicit clear
+# action before every pipeline-owned replacement instead of relying on that brittle
+# browser-selection behaviour.
+CLEAR_TEXT_SELECTOR = 'button[aria-label="Clear text"]'
 
 
 def utcnow() -> str:
@@ -536,10 +543,73 @@ class ElevenLabsUI:
           return {{ok:true,kind:'contenteditable'}};
         }})()""")
         if result.get("kind") == "contenteditable":
-            self._trusted_insert_text(text)
-            result["text"] = self.read_text()
+            result["text"] = self._set_contenteditable_text_with_recovery(text)
         if not result.get("ok") or text_fingerprint(str(result.get("text") or "")) != text_fingerprint(text):
             raise RuntimeError(f"ElevenLabs narration input failed: {result.get('reason', 'text hash mismatch')}")
+
+    def _set_contenteditable_text_with_recovery(self, text: str) -> str:
+        """Replace v3 editor text and prove the replacement, never append to it.
+
+        A browser/CDP success response is insufficient here: ElevenLabs' current
+        ProseMirror node view can preserve the old paragraph even when a Range was
+        selected.  The only safe success criterion is an exact read-back.  One
+        retry handles a React rerender between Clear and typed input; a second
+        mismatch remains a typed, evidence-bearing failure before Generate.
+        """
+        observations: list[dict[str, Any]] = []
+        expected_hash = text_fingerprint(text)
+        for attempt in range(1, 3):
+            observed = self._replace_contenteditable_text_once(text)
+            observed_hash = text_fingerprint(observed)
+            observations.append({
+                "attempt": attempt,
+                "characters": len(observed),
+                "text_sha256": observed_hash,
+            })
+            if observed_hash == expected_hash:
+                return observed
+            # Do not press Generate after a failed read-back.  Retrying Clear is
+            # safe because no request has been submitted at this point.
+        raise ElevenLabsAdapterError(
+            AdapterErrorCode.TEXT_MISMATCH,
+            "ElevenLabs v3 editor did not retain the exact narration after controlled replacement.",
+            evidence={"expected_characters": len(text), "expected_text_sha256": expected_hash, "observations": observations},
+        )
+
+    def _replace_contenteditable_text_once(self, text: str) -> str:
+        """Clear the product editor, focus its editable node, then type via CDP."""
+        before = self.read_text()
+        if before:
+            self._activate_selector(CLEAR_TEXT_SELECTOR)
+            deadline = time.monotonic() + self.control_timeout_seconds
+            while time.monotonic() < deadline:
+                # An empty ProseMirror document is rendered as a trailing ``<br>``
+                # and reads back as one newline.  It is structural UI chrome, not
+                # narration content; preserve strict hash matching after typing.
+                if not re.sub(r"[\s\u200b\u200c\u200d\ufeff]+", "", self.read_text()):
+                    break
+                time.sleep(self.poll_seconds)
+            else:
+                raise ElevenLabsAdapterError(
+                    AdapterErrorCode.TEXT_MISMATCH,
+                    "ElevenLabs Clear text did not empty the v3 composer before narration entry.",
+                    evidence={"existing_characters": len(before)},
+                )
+        focused = self._json(f"""(() => {{
+          const e=document.querySelector({json.dumps(TEXTAREA_SELECTOR)});
+          if(!e) return {{ok:false,reason:'narration textarea disappeared'}};
+          const content=e.querySelector('[data-node-view-content]')||e;
+          e.focus();
+          const selection=window.getSelection();
+          const range=document.createRange();
+          range.selectNodeContents(content); range.collapse(false);
+          selection.removeAllRanges(); selection.addRange(range);
+          return {{ok:document.activeElement===e}};
+        }})()""")
+        if not focused.get("ok"):
+            raise RuntimeError(f"ElevenLabs narration editor could not be focused: {focused.get('reason', 'unknown state')}")
+        self._trusted_insert_text(text)
+        return self.read_text()
 
     def read_text(self) -> str:
         result = self._json(f"""(() => {{const e=document.querySelector({json.dumps(TEXTAREA_SELECTOR)});const content=e?.querySelector('[data-node-view-content]')||e;return {{text:e?(e.tagName==='TEXTAREA'?e.value:(content.innerText||content.textContent||'')):null}};}})()""")

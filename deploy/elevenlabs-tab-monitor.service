@@ -1,0 +1,8 @@
+[Unit]
+Description=ElevenLabs browser-tab monitor (no TTS generation)
+After=network.target ordak-chrome.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/opt/YT_Video_Generation_Pipeline/.venv/bin/python /opt/YT_Video_Generation_Pipeline/scripts/elevenlabs_tab_monitor.py
