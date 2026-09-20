@@ -1390,28 +1390,65 @@ def find_download(download_dir: Path, started_at: float) -> Path | None:
     # lease serializes this workflow, and the following timestamp gate keeps a
     # newly observed default-directory file attributable to this bound click.
     directories = (download_dir, Path.home() / "Downloads")
+
+    def is_audio_candidate(path: Path, directory: Path) -> bool:
+        if not path.is_file() or path.stat().st_mtime < started_at - 0.5:
+            return False
+        if path.suffix.lower() in AUDIO_EXTENSIONS:
+            return True
+        # ElevenLabs currently gives some blob downloads an opaque UUID filename
+        # without an extension.  Only accept that form from this attempt's
+        # isolated directory, and only after identifying a real audio header;
+        # never sweep arbitrary extensionless files from the profile Downloads.
+        return directory == download_dir and path.suffix == "" and inferred_audio_suffix(path) is not None
+
     candidates = [
         path
         for directory in directories
         if directory.is_dir()
         for path in directory.glob("*")
-        if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS and path.stat().st_mtime >= started_at - 0.5
+        if is_audio_candidate(path, directory)
     ]
     return max(candidates, key=lambda path: path.stat().st_mtime) if candidates else None
+
+
+def inferred_audio_suffix(path: Path) -> str | None:
+    """Identify a provider blob download that arrived without a filename suffix."""
+    try:
+        header = path.read_bytes()[:16]
+    except OSError:
+        return None
+    if header.startswith(b"ID3") or header.startswith((b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")):
+        return ".mp3"
+    if header.startswith(b"RIFF") and header[8:12] == b"WAVE":
+        return ".wav"
+    if header.startswith(b"fLaC"):
+        return ".flac"
+    if header.startswith(b"OggS"):
+        return ".ogg"
+    if len(header) >= 8 and header[4:8] == b"ftyp":
+        return ".m4a"
+    return None
 
 
 def stage_download_for_attempt(downloaded: Path, attempt_root: Path) -> Path:
     """Move a fresh Chrome fallback download into its owned attempt directory."""
     root = attempt_root.resolve()
     source = downloaded.resolve()
+    suffix = source.suffix or inferred_audio_suffix(source)
+    if not suffix:
+        raise RuntimeError("ElevenLabs download is missing a supported audio filename and signature.")
     try:
         source.relative_to(root)
-        return source
+        if source.suffix:
+            return source
+        destination = source.with_name(source.name + suffix)
+        return Path(shutil.move(str(source), str(destination)))
     except ValueError:
         pass
-    destination = root / source.name
+    destination = root / (source.name if source.suffix else source.name + suffix)
     if destination.exists():
-        destination = root / f"{source.stem}-{uuid.uuid4().hex[:8]}{source.suffix}"
+        destination = root / f"{source.stem}-{uuid.uuid4().hex[:8]}{suffix}"
     return Path(shutil.move(str(source), str(destination)))
 
 
@@ -1432,6 +1469,83 @@ def verify_audio_decode(path: Path) -> dict[str, Any]:
     if duration <= 0:
         raise RuntimeError("ElevenLabs audio has no readable positive duration.")
     return {"duration_seconds": duration, "format_name": str((payload.get("format") or {}).get("format_name") or "")}
+
+
+def recover_owned_download_after_interruption(
+    project: Path,
+    state: State,
+    text: str,
+    settings: VoiceSettings,
+    output_dir: Path,
+) -> Path | None:
+    """Promote a completed download when a prior process died before observing it.
+
+    This is deliberately narrow: only a file in the prior attempt's isolated
+    directory, timestamped after that attempt's bound download click, can be
+    recovered. It avoids both a duplicate paid generation and any chance of
+    adopting an unrelated browser download.
+    """
+    attempt_id = str(state.data.get("active_attempt_id") or "").strip()
+    bound_result_id = str(state.data.get("bound_result_id") or "").strip()
+    requested_at = state.data.get("download_requested_at")
+    if not attempt_id or not bound_result_id or not isinstance(requested_at, (int, float)):
+        return None
+    attempt_root = project / "voiceover" / "downloads" / attempt_id
+    downloaded = find_download(attempt_root, float(requested_at))
+    if downloaded is None:
+        return None
+    downloaded = stage_download_for_attempt(downloaded, attempt_root)
+    downloaded = validate_download_candidate(downloaded, attempt_root=attempt_root, started_at=float(requested_at))
+    technical = verify_audio_decode(downloaded)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    destination = output_dir / f"narration{downloaded.suffix.lower()}"
+    if destination.exists():
+        destination.unlink()
+    shutil.move(str(downloaded), destination)
+    output_sha256 = hashlib.sha256(destination.read_bytes()).hexdigest()
+    settings_event = next(
+        (
+            event for event in reversed(state.data.get("events") or [])
+            if isinstance(event, dict) and event.get("operation") == "elevenlabs_settings_applied"
+        ),
+        {},
+    )
+    capabilities = settings_event.get("ui_capabilities") if isinstance(settings_event, dict) else {}
+    receipt = {
+        "schema_version": 2,
+        "provider": "ElevenLabs web UI",
+        "transport": "elevenlabs_web",
+        "attempt_id": attempt_id,
+        "result_id": bound_result_id,
+        "input_sha256": digest(text),
+        "compiled_input_sha256": text_fingerprint(text),
+        "settings": settings.supplied(),
+        "effective_settings": settings_event.get("effective_settings") if isinstance(settings_event, dict) else None,
+        "capability_schema_version": (capabilities.get("capabilities") or {}).get("schema_version") if isinstance(capabilities, dict) else None,
+        "capabilities": capabilities,
+        "result_baseline": state.data.get("result_baseline") or {},
+        "output": str(destination.relative_to(project)),
+        "output_sha256": output_sha256,
+        "technical": technical,
+        "recovered_after_interruption": True,
+        "generated_at": utcnow(),
+    }
+    voiceover_dir = project / "voiceover"
+    json_dump(voiceover_dir / "TTS_EXECUTION_RECEIPT.json", receipt)
+    json_dump(voiceover_dir / "VOICE_PROFILE.json", {
+        "provider": "ElevenLabs web UI", "settings": settings.supplied(),
+        "input_sha256": digest(text), "output": str(destination.relative_to(project)),
+        "output_sha256": output_sha256, "result_id": bound_result_id,
+        "generated_at": receipt["generated_at"], "recovered_after_interruption": True,
+    })
+    state.data.update({"status": "DONE", "output": str(destination.relative_to(project)), "completed_at": utcnow()})
+    state.data.pop("error", None); state.data.pop("failed_at", None)
+    state.event(
+        "elevenlabs_download_recovered_after_interruption", time.perf_counter(),
+        bytes=destination.stat().st_size, output=str(destination.relative_to(project)), result_id=bound_result_id, **technical,
+    )
+    state.save()
+    return destination
 
 
 def configure_ordak_browser_environment() -> None:
@@ -1494,9 +1608,15 @@ def main() -> None:
         # operator file swap): reset state via the audited path instead of dying.
         print("Narration input changed via pipeline script revision; resetting voiceover state.", flush=True)
         state = State(voiceover_dir / "ELEVENLABS_RUNTIME_STATE.json", video_id=args.video_id, input_path=input_path, text=text, settings=settings, allow_input_reset=True)
-    # A failed/restarted run may predate a newer versioned profile.  Persist
+    # A failed/restarted run may predate a newer versioned profile. Persist
     # exactly what this invocation is about to apply for traceability.
     state.data["settings"] = settings.supplied()
+    output_dir = project / "assets" / "audio"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    recovered = recover_owned_download_after_interruption(project, state, text, settings, output_dir)
+    if recovered is not None:
+        print(f"ELEVENLABS VOICEOVER: PASS (recovered {recovered})")
+        return
     # A prior process can die after recording a UI download click but before
     # Chrome writes a file.  That historical click must never suppress the
     # recovery process from clicking the *currently visible* result.
@@ -1505,8 +1625,6 @@ def main() -> None:
     state.data.pop("error", None)
     state.data.pop("failed_at", None)
     state.save()
-    output_dir = project / "assets" / "audio"
-    output_dir.mkdir(parents=True, exist_ok=True)
     existing = next((output_dir / f"narration{extension}" for extension in AUDIO_EXTENSIONS if (output_dir / f"narration{extension}").is_file()), None)
     if existing and not args.force and narration_receipt_matches(project, text, settings.supplied()):
         state.data.update({"status": "DONE", "output": str(existing.relative_to(project))})

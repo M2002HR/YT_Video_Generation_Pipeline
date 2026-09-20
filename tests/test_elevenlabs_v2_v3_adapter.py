@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import json
 import sys
 import time
 from pathlib import Path
@@ -9,7 +10,15 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from run_elevenlabs_voiceover import ElevenLabsUI, bound_download_is_pending, find_download, stage_download_for_attempt
+from run_elevenlabs_voiceover import (
+    ElevenLabsUI,
+    State,
+    VoiceSettings,
+    bound_download_is_pending,
+    find_download,
+    recover_owned_download_after_interruption,
+    stage_download_for_attempt,
+)
 from shorts_v2.elevenlabs_adapter import (
     AdapterErrorCode,
     AttemptStateMachine,
@@ -170,6 +179,47 @@ def test_fresh_profile_download_is_staged_before_attempt_validation(tmp_path: Pa
     staged = stage_download_for_attempt(fallback, attempt)
     assert staged.parent == attempt
     assert staged.is_file() and not fallback.exists()
+
+
+def test_extensionless_elevenlabs_blob_download_is_identified_and_staged(tmp_path: Path) -> None:
+    attempt = tmp_path / "attempt"
+    attempt.mkdir()
+    blob = attempt / "provider-uuid"
+    blob.write_bytes(b"ID3" + b"a" * 2000)
+    now = time.time()
+    os.utime(blob, (now, now))
+
+    assert find_download(attempt, now) == blob
+    staged = stage_download_for_attempt(blob, attempt)
+    assert staged.name == "provider-uuid.mp3"
+    assert staged.is_file() and not blob.exists()
+
+
+def test_completed_owned_blob_download_is_recovered_without_a_new_generation(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    project = tmp_path / "videos/047_fixture"
+    voiceover = project / "voiceover"
+    text = "The exact narration bound to this browser attempt."
+    settings = VoiceSettings("Mark", "Eleven v3", None, None, None, None, None, None, "MP3")
+    state = State(voiceover / "ELEVENLABS_RUNTIME_STATE.json", video_id="047", input_path=voiceover / "VOICEOVER_INPUT.txt", text=text, settings=settings)
+    attempt = "attempt-bound-download"
+    downloads = voiceover / "downloads" / attempt
+    downloads.mkdir(parents=True)
+    blob = downloads / "provider-uuid"
+    blob.write_bytes(b"ID3" + b"a" * 2000)
+    now = time.time()
+    os.utime(blob, (now, now))
+    state.data.update({"active_attempt_id": attempt, "bound_result_id": "audio-player:blob:https://elevenlabs.io/bound", "download_requested_at": now})
+    state.save()
+    monkeypatch.setattr("run_elevenlabs_voiceover.verify_audio_decode", lambda path: {"duration_seconds": 1.0, "format_name": "mp3"})
+
+    output = recover_owned_download_after_interruption(project, state, text, settings, project / "assets/audio")
+
+    assert output == project / "assets/audio/narration.mp3"
+    assert output.is_file()
+    assert state.data["status"] == "DONE"
+    profile = json.loads((voiceover / "VOICE_PROFILE.json").read_text())
+    assert profile["result_id"] == "audio-player:blob:https://elevenlabs.io/bound"
+    assert profile["recovered_after_interruption"] is True
 
 
 def test_exactly_one_new_result_is_bound_and_multiple_are_rejected() -> None:
