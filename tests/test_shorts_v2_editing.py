@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from shorts_v2.contracts import ContractError
 from shorts_v2.editing import FrameClock, compile_timeline, render_timeline, solve_geometry
+from shorts_v2.presentation import build_caption_plan, build_layout_constraints, build_overlay_plan, build_sound_plan, compile_presentation
 
 
 def _plans(count: int, duration: float = 4.0) -> tuple[dict, dict, dict, dict]:
@@ -115,12 +116,21 @@ def test_t48_t49_t50_real_local_audiovisual_render_is_atomic_and_reuses_segments
     timeline = compile_timeline(shot_plan=shot_plan, asset_manifest=manifest, observations=observations,
                                 edit_plan=edit, audio_samples=96000, sample_rate=48000,
                                 fps_num=30, fps_den=1, width=360, height=640)
+    caption = build_caption_plan(words=[{"word_id": "u.one.w0001", "canonical_text": "Audible", "start": 0.1, "end": 1.8}],
+                                 mode="phrase", enabled=True, max_words=4,
+                                 style={"font": "DejaVu Sans", "size": 32, "color": "#ffffff", "outline": 2, "position": "bottom"},
+                                 manual_locks={}, emphasis_word_ids=[])
+    layout = build_layout_constraints(width=360, height=640, preset="vertical_safe_v1", ai={}, user={}, manual_locks={})
+    overlay = build_overlay_plan(title="Fixture", title_range=[0, 20], watermark=None, watermark_range=None, total_frames=60, already_branded=False)
+    sound = build_sound_plan(narration_gain_db=0, music=None, sfx_enabled=False, sfx_cues=[], music_driven=False, rhythm_events=[])
+    presentation = compile_presentation(timeline, caption_plan=caption, layout_constraints=layout, overlay_plan=overlay, sound_plan=sound)
     sources = {f"asset.{index:03d}": image for index in range(2)}
     output = tmp_path / "render" / "preview.mp4"
     receipt = render_timeline(timeline, asset_paths=sources, narration_path=audio, output_path=output,
-                              cache_dir=tmp_path / "cache", min_free_bytes=1)
+                              cache_dir=tmp_path / "cache", min_free_bytes=1, presentation=presentation)
     assert output.exists() and receipt["validated"] is True and receipt["audio_streams"] == 1
     assert receipt["duration_drift_frames"] <= 1 and receipt["max_simultaneous_visual_inputs"] <= 2
+    assert receipt["audible_preview"] is True and receipt["presentation_hash"] == presentation["presentation_hash"]
     second = render_timeline(timeline, asset_paths=sources, narration_path=audio, output_path=tmp_path / "render/second.mp4",
                              cache_dir=tmp_path / "cache", min_free_bytes=1)
     assert second["segments_reused"] == 2

@@ -267,7 +267,7 @@ def _probe(path: Path) -> dict[str, Any]:
 def render_timeline(
     timeline: Mapping[str, Any], *, asset_paths: Mapping[str, Path], narration_path: Path,
     output_path: Path, cache_dir: Path, min_free_bytes: int = 256 * 1024 * 1024,
-    threads: int = 2, crf: int = 20,
+    threads: int = 2, crf: int = 20, presentation: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Render cacheable shot segments, assemble them, then atomically mux audio."""
     if shutil.which("ffmpeg") is None or shutil.which("ffprobe") is None:
@@ -330,7 +330,53 @@ def render_timeline(
         _run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(concat_file), "-c", "copy", str(video_only)])
         staged = temporary_root / "final.mp4"
         duration = timeline["total_frames"] * clock["fps_den"] / clock["fps_num"]
-        _run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(video_only), "-i", str(narration_path), "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-t", f"{duration:.9f}", "-movflags", "+faststart", str(staged)])
+        video_args = ["-c:v", "copy"]
+        audio_filter = None
+        if presentation is not None:
+            if presentation.get("video_source_compile_hash") != timeline.get("compile_hash"):
+                raise ContractError("presentation belongs to a different compiled timeline")
+            caption_plan = presentation.get("caption_plan") or {}
+            overlay_plan = presentation.get("overlay_plan") or {}
+            cues = list(caption_plan.get("cues") or [])
+            overlays = list(overlay_plan.get("overlays") or [])
+            if caption_plan.get("enabled") or overlays:
+                ass_path = temporary_root / "overlays.ass"
+                style = caption_plan.get("style") or {"font": "DejaVu Sans", "size": 48, "color": "#ffffff", "outline": 3, "position": "bottom"}
+                alignment = {"top": 8, "middle": 5, "bottom": 2}.get(style.get("position"), 2)
+                color = str(style.get("color") or "#ffffff").lstrip("#")
+                ass_color = f"&H00{color[4:6]}{color[2:4]}{color[0:2]}"
+
+                def ass_time(seconds: float) -> str:
+                    centiseconds = max(0, int(round(seconds * 100)))
+                    return f"{centiseconds // 360000}:{(centiseconds // 6000) % 60:02d}:{(centiseconds // 100) % 60:02d}.{centiseconds % 100:02d}"
+
+                def clean_ass(text: Any) -> str:
+                    return str(text).replace("\\", "\\\\").replace("{", "\\{").replace("}", "\\}").replace("\n", "\\N")
+
+                lines = [
+                    "[Script Info]", "ScriptType: v4.00+", f"PlayResX: {resolution['width']}", f"PlayResY: {resolution['height']}",
+                    "[V4+ Styles]", "Format: Name,Fontname,Fontsize,PrimaryColour,OutlineColour,Bold,Italic,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding",
+                    f"Style: Caption,{style.get('font')},{int(style.get('size') or 48)},{ass_color},&H00000000,0,0,1,{float(style.get('outline') or 0):g},0,{alignment},40,40,120,1",
+                    "Style: Title,DejaVu Sans,64,&H00FFFFFF,&H00000000,-1,0,1,3,0,8,40,40,90,1",
+                    "Style: Watermark,DejaVu Sans,28,&H80FFFFFF,&H00000000,0,0,1,1,0,9,30,30,30,1",
+                    "[Events]", "Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text",
+                ]
+                lines.extend(f"Dialogue: 0,{ass_time(cue['start'])},{ass_time(cue['end'])},Caption,,0,0,0,,{clean_ass(cue['text'])}" for cue in cues)
+                for overlay in overlays:
+                    start = overlay["start_frame"] * clock["fps_den"] / clock["fps_num"]
+                    end = overlay["end_frame"] * clock["fps_den"] / clock["fps_num"]
+                    overlay_style = "Title" if overlay["kind"] == "title" else "Watermark"
+                    lines.append(f"Dialogue: 1,{ass_time(start)},{ass_time(end)},{overlay_style},,0,0,0,,{clean_ass(overlay['text'])}")
+                ass_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+                video_args = ["-vf", f"ass={ass_path}", "-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p"]
+            gain = float((presentation.get("sound_plan") or {}).get("narration_gain_db") or 0)
+            if abs(gain) > 1e-9:
+                audio_filter = f"volume={gain:g}dB"
+        mux_command = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(video_only), "-i", str(narration_path), "-map", "0:v:0", "-map", "1:a:0", *video_args, "-c:a", "aac"]
+        if audio_filter:
+            mux_command.extend(["-af", audio_filter])
+        mux_command.extend(["-t", f"{duration:.9f}", "-movflags", "+faststart", str(staged)])
+        _run(mux_command)
         probe = _probe(staged)
         video_stream = next((item for item in probe.get("streams", []) if item.get("codec_type") == "video"), None)
         audio_streams = [item for item in probe.get("streams", []) if item.get("codec_type") == "audio"]
@@ -346,4 +392,6 @@ def render_timeline(
         "segments_rendered": rendered, "segments_reused": reused,
         "max_simultaneous_visual_inputs": timeline["resource_plan"]["max_simultaneous_visual_inputs"],
         "codec": "h264+aac", "renderer_version": RENDERER_VERSION,
+        "presentation_hash": presentation.get("presentation_hash") if presentation else None,
+        "audible_preview": True,
     }
