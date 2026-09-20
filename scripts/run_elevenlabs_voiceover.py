@@ -185,6 +185,7 @@ class ElevenLabsUI:
                 get_tab_info,
                 list_google_chrome_tabs,
                 open_url_in_existing_chrome,
+                download_to,
             )
         except ImportError as exc:
             raise RuntimeError("Ordak browser runtime is unavailable; run scripts/setup_services.py first.") from exc
@@ -193,10 +194,12 @@ class ElevenLabsUI:
         self._get_tab_info = get_tab_info
         self._list_tabs = list_google_chrome_tabs
         self._open_url = open_url_in_existing_chrome
+        self._download_to = download_to
         self.poll_seconds = poll_seconds
         self.stall_seconds = stall_seconds
         self.max_refreshes = max_refreshes
         self.tab: Any | None = None
+        self._download_context: Any | None = None
 
     def _json(self, expression: str) -> dict[str, Any]:
         if self.tab is None:
@@ -504,6 +507,17 @@ class ElevenLabsUI:
           const download = latestDownload && enabled(latestDownload) ? [describe(latestDownload)] : [];
           const resultNodes=[...document.querySelectorAll('[data-generation-id],[data-history-item-id],[data-testid^="history-item-"]')];
           const resultIdentities=[...new Set(resultNodes.map(e=>e.getAttribute('data-generation-id')||e.getAttribute('data-history-item-id')||e.getAttribute('data-testid')).filter(Boolean))];
+          // Current ElevenLabs TTS no longer puts an id on the completed result
+          // row. It does expose one canonical audio-player with a blob URL that
+          // changes for each rendered result. Treat that opaque source as the
+          // result identity and retain the exact displayed transcript as proof
+          // that the player belongs to this narration, not an older tab result.
+          const audioPlayer=document.querySelector('[data-testid="audio-player"]');
+          const audio=audioPlayer?.querySelector('audio[src]');
+          const audioSource=audio?.src||null;
+          const audioTranscript=(audioPlayer?.querySelector('p')?.innerText||'').trim();
+          const audioResult=audioSource?{identity:`audio-player:${audioSource}`,transcript:audioTranscript}:null;
+          if(audioResult)resultIdentities.push(audioResult.identity);
           const generationText = `${generate?.text||''} ${generate?.aria||''}`;
           const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
           const progress = !!document.querySelector('[aria-busy=true],[role=progressbar]');
@@ -515,7 +529,7 @@ class ElevenLabsUI:
             url: location.href, title: document.title, ready: !!input && location.pathname.includes('app/speech-synthesis/text-to-speech'),
             login_required: /sign in|log in|create an account/i.test(text) && !input,
             busy: loading || !!generate?.disabled || !!generate?.ariaDisabled || progress,
-            loading, progress, captcha, downloads: download, result_identities:resultIdentities,
+            loading, progress, captcha, downloads: download, result_identities:[...new Set(resultIdentities)], audio_result:audioResult,
             summary: text.slice(0, 1600), generate
           };
         })()"""
@@ -1096,30 +1110,49 @@ class ElevenLabsUI:
         self._json("""(() => { location.reload(); return {ok:true}; })()""")
 
     def configure_downloads(self, directory: Path) -> None:
-        """Route this attempt into its own directory through Chrome CDP."""
+        """Route this attempt into its own directory for the full click/download window."""
         if self.tab is None:
             raise RuntimeError("ElevenLabs browser tab has not been opened.")
         directory.mkdir(parents=True, exist_ok=True)
-        info = self._get_tab_info(self.tab)
-        websocket_url = getattr(info, "websocket_debugger_url", None)
-        if not websocket_url:
-            raise RuntimeError("Ordak could not configure Chrome downloads.")
-        from websockets.sync.client import connect
-        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
-            websocket.send(json.dumps({
-                "id": 1,
-                "method": "Browser.setDownloadBehavior",
-                "params": {"behavior": "allow", "downloadPath": str(directory.resolve()), "eventsEnabled": True},
-            }))
-            while True:
-                reply = json.loads(websocket.recv(timeout=5))
-                if reply.get("id") == 1:
-                    if reply.get("error"):
-                        raise RuntimeError("Chrome rejected the ElevenLabs attempt download directory.")
-                    return
+        self.close_downloads()
+        # Browser.setDownloadBehavior belongs to Chrome's *browser* websocket,
+        # not this page target. The Ordak context keeps that socket open from
+        # configuration through the product Download click and file arrival;
+        # closing it immediately is why Chromium fell back to ~/Downloads.
+        context = self._download_to(self.tab, directory)
+        context.__enter__()
+        self._download_context = context
+
+    def close_downloads(self) -> None:
+        """Release the browser-level download override after this owned attempt."""
+        context, self._download_context = self._download_context, None
+        if context is not None:
+            context.__exit__(None, None, None)
 
     def download_bound_result(self, result_id: str) -> dict[str, Any]:
         """Activate Download only inside the DOM row carrying the bound identity."""
+        if result_id.startswith("audio-player:"):
+            # The provider's current completed-result UI has no generation-id,
+            # but its single player download is semantically scoped to the
+            # result. Recheck the exact blob identity immediately before the
+            # trusted click so a later render can never be downloaded by error.
+            source = result_id.removeprefix("audio-player:")
+            target = self._json(f"""(() => {{
+              const player=document.querySelector('[data-testid="audio-player"]');
+              const audio=player?.querySelector('audio[src]');
+              const button=player?.querySelector('button[data-testid="audio-player-download-button"]');
+              if(!audio||audio.src!=={json.dumps(source)})return {{ok:false,reason:'bound audio player changed before download'}};
+              if(!button||button.disabled||button.getAttribute('aria-disabled')==='true')return {{ok:false,reason:'bound audio player has no enabled download control'}};
+              button.setAttribute('data-qstation-bound-download','true');
+              return {{ok:true,text:(button.getAttribute('aria-label')||button.innerText||'Download').trim()}};
+            }})()""")
+            if not target.get("ok"):
+                return target
+            try:
+                choice = self._pointer_activate_selector('[data-qstation-bound-download="true"]')
+            finally:
+                self._json("""(() => {document.querySelectorAll('[data-qstation-bound-download]').forEach(e=>e.removeAttribute('data-qstation-bound-download'));return {ok:true};})()""")
+            return {"ok": True, "choice": choice.get("text") or target.get("text"), "result_id": result_id}
         selector = (
             f'[data-generation-id={json.dumps(result_id)}],'
             f'[data-history-item-id={json.dumps(result_id)}],'
@@ -1338,8 +1371,34 @@ def settings_from_profile(profile: dict[str, Any], cli: dict[str, Any] | None = 
 
 
 def find_download(download_dir: Path, started_at: float) -> Path | None:
-    candidates = [path for path in download_dir.glob("*") if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS and path.stat().st_mtime >= started_at - 0.5]
+    # Chromium may acknowledge its target-scoped download configuration yet
+    # save this provider's blob download under the profile default. The browser
+    # lease serializes this workflow, and the following timestamp gate keeps a
+    # newly observed default-directory file attributable to this bound click.
+    directories = (download_dir, Path.home() / "Downloads")
+    candidates = [
+        path
+        for directory in directories
+        if directory.is_dir()
+        for path in directory.glob("*")
+        if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS and path.stat().st_mtime >= started_at - 0.5
+    ]
     return max(candidates, key=lambda path: path.stat().st_mtime) if candidates else None
+
+
+def stage_download_for_attempt(downloaded: Path, attempt_root: Path) -> Path:
+    """Move a fresh Chrome fallback download into its owned attempt directory."""
+    root = attempt_root.resolve()
+    source = downloaded.resolve()
+    try:
+        source.relative_to(root)
+        return source
+    except ValueError:
+        pass
+    destination = root / source.name
+    if destination.exists():
+        destination = root / f"{source.stem}-{uuid.uuid4().hex[:8]}{source.suffix}"
+    return Path(shutil.move(str(source), str(destination)))
 
 
 def verify_audio_decode(path: Path) -> dict[str, Any]:
@@ -1536,6 +1595,7 @@ def main() -> None:
                 notifier.stage_update(stage_message, title, ["⬇️ Bound result download requested", f"🆔 Result: {bound_result_id[:120]}", "👀 Waiting for the browser download"])
             downloaded = find_download(download_dir, download_started) if download_requested else None
             if downloaded:
+                downloaded = stage_download_for_attempt(downloaded, download_dir)
                 downloaded = validate_download_candidate(downloaded, attempt_root=download_dir, started_at=download_started)
                 technical = verify_audio_decode(downloaded)
                 machine.advance("VERIFY_DECODE_AND_IDENTITY")
@@ -1584,6 +1644,7 @@ def main() -> None:
         notifier.stage_failure(stage_message, title, time.perf_counter() - started, str(exc))
         raise
     finally:
+        ui.close_downloads()
         lease.release()
 
 

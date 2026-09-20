@@ -9,7 +9,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from run_elevenlabs_voiceover import ElevenLabsUI
+from run_elevenlabs_voiceover import ElevenLabsUI, find_download, stage_download_for_attempt
 from shorts_v2.elevenlabs_adapter import (
     AdapterErrorCode,
     AttemptStateMachine,
@@ -95,6 +95,71 @@ def test_old_result_and_download_are_not_fresh_acknowledgement() -> None:
     with pytest.raises(ElevenLabsAdapterError) as caught:
         bind_new_result(baseline, result_snapshot({"result_identities": ["old"], "downloads": [{}], "busy": False}))
     assert caught.value.code is AdapterErrorCode.RESULT_IDENTITY_UNPROVEN
+
+
+def test_new_audio_player_identity_is_a_bindable_result() -> None:
+    baseline = result_snapshot({"result_identities": []})
+    assert bind_new_result(
+        baseline,
+        result_snapshot({"result_identities": ["audio-player:blob:https://elevenlabs.io/new-render"]}),
+    ) == "audio-player:blob:https://elevenlabs.io/new-render"
+
+
+def test_audio_player_download_rechecks_the_bound_blob_before_click() -> None:
+    ui = object.__new__(ElevenLabsUI)
+    checks: list[str] = []
+    ui._json = lambda expression: checks.append(expression) or {"ok": True, "text": "Download Audio"}  # type: ignore[method-assign]
+    ui._pointer_activate_selector = lambda selector: {"text": "Download Audio"}  # type: ignore[method-assign]
+
+    result = ui.download_bound_result("audio-player:blob:https://elevenlabs.io/new-render")
+
+    assert result["ok"] is True
+    assert result["result_id"].startswith("audio-player:")
+    assert any("bound audio player changed" in expression for expression in checks)
+
+
+def test_download_routing_holds_the_browser_context_until_explicit_close(tmp_path: Path) -> None:
+    ui = object.__new__(ElevenLabsUI)
+    ui.tab = object()
+    ui._download_context = None
+    events: list[object] = []
+
+    class DownloadContext:
+        def __enter__(self) -> Path:
+            events.append("enter")
+            return tmp_path
+
+        def __exit__(self, *args: object) -> None:
+            events.append("exit")
+
+    ui._download_to = lambda tab, directory: DownloadContext()  # type: ignore[method-assign]
+
+    ui.configure_downloads(tmp_path / "attempt")
+    assert events == ["enter"]
+    ui.close_downloads()
+    assert events == ["enter", "exit"]
+
+
+def test_fresh_profile_download_is_staged_before_attempt_validation(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    attempt = tmp_path / "attempt"
+    attempt.mkdir()
+    profile_downloads = tmp_path / "profile-downloads"
+    profile_downloads.mkdir()
+    audio = profile_downloads / "voice.mp3"
+    audio.write_bytes(b"ID3" + b"a" * 2000)
+    now = time.time()
+    os.utime(audio, (now, now))
+    monkeypatch.setattr("run_elevenlabs_voiceover.Path.home", lambda: tmp_path)
+
+    assert find_download(attempt, now) is None  # profile fallback is intentionally /Downloads
+    downloads = tmp_path / "Downloads"
+    downloads.mkdir()
+    fallback = downloads / "voice.mp3"
+    audio.replace(fallback)
+    assert find_download(attempt, now) == fallback
+    staged = stage_download_for_attempt(fallback, attempt)
+    assert staged.parent == attempt
+    assert staged.is_file() and not fallback.exists()
 
 
 def test_exactly_one_new_result_is_bound_and_multiple_are_rejected() -> None:
