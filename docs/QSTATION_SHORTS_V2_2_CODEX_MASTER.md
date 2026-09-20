@@ -1883,20 +1883,20 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "d9fa9f32133f462ee07db38898a5a4de64034eda",
-  "last_session_id": "C3-2026-09-20-01",
-  "overall_status": "IN_PROGRESS",
-  "code_ready": false,
+  "last_verified_head": "76bb2ec48f7608b814b7fac3bc9ef481c6335b50",
+  "last_session_id": "C4-2026-09-20-01",
+  "overall_status": "BLOCKED_ENV",
+  "code_ready": true,
   "production_smoke_passed": false,
   "human_artistic_acceptance": "NOT_REQUESTED",
-  "active_phase": "P11",
-  "next_phase": "P11",
-  "next_action": "C4_PRODUCT_AND_ROLLOUT/P11: reconcile HEAD and protected dirty video outputs, then expose the committed P08-P10 compile/presentation/revision contracts through the shared Studio schema, real graph, typed artifact/preview endpoints, version compare and stale-safe Revise UI; start with tests T60-T64/T69 and do not redo P08-P10.",
+  "active_phase": "P14",
+  "next_phase": "P14",
+  "next_action": "When the owner explicitly authorizes paid provider credit use in an idle environment, execute docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md from the pinned 76bb2ec implementation: run one v2 and one v3 bound Generate/download/ffprobe smoke, then the four character/gateway, QC-off, Revise, preview/final and pause/resume matrix; record immutable sample hashes and only then activate the new-run default.",
   "execution_chat_plan": {
     "mode": "FOUR_CHAT",
     "selected_during_phase": "P00",
     "selection_status": "CONFIRMED",
-    "current_chat_slot": "C4_PRODUCT_AND_ROLLOUT",
+    "current_chat_slot": "COMPLETE",
     "routes": {
       "FOUR_CHAT": [
         {
@@ -2007,13 +2007,13 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P01",
         "P02"
       ],
-      "status": "READY_FOR_REVIEW",
+      "status": "DONE",
       "commits": [
         "bea5c6732c2b4cd74ba3fbc7a985358bb196f630",
         "ce554cfa54371f9d2e55955c08dd1a45635e390e"
       ],
       "evidence": [
-        "code_ready=true; live_validation_pending=true for paid Generate/result/download smoke owned by P14",
+        "code_ready=true; adapter acceptance complete; paid Generate/result/download validation remains correctly isolated as the P14 environment gate",
         "Authenticated live non-generating probe PASS: v2 exposes textarea plus speed/stability/similarity/style; v3 exposes contenteditable plus native Stability=0.5 categorical mapping; final UI restored to Eleven v3 / Liam - Energetic, Social Media Creator",
         "Attempt state machine, exact text readback hash, pre-submit result baseline, bound new-result identity, dedicated attempt download, ffprobe validation and structured receipt implemented",
         "Provider-free adapter tests: tests/test_elevenlabs_v2_v3_adapter.py"
@@ -2159,9 +2159,16 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P03",
         "P10"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "6da9e33bb142947756b5721db174c0ce25bad913"
+      ],
+      "evidence": [
+        "Shared launch schema and strict _shorts_v2 settings: scripts/panel_contract.py and scripts/video_control_panel.py",
+        "Real registry/accepted-version workspace, bounded tracks, typed safe artifact resolution, comparison and CAS Revise routes: scripts/shorts_v2/studio.py",
+        "Studio pipeline/graph/timeline/version/artifact/compare/rollback/Revise UI: control_panel/ui/src/main.jsx",
+        "P11 targeted 104 passed: /tmp/qstation-v2-c4-p11-targeted.log; UI 15 passed and production build passed: /tmp/qstation-v2-c4-p11-ui-test.log and /tmp/qstation-v2-c4-p11-ui-build.log"
+      ],
       "blockers": []
     },
     {
@@ -2171,9 +2178,16 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P10",
         "P11"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "130d626cb4e26e22de350a259487a99095cc44fb"
+      ],
+      "evidence": [
+        "Exact accepted-pointer/version/master hash validation, idempotency key and legacy compatibility export: scripts/shorts_v2/delivery.py",
+        "Canonical episode ID/aliases, ancestry and truthful planned/generated/accepted/human/completed/published/failed outcomes: scripts/episode_history.py",
+        "Release start/resume pins and revalidates the immutable accepted source binding; published requires a receipt: scripts/video_control_panel.py and scripts/release_youtube_short.py",
+        "P12 targeted 128 passed: /tmp/qstation-v2-c4-p12-targeted.log"
+      ],
       "blockers": []
     },
     {
@@ -2182,9 +2196,16 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "requires": [
         "P12"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "76bb2ec48f7608b814b7fac3bc9ef481c6335b50"
+      ],
+      "evidence": [
+        "Deployment/activation/rollback/security and authorized P14 smoke matrix: docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md",
+        "Legacy ChatGPT image receipts no longer drift on an inactive Gemini model setting: scripts/image_artifacts.py",
+        "Final full Python regression: 917 passed, 0 failed, 1 skipped, /tmp/qstation-v2-c4-p13-full-final.log and /tmp/qstation-v2-c4-p13-full-final.xml",
+        "Compileall, UI 15 passed, Vite build, npm audit 0 vulnerabilities and diff check all passed: /tmp/qstation-v2-c4-p13-compile.log, /tmp/qstation-v2-c4-p13-ui-test.log, /tmp/qstation-v2-c4-p13-ui-build.log, /tmp/qstation-v2-c4-p13-npm-audit.log, /tmp/qstation-v2-c4-p13-diff-check.log"
+      ],
       "blockers": []
     },
     {
@@ -2193,14 +2214,21 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "requires": [
         "P13"
       ],
-      "status": "NOT_STARTED",
+      "status": "BLOCKED_ENV",
       "commits": [],
-      "evidence": [],
-      "blockers": []
+      "evidence": [
+        "Code-ready deployment and rollback runbook with the exact live matrix: docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md",
+        "Ordak health returned status=ok/database=ready; control panel, Ordak, gateway and authenticated Chrome processes are running",
+        "No explicit paid-provider execution/credit authorization flag was present on 2026-09-20; no Generate click, provider charge, rollout-default change or sample-hash claim was made",
+        "All provider-free acceptance is green at implementation HEAD 76bb2ec; production_smoke_passed=false and human_artistic_acceptance=NOT_REQUESTED remain truthful"
+      ],
+      "blockers": [
+        "Explicit owner authorization to consume paid provider credits and an idle window are required for the v2/v3 and four-gateway production smoke matrix."
+      ]
     }
   ],
   "open_blockers": [
-    "P14 must run an authorized paid v2/v3 Generate-to-bound-download smoke; C1 deliberately performed no paid generation and does not claim production smoke."
+    "P14 is BLOCKED_ENV until the owner explicitly authorizes paid provider credit use in an idle window; the exact smoke/activation/rollback procedure is in docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md."
   ],
   "design_decisions": [
     "D-C1-01: Missing editing_engine remains legacy; only an explicit valid shorts_v2 marker can enter the new runtime, and malformed explicit markers fail closed.",
@@ -2214,7 +2242,11 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "D-C2-04: Voice performance is a typed anchored AST; expressive_v3 uses only a finite tag palette and no SSML, while optimized_v2 uses bounded break/punctuation/capitalization and records unsupported optional intent without adding spoken words.",
     "D-C2-05: New timing accepts only real audio metadata plus complete backend observations; segment interpolation remains explicitly labeled, critical hook/number/negation confidence fails closed, and unlistened nonverbal windows remain unverified.",
     "D-C2-06: Asset semantic hashes exclude shot schedule/order but include content/reference identity; QC-off always requests one normal candidate, permits only bounded technical retries, and observation cannot issue verdicts or regeneration.",
-    "D-C2-07: All gateway behavior is resolved from the character/presentation registries; source length is selected from measured narration and verified capabilities without weakening the red-door minimum contract."
+    "D-C2-07: All gateway behavior is resolved from the character/presentation registries; source length is selected from measured narration and verified capabilities without weakening the red-door minimum contract.",
+    "D-C4-01: Studio reads the real shared registry and exposes only typed logical artifacts resolved beneath the job root; tracks are bounded and Revise apply retains P10 CAS semantics.",
+    "D-C4-02: Release is pinned to the exact technically accepted immutable version, pointer hash and master hash; resume or publication fails closed if any binding drifts.",
+    "D-C4-03: A legacy ChatGPT image receipt is validated against its recorded provider/model, so an unrelated inactive Gemini configuration change cannot invalidate it.",
+    "D-C4-04: New-run default remains legacy until the authorized P14 matrix passes; service availability or authenticated sessions alone are not permission to spend credits or evidence of production readiness."
   ],
   "test_evidence": [
     "Targeted C1: 69 passed, exit 0, /tmp/qstation-v2-c1-final-targeted.log",
@@ -2229,14 +2261,23 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "P07 targeted provider-free/gateway integration: 109 passed, exit 0, /tmp/qstation-v2-c2-p07-targeted.log",
     "C2 aggregate P04-P07: 174 passed, exit 0, /tmp/qstation-v2-c2-final-targeted.log",
     "C2 full Python regression: 852 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c2-final-full.log and /tmp/qstation-v2-c2-final-full.xml; exact same 19 baseline failures and no new regression",
-    "C2 Python compileall and git diff --check: exit 0"
+    "C2 Python compileall and git diff --check: exit 0",
+    "P11 targeted: 104 passed, exit 0, /tmp/qstation-v2-c4-p11-targeted.log; UI 15 passed and build passed",
+    "P12 targeted: 128 passed, exit 0, /tmp/qstation-v2-c4-p12-targeted.log",
+    "P13 final full Python: 917 passed, 0 failed, 1 skipped, exit 0, /tmp/qstation-v2-c4-p13-full-final.log and /tmp/qstation-v2-c4-p13-full-final.xml",
+    "P13 compileall/UI/build/npm audit/diff: all exit 0; UI 15 passed; npm audit 0 vulnerabilities; logs /tmp/qstation-v2-c4-p13-*"
   ],
   "uncommitted_work": [
     "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/LAUNCH_REQUEST.json",
     "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/pipeline/FINALIZATION_RUNTIME_STATE.json",
     "PROTECTED PRE-EXISTING: untracked publish/youtube_short packages for videos 042, 043 and 045"
   ],
-  "unpushed_commits": [],
+  "unpushed_commits": [
+    "6da9e33bb142947756b5721db174c0ce25bad913",
+    "130d626cb4e26e22de350a259487a99095cc44fb",
+    "76bb2ec48f7608b814b7fac3bc9ef481c6335b50",
+    "Final ledger/handoff documentation commit follows this recorded tested implementation HEAD."
+  ],
   "running_processes_or_provider_jobs": []
 }
 ```
@@ -2331,6 +2372,23 @@ Running jobs/processes reconciled: all pytest/FFmpeg/build processes completed; 
 Next action (exact): C4 begins P11 by binding scripts/shorts_v2 registry/artifact/revision contracts into the shared Studio schema and typed preview/apply/version endpoints, then adds timeline/version UI and T60-T64/T69 coverage; do not redo P08-P10
 ```
 
+```text
+Session ID: C4-2026-09-20-01
+Started/ended at: 2026-09-20 (continued from reconciled C3 handoff) / 2026-09-20T18:37:52+04:00
+Actual branch and tested implementation HEAD: dev / 76bb2ec48f7608b814b7fac3bc9ef481c6335b50
+Phase(s): P03 DONE as code acceptance; P11 DONE; P12 DONE; P13 DONE; P14 BLOCKED_ENV; C4_PRODUCT_AND_ROLLOUT final range gate reached under the documented BLOCKED_ENV allowance
+Requirements addressed: shared Shorts V2 Studio schema/workspace/graph/tracks/versions/artifacts; stale-safe Revise and rollback; accepted-version-pinned history/Release/delivery/compatibility; complete regression/security/deployment/rollback evidence; truthful rollout gate
+Files changed: scripts/panel_contract.py, scripts/video_control_panel.py, scripts/shorts_v2/studio.py, delivery.py, registry.py, revision.py, scripts/episode_history.py, scripts/release_youtube_short.py, scripts/image_artifacts.py; Studio UI source/build; P11-P13 tests; docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md; this ledger
+Decisions and reasons: expose only safe logical artifacts from the real registry; retain CAS for UI revision apply; bind Release to exact accepted pointer/version/master hashes; validate legacy receipts against their recorded provider; keep legacy new-run default until authorized smoke passes
+Commands/tests: P11 and P12 targeted pytest; complete pytest with JUnit; legacy focus pytest; compileall; UI unit/build; npm audit; git diff --check; read-only environment/process/Ordak health and paid-authorization flag checks
+Results and evidence paths: P11 104 passed; P12 128 passed; final full suite 917 passed/0 failed/1 skipped (only live Freesound); compile/UI/build/audit/diff all green; logs /tmp/qstation-v2-c4-*; Ordak health status=ok/database=ready
+Commits / push state: 6da9e33 P11; 130d626 P12; 76bb2ec P13; final ledger commit follows; origin/dev is three implementation commits behind local HEAD and no push was performed
+Remaining work: only the P14 paid live rollout matrix and post-output human artistic report; no code phase P00-P13 remains
+Blockers: no explicit owner authorization flag for paid provider credit use/idle smoke window; therefore no Generate, four-gateway paid run, sample hashes or default activation was claimed
+Running jobs/processes reconciled: control panel, Ordak, unified gateway and authenticated Chrome are pre-existing and healthy; no provider generation or new background job was started
+Next action (exact): after explicit paid-credit authorization, follow docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md at 76bb2ec, capture v2/v3 bound receipts and four-gateway/Revise/preview/pause-resume evidence, obtain the human post-output report, then set production_smoke_passed=true and activate shorts_v2 as the new-run default; otherwise leave legacy default intact
+```
+
 ### 29.3. Decision Log
 
 `D-C1-01 | 2026-09-20 | P01/P02 | Old episodes have no engine marker | infer from old fields vs require explicit selection | missing marker is legacy; explicit malformed shorts_v2 fails closed | no accidental migration or silent fallback | targeted dispatch/contracts tests`
@@ -2365,6 +2423,14 @@ Next action (exact): C4 begins P11 by binding scripts/shorts_v2 registry/artifac
 
 `D-C3-04 | 2026-09-20 | P10/R23-R25/R28 | Revision scope and two-tab apply could mutate the wrong version | broad stage cascade vs semantic matrix plus CAS | validate stable targets, expose affected/reused/conditional/conflict categories, and bind apply to base config/manifest plus exact accepted-pointer hash | stale apply returns 409 before a staging directory is created; failure/late output cannot move acceptance | T45,T46,T54-T61`
 
+`D-C4-01 | 2026-09-20 | P11/R22-R28 | Studio could invent a parallel graph or expose arbitrary filesystem paths | UI-only model vs shared registry/logical resolver | derive workspace/versions/tracks from the real V2 registry and resolve a typed logical artifact allowlist below the job root | product state cannot drift from execution state and traversal is rejected | T60-T64,T69`
+
+`D-C4-02 | 2026-09-20 | P12/R27/R33 | Release resume could publish a different mutable master than the accepted review target | latest-path lookup vs immutable binding | pin accepted pointer hash, version path, master hash and technical acceptance at start and revalidate on resume | drift fails closed and confirmed delivery remains idempotent | T59,T65-T67`
+
+`D-C4-03 | 2026-09-20 | P13/T70 | Frozen legacy ChatGPT receipts failed when an unrelated Gemini config model changed | preserve cross-provider coupling vs receipt-owned validation | compare a receipt with its recorded active provider/model and ignore inactive provider config | removes 19 inherited false regressions without weakening receipt integrity | final full regression 917/0/1`
+
+`D-C4-04 | 2026-09-20 | P14/R12/R36 | Healthy authenticated services exist but paid execution authorization is absent | infer permission vs block activation | mark P14 BLOCKED_ENV, keep legacy default, and provide exact smoke/rollback commands | code_ready=true remains distinct from production_smoke_passed=false | read-only health/flag reconciliation plus runbook`
+
 For every later meaningful change:
 
 `decision_id | date | requirement | observed problem | options | chosen approach | consequences | tests`
@@ -2376,6 +2442,10 @@ Recording something here does not legitimize deleting a requirement, reducing sc
 `B-C1-01 | P14 (not blocking P03 code readiness or C2) | authorized paid ElevenLabs generation smoke | authenticated v2/v3 settings/editor probes pass, but C1 did not click Generate or consume credits | verified login, exact model/voice retention, model-specific controls, editor types and trusted slider interaction | all provider-free P00-P03 work completed | during P14 run one authorized v2 and one v3 request through new-result binding, attempt-local download and ffprobe receipt`
 
 `B-C1-02 | baseline/legacy owner (not a Shorts V2 blocker) | clean pre-existing Python suite | baseline and post-change runs both contain the same 19 failures | captured baseline before edits and compared exact post-change count/categories | targeted C1, UI and build suites are green | repair chatgpt_fallback_auto schema drift, legacy gemini flag, resume fingerprints and stale test double in their owning scope`
+
+`B-C4-01 | P14 only | explicit authorization to consume paid provider credits in an idle production-like window | Ordak/Chrome/control panel/gateway are healthy, but no paid-execution authorization flag is present and no user instruction explicitly permits charges | checked environment variable names without exposing values, running services and Ordak health; did not click Generate | P00-P13 completed; full suite is green; deployment/rollback and smoke matrix documented | owner explicitly authorizes paid smoke, then run docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md and attach v2/v3/four-gateway immutable receipts/hashes before default activation`
+
+`B-C4-02 | resolved P13 baseline | clean Python regression | the 19 inherited failures were traced to stale expectations and cross-provider image-receipt model drift | updated stale tests and made receipt validation provider-owned | final suite is 917 passed/0 failed/1 skipped | no further unblock action; the one skip is an intentionally live Freesound check`
 
 `blocker_id | phase | capability/access missing | evidence | attempted checks | independent work continued | exact unblock action`
 
@@ -2419,6 +2489,16 @@ For every run:
 
 `T62,T70 | UI unit/build and compile | .venv/bin/python -m compileall -q scripts; npm --prefix control_panel/ui test; npm --prefix control_panel/ui run build; git diff --check | 2026-09-20 | d9fa9f3 | 0/0/0/0 | compile passed; 15 UI tests passed; Vite build passed; diff clean | /tmp/qstation-v2-c3-final-compile.log; /tmp/qstation-v2-c3-ui-test.log; /tmp/qstation-v2-c3-ui-build.log | P11 product surface is next chat`
 
+`T60-T64,T69 | P11 UNIT/HTTP-INTEGRATION/UI | .venv/bin/python -m pytest -q tests/test_shorts_v2_studio.py plus panel/UI contract suites; npm --prefix control_panel/ui test; npm --prefix control_panel/ui run build | 2026-09-20 | 6da9e33 | 0/0/0 | 104 targeted passed; 15 UI passed; Vite build passed | /tmp/qstation-v2-c4-p11-targeted.log; /tmp/qstation-v2-c4-p11-ui-test.log; /tmp/qstation-v2-c4-p11-ui-build.log | real registry/filesystem contracts and HTTP handlers; no paid provider action`
+
+`T01,T02,T59,T65-T67 | P12 UNIT/INTEGRATION | .venv/bin/python -m pytest -q tests/test_shorts_v2_delivery.py plus history/release/panel suites | 2026-09-20 | 130d626 | 0 | 128 passed | /tmp/qstation-v2-c4-p12-targeted.log | immutable source binding and fake delivery/resume; no YouTube publication`
+
+`T01-T67,T69,T70 | P13 full regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c4-p13-full-final.xml | 2026-09-20 | 76bb2ec | 0 | 917 passed, 0 failed, 1 skipped | /tmp/qstation-v2-c4-p13-full-final.log; /tmp/qstation-v2-c4-p13-full-final.xml | one intentional live Freesound skip; T68 paid browser smoke remains P14 BLOCKED_ENV`
+
+`T70 | P13 compile/UI/security/build | .venv/bin/python -m compileall -q scripts; npm --prefix control_panel/ui test; npm --prefix control_panel/ui run build; npm --prefix control_panel/ui audit; git diff --check | 2026-09-20 | 76bb2ec | 0/0/0/0/0 | compile passed; 15 UI passed; build passed; 0 vulnerabilities; diff clean | /tmp/qstation-v2-c4-p13-compile.log; /tmp/qstation-v2-c4-p13-ui-test.log; /tmp/qstation-v2-c4-p13-ui-build.log; /tmp/qstation-v2-c4-p13-npm-audit.log; /tmp/qstation-v2-c4-p13-diff-check.log | Vite emitted only the non-failing >500 kB chunk advisory`
+
+`T68 | P14 authenticated environment reconciliation | inspect authorization variable names/processes; GET Ordak health; preserve default | 2026-09-20 | 76bb2ec | blocked before paid action | services healthy; explicit paid-credit authorization absent | recorded in C4 session and B-C4-01 | no Generate/download/sample hashes; not a production pass`
+
 ### 29.6. Handoff to the next session
 
 First reconstruct current state from the ledger and Git. The latest Session Log must not contain vague wording such as “almost finished.” Appropriate example:
@@ -2435,17 +2515,17 @@ Open blocker: <real missing environment capability, or none verified>.
 Current exact handoff:
 
 ```text
-Next phase: P11
-Next operation: connect the P08-P10 compile/presentation/revision contracts to the shared Studio schema, real graph, artifact/preview APIs and stale-safe revision/version UI, then prove T60-T64/T69 without changing the accepted P08-P10 semantics.
-Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; scripts/shorts_v2/registry.py is the shared DAG authority.
-Last passing tests: C3 aggregate 212 passed (/tmp/qstation-v2-c3-final-targeted.log); full suite 890 passed/19 unchanged baseline failures/1 skipped (/tmp/qstation-v2-c3-final-full.log); UI 15 passed and build passed.
-Do not redo: P00-P10; P08 compiler/renderer, P09 presentation and P10 revision/promotion are committed inputs to P11.
-Open blocker: paid Generate-to-bound-download smoke is explicitly deferred to P14 and does not block P04-P13.
+Next phase: P14 (BLOCKED_ENV; all code phases P00-P13 are DONE)
+Next operation: only after explicit owner authorization to consume paid credits in an idle window, execute the exact v2/v3 and four-character/gateway smoke matrix in docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md; collect bound receipts, ffprobe/sample hashes, screenshots/logs and the human post-output report before changing the default.
+Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; registry.py is the DAG authority; delivery.py and release_youtube_short.py require the immutable accepted-source binding; legacy remains the new-run default.
+Last passing tests: full Python 917 passed/0 failed/1 live skip (/tmp/qstation-v2-c4-p13-full-final.log); P11 104 and P12 128 targeted passed; UI 15 passed, build/compile/audit/diff passed.
+Do not redo: P00-P13 or the implementation commits 6da9e33, 130d626 and 76bb2ec; do not modify the protected video 042/043/045 outputs.
+Open blocker: explicit paid-credit authorization and an idle provider window; service health/login is not authorization and production_smoke_passed remains false.
 Selected chat plan: FOUR_CHAT
-Current chat slot and assigned phase range: C4_PRODUCT_AND_ROLLOUT / P11-P14
-Range gate reached: YES for C3; P08-P10 are DONE with separate coherent commits, a real local audiovisual fixture and aggregate regression evidence.
-Next chat slot: C4_PRODUCT_AND_ROLLOUT
-Reason this is a safe stopping point: P11 can consume stable registry, presentation parity and revision CAS contracts; no provider jobs are live and C3 did not begin product/rollout work.
+Current chat slot and assigned phase range: COMPLETE / terminal P14 environment gate
+Range gate reached: YES; P00-P13 are DONE and P14 is truthfully BLOCKED_ENV with a code-ready runbook, as allowed by section 0.5.
+Next chat slot: none; resume only the P14 unblock action.
+Reason this is a safe stopping point: no provider job was started, the complete provider-free suite is green, rollout default remains legacy, and rollback/smoke steps are pinned and explicit.
 ```
 
 The handoff must additionally state:
