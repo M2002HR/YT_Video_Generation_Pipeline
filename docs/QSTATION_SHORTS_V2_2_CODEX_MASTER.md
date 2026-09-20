@@ -1883,7 +1883,7 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "bea5c6732c2b4cd74ba3fbc7a985358bb196f630",
+  "last_verified_head": "ce554cfa54371f9d2e55955c08dd1a45635e390e",
   "last_session_id": "C1-2026-09-20-01",
   "overall_status": "IN_PROGRESS",
   "code_ready": false,
@@ -2009,7 +2009,8 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       ],
       "status": "READY_FOR_REVIEW",
       "commits": [
-        "bea5c6732c2b4cd74ba3fbc7a985358bb196f630"
+        "bea5c6732c2b4cd74ba3fbc7a985358bb196f630",
+        "ce554cfa54371f9d2e55955c08dd1a45635e390e"
       ],
       "evidence": [
         "code_ready=true; live_validation_pending=true for paid Generate/result/download smoke owned by P14",
@@ -2202,14 +2203,14 @@ Next action (exact):
 ```text
 Session ID: C1-2026-09-20-01
 Started/ended at: 2026-09-20T13:48:18+04:00 / 2026-09-20T14:15:43+04:00
-Actual branch and HEAD: dev / bea5c6732c2b4cd74ba3fbc7a985358bb196f630 (implementation HEAD before this ledger-only handoff commit)
+Actual branch and tested implementation HEAD: dev / bea5c6732c2b4cd74ba3fbc7a985358bb196f630; profile-identity metadata correction ce554cfa54371f9d2e55955c08dd1a45635e390e
 Phase(s): P00 DONE; P01 DONE; P02 DONE; P03 READY_FOR_REVIEW with code_ready=true and paid live_validation_pending=true
 Requirements addressed: baseline/durable memory; strict schemas/settings/canonical IDs; isolated DAG/state/artifacts/leases/dispatch; model-aware ElevenLabs v2/v3 UI, exact text and bound-result/download safety
 Files changed: canonical/master/audit docs; scripts/shorts_v2/*; new runner; wrapper/graph dispatch; ElevenLabs runner; v3 profile; three new test modules
 Decisions and reasons: explicit engine selection fails closed; legacy remains default; new runtime is Motion-Director-free; v3 categorical stability maps onto the observed provider slider; stale downloads cannot prove submission
 Commands/tests: compileall; 69-test targeted suite; full Python suite; UI tests/build; git diff --check; authenticated non-generating live v2/v3 capability and control probes
 Results and evidence paths: targeted 69 passed; full 818 passed/19 failed/1 skipped with the same 19 baseline failures; UI 15 passed and build passed; logs under /tmp/qstation-v2-c1-*
-Commits / push state: 57aa33a P00, bf73ad4 P01, 95a6183 P02, bea5c67 P03; pushed with the C1 ledger handoff to origin/dev
+Commits / push state: 57aa33a P00, bf73ad4 P01, 95a6183 P02, bea5c67 and ce554cf P03, 448fecc initial handoff; pushed with the final C1 ledger handoff to origin/dev
 Remaining work: P04-P14; P14 paid end-to-end v2/v3 Generate/result/download smoke; resolve the unrelated legacy 19-failure baseline in its owning scope
 Blockers: no blocker to C2; paid provider smoke intentionally deferred to P14 and production_smoke_passed remains false
 Running jobs/processes reconciled: no provider generation or background job started; Chrome remains running by pre-existing service ownership; ElevenLabs UI restored to Eleven v3 and Liam
