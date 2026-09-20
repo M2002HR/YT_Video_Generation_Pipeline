@@ -53,7 +53,7 @@ def test_review_and_observation_conditions_do_not_orphan_assets_ready() -> None:
 
 def test_new_registry_does_not_import_legacy_motion_modules() -> None:
     forbidden = {"run_motion_director", "motion_schema", "motion_v2_schema", "motion_compiler", "motion_context"}
-    for relative in ("scripts/shorts_v2/registry.py", "scripts/shorts_v2/orchestration.py", "scripts/run_shorts_v2_pipeline.py"):
+    for relative in ("scripts/shorts_v2/registry.py", "scripts/shorts_v2/orchestration.py", "scripts/shorts_v2/editing.py", "scripts/run_shorts_v2_pipeline.py"):
         tree = ast.parse((ROOT / relative).read_text(encoding="utf-8"))
         imports = {
             alias.name.split(".")[0]

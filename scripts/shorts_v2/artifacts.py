@@ -43,6 +43,8 @@ LOGICAL_ARTIFACTS: dict[str, str] = {
     "opening_media_receipt": "receipts/OPENING_MEDIA_RECEIPT.json",
     "edit_plan": "editing/EDIT_PLAN.json",
     "compiled_timeline": "editing/COMPILED_TIMELINE.json",
+    "layout_constraints": "editing/LAYOUT_CONSTRAINTS.json",
+    "segment_cache_manifest": "editing/SEGMENT_CACHE_MANIFEST.json",
     "preview": "render/preview.mp4",
     "final": "render/final.mp4",
     "render_receipt": "receipts/RENDER_RECEIPT.json",
