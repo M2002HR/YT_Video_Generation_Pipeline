@@ -45,7 +45,7 @@ def test_review_and_observation_conditions_do_not_orphan_assets_ready() -> None:
     assert "media_review" not in ids
     assert "asset_observation" not in ids
     assert "assets_ready" in ids
-    assert {edge["source"] for edge in graph["edges"] if edge["target"] == "assets_ready"} == {"assets"}
+    assert {edge["source"] for edge in graph["edges"] if edge["target"] == "assets_ready"} == {"assets", "opening_media"}
     expanded = effective_graph(settings(editing_observation="off"), include_disabled=True)
     disabled = {node["id"]: node["status"] for node in expanded["nodes"]}
     assert disabled["media_review"] == disabled["asset_observation"] == "SKIPPED_CONFIG"
