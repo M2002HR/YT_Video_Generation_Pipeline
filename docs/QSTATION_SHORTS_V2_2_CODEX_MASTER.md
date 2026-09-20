@@ -1883,20 +1883,20 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "3bee6b15d7c31834eb799bd23693455c9e588385",
-  "last_session_id": "C2-2026-09-20-02",
+  "last_verified_head": "d9fa9f32133f462ee07db38898a5a4de64034eda",
+  "last_session_id": "C3-2026-09-20-01",
   "overall_status": "IN_PROGRESS",
   "code_ready": false,
   "production_smoke_passed": false,
   "human_artistic_acceptance": "NOT_REQUESTED",
-  "active_phase": "P08",
-  "next_phase": "P08",
-  "next_action": "C3_EDIT_AND_REVISE: reconcile HEAD and protected dirty video outputs, then implement P08 only from the committed P07 SHOT_PLAN/ASSET_MANIFEST/RHYTHM_MAP contracts: independent integer-clock edit compiler, geometry solver, resource-bounded segment renderer and a real local audiovisual fixture; do not redo P04-P07.",
+  "active_phase": "P11",
+  "next_phase": "P11",
+  "next_action": "C4_PRODUCT_AND_ROLLOUT/P11: reconcile HEAD and protected dirty video outputs, then expose the committed P08-P10 compile/presentation/revision contracts through the shared Studio schema, real graph, typed artifact/preview endpoints, version compare and stale-safe Revise UI; start with tests T60-T64/T69 and do not redo P08-P10.",
   "execution_chat_plan": {
     "mode": "FOUR_CHAT",
     "selected_during_phase": "P00",
     "selection_status": "CONFIRMED",
-    "current_chat_slot": "C3_EDIT_AND_REVISE",
+    "current_chat_slot": "C4_PRODUCT_AND_ROLLOUT",
     "routes": {
       "FOUR_CHAT": [
         {
@@ -2102,9 +2102,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P02",
         "P07"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "f5f55b884950a686b30e0700d8af56fa1b64093a"
+      ],
+      "evidence": [
+        "Independent integer/rational frame clock, safe bounded geometry solver, cacheable segment compiler and atomic FFmpeg renderer with no legacy Motion imports: scripts/shorts_v2/editing.py",
+        "Real local 2-second H.264/AAC render fixture validates exact frames, audible stream, atomic output, cache reuse and low-disk preservation: tests/test_shorts_v2_editing.py",
+        "P08 targeted regression: 43 passed, exit 0, /tmp/qstation-v2-c3-p08-targeted.log"
+      ],
       "blockers": []
     },
     {
@@ -2114,9 +2120,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P06",
         "P08"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "43a89fda3d9c31c844799375683f619f0d937a13"
+      ],
+      "evidence": [
+        "Canonical-word caption grouping, shared safe layout, non-duplicating title/watermark, explicit music/SFX/gain semantics and preview/final parity compile: scripts/shorts_v2/presentation.py",
+        "Renderer composes captions/title after visual assembly through libass and always muxes an audible narration stream; disabled captions/SFX create no hidden work",
+        "P09 targeted regression: 39 passed, exit 0, /tmp/qstation-v2-c3-p09-targeted.log"
+      ],
       "blockers": []
     },
     {
@@ -2127,9 +2139,17 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P07",
         "P09"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "d9fa9f32133f462ee07db38898a5a4de64034eda"
+      ],
+      "evidence": [
+        "Typed invalidation plans for every supported scope, exact/estimated provider costs, stable targets, lock reconciliation and semantic preservation: scripts/shorts_v2/revision.py",
+        "Preview/apply compare-and-swap rejects stale bases with 409; attempt owner binding rejects late output; exact-output QC gates atomic accepted pointer promotion; failure preserves last healthy version",
+        "Five critical scenarios plus scope matrix: tests/test_shorts_v2_revision.py; C3 aggregate 212 passed, exit 0, /tmp/qstation-v2-c3-final-targeted.log",
+        "Full Python regression: 890 passed, 19 failed, 1 skipped, exit 1; exact same 19 baseline failures, /tmp/qstation-v2-c3-final-full.log and /tmp/qstation-v2-c3-final-full.xml",
+        "Compileall exit 0; UI tests 15 passed; Vite production build exit 0; logs /tmp/qstation-v2-c3-final-compile.log, /tmp/qstation-v2-c3-ui-test.log, /tmp/qstation-v2-c3-ui-build.log"
+      ],
       "blockers": []
     },
     {
@@ -2294,6 +2314,23 @@ Running jobs/processes reconciled: full pytest completed; no provider generation
 Next action (exact): C3 implements P08 independent edit compiler/renderer from P07 artifacts, beginning with integer clock/geometry and 1/20/60/100-shot bounded-resource fixtures; do not alter protected video outputs
 ```
 
+```text
+Session ID: C3-2026-09-20-01
+Started/ended at: 2026-09-20T16:04:52+04:00 / 2026-09-20T16:18:17+04:00
+Actual branch and tested implementation HEAD: dev / d9fa9f32133f462ee07db38898a5a4de64034eda
+Phase(s): P08 DONE; P09 DONE; P10 DONE; C3_EDIT_AND_REVISE range gate reached
+Requirements addressed: independent Motion-free edit compiler/renderer; integer audio master clock and bounded geometry/resources; captions/branding/sound with audible preview parity; dependency-aware Revise; stable locks/targets; CAS apply; late-result guard; atomic acceptance and healthy-version preservation
+Files changed: scripts/shorts_v2/editing.py, presentation.py, revision.py, artifacts.py, registry.py and __init__.py; tests/test_shorts_v2_editing.py, test_shorts_v2_presentation.py, test_shorts_v2_revision.py and import-independence coverage
+Decisions and reasons: render cacheable one-input segments rather than a monolithic graph; treat transitions as fixed-clock overlays; compose captions/brand after visuals; separate source-video compile from presentation hash so gain/style can reuse media; bind apply to exact base hashes and accepted-pointer hash before creating staging
+Commands/tests: phase-targeted pytest; 14-file C3 aggregate; full Python suite with JUnit; compileall; UI unit/build; git diff --check
+Results and evidence paths: P08 43 passed (/tmp/qstation-v2-c3-p08-targeted.log); P09 39 passed (/tmp/qstation-v2-c3-p09-targeted.log); C3 aggregate 212 passed (/tmp/qstation-v2-c3-final-targeted.log); full 890 passed/19 failed/1 skipped with exact unchanged baseline failures (/tmp/qstation-v2-c3-final-full.log and .xml); UI 15 passed and Vite build passed
+Commits / push state: f5f55b8 P08; 43a89fd P09; d9fa9f3 P10; ledger handoff commit follows; origin push to be reconciled at session close
+Remaining work: P11-P14 only; next chat owns product UI, history/release/compatibility, regression/runbooks and authorized live smoke or precise BLOCKED_ENV
+Blockers: no C4 code blocker; paid ElevenLabs v2/v3 Generate-to-bound-download and product-live smoke remain deferred to P14; production_smoke_passed remains false
+Running jobs/processes reconciled: all pytest/FFmpeg/build processes completed; no provider generation/browser submit/background process was started; local render fixtures were temporary and cleaned by pytest
+Next action (exact): C4 begins P11 by binding scripts/shorts_v2 registry/artifact/revision contracts into the shared Studio schema and typed preview/apply/version endpoints, then adds timeline/version UI and T60-T64/T69 coverage; do not redo P08-P10
+```
+
 ### 29.3. Decision Log
 
 `D-C1-01 | 2026-09-20 | P01/P02 | Old episodes have no engine marker | infer from old fields vs require explicit selection | missing marker is legacy; explicit malformed shorts_v2 fails closed | no accidental migration or silent fallback | targeted dispatch/contracts tests`
@@ -2319,6 +2356,14 @@ Next action (exact): C3 implements P08 independent edit compiler/renderer from P
 `D-C2-06 | 2026-09-20 | P07/R03/R04/R16-R18/R23 | Timing and review policy could cause unnecessary image regeneration | whole-plan hash/review loop vs semantic assets | exclude scheduling from asset hash; one normal candidate with QC off; observation geometry only | asset reuse survives timing changes and no hidden aesthetic loop exists | T20-T22,T37-T39,T46`
 
 `D-C2-07 | 2026-09-20 | P07/R32 | Four openings have different frozen geometry/timing | character-name conditions vs profile registry | resolve gateway profile through character registry and plan supported source durations from measured word boundaries | red-door 5-second/13-word minimum cannot be silently shortened | T40,T66`
+
+`D-C3-01 | 2026-09-20 | P08/R02/R29/R30 | Hundreds of image inputs would create an unbounded FFmpeg graph and per-shot rounding would drift | monolithic xfade chain vs cacheable segments on one fixed clock | determine total frames once from audio samples, compile half-open coverage, render one cacheable segment at a time and assemble atomically | transitions never shorten narration; cache survives interruption; actual visual inputs stay bounded | T41,T42,T47-T50`
+
+`D-C3-02 | 2026-09-20 | P08/R18/R26 | Model geometry may be out of bounds or conflict with a manual pin | silently alter lock vs fail visibly | clamp unlocked geometry with recorded corrections/no-ops; raise a typed lock conflict when correction would violate a pin | no asset regeneration or hidden override is needed for locally correctable framing | T44,T61`
+
+`D-C3-03 | 2026-09-20 | P09/R21/R31 | Preview, final and browser-only styling could diverge | separate preview recipe vs one logical compile | compose captions/branding after visual assembly and bind proxy/final to one parity hash while preserving a reusable video-source compile hash | audible proxy can reduce encoding quality but not clock/crop/font/layout logic | T43,T55-T58,T62`
+
+`D-C3-04 | 2026-09-20 | P10/R23-R25/R28 | Revision scope and two-tab apply could mutate the wrong version | broad stage cascade vs semantic matrix plus CAS | validate stable targets, expose affected/reused/conditional/conflict categories, and bind apply to base config/manifest plus exact accepted-pointer hash | stale apply returns 409 before a staging directory is created; failure/late output cannot move acceptance | T45,T46,T54-T61`
 
 For every later meaningful change:
 
@@ -2364,6 +2409,16 @@ For every run:
 
 `T70 | full Python regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c2-final-full.xml | 2026-09-20 | 3bee6b1 | 1 | 852 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c2-final-full.log; /tmp/qstation-v2-c2-final-full.xml | exact same 19 pre-existing baseline failures; 25 additional passing tests since P04 checkpoint and no new failure`
 
+`T11,T41-T44,T47-T50 | RENDER_FIXTURE plus UNIT | .venv/bin/python -m pytest -q tests/test_shorts_v2_editing.py tests/test_shorts_v2_visual_planning.py tests/test_shorts_v2_orchestration.py tests/test_shorts_v2_contracts.py | 2026-09-20 | f5f55b8 | 0 | 43 passed | /tmp/qstation-v2-c3-p08-targeted.log | real local FFmpeg H.264/AAC fixture; no provider media generation`
+
+`T23,T42,T43,T55-T58,T62 | RENDER_FIXTURE plus UNIT | .venv/bin/python -m pytest -q tests/test_shorts_v2_presentation.py tests/test_shorts_v2_editing.py tests/test_shorts_v2_timing.py tests/test_shorts_v2_performance.py tests/test_shorts_v2_orchestration.py | 2026-09-20 | 43a89fd | 0 | 39 passed | /tmp/qstation-v2-c3-p09-targeted.log | local libass/audio render and contract parity; no live browser UI claim`
+
+`T41-T62 | UNIT/RENDER_FIXTURE/INTEGRATION_FAKE_PROVIDER aggregate | .venv/bin/python -m pytest -q tests/test_shorts_v2_revision.py tests/test_shorts_v2_presentation.py tests/test_shorts_v2_editing.py tests/test_shorts_v2_visual_planning.py tests/test_shorts_v2_timing.py tests/test_shorts_v2_performance.py tests/test_shorts_v2_creative.py tests/test_shorts_v2_contracts.py tests/test_shorts_v2_orchestration.py tests/test_elevenlabs_v2_v3_adapter.py tests/test_gateway_visual_contracts.py tests/test_flow_reference_policy.py tests/test_opening_source_planner.py tests/test_episode_history.py | 2026-09-20 | d9fa9f3 | 0 | 212 passed | /tmp/qstation-v2-c3-final-targeted.log | provider-free except real local FFmpeg fixture`
+
+`T70 | full Python regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c3-final-full.xml | 2026-09-20 | d9fa9f3 | 1 | 890 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c3-final-full.log; /tmp/qstation-v2-c3-final-full.xml | exact same 19 pre-existing failures; 38 additional passing tests and no new failure`
+
+`T62,T70 | UI unit/build and compile | .venv/bin/python -m compileall -q scripts; npm --prefix control_panel/ui test; npm --prefix control_panel/ui run build; git diff --check | 2026-09-20 | d9fa9f3 | 0/0/0/0 | compile passed; 15 UI tests passed; Vite build passed; diff clean | /tmp/qstation-v2-c3-final-compile.log; /tmp/qstation-v2-c3-ui-test.log; /tmp/qstation-v2-c3-ui-build.log | P11 product surface is next chat`
+
 ### 29.6. Handoff to the next session
 
 First reconstruct current state from the ledger and Git. The latest Session Log must not contain vague wording such as “almost finished.” Appropriate example:
@@ -2380,17 +2435,17 @@ Open blocker: <real missing environment capability, or none verified>.
 Current exact handoff:
 
 ```text
-Next phase: P08
-Next operation: implement the independent integer-clock edit compiler, geometry solver and resource-bounded segment renderer using P07 SHOT_PLAN, ASSET_MANIFEST and P06 RHYTHM_MAP, then produce a real local audiovisual render fixture.
+Next phase: P11
+Next operation: connect the P08-P10 compile/presentation/revision contracts to the shared Studio schema, real graph, artifact/preview APIs and stale-safe revision/version UI, then prove T60-T64/T69 without changing the accepted P08-P10 semantics.
 Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; scripts/shorts_v2/registry.py is the shared DAG authority.
-Last passing tests: C2 aggregate 174 passed (/tmp/qstation-v2-c2-final-targeted.log); full suite 852 passed/19 unchanged baseline failures/1 skipped (/tmp/qstation-v2-c2-final-full.log).
-Do not redo: P00-P07; P05 performance, P06 timing/rhythm and P07 visual contracts are committed inputs to P08.
+Last passing tests: C3 aggregate 212 passed (/tmp/qstation-v2-c3-final-targeted.log); full suite 890 passed/19 unchanged baseline failures/1 skipped (/tmp/qstation-v2-c3-final-full.log); UI 15 passed and build passed.
+Do not redo: P00-P10; P08 compiler/renderer, P09 presentation and P10 revision/promotion are committed inputs to P11.
 Open blocker: paid Generate-to-bound-download smoke is explicitly deferred to P14 and does not block P04-P13.
 Selected chat plan: FOUR_CHAT
-Current chat slot and assigned phase range: C3_EDIT_AND_REVISE / P08-P10
-Range gate reached: YES for C2; P04-P07 are DONE with separate coherent commits and aggregate regression evidence.
-Next chat slot: C3_EDIT_AND_REVISE
-Reason this is a safe stopping point: P08 can consume stable audio-timed shot, asset and rhythm artifacts; no provider jobs are live and C2 made no renderer/P08 changes.
+Current chat slot and assigned phase range: C4_PRODUCT_AND_ROLLOUT / P11-P14
+Range gate reached: YES for C3; P08-P10 are DONE with separate coherent commits, a real local audiovisual fixture and aggregate regression evidence.
+Next chat slot: C4_PRODUCT_AND_ROLLOUT
+Reason this is a safe stopping point: P11 can consume stable registry, presentation parity and revision CAS contracts; no provider jobs are live and C3 did not begin product/rollout work.
 ```
 
 The handoff must additionally state:
