@@ -188,7 +188,7 @@ The following came from review of the baseline repo and must be reconciled with 
 - The first runner pass returns before visual media, but it creates the visual plan before audio. New target: alignment independent of visuals, with final shot planning after audio.
 - `build_timeline.py` in legacy mode applies zoom-in to almost all images and zoom-out to the last. A zero motion counter does not mean there is no movement at all.
 - In video 045, the first image starts at `7.333s` in the timeline and its speech starts at `8.06s`. The connection between that boundary and audience drop-off is a hypothesis; Analytics were not available in this review.
-- Current Q Station provider locks: text ChatGPT, image ChatGPT, video Flow, and voice `elevenlabs_web`. Legacy “Gemini” names in parameters do not necessarily identify the actual image provider.
+- Current Q Station provider contract: text ChatGPT, video Flow, and voice `elevenlabs_web` are fixed; image generation is an explicit per-run choice between ChatGPT and Gemini, with no automatic cross-provider fallback. Missing selection remains ChatGPT for backward compatibility.
 - `run_elevenlabs_voiceover.py` intentionally does not call the ElevenLabs API; it uses Ordak Chrome/CDP and the authenticated web UI.
 - The generic voice runner currently applies v2-style sliders; genuine v3 support needs an adapter, capability probe, and tests.
 - A pre-existing download/result on the page must not be treated as acknowledgement of a fresh request. Current-path guards need review.
@@ -1883,7 +1883,7 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "76bb2ec48f7608b814b7fac3bc9ef481c6335b50",
+  "last_verified_head": "b1e5003ad5c7d4d109788bcd85cf07822e19edd5",
   "last_session_id": "C4-2026-09-20-01",
   "overall_status": "BLOCKED_ENV",
   "code_ready": true,
@@ -2246,7 +2246,8 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "D-C4-01: Studio reads the real shared registry and exposes only typed logical artifacts resolved beneath the job root; tracks are bounded and Revise apply retains P10 CAS semantics.",
     "D-C4-02: Release is pinned to the exact technically accepted immutable version, pointer hash and master hash; resume or publication fails closed if any binding drifts.",
     "D-C4-03: A legacy ChatGPT image receipt is validated against its recorded provider/model, so an unrelated inactive Gemini configuration change cannot invalidate it.",
-    "D-C4-04: New-run default remains legacy until the authorized P14 matrix passes; service availability or authenticated sessions alone are not permission to spend credits or evidence of production readiness."
+    "D-C4-04: New-run default remains legacy until the authorized P14 matrix passes; service availability or authenticated sessions alone are not permission to spend credits or evidence of production readiness.",
+    "D-POST-01: By explicit owner direction, still-image generation is frozen per run to either ChatGPT or Gemini; missing legacy selection remains ChatGPT, provider changes invalidate the complete still-image branch, receipts remain provider/model-bound, and automatic cross-provider fallback remains prohibited."
   ],
   "test_evidence": [
     "Targeted C1: 69 passed, exit 0, /tmp/qstation-v2-c1-final-targeted.log",
@@ -2265,7 +2266,8 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "P11 targeted: 104 passed, exit 0, /tmp/qstation-v2-c4-p11-targeted.log; UI 15 passed and build passed",
     "P12 targeted: 128 passed, exit 0, /tmp/qstation-v2-c4-p12-targeted.log",
     "P13 final full Python: 917 passed, 0 failed, 1 skipped, exit 0, /tmp/qstation-v2-c4-p13-full-final.log and /tmp/qstation-v2-c4-p13-full-final.xml",
-    "P13 compileall/UI/build/npm audit/diff: all exit 0; UI 15 passed; npm audit 0 vulnerabilities; logs /tmp/qstation-v2-c4-p13-*"
+    "P13 compileall/UI/build/npm audit/diff: all exit 0; UI 15 passed; npm audit 0 vulnerabilities; logs /tmp/qstation-v2-c4-p13-*",
+    "Post-completion image-provider selection regression: full Python 922 passed, 1 live-only skipped, exit 0, /tmp/qstation-image-provider-full-final.log and /tmp/qstation-image-provider-full-final.xml; final focused 115 passed; UI 15 passed and build passed"
   ],
   "uncommitted_work": [
     "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/LAUNCH_REQUEST.json",
@@ -2273,10 +2275,8 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "PROTECTED PRE-EXISTING: untracked publish/youtube_short packages for videos 042, 043 and 045"
   ],
   "unpushed_commits": [
-    "6da9e33bb142947756b5721db174c0ce25bad913",
-    "130d626cb4e26e22de350a259487a99095cc44fb",
-    "76bb2ec48f7608b814b7fac3bc9ef481c6335b50",
-    "Final ledger/handoff documentation commit follows this recorded tested implementation HEAD."
+    "b1e5003ad5c7d4d109788bcd85cf07822e19edd5",
+    "Provider-selection ledger documentation commit follows this recorded tested implementation HEAD."
   ],
   "running_processes_or_provider_jobs": []
 }
@@ -2389,6 +2389,23 @@ Running jobs/processes reconciled: control panel, Ordak, unified gateway and aut
 Next action (exact): after explicit paid-credit authorization, follow docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md at 76bb2ec, capture v2/v3 bound receipts and four-gateway/Revise/preview/pause-resume evidence, obtain the human post-output report, then set production_smoke_passed=true and activate shorts_v2 as the new-run default; otherwise leave legacy default intact
 ```
 
+```text
+Session ID: POST-2026-09-20-IMAGE-PROVIDER
+Started/ended at: 2026-09-20 after C4 completion
+Actual branch and tested implementation HEAD: dev / b1e5003ad5c7d4d109788bcd85cf07822e19edd5
+Phase(s): post-completion owner-directed provider-selection amendment; P14 remains BLOCKED_ENV
+Requirements addressed: fix legacy gemini_image_model validation; expose ChatGPT/Gemini selection and conditional Gemini model in Studio; freeze one provider for every still-image stage and Release thumbnail; provider/model-bound receipts; full-branch invalidation; backward-compatible ChatGPT default
+Files changed: panel schema/server/legacy form; Q Station wrapper/runner/provider validation; Release thumbnail inheritance; provider/config/release tests; preview-cache ignore rule
+Decisions and reasons: a missing provider remains ChatGPT so old briefs containing only gemini_image_model cannot migrate silently; a selected provider never falls back to the other; changing provider starts at world_style_anchor and rebuilds its still-image descendants
+Commands/tests: full Python pytest with JUnit; focused provider/config/release pytest; compileall; UI unit/build; diff check
+Results and evidence paths: full 922 passed/0 failed/1 live-only skipped, /tmp/qstation-image-provider-full-final.log and .xml; focused final 115 passed; UI 15 passed and production build passed
+Commits / push state: b1e5003 implementation; this ledger commit follows; push and panel restart are the next operation in the same user turn
+Remaining work: deploy this commit to the running panel and retain the unrelated paid P14 smoke blocker
+Blockers: none for provider selection; no paid generation was attempted
+Running jobs/processes reconciled: no provider job started
+Next action (exact): push dev, restart video-control-panel.service, and verify live schema exposes image_provider plus conditionally gated gemini_image_model.
+```
+
 ### 29.3. Decision Log
 
 `D-C1-01 | 2026-09-20 | P01/P02 | Old episodes have no engine marker | infer from old fields vs require explicit selection | missing marker is legacy; explicit malformed shorts_v2 fails closed | no accidental migration or silent fallback | targeted dispatch/contracts tests`
@@ -2430,6 +2447,8 @@ Next action (exact): after explicit paid-credit authorization, follow docs/SHORT
 `D-C4-03 | 2026-09-20 | P13/T70 | Frozen legacy ChatGPT receipts failed when an unrelated Gemini config model changed | preserve cross-provider coupling vs receipt-owned validation | compare a receipt with its recorded active provider/model and ignore inactive provider config | removes 19 inherited false regressions without weakening receipt integrity | final full regression 917/0/1`
 
 `D-C4-04 | 2026-09-20 | P14/R12/R36 | Healthy authenticated services exist but paid execution authorization is absent | infer permission vs block activation | mark P14 BLOCKED_ENV, keep legacy default, and provide exact smoke/rollback commands | code_ready=true remains distinct from production_smoke_passed=false | read-only health/flag reconciliation plus runbook`
+
+`D-POST-01 | 2026-09-20 | explicit owner amendment | Historical configs contain gemini_image_model while the public schema had removed it and hard-locked ChatGPT | ignore the field vs restore implicit Gemini vs explicit per-run choice | expose ChatGPT/Gemini, default missing selection to ChatGPT, gate Gemini model on explicit Gemini, rebuild the complete still-image branch on change, and prohibit automatic cross-provider fallback | old configs validate without silent migration; every generated still and Release thumbnail shares a provider/model-bound receipt | full 922/0/1 plus focused 115 and UI 15`
 
 For every later meaningful change:
 
@@ -2499,6 +2518,8 @@ For every run:
 
 `T68 | P14 authenticated environment reconciliation | inspect authorization variable names/processes; GET Ordak health; preserve default | 2026-09-20 | 76bb2ec | blocked before paid action | services healthy; explicit paid-credit authorization absent | recorded in C4 session and B-C4-01 | no Generate/download/sample hashes; not a production pass`
 
+`T-POST-IMAGE-PROVIDER | UNIT/INTEGRATION/REGRESSION/UI | full pytest with JUnit; focused panel/provider/runner/release suites; compileall; npm test/build; diff check | 2026-09-20 | b1e5003 | 0 | full 922 passed, 0 failed, 1 skipped; focused final 115 passed; UI 15 passed | /tmp/qstation-image-provider-full-final.log; /tmp/qstation-image-provider-full-final.xml; /tmp/qstation-image-provider-ui-build.log | provider-free; the only skip is live Freesound and no paid image was generated`
+
 ### 29.6. Handoff to the next session
 
 First reconstruct current state from the ledger and Git. The latest Session Log must not contain vague wording such as “almost finished.” Appropriate example:
@@ -2518,8 +2539,8 @@ Current exact handoff:
 Next phase: P14 (BLOCKED_ENV; all code phases P00-P13 are DONE)
 Next operation: only after explicit owner authorization to consume paid credits in an idle window, execute the exact v2/v3 and four-character/gateway smoke matrix in docs/SHORTS_V2_DEPLOYMENT_ROLLBACK.md; collect bound receipts, ffprobe/sample hashes, screenshots/logs and the human post-output report before changing the default.
 Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; registry.py is the DAG authority; delivery.py and release_youtube_short.py require the immutable accepted-source binding; legacy remains the new-run default.
-Last passing tests: full Python 917 passed/0 failed/1 live skip (/tmp/qstation-v2-c4-p13-full-final.log); P11 104 and P12 128 targeted passed; UI 15 passed, build/compile/audit/diff passed.
-Do not redo: P00-P13 or the implementation commits 6da9e33, 130d626 and 76bb2ec; do not modify the protected video 042/043/045 outputs.
+Last passing tests: full Python 922 passed/0 failed/1 live skip (/tmp/qstation-image-provider-full-final.log); provider/config/release focused 115 passed; UI 15 passed, build/compile/diff passed.
+Do not redo: P00-P13 or the implementation commits 6da9e33, 130d626, 76bb2ec and b1e5003; the explicit ChatGPT/Gemini still-image selection is complete.
 Open blocker: explicit paid-credit authorization and an idle provider window; service health/login is not authorization and production_smoke_passed remains false.
 Selected chat plan: FOUR_CHAT
 Current chat slot and assigned phase range: COMPLETE / terminal P14 environment gate
