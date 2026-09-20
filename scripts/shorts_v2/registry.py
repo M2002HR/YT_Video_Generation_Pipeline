@@ -48,8 +48,8 @@ STAGES: tuple[StageSpec, ...] = (
     StageSpec("compile_timeline", "Deterministic timeline compile", "render", ("captions_sound",), ("compiled_timeline", "segment_cache_manifest", "presentation_compile")),
     StageSpec("render_preview", "Audible preview", "render", ("compile_timeline",), ("preview",)),
     StageSpec("render_final", "Final render", "render", ("compile_timeline",), ("final", "render_receipt")),
-    StageSpec("technical_qc", "Technical validation", "render", ("render_final",)),
-    StageSpec("accept_version", "Atomic version acceptance", "revision", ("technical_qc",)),
+    StageSpec("technical_qc", "Technical validation", "render", ("render_final",), ("technical_qc",)),
+    StageSpec("accept_version", "Atomic version acceptance", "revision", ("technical_qc",), ("accepted_snapshot",)),
     StageSpec("delivery", "Enabled delivery", "delivery", ("accept_version",), condition_name="delivery"),
 )
 

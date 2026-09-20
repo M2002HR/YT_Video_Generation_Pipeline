@@ -14,6 +14,7 @@ from .contracts import ContractError, stable_id
 LOGICAL_ARTIFACTS: dict[str, str] = {
     "request": "REQUEST.json",
     "revision": "REVISION.json",
+    "revision_plan": "REVISION_PLAN.json",
     "character_resolution": "creative/CHARACTER_RESOLUTION.json",
     "character_performance": "creative/CHARACTER_PERFORMANCE_CONTEXT.json",
     "evidence_pack": "creative/EVIDENCE_PACK.json",
@@ -54,6 +55,8 @@ LOGICAL_ARTIFACTS: dict[str, str] = {
     "preview": "render/preview.mp4",
     "final": "render/final.mp4",
     "render_receipt": "receipts/RENDER_RECEIPT.json",
+    "technical_qc": "receipts/TECHNICAL_QC.json",
+    "accepted_snapshot": "receipts/ACCEPTED_SNAPSHOT.json",
 }
 
 
