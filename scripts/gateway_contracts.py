@@ -147,10 +147,25 @@ def topic_style(plan: dict[str, Any]) -> dict[str, Any]:
 
 
 def style_catalog_context(catalog: dict[str, Any]) -> dict[str, Any]:
+    """Return the compact, selection-only view needed by the style director.
+
+    The style director needs to compare available media and return an exact ID;
+    it does not need anchor paths or the repeated full-bleed layout contract.
+    Keeping that contract in the stage prompt once (rather than once per
+    catalog entry) leaves room for a growing production style catalog while
+    staying below Ordak's request-size limit.
+    """
     result = dict(catalog)
     if isinstance(catalog.get("styles"), list):
         result["styles"] = [
-            {key: value for key, value in {**entry, "frame_language": WORLD_FRAME, "layout_policy": WORLD_LAYOUT}.items() if key not in {"reason", "subtitle_reserve"}}
+            {
+                key: entry.get(key)
+                for key in (
+                    "style_id", "medium_family", "texture_family",
+                    "palette_summary", "status", "usage_count",
+                )
+                if entry.get(key) is not None
+            }
             for entry in catalog["styles"] if isinstance(entry, dict)
         ]
     return result

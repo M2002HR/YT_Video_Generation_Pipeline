@@ -305,6 +305,23 @@ def test_world_script_excludes_gateway_choreography():
     assert contracts.factual_world_script(plan) == "The actual explanation. The factual payoff."
 
 
+def test_style_catalog_context_is_compact_enough_for_the_world_style_prompt():
+    """A growing catalog must not make the production style stage unrunnable."""
+    content = load_content_project("q_station")
+    catalog = json.loads((content.root / "world_styles/CATALOG.json").read_text(encoding="utf-8"))
+    prompt = pipeline.fill(
+        pipeline.resolve_prompt(content, "04_world_style_director.md"),
+        TOPIC="Why does cabin air rush out through a broken window at altitude?",
+        FINAL_SCRIPT="Outside pressure is lower, so pressurized cabin air flows toward an opening.",
+        STYLE_CATALOG=json.dumps(contracts.style_catalog_context(catalog), ensure_ascii=False),
+        RECENT_STYLES="[]",
+        STYLE_DIRECTIVE="Reuse the catalogued style 'example'.",
+    )
+    assert len(prompt) <= pipeline.ORDAK_QUESTION_LIMIT
+    for entry in contracts.style_catalog_context(catalog)["styles"]:
+        assert set(entry) <= {"style_id", "medium_family", "texture_family", "palette_summary", "status", "usage_count"}
+
+
 def test_body_identity_does_not_include_presentation_rules(environment):
     _, registry, _ = environment
     context = contracts.body_character_context(registry.get("red_horned_everyman"))
