@@ -1883,20 +1883,20 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
   "repository": "M2002HR/YT_Video_Generation_Pipeline",
   "target_branch": "dev",
   "baseline_reviewed_commit": "e4cd11c5ad21d6e1fda36af2e157184aecfb2738",
-  "last_verified_head": "16d5c98aea8540c0bc7f8cc9db230469c5105d01",
-  "last_session_id": "C2-2026-09-20-01",
+  "last_verified_head": "3bee6b15d7c31834eb799bd23693455c9e588385",
+  "last_session_id": "C2-2026-09-20-02",
   "overall_status": "IN_PROGRESS",
   "code_ready": false,
   "production_smoke_passed": false,
   "human_artistic_acceptance": "NOT_REQUESTED",
-  "active_phase": "P05",
-  "next_phase": "P05",
-  "next_action": "C2_CREATIVE: implement P05 canonical-to-execution separation, typed performance AST, model-specific v2/v3 compilers, word anchors and TTS fingerprints using the P04 script/profile contracts; run T03-T09, T13, T20 and T29-T31; do not redo P04 or begin P08.",
+  "active_phase": "P08",
+  "next_phase": "P08",
+  "next_action": "C3_EDIT_AND_REVISE: reconcile HEAD and protected dirty video outputs, then implement P08 only from the committed P07 SHOT_PLAN/ASSET_MANIFEST/RHYTHM_MAP contracts: independent integer-clock edit compiler, geometry solver, resource-bounded segment renderer and a real local audiovisual fixture; do not redo P04-P07.",
   "execution_chat_plan": {
     "mode": "FOUR_CHAT",
     "selected_during_phase": "P00",
     "selection_status": "CONFIRMED",
-    "current_chat_slot": "C2_CREATIVE",
+    "current_chat_slot": "C3_EDIT_AND_REVISE",
     "routes": {
       "FOUR_CHAT": [
         {
@@ -2047,9 +2047,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P03",
         "P04"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "a503a8293daf29faf0690c3da75f8955bba83999"
+      ],
+      "evidence": [
+        "Typed anchored performance AST, finite v3 tag palette, bounded v2 break/capitalization compiler, canonical token map and model-effective fingerprint: scripts/shorts_v2/performance.py",
+        "P03 adapter integration keeps inactive cross-model settings out of the effective hash and requires an explicit resolved voice; default one-take technical acceptance needs no human calibration gate",
+        "P05 provider-free targeted: 44 passed, exit 0, /tmp/qstation-v2-c2-p05-targeted.log"
+      ],
       "blockers": []
     },
     {
@@ -2058,9 +2064,15 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
       "requires": [
         "P05"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "997f3f57df4b2f00d24417d481aa4060c97f3165"
+      ],
+      "evidence": [
+        "Real-media probe, strict canonical observation binding, measured-vs-interpolated method evidence, critical token confidence gates, nonverbal uncertainty, actual-duration pacing and one-primary-focus rhythm maps: scripts/shorts_v2/timing.py",
+        "Alignment has no visual input; leading pre-word audio is preserved; voice-only changes retain word IDs but audio hashes force new timing",
+        "P06 provider-free/real-WAV-fixture targeted: 26 passed, exit 0, /tmp/qstation-v2-c2-p06-targeted.log"
+      ],
       "blockers": []
     },
     {
@@ -2070,9 +2082,17 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
         "P04",
         "P06"
       ],
-      "status": "NOT_STARTED",
-      "commits": [],
-      "evidence": [],
+      "status": "DONE",
+      "commits": [
+        "3bee6b15d7c31834eb799bd23693455c9e588385"
+      ],
+      "evidence": [
+        "Audio-timed multi-shot planner, independent semantic asset hashes, role-separated references, precise full-bleed prompts, bounded batching, technical result receipts, semantic manifest diff, centralized QC/observation policy and data-driven four-gateway source planning: scripts/shorts_v2/visual_planning.py",
+        "60-asset fixture has no economic ceiling; QC off covers body/entry/reference assets with zero content review/correction/human gate; observation is geometry-only and cannot regenerate",
+        "P07 provider-free/gateway targeted: 109 passed, exit 0, /tmp/qstation-v2-c2-p07-targeted.log",
+        "C2 aggregate targeted P04-P07: 174 passed, exit 0, /tmp/qstation-v2-c2-final-targeted.log",
+        "C2 full Python regression: 852 passed, 19 failed, 1 skipped, exit 1; exact same 19 baseline failures, /tmp/qstation-v2-c2-final-full.log and /tmp/qstation-v2-c2-final-full.xml"
+      ],
       "blockers": []
     },
     {
@@ -2170,7 +2190,11 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "D-C1-05: Ordak already provides sufficient authenticated CDP primitives, so its pinned submodule was not modified.",
     "D-C2-01: Hook selection uses explicit independent hard gates before editorial scores; deterministic score/hook-id ordering prevents input order and a high score from rescuing an untruthful, ungrounded, unpaid or infeasible hook.",
     "D-C2-02: Character behavior overrides are scoped to shorts_v2 and retain the frozen visual identity contract; available Mark/Liam bindings are recorded as documented_not_calibrated rather than fabricated character calibration.",
-    "D-C2-03: Evidence provenance accepts honest retrieved sources, source notes or conservative background, but central claims cannot pass on unverified or background-only support."
+    "D-C2-03: Evidence provenance accepts honest retrieved sources, source notes or conservative background, but central claims cannot pass on unverified or background-only support.",
+    "D-C2-04: Voice performance is a typed anchored AST; expressive_v3 uses only a finite tag palette and no SSML, while optimized_v2 uses bounded break/punctuation/capitalization and records unsupported optional intent without adding spoken words.",
+    "D-C2-05: New timing accepts only real audio metadata plus complete backend observations; segment interpolation remains explicitly labeled, critical hook/number/negation confidence fails closed, and unlistened nonverbal windows remain unverified.",
+    "D-C2-06: Asset semantic hashes exclude shot schedule/order but include content/reference identity; QC-off always requests one normal candidate, permits only bounded technical retries, and observation cannot issue verdicts or regeneration.",
+    "D-C2-07: All gateway behavior is resolved from the character/presentation registries; source length is selected from measured narration and verified capabilities without weakening the red-door minimum contract."
   ],
   "test_evidence": [
     "Targeted C1: 69 passed, exit 0, /tmp/qstation-v2-c1-final-targeted.log",
@@ -2179,7 +2203,13 @@ The `evidence` list must contain real paths and outcomes, not empty assertions. 
     "UI production build: exit 0, /tmp/qstation-v2-c1-ui-build.log",
     "Python compileall and git diff --check: exit 0",
     "P04 targeted provider-free: 50 passed, exit 0, /tmp/qstation-v2-c2-p04-targeted.log",
-    "P04 full Python regression: 827 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c2-p04-full.log and /tmp/qstation-v2-c2-p04-full.xml; exact same pre-existing baseline failures and 9 additional passing tests"
+    "P04 full Python regression: 827 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c2-p04-full.log and /tmp/qstation-v2-c2-p04-full.xml; exact same pre-existing baseline failures and 9 additional passing tests",
+    "P05 targeted provider-free: 44 passed, exit 0, /tmp/qstation-v2-c2-p05-targeted.log",
+    "P06 targeted provider-free/real-WAV-fixture: 26 passed, exit 0, /tmp/qstation-v2-c2-p06-targeted.log",
+    "P07 targeted provider-free/gateway integration: 109 passed, exit 0, /tmp/qstation-v2-c2-p07-targeted.log",
+    "C2 aggregate P04-P07: 174 passed, exit 0, /tmp/qstation-v2-c2-final-targeted.log",
+    "C2 full Python regression: 852 passed, 19 failed, 1 skipped, exit 1, /tmp/qstation-v2-c2-final-full.log and /tmp/qstation-v2-c2-final-full.xml; exact same 19 baseline failures and no new regression",
+    "C2 Python compileall and git diff --check: exit 0"
   ],
   "uncommitted_work": [
     "PROTECTED PRE-EXISTING: videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/launch/LAUNCH_REQUEST.json",
@@ -2247,6 +2277,23 @@ Running jobs/processes reconciled: full pytest completed; no provider generation
 Next action (exact): implement P05 typed performance AST and separate expressive_v3/optimized_v2 compilers in scripts/shorts_v2, anchored to P04 SCRIPT_CORE units and actual P03 capability data; start by adding failing T29-T31 fixtures
 ```
 
+```text
+Session ID: C2-2026-09-20-02
+Started/ended at: 2026-09-20T15:10:00+04:00 / 2026-09-20T15:22:38+04:00
+Actual branch and tested implementation HEAD: dev / 3bee6b15d7c31834eb799bd23693455c9e588385
+Phase(s): P05 DONE; P06 DONE; P07 DONE; C2_CREATIVE range gate reached
+Requirements addressed: canonical/compiled voice separation; model-correct v2/v3 performance; stable word anchors; real-audio alignment and pacing; nonverbal uncertainty; rhythm map; audio-timed multi-shot planning; independent assets/hashes; all-visual QC-off; geometry-only observation; four gateway/source contracts
+Files changed: scripts/shorts_v2/performance.py, timing.py, visual_planning.py, artifacts.py, registry.py and __init__.py; tests/test_shorts_v2_performance.py, test_shorts_v2_timing.py, test_shorts_v2_visual_planning.py and orchestration coverage
+Decisions and reasons: typed finite performance instructions prevent markup injection and word mutation; alignment has no fabricated/script-estimated fallback; semantic image hashes exclude timing; one-candidate QC-off and non-regenerating observation are centralized; gateway mapping remains registry-driven
+Commands/tests: three phase-targeted pytest runs; aggregate 11-file C2 suite; full Python suite with JUnit; compileall; git diff --check
+Results and evidence paths: P05 44 passed (/tmp/qstation-v2-c2-p05-targeted.log); P06 26 passed (/tmp/qstation-v2-c2-p06-targeted.log); P07 109 passed (/tmp/qstation-v2-c2-p07-targeted.log); aggregate 174 passed (/tmp/qstation-v2-c2-final-targeted.log); full 852 passed/19 failed/1 skipped with unchanged baseline failures (/tmp/qstation-v2-c2-final-full.log and .xml)
+Commits / push state: a503a82 P05; 997f3f5 P06; 3bee6b1 P07 plus this ledger handoff; pushed to origin/dev at session close
+Remaining work: P08-P14; the next chat owns P08-P10 and must not begin P11
+Blockers: no C3 blocker; paid ElevenLabs v2/v3 Generate-to-bound-download remains deferred to P14 and production_smoke_passed remains false
+Running jobs/processes reconciled: full pytest completed; no provider generation, browser submit, render, or background process was started
+Next action (exact): C3 implements P08 independent edit compiler/renderer from P07 artifacts, beginning with integer clock/geometry and 1/20/60/100-shot bounded-resource fixtures; do not alter protected video outputs
+```
+
 ### 29.3. Decision Log
 
 `D-C1-01 | 2026-09-20 | P01/P02 | Old episodes have no engine marker | infer from old fields vs require explicit selection | missing marker is legacy; explicit malformed shorts_v2 fails closed | no accidental migration or silent fallback | targeted dispatch/contracts tests`
@@ -2264,6 +2311,14 @@ Next action (exact): implement P05 typed performance AST and separate expressive
 `D-C2-02 | 2026-09-20 | P04/R07/R08/R09 | Creative behavior must expand without mutating identity or inventing calibrated voices | merge legacy behavior blindly vs versioned Shorts-only layer | preserve fixed identity and scope baseline/burst override to shorts_v2; bind observed Mark/Liam profiles as documented_not_calibrated | legacy remains frozen and P05 gets honest model-specific input | T27/T28 fixtures`
 
 `D-C2-03 | 2026-09-20 | P04/R20/R35 | Retrieval can be absent or limited | fabricate citation/PASS vs honest source tiers | permit retrieved/source_note/conservative_background provenance but reject unverified or background-only central support | unsupported central science must be redesigned or removed | T26 fixtures`
+
+`D-C2-04 | 2026-09-20 | P05/R08/R09/R13 | Model expression must not mutate words or leak cross-model markup | free-form marked-up text vs typed AST | anchor finite events to stable word IDs and compile v3 tags separately from v2 bounded breaks/punctuation | unsupported optional intent is auditable; required unsupported intent fails | T04-T06,T29-T31`
+
+`D-C2-05 | 2026-09-20 | P06/R14/R15/R30 | Script estimates or generic gaps could be mislabeled as measured timing/emotion | proportional fallback vs evidence-typed alignment | require real audio metadata and complete observations; label interpolation and nonverbal uncertainty honestly | critical mismatch retries/fails instead of fabricating time | T32-T36,T45`
+
+`D-C2-06 | 2026-09-20 | P07/R03/R04/R16-R18/R23 | Timing and review policy could cause unnecessary image regeneration | whole-plan hash/review loop vs semantic assets | exclude scheduling from asset hash; one normal candidate with QC off; observation geometry only | asset reuse survives timing changes and no hidden aesthetic loop exists | T20-T22,T37-T39,T46`
+
+`D-C2-07 | 2026-09-20 | P07/R32 | Four openings have different frozen geometry/timing | character-name conditions vs profile registry | resolve gateway profile through character registry and plan supported source durations from measured word boundaries | red-door 5-second/13-word minimum cannot be silently shortened | T40,T66`
 
 For every later meaningful change:
 
@@ -2299,6 +2354,16 @@ For every run:
 
 `T70 | full Python regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c2-p04-full.xml | 2026-09-20 | 16d5c98 | 1 | 827 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c2-p04-full.log; /tmp/qstation-v2-c2-p04-full.xml | exact same 19 pre-existing baseline failures; 9 additional passing tests and no new failure`
 
+`T03-T09,T13,T20,T29-T31 | provider-free targeted | .venv/bin/python -m pytest -q tests/test_shorts_v2_performance.py tests/test_shorts_v2_contracts.py tests/test_elevenlabs_v2_v3_adapter.py tests/test_shorts_v2_orchestration.py | 2026-09-20 | a503a82 | 0 | 44 passed | /tmp/qstation-v2-c2-p05-targeted.log | no provider generation or listening claim`
+
+`T30,T32-T36,T45 | provider-free plus real WAV metadata fixture | .venv/bin/python -m pytest -q tests/test_shorts_v2_timing.py tests/test_shorts_v2_performance.py tests/test_shorts_v2_orchestration.py | 2026-09-20 | 997f3f5 | 0 | 26 passed | /tmp/qstation-v2-c2-p06-targeted.log | backend observations are fixtures; duration probe decodes a real local WAV`
+
+`T20-T23,T37-T40,T46,T66 | provider-free/gateway integration | .venv/bin/python -m pytest -q tests/test_shorts_v2_visual_planning.py tests/test_shorts_v2_orchestration.py tests/test_gateway_visual_contracts.py tests/test_flow_reference_policy.py tests/test_opening_source_planner.py | 2026-09-20 | 3bee6b1 | 0 | 109 passed | /tmp/qstation-v2-c2-p07-targeted.log | no paid image/Flow generation; real installed profile registries are exercised`
+
+`T03-T10,T13,T20-T40,T45,T46,T65,T66 | C2 aggregate provider-free | .venv/bin/python -m pytest -q tests/test_shorts_v2_creative.py tests/test_shorts_v2_performance.py tests/test_shorts_v2_timing.py tests/test_shorts_v2_visual_planning.py tests/test_shorts_v2_contracts.py tests/test_shorts_v2_orchestration.py tests/test_elevenlabs_v2_v3_adapter.py tests/test_gateway_visual_contracts.py tests/test_flow_reference_policy.py tests/test_opening_source_planner.py tests/test_episode_history.py | 2026-09-20 | 3bee6b1 | 0 | 174 passed | /tmp/qstation-v2-c2-final-targeted.log | provider-free acceptance evidence for P04-P07`
+
+`T70 | full Python regression | .venv/bin/python -m pytest -q -rs tests --junitxml=/tmp/qstation-v2-c2-final-full.xml | 2026-09-20 | 3bee6b1 | 1 | 852 passed, 19 failed, 1 skipped | /tmp/qstation-v2-c2-final-full.log; /tmp/qstation-v2-c2-final-full.xml | exact same 19 pre-existing baseline failures; 25 additional passing tests since P04 checkpoint and no new failure`
+
 ### 29.6. Handoff to the next session
 
 First reconstruct current state from the ledger and Git. The latest Session Log must not contain vague wording such as “almost finished.” Appropriate example:
@@ -2315,17 +2380,17 @@ Open blocker: <real missing environment capability, or none verified>.
 Current exact handoff:
 
 ```text
-Next phase: P05
-Next operation: implement typed performance AST, stable word anchors and separate expressive_v3/optimized_v2 compilers under scripts/shorts_v2, using P04 SCRIPT_CORE and character performance artifacts.
+Next phase: P08
+Next operation: implement the independent integer-clock edit compiler, geometry solver and resource-bounded segment renderer using P07 SHOT_PLAN, ASSET_MANIFEST and P06 RHYTHM_MAP, then produce a real local audiovisual render fixture.
 Existing contract: scripts/shorts_v2/contracts.py schema_version=1/design_version=2.2; scripts/shorts_v2/registry.py is the shared DAG authority.
-Last passing tests: P04 targeted 50 passed (/tmp/qstation-v2-c2-p04-targeted.log); full suite 827 passed/19 unchanged baseline failures/1 skipped (/tmp/qstation-v2-c2-p04-full.log).
-Do not redo: P00-P04; P03 adapter and P04 creative contracts/profiles/tournament/script validators are committed inputs to P05.
+Last passing tests: C2 aggregate 174 passed (/tmp/qstation-v2-c2-final-targeted.log); full suite 852 passed/19 unchanged baseline failures/1 skipped (/tmp/qstation-v2-c2-final-full.log).
+Do not redo: P00-P07; P05 performance, P06 timing/rhythm and P07 visual contracts are committed inputs to P08.
 Open blocker: paid Generate-to-bound-download smoke is explicitly deferred to P14 and does not block P04-P13.
 Selected chat plan: FOUR_CHAT
-Current chat slot and assigned phase range: C2_CREATIVE / P04-P07
-Range gate reached: NO; P04 is DONE but P05-P07 remain in C2.
-Next chat slot: unchanged C2_CREATIVE
-Reason this is a safe stopping point: P04 is a coherent tested commit with explicit artifact ownership; P05 can consume frozen canonical script/profile contracts without revisiting creative selection.
+Current chat slot and assigned phase range: C3_EDIT_AND_REVISE / P08-P10
+Range gate reached: YES for C2; P04-P07 are DONE with separate coherent commits and aggregate regression evidence.
+Next chat slot: C3_EDIT_AND_REVISE
+Reason this is a safe stopping point: P08 can consume stable audio-timed shot, asset and rhythm artifacts; no provider jobs are live and C2 made no renderer/P08 changes.
 ```
 
 The handoff must additionally state:
