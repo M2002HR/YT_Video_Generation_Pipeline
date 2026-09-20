@@ -1,0 +1,350 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_f22007b436e740d181f17e0c1145d5d9",
+  "status": "DONE",
+  "started_at": "2026-09-20T02:59:44.480972+00:00",
+  "video": "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "53969915711dc2e9d02795e8b729df206ca3a7ac6f7a599beb2d172f7f60374b",
+  "events": [
+    {
+      "stage": "source_gate",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:59:44.501614+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "DONE",
+      "at": "2026-09-20T02:59:45.906214+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:59:47.377734+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "DONE",
+      "at": "2026-09-20T02:59:48.959533+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:59:50.157633+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "DONE",
+      "at": "2026-09-20T02:59:55.135646+00:00",
+      "references": 5
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:59:56.237104+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-20T03:01:18.579334+00:00",
+      "chatgpt_job_id": "a44dafab-5e35-4e8e-b017-83fb7a910aef"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:01:19.772418+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-20T03:02:39.418866+00:00",
+      "chatgpt_job_id": "455804da-3ac6-4381-b55a-ebe0d8401052",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:02:40.679306+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-20T03:02:41.702807+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:02:43.388680+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "DONE",
+      "at": "2026-09-20T03:03:02.482509+00:00",
+      "candidates": 1
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:03:03.664206+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "DONE",
+      "at": "2026-09-20T03:04:59.445786+00:00",
+      "provider": "chatgpt"
+    },
+    {
+      "stage": "thumbnail_candidate_01_compose",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:05:00.549535+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_compose",
+      "status": "DONE",
+      "at": "2026-09-20T03:05:01.896666+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_review",
+      "status": "DONE",
+      "at": "2026-09-20T03:05:03.276493+00:00"
+    },
+    {
+      "stage": "thumbnail_selection",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:05:04.465625+00:00"
+    },
+    {
+      "stage": "thumbnail_selection",
+      "status": "DONE",
+      "at": "2026-09-20T03:05:06.010962+00:00",
+      "selected_candidate_id": "candidate_01"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:05:07.213103+00:00"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-20T03:05:08.323020+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-20T03:05:09.431100+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-20T03:06:14.979608+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15854,
+            "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+          }
+        },
+        "master": 15853,
+        "master_sha256": "53969915711dc2e9d02795e8b729df206ca3a7ac6f7a599beb2d172f7f60374b",
+        "summary": 15855,
+        "upload_markdown": 15856,
+        "upload_markdown_sha256": "6f5b82be7adc216b880a05a4d5a7f71d0ee9be50c024deba459f78bb8552d5fe",
+        "metadata_json": 15857,
+        "metadata_json_sha256": "47d90b3debd07993f619c1b44e77f035f8e3cf952a8a8ded1128c8ce79314650"
+      }
+    },
+    {
+      "stage": "release_complete",
+      "status": "DONE",
+      "at": "2026-09-20T03:06:16.226198+00:00"
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "What If a Human Grew to the Size of an Elephant?",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 1,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "stacked_brand",
+      "allowed_layouts": [
+        "stacked_brand"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "chatgpt",
+      "quality": "best",
+      "image_fallback": "none",
+      "topic_mode": "episode",
+      "manual_topic": "",
+      "video_title_mode": "metadata",
+      "manual_video_title": "",
+      "approved_style_reference": "none",
+      "thumbnail_note": "",
+      "character_expression": "auto",
+      "topic_objects": "auto",
+      "color_direction": "auto",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "What If Fish Could Breathe on Land?",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "quicky_story",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.012,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.035,
+      "text_position": "middle",
+      "text_box_width": 0.88,
+      "safe_margin": 0.06,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.15,
+      "max_words": 12,
+      "max_characters": 100,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": false,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 0,
+      "max_image_generations": 6,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": false,
+      "send_previews": true,
+      "send_master_video": true,
+      "send_comparison_sheet": false,
+      "send_report_json": false,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "e76e5df24e36eb13d125ad73c96cb7c84619a574a4aa1c6d369bbef17d0dbf59",
+  "source_job_id": "450d1a7d-dab4-45fa-852c-512cd0156d55",
+  "parent_release_id": null,
+  "revision_roots": [],
+  "reused_nodes": [],
+  "attempt": 1,
+  "nodes": {
+    "source_gate": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:59:45.906214+00:00"
+    },
+    "release_context": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:59:48.959533+00:00"
+    },
+    "visual_references": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:59:55.135646+00:00",
+      "references": 5
+    },
+    "metadata_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:01:18.579334+00:00",
+      "chatgpt_job_id": "a44dafab-5e35-4e8e-b017-83fb7a910aef"
+    },
+    "metadata_review": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:02:39.418866+00:00",
+      "chatgpt_job_id": "455804da-3ac6-4381-b55a-ebe0d8401052",
+      "schema_repair_job_ids": []
+    },
+    "metadata_finalize": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:02:41.702807+00:00"
+    },
+    "thumbnail_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:03:02.482509+00:00",
+      "candidates": 1
+    },
+    "thumbnail_candidate_01_artwork": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:04:59.445786+00:00",
+      "provider": "chatgpt"
+    },
+    "thumbnail_candidate_01_compose": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:05:01.896666+00:00"
+    },
+    "thumbnail_candidate_01_review": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:05:03.276493+00:00"
+    },
+    "thumbnail_selection": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:05:06.010962+00:00",
+      "selected_candidate_id": "candidate_01"
+    },
+    "upload_guide": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:05:08.323020+00:00"
+    },
+    "telegram_delivery": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:06:14.979608+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15854,
+            "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+          }
+        },
+        "master": 15853,
+        "master_sha256": "53969915711dc2e9d02795e8b729df206ca3a7ac6f7a599beb2d172f7f60374b",
+        "summary": 15855,
+        "upload_markdown": 15856,
+        "upload_markdown_sha256": "6f5b82be7adc216b880a05a4d5a7f71d0ee9be50c024deba459f78bb8552d5fe",
+        "metadata_json": 15857,
+        "metadata_json_sha256": "47d90b3debd07993f619c1b44e77f035f8e3cf952a8a8ded1128c8ce79314650"
+      }
+    },
+    "release_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T03:06:16.226198+00:00"
+    }
+  },
+  "completed_at": "2026-09-20T03:06:16.225969+00:00",
+  "metadata": "publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15854,
+        "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+      }
+    },
+    "master": 15853,
+    "master_sha256": "53969915711dc2e9d02795e8b729df206ca3a7ac6f7a599beb2d172f7f60374b",
+    "summary": 15855,
+    "upload_markdown": 15856,
+    "upload_markdown_sha256": "6f5b82be7adc216b880a05a4d5a7f71d0ee9be50c024deba459f78bb8552d5fe",
+    "metadata_json": 15857,
+    "metadata_json_sha256": "47d90b3debd07993f619c1b44e77f035f8e3cf952a8a8ded1128c8ce79314650"
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/YOUTUBE_SHORT_UPLOAD.md"
+}

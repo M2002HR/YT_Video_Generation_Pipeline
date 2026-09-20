@@ -1,0 +1,401 @@
+{
+  "title": "What If a Human Grew to the Size of an Elephant? 🐘 #shorts",
+  "title_options": [
+    "What If a Human Grew to Elephant Size? 🐘 #shorts",
+    "Elephant-Sized Human: Heat and the Square-Cube Rule 🌡️ #shorts",
+    "How Would an Elephant-Sized Human Handle Heat? 📐 #shorts"
+  ],
+  "description": "What if a human grew to the size of an elephant? This Short explains how the square-cube rule changes surface area, volume, and heat handling as body size increases.\nKeywords: elephant-sized human, square-cube rule, giant human biology, body heat scaling, surface area to volume, human scaling science\n#shorts #viralshorts #SquareCubeRule #HumanBiology #ScienceShorts",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "what if a human grew to the size of an elephant",
+    "elephant sized human",
+    "elephant-sized human",
+    "giant human biology",
+    "square cube rule",
+    "square-cube rule",
+    "square-cube law",
+    "body heat scaling",
+    "surface area to volume",
+    "human scaling science"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Review and confirm the audience designation before publishing.",
+      "reason": "SOURCE_CONTEXT recommends not_made_for_kids, but the uploader must make the final audience declaration."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "Review the final video and make the age-restriction declaration before publishing.",
+      "reason": "The supplied material uses stylized, non-graphic anatomical imagery, but the final declaration remains the uploader's responsibility."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Confirm whether any sponsorship, endorsement, or commercial relationship requires a paid-promotion declaration.",
+      "reason": "No paid promotion is documented in SOURCE_CONTEXT, but only the uploader can make the final declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review the final video against YouTube's altered or synthetic content disclosure requirements.",
+      "reason": "The supplied frames are visibly stylized illustrations, but disclosure depends on the final published content and must be determined by the uploader."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before release.",
+      "reason": "SOURCE_CONTEXT states that publication rights for the uploaded music must be verified by the operator."
+    },
+    {
+      "field": "Audience",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm the audience declaration in YouTube Studio; only the uploader can make the final Made for Kids decision."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Create one instantly readable vertical 9:16 YouTube Shorts thumbnail based on the final rendered episode frames. Use the same handcrafted layered cut-paper medium, tactile paper texture, soft dimensional shadows, cool cyan and deep-blue environmental layers, and warm cream, peach, coral, and orange body layers. Show one dominant elephant-sized stylized human anatomical figure towering through the scene, with warm layered inner-body forms and subtle radiating heat shapes that communicate changed heat handling at enormous scale. Place one much smaller ordinary human near the giant's feet as the only scale cue. Keep the giant unmistakably dominant, with strong warm-versus-cool contrast, crisp silhouette separation, a simple visual hierarchy, and deliberate negative space. Preserve the episode's non-photorealistic educational science-world atmosphere and the proportions and visual language of the rendered body and closing frames. Do not reproduce the character-sheet layout or replace the episode imagery with a generic person. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if a human grew to the size of an elephant",
+    "search_intent": "Educational curiosity about how an elephant-sized human would be affected by body scaling, heat handling, surface area, volume, and the square-cube rule.",
+    "secondary_queries": [
+      "elephant-sized human",
+      "square-cube rule human body",
+      "giant human biology",
+      "body heat scaling",
+      "surface area to volume scaling"
+    ],
+    "spelling_variants": [
+      "elephant sized human",
+      "elephant-sized human",
+      "square cube rule",
+      "square-cube rule",
+      "square-cube law"
+    ],
+    "rationale": "The primary title preserves the episode topic exactly, while the description, alternatives, and tags reinforce only concepts explicitly covered by the narration: elephant-sized human scaling, the square-cube rule, surface area, volume, and body heat. The metadata uses close informational search phrases without adding unsupported claims, ranking promises, or unrelated trends."
+  },
+  "related_video_note": "No related video is supplied in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader chooses an appropriate existing Q Station video.",
+  "schema_version": 1,
+  "created_at": "2026-09-20T03:02:39.418848+00:00",
+  "source_master_sha256": "53969915711dc2e9d02795e8b729df206ca3a7ac6f7a599beb2d172f7f60374b",
+  "chatgpt_jobs": {
+    "draft": "a44dafab-5e35-4e8e-b017-83fb7a910aef",
+    "review": "455804da-3ac6-4381-b55a-ebe0d8401052",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "unlisted",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+      "topic": "What If a Human Grew to the Size of an Elephant??",
+      "duration_seconds": 49.45,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "concept_id": "1fc5dad72979b24da8d0",
+      "opening_actions": [
+        "The scholar places a small human model and an elephant-sized human model beside matching warm plates.",
+        "He compares the visible warmth loss from the two body shapes.",
+        "He pauses and notices the larger model changing differently."
+      ],
+      "entry_bridge": {
+        "a_end": "The scholar places the large model beside the small one.",
+        "b_start": "A closed topic-styled book rests beside the models.",
+        "reveal": "The book reveals a body-size comparison world where scale changes how bodies handle heat.",
+        "world_entry": "Two giant and small body outlines stand beside temperature markers in the illustrated topic world."
+      },
+      "opening_activity": "Comparing warmth loss between scaled body shapes using matching body models and heat demonstrations.",
+      "opening_location": "A quiet science display hall with body models and simple heat comparison exhibits.",
+      "opening_environment": "A calm educational display space with scaled body forms, warm plates, and measurement objects.",
+      "topic_visual_link": "The different cooling behavior of small and giant body models directly previews how elephant-sized human bodies would experience changed heat loss.",
+      "link_type": "direct",
+      "opening_visual_proof": "A small human model and an elephant-sized human model beside identical warm plates show different visible warmth loss patterns.",
+      "curiosity_trigger": "The scholar notices the larger body shape does not keep the same warmth pattern as the smaller one.",
+      "trigger_object": "The paired small and elephant-sized human models with matching warm plates.",
+      "reaction": "He pauses with a curious glance and carefully compares the two models again.",
+      "entry_retrieval": "After checking the models, the scholar discovers the closed storybook resting beside the display and reveals it as the next path of exploration.",
+      "entry_variant": "discovered_book",
+      "camera_pattern": "slow_push_in",
+      "hero_presence_mode": "in_world",
+      "closing_mode": "stay_in_world",
+      "world_style_hint": "A visual science world showing oversized and miniature body forms, heat patterns, and changing proportions.",
+      "reason": "The opening makes the square-cube rule visible through a simple body-scale comparison, fitting the scholar's careful observation style and the topic's core question."
+    },
+    "script_plan": {
+      "opening_question_spark": "If a human grew huge, would their body cool the same?",
+      "book_transition": "Bigger size can change how a body loses heat.",
+      "cta": "Suggest next topic in comments.",
+      "body": [
+        "Two body outlines show different heat loss.",
+        "Small and giant models lose warmth at different speeds.",
+        "The giant model has more outside area and loses heat.",
+        "The inner part of the body grows differently from outside area.",
+        "The square-cube rule explains size changes outside area and volume.",
+        "Volume means the space inside a body.",
+        "An elephant-sized human may struggle with body heat.",
+        "The models show bigger bodies change beyond height.",
+        "A giant human is not just a larger copy."
+      ],
+      "optional_closing": "Bodies need new solutions.",
+      "full_narration": "If a human grew huge, would their body cool the same? Bigger size can change how a body loses heat. Two body outlines show different heat loss. Small and giant models lose warmth at different speeds. The giant model has more outside area and loses heat. The inner part of the body grows differently from outside area. The square-cube rule explains size changes outside area and volume. Volume means the space inside a body. An elephant-sized human may struggle with body heat. The models show bigger bodies change beyond height. A giant human is not just a larger copy. Bodies need new solutions. Suggest next topic in comments.",
+      "word_count": 110,
+      "created_at": "2026-09-19T15:13:12Z"
+    },
+    "narration": "If a human grew huge, would their body cool the same? Bigger size can change how a body loses heat. Two body outlines show different heat loss. Small and giant models lose warmth at different speeds. The giant model has more outside area and loses heat. The inner part of the body grows differently from outside area. The square-cube rule explains size changes outside area and volume. Volume means the space inside a body. An elephant-sized human may struggle with body heat. The models show bigger bodies change beyond height. A giant human is not just a larger copy. Bodies need new solutions. Suggest next topic in comments.",
+    "music": {
+      "provider": "operator_upload",
+      "source_url": null,
+      "license": "Operator-supplied; publication rights must be verified by the operator."
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 1033573,
+          "sha256": "5aac4a902964b8f7816fcac1c181c6ccc8a2fd670720ad0cf33d20e62b6b0626",
+          "time_seconds": 4.945
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3631992,
+          "sha256": "9da5c997e1bb4a88d2e16043fa158c3173e78878f9f2d4bf42593faaba69bac9",
+          "time_seconds": 24.725
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3665725,
+          "sha256": "1ade57898c875175f2f56764afa69ae58492b0c58a0a11bdd61a7086a4cfd090",
+          "time_seconds": 41.538
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 941,
+          "height": 1672,
+          "bytes": 2535928,
+          "sha256": "7359ba569a3a706bbf8060352392db99ce115bcbf79d63c0fbf4f0a4a6e4c4da"
+        },
+        {
+          "role": "thumbnail_character_identity",
+          "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+          "file": "projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 1642329,
+          "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "schema_version": 5,
+    "selection": {
+      "selected_candidate_id": "candidate_01",
+      "status": "DONE",
+      "ranking": [
+        {
+          "candidate_id": "candidate_01",
+          "rank": 1,
+          "score": 0,
+          "eligible": true,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ]
+        }
+      ],
+      "requested_count": 1,
+      "generated_count": 1,
+      "eligible_count": 1,
+      "delivery_mode": "all_final_candidates"
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_01",
+        "layout_id": "stacked_brand",
+        "headline": "Could Giant Humans Overheat?",
+        "evidence_anchor": "If a human grew huge, would their body cool the same? Bigger size can change how a body loses heat. Two body outlines show different heat loss. Small and giant models lose warmth at different speeds. The giant model has more outside area an",
+        "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/thumbnail_candidates/candidate_01/artwork.png",
+        "final_path": "/opt/YT_Video_Generation_Pipeline/videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/thumbnail_candidates/candidate_01/final.png",
+        "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/045_what_if_a_human_grew_to_the_size_of_an_elephant/publish/youtube_short/releases/rel_f22007b436e740d181f17e0c1145d5d9/thumbnail_candidates/candidate_01/preview_small.jpg",
+        "artwork": {
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2232525,
+          "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+        },
+        "final": {
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2232525,
+          "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+        },
+        "review": {
+          "eligible": true,
+          "score": 0,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ],
+          "blocking_violations": [],
+          "warnings": [
+            "No ChatGPT visual review was requested."
+          ],
+          "review_status": "SKIPPED_OPERATOR",
+          "final_sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+        },
+        "generated_provider": "chatgpt",
+        "generation_job_id": "edf0f543-08c8-45aa-b017-bcbf24896b9b",
+        "generation_receipt": {
+          "provider": "chatgpt",
+          "requested_model": null,
+          "actual_model_label": null,
+          "model_verified": false,
+          "pro_regeneration_used": false,
+          "requested_quality": "best",
+          "requested_aspect_ratio": "9:16",
+          "actual_aspect_ratio": "9:16",
+          "requested_duration_seconds": null,
+          "actual_duration_seconds": null,
+          "requested_resolution": null,
+          "actual_resolution": null,
+          "workspace_url": "https://chatgpt.com/g/g-p-6aad6365c6a4819189a5a35f28e021fc-ordak/c/6aaf4cf6-f604-83ed-ad5f-db9da5fd2920",
+          "submission_fingerprint": null,
+          "reference_roles": [
+            "character_sheet"
+          ],
+          "notes": [
+            "artifact_source=download",
+            "chat_scope=project",
+            "image=edf0f543-08c8-45aa-b017-bcbf24896b9b_output_1.png sha256=4ff86d9b1324ad9cc020d26a9ceceb4e7a87899337746799881d2ac532a8747d"
+          ],
+          "mode": "image_generate",
+          "chatgpt_chat": "project",
+          "attachment_roles": [
+            "character_sheet"
+          ],
+          "attachment_sha256": {
+            "character_sheet": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+          },
+          "normalization": {
+            "source_width": 941,
+            "source_height": 1672,
+            "ratio_error": 0.000532,
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2232525,
+            "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+          },
+          "output_count": 1
+        },
+        "attachments": [
+          {
+            "role": "character_sheet",
+            "purpose": "MANDATORY source of truth for character identity only",
+            "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+            "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+          },
+          {
+            "role": "quicky_story_font",
+            "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+            "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+            "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+          }
+        ]
+      }
+    ],
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2232525,
+      "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+    },
+    "quality_check": {
+      "passed": true
+    },
+    "requested_model": "chatgpt",
+    "visible_text": true,
+    "headline": "Could Giant Humans Overheat?",
+    "headline_mode": "auto",
+    "headline_job_id": "5d3298b0-ef4a-4603-ad48-17764194fbf3",
+    "generation_attachments": [
+      {
+        "role": "character_sheet",
+        "purpose": "MANDATORY source of truth for character identity only",
+        "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+        "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+      },
+      {
+        "role": "quicky_story_font",
+        "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+        "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+        "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+      }
+    ],
+    "all_final_candidates": true
+  }
+}

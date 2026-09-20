@@ -1,0 +1,391 @@
+{
+  "title": "What If Fish Could Breathe on Land? 🌍 #shorts",
+  "title_options": [
+    "What Happens If Earth's Gravity Is Cut in Half? 🌍 #shorts",
+    "What If Earth Had Half Its Gravity? 🌍 #shorts",
+    "How Would Half Gravity Change Everyday Life? ⚖️ #shorts"
+  ],
+  "description": "What if Earth's gravity were cut in half? See how weaker gravity could change weight, jumping, lifting, buildings, bridges, vehicles, and everyday movement.\nKeywords: what if Earth's gravity were cut in half, half gravity Earth, weaker gravity effects, reduced gravity on humans, gravity and buildings, gravity and vehicles\n#shorts #viralshorts #gravity #earth #physics",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "Earth gravity",
+    "Earth's gravity",
+    "half gravity",
+    "half gravity Earth",
+    "what if Earth's gravity were cut in half",
+    "what if Earths gravity were cut in half",
+    "Earth's gravity halved",
+    "weaker gravity",
+    "reduced gravity",
+    "gravity effects",
+    "physics"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "privacy_status": "unlisted"
+  },
+  "manual_review": [
+    {
+      "field": "audience",
+      "recommendation": "uploader_review_required",
+      "reason": "SOURCE_CONTEXT provides a channel-level recommendation of not_made_for_kids, but the uploader must make the final audience declaration after reviewing the completed video and its intended audience."
+    },
+    {
+      "field": "age_restriction",
+      "recommendation": "uploader_review_required",
+      "reason": "The episode context does not identify age-restricted subject matter, but the uploader must make the final platform declaration after reviewing the finished video."
+    },
+    {
+      "field": "paid_promotion",
+      "recommendation": "uploader_review_required",
+      "reason": "SOURCE_CONTEXT does not state any sponsorship, endorsement, or paid product placement. The uploader must confirm whether any commercial relationship requires disclosure."
+    },
+    {
+      "field": "altered_or_synthetic_content",
+      "recommendation": "uploader_review_required",
+      "reason": "The supplied visual references are clearly stylized clay-like imagery, but the uploader must review the final video and make any required altered or synthetic content declaration."
+    },
+    {
+      "field": "Age Restriction",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm whether any mature, harmful, or sensitive material requires an age restriction."
+    },
+    {
+      "field": "Paid Promotion",
+      "recommendation": "Confirm manually",
+      "reason": "Confirm that no sponsorship, endorsement, or commercial relationship requires the paid-promotion declaration."
+    },
+    {
+      "field": "Altered Or Synthetic Content",
+      "recommendation": "Confirm manually",
+      "reason": "Review the finished visuals and disclose realistic or meaningfully altered/synthetic content when YouTube requires it."
+    }
+  ],
+  "thumbnail_prompt": "Create a single 9:16 YouTube Shorts thumbnail using the final rendered frames as the primary visual truth. Match Q Station's handcrafted sculpted-clay diorama look with soft polymer-clay texture, muted beige, sage green, dusty brown, pale blue, and restrained copper accents, gentle depth of field, and warm diffused lighting. Use one dominant focal subject: an ordinary clay figure caught at the peak of an unusually high jump in the foreground of the same stylized city world, clearly separated from the street below so reduced gravity reads instantly on a phone. Frame the figure against clean pale-blue sky or simple negative space for strong silhouette contrast, while the familiar clay buildings, a suspension bridge, and a small number of vehicles remain secondary context. Keep the scene grounded and consistent with the rendered city frames rather than introducing a generic person or reproducing the character-sheet layout. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if Earth's gravity were cut in half",
+    "search_intent": "Informational curiosity about how halving Earth's gravity would affect people, movement, structures, vehicles, and everyday physical systems.",
+    "secondary_queries": [
+      "half gravity Earth",
+      "what happens if gravity is weaker",
+      "effects of half gravity on humans",
+      "how weaker gravity affects buildings",
+      "how weaker gravity affects vehicles"
+    ],
+    "spelling_variants": [
+      "what if Earths gravity were cut in half",
+      "Earth's gravity halved",
+      "half-gravity Earth"
+    ],
+    "rationale": "The primary title keeps SOURCE_CONTEXT.run.topic unchanged as its core. The description and supporting metadata reinforce only close searches about halved or weaker Earth gravity and its effects on weight, movement, structures, and machines without unrelated trends, ranking claims, or repetitive keyword stuffing."
+  },
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader manually chooses a relevant existing Q Station video.",
+  "schema_version": 1,
+  "created_at": "2026-09-20T02:39:35.915456+00:00",
+  "source_master_sha256": "e4eab3b2126cde9e64e7369c86a3978515cafc82641c039ba6135d7ddbd377e8",
+  "chatgpt_jobs": {
+    "draft": "34712a63-aff5-4e58-acc9-31ff16b89c40",
+    "review": "85796ea3-dac7-42f2-9e82-62f0b4d561e9",
+    "schema_repairs": []
+  },
+  "source_context": {
+    "channel": {
+      "channel_name": "Q Station",
+      "channel_tagline": "Every question opens a world.",
+      "language": "en",
+      "category": "Education",
+      "category_id": "27",
+      "privacy_recommendation": "unlisted",
+      "license": "youtube",
+      "comments": "allow_all",
+      "remixing": "allow",
+      "audience_recommendation": "not_made_for_kids"
+    },
+    "run": {
+      "video": "042_what_if_earth_s_gravity_were_cut_in_half",
+      "topic": "What If Earth's Gravity Were Cut in Half?",
+      "duration_seconds": 47.726,
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect_ratio": "9:16",
+      "subtitles_burned_in": true
+    },
+    "episode_direction": {
+      "concept_id": "d190a000937bbf385cd1",
+      "opening_actions": [
+        "The scholar lifts a large box from a display platform with unexpected ease.",
+        "He sets the box beside a small bridge model and notices the model flexing under a changed load.",
+        "He leans closer and compares the two examples with a curious pause."
+      ],
+      "entry_bridge": {
+        "a_end": "The scholar returns the box and pulls a closed storybook from a nearby shelf.",
+        "b_start": "A closed topic-styled book is shown alone from above.",
+        "reveal": "The opened pages reveal an illustrated world where gravity is half as strong.",
+        "world_entry": "A city scene shows people, vehicles, and structures behaving under weaker gravity."
+      },
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "opening_environment": "A quiet public engineering exhibit space with a large box, a tabletop bridge model, and a nearby shelf holding storybooks.",
+      "topic_visual_link": "The visible mismatch between an easily lifted heavy box and a bridge model reacting differently shows that halving gravity changes both people and the systems around them.",
+      "link_type": "direct",
+      "opening_visual_proof": "The scholar holds a large box effortlessly while the adjacent bridge model visibly bends under its altered load.",
+      "curiosity_trigger": "He notices that the same lighter-feeling world does not make every structure behave the same way.",
+      "trigger_object": "The large box beside the flexing bridge model.",
+      "reaction": "He gives a small surprised look and carefully checks both examples.",
+      "entry_retrieval": "After comparing the box and bridge, the scholar returns the box and reaches to a nearby shelf to reveal the closed storybook.",
+      "entry_variant": "shelf_reveal",
+      "camera_pattern": "slow_push_in",
+      "hero_presence_mode": "auto",
+      "closing_mode": "stay_in_world",
+      "world_style_hint": "A grounded illustrated city and landscape where everyday movement and machines adapt to lower gravity.",
+      "reason": "The opening turns the script's central idea into a visible cause-and-effect moment: lighter bodies do not mean the entire built world stays unchanged."
+    },
+    "script_plan": {
+      "opening_question_spark": "If your weight was cut in half, would Earth feel the same?",
+      "book_transition": "A weaker pull could change how people move and how bridges carry loads.",
+      "cta": "Comment your next gravity question.",
+      "body": [
+        "People would weigh half as much on Earth.",
+        "They could jump higher and lift heavy objects more easily.",
+        "A person could carry a large box with less effort.",
+        "Bridges and buildings would face different forces.",
+        "Some structures might need new designs.",
+        "Cars and machines would move differently.",
+        "Astronauts already experience very low gravity in space.",
+        "A half-gravity Earth could look familiar but act differently.",
+        "Many systems would need to adjust to lower weight."
+      ],
+      "optional_closing": "Lighter does not mean the same.",
+      "full_narration": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person could carry a large box with less effort. Bridges and buildings would face different forces. Some structures might need new designs. Cars and machines would move differently. Astronauts already experience very low gravity in space. A half-gravity Earth could look familiar but act differently. Many systems would need to adjust to lower weight. Lighter does not mean the same. Comment your next gravity question.",
+      "word_count": 110,
+      "created_at": "2026-09-19T04:59:27Z"
+    },
+    "narration": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person could carry a large box with less effort. Bridges and buildings would face different forces. Some structures might need new designs. Cars and machines would move differently. Astronauts already experience very low gravity in space. A half-gravity Earth could look familiar but act differently. Many systems would need to adjust to lower weight. Lighter does not mean the same. Comment your next gravity question.",
+    "music": {
+      "provider": "freesound",
+      "source_url": "https://freesound.org/people/kontraamusic/sounds/790936/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "thumbnail_editorial_rules": {
+      "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+      "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+    },
+    "thumbnail_visual_references": {
+      "rule": "Final rendered frames are primary visual truth; supporting references never override them.",
+      "attachments": [
+        {
+          "role": "thumbnail_rendered_opening_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/visual_references/render_opening.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2169188,
+          "sha256": "65b279988a99562c66977a7c710f79493ae4a03c332d9017b8f753e598a357ae",
+          "time_seconds": 4.772
+        },
+        {
+          "role": "thumbnail_rendered_body_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/visual_references/render_body.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3123870,
+          "sha256": "28e6818638b88b1e0b32a01797d4fdacea3a2a4746dd392941b4365929affb1e",
+          "time_seconds": 23.863
+        },
+        {
+          "role": "thumbnail_rendered_closing_frame",
+          "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+          "file": "publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/visual_references/render_closing.png",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 3099164,
+          "sha256": "e0ea7731e08b99b4174b27173e169de6a02dd68a76ed2298a963cd2672128f19",
+          "time_seconds": 40.089
+        },
+        {
+          "role": "thumbnail_world_keyframe",
+          "purpose": "Supporting world continuity only; never overrides final rendered frames",
+          "file": "references/world_keyframe.png",
+          "width": 1536,
+          "height": 2752,
+          "bytes": 2347862,
+          "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363"
+        },
+        {
+          "role": "thumbnail_character_identity",
+          "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+          "file": "projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 1642329,
+          "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+        }
+      ]
+    }
+  },
+  "thumbnail": {
+    "schema_version": 5,
+    "selection": {
+      "selected_candidate_id": "candidate_01",
+      "status": "DONE",
+      "ranking": [
+        {
+          "candidate_id": "candidate_01",
+          "rank": 1,
+          "score": 0,
+          "eligible": true,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ]
+        }
+      ],
+      "requested_count": 1,
+      "generated_count": 1,
+      "eligible_count": 1,
+      "delivery_mode": "all_final_candidates"
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_01",
+        "layout_id": "stacked_brand",
+        "headline": "Life at Half Gravity",
+        "evidence_anchor": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person",
+        "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/thumbnail_candidates/candidate_01/artwork.png",
+        "final_path": "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/thumbnail_candidates/candidate_01/final.png",
+        "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/thumbnail_candidates/candidate_01/preview_small.jpg",
+        "artwork": {
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2297075,
+          "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+        },
+        "final": {
+          "width": 1080,
+          "height": 1920,
+          "bytes": 2297075,
+          "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+        },
+        "review": {
+          "eligible": true,
+          "score": 0,
+          "reasons": [
+            "Thumbnail QC and final visual review were disabled by the Release operator."
+          ],
+          "blocking_violations": [],
+          "warnings": [
+            "No ChatGPT visual review was requested."
+          ],
+          "review_status": "SKIPPED_OPERATOR",
+          "final_sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+        },
+        "generated_provider": "chatgpt",
+        "generation_job_id": "626037fb-ecef-4972-90b8-8f872329f958",
+        "generation_receipt": {
+          "provider": "chatgpt",
+          "requested_model": null,
+          "actual_model_label": null,
+          "model_verified": false,
+          "pro_regeneration_used": false,
+          "requested_quality": "best",
+          "requested_aspect_ratio": "9:16",
+          "actual_aspect_ratio": "9:16",
+          "requested_duration_seconds": null,
+          "actual_duration_seconds": null,
+          "requested_resolution": null,
+          "actual_resolution": null,
+          "workspace_url": "https://chatgpt.com/g/g-p-6aad6365c6a4819189a5a35f28e021fc-ordak/c/6aaf478e-5b48-83eb-98fd-29340ddd8524",
+          "submission_fingerprint": null,
+          "reference_roles": [
+            "character_sheet"
+          ],
+          "notes": [
+            "artifact_source=download",
+            "chat_scope=project",
+            "image=626037fb-ecef-4972-90b8-8f872329f958_output_1.png sha256=9ae024619335a7821b104a688d17117e446564a80fbbb0eda7d29b098af2834d"
+          ],
+          "mode": "image_generate",
+          "chatgpt_chat": "project",
+          "attachment_roles": [
+            "character_sheet"
+          ],
+          "attachment_sha256": {
+            "character_sheet": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+          },
+          "normalization": {
+            "source_width": 941,
+            "source_height": 1672,
+            "ratio_error": 0.000532,
+            "width": 1080,
+            "height": 1920,
+            "bytes": 2297075,
+            "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+          },
+          "output_count": 1
+        },
+        "attachments": [
+          {
+            "role": "character_sheet",
+            "purpose": "MANDATORY source of truth for character identity only",
+            "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+            "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+          },
+          {
+            "role": "quicky_story_font",
+            "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+            "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+            "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+          }
+        ]
+      }
+    ],
+    "selected_file": "thumbnail.png",
+    "selected": {
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2297075,
+      "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+    },
+    "quality_check": {
+      "passed": true
+    },
+    "requested_model": "chatgpt",
+    "visible_text": true,
+    "headline": "Life at Half Gravity",
+    "headline_mode": "auto",
+    "headline_job_id": "34d1f36e-b696-4e75-902a-f2dc5400c45e",
+    "generation_attachments": [
+      {
+        "role": "character_sheet",
+        "purpose": "MANDATORY source of truth for character identity only",
+        "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+        "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+      },
+      {
+        "role": "quicky_story_font",
+        "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+        "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+        "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+      }
+    ],
+    "all_final_candidates": true
+  }
+}

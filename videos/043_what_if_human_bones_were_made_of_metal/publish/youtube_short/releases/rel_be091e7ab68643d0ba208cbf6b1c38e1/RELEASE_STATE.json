@@ -1,0 +1,350 @@
+{
+  "schema_version": 2,
+  "release_id": "rel_be091e7ab68643d0ba208cbf6b1c38e1",
+  "status": "DONE",
+  "started_at": "2026-09-20T02:45:42.228149+00:00",
+  "video": "043_what_if_human_bones_were_made_of_metal",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "db0405de82f53f75040fab825c8147619b236f6fea38b73933a1bb159e51b8f9",
+  "events": [
+    {
+      "stage": "source_gate",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:45:42.248366+00:00"
+    },
+    {
+      "stage": "source_gate",
+      "status": "DONE",
+      "at": "2026-09-20T02:45:43.617155+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:45:44.600574+00:00"
+    },
+    {
+      "stage": "release_context",
+      "status": "DONE",
+      "at": "2026-09-20T02:45:45.841439+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:45:46.977916+00:00"
+    },
+    {
+      "stage": "visual_references",
+      "status": "DONE",
+      "at": "2026-09-20T02:45:50.121023+00:00",
+      "references": 5
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:45:51.146514+00:00"
+    },
+    {
+      "stage": "metadata_draft",
+      "status": "DONE",
+      "at": "2026-09-20T02:47:28.589134+00:00",
+      "chatgpt_job_id": "edfa01d3-46fa-4b0b-8447-f312c0430d1a"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:47:29.989837+00:00"
+    },
+    {
+      "stage": "metadata_review",
+      "status": "DONE",
+      "at": "2026-09-20T02:49:04.493961+00:00",
+      "chatgpt_job_id": "6f91d6a3-805d-406b-aac9-bb5f3c8990d4",
+      "schema_repair_job_ids": []
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:49:05.555618+00:00"
+    },
+    {
+      "stage": "metadata_finalize",
+      "status": "DONE",
+      "at": "2026-09-20T02:49:06.594837+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:49:08.495185+00:00"
+    },
+    {
+      "stage": "thumbnail_plan",
+      "status": "DONE",
+      "at": "2026-09-20T02:49:24.654498+00:00",
+      "candidates": 1
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:49:26.007847+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_artwork",
+      "status": "DONE",
+      "at": "2026-09-20T02:51:18.031455+00:00",
+      "provider": "chatgpt"
+    },
+    {
+      "stage": "thumbnail_candidate_01_compose",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:51:19.242066+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_compose",
+      "status": "DONE",
+      "at": "2026-09-20T02:51:20.500342+00:00"
+    },
+    {
+      "stage": "thumbnail_candidate_01_review",
+      "status": "DONE",
+      "at": "2026-09-20T02:51:21.982792+00:00"
+    },
+    {
+      "stage": "thumbnail_selection",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:51:23.308854+00:00"
+    },
+    {
+      "stage": "thumbnail_selection",
+      "status": "DONE",
+      "at": "2026-09-20T02:51:24.492400+00:00",
+      "selected_candidate_id": "candidate_01"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:51:25.747776+00:00"
+    },
+    {
+      "stage": "upload_guide",
+      "status": "DONE",
+      "at": "2026-09-20T02:51:27.401248+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "RUNNING",
+      "at": "2026-09-20T02:51:28.315652+00:00"
+    },
+    {
+      "stage": "telegram_delivery",
+      "status": "DONE",
+      "at": "2026-09-20T02:52:40.607561+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15834,
+            "sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+          }
+        },
+        "master": 15833,
+        "master_sha256": "db0405de82f53f75040fab825c8147619b236f6fea38b73933a1bb159e51b8f9",
+        "summary": 15835,
+        "upload_markdown": 15836,
+        "upload_markdown_sha256": "5b1a702c35803f9221e6c6c334482eb95a31ccb30783081e0cb877ff5ec9e348",
+        "metadata_json": 15837,
+        "metadata_json_sha256": "1c01bf221136cd2c59f7140d7a3d89b252c3d76b929086fda50e173b6b3ab2f7"
+      }
+    },
+    {
+      "stage": "release_complete",
+      "status": "DONE",
+      "at": "2026-09-20T02:52:41.895664+00:00"
+    }
+  ],
+  "request": {
+    "generate_metadata": true,
+    "generate_thumbnail": true,
+    "create_upload_guide": true,
+    "send_telegram": true,
+    "force": true,
+    "metadata_note": "",
+    "thumbnail_note": "",
+    "title_override": "What If Fish Could Breathe on Land?",
+    "thumbnail": {
+      "count_mode": "fixed",
+      "count": 1,
+      "auto_min": 2,
+      "auto_max": 4,
+      "concept_count": "auto",
+      "diversity": "high",
+      "layout_mode": "stacked_brand",
+      "allowed_layouts": [
+        "stacked_brand"
+      ],
+      "tension": "strong",
+      "brand_profile": "q_station_v1",
+      "aspect_ratio": "9:16",
+      "image_model": "chatgpt",
+      "quality": "best",
+      "image_fallback": "none",
+      "topic_mode": "episode",
+      "manual_topic": "",
+      "video_title_mode": "metadata",
+      "manual_video_title": "",
+      "approved_style_reference": "none",
+      "thumbnail_note": "",
+      "character_expression": "auto",
+      "topic_objects": "auto",
+      "color_direction": "auto",
+      "must_include": "",
+      "must_avoid": "",
+      "text_mode": "auto",
+      "manual_text": "What If Fish Could Breathe on Land?",
+      "candidate_text_overrides": {},
+      "text_renderer": "local",
+      "font_id": "quicky_story",
+      "case_mode": "auto",
+      "text_fill": "#FFFFFF",
+      "text_outline": "#111827",
+      "outline_width": 0.012,
+      "shadow": true,
+      "text_background": false,
+      "line_spacing": 0.035,
+      "text_position": "middle",
+      "text_box_width": 0.88,
+      "safe_margin": 0.06,
+      "text_min_scale": 0.04,
+      "text_max_scale": 0.15,
+      "max_words": 12,
+      "max_characters": 100,
+      "max_lines": 3,
+      "coordinates": null,
+      "badge_enabled": false,
+      "badge_asset_id": "q_station_mark",
+      "badge_position": "bottom_right",
+      "badge_scale": 0.07,
+      "reference_mode": "master",
+      "reference_timestamps": [],
+      "max_references": 5,
+      "corrections_per_candidate": 0,
+      "max_image_generations": 6,
+      "review_preset": "balanced",
+      "review_enabled": false,
+      "export_format": "png",
+      "jpeg_quality": 90,
+      "preview_small": true,
+      "comparison_sheet": false,
+      "send_previews": true,
+      "send_master_video": true,
+      "send_comparison_sheet": false,
+      "send_report_json": false,
+      "send_raw_artwork": false,
+      "delivery_mode": "all_final_candidates",
+      "resend": false
+    }
+  },
+  "settings_fingerprint": "2e465a3e42e7a5b6b883b887d1dd2fd60427cabcc7fdb0665b9e1becb9b74023",
+  "source_job_id": "8e8fe4ff-d8ee-49ce-9d8e-8c7907ba859a",
+  "parent_release_id": null,
+  "revision_roots": [],
+  "reused_nodes": [],
+  "attempt": 1,
+  "nodes": {
+    "source_gate": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:45:43.617155+00:00"
+    },
+    "release_context": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:45:45.841439+00:00"
+    },
+    "visual_references": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:45:50.121023+00:00",
+      "references": 5
+    },
+    "metadata_draft": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:47:28.589134+00:00",
+      "chatgpt_job_id": "edfa01d3-46fa-4b0b-8447-f312c0430d1a"
+    },
+    "metadata_review": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:49:04.493961+00:00",
+      "chatgpt_job_id": "6f91d6a3-805d-406b-aac9-bb5f3c8990d4",
+      "schema_repair_job_ids": []
+    },
+    "metadata_finalize": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:49:06.594837+00:00"
+    },
+    "thumbnail_plan": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:49:24.654498+00:00",
+      "candidates": 1
+    },
+    "thumbnail_candidate_01_artwork": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:51:18.031455+00:00",
+      "provider": "chatgpt"
+    },
+    "thumbnail_candidate_01_compose": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:51:20.500342+00:00"
+    },
+    "thumbnail_candidate_01_review": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:51:21.982792+00:00"
+    },
+    "thumbnail_selection": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:51:24.492400+00:00",
+      "selected_candidate_id": "candidate_01"
+    },
+    "upload_guide": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:51:27.401248+00:00"
+    },
+    "telegram_delivery": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:52:40.607561+00:00",
+      "messages": {
+        "candidates": {
+          "candidate_01": {
+            "message_id": 15834,
+            "sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+          }
+        },
+        "master": 15833,
+        "master_sha256": "db0405de82f53f75040fab825c8147619b236f6fea38b73933a1bb159e51b8f9",
+        "summary": 15835,
+        "upload_markdown": 15836,
+        "upload_markdown_sha256": "5b1a702c35803f9221e6c6c334482eb95a31ccb30783081e0cb877ff5ec9e348",
+        "metadata_json": 15837,
+        "metadata_json_sha256": "1c01bf221136cd2c59f7140d7a3d89b252c3d76b929086fda50e173b6b3ab2f7"
+      }
+    },
+    "release_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T02:52:41.895664+00:00"
+    }
+  },
+  "completed_at": "2026-09-20T02:52:41.895420+00:00",
+  "metadata": "publish/youtube_short/releases/rel_be091e7ab68643d0ba208cbf6b1c38e1/YOUTUBE_SHORT_METADATA.json",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15834,
+        "sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+      }
+    },
+    "master": 15833,
+    "master_sha256": "db0405de82f53f75040fab825c8147619b236f6fea38b73933a1bb159e51b8f9",
+    "summary": 15835,
+    "upload_markdown": 15836,
+    "upload_markdown_sha256": "5b1a702c35803f9221e6c6c334482eb95a31ccb30783081e0cb877ff5ec9e348",
+    "metadata_json": 15837,
+    "metadata_json_sha256": "1c01bf221136cd2c59f7140d7a3d89b252c3d76b929086fda50e173b6b3ab2f7"
+  },
+  "thumbnail": "publish/youtube_short/releases/rel_be091e7ab68643d0ba208cbf6b1c38e1/thumbnail.png",
+  "upload": "publish/youtube_short/releases/rel_be091e7ab68643d0ba208cbf6b1c38e1/YOUTUBE_SHORT_UPLOAD.md"
+}

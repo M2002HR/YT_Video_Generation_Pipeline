@@ -1,0 +1,86 @@
+{
+  "title": "What If Earth's Gravity Were Cut in Half? 🌍 #shorts",
+  "title_options": [
+    "What Happens If Earth's Gravity Is Cut in Half? 🌍 #shorts",
+    "Half Gravity on Earth: What Would Change? 🪐 #shorts",
+    "How Would Life Change With Half Earth's Gravity? 🚀 #shorts"
+  ],
+  "description": "What if Earth's gravity were cut in half? This Short explores how weaker gravity could affect weight, jumping, lifting, buildings, bridges, vehicles, and everyday life.\nKeywords: what if Earth's gravity were cut in half, half gravity Earth, weaker gravity effects, weight under lower gravity, low gravity buildings, low gravity vehicles\n#shorts #viralshorts #gravity #earth #science",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "Earth gravity",
+    "half gravity",
+    "half gravity Earth",
+    "Earth's gravity cut in half",
+    "what if Earth's gravity were cut in half",
+    "weaker gravity",
+    "reduced gravity",
+    "gravity effects",
+    "weight and gravity",
+    "jumping in low gravity",
+    "gravity and buildings",
+    "gravity and bridges",
+    "gravity and vehicles",
+    "Earth science",
+    "physics",
+    "Earths gravity"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "age_restriction_recommendation": "no_age_restriction_indicated; uploader_must_review",
+    "paid_promotion_recommendation": "no_paid_promotion_indicated; uploader_must_review",
+    "altered_or_synthetic_content_recommendation": "review_final_video; disclosure may not be required if the AI imagery remains clearly stylized and does not realistically or meaningfully alter reality"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "not_made_for_kids",
+      "reason": "The source channel setting recommends not made for kids, but the uploader must make the final audience declaration after reviewing the completed video and its intended audience."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "no_age_restriction_indicated",
+      "reason": "The supplied episode is educational and contains no stated age-restricted subject matter. The uploader must still make the final legal and platform declaration after reviewing the finished video."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "no_paid_promotion_indicated",
+      "reason": "SOURCE_CONTEXT contains no stated sponsorship, endorsement, or paid product placement. The uploader must confirm whether any undisclosed commercial relationship applies."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "review_final_video; likely no disclosure if the visuals remain unmistakably stylized",
+      "reason": "The pipeline uses AI imagery, while the supplied rendered references have a visibly sculpted, clay-like illustrative style. Disclosure depends on whether the final output is realistic or meaningfully alters reality, so the uploader must make the final declaration."
+    }
+  ],
+  "thumbnail_prompt": "Create a 9:16 YouTube Shorts thumbnail matching the episode's final rendered visual language: a handcrafted sculpted-clay diorama with soft polymer-clay texture, muted beige, sage green, dusty brown, pale blue, and copper accents, warm diffused exhibit lighting, gentle depth of field, and the whimsical Newton-style scholar from the identity reference with his enormous curled white wig, long orange nose, black robe, white neck cloth, and small book. Use one instantly readable visual metaphor and one dominant focal subject: the scholar effortlessly lifts an oversized heavy-looking beige crate with one hand while a small bridge model immediately beside him subtly flexes under changed loading, making the reduced-gravity idea clear at a glance. Keep the scholar large in frame, use the black robe and white wig for strong contrast against the pastel engineering-display background, simplify all secondary props, and leave deliberate clean negative space around the silhouette. Preserve the handcrafted atmosphere and character identity without reproducing the character-sheet layout. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if Earth's gravity were cut in half",
+    "search_intent": "Informational curiosity about the physical and everyday effects of Earth having roughly half its current surface gravity.",
+    "secondary_queries": [
+      "half gravity Earth",
+      "what happens if gravity is weaker",
+      "effects of lower gravity on humans",
+      "how lower gravity affects buildings",
+      "how lower gravity affects vehicles"
+    ],
+    "spelling_variants": [
+      "what if Earths gravity were cut in half",
+      "Earth's gravity halved",
+      "half-gravity Earth"
+    ],
+    "rationale": "The primary title preserves the episode topic exactly, while the description, alternatives, keywords, and tags reinforce closely related searches about reduced gravity and its effects on weight, movement, structures, and machines without adding unrelated trends or repetitive keyword stuffing."
+  },
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader chooses an appropriate existing Q Station video."
+}

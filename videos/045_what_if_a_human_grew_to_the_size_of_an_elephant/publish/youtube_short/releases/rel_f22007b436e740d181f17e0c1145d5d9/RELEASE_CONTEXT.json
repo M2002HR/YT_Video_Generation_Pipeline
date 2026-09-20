@@ -1,0 +1,85 @@
+{
+  "channel": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "run": {
+    "video": "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+    "topic": "What If a Human Grew to the Size of an Elephant??",
+    "duration_seconds": 49.45,
+    "resolution": {
+      "width": 1080,
+      "height": 1920
+    },
+    "aspect_ratio": "9:16",
+    "subtitles_burned_in": true
+  },
+  "episode_direction": {
+    "concept_id": "1fc5dad72979b24da8d0",
+    "opening_actions": [
+      "The scholar places a small human model and an elephant-sized human model beside matching warm plates.",
+      "He compares the visible warmth loss from the two body shapes.",
+      "He pauses and notices the larger model changing differently."
+    ],
+    "entry_bridge": {
+      "a_end": "The scholar places the large model beside the small one.",
+      "b_start": "A closed topic-styled book rests beside the models.",
+      "reveal": "The book reveals a body-size comparison world where scale changes how bodies handle heat.",
+      "world_entry": "Two giant and small body outlines stand beside temperature markers in the illustrated topic world."
+    },
+    "opening_activity": "Comparing warmth loss between scaled body shapes using matching body models and heat demonstrations.",
+    "opening_location": "A quiet science display hall with body models and simple heat comparison exhibits.",
+    "opening_environment": "A calm educational display space with scaled body forms, warm plates, and measurement objects.",
+    "topic_visual_link": "The different cooling behavior of small and giant body models directly previews how elephant-sized human bodies would experience changed heat loss.",
+    "link_type": "direct",
+    "opening_visual_proof": "A small human model and an elephant-sized human model beside identical warm plates show different visible warmth loss patterns.",
+    "curiosity_trigger": "The scholar notices the larger body shape does not keep the same warmth pattern as the smaller one.",
+    "trigger_object": "The paired small and elephant-sized human models with matching warm plates.",
+    "reaction": "He pauses with a curious glance and carefully compares the two models again.",
+    "entry_retrieval": "After checking the models, the scholar discovers the closed storybook resting beside the display and reveals it as the next path of exploration.",
+    "entry_variant": "discovered_book",
+    "camera_pattern": "slow_push_in",
+    "hero_presence_mode": "in_world",
+    "closing_mode": "stay_in_world",
+    "world_style_hint": "A visual science world showing oversized and miniature body forms, heat patterns, and changing proportions.",
+    "reason": "The opening makes the square-cube rule visible through a simple body-scale comparison, fitting the scholar's careful observation style and the topic's core question."
+  },
+  "script_plan": {
+    "opening_question_spark": "If a human grew huge, would their body cool the same?",
+    "book_transition": "Bigger size can change how a body loses heat.",
+    "cta": "Suggest next topic in comments.",
+    "body": [
+      "Two body outlines show different heat loss.",
+      "Small and giant models lose warmth at different speeds.",
+      "The giant model has more outside area and loses heat.",
+      "The inner part of the body grows differently from outside area.",
+      "The square-cube rule explains size changes outside area and volume.",
+      "Volume means the space inside a body.",
+      "An elephant-sized human may struggle with body heat.",
+      "The models show bigger bodies change beyond height.",
+      "A giant human is not just a larger copy."
+    ],
+    "optional_closing": "Bodies need new solutions.",
+    "full_narration": "If a human grew huge, would their body cool the same? Bigger size can change how a body loses heat. Two body outlines show different heat loss. Small and giant models lose warmth at different speeds. The giant model has more outside area and loses heat. The inner part of the body grows differently from outside area. The square-cube rule explains size changes outside area and volume. Volume means the space inside a body. An elephant-sized human may struggle with body heat. The models show bigger bodies change beyond height. A giant human is not just a larger copy. Bodies need new solutions. Suggest next topic in comments.",
+    "word_count": 110,
+    "created_at": "2026-09-19T15:13:12Z"
+  },
+  "narration": "If a human grew huge, would their body cool the same? Bigger size can change how a body loses heat. Two body outlines show different heat loss. Small and giant models lose warmth at different speeds. The giant model has more outside area and loses heat. The inner part of the body grows differently from outside area. The square-cube rule explains size changes outside area and volume. Volume means the space inside a body. An elephant-sized human may struggle with body heat. The models show bigger bodies change beyond height. A giant human is not just a larger copy. Bodies need new solutions. Suggest next topic in comments.",
+  "music": {
+    "provider": "operator_upload",
+    "source_url": null,
+    "license": "Operator-supplied; publication rights must be verified by the operator."
+  },
+  "thumbnail_editorial_rules": {
+    "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+    "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+  }
+}

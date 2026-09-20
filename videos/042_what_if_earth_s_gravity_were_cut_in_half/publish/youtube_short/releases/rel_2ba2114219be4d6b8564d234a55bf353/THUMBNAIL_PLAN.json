@@ -1,0 +1,29 @@
+{
+  "schema_version": 3,
+  "requested_count": 1,
+  "text_mode": "auto",
+  "resolved_headline": "Life at Half Gravity",
+  "headline_job_id": "34d1f36e-b696-4e75-902a-f2dc5400c45e",
+  "plans": [
+    {
+      "candidate_id": "candidate_01",
+      "layout_id": "stacked_brand",
+      "headline": "Life at Half Gravity",
+      "video_topic": "What If Earth's Gravity Were Cut in Half?",
+      "video_title": "What If Fish Could Breathe on Land? 🌍 #shorts",
+      "scene": "a tangible cause and consequence from the episode",
+      "contrast": "one factual tension only",
+      "evidence_anchor": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person",
+      "character_expression": "auto",
+      "color_direction": "auto",
+      "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the topic object",
+      "composition_template": "FIXED BRANDED COMPOSITION: one continuous vertical canvas with no panels or dividers. Use the upper portion for distinct topic objects, reserve a visually quiet middle zone for the exact headline, and use the lower portion for one expressive centered character close-up. Host: one large head-and-shoulders close-up at the bottom, centered, head roughly 70–85% of canvas width. Objects: one dominant topic object at the top, with no more than two smaller supporting objects. Keep the face unobstructed.",
+      "novelty_signature": "06352273a25c1e8a",
+      "constraints": {
+        "must_include": "",
+        "must_avoid": "",
+        "tension": "strong"
+      }
+    }
+  ]
+}

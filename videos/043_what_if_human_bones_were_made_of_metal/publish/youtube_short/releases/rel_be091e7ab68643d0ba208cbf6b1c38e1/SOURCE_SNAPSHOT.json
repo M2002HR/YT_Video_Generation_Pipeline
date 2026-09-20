@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "video": "043_what_if_human_bones_were_made_of_metal",
+  "master": "assets/renders/polished.mp4",
+  "master_sha256": "db0405de82f53f75040fab825c8147619b236f6fea38b73933a1bb159e51b8f9",
+  "finalization_status": "DONE",
+  "polished_qc_passed": true,
+  "captured_at": "2026-09-20T02:45:42.228870+00:00"
+}

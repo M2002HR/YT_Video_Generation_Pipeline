@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan": {
+    "candidate_id": "candidate_01",
+    "layout_id": "stacked_brand",
+    "headline": "Life at Half Gravity",
+    "video_topic": "What If Earth's Gravity Were Cut in Half?",
+    "video_title": "What If Fish Could Breathe on Land? 🌍 #shorts",
+    "scene": "a tangible cause and consequence from the episode",
+    "contrast": "one factual tension only",
+    "evidence_anchor": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person",
+    "character_expression": "auto",
+    "color_direction": "auto",
+    "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the topic object",
+    "composition_template": "FIXED BRANDED COMPOSITION: one continuous vertical canvas with no panels or dividers. Use the upper portion for distinct topic objects, reserve a visually quiet middle zone for the exact headline, and use the lower portion for one expressive centered character close-up. Host: one large head-and-shoulders close-up at the bottom, centered, head roughly 70–85% of canvas width. Objects: one dominant topic object at the top, with no more than two smaller supporting objects. Keep the face unobstructed.",
+    "novelty_signature": "06352273a25c1e8a",
+    "constraints": {
+      "must_include": "",
+      "must_avoid": "",
+      "tension": "strong"
+    }
+  },
+  "result": {
+    "candidate_id": "candidate_01",
+    "layout_id": "stacked_brand",
+    "headline": "Life at Half Gravity",
+    "evidence_anchor": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person",
+    "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/thumbnail_candidates/candidate_01/artwork.png",
+    "final_path": "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/thumbnail_candidates/candidate_01/final.png",
+    "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/042_what_if_earth_s_gravity_were_cut_in_half/publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/thumbnail_candidates/candidate_01/preview_small.jpg",
+    "artwork": {
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2297075,
+      "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+    },
+    "final": {
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2297075,
+      "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+    },
+    "review": {
+      "eligible": true,
+      "score": 0,
+      "reasons": [
+        "Thumbnail QC and final visual review were disabled by the Release operator."
+      ],
+      "blocking_violations": [],
+      "warnings": [
+        "No ChatGPT visual review was requested."
+      ],
+      "review_status": "SKIPPED_OPERATOR",
+      "final_sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+    },
+    "generated_provider": "chatgpt",
+    "generation_job_id": "626037fb-ecef-4972-90b8-8f872329f958",
+    "generation_receipt": {
+      "provider": "chatgpt",
+      "requested_model": null,
+      "actual_model_label": null,
+      "model_verified": false,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "9:16",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://chatgpt.com/g/g-p-6aad6365c6a4819189a5a35f28e021fc-ordak/c/6aaf478e-5b48-83eb-98fd-29340ddd8524",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "character_sheet"
+      ],
+      "notes": [
+        "artifact_source=download",
+        "chat_scope=project",
+        "image=626037fb-ecef-4972-90b8-8f872329f958_output_1.png sha256=9ae024619335a7821b104a688d17117e446564a80fbbb0eda7d29b098af2834d"
+      ],
+      "mode": "image_generate",
+      "chatgpt_chat": "project",
+      "attachment_roles": [
+        "character_sheet"
+      ],
+      "attachment_sha256": {
+        "character_sheet": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+      },
+      "normalization": {
+        "source_width": 941,
+        "source_height": 1672,
+        "ratio_error": 0.000532,
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2297075,
+        "sha256": "6162b32043a9e9b5bfbb20c0542dbf94b17c44359047c67df82f895ca9ad40ab"
+      },
+      "output_count": 1
+    },
+    "attachments": [
+      {
+        "role": "character_sheet",
+        "purpose": "MANDATORY source of truth for character identity only",
+        "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+        "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+      },
+      {
+        "role": "quicky_story_font",
+        "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+        "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+        "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+      }
+    ]
+  }
+}

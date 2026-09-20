@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan": {
+    "candidate_id": "candidate_01",
+    "layout_id": "stacked_brand",
+    "headline": "Could Metal Bones Move?",
+    "video_topic": "What If Human Bones Were Made of Metal?",
+    "video_title": "What If Fish Could Breathe on Land? 🦴 #shorts",
+    "scene": "a tangible cause and consequence from the episode",
+    "contrast": "one factual tension only",
+    "evidence_anchor": "If bones were metal, would your body become stronger? Metal can hold weight, but bone-like movement may be lost. Metal bones could carry heavy loads. Joints need movement, not only strength. Real bones are strong and slightly bendable. Meta",
+    "character_expression": "auto",
+    "color_direction": "auto",
+    "character_role": "visible guide whose gaze, gesture, or reaction directs attention to the topic object",
+    "composition_template": "FIXED BRANDED COMPOSITION: one continuous vertical canvas with no panels or dividers. Use the upper portion for distinct topic objects, reserve a visually quiet middle zone for the exact headline, and use the lower portion for one expressive centered character close-up. Host: one large head-and-shoulders close-up at the bottom, centered, head roughly 70–85% of canvas width. Objects: one dominant topic object at the top, with no more than two smaller supporting objects. Keep the face unobstructed.",
+    "novelty_signature": "edd770a69070b1e1",
+    "constraints": {
+      "must_include": "",
+      "must_avoid": "",
+      "tension": "strong"
+    }
+  },
+  "result": {
+    "candidate_id": "candidate_01",
+    "layout_id": "stacked_brand",
+    "headline": "Could Metal Bones Move?",
+    "evidence_anchor": "If bones were metal, would your body become stronger? Metal can hold weight, but bone-like movement may be lost. Metal bones could carry heavy loads. Joints need movement, not only strength. Real bones are strong and slightly bendable. Meta",
+    "artwork_path": "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/publish/youtube_short/releases/rel_be091e7ab68643d0ba208cbf6b1c38e1/thumbnail_candidates/candidate_01/artwork.png",
+    "final_path": "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/publish/youtube_short/releases/rel_be091e7ab68643d0ba208cbf6b1c38e1/thumbnail_candidates/candidate_01/final.png",
+    "preview_path": "/opt/YT_Video_Generation_Pipeline/videos/043_what_if_human_bones_were_made_of_metal/publish/youtube_short/releases/rel_be091e7ab68643d0ba208cbf6b1c38e1/thumbnail_candidates/candidate_01/preview_small.jpg",
+    "artwork": {
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2433032,
+      "sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+    },
+    "final": {
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2433032,
+      "sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+    },
+    "review": {
+      "eligible": true,
+      "score": 0,
+      "reasons": [
+        "Thumbnail QC and final visual review were disabled by the Release operator."
+      ],
+      "blocking_violations": [],
+      "warnings": [
+        "No ChatGPT visual review was requested."
+      ],
+      "review_status": "SKIPPED_OPERATOR",
+      "final_sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+    },
+    "generated_provider": "chatgpt",
+    "generation_job_id": "500317ab-0786-4d09-a10f-0be4ca554a23",
+    "generation_receipt": {
+      "provider": "chatgpt",
+      "requested_model": null,
+      "actual_model_label": null,
+      "model_verified": false,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "9:16",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://chatgpt.com/g/g-p-6aad6365c6a4819189a5a35f28e021fc-ordak/c/6aaf49c4-7f38-83eb-9c83-96b238991166",
+      "submission_fingerprint": null,
+      "reference_roles": [
+        "character_sheet"
+      ],
+      "notes": [
+        "artifact_source=download",
+        "chat_scope=project",
+        "image=500317ab-0786-4d09-a10f-0be4ca554a23_output_1.png sha256=1ecc36b0ed4c770a19f5b7246bb072bd0e0b975d6577651bcfe0d020063d3d6f"
+      ],
+      "mode": "image_generate",
+      "chatgpt_chat": "project",
+      "attachment_roles": [
+        "character_sheet"
+      ],
+      "attachment_sha256": {
+        "character_sheet": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+      },
+      "normalization": {
+        "source_width": 941,
+        "source_height": 1672,
+        "ratio_error": 0.000532,
+        "width": 1080,
+        "height": 1920,
+        "bytes": 2433032,
+        "sha256": "31103bcdf94cb699eb48289635f3a187d2b787f481084637a6668a3f4cb19228"
+      },
+      "output_count": 1
+    },
+    "attachments": [
+      {
+        "role": "character_sheet",
+        "purpose": "MANDATORY source of truth for character identity only",
+        "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+        "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+      },
+      {
+        "role": "quicky_story_font",
+        "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+        "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+        "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "title": "What If Earth's Gravity Were Cut in Half? 🌍 #shorts",
+  "title_options": [
+    "What Happens If Earth's Gravity Is Cut in Half? 🌍 #shorts",
+    "What If Earth Had Half Its Gravity? 🌍 #shorts",
+    "How Would Half Gravity Change Everyday Life? ⚖️ #shorts"
+  ],
+  "description": "What if Earth's gravity were cut in half? See how weaker gravity could change weight, jumping, lifting, buildings, bridges, vehicles, and everyday movement.\nKeywords: what if Earth's gravity were cut in half, half gravity Earth, weaker gravity effects, reduced gravity on humans, gravity and buildings, gravity and vehicles\n#shorts #viralshorts #gravity #earth #physics",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "Earth gravity",
+    "Earth's gravity",
+    "half gravity",
+    "half gravity Earth",
+    "what if Earth's gravity were cut in half",
+    "what if Earths gravity were cut in half",
+    "Earth's gravity halved",
+    "weaker gravity",
+    "reduced gravity",
+    "gravity effects",
+    "physics"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_status": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow"
+  },
+  "manual_review": [
+    {
+      "field": "audience",
+      "recommendation": "uploader_review_required",
+      "reason": "SOURCE_CONTEXT provides a channel-level recommendation of not_made_for_kids, but the uploader must make the final audience declaration after reviewing the completed video and its intended audience."
+    },
+    {
+      "field": "age_restriction",
+      "recommendation": "uploader_review_required",
+      "reason": "The episode context does not identify age-restricted subject matter, but the uploader must make the final platform declaration after reviewing the finished video."
+    },
+    {
+      "field": "paid_promotion",
+      "recommendation": "uploader_review_required",
+      "reason": "SOURCE_CONTEXT does not state any sponsorship, endorsement, or paid product placement. The uploader must confirm whether any commercial relationship requires disclosure."
+    },
+    {
+      "field": "altered_or_synthetic_content",
+      "recommendation": "uploader_review_required",
+      "reason": "The supplied visual references are clearly stylized clay-like imagery, but the uploader must review the final video and make any required altered or synthetic content declaration."
+    }
+  ],
+  "thumbnail_prompt": "Create a single 9:16 YouTube Shorts thumbnail using the final rendered frames as the primary visual truth. Match Q Station's handcrafted sculpted-clay diorama look with soft polymer-clay texture, muted beige, sage green, dusty brown, pale blue, and restrained copper accents, gentle depth of field, and warm diffused lighting. Use one dominant focal subject: an ordinary clay figure caught at the peak of an unusually high jump in the foreground of the same stylized city world, clearly separated from the street below so reduced gravity reads instantly on a phone. Frame the figure against clean pale-blue sky or simple negative space for strong silhouette contrast, while the familiar clay buildings, a suspension bridge, and a small number of vehicles remain secondary context. Keep the scene grounded and consistent with the rendered city frames rather than introducing a generic person or reproducing the character-sheet layout. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if Earth's gravity were cut in half",
+    "search_intent": "Informational curiosity about how halving Earth's gravity would affect people, movement, structures, vehicles, and everyday physical systems.",
+    "secondary_queries": [
+      "half gravity Earth",
+      "what happens if gravity is weaker",
+      "effects of half gravity on humans",
+      "how weaker gravity affects buildings",
+      "how weaker gravity affects vehicles"
+    ],
+    "spelling_variants": [
+      "what if Earths gravity were cut in half",
+      "Earth's gravity halved",
+      "half-gravity Earth"
+    ],
+    "rationale": "The primary title keeps SOURCE_CONTEXT.run.topic unchanged as its core. The description and supporting metadata reinforce only close searches about halved or weaker Earth gravity and its effects on weight, movement, structures, and machines without unrelated trends, ranking claims, or repetitive keyword stuffing."
+  },
+  "related_video_note": "No related video is specified in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader manually chooses a relevant existing Q Station video."
+}

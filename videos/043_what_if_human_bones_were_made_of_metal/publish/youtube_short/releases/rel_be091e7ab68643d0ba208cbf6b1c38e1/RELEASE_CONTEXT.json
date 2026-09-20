@@ -1,0 +1,86 @@
+{
+  "channel": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "run": {
+    "video": "043_what_if_human_bones_were_made_of_metal",
+    "topic": "What If Human Bones Were Made of Metal?",
+    "duration_seconds": 50.756,
+    "resolution": {
+      "width": 1080,
+      "height": 1920
+    },
+    "aspect_ratio": "9:16",
+    "subtitles_burned_in": true
+  },
+  "episode_direction": {
+    "concept_id": "8141ec83c222320a1d14",
+    "opening_actions": [
+      "The scholar gently bends two small body frame models side by side.",
+      "He notices the metal rod frame barely flexes while the flexible frame moves naturally.",
+      "He pauses and compares the different shapes after bending."
+    ],
+    "entry_bridge": {
+      "a_end": "The scholar places the two frame models beside the storybook.",
+      "b_start": "A closed topic-styled book sits alone in a top-down view.",
+      "reveal": "The book opens to an illustrated body with metal bones.",
+      "world_entry": "A host-free view shows a human-shaped figure with a shiny internal frame."
+    },
+    "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+    "opening_location": "A quiet engineering display room with simple material demonstration models.",
+    "opening_environment": "A calm exhibit space with a small table holding body structure models and the storybook nearby.",
+    "topic_visual_link": "The rigid metal frame model visually mirrors the idea of metal bones gaining strength while losing the flexibility needed for movement.",
+    "link_type": "metaphor",
+    "opening_visual_proof": "Two body frame models are being bent together, with the metal rod frame staying stiff while the flexible frame curves.",
+    "curiosity_trigger": "The surprising mismatch between a strong-looking metal frame and its limited movement makes the scholar question whether strength alone helps a body.",
+    "trigger_object": "The side-by-side flexible and metal body frame models.",
+    "reaction": "He pauses with quiet surprise and studies the less flexible metal frame.",
+    "entry_retrieval": "He sets the models down beside the storybook and reveals it as the next place to investigate the question.",
+    "entry_variant": "object_transformation",
+    "camera_pattern": "slow_push_in",
+    "hero_presence_mode": "in_world",
+    "closing_mode": "stay_in_world",
+    "world_style_hint": "A scientific topic world showing a human-shaped figure exploring the tradeoff between rigid metal structures and living movement.",
+    "reason": "The material comparison directly visualizes the script's central idea that metal can add strength but may reduce the flexibility and movement required by a living skeleton."
+  },
+  "script_plan": {
+    "opening_question_spark": "If bones were metal, would your body become stronger?",
+    "book_transition": "Metal can hold weight, but bone-like movement may be lost.",
+    "cta": "Suggest the next video idea.",
+    "body": [
+      "Metal bones could carry heavy loads.",
+      "Joints need movement, not only strength.",
+      "Real bones are strong and slightly bendable.",
+      "Metal frames bend less than bones.",
+      "The body could become too heavy to move.",
+      "Muscles may struggle with a heavier skeleton.",
+      "Metal bones could make repairs harder after damage.",
+      "Medical parts called implants use titanium for support.",
+      "They do not replace a whole living skeleton.",
+      "A strong skeleton must help the body move and work well."
+    ],
+    "optional_closing": "Metal gives strength, but it can also cause movement problems.",
+    "full_narration": "If bones were metal, would your body become stronger? Metal can hold weight, but bone-like movement may be lost. Metal bones could carry heavy loads. Joints need movement, not only strength. Real bones are strong and slightly bendable. Metal frames bend less than bones. The body could become too heavy to move. Muscles may struggle with a heavier skeleton. Metal bones could make repairs harder after damage. Medical parts called implants use titanium for support. They do not replace a whole living skeleton. A strong skeleton must help the body move and work well. Metal gives strength, but it can also cause movement problems. Suggest the next video idea.",
+    "word_count": 110,
+    "created_at": "2026-09-19T07:06:04Z"
+  },
+  "narration": "If bones were metal, would your body become stronger? Metal can hold weight, but bone-like movement may be lost. Metal bones could carry heavy loads. Joints need movement, not only strength. Real bones are strong and slightly bendable. Metal frames bend less than bones. The body could become too heavy to move. Muscles may struggle with a heavier skeleton. Metal bones could make repairs harder after damage. Medical parts called implants use titanium for support. They do not replace a whole living skeleton. A strong skeleton must help the body move and work well. Metal gives strength, but it can also cause movement problems. Suggest the next video idea.",
+  "music": {
+    "provider": "operator_upload",
+    "source_url": null,
+    "license": "Operator-supplied; publication rights must be verified by the operator."
+  },
+  "thumbnail_editorial_rules": {
+    "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+    "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+  }
+}

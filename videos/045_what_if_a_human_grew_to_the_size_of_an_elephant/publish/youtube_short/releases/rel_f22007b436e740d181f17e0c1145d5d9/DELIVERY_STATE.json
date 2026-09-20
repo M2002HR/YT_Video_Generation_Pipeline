@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "status": "DONE",
+  "completed_at": "2026-09-20T03:06:14.979423+00:00",
+  "messages": {
+    "candidates": {
+      "candidate_01": {
+        "message_id": 15854,
+        "sha256": "0cc58ecadc9d3743b7adfa53eaf6d06f8a015d6445e1f4ef34d5d989029cfa91"
+      }
+    },
+    "master": 15853,
+    "master_sha256": "53969915711dc2e9d02795e8b729df206ca3a7ac6f7a599beb2d172f7f60374b",
+    "summary": 15855,
+    "upload_markdown": 15856,
+    "upload_markdown_sha256": "6f5b82be7adc216b880a05a4d5a7f71d0ee9be50c024deba459f78bb8552d5fe",
+    "metadata_json": 15857,
+    "metadata_json_sha256": "47d90b3debd07993f619c1b44e77f035f8e3cf952a8a8ded1128c8ce79314650"
+  },
+  "delivered_count": 1
+}

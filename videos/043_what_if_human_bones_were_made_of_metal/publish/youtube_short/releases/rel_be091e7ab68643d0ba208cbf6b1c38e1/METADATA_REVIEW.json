@@ -1,0 +1,81 @@
+{
+  "title": "What If Human Bones Were Made of Metal? 🦴 #shorts",
+  "title_options": [
+    "What If Human Bones Were Made of Metal? Strength vs. Movement 🦴 #shorts",
+    "What If Human Bones Were Made of Metal? Could You Still Move? 🦾 #shorts",
+    "What If Human Bones Were Made of Metal? Weight, Joints, and Repair 🦴 #shorts"
+  ],
+  "description": "What if human bones were made of metal? This Short explores how a metal skeleton could affect strength, flexibility, body weight, joint movement, muscle effort, repair, and the supporting role of titanium implants.\nKeywords: what if human bones were made of metal, what if bones were metal, human skeleton made of metal, metal bones, bone flexibility, titanium implants\n#shorts #viralshorts #humanbody #skeleton #science",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "what if human bones were made of metal",
+    "what if bones were metal",
+    "human bones made of metal",
+    "human bones made from metal",
+    "human skeleton made of metal",
+    "metal bones",
+    "metal skeleton",
+    "bone flexibility",
+    "bone strength",
+    "joint movement",
+    "skeleton movement",
+    "titanium implants",
+    "human anatomy",
+    "biomechanics"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Review the finished video and make the required audience declaration before publication.",
+      "reason": "The source context recommends not_made_for_kids, but the uploader must determine whether the finished video is specifically directed to children."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "Review the finished video and make the age-restriction declaration before publication.",
+      "reason": "The supplied material presents non-graphic educational anatomy, but the uploader must make the final declaration based on the completed video."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "Verify whether the finished upload contains any sponsorship, endorsement, product placement, or other paid promotion and declare it accordingly.",
+      "reason": "No paid promotion is identified in the supplied source context, but the final declaration remains the uploader's responsibility."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review the final rendered video against YouTube's current altered or synthetic content disclosure requirements before making the declaration.",
+      "reason": "The production uses AI-generated stylized imagery, so the uploader should assess the finished video's presentation and applicable disclosure requirements."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before release.",
+      "reason": "The source context explicitly states that publication rights for the music must be verified by the operator."
+    }
+  ],
+  "thumbnail_prompt": "Create one instantly readable 9:16 vertical thumbnail matching the final rendered episode frames: a handcrafted layered cut-paper anatomical world with cream bone and parchment tones, muted olive and forest greens, ochre and tan foliage, cool silver-blue metal accents, visible paper texture and cut edges, and soft dimensional studio shadows. Show one dominant host-free human anatomical figure in a side or three-quarter mid-step pose, with muscles partially visible and the skeleton presented as a rigid metallic structure through the skull, spine, ribs, arms, and legs. Make the episode's central tension clear at a glance: the metal frame looks strong but the body's movement appears noticeably stiff, using restrained hinge-like joint details without injury or gore. Keep the figure large with strong light-dark separation, a simple layered forest or scientific storybook setting consistent with the rendered body and closing frames, and deliberate negative space in the upper area. Preserve the calm paper-diorama atmosphere rather than photorealism. No written words, letters, logos, watermark, UI, border, collage, split-screen, or stock-photo look.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if human bones were made of metal",
+    "search_intent": "Educational hypothetical about how a metal skeleton could change strength, flexibility, movement, body weight, muscle effort, repair, and the supporting use of titanium implants.",
+    "secondary_queries": [
+      "what if bones were metal",
+      "human skeleton made of metal",
+      "metal bones in the human body",
+      "metal skeleton strength and movement",
+      "titanium implants in the skeleton"
+    ],
+    "spelling_variants": [],
+    "rationale": "The primary query exactly matches the episode topic. The secondary phrases stay close to the video's actual discussion of metal bones, movement, weight, flexibility, joints, and titanium implants without adding unsupported claims, unrelated trends, or artificial keyword repetition."
+  },
+  "related_video_note": "Leave the related-video selection unset because SOURCE_CONTEXT identifies no specific related upload; only add a clearly relevant Q Station video manually."
+}

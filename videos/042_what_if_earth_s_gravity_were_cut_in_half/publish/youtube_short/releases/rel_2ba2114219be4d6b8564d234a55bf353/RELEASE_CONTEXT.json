@@ -1,0 +1,85 @@
+{
+  "channel": {
+    "channel_name": "Q Station",
+    "channel_tagline": "Every question opens a world.",
+    "language": "en",
+    "category": "Education",
+    "category_id": "27",
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids"
+  },
+  "run": {
+    "video": "042_what_if_earth_s_gravity_were_cut_in_half",
+    "topic": "What If Earth's Gravity Were Cut in Half?",
+    "duration_seconds": 47.726,
+    "resolution": {
+      "width": 1080,
+      "height": 1920
+    },
+    "aspect_ratio": "9:16",
+    "subtitles_burned_in": true
+  },
+  "episode_direction": {
+    "concept_id": "d190a000937bbf385cd1",
+    "opening_actions": [
+      "The scholar lifts a large box from a display platform with unexpected ease.",
+      "He sets the box beside a small bridge model and notices the model flexing under a changed load.",
+      "He leans closer and compares the two examples with a curious pause."
+    ],
+    "entry_bridge": {
+      "a_end": "The scholar returns the box and pulls a closed storybook from a nearby shelf.",
+      "b_start": "A closed topic-styled book is shown alone from above.",
+      "reveal": "The opened pages reveal an illustrated world where gravity is half as strong.",
+      "world_entry": "A city scene shows people, vehicles, and structures behaving under weaker gravity."
+    },
+    "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+    "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+    "opening_environment": "A quiet public engineering exhibit space with a large box, a tabletop bridge model, and a nearby shelf holding storybooks.",
+    "topic_visual_link": "The visible mismatch between an easily lifted heavy box and a bridge model reacting differently shows that halving gravity changes both people and the systems around them.",
+    "link_type": "direct",
+    "opening_visual_proof": "The scholar holds a large box effortlessly while the adjacent bridge model visibly bends under its altered load.",
+    "curiosity_trigger": "He notices that the same lighter-feeling world does not make every structure behave the same way.",
+    "trigger_object": "The large box beside the flexing bridge model.",
+    "reaction": "He gives a small surprised look and carefully checks both examples.",
+    "entry_retrieval": "After comparing the box and bridge, the scholar returns the box and reaches to a nearby shelf to reveal the closed storybook.",
+    "entry_variant": "shelf_reveal",
+    "camera_pattern": "slow_push_in",
+    "hero_presence_mode": "auto",
+    "closing_mode": "stay_in_world",
+    "world_style_hint": "A grounded illustrated city and landscape where everyday movement and machines adapt to lower gravity.",
+    "reason": "The opening turns the script's central idea into a visible cause-and-effect moment: lighter bodies do not mean the entire built world stays unchanged."
+  },
+  "script_plan": {
+    "opening_question_spark": "If your weight was cut in half, would Earth feel the same?",
+    "book_transition": "A weaker pull could change how people move and how bridges carry loads.",
+    "cta": "Comment your next gravity question.",
+    "body": [
+      "People would weigh half as much on Earth.",
+      "They could jump higher and lift heavy objects more easily.",
+      "A person could carry a large box with less effort.",
+      "Bridges and buildings would face different forces.",
+      "Some structures might need new designs.",
+      "Cars and machines would move differently.",
+      "Astronauts already experience very low gravity in space.",
+      "A half-gravity Earth could look familiar but act differently.",
+      "Many systems would need to adjust to lower weight."
+    ],
+    "optional_closing": "Lighter does not mean the same.",
+    "full_narration": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person could carry a large box with less effort. Bridges and buildings would face different forces. Some structures might need new designs. Cars and machines would move differently. Astronauts already experience very low gravity in space. A half-gravity Earth could look familiar but act differently. Many systems would need to adjust to lower weight. Lighter does not mean the same. Comment your next gravity question.",
+    "word_count": 110,
+    "created_at": "2026-09-19T04:59:27Z"
+  },
+  "narration": "If your weight was cut in half, would Earth feel the same? A weaker pull could change how people move and how bridges carry loads. People would weigh half as much on Earth. They could jump higher and lift heavy objects more easily. A person could carry a large box with less effort. Bridges and buildings would face different forces. Some structures might need new designs. Cars and machines would move differently. Astronauts already experience very low gravity in space. A half-gravity Earth could look familiar but act differently. Many systems would need to adjust to lower weight. Lighter does not mean the same. Comment your next gravity question.",
+  "music": {
+    "provider": "freesound",
+    "source_url": "https://freesound.org/people/kontraamusic/sounds/790936/",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "thumbnail_editorial_rules": {
+    "title": "Accurate, concise and curiosity-led: put the real surprise, tension, question, or consequence early. Never use false promises, vague bait, ALL CAPS, or exaggerated punctuation.",
+    "thumbnail": "The actual rendered video frames are the primary visual truth. Make one instantly legible 9:16 scene with one focal subject, clear hierarchy, high contrast and deliberate negative space. It must feel like this episode, not generic stock art."
+  }
+}

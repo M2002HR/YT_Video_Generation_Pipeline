@@ -1,0 +1,93 @@
+{
+  "title": "What If Human Bones Were Made of Metal? 🦴 #shorts",
+  "title_options": [
+    "What If Human Bones Were Made of Metal? Strength vs Movement 🦴 #shorts",
+    "Metal Bones in Humans: What Would Change? 🦾 #shorts",
+    "Could a Metal Skeleton Make the Body Too Heavy? 🦴 #shorts"
+  ],
+  "description": "What if human bones were made of metal? This Short explores how strength, rigidity, weight, joint movement, muscle effort, repair, and titanium implants affect the idea of a metal skeleton.\nKeywords: metal bones, human skeleton made of metal, what if bones were metal, bone flexibility, titanium implants, human skeleton strength\n#shorts #viralshorts #humanbody #skeleton #science",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "what if human bones were made of metal",
+    "metal bones",
+    "human skeleton made of metal",
+    "what if bones were metal",
+    "human skeleton",
+    "bone flexibility",
+    "bone strength",
+    "skeleton movement",
+    "joint movement",
+    "titanium implants",
+    "medical implants",
+    "human anatomy",
+    "biomechanics",
+    "science shorts",
+    "education shorts",
+    "human body facts",
+    "metal skeleton"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "age_restriction_recommendation": "no_age_restriction_recommended",
+    "paid_promotion_recommendation": "no_paid_promotion_recommended",
+    "altered_or_synthetic_content_recommendation": "review_required; likely not required if the final AI imagery remains clearly stylized rather than realistic or meaningfully altering reality"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Keep not_made_for_kids unless the uploader determines the final video is specifically directed to children.",
+      "reason": "The source setting is not_made_for_kids, but the uploader must make the applicable audience declaration after reviewing the finished video."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "No age restriction is recommended based on the supplied non-graphic educational anatomy presentation.",
+      "reason": "The uploader must review the finished video and make the final age-restriction declaration."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "No paid promotion is recommended based on the supplied source context.",
+      "reason": "No sponsorship, endorsement, or paid promotion is identified in the supplied material, but the uploader must make the final declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review the final rendered video before declaring whether altered or synthetic content disclosure is required.",
+      "reason": "The pipeline uses AI imagery. Clearly stylized output may not require disclosure, while realistic synthetic imagery or imagery that meaningfully alters reality may require it; the uploader makes the final declaration."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before release.",
+      "reason": "The source context states that publication rights for the music must be verified by the operator."
+    }
+  ],
+  "thumbnail_prompt": "Create a single clean 9:16 vertical thumbnail in the same layered cut-paper anatomical illustration style as the final episode frames: warm cream bone tones, muted olive and forest greens, soft ochre and tan, with cool silver-blue metal accents, tactile paper texture, dimensional cut edges, and gentle studio-like shadows. Use one dominant host-free human anatomical figure as the focal subject, shown mid-step in a natural side or three-quarter pose, with the skeleton visibly transformed into a shiny rigid metal framework inside the body. Make the contrast between living movement and rigid metal instantly readable through stiff hinge-like joints and a strong metallic spine and limbs, without gore or injury. Keep the composition simple and phone-readable, with the figure filling most of the frame, strong light-dark separation, a calm scientific storybook atmosphere, and deliberate negative space in the upper area. Preserve the episode's handcrafted paper-diorama feel rather than photorealism or stock art. No written words, letters, logos, watermark, UI, border, collage, or split-screen.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if human bones were made of metal",
+    "search_intent": "Educational hypothetical explaining how a metal skeleton could affect strength, flexibility, movement, body weight, muscle effort, repair, and the role of titanium implants.",
+    "secondary_queries": [
+      "what if bones were metal",
+      "human skeleton made of metal",
+      "metal bones human body",
+      "metal skeleton strength and movement",
+      "titanium implants in the skeleton"
+    ],
+    "spelling_variants": [
+      "human bones made of metal",
+      "human bones made from metal",
+      "metal skeleton",
+      "metallic bones"
+    ],
+    "rationale": "The primary query matches the exact episode question. Secondary phrases stay close to the video's supported topics, including skeleton strength, flexibility, movement, weight, and titanium implants, without adding unrelated trends or unsupported claims."
+  },
+  "related_video_note": "No specific related video is identified in the source context; leave the related-video selection unset unless the uploader chooses a genuinely relevant Q Station video."
+}

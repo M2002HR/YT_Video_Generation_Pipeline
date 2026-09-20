@@ -1,0 +1,91 @@
+{
+  "title": "What If a Human Grew to the Size of an Elephant?? 🐘 #shorts",
+  "title_options": [
+    "Elephant-Sized Human: How Body Heat Changes 🐘 #shorts",
+    "Square-Cube Rule and an Elephant-Sized Human 📐 #shorts",
+    "What Happens to Body Heat at Elephant Size? 🌡️ #shorts"
+  ],
+  "description": "What if a human grew to the size of an elephant? This Short explores how the square-cube rule changes surface area, volume, and the way a much larger human body could handle heat.\nKeywords: elephant-sized human, square-cube rule, giant human biology, body heat at large size, surface area and volume, human scaling science\n#shorts #viralshorts #SquareCubeRule #HumanBiology #ScienceShorts",
+  "tags": [
+    "shorts",
+    "viral shorts",
+    "Q Station",
+    "what if a human grew to the size of an elephant",
+    "elephant sized human",
+    "elephant-sized human",
+    "giant human",
+    "square cube rule",
+    "square-cube rule",
+    "square-cube law",
+    "body heat",
+    "heat loss",
+    "surface area and volume",
+    "human biology",
+    "scaling biology",
+    "science shorts",
+    "educational shorts"
+  ],
+  "category": "Education",
+  "category_id": "27",
+  "language": "en",
+  "default_audio_language": "en",
+  "upload_settings": {
+    "privacy_recommendation": "unlisted",
+    "license": "youtube",
+    "comments": "allow_all",
+    "remixing": "allow",
+    "audience_recommendation": "not_made_for_kids",
+    "age_restriction_recommendation": "no_age_restriction_likely",
+    "paid_promotion_recommendation": "no_paid_promotion_indicated",
+    "altered_or_synthetic_content_recommendation": "likely_no_disclosure_for_clearly_stylized_ai_imagery; uploader_review_required_if_visuals_are_realistic_or_meaningfully_alter_reality"
+  },
+  "manual_review": [
+    {
+      "field": "audience_recommendation",
+      "recommendation": "Review and confirm not_made_for_kids before publishing.",
+      "reason": "The source recommends not_made_for_kids, but educational subject matter alone does not determine the legal audience designation; the uploader must make the final declaration."
+    },
+    {
+      "field": "age_restriction_recommendation",
+      "recommendation": "No age restriction appears necessary based on the supplied stylized educational visuals and script, but confirm before publishing.",
+      "reason": "The material depicts non-graphic, stylized human anatomy and body-scale concepts. The uploader must make the final age-restriction declaration."
+    },
+    {
+      "field": "paid_promotion_recommendation",
+      "recommendation": "No paid promotion is indicated in the supplied context; verify whether any sponsorship, endorsement, or commercial relationship exists.",
+      "reason": "No paid promotion is documented in SOURCE_CONTEXT, but only the uploader can make the final paid-promotion declaration."
+    },
+    {
+      "field": "altered_or_synthetic_content_recommendation",
+      "recommendation": "Review the final video for YouTube's altered or synthetic content disclosure requirement.",
+      "reason": "The pipeline uses AI imagery, while the supplied frames are visibly stylized paper-cut illustrations. Disclosure depends on whether the final visual output is realistic or meaningfully alters reality, so the uploader must make the final declaration."
+    },
+    {
+      "field": "music_rights",
+      "recommendation": "Verify publication rights for the operator-supplied music before release.",
+      "reason": "SOURCE_CONTEXT states that publication rights for the uploaded music must be verified by the operator."
+    }
+  ],
+  "thumbnail_prompt": "Create a vertical 9:16 YouTube Shorts thumbnail matching the episode's final rendered visual language: richly layered cut-paper illustration, tactile paper texture, cool cyan and deep blue environmental layers contrasted with warm cream, peach, coral, and orange body layers. Show one dominant elephant-sized human anatomical figure as the unmistakable focal subject, towering through the frame with a glowing warm inner-body core and subtle radiating heat shapes that visually suggest altered heat handling at enormous scale. Add only a tiny ordinary human silhouette near the giant's feet as a simple scale cue, keeping the giant figure overwhelmingly dominant. Use dramatic size contrast, crisp silhouette separation, bright warm-versus-cool contrast, a clear mobile-readable hierarchy, soft dimensional paper shadows, and deliberate negative space around the focal figure. Preserve the handcrafted educational science-world atmosphere seen in the rendered frames rather than using photorealism or generic stock imagery. No written words, letters, logos, watermark, UI, border, collage, or split-screen.",
+  "thumbnail_overlay_text": "",
+  "seo_strategy": {
+    "primary_query": "what if a human grew to the size of an elephant",
+    "search_intent": "Educational curiosity about how human body scaling, the square-cube rule, and heat handling would change at elephant size.",
+    "secondary_queries": [
+      "elephant-sized human",
+      "square-cube rule human body",
+      "giant human biology",
+      "body heat at large size",
+      "surface area and volume scaling"
+    ],
+    "spelling_variants": [
+      "elephant sized human",
+      "elephant-sized human",
+      "square cube rule",
+      "square-cube rule",
+      "square-cube law"
+    ],
+    "rationale": "The metadata keeps the exact episode question as the title core while reinforcing closely related concepts that are explicitly covered in the narration: giant human scale, body heat, surface area, volume, and the square-cube rule. The phrases stay tightly aligned with informational search intent without adding unsupported claims."
+  },
+  "related_video_note": "No related video is supplied in SOURCE_CONTEXT; leave the related-video selection unset unless the uploader chooses an appropriate existing Q Station video."
+}

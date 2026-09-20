@@ -1,0 +1,84 @@
+{
+  "preflight": {
+    "character": {
+      "character_id": "newton_scholar",
+      "display_name": "Newton-Inspired Scholar",
+      "sheet_path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+      "sheet_sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    "font": {
+      "id": "quicky_story",
+      "path": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+      "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+    },
+    "requested_count": 1,
+    "maximum_image_calls": 6,
+    "aspect_ratio": "9:16",
+    "visible_text": true
+  },
+  "metadata_visual_references": [
+    {
+      "role": "thumbnail_rendered_opening_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/visual_references/render_opening.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2169188,
+      "sha256": "65b279988a99562c66977a7c710f79493ae4a03c332d9017b8f753e598a357ae",
+      "time_seconds": 4.772
+    },
+    {
+      "role": "thumbnail_rendered_body_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/visual_references/render_body.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 3123870,
+      "sha256": "28e6818638b88b1e0b32a01797d4fdacea3a2a4746dd392941b4365929affb1e",
+      "time_seconds": 23.863
+    },
+    {
+      "role": "thumbnail_rendered_closing_frame",
+      "purpose": "PRIMARY visual truth: final render texture, palette, medium and atmosphere",
+      "file": "publish/youtube_short/releases/rel_2ba2114219be4d6b8564d234a55bf353/visual_references/render_closing.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 3099164,
+      "sha256": "e0ea7731e08b99b4174b27173e169de6a02dd68a76ed2298a963cd2672128f19",
+      "time_seconds": 40.089
+    },
+    {
+      "role": "thumbnail_world_keyframe",
+      "purpose": "Supporting world continuity only; never overrides final rendered frames",
+      "file": "references/world_keyframe.png",
+      "width": 1536,
+      "height": 2752,
+      "bytes": 2347862,
+      "sha256": "9856a0849174d765f68679944d6389e485851e9b7b0bf2c81afa762d81c57363"
+    },
+    {
+      "role": "thumbnail_character_identity",
+      "purpose": "Identity only if the episode's host is used; never copy the sheet layout",
+      "file": "projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 1642329,
+      "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    }
+  ],
+  "generation_attachments": [
+    {
+      "role": "character_sheet",
+      "purpose": "MANDATORY source of truth for character identity only",
+      "file": "/opt/YT_Video_Generation_Pipeline/projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+      "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    {
+      "role": "quicky_story_font",
+      "purpose": "Mandatory local compositor font; never uploaded to ChatGPT",
+      "file": "/opt/YT_Video_Generation_Pipeline/control_panel/subtitle_fonts/files/c4d31ad5c6a4464c8376c372d48448e5.ttf",
+      "sha256": "6bc8fa6b23cee0673c190a742f407ffd76a997edb22dd8cf4c03ce502f44a629"
+    }
+  ],
+  "source_master_sha256": "e4eab3b2126cde9e64e7369c86a3978515cafc82641c039ba6135d7ddbd377e8"
+}
