@@ -147,7 +147,15 @@ def release_request(path: Path | None) -> dict[str, Any]:
         raise RuntimeError(str(exc)) from exc
 
 
-def must_be_release_ready(video: Path) -> Path:
+def must_be_release_ready(video: Path, expected_binding: dict[str, Any] | None = None) -> Path:
+    if (video / "shorts_v2" / "ACCEPTED_VERSION.json").is_file():
+        from shorts_v2.delivery import accepted_source_binding
+        binding = accepted_source_binding(video)
+        if expected_binding:
+            for key in ("revision_id", "master_sha256", "accepted_pointer_hash"):
+                if expected_binding.get(key) != binding.get(key):
+                    raise RuntimeError("The accepted Shorts V2 version changed after Release was requested.")
+        return Path(binding["master_path"])
     final_state = load_json(video / "pipeline" / "FINALIZATION_RUNTIME_STATE.json")
     master = video / "assets" / "renders" / "polished.mp4"
     qc = load_json(video / "render" / "QC_REPORT_polished.json")
@@ -161,7 +169,13 @@ def must_be_release_ready(video: Path) -> Path:
 
 
 def source_text(video: Path) -> str:
-    choices = (
+    choices: tuple[Path, ...] = ()
+    accepted = load_json(video / "shorts_v2" / "ACCEPTED_VERSION.json")
+    revision_id = str(accepted.get("revision_id") or "")
+    if revision_id:
+        base = video / "shorts_v2" / "versions" / revision_id
+        choices = (base / "voiceover" / "TTS_INPUT.txt", base / "creative" / "SCRIPT_CORE.json")
+    choices += (
         video / "voiceover" / "VOICEOVER_INPUT.txt",
         video / "SCRIPT_FINAL.md",
         video / "creative" / "SCRIPT_PLAN.json",
@@ -756,7 +770,8 @@ def generate_thumbnail_batch(
         approved_info = validate_thumbnail(approved)
         generation_references.append(Reference(role="approved_thumbnail", path=approved))
         generation_manifest.append({"role": "approved_thumbnail", "purpose": "Optional approved series treatment only; never copy old content", "file": str(approved), **approved_info})
-    write_json(paths["context"], {"preflight": preflight_data, "metadata_visual_references": manifest, "generation_attachments": generation_manifest, "source_master_sha256": sha256_file(video / "assets" / "renders" / "polished.mp4")})
+    source_master = Path(str((context.get("run") or {}).get("master_path") or video / "assets" / "renders" / "polished.mp4"))
+    write_json(paths["context"], {"preflight": preflight_data, "metadata_visual_references": manifest, "generation_attachments": generation_manifest, "source_master_sha256": sha256_file(source_master)})
     if progress:
         progress.mark("thumbnail_plan", "RUNNING")
     headline_job_id: str | None = None
@@ -905,6 +920,7 @@ def build_upload_markdown(metadata: dict[str, Any], thumbnail: dict[str, Any] | 
     ) or "- Confirm every legal and channel-specific choice in YouTube Studio."
     music = context.get("music") or {}
     music_warning = ""
+    master_display = str((context.get("run") or {}).get("master_relative_path") or "assets/renders/polished.mp4")
     if music.get("license"):
         music_warning = f"\nMusic provenance: {music.get('provider') or 'unknown'} — {music['license']}\n"
     thumbnail_section = (
@@ -966,7 +982,7 @@ This record documents editorial intent; it does not promise ranking in YouTube o
 
 ## Mobile upload workflow
 
-1. Upload `assets/renders/polished.mp4` as **Unlisted** and paste the title and description.
+1. Upload `{master_display}` as **Unlisted** and paste the title and description.
 2. If this verified account has custom Shorts thumbnails, open YouTube Studio on a computer → Content → Shorts → the Short → Thumbnail → **Upload file**, select the recommended final PNG, then Save. YouTube's current guidance recommends 9:16 for Shorts.
 3. If that control is unavailable for this account, select an existing frame in the YouTube mobile app instead; do not alter or append frames to the master merely to work around the limitation.
 4. In Studio, paste tags, choose the category above, and review remixing, audience, age, paid-promotion, and altered/synthetic declarations.
@@ -986,7 +1002,7 @@ This record documents editorial intent; it does not promise ranking in YouTube o
 
 ## Delivery facts
 
-- Master: `assets/renders/polished.mp4`
+- Master: `{master_display}`
 - Duration: {context['run'].get('duration_seconds')} seconds
 - Render: {context['run'].get('resolution')} · {context['run'].get('aspect_ratio')}
 - Thumbnail QC: {thumbnail_qc}
@@ -1192,8 +1208,9 @@ def main() -> None:
     video = args.video_dir.expanduser().resolve()
     if not video.is_dir() or video.parent != (ROOT / "videos").resolve():
         raise SystemExit("video_dir must be one direct episode directory below videos/.")
-    master = must_be_release_ready(video)
     raw_request = load_json(args.request_file) if args.request_file else {}
+    source_binding = raw_request.get("source_binding") if isinstance(raw_request.get("source_binding"), dict) else None
+    master = must_be_release_ready(video, source_binding)
     release_id = str(raw_request.get("release_id") or "").strip()
     if not re.fullmatch(r"[a-zA-Z0-9_-]{8,80}", release_id):
         release_id = "rel_" + uuid.uuid4().hex
@@ -1233,6 +1250,7 @@ def main() -> None:
         "master": str(master.relative_to(video)), "master_sha256": master_sha, "events": [], "request": request,
         "settings_fingerprint": settings_fingerprint(request),
         "source_job_id": raw_request.get("source_job_id"), "parent_release_id": raw_request.get("parent_release_id"),
+        "source_binding": source_binding,
         "revision_roots": list(raw_request.get("revision_roots") or []),
         "reused_nodes": list(raw_request.get("reused_nodes") or []),
         "attempt": int(previous.get("attempt") or 0) + 1,
@@ -1248,10 +1266,14 @@ def main() -> None:
         "revision_roots": list(raw_request.get("revision_roots") or []),
         "reused_nodes": list(raw_request.get("reused_nodes") or []),
         "revision_feedback": str(raw_request.get("revision_feedback") or "")[:4000],
+        "source_binding": source_binding,
     })
     write_json(paths["source"], {
         "schema_version": 1, "video": video.name, "master": str(master.relative_to(video)),
         "master_sha256": master_sha, "finalization_status": "DONE", "polished_qc_passed": True,
+        "editing_engine": "shorts_v2" if source_binding else "legacy",
+        "accepted_revision_id": (source_binding or {}).get("revision_id"),
+        "accepted_pointer_hash": (source_binding or {}).get("accepted_pointer_hash"),
         "captured_at": now(),
     })
     write_json(paths["state"], state)
@@ -1269,6 +1291,11 @@ def main() -> None:
         policy = channel_policy(args.content_project)
         narration = source_text(video)
         context = factual_context(video, policy, narration)
+        context["run"]["master_path"] = str(master)
+        context["run"]["master_relative_path"] = str(master.relative_to(video))
+        if source_binding:
+            context["run"]["accepted_revision_id"] = source_binding.get("revision_id")
+            context["run"]["accepted_output_sha256"] = source_binding.get("master_sha256")
         write_json(paths["release_context"], context)
         progress.mark("release_context", "DONE", artifact="RELEASE_CONTEXT.json")
         needs_metadata = request["generate_metadata"]

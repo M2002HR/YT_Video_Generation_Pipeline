@@ -59,6 +59,7 @@ from shorts_v2.studio import artifact_path as shorts_v2_artifact_path
 from shorts_v2.studio import artifact_preview as shorts_v2_artifact_preview
 from shorts_v2.studio import compare_versions as shorts_v2_compare_versions
 from shorts_v2.studio import workspace as shorts_v2_workspace
+from shorts_v2.delivery import accepted_source_binding
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCH_LOCK = threading.Lock()
@@ -2255,6 +2256,15 @@ def release_eligibility(record: dict, project: Path) -> tuple[bool, str]:
     if pending and str(pending.get("status") or "").upper() not in {"DONE", "REUSED"}:
         return False, "The video has a pending revision and is not release-stable yet."
     try:
+        engine = normalize_engine_settings(record)
+        if engine["editing_engine"] == "legacy" and record.get("creative_brief"):
+            engine = normalize_engine_settings(json.loads((ROOT / str(record["creative_brief"])).read_text(encoding="utf-8")))
+        if engine["editing_engine"] == "shorts_v2":
+            accepted_source_binding(project)
+            return True, ""
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        return False, f"Shorts V2 accepted version is not release-ready: {exc}"
+    try:
         final = json.loads((project / "pipeline" / "FINALIZATION_RUNTIME_STATE.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         final = {}
@@ -3949,6 +3959,11 @@ class Handler(BaseHTTPRequestHandler):
             "schema_version": 3, "release_id": release_id, "source_job_id": job_id,
             "created_at": started_at, "settings": settings, **(request_extra or {}),
         }
+        try:
+            request_payload["source_binding"] = accepted_source_binding(project)
+        except ValueError:
+            # Legacy Release remains pinned by its worker's polished-master hash.
+            pass
         write_json(request_path, request_payload)
         logs = release_jobs_dir()
         log = logs / f"{release_id}.log"

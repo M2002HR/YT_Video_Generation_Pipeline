@@ -245,6 +245,11 @@ class RevisionStore:
         }
         # Snapshot precedes the single atomic source-of-truth pointer update.
         atomic_write_json(resolver.resolve_relative("receipts/ACCEPTED_SNAPSHOT.json"), pointer)
+        from .delivery import write_compatibility_export
+        write_compatibility_export(self.episode_root, {
+            "revision_id": revision_id, "master_path": str(output_path.resolve()), "master_sha256": actual_hash,
+            "technical_acceptance": "passed", "human_artistic_acceptance": "not_requested",
+        })
         atomic_write_json(self.accepted_path, pointer)
         revision.update({"status": "ACCEPTED", "accepted_output_sha256": actual_hash, "accepted_at": pointer["accepted_at"]})
         atomic_write_json(revision_path, revision)

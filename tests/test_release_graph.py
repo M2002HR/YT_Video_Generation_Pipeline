@@ -101,6 +101,27 @@ def test_release_source_gate_rejects_pending_video_revision(tmp_path: Path) -> N
     assert "pending revision" in reason
 
 
+def test_shorts_v2_release_gate_binds_the_accepted_version_not_legacy_latest(tmp_path: Path) -> None:
+    from shorts_v2.artifacts import ArtifactResolver
+    import hashlib
+    project = tmp_path / "videos/902_v2"; resolver = ArtifactResolver(project, "revision.001"); resolver.ensure_layout()
+    master = resolver.resolve("final"); master.write_bytes(b"v2 master")
+    write(project / "shorts_v2/ACCEPTED_VERSION.json", {
+        "schema_version": 1, "revision_id": "revision.001", "config_hash": "a" * 64, "manifest_hash": "b" * 64,
+        "output": {"path": str(master), "sha256": hashlib.sha256(master.read_bytes()).hexdigest()},
+        "technical_acceptance": "passed", "human_artistic_acceptance": "not_requested",
+    })
+    record = {"status": "DONE", "pid": None, "external": False, "_shorts_v2": {
+        "editing_engine": "shorts_v2", "voice": {"tts_model": "eleven_v3", "voice_label": "Fixture"},
+        "quality": {"media_review": "off"},
+    }}
+    allowed, reason = panel.release_eligibility(record, project)
+    assert allowed is True and reason == ""
+    master.write_bytes(b"tampered")
+    allowed, reason = panel.release_eligibility(record, project)
+    assert allowed is False and "accepted output" in reason
+
+
 def test_legacy_release_history_is_discovered_and_stale_running_is_interrupted(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(panel, "ROOT", tmp_path)
     jobs = tmp_path / "control_panel/jobs"

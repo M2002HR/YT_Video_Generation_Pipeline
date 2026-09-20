@@ -18,6 +18,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,6 +35,27 @@ OPENING_HISTORY_KEYS = (
     "character_id", "presentation_id", "opening_signature", "situation_summary",
     "hook_line", "entry_variant", "opening_policy_version",
 )
+
+HISTORY_OUTCOMES = frozenset({
+    "planned", "generated", "technically_accepted", "human_reviewed",
+    "completed", "published", "failed",
+})
+
+
+def canonical_episode_id(value: Any) -> str:
+    """Collapse numeric short IDs and full directory slugs to one episode identity."""
+    text = str(value or "").strip()
+    if not text:
+        raise EpisodeHistoryError("video_id is required")
+    if text.startswith("episode.") and re.fullmatch(r"episode\.[a-z0-9][a-z0-9.-]*", text):
+        return text
+    head = text.split("_", 1)[0]
+    if head.isdigit():
+        return f"episode.{int(head)}"
+    slug = re.sub(r"[^a-z0-9]+", "-", text.casefold()).strip("-")
+    if not slug:
+        raise EpisodeHistoryError("video_id has no canonical identity")
+    return f"episode.{slug}"
 
 
 @contextmanager
@@ -103,14 +125,24 @@ def record_traits(project_id: str, video_id: str, traits: dict[str, Any]) -> Pat
     """Upsert one episode's anti-repetition traits. Re-running changes nothing new."""
     with _registry_lock(project_id):
         payload = load_registry(project_id)
+        canonical = canonical_episode_id(video_id)
         recorded = {key: traits.get(key) for key in (*HISTORY_KEYS, *OPENING_HISTORY_KEYS) if traits.get(key) is not None}
-        entry = {"video_id": str(video_id), **recorded, "updated_at": datetime.now(timezone.utc).isoformat()}
-        videos = [item for item in payload["videos"] if str(item.get("video_id")) != str(video_id)]
+        for key in ("outcome", "accepted_revision_id", "accepted_output_sha256", "published_receipt_id", "parent_episode_id"):
+            if traits.get(key) is not None:
+                recorded[key] = traits[key]
+        outcome = str(recorded.get("outcome") or "planned")
+        if outcome not in HISTORY_OUTCOMES:
+            raise EpisodeHistoryError(f"Unsupported episode outcome: {outcome}")
+        if outcome == "published" and not recorded.get("published_receipt_id"):
+            raise EpisodeHistoryError("published history requires a delivery/publication receipt")
+        entry = {"video_id": str(video_id), "canonical_episode_id": canonical, "outcome": outcome, **recorded, "updated_at": datetime.now(timezone.utc).isoformat()}
+        videos = [item for item in payload["videos"] if canonical_episode_id(item.get("canonical_episode_id") or item.get("video_id")) != canonical]
         existing = next(
-            (item for item in payload["videos"] if str(item.get("video_id")) == str(video_id)), None
+            (item for item in payload["videos"] if canonical_episode_id(item.get("canonical_episode_id") or item.get("video_id")) == canonical), None
         )
         if existing is not None:
             merged = {**existing, **entry}
+            merged["aliases"] = sorted((set(existing.get("aliases") or []) | {str(existing.get("video_id") or ""), str(video_id)}) - {""})
             # A trait already on record is not dropped by a later partial update.
             entry = merged
         videos.append(entry)
@@ -128,6 +160,8 @@ def recent(project_id: str, limit: int = DEFAULT_LOOKBACK) -> list[dict[str, Any
     return [
         {
             "video_id": entry.get("video_id"),
+            "canonical_episode_id": entry.get("canonical_episode_id") or canonical_episode_id(entry.get("video_id")),
+            "outcome": entry.get("outcome") or "completed",
             **{key: entry[key] for key in HISTORY_KEYS if entry.get(key) is not None},
         }
         for entry in entries

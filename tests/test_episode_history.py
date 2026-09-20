@@ -23,6 +23,7 @@ from episode_history import (
     repeated_traits,
     traits_from_plans,
     used_values,
+    canonical_episode_id,
 )
 
 
@@ -61,6 +62,27 @@ def test_recording_the_same_episode_twice_does_not_duplicate_it(project: str) ->
     assert len(entries) == 1
     assert entries[0]["opening_activity"] == "boiling a kettle", "an earlier trait survives"
     assert entries[0]["opening_location"] == "a narrow kitchen"
+
+
+def test_short_id_and_slug_are_one_canonical_episode_with_ancestry(project: str) -> None:
+    record_traits(project, "042", {"outcome": "planned", "opening_activity": "walking"})
+    record_traits(project, "042_what_if_gravity_changed", {
+        "outcome": "technically_accepted", "accepted_revision_id": "revision.002",
+        "accepted_output_sha256": "a" * 64, "parent_episode_id": "episode.041",
+    })
+    stored = history.load_registry(project)["videos"]
+    assert len(stored) == 1
+    assert stored[0]["canonical_episode_id"] == "episode.42"
+    assert stored[0]["outcome"] == "technically_accepted"
+    assert stored[0]["aliases"] == ["042", "042_what_if_gravity_changed"]
+    assert canonical_episode_id("00042_slug") == "episode.42"
+
+
+def test_published_history_requires_a_real_receipt(project: str) -> None:
+    with pytest.raises(EpisodeHistoryError, match="receipt"):
+        record_traits(project, "043_slug", {"outcome": "published"})
+    record_traits(project, "043_slug", {"outcome": "published", "published_receipt_id": "telegram.123"})
+    assert recent(project)[0]["outcome"] == "published"
 
 
 def test_history_is_ordered_by_video_number_and_limited(project: str) -> None:
