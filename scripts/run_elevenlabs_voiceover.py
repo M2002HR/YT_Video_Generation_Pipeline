@@ -65,6 +65,14 @@ DOWNLOAD_SELECTOR = 'button[data-testid="tts-download-latest-button"]'
 # browser-selection behaviour.
 CLEAR_TEXT_SELECTOR = 'button[aria-label="Clear text"]'
 
+# The player shell and its blob source can appear a few render frames before
+# ElevenLabs enables its download action. That is an expected intermediate UI
+# state after a generation, not a failed result.
+PENDING_BOUND_DOWNLOAD_REASONS = frozenset({
+    "bound audio player has no enabled download control",
+    "bound result has no enabled download control",
+})
+
 
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -100,6 +108,11 @@ def setting_label_matches(requested: str | None, observed: str | None) -> bool:
         re.match(re.escape(wanted) + r"(?:$|[\s,;:()\[\]—–])", actual)
         if " - " in wanted else actual == wanted
     )
+
+
+def bound_download_is_pending(choice: dict[str, Any]) -> bool:
+    """Whether a bound result is real but its visible download action is not ready."""
+    return not choice.get("ok") and str(choice.get("reason") or "") in PENDING_BOUND_DOWNLOAD_REASONS
 
 
 @dataclass(frozen=True)
@@ -514,9 +527,10 @@ class ElevenLabsUI:
           // that the player belongs to this narration, not an older tab result.
           const audioPlayer=document.querySelector('[data-testid="audio-player"]');
           const audio=audioPlayer?.querySelector('audio[src]');
+          const audioDownload=audioPlayer?.querySelector('button[data-testid="audio-player-download-button"]');
           const audioSource=audio?.src||null;
           const audioTranscript=(audioPlayer?.querySelector('p')?.innerText||'').trim();
-          const audioResult=audioSource?{identity:`audio-player:${audioSource}`,transcript:audioTranscript}:null;
+          const audioResult=audioSource?{identity:`audio-player:${audioSource}`,transcript:audioTranscript,download_ready:enabled(audioDownload)}:null;
           if(audioResult)resultIdentities.push(audioResult.identity);
           const generationText = `${generate?.text||''} ${generate?.aria||''}`;
           const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
@@ -1573,7 +1587,7 @@ def main() -> None:
         deadline = time.monotonic() + float(os.getenv("YT_ELEVENLABS_GENERATION_TIMEOUT_SECONDS", "900"))
         while time.monotonic() < deadline:
             snapshot = ui.snapshot()
-            signature = json.dumps({"busy": snapshot.get("busy"), "loading": snapshot.get("loading"), "generate": snapshot.get("generate"), "downloads": snapshot.get("downloads"), "result_identities": snapshot.get("result_identities")}, sort_keys=True)
+            signature = json.dumps({"busy": snapshot.get("busy"), "loading": snapshot.get("loading"), "generate": snapshot.get("generate"), "downloads": snapshot.get("downloads"), "result_identities": snapshot.get("result_identities"), "audio_result": snapshot.get("audio_result")}, sort_keys=True)
             if signature != prior_signature:
                 prior_signature, last_change = signature, time.monotonic()
                 lease.heartbeat()
@@ -1585,14 +1599,23 @@ def main() -> None:
             if bound_result_id and not download_requested:
                 choice = ui.download_bound_result(bound_result_id)
                 if not choice.get("ok"):
-                    raise RuntimeError(f"Bound ElevenLabs result cannot be downloaded: {choice.get('reason', 'unknown reason')}")
-                machine.advance("DOWNLOAD_BOUND_RESULT")
-                download_started = time.time()
-                download_requested = True
-                state.data.update({"download_choice": choice.get("choice"), "download_requested_at": download_started, "status": "DOWNLOAD_TRIGGERED"})
-                state.save()
-                state.event("elevenlabs_download_requested", submit_at, choice=choice.get("choice"), result_id=bound_result_id)
-                notifier.stage_update(stage_message, title, ["⬇️ Bound result download requested", f"🆔 Result: {bound_result_id[:120]}", "👀 Waiting for the browser download"])
+                    if not bound_download_is_pending(choice):
+                        raise RuntimeError(f"Bound ElevenLabs result cannot be downloaded: {choice.get('reason', 'unknown reason')}")
+                    # Do not resubmit: this result is already bound to this attempt.
+                    # Keep polling the same blob until ElevenLabs enables its own
+                    # button, which normally happens on the next UI refresh.
+                    if state.data.get("download_wait_reason") != choice.get("reason"):
+                        state.data.update({"status": "RESULT_BOUND", "download_wait_reason": choice.get("reason")})
+                        state.save()
+                else:
+                    machine.advance("DOWNLOAD_BOUND_RESULT")
+                    download_started = time.time()
+                    download_requested = True
+                    state.data.update({"download_choice": choice.get("choice"), "download_requested_at": download_started, "status": "DOWNLOAD_TRIGGERED"})
+                    state.data.pop("download_wait_reason", None)
+                    state.save()
+                    state.event("elevenlabs_download_requested", submit_at, choice=choice.get("choice"), result_id=bound_result_id)
+                    notifier.stage_update(stage_message, title, ["⬇️ Bound result download requested", f"🆔 Result: {bound_result_id[:120]}", "👀 Waiting for the browser download"])
             downloaded = find_download(download_dir, download_started) if download_requested else None
             if downloaded:
                 downloaded = stage_download_for_attempt(downloaded, download_dir)

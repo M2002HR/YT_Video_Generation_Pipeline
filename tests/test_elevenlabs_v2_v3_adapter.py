@@ -9,7 +9,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from run_elevenlabs_voiceover import ElevenLabsUI, find_download, stage_download_for_attempt
+from run_elevenlabs_voiceover import ElevenLabsUI, bound_download_is_pending, find_download, stage_download_for_attempt
 from shorts_v2.elevenlabs_adapter import (
     AdapterErrorCode,
     AttemptStateMachine,
@@ -116,6 +116,16 @@ def test_audio_player_download_rechecks_the_bound_blob_before_click() -> None:
     assert result["ok"] is True
     assert result["result_id"].startswith("audio-player:")
     assert any("bound audio player changed" in expression for expression in checks)
+
+
+@pytest.mark.parametrize("reason", [
+    "bound audio player has no enabled download control",
+    "bound result has no enabled download control",
+])
+def test_bound_player_without_ready_download_is_retried_not_failed(reason: str) -> None:
+    assert bound_download_is_pending({"ok": False, "reason": reason})
+    assert not bound_download_is_pending({"ok": False, "reason": "bound audio player changed before download"})
+    assert not bound_download_is_pending({"ok": True})
 
 
 def test_download_routing_holds_the_browser_context_until_explicit_close(tmp_path: Path) -> None:
