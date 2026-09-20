@@ -65,6 +65,16 @@ def file_is_usable(path: Path) -> bool:
     return path.is_file() and path.stat().st_size > 0
 
 
+def selected_editing_engine(creative_brief: Path) -> str:
+    """Resolve the explicit engine marker without materializing new defaults."""
+    try:
+        payload = json.loads(creative_brief.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ValueError(f"Creative brief is unreadable: {creative_brief}") from exc
+    from shorts_v2.contracts import normalize_engine_settings
+    return str(normalize_engine_settings(payload)["editing_engine"])
+
+
 def run(command: list[str]) -> None:
     print(f"$ {' '.join(command)}", flush=True)
     subprocess.run(command, cwd=ROOT, check=True)
@@ -428,6 +438,22 @@ def main() -> int:
 
     project = ROOT / "videos" / f"{args.video_id}_{video_slug(args.topic)}"
     python = sys.executable
+    if selected_editing_engine(args.creative_brief) == "shorts_v2":
+        # Dispatch before importing/notifying any legacy stages. The new runner
+        # owns its state and refuses provider execution until each later phase is
+        # implemented; it can never fall through to the old Motion Director.
+        completed = subprocess.run(
+            [
+                python, "scripts/run_shorts_v2_pipeline.py",
+                "--request", str(args.creative_brief),
+                "--project", str(project),
+                "--run-id", f"run-{args.video_id}",
+                "--revision-id", "initial",
+            ],
+            cwd=ROOT,
+            check=False,
+        )
+        return int(completed.returncode)
     from pipeline_notifier import PipelineNotifier, format_duration
     from pipeline_stages import stage_title
     notifier = PipelineNotifier(

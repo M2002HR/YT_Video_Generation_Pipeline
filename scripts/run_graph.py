@@ -133,6 +133,22 @@ def load(path: Path) -> dict[str, Any]:
 
 def project_mode(project: Path) -> str:
     launch = load(project / "launch/LAUNCH_REQUEST.json")
+    engine_source: dict[str, Any] = launch
+    try:
+        from shorts_v2.contracts import normalize_engine_settings
+        engine = normalize_engine_settings(engine_source)
+        if engine["editing_engine"] == "legacy":
+            engine_source = load(project / "launch/CREATIVE_BRIEF.json")
+            engine = normalize_engine_settings(engine_source)
+        if engine["editing_engine"] == "shorts_v2":
+            return "shorts_v2"
+    except ImportError:
+        pass
+    except ValueError:
+        # A malformed *explicit* v2 marker must fail closed.  Swallowing the
+        # error here would silently route it into the legacy Q-Station graph.
+        if isinstance(engine_source.get("_shorts_v2"), dict) and engine_source["_shorts_v2"].get("editing_engine") == "shorts_v2":
+            raise
     content_project = str(launch.get("content_project") or "")
     if content_project:
         try:
@@ -406,7 +422,27 @@ def graph_for(
     include_disabled: bool = False,
     settings: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    if project_mode(project) == "generic":
+    mode = project_mode(project)
+    if mode == "shorts_v2":
+        from shorts_v2.contracts import normalize_engine_settings
+        from shorts_v2.registry import effective_graph
+
+        source = settings if isinstance(settings, dict) else load(project / "launch/LAUNCH_REQUEST.json")
+        normalized = normalize_engine_settings(source)
+        if normalized["editing_engine"] == "legacy":
+            normalized = normalize_engine_settings(load(project / "launch/CREATIVE_BRIEF.json"))
+        if normalized["editing_engine"] != "shorts_v2":
+            raise ValueError("Shorts V2 project has no valid explicit engine contract.")
+        graph = effective_graph(normalized, include_disabled=include_disabled)
+        state = load(project / "shorts_v2/versions/initial/diagnostics/RUNTIME_STATE.json")
+        stage_state = state.get("stages") if isinstance(state.get("stages"), dict) else {}
+        for node in graph["nodes"]:
+            entry = stage_state.get(node["id"])
+            if isinstance(entry, dict):
+                node["status"] = str(entry.get("status") or node["status"])
+                node["meta"] = entry
+        return graph
+    if mode == "generic":
         return _generic_graph_for(
             project,
             include_disabled=include_disabled,
