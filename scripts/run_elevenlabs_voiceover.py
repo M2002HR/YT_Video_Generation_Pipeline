@@ -13,8 +13,10 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import time
+import uuid
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +26,17 @@ from dotenv import load_dotenv
 
 from pipeline_notifier import PipelineNotifier, format_duration
 from pipeline_stages import stage_title
+from shorts_v2.elevenlabs_adapter import (
+    AttemptStateMachine,
+    CapabilityProbe,
+    ElevenLabsAdapterError,
+    bind_new_result,
+    build_execution_plan,
+    result_snapshot,
+    text_fingerprint,
+    validate_download_candidate,
+)
+from shorts_v2.state import FileLease
 ROOT = Path(__file__).resolve().parents[1]
 ELEVENLABS_HOME_URL = "https://elevenlabs.io/app/speech-synthesis/text-to-speech"
 AUDIO_EXTENSIONS = (".wav", ".flac", ".mp3", ".m4a", ".ogg")
@@ -32,7 +45,7 @@ AUDIO_EXTENSIONS = (".wav", ".flac", ".mp3", ".m4a", ".ogg")
 # accessibility contract.  Keep every browser action anchored to one of them.  In
 # particular, never identify a control from its viewport coordinates: the settings
 # rail scrolls independently and valid controls routinely sit just outside the fold.
-TEXTAREA_SELECTOR = 'textarea[data-testid="tts-editor"], textarea[aria-label="Main textarea"]'
+TEXTAREA_SELECTOR = 'textarea[data-testid="tts-editor"], textarea[aria-label="Main textarea"], .tiptap.ProseMirror[contenteditable="true"], [contenteditable="true"][data-testid="tts-editor"], [contenteditable="true"][role="textbox"]'
 VOICE_TRIGGER_SELECTOR = 'button[data-testid="tts-voice-selector"]'
 MODEL_TRIGGER_SELECTOR = 'button[data-testid="tts-model-selector"]'
 SETTINGS_TAB_SELECTOR = 'button[data-testid="tts-settings-tab"]'
@@ -91,6 +104,7 @@ class VoiceSettings:
     similarity: float | None
     style: float | None
     speaker_boost: bool | None
+    stability_mode: str | None
     output_format: str | None
 
     def supplied(self) -> dict[str, Any]:
@@ -428,6 +442,24 @@ class ElevenLabsUI:
                             raise RuntimeError("Chrome rejected the ElevenLabs keyboard action.")
                         break
 
+    def _trusted_insert_text(self, text: str) -> None:
+        """Insert text into the currently focused rich editor through CDP."""
+        if self.tab is None:
+            raise RuntimeError("ElevenLabs browser tab has not been opened.")
+        info = self._get_tab_info(self.tab)
+        websocket_url = getattr(info, "websocket_debugger_url", None)
+        if not websocket_url:
+            raise RuntimeError("Ordak could not attach a DevTools target for ElevenLabs.")
+        from websockets.sync.client import connect
+        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
+            websocket.send(json.dumps({"id": 1, "method": "Input.insertText", "params": {"text": text}}))
+            while True:
+                response = json.loads(websocket.recv(timeout=5))
+                if response.get("id") == 1:
+                    if response.get("error"):
+                        raise RuntimeError("Chrome rejected the ElevenLabs narration input.")
+                    return
+
     def open_and_verify(self) -> dict[str, Any]:
         expected = os.getenv("YT_ELEVENLABS_HOME_URL", ELEVENLABS_HOME_URL).rstrip("/")
         existing = next((tab for tab in self._list_tabs() if tab.url.rstrip("/").startswith(expected)), None)
@@ -463,6 +495,8 @@ class ElevenLabsUI:
           const enabled = e => !e.disabled && e.getAttribute('aria-disabled') !== 'true';
           const latestDownload = document.querySelector(__DOWNLOAD_SELECTOR__);
           const download = latestDownload && enabled(latestDownload) ? [describe(latestDownload)] : [];
+          const resultNodes=[...document.querySelectorAll('[data-generation-id],[data-history-item-id],[data-testid^="history-item-"]')];
+          const resultIdentities=[...new Set(resultNodes.map(e=>e.getAttribute('data-generation-id')||e.getAttribute('data-history-item-id')||e.getAttribute('data-testid')).filter(Boolean))];
           const generationText = `${generate?.text||''} ${generate?.aria||''}`;
           const loading = /loading|generating|queued|creating audio|please wait|processing/i.test(`${text}\n${generationText}`);
           const progress = !!document.querySelector('[aria-busy=true],[role=progressbar]');
@@ -474,7 +508,8 @@ class ElevenLabsUI:
             url: location.href, title: document.title, ready: !!input && location.pathname.includes('app/speech-synthesis/text-to-speech'),
             login_required: /sign in|log in|create an account/i.test(text) && !input,
             busy: loading || !!generate?.disabled || !!generate?.ariaDisabled || progress,
-            loading, progress, captcha, downloads: download, summary: text.slice(0, 1600), generate
+            loading, progress, captcha, downloads: download, result_identities:resultIdentities,
+            summary: text.slice(0, 1600), generate
           };
         })()"""
         return self._json(expression.replace("__TEXTAREA_SELECTOR__", json.dumps(TEXTAREA_SELECTOR)).replace("__GENERATE_SELECTOR__", json.dumps(GENERATE_SELECTOR)).replace("__DOWNLOAD_SELECTOR__", json.dumps(DOWNLOAD_SELECTOR)))
@@ -484,15 +519,39 @@ class ElevenLabsUI:
         result = self._json(f"""(() => {{
           const e = document.querySelector({json.dumps(TEXTAREA_SELECTOR)});
           if (!e) return {{ok:false, reason:'narration textarea not found'}};
-          const setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
-          setter.call(e, {encoded});
-          e.dispatchEvent(new Event('input', {{bubbles:true}}));
-          e.dispatchEvent(new Event('change', {{bubbles:true}}));
+          if(e.tagName==='TEXTAREA'){{
+            const setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+            setter.call(e, {encoded});
+            e.dispatchEvent(new InputEvent('input', {{bubbles:true,inputType:'insertText',data:{encoded}}}));
+            e.dispatchEvent(new Event('change', {{bubbles:true}}));
+            e.focus();
+            return {{ok:true,kind:'textarea',text:e.value}};
+          }}
+          const content=e.querySelector('[data-node-view-content]')||e;
           e.focus();
-          return {{ok:true, characters:e.value.length}};
+          const selection=window.getSelection();
+          const range=document.createRange();
+          range.selectNodeContents(content);
+          selection.removeAllRanges();selection.addRange(range);
+          return {{ok:true,kind:'contenteditable'}};
         }})()""")
-        if not result.get("ok") or int(result.get("characters") or 0) != len(text):
-            raise RuntimeError(f"ElevenLabs narration input failed: {result.get('reason', 'text length mismatch')}")
+        if result.get("kind") == "contenteditable":
+            self._trusted_insert_text(text)
+            result["text"] = self.read_text()
+        if not result.get("ok") or text_fingerprint(str(result.get("text") or "")) != text_fingerprint(text):
+            raise RuntimeError(f"ElevenLabs narration input failed: {result.get('reason', 'text hash mismatch')}")
+
+    def read_text(self) -> str:
+        result = self._json(f"""(() => {{const e=document.querySelector({json.dumps(TEXTAREA_SELECTOR)});const content=e?.querySelector('[data-node-view-content]')||e;return {{text:e?(e.tagName==='TEXTAREA'?e.value:(content.innerText||content.textContent||'')):null}};}})()""")
+        if result.get("text") is None:
+            raise RuntimeError("ElevenLabs narration editor disappeared before verification.")
+        return str(result["text"])
+
+    def verify_text(self, expected: str) -> dict[str, Any]:
+        observed = self.read_text()
+        if text_fingerprint(observed) != text_fingerprint(expected):
+            raise RuntimeError("ElevenLabs narration editor read-back does not match the compiled input hash.")
+        return {"characters": len(observed), "text_sha256": text_fingerprint(observed)}
 
     def select_option(self, kind: str, requested: str) -> None:
         """Choose a voice/model through its semantic trigger and option selectors.
@@ -558,7 +617,7 @@ class ElevenLabsUI:
                 # Voice-card overlays in the current picker can ignore Space and
                 # Enter. Use an actual click only after resolving and rechecking the
                 # exact labelled card; never use a stored or arbitrary coordinate.
-                if kind == "voice":
+                if kind in {"voice", "model"}:
                     self._pointer_activate_exact_selector(option, requested=requested)
                 else:
                     self._activate_selector(option, requested=requested, key="Enter")
@@ -611,8 +670,10 @@ class ElevenLabsUI:
         deadline = time.monotonic() + self.control_timeout_seconds
         while time.monotonic() < deadline:
             present = self._json("""(() => {
-              const sliders=[...document.querySelectorAll('[role=slider][aria-label]')];
-              return {ok:sliders.length>0};
+              const wanted=/^(speed|stability|similarity|style exaggeration)$/i;
+              const sliders=[...document.querySelectorAll('[role=slider][aria-label]')].filter(e=>wanted.test(e.getAttribute('aria-label')||''));
+              const modes=[...document.querySelectorAll('button,[role=radio]')].filter(e=>/^(creative|natural|robust)$/i.test((e.getAttribute('aria-label')||e.innerText||'').trim()));
+              return {ok:sliders.length>0||modes.length>0};
             })()""")
             if present.get("ok"):
                 return
@@ -622,7 +683,7 @@ class ElevenLabsUI:
                 pass
             time.sleep(self.poll_seconds)
         raise RuntimeError(
-            "ElevenLabs voice-settings sliders never appeared, even after opening the "
+            "ElevenLabs model-specific voice settings never appeared, even after opening the "
             f"Settings tab, within {self.control_timeout_seconds:g}s."
         )
 
@@ -657,6 +718,8 @@ class ElevenLabsUI:
         # and 0.005 for Stability). Measure one actual increment instead of
         # baking either assumption into the workflow.
         minimum = observed_value()
+        if abs(minimum - value) <= 1e-9:
+            return
         self._trusted_key("ArrowRight")
         time.sleep(0.15)
         step = observed_value() - minimum
@@ -718,6 +781,20 @@ class ElevenLabsUI:
             })()""")
             if not open_panel.get("ok"):
                 return
+            # ElevenLabs shows this one-time modal immediately after the first
+            # switch to v3.  It leaves the settings sliders mounted behind the
+            # focus trap, so capability discovery succeeds while every trusted
+            # slider interaction fails.  Resolve its provider-owned semantic
+            # control explicitly; Escape is intentionally ignored by this modal.
+            v3_welcome = self._json("""(() => {
+              const e=document.querySelector('[data-testid="v3-welcome-dialog-get-started"]');
+              const visible=e&&!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+              return {ok:!!visible};
+            })()""")
+            if v3_welcome.get("ok"):
+                self._activate_selector('[data-testid="v3-welcome-dialog-get-started"]', requested="Get started")
+                time.sleep(0.6)
+                continue
             # This modal does not close on Escape and makes the main controls
             # unfocusable. Resolve its explicit button inside the dialog and use
             # keyboard activation; do not fall back to screen coordinates.
@@ -741,22 +818,86 @@ class ElevenLabsUI:
             except RuntimeError:
                 return
             time.sleep(0.4)
+        unresolved = self._json("""(() => {
+          const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+          return {dialogs:[...document.querySelectorAll('[role=dialog]')].filter(visible).map(e=>(e.innerText||'').trim().slice(0,120))};
+        })()""")
+        if unresolved.get("dialogs"):
+            raise RuntimeError(f"ElevenLabs overlay could not be dismissed safely: {unresolved['dialogs']}")
+
+    def probe_capabilities(self) -> CapabilityProbe:
+        """Observe the controls that exist after model and voice selection."""
+        self.dismiss_overlays()
+        try:
+            self.open_settings_tab()
+        except RuntimeError:
+            # V3 layouts may expose mode buttons without any slider rail.
+            pass
+        raw = self._json(f"""(() => {{
+          const visible=e=>!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length);
+          const label=e=>(e.getAttribute('aria-label')||e.innerText||'').trim();
+          const sliders=[...document.querySelectorAll('[role=slider][aria-label]')].filter(visible).map(e=>label(e).toLowerCase());
+          const modes=[...document.querySelectorAll('button,[role=radio]')].filter(visible).map(e=>label(e)).filter(v=>/^(creative|natural|robust)$/i.test(v));
+          const editor=document.querySelector({json.dumps(TEXTAREA_SELECTOR)})||document.querySelector('[contenteditable=true][role=textbox]');
+          const boost=document.querySelector('[role="switch"][aria-label*="Speaker boost" i],input[type="checkbox"][aria-label*="Speaker boost" i]');
+          const text=s=>{{const e=document.querySelector(s);return (e?.innerText||e?.getAttribute('aria-label')||'').trim()}};
+          return {{
+            model:text({json.dumps(MODEL_TRIGGER_SELECTOR)}),voice:text({json.dumps(VOICE_TRIGGER_SELECTOR)}),
+            numeric_controls:sliders.map(v=>v==='style exaggeration'?'style':v),
+            stability_modes:modes.map(v=>v.toLowerCase()),speaker_boost:!!boost,
+            editor_kind:editor?(editor.tagName==='TEXTAREA'?'textarea':'contenteditable'):'missing'
+          }};
+        }})()""")
+        return CapabilityProbe(
+            observed_model=str(raw.get("model") or ""),
+            observed_voice=str(raw.get("voice") or ""),
+            numeric_controls=frozenset(str(value) for value in raw.get("numeric_controls") or []),
+            stability_modes=frozenset(str(value) for value in raw.get("stability_modes") or []),
+            speaker_boost_available=bool(raw.get("speaker_boost")),
+            editor_kind=str(raw.get("editor_kind") or "missing"),
+            observed_at=utcnow(),
+        )
+
+    def apply_stability_mode(self, requested: str) -> None:
+        selector = 'button,[role="radio"]'
+        self._activate_selector(selector, requested=requested, key="Enter")
+        deadline = time.monotonic() + 5
+        while time.monotonic() < deadline:
+            result = self._json(f"""(() => {{
+              const wanted={json.dumps(requested.casefold())};
+              const label=e=>(e.getAttribute('aria-label')||e.innerText||'').trim().toLowerCase();
+              const e=[...document.querySelectorAll('button,[role=radio]')].find(x=>label(x)===wanted);
+              return {{selected:!!e&&(e.getAttribute('aria-checked')==='true'||e.getAttribute('data-state')==='on'||e.getAttribute('data-state')==='checked'||e.getAttribute('aria-pressed')==='true')}};
+            }})()""")
+            if result.get("selected"):
+                return
+            time.sleep(0.25)
+        raise RuntimeError(f"ElevenLabs did not retain v3 stability mode {requested!r}.")
 
     def apply_settings(self, settings: VoiceSettings) -> dict[str, Any]:
         self.dismiss_overlays()
-        applied: dict[str, Any] = {}
         if settings.model:
             self.select_option("model", settings.model)
         if settings.voice:
             self.select_option("voice", settings.voice)
             self.dismiss_overlays()
-        if any(value is not None for value in (settings.speed, settings.stability, settings.similarity, settings.style)):
+        probe = self.probe_capabilities()
+        requested = {**settings.supplied(), "tts_model": settings.model}
+        plan = build_execution_plan(requested, probe)
+        applied: dict[str, Any] = {
+            "capabilities": probe.receipt(),
+            "execution_mode": plan.execution_mode,
+            "inactive_settings": plan.inactive_settings,
+        }
+        if plan.stability_mode and "stability" not in plan.numeric_settings:
+            self.apply_stability_mode(plan.stability_mode)
+        if plan.numeric_settings:
             self.open_settings_tab()
-        for label, value in (("Speed", settings.speed), ("Stability", settings.stability), ("Similarity", settings.similarity), ("Style Exaggeration", settings.style)):
-            if value is not None:
-                self.apply_numeric_setting(label, value)
-        if settings.speaker_boost is not None:
-            wanted = bool(settings.speaker_boost)
+        labels = {"speed": "Speed", "stability": "Stability", "similarity": "Similarity", "style": "Style Exaggeration"}
+        for name, value in plan.numeric_settings.items():
+            self.apply_numeric_setting(labels[name], value)
+        if plan.speaker_boost is not None:
+            wanted = bool(plan.speaker_boost)
             speaker_selector = '[role="switch"][aria-label*="Speaker boost" i], input[type="checkbox"][aria-label*="Speaker boost" i]'
             result = self._json(f"""(() => {{
               const e=document.querySelector({json.dumps(speaker_selector)});
@@ -787,6 +928,12 @@ class ElevenLabsUI:
             settings_result = self._json(f"""(() => ({{format:(document.querySelector({json.dumps(OUTPUT_FORMAT_SELECTOR)})?.innerText||'').trim()}}))()""")
             if output_format_identity(str(settings_result.get("format") or "")) != output_format_identity(selected_output):
                 raise RuntimeError("ElevenLabs did not retain the requested output format.")
+        applied["effective_plan"] = {
+            "model": plan.model.value,
+            "numeric_settings": plan.numeric_settings,
+            "stability_mode": plan.stability_mode,
+            "speaker_boost": plan.speaker_boost,
+        }
         return applied
 
     def effective_settings(self) -> dict[str, Any]:
@@ -794,7 +941,8 @@ class ElevenLabsUI:
         expression = """(() => {
           const buttonText=selector=>{const e=document.querySelector(selector);return (e?.innerText||e?.getAttribute('aria-label')||'').trim()||null};
           const slider=label=>{const e=[...document.querySelectorAll('[role=slider]')].find(x=>x.getAttribute('aria-label')===label);return e?Number(e.getAttribute('aria-valuenow')):null};
-          return {voice:buttonText(__VOICE__),model:buttonText(__MODEL__),speed:slider('Speed'),stability:slider('Stability'),similarity:slider('Similarity'),style:slider('Style Exaggeration'),output_format:buttonText(__FORMAT__)};
+          const mode=[...document.querySelectorAll('button,[role=radio]')].find(e=>/^(creative|natural|robust)$/i.test((e.getAttribute('aria-label')||e.innerText||'').trim())&&(e.getAttribute('aria-checked')==='true'||e.getAttribute('data-state')==='on'||e.getAttribute('data-state')==='checked'||e.getAttribute('aria-pressed')==='true'));
+          return {voice:buttonText(__VOICE__),model:buttonText(__MODEL__),speed:slider('Speed'),stability:slider('Stability'),similarity:slider('Similarity'),style:slider('Style Exaggeration'),stability_mode:(mode?.getAttribute('aria-label')||mode?.innerText||'').trim()||null,output_format:buttonText(__FORMAT__)};
         })()"""
         expression = expression.replace("__VOICE__", json.dumps(VOICE_TRIGGER_SELECTOR)).replace("__MODEL__", json.dumps(MODEL_TRIGGER_SELECTOR)).replace("__FORMAT__", json.dumps(OUTPUT_FORMAT_SELECTOR))
         return self._json(expression)
@@ -807,15 +955,21 @@ class ElevenLabsUI:
                 raise RuntimeError(f"ElevenLabs did not retain requested {field} '{requested}'; observed '{observed}'.")
         if settings.output_format is not None and output_format_identity(str(effective.get("output_format") or "")) != output_format_identity(settings.output_format):
             raise RuntimeError(f"ElevenLabs did not retain requested output_format '{settings.output_format}'; observed '{effective.get('output_format')}'.")
-        for field, requested in (("speed", settings.speed), ("stability", settings.stability), ("similarity", settings.similarity), ("style", settings.style)):
+        probe = self.probe_capabilities()
+        plan = build_execution_plan({**settings.supplied(), "tts_model": settings.model}, probe)
+        for field, requested in plan.numeric_settings.items():
             observed = effective.get(field)
             if requested is not None and (observed is None or abs(float(observed) - requested) > 0.011):
                 raise RuntimeError(f"ElevenLabs did not retain requested {field} {requested}; observed {observed}.")
+        if plan.stability_mode and "stability" not in plan.numeric_settings and str(effective.get("stability_mode") or "").casefold() != plan.stability_mode.casefold():
+            raise RuntimeError(f"ElevenLabs did not retain requested stability mode {plan.stability_mode!r}; observed {effective.get('stability_mode')!r}.")
+        effective["capability_probe"] = probe.receipt()
+        effective["execution_mode"] = plan.execution_mode
         return effective
 
     def textarea_characters(self) -> int:
         """Read-only length of the visible narration box (-1 when it is gone)."""
-        result = self._json(f"""(() => {{const e=document.querySelector({json.dumps(TEXTAREA_SELECTOR)});return {{characters:e?e.value.length:-1}};}})()""")
+        result = self._json(f"""(() => {{const e=document.querySelector({json.dumps(TEXTAREA_SELECTOR)});const content=e?.querySelector('[data-node-view-content]')||e;const text=e?(e.tagName==='TEXTAREA'?e.value:(content.innerText||content.textContent||'')):null;return {{characters:text===null?-1:text.length}};}})()""")
         try:
             return int(result.get("characters", -1))
         except (TypeError, ValueError):
@@ -834,8 +988,10 @@ class ElevenLabsUI:
         before = self.snapshot()
         if before.get("captcha"):
             raise RuntimeError("ElevenLabs requires an on-screen human verification in Chrome; complete it in VNC, then resume.")
-        if before.get("loading") or before.get("progress") or before.get("downloads"):
-            return {"acknowledged": True, "method": "existing_ui_state", "delay_seconds": 0.0}
+        if before.get("loading") or before.get("progress"):
+            raise RuntimeError(
+                "ElevenLabs already shows an in-progress generation. Reconcile its result identity before submitting another request."
+            )
         # The narration box can lose its text between set_text and activation
         # (app re-render/reset). Activating Generate on an empty composer never
         # produces audio, so refuse loudly instead of burning a submit cycle.
@@ -861,13 +1017,59 @@ class ElevenLabsUI:
             current = self.snapshot()
             if current.get("captcha"):
                 raise RuntimeError("ElevenLabs requires an on-screen human verification in Chrome; complete it in VNC, then resume.")
-            if current.get("busy") or current.get("downloads"):
+            if current.get("busy"):
                 return {"acknowledged": True, "method": "selector_keyboard", "delay_seconds": round(time.monotonic() - started, 3), "generate": current.get("generate")}
             time.sleep(min(0.5, self.poll_seconds))
         raise RuntimeError(f"ElevenLabs did not acknowledge Generate after selector keyboard activation; no request was recorded as submitted (composer holds {self.textarea_characters()} characters now).")
 
     def refresh(self) -> None:
         self._json("""(() => { location.reload(); return {ok:true}; })()""")
+
+    def configure_downloads(self, directory: Path) -> None:
+        """Route this attempt into its own directory through Chrome CDP."""
+        if self.tab is None:
+            raise RuntimeError("ElevenLabs browser tab has not been opened.")
+        directory.mkdir(parents=True, exist_ok=True)
+        info = self._get_tab_info(self.tab)
+        websocket_url = getattr(info, "websocket_debugger_url", None)
+        if not websocket_url:
+            raise RuntimeError("Ordak could not configure Chrome downloads.")
+        from websockets.sync.client import connect
+        with connect(websocket_url, proxy=None, open_timeout=5, close_timeout=5) as websocket:
+            websocket.send(json.dumps({
+                "id": 1,
+                "method": "Browser.setDownloadBehavior",
+                "params": {"behavior": "allow", "downloadPath": str(directory.resolve()), "eventsEnabled": True},
+            }))
+            while True:
+                reply = json.loads(websocket.recv(timeout=5))
+                if reply.get("id") == 1:
+                    if reply.get("error"):
+                        raise RuntimeError("Chrome rejected the ElevenLabs attempt download directory.")
+                    return
+
+    def download_bound_result(self, result_id: str) -> dict[str, Any]:
+        """Activate Download only inside the DOM row carrying the bound identity."""
+        selector = (
+            f'[data-generation-id={json.dumps(result_id)}],'
+            f'[data-history-item-id={json.dumps(result_id)}],'
+            f'[data-testid={json.dumps(result_id)}]'
+        )
+        target = self._json(f"""(() => {{
+          const row=document.querySelector({json.dumps(selector)});
+          if(!row)return {{ok:false,reason:'bound result row is not present'}};
+          const button=row.matches({json.dumps(DOWNLOAD_SELECTOR)})?row:row.querySelector('button[data-testid="tts-download-latest-button"],button[aria-label*="download" i],[role=button][aria-label*="download" i]');
+          if(!button||button.disabled||button.getAttribute('aria-disabled')==='true')return {{ok:false,reason:'bound result has no enabled download control'}};
+          button.setAttribute('data-qstation-bound-download','true');
+          return {{ok:true,text:(button.innerText||button.getAttribute('aria-label')||'Download').trim()}};
+        }})()""")
+        if not target.get("ok"):
+            return target
+        try:
+            choice = self._pointer_activate_selector('[data-qstation-bound-download="true"]')
+        finally:
+            self._json("""(() => {document.querySelectorAll('[data-qstation-bound-download]').forEach(e=>e.removeAttribute('data-qstation-bound-download'));return {ok:true};})()""")
+        return {"ok": True, "choice": choice.get("text") or target.get("text"), "result_id": result_id}
 
     def download_best_available(self) -> dict[str, Any]:
         """Activate ElevenLabs' canonical latest-result download selector."""
@@ -1060,13 +1262,33 @@ def settings_from_profile(profile: dict[str, Any], cli: dict[str, Any] | None = 
         choose("similarity"),
         choose("style"),
         boost,
+        choose("stability_mode"),
         choose("output_format"),
     )
 
 
 def find_download(download_dir: Path, started_at: float) -> Path | None:
-    candidates = [path for path in download_dir.glob("*") if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS and path.stat().st_mtime >= started_at - 2]
+    candidates = [path for path in download_dir.glob("*") if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS and path.stat().st_mtime >= started_at - 0.5]
     return max(candidates, key=lambda path: path.stat().st_mtime) if candidates else None
+
+
+def verify_audio_decode(path: Path) -> dict[str, Any]:
+    completed = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration,format_name", "-of", "json", str(path)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        raise RuntimeError(f"ElevenLabs audio failed ffprobe decode: {completed.stderr.strip()[:300]}")
+    try:
+        payload = json.loads(completed.stdout)
+        duration = float((payload.get("format") or {}).get("duration"))
+    except (TypeError, ValueError, json.JSONDecodeError) as exc:
+        raise RuntimeError("ElevenLabs audio has no readable positive duration.") from exc
+    if duration <= 0:
+        raise RuntimeError("ElevenLabs audio has no readable positive duration.")
+    return {"duration_seconds": duration, "format_name": str((payload.get("format") or {}).get("format_name") or "")}
 
 
 def configure_ordak_browser_environment() -> None:
@@ -1097,6 +1319,7 @@ def main() -> None:
     parser.add_argument("--similarity", type=float, default=None)
     parser.add_argument("--style", type=float, default=None)
     parser.add_argument("--speaker-boost", choices=("true", "false"), default=None)
+    parser.add_argument("--stability-mode", choices=("Creative", "Natural", "Robust"), default=None, help="Eleven v3 stability mode; v2 slider profiles leave this unset.")
     parser.add_argument("--output-format", default=None, help="Exact visible ElevenLabs output-format label; profile value is used by default.")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="Verify authenticated UI and persisted inputs without generating audio.")
@@ -1114,7 +1337,8 @@ def main() -> None:
         {
             "voice": args.voice, "model": args.model, "speed": args.speed,
             "stability": args.stability, "similarity": args.similarity, "style": args.style,
-            "speaker_boost": args.speaker_boost, "output_format": args.output_format,
+            "speaker_boost": args.speaker_boost, "stability_mode": args.stability_mode,
+            "output_format": args.output_format,
         },
     )
     voiceover_dir = project / "voiceover"
@@ -1159,81 +1383,138 @@ def main() -> None:
     title = stage_title("elevenlabs_voiceover")
     stage_message = notifier.stage_started(title, key="elevenlabs_voiceover")
     ui = ElevenLabsUI(poll_seconds=float(os.getenv("YT_ELEVENLABS_POLL_SECONDS", "5")), stall_seconds=float(os.getenv("YT_ELEVENLABS_STALL_REFRESH_SECONDS", "90")), max_refreshes=int(os.getenv("YT_ELEVENLABS_MAX_STALL_REFRESHES", "3")))
+    attempt_id = "attempt-" + uuid.uuid4().hex
+    state.data.update({"active_attempt_id": attempt_id, "attempt_owner": args.video_id})
+    state.save()
+    machine = AttemptStateMachine()
+    lease = FileLease(
+        ROOT / "runtime" / "locks" / "elevenlabs_browser.lock",
+        owner="elevenlabs_web",
+        run_id=f"run-{args.video_id}",
+        revision_id="voiceover",
+        attempt_id=attempt_id,
+        ttl_seconds=max(30.0, float(os.getenv("YT_ELEVENLABS_GENERATION_TIMEOUT_SECONDS", "900"))),
+    )
     try:
+        lease.acquire()
+        machine.advance("OPEN")
         ui.open_and_verify()
+        machine.advance("VERIFY_SESSION")
         state.data["status"] = "UI_READY"; state.save()
         state.event("elevenlabs_ui_ready", started)
-        if args.dry_run:
-            notifier.stage_update(stage_message, title, ["✅ Dry run complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}", f"📄 Input: {input_path.relative_to(project)}"])
-            print("ELEVENLABS VOICEOVER: DRY RUN PASS")
-            return
         configured_at = time.perf_counter()
         applied_settings = ui.apply_settings(settings)
+        machine.advance("SELECT_MODEL")
+        machine.advance("SELECT_VOICE")
+        machine.advance("PROBE_CAPABILITIES")
+        machine.advance("APPLY_EFFECTIVE_SETTINGS")
         effective_settings = ui.verify_settings(settings)
+        machine.advance("VERIFY_SETTINGS")
         state.event("elevenlabs_settings_applied", configured_at, settings=settings.supplied(), effective_settings=effective_settings, ui_capabilities=applied_settings)
+        json_dump(voiceover_dir / "VOICE_CAPABILITIES.json", applied_settings["capabilities"])
+        if args.dry_run:
+            notifier.stage_update(stage_message, title, ["✅ Dry run capability probe complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}", f"📄 Input: {input_path.relative_to(project)}"])
+            print("ELEVENLABS VOICEOVER: DRY RUN PASS")
+            return
         ui.set_text(text)
+        machine.advance("ENTER_COMPILED_TEXT")
+        text_evidence = ui.verify_text(text)
+        machine.advance("VERIFY_TEXT")
         state.data["status"] = "TEXT_ENTERED"; state.save()
-        state.event("elevenlabs_text_entered", configured_at, characters=len(text))
+        state.event("elevenlabs_text_entered", configured_at, **text_evidence)
+        download_dir = voiceover_dir / "downloads" / attempt_id
+        ui.configure_downloads(download_dir)
+        baseline_raw = ui.snapshot()
+        baseline = result_snapshot(baseline_raw)
+        machine.advance("CAPTURE_RESULT_BASELINE")
+        state.data["result_baseline"] = {"identities": sorted(baseline.identities), "captured_at": utcnow()}
+        state.save()
         submit_at = time.perf_counter()
         acknowledgement = ui.submit()
+        machine.advance("SUBMIT_ONCE")
+        machine.advance("ACKNOWLEDGED")
         state.data.update({"status": "SUBMITTED", "submitted_at": utcnow()}); state.save()
         state.event("elevenlabs_submit", submit_at, acknowledgement=acknowledgement)
         notifier.stage_update(stage_message, title, ["🎙️ Generation submitted", f"📝 Characters: {len(text)}", "👀 Waiting for the web UI result"])
-        download_dir = Path(os.getenv("YT_ELEVENLABS_DOWNLOAD_DIR", str(Path.home() / "Downloads"))).expanduser()
-        download_dir.mkdir(parents=True, exist_ok=True)
-        last_change, refreshes, download_started = time.monotonic(), 0, time.time()
+        machine.advance("WAIT_FOR_BOUND_RESULT")
+        last_change, download_started = time.monotonic(), 0.0
         prior_signature = ""
+        bound_result_id: str | None = None
+        download_requested = False
         deadline = time.monotonic() + float(os.getenv("YT_ELEVENLABS_GENERATION_TIMEOUT_SECONDS", "900"))
         while time.monotonic() < deadline:
             snapshot = ui.snapshot()
-            signature = json.dumps({"busy": snapshot.get("busy"), "loading": snapshot.get("loading"), "generate": snapshot.get("generate"), "downloads": snapshot.get("downloads"), "summary": snapshot.get("summary", "")[:500]}, sort_keys=True)
+            signature = json.dumps({"busy": snapshot.get("busy"), "loading": snapshot.get("loading"), "generate": snapshot.get("generate"), "downloads": snapshot.get("downloads"), "result_identities": snapshot.get("result_identities")}, sort_keys=True)
             if signature != prior_signature:
                 prior_signature, last_change = signature, time.monotonic()
-            downloaded = find_download(download_dir, download_started)
+                lease.heartbeat()
+            if bound_result_id is None:
+                bound_result_id = bind_new_result(baseline, result_snapshot(snapshot))
+                if bound_result_id:
+                    state.data.update({"bound_result_id": bound_result_id, "status": "RESULT_BOUND"})
+                    state.save()
+            if bound_result_id and not download_requested:
+                choice = ui.download_bound_result(bound_result_id)
+                if not choice.get("ok"):
+                    raise RuntimeError(f"Bound ElevenLabs result cannot be downloaded: {choice.get('reason', 'unknown reason')}")
+                machine.advance("DOWNLOAD_BOUND_RESULT")
+                download_started = time.time()
+                download_requested = True
+                state.data.update({"download_choice": choice.get("choice"), "download_requested_at": download_started, "status": "DOWNLOAD_TRIGGERED"})
+                state.save()
+                state.event("elevenlabs_download_requested", submit_at, choice=choice.get("choice"), result_id=bound_result_id)
+                notifier.stage_update(stage_message, title, ["⬇️ Bound result download requested", f"🆔 Result: {bound_result_id[:120]}", "👀 Waiting for the browser download"])
+            downloaded = find_download(download_dir, download_started) if download_requested else None
             if downloaded:
+                downloaded = validate_download_candidate(downloaded, attempt_root=download_dir, started_at=download_started)
+                technical = verify_audio_decode(downloaded)
+                machine.advance("VERIFY_DECODE_AND_IDENTITY")
+                if state.data.get("active_attempt_id") != attempt_id or state.data.get("bound_result_id") != bound_result_id:
+                    raise RuntimeError("Late ElevenLabs result no longer owns the active attempt; refusing promotion.")
                 destination = output_dir / f"narration{downloaded.suffix.lower()}"
                 shutil.move(str(downloaded), destination)
-                if destination.stat().st_size < 1024:
-                    raise RuntimeError("ElevenLabs download is unexpectedly small.")
+                output_sha256 = hashlib.sha256(destination.read_bytes()).hexdigest()
                 state.data.update({"status": "DONE", "output": str(destination.relative_to(project)), "completed_at": utcnow()})
                 state.data.pop("error", None); state.data.pop("failed_at", None)
-                state.event("elevenlabs_download", submit_at, bytes=destination.stat().st_size, output=str(destination.relative_to(project)))
-                json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(destination.relative_to(project)), "generated_at": utcnow()})
+                state.event("elevenlabs_download", submit_at, bytes=destination.stat().st_size, output=str(destination.relative_to(project)), result_id=bound_result_id, **technical)
+                receipt = {
+                    "schema_version": 2,
+                    "provider": "ElevenLabs web UI",
+                    "transport": "elevenlabs_web",
+                    "attempt_id": attempt_id,
+                    "result_id": bound_result_id,
+                    "input_sha256": digest(text),
+                    "compiled_input_sha256": text_fingerprint(text),
+                    "settings": settings.supplied(),
+                    "effective_settings": effective_settings,
+                    "capability_schema_version": applied_settings["capabilities"]["schema_version"],
+                    "capabilities": applied_settings["capabilities"],
+                    "result_baseline": {"identities": sorted(baseline.identities)},
+                    "output": str(destination.relative_to(project)),
+                    "output_sha256": output_sha256,
+                    "technical": technical,
+                    "generated_at": utcnow(),
+                }
+                json_dump(voiceover_dir / "TTS_EXECUTION_RECEIPT.json", receipt)
+                json_dump(voiceover_dir / "VOICE_PROFILE.json", {"provider": "ElevenLabs web UI", "settings": settings.supplied(), "input_sha256": digest(text), "output": str(destination.relative_to(project)), "output_sha256": output_sha256, "result_id": bound_result_id, "generated_at": receipt["generated_at"]})
+                machine.advance("COMMIT_RECEIPT")
                 notifier.stage_update(stage_message, title, ["✅ Stage complete", f"⏱ Duration: {format_duration(time.perf_counter() - started)}", f"📄 Saved: {destination.relative_to(project)}"])
                 print(f"ELEVENLABS VOICEOVER: PASS\nAudio: {destination}")
                 return
-            retry_after = float(os.getenv("YT_ELEVENLABS_DOWNLOAD_RETRY_SECONDS", "30"))
-            prior_download_at = float(state.data.get("download_requested_at") or 0)
-            if snapshot.get("downloads") and (not state.data.get("download_choice") or time.time() - prior_download_at >= retry_after):
-                choice = ui.download_best_available()
-                if choice.get("ok"):
-                    state.data["download_choice"] = choice.get("choice"); state.data["download_requested_at"] = time.time(); state.data["status"] = "DOWNLOAD_TRIGGERED"; state.save()
-                    download_started = time.time()
-                    state.event("elevenlabs_download_requested", submit_at, choice=choice.get("choice"), retry=bool(prior_download_at))
-                    notifier.stage_update(stage_message, title, ["⬇️ Download requested", f"🎚️ Option: {choice.get('choice', 'Download')[:180]}", "👀 Waiting for the browser download"])
             if not snapshot.get("busy") and time.monotonic() - last_change >= ui.stall_seconds:
-                if refreshes >= ui.max_refreshes:
-                    raise RuntimeError("ElevenLabs UI made no progress and did not expose a downloadable result after all recovery refreshes.")
-                refreshes += 1
-                ui.refresh()
-                # A refresh can restore the text field but cancel the browser
-                # action.  Re-open, re-apply every requested control, and only
-                # then resubmit after the page has visibly acknowledged it.
-                ui.open_and_verify()
-                recovered_settings = ui.apply_settings(settings)
-                recovered_effective = ui.verify_settings(settings)
-                ui.set_text(text)
-                acknowledgement = ui.submit()
-                state.data.update({"status": "SUBMITTED", "submitted_at": utcnow()}); state.save()
-                state.event("elevenlabs_stall_refresh", started, refresh_number=refreshes, recovery_settings=recovered_settings, effective_settings=recovered_effective, acknowledgement=acknowledgement)
-                notifier.stage_update(stage_message, title, ["↻ Recovery refresh completed", f"⏱ No UI progress for {format_duration(ui.stall_seconds)}", f"📍 Refresh {refreshes}/{ui.max_refreshes}"])
-                last_change = time.monotonic()
+                raise RuntimeError(
+                    "ElevenLabs submission acknowledgement exists but no bound result made progress; "
+                    "status is uncertain, so automatic refresh/resubmit is forbidden. Resume after reconciliation."
+                )
             time.sleep(ui.poll_seconds)
         raise RuntimeError("ElevenLabs generation exceeded the configured timeout.")
     except Exception as exc:
-        state.data.update({"status": "FAILED", "error": str(exc), "failed_at": utcnow()}); state.save()
+        status = "PAUSED_AUTH" if "verification" in str(exc).casefold() or "login" in str(exc).casefold() else "FAILED"
+        state.data.update({"status": status, "error": str(exc), "failed_at": utcnow(), "adapter_state": machine.current}); state.save()
         notifier.stage_failure(stage_message, title, time.perf_counter() - started, str(exc))
         raise
+    finally:
+        lease.release()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "provider": "ElevenLabs web UI",
+  "name": "mark_v3_default",
+  "voice": "Liam - Energetic, Social Media Creator",
+  "model": "Eleven v3",
+  "stability_mode": "Natural",
+  "output_format": "MP3 44.1 kHz 128 kbps",
+  "notes": "V3 baseline uses the observed mode control and does not send Multilingual v2 numeric sliders or Speaker Boost. Real account/voice availability must be proven by a live capability probe."
+}
