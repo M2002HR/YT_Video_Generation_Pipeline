@@ -74,7 +74,11 @@ def receipt_status(project: Path, output: Path, receipt_path: Path, *, fingerpri
         launch = project / "launch/LAUNCH_REQUEST.json"
         if _model_bound(receipt) and launch.is_file():
             model = json.loads(launch.read_text()).get("image_generation", {}).get("model")
-            if model and receipt.get("requested_model") != model:
+            # `image_generation.model` is a legacy Gemini control. Once the
+            # frozen provider is ChatGPT it must not invalidate otherwise exact
+            # ChatGPT receipts or force a paid regeneration on Resume.
+            is_chatgpt = receipt.get("requested_model") == "chatgpt_image" or receipt.get("provider") == "chatgpt"
+            if model and not is_chatgpt and receipt.get("requested_model") != model:
                 return outcome("stale", "Requested image model changed")
         prompt_path = None
         if output.stem == "world_keyframe":

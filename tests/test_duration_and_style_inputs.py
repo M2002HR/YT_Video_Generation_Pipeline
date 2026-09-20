@@ -145,11 +145,11 @@ def test_the_wrapper_forwards_length_and_style(tmp_path: Path) -> None:
         "--world-style-id", "woodcut_charcoal_warm",
         "--world-style-policy", "reuse",
         "--world-style-hint", "warm paper",
-        "--gemini-model", "nano_banana_2",
         "--disable-beat-image-qc",
         "--image-qc-correction-policy", "2",
     ):
         assert expected in flags, expected
+    assert "--gemini-model" not in flags, "the locked ChatGPT image provider must not accept a legacy Gemini override"
 
 
 def test_an_empty_brief_adds_no_flags(tmp_path: Path) -> None:

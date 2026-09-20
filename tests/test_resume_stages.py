@@ -99,7 +99,7 @@ def _mark_done(runner: Runner, stage: str) -> None:
     runner.state.mark(stage, qstation.STATE_DONE)
 
 
-def image_receipt(project, target, prompt, references=(), model="nano_banana_pro"):
+def image_receipt(project, target, prompt, references=(), model=qstation.CHATGPT_IMAGE_MODEL):
     from image_artifacts import CONTRACT_VERSION, request_fingerprint
     from gateway_contracts import enforce_review, requirements
     check = enforce_review({"passed": True, "description": "Temporary test fixture, not a production visual review.", "violations": [],
@@ -337,7 +337,7 @@ def test_chatgpt_revision_guidance_reviews_old_image_once_and_reuses_receipt(
     source = _png(project / "pipeline/revisions/rev/previous/assets/raw_beats/beat_002.png", seed=22)
     calls = []
 
-    def review(stage, prompt, *, provider, mode, references=()):  # noqa: ANN001
+    def review(stage, prompt, *, provider, mode, references=(), **_kwargs):  # noqa: ANN001
         calls.append((stage, prompt, provider, mode, references))
         return qstation.JobResult(
             job_id="feedback-test", status="DONE",
@@ -381,4 +381,4 @@ def test_old_permissive_review_cannot_certify_a_new_full_bleed_request(runner, p
     receipt["quality_check"] = {"passed": True, "observations": ["A page border is present."]}
     qstation.save_json(receipt_path, receipt)
     with pytest.raises(AssertionError, match="called chatgpt"):
-        qstation.reusable_image(runner, project, "world_keyframe", target, receipt_path, prompt, "nano_banana_pro", [])
+        qstation.reusable_image(runner, project, "world_keyframe", target, receipt_path, prompt, qstation.CHATGPT_IMAGE_MODEL, [])
