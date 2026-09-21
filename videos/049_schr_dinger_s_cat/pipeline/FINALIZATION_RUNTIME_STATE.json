@@ -2,7 +2,7 @@
   "schema_version": 1,
   "video": "049_schr_dinger_s_cat",
   "started_at": "2026-09-21T12:18:04.033067+00:00",
-  "status": "RUNNING",
+  "status": "DONE",
   "events": [
     {
       "stage": "build_timeline",
@@ -185,10 +185,20 @@
         "2026-09-21T12:18:04.033067+00:00"
       ],
       "status": "RUNNING"
+    },
+    {
+      "stage": "git_commit_push",
+      "status": "DONE",
+      "started_at": "2026-09-21T12:18:04.033067+00:00",
+      "ended_at": "2026-09-21T12:23:00.586194+00:00",
+      "elapsed_seconds": 296.553,
+      "branch": "dev",
+      "remote": "origin",
+      "artifact_commit": "60ef0d8c8f62dedc148bdf11cfd4986f2b95fc78"
     }
   ],
-  "completed_at": "2026-09-21T12:22:49.730898+00:00",
-  "total_elapsed_seconds": 276.507,
+  "completed_at": "2026-09-21T12:23:00.586194+00:00",
+  "total_elapsed_seconds": 573.06,
   "summary": {
     "video": "049_schr_dinger_s_cat",
     "duration_seconds": 44.121,
